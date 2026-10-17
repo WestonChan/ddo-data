@@ -37,6 +37,15 @@ min_level = 5
 set = "Menechtarun Scavenger"
 
 [[socket.option]]
+name = "The Desert's Burning Sun"
+description = "The Desert's Burning Sun"
+icon = "Menechtarun"
+min_level = 5
+
+[[socket.option.set]]
+set = "The Desert's Burning Sun"
+
+[[socket.option]]
 name = "The Desert's Starless Nights"
 description = "The Desert's Starless Nights"
 icon = "Menechtarun"

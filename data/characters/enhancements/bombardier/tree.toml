@@ -9,7 +9,7 @@ name = "Bombardier: Alchemical Resistance"
 cost_per_rank = [1]
 description = """
 +1 Fortitude save. Each core ability you take in this tree beyond the first grants
-+5 Fire, Cold, Acid, Electric, and poison Spell Power, as well as +1 Burning
++5 Fire, Cold, Acid, Electric, and Poison Spell Power, as well as +1 Burning
 Ambition Dice."""
 icon = "BomAlchemicalResistance"
 internal_name = "BomCore1"
@@ -505,7 +505,7 @@ internal_name = "BomCore3"
 internal_name = "BomCore4"
 
 [[enhancement]]
-name = "Bombardier: Requires New Name"
+name = "Bombardier: Multivial"
 cost_per_rank = [1]
 description = """
 Passive: +4 Intelligence, +2 Conjuration DCs.
@@ -588,6 +588,131 @@ items = [
 ]
 req_type = "Exclusive"
 
+[[enhancement.selection]]
+name = "SLA: Multivial of Acid"
+cost_per_rank = [1]
+description = """
+Passive: +4 Intelligence, +2 Conjuration DCs.
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage. Unlike the multivial spells, this ability requires a target."""
+icon = "BomMultivialAcid"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    40,
+    -1,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Multivial of Acid",
+    "Alchemist",
+]
+
+[[enhancement.selection]]
+name = "SLA: Multivial of Flame"
+cost_per_rank = [1]
+description = """
+Passive: +4 Intelligence, +2 Conjuration DCs.
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage. Unlike the multivial spells, this ability requires a target."""
+icon = "BomMultivialFlame"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    40,
+    -1,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Multivial of Flame",
+    "Alchemist",
+]
+
+[[enhancement.selection]]
+name = "SLA: Multivial of Frost"
+cost_per_rank = [1]
+description = """
+Passive: +4 Intelligence, +2 Conjuration DCs.
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage. Unlike the multivial spells, this ability requires a target."""
+icon = "BomMultivialFrost"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    40,
+    -1,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Multivial of Frost",
+    "Alchemist",
+]
+
+[[enhancement.selection]]
+name = "SLA: Multivial of Sparks"
+cost_per_rank = [1]
+description = """
+Passive: +4 Intelligence, +2 Conjuration DCs.
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage. Unlike the multivial spells, this ability requires a target."""
+icon = "BomMultivialSparks"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    40,
+    -1,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Multivial of Sparks",
+    "Alchemist",
+]
+
+[[enhancement.selection]]
+name = "SLA: Multivial of Poison"
+cost_per_rank = [1]
+description = """
+Passive: +4 Intelligence, +2 Conjuration DCs.
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage. Unlike the multivial spells, this ability requires a target."""
+icon = "BomMultivialPoison"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    40,
+    -1,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Multivial of Poison",
+    "Alchemist",
+]
+
 [[enhancement]]
 name = "Bombardier: Spellvial Selection I"
 cost_per_rank = [1]
@@ -606,40 +731,7 @@ req_type = "ClassMinLevel"
 value = 1
 
 [[enhancement.selection]]
-name = "SLA: Venom Vial"
-cost_per_rank = [1]
-description = """
-SLA: Vial of Venom
-Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
-Spell Point Cost: 1
-Cooldown 4 seconds
-Primer Element: Crimsonite
-
-Conjuring a bottle of magical poison, you throw a projectile at a single foe
-that deals 3 to 8 Poison damage per caster level, max caster level 10.
-This poison will leave the enemy Contaminated.
-
-DND Dice: Deals 1d6+2 Poison damage per caster level, max 10d6+20"""
-icon = "BomVenomVial"
-is_clickie = true
-
-[[enhancement.selection.modifier]]
-amount_type = "SpellInfo"
-amounts = [
-    0,
-    1,
-    10,
-    4,
-]
-bonus_type = "Enhancement"
-effect_type = "SpellLikeAbility"
-targets = [
-    "Venom Vial",
-    "Alchemist",
-]
-
-[[enhancement.selection]]
-name = "SLA: Vial of Acid"
+name = "SLA: Vial Smash Acid"
 cost_per_rank = [1]
 description = """
 SLA: Vial of Acid
@@ -649,9 +741,9 @@ Cooldown 4 seconds
 Primer Element: Crimsonite
 
 Conjuring a bottle of caustic liquid, you throw a projectile at a single foe
-that deals 3 to 8 Acid damage per caster level, max caster level 10.
+that deals 2 to 7 Acid damage per caster level, max caster level 20.
 
-DND Dice: Deals 1d6+2 Acid damage per caster level, max 10d6+20"""
+DND Dice: Deals 1d6+1 Acid damage per caster level, max 20d6+10"""
 icon = "BomVialOfAcid"
 is_clickie = true
 
@@ -660,62 +752,30 @@ amount_type = "SpellInfo"
 amounts = [
     0,
     1,
-    10,
+    20,
     4,
 ]
 bonus_type = "Enhancement"
 effect_type = "SpellLikeAbility"
 targets = [
-    "Vial of Acid",
+    "Vial Smash: Acid",
     "Alchemist",
 ]
 
 [[enhancement.selection]]
-name = "SLA: Vial of Flame"
+name = "SLA: Vial Smash Cold"
 cost_per_rank = [1]
 description = """
-SLA: Vial of Flame
-Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
-Spell Point Cost: 1
-Cooldown 4 seconds
-Primer Element: Crimsonite
-
-Conjuring a bottle of burning liquid, you throw a projectile at a single foe
-that deals 3 to 8 Fire damage per caster level, max caster level 10.
-
-DND Dice: Deals 1d6+2 Fire damage per caster level, max 10d6+20"""
-icon = "BomVialOfFlame"
-is_clickie = true
-
-[[enhancement.selection.modifier]]
-amount_type = "SpellInfo"
-amounts = [
-    0,
-    1,
-    10,
-    4,
-]
-bonus_type = "Enhancement"
-effect_type = "SpellLikeAbility"
-targets = [
-    "Vial of Flame",
-    "Alchemist",
-]
-
-[[enhancement.selection]]
-name = "SLA: Vial of Frost"
-cost_per_rank = [1]
-description = """
-SLA: Vial of Frost
+SLA: Vial Smash: Cold
 Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
 Spell Point Cost: 1
 Cooldown 4 seconds
 Primer Element: Crimsonite
 
 Conjuring a bottle of freezing liquid, you throw a projectile at a single foe
-that deals 3 to 8 Cold damage per caster level, max caster level 10.
+that deals 2 to 7 Cold damage per caster level, max caster level 20.
 
-DND Dice: Deals 1d6+2 Cold damage per caster level, max 10d6+20"""
+DND Dice: Deals 1d6+1 Cold damage per caster level, max 20d6+10"""
 icon = "BomVialOfFrost"
 is_clickie = true
 
@@ -724,30 +784,63 @@ amount_type = "SpellInfo"
 amounts = [
     0,
     1,
-    10,
+    20,
     4,
 ]
 bonus_type = "Enhancement"
 effect_type = "SpellLikeAbility"
 targets = [
-    "Vial of Frost",
+    "Vial Smash: Cold",
     "Alchemist",
 ]
 
 [[enhancement.selection]]
-name = "SLA: Vial of Sparks"
+name = "SLA: Vial Smash Poison"
 cost_per_rank = [1]
 description = """
-SLA: Vial of Sparks
+SLA: Vial Smash: Poison
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 1
+Cooldown 4 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of magical poison, you throw a projectile at a single foe
+that deals 2 to 7 Poison damage per caster level, max caster level 20.
+This poison will leave the enemy Contaminated.
+
+DND Dice: Deals 1d6+1 Poison damage per caster level, max 20d6+10"""
+icon = "BomVenomVial"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    20,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Vial Smash: Poison",
+    "Alchemist",
+]
+
+[[enhancement.selection]]
+name = "SLA: Vial Smash Electric"
+cost_per_rank = [1]
+description = """
+SLA: Vial Smash: Electric
 Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
 Spell Point Cost: 1
 Cooldown 4 seconds
 Primer Element: Crimsonite
 
 Conjuring a bottle of reactive material, you throw a projectile at a single foe
-that deals 3 to 8 Electric damage per caster level, max caster level 10.
+that deals 2 to 7 Electric damage per caster level, max caster level 20.
 
-DND Dice: Deals 1d6+2 Electric damage per caster level, max 10d6+20"""
+DND Dice: Deals 1d6+1 Electric damage per caster level, max 20d6+10"""
 icon = "BomVialOfSparks"
 is_clickie = true
 
@@ -762,7 +855,39 @@ amounts = [
 bonus_type = "Enhancement"
 effect_type = "SpellLikeAbility"
 targets = [
-    "Vial of Sparks",
+    "Vial Smash: Electric",
+    "Alchemist",
+]
+
+[[enhancement.selection]]
+name = "SLA: Vial Smash Fire"
+cost_per_rank = [1]
+description = """
+SLA: Vial Smash: Fire
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 1
+Cooldown 4 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of burning liquid, you throw a projectile at a single foe
+that deals 2 to 7 Fire damage per caster level, max caster level 20.
+
+DND Dice: Deals 1d6+1 Fire damage per caster level, max 20d6+10"""
+icon = "BomVialOfFlame"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    20,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Vial Smash: Fire",
     "Alchemist",
 ]
 
@@ -914,189 +1039,6 @@ items = [
     "Wand and Scroll Mastery",
 ]
 req_type = "Exclusive"
-
-[[enhancement]]
-name = "Bombardier: Spellvial Selection II"
-cost_per_rank = [2]
-description = """
-Select an Element to specialize in. You may not select the same element you chose
-in Spellvial Selection I."""
-icon = "BomSpellvialSelectionII"
-internal_name = "BomSpellvialSelectionII"
-is_clickie = true
-min_spent = 5
-ranks = 1
-x = 0
-y = 2
-
-[[enhancement.requirement]]
-items = ["Alchemist"]
-req_type = "ClassMinLevel"
-value = 2
-
-[[enhancement.selection]]
-name = "SLA: Venom Vial"
-cost_per_rank = [2]
-description = """
-SLA: Vial of Venom
-Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
-Spell Point Cost: 1
-Cooldown 4 seconds
-Primer Element: Crimsonite
-
-Conjuring a bottle of magical poison, you throw a projectile at a single foe
-that deals 3 to 8 Poison damage per caster level, max caster level 10.
-This poison will leave the enemy Contaminated.
-
-DND Dice: Deals 1d6+2 Poison damage per caster level, max 10d6+20"""
-icon = "BomVenomVial"
-is_clickie = true
-
-[[enhancement.selection.modifier]]
-amount_type = "SpellInfo"
-amounts = [
-    0,
-    1,
-    10,
-    4,
-]
-bonus_type = "Enhancement"
-effect_type = "SpellLikeAbility"
-targets = [
-    "Venom Vial",
-    "Alchemist",
-]
-
-[[enhancement.selection]]
-name = "SLA: Vial of Acid"
-cost_per_rank = [2]
-description = """
-SLA: Vial of Acid
-Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
-Spell Point Cost: 1
-Cooldown 4 seconds
-Primer Element: Crimsonite
-
-Conjuring a bottle of caustic liquid, you throw a projectile at a single foe
-that deals 3 to 8 Acid damage per caster level, max caster level 10.
-
-DND Dice: Deals 1d6+2 Acid damage per caster level, max 10d6+20"""
-icon = "BomVialOfAcid"
-is_clickie = true
-
-[[enhancement.selection.modifier]]
-amount_type = "SpellInfo"
-amounts = [
-    0,
-    1,
-    10,
-    4,
-]
-bonus_type = "Enhancement"
-effect_type = "SpellLikeAbility"
-targets = [
-    "Vial of Acid",
-    "Alchemist",
-]
-
-[[enhancement.selection]]
-name = "SLA: Vial of Flame"
-cost_per_rank = [2]
-description = """
-SLA: Vial of Flame
-Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
-Spell Point Cost: 1
-Cooldown 4 seconds
-Primer Element: Crimsonite
-
-Conjuring a bottle of burning liquid, you throw a projectile at a single foe
-that deals 3 to 8 Fire damage per caster level, max caster level 10.
-
-DND Dice: Deals 1d6+2 Fire damage per caster level, max 10d6+20"""
-icon = "BomVialOfFlame"
-is_clickie = true
-
-[[enhancement.selection.modifier]]
-amount_type = "SpellInfo"
-amounts = [
-    0,
-    1,
-    10,
-    4,
-]
-bonus_type = "Enhancement"
-effect_type = "SpellLikeAbility"
-targets = [
-    "Vial of Flame",
-    "Alchemist",
-]
-
-[[enhancement.selection]]
-name = "SLA: Vial of Frost"
-cost_per_rank = [2]
-description = """
-SLA: Vial of Frost
-Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
-Spell Point Cost: 1
-Cooldown 4 seconds
-Primer Element: Crimsonite
-
-Conjuring a bottle of freezing liquid, you throw a projectile at a single foe
-that deals 3 to 8 Cold damage per caster level, max caster level 10.
-
-DND Dice: Deals 1d6+2 Cold damage per caster level, max 10d6+20"""
-icon = "BomVialOfFrost"
-is_clickie = true
-
-[[enhancement.selection.modifier]]
-amount_type = "SpellInfo"
-amounts = [
-    0,
-    1,
-    10,
-    4,
-]
-bonus_type = "Enhancement"
-effect_type = "SpellLikeAbility"
-targets = [
-    "Vial of Frost",
-    "Alchemist",
-]
-
-[[enhancement.selection]]
-name = "SLA: Vial of Sparks"
-cost_per_rank = [2]
-description = """
-SLA: Vial of Sparks
-Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
-Spell Point Cost: 1
-Cooldown 4 seconds
-Primer Element: Crimsonite
-
-Conjuring a bottle of reactive material, you throw a projectile at a single foe
-that deals 3 to 8 Electric damage per caster level, max caster level 10.
-
-DND Dice: Deals 1d6+2 Electric damage per caster level, max 10d6+20"""
-icon = "BomVialOfSparks"
-is_clickie = true
-
-[[enhancement.selection.modifier]]
-amount_type = "SpellInfo"
-amounts = [
-    0,
-    1,
-    10,
-    4,
-]
-bonus_type = "Enhancement"
-effect_type = "SpellLikeAbility"
-targets = [
-    "Vial of Sparks",
-    "Alchemist",
-]
-
-[[enhancement.selector_exclusion]]
-internal_name = "BomSpellVialSelection"
 
 [[enhancement]]
 name = "Bombardier: Efficient Metamagics I"
@@ -1349,9 +1291,7 @@ value = 2
 [[enhancement]]
 name = "Bombardier: Spellvial Selection III"
 cost_per_rank = [2]
-description = """
-Select an Element to specialize in. You may not select the same element you chose
-in Spellvial Selection I or Spellvial Selection II."""
+description = "Select a spell like ability."
 icon = "BomSpellvialSelectionII"
 internal_name = "BomSpellvialSelectionIII"
 is_clickie = true
@@ -1366,21 +1306,119 @@ req_type = "ClassMinLevel"
 value = 3
 
 [[enhancement.selection]]
-name = "SLA: Venom Vial"
+name = "SLA: Corrode Weapons"
 cost_per_rank = [2]
 description = """
-SLA: Vial of Venom
+SLA: Corrode Weapons
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 1
+Cooldown 4 seconds
+Primer Element: Gildleaf
+
+Lob a vial of caustic liquid at a single foe that deals heavy damage and corrodes
+the weapons of whatever it strikes. Deals 5 to 10 Acid damage per caster level,
+to a single target and reduces their accuracy and Melee and Ranged Power by 4
+for 15 seconds +2 seconds per Caster Level. A successful Reflex save reduces the
+damage by half."""
+icon = "BomCorrodeWeapons"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    20,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Corrode Weapons",
+    "Alchemist",
+]
+
+[[enhancement.selection]]
+name = "SLA: Cold Spike"
+cost_per_rank = [2]
+description = """
+SLA: Cold Spike
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 1
+Cooldown 4 seconds
+Primer Element: Gildleaf
+
+Lob a vial of freezing liquid at a single foe that deals heavy damage and slows
+the movement of whatever it strikes. Deals 5 to 10 Cold damage per caster level,
+to a single target and reduces their movement speed by 30% and damage by 4 for 15
+seconds +2 seconds per Caster Level. A successful Reflex save reduces the damage
+by half."""
+icon = "BomColdSpike"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    20,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Cold Spike",
+    "Alchemist",
+]
+
+[[enhancement.selection]]
+name = "SLA: Melt Armor"
+cost_per_rank = [2]
+description = """
+SLA: Melt Armor
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 1
+Cooldown 4 seconds
+Primer Element: Gildleaf
+
+Lob a vial of burning liquid at a single foe that deals heavy damage and melts
+the armor of whatever it strikes. Deals 5 to 10 Fire damage per caster level,
+to a single target and reduces their Armor Class and Physical Resistance Rating
+by 4 for 15 seconds +2 seconds per Caster Level. A successful Reflex save
+reduces the damage by half."""
+icon = "BomMeltArmor"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    20,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Melt Armor",
+    "Alchemist",
+]
+
+[[enhancement.selection]]
+name = "SLA: Venom Concentration"
+cost_per_rank = [2]
+description = """
+SLA: Melt Armor
 Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
 Spell Point Cost: 1
 Cooldown 4 seconds
 Primer Element: Crimsonite
 
 Conjuring a bottle of magical poison, you throw a projectile at a single foe
-that deals 3 to 8 Poison damage per caster level, max caster level 10.
-This poison will leave the enemy Contaminated.
-
-DND Dice: Deals 1d6+2 Poison damage per caster level, max 10d6+20"""
-icon = "BomVenomVial"
+that deals 1 to 6 Poison damage, +2 per caster level. This poison eats away at
+the enemy, dealing its damage every 2 seconds for 16 seconds. You may stack
+this poison 5 times. This poison will leave the enemy Contaminated."""
+icon = "BomVenomConcentration"
 is_clickie = true
 
 [[enhancement.selection.modifier]]
@@ -1388,31 +1426,31 @@ amount_type = "SpellInfo"
 amounts = [
     0,
     1,
-    10,
+    20,
     4,
 ]
 bonus_type = "Enhancement"
 effect_type = "SpellLikeAbility"
 targets = [
-    "Venom Vial",
+    "Venom Concentration",
     "Alchemist",
 ]
 
 [[enhancement.selection]]
-name = "SLA: Vial of Acid"
+name = "SLA: Voltaic Backlash"
 cost_per_rank = [2]
 description = """
-SLA: Vial of Acid
+SLA: Voltaic Backlash
 Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
 Spell Point Cost: 1
 Cooldown 4 seconds
-Primer Element: Crimsonite
+Primer Element: Gildleaf
 
-Conjuring a bottle of caustic liquid, you throw a projectile at a single foe
-that deals 3 to 8 Acid damage per caster level, max caster level 10.
-
-DND Dice: Deals 1d6+2 Acid damage per caster level, max 10d6+20"""
-icon = "BomVialOfAcid"
+Lob a vial of volatile liquid at a single foe that deals heavy damage and disrupts
+the offensive spellcasting capacity of whatever it strikes. Deals 5 to 10 Electric
+damage per caster level, and reduces Universal Spell Power by 10 for 15 seconds
++2 seconds per Caster Level. A successful Reflex save reduces the damage by half."""
+icon = "BomVoltaicBacklash"
 is_clickie = true
 
 [[enhancement.selection.modifier]]
@@ -1420,117 +1458,15 @@ amount_type = "SpellInfo"
 amounts = [
     0,
     1,
-    10,
+    20,
     4,
 ]
 bonus_type = "Enhancement"
 effect_type = "SpellLikeAbility"
 targets = [
-    "Vial of Acid",
+    "Voltaic Backlash",
     "Alchemist",
 ]
-
-[[enhancement.selection]]
-name = "SLA: Vial of Flame"
-cost_per_rank = [2]
-description = """
-SLA: Vial of Flame
-Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
-Spell Point Cost: 1
-Cooldown 4 seconds
-Primer Element: Crimsonite
-
-Conjuring a bottle of burning liquid, you throw a projectile at a single foe
-that deals 3 to 8 Fire damage per caster level, max caster level 10.
-
-DND Dice: Deals 1d6+2 Fire damage per caster level, max 10d6+20"""
-icon = "BomVialOfFlame"
-is_clickie = true
-
-[[enhancement.selection.modifier]]
-amount_type = "SpellInfo"
-amounts = [
-    0,
-    1,
-    10,
-    4,
-]
-bonus_type = "Enhancement"
-effect_type = "SpellLikeAbility"
-targets = [
-    "Vial of Flame",
-    "Alchemist",
-]
-
-[[enhancement.selection]]
-name = "SLA: Vial of Frost"
-cost_per_rank = [2]
-description = """
-SLA: Vial of Frost
-Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
-Spell Point Cost: 1
-Cooldown 4 seconds
-Primer Element: Crimsonite
-
-Conjuring a bottle of freezing liquid, you throw a projectile at a single foe
-that deals 3 to 8 Cold damage per caster level, max caster level 10.
-
-DND Dice: Deals 1d6+2 Cold damage per caster level, max 10d6+20"""
-icon = "BomVialOfFrost"
-is_clickie = true
-
-[[enhancement.selection.modifier]]
-amount_type = "SpellInfo"
-amounts = [
-    0,
-    1,
-    10,
-    4,
-]
-bonus_type = "Enhancement"
-effect_type = "SpellLikeAbility"
-targets = [
-    "Vial of Frost",
-    "Alchemist",
-]
-
-[[enhancement.selection]]
-name = "SLA: Vial of Sparks"
-cost_per_rank = [2]
-description = """
-SLA: Vial of Sparks
-Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
-Spell Point Cost: 1
-Cooldown 4 seconds
-Primer Element: Crimsonite
-
-Conjuring a bottle of reactive material, you throw a projectile at a single foe
-that deals 3 to 8 Electric damage per caster level, max caster level 10.
-
-DND Dice: Deals 1d6+2 Electric damage per caster level, max 10d6+20"""
-icon = "BomVialOfSparks"
-is_clickie = true
-
-[[enhancement.selection.modifier]]
-amount_type = "SpellInfo"
-amounts = [
-    0,
-    1,
-    10,
-    4,
-]
-bonus_type = "Enhancement"
-effect_type = "SpellLikeAbility"
-targets = [
-    "Vial of Sparks",
-    "Alchemist",
-]
-
-[[enhancement.selector_exclusion]]
-internal_name = "BomSpellVialSelection"
-
-[[enhancement.selector_exclusion]]
-internal_name = "BomSpellvialSelectionII"
 
 [[enhancement]]
 name = "Bombardier: Efficient Metamagics II"
@@ -1877,7 +1813,7 @@ can be ignited at the same time.
 
 This ability begins at 1d4 damage, adding another 1d4 for each Burning Ambition
 die you get from other abilities. This damage scales with Spell Power."""
-icon = "BomBurningAmbition"
+icon = "BomAugmentation"
 internal_name = "BomBurningAmbition"
 min_spent = 20
 ranks = 1
@@ -2127,7 +2063,7 @@ targets = [
 name = "Bombardier: Augmentation"
 cost_per_rank = [2]
 description = "+2 Caster Levels with Crimsonite and Gildleaf spells."
-icon = "BomAugmentation"
+icon = "BomBurningAmbition"
 internal_name = "BomAugmentation"
 is_tier5 = true
 min_spent = 30

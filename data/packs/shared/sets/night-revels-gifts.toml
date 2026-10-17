@@ -1,0 +1,49 @@
+name = "Night Revels' Gifts"
+icon = "NightRevelsGifts"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "+10 Positive, Negative and Repair Amplification"
+
+[[tier.modifier]]
+amount_type = "Stacks"
+amounts = [10]
+bonus_type = "Stacking"
+effect_type = "HealingAmplification"
+extra_types = [
+    "NegativeHealingAmplification",
+    "RepairAmplification",
+]
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Universal Spell Power"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Displacement"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect = "Displacement"
+effect_type = "Displacement"

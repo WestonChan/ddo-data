@@ -393,24 +393,20 @@ value = 1
 name = "Ravager: Draconic Power Attack"
 cost_per_rank = [1]
 description = """
-Your Power Attack feat does [1/2/3] additional point(s) of bonus damage.
+Your Power Attack feat does 3 additional point(s) of bonus damage.
 Note: Stacks with Improved Power Attack. Damage is doubled when Two Handed
 Fighting or fighting in an animal form."""
 icon = "RavBarbarianPowerAttack"
 internal_name = "DLRavDraconicPowerAttack"
 is_clickie = true
 min_spent = 1
-ranks = 3
+ranks = 1
 x = 3
 y = 1
 
 [[enhancement.modifier]]
-amount_type = "Stacks"
-amounts = [
-    1,
-    2,
-    3,
-]
+amount_type = "Simple"
+amounts = [3]
 bonus_type = "Enhancement"
 effect_type = "Weapon_Damage"
 targets = ["All"]
@@ -427,12 +423,8 @@ items = ["Heavy Draw"]
 req_type = "Stance"
 
 [[enhancement.modifier]]
-amount_type = "Stacks"
-amounts = [
-    1,
-    2,
-    3,
-]
+amount_type = "Simple"
+amounts = [3]
 bonus_type = "Enhancement"
 effect_type = "Weapon_Damage"
 targets = ["All"]

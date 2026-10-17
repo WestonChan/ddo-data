@@ -381,9 +381,9 @@ schools = ["Necromancy"]
 [[row]]
 name = "Death Ward, Mass"
 description = """
-Casts Death Ward on multiple friendly creatures, granting to
-each creature immunity to death spells and effects, Energy Drained
-and negative energy effects."""
+Casts Death Ward on multiple friendly creatures, granting to each creature immunity
+to death spells and effects, energy drain, and 50% absorption against negative
+energy effects."""
 icon = "DeathWardMass"
 metamagics = [
     "Enlarge",
@@ -403,6 +403,13 @@ amount_type = "NotNeeded"
 bonus_type = "Stacking"
 effect_type = "Immunity"
 targets = ["Level drain"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Negative"]
 
 [[row]]
 name = "Deific Vengeance"

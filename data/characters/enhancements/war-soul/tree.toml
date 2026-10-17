@@ -1368,7 +1368,7 @@ bonus_type = "Enhancement"
 effect_type = "ImbueDice"
 
 [[enhancement.modifier.requirement]]
-items = ["Critical Hit"]
+items = ["Favored Weapon"]
 req_type = "Stance"
 
 [[enhancement.requirement]]

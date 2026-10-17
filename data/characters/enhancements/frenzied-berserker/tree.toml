@@ -342,7 +342,7 @@ value = 1
 [[enhancement]]
 name = "Frenzied Berserker: Cracking Attack"
 arrows = ["ArrowUp"]
-cost_per_rank = [2]
+cost_per_rank = [1]
 description = """
 Deals: +30% Damage
 Melee Attack: On Hit: -3 AC and -20% Fortification for 20 seconds.

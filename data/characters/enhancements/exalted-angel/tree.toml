@@ -1596,6 +1596,12 @@ Note that this ability only reduces the Spell Point cost to zero for the related
 Metamagic, it does not grant the Feat itself."""
 icon = "MetamagicAttunementII"
 
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostEmpowerHealing"
+
 [[enhancement.selection.requirement]]
 items = ["Empower Healing Spell"]
 req_type = "Feat"
@@ -1605,31 +1611,15 @@ name = "Epic Improved Intensify"
 cost_per_rank = [1]
 description = """
 The Intensify Metamagic no longer costs Spell Points.
-+5 Fire, Light, Positive, Alignment, and Universal Spell Power.
 Note that this ability only reduces the Spell Point cost to zero for the related
 Metamagic, it does not grant the Feat itself."""
 icon = "MetamagicAttunementIIIntensify"
 
 [[enhancement.selection.modifier]]
 amount_type = "Simple"
-amounts = [5]
+amounts = [-15]
 bonus_type = "Destiny"
-effect_type = "SpellPower"
-targets = [
-    "Positive",
-    "Fire",
-    "Light/Alignment",
-    "Chaos",
-    "Evil",
-    "Good",
-    "Lawful",
-]
-
-[[enhancement.selection.modifier]]
-amount_type = "Simple"
-amounts = [5]
-bonus_type = "Destiny"
-effect_type = "UniversalSpellPower"
+effect_type = "MetamagicCostIntensify"
 
 [[enhancement.selection.requirement]]
 items = ["Intensify Spell"]

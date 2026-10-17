@@ -1,0 +1,125 @@
+[[row]]
+name = "Night Revels' Gifts: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: No rare form of this filigree"""
+icon = "NightRevelsGifts"
+menu = "Festival"
+set = "Night Revels' Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row]]
+name = "Night Revels' Gifts: +1 Will Saving Throw"
+description = """
++1 Will Saving throw
+Rare: No rare form of this filigree"""
+icon = "NightRevelsGifts"
+menu = "Festival"
+set = "Night Revels' Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[row]]
+name = "Night Revels' Gifts: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: No rare form of this filigree"""
+icon = "NightRevelsGifts"
+menu = "Festival"
+set = "Night Revels' Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row]]
+name = "Night Revels' Gifts: +3 MRR"
+description = """
++3 Magical Resistance Rating
+Rare: No rare form of this filigree"""
+icon = "NightRevelsGifts"
+menu = "Festival"
+set = "Night Revels' Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row]]
+name = "Night Revels' Gifts: +5 MRR Cap"
+description = """
++5 Magical Resistance Rating Cap
+Rare: No rare form of this filigree"""
+icon = "NightRevelsGifts"
+menu = "Festival"
+set = "Night Revels' Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "MRRCap"
+
+[[row]]
+name = "Night Revels' Gifts: +5% Force Absorption"
+description = """
++5% Force Absorption
+Rare: No rare form of this filigree"""
+icon = "NightRevelsGifts"
+menu = "Festival"
+set = "Night Revels' Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Force"]
+
+[[row]]
+name = "Night Revels' Gifts: +5% Light Absorption"
+description = """
++5% Light Absorption
+Rare: No rare form of this filigree"""
+icon = "NightRevelsGifts"
+menu = "Festival"
+set = "Night Revels' Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Light"]
+
+[[row]]
+name = "Night Revels' Gifts: +5% Negative Absorption"
+description = """
++5% Negative Absorption
+Rare: No rare form of this filigree"""
+icon = "NightRevelsGifts"
+menu = "Festival"
+set = "Night Revels' Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Negative"]

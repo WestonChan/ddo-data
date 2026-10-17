@@ -532,7 +532,7 @@ targets = [
 ]
 
 [[enhancement.modifier]]
-amount_type = "Stacks"
+amount_type = "Simple"
 amounts = [10]
 bonus_type = "Exceptional"
 effect_type = "ACPercent"

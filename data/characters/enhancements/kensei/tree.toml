@@ -1005,6 +1005,7 @@ targets = ["Battle Guard"]
 amount_type = "SliderValue"
 amounts = [10]
 bonus_type = "Enhancement"
+display_name = "Battle Guard"
 effect_type = "PRR"
 extra_types = ["MRR"]
 stack_source = "Battle Guard"

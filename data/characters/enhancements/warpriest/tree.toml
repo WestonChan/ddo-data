@@ -1373,7 +1373,11 @@ name = "Warpriest: Wrathful Weapons"
 cost_per_rank = [2]
 description = """
 When wielding your religion's favored weapon in your main hand, you gain +3 to
-hit and damage, and +9 Universal Spell Power. +3 Imbue Dice."""
+hit and damage, and +9 Universal Spell Power. When you score a Vorpal Hit with
+your religion's favored weapon, you gain +3 bonus Imbue dice for the next 12
+seconds, and your Fires of Fury Imbue Toggle changes its damage type from Fire
+to Light.
+Note: This changes the Imbue to scale with Light Spell Power."""
 icon = "WPWrathfulWeapons"
 internal_name = "WPWrathfulWeapons"
 is_tier5 = true
@@ -1410,7 +1414,7 @@ bonus_type = "Enhancement"
 effect_type = "ImbueDice"
 
 [[enhancement.modifier.requirement]]
-items = ["Critical Hit"]
+items = ["Favored Weapon"]
 req_type = "Stance"
 
 [[enhancement.requirement]]

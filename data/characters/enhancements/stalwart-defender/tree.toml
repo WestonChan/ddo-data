@@ -527,7 +527,7 @@ req_type = "Exclusive"
 
 [[enhancement]]
 name = "Stalwart Defender: Defense Boost"
-cost_per_rank = [2]
+cost_per_rank = [1]
 description = """
 Activate to gain a +15 Action Boost bonus to Armor Class and Physical
 and Magical Resistance Rating for 20 seconds. (Cooldown: 30 seconds.)"""

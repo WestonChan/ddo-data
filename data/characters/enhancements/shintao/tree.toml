@@ -809,7 +809,7 @@ tactical = "Trip"
 
 [[enhancement]]
 name = "Shintao: Quick Strike"
-cost_per_rank = [2]
+cost_per_rank = [1]
 description = """
 Deals +30% Damage
 Cooldown: 12 seconds

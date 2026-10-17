@@ -442,38 +442,38 @@ spell_name = "Stiffen Skin"
 
 [[spell]]
 cost = 2
-max_caster_level = 10
-spell = "Vial of Acid"
+max_caster_level = 20
+spell = "Vial Smash: Acid"
 spell_level = 1
-spell_name = "Vial of Acid"
+spell_name = "Vial Smash: Acid"
 
 [[spell]]
 cost = 2
-max_caster_level = 10
-spell = "Vial of Flame"
+max_caster_level = 20
+spell = "Vial Smash: Fire"
 spell_level = 1
-spell_name = "Vial of Flame"
+spell_name = "Vial Smash: Fire"
 
 [[spell]]
 cost = 2
-max_caster_level = 10
-spell = "Vial of Frost"
+max_caster_level = 20
+spell = "Vial Smash: Cold"
 spell_level = 1
-spell_name = "Vial of Frost"
+spell_name = "Vial Smash: Cold"
 
 [[spell]]
 cost = 2
-max_caster_level = 10
-spell = "Vial of Sparks"
+max_caster_level = 20
+spell = "Vial Smash: Electric"
 spell_level = 1
-spell_name = "Vial of Sparks"
+spell_name = "Vial Smash: Electric"
 
 [[spell]]
 cost = 2
-max_caster_level = 10
-spell = "Vial of Venom"
+max_caster_level = 20
+spell = "Vial Smash: Poison"
 spell_level = 1
-spell_name = "Vial of Venom"
+spell_name = "Vial Smash: Poison"
 
 [[spell]]
 cost = 15

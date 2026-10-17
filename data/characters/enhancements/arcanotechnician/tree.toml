@@ -1311,7 +1311,7 @@ value = 12
 
 [[enhancement]]
 name = "Arcanotechnician: Shock Gauntlet"
-cost_per_rank = [2]
+cost_per_rank = [1]
 description = """
 You may cast the spell Shock Gauntlet at will as a Spell-Like Ability. You may
 use Metamagic Feats with Spell-Like Abilities at no additional cost.

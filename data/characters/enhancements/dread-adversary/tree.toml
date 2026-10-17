@@ -271,7 +271,7 @@ value = 4
 
 [[enhancement]]
 name = "Reaper's Strike"
-cost_per_rank = [1]
+cost_per_rank = [2]
 description = """
 While in Reaper Difficulty, activate to expend one Reaper Charge
 and gain a +30% Bonus to Doublestrike and Doubleshot for 30 seconds."""

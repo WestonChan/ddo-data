@@ -380,7 +380,7 @@ value = 4
 [[enhancement]]
 name = "Reaper's Constitution I"
 arrows = ["ArrowUp"]
-cost_per_rank = [1]
+cost_per_rank = [2]
 description = "+1 to Constitution while in Reaper Difficulty"
 icon = "Constitution"
 internal_name = "GrimAbilityI"

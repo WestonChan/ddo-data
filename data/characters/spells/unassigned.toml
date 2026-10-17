@@ -1940,18 +1940,19 @@ damage = "Poison"
 spell_power = "Poison"
 
 [[row]]
-name = "Vial Smash: Acid"
+name = "Vial of Acid"
 description = """
 Primer Element: Crimsonite
-Conjuring a bottle of caustic liquid, you throw it at your feet dealing 2 to 7
-Acid damage per caster level to nearby enemies, max caster level 5.
+Conjuring a bottle of caustic liquid, you throw a projectile at a single foe
+that deals 3 to 8 Acid damage per caster level, max caster level 10.
 
-DND Dice: Deals 1d6+1 Acid damage per caster level, max 10d6+10. A successful
-Reflex saves reduces the damage by half."""
-icon = "VialSmashAcid"
-max_caster_level = 5
+DND Dice: Deals 1d6+2 Acid damage per caster level, max 10d6+20.
+A successful Reflex save reduces the damage by half."""
+icon = "AlchemistVialOfAcid"
+max_caster_level = 10
 metamagics = [
     "Primer",
+    "Accelerate",
     "Embolden",
     "Empower",
     "Heighten",
@@ -1962,11 +1963,10 @@ metamagics = [
 schools = ["Conjuration"]
 
 [[row.damage]]
-bonus_dice_bonus = 1
+bonus_dice_bonus = 2
 bonus_dice_number = 1
 bonus_dice_sides = 6
 damage = "Acid"
-per_caster_levels = 1
 spell_power = "Acid"
 
 [[row.dc]]
@@ -1976,18 +1976,19 @@ dc_versus = "Reflex"
 schools = ["Conjuration"]
 
 [[row]]
-name = "Vial Smash: Cold"
+name = "Vial of Flame"
 description = """
 Primer Element: Crimsonite
-Conjuring a bottle of freezing liquid, you throw it at your feet dealing 2 to 7
-Cold damage per caster level to nearby enemies, max caster level 5.
+Conjuring a bottle of burning liquid, you throw a projectile at a single foe
+that deals 3 to 8 Fire damage per caster level, max caster level 10.
 
-DND Dice: Deals 1d6+1 Cold damage per caster level, max 10d6+10. A successful
-Reflex saves reduces the damage by half."""
-icon = "VialSmashCold"
-max_caster_level = 5
+DND Dice: Deals 1d6+2 Fire damage per caster level, max 10d6+20.
+A successful Reflex save reduces the damage by half."""
+icon = "AlchemistVialOfFlame"
+max_caster_level = 10
 metamagics = [
     "Primer",
+    "Accelerate",
     "Embolden",
     "Empower",
     "Heighten",
@@ -1998,83 +1999,10 @@ metamagics = [
 schools = ["Conjuration"]
 
 [[row.damage]]
-bonus_dice_bonus = 1
-bonus_dice_number = 1
-bonus_dice_sides = 6
-damage = "Cold"
-per_caster_levels = 1
-spell_power = "Cold"
-
-[[row.dc]]
-casting_stat_mod = true
-dc_type = "Half Damage"
-dc_versus = "Reflex"
-schools = ["Conjuration"]
-
-[[row]]
-name = "Vial Smash: Electric"
-description = """
-Primer Element: Crimsonite
-Conjuring a bottle of shocking liquid, you throw it at your feet dealing 2 to 7
-Electric damage per caster level to nearby enemies, max caster level 5.
-
-DND Dice: Deals 1d6+1 Electric damage per caster level, max 10d6+10. A successful
-Reflex saves reduces the damage by half."""
-icon = "VialSmashElectric"
-max_caster_level = 5
-metamagics = [
-    "Primer",
-    "Embolden",
-    "Empower",
-    "Heighten",
-    "Intensify",
-    "Maximize",
-    "Quicken",
-]
-schools = ["Conjuration"]
-
-[[row.damage]]
-bonus_dice_bonus = 1
-bonus_dice_number = 1
-bonus_dice_sides = 6
-damage = "Electric"
-per_caster_levels = 1
-spell_power = "Electric"
-
-[[row.dc]]
-casting_stat_mod = true
-dc_type = "Half Damage"
-dc_versus = "Reflex"
-schools = ["Conjuration"]
-
-[[row]]
-name = "Vial Smash: Fire"
-description = """
-Primer Element: Crimsonite
-Conjuring a bottle of burning liquid, you throw it at your feet dealing 2 to 7
-Fire damage per caster level to nearby enemies, max caster level 5.
-
-DND Dice: Deals 1d6+1 Fire damage per caster level, max 10d6+10. A successful
-Reflex saves reduces the damage by half."""
-icon = "VialSmashFire"
-max_caster_level = 5
-metamagics = [
-    "Primer",
-    "Embolden",
-    "Empower",
-    "Heighten",
-    "Intensify",
-    "Maximize",
-    "Quicken",
-]
-schools = ["Conjuration"]
-
-[[row.damage]]
-bonus_dice_bonus = 1
+bonus_dice_bonus = 2
 bonus_dice_number = 1
 bonus_dice_sides = 6
 damage = "Fire"
-per_caster_levels = 1
 spell_power = "Fire"
 
 [[row.dc]]
@@ -2084,18 +2012,19 @@ dc_versus = "Reflex"
 schools = ["Conjuration"]
 
 [[row]]
-name = "Vial Smash: Poison"
+name = "Vial of Frost"
 description = """
 Primer Element: Crimsonite
-Conjuring a bottle of toxic liquid, you throw it at your feet dealing 2 to 7
-Poison damage per caster level to nearby enemies, max caster level 5.
+Conjuring a bottle of freezing liquid, you throw a projectile at a single foe
+that deals 3 to 8 Cold damage per caster level, max caster level 10.
 
-DND Dice: Deals 1d6+1 Poison damage per caster level, max 10d6+10. A successful
-Reflex saves reduces the damage by half."""
-icon = "VialSmashPoison"
-max_caster_level = 5
+DND Dice: Deals 1d6+2 Cold damage per caster level, max 10d6+20.
+A successful Reflex save reduces the damage by half."""
+icon = "AlchemistVialOfFrost"
+max_caster_level = 10
 metamagics = [
     "Primer",
+    "Accelerate",
     "Embolden",
     "Empower",
     "Heighten",
@@ -2106,17 +2035,89 @@ metamagics = [
 schools = ["Conjuration"]
 
 [[row.damage]]
-bonus_dice_bonus = 1
+bonus_dice_bonus = 2
 bonus_dice_number = 1
 bonus_dice_sides = 6
-damage = "Poison"
-per_caster_levels = 1
-spell_power = "Poison"
+damage = "Cold"
+spell_power = "Cold"
 
 [[row.dc]]
 casting_stat_mod = true
 dc_type = "Half Damage"
 dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Vial of Sparks"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of reactive material, you throw a projectile at a single foe
+that deals 3 to 8 Electric damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Electric damage per caster level, max 10d6+20.
+A successful Reflex save reduces the damage by half."""
+icon = "AlchemistVialOfSparks"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Vial of Venom"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of magical poison, you throw a projectile at a single foe
+that deals 3 to 8 Poison damage per caster level, max caster level 10.
+This poison will leave the enemy Contaminated.
+
+DND Dice: Deals 1d6+2 Poison damage per caster level, max 10d6+20.
+A successful Fortitude save reduces the damage by half."""
+icon = "AlchemistVialOfVenom"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Poison"
+spell_power = "Poison"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
 schools = ["Conjuration"]
 
 [[row]]

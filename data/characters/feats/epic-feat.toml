@@ -2410,7 +2410,7 @@ value = 30
 name = "Master of Alignment"
 acquire = "Train"
 description = """
-Your Direct Damage Evil, Light, Law and Good spells do an additional 1d6+3 damage
+Your Direct Damage Evil, Chaos, Law and Good spells do an additional 1d6+3 damage
 per Epic or Legendary level. This can only occur once cast. This does not apply
 to persistent spells like clouds, walls or guardians.
 
@@ -2441,9 +2441,9 @@ value = 24
 name = "Master of Decay"
 acquire = "Train"
 description = """
-Your Direct Damage Negative Energy spells do an additional 1d6+3 damage per Epic or
-Legendary level. This can only occur once cast. This does not apply to persistent
-spells like clouds, walls or guardians.
+Your Direct Damage Negative, Acid and Poison Energy spells do an additional 1d6+3
+damage per Epic or Legendary level. This can only occur once cast. This does not
+apply to persistent spells like clouds, walls or guardians.
 
 Passive: +150 Maximum Spell Points"""
 icon = "MasterOfTheDead"
@@ -2469,12 +2469,12 @@ req_type = "Level"
 value = 24
 
 [[row]]
-name = "Master of Fire and LIght"
+name = "Master of Fire and Light"
 acquire = "Train"
 description = """
-Your Direct Damage Fire spells do an additional 1d6+3 damage per Epic or Legendary
-level. This can only occur once cast. This does not apply to persistent spells
-like clouds, walls or guardians.
+Your Direct Damage Fire and Light spells do an additional 1d6+3 damage per Epic
+or Legendary level. This can only occur once cast. This does not apply to
+persistent spells like clouds, walls or guardians.
 
 Passive: +150 Maximum Spell Points"""
 icon = "MasterOfFire"
@@ -2494,17 +2494,6 @@ amounts = [150]
 bonus_type = "Feat"
 effect = "Spell Points"
 effect_type = "SpellPoints"
-
-[[row.modifier]]
-amount_type = "Simple"
-amounts = [10]
-bonus_type = "Feat"
-effect_type = "MaxCasterLevelSpell"
-targets = [
-    "Burning Hands",
-    "Scorch",
-    "Fireball",
-]
 
 [[row.requirement]]
 req_type = "Level"
@@ -2603,9 +2592,9 @@ value = 24
 name = "Master of the Storm"
 acquire = "Train"
 description = """
-Your Direct Damage Electric spells do an additional 1d6+3 damage per Epic or
-Legendary level. This can only occur once cast. This does not apply to
-persistent spells like clouds, walls or guardians.
+Your Direct Damage Electric, Sonic and Cold spells do an additional 1d6+3 damage
+per Epic or Legendary level. This can only occur once cast. This does not apply
+to persistent spells like clouds, walls or guardians.
 
 Passive: +150 Maximum Spell Points"""
 icon = "MasterOfAir"

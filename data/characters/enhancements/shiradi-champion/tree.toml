@@ -1208,7 +1208,7 @@ icon = "ShiradiOverwhelmingForce"
 [[enhancement.selection.requirement]]
 items = [
     "U51ShiradiChampionStrikeUpgradeI",
-    "Queen's Diplomacy",
+    "Otto's Whistler",
 ]
 req_type = "Enhancement"
 
