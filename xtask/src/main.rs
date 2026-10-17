@@ -414,6 +414,7 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             "icons::icon_index_tests::copied_icons_preserve_upstream_case_and_report_mismatched_references",
         ),
         ("ddo-etl", &["--lib"][..], "delta::tests::every_table_has_one_merge_rule"),
+        ("ddo-etl", &["--lib"][..], "delta::merge_tests::unique_positions_follow_entity_or_array_merge_policy"),
         (
             "ddo-etl",
             &["--test", "import_ddobuilder"][..],

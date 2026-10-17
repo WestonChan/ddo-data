@@ -434,6 +434,12 @@ fn write_data_file(
     Ok(None)
 }
 
+pub fn rederive_data_build_tables(db: &Connection) -> Result<()> {
+    crate::delta::clear_rederived_tables(db)?;
+    crate::build::effect_vocabulary::insert_data_effect_vocabulary(db)?;
+    insert_entity_identities(db)
+}
+
 pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileReport> {
     ensure!(root.is_dir(), "data directory {} does not exist", root.display());
     let icon_index = crate::icons::IconIndex::from_data(root);
@@ -819,8 +825,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         .write_dataset_version(&transaction, root)
         .with_context(|| format!("{}: dataset", root.join("upstream/commit.toml").display()))?;
     derive_item_set_names(&transaction, &primary_set_by_item)?;
-    crate::build::effect_vocabulary::insert_data_effect_vocabulary(&transaction)?;
-    insert_entity_identities(&transaction)?;
+    rederive_data_build_tables(&transaction)?;
     annotations.store(&transaction)?;
     let pack_exceptions = files
         .iter()

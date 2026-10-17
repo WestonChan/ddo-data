@@ -20,6 +20,26 @@ pub fn data_file_bytes(root: &Path) -> Result<BTreeMap<PathBuf, Vec<u8>>> {
         .collect()
 }
 
+const NOTE_KINDS_BY_TABLE: &[(&str, &[&str])] = &[
+    ("items", &["item", "item_bonus", "item_effect", "item_socket"]),
+    ("augments", &["augment", "augment_bonus"]),
+    ("quests", &["quest"]),
+    ("set_bonuses", &["set_bonus", "set_tier", "set_tier_bonus"]),
+    ("effects", &["effect", "effect_damage"]),
+    ("feats", &["feat"]),
+    ("races", &["race"]),
+    ("classes", &["class"]),
+    ("adventure_packs", &["adventure_pack"]),
+    ("patrons", &["patron"]),
+    ("augment_slot_types", &["socket_label"]),
+    ("enhancements", &["enhancement"]),
+    ("enhancement_trees", &["enhancement_tree"]),
+    ("clickies", &["clickie"]),
+    ("optional_buffs", &["optional_buff"]),
+    ("filigrees", &["filigree"]),
+    ("spells", &["spell"]),
+];
+
 struct CorrectionNote {
     note: EntityNote,
     name: String,
@@ -107,26 +127,10 @@ impl CorrectionNoteIndex {
     }
 
     fn notes_for_owner(&self, table: &str, name: &str) -> Vec<EntityNote> {
-        let kinds: &[&str] = match table {
-            "items" => &["item", "item_bonus", "item_effect", "item_socket"],
-            "augments" => &["augment", "augment_bonus"],
-            "quests" => &["quest"],
-            "set_bonuses" => &["set_bonus", "set_tier", "set_tier_bonus"],
-            "effects" => &["effect", "effect_damage"],
-            "feats" => &["feat"],
-            "races" => &["race"],
-            "classes" => &["class"],
-            "adventure_packs" => &["adventure_pack"],
-            "patrons" => &["patron"],
-            "augment_slot_types" => &["socket_label"],
-            "enhancements" => &["enhancement"],
-            "enhancement_trees" => &["enhancement_tree"],
-            "clickies" => &["clickie"],
-            "optional_buffs" => &["optional_buff"],
-            "filigrees" => &["filigree"],
-            "spells" => &["spell"],
-            _ => &[],
-        };
+        let kinds = NOTE_KINDS_BY_TABLE
+            .iter()
+            .find(|(owner_table, _)| *owner_table == table)
+            .map_or(&[][..], |(_, kinds)| *kinds);
         let mut source_names = vec![name.to_string()];
         if let Some(rename_kind) = kinds.first() {
             source_names
@@ -149,6 +153,39 @@ impl CorrectionNoteIndex {
         }
         notes
     }
+}
+
+pub fn annotated_entities(db: &Connection) -> Result<BTreeSet<(String, i64)>> {
+    let mut owners = BTreeSet::new();
+    for table in ["citations", "entity_notes", "removed_entities"] {
+        let mut select = db.prepare(&format!("SELECT DISTINCT owner_kind, owner_id FROM {table}"))?;
+        for owner in select.query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?)))? {
+            owners.insert(owner?);
+        }
+    }
+    let notes = CorrectionNoteIndex::from_database(db)?;
+    for (table, _) in NOTE_KINDS_BY_TABLE {
+        let name_column = if *table == "augment_slot_types" { "label" } else { "name" };
+        let mut select = db.prepare(&format!("SELECT id, {name_column} FROM {table}"))?;
+        for entity in select.query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)))? {
+            let (id, name) = entity?;
+            if !notes.notes_for_owner(table, &name).is_empty() {
+                owners.insert(((*table).to_string(), id));
+            }
+        }
+    }
+    let mut select = db.prepare(
+        "SELECT s.id, s.name, e.name FROM enhancement_selections s JOIN enhancements e ON e.id = s.enhancement_id",
+    )?;
+    for selection in
+        select.query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))?
+    {
+        let (id, name, enhancement) = selection?;
+        if !notes.for_named_child("enhancements", &enhancement, &[("selection", &name)]).is_empty() {
+            owners.insert(("enhancement_selections".to_string(), id));
+        }
+    }
+    Ok(owners)
 }
 
 #[cfg(test)]
