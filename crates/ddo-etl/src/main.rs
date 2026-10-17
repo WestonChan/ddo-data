@@ -2,6 +2,7 @@ use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use rusqlite::Connection;
 use std::path::{Path, PathBuf};
+use std::process::ExitCode;
 
 #[derive(Parser)]
 #[command(name = "ddo-etl", about = "Build the DDO Tools game database from DDOBuilderV2 data files")]
@@ -12,6 +13,22 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum CliCommand {
+    ImportDdobuilder {
+        #[arg(long)]
+        source: PathBuf,
+        #[arg(long)]
+        previous: PathBuf,
+        #[arg(long = "data", default_value = "data")]
+        data_dir: PathBuf,
+        #[arg(long)]
+        sha: Option<String>,
+        #[arg(long)]
+        previous_sha: Option<String>,
+        #[arg(long)]
+        wiki: Option<PathBuf>,
+        #[arg(long)]
+        corrections: Option<PathBuf>,
+    },
     Build {
         #[arg(long)]
         source: Option<PathBuf>,
@@ -57,8 +74,31 @@ enum CliCommand {
     },
 }
 
-fn main() -> Result<()> {
+fn main() -> Result<ExitCode> {
     match Cli::parse().command {
+        CliCommand::ImportDdobuilder { source, previous, data_dir, sha, previous_sha, wiki, corrections } => {
+            ddo_etl::import_ddobuilder::validate_previous_commit(&data_dir, &previous, previous_sha.clone())?;
+            let wiki = match wiki {
+                Some(path) => ddo_etl::wiki::WikiOverrides::from_dir(&path)?,
+                None => ddo_etl::wiki::WikiOverrides::embedded()?,
+            };
+            let corrections = match corrections {
+                Some(path) => ddo_etl::corrections::Corrections::from_dir(&path)?,
+                None => ddo_etl::corrections::Corrections::from_data(&data_dir)?,
+            };
+            let report =
+                ddo_etl::import_ddobuilder::import_ddobuilder(&ddo_etl::import_ddobuilder::DdobuilderImportOptions {
+                    source_dir: source,
+                    previous_dir: previous,
+                    data_dir,
+                    sha,
+                    previous_sha,
+                    wiki,
+                    corrections,
+                })?;
+            println!("{report}");
+            return Ok(if report.has_conflicts() { ExitCode::from(2) } else { ExitCode::SUCCESS });
+        }
         CliCommand::Build {
             source: data_files_dir,
             data_dir,
@@ -76,7 +116,7 @@ fn main() -> Result<()> {
                 let report = ddo_etl::tree::build_from_data(&data_dir, &mut db)?;
                 println!("{report}");
                 println!("dataset written to {}", database_path.display());
-                return Ok(());
+                return Ok(ExitCode::SUCCESS);
             }
             let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
             let dataset_version = ddo_etl::upstream::dataset_version(&data_files_dir, upstream_sha);
@@ -105,7 +145,7 @@ fn main() -> Result<()> {
                 let report = ddo_etl::tree::export_database(&db, &data_dir)?;
                 println!("{report}");
                 anyhow::ensure!(report.icon_actions.is_empty(), "export has HARD image layout failures");
-                return Ok(());
+                return Ok(ExitCode::SUCCESS);
             }
             let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
             let wiki_overrides = ddo_etl::wiki::WikiOverrides::embedded()?;
@@ -121,7 +161,7 @@ fn main() -> Result<()> {
             if let Some(data_dir) = data_dir {
                 let report = ddo_etl::icons::copy_data_icons(&data_dir, &icons_dir)?;
                 println!("{report:#?}");
-                return Ok(());
+                return Ok(ExitCode::SUCCESS);
             }
             let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
             let report = ddo_etl::icons::export_icons(&data_files_dir, &icons_dir)?;
@@ -151,7 +191,7 @@ fn main() -> Result<()> {
             }
         }
     }
-    Ok(())
+    Ok(ExitCode::SUCCESS)
 }
 
 fn default_data_files_dir() -> PathBuf {

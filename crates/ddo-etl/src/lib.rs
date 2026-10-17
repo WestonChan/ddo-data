@@ -4,6 +4,7 @@ pub mod database_tables;
 pub mod delta;
 pub mod diff;
 pub mod icons;
+pub mod import_ddobuilder;
 mod loot_sources;
 pub mod map;
 pub mod tree;

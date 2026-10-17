@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Arcanotechnician</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>Class</Type>
+        <Item>Artificer</Item>
+      </Requirement>
+    </Requirements>
+    <Icon>Artificer</Icon>
+    <Background>ArtificerBackground</Background>
+    <!--Core Items-->
+    
+    
+    
+    
+    
+    
+    <!--Tier 1-->
+    
+    
+    
+    
+    
+    <!--Tier 2-->
+    
+    
+    
+    
+    <!--Tier 3-->
+    
+    
+    
+    
+    
+    <!--Tier 4-->
+    
+    
+    
+    
+    
+    <!--Tier 5-->
+    
+    
+    
+    
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Shock Gauntlet</Name>
+      <InternalName>ATShockGauntlet</InternalName>
+      <Description>You may cast the spell Shock Gauntlet at will as a Spell-Like Ability. You may
+use Metamagic Feats with Spell-Like Abilities at no additional cost.
+
+Shock Gauntlet: Target living, construct, or inanimate object foe at touch range
+must make an Evocation Saving Throw or die. If they succeed, they take 1d6+4
+Electric Damage per Caster Level (max 25d6+100).
+Cooldown: 20 seconds.
+Cost: 15 SP</Description>
+      <Icon>ATShockGauntlet</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5 />
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Artificer</Item>
+          <Value>5</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>12</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+</Enhancements>

@@ -20,7 +20,7 @@ pub fn data_file_bytes(root: &Path) -> Result<BTreeMap<PathBuf, Vec<u8>>> {
         .collect()
 }
 
-const NOTE_KINDS_BY_TABLE: &[(&str, &[&str])] = &[
+pub(super) const NOTE_KINDS_BY_TABLE: &[(&str, &[&str])] = &[
     ("items", &["item", "item_bonus", "item_effect", "item_socket"]),
     ("augments", &["augment", "augment_bonus"]),
     ("quests", &["quest"]),
@@ -40,9 +40,9 @@ const NOTE_KINDS_BY_TABLE: &[(&str, &[&str])] = &[
     ("spells", &["spell"]),
 ];
 
-struct CorrectionNote {
-    note: EntityNote,
-    name: String,
+pub(super) struct CorrectionNote {
+    pub(super) note: EntityNote,
+    pub(super) name: String,
     applied: serde_json::Value,
 }
 
@@ -126,7 +126,7 @@ impl CorrectionNoteIndex {
             .collect()
     }
 
-    fn notes_for_owner(&self, table: &str, name: &str) -> Vec<EntityNote> {
+    pub(super) fn corrections_for_owner(&self, table: &str, name: &str) -> Vec<&CorrectionNote> {
         let kinds = NOTE_KINDS_BY_TABLE
             .iter()
             .find(|(owner_table, _)| *owner_table == table)
@@ -136,22 +136,26 @@ impl CorrectionNoteIndex {
             source_names
                 .extend(self.renames.get(&(rename_kind.to_string(), name.to_string())).into_iter().flatten().cloned());
         }
-        let mut notes = Vec::new();
+        let mut corrections = Vec::new();
         for kind in kinds {
             for source_name in &source_names {
-                if let Some(rows) = self.rows.get(&((*kind).to_string(), source_name.clone())) {
-                    notes.extend(rows.iter().map(|row| {
-                        let mut note = row.note.clone();
-                        note.original_name = (row.name != name && note.field != "name").then(|| row.name.clone());
-                        note.added_as_name =
-                            (note.kind == "item_effect" && note.field == "add" && row.applied.is_string())
-                                .then_some(true);
-                        note
-                    }));
-                }
+                corrections.extend(self.rows.get(&((*kind).to_string(), source_name.clone())).into_iter().flatten());
             }
         }
-        notes
+        corrections
+    }
+
+    fn notes_for_owner(&self, table: &str, name: &str) -> Vec<EntityNote> {
+        self.corrections_for_owner(table, name)
+            .into_iter()
+            .map(|row| {
+                let mut note = row.note.clone();
+                note.original_name = (row.name != name && note.field != "name").then(|| row.name.clone());
+                note.added_as_name =
+                    (note.kind == "item_effect" && note.field == "add" && row.applied.is_string()).then_some(true);
+                note
+            })
+            .collect()
     }
 }
 
@@ -497,39 +501,34 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         write_export_file(root, &relative, &typed_file_text(&file)?, &mut report)?;
     }
     let file = kinds::StancesFile::from_rows(db)?;
-    write_export_file(root, Path::new("characters/stances.toml"), &toml::to_string_pretty(&file)?, &mut report)?;
+    write_export_file(root, fixed_data_file("stances")?, &toml::to_string_pretty(&file)?, &mut report)?;
     let file = kinds::ClickiesFile::from_rows(db, &mut modifiers, &notes)?;
-    write_export_file(root, Path::new("effects/clickies.toml"), &typed_file_text(&file)?, &mut report)?;
+    write_export_file(root, fixed_data_file("clickies")?, &typed_file_text(&file)?, &mut report)?;
     let file = kinds::GuildBuffsFile::from_rows(db, &mut modifiers)?;
-    write_export_file(root, Path::new("characters/guild-buffs.toml"), &typed_file_text(&file)?, &mut report)?;
+    write_export_file(root, fixed_data_file("guild_buffs")?, &typed_file_text(&file)?, &mut report)?;
     let file = kinds::OptionalBuffsFile::from_rows(db, &mut modifiers, &notes)?;
-    write_export_file(root, Path::new("characters/optional-buffs.toml"), &typed_file_text(&file)?, &mut report)?;
+    write_export_file(root, fixed_data_file("optional_buffs")?, &typed_file_text(&file)?, &mut report)?;
     let file = kinds::BonusTypesFile::from_rows(db)?;
-    write_export_file(root, Path::new("effects/bonus-types.toml"), &toml::to_string_pretty(&file)?, &mut report)?;
+    write_export_file(root, fixed_data_file("bonus_types")?, &toml::to_string_pretty(&file)?, &mut report)?;
     let file = kinds::ItemMaterialsFile::from_rows(db)?;
-    write_export_file(root, Path::new("effects/item-materials.toml"), &toml::to_string_pretty(&file)?, &mut report)?;
+    write_export_file(root, fixed_data_file("item_materials")?, &toml::to_string_pretty(&file)?, &mut report)?;
     let file = kinds::TriggersFile::from_rows(db)?;
-    write_export_file(root, Path::new("effects/triggers.toml"), &toml::to_string_pretty(&file)?, &mut report)?;
+    write_export_file(root, fixed_data_file("triggers")?, &toml::to_string_pretty(&file)?, &mut report)?;
     let file = kinds::WeaponProficienciesFile::from_rows(db)?;
-    write_export_file(
-        root,
-        Path::new("effects/weapon-proficiencies.toml"),
-        &toml::to_string_pretty(&file)?,
-        &mut report,
-    )?;
+    write_export_file(root, fixed_data_file("weapon_proficiencies")?, &toml::to_string_pretty(&file)?, &mut report)?;
     let file = kinds::EquipmentSlotsFile::from_rows(db)?;
-    write_export_file(root, Path::new("effects/equipment-slots.toml"), &toml::to_string_pretty(&file)?, &mut report)?;
+    write_export_file(root, fixed_data_file("equipment_slots")?, &toml::to_string_pretty(&file)?, &mut report)?;
     let file = kinds::DamageTypesFile::from_rows(db)?;
-    write_export_file(root, Path::new("effects/damage-types.toml"), &toml::to_string_pretty(&file)?, &mut report)?;
+    write_export_file(root, fixed_data_file("damage_types")?, &toml::to_string_pretty(&file)?, &mut report)?;
     let file = kinds::WeaponTypesFile::from_rows(db)?;
-    write_export_file(root, Path::new("effects/weapon-types.toml"), &toml::to_string_pretty(&file)?, &mut report)?;
+    write_export_file(root, fixed_data_file("weapon_types")?, &toml::to_string_pretty(&file)?, &mut report)?;
     let file = kinds::ExcludedItemsFile::from_rows(db)?;
-    write_export_file(root, Path::new("upstream/excluded-items.toml"), &toml::to_string_pretty(&file)?, &mut report)?;
+    write_export_file(root, fixed_data_file("excluded_items")?, &toml::to_string_pretty(&file)?, &mut report)?;
     for (id, file) in kinds::SentientGemFile::all_from_rows(db)? {
         write_export_file(root, layout.path("sentient_gems", id)?, &typed_file_text(&file)?, &mut report)?;
     }
     let file = kinds::AugmentSlotTypesFile::from_rows(db)?;
-    write_export_file(root, Path::new("effects/augment-slot-types.toml"), &typed_file_text(&file)?, &mut report)?;
+    write_export_file(root, fixed_data_file("augment_slot_types")?, &typed_file_text(&file)?, &mut report)?;
     ensure!(sources.items.is_empty() && sources.augments.is_empty(), "sources remain without an item or augment file");
     ensure!(modifiers.is_empty(), "modifiers remain without an owner file: {:?}", modifiers.keys().collect::<Vec<_>>());
     for table in table_names(db)? {
@@ -552,23 +551,70 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         write_data_file(&schema_root.join(file_name), &contents)?;
     }
     let currencies = kinds::VendorCurrenciesFile::from_rows(db, &annotations)?;
-    write_export_file(
-        root,
-        Path::new("packs/shared/vendors/currencies.toml"),
-        &toml::to_string_pretty(&currencies)?,
-        &mut report,
-    )?;
+    write_export_file(root, fixed_data_file("vendor_currencies")?, &toml::to_string_pretty(&currencies)?, &mut report)?;
     write_pack_exceptions(db, root, &mut report)?;
-    let alias_path = root.join("upstream/source-aliases.toml");
+    let alias_path = root.join(fixed_data_file("source_aliases")?);
     let alias_contents =
         annotations.files.get("upstream/source-aliases.toml").context("database has no source aliases")?;
     write_data_file(&alias_path, alias_contents)?;
     bump_file_count(&mut report, &alias_path, root);
     let upstream = UpstreamCommitFile::from_rows(db)?;
-    let upstream_path = root.join("upstream/commit.toml");
+    let upstream_path = root.join(fixed_data_file("dataset_version")?);
     write_data_file(&upstream_path, &toml::to_string(&upstream)?)?;
     bump_file_count(&mut report, &upstream_path, root);
     remove_unwritten_data_files(root, &report)?;
     report.icon_actions = crate::icons::enhancement_icon_actions(root)?;
     Ok(report)
+}
+
+#[derive(Debug, Default)]
+pub struct DataFileChanges {
+    pub written: usize,
+    pub removed: usize,
+}
+
+fn managed_data_files(root: &Path) -> Result<BTreeMap<PathBuf, PathBuf>> {
+    let mut files = BTreeMap::new();
+    for entry in WalkDir::new(root) {
+        let entry = entry?;
+        if !entry.file_type().is_file() {
+            continue;
+        }
+        let relative = entry.path().strip_prefix(root)?;
+        let extension = relative.extension().and_then(|extension| extension.to_str());
+        if matches!(extension, Some("toml" | "png"))
+            || (extension == Some("json") && relative.parent() == Some(Path::new(".schemas")))
+        {
+            files.insert(relative.to_path_buf(), entry.path().to_path_buf());
+        }
+    }
+    Ok(files)
+}
+
+pub fn replace_data_files(staging: &Path, data_dir: &Path) -> Result<DataFileChanges> {
+    let staged = managed_data_files(staging)?;
+    let current = managed_data_files(data_dir)?;
+    let mut changes = DataFileChanges::default();
+    for (relative, source) in &staged {
+        let target = data_dir.join(relative);
+        if current.get(relative).map(std::fs::read).transpose()? == Some(std::fs::read(source)?) {
+            continue;
+        }
+        std::fs::create_dir_all(target.parent().context("data file has no parent")?)?;
+        std::fs::copy(source, target)?;
+        changes.written += 1;
+    }
+    for (relative, path) in current {
+        if !staged.contains_key(&relative) {
+            std::fs::remove_file(path)?;
+            changes.removed += 1;
+        }
+    }
+    for entry in WalkDir::new(data_dir).contents_first(true) {
+        let entry = entry?;
+        if entry.file_type().is_dir() && entry.path() != data_dir && std::fs::read_dir(entry.path())?.next().is_none() {
+            std::fs::remove_dir(entry.path())?;
+        }
+    }
+    Ok(changes)
 }

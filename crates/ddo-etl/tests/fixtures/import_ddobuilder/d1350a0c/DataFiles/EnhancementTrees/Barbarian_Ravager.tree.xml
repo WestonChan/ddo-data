@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Ravager (Barbarian)</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>Class</Type>
+        <Item>Barbarian</Item>
+      </Requirement>
+    </Requirements>
+    <Background>BarbarianBackground</Background>
+    <Icon>Barbarian</Icon>
+    <!--Core items-->
+    
+    
+    
+    
+    
+    
+    <!--Tier 1-->
+    
+    
+    
+    <EnhancementTreeItem>
+      <Name>Ravager: Barbarian Power Attack</Name>
+      <InternalName>RavBarbarianPowerAttack</InternalName>
+      <Description>Your Power Attack feat does 3 additional points of bonus damage.
+Damage is doubled when Two Handed Fighting or fighting in an animal form..</Description>
+      <Icon>RavBarbarianPowerAttack</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>ClassMinLevel</Type>
+          <Item>Barbarian</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Power Attack</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Power Attack</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Heavy Draw</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>WeaponDamageBonusClass</Type>
+        <Type>WeaponDamageBonusCriticalClass</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Power Attack</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Heavy Draw</Item>
+            </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <Item>Two Handed</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    
+    <!--Tier 2-->
+    
+    
+    
+    
+    
+    <!--Tier 3-->
+    
+    
+    
+    
+    <!--Tier 4-->
+    
+    
+    
+    
+    <!--Tier 5-->
+    
+    
+    
+    
+  </EnhancementTree>
+</Enhancements>

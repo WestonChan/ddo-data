@@ -30,13 +30,15 @@ pub use build::{build_from_data, rederive_data_build_tables};
 pub(crate) use crafting::recipe_focus_path;
 pub use ddo_model::identity::slug;
 use export::*;
-pub use export::{annotated_entities, data_file_bytes, export_database, export_ddobuilder_tree};
+pub use export::{
+    annotated_entities, data_file_bytes, export_database, export_ddobuilder_tree, replace_data_files, DataFileChanges,
+};
 pub(crate) use kinds::insert_xml_vendor_currencies;
 use kinds::UpstreamCommitFile;
 pub use kinds::{ExceptionsFile, PackException, QuestPackException};
-pub use layout::pack_exceptions;
 pub(crate) use layout::qualified_slug;
 use layout::*;
+pub use layout::{pack_exceptions, DataFilePaths};
 pub(crate) use schemas::file_kind;
 pub use schemas::find;
 use tables::*;

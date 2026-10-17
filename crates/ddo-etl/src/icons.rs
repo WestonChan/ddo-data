@@ -63,7 +63,10 @@ pub fn icon_kind_for_data_path(path: &Path) -> Option<(&'static str, &'static st
     }
 }
 
-fn image_reference_parts<'a>(kind: &'a str, reference: &'a str) -> Result<(&'a str, Option<&'a str>, &'a str)> {
+pub(crate) fn image_reference_parts<'a>(
+    kind: &'a str,
+    reference: &'a str,
+) -> Result<(&'a str, Option<&'a str>, &'a str)> {
     ensure!(!reference.contains('\\'), "image reference contains a backslash");
     let segments = reference.split('/').collect::<Vec<_>>();
     ensure!(
@@ -88,6 +91,14 @@ pub(crate) struct IconIndex {
 }
 
 impl IconIndex {
+    pub(crate) fn icon_files(&self) -> Vec<(String, PathBuf)> {
+        self.global_paths
+            .iter()
+            .map(|((kind, _), path)| (kind.clone(), path.clone()))
+            .chain(self.enhancement_paths.values().map(|(_, path)| ("enhancements".to_string(), path.clone())))
+            .collect()
+    }
+
     fn from_global_icons(icons_dir: &Path) -> Result<Self> {
         let mut index = Self::default();
         if icons_dir.is_dir() {

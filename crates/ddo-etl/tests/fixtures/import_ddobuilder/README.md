@@ -8,8 +8,7 @@ in their upstream kind folders, including cross-kind dc art. No placeholder art
 is used. Missing optional directories contain no retained entities.
 
 The two Ravager enhancements live in separate Barbarian and Fighter tree files;
-both headers are retained. The future d1350a0c fixture will be an overlay trimmed
-to the same elements.
+both headers are retained. The d1350a0c overlay below is trimmed to the same elements.
 
 SHA columns below are SHA-256 of the full upstream file and the retained fixture.
 
@@ -81,3 +80,44 @@ SHA columns below are SHA-256 of the full upstream file and the retained fixture
 | `UIImages/Half-OrcBackground.png` | Verbatim PNG referenced by retained XML | `33c6e79de34422f8542ce4b0bc5744375432fab391897239b72be8ada89883cf` | `33c6e79de34422f8542ce4b0bc5744375432fab391897239b72be8ada89883cf` |
 | `UIImages/Intimidate.png` | Verbatim PNG referenced by retained XML | `031f71d1e2a68f2f33d344bffa1816ff37f5aa18fe4410fe5e88c2f512cf8000` | `031f71d1e2a68f2f33d344bffa1816ff37f5aa18fe4410fe5e88c2f512cf8000` |
 | `UIImages/ReaperTree.png` | Verbatim PNG referenced by retained XML | `7a1642bba79923680a9fce25a1534bfc8451bb1eac65daa3884598bfa143da65` | `7a1642bba79923680a9fce25a1534bfc8451bb1eac65daa3884598bfa143da65` |
+
+## New revision overlay
+
+Overlay from d1350a0c6ec396a65dc02680fa9801a14a79ebf3, trimmed to the same named entities; missing entities stay removed. Apply over the previous world. Unchanged files are omitted. The newly added Night Revels set is retained in full. PNGs are verbatim.
+
+| File under d1350a0c/DataFiles | Kept | Upstream SHA-256 | Fixture SHA-256 |
+|---|---|---|---|
+| EnhancementImages/BomColdSpike.png | Verbatim PNG referenced by retained XML | d36df6848d8fe4a625d11fa1b9c03792f51d7782382adc8f3a15766337117af5 | d36df6848d8fe4a625d11fa1b9c03792f51d7782382adc8f3a15766337117af5 |
+| EnhancementImages/BomCorrodeWeapons.png | Verbatim PNG referenced by retained XML | 91a88006b0f1d30d3e970fc63c27d7c88ab86f5a30f01259a0b5b65326506455 | 91a88006b0f1d30d3e970fc63c27d7c88ab86f5a30f01259a0b5b65326506455 |
+| EnhancementImages/BomMeltArmor.png | Verbatim PNG referenced by retained XML | f81eb197857b10c3dc5e2e83a242413f50f58ecba6fa03c41236c11f5db43f1d | f81eb197857b10c3dc5e2e83a242413f50f58ecba6fa03c41236c11f5db43f1d |
+| EnhancementImages/BomMultivialAcid.png | Verbatim PNG referenced by retained XML | 67a2b5d9f445224fac2f646d749cb8b33ab9321f89aa0f5f4bdecb821dc5e30c | 67a2b5d9f445224fac2f646d749cb8b33ab9321f89aa0f5f4bdecb821dc5e30c |
+| EnhancementImages/BomMultivialFlame.png | Verbatim PNG referenced by retained XML | 2a3211c8eda7504daea441d454b9a291bd0dcc0c78b1c66269b8ad1e6607c2de | 2a3211c8eda7504daea441d454b9a291bd0dcc0c78b1c66269b8ad1e6607c2de |
+| EnhancementImages/BomMultivialFrost.png | Verbatim PNG referenced by retained XML | 65380249a64c16ea84aa20bfec40c14965d556ebcccea7c49558676c26d5a9af | 65380249a64c16ea84aa20bfec40c14965d556ebcccea7c49558676c26d5a9af |
+| EnhancementImages/BomMultivialPoison.png | Verbatim PNG referenced by retained XML | 6110f6ca1f8f7c8fda0d59bfe23f4126cf595c4c7080149498a61ad8837371ba | 6110f6ca1f8f7c8fda0d59bfe23f4126cf595c4c7080149498a61ad8837371ba |
+| EnhancementImages/BomMultivialSparks.png | Verbatim PNG referenced by retained XML | 9cc19e4c048b1da46acb7680cf4402cccfe0cba67e5471196d684f63592b0c4b | 9cc19e4c048b1da46acb7680cf4402cccfe0cba67e5471196d684f63592b0c4b |
+| EnhancementImages/BomVenomConcentration.png | Verbatim PNG referenced by retained XML | 106574f1fa6cae4dc80377a6e963c1ecf50178bebae73cfab483ddb8048da681 | 106574f1fa6cae4dc80377a6e963c1ecf50178bebae73cfab483ddb8048da681 |
+| EnhancementImages/BomVoltaicBacklash.png | Verbatim PNG referenced by retained XML | 61c5ce1a0acc7057662988930404f3a9eb6cd08f905a59f9791c234adb481f00 | 61c5ce1a0acc7057662988930404f3a9eb6cd08f905a59f9791c234adb481f00 |
+| EnhancementTrees/Alchemist_Bombardier.tree.xml | Tree header and BomCore1, BomCore6, BomSpellVialSelection, BomSpellvialSelectionII, BomSpellvialSelectionIII, BomBurningAmbition, BomAugmentation | 30d6e6bc6e9a231bf27bc57d5e1b843e1b21ab42d52cadafab9a5a5d2b9c4851 | 875a4d3a7a8313289ead41e3614c76d267c0a984c73692f2e441dc07b53e481a |
+| EnhancementTrees/Artificer_Arcanotechnician.tree.xml | Tree header and ATShockGauntlet | 435f7514363561d77af7782ae02df0a5d2ba81f5bffa4ac839c0e132067f14ea | 0cbedbd1fc403616641694583473dbb125b991200627627985cff9119bbd920b |
+| EnhancementTrees/Barbarian_Ravager.tree.xml | Tree header and RavBarbarianPowerAttack | 2fb75b7bec7927003db653e5cd4d690a10e5a5d60babf9bf06897594ce1e72db | 4ae8b841828a4586b5d35eb22112bea0a3c32a80c219dbd08bb4f06f6995cedb |
+| EnhancementTrees/Fighter_Ravager.tree.xml | Tree header and DLRavDraconicPowerAttack | 7606ddae64fea669c2d57023761d4fb23ccdb0225504811997e60572c74fe5e4 | 9b36c6a578831cd3399ee85be93c39a7737c8582c2cedef0bf041778e234d195 |
+| EnhancementTrees/Fighter_StalwartDefender.tree.xml | Tree header and SDDefenseBoost | 85a57266230b4ca052cf9f15fb8dfad7c76d7294a9a9740f6a41d55550a95dff | fdacc9d0cdc91222bbdef988a45ae2ec565efbf9243cbaeb00ed00f3793c2f6f |
+| FeatImages/Alertness.png | Verbatim PNG referenced by retained XML | 68d60744e6bc30593630f1446d00890885f10f9b06fc7e201577c51343e0dc2d | 68d60744e6bc30593630f1446d00890885f10f9b06fc7e201577c51343e0dc2d |
+| FiligreeImages/NightRevelsGifts.png | Verbatim PNG referenced by retained XML | f6d3bea3cfea19b7c50664c5fc5aef8e23534efd08979041523ab06a8dabf324 | f6d3bea3cfea19b7c50664c5fc5aef8e23534efd08979041523ab06a8dabf324 |
+| FiligreeSets/NightRevelsGifts.Filigree.xml | Whole newly added filigree set | 1ff77a7ff460d01e43b0ab781e1de057a63738e2d78070af08b4dab4d763c8af | 1ff77a7ff460d01e43b0ab781e1de057a63738e2d78070af08b4dab4d763c8af |
+
+The quests-without-terror-of-demogorgon/Quests.xml variant deletes all 14 retained quests from the ba7e18e fixture to model an added pack. This pack already existed upstream; the variant is deliberately artificial. SHA-256: 91fd1f58a54c1969243d3bd6ac88ca8bb8939faed3b58e01b1715c958f0ebcc3
+
+## Correction inputs
+
+`corrections/ravager.toml` records two test corrections. The Draconic Power Attack
+`from` and `to` descriptions are taken verbatim from the old and new Fighter Ravager
+XML above. Barbarian Power Attack uses the old Barbarian Ravager description as
+`from` and deliberately authored test prose as `to`. Both use a wiki URL and read
+date so the normal correction reader validates them. `wiki/README.md` keeps an
+otherwise empty override directory; no wiki TOML facts are supplied.
+
+The new overlay carries ten Bombardier PNGs: five newly added upstream
+(Corrode Weapons, Cold Spike, Melt Armor, Venom Concentration, Voltaic Backlash)
+and five existing Multivial PNGs newly referenced by the retained core. All ten
+are required by the retained new XML, so all ten are included verbatim.

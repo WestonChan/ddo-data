@@ -19,6 +19,7 @@ rusqlite = { workspace = true }
 schemars = "1.2.2"
 serde = { workspace = true }
 serde_json = { workspace = true }
+tempfile = "3"
 toml = { workspace = true }
 walkdir = { workspace = true }
 

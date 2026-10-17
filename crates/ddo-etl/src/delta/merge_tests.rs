@@ -360,6 +360,30 @@ fn superseded_wiki_row_takes_his_columns_and_drops_its_primary_citation() {
 }
 
 #[test]
+fn verification_accepts_recomputed_source_provenance() {
+    let previous = ordinary_fixture_database("");
+    let new = ordinary_fixture_database("UPDATE items SET drop_location = ''");
+    let mut ours = ordinary_fixture_database("UPDATE quest_drops SET is_rare = 1 - is_rare");
+    let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+    assert!(outcome.conflicts.is_empty());
+    rederive_data_build_tables(&ours).unwrap();
+    let rebuilt = rebuilt_ordinary_database(&ours);
+    let source_provenance = |db: &Connection| {
+        db.prepare("SELECT drop_text_segment, source_match FROM quest_drops ORDER BY id")
+            .unwrap()
+            .query_map([], |row| Ok((row.get::<_, Option<String>>(0)?, row.get::<_, Option<String>>(1)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap()
+    };
+    assert_ne!(source_provenance(&ours), source_provenance(&rebuilt));
+    assert!(
+        database_delta(&ours, &rebuilt).unwrap().is_empty(),
+        "V2 compares authored rows while source provenance is recomputed"
+    );
+}
+
+#[test]
 fn rederivation_is_idempotent_and_preserves_authored_rows() {
     let db = fixture_database();
     let before = TABLE_MERGES

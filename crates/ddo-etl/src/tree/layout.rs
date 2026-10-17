@@ -106,7 +106,7 @@ pub(super) fn pack_folders(db: &Connection) -> Result<BTreeMap<String, PathBuf>>
     Ok(folders)
 }
 
-pub(super) struct ExportLayout {
+pub(crate) struct ExportLayout {
     paths: BTreeMap<(String, i64), PathBuf>,
     pub(super) warnings: Vec<String>,
 }
@@ -707,6 +707,159 @@ pub(super) fn folder_quest_name(root: &Path, item_path: &Path) -> Result<Option<
         }
     }
     Ok(None)
+}
+
+pub(super) const FIXED_DATA_FILES: &[(&str, &str)] = &[
+    ("stances", "characters/stances.toml"),
+    ("clickies", "effects/clickies.toml"),
+    ("guild_buffs", "characters/guild-buffs.toml"),
+    ("optional_buffs", "characters/optional-buffs.toml"),
+    ("bonus_types", "effects/bonus-types.toml"),
+    ("item_materials", "effects/item-materials.toml"),
+    ("triggers", "effects/triggers.toml"),
+    ("weapon_proficiencies", "effects/weapon-proficiencies.toml"),
+    ("equipment_slots", "effects/equipment-slots.toml"),
+    ("damage_types", "effects/damage-types.toml"),
+    ("weapon_types", "effects/weapon-types.toml"),
+    ("excluded_items", "upstream/excluded-items.toml"),
+    ("augment_slot_types", "effects/augment-slot-types.toml"),
+    ("vendor_currencies", "packs/shared/vendors/currencies.toml"),
+    ("source_aliases", "upstream/source-aliases.toml"),
+    ("dataset_version", "upstream/commit.toml"),
+];
+
+pub(super) fn fixed_data_file(table: &str) -> Result<&'static Path> {
+    FIXED_DATA_FILES
+        .iter()
+        .find(|(name, _)| *name == table)
+        .map(|(_, path)| Path::new(path))
+        .with_context(|| format!("{table} has no fixed data file"))
+}
+
+#[derive(Debug)]
+pub struct DataFilePaths {
+    paths: BTreeMap<(String, i64), PathBuf>,
+    dataset_files: BTreeMap<String, BTreeSet<PathBuf>>,
+}
+
+impl DataFilePaths {
+    pub fn from_database(db: &Connection) -> Result<Self> {
+        use crate::database_tables::{table_columns, table_rows};
+        use crate::delta::{table_merge, IdentityIndex, TableMerge};
+        use rusqlite::types::Value;
+        let layout = ExportLayout::from_database(db)?;
+        let mut paths = layout.paths;
+        let index = IdentityIndex::from_db(db)?;
+        let mut rows = BTreeMap::new();
+        for table in table_names(db)? {
+            let columns = table_columns(db, &table)?;
+            for row in table_rows(db, &table)? {
+                let fields: crate::delta::RowFields = columns.iter().cloned().zip(row).collect();
+                if let Some(Value::Integer(id)) = fields.get("id") {
+                    rows.insert((table.clone(), *id), fields);
+                }
+            }
+        }
+        loop {
+            let before = paths.len();
+            for ((table, id), fields) in &rows {
+                if paths.contains_key(&(table.clone(), *id)) {
+                    continue;
+                }
+                let owner_column = match table_merge(table) {
+                    Some(TableMerge::Entity { owner_column }) => *owner_column,
+                    Some(TableMerge::Array { owner_column, .. }) => Some(*owner_column),
+                    _ => None,
+                };
+                if let Some(column) = owner_column {
+                    if let (Some(target), Some(Value::Integer(owner))) =
+                        (index.reference_target(table, column, fields), fields.get(column))
+                    {
+                        if let Some(path) = paths.get(&(target, *owner)).cloned() {
+                            paths.insert((table.clone(), *id), path);
+                        }
+                        continue;
+                    }
+                }
+                if let Ok(path) = fixed_data_file(table) {
+                    paths.insert((table.clone(), *id), path.to_path_buf());
+                }
+            }
+            if before == paths.len() {
+                break;
+            }
+        }
+        let correction_ids: BTreeMap<_, _> = rows
+            .iter()
+            .filter(|((table, _), _)| table == "corrections")
+            .map(|((_, id), fields)| {
+                let key = ["kind", "name", "qualifier", "field"]
+                    .map(|column| fields.get(column).and_then(crate::delta::sql_text).unwrap_or("").to_string());
+                (key, *id)
+            })
+            .collect();
+        let notes = super::export::CorrectionNoteIndex::from_database(db)?;
+        for ((table, id), fields) in &rows {
+            let name_column = if table == "augment_slot_types" { "label" } else { "name" };
+            let Some(name) = fields.get(name_column).and_then(crate::delta::sql_text) else {
+                continue;
+            };
+            let Some(path) = paths.get(&(table.clone(), *id)).cloned() else {
+                continue;
+            };
+            for correction in notes.corrections_for_owner(table, name) {
+                let key = [
+                    correction.note.kind.clone(),
+                    correction.name.clone(),
+                    correction.note.qualifier.clone(),
+                    correction.note.field.clone(),
+                ];
+                if let Some(id) = correction_ids.get(&key) {
+                    paths.insert(("corrections".into(), *id), path.clone());
+                }
+            }
+        }
+        let mut removed = db.prepare(&format!("SELECT {} FROM removed_entities", RemovedEntry::select_columns()))?;
+        for row in removed.query_map([], |row| {
+            Ok((row.get::<_, String>("owner_kind")?, row.get::<_, i64>("owner_id")?, RemovedEntry::from_row(row)?))
+        })? {
+            let (table, owner, removal) = row?;
+            let key = [removal.kind, removal.name, String::new(), "remove".to_string()];
+            if let (Some(id), Some(path)) = (correction_ids.get(&key), paths.get(&(table, owner)).cloned()) {
+                paths.insert(("corrections".into(), *id), path);
+            }
+        }
+        let mut dataset_files: BTreeMap<String, BTreeSet<PathBuf>> = FIXED_DATA_FILES
+            .iter()
+            .map(|(table, path)| ((*table).to_string(), BTreeSet::from([PathBuf::from(path)])))
+            .collect();
+        let folders = pack_folders(db)?;
+        let columns = crate::database_tables::table_columns(db, "pack_exceptions")?;
+        let pack_column =
+            columns.iter().position(|name| name == "pack_name").context("pack exceptions lack pack_name")?;
+        for (id, row) in crate::database_tables::table_rows_by_rowid(db, "pack_exceptions")? {
+            let pack = crate::delta::sql_text(&row[pack_column]).context("pack exception has no pack name")?;
+            let path = folders
+                .get(pack)
+                .with_context(|| format!("pack exception has no folder: {pack}"))?
+                .join("exceptions.toml");
+            dataset_files.entry("pack_exceptions".into()).or_default().insert(path.clone());
+            paths.insert(("pack_exceptions".into(), id), path);
+        }
+        Ok(Self { paths, dataset_files })
+    }
+
+    pub(crate) fn dataset_paths(&self, table: &str) -> BTreeSet<PathBuf> {
+        self.dataset_files.get(table).cloned().unwrap_or_default()
+    }
+
+    pub fn path(&self, table: &str, id: i64) -> Result<PathBuf> {
+        self.paths
+            .get(&(table.to_string(), id))
+            .cloned()
+            .or_else(|| fixed_data_file(table).ok().map(Path::to_path_buf))
+            .with_context(|| format!("{table} {id} has no data file path"))
+    }
 }
 
 #[cfg(test)]
