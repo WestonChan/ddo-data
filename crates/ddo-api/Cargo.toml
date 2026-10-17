@@ -22,9 +22,9 @@ tower-http = { version = "0.6", features = ["cors", "compression-gzip", "compres
 tower_governor = "0.8"
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
-utoipa = { version = "5", features = ["axum_extras"] }
-utoipa-axum = "0.2"
-utoipa-scalar = { version = "0.3", features = ["axum"] }
+utoipa = { version = "6", features = ["axum_extras"] }
+utoipa-axum = "0.3"
+utoipa-scalar = { version = "0.4", features = ["axum"] }
 
 [dev-dependencies]
 ddo-etl = { path = "../ddo-etl" }
