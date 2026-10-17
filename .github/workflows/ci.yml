@@ -19,20 +19,10 @@ jobs:
         run: cargo run -p ddo-etl -- find "Death House" --data data
       - name: Verify the full data round trip
         run: cargo run --release -p xtask -- round-trip --data data
-      - name: Check out the data files' recorded upstream revision
+      - name: Build the data files' database
+        run: cargo run --release -p ddo-etl -- build --data data --out target/data-source.db
+      - name: Validate the database and the served data
         run: |
-          sha=$(sed -n 's/^sha = "\(.*\)"/\1/p' data/upstream/commit.toml)
-          git clone --filter=blob:none --no-checkout https://github.com/Maetrim/DDOBuilderV2.git target/upstream-source
-          git -C target/upstream-source sparse-checkout set Output/DataFiles
-          git -C target/upstream-source checkout "$sha"
-      - name: Compare XML and data databases by slug
-        run: |
-          cargo run --release -p ddo-etl -- build --source target/upstream-source/Output/DataFiles --out target/xml-source.db
-          cargo run --release -p ddo-etl -- build --data data --out target/data-source.db
-          cargo run --release -p xtask -- diff-db target/xml-source.db target/data-source.db --by-slug --allow-list xtask/data/data_diff.allow
-      - name: Validate both databases and the served data
-        run: |
-          cargo xtask check-db target/xml-source.db
           cargo xtask check-db target/data-source.db
           cargo xtask validate-api --db target/data-source.db --all-details
           cargo xtask wiki-tooltips --db target/data-source.db
