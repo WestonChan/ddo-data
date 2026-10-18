@@ -7,7 +7,6 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 use walkdir::WalkDir;
 use xtask::api_validation::validate_api;
-use xtask::dataset::{build_database_file, corrections_from, wiki_overrides_from};
 use xtask::golden_refresh::{golden_merge_changes, golden_sample, merge_golden, SampleRequest};
 use xtask::integrity::{integrity_report, IntegrityOptions};
 use xtask::response_examples::{write_response_examples, write_v1_detail_snapshot, EXAMPLE_REQUESTS};
@@ -31,8 +30,6 @@ enum Task {
     RefreshExamples {
         #[arg(long)]
         db: Option<PathBuf>,
-        #[arg(long)]
-        source: Option<PathBuf>,
         #[arg(long)]
         out: Option<PathBuf>,
     },
@@ -158,8 +155,8 @@ fn main() -> Result<()> {
         }
         Task::NoComments { fix: false } => deny_comments(),
         Task::NoComments { fix: true } => strip_workspace_comments(),
-        Task::RefreshExamples { db: db_path, source: data_files_dir, out: examples_dir } => {
-            refresh_response_examples(db_path.as_deref(), data_files_dir, examples_dir)
+        Task::RefreshExamples { db: db_path, out: examples_dir } => {
+            refresh_response_examples(db_path.as_deref(), examples_dir)
         }
         Task::SnapshotV1Details { db, out } => {
             println!("wrote {} v1 details to {}", write_v1_detail_snapshot(&db, &out)?, out.display());
@@ -307,25 +304,17 @@ fn deny_data_schema_drift() -> Result<()> {
     Ok(())
 }
 
-fn refresh_response_examples(
-    db_path: Option<&Path>,
-    data_files_dir: Option<PathBuf>,
-    examples_dir: Option<PathBuf>,
-) -> Result<()> {
+fn refresh_response_examples(db_path: Option<&Path>, examples_dir: Option<PathBuf>) -> Result<()> {
     let examples_dir = examples_dir.unwrap_or_else(|| workspace_root().join("crates/ddo-api/docs/examples/v1"));
     let built_db_file;
     let db_path = match db_path {
         Some(db_path) => db_path,
         None => {
             built_db_file = tempfile::NamedTempFile::new()?;
-            let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
-            println!("building {} into {}", data_files_dir.display(), built_db_file.path().display());
-            build_database_file(
-                &data_files_dir,
-                &wiki_overrides_from(None)?,
-                &corrections_from(None)?,
-                built_db_file.path(),
-            )?;
+            let data_dir = workspace_root().join("data");
+            println!("building {} into {}", data_dir.display(), built_db_file.path().display());
+            let mut db = rusqlite::Connection::open(built_db_file.path())?;
+            ddo_etl::tree::build_from_data(&data_dir, &mut db)?;
             built_db_file.path()
         }
     };
@@ -490,6 +479,7 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             "import_reports_mapping_audits_without_changing_success_status",
         ),
         ("xtask", &["--test", "integrity"][..], "database_checks_need_no_xml_or_data_files"),
+        ("ddo-etl", &["--test", "upstream"][..], "served_dataset_commands_expose_only_canonical_inputs"),
     ] {
         let test_status = Command::new("cargo")
             .args(["test", "-p", crate_name])

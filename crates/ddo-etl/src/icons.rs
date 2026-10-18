@@ -484,19 +484,6 @@ pub fn export_icons(data_files_dir: &Path, icons_dir: &Path) -> Result<IconExpor
     Ok(report)
 }
 
-pub fn link_corrected_icons(corrections: &crate::corrections::Corrections, icons_dir: &Path) -> Result<()> {
-    for correction in &corrections.entries {
-        if correction.field != "icon" {
-            continue;
-        }
-        let Some(reference) = correction.to.as_text() else { continue };
-        if reference.split('/').count() == 3 {
-            link_qualified_icon(icons_dir, reference)?;
-        }
-    }
-    Ok(())
-}
-
 fn link_qualified_icon(icons_dir: &Path, reference: &str) -> Result<()> {
     let segments = reference.split('/').collect::<Vec<_>>();
     ensure!(
