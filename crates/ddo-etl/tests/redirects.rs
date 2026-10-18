@@ -120,14 +120,19 @@ fn expiry_reports_redirects_and_removals_at_exact_boundaries() {
     for (today, reason) in
         [("2026-10-31", None), ("2026-11-01", Some("older than 30 days")), ("2026-09-30", Some("future"))]
     {
-        let violations = ddo_etl::tree::slug_lists::redirect_expiry_violations(&built, Some(today)).unwrap();
+        let violations = ddo_etl::tree::redirects::redirect_expiry_violations(&built, Some(today)).unwrap();
         if let Some(reason) = reason {
             assert_eq!(violations.len(), 2);
             for (violation, slug) in violations.iter().zip(["former", "gone"]) {
+                assert_eq!(violation.contains("prune-redirects"), reason != "future", "{violation}");
                 assert!(
                     violation.contains(slug)
                         && violation.contains(reason)
-                        && violation.contains("prune-redirects --data data"),
+                        && violation.contains(if reason == "future" {
+                            "correct the date"
+                        } else {
+                            "prune-redirects --data data"
+                        }),
                     "{violation}"
                 );
             }
@@ -244,7 +249,7 @@ fn pruning_keeps_day_thirty_and_future_rows_and_uses_export_bytes() {
     let exported = folder.path().join("exported");
     ddo_etl::tree::export_database(&built, &exported).unwrap();
     assert_eq!(std::fs::read_to_string(exported.join("redirects.toml")).unwrap(), contents);
-    assert!(ddo_etl::tree::slug_lists::prune_redirects(&root, Some("2026-02-30")).is_err());
+    assert!(ddo_etl::tree::redirects::prune_redirects(&root, Some("2026-02-30")).is_err());
 }
 
 #[test]

@@ -9,8 +9,6 @@ pub enum TableMerge {
 }
 
 pub const TABLE_MERGES: &[(&str, TableMerge)] = &[
-    ("redirects", TableMerge::DatasetArray { array: "redirect" }),
-    ("removed_slugs", TableMerge::DatasetArray { array: "removed" }),
     ("adventure_packs", TableMerge::Entity { owner_column: None, position_column: None }),
     ("attacks", TableMerge::Array { owner_column: "owner_id", array: "attack" }),
     ("augment_effects", TableMerge::Array { owner_column: "augment_id", array: "effect" }),
@@ -99,7 +97,9 @@ pub const TABLE_MERGES: &[(&str, TableMerge)] = &[
     ("race_feat_slots", TableMerge::Array { owner_column: "race_id", array: "feat_slot" }),
     ("race_granted_feats", TableMerge::Array { owner_column: "race_id", array: "granted_feat" }),
     ("races", TableMerge::Entity { owner_column: None, position_column: None }),
+    ("redirects", TableMerge::DatasetArray { array: "redirect" }),
     ("removed_entities", TableMerge::Array { owner_column: "owner_id", array: "removed" }),
+    ("removed_slugs", TableMerge::DatasetArray { array: "removed" }),
     ("requirements", TableMerge::Array { owner_column: "owner_id", array: "requirement" }),
     ("saga_quests", TableMerge::Array { owner_column: "saga_id", array: "quest" }),
     ("saga_rewards", TableMerge::Array { owner_column: "owner_id", array: "source" }),

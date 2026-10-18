@@ -44,8 +44,8 @@ pub use schemas::find;
 use tables::*;
 use xml_slugs::*;
 pub(crate) use xml_slugs::{assign_xml_entity_slugs, augment_slug_candidates, store_xml_annotations, xml_entity_slug};
+pub mod redirects;
 pub mod schemas;
-pub mod slug_lists;
 mod sources;
 
 database_record! {

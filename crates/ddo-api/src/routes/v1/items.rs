@@ -1,7 +1,7 @@
-use crate::entity_slugs::{resolve_entity_slug, EntityPath};
 mod records;
 
 use crate::db::{convert_to_booleans, like_escaped_text, paged_query, paged_table_json, TableListSource, WhereClause};
+use crate::entity_slugs::{resolve_entity_slug, EntityPath};
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery};
 use crate::state::AppState;

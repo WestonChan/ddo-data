@@ -20,7 +20,7 @@ pub fn redirect_check_violations(
     deployed: Option<&Connection>,
     today: Option<&str>,
 ) -> Result<Vec<String>> {
-    let mut violations = ddo_etl::tree::slug_lists::redirect_expiry_violations(db, today)?;
+    let mut violations = ddo_etl::tree::redirects::redirect_expiry_violations(db, today)?;
     let Some(deployed) = deployed else {
         return Ok(violations);
     };

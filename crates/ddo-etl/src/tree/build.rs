@@ -440,7 +440,7 @@ pub fn rederive_data_build_tables(db: &Connection) -> Result<()> {
     crate::delta::clear_rederived_tables(db)?;
     crate::build::effect_vocabulary::insert_data_effect_vocabulary(db)?;
     insert_entity_identities(db)?;
-    let violations = super::slug_lists::redirect_violations(db)?;
+    let violations = super::redirects::redirect_violations(db)?;
     ensure!(violations.is_empty(), "redirects.toml: {}", violations.join("\n"));
     Ok(())
 }

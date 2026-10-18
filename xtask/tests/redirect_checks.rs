@@ -1,6 +1,6 @@
 use rusqlite::Connection;
 use std::path::Path;
-use xtask::slug_checks::redirect_check_violations;
+use xtask::redirect_checks::redirect_check_violations;
 
 #[path = "../../crates/ddo-api/tests/common/mod.rs"]
 mod common;
@@ -182,7 +182,8 @@ fn vanished_slug_requires_a_redirect_or_removal_against_schema_37() {
         let violations = redirect_check_violations(&current, None, Some(today)).unwrap();
         assert_eq!(violations.len(), 1);
         assert!(violations[0].contains("vanished-fixture"));
-        assert!(violations[0].contains("prune-redirects"));
+        assert_eq!(violations[0].contains("prune-redirects"), today == "2026-11-01");
+        assert_eq!(violations[0].contains("correct the date"), today == "2026-09-30");
     }
     std::fs::remove_file(current_file).unwrap();
     std::fs::write(
@@ -196,6 +197,7 @@ fn vanished_slug_requires_a_redirect_or_removal_against_schema_37() {
         let violations = redirect_check_violations(&current, None, Some(today)).unwrap();
         assert_eq!(violations.len(), 1);
         assert!(violations[0].contains("vanished-fixture"));
-        assert!(violations[0].contains("prune-redirects"));
+        assert_eq!(violations[0].contains("prune-redirects"), today == "2026-11-01");
+        assert_eq!(violations[0].contains("correct the date"), today == "2026-09-30");
     }
 }

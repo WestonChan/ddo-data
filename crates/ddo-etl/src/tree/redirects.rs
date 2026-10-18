@@ -96,8 +96,12 @@ pub fn redirect_expiry_violations(db: &Connection, today: Option<&str>) -> Resul
             Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?, row.get::<_, bool>(3)?))
         })? {
             let (kind, slug, since, future) = row?;
-            let reason = if future { "is in the future; correct the date" } else { "is older than 30 days" };
-            violations.push(format!("{table} {kind} {slug:?}: since {since} {reason} (today {today}); prune expired rows with `{PRUNE_REDIRECTS_COMMAND}`"));
+            let (reason, remedy) = if future {
+                ("is in the future", "correct the date".to_string())
+            } else {
+                ("is older than 30 days", format!("prune expired rows with `{PRUNE_REDIRECTS_COMMAND}`"))
+            };
+            violations.push(format!("{table} {kind} {slug:?}: since {since} {reason} (today {today}); {remedy}"));
         }
     }
     Ok(violations)

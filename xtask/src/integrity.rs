@@ -1756,7 +1756,7 @@ fn empty_tables(db: &Connection, options: &IntegrityOptions) -> Result<Findings>
 }
 
 fn redirect_findings(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
-    let offenders = ddo_etl::tree::slug_lists::redirect_violations(db)?
+    let offenders = ddo_etl::tree::redirects::redirect_violations(db)?
         .into_iter()
         .map(|detail| Offender { name: detail.clone(), id: None, detail })
         .collect();

@@ -184,7 +184,8 @@ fn main() -> Result<()> {
             let flags = rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY;
             let db = rusqlite::Connection::open_with_flags(db, flags)?;
             let deployed = deployed.map(|path| rusqlite::Connection::open_with_flags(path, flags)).transpose()?;
-            let violations = xtask::slug_checks::redirect_check_violations(&db, deployed.as_ref(), today.as_deref())?;
+            let violations =
+                xtask::redirect_checks::redirect_check_violations(&db, deployed.as_ref(), today.as_deref())?;
             ensure!(violations.is_empty(), "{}", violations.join("\n"));
             println!("redirect dates and deployed slugs: ok");
             Ok(())
@@ -300,7 +301,7 @@ fn deny_invalid_data_files() -> Result<()> {
     }
     let mut db = rusqlite::Connection::open_in_memory()?;
     ddo_etl::tree::build_from_data(&data_root, &mut db)?;
-    let violations = xtask::slug_checks::redirect_check_violations(&db, None, None)?;
+    let violations = xtask::redirect_checks::redirect_check_violations(&db, None, None)?;
     ensure!(violations.is_empty(), "{}", violations.join("\n"));
     Ok(())
 }
