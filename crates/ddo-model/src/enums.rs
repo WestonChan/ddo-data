@@ -607,6 +607,154 @@ impl LootType {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub enum EntityKind {
+    AdventurePack,
+    Augment,
+    AugmentSlotType,
+    BonusType,
+    Class,
+    Clickie,
+    CraftingSystem,
+    CraftingIngredient,
+    DamageType,
+    Effect,
+    EnhancementTree,
+    Enhancement,
+    EnhancementSelection,
+    EquipmentSlot,
+    Event,
+    Feat,
+    Filigree,
+    GuildBuff,
+    Item,
+    OptionalBuff,
+    Patron,
+    QuestChain,
+    Quest,
+    Race,
+    Saga,
+    SentientGem,
+    Set,
+    Spell,
+    Stance,
+    Vendor,
+    VendorCurrency,
+    WeaponType,
+}
+
+impl EntityKind {
+    pub const ALL: &[Self] = &[
+        Self::AdventurePack,
+        Self::Augment,
+        Self::AugmentSlotType,
+        Self::BonusType,
+        Self::Class,
+        Self::Clickie,
+        Self::CraftingSystem,
+        Self::CraftingIngredient,
+        Self::DamageType,
+        Self::Effect,
+        Self::EnhancementTree,
+        Self::Enhancement,
+        Self::EnhancementSelection,
+        Self::EquipmentSlot,
+        Self::Event,
+        Self::Feat,
+        Self::Filigree,
+        Self::GuildBuff,
+        Self::Item,
+        Self::OptionalBuff,
+        Self::Patron,
+        Self::QuestChain,
+        Self::Quest,
+        Self::Race,
+        Self::Saga,
+        Self::SentientGem,
+        Self::Set,
+        Self::Spell,
+        Self::Stance,
+        Self::Vendor,
+        Self::VendorCurrency,
+        Self::WeaponType,
+    ];
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::AdventurePack => "adventure-packs",
+            Self::Augment => "augments",
+            Self::AugmentSlotType => "augment-slot-types",
+            Self::BonusType => "bonus-types",
+            Self::Class => "classes",
+            Self::Clickie => "clickies",
+            Self::CraftingSystem => "crafting-systems",
+            Self::CraftingIngredient => "crafting-ingredients",
+            Self::DamageType => "damage-types",
+            Self::Effect => "effects",
+            Self::EnhancementTree => "enhancement-trees",
+            Self::Enhancement => "enhancements",
+            Self::EnhancementSelection => "enhancement-selections",
+            Self::EquipmentSlot => "equipment-slots",
+            Self::Event => "events",
+            Self::Feat => "feats",
+            Self::Filigree => "filigrees",
+            Self::GuildBuff => "guild-buffs",
+            Self::Item => "items",
+            Self::OptionalBuff => "optional-buffs",
+            Self::Patron => "patrons",
+            Self::QuestChain => "quest-chains",
+            Self::Quest => "quests",
+            Self::Race => "races",
+            Self::Saga => "sagas",
+            Self::SentientGem => "sentient-gems",
+            Self::Set => "sets",
+            Self::Spell => "spells",
+            Self::Stance => "stances",
+            Self::Vendor => "vendors",
+            Self::VendorCurrency => "vendor-currencies",
+            Self::WeaponType => "weapon-types",
+        }
+    }
+    pub const fn table_name(self) -> &'static str {
+        match self {
+            Self::AdventurePack => "adventure_packs",
+            Self::Augment => "augments",
+            Self::AugmentSlotType => "augment_slot_types",
+            Self::BonusType => "bonus_types",
+            Self::Class => "classes",
+            Self::Clickie => "clickies",
+            Self::CraftingSystem => "crafting_systems",
+            Self::CraftingIngredient => "crafting_ingredients",
+            Self::DamageType => "damage_types",
+            Self::Effect => "effects",
+            Self::EnhancementTree => "enhancement_trees",
+            Self::Enhancement => "enhancements",
+            Self::EnhancementSelection => "enhancement_selections",
+            Self::EquipmentSlot => "equipment_slots",
+            Self::Event => "events",
+            Self::Feat => "feats",
+            Self::Filigree => "filigrees",
+            Self::GuildBuff => "guild_buffs",
+            Self::Item => "items",
+            Self::OptionalBuff => "optional_buffs",
+            Self::Patron => "patrons",
+            Self::QuestChain => "quest_chains",
+            Self::Quest => "quests",
+            Self::Race => "races",
+            Self::Saga => "sagas",
+            Self::SentientGem => "sentient_gems",
+            Self::Set => "set_bonuses",
+            Self::Spell => "spells",
+            Self::Stance => "stances",
+            Self::Vendor => "vendors",
+            Self::VendorCurrency => "vendor_currencies",
+            Self::WeaponType => "weapon_types",
+        }
+    }
+    pub fn parse(text: &str) -> Option<Self> {
+        Self::ALL.iter().copied().find(|kind| kind.as_str() == text)
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum SourceKind {
     Quest,
     QuestChain,
@@ -1103,5 +1251,37 @@ impl CorrectionKind {
 
     pub fn parse(text: &str) -> Option<Self> {
         Self::ALL.iter().copied().find(|kind| kind.as_str() == text)
+    }
+}
+
+#[cfg(test)]
+mod entity_kind_tests {
+    use super::EntityKind;
+    use std::collections::BTreeSet;
+
+    #[test]
+    fn entity_kinds_have_unique_public_words_and_slug_tables() {
+        let mut words = BTreeSet::new();
+        let mut tables = BTreeSet::new();
+        for kind in EntityKind::ALL {
+            assert!(words.insert(kind.as_str()));
+            assert!(tables.insert(kind.table_name()));
+            assert_eq!(EntityKind::parse(kind.as_str()), Some(*kind));
+            let declaration = crate::ddl()
+                .split_once(&format!("CREATE TABLE IF NOT EXISTS {} (", kind.table_name()))
+                .unwrap()
+                .1
+                .split_once("\n);")
+                .unwrap()
+                .0;
+            assert!(
+                declaration.split_whitespace().collect::<Vec<_>>().join(" ").contains("slug TEXT NOT NULL UNIQUE"),
+                "{}",
+                kind.table_name()
+            );
+        }
+        assert_eq!(words.len(), 32);
+        assert_eq!(EntityKind::parse("unknown"), None);
+        assert_eq!(EntityKind::parse(""), None);
     }
 }

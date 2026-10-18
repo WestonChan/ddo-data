@@ -66,40 +66,16 @@ pub(crate) fn augment_slug_candidates(
         .collect()
 }
 
-pub(super) const NAMED_ENTITY_TABLES: &[&str] = &[
-    "adventure_packs",
-    "augments",
-    "augment_slot_types",
-    "bonus_types",
-    "classes",
-    "clickies",
-    "crafting_systems",
-    "crafting_ingredients",
-    "damage_types",
-    "effects",
-    "enhancement_trees",
-    "enhancements",
-    "enhancement_selections",
-    "equipment_slots",
-    "events",
-    "feats",
-    "filigrees",
-    "guild_buffs",
-    "items",
-    "optional_buffs",
-    "patrons",
-    "quest_chains",
-    "quests",
-    "races",
-    "sagas",
-    "sentient_gems",
-    "set_bonuses",
-    "spells",
-    "stances",
-    "vendors",
-    "vendor_currencies",
-    "weapon_types",
-];
+pub(super) const NAMED_ENTITY_TABLES: &[&str] = &{
+    let kinds = ddo_model::enums::EntityKind::ALL;
+    let mut tables = [""; ddo_model::enums::EntityKind::ALL.len()];
+    let mut index = 0;
+    while index < kinds.len() {
+        tables[index] = kinds[index].table_name();
+        index += 1;
+    }
+    tables
+};
 
 pub(crate) fn insert_entity_identities(db: &Connection) -> Result<()> {
     for table in NAMED_ENTITY_TABLES {
