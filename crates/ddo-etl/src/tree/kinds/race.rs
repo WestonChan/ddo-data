@@ -62,7 +62,7 @@ database_record! {
             name: String => name,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             build_points: Vec<i64> => build_points [json],
-            description: String => description [default_text],
+            description: String => description [correctable] [default_text],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             iconic_class: Option<String> => iconic_class,
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]

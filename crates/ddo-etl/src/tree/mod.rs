@@ -20,6 +20,7 @@ mod file_types;
 mod icon_references;
 mod ids;
 mod kinds;
+pub(crate) use kinds::declared_correctable_fields;
 mod layout;
 mod pack_layout;
 mod tables;

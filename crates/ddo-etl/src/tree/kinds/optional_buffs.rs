@@ -12,9 +12,9 @@ database_record! {
         keys { id: i64, slug: &str }
         fields {
             name: String => name,
-            description: String => description,
+            description: String => description [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            icon: Option<String> => icon [image "*"],
+            icon: Option<String> => icon [correctable] [image "*"],
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]

@@ -73,13 +73,13 @@ database_record! {
             cooldown_seconds: Option<i64> => cooldown_seconds,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             cost_per_rank: Vec<i64> => cost_per_rank [json],
-            description: String => description,
+            description: String => description [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             variant: Option<String> => variant,
             #[serde(default, skip_serializing_if = "Option::is_none")]
             duration_seconds: Option<i64> => duration_seconds,
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            icon: Option<String> => icon [image ""],
+            icon: Option<String> => icon [correctable] [image ""],
             internal_name: String => internal_name,
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
             is_clickie: bool => is_clickie,
@@ -121,7 +121,7 @@ database_record! {
         fields {
             name: String => name,
             background: String => background [image "ui"],
-            icon: String => icon [image ""],
+            icon: String => icon [correctable] [image ""],
             #[serde(default, skip_serializing_if = "is_false")]
             is_legacy: bool => is_legacy,
             kind: String => kind,

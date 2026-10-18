@@ -33,6 +33,10 @@ pub(crate) enum ItemCategoryFile {
     Clothing,
 }
 
+impl crate::corrections::CorrectionFieldType for ItemCategoryFile {
+    const SHAPE: crate::corrections::FieldShape = crate::corrections::FieldShape::Text;
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize, JsonSchema)]
 #[serde(untagged)]
 pub(crate) enum FileNumber {

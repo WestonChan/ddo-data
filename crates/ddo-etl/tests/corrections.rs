@@ -53,6 +53,59 @@ fn recorded_corrections(db: &Connection) -> Vec<(String, String, String, String,
 }
 
 #[test]
+fn correction_field_names_and_shapes_preserve_the_existing_contract() {
+    use ddo_model::enums::CorrectionKind;
+    let expected = [
+        (CorrectionKind::Item, "accepts_sentience:Flag, description:Text, drop_location:Text, enhancement_bonus:Integer, icon:Text, is_legacy:Flag, is_minor_artifact:Flag, item_category:Text, item_type:Text, material:NamedReference { referenced_table: \"item_materials\" }, minimum_level:Integer, name:RowName, race_required:Text, remove:Removal, set_bonus:SetName, slot:NamedReference { referenced_table: \"equipment_slots\" }"),
+        (CorrectionKind::Effect, "constant:EffectBonusConstant, default_value:Integer, description_template:Text, name:RowName, verbose_name_template:Text"),
+        (CorrectionKind::Augment, "description:Text, effect_description:Text, family:Text, min_level:Integer, name:RowName, remove:Removal"),
+        (CorrectionKind::Quest, "epic_level:Integer, favor:Integer, is_raid:Flag, level:Integer, name:RowName, pack:NamedReference { referenced_table: \"adventure_packs\" }, patron:NamedReference { referenced_table: \"patrons\" }, remove:Removal"),
+        (CorrectionKind::Feat, "description:Text, icon:Text"),
+        (CorrectionKind::Enhancement, "description:Text, icon:Text"),
+        (CorrectionKind::Spell, "description:Text, icon:Text"),
+        (CorrectionKind::EnhancementTree, "icon:Text"),
+        (CorrectionKind::OptionalBuff, "description:Text, icon:Text"),
+        (CorrectionKind::Clickie, "description:Text, icon:Text"),
+        (CorrectionKind::Filigree, "description:Text, icon:Text"),
+        (CorrectionKind::Race, "description:Text"),
+        (CorrectionKind::Class, "description:Text"),
+        (CorrectionKind::AdventurePack, "name:RowName"),
+        (CorrectionKind::Patron, "name:RowName"),
+        (CorrectionKind::SocketLabel, "name:RowName"),
+        (CorrectionKind::SetBonus, "icon:Text, name:RowName"),
+        (CorrectionKind::AugmentBonus, "add:BonusAddition, bonus_type:BonusTypeName, dedupe:BonusDedupe, remove:BonusRemoval, value:Integer"),
+        (CorrectionKind::ItemBonus, "add:BonusAddition, bonus_type:BonusTypeName, remove:BonusRemoval, rounding:StatRounding, scale:StatScale, value:Integer"),
+        (CorrectionKind::SetTier, "add:TierAddition, description:Text, remove:Removal"),
+        (CorrectionKind::SetTierBonus, "add:BonusAddition, bonus_type:BonusTypeName, remove:BonusRemoval, rounding:StatRounding, scale:StatScale, value:Integer"),
+        (CorrectionKind::ItemEffect, "add:EffectAddition, bonus_type:BonusTypeName, remove:Removal, value:Integer"),
+        (CorrectionKind::EffectDamage, "add:DamageAddition, remove:DamageRemoval"),
+        (CorrectionKind::ItemSocket, "add:SocketAddition"),
+    ];
+    assert_eq!(expected.len(), CorrectionKind::ALL.len());
+    for (kind, expected) in expected {
+        let mut fields = ddo_etl::corrections::correctable_fields(kind)
+            .iter()
+            .map(|field| format!("{}:{:?}", field.name, field.shape))
+            .collect::<Vec<_>>();
+        fields.sort();
+        assert_eq!(fields.join(", "), expected, "{kind:?}");
+    }
+}
+
+#[test]
+fn required_item_level_cannot_be_corrected_to_null() {
+    let correction = correction_toml("item", "Five Rings", "minimum_level", "29", "\"null\"");
+    let error = built_db_with(&[("level.toml", &correction)]).expect_err("a required level cannot be null");
+    assert!(error.contains("minimum_level"), "{error}");
+}
+
+#[test]
+fn required_flag_can_be_corrected_from_an_absent_upstream_value() {
+    let correction = correction_toml("item", "Five Rings", "accepts_sentience", "\"null\"", "1");
+    parsed_corrections(&[("flag.toml", &correction)]).unwrap();
+}
+
+#[test]
 fn a_stance_icon_correction_is_scoped_to_its_spell_and_stance_name() {
     let correction = correction_toml("spell", "Evolution", "icon", "\"intelligence\"", "\"Intelligence\"")
         + "stance = \"IntEvolution\"\n";

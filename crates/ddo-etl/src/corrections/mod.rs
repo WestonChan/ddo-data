@@ -1,4 +1,5 @@
 mod fields;
+pub(crate) use fields::CorrectionFieldType;
 
 pub use fields::{correctable_field, correctable_fields, CorrectableField, FieldShape};
 
@@ -497,7 +498,7 @@ impl Correction {
             }
             _ => {
                 for (value_role, value) in [("from", &self.from), ("to", &self.to)] {
-                    if !value.fits(field) {
+                    if !(value.fits(field) || value_role == "from" && matches!(value, CorrectionValue::Null)) {
                         bail!(
                             "{value_role} = {} does not fit {}: {}",
                             value.to_json(),

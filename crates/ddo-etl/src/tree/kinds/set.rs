@@ -46,7 +46,7 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            description: Option<String>,
+            description: Option<String> [correctable],
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             effect: Vec<EffectGrant>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -61,9 +61,9 @@ database_record! {
     pub(crate) struct SetFile in "set_bonuses" {
         keys { id: i64, slug: &str }
         fields {
-            name: String => name,
+            name: String => name [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            icon: Option<String> => icon [image ""],
+            icon: Option<String> => icon [correctable] [image ""],
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
             is_filigree_set: bool => is_filigree_set,
         }

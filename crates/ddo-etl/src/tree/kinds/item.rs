@@ -209,32 +209,32 @@ database_record! {
     pub(crate) struct ItemFile in "items" {
         keys { id: i64, slug: &str }
         fields {
-            name: String => name,
+            name: String => name [correctable],
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
             is_wiki_only: bool => provenance [wiki_only],
             #[serde(default, skip_serializing_if = "is_false")]
-            accepts_sentience: bool => accepts_sentience,
+            accepts_sentience: bool => accepts_sentience [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            description: Option<String> => description,
+            description: Option<String> => description [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            drop_location: Option<String> => drop_location [trimmed],
+            drop_location: Option<String> => drop_location [correctable] [trimmed],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            enhancement_bonus: Option<i64> => enhancement_bonus,
+            enhancement_bonus: Option<i64> => enhancement_bonus [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            icon: Option<String> => icon [image ""],
+            icon: Option<String> => icon [correctable] [image ""],
             #[serde(default, skip_serializing_if = "is_false")]
-            is_legacy: bool => is_legacy,
+            is_legacy: bool => is_legacy [correctable],
             #[serde(default, skip_serializing_if = "is_false")]
-            is_minor_artifact: bool => is_minor_artifact,
-            item_category: ItemCategoryFile => item_category [enum_text],
+            is_minor_artifact: bool => is_minor_artifact [correctable],
+            item_category: ItemCategoryFile => item_category [correctable] [enum_text],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            item_type: Option<String> => item_type,
+            item_type: Option<String> => item_type [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            material: Option<String> => material_id [optional_reference "item_materials"],
-            minimum_level: i64 => minimum_level,
+            material: Option<String> => material_id [correctable] [optional_reference "item_materials"],
+            minimum_level: i64 => minimum_level [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            race_required: Option<String> => race_required,
-            slot: String => slot_id [reference "equipment_slots"],
+            race_required: Option<String> => race_required [correctable],
+            slot: String => slot_id [correctable] [reference "equipment_slots"],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             wiki_url: Option<String> => wiki_url [wiki "items"],
         }
@@ -262,7 +262,11 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             weapon: Vec<Weapon>,
         }
+        derived_corrections {
+            MEMBERSHIP_CORRECTIONS { set_bonus => set_bonus [SetName true] }
+        }
     }
+
 }
 
 fn socket_option_for_id<'a>(

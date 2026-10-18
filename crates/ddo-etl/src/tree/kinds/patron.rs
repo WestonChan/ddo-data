@@ -10,7 +10,7 @@ database_record! {
     #[serde(deny_unknown_fields)]
     pub(crate) struct PatronFile in "patrons" {
         keys { id: i64, slug: &str }
-        fields { name: String => name, }
+        fields { name: String => name [correctable], }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             citation: Vec<crate::tree::Citation>, #[serde(default, skip_serializing_if = "Vec::is_empty")]

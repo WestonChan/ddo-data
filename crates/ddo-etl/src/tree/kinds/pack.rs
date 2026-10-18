@@ -10,7 +10,7 @@ database_record! {
     #[serde(deny_unknown_fields)]
     pub(crate) struct PackFile in "adventure_packs" {
         keys { id: i64, slug: &str }
-        fields { name: String => name,
+        fields { name: String => name [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             update: Option<String> => update,
             #[serde(default, skip_serializing_if = "Option::is_none")]

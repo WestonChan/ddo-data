@@ -23,7 +23,7 @@ database_record! {
         keys { id: i64, slug: &str }
         values { level => levels[0], epic_level => levels[1], legendary_level => levels[2] }
         fields {
-            name: String => name,
+            name: String => name [correctable],
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
             is_wiki_only: bool => provenance [wiki_only],
             #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -35,7 +35,7 @@ database_record! {
             #[serde(default, skip_serializing_if = "Option::is_none")]
             epic_name: Option<String> => epic_name,
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            favor: Option<i64> => favor,
+            favor: Option<i64> => favor [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             flagging: Option<String> => flagging,
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
@@ -43,12 +43,12 @@ database_record! {
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
             is_free_to_play: bool => is_free_to_play,
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
-            is_raid: bool => is_raid,
+            is_raid: bool => is_raid [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             max_level: Option<i64> => max_level,
-            pack: String => pack_id [reference "adventure_packs"],
+            pack: String => pack_id [correctable] [reference "adventure_packs"],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            patron: Option<String> => patron_id [optional_reference "patrons"],
+            patron: Option<String> => patron_id [correctable] [optional_reference "patrons"],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             zone: Option<String> => zone,
         }
@@ -60,6 +60,7 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             run: Vec<QuestRun>,
         }
+        derived_corrections { RUN_CORRECTIONS { level => level [Integer true], epic_level => epic_level [Integer true] } }
     }
 }
 

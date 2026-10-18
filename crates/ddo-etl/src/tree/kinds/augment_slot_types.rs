@@ -11,7 +11,7 @@ database_record! {
         keys { id: i64, slug: &str }
         fields {
             family: String => family,
-            label: String => label,
+            label: String => label [correctable name],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             qualifier: Option<String> => qualifier,
             variant: String => variant,

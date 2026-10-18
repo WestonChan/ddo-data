@@ -500,5 +500,9 @@ database_record! {
             #[serde(default, skip_serializing_if = "Option::is_none")]
             value: Option<i64> => value,
         }
+        derived_corrections {
+            GRANT_CORRECTIONS { value => value [Integer true], bonus_type => bonus_type [BonusTypeName false] }
+        }
     }
+
 }

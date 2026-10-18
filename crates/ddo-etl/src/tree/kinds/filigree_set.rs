@@ -13,8 +13,8 @@ database_record! {
         keys { id: i64, slug: &str }
         fields {
             name: String => name,
-            description: String => description,
-            icon: String => icon [image ""],
+            description: String => description [correctable],
+            icon: String => icon [correctable] [image ""],
             menu: String => menu,
             #[serde(default, skip_serializing_if = "Option::is_none")]
             set: Option<String> => set_id [optional_reference "set_bonuses"],

@@ -35,132 +35,76 @@ const fn field(name: &'static str, shape: FieldShape, is_nullable: bool) -> Corr
     CorrectableField { name, column: name, shape, is_nullable }
 }
 
-const fn named_reference(
-    name: &'static str,
-    column: &'static str,
-    referenced_table: &'static str,
-    is_nullable: bool,
-) -> CorrectableField {
-    CorrectableField { name, column, shape: FieldShape::NamedReference { referenced_table }, is_nullable }
+pub(crate) trait CorrectionFieldType {
+    const SHAPE: FieldShape;
+    const IS_NULLABLE: bool = false;
+}
+impl CorrectionFieldType for i64 {
+    const SHAPE: FieldShape = FieldShape::Integer;
+}
+impl CorrectionFieldType for bool {
+    const SHAPE: FieldShape = FieldShape::Flag;
+}
+impl CorrectionFieldType for String {
+    const SHAPE: FieldShape = FieldShape::Text;
+}
+impl<T: CorrectionFieldType> CorrectionFieldType for Option<T> {
+    const SHAPE: FieldShape = T::SHAPE;
+    const IS_NULLABLE: bool = true;
 }
 
-const ITEM_FIELDS: &[CorrectableField] = &[
-    field("icon", FieldShape::Text, true),
-    field("minimum_level", FieldShape::Integer, true),
-    field("enhancement_bonus", FieldShape::Integer, true),
-    field("description", FieldShape::Text, true),
-    field("drop_location", FieldShape::Text, true),
-    field("race_required", FieldShape::Text, true),
-    field("accepts_sentience", FieldShape::Flag, false),
-    field("is_minor_artifact", FieldShape::Flag, false),
-    field("is_legacy", FieldShape::Flag, false),
-    named_reference("slot", "slot_id", "equipment_slots", false),
-    field("item_category", FieldShape::Text, false),
-    field("item_type", FieldShape::Text, true),
-    named_reference("material", "material_id", "item_materials", true),
-    field("set_bonus", FieldShape::SetName, true),
-    field("name", FieldShape::RowName, false),
-    field("remove", FieldShape::Removal, false),
-];
-
-const AUGMENT_FIELDS: &[CorrectableField] = &[
-    field("min_level", FieldShape::Integer, true),
-    field("description", FieldShape::Text, true),
-    field("effect_description", FieldShape::Text, true),
-    field("family", FieldShape::Text, false),
-    field("name", FieldShape::RowName, false),
-    field("remove", FieldShape::Removal, false),
-];
-
-const QUEST_FIELDS: &[CorrectableField] = &[
-    field("level", FieldShape::Integer, true),
-    field("epic_level", FieldShape::Integer, true),
-    field("favor", FieldShape::Integer, true),
-    field("is_raid", FieldShape::Flag, false),
-    named_reference("pack", "pack_id", "adventure_packs", true),
-    named_reference("patron", "patron_id", "patrons", true),
-    field("name", FieldShape::RowName, false),
-    field("remove", FieldShape::Removal, false),
-];
-
-const AUGMENT_BONUS_FIELDS: &[CorrectableField] = &[
-    field("value", FieldShape::Integer, true),
-    field("bonus_type", FieldShape::BonusTypeName, false),
+const AUGMENT_BONUS_OPERATIONS: &[CorrectableField] = &[
     field("add", FieldShape::BonusAddition, false),
     field("remove", FieldShape::BonusRemoval, false),
     field("dedupe", FieldShape::BonusDedupe, false),
 ];
 
-const ITEM_BONUS_FIELDS: &[CorrectableField] = &[
-    field("value", FieldShape::Integer, true),
-    field("bonus_type", FieldShape::BonusTypeName, false),
-    field("scale", FieldShape::StatScale, false),
-    field("rounding", FieldShape::StatRounding, false),
-    field("add", FieldShape::BonusAddition, false),
-    field("remove", FieldShape::BonusRemoval, false),
-];
-const SET_TIER_BONUS_FIELDS: &[CorrectableField] = ITEM_BONUS_FIELDS;
+const ITEM_BONUS_OPERATIONS: &[CorrectableField] =
+    &[field("add", FieldShape::BonusAddition, false), field("remove", FieldShape::BonusRemoval, false)];
+const SET_TIER_BONUS_OPERATIONS: &[CorrectableField] = ITEM_BONUS_OPERATIONS;
 
-const SET_TIER_FIELDS: &[CorrectableField] = &[
-    field("add", FieldShape::TierAddition, false),
-    field("description", FieldShape::Text, true),
-    field("remove", FieldShape::Removal, false),
-];
+const SET_TIER_OPERATIONS: &[CorrectableField] =
+    &[field("add", FieldShape::TierAddition, false), field("remove", FieldShape::Removal, false)];
 
-const ITEM_EFFECT_FIELDS: &[CorrectableField] = &[
-    field("add", FieldShape::EffectAddition, false),
-    field("value", FieldShape::Integer, true),
-    field("bonus_type", FieldShape::BonusTypeName, false),
-    field("remove", FieldShape::Removal, false),
-];
+const ITEM_EFFECT_OPERATIONS: &[CorrectableField] =
+    &[field("add", FieldShape::EffectAddition, false), field("remove", FieldShape::Removal, false)];
 
-const EFFECT_FIELDS: &[CorrectableField] = &[
-    field("name", FieldShape::RowName, false),
-    field("verbose_name_template", FieldShape::Text, false),
-    field("description_template", FieldShape::Text, true),
-    field("default_value", FieldShape::Integer, true),
-    field("constant", FieldShape::EffectBonusConstant, false),
-];
-
-const EFFECT_DAMAGE_FIELDS: &[CorrectableField] =
+const EFFECT_DAMAGE_OPERATIONS: &[CorrectableField] =
     &[field("add", FieldShape::DamageAddition, false), field("remove", FieldShape::DamageRemoval, false)];
 
-const ITEM_SOCKET_FIELDS: &[CorrectableField] = &[field("add", FieldShape::SocketAddition, false)];
-
-const DESCRIPTION_FIELDS: &[CorrectableField] = &[field("description", FieldShape::Text, true)];
-const DESCRIPTION_AND_ICON_FIELDS: &[CorrectableField] =
-    &[field("description", FieldShape::Text, true), field("icon", FieldShape::Text, true)];
-
-const ROW_NAME_FIELDS: &[CorrectableField] = &[field("name", FieldShape::RowName, false)];
-const SET_BONUS_FIELDS: &[CorrectableField] =
-    &[field("name", FieldShape::RowName, false), field("icon", FieldShape::Text, true)];
+const ITEM_SOCKET_OPERATIONS: &[CorrectableField] = &[field("add", FieldShape::SocketAddition, false)];
 
 pub(super) const WIKI_QUEST_FIELDS: &[&str] =
     &["is_free_to_play", "legendary_level", "zone", "bestowed_by", "flagging"];
 
 pub fn correctable_fields(kind: CorrectionKind) -> &'static [CorrectableField] {
+    static FIELDS: std::sync::LazyLock<std::collections::HashMap<CorrectionKind, Vec<CorrectableField>>> =
+        std::sync::LazyLock::new(|| {
+            CorrectionKind::ALL
+                .iter()
+                .map(|&kind| {
+                    let mut fields = crate::tree::declared_correctable_fields(kind);
+                    fields.extend_from_slice(kind_operations(kind));
+                    (kind, fields)
+                })
+                .collect()
+        });
+    &FIELDS[&kind]
+}
+
+const fn kind_operations(kind: CorrectionKind) -> &'static [CorrectableField] {
     match kind {
-        CorrectionKind::Item => ITEM_FIELDS,
-        CorrectionKind::Effect => EFFECT_FIELDS,
-        CorrectionKind::Augment => AUGMENT_FIELDS,
-        CorrectionKind::Quest => QUEST_FIELDS,
-        CorrectionKind::Feat
-        | CorrectionKind::Enhancement
-        | CorrectionKind::Spell
-        | CorrectionKind::EnhancementTree
-        | CorrectionKind::OptionalBuff
-        | CorrectionKind::Clickie
-        | CorrectionKind::Filigree => DESCRIPTION_AND_ICON_FIELDS,
-        CorrectionKind::Race | CorrectionKind::Class => DESCRIPTION_FIELDS,
-        CorrectionKind::AdventurePack | CorrectionKind::Patron | CorrectionKind::SocketLabel => ROW_NAME_FIELDS,
-        CorrectionKind::SetBonus => SET_BONUS_FIELDS,
-        CorrectionKind::AugmentBonus => AUGMENT_BONUS_FIELDS,
-        CorrectionKind::ItemBonus => ITEM_BONUS_FIELDS,
-        CorrectionKind::SetTier => SET_TIER_FIELDS,
-        CorrectionKind::SetTierBonus => SET_TIER_BONUS_FIELDS,
-        CorrectionKind::ItemEffect => ITEM_EFFECT_FIELDS,
-        CorrectionKind::EffectDamage => EFFECT_DAMAGE_FIELDS,
-        CorrectionKind::ItemSocket => ITEM_SOCKET_FIELDS,
+        CorrectionKind::Item => const { &[field("remove", FieldShape::Removal, false)] },
+        CorrectionKind::Augment | CorrectionKind::Quest => const { &[field("remove", FieldShape::Removal, false)] },
+        CorrectionKind::Effect => const { &[field("constant", FieldShape::EffectBonusConstant, false)] },
+        CorrectionKind::AugmentBonus => AUGMENT_BONUS_OPERATIONS,
+        CorrectionKind::ItemBonus => ITEM_BONUS_OPERATIONS,
+        CorrectionKind::SetTier => SET_TIER_OPERATIONS,
+        CorrectionKind::SetTierBonus => SET_TIER_BONUS_OPERATIONS,
+        CorrectionKind::ItemEffect => ITEM_EFFECT_OPERATIONS,
+        CorrectionKind::EffectDamage => EFFECT_DAMAGE_OPERATIONS,
+        CorrectionKind::ItemSocket => ITEM_SOCKET_OPERATIONS,
+        _ => &[],
     }
 }
 

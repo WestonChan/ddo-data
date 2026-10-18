@@ -39,45 +39,78 @@ macro_rules! database_record {
         database_record!(@fields
             [[$table] [$($parameters)*] $(#[$attribute])* $visibility struct $name]
             [$(context { $($context)* })? keys { $($keys)* } $(values { $($values)* })?]
-            [] [$($tail)*] $($fields)*);
+            [] [$($tail)*] [] $($fields)*);
     };
-    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*]) => {
-        database_record!(@emit $($header)* { $($prefix)* fields { $($fields)* } $($tail)* });
+    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*]
+        [$(projected { $($projected:tt)* })? $(attached { $($attached:tt)* })? $(derived_corrections { $($derived:tt)* })?]
+        [$($corrections:tt)*]) => {
+        database_record!(@attached [$($header)*]
+            [$($prefix)* fields { $($fields)* } $(projected { $($projected)* })?]
+            [] [$(derived_corrections { $($derived)* })?] [$($corrections)*] $($($attached)*)?);
     };
-    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*]
+    (@attached [$($header:tt)*] [$($prefix:tt)*] [$($attached:tt)*] [$($tail:tt)*] [$($corrections:tt)*]) => {
+        database_record!(@emit $($header)* { $($prefix)* attached { $($attached)* } $($tail)* }
+            corrections { $($corrections)* });
+    };
+    (@attached [$($header:tt)*] [$($prefix:tt)*] [$($attached:tt)*] [$($tail:tt)*] [$($corrections:tt)*]
+        $(#[$attribute:meta])* $field:ident: $field_type:ty [correctable] $(, $($rest:tt)*)?) => {
+        database_record!(@attached [$($header)*] [$($prefix)*]
+            [$($attached)* $(#[$attribute])* $field: $field_type,] [$($tail)*]
+            [$($corrections)* $field: $field_type => $field,] $($($rest)*)?);
+    };
+    (@attached [$($header:tt)*] [$($prefix:tt)*] [$($attached:tt)*] [$($tail:tt)*] [$($corrections:tt)*]
+        $(#[$attribute:meta])* $field:ident: $field_type:ty $(, $($rest:tt)*)?) => {
+        database_record!(@attached [$($header)*] [$($prefix)*]
+            [$($attached)* $(#[$attribute])* $field: $field_type,] [$($tail)*]
+            [$($corrections)*] $($($rest)*)?);
+    };
+    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*] [$($corrections:tt)*]
+        $(#[$attribute:meta])* $field:ident: $field_type:ty => $column:ident [correctable] $([$($adapter:tt)*])? $(, $($rest:tt)*)?
+    ) => {
+        database_record!(@fields [$($header)*] [$($prefix)*] [$($fields)*] [$($tail)*] [$($corrections)*]
+            $(#[$attribute])* $field: $field_type => $column [correctable $field] $([$($adapter)*])? $(, $($rest)*)?);
+    };
+    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*] [$($corrections:tt)*]
+        $(#[$attribute:meta])* $field:ident: $field_type:ty => $column:ident [correctable $correction_name:ident] $([$($adapter:tt)*])? $(, $($rest:tt)*)?
+    ) => {
+        database_record!(@fields [$($header)*] [$($prefix)*] [$($fields)*] [$($tail)*]
+            [$($corrections)* $correction_name: $field_type => $column $([$($adapter)*])?,]
+            $(#[$attribute])* $field: $field_type => $column $([$($adapter)*])? $(, $($rest)*)?);
+    };
+    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*] [$($corrections:tt)*]
         $(#[$attribute:meta])* $field:ident: $field_type:ty => $column:ident [image $kind:literal] $(, $($rest:tt)*)?
     ) => {
         database_record!(@fields [$($header)*] [$($prefix)*]
             [$($fields)* $(#[$attribute])* #[schemars(extend("x-image-kind" = $kind))] $field: $field_type => $column [image $kind],]
-            [$($tail)*] $($($rest)*)?);
+            [$($tail)*] [$($corrections)*] $($($rest)*)?);
     };
-    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*]
+    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*] [$($corrections:tt)*]
         $(#[$attribute:meta])* $field:ident: $field_type:ty => $column:ident [reference $target:literal $($label:literal)?] $(, $($rest:tt)*)?
     ) => {
         database_record!(@fields [$($header)*] [$($prefix)*]
             [$($fields)* $(#[$attribute])* #[schemars(extend("x-reference-kind" = $target))] $field: $field_type => $column [reference $target $($label)?],]
-            [$($tail)*] $($($rest)*)?);
+            [$($tail)*] [$($corrections)*] $($($rest)*)?);
     };
-    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*]
+    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*] [$($corrections:tt)*]
         $(#[$attribute:meta])* $field:ident: $field_type:ty => $column:ident [optional_reference $target:literal $($label:literal)?] $(, $($rest:tt)*)?
     ) => {
         database_record!(@fields [$($header)*] [$($prefix)*]
             [$($fields)* $(#[$attribute])* #[schemars(extend("x-reference-kind" = $target))] $field: $field_type => $column [optional_reference $target $($label)?],]
-            [$($tail)*] $($($rest)*)?);
+            [$($tail)*] [$($corrections)*] $($($rest)*)?);
     };
-    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*]
+    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*] [$($corrections:tt)*]
         $(#[$attribute:meta])* $field:ident: $field_type:ty => $column:ident [resolved_reference $target:literal $identity:ident] $(, $($rest:tt)*)?
     ) => {
         database_record!(@fields [$($header)*] [$($prefix)*]
             [$($fields)* $(#[$attribute])* #[schemars(extend("x-reference-kind" = $target))] $field: $field_type => $column [resolved_reference $target $identity],]
-            [$($tail)*] $($($rest)*)?);
+            [$($tail)*] [$($corrections)*] $($($rest)*)?);
     };
-    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*]
+    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*] [$($corrections:tt)*]
         $(#[$attribute:meta])* $field:ident: $field_type:ty => $column:ident $([$($adapter:tt)*])? $(, $($rest:tt)*)?
     ) => {
         database_record!(@fields [$($header)*] [$($prefix)*]
             [$($fields)* $(#[$attribute])* $field: $field_type => $column $([$($adapter)*])?,]
-            [$($tail)*] $($($rest)*)?);
+            [$($tail)*] [$($corrections)*] $($($rest)*)?);
     };
     (@emit [$table:expr] [$($table_parameter:tt)*]
         $(#[$attribute:meta])*
@@ -94,7 +127,8 @@ macro_rules! database_record {
             $(attached {
                 $( $(#[$attached_attribute:meta])* $attached:ident: $attached_type:ty ),* $(,)?
             })?
-        }
+            $(derived_corrections { $($derived_name:ident { $($derived_field:ident => $derived_column:ident [$shape:ident $nullable:literal]),* $(,)? })* })?
+        } corrections { $($correction_fields:tt)* }
     ) => {
         $(#[$attribute])*
         $visibility struct $name {
@@ -112,6 +146,16 @@ macro_rules! database_record {
         }
 
         impl $name {
+            database_record!(@correctable_declaration [$($correction_fields)*]);
+            $($(pub(crate) const $derived_name: &'static [crate::corrections::CorrectableField] = &[
+                $(crate::corrections::CorrectableField {
+                    name: stringify!($derived_field),
+                    column: stringify!($derived_column),
+                    shape: crate::corrections::FieldShape::$shape,
+                    is_nullable: $nullable,
+                },)*
+            ];)*)?
+
             database_record!(@citation_attachment [$table] [$($table_parameter)*] [$($($attached,)*)?]);
 
             pub(in crate::tree) fn select_columns($($table_parameter)*) -> String {
@@ -138,6 +182,27 @@ macro_rules! database_record {
                 Ok(crate::tree::records::InsertedRecord { row_count: inserted, row_id })
             }
         }
+    };
+    (@correctable_declaration []) => {};
+    (@correctable_declaration [$($field:ident: $field_type:ty => $column:ident $([$($adapter:tt)*])?),+ $(,)?]) => {
+        pub(crate) const CORRECTABLE_FIELDS: &'static [crate::corrections::CorrectableField] = &[
+            $(crate::corrections::CorrectableField {
+                name: stringify!($field),
+                column: stringify!($column),
+                shape: database_record!(@correction_shape $field: $field_type $([$($adapter)*])?),
+                is_nullable: <$field_type as crate::corrections::CorrectionFieldType>::IS_NULLABLE,
+            },)*
+        ];
+    };
+    (@correction_shape name: $field_type:ty $([$($adapter:tt)*])?) => { crate::corrections::FieldShape::RowName };
+    (@correction_shape $field:ident: $field_type:ty [reference $target:literal $($label:literal)?]) => {
+        crate::corrections::FieldShape::NamedReference { referenced_table: $target }
+    };
+    (@correction_shape $field:ident: $field_type:ty [optional_reference $target:literal $($label:literal)?]) => {
+        crate::corrections::FieldShape::NamedReference { referenced_table: $target }
+    };
+    (@correction_shape $field:ident: $field_type:ty $([$($adapter:tt)*])?) => {
+        <$field_type as crate::corrections::CorrectionFieldType>::SHAPE
     };
     (@citation_attachment [$table:expr] [$($parameters:tt)*] [citation, $($rest:ident,)*]) => {
         pub(in crate::tree) fn attach_citations(&mut self, annotations: &crate::tree::annotations::EntityAnnotations, $($parameters)* id: i64) {

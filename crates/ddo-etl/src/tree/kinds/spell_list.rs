@@ -63,9 +63,9 @@ database_record! {
             name: String => name,
             #[serde(default, skip_serializing_if = "Option::is_none")]
             cost: Option<i64> => cost,
-            description: String => description,
+            description: String => description [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            icon: Option<String> => icon [image ""],
+            icon: Option<String> => icon [correctable] [image ""],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             max_caster_level: Option<i64> => max_caster_level,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]

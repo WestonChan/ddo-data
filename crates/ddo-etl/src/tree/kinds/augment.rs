@@ -58,7 +58,7 @@ database_record! {
     pub(crate) struct AugmentFile in "augments" {
         keys { id: i64, slug: &str }
         fields {
-            name: String => name,
+            name: String => name [correctable],
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
             is_wiki_only: bool => provenance [wiki_only],
             #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -67,14 +67,14 @@ database_record! {
             variant: Option<String> => variant,
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
             choose_level: bool => choose_level,
-            description: String => description,
+            description: String => description [correctable],
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
             dual_values: bool => dual_values,
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            effect_description: Option<String> => effect_description,
+            effect_description: Option<String> => effect_description [correctable],
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
             enter_value: bool => enter_value,
-            family: String => family,
+            family: String => family [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             grants_augment: Option<String> => grants_augment,
             #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -86,7 +86,7 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             levels: Vec<i64> => levels [json],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            min_level: Option<i64> => min_level,
+            min_level: Option<i64> => min_level [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             set_bonus: Option<String> => set_bonus,
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]

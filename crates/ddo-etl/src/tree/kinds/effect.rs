@@ -21,7 +21,11 @@ database_record! {
             scale: f64 => scale,
             target: String => target_effect_id [reference "effects"],
         }
+        derived_corrections {
+            SCALING_CORRECTIONS { scale => scale [StatScale false], rounding => rounding [StatRounding false] }
+        }
     }
+
 }
 
 database_record! {
@@ -47,13 +51,13 @@ database_record! {
     pub(crate) struct EffectFile in "effects" {
         keys { id: i64, slug: &str, is_stat: bool, is_group: bool }
         fields {
-            name: String => name,
+            name: String => name [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             variant: Option<String> => variant,
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            default_value: Option<i64> => default_value,
+            default_value: Option<i64> => default_value [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            description_template: Option<String> => description_template,
+            description_template: Option<String> => description_template [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             home_bonus_type: Option<String> => home_bonus_type_id [optional_reference "bonus_types"],
             #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -62,7 +66,7 @@ database_record! {
             tier: Option<i64> => tier,
             #[serde(default, skip_serializing_if = "Option::is_none")]
             tier_group: Option<String> => tier_group_id [optional_reference "effect_tier_groups"],
-            verbose_name_template: String => verbose_name_template,
+            verbose_name_template: String => verbose_name_template [correctable],
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]

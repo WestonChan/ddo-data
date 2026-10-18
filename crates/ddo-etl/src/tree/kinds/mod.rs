@@ -129,3 +129,45 @@ mod weapon_proficiencies;
 pub(crate) use weapon_proficiencies::WeaponProficienciesFile;
 mod weapon_types;
 pub(crate) use weapon_types::WeaponTypesFile;
+
+pub(crate) fn declared_correctable_fields(
+    kind: ddo_model::enums::CorrectionKind,
+) -> Vec<crate::corrections::CorrectableField> {
+    use ddo_model::enums::CorrectionKind;
+    let direct = match kind {
+        CorrectionKind::Item => ItemFile::CORRECTABLE_FIELDS,
+        CorrectionKind::Augment => AugmentFile::CORRECTABLE_FIELDS,
+        CorrectionKind::Quest => QuestFile::CORRECTABLE_FIELDS,
+        CorrectionKind::Effect => EffectFile::CORRECTABLE_FIELDS,
+        CorrectionKind::Feat => feat_category::Feat::CORRECTABLE_FIELDS,
+        CorrectionKind::Enhancement => enhancement_tree::Enhancement::CORRECTABLE_FIELDS,
+        CorrectionKind::Spell => spell_list::Spell::CORRECTABLE_FIELDS,
+        CorrectionKind::EnhancementTree => EnhancementTreeFile::CORRECTABLE_FIELDS,
+        CorrectionKind::OptionalBuff => optional_buffs::OptionalBuff::CORRECTABLE_FIELDS,
+        CorrectionKind::Clickie => clickies::Clickie::CORRECTABLE_FIELDS,
+        CorrectionKind::Filigree => filigree_set::Filigree::CORRECTABLE_FIELDS,
+        CorrectionKind::Race => RaceFile::CORRECTABLE_FIELDS,
+        CorrectionKind::Class => ClassFile::CORRECTABLE_FIELDS,
+        CorrectionKind::AdventurePack => PackFile::CORRECTABLE_FIELDS,
+        CorrectionKind::Patron => PatronFile::CORRECTABLE_FIELDS,
+        CorrectionKind::SocketLabel => augment_slot_types::SocketType::CORRECTABLE_FIELDS,
+        CorrectionKind::SetBonus => SetFile::CORRECTABLE_FIELDS,
+        CorrectionKind::SetTier => set::SetTier::CORRECTABLE_FIELDS,
+        _ => &[],
+    };
+    let mut fields = direct.to_vec();
+    let derived = match kind {
+        CorrectionKind::Item => ItemFile::MEMBERSHIP_CORRECTIONS,
+        CorrectionKind::Quest => QuestFile::RUN_CORRECTIONS,
+        CorrectionKind::ItemBonus
+        | CorrectionKind::SetTierBonus
+        | CorrectionKind::AugmentBonus
+        | CorrectionKind::ItemEffect => crate::tree::tables::EffectGrant::GRANT_CORRECTIONS,
+        _ => &[],
+    };
+    fields.extend_from_slice(derived);
+    if matches!(kind, CorrectionKind::ItemBonus | CorrectionKind::SetTierBonus) {
+        fields.extend_from_slice(effect::EffectBonus::SCALING_CORRECTIONS);
+    }
+    fields
+}

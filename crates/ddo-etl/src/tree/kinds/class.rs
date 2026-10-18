@@ -94,7 +94,7 @@ database_record! {
             casting_stats: Vec<String> => casting_stats [json],
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             class_specific_feat_types: Vec<String> => class_specific_feat_types [json],
-            description: String => description,
+            description: String => description [correctable],
             fortitude: SaveProgressionFile => fortitude [enum_text],
             hit_points: i64 => hit_points,
             #[serde(default, skip_serializing_if = "Option::is_none")]

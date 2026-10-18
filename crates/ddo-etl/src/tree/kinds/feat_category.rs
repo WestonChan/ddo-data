@@ -60,9 +60,9 @@ database_record! {
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
             auto_acquire_ignores_requirements: bool => auto_acquire_ignores_requirements,
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            description: Option<String> => description,
+            description: Option<String> => description [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            icon: Option<String> => icon [image ""],
+            icon: Option<String> => icon [correctable] [image ""],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             max_times_acquire: Option<i64> => max_times_acquire,
             #[serde(default, skip_serializing_if = "Option::is_none")]
