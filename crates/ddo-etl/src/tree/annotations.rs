@@ -182,11 +182,7 @@ impl EntityAnnotations {
             SourceFile::Item(file) => {
                 let identity = super::qualified_slug(&file.name, None);
                 let id = super::ids::stable_hash(&["items", &identity]);
-                let annotation = EntityAnnotation {
-                    citation: file.citation.clone(),
-                    removed: file.removed.clone(),
-                    ..Default::default()
-                };
+                let annotation = EntityAnnotation { removed: file.removed.clone(), ..Default::default() };
                 entries.push((entity_key("items", id), annotation));
             }
             SourceFile::Augment(file) => {
@@ -195,87 +191,32 @@ impl EntityAnnotations {
                     file.variant.as_deref().map_or(base.clone(), |variant| format!("{base}-{}", super::slug(variant)))
                 };
                 let id = super::ids::stable_hash(&["augments", &identity]);
-                let annotation = EntityAnnotation {
-                    citation: file.citation.clone(),
-                    variant: file.variant.clone(),
-                    ..Default::default()
-                };
+                let annotation = EntityAnnotation { variant: file.variant.clone(), ..Default::default() };
                 entries.push((entity_key("augments", id), annotation));
-            }
-            SourceFile::Pack(file) => {
-                let id = super::ids::stable_hash(&["adventure_packs", &super::slug(&file.name)]);
-                let annotation = EntityAnnotation { citation: file.citation.clone(), ..Default::default() };
-                entries.push((entity_key("adventure_packs", id), annotation));
             }
             SourceFile::Quest(file) => {
                 let identity = super::qualified_slug(&file.name, file.variant.as_deref());
                 let id = super::ids::stable_hash(&["quests", &identity]);
-                let annotation = EntityAnnotation {
-                    citation: file.citation.clone(),
-                    variant: file.variant.clone(),
-                    ..Default::default()
-                };
+                let annotation = EntityAnnotation { variant: file.variant.clone(), ..Default::default() };
                 entries.push((entity_key("quests", id), annotation));
             }
             SourceFile::Effect(file) => {
                 let identity = super::qualified_slug(&file.name, file.variant.as_deref());
                 let id = super::ids::stable_hash(&["effects", &identity]);
-                let annotation = EntityAnnotation {
-                    citation: file.citation.clone(),
-                    variant: file.variant.clone(),
-                    ..Default::default()
-                };
+                let annotation = EntityAnnotation { variant: file.variant.clone(), ..Default::default() };
                 entries.push((entity_key("effects", id), annotation));
-            }
-            SourceFile::Race(file) => {
-                let identity = super::qualified_slug(&file.name, None);
-                let id = super::ids::stable_hash(&["races", &identity]);
-                let annotation = EntityAnnotation { citation: file.citation.clone(), ..Default::default() };
-                entries.push((entity_key("races", id), annotation));
             }
             SourceFile::CraftingSystem(file) => {
                 let identity = super::qualified_slug(&file.name, None);
                 let id = super::ids::stable_hash(&["crafting_systems", &identity]);
-                let annotation = EntityAnnotation {
-                    citation: file.citation.clone(),
-                    removed: file.removed.clone(),
-                    ..Default::default()
-                };
+                let annotation = EntityAnnotation { removed: file.removed.clone(), ..Default::default() };
                 entries.push((entity_key("crafting_systems", id), annotation));
-            }
-            SourceFile::QuestChain(file) => {
-                let identity = super::qualified_slug(&file.name, None);
-                let id = super::ids::stable_hash(&["quest_chains", &identity]);
-                let annotation = EntityAnnotation { citation: file.citation.clone(), ..Default::default() };
-                entries.push((entity_key("quest_chains", id), annotation));
-            }
-            SourceFile::Saga(file) => {
-                let identity = super::qualified_slug(&file.name, None);
-                let id = super::ids::stable_hash(&["sagas", &identity]);
-                let annotation = EntityAnnotation { citation: file.citation.clone(), ..Default::default() };
-                entries.push((entity_key("sagas", id), annotation));
-            }
-            SourceFile::Event(file) => {
-                let identity = super::qualified_slug(&file.name, None);
-                let id = super::ids::stable_hash(&["events", &identity]);
-                let annotation = EntityAnnotation { citation: file.citation.clone(), ..Default::default() };
-                entries.push((entity_key("events", id), annotation));
-            }
-            SourceFile::Vendor(file) => {
-                let identity = super::qualified_slug(&file.name, None);
-                let id = super::ids::stable_hash(&["vendors", &identity]);
-                let annotation = EntityAnnotation { citation: file.citation.clone(), ..Default::default() };
-                entries.push((entity_key("vendors", id), annotation));
             }
             SourceFile::FeatCategory(file) => {
                 for row in &file.row {
                     let identity = super::qualified_slug(&row.name, row.variant.as_deref());
                     let id = super::ids::stable_hash(&["feats", &identity]);
-                    let annotation = EntityAnnotation {
-                        citation: row.citation.clone(),
-                        variant: row.variant.clone(),
-                        ..Default::default()
-                    };
+                    let annotation = EntityAnnotation { variant: row.variant.clone(), ..Default::default() };
                     entries.push((entity_key("feats", id), annotation));
                 }
             }
@@ -283,11 +224,7 @@ impl EntityAnnotations {
                 for row in &file.enhancement {
                     let identity = super::qualified_slug(&row.internal_name, row.variant.as_deref());
                     let id = super::ids::stable_hash(&["enhancements", &identity]);
-                    let annotation = EntityAnnotation {
-                        citation: row.citation.clone(),
-                        variant: row.variant.clone(),
-                        ..Default::default()
-                    };
+                    let annotation = EntityAnnotation { variant: row.variant.clone(), ..Default::default() };
                     entries.push((entity_key("enhancements", id), annotation));
                 }
             }

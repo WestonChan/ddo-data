@@ -36,9 +36,7 @@ impl PackFile {
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
             file.ddobuilder_correction = notes.for_entity("adventure_packs", &file.name);
-            if let Some(annotation) = annotations.entity("adventure_packs", id) {
-                file.citation = annotation.citation.clone();
-            }
+            file.attach_citations(annotations, id);
             files.insert(id, file);
         }
         Ok(files)

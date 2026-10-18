@@ -45,9 +45,8 @@ impl QuestSeriesFile {
         let mut select = db.prepare(&format!("SELECT {} FROM {table} ORDER BY id", Self::select_columns(table)))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
-            let annotation =
-                annotations.entity(table, id).with_context(|| format!("{table} {:?} has no citation", file.name))?;
-            file.citation = annotation.citation.clone();
+            annotations.entity(table, id).with_context(|| format!("{table} {:?} has no citation", file.name))?;
+            file.attach_citations(annotations, table, id);
             let default_url = super::super::wiki_url_for_name(table, &file.name);
             file.wiki_url = file.wiki_url.filter(|url| Some(url) != default_url.as_ref());
             files.insert(id, file);

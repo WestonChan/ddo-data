@@ -136,9 +136,7 @@ impl AugmentFile {
         let mut select = db.prepare(&format!("SELECT {} FROM augments ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
-            if let Some(annotation) = annotations.entity("augments", id) {
-                file.citation = annotation.citation.clone();
-            }
+            file.attach_citations(annotations, id);
             file.ddobuilder_correction.extend(notes.for_entity("augments", &file.name));
             files.insert(id, file);
         }

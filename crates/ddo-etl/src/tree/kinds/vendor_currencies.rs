@@ -32,10 +32,7 @@ impl VendorCurrenciesFile {
         let mut currencies = Vec::new();
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, VendorCurrency::from_row(row)?)))? {
             let (id, mut currency) = row?;
-            currency.citation = annotations
-                .entity("vendor_currencies", id)
-                .map(|annotation| annotation.citation.clone())
-                .unwrap_or_default();
+            currency.attach_citations(annotations, id);
             currencies.push(currency);
         }
         Ok(Self { row: currencies })
@@ -49,7 +46,6 @@ impl VendorCurrenciesFile {
             currency
                 .insert(db, id, &identity, position as i64)
                 .with_context(|| format!("{}: currency {:?}", path.display(), currency.name))?;
-            crate::tree::annotations::insert_citations(db, "vendor_currencies", id, &currency.citation)?;
         }
         Ok(())
     }

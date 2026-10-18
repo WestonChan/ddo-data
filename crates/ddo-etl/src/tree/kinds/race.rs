@@ -102,8 +102,7 @@ impl RaceFile {
         let mut select = db.prepare(&format!("SELECT {} FROM races ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
-            file.citation =
-                annotations.entity("races", id).map_or_else(Vec::new, |annotation| annotation.citation.clone());
+            file.attach_citations(annotations, id);
             files.insert(id, file);
         }
         let mut abilities = db.prepare(&format!(

@@ -26,7 +26,8 @@ impl EventFile {
         let mut select = db.prepare(&format!("SELECT {} FROM events ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
-            file.citation = annotations.entity("events", id).context("entity has no citation")?.citation.clone();
+            annotations.entity("events", id).context("entity has no citation")?;
+            file.attach_citations(annotations, id);
             files.insert(id, file);
         }
         Ok(files)

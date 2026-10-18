@@ -86,9 +86,7 @@ impl QuestFile {
                     file.run.push(QuestRun { tier: tier.to_string(), level });
                 }
             }
-            if let Some(annotation) = annotations.entity("quests", id) {
-                file.citation = annotation.citation.clone();
-            }
+            file.attach_citations(annotations, id);
             file.ddobuilder_correction = notes.for_entity("quests", &file.name);
             files.insert(id, file);
         }

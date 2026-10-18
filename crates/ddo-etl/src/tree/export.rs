@@ -410,9 +410,7 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
     }
     for (id, mut file) in kinds::EffectFile::all_from_rows(db, &notes)? {
         let relative = layout.path("effects", id)?;
-        if let Some(annotation) = annotations.entity("effects", id) {
-            file.citation = annotation.citation.clone();
-        }
+        file.attach_citations(&annotations, id);
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
     for (id, file) in kinds::StatFile::all_from_rows(db)? {

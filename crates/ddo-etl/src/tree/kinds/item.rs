@@ -309,7 +309,7 @@ impl ItemFile {
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
             if let Some(annotation) = annotations.entity("items", id) {
-                file.citation = annotation.citation.clone();
+                file.attach_citations(annotations, id);
                 file.removed.clone_from(&annotation.removed);
             }
             file.ddobuilder_correction.extend(notes.for_entity("items", &file.name));

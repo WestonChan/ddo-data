@@ -223,8 +223,7 @@ impl EnhancementTreeFile {
                     file.modifier.push(modifier);
                 }
             }
-            file.citation =
-                annotations.entity("enhancements", id).map_or_else(Vec::new, |annotation| annotation.citation.clone());
+            file.attach_citations(annotations, id);
             file.ddobuilder_correction = notes.for_entity("enhancements", &file.name);
             let tree = files.get_mut(&parent_id).context("enhancement has no tree")?;
             enhancements.insert(id, (parent_id, tree.enhancement.len()));

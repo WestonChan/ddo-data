@@ -154,7 +154,7 @@ impl FeatCategoryFile {
                 }
             }
             feat.source_name = source_name;
-            feat.citation = annotation.map_or_else(Vec::new, |annotation| annotation.citation.clone());
+            feat.attach_citations(annotations, id);
             feat.variant = annotation.and_then(|annotation| annotation.variant.clone()).or(feat.variant);
             feat.ddobuilder_correction = notes.for_entity("feats", &feat.name);
             feat.modifier = modifier_rows;

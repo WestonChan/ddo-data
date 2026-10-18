@@ -107,6 +107,8 @@ macro_rules! database_record {
         }
 
         impl $name {
+            database_record!(@citation_attachment [$table] [$($table_parameter)*] [$($($attached,)*)?]);
+
             pub(in crate::tree) fn select_columns($($table_parameter)*) -> String {
                 let _ = $table;
                 [$(format!("{} AS {}", database_record!(@key $key $(=> $key_column)?), stringify!($key)),)* $($(stringify!($value_column).to_string(),)*)? $(database_record!(@select $table, $column $( [ $($adapter)* ] )?),)* $($(format!("{} AS {}", $projection, stringify!($projected)),)*)?].join(", ")
@@ -121,13 +123,40 @@ macro_rules! database_record {
             ) -> anyhow::Result<usize> {
                 let columns = [$(database_record!(@key $key $(=> $key_column)?),)* $($(stringify!($value_column),)*)? $(stringify!($column),)*].map(|column| format!("[{column}]")).join(", ");
                 let parameters = [$(concat!(":", stringify!($key)),)* $($(concat!(":", stringify!($value_column)),)*)? $(concat!(":", stringify!($column)),)*].join(", ");
-                Ok(db.prepare_cached(&format!("INSERT INTO {} ({columns}) VALUES ({parameters})", $table))?.execute(&[
+                let inserted = db.prepare_cached(&format!("INSERT INTO {} ({columns}) VALUES ({parameters})", $table))?.execute(&[
                     $((concat!(":", stringify!($key)), &$key as &dyn rusqlite::ToSql),)*
                     $($((concat!(":", stringify!($value_column)), &$value as &dyn rusqlite::ToSql),)*)?
                     $((concat!(":", stringify!($column)), &database_record!(@write db, self, $field $( [ $($adapter)* ] )?) as &dyn rusqlite::ToSql),)*
-                ][..])?)
+                ][..])?;
+                database_record!(@insert_annotations self, db, $table, [$($key,)*], [$($($attached,)*)?]);
+                Ok(inserted)
             }
         }
+    };
+    (@citation_attachment [$table:expr] [$($parameters:tt)*] [citation, $($rest:ident,)*]) => {
+        pub(in crate::tree) fn attach_citations(&mut self, annotations: &crate::tree::annotations::EntityAnnotations, $($parameters)* id: i64) {
+            self.citation = annotations.entity($table, id).map(|annotation| annotation.citation.clone()).unwrap_or_default();
+        }
+    };
+    (@citation_attachment [$table:expr] [$($parameters:tt)*] [$other:ident, $($rest:ident,)*]) => {
+        database_record!(@citation_attachment [$table] [$($parameters)*] [$($rest,)*]);
+    };
+    (@citation_attachment [$table:expr] [$($parameters:tt)*] []) => {};
+    (@insert_annotations $record:ident, $db:ident, $table:expr, [$($keys:ident,)*], [citation, $($rest:ident,)*]) => {
+        database_record!(@citation_owner $record, $db, $table, [$(($keys $keys),)*]);
+    };
+    (@insert_annotations $record:ident, $db:ident, $table:expr, [$($keys:ident,)*], [$other:ident, $($rest:ident,)*]) => {
+        database_record!(@insert_annotations $record, $db, $table, [$($keys,)*], [$($rest,)*]);
+    };
+    (@insert_annotations $record:ident, $db:ident, $table:expr, [$($keys:ident,)*], []) => {};
+    (@citation_owner $record:ident, $db:ident, $table:expr, [(id $id:ident), $($rest:tt)*]) => {
+        crate::tree::annotations::insert_citations($db, $table, $id, &$record.citation)?;
+    };
+    (@citation_owner $record:ident, $db:ident, $table:expr, [($key:ident $binding:ident), $($rest:tt)*]) => {
+        database_record!(@citation_owner $record, $db, $table, [$($rest)*]);
+    };
+    (@citation_owner $record:ident, $db:ident, $table:expr, []) => {
+        compile_error!("a record with citations must have an id key");
     };
     (@icons $record:ident, $field:ident, $kind:ident, $icons:ident [image $image_kind:literal]) => {
         crate::tree::icon_references::ImageReference::append_image(&$record.$field, if $image_kind.is_empty() { $kind } else { $image_kind }, stringify!($field), $icons)
@@ -243,6 +272,10 @@ mod tests {
                 amount: Option<i64> => amount,
                 enabled: bool => enabled,
             }
+            attached {
+                #[serde(default, skip_serializing_if = "Vec::is_empty")]
+                citation: Vec<crate::tree::Citation>,
+            }
         }
     }
 
@@ -298,11 +331,27 @@ mod tests {
     }
 
     #[test]
+    fn declared_citations_are_inserted_with_the_record() {
+        let db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        db.execute_batch("CREATE TABLE test_records (id INTEGER, name TEXT, amount INTEGER, enabled INTEGER)").unwrap();
+        let record: TestRecord = toml::from_str("name = 'Reviewed'\nenabled = true\n[[citation]]\nfield = 'name'\nurl = 'https://ddowiki.com/page/Reviewed'\nread = '2026-10-18'\nnote = 'Checked the name.'\n").unwrap();
+        record.insert(&db, 7).unwrap();
+        let count: i64 = db.query_row("SELECT COUNT(*) FROM citations WHERE owner_kind = 'test_records' AND owner_id = 7 AND note = 'Checked the name.'", [], |row| row.get(0)).unwrap();
+        assert_eq!(count, 1);
+        let mut restored = db
+            .query_row(&format!("SELECT {} FROM test_records", TestRecord::select_columns()), [], TestRecord::from_row)
+            .unwrap();
+        restored.attach_citations(&crate::tree::annotations::EntityAnnotations::from_database(&db).unwrap(), 7);
+        assert_eq!(toml::to_string(&restored).unwrap(), toml::to_string(&record).unwrap());
+    }
+
+    #[test]
     fn one_declaration_drives_column_order_in_both_directions() {
         let db = Connection::open_in_memory().unwrap();
         db.execute_batch("CREATE TABLE test_records (enabled INTEGER, amount INTEGER, name TEXT, id INTEGER)").unwrap();
         for (id, amount) in [(1, None), (2, Some(0)), (3, Some(i64::MAX))] {
-            let record = TestRecord { name: format!("Record {id}"), amount, enabled: id == 3 };
+            let record = TestRecord { name: format!("Record {id}"), amount, enabled: id == 3, citation: Vec::new() };
             record.insert(&db, id).unwrap();
             let restored = db
                 .query_row(
@@ -313,7 +362,7 @@ mod tests {
                 .unwrap();
             assert_eq!(serde_json::to_value(&restored).unwrap(), serde_json::to_value(&record).unwrap());
         }
-        let record = TestRecord { name: "Full".to_string(), amount: Some(5), enabled: true };
+        let record = TestRecord { name: "Full".to_string(), amount: Some(5), enabled: true, citation: Vec::new() };
         assert_eq!(toml::to_string(&record).unwrap(), "name = \"Full\"\namount = 5\nenabled = true\n");
     }
 }
