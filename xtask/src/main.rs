@@ -48,6 +48,14 @@ enum Task {
         #[arg(long)]
         all_details: bool,
     },
+    CheckRedirects {
+        #[arg(long)]
+        db: PathBuf,
+        #[arg(long)]
+        deployed: Option<PathBuf>,
+        #[arg(long)]
+        today: Option<String>,
+    },
     DiffDb {
         first: PathBuf,
         second: PathBuf,
@@ -172,6 +180,15 @@ fn main() -> Result<()> {
             println!("validated {responses} real responses across {routes} JSON routes");
             Ok(())
         }
+        Task::CheckRedirects { db, deployed, today } => {
+            let flags = rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY;
+            let db = rusqlite::Connection::open_with_flags(db, flags)?;
+            let deployed = deployed.map(|path| rusqlite::Connection::open_with_flags(path, flags)).transpose()?;
+            let violations = xtask::slug_checks::redirect_check_violations(&db, deployed.as_ref(), today.as_deref())?;
+            ensure!(violations.is_empty(), "{}", violations.join("\n"));
+            println!("redirect dates and deployed slugs: ok");
+            Ok(())
+        }
         Task::DiffDb { first, second, by_slug, against_api, allow_list, write_allow_list } => {
             let report = if by_slug {
                 xtask::diff_db::diff_databases_by_slug_against_api(&first, &second, against_api.as_deref())?
@@ -283,6 +300,8 @@ fn deny_invalid_data_files() -> Result<()> {
     }
     let mut db = rusqlite::Connection::open_in_memory()?;
     ddo_etl::tree::build_from_data(&data_root, &mut db)?;
+    let violations = xtask::slug_checks::redirect_check_violations(&db, None, None)?;
+    ensure!(violations.is_empty(), "{}", violations.join("\n"));
     Ok(())
 }
 

@@ -5,6 +5,7 @@ pub mod golden_refresh;
 pub mod integrity;
 pub mod response_examples;
 pub mod round_trip;
+pub mod slug_checks;
 pub mod wiki_tools;
 pub mod wiki_tooltips;
 

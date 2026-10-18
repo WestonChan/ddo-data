@@ -105,8 +105,12 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::hard(
         "slugs_are_not_all_digits",
-        "entity slugs cannot collide with numeric detail addresses",
-        OffenderQuery::Sql("SELECT slug, entity_id, kind FROM entity_identity WHERE slug <> '' AND slug NOT GLOB '*[^0-9]*'"),
+        "current, redirected and removed slugs cannot collide with numeric detail addresses",
+        OffenderQuery::Sql(
+            "SELECT slug, entity_id, kind FROM entity_identity WHERE slug <> '' AND slug NOT GLOB '*[^0-9]*'
+             UNION ALL SELECT from_slug, NULL, kind || ' redirect to ' || to_slug FROM served_redirects WHERE from_slug <> '' AND from_slug NOT GLOB '*[^0-9]*'
+             UNION ALL SELECT slug, NULL, kind || ' removed: ' || reason FROM removed_slugs WHERE slug <> '' AND slug NOT GLOB '*[^0-9]*'",
+        ),
     ),
     IntegrityCheck::hard(
         "source_references_exist",

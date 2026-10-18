@@ -112,6 +112,12 @@ jobs:
         if: steps.compare.outputs.changed == 'true'
         run: cargo run --release -q -p xtask -- wiki-tooltips --db ddo.db
 
+      - name: Check redirect expiry and previously served slugs
+        if: steps.compare.outputs.changed == 'true'
+        run: |
+          curl -sf --retry 3 "$LIVE_API/v1/dump.sqlite" -o deployed.sqlite
+          cargo run --release -q -p xtask -- check-redirects --db ddo.db --deployed deployed.sqlite
+
       - name: Keep the dataset as a workflow artifact
         if: steps.compare.outputs.changed == 'true'
         uses: actions/upload-artifact@v7
