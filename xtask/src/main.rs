@@ -513,6 +513,11 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             &["--test", "import_ddobuilder"][..],
             "canonical_wiki_rows_do_not_appear_in_an_unrelated_import_delta",
         ),
+        (
+            "ddo-etl",
+            &["--test", "import_ddobuilder"][..],
+            "import_reports_mapping_audits_without_changing_success_status",
+        ),
     ] {
         let test_status = Command::new("cargo")
             .args(["test", "-p", crate_name])

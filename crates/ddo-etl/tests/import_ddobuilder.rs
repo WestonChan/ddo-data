@@ -111,6 +111,33 @@ fn canonical_wiki_rows_do_not_appear_in_an_unrelated_import_delta() {
 }
 
 #[test]
+fn import_reports_mapping_audits_without_changing_success_status() {
+    let world = ImportWorld::new(Corrections::default());
+    let path = world.options.source_dir.join("ItemBuffs.xml");
+    let definitions = std::fs::read_to_string(&path).unwrap();
+    let probes = "<Buff><Type>ProbeFamily</Type><DisplayText>Probe Family: test</DisplayText><Effect><Type>UnclassifiedProbe</Type><AType>NotNeeded</AType><Item>Strength</Item><Item>Dexterity</Item></Effect></Buff><Buff><Type>UnusedMappingProbe</Type><DisplayText>Unused mapping probe +1</DisplayText><Effect><Type>AbilityBonus</Type><Bonus>UnrecognizedAuditBonus</Bonus><AType>Simple</AType><Amount>1</Amount><Item>Strength</Item><Item>Dexterity</Item></Effect></Buff>";
+    assert!(definitions.contains("</Buffs>"));
+    std::fs::write(path, definitions.replace("</Buffs>", &format!("{probes}</Buffs>"))).unwrap();
+    let items = world.options.source_dir.join("Items");
+    std::fs::create_dir_all(&items).unwrap();
+    std::fs::write(items.join("Probe.item"), "<Items><Item><Name>Probe</Name><MinLevel>1</MinLevel><EquipmentSlot><Trinket/></EquipmentSlot><Description>A mapping audit fixture.</Description><Buff><Type>ProbeFamily</Type></Buff></Item></Items>").unwrap();
+    let output = cli(&world).output().unwrap();
+    let report = String::from_utf8(output.stdout).unwrap();
+    assert!(output.status.success(), "{report}\n{}", String::from_utf8_lossy(&output.stderr));
+    assert!(report.contains("crates/ddo-etl/data/effect_map.toml: UNCLASSIFIED BUFF TYPE"), "{report}");
+    assert!(report.contains("UnclassifiedProbe: 1 family; 1 item; ProbeFamily"), "{report}");
+    assert!(report.contains("ProbeFamily: 2 source targets, 0 mapped stats"), "{report}");
+    assert!(report.contains("UnusedMappingProbe") && report.contains("UnrecognizedAuditBonus"), "{report}");
+    assert_eq!(
+        world
+            .database()
+            .query_row("SELECT COUNT(*) FROM items WHERE name='Probe'", [], |row| row.get::<_, i64>(0))
+            .unwrap(),
+        1
+    );
+}
+
+#[test]
 fn fieldless_citation_does_not_make_an_upstream_item_wiki_only() {
     let scratch = tempfile::tempdir().unwrap();
     let source = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles");

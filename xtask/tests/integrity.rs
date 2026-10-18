@@ -83,7 +83,7 @@ fn database_checks_need_no_xml_or_data_files() {
     assert!(report.failed_hard_check_names().is_empty(), "{report}");
     assert_ne!(report.outcome("effect_types_not_classified").unwrap().status, CheckStatus::Skipped);
     for check in ["buff_types_not_classified", "effect_definitions_with_partially_mapped_targets"] {
-        assert_eq!(report.outcome(check).unwrap().status, CheckStatus::Skipped);
+        assert!(report.outcome(check).is_none(), "XML audit {check} belongs to the import report");
     }
 }
 
@@ -254,32 +254,6 @@ fn a_link_granting_only_zero_bonuses_is_warned() {
         )
         .unwrap();
     assert_eq!(bonus_count, 0);
-}
-
-#[test]
-fn an_unclassified_effect_type_reports_its_family_and_item_count() {
-    let source_dir = tempfile::tempdir().unwrap();
-    std::fs::create_dir(source_dir.path().join("Items")).unwrap();
-    std::fs::write(
-        source_dir.path().join("ItemBuffs.xml"),
-        "<Buffs><Buff><Type>ProbeFamily</Type><DisplayText>Probe Family: test</DisplayText><Effect><Type>UnclassifiedProbe</Type><AType>NotNeeded</AType></Effect></Buff></Buffs>",
-    )
-    .unwrap();
-    let item_text =
-        std::fs::read_to_string(fixtures_dir().join("DataFiles/Items/Celestial Emerald Ring.item")).unwrap();
-    std::fs::write(
-        source_dir.path().join("Items/Probe.item"),
-        item_text.replacen("<Type>Linguistics</Type>", "<Type>ProbeFamily</Type>", 1),
-    )
-    .unwrap();
-    let db = Connection::open(fixture_db_built_once()).unwrap();
-    let options = IntegrityOptions { data_files_dir: Some(source_dir.path().to_path_buf()), ..fixture_options() };
-    let report = integrity_report(&db, &options).unwrap();
-    let outcome = report.outcome("buff_types_not_classified").unwrap();
-    assert!(outcome
-        .offenders
-        .iter()
-        .any(|offender| offender.name == "UnclassifiedProbe" && offender.detail == "1 family; 1 item"));
 }
 
 #[test]

@@ -512,6 +512,17 @@ impl EffectMap {
         Stat::by_name(&self.stat_name_from_source(source_name))
     }
 
+    pub fn is_classified_effect_type(&self, effect_type: &str) -> bool {
+        let vocabulary = &self.effect;
+
+        vocabulary.fixed.contains_key(effect_type)
+            || vocabulary.targeted.contains_key(effect_type)
+            || vocabulary.by_item.contains_key(effect_type)
+            || vocabulary.by_item_default.contains_key(effect_type)
+            || vocabulary.engine_only.contains_key(effect_type)
+            || effect_type == "SkillBonusAbility"
+    }
+
     pub fn stats_for_effect(&self, effect: &Effect, qualifiers: &EffectTargetQualifiers) -> Option<Vec<&'static Stat>> {
         effect.simple_integer_amount()?;
         let effect_type = effect.types.first()?;

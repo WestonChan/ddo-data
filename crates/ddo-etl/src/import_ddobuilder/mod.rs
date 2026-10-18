@@ -1,3 +1,4 @@
+mod audit;
 mod corrections;
 mod icons;
 mod report;
@@ -107,6 +108,7 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
             .context("building the previous DataFiles")?;
     let new = corrections::build_database_matching_his_values(&options.source_dir, &wiki, &corrections, &new_version)
         .context("building the new DataFiles")?;
+    let mapping_audits = audit::entries(&options.source_dir)?;
     let previous_tree = scratch.path().join("previous");
     let new_tree = scratch.path().join("new");
     let previous_normalized = build_normalized_database(&previous.db, &options.previous_dir, &previous_tree)
@@ -140,6 +142,7 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
         &new_normalized,
         &old_paths,
     )?;
+    report.entries.extend(mapping_audits);
     report.files = tree::replace_data_files(&staging, &options.data_dir)?;
     report.entries.extend(previous.skipped_wiki_facts.into_iter().map(|skipped| ImportReportEntry {
         path: skipped.file_name.into(),

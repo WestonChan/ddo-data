@@ -1,11 +1,8 @@
 use anyhow::{Context, Result};
 use ddo_etl::corrections::Corrections;
-use ddo_etl::map::buff::{BuffResolver, FamilyResolution};
 use ddo_etl::map::drop_location::prerequisite_spans;
 use ddo_etl::map::effect_map::EFFECT_MAP;
 use ddo_etl::wiki::WikiOverrides;
-use ddo_etl::xml::item_buffs;
-use ddo_etl::xml::items::parse_item_file;
 use rusqlite::{Connection, OptionalExtension};
 use std::collections::{BTreeMap, BTreeSet, HashSet};
 use std::fmt;
@@ -458,11 +455,6 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     )
     .showing_every_offender(),
     IntegrityCheck::warn(
-        "buff_types_not_classified",
-        "XML buff-family types that are neither stat-mapped nor engine_only, with family and item counts; runs only with --source",
-        OffenderQuery::Built(buff_types_not_classified),
-    ).showing_every_offender(),
-    IntegrityCheck::warn(
         "effect_types_not_classified",
         "stored modifier types that are neither stat-mapped nor engine_only; each entry counts the items using it",
         OffenderQuery::Built(effect_types_not_classified),
@@ -497,11 +489,6 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "owner_names_disagree_with_linked_effects",
         "an augment or slot option naming a declared effect links that effect",
         OffenderQuery::Built(owner_names_disagree_with_linked_effects),
-    ),
-    IntegrityCheck::warn(
-        "effect_definitions_with_partially_mapped_targets",
-        "a definition naming several stat targets maps all of them or stays on the review list",
-        OffenderQuery::Built(effect_definitions_with_partially_mapped_targets),
     ),
     IntegrityCheck::hard(
         "effect_template_numbers_match_names",
@@ -1418,42 +1405,6 @@ fn owner_names_disagree_with_linked_effects(db: &Connection, _options: &Integrit
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
-fn effect_definitions_with_partially_mapped_targets(_db: &Connection, options: &IntegrityOptions) -> Result<Findings> {
-    let Some(source) = &options.data_files_dir else {
-        return Ok(Findings { offenders: None, notes: vec!["XML mapping audit; enable with --source".into()] });
-    };
-    let definitions = item_buffs::parse(&source.join("ItemBuffs.xml"))?;
-    let resolver = BuffResolver::from_definitions(&definitions);
-    let mut offenders = Vec::new();
-    for (buff_kind, definition) in &definitions {
-        let target_count = definition
-            .effects
-            .iter()
-            .map(|effect| effect.targets.iter().collect::<BTreeSet<_>>().len())
-            .max()
-            .unwrap_or_default();
-        if target_count < 2 {
-            continue;
-        }
-        let mapped_count = match resolver.family_resolution(buff_kind)? {
-            FamilyResolution::MappedGroup { group_name, .. } => {
-                EFFECT_MAP.group_members(&group_name).map_or(0, <[String]>::len)
-            }
-            FamilyResolution::Mapped { .. } => 1,
-            FamilyResolution::EffectFallback(rows) => rows.len(),
-            _ => 0,
-        };
-        if mapped_count < target_count {
-            offenders.push(Offender {
-                name: buff_kind.clone(),
-                id: None,
-                detail: format!("{target_count} source targets, {mapped_count} mapped stats"),
-            });
-        }
-    }
-    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
-}
-
 fn in_use_effect_templates(db: &Connection) -> Result<Vec<(i64, String, String)>> {
     let links = EFFECT_OWNER_LINKS
         .iter()
@@ -1587,66 +1538,6 @@ fn stat_links_missing_value(db: &Connection, _options: &IntegrityOptions) -> Res
     stat_link_findings(db, "l.value IS NULL AND e.default_value IS NULL", "has no first amount")
 }
 
-fn is_classified_effect_type(effect_type: &str) -> bool {
-    let vocabulary = &EFFECT_MAP.effect;
-
-    vocabulary.fixed.contains_key(effect_type)
-        || vocabulary.targeted.contains_key(effect_type)
-        || vocabulary.by_item.contains_key(effect_type)
-        || vocabulary.by_item_default.contains_key(effect_type)
-        || vocabulary.engine_only.contains_key(effect_type)
-        || effect_type == "SkillBonusAbility"
-}
-
-fn buff_types_not_classified(_db: &Connection, options: &IntegrityOptions) -> Result<Findings> {
-    let Some(source) = &options.data_files_dir else {
-        return Ok(Findings { offenders: None, notes: vec!["XML mapping audit; enable with --source".into()] });
-    };
-    let definitions = item_buffs::parse(&source.join("ItemBuffs.xml"))?;
-    let mut families_by_type: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
-    let mut items_by_type: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
-    let mut types_by_family: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
-    for (family, definition) in definitions {
-        for effect_type in definition.effects.iter().flat_map(|effect| &effect.types) {
-            if !is_classified_effect_type(effect_type) {
-                families_by_type.entry(effect_type.clone()).or_default().insert(family.clone());
-                types_by_family.entry(family.clone()).or_default().insert(effect_type.clone());
-            }
-        }
-    }
-    let items_dir = source.join("Items");
-    if items_dir.is_dir() {
-        for entry in walkdir::WalkDir::new(items_dir).into_iter().filter_map(Result::ok) {
-            if !entry.file_type().is_file() || entry.path().extension().is_none_or(|extension| extension != "item") {
-                continue;
-            }
-            for item in parse_item_file(entry.path())?.items {
-                for buff in &item.buffs {
-                    if let Some(effect_types) = types_by_family.get(buff.kind.trim()) {
-                        for effect_type in effect_types {
-                            items_by_type.entry(effect_type.clone()).or_default().insert(item.name.clone());
-                        }
-                    }
-                }
-            }
-        }
-    }
-    let offenders = families_by_type
-        .into_iter()
-        .map(|(effect_type, families)| {
-            let item_count = items_by_type.get(&effect_type).map_or(0, BTreeSet::len);
-            let family_word = if families.len() == 1 { "family" } else { "families" };
-            let item_word = if item_count == 1 { "item" } else { "items" };
-            Offender {
-                name: effect_type,
-                id: None,
-                detail: format!("{} {family_word}; {item_count} {item_word}", families.len()),
-            }
-        })
-        .collect();
-    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
-}
-
 fn effect_types_not_classified(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let mut unclassified_types = BTreeSet::new();
     let mut items_by_type: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
@@ -1660,7 +1551,7 @@ fn effect_types_not_classified(db: &Connection, _options: &IntegrityOptions) -> 
         modifier_statement.query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, Option<String>>(1)?)))?
     {
         let (effect_type, item_name) = row?;
-        if !is_classified_effect_type(&effect_type) {
+        if !EFFECT_MAP.is_classified_effect_type(&effect_type) {
             unclassified_types.insert(effect_type.clone());
             if let Some(item_name) = item_name {
                 items_by_type.entry(effect_type).or_default().insert(item_name);
