@@ -23,7 +23,7 @@ The export rewrites every file in the layout the placement rule gives it, so a m
 
 ## Layout
 
-Quests, crafting systems, vendors and events are folders holding their record and what they yield. Chains, sagas, sets, patrons, filigree sets and challenges are files in their kind folders. Quests never nest inside chains. The root has seven entries:
+Quests, crafting systems, vendors and events are folders holding their record and what they yield. Chains, sagas, sets, patrons, filigree sets and challenges are files in their kind folders. Quests never nest inside chains. The root has eight entries:
 
 ```
 data/
@@ -54,6 +54,7 @@ data/
     augment-slot-types.toml  weapon-proficiencies.toml  clickies.toml
   upstream/
     commit.toml  excluded-items.toml  source-aliases.toml
+  redirects.toml
   icons/<kind>/<Name>.png
   .schemas/
   README.md
@@ -99,6 +100,22 @@ The database's `dataset_version` records the upstream SHA from `upstream/commit.
 Default-false booleans must be omitted when false; writing `is_legacy = false`, for example, fails the build. Derived weapon `damage` and `critical` strings also cannot be written. The build derives them from weapon fields.
 
 `[[source]]` records where an item or augment comes from, using the API's source names. Vendor sources can carry ordered `[[source.price]]` entries with `ingredient` and positive `quantity`; the deprecated served `cost` string is generated from those entries.
+
+## Redirects
+
+The API addresses entities by slug, so renaming an entity (or changing its `variant`) changes the slug every link and saved build holds. `redirects.toml` keeps old slugs answering for 30 days. It names slugs, not display names, because the old name no longer exists anywhere else.
+
+```toml
+[[redirect]]
+kind = "items"
+from = "legendary-old-name"
+to = "legendary-new-name"
+since = "2026-10-20"
+```
+
+A `[[redirect]]` makes `/v1/<kind>/<from>` answer 308 to `<to>` and lets `from` stand in for `to` in filters. `kind` is the API's route word (`items`, `augments`, `sets`, `quest-chains`, …; kinds with no route use their kebab-case table name). A renamed enhancement tree or crafting system redirects its selections' or ingredients' old slugs too, without rows of their own. An entity deleted for good is a `[[removed]]` row (`kind`, `slug`, `since`, `reason`); its slug answers 404, and the row only tells the deploy check the disappearance was intended.
+
+The build fails, naming both sides, when a `from` or removed slug is still current, when a `to` is not current (retarget it: redirects never chain), when a slug appears twice or is both redirected and removed, or when a slug is all digits. The deploy compares the build with the live API and fails on any slug it served that is now missing without a row here, so a rename or deletion, by hand or through `import-ddobuilder`, is answered in this file before it lands. Rows expire: `cargo lint` and the deploy fail on a row older than 30 days or dated in the future, and `cargo run -p ddo-etl -- prune-redirects --data data` deletes the expired ones. Builds stored elsewhere (V8, Phase 5) apply the `served_redirects` view as a data migration at the deploy that ships a redirect, so 30 days only has to cover bookmarks and shared links.
 
 ## Requirement groups
 

@@ -77,10 +77,14 @@ cargo run --release -p ddo-etl -- build --data data --out ddo.db
 cargo xtask check-db ddo.db
 cargo xtask validate-api --db ddo.db --all-details
 cargo xtask wiki-tooltips --db ddo.db
+curl -sf https://ddo-data.fly.dev/v1/dump.sqlite -o deployed.sqlite
+cargo xtask check-redirects --db ddo.db --deployed deployed.sqlite
 cargo test --workspace && cargo lint && cargo fmt --all --check
 ```
 
 `wiki-tooltips` or `check-db` may flag his new content itself (a tooltip line the golden set does not know, a quest without a pack). Those are findings about his data, handled by the same rules as any other build, not by the import.
+
+`check-redirects` names every slug the live API serves that this build no longer has: his renames and deletions. Answer each in `data/redirects.toml` before landing, or the deploy stops on it. A rename is a `[[redirect]]` row (`kind`, `from` the old slug, `to` the new one, `since` today); a deletion is a `[[removed]]` row (`kind`, `slug`, `since`, `reason`). A renamed or removed enhancement tree or crafting system covers its selections or ingredients. If the build instead fails because a redirect's `to` no longer exists (he deleted the target), retarget the row or turn it into a `[[removed]]` row.
 
 ## 6. Review his changes against the wiki
 
