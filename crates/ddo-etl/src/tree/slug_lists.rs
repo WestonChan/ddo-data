@@ -31,6 +31,9 @@ pub fn redirect_violations(db: &Connection) -> Result<Vec<String>> {
     }
     let mut conflicting_entities = Vec::new();
     for (kind, from, to) in &redirects {
+        if !from.is_empty() && from.bytes().all(|byte| byte.is_ascii_digit()) {
+            violations.push(format!("redirect {kind} {from:?} -> {to:?}: from must not be all digits"));
+        }
         let Some(entity_kind) = EntityKind::parse(kind) else {
             violations.push(format!("redirect {kind} {from:?} -> {to:?}: unknown kind"));
             continue;
@@ -48,6 +51,10 @@ pub fn redirect_violations(db: &Connection) -> Result<Vec<String>> {
     let authored = RedirectsFile::from_rows(db)?;
     for removed in &authored.removed {
         let kind = removed.kind.as_str();
+        if !removed.slug.is_empty() && removed.slug.bytes().all(|byte| byte.is_ascii_digit()) {
+            violations
+                .push(format!("removed {kind} {:?} ({:?}): slug must not be all digits", removed.slug, removed.reason));
+        }
         if let Some(identity) = current.get(&(removed.kind.table_name(), removed.slug.as_str())) {
             conflicting_entities
                 .push((format!("removed {kind} {:?} ({:?}) is current", removed.slug, removed.reason), *identity));

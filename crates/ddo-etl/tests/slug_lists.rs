@@ -57,6 +57,35 @@ fn derived_redirects_follow_foreign_keys_with_overlapping_owner_slugs() {
 }
 
 #[test]
+fn numeric_redirects_and_removals_fail_the_data_build() {
+    let folder = tempfile::tempdir().unwrap();
+    let root = folder.path().join("data");
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let original = common::export_fixture_data(&fixtures, &root);
+    let target: String =
+        original.query_row("SELECT slug FROM items ORDER BY slug LIMIT 1", [], |row| row.get(0)).unwrap();
+    for slug in ["0", "12345"] {
+        for (row, row_kind) in [
+            (redirect("items", slug, &target, "2026-10-01"), "redirect"),
+            (removed("items", slug, "2026-10-01"), "removed"),
+        ] {
+            std::fs::write(root.join("redirects.toml"), row).unwrap();
+            let result = ddo_etl::tree::build_from_data(&root, &mut Connection::open_in_memory().unwrap());
+            let error = format!("{:#}", result.map(|_| ()).expect_err("numeric slug must fail the build"));
+            for expected in [row_kind, "items", slug, "all digits"] {
+                assert!(error.contains(expected), "{error}");
+            }
+        }
+    }
+    std::fs::write(
+        root.join("redirects.toml"),
+        redirect("items", "123-item", &target, "2026-10-01") + &removed("items", "123-gone", "2026-10-01"),
+    )
+    .unwrap();
+    ddo_etl::tree::build_from_data(&root, &mut Connection::open_in_memory().unwrap()).unwrap();
+}
+
+#[test]
 fn redirect_dates_and_kinds_reject_malformed_values() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");

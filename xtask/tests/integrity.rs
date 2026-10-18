@@ -506,12 +506,12 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "123456",
         ),
         violation(
-            "slugs_are_not_all_digits",
+            "redirects_agree_with_current_slugs",
             "INSERT INTO redirects (kind, from_slug, to_slug, since) SELECT 'items', '123456', slug, '2026-10-01' FROM items ORDER BY id LIMIT 1;",
             "123456",
         ),
         violation(
-            "slugs_are_not_all_digits",
+            "redirects_agree_with_current_slugs",
             "INSERT INTO removed_slugs (kind, slug, since, reason) VALUES ('items', '123456', '2026-10-01', 'Removed numeric slug');",
             "123456",
         ),
