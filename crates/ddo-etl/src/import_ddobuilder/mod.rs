@@ -19,8 +19,6 @@ pub struct DdobuilderImportOptions {
     pub data_dir: PathBuf,
     pub sha: Option<String>,
     pub previous_sha: Option<String>,
-    pub wiki: WikiOverrides,
-    pub corrections: Corrections,
 }
 
 pub fn validate_previous_commit(
@@ -100,29 +98,22 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
     let scratch = tempfile::tempdir()?;
     let mut ours = Connection::open_in_memory()?;
     tree::build_from_data(&options.data_dir, &mut ours)?;
+    let wiki = WikiOverrides::from_database(&ours)?;
+    let corrections = Corrections::from_database(&ours)?;
     let old_paths = DataFilePaths::from_database(&ours)?;
     let annotated = tree::annotated_entities(&ours)?;
-    let previous = corrections::build_previous_matching_his_values(
-        &options.previous_dir,
-        &options.wiki,
-        &options.corrections,
-        &previous_version,
-    )
-    .context("building the previous DataFiles")?;
-    let new = corrections::build_database_matching_his_values(
-        &options.source_dir,
-        &options.wiki,
-        &options.corrections,
-        &new_version,
-    )
-    .context("building the new DataFiles")?;
+    let previous =
+        corrections::build_previous_matching_his_values(&options.previous_dir, &wiki, &corrections, &previous_version)
+            .context("building the previous DataFiles")?;
+    let new = corrections::build_database_matching_his_values(&options.source_dir, &wiki, &corrections, &new_version)
+        .context("building the new DataFiles")?;
     let previous_tree = scratch.path().join("previous");
     let new_tree = scratch.path().join("new");
     let previous_normalized = build_normalized_database(&previous.db, &options.previous_dir, &previous_tree)
         .context("exporting the previous DataFiles")?;
     let new_normalized =
         build_normalized_database(&new.db, &options.source_dir, &new_tree).context("exporting the new DataFiles")?;
-    let events = corrections::correction_events(&previous.first_stale, &new.first_stale, &options.corrections, &ours)?;
+    let events = corrections::correction_events(&previous.first_stale, &new.first_stale, &corrections, &ours)?;
     let outcome = merge_delta_into(&mut ours, &previous_normalized, &new_normalized, &annotated)?;
     ours.execute("UPDATE dataset_version SET upstream_sha = ?1", [&new_version.upstream_sha])?;
     tree::rederive_data_build_tables(&ours)?;

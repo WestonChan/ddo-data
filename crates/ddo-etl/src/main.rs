@@ -30,10 +30,6 @@ enum CliCommand {
         sha: Option<String>,
         #[arg(long)]
         previous_sha: Option<String>,
-        #[arg(long)]
-        wiki: Option<PathBuf>,
-        #[arg(long)]
-        corrections: Option<PathBuf>,
     },
     Build {
         #[arg(long)]
@@ -86,16 +82,7 @@ fn main() -> Result<ExitCode> {
             let pruned = ddo_etl::tree::redirects::prune_redirects(&data_dir, today.as_deref())?;
             println!("pruned {pruned} expired redirects and retired slugs");
         }
-        CliCommand::ImportDdobuilder { source, previous, data_dir, sha, previous_sha, wiki, corrections } => {
-            ddo_etl::import_ddobuilder::validate_previous_commit(&data_dir, &previous, previous_sha.clone())?;
-            let wiki = match wiki {
-                Some(path) => ddo_etl::wiki::WikiOverrides::from_dir(&path)?,
-                None => ddo_etl::wiki::WikiOverrides::embedded()?,
-            };
-            let corrections = match corrections {
-                Some(path) => ddo_etl::corrections::Corrections::from_dir(&path)?,
-                None => ddo_etl::corrections::Corrections::from_data(&data_dir)?,
-            };
+        CliCommand::ImportDdobuilder { source, previous, data_dir, sha, previous_sha } => {
             let report =
                 ddo_etl::import_ddobuilder::import_ddobuilder(&ddo_etl::import_ddobuilder::DdobuilderImportOptions {
                     source_dir: source,
@@ -103,8 +90,6 @@ fn main() -> Result<ExitCode> {
                     data_dir,
                     sha,
                     previous_sha,
-                    wiki,
-                    corrections,
                 })?;
             println!("{report}");
             return Ok(if report.has_conflicts() { ExitCode::from(2) } else { ExitCode::SUCCESS });

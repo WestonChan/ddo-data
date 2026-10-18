@@ -508,6 +508,11 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             &["--test", "import_ddobuilder"][..],
             "previous_xml_skips_later_named_wiki_facts_but_new_xml_stays_strict",
         ),
+        (
+            "ddo-etl",
+            &["--test", "import_ddobuilder"][..],
+            "canonical_wiki_rows_do_not_appear_in_an_unrelated_import_delta",
+        ),
     ] {
         let test_status = Command::new("cargo")
             .args(["test", "-p", crate_name])

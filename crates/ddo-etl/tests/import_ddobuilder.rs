@@ -58,6 +58,58 @@ fn copy_tree(source: &Path, destination: &Path) {
     }
 }
 
+fn copy_data_icons_into_source(root: &Path, source: &Path, scratch: &Path) {
+    let icons = scratch.join("icons");
+    ddo_etl::icons::copy_data_icons(root, &icons).unwrap();
+    for (kind, folder) in ddo_etl::icons::ICON_KIND_SOURCE_FOLDERS {
+        if icons.join(kind).is_dir() {
+            copy_tree(&icons.join(kind), &source.join(folder));
+        }
+    }
+}
+
+#[test]
+fn canonical_wiki_rows_do_not_appear_in_an_unrelated_import_delta() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let scratch = tempfile::tempdir().unwrap();
+    let root = scratch.path().join("data");
+    let previous = scratch.path().join("previous");
+    let source = scratch.path().join("source");
+    copy_tree(&fixtures.join("data"), &root);
+    copy_tree(&fixtures.join("DataFiles"), &previous);
+    copy_data_icons_into_source(&root, &previous, scratch.path());
+    copy_tree(&previous, &source);
+    let item = source.join("Items/Bold Trinket.item");
+    let contents = std::fs::read_to_string(&item).unwrap();
+    assert!(contents.contains("<MinLevel>4</MinLevel>"));
+    std::fs::write(item, contents.replace("<MinLevel>4</MinLevel>", "<MinLevel>5</MinLevel>")).unwrap();
+    let report = import_ddobuilder(&DdobuilderImportOptions {
+        previous_dir: previous,
+        source_dir: source,
+        data_dir: root.clone(),
+        previous_sha: Some("fixture".into()),
+        sha: Some("fixture-next".into()),
+    })
+    .unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    let rendered = report.to_string();
+    assert_eq!(report.tables["items"].changed, 1, "only his Bold Trinket edit belongs in the delta: {rendered}");
+    for table in ["vendors", "crafting_systems"] {
+        assert_eq!(report.tables[table].changed, 0, "{rendered}");
+    }
+    for slug in ["battle-axe-of-the-oozing-hunger", "morten-edgewright", "heroic-green-steel"] {
+        assert!(!rendered.contains(slug), "{rendered}");
+    }
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&root, &mut rebuilt).unwrap();
+    assert_eq!(
+        rebuilt
+            .query_row("SELECT minimum_level FROM items WHERE name='Bold Trinket'", [], |row| row.get::<_, i64>(0))
+            .unwrap(),
+        5
+    );
+}
+
 #[test]
 fn fieldless_citation_does_not_make_an_upstream_item_wiki_only() {
     let scratch = tempfile::tempdir().unwrap();
@@ -301,13 +353,7 @@ fn converging_overlay_socket_renames_follow_the_writer_and_have_no_import_delta(
     .unwrap();
     assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
     export_fixture_with_icons(&previous, &source, &root);
-    let icons = scratch.path().join("icons");
-    ddo_etl::icons::copy_data_icons(&root, &icons).unwrap();
-    for (kind, folder) in ddo_etl::icons::ICON_KIND_SOURCE_FOLDERS {
-        if icons.join(kind).is_dir() {
-            copy_tree(&icons.join(kind), &source.join(folder));
-        }
-    }
+    copy_data_icons_into_source(&root, &source, scratch.path());
     let mut ours = Connection::open_in_memory().unwrap();
     tree::build_from_data(&root, &mut ours).unwrap();
     let report = import_ddobuilder(&DdobuilderImportOptions {
@@ -316,8 +362,6 @@ fn converging_overlay_socket_renames_follow_the_writer_and_have_no_import_delta(
         data_dir: root.clone(),
         previous_sha: Some(PREVIOUS_SHA.into()),
         sha: Some(NEW_SHA.into()),
-        wiki: WikiOverrides::from_database(&ours).unwrap(),
-        corrections: Corrections::from_database(&ours).unwrap(),
     })
     .unwrap();
     assert!(!report.has_conflicts(), "{report}");
@@ -721,8 +765,6 @@ impl ImportWorld {
                 data_dir,
                 previous_sha: Some(PREVIOUS_SHA.into()),
                 sha: Some(NEW_SHA.into()),
-                wiki,
-                corrections,
             },
         }
     }
@@ -774,10 +816,8 @@ fn previous_xml_skips_later_named_wiki_facts_but_new_xml_stays_strict() {
     world.options.data_dir = world.scratch.path().join("later-data");
     tree::export_ddobuilder_tree(&db, &world.options.previous_dir, &world.options.data_dir).unwrap();
     let ours = world.database();
-    world.options.wiki = WikiOverrides::from_database(&ours).unwrap();
-    world.options.corrections = Corrections::from_database(&ours).unwrap();
-    let file =
-        world.options.wiki.vendors.iter().find(|vendor| vendor.name == "Later Vendor").unwrap().file_name.clone();
+    let wiki = WikiOverrides::from_database(&ours).unwrap();
+    let file = wiki.vendors.iter().find(|vendor| vendor.name == "Later Vendor").unwrap().file_name.clone();
     let source = world.scratch.path().join("later-source");
     copy_tree(&world.options.previous_dir, &source);
     let quests = source.join("Quests.xml");
@@ -824,9 +864,6 @@ fn import_reports_an_adopted_pack_rename_and_keeps_an_unchanged_one() {
         tree::rederive_data_build_tables(&db).unwrap();
         world.options.data_dir = world.scratch.path().join("reviewed-data");
         tree::export_ddobuilder_tree(&db, &world.options.previous_dir, &world.options.data_dir).unwrap();
-        let ours = world.database();
-        world.options.wiki = WikiOverrides::from_database(&ours).unwrap();
-        world.options.corrections = Corrections::from_database(&ours).unwrap();
         let source = world.scratch.path().join("rename-source");
         copy_tree(&world.options.previous_dir, &source);
         if adopted {
@@ -1434,7 +1471,7 @@ fn import_declines_removing_an_annotated_entity() {
 #[test]
 fn import_treats_a_renamed_selection_as_a_removal_and_an_addition() {
     let world = ImportWorld::new(Corrections::default());
-    world.edit("INSERT INTO corrections (kind, name, qualifier, field, from_value, to_value, reason, source, read) SELECT 'enhancement', e.name, 'selection \"SLA: Vial of Acid\"', 'icon', '\"OldIcon\"', json_quote(s.icon), 'Reviewed icon', 'https://ddowiki.com/page/Bombardier', '2026-10-17' FROM enhancement_selections s JOIN enhancements e ON e.id = s.enhancement_id WHERE s.slug = 'bomspellvialselection-sla-vial-of-acid'");
+    world.edit("INSERT INTO citations (owner_kind,owner_id,field,url,read,note) SELECT 'enhancement_selections',id,'icon','https://ddowiki.com/page/Bombardier','2026-10-17','Reviewed icon' FROM enhancement_selections WHERE slug='bomspellvialselection-sla-vial-of-acid'");
     let report = import_ddobuilder(&world.options).unwrap();
     let db = world.database();
     let mut query = db.prepare("SELECT slug, sort_order FROM enhancement_selections WHERE enhancement_id IN (SELECT id FROM enhancements WHERE internal_name = 'BomSpellVialSelection') ORDER BY sort_order").unwrap();
@@ -1477,15 +1514,18 @@ fn import_keeps_our_icon_bytes_and_lists_the_conflict() {
 
 #[test]
 fn import_fails_without_writing_when_his_build_fails() {
-    let mut world = ImportWorld::new(Corrections::default());
-    let mut correction = ravager_corrections().entries.remove(0);
-    correction.name = "Bombardier: Spellvial Selection II".into();
-    correction.from = ddo_etl::corrections::CorrectionValue::Text("Previous prose".into());
-    correction.to = ddo_etl::corrections::CorrectionValue::Text("Our prose".into());
-    world.options.corrections.entries.push(correction);
+    let world = ImportWorld::new(ravager_corrections());
+    let path = world.options.source_dir.join("EnhancementTrees/Fighter_Ravager.tree.xml");
+    let contents = std::fs::read_to_string(&path).unwrap();
+    assert!(contents.contains("<Name>Ravager: Draconic Power Attack</Name>"));
+    std::fs::write(
+        &path,
+        contents.replace("<Name>Ravager: Draconic Power Attack</Name>", "<Name>Missing corrected target</Name>"),
+    )
+    .unwrap();
     let before = world.bytes();
     let error = format!("{:#}", import_ddobuilder(&world.options).unwrap_err());
-    assert!(error.contains("building the new DataFiles") && error.contains("Spellvial Selection II"), "{error}");
+    assert!(error.contains("building the new DataFiles") && error.contains("Draconic Power Attack"), "{error}");
     assert_eq!(before, world.bytes());
 }
 
@@ -1540,9 +1580,7 @@ fn cli(world: &ImportWorld) -> std::process::Command {
         .arg("--previous-sha")
         .arg(world.options.previous_sha.as_ref().unwrap())
         .arg("--sha")
-        .arg(world.options.sha.as_ref().unwrap())
-        .arg("--wiki")
-        .arg(fixture_root().join("wiki"));
+        .arg(world.options.sha.as_ref().unwrap());
     command
 }
 
@@ -1566,22 +1604,6 @@ fn import_cli_uses_the_data_files_corrections_by_default() {
     let output = cli(&world).output().unwrap();
     assert_eq!(output.status.code(), Some(2), "{}", String::from_utf8_lossy(&output.stderr));
     assert!(String::from_utf8_lossy(&output.stdout).contains("Our researched Barbarian"));
-}
-
-#[test]
-fn import_cli_accepts_a_corrections_override() {
-    let world = ImportWorld::new(ravager_corrections());
-    let override_dir = world.scratch.path().join("corrections");
-    std::fs::create_dir(&override_dir).unwrap();
-    let original = std::fs::read_to_string(fixture_root().join("corrections/ravager.toml")).unwrap();
-    let draconic = original.split("[[correction]]").nth(1).unwrap();
-    std::fs::write(override_dir.join("ravager.toml"), format!("[[correction]]{draconic}")).unwrap();
-    let output = cli(&world).arg("--corrections").arg(override_dir).output().unwrap();
-    assert_eq!(output.status.code(), Some(2), "{}", String::from_utf8_lossy(&output.stderr));
-    let report = String::from_utf8(output.stdout).unwrap();
-    assert!(report.contains("RESOLVED CORRECTION") && report.contains("Our researched Barbarian"), "{report}");
-    assert!(!report.contains("CONFLICT enhancement \"Ravager: Barbarian Power Attack\""), "{report}");
-    assert!(report.contains("enhancements/ravbarbarianpowerattack description"), "{report}");
 }
 
 #[test]
@@ -1671,19 +1693,29 @@ fn import_cli_exits_two_on_an_icon_conflict() {
 }
 
 #[test]
-fn import_rebases_both_sides_without_mutating_supplied_corrections() {
+fn import_rebases_both_sides_without_mutating_our_correction_values() {
     let mut corrections = ravager_corrections();
     corrections.entries.retain(|entry| entry.name.contains("Barbarian"));
     let mut world = ImportWorld::new(corrections.clone());
+    let expected = Corrections::from_database(&world.database()).unwrap();
     import_ddobuilder(&world.options).unwrap();
-    assert_eq!(world.options.corrections, corrections);
+    let rebased = Corrections::from_database(&world.database()).unwrap();
+    let corrected_values = |corrections: &Corrections| {
+        corrections
+            .entries
+            .iter()
+            .map(|entry| (entry.kind, entry.name.clone(), entry.qualifier(), entry.field.clone(), entry.to.clone()))
+            .collect::<Vec<_>>()
+    };
+    assert_eq!(corrected_values(&rebased), corrected_values(&expected));
+    assert_ne!(rebased.entries[0].from, expected.entries[0].from);
     world.options.previous_dir = world.options.source_dir.clone();
     world.options.previous_sha = world.options.sha.clone();
     let before = world.bytes();
     let report = import_ddobuilder(&world.options).unwrap();
     assert!(!report.has_conflicts(), "{report}");
     assert_eq!(before, world.bytes());
-    assert_eq!(world.options.corrections, corrections);
+    assert_eq!(Corrections::from_database(&world.database()).unwrap(), rebased);
 }
 
 #[test]
