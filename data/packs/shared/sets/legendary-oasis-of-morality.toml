@@ -22,7 +22,7 @@ name = "Legendary Vambraces of Inner Light"
 [[item]]
 name = "Legendary Ward of Undeath"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "value"
 upstream = 10

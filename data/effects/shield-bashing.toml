@@ -3,7 +3,7 @@ description_template = "+{1}% %b1 bonus to your chance of a Secondary Shield Bas
 home_bonus_type = "Enhancement"
 verbose_name_template = "%b1 Shield Bashing +{1}%"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "description_template"
 upstream = "{1}% %b1 bonus to your chance of a Secondary Shield Bash. This stacks with bonuses granted by any relevant feats."

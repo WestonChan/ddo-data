@@ -17,7 +17,7 @@ rounding = "down"
 scale = 1.0
 target = "Fire Spell Lore"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "description_template"
 upstream = "Passive: Your Fire and Lightning spells gain a {1}%% Equipment bonus to their chance to critical hit."

@@ -3,10 +3,8 @@ variant = "2"
 description_template = "While equipped, this item grants the feat Elusive Target."
 verbose_name_template = "Feat - Elusive Target"
 
-[[note]]
-kind = "slug_collision"
+[[citation]]
 field = "name"
-upstream = "Feat Elusive Target"
-reason = "The two effects have different descriptions and owner links, so both rows remain for review."
 url = "upstream/Output/DataFiles/ItemBuffs.xml"
 read = "2026-10-07"
+note = "The two effects have different descriptions and owner links, so both rows remain for review."

@@ -16,7 +16,7 @@ bonus_type = "Enhancement"
 effect = "Fortification Bypass"
 effect_type = "FortificationBypass"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Woeful Armor-Piercing (Heroic)"

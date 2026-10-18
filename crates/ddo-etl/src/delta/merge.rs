@@ -11,7 +11,7 @@ pub struct MergeOutcome {
     pub conflicts: Vec<Conflict>,
     pub declined_removals: Vec<DeclinedRemoval>,
     pub absent_in_ours: Vec<AbsentChange>,
-    pub kept_correction_notes: Vec<String>,
+    pub kept_corrections: Vec<String>,
     pub inserted: Vec<(String, i64)>,
     pub deleted: Vec<DeletedEntity>,
 }
@@ -113,7 +113,7 @@ pub fn merge_delta_into(
         for identity in changes.removed {
             if table == "corrections" {
                 if entity_row(&current, &table, &identity).is_some() {
-                    edits.outcome.kept_correction_notes.push(identity);
+                    edits.outcome.kept_corrections.push(identity);
                 }
             } else if let Some(address) = entity_row(&current, &table, &identity) {
                 edits.removals.insert(identity, address.clone());
@@ -578,7 +578,7 @@ impl TranslatedRows {
         for address in &edits.inserted {
             let Some(SqlValue::Integer(original_id)) = new.fields(address).get("id").cloned() else { continue };
             let is_entity =
-                matches!(table_merge(&address.table), Some(TableMerge::Entity { .. } | TableMerge::CorrectionNotes));
+                matches!(table_merge(&address.table), Some(TableMerge::Entity { .. } | TableMerge::Corrections { .. }));
             let maximum = maximum_ids.entry(address.table.clone()).or_insert(0);
             let assigned = if is_entity && !allocated.contains(&(address.table.clone(), original_id)) {
                 original_id
@@ -713,7 +713,7 @@ fn apply_edits(
                 .unwrap()
                 .execute(params_from_iter(columns.iter().map(|column| &fields[column])))
                 .with_context(|| format!("inserting {} row {}", address.table, address.row_index))?;
-            if matches!(table_merge(&address.table), Some(TableMerge::Entity { .. } | TableMerge::CorrectionNotes)) {
+            if matches!(table_merge(&address.table), Some(TableMerge::Entity { .. } | TableMerge::Corrections { .. })) {
                 edits.outcome.inserted.push((address.table.clone(), translation.ids[&address]));
             }
             pending.remove(&address);

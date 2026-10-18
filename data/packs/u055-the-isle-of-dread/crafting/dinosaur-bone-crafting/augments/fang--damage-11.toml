@@ -17,7 +17,7 @@ effect = "Damage Bonus"
 effect_type = "Weapon_Damage"
 targets = ["All"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Fang: Deadly +11"

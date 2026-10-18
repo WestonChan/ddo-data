@@ -25,8 +25,6 @@ database_record! {
     }
 }
 
-pub(crate) type AugmentNote = super::super::EntityNote;
-
 database_record! {
     #[derive(Debug, Serialize, Deserialize, JsonSchema)]
     #[serde(deny_unknown_fields)]
@@ -102,7 +100,7 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             modifier: Vec<Modifier>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<AugmentNote>,
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             slot: Vec<AugmentSlot>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -139,10 +137,7 @@ impl AugmentFile {
             if let Some(annotation) = annotations.entity("augments", id) {
                 file.citation = annotation.citation.clone();
             }
-            file.note.extend(notes.for_entity("augments", &file.name));
-            if let Some(annotation) = annotations.entity("augments", id) {
-                file.note.extend(annotation.reviewed_notes.iter().cloned());
-            }
+            file.ddobuilder_correction.extend(notes.for_entity("augments", &file.name));
             files.insert(id, file);
         }
         let mut select = db.prepare(&format!(

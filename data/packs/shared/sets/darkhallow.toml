@@ -2,7 +2,7 @@ name = "Darkhallow"
 icon = "DarkHallow"
 is_filigree_set = true
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_bonus"
 field = "icon"
 upstream = "Darkhallow"

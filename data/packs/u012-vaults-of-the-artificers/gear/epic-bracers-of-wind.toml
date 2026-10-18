@@ -32,7 +32,7 @@ value = 9
 [[effect]]
 name = "Air Guard"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "bonus_type"
 reason = "The wiki's Tier 2 upgrade raises the bracers' Lightning Lore +16% to +17%, the Equipment bonus his own option description names; his effect's bonus is Not Equipment."
@@ -40,7 +40,7 @@ url = "https://ddowiki.com/page/Item:Epic_Bracers_of_Wind"
 read = "2026-10-02"
 qualifier = "Electric Spell Lore / null / 17"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "bonus_type"
 reason = "The wiki's Tier 3 upgrade raises the bracers' Lightning Lore +17% to +18%, the Equipment bonus his own option description names; his effect's bonus is Not Equipment."

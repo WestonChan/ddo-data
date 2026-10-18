@@ -616,39 +616,33 @@ table = "effects"
 upstream_id = 1380
 name = "Feat: Elusive Target"
 variant = "2"
-[[entity.note]]
+[[entity.citation]]
 field = "name"
-kind = "slug_collision"
-read = "2026-10-07"
-reason = "The two effects have different descriptions and owner links, so both rows remain for review."
 url = "upstream/Output/DataFiles/ItemBuffs.xml"
-upstream = "Feat Elusive Target"
+read = "2026-10-07"
+note = "The two effects have different descriptions and owner links, so both rows remain for review."
 
 [[entity]]
 table = "effects"
 upstream_id = 2093
 name = "Underwater action"
 variant = "2"
-[[entity.note]]
+[[entity.citation]]
 field = "name"
-kind = "slug_collision"
-read = "2026-10-07"
-reason = "The capitalized effect has a water-breathing description; this row has no description."
 url = "upstream/Output/DataFiles/ItemBuffs.xml"
-upstream = "Underwater Action"
+read = "2026-10-07"
+note = "The capitalized effect has a water-breathing description; this row has no description."
 
 [[entity]]
 table = "effects"
 upstream_id = 2099
 name = "+3 Artifact bonus to attack and damage"
 variant = "2"
-[[entity.note]]
+[[entity.citation]]
 field = "name"
-kind = "slug_collision"
-read = "2026-10-07"
-reason = "The case-variant effects have different description templates and owner links."
 url = "upstream/Output/DataFiles/SetBonuses.xml"
-upstream = "+3 Artifact bonus to Attack and Damage"
+read = "2026-10-07"
+note = "The case-variant effects have different description templates and owner links."
 
 [[entity]]
 table = "feats"
@@ -899,10 +893,8 @@ table = "quests"
 upstream_id = 602
 name = "Kobold Island - Short Cuts Epic"
 variant = "2"
-[[entity.note]]
+[[entity.citation]]
 field = "name"
-kind = "slug_collision"
-read = "2026-10-07"
-reason = "The two epic challenge rows differ in maximum level and remain separate for review."
 url = "upstream/Output/DataFiles/Challenges.xml"
-upstream = "Kobold Island - Short Cuts - EPIC"
+read = "2026-10-07"
+note = "The two epic challenge rows differ in maximum level and remain separate for review."

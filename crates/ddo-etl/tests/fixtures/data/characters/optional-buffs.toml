@@ -3,7 +3,7 @@ name = "Barkskin"
 description = "You have a Natural Armor bonus to AC."
 icon = "spells/Barkskin"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Barkskin"
@@ -24,7 +24,7 @@ Multiple targets are filled with courage, granting a +1 Morale bonus on to-hit r
 and saves versus fear. Bless counters and dispels Bane."""
 icon = "spells/Bless"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Bless"
@@ -51,7 +51,7 @@ name = "Deadly Weapons"
 description = "Your currently equipped weapons deal +1[W]."
 icon = "spells/DeadlyWeapons"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "DeadlyWeapons"
@@ -71,7 +71,7 @@ name = "Stone of Change: Alchemical Shield Eldritch Ritual"
 description = "+1 Stacking Bonus to AC"
 icon = "spells/StoneOfChange"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "StoneOfChange"

@@ -40,6 +40,12 @@
         "field": {
           "type": "string"
         },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "read": {
           "type": "string"
         },
@@ -52,6 +58,7 @@
         "read"
       ],
       "type": "object",
+      "x-array": "citation",
       "x-table": "citations"
     },
     "ConditionalFeatGroup": {
@@ -78,6 +85,53 @@
       },
       "type": "object",
       "x-table": "feat_conditional_groups"
+    },
+    "DdobuilderCorrection": {
+      "additionalProperties": false,
+      "properties": {
+        "added_as_name": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "original_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "upstream": {
+          "description": "Omitted when Maetrim has no value for this field."
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-array": "ddobuilder_correction",
+      "x-table": "corrections"
     },
     "DifficultyClass": {
       "additionalProperties": false,
@@ -107,6 +161,12 @@
         "dc_versus": {
           "type": "string"
         },
+        "ddobuilder_correction": {
+          "items": {
+            "$ref": "#/$defs/DdobuilderCorrection"
+          },
+          "type": "array"
+        },
         "description": {
           "type": "string"
         },
@@ -122,12 +182,6 @@
         },
         "name": {
           "type": "string"
-        },
-        "note": {
-          "items": {
-            "$ref": "#/$defs/EntityNote"
-          },
-          "type": "array"
         },
         "other": {
           "type": [
@@ -185,52 +239,6 @@
       ],
       "type": "object"
     },
-    "EntityNote": {
-      "additionalProperties": false,
-      "properties": {
-        "added_as_name": {
-          "type": [
-            "boolean",
-            "null"
-          ]
-        },
-        "field": {
-          "type": "string"
-        },
-        "kind": {
-          "type": "string"
-        },
-        "original_name": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "qualifier": {
-          "type": "string"
-        },
-        "read": {
-          "type": "string"
-        },
-        "reason": {
-          "type": "string"
-        },
-        "upstream": {
-          "description": "Omitted when Maetrim has no value for this field."
-        },
-        "url": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "kind",
-        "reason",
-        "url",
-        "read"
-      ],
-      "type": "object",
-      "x-table": "entity_notes"
-    },
     "Feat": {
       "additionalProperties": false,
       "properties": {
@@ -261,6 +269,12 @@
         "dc": {
           "items": {
             "$ref": "#/$defs/DifficultyClass"
+          },
+          "type": "array"
+        },
+        "ddobuilder_correction": {
+          "items": {
+            "$ref": "#/$defs/DdobuilderCorrection"
           },
           "type": "array"
         },
@@ -304,12 +318,6 @@
         },
         "name": {
           "type": "string"
-        },
-        "note": {
-          "items": {
-            "$ref": "#/$defs/EntityNote"
-          },
-          "type": "array"
         },
         "requirement": {
           "items": {
@@ -617,6 +625,12 @@
         "auto_controlled": {
           "type": "boolean"
         },
+        "ddobuilder_correction": {
+          "items": {
+            "$ref": "#/$defs/DdobuilderCorrection"
+          },
+          "type": "array"
+        },
         "description": {
           "type": "string"
         },
@@ -638,12 +652,6 @@
         },
         "name": {
           "type": "string"
-        },
-        "note": {
-          "items": {
-            "$ref": "#/$defs/EntityNote"
-          },
-          "type": "array"
         },
         "requirement": {
           "items": {

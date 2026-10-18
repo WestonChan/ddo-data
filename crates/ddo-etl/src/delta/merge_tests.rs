@@ -481,7 +481,7 @@ fn merge_preserves_correction_notes_removed_upstream() {
     let new = ordinary_fixture_database("");
     let mut ours = ordinary_fixture_database("INSERT INTO corrections (kind, name, field, from_value, to_value, reason, source, read) SELECT 'feat', name, 'description', '\"Upstream prose\"', json_quote(description), 'Wiki research', 'https://ddowiki.com/page/Power_Attack', '2026-10-17' FROM feats WHERE name = 'Power Attack'");
     let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
-    assert!(!outcome.kept_correction_notes.is_empty());
+    assert!(!outcome.kept_corrections.is_empty());
     assert!(database_delta(&previous, &ours).unwrap().is_empty());
 }
 

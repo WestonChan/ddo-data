@@ -337,7 +337,7 @@ ranks = 1
 x = 5
 y = 0
 
-[[enhancement.note]]
+[[enhancement.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "SSMaestroOfLifeAndDeath"

@@ -21,7 +21,7 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             citation: Vec<super::super::Citation>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<super::super::EntityNote>, }
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>, }
     }
 }
 
@@ -35,10 +35,9 @@ impl PackFile {
         let mut select = db.prepare(&format!("SELECT {} FROM adventure_packs ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
-            file.note = notes.for_entity("adventure_packs", &file.name);
+            file.ddobuilder_correction = notes.for_entity("adventure_packs", &file.name);
             if let Some(annotation) = annotations.entity("adventure_packs", id) {
                 file.citation = annotation.citation.clone();
-                file.note.extend(annotation.reviewed_notes.iter().cloned());
             }
             files.insert(id, file);
         }

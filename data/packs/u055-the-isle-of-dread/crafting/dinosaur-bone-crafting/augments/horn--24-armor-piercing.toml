@@ -16,7 +16,7 @@ bonus_type = "Enhancement"
 effect = "Fortification Bypass"
 effect_type = "FortificationBypass"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 original_name = "Horn: +23 Armor Piercing"
 field = "description"
@@ -25,7 +25,7 @@ reason = "The wiki's Horn: Armor Piercing is +24%, not +23."
 url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
 read = "2026-09-30"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Horn: +23 Armor Piercing"
@@ -33,7 +33,7 @@ reason = "The wiki's Horn: Armor Piercing is +24%, not +23."
 url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
 read = "2026-09-30"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 original_name = "Horn: +23 Armor Piercing"
 field = "value"

@@ -125,7 +125,7 @@ name = "World-Weary Wrappings"
 [[item]]
 name = "Wristbound Register"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Attack Bonus +1 Profane at 4 pieces; his tier lacks it."
@@ -133,7 +133,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 4, Attack Bonus / Profane"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Damage Bonus +1 Profane at 4 pieces; his tier lacks it."

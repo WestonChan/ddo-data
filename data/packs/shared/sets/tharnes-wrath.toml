@@ -11,7 +11,7 @@ name = "Tharne's Bracers"
 [[item]]
 name = "Tharne's Goggles"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"
 upstream = "Father Falling"

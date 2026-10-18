@@ -110,7 +110,7 @@ async fn data_entities_build_and_serve_authored_fields_without_ids() {
     let old_pack_folder = data_dir.join("packs/magic-of-myth-drannor");
     let pack_folder = data_dir.join("packs/u069-magic-of-myth-drannor");
     std::fs::rename(&old_pack_folder, &pack_folder).unwrap();
-    std::fs::write(pack_folder.join("pack.toml"), "name = 'Magic of Myth Drannor'\nupdate = 'Update 69'\nreleased = '2024-08-14'\n[[citation]]\nurl = 'https://ddowiki.com/page/Magic_of_Myth_Drannor'\nread = '2026-10-13'\n[[note]]\nkind = 'release'\nreason = 'Release research fixture'\nurl = 'https://ddowiki.com/page/Magic_of_Myth_Drannor'\nread = '2026-10-13'\n").unwrap();
+    std::fs::write(pack_folder.join("pack.toml"), "name = 'Magic of Myth Drannor'\nupdate = 'Update 69'\nreleased = '2024-08-14'\n[[citation]]\nurl = 'https://ddowiki.com/page/Magic_of_Myth_Drannor'\nread = '2026-10-13'\nnote = 'Release research fixture'\n").unwrap();
     let db_path = root.join("built.db");
     let mut db = rusqlite::Connection::open(&db_path).unwrap();
     ddo_etl::tree::build_from_data(&data_dir, &mut db).unwrap();
@@ -124,14 +124,19 @@ async fn data_entities_build_and_serve_authored_fields_without_ids() {
     assert!(exported_item.find("amounts = [6]").unwrap() < exported_item.find("amounts = [2]").unwrap());
     let exported_pack =
         std::fs::read_to_string(exported_files.join("packs/u069-magic-of-myth-drannor/pack.toml")).unwrap();
-    assert!(exported_pack.contains("kind = \"release\""));
-    assert!(exported_pack.contains("reason = \"Release research fixture\""));
     assert!(exported_pack.contains("[[citation]]"));
-    let release_notes: i64 =
-        db.query_row("SELECT COUNT(*) FROM entity_notes WHERE kind = 'release'", [], |row| row.get(0)).unwrap();
+    assert!(exported_pack.contains("note = \"Release research fixture\""));
+    assert!(!exported_pack.contains("ddobuilder_correction"));
+    let release_note: Option<String> = db
+        .query_row(
+            "SELECT note FROM citations WHERE owner_kind = 'adventure_packs' AND url = 'https://ddowiki.com/page/Magic_of_Myth_Drannor'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
     let release_corrections: i64 =
         db.query_row("SELECT COUNT(*) FROM corrections WHERE kind = 'release'", [], |row| row.get(0)).unwrap();
-    assert_eq!(release_notes, 1);
+    assert_eq!(release_note.as_deref(), Some("Release research fixture"));
     assert_eq!(release_corrections, 0);
     drop(db);
     let state = AppState::open(&db_path).unwrap();

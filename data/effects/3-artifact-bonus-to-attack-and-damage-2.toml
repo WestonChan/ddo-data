@@ -3,10 +3,8 @@ variant = "2"
 description_template = "+3 Artifact bonus to attack and damage."
 verbose_name_template = "+3 Artifact bonus to attack and damage"
 
-[[note]]
-kind = "slug_collision"
+[[citation]]
 field = "name"
-upstream = "+3 Artifact bonus to Attack and Damage"
-reason = "The case-variant effects have different description templates and owner links."
 url = "upstream/Output/DataFiles/SetBonuses.xml"
 read = "2026-10-07"
+note = "The case-variant effects have different description templates and owner links."

@@ -32,7 +32,7 @@ name = "Vorpal"
 [[effect]]
 name = "Crushing 7"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "name"
 upstream = "Spectral Great Axe (level 12)"

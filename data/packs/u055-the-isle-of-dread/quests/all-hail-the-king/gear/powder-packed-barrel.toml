@@ -43,7 +43,7 @@ name = "Charisma"
 bonus_type = "Quality"
 value = 1
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "drop_location"
 upstream = "Isle of Dread (wilderness), rare encounter chest, and All Hail the King end chest"

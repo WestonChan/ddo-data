@@ -22,7 +22,7 @@ targets = [
     "General",
 ]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Curse of Major Tactician"

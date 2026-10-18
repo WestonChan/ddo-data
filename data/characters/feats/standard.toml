@@ -8686,7 +8686,7 @@ group_name = "Standard"
 [[row.group]]
 group_name = "Epic Feat"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "feat"
 field = "icon"
 upstream = "Warforgedfeat"
@@ -8771,7 +8771,7 @@ group_name = "Standard"
 [[row.group]]
 group_name = "Epic Feat"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "feat"
 field = "icon"
 upstream = "Warforgedfeat"
@@ -8823,7 +8823,7 @@ group_name = "Standard"
 [[row.group]]
 group_name = "Epic Feat"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "feat"
 field = "icon"
 upstream = "MobileSpellCasting"

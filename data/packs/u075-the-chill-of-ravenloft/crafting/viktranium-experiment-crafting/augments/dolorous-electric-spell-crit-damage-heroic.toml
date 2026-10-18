@@ -18,7 +18,7 @@ effect = "Electric Spell Critical Damage"
 effect_type = "SpellCriticalDamage"
 targets = ["Electric"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Dolorous Electric Spell Critical Damage (Heroic)"

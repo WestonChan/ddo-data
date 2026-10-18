@@ -8,7 +8,7 @@ primary = true
 [[item]]
 name = "Legendary Lorik's Necklace"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_bonus"
 field = "name"
 upstream = "Legacy of Lorik"

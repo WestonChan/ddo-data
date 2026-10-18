@@ -17,7 +17,7 @@ effect = "Intelligence Skills"
 effect_type = "SkillBonusAbility"
 targets = ["Intelligence"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Eldritch Rune of Skill: Intelligence"

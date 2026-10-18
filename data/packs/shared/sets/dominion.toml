@@ -145,7 +145,7 @@ family = "Greensteel_Legendary"
 name = "Good damage on being hit - 15d6"
 family = "Greensteel_Legendary"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"
 upstream = "3% Spell Points bonus, +1% per additional augment"

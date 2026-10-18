@@ -736,7 +736,7 @@ icon = "ArtificerCraftMastery"
 max_times_acquire = 10
 source_name = "Artificer"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "feat"
 field = "icon"
 upstream = "ArtificercraftMastery"
@@ -1775,7 +1775,7 @@ description = """
 Cantrips caster level increases for every character level regardless of what
 classes you take, up to level 20, and scale with only 75% of spell power."""
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "feat"
 field = "icon"
 upstream = "RayOfFrost"
@@ -9712,7 +9712,7 @@ icon = "EpicPastLifeSkillMastery"
 max_times_acquire = 3
 sphere = "Martial"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "feat"
 field = "icon"
 upstream = "EpicPastLifeSkillMAstery"
@@ -9882,7 +9882,7 @@ description = "Martial Past Life Stance: +1 to all skills per stack of this Past
 group_name = "Martial"
 icon = "EpicPastLifeSkillMastery"
 
-[[row.stance.note]]
+[[row.stance.ddobuilder_correction]]
 kind = "feat"
 field = "icon"
 upstream = "EpicPastLifeSkillMAstery"
@@ -10489,7 +10489,7 @@ icon = "EpicPastLifeColorsOfTheQueen"
 max_times_acquire = 3
 sphere = "Primal"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "feat"
 field = "icon"
 upstream = "EpicPastLifeColorsOftheQueen"
@@ -10679,7 +10679,7 @@ extra damage or debuffs on the enemy you hit.)"""
 group_name = "Primal"
 icon = "EpicPastLifeColorsOfTheQueen"
 
-[[row.stance.note]]
+[[row.stance.ddobuilder_correction]]
 kind = "feat"
 field = "icon"
 upstream = "EpicPastLifeColorsOftheQueen"
@@ -11386,7 +11386,7 @@ bonus_type = "Feat"
 effect = "Dodge"
 value = 1
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "feat"
 field = "icon"
 upstream = "IconicPastLifeShadar-Kai"
@@ -11410,7 +11410,7 @@ This can occur once every two minutes."""
 group_name = "Iconic"
 icon = "IconicPastLifeShadar-kai"
 
-[[row.stance.note]]
+[[row.stance.ddobuilder_correction]]
 kind = "feat"
 field = "icon"
 upstream = "IconicPastLifeShadar-Kai"

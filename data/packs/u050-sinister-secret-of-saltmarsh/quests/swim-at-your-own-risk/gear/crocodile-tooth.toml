@@ -17,7 +17,7 @@ name = "Accuracy"
 bonus_type = "Competence"
 value = 5
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "set_bonus"
 reason = "The wiki lists this item as a member of Saltmarsh Explorer."

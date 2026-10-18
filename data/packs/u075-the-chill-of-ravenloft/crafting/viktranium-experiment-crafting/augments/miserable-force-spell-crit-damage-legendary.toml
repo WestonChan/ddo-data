@@ -21,7 +21,7 @@ targets = [
     "Untyped",
 ]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Miserable Force Spell Critical Damage (Legendary)"

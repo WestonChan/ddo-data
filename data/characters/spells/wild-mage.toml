@@ -88,7 +88,7 @@ metamagics = [
 ]
 schools = ["Evocation"]
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "spell"
 field = "icon"
 upstream = "Wildstrike"

@@ -34,7 +34,7 @@ bonus_type = "Enhancement"
 effect = "Doublestrike"
 effect_type = "Doublestrike"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Martial: Alchemical Dexterity +2, Lighting Strike, Doublestrike 6%"

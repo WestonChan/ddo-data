@@ -812,10 +812,10 @@ impl DataFilePaths {
             };
             for correction in notes.corrections_for_owner(table, name) {
                 let key = [
-                    correction.note.kind.clone(),
+                    correction.ddobuilder_correction.kind.clone(),
                     correction.name.clone(),
-                    correction.note.qualifier.clone(),
-                    correction.note.field.clone(),
+                    correction.ddobuilder_correction.qualifier.clone(),
+                    correction.ddobuilder_correction.field.clone(),
                 ];
                 if let Some(id) = correction_ids.get(&key) {
                     paths.insert(("corrections".into(), *id), path.clone());

@@ -7,7 +7,7 @@ name = "Devoted Goggles"
 [[item]]
 name = "Devoted Necklace"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "value"
 upstream = 24

@@ -7,7 +7,7 @@ name = "Alchemist's Crown"
 [[item]]
 name = "Alchemist's Pendant"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"
 upstream = "Reduces the cost of Empower, Empower Heal, and Maximize by 2 SP."

@@ -31,7 +31,7 @@ value = 10
 [[effect]]
 name = "Mithral"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "is_legacy"
 upstream = false

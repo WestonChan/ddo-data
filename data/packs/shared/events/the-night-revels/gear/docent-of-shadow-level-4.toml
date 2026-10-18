@@ -32,7 +32,7 @@ value = 12
 name = "Lesser False Life"
 bonus_type = "Enhancement"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "value"
 reason = "The wiki Void Lore tier grants 12% Negative and Poison spell lore."

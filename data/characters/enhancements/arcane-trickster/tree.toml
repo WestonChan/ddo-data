@@ -389,7 +389,7 @@ affected by Heighten or Embolden Meta Magics."""
 icon = "ATSoundburst"
 is_clickie = true
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "ATSoundBurst"

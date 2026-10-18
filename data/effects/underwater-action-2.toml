@@ -2,10 +2,8 @@ name = "Underwater action"
 variant = "2"
 verbose_name_template = "Underwater action"
 
-[[note]]
-kind = "slug_collision"
+[[citation]]
 field = "name"
-upstream = "Underwater Action"
-reason = "The capitalized effect has a water-breathing description; this row has no description."
 url = "upstream/Output/DataFiles/ItemBuffs.xml"
 read = "2026-10-07"
+note = "The capitalized effect has a water-breathing description; this row has no description."

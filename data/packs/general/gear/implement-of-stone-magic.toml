@@ -30,7 +30,7 @@ name = "Acid Lore"
 bonus_type = "Equipment"
 value = 15
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "value"
 reason = "The wiki lists Acid Lore +15%."

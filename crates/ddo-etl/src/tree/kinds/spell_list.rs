@@ -81,7 +81,7 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             modifier: Vec<Modifier>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<super::super::EntityNote>,
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             stance: Vec<Stance>,
         }
@@ -104,7 +104,7 @@ impl SpellListFile {
         let mut select = db.prepare(&format!("SELECT {} FROM spells ORDER BY id", Spell::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Spell::from_row(row)?)))? {
             let (id, mut spell) = row?;
-            spell.note = notes.for_entity("spells", &spell.name);
+            spell.ddobuilder_correction = notes.for_entity("spells", &spell.name);
             spell.modifier = modifiers.remove(&("spell".to_string(), id)).unwrap_or_default();
             spells.insert(id, spell);
         }
@@ -133,7 +133,8 @@ impl SpellListFile {
             }
             let spell = spells.get_mut(&id).context("stance has no spell")?;
             for stance in &mut stances {
-                stance.note = notes.for_named_child("spells", &spell.name, &[("stance", &stance.name)]);
+                stance.ddobuilder_correction =
+                    notes.for_named_child("spells", &spell.name, &[("stance", &stance.name)]);
             }
             spell.stance = stances;
         }

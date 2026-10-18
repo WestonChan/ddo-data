@@ -82,7 +82,7 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             group: Vec<FeatGroup>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<super::super::EntityNote>,
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             modifier: Vec<Modifier>,
             #[serde(flatten)]
@@ -156,7 +156,7 @@ impl FeatCategoryFile {
             feat.source_name = source_name;
             feat.citation = annotation.map_or_else(Vec::new, |annotation| annotation.citation.clone());
             feat.variant = annotation.and_then(|annotation| annotation.variant.clone()).or(feat.variant);
-            feat.note = notes.for_entity("feats", &feat.name);
+            feat.ddobuilder_correction = notes.for_entity("feats", &feat.name);
             feat.modifier = modifier_rows;
             feats.insert(id, feat);
         }
@@ -227,7 +227,7 @@ impl FeatCategoryFile {
             }
             let feat = feats.get_mut(&id).context("stance has no feat")?;
             for stance in &mut stances {
-                stance.note = notes.for_named_child("feats", &feat.name, &[("stance", &stance.name)]);
+                stance.ddobuilder_correction = notes.for_named_child("feats", &feat.name, &[("stance", &stance.name)]);
             }
             feat.stance = stances;
         }

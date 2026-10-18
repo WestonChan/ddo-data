@@ -1089,7 +1089,7 @@ Usable 5 times per rest."""
 icon = "SBDoubleShotBoost"
 is_clickie = true
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "SBDoubleshotboost"
@@ -1528,7 +1528,7 @@ stunned for three seconds (Perform + d20 saves for the Stun).
 icon = "SBSlapInTheFace"
 is_clickie = true
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "SBSlapIntheFace"

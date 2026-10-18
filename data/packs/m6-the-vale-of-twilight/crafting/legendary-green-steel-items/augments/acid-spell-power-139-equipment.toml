@@ -16,7 +16,7 @@ effect = "Acid Spell Power"
 effect_type = "SpellPower"
 targets = ["Acid"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 original_name = "Acid Spell Power - +150 Equipment"
 field = "description"
@@ -25,7 +25,7 @@ reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Corro
 url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
 read = "2026-09-30"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Acid Spell Power - +150 Equipment"
@@ -33,7 +33,7 @@ reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Corro
 url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
 read = "2026-09-30"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 original_name = "Acid Spell Power - +150 Equipment"
 field = "value"

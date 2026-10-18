@@ -1031,7 +1031,7 @@ cost_per_rank = [1]
 description = "+[1/2/3] Abjuration Spell DCs."
 icon = "ShadowDancerSpellFocusAbjuration"
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "ShadowdancerSpellFocusAbjuration"
@@ -1072,7 +1072,7 @@ cost_per_rank = [1]
 description = "+[1/2/3] Enchantment Spell DCs."
 icon = "ShadowDancerSpellFocusEnchantment"
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "ShadowdancerSpellFocusEnchantment"
@@ -1113,7 +1113,7 @@ cost_per_rank = [1]
 description = "+[1/2/3] Illusion Spell DCs."
 icon = "ShadowDancerSpellFocusIllusion"
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "ShadowdancerSpellFocusIllusion"
@@ -1154,7 +1154,7 @@ cost_per_rank = [1]
 description = "+[1/2/3] Necromancy Spell DCs."
 icon = "ShadowDancerSpellFocusNecromancy"
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "ShadowdancerSpellFocusNecromancy"

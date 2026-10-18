@@ -5,7 +5,7 @@ icon = "WrathOfSoraKell"
 name = "Legendary Devils' Infernal Dance"
 family = "LostPurpose"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_bonus"
 field = "name"
 upstream = "Legendary Devil's Infernal Dance"

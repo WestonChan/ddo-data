@@ -2,7 +2,7 @@ name = "Echoes of 2006"
 description_template = "Take a trip into the past!"
 verbose_name_template = "Echoes of 2006"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "verbose_name_template"
 upstream = "Earthen Guard"
@@ -10,7 +10,7 @@ reason = "The wiki names the goggles' effect Echoes of 2006; Maetrim swapped its
 url = "https://ddowiki.com/page/Item:Rose_Colored_Goggles"
 read = "2026-10-06"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "description_template"
 upstream = "When you are successfully attacked, there is a chance that a Stone Skin will be cast on you."

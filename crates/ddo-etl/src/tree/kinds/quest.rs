@@ -8,8 +8,6 @@ use std::path::Path;
 
 pub(crate) type QuestCitation = super::super::Citation;
 
-pub(crate) type QuestNote = super::super::EntityNote;
-
 #[derive(Debug, Serialize, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub(crate) struct QuestRun {
@@ -56,7 +54,7 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             citation: Vec<QuestCitation>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<QuestNote>,
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             run: Vec<QuestRun>,
         }
@@ -89,7 +87,7 @@ impl QuestFile {
             if let Some(annotation) = annotations.entity("quests", id) {
                 file.citation = annotation.citation.clone();
             }
-            file.note = notes.for_entity("quests", &file.name);
+            file.ddobuilder_correction = notes.for_entity("quests", &file.name);
             files.insert(id, file);
         }
         Ok(files)

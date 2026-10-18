@@ -18,7 +18,7 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<super::super::EntityNote>,
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
         }
     }
 }
@@ -52,7 +52,7 @@ impl AugmentSlotTypesFile {
         let mut row = select.query_map([], SocketType::from_row)?.collect::<rusqlite::Result<Vec<_>>>()?;
         let notes = super::super::export::CorrectionNoteIndex::from_database(db)?;
         for socket in &mut row {
-            socket.note = notes.for_entity("augment_slot_types", &socket.label);
+            socket.ddobuilder_correction = notes.for_entity("augment_slot_types", &socket.label);
         }
         Ok(Self { row })
     }

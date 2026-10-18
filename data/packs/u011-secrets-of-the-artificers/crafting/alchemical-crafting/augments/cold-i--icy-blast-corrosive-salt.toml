@@ -6,7 +6,7 @@ family = "Alchemical"
 icon = "Diamond"
 min_level = 29
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 original_name = "Cold I: Cold Blast + Corrosive Salt"
 field = "effect_description"
@@ -15,7 +15,7 @@ reason = "The wiki's legendary Water tier 1 effect is Icy Blast 6, not Cold Blas
 url = "https://ddowiki.com/page/Alchemical_Crafting"
 read = "2026-09-30"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Cold I: Cold Blast + Corrosive Salt"

@@ -6,6 +6,12 @@
         "field": {
           "type": "string"
         },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "read": {
           "type": "string"
         },
@@ -18,6 +24,7 @@
         "read"
       ],
       "type": "object",
+      "x-array": "citation",
       "x-table": "citations"
     },
     "CraftingSystemFamily": {
@@ -200,6 +207,7 @@
         "read"
       ],
       "type": "object",
+      "x-array": "removed",
       "x-table": "removed_entities"
     }
   },

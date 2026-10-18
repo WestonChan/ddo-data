@@ -2,7 +2,7 @@ name = "DR 3/Bludgeoning"
 description_template = "Reduces physical damage by 3, except from Bludgeoning attacks."
 verbose_name_template = "DR 3/Bludgeoning"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 original_name = "DR Damage Reduction 15/Bludgeoning"
 field = "verbose_name_template"
@@ -11,7 +11,7 @@ reason = "The wiki writes damage reduction lines as DR X/Y; the old template use
 url = "https://ddowiki.com/page/Item:Ironweave_Tunic"
 read = "2026-10-05"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "name"
 upstream = "DR Damage Reduction 15/Bludgeoning"

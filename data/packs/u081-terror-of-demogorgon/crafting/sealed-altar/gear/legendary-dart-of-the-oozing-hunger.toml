@@ -28,7 +28,7 @@ name = "Acidic 7"
 [[effect]]
 name = "Destructive Acid +7"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "name"
 upstream = "Legendary Dart of the Oozing Hunger of the Oozing Hunger"

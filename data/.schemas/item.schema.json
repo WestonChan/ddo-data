@@ -75,6 +75,12 @@
         "field": {
           "type": "string"
         },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "read": {
           "type": "string"
         },
@@ -87,9 +93,10 @@
         "read"
       ],
       "type": "object",
+      "x-array": "citation",
       "x-table": "citations"
     },
-    "EntityNote": {
+    "DdobuilderCorrection": {
       "additionalProperties": false,
       "properties": {
         "added_as_name": {
@@ -133,7 +140,8 @@
         "read"
       ],
       "type": "object",
-      "x-table": "entity_notes"
+      "x-array": "ddobuilder_correction",
+      "x-table": "corrections"
     },
     "FileNumber": {
       "anyOf": [
@@ -454,6 +462,7 @@
         "read"
       ],
       "type": "object",
+      "x-array": "removed",
       "x-table": "removed_entities"
     },
     "Requirement": {
@@ -753,6 +762,12 @@
       },
       "type": "array"
     },
+    "ddobuilder_correction": {
+      "items": {
+        "$ref": "#/$defs/DdobuilderCorrection"
+      },
+      "type": "array"
+    },
     "description": {
       "type": [
         "string",
@@ -825,12 +840,6 @@
     },
     "name": {
       "type": "string"
-    },
-    "note": {
-      "items": {
-        "$ref": "#/$defs/EntityNote"
-      },
-      "type": "array"
     },
     "race_required": {
       "type": [

@@ -21,7 +21,7 @@ name = "Legendary Firestalker Docent"
 name = "Legendary Roughcut Armor"
 primary = true
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_bonus"
 field = "icon"
 upstream = "DevotionOfTheFiremouth"

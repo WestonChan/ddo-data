@@ -1292,7 +1292,7 @@ ranks = 1
 x = 5
 y = 0
 
-[[enhancement.note]]
+[[enhancement.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "AMMAsterOfMagic"
@@ -2442,7 +2442,7 @@ You have trained extensively in Illusion magic, granting a +1 bonus to
 your spell DCs of that school."""
 icon = "AMPrimarySpellFocusillusion"
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "AMPrimarySpellFocusIllusion"
@@ -2766,7 +2766,7 @@ You have trained extensively in Illusion magic, granting a +2 bonus to
 your spell DCs of that school."""
 icon = "AMPrimarySpellFocusillusion"
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "AMPrimarySpellFocusIllusion"

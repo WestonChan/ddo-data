@@ -5,7 +5,7 @@ max_level = 20
 pack = "Vaults of the Artificers"
 patron = "House Cannith"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "quest"
 field = "pack"
 upstream = "Free to Play"
@@ -13,7 +13,7 @@ reason = "The Cannith challenge belongs to the Vaults of the Artificers adventur
 url = "https://ddowiki.com/page/Lava_Caves:_Time_is_Money_-_EPIC"
 read = "2026-10-05"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "quest"
 field = "patron"
 reason = "The Cannith challenge awards House Cannith favor."

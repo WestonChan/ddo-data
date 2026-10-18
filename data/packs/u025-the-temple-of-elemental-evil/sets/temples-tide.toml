@@ -25,7 +25,7 @@ name = "Robes of the Crushing Wave"
 [[item]]
 name = "The Flame and the Frost"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Threat Reduction -10 Artifact at 2 pieces; his tier lacks it."

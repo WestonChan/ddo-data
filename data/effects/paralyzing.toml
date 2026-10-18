@@ -3,7 +3,7 @@ default_value = 17
 description_template = "Any creature struck by this weapon must succeed on a DC {1} Will save or be paralyzed. The target may attempt a new save to end the effect every several seconds; otherwise the paralysis lasts for 1 minute. Certain creatures, such as the Undead and Constructs, cannot be paralyzed."
 verbose_name_template = "Paralyzing {1}"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "verbose_name_template"
 upstream = "Paralyzing"
@@ -11,7 +11,7 @@ reason = "The wiki gives the save DC as a line amount; Maetrim embeds 17 in pros
 url = "https://ddowiki.com/page/Item:Legendary_Demogorgon%27s_Sinew"
 read = "2026-10-05"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "description_template"
 upstream = "Any creature struck by this weapon must succeed on a DC 17 Will save or be paralyzed. The target may attempt a new save to end the effect every several seconds; otherwise the paralysis lasts for 1 minute. Certain creatures, such as the Undead and Constructs, cannot be paralyzed."
@@ -19,7 +19,7 @@ reason = "The save DC varies by item and must render from its effective value."
 url = "https://ddowiki.com/page/Item:Legendary_Demogorgon%27s_Sinew"
 read = "2026-10-05"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "default_value"
 reason = "Maetrim states DC 17 as the unoverridden Paralyzing value."

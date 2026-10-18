@@ -5,7 +5,7 @@ icon = "WrathOfSoraKell"
 name = "Devils' Infernal Dance"
 family = "LostPurpose"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_bonus"
 field = "name"
 upstream = "Devil's Infernal Dance"
@@ -13,7 +13,7 @@ reason = "The wiki spells the set Devils' Infernal Dance, as the augment correct
 url = "https://ddowiki.com/page/Lost_Purpose"
 read = "2026-10-02"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 original_name = "Devil's Infernal Dance"
 field = "remove"

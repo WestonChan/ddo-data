@@ -26,7 +26,7 @@ name = "Acidic 3"
 [[effect]]
 name = "Destructive Acid +2"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "icon"
 upstream = "Khopesh_1q"

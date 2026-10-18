@@ -5,7 +5,7 @@ icon = "WrathOfSoraKell"
 name = "Heart of Blades"
 family = "LostPurpose"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "value"
 upstream = 5

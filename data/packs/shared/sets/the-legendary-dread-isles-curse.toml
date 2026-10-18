@@ -296,7 +296,7 @@ name = "Osfield's Lightning Boots"
 [[item]]
 name = "The Legendary Compass Rose"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Attack Bonus +4 Profane at 5 pieces; his tier lacks it."
@@ -304,7 +304,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 5, Attack Bonus / Profane"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Damage Bonus +4 Profane at 5 pieces; his tier lacks it."

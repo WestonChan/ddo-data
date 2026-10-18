@@ -2245,7 +2245,7 @@ description = "While centered, your weapons gain +1[W]."
 [[row.group]]
 group_name = "Epic Feat"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "feat"
 field = "icon"
 upstream = "LegendaryMartialArts"

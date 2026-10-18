@@ -25,7 +25,7 @@ name = "Umbral Soul"
 [[item]]
 name = "Wildcard"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Doublestrike +10 Artifact at 3 pieces; his tier lacks it."
@@ -33,7 +33,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 3, Doublestrike / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Melee Power +10 Artifact at 3 pieces; his tier lacks it."
@@ -41,7 +41,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 3, Melee Power / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Helpless Damage +5 Artifact at 3 pieces; his tier lacks it."
@@ -49,7 +49,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 3, Helpless Damage / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Fortification Bypass +5 Artifact at 3 pieces; his tier lacks it."

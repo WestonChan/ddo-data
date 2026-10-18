@@ -37,7 +37,7 @@ value2 = 14
 [[effect]]
 name = "Feather Falling"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "scale"
 upstream = 1.0
@@ -46,7 +46,7 @@ url = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
 read = "2026-10-04"
 qualifier = "Armor Class / Insight"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "rounding"
 upstream = "down"
@@ -55,7 +55,7 @@ url = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
 read = "2026-10-04"
 qualifier = "Armor Class / Insight"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "scale"
 upstream = 1.0

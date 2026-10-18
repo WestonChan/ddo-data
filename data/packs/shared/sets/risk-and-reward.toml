@@ -7,7 +7,7 @@ name = "Reward"
 [[item]]
 name = "Risk"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"
 upstream = "Your melee attacks deal an additional +0.5[W] damage dice."

@@ -5,7 +5,7 @@ max_level = 20
 pack = "Vaults of the Artificers"
 patron = "House Cannith"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "quest"
 field = "pack"
 upstream = "Free to Play"

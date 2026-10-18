@@ -4,7 +4,7 @@ icon = "ProwessPlanarConfluxSetBonus"
 [[item]]
 name = "Planar Focus of Prowess"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Attack Bonus +4 Artifact at 2 pieces; his tier lacks it."
@@ -12,7 +12,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Attack Bonus / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Damage Bonus +4 Artifact at 2 pieces; his tier lacks it."

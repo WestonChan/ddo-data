@@ -1,9 +1,11 @@
+use crate::tree::{AppliedCorrection, Citation, RemovedEntry};
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum TableMerge {
     Entity { owner_column: Option<&'static str>, position_column: Option<&'static str> },
     Array { owner_column: &'static str, array: &'static str },
     DatasetArray { array: &'static str },
-    CorrectionNotes,
+    Corrections { array: &'static str },
     Rederived,
     DatasetVersion,
 }
@@ -18,7 +20,7 @@ pub const TABLE_MERGES: &[(&str, TableMerge)] = &[
     ("bonus_type_aliases", TableMerge::Rederived),
     ("bonus_types", TableMerge::Entity { owner_column: None, position_column: None }),
     ("challenge_rewards", TableMerge::Array { owner_column: "owner_id", array: "source" }),
-    ("citations", TableMerge::Array { owner_column: "owner_id", array: "citation" }),
+    (Citation::TABLE, TableMerge::Array { owner_column: "owner_id", array: Citation::ARRAY }),
     ("class_auto_buy_skills", TableMerge::Array { owner_column: "class_id", array: "auto_buy_skill" }),
     ("class_auto_feats", TableMerge::Array { owner_column: "class_id", array: "auto_feat" }),
     ("class_feat_slots", TableMerge::Array { owner_column: "class_id", array: "feat_slot" }),
@@ -27,7 +29,7 @@ pub const TABLE_MERGES: &[(&str, TableMerge)] = &[
     ("class_spells", TableMerge::Array { owner_column: "class_id", array: "spell" }),
     ("classes", TableMerge::Entity { owner_column: None, position_column: None }),
     ("clickies", TableMerge::Entity { owner_column: None, position_column: None }),
-    ("corrections", TableMerge::CorrectionNotes),
+    (AppliedCorrection::TABLE, TableMerge::Corrections { array: AppliedCorrection::ARRAY }),
     (
         "crafting_ingredients",
         TableMerge::Entity { owner_column: Some("system_id"), position_column: Some("sort_order") },
@@ -58,7 +60,6 @@ pub const TABLE_MERGES: &[(&str, TableMerge)] = &[
     ("enhancement_trees", TableMerge::Entity { owner_column: None, position_column: None }),
     ("enhancements", TableMerge::Entity { owner_column: Some("tree_id"), position_column: None }),
     ("entity_identity", TableMerge::Rederived),
-    ("entity_notes", TableMerge::Array { owner_column: "owner_id", array: "note" }),
     ("equipment_slots", TableMerge::Entity { owner_column: None, position_column: None }),
     ("event_rewards", TableMerge::Array { owner_column: "owner_id", array: "source" }),
     ("events", TableMerge::Entity { owner_column: None, position_column: None }),
@@ -98,7 +99,7 @@ pub const TABLE_MERGES: &[(&str, TableMerge)] = &[
     ("race_granted_feats", TableMerge::Array { owner_column: "race_id", array: "granted_feat" }),
     ("races", TableMerge::Entity { owner_column: None, position_column: None }),
     ("redirects", TableMerge::DatasetArray { array: "redirect" }),
-    ("removed_entities", TableMerge::Array { owner_column: "owner_id", array: "removed" }),
+    (RemovedEntry::TABLE, TableMerge::Array { owner_column: "owner_id", array: RemovedEntry::ARRAY }),
     ("requirements", TableMerge::Array { owner_column: "owner_id", array: "requirement" }),
     ("retired_slugs", TableMerge::DatasetArray { array: "retired" }),
     ("saga_quests", TableMerge::Array { owner_column: "saga_id", array: "quest" }),

@@ -7,7 +7,7 @@ name = "Shaman's Band"
 [[item]]
 name = "Shaman's Beads"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "bonus_type"
 upstream = "Equipment"
@@ -16,7 +16,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Acid Spell Power / Equipment"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "value"
 upstream = 55
@@ -25,7 +25,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Acid Spell Power / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "bonus_type"
 upstream = "Equipment"
@@ -34,7 +34,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Cold Spell Power / Equipment"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "value"
 upstream = 55
@@ -43,7 +43,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Cold Spell Power / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "bonus_type"
 upstream = "Equipment"
@@ -52,7 +52,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Electric Spell Power / Equipment"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "value"
 upstream = 55
@@ -61,7 +61,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Electric Spell Power / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "bonus_type"
 upstream = "Equipment"
@@ -70,7 +70,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Fire Spell Power / Equipment"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "value"
 upstream = 55
@@ -79,7 +79,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Fire Spell Power / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Acid Spell Lore +2 Artifact at 2 pieces; his tier lacks it."
@@ -87,7 +87,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Acid Spell Lore / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Cold Spell Lore +2 Artifact at 2 pieces; his tier lacks it."
@@ -95,7 +95,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Cold Spell Lore / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Electric Spell Lore +2 Artifact at 2 pieces; his tier lacks it."
@@ -103,7 +103,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Electric Spell Lore / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Fire Spell Lore +2 Artifact at 2 pieces; his tier lacks it."

@@ -11,7 +11,7 @@ dice_sides = 7
 scale = 1.0
 trigger = "On Hit"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect_damage"
 field = "add"
 reason = "Stoneworker's Hammer deals 2 to 8 Acid damage on hit, represented as 1d7+1."

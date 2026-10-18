@@ -7,7 +7,7 @@ icon = "DarkHallow"
 menu = "Masterminds of Sharn"
 set = "Darkhallow"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "filigree"
 field = "icon"
 upstream = "Darkhallow"
@@ -39,7 +39,7 @@ icon = "DarkHallow"
 menu = "Masterminds of Sharn"
 set = "Darkhallow"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "filigree"
 field = "icon"
 upstream = "Darkhallow"
@@ -71,7 +71,7 @@ icon = "DarkHallow"
 menu = "Masterminds of Sharn"
 set = "Darkhallow"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "filigree"
 field = "icon"
 upstream = "Darkhallow"
@@ -102,7 +102,7 @@ icon = "DarkHallow"
 menu = "Masterminds of Sharn"
 set = "Darkhallow"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "filigree"
 field = "icon"
 upstream = "Darkhallow"
@@ -134,7 +134,7 @@ icon = "DarkHallow"
 menu = "Masterminds of Sharn"
 set = "Darkhallow"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "filigree"
 field = "icon"
 upstream = "Darkhallow"

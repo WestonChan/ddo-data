@@ -7,7 +7,7 @@ name = "Champion of the Twins"
 [[item]]
 name = "Legendary Levik's Bracers"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_bonus"
 field = "name"
 upstream = "Legacy of Levik"

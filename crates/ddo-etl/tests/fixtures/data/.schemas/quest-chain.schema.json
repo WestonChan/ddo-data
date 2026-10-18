@@ -6,6 +6,12 @@
         "field": {
           "type": "string"
         },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "read": {
           "type": "string"
         },
@@ -18,6 +24,7 @@
         "read"
       ],
       "type": "object",
+      "x-array": "citation",
       "x-table": "citations"
     }
   },

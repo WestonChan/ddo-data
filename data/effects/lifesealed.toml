@@ -9,7 +9,7 @@ rounding = "down"
 scale = 1.0
 target = "Negative Absorption"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "description_template"
 upstream = "You are immune to magical effects that cause instant death. In addition, you have a {1} %b1 bonus to Negative Energy Absorption."

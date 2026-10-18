@@ -6,7 +6,7 @@ name = "Legendary Toven's Hammer"
 [[item]]
 name = "Titan Control Matrix"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_bonus"
 field = "icon"
 upstream = "ConduitOfTheTitans"
@@ -14,7 +14,7 @@ reason = "DDOBuilderV2's SetBonusImages folder has no ConduitOfTheTitans.png."
 url = "Output/DataFiles/SetBonusImages"
 read = "2026-10-07"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "remove"
 upstream = 0
@@ -23,7 +23,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 3"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"
 upstream = "+3 Artifact bonus to Rune Arm DCs"
@@ -32,7 +32,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Electric Spell Power +30 Artifact at 2 pieces; his tier lacks it."
@@ -40,7 +40,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Electric Spell Power / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Repair Spell Power +30 Artifact at 2 pieces; his tier lacks it."
@@ -48,7 +48,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Repair Spell Power / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Force Spell Power +30 Artifact at 2 pieces; his tier lacks it."

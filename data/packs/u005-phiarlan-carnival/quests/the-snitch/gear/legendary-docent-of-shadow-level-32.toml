@@ -58,7 +58,7 @@ bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Nightshield"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "name"
 upstream = "Docent of Shadow (level 32)"
@@ -66,7 +66,7 @@ reason = "The wiki titles this variant with the Legendary prefix."
 url = "https://ddowiki.com/page/Item:Legendary_Docent_of_Shadow_%28level_32%29"
 read = "2026-09-29"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_effect"
 original_name = "Docent of Shadow (level 32)"
 field = "add"

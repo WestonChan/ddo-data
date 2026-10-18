@@ -43,7 +43,7 @@ effect = "Universal Spell Power"
 effect_type = "SpellPower"
 targets = ["All"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 field = "add"
 reason = "The wiki's Reaper necklace enchantment also gives +2 Reaper Physical Resistance Rating."
@@ -51,7 +51,7 @@ url = "https://ddowiki.com/page/Reaper_Forge"
 read = "2026-09-30"
 qualifier = "Physical Resistance Rating / Reaper"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 field = "add"
 reason = "The wiki's Reaper necklace enchantment also gives +2 Reaper Magical Resistance Rating."

@@ -25,7 +25,7 @@ value = 5
 [[effect]]
 name = "Petrification Immunity"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "set_bonus"
 reason = "The wiki lists the Mountainskin Set among the bracers' enchantments; his item names no set."

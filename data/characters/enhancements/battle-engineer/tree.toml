@@ -1754,7 +1754,7 @@ negates the Trip effect.
 icon = "BEThunderShockWeaponCrossbow"
 is_clickie = true
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "BEthunderShockWeaponCrossbow"
@@ -1775,7 +1775,7 @@ icon = "BEThunderShockWeaponCrossbow"
 mod_ability = ["Intelligence"]
 tactical = "Sunder"
 
-[[enhancement.selection.dc.note]]
+[[enhancement.selection.dc.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "BEthunderShockWeaponCrossbow"
@@ -1796,7 +1796,7 @@ the Trip effect.
 icon = "BEThunderShockWeaponMelee"
 is_clickie = true
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "BEthunderShockWeaponMelee"
@@ -1817,7 +1817,7 @@ icon = "BEThunderShockWeaponMelee"
 mod_ability = ["Intelligence"]
 tactical = "Sunder"
 
-[[enhancement.selection.dc.note]]
+[[enhancement.selection.dc.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "BEthunderShockWeaponMelee"

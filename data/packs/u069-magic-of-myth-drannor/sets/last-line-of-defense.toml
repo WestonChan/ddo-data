@@ -3,7 +3,7 @@ name = "Last Line of Defense"
 [[item]]
 name = "Kindling, the Twin Flames of the City"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_bonus"
 field = "icon"
 upstream = "LastLineOfDefense"

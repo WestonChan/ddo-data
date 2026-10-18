@@ -181,7 +181,7 @@ family = "Greensteel_Legendary"
 name = "+32 Unconsciousness Range (Quality), 4 healing every 10 seconds (Quality)"
 family = "Greensteel_Legendary"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"
 upstream = "1% Physical Damage, +1% per additional augment"

@@ -36,7 +36,7 @@ name = "Repair Spell Lore"
 bonus_type = "Equipment"
 value = 18
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "remove"
 reason = "The wiki has Repair Lore instead of an untyped Repair skill line."
@@ -44,7 +44,7 @@ url = "https://ddowiki.com/page/Item:Epic_Flamekeep_Docent"
 read = "2026-10-04"
 qualifier = "Repair / Competence"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "add"
 reason = "The wiki lists Repair Lore +18%."
@@ -52,7 +52,7 @@ url = "https://ddowiki.com/page/Item:Epic_Flamekeep_Docent"
 read = "2026-10-04"
 qualifier = "Repair Spell Lore / Equipment"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "bonus_type"
 upstream = "Competence"

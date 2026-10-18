@@ -20,7 +20,7 @@ targets = [
     "Rust",
 ]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Iridescent Claw: Repair"

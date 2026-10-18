@@ -52,7 +52,7 @@ bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Nightshield"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "value"
 reason = "The wiki Void Lore tier grants 14% Negative and Poison spell lore."

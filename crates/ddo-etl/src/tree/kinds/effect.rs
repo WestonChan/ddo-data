@@ -41,8 +41,6 @@ database_record! {
     }
 }
 
-pub(crate) type EffectNote = super::super::EntityNote;
-
 database_record! {
     #[derive(Debug, Serialize, Deserialize, JsonSchema)]
     #[serde(deny_unknown_fields)]
@@ -72,7 +70,9 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             damage: Vec<EffectDamage>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<EffectNote>,
+            citation: Vec<super::super::Citation>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
         }
     }
 }
@@ -89,7 +89,7 @@ impl EffectFile {
         ))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
-            file.note = notes.for_entity("effects", &file.name);
+            file.ddobuilder_correction = notes.for_entity("effects", &file.name);
             files.insert(id, file);
         }
         let mut bonuses = db.prepare(&format!(

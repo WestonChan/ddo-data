@@ -2,7 +2,7 @@ name = "Fire Guard VIII"
 description_template = "When Hit in Melee: Deals 8 to 32 Fire damage to your attacker."
 verbose_name_template = "Fire Guard VIII"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "verbose_name_template"
 upstream = "Fire Guard II"

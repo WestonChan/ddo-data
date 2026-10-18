@@ -19,7 +19,7 @@ name = "Silverthread Belt"
 [[item]]
 name = "Thrummingspark Cord"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "value"
 upstream = 5

@@ -17,7 +17,7 @@ effect = "Electric Spell Power"
 effect_type = "SpellPower"
 targets = ["Electric"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Iridescent Claw: Electric"

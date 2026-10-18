@@ -1,4 +1,5 @@
 use crate::database_tables::{database_tables, table_columns, table_rows, DatabaseTable};
+use crate::tree::{Citation, RemovedEntry};
 use anyhow::{ensure, Context, Result};
 use rusqlite::{types::Value as SqlValue, Connection};
 use std::collections::{BTreeMap, BTreeSet};
@@ -188,7 +189,7 @@ impl IdentityIndex {
         if table == "entity_identity" && column == "entity_id" {
             fields.get("kind").and_then(sql_text).context("identity row has no kind")?;
         }
-        if matches!(table, "citations" | "removed_entities" | "entity_notes") && column == "owner_id" {
+        if [Citation::TABLE, RemovedEntry::TABLE].contains(&table) && column == "owner_id" {
             fields.get("owner_kind").and_then(sql_text).context("annotation row has no owner kind")?;
         }
         if column == "id" && self.rows.contains_key(&(table.to_string(), *id)) {
@@ -211,7 +212,7 @@ impl IdentityIndex {
         if table == "entity_identity" && column == "entity_id" {
             return fields.get("kind").and_then(sql_text).map(str::to_string);
         }
-        if matches!(table, "citations" | "removed_entities" | "entity_notes") && column == "owner_id" {
+        if [Citation::TABLE, RemovedEntry::TABLE].contains(&table) && column == "owner_id" {
             return fields.get("owner_kind").and_then(sql_text).map(str::to_string);
         }
         self.foreign_keys.get(&(table.to_string(), column.to_string())).cloned().or_else(|| {

@@ -32,7 +32,7 @@ value = 14
 [[effect]]
 name = "Graz'zt's Magic: Trap the Soul"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_effect"
 field = "add"
 reason = "The wiki item carries Graz'zt's Magic: Trap the Soul; his file has no such effect."

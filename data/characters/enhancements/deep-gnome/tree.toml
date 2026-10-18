@@ -43,7 +43,7 @@ ranks = 1
 x = 1
 y = 0
 
-[[enhancement.note]]
+[[enhancement.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "IntWis"
@@ -128,7 +128,7 @@ ranks = 1
 x = 3
 y = 0
 
-[[enhancement.note]]
+[[enhancement.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "IntWis"

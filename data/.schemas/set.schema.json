@@ -1,33 +1,6 @@
 {
   "$defs": {
-    "EffectGrant": {
-      "additionalProperties": false,
-      "properties": {
-        "bonus_type": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "x-reference-kind": "bonus_types"
-        },
-        "effect": {
-          "type": "string",
-          "x-reference-kind": "effects"
-        },
-        "value": {
-          "format": "int64",
-          "type": [
-            "integer",
-            "null"
-          ]
-        }
-      },
-      "required": [
-        "effect"
-      ],
-      "type": "object"
-    },
-    "EntityNote": {
+    "DdobuilderCorrection": {
       "additionalProperties": false,
       "properties": {
         "added_as_name": {
@@ -71,7 +44,35 @@
         "read"
       ],
       "type": "object",
-      "x-table": "entity_notes"
+      "x-array": "ddobuilder_correction",
+      "x-table": "corrections"
+    },
+    "EffectGrant": {
+      "additionalProperties": false,
+      "properties": {
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "effect": {
+          "type": "string",
+          "x-reference-kind": "effects"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "effect"
+      ],
+      "type": "object"
     },
     "FileNumber": {
       "anyOf": [
@@ -367,6 +368,12 @@
       },
       "type": "array"
     },
+    "ddobuilder_correction": {
+      "items": {
+        "$ref": "#/$defs/DdobuilderCorrection"
+      },
+      "type": "array"
+    },
     "icon": {
       "type": [
         "string",
@@ -385,12 +392,6 @@
     },
     "name": {
       "type": "string"
-    },
-    "note": {
-      "items": {
-        "$ref": "#/$defs/EntityNote"
-      },
-      "type": "array"
     },
     "tier": {
       "items": {

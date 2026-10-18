@@ -1188,7 +1188,7 @@ Earth Ki Melee Attack: You have imbued your attacks with extra force."""
 icon = "HMFistsOfIron"
 is_clickie = true
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "HMFIstsOfIron"

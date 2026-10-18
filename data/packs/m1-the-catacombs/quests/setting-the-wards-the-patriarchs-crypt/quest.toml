@@ -17,7 +17,7 @@ field = "quest facts"
 url = "https://ddowiki.com/page/Setting_the_Wards:_The_Patriarchs%27_Crypt"
 read = "2026-10-01"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "quest"
 field = "name"
 upstream = "Setting the Wards: The Patriarch's Crypt"

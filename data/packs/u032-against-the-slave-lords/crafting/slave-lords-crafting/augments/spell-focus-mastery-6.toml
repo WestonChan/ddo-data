@@ -17,7 +17,7 @@ effect = "Spell DCs"
 effect_type = "SpellDC"
 targets = ["All"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Spell Focus Mastery +4"
@@ -25,7 +25,7 @@ reason = "The wiki's legendary Slave Lords Spell Focus Mastery is +6."
 url = "https://ddowiki.com/page/Slave_Lords_Crafting"
 read = "2026-09-30"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 original_name = "Spell Focus Mastery +4"
 field = "value"

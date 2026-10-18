@@ -24,7 +24,7 @@ name = "Melee Alacrity"
 bonus_type = "Enhancement"
 value = 10
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "set_bonus"
 reason = "The wiki lists this item as a member of Fabricator's Ingenuity."

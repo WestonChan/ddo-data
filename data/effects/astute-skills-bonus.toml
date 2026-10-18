@@ -9,7 +9,7 @@ rounding = "down"
 scale = 1.0
 target = "Astute"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "verbose_name_template"
 upstream = "%b1 Alluring Skills Bonus +{1}"

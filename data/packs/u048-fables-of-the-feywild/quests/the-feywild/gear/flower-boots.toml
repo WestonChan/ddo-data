@@ -26,7 +26,7 @@ name = "Elemental Resistance"
 bonus_type = "Enhancement"
 value = 45
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "bonus_type"
 reason = "The wiki's Elemental Resistance +45 on these boots is a +45 Enhancement bonus; his buff has no bonus type."

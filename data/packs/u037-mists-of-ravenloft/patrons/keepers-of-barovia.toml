@@ -1,6 +1,6 @@
 name = "Keepers of Barovia"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "patron"
 field = "name"
 upstream = "Keepers of the Feather"

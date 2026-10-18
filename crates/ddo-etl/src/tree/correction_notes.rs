@@ -1,4 +1,4 @@
-use super::EntityNote;
+use super::DdobuilderCorrection;
 use crate::build::data_correction_value;
 use crate::corrections::{Correction, CorrectionValue};
 use anyhow::{bail, ensure, Context, Result};
@@ -13,9 +13,9 @@ pub(super) fn named_row_qualifier(keys: &[(&str, &str)]) -> String {
 
 pub(super) fn nested_notes(
     owner_name: &str,
-    notes: &[EntityNote],
+    notes: &[DdobuilderCorrection],
     keys: &[(&str, &str)],
-) -> Result<Vec<(String, EntityNote)>> {
+) -> Result<Vec<(String, DdobuilderCorrection)>> {
     let qualifier = named_row_qualifier(keys);
     notes
         .iter()
@@ -34,7 +34,7 @@ fn quoted_name(text: &str, prefix: &str) -> Result<Option<String>> {
         .transpose()
 }
 
-fn correction_for_note(note: &EntityNote, current_name: &str) -> Result<Correction> {
+fn correction_for_note(note: &DdobuilderCorrection, current_name: &str) -> Result<Correction> {
     let kind = CorrectionKind::parse(&note.kind).with_context(|| format!("unknown correction kind {:?}", note.kind))?;
     let mut correction = Correction {
         kind,
@@ -145,7 +145,7 @@ fn added_bonus_value(
 fn added_item_effect_value(
     transaction: &Transaction,
     current_name: &str,
-    note: &EntityNote,
+    note: &DdobuilderCorrection,
     correction: &Correction,
 ) -> Result<Value> {
     let item_id = owner_id(transaction, CorrectionKind::ItemEffect, current_name, correction)?;
@@ -200,7 +200,7 @@ fn added_damage_value(transaction: &Transaction, current_name: &str, correction:
 pub(super) fn correction_values(
     transaction: &Transaction,
     current_name: &str,
-    note: &EntityNote,
+    note: &DdobuilderCorrection,
     tier_descriptions: &BTreeMap<(String, i64), String>,
 ) -> Result<(String, String)> {
     let correction = correction_for_note(note, current_name)?;

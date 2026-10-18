@@ -40,7 +40,7 @@ name = "Acid Intensity"
 bonus_type = "Enhancement"
 value = 12
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "bonus_type"
 reason = "The wiki tooltip of the sceptre's Acid Intensity +12% calls it an Enhancement bonus; his buff has no bonus type."

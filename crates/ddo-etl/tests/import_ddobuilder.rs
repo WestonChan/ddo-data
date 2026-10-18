@@ -226,7 +226,7 @@ fn import_reports_a_note_his_value_now_matches() {
     let report = import_ddobuilder(&world.options).unwrap();
     assert!(!report.has_conflicts(), "{report}");
     let text = report.to_string();
-    assert!(text.contains("RESOLVED NOTE") && text.contains("ravager-fighter/tree.toml"), "{text}");
+    assert!(text.contains("RESOLVED CORRECTION") && text.contains("ravager-fighter/tree.toml"), "{text}");
     let mut expected = corrections;
     expected.entries[0].file_name = "data".into();
     assert_eq!(Corrections::from_database(&world.database()).unwrap(), expected);
@@ -458,7 +458,7 @@ fn import_cli_accepts_a_corrections_override() {
     let output = cli(&world).arg("--corrections").arg(override_dir).output().unwrap();
     assert_eq!(output.status.code(), Some(2), "{}", String::from_utf8_lossy(&output.stderr));
     let report = String::from_utf8(output.stdout).unwrap();
-    assert!(report.contains("RESOLVED NOTE") && report.contains("Our researched Barbarian"), "{report}");
+    assert!(report.contains("RESOLVED CORRECTION") && report.contains("Our researched Barbarian"), "{report}");
     assert!(!report.contains("CONFLICT enhancement \"Ravager: Barbarian Power Attack\""), "{report}");
     assert!(report.contains("enhancements/ravbarbarianpowerattack description"), "{report}");
 }

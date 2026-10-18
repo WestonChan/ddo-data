@@ -2,7 +2,7 @@ name = "DR 2/-"
 description_template = "Reduces all physical damage by 2."
 verbose_name_template = "DR 2/-"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "verbose_name_template"
 upstream = "DR Damage Reduction 2/-"

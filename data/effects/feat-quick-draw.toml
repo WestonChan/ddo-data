@@ -2,7 +2,7 @@ name = "Feat: Quick Draw"
 description_template = "While equipped, this item grants the feat Quick Draw."
 verbose_name_template = "Feat: Quick Draw"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 original_name = "Feat Quick Draw"
 field = "verbose_name_template"
@@ -11,7 +11,7 @@ reason = "The wiki line uses this effect title; Maetrim copied an unrelated titl
 url = "https://ddowiki.com/page/Item:Legendary_Mastermaker's_Fingers"
 read = "2026-10-05"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 original_name = "Feat Quick Draw"
 field = "description_template"
@@ -20,7 +20,7 @@ reason = "The wiki puts Quick Draw in the line title and the remaining sentence 
 url = "https://ddowiki.com/page/Item:Legendary_Mastermaker's_Fingers"
 read = "2026-10-05"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "name"
 upstream = "Feat Quick Draw"

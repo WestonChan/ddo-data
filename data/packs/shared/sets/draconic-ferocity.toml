@@ -25,7 +25,7 @@ name = "Helm of the Black Dragon (Level 24)"
 [[item]]
 name = "Helm of the Black Dragon (Level 25)"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"
 upstream = "+3% Artifact bonus to melee Doublestrike chance"

@@ -1,4 +1,4 @@
-use super::{wiki_citations, Citation, EntityNote, RemovedEntry, NAMED_ENTITY_TABLES};
+use super::{wiki_citations, Citation, RemovedEntry, NAMED_ENTITY_TABLES};
 use crate::wiki::WikiOverrides;
 use anyhow::{Context, Result};
 use rusqlite::{params, Connection, OptionalExtension};
@@ -7,7 +7,7 @@ use std::collections::BTreeMap;
 use std::path::Path;
 
 database_record! {
-    pub(super) struct AppliedCorrection in "corrections" {
+    pub(crate) struct AppliedCorrection in "corrections" as "ddobuilder_correction" {
         keys {}
         fields {
             kind: String => kind,
@@ -53,13 +53,12 @@ pub(super) struct EntityAnnotation {
     pub(super) expected_description: Option<String>,
     pub(super) citation: Vec<Citation>,
     pub(super) removed: Vec<RemovedEntry>,
-    pub(super) reviewed_notes: Vec<EntityNote>,
     pub(super) variant: Option<String>,
 }
 
 impl EntityAnnotation {
     fn is_empty(&self) -> bool {
-        self.citation.is_empty() && self.removed.is_empty() && self.reviewed_notes.is_empty() && self.variant.is_none()
+        self.citation.is_empty() && self.removed.is_empty() && self.variant.is_none()
     }
 }
 
@@ -83,9 +82,8 @@ impl EntityAnnotations {
             let annotation = EntityAnnotation {
                 expected_name: Some(expected_name.clone()),
                 expected_description: identity.description.clone(),
-                citation: Vec::new(),
+                citation: identity.citation.clone(),
                 removed: identity.removed.clone(),
-                reviewed_notes: identity.note.clone(),
                 variant: identity.variant.clone(),
             };
             let exact = if let Some(description) = annotation.expected_description.as_deref() {
@@ -157,16 +155,6 @@ impl EntityAnnotations {
             let (kind, id, removed) = row?;
             metadata.entities.entry(entity_key(&kind, id)).or_default().removed.push(removed);
         }
-        let mut notes = db.prepare(&format!(
-            "SELECT {} FROM entity_notes ORDER BY owner_kind, owner_id, note_index",
-            EntityNote::select_columns()
-        ))?;
-        for row in notes.query_map([], |row| {
-            Ok((row.get::<_, String>("owner_kind")?, row.get::<_, i64>("owner_id")?, EntityNote::from_row(row)?))
-        })? {
-            let (kind, id, note) = row?;
-            metadata.entities.entry(entity_key(&kind, id)).or_default().reviewed_notes.push(note);
-        }
         metadata.files = files_from_database(db)?;
         Ok(metadata)
     }
@@ -181,9 +169,6 @@ impl EntityAnnotations {
             insert_citations(db, table, id, &annotation.citation)?;
             for removed in &annotation.removed {
                 removed.insert(db, table, id)?;
-            }
-            for (index, note) in annotation.reviewed_notes.iter().enumerate() {
-                note.insert(db, table, id, index as i64)?;
             }
         }
         store_files(db, &self.files)?;
@@ -200,7 +185,6 @@ impl EntityAnnotations {
                 let annotation = EntityAnnotation {
                     citation: file.citation.clone(),
                     removed: file.removed.clone(),
-                    reviewed_notes: file.note.iter().filter(|note| note.kind == "slug_collision").cloned().collect(),
                     ..Default::default()
                 };
                 entries.push((entity_key("items", id), annotation));
@@ -213,7 +197,6 @@ impl EntityAnnotations {
                 let id = super::ids::stable_hash(&["augments", &identity]);
                 let annotation = EntityAnnotation {
                     citation: file.citation.clone(),
-                    reviewed_notes: file.note.iter().filter(|note| note.kind == "slug_collision").cloned().collect(),
                     variant: file.variant.clone(),
                     ..Default::default()
                 };
@@ -221,11 +204,7 @@ impl EntityAnnotations {
             }
             SourceFile::Pack(file) => {
                 let id = super::ids::stable_hash(&["adventure_packs", &super::slug(&file.name)]);
-                let annotation = EntityAnnotation {
-                    citation: file.citation.clone(),
-                    reviewed_notes: file.note.iter().filter(|note| note.kind == "release").cloned().collect(),
-                    ..Default::default()
-                };
+                let annotation = EntityAnnotation { citation: file.citation.clone(), ..Default::default() };
                 entries.push((entity_key("adventure_packs", id), annotation));
             }
             SourceFile::Quest(file) => {
@@ -233,7 +212,6 @@ impl EntityAnnotations {
                 let id = super::ids::stable_hash(&["quests", &identity]);
                 let annotation = EntityAnnotation {
                     citation: file.citation.clone(),
-                    reviewed_notes: file.note.iter().filter(|note| note.kind == "slug_collision").cloned().collect(),
                     variant: file.variant.clone(),
                     ..Default::default()
                 };
@@ -243,7 +221,7 @@ impl EntityAnnotations {
                 let identity = super::qualified_slug(&file.name, file.variant.as_deref());
                 let id = super::ids::stable_hash(&["effects", &identity]);
                 let annotation = EntityAnnotation {
-                    reviewed_notes: file.note.iter().filter(|note| note.kind == "slug_collision").cloned().collect(),
+                    citation: file.citation.clone(),
                     variant: file.variant.clone(),
                     ..Default::default()
                 };
@@ -295,7 +273,6 @@ impl EntityAnnotations {
                     let id = super::ids::stable_hash(&["feats", &identity]);
                     let annotation = EntityAnnotation {
                         citation: row.citation.clone(),
-                        reviewed_notes: row.note.iter().filter(|note| note.kind == "slug_collision").cloned().collect(),
                         variant: row.variant.clone(),
                         ..Default::default()
                     };
@@ -308,7 +285,6 @@ impl EntityAnnotations {
                     let id = super::ids::stable_hash(&["enhancements", &identity]);
                     let annotation = EntityAnnotation {
                         citation: row.citation.clone(),
-                        reviewed_notes: row.note.iter().filter(|note| note.kind == "slug_collision").cloned().collect(),
                         variant: row.variant.clone(),
                         ..Default::default()
                     };
@@ -348,10 +324,11 @@ impl EntityAnnotations {
                 ))
             })? {
                 let (id, name, provenance, family) = row?;
-                let citation =
+                let mut citations =
                     wiki_citations(wiki, table, &name, provenance.as_deref() == Some("wiki"), family.as_deref());
                 let annotation = self.entities.entry(entity_key(table, id)).or_default();
-                annotation.citation = citation;
+                citations.append(&mut annotation.citation);
+                annotation.citation = citations;
             }
         }
         self.entities.retain(|_, annotation| !annotation.is_empty());

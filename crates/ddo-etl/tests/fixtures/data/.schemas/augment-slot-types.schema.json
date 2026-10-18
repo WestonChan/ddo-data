@@ -1,6 +1,6 @@
 {
   "$defs": {
-    "EntityNote": {
+    "DdobuilderCorrection": {
       "additionalProperties": false,
       "properties": {
         "added_as_name": {
@@ -44,22 +44,23 @@
         "read"
       ],
       "type": "object",
-      "x-table": "entity_notes"
+      "x-array": "ddobuilder_correction",
+      "x-table": "corrections"
     },
     "SocketType": {
       "additionalProperties": false,
       "properties": {
+        "ddobuilder_correction": {
+          "items": {
+            "$ref": "#/$defs/DdobuilderCorrection"
+          },
+          "type": "array"
+        },
         "family": {
           "type": "string"
         },
         "label": {
           "type": "string"
-        },
-        "note": {
-          "items": {
-            "$ref": "#/$defs/EntityNote"
-          },
-          "type": "array"
         },
         "qualifier": {
           "type": [

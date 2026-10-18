@@ -5,7 +5,7 @@ icon = "WrathOfSoraKell"
 min_level = 18
 set_bonus = "The Fury's Rage"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "min_level"
 upstream = 318

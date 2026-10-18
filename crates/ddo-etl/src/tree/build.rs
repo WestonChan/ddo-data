@@ -548,7 +548,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
     let mut tier_descriptions = BTreeMap::new();
     let mut primary_set_by_item = BTreeMap::new();
     for (path, file, id) in inserted_files {
-        let mut correction_notes_to_insert = Vec::<(String, EntityNote)>::new();
+        let mut correction_notes_to_insert = Vec::<(String, DdobuilderCorrection)>::new();
         let mut removed_entries_to_insert = Vec::<RemovedEntry>::new();
         let outcome = (|| -> Result<()> {
             match file {
@@ -566,7 +566,8 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                         }
                     }
                     file.insert_sources(&transaction, id, &quest_epic_names, &source_aliases)?;
-                    correction_notes_to_insert.extend(file.note.iter().cloned().map(|note| (file.name.clone(), note)));
+                    correction_notes_to_insert
+                        .extend(file.ddobuilder_correction.iter().cloned().map(|note| (file.name.clone(), note)));
                     removed_entries_to_insert.extend(file.removed.iter().cloned());
                 }
                 SourceFile::Augment(file) => {
@@ -575,13 +576,15 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                     file.insert_slots(&transaction, path, id)?;
                     file.insert_modifiers(&transaction, path, id)?;
                     file.insert_sources(&transaction, id, &quest_epic_names, &source_aliases)?;
-                    correction_notes_to_insert.extend(file.note.iter().cloned().map(|note| (file.name.clone(), note)));
+                    correction_notes_to_insert
+                        .extend(file.ddobuilder_correction.iter().cloned().map(|note| (file.name.clone(), note)));
                 }
                 SourceFile::Effect(file) => {
                     let id = id.context("Effect file has no identity")?;
                     file.insert_bonuses(&transaction, path, id)?;
                     file.insert_damage(&transaction, path, id)?;
-                    correction_notes_to_insert.extend(file.note.iter().cloned().map(|note| (file.name.clone(), note)));
+                    correction_notes_to_insert
+                        .extend(file.ddobuilder_correction.iter().cloned().map(|note| (file.name.clone(), note)));
                 }
                 SourceFile::StatGroup(file) => {
                     let id = id.context("Group file has no identity")?;
@@ -591,7 +594,8 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                     let id = id.context("Set file has no identity")?;
                     file.insert_tiers(&transaction, path, id)?;
                     file.insert_members(&transaction, path, id)?;
-                    correction_notes_to_insert.extend(file.note.iter().cloned().map(|note| (file.name.clone(), note)));
+                    correction_notes_to_insert
+                        .extend(file.ddobuilder_correction.iter().cloned().map(|note| (file.name.clone(), note)));
                     for tier in &file.tier {
                         if let Some(description) = &tier.description {
                             tier_descriptions.insert((file.name.clone(), tier.equipped_count), description.clone());
@@ -633,66 +637,64 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                 SourceFile::OptionalBuffs(file) => {
                     for row in &file.row {
                         correction_notes_to_insert
-                            .extend(row.note.iter().cloned().map(|note| (row.name.clone(), note)));
+                            .extend(row.ddobuilder_correction.iter().cloned().map(|note| (row.name.clone(), note)));
                     }
                 }
                 SourceFile::Clickies(file) => {
                     for row in &file.row {
                         correction_notes_to_insert
-                            .extend(row.note.iter().cloned().map(|note| (row.name.clone(), note)));
+                            .extend(row.ddobuilder_correction.iter().cloned().map(|note| (row.name.clone(), note)));
                     }
                 }
-                SourceFile::Quest(file) => {
-                    correction_notes_to_insert.extend(file.note.iter().cloned().map(|note| (file.name.clone(), note)))
-                }
-                SourceFile::Pack(file) => {
-                    correction_notes_to_insert.extend(file.note.iter().cloned().map(|note| (file.name.clone(), note)))
-                }
-                SourceFile::Patron(file) => {
-                    correction_notes_to_insert.extend(file.note.iter().cloned().map(|note| (file.name.clone(), note)))
-                }
+                SourceFile::Quest(file) => correction_notes_to_insert
+                    .extend(file.ddobuilder_correction.iter().cloned().map(|note| (file.name.clone(), note))),
+                SourceFile::Pack(file) => correction_notes_to_insert
+                    .extend(file.ddobuilder_correction.iter().cloned().map(|note| (file.name.clone(), note))),
+                SourceFile::Patron(file) => correction_notes_to_insert
+                    .extend(file.ddobuilder_correction.iter().cloned().map(|note| (file.name.clone(), note))),
                 SourceFile::AugmentSlotTypes(file) => {
                     for row in &file.row {
                         correction_notes_to_insert
-                            .extend(row.note.iter().cloned().map(|note| (row.label.clone(), note)));
+                            .extend(row.ddobuilder_correction.iter().cloned().map(|note| (row.label.clone(), note)));
                     }
                 }
                 SourceFile::EnhancementTree(file) => {
-                    correction_notes_to_insert.extend(file.note.iter().cloned().map(|note| (file.name.clone(), note)));
+                    correction_notes_to_insert
+                        .extend(file.ddobuilder_correction.iter().cloned().map(|note| (file.name.clone(), note)));
                     for row in &file.enhancement {
                         correction_notes_to_insert
-                            .extend(row.note.iter().cloned().map(|note| (row.name.clone(), note)));
+                            .extend(row.ddobuilder_correction.iter().cloned().map(|note| (row.name.clone(), note)));
                         for dc in &row.dc {
                             correction_notes_to_insert.extend(correction_notes::nested_notes(
                                 &row.name,
-                                &dc.note,
+                                &dc.ddobuilder_correction,
                                 &[("dc", &dc.name)],
                             )?);
                         }
                         for stance in &row.stance {
                             correction_notes_to_insert.extend(correction_notes::nested_notes(
                                 &row.name,
-                                &stance.note,
+                                &stance.ddobuilder_correction,
                                 &[("stance", &stance.name)],
                             )?);
                         }
                         for selection in &row.selection {
                             correction_notes_to_insert.extend(correction_notes::nested_notes(
                                 &row.name,
-                                &selection.note,
+                                &selection.ddobuilder_correction,
                                 &[("selection", &selection.name)],
                             )?);
                             for stance in &selection.stance {
                                 correction_notes_to_insert.extend(correction_notes::nested_notes(
                                     &row.name,
-                                    &stance.note,
+                                    &stance.ddobuilder_correction,
                                     &[("selection", &selection.name), ("stance", &stance.name)],
                                 )?);
                             }
                             for dc in &selection.dc {
                                 correction_notes_to_insert.extend(correction_notes::nested_notes(
                                     &row.name,
-                                    &dc.note,
+                                    &dc.ddobuilder_correction,
                                     &[("selection", &selection.name), ("dc", &dc.name)],
                                 )?);
                             }
@@ -702,7 +704,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                 SourceFile::FiligreeSet(file) => {
                     for row in &file.row {
                         correction_notes_to_insert
-                            .extend(row.note.iter().cloned().map(|note| (row.name.clone(), note)));
+                            .extend(row.ddobuilder_correction.iter().cloned().map(|note| (row.name.clone(), note)));
                     }
                 }
                 SourceFile::FeatCategory(file) => {
@@ -710,11 +712,11 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                     file.insert_abilities(&transaction)?;
                     for row in &file.row {
                         correction_notes_to_insert
-                            .extend(row.note.iter().cloned().map(|note| (row.name.clone(), note)));
+                            .extend(row.ddobuilder_correction.iter().cloned().map(|note| (row.name.clone(), note)));
                         for stance in &row.stance {
                             correction_notes_to_insert.extend(correction_notes::nested_notes(
                                 &row.name,
-                                &stance.note,
+                                &stance.ddobuilder_correction,
                                 &[("stance", &stance.name)],
                             )?);
                         }
@@ -725,11 +727,11 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                     file.insert_modifiers_and_stances(&transaction, path)?;
                     for row in &file.row {
                         correction_notes_to_insert
-                            .extend(row.note.iter().cloned().map(|note| (row.name.clone(), note)));
+                            .extend(row.ddobuilder_correction.iter().cloned().map(|note| (row.name.clone(), note)));
                         for stance in &row.stance {
                             correction_notes_to_insert.extend(correction_notes::nested_notes(
                                 &row.name,
-                                &stance.note,
+                                &stance.ddobuilder_correction,
                                 &[("stance", &stance.name)],
                             )?);
                         }
@@ -751,13 +753,12 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         .into_iter()
         .flat_map(|(path, notes)| notes.into_iter().map(move |(entity_name, note)| (path, entity_name, note)))
     {
-        if note.kind == "release" {
-            ensure!(schemas::file_kind(root, path)? == "Pack", "{}: release notes belong to packs", path.display());
-            continue;
-        }
-        if note.kind == "slug_collision" {
-            continue;
-        }
+        ensure!(
+            !matches!(note.kind.as_str(), "release" | "slug_collision"),
+            "{}: {:?} is not a DDOBuilder correction; record the review as the note of a [[citation]]",
+            path.display(),
+            note.kind
+        );
         (|| -> Result<()> {
             let correction_name = if let Some(original_name) = &note.original_name {
                 original_name.clone()

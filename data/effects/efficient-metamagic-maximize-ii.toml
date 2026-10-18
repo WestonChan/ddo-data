@@ -10,7 +10,7 @@ rounding = "down"
 scale = 1.0
 target = "Maximize Cost Reduction"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "verbose_name_template"
 upstream = "Efficient Metamagic - Maximize II -2"
@@ -18,7 +18,7 @@ reason = "The wiki shows the tier name without the fixed spell-point reduction."
 url = "https://ddowiki.com/page/Item:Legendary_Staff_of_Arcane_Power"
 read = "2026-10-05"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "description_template"
 upstream = "The additional spell point cost for using the Maximize Metamagic feat is reduced by 2 SP."
@@ -26,7 +26,7 @@ reason = "The wiki says Maximize II reduces the cost by 4 SP rather than 2."
 url = "https://ddowiki.com/page/Item:Legendary_Staff_of_Arcane_Power"
 read = "2026-10-05"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "constant"
 upstream = -2

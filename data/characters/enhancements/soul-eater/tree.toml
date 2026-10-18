@@ -1076,7 +1076,7 @@ ranks = 1
 x = 3
 y = 5
 
-[[enhancement.note]]
+[[enhancement.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "SESpellTearing"

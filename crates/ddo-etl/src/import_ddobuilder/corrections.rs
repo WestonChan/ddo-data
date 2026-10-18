@@ -40,7 +40,7 @@ impl CorrectionKey {
 
 #[derive(Debug)]
 pub(super) enum CorrectionEvent {
-    ResolvedNote { key: CorrectionKey, previous: String, new: String },
+    ResolvedCorrection { key: CorrectionKey, previous: String, new: String },
     Conflict { key: CorrectionKey, previous: String, new: String, ours: String },
 }
 
@@ -117,7 +117,7 @@ pub(super) fn correction_events(
             continue;
         }
         if new == correction.to.to_json() || new == "renamed upstream" {
-            events.push(CorrectionEvent::ResolvedNote { key, previous, new });
+            events.push(CorrectionEvent::ResolvedCorrection { key, previous, new });
         } else {
             let ours = values.get(&key).cloned().unwrap_or_else(|| correction.to.to_json());
             events.push(CorrectionEvent::Conflict { key, previous, new, ours });

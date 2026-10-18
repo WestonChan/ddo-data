@@ -8,7 +8,7 @@ family = "standard"
 label = "colorless"
 variant = "colorless"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "socket_label"
 field = "name"
 upstream = "crafting: colroless"
@@ -96,7 +96,7 @@ family = "crafting"
 label = "crafting: attuned by heroism: tier 1"
 variant = "attuned by heroism: tier 1"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "socket_label"
 field = "name"
 upstream = "crafting: attuned to heroism 1"
@@ -104,7 +104,7 @@ reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 1, t
 url = "https://ddowiki.com/page/Stormreaver_Monument"
 read = "2026-09-30"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "socket_label"
 field = "name"
 upstream = "crafting: attuned to heroism tier 1"
@@ -117,7 +117,7 @@ family = "crafting"
 label = "crafting: attuned by heroism: tier 2"
 variant = "attuned by heroism: tier 2"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "socket_label"
 field = "name"
 upstream = "crafting: attuned to heroism 2"
@@ -125,7 +125,7 @@ reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 2, t
 url = "https://ddowiki.com/page/Stormreaver_Monument"
 read = "2026-09-30"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "socket_label"
 field = "name"
 upstream = "crafting: attuned to heroism tier 2"
@@ -138,7 +138,7 @@ family = "crafting"
 label = "crafting: attuned by heroism: tier 3"
 variant = "attuned by heroism: tier 3"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "socket_label"
 field = "name"
 upstream = "crafting: attuned to heroism 3"
@@ -151,7 +151,7 @@ family = "crafting"
 label = "crafting: attuned by heroism: tier 4"
 variant = "attuned by heroism: tier 4"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "socket_label"
 field = "name"
 upstream = "crafting: attuned to heroism 4"
@@ -1124,7 +1124,7 @@ family = "crafting"
 label = "crafting: upgradeable item"
 variant = "upgradeable item"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "socket_label"
 field = "name"
 upstream = "crafting: upgradable item"
@@ -1152,7 +1152,7 @@ family = "crafting"
 label = "crafting: upgradeable tier 2"
 variant = "upgradeable tier 2"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "socket_label"
 field = "name"
 upstream = "crafting: upgradeable - tier 2"
@@ -1165,7 +1165,7 @@ family = "crafting"
 label = "crafting: upgradeable tier 3"
 variant = "upgradeable tier 3"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "socket_label"
 field = "name"
 upstream = "crafting: upgradeable - tier 3"
@@ -1223,7 +1223,7 @@ family = "crafting"
 label = "crafting: zhentarim attuned"
 variant = "zhentarim attuned"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "socket_label"
 field = "name"
 upstream = "crafting: zentarim attuned"

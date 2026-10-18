@@ -16,7 +16,7 @@ rounding = "down"
 scale = 1.0
 target = "Hide"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "verbose_name_template"
 upstream = "Command +{1}"

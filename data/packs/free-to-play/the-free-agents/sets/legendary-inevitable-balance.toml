@@ -12,7 +12,7 @@ name = "Legendary Sunken Radiance"
 [[item]]
 name = "Legendary Sunken Virtue"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_bonus"
 field = "icon"
 upstream = "InevitableBalance"
@@ -20,7 +20,7 @@ reason = "DDOBuilderV2's SetBonusImages folder has no InevitableBalance.png."
 url = "Output/DataFiles/SetBonusImages"
 read = "2026-10-07"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"
 upstream = "+10 Melee Power, 10% Doublestrike, Your Sneak Attacks do additional Bane damage"

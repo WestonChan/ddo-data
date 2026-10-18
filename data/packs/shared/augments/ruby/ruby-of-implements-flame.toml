@@ -27,7 +27,7 @@ amounts = [1]
 bonus_type = "Enhancement"
 effect_type = "ImplementInYourHands"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Ruby of Implements's Flame"

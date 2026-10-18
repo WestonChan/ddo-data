@@ -776,7 +776,7 @@ mod tests {
             let error = read_file(&root, &path, &format!("{field} = false\n{contents}")).unwrap_err().to_string();
             assert!(error.contains(field) && error.contains("must omit") && error.contains("sir-squilliam"), "{error}");
         }
-        let evidence = format!("{contents}\n[[note]]\nkind = 'item'\nfield = 'is_legacy'\nupstream = false\nreason = 'Evidence'\nurl = 'https://ddowiki.com/page/Item:Example'\nread = '2026-10-08'\n");
+        let evidence = format!("{contents}\n[[ddobuilder_correction]]\nkind = 'item'\nfield = 'is_legacy'\nupstream = false\nreason = 'Evidence'\nurl = 'https://ddowiki.com/page/Item:Example'\nread = '2026-10-08'\n");
         read_file(&root, &path, &evidence).unwrap();
     }
 
@@ -900,6 +900,56 @@ mod tests {
         let error = validate_source_value(path, &parsed).unwrap_err().to_string();
         assert!(error.contains("source_id"), "{error}");
         assert!(error.contains("new-item.toml"), "{error}");
+    }
+
+    fn mirrored_arrays(
+        schema: &serde_json::Value,
+        node: &serde_json::Value,
+        arrays: &mut std::collections::BTreeSet<(String, String, String)>,
+    ) {
+        if let Some(properties) = node["properties"].as_object() {
+            for (property_name, property) in properties {
+                let rows = &property["items"];
+                let row = rows["$ref"]
+                    .as_str()
+                    .and_then(|reference| reference.strip_prefix("#/$defs/"))
+                    .map_or(rows, |name| &schema["$defs"][name]);
+                if let Some(table) = row["x-table"].as_str() {
+                    let declared = row["x-array"].as_str().unwrap_or_default();
+                    arrays.insert((table.to_string(), declared.to_string(), property_name.clone()));
+                }
+            }
+        }
+        for definition in node["$defs"].as_object().into_iter().flat_map(|definitions| definitions.values()) {
+            mirrored_arrays(schema, definition, arrays);
+        }
+    }
+
+    #[test]
+    fn annotation_arrays_take_their_names_from_their_mirror_table_declarations() {
+        let mut arrays = std::collections::BTreeSet::new();
+        for json in super::schema_files().unwrap().values() {
+            let schema: serde_json::Value = serde_json::from_str(json).unwrap();
+            mirrored_arrays(&schema, &schema, &mut arrays);
+        }
+        for table in ["citations", "removed_entities", "corrections"] {
+            assert!(
+                arrays.iter().any(|(mirrored, declared, _)| mirrored == table && !declared.is_empty()),
+                "no file array mirrors {table} with a declared array name: {arrays:?}"
+            );
+        }
+        for (table, declared, property_name) in arrays.iter().filter(|(_, declared, _)| !declared.is_empty()) {
+            assert_eq!(property_name, declared, "a file array mirroring {table} must be named {declared}");
+            let merged_array = crate::delta::TABLE_MERGES.iter().find(|(merged, _)| merged == table).and_then(
+                |(_, merge)| match merge {
+                    crate::delta::TableMerge::Array { array, .. } | crate::delta::TableMerge::Corrections { array } => {
+                        Some(*array)
+                    }
+                    _ => None,
+                },
+            );
+            assert_eq!(merged_array, Some(declared.as_str()), "TABLE_MERGES must merge {table} as {declared}");
+        }
     }
 
     #[test]

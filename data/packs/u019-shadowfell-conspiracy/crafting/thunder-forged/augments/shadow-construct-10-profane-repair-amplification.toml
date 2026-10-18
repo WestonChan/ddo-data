@@ -15,7 +15,7 @@ bonus_type = "Enhancement"
 effect = "Repair Amplification"
 effect_type = "RepairAmplification"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 original_name = "Shadow Construct - Repair Amplification 10%"
 field = "description"
@@ -24,7 +24,7 @@ reason = "The wiki's Shadow Construct is Profane Repair Amplification +10, a Pro
 url = "https://ddowiki.com/page/Thunder-Forged"
 read = "2026-09-30"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Shadow Construct - Repair Amplification 10%"
@@ -32,7 +32,7 @@ reason = "The wiki's Shadow Construct is Profane Repair Amplification +10, a Pro
 url = "https://ddowiki.com/page/Thunder-Forged"
 read = "2026-09-30"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 original_name = "Shadow Construct - Repair Amplification 10%"
 field = "bonus_type"

@@ -29,7 +29,7 @@ name = "Evil Outsider Bane 2"
 [[effect]]
 name = "Crushing 4"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "name"
 upstream = "Spectral Great Axe (level 4)"

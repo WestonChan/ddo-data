@@ -16,7 +16,7 @@ effect = "Fire Spell Power"
 effect_type = "SpellPower"
 targets = ["Fire"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 original_name = "Fire Spell Power - +150 Equipment"
 field = "description"
@@ -25,7 +25,7 @@ reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Combu
 url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
 read = "2026-09-30"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Fire Spell Power - +150 Equipment"
@@ -33,7 +33,7 @@ reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Combu
 url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
 read = "2026-09-30"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 original_name = "Fire Spell Power - +150 Equipment"
 field = "value"

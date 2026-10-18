@@ -1,4 +1,18 @@
 macro_rules! database_record {
+    (@mirror $name:ident $table:literal $array:literal) => {
+        impl $name {
+            pub(crate) const TABLE: &'static str = $table;
+            pub(crate) const ARRAY: &'static str = $array;
+        }
+    };
+    ($visibility:vis struct $name:ident in $table:literal as $array:literal { $($body:tt)* }) => {
+        database_record!(@record [$table] [] $visibility struct $name { $($body)* });
+        database_record!(@mirror $name $table $array);
+    };
+    ($(#[$attribute:meta])* $visibility:vis struct $name:ident in $table:literal as $array:literal { $($body:tt)* }) => {
+        database_record!(@record [$table] [] $(#[$attribute])* #[schemars(extend("x-table" = $table, "x-array" = $array))] $visibility struct $name { $($body)* });
+        database_record!(@mirror $name $table $array);
+    };
     ($visibility:vis struct $name:ident in $table:literal { $($body:tt)* }) => {
         database_record!(@record [$table] [] $visibility struct $name { $($body)* });
     };

@@ -29,7 +29,7 @@ bonus_type = "Fortune"
 effect = "Bard Songs"
 effect_type = "SongCount"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Curse of Unending Song"

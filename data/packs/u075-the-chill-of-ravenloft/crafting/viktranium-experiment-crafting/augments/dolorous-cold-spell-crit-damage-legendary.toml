@@ -18,7 +18,7 @@ effect = "Cold Spell Critical Damage"
 effect_type = "SpellCriticalDamage"
 targets = ["Cold"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Dolorous Cold Spell Critical Damage (Legendary)"

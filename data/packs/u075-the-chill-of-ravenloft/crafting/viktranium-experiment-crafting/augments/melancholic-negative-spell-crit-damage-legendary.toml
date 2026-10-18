@@ -14,7 +14,7 @@ targets = [
     "Poison",
 ]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Melancholic Negative Spell Critical Damage (Legendary)"

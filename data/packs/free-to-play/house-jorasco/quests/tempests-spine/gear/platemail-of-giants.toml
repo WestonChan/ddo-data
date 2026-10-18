@@ -22,7 +22,7 @@ max_dex_bonus = 1
 [[effect]]
 name = "DR 5/-"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "is_legacy"
 upstream = false

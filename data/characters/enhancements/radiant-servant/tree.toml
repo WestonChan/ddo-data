@@ -19,7 +19,7 @@ ranks = 1
 x = 0
 y = 0
 
-[[enhancement.note]]
+[[enhancement.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "RSHEalingDomain"

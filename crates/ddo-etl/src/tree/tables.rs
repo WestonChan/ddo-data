@@ -123,7 +123,7 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<EntityNote>,
+            ddobuilder_correction: Vec<DdobuilderCorrection>,
         }
     }
 }
@@ -146,7 +146,7 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<EntityNote>,
+            ddobuilder_correction: Vec<DdobuilderCorrection>,
             #[serde(flatten)]
             requirements: Requirements,
         }

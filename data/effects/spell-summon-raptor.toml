@@ -2,7 +2,7 @@ name = "Spell: Summon Raptor"
 description_template = "Summon Raptor: Rawr I'm a raptor!"
 verbose_name_template = "Spell: Summon Raptor"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 original_name = "Spell"
 field = "verbose_name_template"
@@ -11,7 +11,7 @@ reason = "The wiki names this line Spell: Summon Raptor."
 url = "https://ddowiki.com/page/Item:Doctor_Lifestone%27s_Hunting_Horn"
 read = "2026-10-05"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "name"
 upstream = "Spell"

@@ -19,7 +19,7 @@ name = "Teraza's Perfect Sight"
 [[item]]
 name = "Teraza's Sight"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Attack Bonus +3 Artifact at 3 pieces; his tier lacks it."
@@ -27,7 +27,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 3, Attack Bonus / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Damage Bonus +3 Artifact at 3 pieces; his tier lacks it."
@@ -35,7 +35,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 3, Damage Bonus / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Imbue Dice +1 Artifact at 3 pieces; his tier lacks it."

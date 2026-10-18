@@ -259,7 +259,7 @@ ranks = 1
 x = 3
 y = 0
 
-[[enhancement.note]]
+[[enhancement.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "halfElfAbility"
@@ -1369,7 +1369,7 @@ cost_per_rank = [2]
 description = "+5 Universal Spell Power"
 icon = "HalfElfImprovedSpellcasting"
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "HalfElfImprovedSpellCasting"
@@ -2291,7 +2291,7 @@ cost_per_rank = [2]
 description = "+5 Universal Spellpower"
 icon = "HalfElfImprovedSpellcasting"
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "HalfElfImprovedSpellCasting"

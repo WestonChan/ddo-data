@@ -2,7 +2,7 @@ name = "Celerity"
 icon = "Celerity"
 is_filigree_set = true
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"
 upstream = "Permanent Haste spell"
@@ -11,7 +11,7 @@ url = "https://ddowiki.com/page/Sentient_Weapon/Filigrees"
 read = "2026-10-02"
 qualifier = "equipped_count 3"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "remove"
 upstream = 32

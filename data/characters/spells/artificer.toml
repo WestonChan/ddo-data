@@ -1521,7 +1521,7 @@ base_dice_bonus = 2
 bonus_dice_bonus = 1
 per_caster_levels = 3
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "spell"
 field = "icon"
 upstream = "toughenConstruct"

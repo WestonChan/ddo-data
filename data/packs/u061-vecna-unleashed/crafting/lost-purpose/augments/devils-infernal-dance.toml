@@ -5,7 +5,7 @@ icon = "WrathOfSoraKell"
 min_level = 18
 set_bonus = "Devils' Infernal Dance"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Devil's Infernal Dance"

@@ -5,7 +5,7 @@ Grants an Animal, Magical Beast, or Vermin a +4 size Bonus to Strength, a +4 Siz
 to Constitution, and a -2 penalty to Dexterity."""
 icon = "spells/AnimalGrowth"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "AnimalGrowth"
@@ -108,7 +108,7 @@ fear effects for 9 seconds. This ability functions while the paladin is consciou
 but not if they are unconscious or dead."""
 icon = "feats/AuraOfCourage"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "AuraOfCourage"
@@ -130,7 +130,7 @@ An aura of holiness surrounds you while near a paladin, granting a bonus to save
 Armor Class."""
 icon = "feats/AuraOfGood"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "AuraOfGood"
@@ -158,7 +158,7 @@ When you Inspire Competence on an ally, they gain +[1/2/3] Spell Penetration for
 duration of your song."""
 icon = "enhancements/spellsinger/SSArcaneAid"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "SSArcaneAid"
@@ -179,7 +179,7 @@ You and nearby allies gain +[2/4/6] Music bonus to resist Acid, Cold, Electric, 
 and Sonic damage"""
 icon = "enhancements/warchanter/WCArcaneShieldChant"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "WCArcaneShieldChant"
@@ -207,7 +207,7 @@ You and nearby allies gain +[2/4/6]% Music bonus to melee damage, ranged damage,
 and spell critical chance."""
 icon = "enhancements/warchanter/WCChantOfPower"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "WCChantOfPower"
@@ -243,7 +243,7 @@ name = "Bard: Expeditious Chant"
 description = "You and nearby allies gain +[5/10/15]% Action Boost bonus to movement speed."
 icon = "enhancements/warchanter/WCExpeditiousChant"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "WCExpeditiousChant"
@@ -266,7 +266,7 @@ name = "Bard: Inspire Competence"
 description = "You gain a +2 Competence bonus to your skill checks."
 icon = "spells/InspireCompetence"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "InspireCompetence"
@@ -286,7 +286,7 @@ name = "Bard: Inspire Courage"
 description = "You and nearby allies benefit from +1 to hit, damage, saves vs Fear, and +3 to Universal Spell Power."
 icon = "spells/InspireCourage"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "InspireCourage"
@@ -319,7 +319,7 @@ name = "Bard: Inspire Excellence"
 description = "This song grants a +2 Competence bonus to all ability scores."
 icon = "spells/InspireExcellence"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "InspireExcellence"
@@ -342,7 +342,7 @@ and +10 Healing Amplification as long as you are not incapacitated and they are
 within the Ballad."""
 icon = "spells/InspireCourage"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "InspireCourage"
@@ -373,7 +373,7 @@ name = "Bard: Inspire Heroics"
 description = "+4 Music bonus to Armor Class, +4% Music bonus to Dodge, and +4 Music bonus to all Saves."
 icon = "spells/InspireHeroics"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "InspireHeroics"
@@ -400,7 +400,7 @@ name = "Bard: Ironskin Chant"
 description = "You and nearby allies gain DR [2/4/6]/- and [2/4/6] Music bonus to PRR."
 icon = "enhancements/warchanter/WCIronskinChant"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "WCIronskinChant"
@@ -428,7 +428,7 @@ You and nearby allies gain +[2/4/6] Music bonus to Doublestrike and Doubleshot,
 and Inspire Courage grants an additional +[3/6/9] Universal Spell Power."""
 icon = "enhancements/warchanter/WCRecklessChant"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "WCRecklessChant"
@@ -456,7 +456,7 @@ You gain a +1 Morale bonus to caster level for all spells for the duration of th
 (Not modelled)"""
 icon = "enhancements/spellsinger/SSSongOfArcaneMight"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "SSSongOfArcaneMight"
@@ -471,7 +471,7 @@ Bardic Music grants a +1 Morale bonus to spell DC's and 10% Morale discount on s
 point costs for the duration of the song."""
 icon = "enhancements/spellsinger/SSSpellSongTrance"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "SSSpellSongTrance"
@@ -497,7 +497,7 @@ name = "Barkskin"
 description = "You have a Natural Armor bonus to AC."
 icon = "spells/Barkskin"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Barkskin"
@@ -518,7 +518,7 @@ Multiple targets are filled with courage, granting a +1 Morale bonus on to-hit r
 and saves versus fear. Bless counters and dispels Bane."""
 icon = "spells/Bless"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Bless"
@@ -545,7 +545,7 @@ name = "Blur"
 description = "You are affected by the blur spell"
 icon = "spells/Blur"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Blur"
@@ -567,7 +567,7 @@ An ally becomes more able to blend in with its surroundings giving them a +10 Ci
 bonus to Hide."""
 icon = "spells/Camouflage"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Camouflage"
@@ -589,7 +589,7 @@ You are filled with the light and vitality of summer. You gain +15% Enhancement 
 to Healing Amplification, +10 Melee power and +5 Ranged power."""
 icon = "enhancements/seasons-herald/SHCrownOfSummer"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "SHCrownOfSummer"
@@ -620,7 +620,7 @@ name = "Deadly Weapons"
 description = "Your currently equipped weapons deal +1[W]."
 icon = "spells/DeadlyWeapons"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "DeadlyWeapons"
@@ -640,7 +640,7 @@ name = "Death Ward"
 description = "You are immune to death spells and effects, Energy Drained, and negative energy effects."
 icon = "spells/DeathWard"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "DeathWard"
@@ -665,7 +665,7 @@ name = "Displacement"
 description = "You are affected by the displacement spell"
 icon = "spells/Displacement"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Displacement"
@@ -688,7 +688,7 @@ a +6 Enhancement bonus to Strength, 1 temporary hit point per caster level, and
 a base attack bonus equal to a Fighter of the same level."""
 icon = "spells/DivinePower"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "DivinePower"
@@ -716,7 +716,7 @@ description = """
 +4 Profane bonus to saving throws against Poison"""
 icon = "spells/EliteSpiderCultMask"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "EliteSpiderCultMask"
@@ -745,7 +745,7 @@ description = """
 +3 Spell Resistance and True Seeing."""
 icon = "spells/InspireCourage"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "InspireCourage"
@@ -789,7 +789,7 @@ name = "Festival: Icy Pumpkin Coffee"
 description = "+10 Festive bonus to Jump, Spellcraft and Balance."
 icon = "spells/IcyPumpkinCoffee"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "IcyPumpkinCoffee"
@@ -813,7 +813,7 @@ name = "Festival: Raspberry Linzer Kookied"
 description = "+1 Festival bonus to all stats for 15 minutes"
 icon = "spells/RaspberryKookie"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "RaspberryKookie"
@@ -835,7 +835,7 @@ You are immune to rage effects, +10 Festive bonus to Diplomacy and Listen, 75% H
 reduction for melee and ranged attacks and a +5 Festive bonus to Will saves."""
 icon = "spells/SoothingHappyCalmCoffee"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "SoothingHappyCalmCoffee"
@@ -885,7 +885,7 @@ description = """
 +75% Festive bonus to Hate from Melee and Ranged attacks. +5 Festive bonus to Fortitude saves."""
 icon = "spells/SuperBoldBlendCoffee"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "SuperBoldBlendCoffee"
@@ -933,7 +933,7 @@ name = "Fire Shield (Cold)"
 description = "Wreaths you in cold flames and reduces all Fire damage by half."
 icon = "spells/FireShield"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "FireShield"
@@ -954,7 +954,7 @@ name = "Fire Shield (Fire)"
 description = "Wreaths you in flames and reduces all Cold damage by half."
 icon = "spells/FireShield"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "FireShield"
@@ -978,7 +978,7 @@ influence of magic or conditions that normally impedes movement, such as Entangl
 Paralyzed, or Solid Fog."""
 icon = "spells/FreedomOfMovement"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "FreedomOfMovement"
@@ -999,7 +999,7 @@ You gain a +2 Morale bonus to attack rolls, saving throws, skill checks, and wea
 damage rolls."""
 icon = "spells/GoodHope"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "GoodHope"
@@ -1023,7 +1023,7 @@ name = "Grasp the Earth Dragon"
 description = "You are immune to daze, stun and sleep for a short period of time."
 icon = "feats/GraspOfTheEarthDragon"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "GraspOfTheEarthDragon"
@@ -1054,7 +1054,7 @@ name = "Greater Heroism"
 description = "You gain a +4 Morale bonus on attack rolls, saves, skill checks and immunity to fear."
 icon = "spells/GreaterHeroism"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "GreaterHeroism"
@@ -1087,7 +1087,7 @@ addition the gain a +1 Enhancement bonus to attack rolls, plus a +1 Dodge bonus
 to AC and Reflex saves."""
 icon = "spells/Haste"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Haste"
@@ -1137,7 +1137,7 @@ You are granted a +1[W], +6 to hit and saving throws, 4% Dodge and +10 Physical
 Resistance Rating."""
 icon = "enhancements/HalflingHeroicCompanion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "HalflingHeroicCompanion"
@@ -1183,7 +1183,7 @@ name = "Heroism"
 description = "You gain a +2 Morale bonus on attack rolls, saving throws, and skill checks."
 icon = "spells/Heroism"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Heroism"
@@ -1210,7 +1210,7 @@ compulsions for 1 minute per caster level. Nearby enemies must make a Fortitude
 save or be blinded."""
 icon = "spells/HolyAura"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "HolyAura"
@@ -1240,7 +1240,7 @@ Enhancement bonus and +1 Competence bonus to Critical Threat Range and Critical
 Damage Multiplier. This does not apply to shields, orbs or Rune Arms."""
 icon = "spells/HolySword"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "HolySword"
@@ -1293,7 +1293,7 @@ name = "Jump"
 description = "You are granted an Enhancement bonus to the Jump skill."
 icon = "spells/Jump"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Jump"
@@ -1313,7 +1313,7 @@ name = "Long Lasting Elixir of Charisma"
 description = "Grants a +2 Stacking bonus to Charisma"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1333,7 +1333,7 @@ name = "Long Lasting Elixir of Constitution"
 description = "Grants a +2 Stacking bonus to Constitution"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1353,7 +1353,7 @@ name = "Long Lasting Elixir of Dexterity"
 description = "Grants a +2 Stacking bonus to Dexterity"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1373,7 +1373,7 @@ name = "Long Lasting Elixir of Intelligence"
 description = "Grants a +2 Stacking bonus to Intelligence"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1393,7 +1393,7 @@ name = "Long Lasting Elixir of Strength"
 description = "Grants a +2 Stacking bonus to Strength"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1413,7 +1413,7 @@ name = "Long Lasting Elixir of Wisdom"
 description = "Grants a +2 Stacking bonus to Wisdom"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1433,7 +1433,7 @@ name = "Long Lasting Potion of 10 Magical Resistance"
 description = "Grants one hour of +10 Special bonus to Magical Resistance."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1452,7 +1452,7 @@ name = "Long Lasting Potion of 10 Melee Power"
 description = "When used, grants one hour of +10 Special bonus to Melee Power."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1471,7 +1471,7 @@ name = "Long Lasting Potion of 10 Ranged Power"
 description = "When used, grants one hour of +10 Special bonus to Ranged Power."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1490,7 +1490,7 @@ name = "Long Lasting Potion of 10 Universal Spell Power"
 description = "Grants one hour of +10 Special bonus to Universal Spell Power."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1509,7 +1509,7 @@ name = "Long Lasting Potion of 12 Magical Resistance"
 description = "Grants one hour of +12 Special bonus to Magical Resistance."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1528,7 +1528,7 @@ name = "Long Lasting Potion of 12 Melee Power"
 description = "When used, grants one hour of +12 Special bonus to Melee Power."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1547,7 +1547,7 @@ name = "Long Lasting Potion of 12 Ranged Power"
 description = "When used, grants one hour of +12 Special bonus to Ranged Power."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1566,7 +1566,7 @@ name = "Long Lasting Potion of 12 Universal Spell Power"
 description = "Grants one hour of +12 Special bonus to Universal Spell Power."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1585,7 +1585,7 @@ name = "Long Lasting Potion of 15 Magical Resistance"
 description = "Grants one hour of +15 Special bonus to Magical Resistance."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1604,7 +1604,7 @@ name = "Long Lasting Potion of 15 Melee Power"
 description = "When used, grants one hour of +15 Special bonus to Melee Power."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1623,7 +1623,7 @@ name = "Long Lasting Potion of 15 Ranged Power"
 description = "When used, grants one hour of +15 Special bonus to Ranged Power."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1642,7 +1642,7 @@ name = "Long Lasting Potion of 15 Universal Spell Power"
 description = "Grants one hour of +15 Special bonus to Universal Spell Power."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -1661,7 +1661,7 @@ name = "Lucky Cape"
 description = "Your cloak grants a +1 Luck bonus to saving throws."
 icon = "spells/LuckyCape"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "LuckyCape"
@@ -1684,7 +1684,7 @@ Spell Power for 1 hour. This Candy will expire and disappear near the start of
 the next Mabar event. Until then, it can used infinitely, with a 2 hour cooldown."""
 icon = "spells/AlmondCoatedShadowApple"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "AlmondCoatedShadowApple"
@@ -1719,7 +1719,7 @@ This Candy will expire and disappear near the start of the next Mabar event.
 Until then, it can used infinitely, with a 2 hour cooldown."""
 icon = "spells/DarkswirlCaramelBite"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "DarkswirlCaramelBite"
@@ -1747,7 +1747,7 @@ This Candy will expire and disappear near the start of the next Mabar event.
 Until then, it can used infinitely, with a 2 hour cooldown."""
 icon = "spells/SweetCinnamonCloud"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "SweetCinnamonCloud"
@@ -1768,7 +1768,7 @@ to AC, a 10% Enhancement bonus to attack-speed, and increases your BAB to equal
 your character level"""
 icon = "spells/MadstoneRage"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "MadstoneRage"
@@ -1816,7 +1816,7 @@ An invisible, but tangible field of force surrounds an ally, providing a +4 armo
 to Armor Class for 5 minutes plus 1 minute per caster level."""
 icon = "spells/MageArmor"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "MageArmor"
@@ -1839,7 +1839,7 @@ Only works on players, hirelings, or pets, and only if they are Animals, Vermin,
 Magical Beats, Dragons, or Fey. Equipping a new weapon cancels the effect."""
 icon = "spells/MagicFang"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "MagicFang"
@@ -1937,7 +1937,7 @@ Your weapons are enchanted to grant proficiency if the items are simple or marti
 weapons, or shields, and lasts until the rest."""
 icon = "spells/MastersTouch"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "MastersTouch"
@@ -1962,7 +1962,7 @@ name = "Merfolk's Blessing"
 description = "You gain an Enhancement bonus to the Swim skill."
 icon = "spells/MerfolksBlessing"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "MerfolksBlessing"
@@ -1982,7 +1982,7 @@ name = "Nightshield"
 description = "Grants a +3 Resistance bonus to saves and protection from Magic Missiles"
 icon = "spells/Nightshield"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Nightshield"
@@ -2024,7 +2024,7 @@ When used, enchants your currently equipped weapons to deal additional 1d6 light
 damage per hit for one hour."""
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2048,7 +2048,7 @@ Your feet touch the ground, but leave no trace. Grants a +5 Enhancement bonus on
 Silently skill checks"""
 icon = "spells/PassWithoutTrace"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "PassWithoutTrace"
@@ -2068,7 +2068,7 @@ name = "Potion of Alchemical Intimidation"
 description = "When used, grants +20 Alchemical bonus to Intimidate for 5 10 minutes."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2088,7 +2088,7 @@ name = "Potion of Bull's Skill +3"
 description = "You gain a +3 alchemical bonus to your Strength based skills"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2108,7 +2108,7 @@ name = "Potion of Cat's Skill +3"
 description = "You gain a +3 alchemical bonus to your Dexterity based skills"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2128,7 +2128,7 @@ name = "Potion of Eagle's Skill +3"
 description = "You gain a +3 alchemical bonus to your Charisma based skills"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2148,7 +2148,7 @@ name = "Potion of Fox's Skill +3"
 description = "You gain a +3 alchemical bonus to your Intelligence based skills"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2168,7 +2168,7 @@ name = "Potion of Grace +3"
 description = "Grants a +3 Alchemical bonus to Dexterity (1 minute duration)"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2188,7 +2188,7 @@ name = "Potion of Greater Ardor"
 description = "+20 Alchemical bonus to Healing Spell Power"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2208,7 +2208,7 @@ name = "Potion of Greater Brilliance"
 description = "+20 Alchemical bonus to Light and Alignment Spell Power"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2234,7 +2234,7 @@ name = "Potion of Greater Cacophony"
 description = "+20 Alchemical bonus to Sonic Spell Power"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2254,7 +2254,7 @@ name = "Potion of Greater Efficacy"
 description = "+12 Alchemical bonus to Universal Spell Power"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2274,7 +2274,7 @@ name = "Potion of Greater Erosion"
 description = "+20 Alchemical bonus to Acid Spell Power"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2294,7 +2294,7 @@ name = "Potion of Greater Freeze"
 description = "+20 Alchemical bonus to Cold Spell Power"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2314,7 +2314,7 @@ name = "Potion of Greater Impact"
 description = "+20 Alchemical bonus to Force (includes physical and untyped) Spell Power"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2338,7 +2338,7 @@ name = "Potion of Greater Inferno"
 description = "+20 Alchemical bonus to Fire Spell Power"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2358,7 +2358,7 @@ name = "Potion of Greater Mending"
 description = "+20 Alchemical bonus to Repair and Rust Spell Power"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2381,7 +2381,7 @@ name = "Potion of Greater Nihil"
 description = "+20 Alchemical bonus to Negative/Poison Energy Spell Power"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2404,7 +2404,7 @@ name = "Potion of Greater Spark"
 description = "+20 Alchemical bonus to Electric Spell Power"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2424,7 +2424,7 @@ name = "Potion of Health +3"
 description = "Grants a +3 Alchemical bonus to Constitution (1 minute duration)"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2444,7 +2444,7 @@ name = "Potion of Influence +3"
 description = "Grants a +3 Alchemical bonus to Charisma (1 minute duration)"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2464,7 +2464,7 @@ name = "Potion of Insightful Charisma"
 description = "Grants a +2 Insightful bonus to Charisma"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2485,7 +2485,7 @@ name = "Potion of Insightful Constitution"
 description = "Grants a +2 Insightful bonus to Constitution"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2506,7 +2506,7 @@ name = "Potion of Insightful Dexterity"
 description = "Grants a +2 Insightful bonus to Dexterity"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2527,7 +2527,7 @@ name = "Potion of Insightful Intelligence"
 description = "Grants a +2 Insightful bonus to Intelligence"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2548,7 +2548,7 @@ name = "Potion of Insightful Strength"
 description = "Grants a +2 Insightful bonus to Strength"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2569,7 +2569,7 @@ name = "Potion of Insightful Wisdom"
 description = "Grants a +2 Insightful bonus to Wisdom"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2590,7 +2590,7 @@ name = "Potion of Knowledge +3"
 description = "Grants a +3 Alchemical bonus to Intelligence (1 minute duration)"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2610,7 +2610,7 @@ name = "Potion of Owl's Skill +3"
 description = "You gain a +3 alchemical bonus to your Wisdom based skills"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2630,7 +2630,7 @@ name = "Potion of Prowess"
 description = "When used, grants +2 Alchemical bonus to Attack and Damage rolls for 10 minutes."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2650,7 +2650,7 @@ name = "Potion of Prowess +3"
 description = "Grants a +3 Alchemical bonus to Strength (1 minute duration)"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2670,7 +2670,7 @@ name = "Potion of Reason +3"
 description = "Grants a +3 Alchemical bonus to Wisdom (1 minute duration)"
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2692,7 +2692,7 @@ On use: You gain a +25 Alchemical Bonus to Universal Spell Power.
 Duration: 10 minutes (CL: 20)."""
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2711,7 +2711,7 @@ name = "Potion of Titan's Grip"
 description = "When used, grants +6 Psionic bonus to Strength for 1 minute."
 icon = "spells/Potion"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Potion"
@@ -2731,7 +2731,7 @@ name = "Prayer"
 description = "Grants a +1 Luck bonus to Attack rolls, weapon Damage rolls, Saves, and Skill checks."
 icon = "spells/Prayer"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Prayer"
@@ -2755,7 +2755,7 @@ name = "Primal Scream"
 description = "You are raged gaining +4 Morale bonus to Strength, Constitution and Dexterity."
 icon = "enhancements/fury-of-the-wild/PrimalScream"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "PrimalScream"
@@ -2780,7 +2780,7 @@ name = "Primal Scream (Lesser)"
 description = "You are raged gaining +2 Morale bonus to Strength, Constitution and Dexterity."
 icon = "enhancements/fury-of-the-wild/PrimalScream"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "PrimalScream"
@@ -2808,7 +2808,7 @@ Deflection bonus to Armor Class, and a +2 Resistance bonus to saves versus attac
 from Evil creatures. You are also warded from Evil magical controls and compulsions."""
 icon = "spells/ProtectionFromEvil"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "ProtectionFromEvil"
@@ -2835,7 +2835,7 @@ You are granted a +2 Morale bonus to Strength and to Constitution, +1 Morale bon
 Will saves, and a -2 penalty to Armor Class."""
 icon = "spells/Rage"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Rage"
@@ -2874,7 +2874,7 @@ name = "Ram's Might"
 description = "Your hands increase in size, granting a +2 size bonus to Strength and damage."
 icon = "spells/RamsMight"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "RamsMight"
@@ -2901,7 +2901,7 @@ name = "Recitation"
 description = "Grants a +2 Luck bonus to Attack rolls, Armor Class and Saves."
 icon = "spells/Recitation"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Recitation"
@@ -2930,7 +2930,7 @@ targets = ["All"]
 name = "Shadowblade"
 description = "Adds an implement bonus to your equipped weapons"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Shadowblade"
@@ -2949,7 +2949,7 @@ name = "Shield"
 description = "Grants a +4 Shield bonus to Armor Class, and protection from Magic Missiles."
 icon = "spells/Shield"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Shield"
@@ -2988,7 +2988,7 @@ name = "Spell Resistance"
 description = "You gain Spell Resistance equal to 12 plus 1 per caster level."
 icon = "spells/SpellResistance"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "SpellResistance"
@@ -3010,7 +3010,7 @@ equal to your caster level, and a +2 Natural Armor bonus to AC, with an addition
 +1 for every six of your caster levels."""
 icon = "spells/Spiderskin"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Spiderskin"
@@ -3043,7 +3043,7 @@ name = "Stone of Change: Alchemical Armor Eldritch Ritual"
 description = "+1 Stacking Bonus to AC"
 icon = "spells/StoneOfChange"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "StoneOfChange"
@@ -3062,7 +3062,7 @@ name = "Stone of Change: Alchemical Shield Eldritch Ritual"
 description = "+1 Stacking Bonus to AC"
 icon = "spells/StoneOfChange"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "StoneOfChange"
@@ -3085,7 +3085,7 @@ name = "Stone of Change: Force Critical Ritual"
 description = "+1d4 Force damage of each successful critical hit"
 icon = "spells/StoneOfChange"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "StoneOfChange"
@@ -3106,7 +3106,7 @@ name = "Stone of Change: Force Damage Ritual"
 description = "+1 Force damage of each successful hit"
 icon = "spells/StoneOfChange"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "StoneOfChange"
@@ -3139,7 +3139,7 @@ name = "Stone of Change: Resistance Ritual"
 description = "+1 Competence Bonus to Saves"
 icon = "spells/StoneOfChange"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "StoneOfChange"
@@ -3159,7 +3159,7 @@ name = "Stoneskin"
 description = "You gain Damage Reduction 10/Adamantine."
 icon = "spells/Stoneskin"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Stoneskin"
@@ -3186,7 +3186,7 @@ Your spellcasting ability is reduced, resulting in a -2 penalty to all spell DCs
 your spells."""
 icon = "spells/TensersTransformation"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "TensersTransformation"
@@ -3241,7 +3241,7 @@ effect_type = "OverrideBAB"
 name = "Thieves Tools: +1"
 description = "+3 Bonus to Disable Device and Open Locks"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "ThievesTools"
@@ -3264,7 +3264,7 @@ targets = [
 name = "Thieves Tools: +2"
 description = "+4 Bonus to Disable Device and Open Locks"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "ThievesTools"
@@ -3287,7 +3287,7 @@ targets = [
 name = "Thieves Tools: +3"
 description = "+5 Bonus to Disable Device and Open Locks"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "ThievesTools"
@@ -3310,7 +3310,7 @@ targets = [
 name = "Thieves Tools: +4"
 description = "+6 Bonus to Disable Device and Open Locks"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "ThievesTools"
@@ -3333,7 +3333,7 @@ targets = [
 name = "Thieves Tools: +5"
 description = "+7 Bonus to Disable Device and Open Locks"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "ThievesTools"
@@ -3356,7 +3356,7 @@ targets = [
 name = "Thieves Tools: Masterwork"
 description = "+2 Bonus to Disable Device and Open Locks"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "ThievesTools"
@@ -3380,7 +3380,7 @@ name = "Tumble"
 description = "Gain a +10 Enhancement bonus to the Skill Tumble."
 icon = "spells/Tumble"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "Tumble"
@@ -3400,7 +3400,7 @@ name = "Walk of the Sun"
 description = "You have a bonus to Attack, Saves and Skills for a short period of time."
 icon = "feats/WalkOfTheSun"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "WalkOfTheSun"
@@ -3426,7 +3426,7 @@ You sharpen your instincts and your awareness of immediate surroundings, giving 
 Insight bonus on Listen and Spot checks."""
 icon = "spells/WildInstincts"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "WildInstincts"
@@ -3450,7 +3450,7 @@ name = "Yugoloth: Essence of Betrayal (Dex)"
 description = "+2 stacking Dexterity, +6 Sneak Attack to hit (+4 after penalty) -2 Attack bonus"
 icon = "spells/YugolothDex"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "YugolothDex"
@@ -3484,7 +3484,7 @@ name = "Yugoloth: Essence of Cunning (Int)"
 description = "+2 stacking Intelligence, slow SP regeneration and -50% Fortification"
 icon = "spells/YugolothInt"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "YugolothInt"
@@ -3510,7 +3510,7 @@ name = "Yugoloth: Essence of Desire (Con)"
 description = "+2 stacking Constitution, +20 stacking HP and -5% Melee attack speed"
 icon = "spells/YugolothCon"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "YugolothCon"
@@ -3543,7 +3543,7 @@ name = "Yugoloth: Essence of Despair (Wis)"
 description = "+2 stacking Wisdom, +4 Natural armor (Non-Stacking) and -4 Reflex save"
 icon = "spells/YugolothWis"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "YugolothWis"
@@ -3576,7 +3576,7 @@ name = "Yugoloth: Essence of Fury (Str)"
 description = "+2 stacking Strength, +8 Will save against Fear (+4 after penalty) and -4 Will save"
 icon = "spells/YugolothStr"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "YugolothStr"
@@ -3610,7 +3610,7 @@ name = "Yugoloth: Essence of Seduction (Cha)"
 description = "+2 stacking Charisma, +8 Fortitude save against Poison (+4 after penalty) and -4 Fortitude save"
 icon = "spells/YugolothCha"
 
-[[row.note]]
+[[row.ddobuilder_correction]]
 kind = "optional_buff"
 field = "icon"
 upstream = "YugolothCha"

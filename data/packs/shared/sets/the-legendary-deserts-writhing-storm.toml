@@ -28,7 +28,7 @@ name = "Legendary Whirlwind"
 [[item]]
 name = "Legendary Zephyr"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "bonus_type"
 upstream = "Legendary"

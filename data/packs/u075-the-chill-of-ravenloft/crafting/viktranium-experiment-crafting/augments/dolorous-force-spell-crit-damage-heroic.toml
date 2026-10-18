@@ -22,7 +22,7 @@ targets = [
     "Untyped",
 ]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Dolorous Force Spell Critical Damage (Heroic)"

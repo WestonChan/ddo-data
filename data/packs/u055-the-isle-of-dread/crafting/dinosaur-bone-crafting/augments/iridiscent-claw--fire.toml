@@ -17,7 +17,7 @@ effect = "Fire Spell Power"
 effect_type = "SpellPower"
 targets = ["Fire"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Iridescent Claw: Fire"

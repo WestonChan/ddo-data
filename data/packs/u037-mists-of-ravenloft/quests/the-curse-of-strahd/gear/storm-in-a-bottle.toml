@@ -37,7 +37,7 @@ bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Stormrage"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "bonus_type"
 reason = "The wiki's Elemental Resistance +45 on this trinket is a +45 Enhancement bonus; his buff has no bonus type."

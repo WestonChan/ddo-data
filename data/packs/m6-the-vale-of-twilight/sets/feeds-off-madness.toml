@@ -3,7 +3,7 @@ name = "Feeds Off Madness"
 [[item]]
 name = "Bracelet of Madness"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_bonus"
 field = "icon"
 upstream = "FeedsOffMadness"

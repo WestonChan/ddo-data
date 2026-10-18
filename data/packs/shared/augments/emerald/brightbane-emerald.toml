@@ -32,7 +32,7 @@ effect = "Hide"
 effect_type = "SkillBonus"
 targets = ["Hide"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 field = "value"
 upstream = 5

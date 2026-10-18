@@ -31,7 +31,7 @@ name = "Mythic Minos Legens"
 [[item]]
 name = "Mythic Seraphim"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Physical Resistance Rating +5 Luck at 2 pieces; his tier lacks it."
@@ -39,7 +39,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Physical Resistance Rating / Luck"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Magical Resistance Rating +5 Luck at 2 pieces; his tier lacks it."

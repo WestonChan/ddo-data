@@ -40,7 +40,7 @@ targets = [
     "Assassinate",
 ]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 field = "bonus_type"
 reason = "The wiki's Dolorous Invigorator gives +2 Profane bonus to Tactical DCs (Profane Combat Mastery +2); his TacticalDC effect is Not Set."
@@ -48,7 +48,7 @@ url = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)"
 read = "2026-10-02"
 qualifier = "Trip DC / null"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 field = "bonus_type"
 reason = "The wiki's Dolorous Invigorator gives +2 Profane bonus to Tactical DCs (Profane Combat Mastery +2); his TacticalDC effect is Not Set."
@@ -56,7 +56,7 @@ url = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)"
 read = "2026-10-02"
 qualifier = "Sunder DC / null"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 field = "bonus_type"
 reason = "The wiki's Dolorous Invigorator gives +2 Profane bonus to Tactical DCs (Profane Combat Mastery +2); his TacticalDC effect is Not Set."
@@ -64,7 +64,7 @@ url = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)"
 read = "2026-10-02"
 qualifier = "Stun DC / null"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 field = "bonus_type"
 reason = "The wiki's Dolorous Invigorator gives +2 Profane bonus to Tactical DCs (Profane Combat Mastery +2); his TacticalDC effect is Not Set."

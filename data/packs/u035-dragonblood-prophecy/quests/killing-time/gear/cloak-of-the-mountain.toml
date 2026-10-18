@@ -27,7 +27,7 @@ name = "Magical Efficiency"
 bonus_type = "Enhancement"
 value = 10
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "set_bonus"
 reason = "The wiki puts the cloak in the Mountainskin Set with the Bracers of the Mountain; his item names no set."

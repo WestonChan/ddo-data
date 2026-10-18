@@ -16,7 +16,7 @@ bonus_type = "Fortune"
 effect = "Melee Power"
 effect_type = "MeleePower"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Curse of Major Combatant"

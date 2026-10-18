@@ -1,6 +1,6 @@
 {
   "$defs": {
-    "EntityNote": {
+    "DdobuilderCorrection": {
       "additionalProperties": false,
       "properties": {
         "added_as_name": {
@@ -44,20 +44,21 @@
         "read"
       ],
       "type": "object",
-      "x-table": "entity_notes"
+      "x-array": "ddobuilder_correction",
+      "x-table": "corrections"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
-    "name": {
-      "type": "string"
-    },
-    "note": {
+    "ddobuilder_correction": {
       "items": {
-        "$ref": "#/$defs/EntityNote"
+        "$ref": "#/$defs/DdobuilderCorrection"
       },
       "type": "array"
+    },
+    "name": {
+      "type": "string"
     }
   },
   "required": [

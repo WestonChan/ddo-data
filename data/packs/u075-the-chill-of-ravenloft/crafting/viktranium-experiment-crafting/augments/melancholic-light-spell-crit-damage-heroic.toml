@@ -17,7 +17,7 @@ targets = [
     "Lawful",
 ]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Melancholic Light Spell Critical Damage (Heroic)"

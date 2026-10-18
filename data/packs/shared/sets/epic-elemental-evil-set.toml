@@ -1,6 +1,6 @@
 name = "Epic Elemental Evil Set"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_bonus"
 field = "icon"
 upstream = "?"

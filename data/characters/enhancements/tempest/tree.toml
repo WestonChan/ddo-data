@@ -675,7 +675,7 @@ duration_seconds = 20
 icon = "TempestHasteboost"
 is_clickie = true
 
-[[enhancement.selection.note]]
+[[enhancement.selection.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "TempestHasteBoost"

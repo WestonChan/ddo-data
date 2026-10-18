@@ -58,16 +58,16 @@ It writes `data/` and prints the report when the merge is clean or has only conf
 
 ## 4. Read the report
 
-The report is the pull-request body of the future automation, so it is complete on its own: a header with both shas, a counts table (one row per table: added, removed, changed, conflicts, declined removals, resolved notes), then one line per item that needs a person, each starting with the data-relative file:
+The report is the pull-request body of the future automation, so it is complete on its own: a header with both shas, a counts table (one row per table: added, removed, changed, conflicts, declined removals, resolved corrections), then one line per item that needs a person, each starting with the data-relative file:
 
-- `CONFLICT`: he and we both changed the field (or the array, or the correction). Ours stays. The line shows his previous value, his new value and ours. Decide: keep ours (nothing to do), or take his (edit the file to his value and drop the `[[note]]` if one carried ours).
+- `CONFLICT`: he and we both changed the field (or the array, or the correction). Ours stays. The line shows his previous value, his new value and ours. Decide: keep ours (nothing to do), or take his (edit the file to his value and drop the `[[ddobuilder_correction]]` if one carried ours).
 - `DECLINED REMOVAL`: he removed a row we annotated, edited or still reference. The row stays and the line says why. Keep it, or remove it by hand together with what referenced it.
-- `RESOLVED NOTE`: he moved to the value our `[[note]]` holds. The note has done its job; delete it so the file no longer records a difference that is gone.
+- `RESOLVED CORRECTION`: he moved to the value our `[[ddobuilder_correction]]` holds. The correction has done its job; delete it so the file no longer records a difference that is gone.
 - `NEEDS RESEARCH`: an adventure pack he added has no `update` or `released`. It landed in a folder named only by its slug. Read [Modules and updates](https://ddowiki.com/page/Modules_and_updates), add `update`, `released` and a `[[citation]]` to its `pack.toml`, then rebuild through the database (`build --data data --out ddo.db`, `export --db ddo.db --out data`) so the folder gets its update tag.
 - `ICON CONFLICT` / `ICON DECLINED`: both sides changed an image's bytes, or he removed one we still reference. Ours stays.
 - `CHANGED UPSTREAM, ABSENT IN OURS`: he changed an entity we deleted. Nothing was applied; the line is for the record.
 
-Every edit after the import is an ordinary data-file edit: change the TOML, add the `[[note]]` or `[[citation]]` that records why, rebuild.
+Every edit after the import is an ordinary data-file edit: change the TOML, add the `[[ddobuilder_correction]]` or `[[citation]]` that records why, rebuild.
 
 ## 5. Prove it
 
@@ -88,7 +88,7 @@ cargo test --workspace && cargo lint && cargo fmt --all --check
 
 ## 6. Review his changes against the wiki
 
-`git diff --stat main -- data` and the report's counts say which entities changed. For each changed or added item, set, feat, spell, enhancement or class, a reader checks the ddowiki page and records what it finds in the entity's own file: a `[[citation]]` for a fact the page confirms or adds, a `[[note]]` (with `kind`, `field`, `upstream` holding his value, `reason`, `url`, `read`) where the page shows his value is wrong and ours should differ. In ddo-tools the `wiki-reader` agent reads item pages and `wiki-reader-tables` reads table-shaped pages; `maetrim-update` dispatches them from the report. Rebuild after their edits; the build names any file that does not validate.
+`git diff --stat main -- data` and the report's counts say which entities changed. For each changed or added item, set, feat, spell, enhancement or class, a reader checks the ddowiki page and records what it finds in the entity's own file: a `[[citation]]` for a fact the page confirms or adds, a `[[ddobuilder_correction]]` (with `kind`, `field`, `upstream` holding his value, `reason`, `url`, `read`) where the page shows his value is wrong and ours should differ. In ddo-tools the `wiki-reader` agent reads item pages and `wiki-reader-tables` reads table-shaped pages; `maetrim-update` dispatches them from the report. Rebuild after their edits; the build names any file that does not validate.
 
 ## 7. Commit and land
 

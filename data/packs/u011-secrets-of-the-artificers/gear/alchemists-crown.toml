@@ -24,7 +24,7 @@ name = "Radiance"
 bonus_type = "Enhancement"
 value = 72
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "set_bonus"
 reason = "The wiki lists this item as a member of Alchemist's Lore."

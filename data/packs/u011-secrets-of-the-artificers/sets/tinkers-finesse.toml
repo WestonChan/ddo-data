@@ -6,7 +6,7 @@ name = "Tinker's Goggles"
 [[item]]
 name = "Tinker's Gloves"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_bonus"
 field = "icon"
 upstream = "TinkersFinesse"
@@ -14,7 +14,7 @@ reason = "DDOBuilderV2's SetBonusImages folder has no TinkersFinesse.png."
 url = "Output/DataFiles/SetBonusImages"
 read = "2026-10-07"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"
 upstream = "True Seeing"

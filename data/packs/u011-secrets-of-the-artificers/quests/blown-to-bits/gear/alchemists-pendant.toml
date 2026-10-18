@@ -23,7 +23,7 @@ bonus_type = "Equipment"
 name = "Greater Elemental Energy"
 bonus_type = "Elemental Energy"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "set_bonus"
 reason = "The wiki lists this item as a member of Alchemist's Lore."

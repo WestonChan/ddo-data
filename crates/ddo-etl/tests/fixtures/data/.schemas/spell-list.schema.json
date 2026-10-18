@@ -1,6 +1,6 @@
 {
   "$defs": {
-    "EntityNote": {
+    "DdobuilderCorrection": {
       "additionalProperties": false,
       "properties": {
         "added_as_name": {
@@ -44,7 +44,8 @@
         "read"
       ],
       "type": "object",
-      "x-table": "entity_notes"
+      "x-array": "ddobuilder_correction",
+      "x-table": "corrections"
     },
     "FileNumber": {
       "anyOf": [
@@ -282,6 +283,12 @@
           },
           "type": "array"
         },
+        "ddobuilder_correction": {
+          "items": {
+            "$ref": "#/$defs/DdobuilderCorrection"
+          },
+          "type": "array"
+        },
         "description": {
           "type": "string"
         },
@@ -313,12 +320,6 @@
         },
         "name": {
           "type": "string"
-        },
-        "note": {
-          "items": {
-            "$ref": "#/$defs/EntityNote"
-          },
-          "type": "array"
         },
         "schools": {
           "items": {
@@ -453,6 +454,12 @@
         "auto_controlled": {
           "type": "boolean"
         },
+        "ddobuilder_correction": {
+          "items": {
+            "$ref": "#/$defs/DdobuilderCorrection"
+          },
+          "type": "array"
+        },
         "description": {
           "type": "string"
         },
@@ -474,12 +481,6 @@
         },
         "name": {
           "type": "string"
-        },
-        "note": {
-          "items": {
-            "$ref": "#/$defs/EntityNote"
-          },
-          "type": "array"
         },
         "requirement": {
           "items": {

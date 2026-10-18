@@ -23,7 +23,7 @@ name = "Deadly"
 bonus_type = "Competence"
 value = 4
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "value"
 reason = "The wiki lists Deadly +4."

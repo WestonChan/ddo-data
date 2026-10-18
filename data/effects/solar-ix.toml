@@ -2,7 +2,7 @@ name = "Solar IX"
 description_template = "On Hit: 9 to 36 Light Damage."
 verbose_name_template = "Solar IX"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "verbose_name_template"
 upstream = "Solar VI"

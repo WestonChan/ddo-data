@@ -1496,7 +1496,7 @@ ranks = 1
 x = 3
 y = 5
 
-[[enhancement.note]]
+[[enhancement.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "ShintaoMeditationOFWar"
@@ -1622,7 +1622,7 @@ Earth Stance: +10 to Physical Resistance and a +10% Quality bonus to Maximum Hit
 Water Stance: +5 Maximum Dodge Bonus"""
 icon = "ShintaoMeditationOfWar"
 
-[[enhancement.stance.note]]
+[[enhancement.stance.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "ShintaoMeditationOFWar"

@@ -1,5 +1,79 @@
 {
   "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-array": "citation",
+      "x-table": "citations"
+    },
+    "DdobuilderCorrection": {
+      "additionalProperties": false,
+      "properties": {
+        "added_as_name": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "original_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "upstream": {
+          "description": "Omitted when Maetrim has no value for this field."
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-array": "ddobuilder_correction",
+      "x-table": "corrections"
+    },
     "EffectBonus": {
       "additionalProperties": false,
       "properties": {
@@ -85,52 +159,6 @@
       ],
       "type": "object",
       "x-table": "effect_damage"
-    },
-    "EntityNote": {
-      "additionalProperties": false,
-      "properties": {
-        "added_as_name": {
-          "type": [
-            "boolean",
-            "null"
-          ]
-        },
-        "field": {
-          "type": "string"
-        },
-        "kind": {
-          "type": "string"
-        },
-        "original_name": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "qualifier": {
-          "type": "string"
-        },
-        "read": {
-          "type": "string"
-        },
-        "reason": {
-          "type": "string"
-        },
-        "upstream": {
-          "description": "Omitted when Maetrim has no value for this field."
-        },
-        "url": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "kind",
-        "reason",
-        "url",
-        "read"
-      ],
-      "type": "object",
-      "x-table": "entity_notes"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -142,9 +170,21 @@
       },
       "type": "array"
     },
+    "citation": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "type": "array"
+    },
     "damage": {
       "items": {
         "$ref": "#/$defs/EffectDamage"
+      },
+      "type": "array"
+    },
+    "ddobuilder_correction": {
+      "items": {
+        "$ref": "#/$defs/DdobuilderCorrection"
       },
       "type": "array"
     },
@@ -170,12 +210,6 @@
     },
     "name": {
       "type": "string"
-    },
-    "note": {
-      "items": {
-        "$ref": "#/$defs/EntityNote"
-      },
-      "type": "array"
     },
     "set_bonus_line_template": {
       "type": [

@@ -21,7 +21,7 @@ name = "Spell Focus I"
 bonus_type = "Equipment"
 value = 25
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_socket"
 field = "add"
 reason = "The wiki's Stormreaver Monument upgrades Stormreaver's Napkin; his item has no upgrade socket."

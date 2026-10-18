@@ -32,7 +32,7 @@ name = "Melee Alacrity"
 bonus_type = "Enhancement"
 value = 10
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_socket"
 field = "add"
 reason = "The wiki's Mikrom Sum upgrades Hide of the Goristro into the Woodsman's Guile set; his item has no upgrade socket."

@@ -34,7 +34,7 @@ name = "Fortification"
 bonus_type = "Exceptional"
 value = 25
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "value"
 reason = "The wiki has a separate Exceptional Fortification line at this value."

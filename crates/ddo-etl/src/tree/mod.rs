@@ -25,6 +25,7 @@ mod pack_layout;
 mod tables;
 mod xml_slugs;
 use annotations::wiki_url_for_name;
+pub(crate) use annotations::AppliedCorrection;
 pub(crate) use build::referenced_data_icons;
 pub use build::{build_from_data, rederive_data_build_tables};
 pub(crate) use crafting::recipe_focus_path;
@@ -51,46 +52,44 @@ mod sources;
 database_record! {
 #[derive(Debug, Clone, Serialize, Deserialize, schemars::JsonSchema)]
 #[serde(deny_unknown_fields)]
-pub struct Citation in "citations" {
+pub struct Citation in "citations" as "citation" {
     keys { owner_kind: &str, owner_id: i64 }
     fields {
     #[serde(default, skip_serializing_if = "String::is_empty")]
     field: String => field,
     url: String => url,
     read: String => read,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    note: Option<String> => note,
     }
 }
 }
 
-database_record! {
 #[derive(Debug, Clone, Serialize, Deserialize, schemars::JsonSchema)]
 #[serde(deny_unknown_fields)]
-pub struct EntityNote in "entity_notes" {
-    keys { owner_kind: &str, owner_id: i64, note_index: i64 }
-    fields {
-    kind: String => kind,
+#[schemars(extend("x-table" = annotations::AppliedCorrection::TABLE, "x-array" = annotations::AppliedCorrection::ARRAY))]
+pub struct DdobuilderCorrection {
+    pub kind: String,
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    original_name: Option<String> => original_name,
+    pub original_name: Option<String>,
     #[serde(default, skip_serializing_if = "String::is_empty")]
-    field: String => field,
+    pub field: String,
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    added_as_name: Option<bool> => added_as_name,
+    pub added_as_name: Option<bool>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     #[schemars(description = "Omitted when Maetrim has no value for this field.")]
-    upstream: Option<serde_json::Value> => upstream [optional_json_value],
-    reason: String => reason,
-    url: String => url,
-    read: String => read,
+    pub upstream: Option<serde_json::Value>,
+    pub reason: String,
+    pub url: String,
+    pub read: String,
     #[serde(default, skip_serializing_if = "String::is_empty")]
-    qualifier: String => qualifier,
-    }
-}
+    pub qualifier: String,
 }
 
 database_record! {
 #[derive(Clone, Debug, Serialize, Deserialize, schemars::JsonSchema)]
 #[serde(deny_unknown_fields)]
-pub struct RemovedEntry in "removed_entities" {
+pub struct RemovedEntry in "removed_entities" as "removed" {
     keys { owner_kind: &str, owner_id: i64 }
     fields {
     kind: String => kind,
@@ -654,11 +653,22 @@ mod tests {
             std::fs::write(&priced_item_path, &valid_item).unwrap();
         }
         let bad_note_path = root.join("packs/unsourced/gear/bad-note.toml");
-        std::fs::write(&bad_note_path, "name = 'Bad Note'\nslot = 'Feet'\nitem_category = 'Clothing'\nminimum_level = 1\n[[note]]\nkind = 'item'\nfield = 'name'\nreason = 'A rename without its upstream value'\nurl = 'https://ddowiki.com/page/Item:Bad_Note'\nread = '2026-10-08'\n").unwrap();
+        std::fs::write(&bad_note_path, "name = 'Bad Note'\nslot = 'Feet'\nitem_category = 'Clothing'\nminimum_level = 1\n[[ddobuilder_correction]]\nkind = 'item'\nfield = 'name'\nreason = 'A rename without its upstream value'\nurl = 'https://ddowiki.com/page/Item:Bad_Note'\nread = '2026-10-08'\n").unwrap();
         let mut invalid_db = Connection::open_in_memory().unwrap();
         let error = format!("{:#}", build_from_data(&root, &mut invalid_db).unwrap_err());
         assert!(error.contains(&bad_note_path.display().to_string()), "{error}");
         assert!(error.contains("upstream name"), "{error}");
+        for retired_kind in ["release", "slug_collision"] {
+            std::fs::write(&bad_note_path, format!("name = 'Bad Note'\nslot = 'Feet'\nitem_category = 'Clothing'\nminimum_level = 1\n[[ddobuilder_correction]]\nkind = '{retired_kind}'\nfield = 'name'\nupstream = 'Bad note'\nreason = 'A review, not a correction'\nurl = 'https://ddowiki.com/page/Item:Bad_Note'\nread = '2026-10-08'\n")).unwrap();
+            let error =
+                format!("{:#}", build_from_data(&root, &mut Connection::open_in_memory().unwrap()).unwrap_err());
+            assert!(error.contains(&bad_note_path.display().to_string()), "{error}");
+            assert!(
+                error.contains(&format!("{retired_kind:?} is not a DDOBuilder correction"))
+                    && error.contains("[[citation]]"),
+                "{error}"
+            );
+        }
         std::fs::remove_file(&bad_note_path).unwrap();
         let mut from_files = Connection::open_in_memory().unwrap();
         let built_report = build_from_data(&root, &mut from_files).unwrap();
@@ -975,7 +985,7 @@ mod tests {
             })
             .unwrap();
         let mut altered_note = std::fs::read_to_string(&corrected_item).unwrap();
-        altered_note.push_str("\n[[note]]\nkind = \"item\"\nfield = \"minimum_level\"\nupstream = 999\nreason = \"Wiki records the corrected level.\"\nurl = \"https://ddowiki.com/page/Item:Epic_Ethereal_Bracers\"\nread = \"2026-10-07\"\n");
+        altered_note.push_str("\n[[ddobuilder_correction]]\nkind = \"item\"\nfield = \"minimum_level\"\nupstream = 999\nreason = \"Wiki records the corrected level.\"\nurl = \"https://ddowiki.com/page/Item:Epic_Ethereal_Bracers\"\nread = \"2026-10-07\"\n");
         std::fs::write(&corrected_item, altered_note).unwrap();
         let corrections = Corrections::from_data(&root).unwrap();
         let mut stale_database = Connection::open_in_memory().unwrap();

@@ -8,7 +8,7 @@ family = "Named"
 icon = "TopazRaidItemEssence"
 min_level = 30
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Essence of Nullscale Armor"

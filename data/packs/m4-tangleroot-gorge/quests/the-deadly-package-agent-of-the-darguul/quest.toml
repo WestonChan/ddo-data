@@ -17,7 +17,7 @@ field = "quest facts"
 url = "https://ddowiki.com/page/The_Deadly_Package:_Agent_of_the_Darguul"
 read = "2026-10-01"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "quest"
 field = "name"
 upstream = "The Deadly Package: Agent of Darguul"

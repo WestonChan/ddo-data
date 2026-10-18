@@ -54,7 +54,7 @@ bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Greater Inferno"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_socket"
 field = "add"
 reason = "The wiki's Regalia of the Phoenix carries a Suppressed Power; his item has no Suppressed Power socket."

@@ -5,7 +5,7 @@ icon = "SlavelordsSorcery"
 name = "Legendary Slavelords Sorcery"
 family = "Slavelords_Legendary"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "value"
 upstream = 5

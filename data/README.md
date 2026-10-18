@@ -64,7 +64,7 @@ data/
 
 `<pack>` is the folder derived from the pack record's `update`: `Update 39` gives `u039-<slug>`, `Module 1.4` gives `m1-<slug>`, and `Public Beta Test` gives `m0-<slug>`. Module patch numbers are dropped; update numbers use at least three digits. Free to Play and the three pseudo-packs keep their unprefixed folders. A pack's slug and ID still derive from its name. The filename-identity check rejects a folder that disagrees with its record and names the expected folder. XML exports lack release metadata and retain the name-only folder until it is authored.
 
-Each pack records its `update` and, when known, `released` date as `YYYY-MM-DD`, with a `[[citation]]`. Delera's Tomb and Ruins of Threnal have `m0-` folders and no known release date. Research qualifications are `[[note]]` entries with `kind = "release"`, `reason`, `url` and `read`; they are annotations, never correction rows. A citation has no page-title field.
+Each pack records its `update` and, when known, `released` date as `YYYY-MM-DD`, with a `[[citation]]`. Delera's Tomb and Ruins of Threnal have `m0-` folders and no known release date. A research qualification of the release date is the `note` of that `[[citation]]`, never a correction row. A citation has no page-title field.
 
 `shared`, `general` and `unsourced` are reserved pseudo-packs, without `pack.toml` or database pack rows. A real pack cannot take one of those slugs. `general` contains starter equipment, DDO Store items and world drops; `unsourced` contains items with no known source after the existing drop-text and version-family rules below.
 
@@ -95,7 +95,7 @@ Run `ddo-etl find "<text>"` to search names and slugs case-insensitively, or add
 
 `ddo-etl export --db ddo.db --out <directory>` writes the TOML from database tables. It does not write PNGs, since image bytes are not in the database. Copy the data files' PNG files into the export directory before building it again. An icon reference uses the PNG's exact case and the matching `icons/<kind>/` folder. Enhancement icons used by one tree live beside that tree; shared enhancement images live in `icons/enhancements/`.
 
-The database's `dataset_version` records the upstream SHA from `upstream/commit.toml` and the build time. Correction notes are `[[note]]` entries on the entity with our value; removed upstream records are `[[removed]]` entries on the surviving entity. The export reconstructs these entries from the `corrections`, `entity_notes`, `removed_entities`, and `citations` tables.
+The database's `dataset_version` records the upstream SHA from `upstream/commit.toml` and the build time. A `[[ddobuilder_correction]]` on the entity records where our value differs from Maetrim's (`kind`, `field`, `upstream` holding his value, `reason`, `url`, `read`); removed upstream records are `[[removed]]` entries on the surviving entity. A `[[citation]]` records a page or file a value was read from, with an optional free-text `note`; a reviewed case-variant entity his files carry twice cites his XML file on `name` with the review as its note. The export reconstructs these entries from the `corrections`, `removed_entities`, and `citations` tables.
 
 Default-false booleans must be omitted when false; writing `is_legacy = false`, for example, fails the build. Derived weapon `damage` and `critical` strings also cannot be written. The build derives them from weapon fields.
 
@@ -150,4 +150,4 @@ The build assigns group indexes by position and requirement order within each gr
 
 ## Image references
 
-Image fields use exact PNG case without the `.png` extension. Single-kind owners use bare names and reject qualified paths. Optional buffs can use several image kinds, so they require paths from the icons root, such as `icon = "spells/Fireball"` or `icon = "enhancements/spellsinger/SSArcaneAid"`. The latter refers to `characters/enhancements/spellsinger/icons/SSArcaneAid.png` under `data/`. A missing image is omitted with a `[[note]]` on `icon` preserving the upstream reference; it is served as null. Export reports unowned PNGs it cannot remove and exits non-zero when it reports a HARD layout problem.
+Image fields use exact PNG case without the `.png` extension. Single-kind owners use bare names and reject qualified paths. Optional buffs can use several image kinds, so they require paths from the icons root, such as `icon = "spells/Fireball"` or `icon = "enhancements/spellsinger/SSArcaneAid"`. The latter refers to `characters/enhancements/spellsinger/icons/SSArcaneAid.png` under `data/`. A missing image is omitted with a `[[ddobuilder_correction]]` on `icon` preserving the upstream reference; it is served as null. Export reports unowned PNGs it cannot remove and exits non-zero when it reports a HARD layout problem.

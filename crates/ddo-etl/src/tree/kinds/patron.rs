@@ -12,7 +12,7 @@ database_record! {
         keys { id: i64, slug: &str }
         fields { name: String => name, }
         attached { #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<super::super::EntityNote>, }
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>, }
     }
 }
 
@@ -25,7 +25,7 @@ impl PatronFile {
         let mut select = db.prepare(&format!("SELECT {} FROM patrons ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
-            file.note = notes.for_entity("patrons", &file.name);
+            file.ddobuilder_correction = notes.for_entity("patrons", &file.name);
             files.insert(id, file);
         }
         Ok(files)

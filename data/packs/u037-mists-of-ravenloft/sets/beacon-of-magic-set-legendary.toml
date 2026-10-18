@@ -22,7 +22,7 @@ name = "Legendary Thrummingspark Cord"
 [[item]]
 name = "Mantle of Escher"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Magical Resistance Rating Cap +30 Artifact at 3 pieces; his tier lacks it."

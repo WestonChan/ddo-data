@@ -16,7 +16,7 @@ name = "Stormreach Guardian's Crossbow"
 [[item]]
 name = "Stormreach Guardian's Hammer"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "value"
 upstream = 3

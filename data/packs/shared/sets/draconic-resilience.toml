@@ -24,7 +24,7 @@ name = "Helm of the White Dragon (Level 24)"
 [[item]]
 name = "Helm of the White Dragon (Level 25)"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_bonus"
 field = "icon"
 upstream = "DraconicResilience"

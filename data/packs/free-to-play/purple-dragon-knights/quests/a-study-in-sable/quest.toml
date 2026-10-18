@@ -17,7 +17,7 @@ field = "quest facts"
 url = "https://ddowiki.com/page/A_Study_in_Sable"
 read = "2026-10-01"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "quest"
 field = "epic_level"
 reason = "The wiki's quest index gives an epic level of 26; his Quests.xml gives none."

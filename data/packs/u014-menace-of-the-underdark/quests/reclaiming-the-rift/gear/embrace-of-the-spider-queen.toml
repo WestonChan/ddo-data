@@ -42,7 +42,7 @@ value = 10
 [[effect]]
 name = "DR 5/-"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "bonus_type"
 reason = 'On Embrace of the Spider Queen, Proof Against Poison "grants an Enhancement bonus to saving throws against magical poisons"; his buff has no bonus type.'
@@ -50,7 +50,7 @@ url = "https://ddowiki.com/page/Proof_Against_Poison"
 read = "2026-10-03"
 qualifier = "Poison Save / null / 6"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "bonus_type"
 reason = "The wiki's Fortification +100% on this armor is a +100% Enhancement bonus; his buff has no bonus type."
@@ -58,7 +58,7 @@ url = "https://ddowiki.com/page/Item:Embrace_of_the_Spider_Queen"
 read = "2026-10-02"
 qualifier = "Fortification / null / 100"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "bonus_type"
 reason = "The wiki's Exceptional Fortification (+10%) on this armor is considered an Insight bonus; his buff has no bonus type."
@@ -66,7 +66,7 @@ url = "https://ddowiki.com/page/Item:Embrace_of_the_Spider_Queen"
 read = "2026-10-02"
 qualifier = "Fortification / null / 10"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_socket"
 field = "add"
 reason = "The wiki's Mikrom Sum upgrades Embrace of the Spider Queen into the Knight's Loyalty set; his item has no upgrade socket."

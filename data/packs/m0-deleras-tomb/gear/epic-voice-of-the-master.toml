@@ -24,7 +24,7 @@ name = "Striding"
 bonus_type = "Enhancement"
 value = 30
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "set_bonus"
 reason = "The wiki's DM's Vision items are Voice of the Master, its Epic version and Mantle of the Worldshaper; his item names no set."

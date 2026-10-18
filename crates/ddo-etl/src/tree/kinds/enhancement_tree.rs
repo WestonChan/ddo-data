@@ -32,7 +32,7 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<super::super::EntityNote>,
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             attack: Vec<Attack>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -96,7 +96,7 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             dc: Vec<DifficultyClass>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<super::super::EntityNote>,
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             modifier: Vec<Modifier>,
             #[serde(flatten)]
@@ -127,7 +127,7 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<super::super::EntityNote>,
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             enhancement: Vec<Enhancement>,
             #[serde(flatten)]
@@ -201,7 +201,7 @@ impl EnhancementTreeFile {
         ))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, EnhancementTreeFile::from_row(row)?)))? {
             let (id, mut file) = row?;
-            file.note = notes.for_entity("enhancement_trees", &file.name);
+            file.ddobuilder_correction = notes.for_entity("enhancement_trees", &file.name);
             file.requirements = requirements.remove(&("enhancement_tree".to_string(), id)).unwrap_or_default();
             files.insert(id, file);
         }
@@ -225,7 +225,7 @@ impl EnhancementTreeFile {
             }
             file.citation =
                 annotations.entity("enhancements", id).map_or_else(Vec::new, |annotation| annotation.citation.clone());
-            file.note = notes.for_entity("enhancements", &file.name);
+            file.ddobuilder_correction = notes.for_entity("enhancements", &file.name);
             let tree = files.get_mut(&parent_id).context("enhancement has no tree")?;
             enhancements.insert(id, (parent_id, tree.enhancement.len()));
             tree.enhancement.push(file);
@@ -322,23 +322,25 @@ impl EnhancementTreeFile {
         for tree in files.values_mut() {
             for enhancement in &mut tree.enhancement {
                 for dc in &mut enhancement.dc {
-                    dc.note = notes.for_named_child("enhancements", &enhancement.name, &[("dc", &dc.name)]);
+                    dc.ddobuilder_correction =
+                        notes.for_named_child("enhancements", &enhancement.name, &[("dc", &dc.name)]);
                 }
                 for stance in &mut enhancement.stance {
-                    stance.note = notes.for_named_child("enhancements", &enhancement.name, &[("stance", &stance.name)]);
+                    stance.ddobuilder_correction =
+                        notes.for_named_child("enhancements", &enhancement.name, &[("stance", &stance.name)]);
                 }
                 for selection in &mut enhancement.selection {
-                    selection.note =
+                    selection.ddobuilder_correction =
                         notes.for_named_child("enhancements", &enhancement.name, &[("selection", &selection.name)]);
                     for stance in &mut selection.stance {
-                        stance.note = notes.for_named_child(
+                        stance.ddobuilder_correction = notes.for_named_child(
                             "enhancements",
                             &enhancement.name,
                             &[("selection", &selection.name), ("stance", &stance.name)],
                         );
                     }
                     for dc in &mut selection.dc {
-                        dc.note = notes.for_named_child(
+                        dc.ddobuilder_correction = notes.for_named_child(
                             "enhancements",
                             &enhancement.name,
                             &[("selection", &selection.name), ("dc", &dc.name)],

@@ -42,7 +42,7 @@ name = "Power of the Thunderstorm"
 bonus_type = "Equipment"
 value = 111
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "bonus_type"
 reason = """For Epic Storm's Electric Spell Lore, the Thunderstorm Lore page says "Your Electric and Sonic spells gain a <x>% Equipment Bonus to their chance to critical hit"; his buff has no bonus type."""
@@ -50,7 +50,7 @@ url = "https://ddowiki.com/page/Thunderstorm_Lore"
 read = "2026-10-03"
 qualifier = "Electric Spell Lore / null / 16"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "bonus_type"
 reason = """For Epic Storm's Sonic Spell Lore, the Thunderstorm Lore page says "Your Electric and Sonic spells gain a <x>% Equipment Bonus to their chance to critical hit"; his buff has no bonus type."""
@@ -58,7 +58,7 @@ url = "https://ddowiki.com/page/Thunderstorm_Lore"
 read = "2026-10-03"
 qualifier = "Sonic Spell Lore / null / 16"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "bonus_type"
 reason = "For Epic Storm's Electric Spell Power, the type follows the Spell Power convention the wiki states: spell power from items is an Equipment bonus; his buff has no bonus type."
@@ -66,7 +66,7 @@ url = "https://ddowiki.com/page/Power_of_the_Thunderstorm"
 read = "2026-10-03"
 qualifier = "Electric Spell Power / null / 111"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "bonus_type"
 reason = "For Epic Storm's Sonic Spell Power, the type follows the Spell Power convention the wiki states: spell power from items is an Equipment bonus; his buff has no bonus type."

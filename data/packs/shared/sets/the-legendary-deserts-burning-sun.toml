@@ -22,7 +22,7 @@ name = "Legendary Tinder"
 [[item]]
 name = "Legendary Xuum"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "bonus_type"
 upstream = "Legendary"
@@ -31,7 +31,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 2, Physical Resistance Rating / Legendary"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "value"
 upstream = 15

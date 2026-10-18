@@ -5,7 +5,7 @@ icon = "WrathOfSoraKell"
 name = "Legendary Delight of the Devourer"
 family = "LostPurpose"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "bonus_type"
 upstream = "Artifact"

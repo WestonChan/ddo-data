@@ -17,7 +17,7 @@ effect = "Sonic Spell Critical Damage"
 effect_type = "SpellCriticalDamage"
 targets = ["Sonic"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Melancholic Sonic Spell Critical Damage (Heroic)"

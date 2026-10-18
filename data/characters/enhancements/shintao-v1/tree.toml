@@ -1416,7 +1416,7 @@ ranks = 1
 x = 3
 y = 5
 
-[[enhancement.note]]
+[[enhancement.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "ShintaoMeditationOFWar"
@@ -1570,7 +1570,7 @@ name = "Meditation of War"
 description = "Air Stance:\n    +2 to hit\n    +10% bonus to off-hand attack chance\n    You take 10% more physical and elemental damage. \nFire Stance:\n    +2 bonus to damage and to the DC's of your Stun, Sunder, and Trip abilities\n    -5 Armor Class\nEarth Stance:\n    +10 to Physical Resistance\n    +3% to Maximum Hit Points\n    -5% Dodge Cap. \nWater Stance:\n    +5 Maximum Dodge Bonus\n    You deal 10% less damage with attacks."
 icon = "ShintaoMeditationOfWar"
 
-[[enhancement.stance.note]]
+[[enhancement.stance.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "ShintaoMeditationOFWar"

@@ -15,7 +15,7 @@ pub struct ImportTableCounts {
     pub changed: usize,
     pub conflicts: usize,
     pub declined_removals: usize,
-    pub resolved_notes: usize,
+    pub resolved_corrections: usize,
 }
 
 #[derive(Debug)]
@@ -162,28 +162,28 @@ pub(super) fn report(
         .collect::<rusqlite::Result<BTreeMap<_, _>>>()?;
     let mut retained_index = IdentityIndex::from_db(rebuilt)?;
     for (key, id) in &correction_ids {
-        if outcome.kept_correction_notes.contains(&retained_index.identity("corrections", *id)?) {
+        if outcome.kept_corrections.contains(&retained_index.identity("corrections", *id)?) {
             entries.push(ImportReportEntry {
                 path: paths.path("corrections", *id)?,
-                category: "KEPT NOTE",
+                category: "KEPT CORRECTION",
                 detail: format!("{} {} [{}].{}", key.kind, quoted(&key.name), key.qualifier, key.field),
             });
         }
     }
     for event in events {
         let (key, previous, new, ours) = match event {
-            CorrectionEvent::ResolvedNote { key, previous, new } => (key, previous, new, None),
+            CorrectionEvent::ResolvedCorrection { key, previous, new } => (key, previous, new, None),
             CorrectionEvent::Conflict { key, previous, new, ours } => (key, previous, new, Some(ours)),
         };
-        let id = correction_ids.get(&key).with_context(|| format!("correction has no retained note: {key:?}"))?;
+        let id = correction_ids.get(&key).with_context(|| format!("correction was not retained: {key:?}"))?;
         let counts = tables.entry("corrections".into()).or_default();
         let (category, suffix) = if let Some(ours) = ours {
             conflict_count += 1;
             counts.conflicts += 1;
             ("CONFLICT", format!(" ours={}", report_value(&ours)))
         } else {
-            counts.resolved_notes += 1;
-            ("RESOLVED NOTE", String::new())
+            counts.resolved_corrections += 1;
+            ("RESOLVED CORRECTION", String::new())
         };
         entries.push(ImportReportEntry {
             path: paths.path("corrections", *id)?,
@@ -287,7 +287,7 @@ pub(super) fn report(
 impl Display for DdobuilderImportReport {
     fn fmt(&self, output: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(output, "import-ddobuilder {} → {}", self.previous_sha, self.new_sha)?;
-        writeln!(output, "table | added | removed | changed | conflicts | declined removals | resolved notes")?;
+        writeln!(output, "table | added | removed | changed | conflicts | declined removals | resolved corrections")?;
         for (table, counts) in &self.tables {
             writeln!(
                 output,
@@ -297,7 +297,7 @@ impl Display for DdobuilderImportReport {
                 counts.changed,
                 counts.conflicts,
                 counts.declined_removals,
-                counts.resolved_notes
+                counts.resolved_corrections
             )?;
         }
         for entry in &self.entries {

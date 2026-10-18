@@ -17,7 +17,7 @@ effect = "Fire Spell Critical Damage"
 effect_type = "SpellCriticalDamage"
 targets = ["Fire"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Melancholic Fire Spell Critical Damage (Legendary)"

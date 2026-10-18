@@ -18,7 +18,7 @@ name = "Good Luck"
 bonus_type = "Luck"
 value = 1
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "set_bonus"
 reason = "The wiki's DM's Vision items are Voice of the Master, its Epic version and Mantle of the Worldshaper; his item names no set."

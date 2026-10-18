@@ -16,7 +16,7 @@ bonus_type = "Enhancement"
 effect = "Negative Healing Amplification"
 effect_type = "NegativeHealingAmplification"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "description"
 upstream = "+24 Enhancement bonus to Negative Healing Amplification"
@@ -24,7 +24,7 @@ reason = "The wiki gives the Nearly Complete negative amplification a Profane bo
 url = "https://ddowiki.com/page/Nearly_Complete"
 read = "2026-09-30"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 field = "bonus_type"
 upstream = "Enhancement"

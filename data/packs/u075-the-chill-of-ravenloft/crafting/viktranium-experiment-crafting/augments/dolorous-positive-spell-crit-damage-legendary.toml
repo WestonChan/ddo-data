@@ -18,7 +18,7 @@ effect = "Positive Spell Critical Damage"
 effect_type = "SpellCriticalDamage"
 targets = ["Positive"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Dolorous Positive Spell Critical Damage (Legendary)"

@@ -7,7 +7,7 @@ name = "Legendary Siren's Belt"
 [[item]]
 name = "Legendary Siren's Charm"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Shield Armor Class +3 Artifact at 2 pieces; his tier lacks it."

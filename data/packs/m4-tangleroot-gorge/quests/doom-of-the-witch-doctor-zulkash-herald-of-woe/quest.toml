@@ -17,7 +17,7 @@ field = "quest facts"
 url = "https://ddowiki.com/page/Doom_of_the_Witch-doctor:_Zulkash,_Herald_of_Woe"
 read = "2026-10-01"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "quest"
 field = "name"
 upstream = "Doom Of The Witch Doctor: Zulkash, Herald Of Woe"

@@ -54,7 +54,7 @@ targets = [
     "None",
 ]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "name"
 upstream = "Necronimicannon"
@@ -62,7 +62,7 @@ reason = "The wiki spells the rune arm Necronomicannon; Necronimicannon is a mis
 url = "https://ddowiki.com/page/Item:Necronomicannon"
 read = "2026-10-01"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_effect"
 original_name = "Necronimicannon"
 field = "add"
@@ -71,7 +71,7 @@ url = "https://ddowiki.com/page/Item:Necronomicannon"
 read = "2026-10-01"
 qualifier = "Book Shot"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_effect"
 original_name = "Necronimicannon"
 field = "add"

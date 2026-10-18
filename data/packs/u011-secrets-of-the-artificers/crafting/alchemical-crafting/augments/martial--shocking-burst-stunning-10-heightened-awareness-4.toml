@@ -69,7 +69,7 @@ bonus_type = "Insight"
 effect = "Armor Class"
 effect_type = "ACBonus"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 field = "bonus_type"
 reason = "The wiki's Tier 1 Air martial effect Stunning +10 is a +10 Enhancement bonus to the Stunning DC; his TacticalDC effect is Not Set."

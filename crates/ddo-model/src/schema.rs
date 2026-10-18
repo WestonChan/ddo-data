@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 38;
+pub const SCHEMA_VERSION: i64 = 39;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -110,6 +110,7 @@ CREATE TABLE IF NOT EXISTS citations (
     field TEXT NOT NULL,
     url TEXT NOT NULL,
     read TEXT NOT NULL,
+    note TEXT,
     PRIMARY KEY (owner_kind, owner_id, field, url)
 );
 
@@ -122,22 +123,6 @@ CREATE TABLE IF NOT EXISTS removed_entities (
     url TEXT NOT NULL,
     read TEXT NOT NULL,
     PRIMARY KEY (owner_kind, owner_id, kind, name)
-);
-
-CREATE TABLE IF NOT EXISTS entity_notes (
-    owner_kind TEXT NOT NULL,
-    owner_id INTEGER NOT NULL,
-    note_index INTEGER NOT NULL,
-    kind TEXT NOT NULL,
-    original_name TEXT,
-    field TEXT NOT NULL,
-    added_as_name INTEGER,
-    upstream TEXT,
-    reason TEXT NOT NULL,
-    url TEXT NOT NULL,
-    read TEXT NOT NULL,
-    qualifier TEXT NOT NULL DEFAULT '',
-    PRIMARY KEY (owner_kind, owner_id, note_index)
 );
 
 CREATE TABLE IF NOT EXISTS pack_exceptions (

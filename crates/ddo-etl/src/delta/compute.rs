@@ -102,7 +102,7 @@ impl DatabaseSnapshot {
             .collect::<Vec<_>>();
         for address in addresses {
             match table_merge(&address.table).unwrap() {
-                TableMerge::Entity { .. } | TableMerge::CorrectionNotes => {
+                TableMerge::Entity { .. } | TableMerge::Corrections { .. } => {
                     let id = snapshot.id(&address)?;
                     let identity = snapshot.index.identity(&address.table, id)?;
                     ensure!(

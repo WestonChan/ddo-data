@@ -27,7 +27,7 @@ name = "Nightshade Venom"
 [[effect]]
 name = "Vampirism 1"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "drop_location"
 upstream = "Stealing from Sorcere, Romira and Juvian 's chest (requires completion of Sleeping with the Fishes and visits to The Cerulean Hills and Ruins of Myth Drannor )"

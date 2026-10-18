@@ -640,7 +640,7 @@ ranks = 3
 x = 4
 y = 1
 
-[[enhancement.note]]
+[[enhancement.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "EKBattleMage"

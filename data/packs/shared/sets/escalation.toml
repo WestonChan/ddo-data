@@ -73,7 +73,7 @@ family = "Greensteel_Legendary"
 name = "+6 Strength Skills, +14 Hit Points"
 family = "Greensteel_Legendary"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"
 upstream = "1% Dodge Cap, +1% per 3 additional augment"

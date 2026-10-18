@@ -1209,7 +1209,7 @@ description = "Your Lesser/Standard/Greater Evolution spell applies to Intellige
 group_name = "Evolution Option"
 icon = "Intelligence"
 
-[[row.stance.note]]
+[[row.stance.ddobuilder_correction]]
 kind = "spell"
 field = "icon"
 upstream = "intelligence"
@@ -1796,7 +1796,7 @@ description = "Your Lesser/Standard/Greater Evolution spell applies to Intellige
 group_name = "Evolution Option"
 icon = "Intelligence"
 
-[[row.stance.note]]
+[[row.stance.ddobuilder_correction]]
 kind = "spell"
 field = "icon"
 upstream = "intelligence"
@@ -2217,7 +2217,7 @@ description = "Your Lesser/Standard/Greater Evolution spell applies to Intellige
 group_name = "Evolution Option"
 icon = "Intelligence"
 
-[[row.stance.note]]
+[[row.stance.ddobuilder_correction]]
 kind = "spell"
 field = "icon"
 upstream = "intelligence"

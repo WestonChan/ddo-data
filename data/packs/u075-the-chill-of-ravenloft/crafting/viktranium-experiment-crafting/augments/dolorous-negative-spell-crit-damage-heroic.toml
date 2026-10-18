@@ -15,7 +15,7 @@ targets = [
     "Poison",
 ]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Dolorous Negative Spell Critical Damage (Heroic)"

@@ -7,7 +7,7 @@ name = "Pain, the Half of Whole"
 [[item]]
 name = "Suffering, the Half of Whole"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"
 upstream = "Gain +2[W] to each of your daggers"

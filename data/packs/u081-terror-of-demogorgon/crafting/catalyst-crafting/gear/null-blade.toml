@@ -31,7 +31,7 @@ name = "Lawful Outsider Bane 3"
 [[effect]]
 name = "Taint of Evil"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "icon"
 upstream = "Shortsword_18"

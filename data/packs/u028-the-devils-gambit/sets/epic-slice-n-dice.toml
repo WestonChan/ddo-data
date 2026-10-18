@@ -7,7 +7,7 @@ name = "Epic Dice"
 [[item]]
 name = "Epic Slice"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
 reason = "The wiki gives Seeker +2 Quality at 2 pieces; his tier lacks it."

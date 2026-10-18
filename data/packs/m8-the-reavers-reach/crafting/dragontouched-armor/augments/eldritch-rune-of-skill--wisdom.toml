@@ -17,7 +17,7 @@ effect = "Wisdom Skills"
 effect_type = "SkillBonusAbility"
 targets = ["Wisdom"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Eldritch Rune of Skill: Wisdom"

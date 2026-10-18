@@ -7,15 +7,8 @@ use std::sync::OnceLock;
 use xtask::dataset::build_database_file;
 use xtask::integrity::{integrity_report, CheckStatus, IntegrityOptions, Severity, INTEGRITY_CHECKS};
 
-const TABLES_EMPTY_IN_FIXTURES: [&str; 7] = [
-    "citations",
-    "corrections",
-    "effect_damage",
-    "entity_notes",
-    "pack_exceptions",
-    "race_feat_slots",
-    "removed_entities",
-];
+const TABLES_EMPTY_IN_FIXTURES: [&str; 6] =
+    ["citations", "corrections", "effect_damage", "pack_exceptions", "race_feat_slots", "removed_entities"];
 const PACK_QUEST_OVERLAP_SQL: &str =
     "INSERT INTO pack_drops (owner_kind, pack_id, owner_id, loot_type, chest, is_rare)
      SELECT CASE WHEN s.item_id IS NOT NULL THEN 'item' ELSE 'augment' END, q.pack_id, COALESCE(s.item_id, s.augment_id), s.loot_type, s.chest, s.is_rare

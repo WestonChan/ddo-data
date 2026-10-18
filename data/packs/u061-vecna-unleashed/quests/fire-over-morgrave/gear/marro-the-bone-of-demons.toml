@@ -40,7 +40,7 @@ bonus_type = "Greater Elemental Spell Power"
 [[effect]]
 name = "Planar Searing"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_effect"
 field = "add"
 reason = "The wiki lists Planar Searing on this weapon, which Maetrim omits."

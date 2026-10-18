@@ -2,7 +2,7 @@ name = "DR 5/Slashing"
 description_template = "Reduces physical damage by 5, except from Slashing attacks."
 verbose_name_template = "DR 5/Slashing"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "verbose_name_template"
 upstream = "DR Damage Reduction 5/Slashing"

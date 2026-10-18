@@ -17,7 +17,7 @@ field = "quest facts"
 url = "https://ddowiki.com/page/Caught_in_the_Web"
 read = "2026-10-01"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "quest"
 field = "epic_level"
 reason = "The wiki's quest index gives an epic level of 24; his Quests.xml gives none."

@@ -5,9 +5,4 @@ released = "2021-08-04"
 [[citation]]
 url = "https://ddowiki.com/page/Sinister_Secret_of_Saltmarsh"
 read = "2026-10-13"
-
-[[note]]
-kind = "release"
-reason = "Wiki adventure pack list says Update 50.2 (release notes 2021-08-18); the pack page gives Update 50 released 2021-08-04."
-url = "https://ddowiki.com/page/Sinister_Secret_of_Saltmarsh"
-read = "2026-10-13"
+note = "Wiki adventure pack list says Update 50.2 (release notes 2021-08-18); the pack page gives Update 50 released 2021-08-04."

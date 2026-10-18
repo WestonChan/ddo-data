@@ -7,7 +7,7 @@ family = "Lamordia_Legendary"
 icon = "Lamordia"
 min_level = 34
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 original_name = "Miserable Destruction (Legendary)"
 field = "description"
@@ -19,7 +19,7 @@ reason = "The wiki names the legendary augment Miserable Improved Destruction, t
 url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
 read = "2026-09-30"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Miserable Destruction (Legendary)"

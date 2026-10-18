@@ -145,7 +145,7 @@ family = "Greensteel_Legendary"
 name = "+2 Will Save (Quality)"
 family = "Greensteel_Legendary"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"
 upstream = "1% Incorporeal miss chance, +0.5% per additional augment"

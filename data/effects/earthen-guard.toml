@@ -2,7 +2,7 @@ name = "Earthen Guard"
 description_template = "When you are successfully attacked, there is a chance that a Stone Skin will be cast on you."
 verbose_name_template = "Earthen Guard"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "verbose_name_template"
 upstream = "Take a trip into the past!"
@@ -10,7 +10,7 @@ reason = "The wiki line uses this effect title; Maetrim copied an unrelated titl
 url = "https://ddowiki.com/page/Item:The_Earth_and_the_Sky"
 read = "2026-10-05"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "effect"
 field = "description_template"
 reason = "The wiki gives the triggered Stone Skin description that Maetrim omitted."

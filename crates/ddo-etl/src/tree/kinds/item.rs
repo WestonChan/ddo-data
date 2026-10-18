@@ -115,8 +115,6 @@ database_record! {
     }
 }
 
-pub(crate) type ItemNote = super::super::EntityNote;
-
 database_record! {
     #[derive(Debug, Serialize, Deserialize, JsonSchema)]
     #[serde(deny_unknown_fields)]
@@ -254,7 +252,7 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             removed: Vec<super::super::RemovedEntry>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<ItemNote>,
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             socket: Vec<Socket>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -312,10 +310,7 @@ impl ItemFile {
                 file.citation = annotation.citation.clone();
                 file.removed.clone_from(&annotation.removed);
             }
-            file.note.extend(notes.for_entity("items", &file.name));
-            if let Some(annotation) = annotations.entity("items", id) {
-                file.note.extend(annotation.reviewed_notes.iter().cloned());
-            }
+            file.ddobuilder_correction.extend(notes.for_entity("items", &file.name));
             files.insert(id, file);
         }
         let mut select =

@@ -40,7 +40,7 @@ name = "Spellcraft"
 bonus_type = "Competence"
 value = 20
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_socket"
 field = "add"
 reason = "The wiki's Libram of Silver Magic is Zhentarim Attuned; his item has no Zhentarim Attuned socket."

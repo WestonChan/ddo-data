@@ -19,7 +19,7 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<super::super::EntityNote>,
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             modifier: Vec<Modifier>,
         }
@@ -43,7 +43,7 @@ impl ClickiesFile {
         let mut rows = Vec::new();
         for record in select.query_map([], |record| Ok((record.get::<_, i64>("id")?, Clickie::from_row(record)?)))? {
             let (id, mut row) = record?;
-            row.note = notes.for_entity("clickies", &row.name);
+            row.ddobuilder_correction = notes.for_entity("clickies", &row.name);
             row.modifier = modifiers.remove(&("clickie".to_string(), id)).unwrap_or_default();
             rows.push(row);
         }

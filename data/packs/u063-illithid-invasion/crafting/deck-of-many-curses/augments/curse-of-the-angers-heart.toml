@@ -17,7 +17,7 @@ effect = "Intimidate"
 effect_type = "SkillBonus"
 targets = ["Intimidate"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "augment"
 field = "name"
 upstream = "Curse of Anger's Heart"

@@ -36,7 +36,7 @@ name = "Penalty Lawful"
 name = "Elasticity"
 bonus_type = "Base"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_effect"
 field = "value"
 reason = "The wiki gives this weapon DC 117 rather than the definition default of 17."

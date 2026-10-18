@@ -41,7 +41,7 @@ pub(super) const NOTE_KINDS_BY_TABLE: &[(&str, &[&str])] = &[
 ];
 
 pub(super) struct CorrectionNote {
-    pub(super) note: EntityNote,
+    pub(super) ddobuilder_correction: DdobuilderCorrection,
     pub(super) name: String,
     applied: serde_json::Value,
 }
@@ -87,7 +87,7 @@ impl CorrectionNoteIndex {
                     }
                 }
             }
-            let note = EntityNote {
+            let ddobuilder_correction = DdobuilderCorrection {
                 kind: kind.clone(),
                 original_name: None,
                 added_as_name: (kind == "item_effect" && field == "add" && applied.is_string()).then_some(true),
@@ -98,12 +98,12 @@ impl CorrectionNoteIndex {
                 read,
                 qualifier,
             };
-            rows.entry((kind, name.clone())).or_default().push(CorrectionNote { note, name, applied });
+            rows.entry((kind, name.clone())).or_default().push(CorrectionNote { ddobuilder_correction, name, applied });
         }
         Ok(Self { rows, renames })
     }
 
-    pub(super) fn for_entity(&self, table: &str, name: &str) -> Vec<EntityNote> {
+    pub(super) fn for_entity(&self, table: &str, name: &str) -> Vec<DdobuilderCorrection> {
         self.notes_for_owner(table, name)
             .into_iter()
             .filter(|note| {
@@ -114,7 +114,12 @@ impl CorrectionNoteIndex {
             .collect()
     }
 
-    pub(super) fn for_named_child(&self, table: &str, owner_name: &str, keys: &[(&str, &str)]) -> Vec<EntityNote> {
+    pub(super) fn for_named_child(
+        &self,
+        table: &str,
+        owner_name: &str,
+        keys: &[(&str, &str)],
+    ) -> Vec<DdobuilderCorrection> {
         let qualifier = super::correction_notes::named_row_qualifier(keys);
         self.notes_for_owner(table, owner_name)
             .into_iter()
@@ -145,11 +150,11 @@ impl CorrectionNoteIndex {
         corrections
     }
 
-    fn notes_for_owner(&self, table: &str, name: &str) -> Vec<EntityNote> {
+    fn notes_for_owner(&self, table: &str, name: &str) -> Vec<DdobuilderCorrection> {
         self.corrections_for_owner(table, name)
             .into_iter()
             .map(|row| {
-                let mut note = row.note.clone();
+                let mut note = row.ddobuilder_correction.clone();
                 note.original_name = (row.name != name && note.field != "name").then(|| row.name.clone());
                 note.added_as_name =
                     (note.kind == "item_effect" && note.field == "add" && row.applied.is_string()).then_some(true);
@@ -161,7 +166,7 @@ impl CorrectionNoteIndex {
 
 pub fn annotated_entities(db: &Connection) -> Result<BTreeSet<(String, i64)>> {
     let mut owners = BTreeSet::new();
-    for table in ["citations", "entity_notes", "removed_entities"] {
+    for table in [Citation::TABLE, RemovedEntry::TABLE] {
         let mut select = db.prepare(&format!("SELECT DISTINCT owner_kind, owner_id FROM {table}"))?;
         for owner in select.query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?)))? {
             owners.insert(owner?);
@@ -193,7 +198,7 @@ pub fn annotated_entities(db: &Connection) -> Result<BTreeSet<(String, i64)>> {
 }
 
 #[cfg(test)]
-pub(super) fn correction_notes(db: &Connection, table: &str, name: &str) -> Result<Vec<EntityNote>> {
+pub(super) fn correction_notes(db: &Connection, table: &str, name: &str) -> Result<Vec<DdobuilderCorrection>> {
     Ok(CorrectionNoteIndex::from_database(db)?.for_entity(table, name))
 }
 
@@ -275,6 +280,7 @@ pub(super) fn wiki_citations(
                     field: "sources".to_string(),
                     url: item.page.clone(),
                     read: item.read.clone(),
+                    note: None,
                 });
             }
         }
@@ -297,6 +303,7 @@ pub(super) fn wiki_citations(
                     field: "quest facts".to_string(),
                     url: quest.page.clone(),
                     read: quest.read.clone(),
+                    note: None,
                 });
             }
         }
@@ -340,10 +347,11 @@ pub(super) fn wiki_citations(
             field: "description".to_string(),
             url: description.page.clone(),
             read: description.read.clone(),
+            note: None,
         });
     }
     if let (Some(url), Some(read)) = (source, read) {
-        citations.insert(0, Citation { field: String::new(), url, read });
+        citations.insert(0, Citation { field: String::new(), url, read, note: None });
     }
     citations
 }
@@ -396,17 +404,14 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         let relative = layout.path("set_bonuses", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
-    for (id, mut file) in kinds::QuestFile::all_from_rows(db, &annotations, &notes)? {
+    for (id, file) in kinds::QuestFile::all_from_rows(db, &annotations, &notes)? {
         let relative = layout.path("quests", id)?;
-        if let Some(annotation) = annotations.entity("quests", id) {
-            file.note.extend(annotation.reviewed_notes.iter().cloned());
-        }
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
     for (id, mut file) in kinds::EffectFile::all_from_rows(db, &notes)? {
         let relative = layout.path("effects", id)?;
         if let Some(annotation) = annotations.entity("effects", id) {
-            file.note.extend(annotation.reviewed_notes.iter().cloned());
+            file.citation = annotation.citation.clone();
         }
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }

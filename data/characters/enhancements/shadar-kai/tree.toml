@@ -4,7 +4,7 @@ icon = "Shadar-kai"
 kind = "racial"
 version = 1
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "enhancement_tree"
 field = "icon"
 upstream = "Shadar-Kai"

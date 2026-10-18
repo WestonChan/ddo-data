@@ -36,8 +36,6 @@ database_record! {
     }
 }
 
-pub(crate) type SetNote = super::super::EntityNote;
-
 database_record! {
     #[derive(Debug, Serialize, Deserialize, JsonSchema)]
     #[serde(deny_unknown_fields)]
@@ -75,7 +73,7 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             item: Vec<SetItem>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            note: Vec<SetNote>,
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             tier: Vec<SetTier>,
         }
@@ -115,7 +113,7 @@ impl SetFile {
         let mut select = db.prepare(&format!("SELECT {} FROM set_bonuses ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
-            file.note = notes.for_entity("set_bonuses", &file.name);
+            file.ddobuilder_correction = notes.for_entity("set_bonuses", &file.name);
             files.insert(id, file);
         }
         let mut descriptions = BTreeMap::new();

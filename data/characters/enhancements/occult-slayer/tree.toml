@@ -587,7 +587,7 @@ ranks = 3
 x = 3
 y = 2
 
-[[enhancement.note]]
+[[enhancement.ddobuilder_correction]]
 kind = "enhancement"
 field = "icon"
 upstream = "OSLessonsOfTravel"

@@ -17,7 +17,7 @@ field = "quest facts"
 url = "https://ddowiki.com/page/The_Cloven-jaw_Scourge:_Blockade"
 read = "2026-10-01"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "quest"
 field = "name"
 upstream = "The Cloven-jaw Scourge:Blockade"

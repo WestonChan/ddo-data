@@ -32,7 +32,7 @@ name = "Spell Penetration"
 bonus_type = "Equipment"
 value = 9
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_bonus"
 field = "bonus_type"
 reason = "The wiki's Elemental Resistance +45 on this orb is a +45 Enhancement bonus; his buff has no bonus type."

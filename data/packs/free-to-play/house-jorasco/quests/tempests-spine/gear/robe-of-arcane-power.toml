@@ -16,7 +16,7 @@ armor_type = "Cloth"
 name = "Potency for Low-Level Spells"
 value = 20
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "is_legacy"
 upstream = false
@@ -24,7 +24,7 @@ reason = "The wiki says it no longer drops; replaced by Robe of Arcane Puissance
 url = "https://ddowiki.com/page/Item:Robe_of_Arcane_Power"
 read = "2026-10-01"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_effect"
 field = "remove"
 upstream = 0
@@ -33,7 +33,7 @@ url = "https://ddowiki.com/page/Item:Robe_of_Arcane_Power"
 read = "2026-10-04"
 qualifier = 'effect "Potency"'
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_effect"
 field = "add"
 reason = "The wiki describes +20% damage to 4th level and lower spells."

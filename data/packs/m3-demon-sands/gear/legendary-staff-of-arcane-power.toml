@@ -69,7 +69,7 @@ bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Staff of Arcane Power: Spell Selection"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_effect"
 field = "value"
 upstream = 5

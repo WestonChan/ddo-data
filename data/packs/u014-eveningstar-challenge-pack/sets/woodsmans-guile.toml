@@ -10,7 +10,7 @@ name = "Leathers of the Woodsman"
 [[item]]
 name = "Lenses of the Woodsman"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "bonus_type"
 upstream = "Artifact"
@@ -19,7 +19,7 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 qualifier = "equipped_count 3, Sneak Attack Hit / Artifact"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "bonus_type"
 upstream = "Artifact"

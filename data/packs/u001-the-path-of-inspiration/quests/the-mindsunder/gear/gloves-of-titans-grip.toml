@@ -30,7 +30,7 @@ bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Titan's Grip"]
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_socket"
 field = "add"
 reason = "The wiki's Gloves of Titan's Grip carry a Suppressed Power; his item has no Suppressed Power socket."

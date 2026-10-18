@@ -15,7 +15,7 @@ pub(super) struct XmlIdentity {
     #[serde(default)]
     pub(super) removed: Vec<RemovedEntry>,
     #[serde(default)]
-    pub(super) note: Vec<EntityNote>,
+    pub(super) citation: Vec<Citation>,
 }
 
 pub(super) fn xml_identities() -> &'static XmlIdentityCatalog {

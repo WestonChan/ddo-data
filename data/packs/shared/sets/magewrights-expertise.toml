@@ -1,6 +1,6 @@
 name = "Magewright's Expertise"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_bonus"
 field = "icon"
 upstream = "MagewrightsExpertise"
@@ -8,7 +8,7 @@ reason = "DDOBuilderV2's SetBonusImages folder has no MagewrightsExpertise.png."
 url = "Output/DataFiles/SetBonusImages"
 read = "2026-10-07"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"
 upstream = "+1 Artifact bonus to Spell Focus Mastery"

@@ -5,7 +5,7 @@ max_level = 20
 pack = "Vaults of the Artificers"
 patron = "House Cannith"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "quest"
 original_name = "Extraplanar Mining - The Dragon's Horde"
 field = "pack"
@@ -14,7 +14,7 @@ reason = "The Cannith challenge belongs to the Vaults of the Artificers adventur
 url = "https://ddowiki.com/page/Vaults_of_the_Artificers"
 read = "2026-10-05"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "quest"
 field = "name"
 upstream = "Extraplanar Mining - The Dragon's Horde"

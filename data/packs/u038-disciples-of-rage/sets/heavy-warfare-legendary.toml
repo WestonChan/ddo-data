@@ -7,7 +7,7 @@ name = "Legendary Beacon of Day"
 [[item]]
 name = "Legendary Beacon of Night"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "value"
 upstream = 10

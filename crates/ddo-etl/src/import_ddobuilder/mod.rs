@@ -227,7 +227,7 @@ mod tests {
             counts.push(SELECTS.load(Ordering::SeqCst));
             db.trace_v2(TraceEventCodes::empty(), None);
             for (table, rule) in TABLE_MERGES {
-                if !matches!(rule, TableMerge::Entity { .. } | TableMerge::CorrectionNotes) {
+                if !matches!(rule, TableMerge::Entity { .. } | TableMerge::Corrections { .. }) {
                     continue;
                 }
                 let mut statement = db.prepare(&format!("SELECT id FROM \"{table}\"")).unwrap();
@@ -287,7 +287,7 @@ mod tests {
     }
 
     #[test]
-    fn report_lists_kept_correction_notes() {
+    fn report_lists_kept_corrections() {
         let scratch = tempfile::tempdir().unwrap();
         let with_note = |folder: &str| {
             let root = scratch.path().join(folder);
@@ -314,7 +314,7 @@ mod tests {
             &paths,
         )
         .unwrap();
-        assert!(report.to_string().contains("characters/enhancements/stalwart-defender/tree.toml: KEPT NOTE enhancement \"Stalwart Defender: Defense Boost\""), "{report}");
+        assert!(report.to_string().contains("characters/enhancements/stalwart-defender/tree.toml: KEPT CORRECTION enhancement \"Stalwart Defender: Defense Boost\""), "{report}");
     }
 
     #[test]

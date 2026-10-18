@@ -41,7 +41,7 @@ name = "Vitality"
 bonus_type = "Vitality"
 value = 20
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item_socket"
 field = "add"
 reason = "The wiki's Mikrom Sum upgrades Spider-spun Caparison into the Way of the Sun Soul set; his item has no upgrade socket."

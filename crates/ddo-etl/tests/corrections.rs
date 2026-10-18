@@ -108,8 +108,8 @@ fn icon_notes_cover_filigrees_and_every_existing_ability_owner() {
                     .and_then(toml::Value::as_str)
                     .is_some_and(|icon| icon.starts_with("Corrected"))
                 {
-                    assert_eq!(fields["note"][0]["field"].as_str(), Some("icon"));
-                    assert!(fields["note"][0].get("qualifier").is_none());
+                    assert_eq!(fields["ddobuilder_correction"][0]["field"].as_str(), Some("icon"));
+                    assert!(fields["ddobuilder_correction"][0].get("qualifier").is_none());
                     1
                 } else {
                     0
@@ -162,7 +162,7 @@ fn nested_icon_notes_remain_beside_the_corrected_rows() {
         .iter()
         .find(|row| row["name"].as_str() == Some("Legendary Dreadnought: Dire Attack"))
         .unwrap();
-    assert!(enhancement.get("note").is_none());
+    assert!(enhancement.get("ddobuilder_correction").is_none());
     let selection = enhancement["selection"]
         .as_array()
         .unwrap()
@@ -171,8 +171,8 @@ fn nested_icon_notes_remain_beside_the_corrected_rows() {
         .unwrap();
     for (row, icon) in [(selection, "SelectionIcon"), (&selection["dc"][0], "DcIcon")] {
         assert_eq!(row["icon"].as_str(), Some(icon));
-        assert_eq!(row["note"][0]["upstream"].as_str(), Some("DireAttack"));
-        assert!(row["note"][0].get("qualifier").is_none());
+        assert_eq!(row["ddobuilder_correction"][0]["upstream"].as_str(), Some("DireAttack"));
+        assert!(row["ddobuilder_correction"][0].get("qualifier").is_none());
     }
     let restored = Corrections::from_database(&db).unwrap();
     assert_eq!(restored.entries.len(), 3);

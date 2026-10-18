@@ -25,7 +25,7 @@ name = "Evocation Focus"
 bonus_type = "Insight"
 value = 2
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "item"
 field = "name"
 upstream = "Dark Power's Demands"

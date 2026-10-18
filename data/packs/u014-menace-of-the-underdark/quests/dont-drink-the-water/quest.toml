@@ -17,7 +17,7 @@ field = "quest facts"
 url = "https://ddowiki.com/page/Don%27t_Drink_the_Water"
 read = "2026-10-01"
 
-[[note]]
+[[ddobuilder_correction]]
 kind = "quest"
 field = "epic_level"
 reason = "The wiki's quest index gives an epic level of 22; his Quests.xml gives none."
