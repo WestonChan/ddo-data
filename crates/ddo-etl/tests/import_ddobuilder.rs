@@ -405,6 +405,65 @@ read = "2026-10-18"
 }
 
 #[test]
+fn selection_and_parent_renames_keep_the_upstream_parent_in_both_builders() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let source = fixtures.join("DataFiles");
+    let wiki = WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
+    let version = DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() };
+    for parent_first in [true, false] {
+        let mut corrections = Corrections::from_dir(&fixtures.join("data-corrections")).unwrap();
+        let mut renames = [
+            ("", "Kensei: Action Boost", "Kensei: Action Boost Reviewed"),
+            ("selection = \"Attack Boost\"\n", "Attack Boost", "Attack Boost Reviewed"),
+        ];
+        if !parent_first {
+            renames.reverse();
+        }
+        for (qualifier, before, after) in renames {
+            let text = format!(
+                r#"[[correction]]
+kind = "enhancement"
+name = "Kensei: Action Boost"
+field = "name"
+from = {before:?}
+to = {after:?}
+{qualifier}reason = "Paired rename."
+source = "https://ddowiki.com/page/Test"
+read = "2026-10-18"
+"#
+            );
+            corrections.entries.extend(Corrections::from_toml_files(&[("paired.toml", &text)]).unwrap().entries);
+        }
+        let mut corrected = Connection::open_in_memory().unwrap();
+        let report = build::build_database(&source, &wiki, &corrections, &mut corrected, &version).unwrap();
+        assert!(report.stale_corrections.is_empty());
+        let scratch = tempfile::tempdir().unwrap();
+        export_fixture_with_icons(&corrected, &source, scratch.path());
+        let mut rebuilt = Connection::open_in_memory().unwrap();
+        tree::build_from_data(scratch.path(), &mut rebuilt).unwrap();
+        for db in [&corrected, &rebuilt] {
+            let mut query = db
+                .prepare("SELECT name, qualifier FROM corrections WHERE reason = 'Paired rename.' ORDER BY qualifier")
+                .unwrap();
+            let keys = query
+                .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?)))
+                .unwrap()
+                .collect::<rusqlite::Result<Vec<_>>>()
+                .unwrap();
+            assert_eq!(
+                keys,
+                vec![
+                    ("Kensei: Action Boost".into(), "".into()),
+                    ("Kensei: Action Boost".into(), "selection \"Attack Boost\"".into())
+                ]
+            );
+            let names: (String, String) = db.query_row("SELECT e.name, s.name FROM enhancements e JOIN enhancement_selections s ON s.enhancement_id = e.id WHERE s.name = 'Attack Boost Reviewed'", [], |row| Ok((row.get(0)?, row.get(1)?))).unwrap();
+            assert_eq!(names, ("Kensei: Action Boost Reviewed".into(), "Attack Boost Reviewed".into()));
+        }
+    }
+}
+
+#[test]
 fn every_declared_enhancement_field_agrees_between_builders() {
     use ddo_etl::corrections::{correctable_fields, CorrectionValue};
     use ddo_model::enums::CorrectionKind;

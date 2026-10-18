@@ -752,7 +752,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         .iter()
         .flat_map(|(_, notes)| notes)
         .filter_map(|(owner, note)| {
-            if note.field != "name" || !note.qualifier.starts_with("selection ") {
+            if !correction_notes::is_selection_rename(&note.field, &note.qualifier) {
                 return None;
             }
             note.upstream.as_ref().and_then(serde_json::Value::as_str).map(|old_name| {
@@ -771,7 +771,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         (|| -> Result<()> {
             let correction_name = if let Some(original_name) = &note.original_name {
                 original_name.clone()
-            } else if note.field == "name" && !note.qualifier.starts_with("selection ") {
+            } else if note.field == "name" && !correction_notes::is_selection_rename(&note.field, &note.qualifier) {
                 note.upstream
                     .as_ref()
                     .and_then(serde_json::Value::as_str)

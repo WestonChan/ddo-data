@@ -11,6 +11,10 @@ pub(super) fn named_row_qualifier(keys: &[(&str, &str)]) -> String {
     keys.iter().map(|(key, name)| format!("{key} {name:?}")).collect::<Vec<_>>().join(", ")
 }
 
+pub(super) fn is_selection_rename(field: &str, qualifier: &str) -> bool {
+    field == "name" && qualifier.starts_with("selection ")
+}
+
 pub(super) fn renamed_qualifier<'a>(qualifier: &str, renames: impl IntoIterator<Item = (&'a str, &'a str)>) -> String {
     renames
         .into_iter()

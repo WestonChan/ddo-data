@@ -80,7 +80,7 @@ impl CorrectionNoteIndex {
                 Some(upstream_value)
             };
             let applied: serde_json::Value = serde_json::from_str(&applied_json)?;
-            if field == "name" && !qualifier.starts_with("selection ") {
+            if field == "name" && !super::correction_notes::is_selection_rename(&field, &qualifier) {
                 if let Some(new_name) = applied.as_str() {
                     if new_name != name {
                         renames.entry((kind.clone(), new_name.to_string())).or_default().push(name.clone());
@@ -126,7 +126,7 @@ impl CorrectionNoteIndex {
             .into_iter()
             .filter_map(|row| {
                 let note = &row.ddobuilder_correction;
-                if note.field != "name" || !note.qualifier.starts_with("selection ") {
+                if !super::correction_notes::is_selection_rename(&note.field, &note.qualifier) {
                     return None;
                 }
                 row.applied.as_str().map(|name| {
@@ -173,7 +173,10 @@ impl CorrectionNoteIndex {
             .into_iter()
             .map(|row| {
                 let mut note = row.ddobuilder_correction.clone();
-                note.original_name = (row.name != name && note.field != "name").then(|| row.name.clone());
+                note.original_name = (row.name != name
+                    && (note.field != "name"
+                        || super::correction_notes::is_selection_rename(&note.field, &note.qualifier)))
+                .then(|| row.name.clone());
                 note.added_as_name = (note.kind == ddo_model::enums::CorrectionKind::ItemEffect
                     && note.field == "add"
                     && row.applied.is_string())

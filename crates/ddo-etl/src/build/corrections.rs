@@ -68,10 +68,11 @@ fn apply_corrections_where(
     report: &mut BuildReport,
     is_applied_in_this_pass: impl Fn(&Correction) -> bool,
 ) -> Result<()> {
-    let (renames, field_corrections): (Vec<&Correction>, Vec<&Correction>) =
+    let (mut renames, field_corrections): (Vec<&Correction>, Vec<&Correction>) =
         corrections.entries.iter().filter(|correction| is_applied_in_this_pass(correction)).partition(|correction| {
             correction.correctable_field().is_ok_and(|field| field.shape == FieldShape::RowName)
         });
+    renames.sort_by_key(|correction| correction.selection.is_none());
     for correction in field_corrections.into_iter().chain(renames) {
         apply_correction(
             transaction,
