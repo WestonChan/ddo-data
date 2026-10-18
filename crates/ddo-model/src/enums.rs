@@ -774,6 +774,10 @@ impl EntityKind {
             Self::WeaponType => "weapon_types",
         }
     }
+    pub fn from_table_name(table: &str) -> Option<Self> {
+        Self::ALL.iter().copied().find(|kind| kind.table_name() == table)
+    }
+
     pub fn parse(text: &str) -> Option<Self> {
         Self::ALL.iter().copied().find(|kind| kind.as_str() == text)
     }
@@ -1292,6 +1296,7 @@ mod entity_kind_tests {
             assert!(words.insert(kind.as_str()));
             assert!(tables.insert(kind.table_name()));
             assert_eq!(EntityKind::parse(kind.as_str()), Some(*kind));
+            assert_eq!(EntityKind::from_table_name(kind.table_name()), Some(*kind));
             let declaration = crate::ddl()
                 .split_once(&format!("CREATE TABLE IF NOT EXISTS {} (", kind.table_name()))
                 .unwrap()
@@ -1306,6 +1311,9 @@ mod entity_kind_tests {
             );
         }
         assert_eq!(words.len(), 32);
+        assert_eq!(EntityKind::from_table_name("unknown"), None);
+        assert_eq!(EntityKind::from_table_name(""), None);
+        assert_eq!(EntityKind::from_table_name("sets"), None);
         assert_eq!(EntityKind::parse("unknown"), None);
         assert_eq!(EntityKind::parse(""), None);
     }

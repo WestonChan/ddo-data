@@ -8,9 +8,7 @@ fn current_slugs(db: &Connection) -> Result<BTreeSet<(String, String)>> {
     let mut statement = db.prepare("SELECT kind, slug FROM entity_identity")?;
     for row in statement.query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?)))? {
         let (table, slug) = row?;
-        let kind = EntityKind::ALL
-            .iter()
-            .find(|kind| kind.table_name() == table)
+        let kind = EntityKind::from_table_name(&table)
             .with_context(|| format!("unknown entity identity kind {table:?} for {slug:?}"))?;
         slugs.insert((kind.as_str().to_string(), slug));
     }
