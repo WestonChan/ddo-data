@@ -1,4 +1,5 @@
 name = "Glass Cannon (legacy) (tier 2)"
+is_wiki_only = true
 description = "Made of hardened volcanic glass, this rune arm fires conjured stones which will explode upon impact."
 drop_location = "Treasure of Crystal Cove, Turn in 80 Stolen Star Rubies, 750 Gold Doubloons, 750 Silver Doubloons"
 is_legacy = true

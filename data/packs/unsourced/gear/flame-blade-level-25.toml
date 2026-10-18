@@ -1,4 +1,5 @@
 name = "Flame Blade (Level 25)"
+is_wiki_only = true
 description = "A blazing beam of red hot fire that sprang forth from your hands with the casting of the Flame Blade spell. The flames respond to the willpower and intuition of the wielder. As the Flame Blade is not physical, monks may use it without becoming uncentered."
 drop_location = "The page gives no location"
 enhancement_bonus = 10

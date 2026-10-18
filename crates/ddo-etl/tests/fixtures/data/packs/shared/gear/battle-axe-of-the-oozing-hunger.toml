@@ -1,4 +1,5 @@
 name = "Battle Axe of the Oozing Hunger"
+is_wiki_only = true
 description = "Test description: an axe that drips."
 drop_location = "Test source: The Grotto, end chest"
 enhancement_bonus = 15

@@ -1,4 +1,5 @@
 name = "An Inexplicably Legendary Garbage Can Lid?"
+is_wiki_only = true
 description = "This is... a garbage can lid. It's dented."
 drop_location = "Scavenger Hunt, End Chest, The Magma Must Flow End Chest"
 enhancement_bonus = 15

@@ -56,9 +56,11 @@ database_record! {
     #[derive(Debug, Serialize, Deserialize, JsonSchema)]
     #[serde(deny_unknown_fields)]
     pub(crate) struct AugmentFile in "augments" {
-        keys { id: i64, slug: &str, provenance: &str }
+        keys { id: i64, slug: &str }
         fields {
             name: String => name,
+            #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
+            is_wiki_only: bool => provenance [wiki_only],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             adds_augment: Option<String> => adds_augment,
             #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -189,13 +191,8 @@ impl AugmentFile {
             "{}: augment id does not match its slug",
             path.display()
         );
-        self.insert(
-            db,
-            id,
-            identity,
-            if self.citation.iter().any(|citation| citation.field.is_empty()) { "wiki" } else { "maetrim" },
-        )
-        .with_context(|| format!("{}: inserting augment {:?}", path.display(), self.name))?;
+        self.insert(db, id, identity)
+            .with_context(|| format!("{}: inserting augment {:?}", path.display(), self.name))?;
         Ok(())
     }
 

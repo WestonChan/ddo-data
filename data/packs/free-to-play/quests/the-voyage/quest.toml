@@ -1,4 +1,5 @@
 name = "The Voyage"
+is_wiki_only = true
 difficulties = ["normal"]
 favor = 0
 flagging = "Requires Veteran Status; starts automatically when a new level 1 character enters the game."

@@ -1,4 +1,5 @@
 name = "Resplendence"
+is_wiki_only = true
 description = "Polished so finely, this runearm appears to magnify even the dimmest of lights to a brilliant glare."
 drop_location = "Fashion Madness, End chest"
 item_category = "Weapon"

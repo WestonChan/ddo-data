@@ -128,9 +128,6 @@ pub const TABLE_MERGES: &[(&str, TableMerge)] = &[
 ];
 
 pub const REBUILT_COLUMNS: &[(&str, &str)] = &[
-    ("items", "provenance"),
-    ("augments", "provenance"),
-    ("quests", "provenance"),
     ("quest_chains", "provenance"),
     ("sagas", "provenance"),
     ("vendors", "provenance"),

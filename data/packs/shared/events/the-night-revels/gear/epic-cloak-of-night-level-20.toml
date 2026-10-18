@@ -1,4 +1,5 @@
 name = "Epic Cloak of Night (Level 20)"
+is_wiki_only = true
 description = "This Cloak is as smooth and dark as the most pitch-black of nights. Wearing it makes you difficult to spot and attack, and by awakening its powers you will enable it to aid you against creatures native to the darkness."
 drop_location = "The Night Revels, Turn in Cloak of Night (level 16) and 150 Piece of Darkest Chocolate, 40 Pinch of Sinister Cinnamon, 80 Shadowy Caramel at Joe Candymaker"
 item_category = "Clothing"

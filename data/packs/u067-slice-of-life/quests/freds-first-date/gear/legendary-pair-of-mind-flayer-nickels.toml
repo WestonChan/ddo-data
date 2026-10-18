@@ -1,4 +1,5 @@
 name = "Legendary Pair of Mind Flayer Nickels"
+is_wiki_only = true
 description = "If I had a nickel for every time..."
 drop_location = "Fred's First Date, end chest"
 item_category = "Jewelry"

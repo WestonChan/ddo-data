@@ -154,7 +154,7 @@ fn delta_reports_columns_and_ordered_arrays_separately() {
 fn delta_ignores_rebuilt_columns_and_build_times() {
     let previous = fixture_database();
     let new = fixture_database();
-    new.execute("UPDATE quests SET provenance = 'wiki'", []).unwrap();
+    new.execute("UPDATE quest_chains SET provenance = 'wiki'", []).unwrap();
     new.execute("UPDATE dataset_version SET built_at = 'later'", []).unwrap();
     new.execute("UPDATE schema_version SET applied_at = 'later'", []).unwrap();
     assert!(database_delta(&previous, &new).unwrap().is_empty());

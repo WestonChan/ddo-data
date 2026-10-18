@@ -1,4 +1,5 @@
 name = "Duergarcraft Greatsword"
+is_wiki_only = true
 description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
 drop_location = "Terror of Demogorgon, any end chest, most optional chests"
 enhancement_bonus = 5

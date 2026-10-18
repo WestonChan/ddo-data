@@ -1,4 +1,5 @@
 name = "Thorn Blade (Level 5)"
+is_wiki_only = true
 description = "A thorny mass of poisoned bines that sprang forth from your hands with the casting of the Thorn Blade spell. The thorns respond to the willpower and intuition of the wielder. As the Thorn Blade is not physical, monks may use it without becoming uncentered."
 drop_location = "The page gives no location"
 enhancement_bonus = 2

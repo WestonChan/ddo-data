@@ -1,4 +1,5 @@
 name = "Test Gem of Oozing Resistance"
+is_wiki_only = true
 description = "Test description: a gem that drips."
 effect_description = "Test effect description: the wearer resists ooze."
 family = "Named"

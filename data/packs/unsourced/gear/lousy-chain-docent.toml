@@ -1,4 +1,5 @@
 name = "Lousy Chain Docent?"
+is_wiki_only = true
 description = "You participated in a Live Event, but all you got was this lousy chain docent."
 drop_location = "Special event items, New Theater Event for wrong answer"
 item_category = "Armor"

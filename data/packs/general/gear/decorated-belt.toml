@@ -1,4 +1,5 @@
 name = "Decorated Belt"
+is_wiki_only = true
 drop_location = "Advance to level 15, End reward"
 item_category = "Clothing"
 material = "Steel"

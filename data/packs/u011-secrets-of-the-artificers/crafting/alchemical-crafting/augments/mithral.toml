@@ -1,4 +1,5 @@
 name = "Mithral"
+is_wiki_only = true
 description = """
 Weapon/shield breaks Mithril DR
 Tier 0: combine the item blank (Prototype) with 50 Threads of Fate"""

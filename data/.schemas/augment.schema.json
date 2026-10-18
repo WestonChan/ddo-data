@@ -435,6 +435,9 @@
       ],
       "x-image-kind": ""
     },
+    "is_wiki_only": {
+      "type": "boolean"
+    },
     "level_values": {
       "items": {
         "$ref": "#/$defs/FileNumber"

@@ -1,4 +1,5 @@
 name = "Dark Bargainer's Armor"
+is_wiki_only = true
 description = "This armor was fashionable in your homeland... where ever that was."
 drop_location = "Advance to level 15, End reward"
 enhancement_bonus = 4

@@ -1,4 +1,5 @@
 name = "Enhanced Stormreach Marketplace Shield (angular)"
+is_wiki_only = true
 description = "This shield depicts the market tent, center of Stormreach commerce and trade. This shield now has the powerful treasure effects of the Battered Markeplace Shield and the impressive appearance of a new Stoormreach Marketplace Shield."
 drop_location = "Stone of Change, Battered Marketplace Shield (angular) + Stormreach Marketplace Shield (angular)"
 enhancement_bonus = 3

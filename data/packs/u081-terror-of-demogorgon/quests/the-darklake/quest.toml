@@ -1,4 +1,5 @@
 name = "The Darklake"
+is_wiki_only = true
 difficulties = [
     "normal",
     "hard",

@@ -1,4 +1,5 @@
 name = "Cormyrian Docent"
+is_wiki_only = true
 description = "This exquisite light plate is a suit that any knight would be proud to own. The smithies of Cormyr are renowned for the quality of their work, and equipment intended for use in service to the kingdom is layered with powerful enchantments by the War Wizards."
 drop_location = "Eveningstar Challenge Pack, Turn in various Eveningstar Challenge Pack ingredients"
 item_category = "Armor"

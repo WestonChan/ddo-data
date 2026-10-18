@@ -1,4 +1,5 @@
 name = "Legendary Buckler of the Oozing Hunger"
+is_wiki_only = true
 description = "An aspect of the Unspeakable."
 drop_location = "Sealed Altar, Turn in Legendary Duergarcraft Buckler and 50 Legendary Abyssal Gems"
 enhancement_bonus = 16

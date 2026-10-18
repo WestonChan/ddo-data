@@ -58,6 +58,38 @@ fn copy_tree(source: &Path, destination: &Path) {
     }
 }
 
+#[test]
+fn fieldless_citation_does_not_make_an_upstream_item_wiki_only() {
+    let scratch = tempfile::tempdir().unwrap();
+    let source = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles");
+    let mut db = Connection::open_in_memory().unwrap();
+    let corrections = Corrections::from_dir(&source.parent().unwrap().join("data-corrections")).unwrap();
+    build::build_database(
+        &source,
+        &WikiOverrides::default(),
+        &corrections,
+        &mut db,
+        &DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() },
+    )
+    .unwrap();
+    db.execute("INSERT INTO citations (owner_kind, owner_id, field, url, read) SELECT 'items', id, '', 'https://ddowiki.com/page/Item:Reviewed', '2026-10-18' FROM items WHERE id = (SELECT MIN(id) FROM items)", []).unwrap();
+    tree::export_database(&db, scratch.path()).unwrap();
+    ddo_etl::icons::export_icons(&source, &scratch.path().join("icons")).unwrap();
+    let icons = ddo_etl::icons::complete_referenced_icons(scratch.path()).unwrap();
+    for missing in icons.missing_icons {
+        let path = scratch.path().join("icons").join(missing);
+        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+        std::fs::copy(source.join("FeatImages/PowerAttack.png"), path).unwrap();
+    }
+    ddo_etl::icons::place_enhancement_icons_beside_trees(scratch.path()).unwrap();
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    tree::build_from_data(scratch.path(), &mut rebuilt).unwrap();
+    let provenance: String = rebuilt.query_row(
+        "SELECT provenance FROM items JOIN citations ON owner_kind = 'items' AND owner_id = items.id WHERE citations.url = 'https://ddowiki.com/page/Item:Reviewed'", [], |row| row.get(0)
+    ).unwrap();
+    assert_eq!(provenance, "maetrim");
+}
+
 struct ImportWorld {
     scratch: tempfile::TempDir,
     options: DdobuilderImportOptions,
@@ -65,6 +97,10 @@ struct ImportWorld {
 
 impl ImportWorld {
     fn new(corrections: Corrections) -> Self {
+        Self::with_wiki(corrections, WikiOverrides::default())
+    }
+
+    fn with_wiki(corrections: Corrections, wiki: WikiOverrides) -> Self {
         let scratch = tempfile::tempdir().unwrap();
         let previous_dir = scratch.path().join("previous");
         let source_dir = scratch.path().join("new");
@@ -75,7 +111,7 @@ impl ImportWorld {
         let mut db = Connection::open_in_memory().unwrap();
         build::build_database(
             &previous_dir,
-            &WikiOverrides::default(),
+            &wiki,
             &corrections,
             &mut db,
             &DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-17T00:00:00Z".into() },
@@ -90,7 +126,7 @@ impl ImportWorld {
                 data_dir,
                 previous_sha: Some(PREVIOUS_SHA.into()),
                 sha: Some(NEW_SHA.into()),
-                wiki: WikiOverrides::default(),
+                wiki,
                 corrections,
             },
         }
@@ -142,6 +178,41 @@ fn import_of_the_recorded_commit_changes_nothing() {
     let report = import_ddobuilder(&world.options).unwrap();
     assert!(!report.has_conflicts(), "{report}");
     assert_eq!(before, world.bytes());
+}
+
+#[test]
+fn import_supersedes_wiki_only_item_without_a_conflict() {
+    let wiki = WikiOverrides::from_toml_files(&[(
+        "items.toml",
+        r#"
+[[item]]
+name = "Reviewed Trinket"
+page = "https://ddowiki.com/page/Item:Reviewed_Trinket"
+read = "2026-10-18"
+slot = "Trinket"
+category = "Jewelry"
+minimum_level = 1
+description = "Wiki description"
+drop_location = "Unknown"
+"#,
+    )])
+    .unwrap();
+    let world = ImportWorld::with_wiki(Corrections::default(), wiki);
+    let provenance = |db: &Connection| -> String {
+        db.query_row("SELECT provenance FROM items WHERE name = 'Reviewed Trinket'", [], |row| row.get(0)).unwrap()
+    };
+    assert_eq!(provenance(&world.database()), "wiki");
+    let items = world.options.source_dir.join("Items");
+    std::fs::create_dir_all(&items).unwrap();
+    std::fs::write(items.join("Reviewed Trinket.item"), "<Items><Item><Name>Reviewed Trinket</Name><MinLevel>1</MinLevel><EquipmentSlot><Trinket/></EquipmentSlot><Description>His description</Description></Item></Items>").unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    let db = world.database();
+    assert_eq!(provenance(&db), "maetrim");
+    let citations: i64 = db.query_row("SELECT COUNT(*) FROM citations WHERE owner_kind = 'items' AND owner_id = (SELECT id FROM items WHERE name = 'Reviewed Trinket') AND field = ''", [], |row| row.get(0)).unwrap();
+    assert_eq!(citations, 0);
+    let path = world.options.data_dir.join("packs/unsourced/gear/reviewed-trinket.toml");
+    assert!(!std::fs::read_to_string(path).unwrap().contains("is_wiki_only"));
 }
 
 #[test]

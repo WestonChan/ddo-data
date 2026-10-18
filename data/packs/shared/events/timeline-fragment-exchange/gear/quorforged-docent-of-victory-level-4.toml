@@ -1,4 +1,5 @@
 name = "Quorforged Docent of Victory (Level 4)"
+is_wiki_only = true
 description = "Time-Twisted version of Quorforged Docent of Battle This docent belongs to the servants of the Quori that still run Stormreach to this day."
 drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
 enhancement_bonus = 2

@@ -1,4 +1,5 @@
 name = "Epic Robe of Shadow (Level 20)"
+is_wiki_only = true
 description = "This robe is as dark as the night sky and almost seems to crawl visibly with moving shadows. It boosts the power of the wearer's negative energy magic, and grants a measure of necromantic protection against enemy attacks."
 drop_location = "The Night Revels, Turn in Upgrade of Robe of Shadow (level 16)"
 item_category = "Armor"

@@ -1,4 +1,5 @@
 name = "Epic Wraps of Endless Light (Level 24)"
+is_wiki_only = true
 description = "These silken wraps blaze with an aura of light."
 drop_location = "The Night Revels, Turn in various ingredients to Joe Candymaker"
 enhancement_bonus = 7

@@ -1,4 +1,5 @@
 name = "Essence of The Masque"
+is_wiki_only = true
 variant = "named"
 description = """
 This sapphire carries the soul of The Masque.

@@ -1,4 +1,5 @@
 name = "Robe of Armor +1"
+is_wiki_only = true
 description = "This high quality robe is enchanted to protect the wearer like light armor."
 drop_location = "DDO Store"
 item_category = "Armor"

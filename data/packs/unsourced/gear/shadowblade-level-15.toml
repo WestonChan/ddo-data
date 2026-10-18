@@ -1,4 +1,5 @@
 name = "Shadowblade (Level 15)"
+is_wiki_only = true
 description = "This manifestation of Illusion Magic is made real by your touch. As you increase in level, this weapon will also increase in power. Because it is a manifestation of pure magic rather than a physical weapon, it will dissipate if unequipped."
 drop_location = "The page gives no location"
 enhancement_bonus = 6

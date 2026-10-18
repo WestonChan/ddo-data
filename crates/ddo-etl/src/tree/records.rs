@@ -163,6 +163,12 @@ macro_rules! database_record {
     };
     (@select $table:expr, $column:ident [resolved_reference $target:literal $identity:ident]) => { database_record!(@select $table, $column [reference $target]) };
     (@select $table:expr, $column:ident $([$($adapter:tt)*])?) => {{ database_record!(@adapter $([$($adapter)*])?); format!("[{}]", stringify!($column)) }};
+    (@read $row:ident, $column:ident [wiki_only]) => {
+        $row.get::<_, String>(stringify!($column)).map(|provenance| provenance == "wiki")
+    };
+    (@write $db:ident, $record:ident, $field:ident [wiki_only]) => {
+        if $record.$field { "wiki" } else { "maetrim" }
+    };
     (@read $row:ident, $column:ident [enum_text]) => {
         $row.get::<_, String>(stringify!($column)).and_then(|text| serde_json::from_value(serde_json::Value::String(text)).map_err(|error| rusqlite::Error::FromSqlConversionFailure($row.as_ref().column_index(stringify!($column)).unwrap(), rusqlite::types::Type::Text, Box::new(error))))
     };
@@ -208,6 +214,7 @@ macro_rules! database_record {
     (@adapter [optional_reference $target:literal $($label:literal)?]) => {};
     (@adapter [resolved_reference $target:literal $identity:ident]) => {};
     (@adapter [enum_text ]) => {};
+    (@adapter [wiki_only]) => {};
     (@adapter [wiki $kind:literal]) => {};
     (@adapter [integer_text ]) => {};
     (@adapter [fallback $fallback:ident]) => {};

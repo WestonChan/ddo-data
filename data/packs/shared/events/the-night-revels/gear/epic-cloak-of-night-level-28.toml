@@ -1,4 +1,5 @@
 name = "Epic Cloak of Night (Level 28)"
+is_wiki_only = true
 description = "This cloak is as smooth and dark as the most pitch-black of nights. Wearing it makes you difficult to spot and attack, and by awakening its powers you will enable it to aid you against creatures native to the darkness."
 drop_location = "The Night Revels, Turn in Cloak of Night (level 24) and 250 Piece of Darkest Chocolate, 120 Spooky Almond, 100 Black Apple at Joe Candymaker"
 item_category = "Clothing"

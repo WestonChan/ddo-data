@@ -1,4 +1,5 @@
 name = "Ghosts of Perdition"
+is_wiki_only = true
 difficulties = [
     "normal",
     "hard",

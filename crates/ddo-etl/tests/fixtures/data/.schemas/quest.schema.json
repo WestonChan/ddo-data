@@ -148,6 +148,9 @@
     "is_raid": {
       "type": "boolean"
     },
+    "is_wiki_only": {
+      "type": "boolean"
+    },
     "max_level": {
       "format": "int64",
       "type": [

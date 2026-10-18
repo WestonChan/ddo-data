@@ -20,10 +20,12 @@ database_record! {
     #[serde(deny_unknown_fields)]
     pub(crate) struct QuestFile in "quests" {
         context { levels: &[Option<i64>; 3] }
-        keys { id: i64, slug: &str, provenance: &str }
+        keys { id: i64, slug: &str }
         values { level => levels[0], epic_level => levels[1], legendary_level => levels[2] }
         fields {
             name: String => name,
+            #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
+            is_wiki_only: bool => provenance [wiki_only],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             bestowed_by: Option<String> => bestowed_by,
             #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -115,14 +117,8 @@ impl QuestFile {
             };
             ensure!(level.replace(run.level).is_none(), "{}: duplicate quest run tier {:?}", path.display(), run.tier);
         }
-        self.insert(
-            db,
-            &[heroic_level, epic_level, legendary_level],
-            id,
-            identity,
-            if self.citation.iter().any(|citation| citation.field.is_empty()) { "wiki" } else { "maetrim" },
-        )
-        .with_context(|| format!("{}: inserting quest {:?}", path.display(), self.name))?;
+        self.insert(db, &[heroic_level, epic_level, legendary_level], id, identity)
+            .with_context(|| format!("{}: inserting quest {:?}", path.display(), self.name))?;
         Ok(())
     }
 }
