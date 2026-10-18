@@ -860,7 +860,44 @@ mod tests {
     fn committed_data_restores_all_current_corrections() {
         let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");
         let corrections = Corrections::from_data(&root).unwrap();
-        assert_eq!(corrections.entries.len(), Corrections::embedded().unwrap().entries.len());
+        let constitution = corrections
+            .entries
+            .iter()
+            .find(|correction| {
+                correction.kind == ddo_model::enums::CorrectionKind::Enhancement
+                    && correction.name == "Reaper's Constitution I"
+                    && correction.field == "cost_per_rank"
+            })
+            .expect("missing confirmed Reaper cost correction");
+        assert_eq!(constitution.from, CorrectionValue::Integers(vec![2]));
+        assert_eq!(constitution.to, CorrectionValue::Integers(vec![1]));
+        assert_eq!(constitution.source.page_url(), Some("https://ddowiki.com/page/Reaper_enhancements"));
+        assert_eq!(constitution.read, "2026-10-08");
+        assert_eq!(corrections.entries.len(), Corrections::embedded().unwrap().entries.len() + 1);
+        let tree: toml::Value = toml::from_str(
+            &std::fs::read_to_string(root.join("characters/enhancements/grim-barricade/tree.toml")).unwrap(),
+        )
+        .unwrap();
+        let luck = tree["enhancement"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|entry| entry["name"].as_str() == Some("Reaper's Luck"))
+            .unwrap();
+        assert_eq!(luck["cost_per_rank"].as_array().unwrap(), &[toml::Value::Integer(1)]);
+        let citation = luck["citation"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|entry| entry["field"].as_str() == Some("cost_per_rank"))
+            .unwrap();
+        assert_eq!(citation["in_game"].as_bool(), Some(true));
+        assert_eq!(citation["read"].as_str(), Some("2026-10-18"));
+        assert_eq!(
+            citation["note"].as_str(),
+            Some("The game shows cost 1; ddowiki's Reaper_enhancements page says 2.")
+        );
+
         for (name, amount) in [("Legendary Sceptre of the Oozing Hunger", 25), ("Sceptre of the Oozing Hunger", 12)] {
             let sceptre = corrections
                 .entries

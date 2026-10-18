@@ -373,6 +373,12 @@ ranks = 1
 x = 2
 y = 1
 
+[[enhancement.citation]]
+field = "cost_per_rank"
+in_game = true
+read = "2026-10-18"
+note = "The game shows cost 1; ddowiki's Reaper_enhancements page says 2."
+
 [[enhancement.requirement]]
 req_type = "Level"
 value = 4
@@ -380,7 +386,7 @@ value = 4
 [[enhancement]]
 name = "Reaper's Constitution I"
 arrows = ["ArrowUp"]
-cost_per_rank = [2]
+cost_per_rank = [1]
 description = "+1 to Constitution while in Reaper Difficulty"
 icon = "Constitution"
 internal_name = "GrimAbilityI"
@@ -403,6 +409,14 @@ read = "2026-10-17"
 field = "min_spent"
 url = "https://ddowiki.com/page/Reaper_enhancements"
 read = "2026-10-17"
+
+[[enhancement.ddobuilder_correction]]
+kind = "enhancement"
+field = "cost_per_rank"
+upstream = [2]
+reason = "DDOBuilder lists cost 2; the wiki and game show cost 1."
+url = "https://ddowiki.com/page/Reaper_enhancements"
+read = "2026-10-08"
 
 [[enhancement.modifier]]
 amount_type = "Simple"
