@@ -366,6 +366,45 @@ fn import_twice_changes_nothing_the_second_time() {
 }
 
 #[test]
+fn augment_family_rename_preserves_the_upstream_correction_name() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let source = fixtures.join("DataFiles");
+    let wiki = WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
+    let mut corrections = Corrections::from_dir(&fixtures.join("data-corrections")).unwrap();
+    let version = DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() };
+    let mut baseline = Connection::open_in_memory().unwrap();
+    build::build_database(&source, &wiki, &corrections, &mut baseline, &version).unwrap();
+    let (name, family): (String, String) = baseline
+        .query_row("SELECT name, family FROM augments ORDER BY id LIMIT 1", [], |row| Ok((row.get(0)?, row.get(1)?)))
+        .unwrap();
+    let renamed = format!("{name} reviewed");
+    let text = format!(
+        r#"[[correction]]
+kind = "augment"
+name = {name:?}
+family = {family:?}
+field = "name"
+from = {name:?}
+to = {renamed:?}
+reason = "Reviewed family rename."
+source = "https://ddowiki.com/page/Test"
+read = "2026-10-18"
+"#
+    );
+    corrections.entries.extend(Corrections::from_toml_files(&[("rename.toml", &text)]).unwrap().entries);
+    let mut corrected = Connection::open_in_memory().unwrap();
+    build::build_database(&source, &wiki, &corrections, &mut corrected, &version).unwrap();
+    let scratch = tempfile::tempdir().unwrap();
+    export_fixture_with_icons(&corrected, &source, scratch.path());
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    tree::build_from_data(scratch.path(), &mut rebuilt).unwrap();
+    let recorded_name: String = rebuilt
+        .query_row("SELECT name FROM corrections WHERE reason = 'Reviewed family rename.'", [], |row| row.get(0))
+        .unwrap();
+    assert_eq!(recorded_name, name);
+}
+
+#[test]
 fn every_declared_enhancement_field_agrees_between_builders() {
     use ddo_etl::corrections::{correctable_fields, CorrectionValue};
     use ddo_model::enums::CorrectionKind;

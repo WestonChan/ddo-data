@@ -771,7 +771,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         (|| -> Result<()> {
             let correction_name = if let Some(original_name) = &note.original_name {
                 original_name.clone()
-            } else if note.field == "name" && note.qualifier.is_empty() {
+            } else if note.field == "name" && !note.qualifier.starts_with("selection ") {
                 note.upstream
                     .as_ref()
                     .and_then(serde_json::Value::as_str)

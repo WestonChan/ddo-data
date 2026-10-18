@@ -422,6 +422,11 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             "tree::kinds::enhancement_tree::tests::every_enhancement_column_except_identity_is_correctable",
         ),
         ("ddo-etl", &["--test", "import_ddobuilder"][..], "every_declared_enhancement_field_agrees_between_builders"),
+        (
+            "ddo-etl",
+            &["--test", "import_ddobuilder"][..],
+            "augment_family_rename_preserves_the_upstream_correction_name",
+        ),
         ("ddo-etl", &["--test", "import_ddobuilder"][..], "annotation_sources_and_correction_kinds_are_typed"),
         ("ddo-model", &["--test", "schema"][..], "annotations_require_exactly_one_page_or_in_game_source"),
         ("ddo-etl", &["--test", "corrections"][..], "correction_field_names_and_shapes_preserve_the_existing_contract"),

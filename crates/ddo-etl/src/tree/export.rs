@@ -80,7 +80,7 @@ impl CorrectionNoteIndex {
                 Some(upstream_value)
             };
             let applied: serde_json::Value = serde_json::from_str(&applied_json)?;
-            if field == "name" && qualifier.is_empty() {
+            if field == "name" && !qualifier.starts_with("selection ") {
                 if let Some(new_name) = applied.as_str() {
                     if new_name != name {
                         renames.entry((kind.clone(), new_name.to_string())).or_default().push(name.clone());
