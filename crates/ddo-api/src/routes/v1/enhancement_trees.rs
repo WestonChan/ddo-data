@@ -2,10 +2,11 @@ use crate::db::paged_rows;
 use crate::db::{
     attack_for, convert_to_booleans, dcs_for, json_row, json_rows, modifiers_for, requirements_for, stances_for,
 };
+use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
-use axum::extract::{Path, State};
+use axum::extract::State;
 use axum::Json;
 use serde_json::Value;
 use utoipa_axum::router::OpenApiRouter;
@@ -77,13 +78,16 @@ fn attach_ability_children(db: &rusqlite::Connection, owner_kind: &str, ability:
 
 #[utoipa::path(
     get,
-    path = "/v1/enhancement-trees/{id}",
+    path = "/v1/enhancement-trees/{slug}",
     tag = "enhancements",
     summary = "Get an enhancement tree",
     description = "Returns a tree with its enhancements, selections and requirements.",
-    params(("id" = i64, Path, description = "The tree's numeric id from the list endpoint")), responses((status = 200, description = "The tree with its child collections", body = crate::routes::v1::response_schemas::EnhancementTreesDetailResponse), (status = 404, description = "No tree has this id", body = crate::error::ErrorBody))
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The tree with its child collections", body = crate::routes::v1::response_schemas::EnhancementTreesDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No tree has this id", body = crate::error::ErrorBody))
 )]
-async fn enhancement_tree_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn enhancement_tree_detail(
+    State(state): State<AppState>,
+    EntityPath(id): EntityPath,
+) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
             let mut enhancement_tree = json_row(db, &format!("SELECT {ENHANCEMENT_TREE_COLUMNS} FROM enhancement_trees t WHERE t.id = ?1"), [id])?;

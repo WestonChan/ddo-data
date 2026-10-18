@@ -2,6 +2,7 @@ mod cache_policy;
 mod db;
 mod docs;
 pub mod drop_validation;
+pub mod entity_slugs;
 pub mod error;
 mod etag;
 mod query;

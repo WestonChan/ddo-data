@@ -86,26 +86,7 @@ fn compare_tables_by_slug(
 }
 
 fn route_table(path: &str) -> Option<&'static str> {
-    Some(match path {
-        "/v1/adventure-packs" => "adventure_packs",
-        "/v1/augments" => "augments",
-        "/v1/classes" => "classes",
-        "/v1/crafting-systems" => "crafting_systems",
-        "/v1/effects" => "effects",
-        "/v1/enhancement-trees" => "enhancement_trees",
-        "/v1/events" => "events",
-        "/v1/feats" => "feats",
-        "/v1/items" => "items",
-        "/v1/patrons" => "patrons",
-        "/v1/quest-chains" => "quest_chains",
-        "/v1/quests" => "quests",
-        "/v1/races" => "races",
-        "/v1/sagas" => "sagas",
-        "/v1/sets" => "set_bonuses",
-        "/v1/spells" => "spells",
-        "/v1/vendors" => "vendors",
-        _ => return None,
-    })
+    ddo_model::enums::EntityKind::parse(path.strip_prefix("/v1/")?).map(|kind| kind.table_name())
 }
 
 fn response_reference_table(column: &str) -> Option<&'static str> {
@@ -274,7 +255,12 @@ fn collect_detail_ids(
     let rows = response.as_object().and_then(|fields| fields.values().find_map(JsonValue::as_array));
     for row in rows.into_iter().flatten() {
         let Some(id) = row.get("id").and_then(JsonValue::as_i64) else { continue };
-        let identity = match index.identity(table, id) {
+        let identity = match row
+            .get("slug")
+            .and_then(JsonValue::as_str)
+            .map(|slug| Ok(format!("{table}/{slug}")))
+            .unwrap_or_else(|| index.identity(table, id))
+        {
             Ok(identity) => identity,
             Err(error) => {
                 let side = if side == 0 { "baseline" } else { "current" };
@@ -309,12 +295,15 @@ fn compare_responses_by_slug(
     let runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
     let specification = baseline_response(&first_router, "/v1/openapi.json", &runtime, against_api)?;
     let paths = specification["paths"].as_object().context("OpenAPI paths are absent")?;
-    let detail_paths: BTreeSet<String> =
-        paths.keys().filter_map(|path| path.strip_suffix("/{id}").map(str::to_string)).collect();
+    let detail_paths: BTreeSet<String> = paths
+        .keys()
+        .filter_map(|path| path.strip_suffix("/{slug}").or_else(|| path.strip_suffix("/{id}")).map(str::to_string))
+        .collect();
     let mut detail_pairs = DetailPairs::new();
     let mut comparison = ResponseComparison { first_index, second_index, report };
     for (path, route) in paths {
         if path.ends_with("/{id}")
+            || path.ends_with("/{slug}")
             || route["get"]["responses"]["200"]["content"]["application/json"].get("schema").is_none()
         {
             continue;
@@ -354,10 +343,17 @@ fn compare_responses_by_slug(
         for (identity, (first_id, second_id)) in pairs {
             let label = format!("{path}/{{{identity}}}");
             match (first_id, second_id) {
-                (Some(baseline_id), Some(current_id)) => {
+                (Some(baseline_id), Some(_current_id)) => {
+                    let slug =
+                        identity.strip_prefix(&format!("{table}/")).context("detail identity lacks its table")?;
+                    let baseline_key = if paths.contains_key(&format!("{path}/{{id}}")) {
+                        baseline_id.to_string()
+                    } else {
+                        slug.to_string()
+                    };
                     let first =
-                        baseline_response(&first_router, &format!("{path}/{baseline_id}"), &runtime, against_api);
-                    let second = runtime.block_on(json_response(&second_router, &format!("{path}/{current_id}")));
+                        baseline_response(&first_router, &format!("{path}/{baseline_key}"), &runtime, against_api);
+                    let second = runtime.block_on(json_response(&second_router, &format!("{path}/{slug}")));
                     comparison.record_pair(&label, first, second, Some(table))?;
                     if !comparison.report.failed_details.contains(&label) {
                         comparison.report.paired_details += 1;
@@ -386,6 +382,7 @@ fn compare_responses_by_slug(
             }
         }
     }
+    ensure!(comparison.report.paired_details > 0, "no detail responses were paired by slug");
     Ok(())
 }
 

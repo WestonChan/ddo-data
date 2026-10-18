@@ -3,7 +3,6 @@ use axum::body::Body;
 use axum::http::{Request, StatusCode};
 use ddo_api::{app, AppState};
 use http_body_util::BodyExt;
-use rusqlite::OptionalExtension;
 use serde_json::{Map, Value};
 use std::collections::BTreeSet;
 use std::io::{BufWriter, Write};
@@ -13,7 +12,7 @@ use tower::ServiceExt;
 const TRIMMED_ARRAY_LENGTH: usize = 3;
 const VERSION_EXAMPLE_NAME: &str = "version";
 const EXAMPLES_KEPT_UNTIL_A_WIKI_FILE_RECORDS_A_ROW: &[&str] =
-    &["quest-chains", "quest-chains_id", "sagas", "sagas_id", "vendors", "vendors_id", "events", "events_id"];
+    &["quest-chains", "quest-chains_slug", "sagas", "sagas_slug", "vendors", "vendors_slug", "events", "events_slug"];
 
 pub struct ExampleRequest<'a> {
     pub example_name: &'a str,
@@ -28,48 +27,48 @@ pub const EXAMPLE_REQUESTS: &[ExampleRequest<'static>] = &[
     sample("version", "/v1/version"),
     sample("bonus-types", "/v1/bonus-types"),
     sample("effects", "/v1/effects?q=absorption"),
-    sample("effects_id", "/v1/effects/1"),
+    sample("effects_slug", "/v1/effects/strength"),
     sample("equipment-slots", "/v1/equipment-slots"),
     sample("weapon-types", "/v1/weapon-types"),
     sample("damage-types", "/v1/damage-types"),
     sample("augment-slot-types", "/v1/augment-slot-types"),
     sample("adventure-packs", "/v1/adventure-packs"),
-    sample("adventure-packs_id", "/v1/adventure-packs/2"),
+    sample("adventure-packs_slug", "/v1/adventure-packs/the-chill-of-ravenloft"),
     sample("patrons", "/v1/patrons"),
     sample("quests", "/v1/quests"),
-    sample("quests_id", "/v1/quests/86"),
+    sample("quests_slug", "/v1/quests/venns-trail-venns-fate"),
     sample("quest-chains", "/v1/quest-chains"),
-    sample("quest-chains_id", "/v1/quest-chains/1"),
+    sample("quest-chains_slug", "/v1/quest-chains/the-lost-seekers"),
     sample("sagas", "/v1/sagas"),
-    sample("sagas_id", "/v1/sagas/1"),
+    sample("sagas_slug", "/v1/sagas/the-haunting-of-saltmarsh"),
     sample("vendors", "/v1/vendors"),
-    sample("vendors_id", "/v1/vendors/1"),
+    sample("vendors_slug", "/v1/vendors/morten-edgewright"),
     sample("events", "/v1/events"),
-    sample("events_id", "/v1/events/1"),
+    sample("events_slug", "/v1/events/treasure-of-crystal-cove"),
     sample("items", "/v1/items?q=ring&bonus=Strength&bonus=Charisma&bonus=Manslayer&limit=3"),
     sample("items_full", "/v1/items?view=full&q=ring&bonus=Strength&bonus=Charisma&bonus=Manslayer&limit=2"),
-    sample("items_id", "/v1/items/7631"),
+    sample("items_slug", "/v1/items/stolen-necklace-level-25"),
     sample("augments", "/v1/augments?slot=sun&limit=2"),
-    sample("augments_id", "/v1/augments/1902"),
+    sample("augments_slug", "/v1/augments/solar-gem-of-physical-resistance-rating-heroic"),
     sample("crafting-systems", "/v1/crafting-systems"),
-    sample("crafting-systems_id", "/v1/crafting-systems/1"),
+    sample("crafting-systems_slug", "/v1/crafting-systems/slave-lords-crafting"),
     sample("sets", "/v1/sets"),
-    sample("sets_id", "/v1/sets/6"),
+    sample("sets_slug", "/v1/sets/devoted-heart"),
     sample("filigrees", "/v1/filigrees"),
     sample("sentient-gems", "/v1/sentient-gems"),
     sample("feats", "/v1/feats?q=cleave&limit=2"),
-    sample("feats_id", "/v1/feats/12"),
+    sample("feats_slug", "/v1/feats/cleave"),
     sample("stances", "/v1/stances"),
     sample("guild-buffs", "/v1/guild-buffs"),
     sample("optional-buffs", "/v1/optional-buffs"),
     sample("races", "/v1/races"),
-    sample("races_id", "/v1/races/1"),
+    sample("races_slug", "/v1/races/aasimar"),
     sample("classes", "/v1/classes"),
-    sample("classes_id", "/v1/classes/28"),
+    sample("classes_slug", "/v1/classes/wizard"),
     sample("enhancement-trees", "/v1/enhancement-trees"),
-    sample("enhancement-trees_id", "/v1/enhancement-trees/11"),
+    sample("enhancement-trees_slug", "/v1/enhancement-trees/ravager-barbarian"),
     sample("spells", "/v1/spells?q=fireball&limit=2"),
-    sample("spells_id", "/v1/spells/359"),
+    sample("spells_slug", "/v1/spells/fireball"),
     sample("clickies", "/v1/clickies"),
 ];
 
@@ -87,13 +86,12 @@ pub fn write_response_examples(
     reject_unmatched_requests(requests)?;
     std::fs::create_dir_all(examples_dir)?;
     let state = AppState::open(db_path)?;
-    let db = rusqlite::Connection::open_with_flags(db_path, rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY)?;
     let runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
     let mut example_texts = Vec::with_capacity(requests.len());
     for request in requests {
         let example_path = examples_dir.join(example_file_name(request.example_name));
-        let request_path = resolved_detail_example_path(&db, request, &example_path)?;
-        let sampled_response = runtime.block_on(sampled_response(&state, &request_path))?;
+        let request_path = request.path;
+        let sampled_response = runtime.block_on(sampled_response(&state, request_path))?;
         if let Some(committed_text) = committed_example_to_keep(request.example_name, &sampled_response, &example_path)
         {
             example_texts.push((example_file_name(request.example_name), committed_text));
@@ -119,72 +117,28 @@ pub fn write_response_examples(
         .collect()
 }
 
-fn resolved_detail_example_path(
-    db: &rusqlite::Connection,
-    request: &ExampleRequest,
-    example_path: &Path,
-) -> Result<String> {
-    let Some((prefix, old_id)) = request.path.rsplit_once('/') else { return Ok(request.path.to_string()) };
-    if !request.example_name.ends_with("_id") || old_id.parse::<i64>().is_err() {
-        return Ok(request.path.to_string());
-    }
-    let table = match prefix {
-        "/v1/adventure-packs" => "adventure_packs",
-        "/v1/augments" => "augments",
-        "/v1/classes" => "classes",
-        "/v1/crafting-systems" => "crafting_systems",
-        "/v1/effects" => "effects",
-        "/v1/enhancement-trees" => "enhancement_trees",
-        "/v1/events" => "events",
-        "/v1/feats" => "feats",
-        "/v1/items" => "items",
-        "/v1/quest-chains" => "quest_chains",
-        "/v1/quests" => "quests",
-        "/v1/races" => "races",
-        "/v1/sagas" => "sagas",
-        "/v1/sets" => "set_bonuses",
-        "/v1/spells" => "spells",
-        "/v1/vendors" => "vendors",
-        _ => return Ok(request.path.to_string()),
-    };
-    let committed_path = if example_path.is_file() {
-        example_path.to_path_buf()
-    } else {
-        Path::new(env!("CARGO_MANIFEST_DIR"))
-            .join("../crates/ddo-api/docs/examples/v1")
-            .join(example_file_name(request.example_name))
-    };
-    let committed = committed_path
-        .is_file()
-        .then(|| std::fs::read_to_string(&committed_path))
-        .transpose()?
-        .map(|text| serde_json::from_str::<Value>(&text))
-        .transpose()?;
-    let name = committed.as_ref().and_then(|value| value.get("name")).and_then(Value::as_str);
-    let id: Option<i64> = if let Some(name) = name {
-        db.query_row(&format!("SELECT id FROM {table} WHERE name = ?1 ORDER BY id LIMIT 1"), [name], |row| row.get(0))
-            .optional()?
-    } else {
-        db.query_row(&format!("SELECT id FROM {table} ORDER BY id LIMIT 1"), [], |row| row.get(0)).optional()?
-    };
-    Ok(id.map_or_else(|| request.path.to_string(), |id| format!("{prefix}/{id}")))
-}
-
 pub fn write_v1_detail_snapshot(db_path: &Path, out_path: &Path) -> Result<usize> {
     let state = AppState::open(db_path)?;
     let db = rusqlite::Connection::open_with_flags(db_path, rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY)?;
     let runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
     let mut output = BufWriter::new(std::fs::File::create(out_path)?);
     let mut count = 0;
-    for (kind, table) in [("items", "items"), ("augments", "augments"), ("sets", "set_bonuses"), ("feats", "feats")] {
-        let mut statement = db.prepare(&format!("SELECT id FROM {table} ORDER BY id"))?;
-        let ids = statement.query_map([], |row| row.get::<_, i64>(0))?;
-        for id in ids {
-            let id = id?;
-            let path = format!("/v1/{kind}/{id}");
+    for entity_kind in [
+        ddo_model::enums::EntityKind::Item,
+        ddo_model::enums::EntityKind::Augment,
+        ddo_model::enums::EntityKind::Set,
+        ddo_model::enums::EntityKind::Feat,
+    ] {
+        let kind = entity_kind.as_str();
+        let table = entity_kind.table_name();
+        let mut statement = db.prepare(&format!("SELECT slug FROM {table} ORDER BY slug"))?;
+        let slugs = statement.query_map([], |row| row.get::<_, String>(0))?;
+        for slug in slugs {
+            let slug = slug?;
+            let path = format!("/v1/{kind}/{slug}");
             let detail =
                 runtime.block_on(sampled_response(&state, &path))?.into_json().with_context(|| path.clone())?;
-            writeln!(output, "{kind}\t{id}\t{}", serde_json::to_string(&detail)?)?;
+            writeln!(output, "{kind}\t{slug}\t{}", serde_json::to_string(&detail)?)?;
             count += 1;
         }
     }
@@ -293,18 +247,15 @@ fn trimmed_example(example: Value) -> Value {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-
     #[test]
-    fn fresh_example_directory_resolves_a_named_detail_after_ids_change() {
-        let db = rusqlite::Connection::open_in_memory().unwrap();
-        db.execute_batch("CREATE TABLE effects (id INTEGER PRIMARY KEY, name TEXT NOT NULL); INSERT INTO effects VALUES (42, 'Strength')")
-            .unwrap();
-        let directory = tempfile::tempdir().unwrap();
-        let request = ExampleRequest { example_name: "effects_id", path: "/v1/effects/1" };
-        assert_eq!(
-            resolved_detail_example_path(&db, &request, &directory.path().join("effects_id.json")).unwrap(),
-            "/v1/effects/42"
-        );
+    fn detail_examples_use_the_committed_slugs() {
+        for example in ddo_api::v1_response_examples().iter().filter(|example| example.route.ends_with("/{slug}")) {
+            let request = super::EXAMPLE_REQUESTS
+                .iter()
+                .find(|request| format!("{}.json", request.example_name) == example.file_name)
+                .unwrap();
+            let body: serde_json::Value = serde_json::from_str(example.example_json).unwrap();
+            assert_eq!(request.path.rsplit_once('/').unwrap().1, body["slug"].as_str().unwrap());
+        }
     }
 }

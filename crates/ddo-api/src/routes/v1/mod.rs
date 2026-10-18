@@ -37,12 +37,12 @@ use utoipa_axum::router::OpenApiRouter;
                        then revalidated with `If-None-Match`, which answers 304 unless the dataset or the API build \
                        changed (the `ETag` hashes both), so a \
                        deploy is visible within minutes. `/v1/dump.sqlite` and the icons follow the same policy. \
-                       `/v1/version` reports the current commit and carries `Cache-Control: no-cache`, so every use \
+                       Redirects carry the data cache policy and no `ETag`. `/v1/version` reports the current commit and carries `Cache-Control: no-cache`, so every use \
                        revalidates it. Error responses (every 4xx and 5xx, 429 included) carry \
                        `Cache-Control: no-store` and no `ETag`.\n\n\
-                       **Shapes.** Each resource has numeric ids; family ids and stat ids are separate spaces and may overlap. Every list returns \
+                       **Shapes.** Entities are addressed by slugs unique within their kind. Effects, groups and stats share one slug space. Numeric ids remain accepted. Renamed slugs redirect with 308 for 30 days. Every list returns \
                        `{ total, limit, offset, <name>: [...] }`, and detail routes return an entity with its related collections. \
-                       Booleans are JSON booleans, absent values are `null`, and unknown ids return 404.\n\n\
+                       Booleans are JSON booleans, absent values are `null`, and unknown slugs or ids return 404.\n\n\
                        **Query parameters.** Different filters are AND-ed. On `/v1/items`, repeat `slot`, `category`, \
                        `pack`, `set`, `quest`, `quest_chain`, `saga` or `bonus` for any matching value; comma-separated \
                        lists are never used. `pack_match`, `set_match`, `quest_match`, `quest_chain_match`, `saga_match` and \
@@ -265,48 +265,48 @@ declare_response_examples! { "v1":
     ("/v1/version", "version"),
     ("/v1/bonus-types", "bonus-types"),
     ("/v1/effects", "effects"),
-    ("/v1/effects/{id}", "effects_id"),
+    ("/v1/effects/{slug}", "effects_slug"),
     ("/v1/equipment-slots", "equipment-slots"),
     ("/v1/weapon-types", "weapon-types"),
     ("/v1/damage-types", "damage-types"),
     ("/v1/augment-slot-types", "augment-slot-types"),
     ("/v1/adventure-packs", "adventure-packs"),
-    ("/v1/adventure-packs/{id}", "adventure-packs_id"),
+    ("/v1/adventure-packs/{slug}", "adventure-packs_slug"),
     ("/v1/patrons", "patrons"),
     ("/v1/quests", "quests"),
-    ("/v1/quests/{id}", "quests_id"),
+    ("/v1/quests/{slug}", "quests_slug"),
     ("/v1/quest-chains", "quest-chains"),
-    ("/v1/quest-chains/{id}", "quest-chains_id"),
+    ("/v1/quest-chains/{slug}", "quest-chains_slug"),
     ("/v1/sagas", "sagas"),
-    ("/v1/sagas/{id}", "sagas_id"),
+    ("/v1/sagas/{slug}", "sagas_slug"),
     ("/v1/vendors", "vendors"),
-    ("/v1/vendors/{id}", "vendors_id"),
+    ("/v1/vendors/{slug}", "vendors_slug"),
     ("/v1/events", "events"),
-    ("/v1/events/{id}", "events_id"),
+    ("/v1/events/{slug}", "events_slug"),
     ("/v1/items", "items", "summary"),
     ("/v1/items", "items_full", "full"),
-    ("/v1/items/{id}", "items_id"),
+    ("/v1/items/{slug}", "items_slug"),
     ("/v1/augments", "augments"),
-    ("/v1/augments/{id}", "augments_id"),
+    ("/v1/augments/{slug}", "augments_slug"),
     ("/v1/crafting-systems", "crafting-systems"),
-    ("/v1/crafting-systems/{id}", "crafting-systems_id"),
+    ("/v1/crafting-systems/{slug}", "crafting-systems_slug"),
     ("/v1/sets", "sets"),
-    ("/v1/sets/{id}", "sets_id"),
+    ("/v1/sets/{slug}", "sets_slug"),
     ("/v1/filigrees", "filigrees"),
     ("/v1/sentient-gems", "sentient-gems"),
     ("/v1/feats", "feats"),
-    ("/v1/feats/{id}", "feats_id"),
+    ("/v1/feats/{slug}", "feats_slug"),
     ("/v1/stances", "stances"),
     ("/v1/guild-buffs", "guild-buffs"),
     ("/v1/optional-buffs", "optional-buffs"),
     ("/v1/races", "races"),
-    ("/v1/races/{id}", "races_id"),
+    ("/v1/races/{slug}", "races_slug"),
     ("/v1/classes", "classes"),
-    ("/v1/classes/{id}", "classes_id"),
+    ("/v1/classes/{slug}", "classes_slug"),
     ("/v1/enhancement-trees", "enhancement-trees"),
-    ("/v1/enhancement-trees/{id}", "enhancement-trees_id"),
+    ("/v1/enhancement-trees/{slug}", "enhancement-trees_slug"),
     ("/v1/spells", "spells"),
-    ("/v1/spells/{id}", "spells_id"),
+    ("/v1/spells/{slug}", "spells_slug"),
     ("/v1/clickies", "clickies"),
 }
 

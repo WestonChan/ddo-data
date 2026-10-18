@@ -265,11 +265,14 @@ pub fn compare_responses(
     let runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
     let specification = baseline_response(&first_router, "/v1/openapi.json", &runtime, against_api)?;
     let paths = specification["paths"].as_object().context("OpenAPI paths are absent")?;
-    let detail_paths: BTreeSet<String> =
-        paths.keys().filter_map(|path| path.strip_suffix("/{id}").map(str::to_string)).collect();
+    let detail_paths: BTreeSet<String> = paths
+        .keys()
+        .filter_map(|path| path.strip_suffix("/{slug}").or_else(|| path.strip_suffix("/{id}")).map(str::to_string))
+        .collect();
     let mut ids_by_list_path: BTreeMap<String, BTreeSet<i64>> = BTreeMap::new();
     for (path, route) in paths {
         if path.ends_with("/{id}")
+            || path.ends_with("/{slug}")
             || route["get"]["responses"]["200"]["content"]["application/json"].get("schema").is_none()
         {
             continue;

@@ -1,10 +1,11 @@
 use crate::db::{
     convert_to_booleans, json_row, json_rows, modifiers_for, paged_query, paged_rows, stances_for, WhereClause,
 };
+use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, declare_query_parameters, ApiQuery};
 use crate::state::AppState;
-use axum::extract::{Path, State};
+use axum::extract::State;
 use axum::Json;
 use serde_json::Value;
 use utoipa_axum::router::OpenApiRouter;
@@ -93,13 +94,13 @@ async fn spells(
 
 #[utoipa::path(
     get,
-    path = "/v1/spells/{id}",
+    path = "/v1/spells/{slug}",
     tag = "spells",
     summary = "Get a spell",
     description = "Returns a spell with damage, saves and the classes that learn it.",
-    params(("id" = i64, Path, description = "The spell's numeric id from the list endpoint")), responses((status = 200, description = "The spell with its child collections", body = crate::routes::v1::response_schemas::SpellsDetailResponse), (status = 404, description = "No spell has this id", body = crate::error::ErrorBody))
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The spell with its child collections", body = crate::routes::v1::response_schemas::SpellsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No spell has this id", body = crate::error::ErrorBody))
 )]
-async fn spell_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn spell_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
             let mut spell = json_row(db, &format!("SELECT {SPELL_COLUMNS} FROM spells s WHERE s.id = ?1"), [id])?;

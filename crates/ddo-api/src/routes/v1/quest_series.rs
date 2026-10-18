@@ -1,8 +1,9 @@
 use crate::db::{convert_to_booleans, json_row, json_rows, paged_rows, ListPage};
+use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, ApiQuery, ListQuery};
 use crate::state::AppState;
-use axum::extract::{Path, State};
+use axum::extract::State;
 use axum::Json;
 use rusqlite::Connection;
 use serde_json::Value;
@@ -142,17 +143,20 @@ async fn quest_chains(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
 
 #[utoipa::path(
     get,
-    path = "/v1/quest-chains/{id}",
+    path = "/v1/quest-chains/{slug}",
     tag = "quests",
     summary = "Get a quest chain",
     description = "Returns a quest chain with its quests and end rewards.",
-    params(("id" = i64, Path, description = "The quest chain's numeric id from /v1/quest-chains")),
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The quest chain with its quests and rewards", body = crate::routes::v1::response_schemas::QuestChainsDetailResponse),
-        (status = 404, description = "No quest chain has this id", body = crate::error::ErrorBody)
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No quest chain has this id", body = crate::error::ErrorBody)
     )
 )]
-async fn quest_chain_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn quest_chain_detail(
+    State(state): State<AppState>,
+    EntityPath(id): EntityPath,
+) -> Result<Json<Value>, ApiError> {
     let quest_chain = state.read_db(move |db| quest_series_detail(db, QuestSeriesTable::QuestChains, id)).await?;
     Ok(Json(quest_chain))
 }
@@ -177,17 +181,17 @@ async fn sagas(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> R
 
 #[utoipa::path(
     get,
-    path = "/v1/sagas/{id}",
+    path = "/v1/sagas/{slug}",
     tag = "quests",
     summary = "Get a saga",
     description = "Returns a saga with its quests and tiered end rewards.",
-    params(("id" = i64, Path, description = "The saga's numeric id from /v1/sagas")),
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The saga with its quests and rewards", body = crate::routes::v1::response_schemas::SagasDetailResponse),
-        (status = 404, description = "No saga has this id", body = crate::error::ErrorBody)
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No saga has this id", body = crate::error::ErrorBody)
     )
 )]
-async fn saga_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn saga_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     let saga = state.read_db(move |db| quest_series_detail(db, QuestSeriesTable::Sagas, id)).await?;
     Ok(Json(saga))
 }

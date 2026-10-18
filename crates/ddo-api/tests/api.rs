@@ -176,6 +176,7 @@ async fn placeholder_icons_keep_their_served_names_when_the_data_omits_files() {
     db.execute("INSERT INTO spells (name, icon, slug) VALUES ('No spell trained', 'Unknown', 'no-spell-trained')", [])
         .unwrap();
     let spell_id = db.last_insert_rowid();
+    ddo_etl::tree::rederive_data_build_tables(&db).unwrap();
     drop(db);
     let state = AppState::open(&db_path).unwrap();
     let (_, _, class) = get_from(state.clone(), &format!("/v1/classes/{class_id}")).await;
@@ -387,16 +388,20 @@ async fn fixture_tooltip_templates_render_signed_units_types_groups_and_tiers() 
 }
 
 #[tokio::test]
-async fn vocabulary_rows_route_by_kind_even_when_database_ids_overlap() {
+async fn effects_and_stats_share_one_slug_space() {
     let (_, _, page) = get("/v1/effects?limit=10000").await;
     let rows = page["effects"].as_array().unwrap();
     let family = rows.iter().find(|row| row["kind"] == "effect").unwrap();
     let stat = rows.iter().find(|row| row["kind"] == "stat").unwrap();
-    for row in [family, stat] {
+    let group = rows.iter().find(|row| row["kind"] == "group").unwrap();
+    let slugs = rows.iter().map(|row| row["slug"].as_str().unwrap()).collect::<std::collections::BTreeSet<_>>();
+    assert_eq!(slugs.len(), rows.len());
+    for row in [family, stat, group] {
         assert_eq!(row["detail_path"], format!("/v1/effects/{}", row["id"]));
         assert!(row["bonus_types"].is_array());
-        let (status, _, detail) = get(row["detail_path"].as_str().unwrap()).await;
+        let (status, _, detail) = get(&format!("/v1/effects/{}", row["slug"].as_str().unwrap())).await;
         assert_eq!(status, StatusCode::OK, "{detail}");
+        assert_eq!(detail["slug"], row["slug"]);
     }
 }
 
@@ -949,7 +954,7 @@ async fn full_item_rows_match_the_detail_schema() {
     let schemas = spec["components"]["schemas"].as_object().unwrap();
     let page_schema = &spec["paths"]["/v1/items"]["get"]["responses"]["200"]["content"]["application/json"]["schema"];
     let detail_schema =
-        &spec["paths"]["/v1/items/{id}"]["get"]["responses"]["200"]["content"]["application/json"]["schema"];
+        &spec["paths"]["/v1/items/{slug}"]["get"]["responses"]["200"]["content"]["application/json"]["schema"];
     let (_, _, page) = get("/v1/items?view=full&limit=50").await;
     response_matches_schema(&page, page_schema, schemas, "/v1/items?view=full").unwrap();
     for item in page["items"].as_array().unwrap() {
@@ -1769,9 +1774,9 @@ async fn dump_and_openapi() {
     for path in [
         "/v1/version",
         "/v1/items",
-        "/v1/items/{id}",
-        "/v1/feats/{id}",
-        "/v1/enhancement-trees/{id}",
+        "/v1/items/{slug}",
+        "/v1/feats/{slug}",
+        "/v1/enhancement-trees/{slug}",
         "/v1/dump.sqlite",
     ] {
         assert!(paths.contains_key(path), "missing {path}");
@@ -1897,20 +1902,20 @@ fn assert_same_shape(location: &str, example: &Value, real: &Value) {
 }
 
 async fn sample_response_for(path: &str, example: &Value) -> Value {
-    if let Some(list_path) = path.strip_suffix("/{id}") {
+    if let Some(list_path) = path.strip_suffix("/{slug}") {
         let (_, _, list_response) = get_list_rows(list_path).await;
         let list_rows = list_response
             .as_array()
             .cloned()
             .or_else(|| list_response.as_object().and_then(|o| o.values().find_map(|v| v.as_array().cloned())));
-        let id = list_rows
+        let slug = list_rows
             .and_then(|rows| {
                 rows.into_iter()
-                    .find(|row| path != "/v1/effects/{id}" || row["kind"] == example["kind"])
-                    .and_then(|row| row["id"].as_i64())
+                    .find(|row| path != "/v1/effects/{slug}" || row["kind"] == example["kind"])
+                    .and_then(|row| row["slug"].as_str().map(str::to_string))
             })
             .expect("a row to sample");
-        get(&format!("{list_path}/{id}")).await.2
+        get(&format!("{list_path}/{slug}")).await.2
     } else {
         get(path).await.2
     }
@@ -2017,14 +2022,14 @@ async fn every_json_route_response_matches_its_openapi_schema() {
         let Some(schema) = route["get"]["responses"]["200"]["content"]["application/json"].get("schema") else {
             continue;
         };
-        if let Some(list_path) = path.strip_suffix("/{id}") {
+        if let Some(list_path) = path.strip_suffix("/{slug}") {
             let (_, _, rows) = get_list_rows(list_path).await;
             let rows = rows.as_array().expect("detail list rows");
             let matching_rows: Vec<&Value> =
                 rows.iter().filter(|row| list_path != "/v1/effects" || row["kind"] == "effect").collect();
             for index in [0, matching_rows.len() / 2, matching_rows.len().saturating_sub(1)] {
-                let id = matching_rows[index]["id"].as_i64().expect("detail id");
-                let response = get(&format!("{list_path}/{id}")).await.2;
+                let slug = matching_rows[index]["slug"].as_str().expect("detail slug");
+                let response = get(&format!("{list_path}/{slug}")).await.2;
                 if let Err(error) = response_matches_schema(&response, schema, schemas, path) {
                     violations.push(error);
                 }
@@ -2162,7 +2167,7 @@ async fn effect_and_stat_detail_schemas_type_every_backlink_and_rule() {
 #[tokio::test]
 async fn item_and_quest_examples_show_the_quest_chains_they_belong_to() {
     let (_, _, spec) = get("/v1/openapi.json").await;
-    for path in ["/v1/items/{id}", "/v1/quests/{id}"] {
+    for path in ["/v1/items/{slug}", "/v1/quests/{slug}"] {
         let example = &spec["paths"][path]["get"]["responses"]["200"]["content"]["application/json"]["example"];
         let chain_count = example["quest_chains"].as_array().map_or(0, Vec::len);
         assert!(chain_count > 0, "GET {path}: example belongs to no quest chain");

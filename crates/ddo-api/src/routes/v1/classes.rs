@@ -1,9 +1,10 @@
 use crate::db::paged_rows;
 use crate::db::{convert_to_booleans, json_row, json_rows};
+use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
-use axum::extract::{Path, State};
+use axum::extract::State;
 use axum::Json;
 use serde_json::{Map, Value};
 use utoipa_axum::router::OpenApiRouter;
@@ -64,13 +65,13 @@ async fn classes(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) ->
 
 #[utoipa::path(
     get,
-    path = "/v1/classes/{id}",
+    path = "/v1/classes/{slug}",
     tag = "classes",
     summary = "Get a class",
     description = "Returns a class with progression, feat slots and spell lists.",
-    params(("id" = i64, Path, description = "The class's numeric id from the list endpoint")), responses((status = 200, description = "The class with its child collections", body = crate::routes::v1::response_schemas::ClassesDetailResponse), (status = 404, description = "No class has this id", body = crate::error::ErrorBody))
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The class with its child collections", body = crate::routes::v1::response_schemas::ClassesDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No class has this id", body = crate::error::ErrorBody))
 )]
-async fn class_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn class_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
             let mut class = json_row(db, &format!("SELECT {CLASS_COLUMNS} FROM classes WHERE id = ?1"), [id])?;

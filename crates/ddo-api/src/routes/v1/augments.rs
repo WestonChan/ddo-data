@@ -3,10 +3,11 @@ use super::quests::{adventure_packs_dropping_via, quests_dropping_via, sources_v
 use crate::db::{
     convert_to_booleans, effects_for_owner, effects_via, json_row, json_rows, modifiers_for, paged_query, WhereClause,
 };
+use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, declare_query_parameters, ApiQuery};
 use crate::state::AppState;
-use axum::extract::{Path, State};
+use axum::extract::State;
 use axum::Json;
 use serde_json::Value;
 use utoipa_axum::router::OpenApiRouter;
@@ -143,13 +144,13 @@ async fn augments(
 
 #[utoipa::path(
     get,
-    path = "/v1/augments/{id}",
+    path = "/v1/augments/{slug}",
     tag = "augments",
     summary = "Get an augment",
     description = "Returns an augment with effects, crafting recipes, modifiers and drop sources.",
-    params(("id" = i64, Path, description = "The augment's numeric id from the list endpoint")), responses((status = 200, description = "The augment with its child collections", body = crate::routes::v1::response_schemas::AugmentsDetailResponse), (status = 404, description = "No augment has this id", body = crate::error::ErrorBody))
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The augment with its child collections", body = crate::routes::v1::response_schemas::AugmentsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No augment has this id", body = crate::error::ErrorBody))
 )]
-async fn augment_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn augment_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
             let mut augment = json_row(db, &format!("SELECT {AUGMENT_COLUMNS} FROM augments a WHERE a.id = ?1"), [id])?;

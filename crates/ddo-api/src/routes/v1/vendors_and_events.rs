@@ -1,9 +1,10 @@
 use crate::db::paged_rows;
 use crate::db::{convert_to_booleans, grouped_rows, json_row, json_rows};
+use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
-use axum::extract::{Path, State};
+use axum::extract::State;
 use axum::Json;
 use rusqlite::Connection;
 use serde_json::Value;
@@ -64,17 +65,17 @@ async fn vendors(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) ->
 
 #[utoipa::path(
     get,
-    path = "/v1/vendors/{id}",
+    path = "/v1/vendors/{slug}",
     tag = "sources",
     summary = "Get a vendor",
     description = "Returns a vendor with its page, location and offered items.",
-    params(("id" = i64, Path, description = "The vendor's numeric id from /v1/vendors")),
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The vendor with the items it offers", body = crate::routes::v1::response_schemas::VendorsDetailResponse),
-        (status = 404, description = "No vendor has this id", body = crate::error::ErrorBody)
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No vendor has this id", body = crate::error::ErrorBody)
     )
 )]
-async fn vendor_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn vendor_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
             let mut vendor = json_row(db, &format!("{VENDOR_SELECT} WHERE v.id = ?1"), [id])?;
@@ -160,17 +161,17 @@ async fn events(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> 
 
 #[utoipa::path(
     get,
-    path = "/v1/events/{id}",
+    path = "/v1/events/{slug}",
     tag = "sources",
     summary = "Get an event",
     description = "Returns an event with its page and rewarded items.",
-    params(("id" = i64, Path, description = "The event's numeric id from /v1/events")),
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The event with the items it rewards", body = crate::routes::v1::response_schemas::EventsDetailResponse),
-        (status = 404, description = "No event has this id", body = crate::error::ErrorBody)
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No event has this id", body = crate::error::ErrorBody)
     )
 )]
-async fn event_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn event_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
             let mut event = json_row(db, &format!("{EVENT_SELECT} WHERE e.id = ?1"), [id])?;

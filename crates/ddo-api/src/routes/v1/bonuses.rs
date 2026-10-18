@@ -2,10 +2,11 @@ use crate::db::{
     clamped_page, effects_via_with_link_order, json_row, json_rows, paged_query, paged_table_json, ListPage,
     TableListSource, WhereClause,
 };
+use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, declare_query_parameters, ApiFilterQuery, ApiQuery};
 use crate::state::AppState;
-use axum::extract::{Path, State};
+use axum::extract::State;
 use axum::Json;
 use rusqlite::Connection;
 use serde_json::{json, Value};
@@ -392,9 +393,9 @@ fn carrier_pages(
 }
 
 #[utoipa::path(
-    get, path = "/v1/effects/{id}", tag = "bonuses", summary = "Get an effect",
+    get, path = "/v1/effects/{slug}", tag = "bonuses", summary = "Get an effect",
     description = "Returns an effect, group or stat with its bonus and damage rules, tier group and paged carriers, one row per owner with its lines.",
-    params(("id" = i64, Path, description = "Effect, group or stat id from the vocabulary."),
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list."),
         ("items_limit" = Option<i64>, Query, description = "Maximum items in this page."),
         ("items_offset" = Option<i64>, Query, description = "Items to skip before this page."),
         ("augments_limit" = Option<i64>, Query, description = "Maximum augments in this page."),
@@ -403,11 +404,11 @@ fn carrier_pages(
         ("set_tiers_offset" = Option<i64>, Query, description = "Set tiers to skip before this page."),
         ("include_legacy" = Option<bool>, Query, description = "Use true to include legacy items in carrier links.")),
     responses((status = 200, description = "Effect and paged carriers", body = crate::routes::v1::response_schemas::EffectsDetailResponse),
-        (status = 404, description = "No effect has this id", body = crate::error::ErrorBody))
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No effect has this id", body = crate::error::ErrorBody))
 )]
 async fn effect_detail(
     State(state): State<AppState>,
-    Path(id): Path<i64>,
+    EntityPath(id): EntityPath,
     ApiFilterQuery(pages): ApiFilterQuery<BacklinkPages>,
 ) -> Result<Json<Value>, ApiError> {
     state

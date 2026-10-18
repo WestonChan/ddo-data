@@ -1,10 +1,11 @@
 use super::quest_series::{quest_chains_including, sagas_including};
 use crate::db::paged_rows;
 use crate::db::{convert_to_booleans, grouped_rows, json_row, json_rows, paged_table_json, TableListSource};
+use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
-use axum::extract::{Path, State};
+use axum::extract::State;
 use axum::Json;
 use serde_json::Value;
 use std::collections::BTreeMap;
@@ -70,17 +71,20 @@ async fn adventure_packs(State(state): State<AppState>, ApiQuery(query, _): ApiQ
 
 #[utoipa::path(
     get,
-    path = "/v1/adventure-packs/{id}",
+    path = "/v1/adventure-packs/{slug}",
     tag = "quests",
     summary = "Get an adventure pack",
     description = "Returns an adventure pack with its quests, challenges and loot.",
-    params(("id" = i64, Path, description = "The adventure pack's numeric id from /v1/adventure-packs")),
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The adventure pack with the items and augments any of its quests drops", body = crate::routes::v1::response_schemas::AdventurePacksDetailResponse),
-        (status = 404, description = "No adventure pack has this id", body = crate::error::ErrorBody)
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No adventure pack has this id", body = crate::error::ErrorBody)
     )
 )]
-async fn adventure_pack_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn adventure_pack_detail(
+    State(state): State<AppState>,
+    EntityPath(id): EntityPath,
+) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
             let mut pack = json_row(db, &format!("{ADVENTURE_PACKS_SELECT} WHERE id = ?1"), [id])?;
@@ -186,17 +190,17 @@ async fn quests(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> 
 
 #[utoipa::path(
     get,
-    path = "/v1/quests/{id}",
+    path = "/v1/quests/{slug}",
     tag = "quests",
     summary = "Get a quest",
     description = "Returns a quest with difficulties, loot, rewards and wiki facts.",
-    params(("id" = i64, Path, description = "The quest's numeric id from /v1/quests")),
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The quest with the items and augments it drops", body = crate::routes::v1::response_schemas::QuestsDetailResponse),
-        (status = 404, description = "No quest has this id", body = crate::error::ErrorBody)
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No quest has this id", body = crate::error::ErrorBody)
     )
 )]
-async fn quest_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn quest_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
             let mut quest = json_row(db, &format!("{QUEST_SELECT} WHERE q.id = ?1"), [id])?;

@@ -1,3 +1,4 @@
+use crate::entity_slugs::EntityPath;
 mod records;
 
 use crate::db::{convert_to_booleans, like_escaped_text, paged_query, paged_table_json, TableListSource, WhereClause};
@@ -6,7 +7,7 @@ use crate::query::{
     declare_list_parameters, declare_query_parameters, repeated_integer_values, repeated_key_values, ApiQuery,
 };
 use crate::state::AppState;
-use axum::extract::{Path, State};
+use axum::extract::State;
 use axum::Json;
 use ddo_model::enums::{EquipmentSlot, ItemCategory};
 use rusqlite::Connection;
@@ -345,13 +346,13 @@ fn bonus_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Re
 
 #[utoipa::path(
     get,
-    path = "/v1/items/{id}",
+    path = "/v1/items/{slug}",
     tag = "items",
     summary = "Get an item",
     description = "Returns an item with rendered effects, sockets, modifiers and drop sources.",
-    params(("id" = i64, Path, description = "The item's numeric id from the list endpoint")), responses((status = 200, description = "The item with its child collections", body = crate::routes::v1::response_schemas::ItemsDetailResponse), (status = 404, description = "No item has this id", body = crate::error::ErrorBody))
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The item with its child collections", body = crate::routes::v1::response_schemas::ItemsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No item has this id", body = crate::error::ErrorBody))
 )]
-async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn item_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
             let mut records = records::item_records(db, &[id])?;

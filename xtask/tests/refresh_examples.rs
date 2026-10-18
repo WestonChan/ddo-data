@@ -16,15 +16,26 @@ fn fixture_db_in(work_dir: &Path) -> PathBuf {
     db_path
 }
 
-fn with_first_fixture_id(sample_path: &str) -> String {
-    match sample_path.rsplit_once('/') {
-        Some((collection_path, id)) if id.chars().all(|c| c.is_ascii_digit()) => format!("{collection_path}/1"),
-        _ => sample_path.to_string(),
-    }
-}
-
-fn fixture_sample_paths() -> Vec<(&'static str, String)> {
-    EXAMPLE_REQUESTS.iter().map(|request| (request.example_name, with_first_fixture_id(request.path))).collect()
+fn fixture_sample_paths(db_path: &Path) -> Vec<(&'static str, String)> {
+    let db = rusqlite::Connection::open(db_path).unwrap();
+    EXAMPLE_REQUESTS
+        .iter()
+        .map(|request| {
+            let path = if request.example_name.ends_with("_slug") {
+                let (collection, _) = request.path.rsplit_once('/').unwrap();
+                let kind = ddo_model::enums::EntityKind::parse(collection.trim_start_matches("/v1/")).unwrap();
+                let slug = db
+                    .query_row(&format!("SELECT slug FROM {} ORDER BY slug LIMIT 1", kind.table_name()), [], |row| {
+                        row.get::<_, String>(0)
+                    })
+                    .unwrap_or_else(|_| "missing-slug".to_string());
+                format!("{collection}/{slug}")
+            } else {
+                request.path.to_string()
+            };
+            (request.example_name, path)
+        })
+        .collect()
 }
 
 fn as_requests<'a>(sample_paths: &'a [(&'static str, String)]) -> Vec<ExampleRequest<'a>> {
@@ -49,7 +60,7 @@ fn refresh_writes_a_trimmed_example_for_every_documented_route() {
     let examples_dir = work_dir.path().join("examples");
     std::fs::create_dir(&examples_dir).unwrap();
 
-    write_response_examples(&db_path, &as_requests(&fixture_sample_paths()), &examples_dir).unwrap();
+    write_response_examples(&db_path, &as_requests(&fixture_sample_paths(&db_path)), &examples_dir).unwrap();
 
     for documented_example in ddo_api::v1_response_examples() {
         let example_path = examples_dir.join(documented_example.file_name);
@@ -70,7 +81,7 @@ fn refresh_writes_keys_in_sorted_order() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_in(work_dir.path());
 
-    write_response_examples(&db_path, &as_requests(&fixture_sample_paths()), work_dir.path()).unwrap();
+    write_response_examples(&db_path, &as_requests(&fixture_sample_paths(&db_path)), work_dir.path()).unwrap();
 
     let version_text = std::fs::read_to_string(work_dir.path().join("version.json")).unwrap();
     let key_positions: Vec<usize> = ["\"api_commit\"", "\"counts\"", "\"dataset\"", "\"schema_version\""]
@@ -86,7 +97,7 @@ fn refresh_keeps_the_api_commit_already_in_version_json() {
     let db_path = fixture_db_in(work_dir.path());
     std::fs::write(work_dir.path().join("version.json"), r#"{ "api_commit": "committed-sha" }"#).unwrap();
 
-    write_response_examples(&db_path, &as_requests(&fixture_sample_paths()), work_dir.path()).unwrap();
+    write_response_examples(&db_path, &as_requests(&fixture_sample_paths(&db_path)), work_dir.path()).unwrap();
 
     let version: Value =
         serde_json::from_str(&std::fs::read_to_string(work_dir.path().join("version.json")).unwrap()).unwrap();
@@ -100,13 +111,13 @@ fn refresh_fails_naming_the_example_whose_sample_fails_and_writes_nothing() {
     let db_path = fixture_db_in(work_dir.path());
     let examples_dir = work_dir.path().join("examples");
     std::fs::create_dir(&examples_dir).unwrap();
-    let mut sample_paths = fixture_sample_paths();
-    sample_paths.iter_mut().find(|(example_name, _)| *example_name == "items_id").unwrap().1 =
+    let mut sample_paths = fixture_sample_paths(&db_path);
+    sample_paths.iter_mut().find(|(example_name, _)| *example_name == "items_slug").unwrap().1 =
         "/v1/items/999999".to_string();
 
     let error = write_response_examples(&db_path, &as_requests(&sample_paths), &examples_dir).unwrap_err();
 
-    assert!(format!("{error:#}").contains("items_id"), "{error:#}");
+    assert!(format!("{error:#}").contains("items_slug"), "{error:#}");
     assert_eq!(std::fs::read_dir(&examples_dir).unwrap().count(), 0);
 }
 
@@ -115,7 +126,7 @@ fn refresh_fails_naming_a_documented_example_without_a_sample() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_in(work_dir.path());
     let sample_paths: Vec<_> =
-        fixture_sample_paths().into_iter().filter(|(example_name, _)| *example_name != "clickies").collect();
+        fixture_sample_paths(&db_path).into_iter().filter(|(example_name, _)| *example_name != "clickies").collect();
 
     let error = write_response_examples(&db_path, &as_requests(&sample_paths), work_dir.path()).unwrap_err();
 
@@ -137,15 +148,15 @@ fn refresh_keeps_the_committed_quest_chain_and_saga_examples_while_no_wiki_file_
             "quest-chains.json",
             "{\n  \"limit\": 100,\n  \"offset\": 0,\n  \"quest_chains\": [{\"id\": 1}],\n  \"total\": 1\n}\n",
         ),
-        ("quest-chains_id.json", "{\n  \"id\": 1\n}\n"),
+        ("quest-chains_slug.json", "{\n  \"id\": 1\n}\n"),
         ("sagas.json", "{\n  \"limit\": 100,\n  \"offset\": 0,\n  \"sagas\": [{\"id\": 2}],\n  \"total\": 1\n}\n"),
-        ("sagas_id.json", "{\n  \"id\": 2\n}\n"),
+        ("sagas_slug.json", "{\n  \"id\": 2\n}\n"),
     ];
     for (file_name, committed_text) in committed_examples {
         std::fs::write(work_dir.path().join(file_name), committed_text).unwrap();
     }
 
-    write_response_examples(&db_path, &as_requests(&fixture_sample_paths()), work_dir.path()).unwrap();
+    write_response_examples(&db_path, &as_requests(&fixture_sample_paths(&db_path)), work_dir.path()).unwrap();
 
     for (file_name, committed_text) in committed_examples {
         assert_eq!(std::fs::read_to_string(work_dir.path().join(file_name)).unwrap(), committed_text, "{file_name}");

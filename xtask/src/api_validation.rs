@@ -147,8 +147,8 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
     let schemas = spec["components"]["schemas"].as_object().context("OpenAPI components.schemas is absent")?;
     let shared_schemas = Arc::new(schemas.clone());
     let paths = spec["paths"].as_object().context("OpenAPI paths is absent")?;
-    let detail_paths: BTreeSet<&str> = paths.keys().filter_map(|path| path.strip_suffix("/{id}")).collect();
-    let mut ids_by_list_path: BTreeMap<&str, BTreeSet<i64>> = BTreeMap::new();
+    let detail_paths: BTreeSet<&str> = paths.keys().filter_map(|path| path.strip_suffix("/{slug}")).collect();
+    let mut slugs_by_list_path: BTreeMap<&str, BTreeMap<i64, String>> = BTreeMap::new();
     let mut checked_routes = 0;
     let mut checked_responses = 0;
     let mut violations = Vec::new();
@@ -156,7 +156,7 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
         let Some(schema) = route["get"]["responses"]["200"]["content"]["application/json"].get("schema") else {
             continue;
         };
-        if path.ends_with("/{id}") {
+        if path.ends_with("/{slug}") {
             continue;
         }
         checked_routes += 1;
@@ -181,9 +181,12 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
                 break;
             };
             if detail_paths.contains(path.as_str()) {
-                let ids = ids_by_list_path.entry(path).or_default();
+                let ids = slugs_by_list_path.entry(path).or_default();
                 for row in rows {
-                    ids.insert(row["id"].as_i64().with_context(|| format!("{path} row has no numeric id"))?);
+                    ids.insert(
+                        row["id"].as_i64().with_context(|| format!("{path} row has no numeric id"))?,
+                        row["slug"].as_str().with_context(|| format!("{path} row has no slug"))?.to_string(),
+                    );
                 }
             }
             offset += rows.len();
@@ -194,7 +197,7 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
     }
     let item_page_schema = &paths["/v1/items"]["get"]["responses"]["200"]["content"]["application/json"]["schema"];
     let item_detail_schema =
-        &paths["/v1/items/{id}"]["get"]["responses"]["200"]["content"]["application/json"]["schema"];
+        &paths["/v1/items/{slug}"]["get"]["responses"]["200"]["content"]["application/json"]["schema"];
     let mut full_offset = 0;
     let mut full_item_ids = BTreeSet::new();
     let mut full_item_rows = BTreeMap::new();
@@ -236,21 +239,22 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
         }
     }
     ensure!(
-        ids_by_list_path.get("/v1/items") == Some(&full_item_ids),
+        slugs_by_list_path.get("/v1/items").map(|rows| rows.keys().copied().collect::<BTreeSet<_>>())
+            == Some(full_item_ids),
         "full item pages do not contain the same item ids as summary pages"
     );
     let full_item_rows = Arc::new(full_item_rows);
     for (path, route) in paths {
-        let Some(list_path) = path.strip_suffix("/{id}") else {
+        let Some(list_path) = path.strip_suffix("/{slug}") else {
             continue;
         };
         let Some(schema) = route["get"]["responses"]["200"]["content"]["application/json"].get("schema") else {
             continue;
         };
-        let ids = ids_by_list_path.get(list_path).with_context(|| format!("{path} has no list route"))?;
+        let ids = slugs_by_list_path.get(list_path).with_context(|| format!("{path} has no list route"))?;
         ensure!(!ids.is_empty(), "{path} has no rows to validate");
         checked_routes += 1;
-        let indexed_ids: Vec<i64> = ids.iter().copied().collect();
+        let indexed_ids: Vec<i64> = ids.keys().copied().collect();
         let selected_ids: Vec<i64> = if all_details {
             indexed_ids
         } else {
@@ -266,7 +270,8 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
             let validated_responses: Vec<Option<String>> = runtime.block_on(async {
                 let mut requests = tokio::task::JoinSet::new();
                 for &id in id_group {
-                    let request_path = format!("{list_path}/{id}");
+                    let slug = &ids[&id];
+                    let request_path = format!("{list_path}/{slug}");
                     let check_drop_locations = list_path == "/v1/items" || list_path == "/v1/augments";
                     let request_router = router.clone();
                     let detail_schema = detail_schema.clone();

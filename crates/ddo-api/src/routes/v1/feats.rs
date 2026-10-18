@@ -2,10 +2,11 @@ use crate::db::{
     attack_for, bonuses_via, convert_to_booleans, dcs_for, json_row, json_rows, modifiers_for, paged_query,
     requirements_for, stances_for, WhereClause,
 };
+use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, declare_query_parameters, ApiQuery};
 use crate::state::AppState;
-use axum::extract::{Path, State};
+use axum::extract::State;
 use axum::Json;
 use ddo_model::enums::FeatSource;
 use serde_json::Value;
@@ -118,13 +119,13 @@ fn feat_group_names(db: &rusqlite::Connection, feat_id: i64) -> Result<Vec<Value
 
 #[utoipa::path(
     get,
-    path = "/v1/feats/{id}",
+    path = "/v1/feats/{slug}",
     tag = "feats",
     summary = "Get a feat",
     description = "Returns a feat with requirements, bonuses, attacks and modifiers.",
-    params(("id" = i64, Path, description = "The feat's numeric id from the list endpoint")), responses((status = 200, description = "The feat with its child collections", body = crate::routes::v1::response_schemas::FeatsDetailResponse), (status = 404, description = "No feat has this id", body = crate::error::ErrorBody))
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The feat with its child collections", body = crate::routes::v1::response_schemas::FeatsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No feat has this id", body = crate::error::ErrorBody))
 )]
-async fn feat_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn feat_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
             let mut feat = json_row(db, &format!("SELECT {FEAT_COLUMNS} FROM feats f WHERE f.id = ?1"), [id])?;

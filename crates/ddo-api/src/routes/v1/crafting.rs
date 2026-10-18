@@ -1,9 +1,10 @@
 use crate::db::paged_rows;
 use crate::db::{json_row, json_rows};
+use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
-use axum::extract::{Path, State};
+use axum::extract::State;
 use axum::Json;
 use rusqlite::Connection;
 use serde_json::Value;
@@ -96,17 +97,20 @@ async fn crafting_systems(
 
 #[utoipa::path(
     get,
-    path = "/v1/crafting-systems/{id}",
+    path = "/v1/crafting-systems/{slug}",
     tag = "crafting",
     summary = "Get a crafting system",
     description = "Returns a crafting system with ingredient families and recipes.",
-    params(("id" = i64, Path, description = "The crafting system's numeric id from the list endpoint")),
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The system with its ingredients and recipes", body = crate::routes::v1::response_schemas::CraftingSystemsDetailResponse),
-        (status = 404, description = "No crafting system has this id", body = crate::error::ErrorBody)
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No crafting system has this id", body = crate::error::ErrorBody)
     )
 )]
-async fn crafting_system_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn crafting_system_detail(
+    State(state): State<AppState>,
+    EntityPath(id): EntityPath,
+) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
             let mut crafting_system =

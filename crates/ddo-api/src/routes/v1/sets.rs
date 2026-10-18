@@ -2,10 +2,11 @@ use crate::db::paged_rows;
 use crate::db::{
     convert_to_booleans, effects_via, json_row, json_rows, modifiers_for, paged_table_json, TableListSource,
 };
+use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
-use axum::extract::{Path, State};
+use axum::extract::State;
 use axum::Json;
 use serde_json::Value;
 use utoipa_axum::router::OpenApiRouter;
@@ -67,13 +68,13 @@ async fn sets(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Re
 
 #[utoipa::path(
     get,
-    path = "/v1/sets/{id}",
+    path = "/v1/sets/{slug}",
     tag = "sets",
     summary = "Get a set",
     description = "Returns a set with tier effects, members, augments and filigrees.",
-    params(("id" = i64, Path, description = "The set's numeric id from the list endpoint")), responses((status = 200, description = "The set with its child collections", body = crate::routes::v1::response_schemas::SetsDetailResponse), (status = 404, description = "No set has this id", body = crate::error::ErrorBody))
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The set with its child collections", body = crate::routes::v1::response_schemas::SetsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No set has this id", body = crate::error::ErrorBody))
 )]
-async fn set_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
+async fn set_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
             let mut set = json_row(db, "SELECT id, name, icon, is_filigree_set FROM set_bonuses WHERE id = ?1", [id])?;
