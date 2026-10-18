@@ -407,8 +407,8 @@ impl TableWriter<'_> {
     pub(super) fn insert_item_row(&self, row: &ItemRow) -> Result<i64> {
         self.transaction.execute(
             "INSERT INTO items (name, slot_id, item_category, item_type, minimum_level, enhancement_bonus, material_id, race_required,
-                                icon, description, drop_location, set_bonus, accepts_sentience, is_minor_artifact, is_legacy, wiki_url, provenance, slug) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18)",
-            params![row.name, row.equipment_slot.id(), row.category.as_str(), row.item_type, row.minimum_level, row.enhancement_bonus, row.material_id, row.race_required, row.icon, row.description, row.drop_location, row.set_bonus, row.accepts_sentience, row.is_minor_artifact, names_legacy_version(row.name), row.wiki_url, row.provenance.as_str(), crate::tree::xml_entity_slug("items", None, row.name, None)],
+                                icon, description, drop_location, set_bonus, accepts_sentience, is_minor_artifact, is_legacy, wiki_url, provenance, slug, id) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19)",
+            params![row.name, row.equipment_slot.id(), row.category.as_str(), row.item_type, row.minimum_level, row.enhancement_bonus, row.material_id, row.race_required, row.icon, row.description, row.drop_location, row.set_bonus, row.accepts_sentience, row.is_minor_artifact, names_legacy_version(row.name), row.wiki_url, row.provenance.as_str(), crate::tree::xml_entity_slug("items", None, row.name, None), (row.provenance == Provenance::Wiki).then(|| crate::tree::xml_overlay_id("items", &crate::tree::xml_entity_slug("items", None, row.name, None))).transpose()?],
         )?;
         Ok(self.transaction.last_insert_rowid())
     }

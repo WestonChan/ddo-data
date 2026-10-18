@@ -102,7 +102,7 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
     tree::build_from_data(&options.data_dir, &mut ours)?;
     let old_paths = DataFilePaths::from_database(&ours)?;
     let annotated = tree::annotated_entities(&ours)?;
-    let previous = corrections::build_database_matching_his_values(
+    let previous = corrections::build_previous_matching_his_values(
         &options.previous_dir,
         &options.wiki,
         &options.corrections,
@@ -150,6 +150,11 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
         &old_paths,
     )?;
     report.files = tree::replace_data_files(&staging, &options.data_dir)?;
+    report.entries.extend(previous.skipped_wiki_facts.into_iter().map(|skipped| ImportReportEntry {
+        path: skipped.file_name.into(),
+        category: "SKIPPED WIKI FACT",
+        detail: format!("{}: unresolved previous name {:?}", skipped.fact, skipped.unresolved_name),
+    }));
     Ok(report)
 }
 

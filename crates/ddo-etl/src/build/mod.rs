@@ -15,6 +15,8 @@ mod sets;
 mod trees_spells;
 mod vendors_and_events;
 mod wiki;
+mod wiki_previous;
+pub use wiki_previous::SkippedWikiFact;
 
 use crate::corrections::{Correction, Corrections};
 use crate::map::augment_slot::AugmentSlotType;
@@ -40,6 +42,7 @@ use std::path::{Path, PathBuf};
 
 #[derive(Debug, Default, Clone, PartialEq, Eq)]
 pub struct BuildReport {
+    pub skipped_wiki_facts: Vec<SkippedWikiFact>,
     pub written_item_count: usize,
     pub skipped_cosmetic_item_count: usize,
     pub legacy_item_count: usize,
@@ -166,6 +169,28 @@ pub fn build_database(
     db: &mut Connection,
     dataset_version: &DatasetVersion,
 ) -> Result<BuildReport> {
+    build_with_wiki_references(data_files_dir, wiki_overrides, corrections, db, dataset_version, false)
+}
+
+pub fn build_previous_database(
+    data_files_dir: &Path,
+    wiki_overrides: &WikiOverrides,
+    corrections: &Corrections,
+    db: &mut Connection,
+    dataset_version: &DatasetVersion,
+) -> Result<BuildReport> {
+    build_with_wiki_references(data_files_dir, wiki_overrides, corrections, db, dataset_version, true)
+}
+
+fn build_with_wiki_references(
+    data_files_dir: &Path,
+    wiki_overrides: &WikiOverrides,
+    corrections: &Corrections,
+    db: &mut Connection,
+    dataset_version: &DatasetVersion,
+    is_previous: bool,
+) -> Result<BuildReport> {
+    let mut previous_wiki = wiki_overrides.clone();
     db.execute_batch(ddo_model::ddl()).context("applying DDL")?;
     seeds::insert_all(db).context("inserting seed tables")?;
 
@@ -214,6 +239,16 @@ pub fn build_database(
     report.challenge_count = write_challenges(&transaction, &parsed_challenges, &source_aliases)?;
     let overlay_references = wiki::OverlayReferences::default();
     overlay_references.capture_renames(&transaction, corrections)?;
+    if is_previous {
+        wiki_previous::omit_unresolved_previous_facts(
+            &transaction,
+            &overlay_references,
+            &mut previous_wiki,
+            true,
+            &mut report.skipped_wiki_facts,
+        )?;
+    }
+    let wiki_overrides = &previous_wiki;
     corrections::apply_quest_corrections(&transaction, corrections, &mut report)?;
     wiki::write_wiki_quests(&transaction, &overlay_references, &wiki_overrides.quests, &mut report)?;
     quest_series::write_wiki_quest_series(&transaction, &overlay_references, wiki_overrides, &mut report)?;
@@ -314,6 +349,16 @@ pub fn build_database(
         writer.write_set_bonus_file(&path, true, &mut report).with_context(|| format!("{}", path.display()))?;
     }
     overlay_references.capture_renames(&transaction, corrections)?;
+    if is_previous {
+        wiki_previous::omit_unresolved_previous_facts(
+            &transaction,
+            &overlay_references,
+            &mut previous_wiki,
+            false,
+            &mut report.skipped_wiki_facts,
+        )?;
+    }
+    let wiki_overrides = &previous_wiki;
     writer.write_wiki_items(&wiki_overrides.items, &mut report)?;
     writer.write_wiki_augments(&wiki_overrides.augments, &mut report)?;
     writer.link_pending_set_members()?;

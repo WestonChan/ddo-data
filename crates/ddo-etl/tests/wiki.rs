@@ -805,7 +805,7 @@ fn recipe_rows(db: &Connection) -> Vec<RecipeRow> {
     let mut statement = db
         .prepare(
             "SELECT r.tier, t.label, r.option, r.note, r.sort_order FROM crafting_recipes r
-               LEFT JOIN augment_slot_types t ON t.id = r.slot_id ORDER BY r.system_id, r.sort_order",
+               JOIN crafting_systems s ON s.id = r.system_id LEFT JOIN augment_slot_types t ON t.id = r.slot_id ORDER BY s.name, r.sort_order",
         )
         .unwrap();
     statement
@@ -828,7 +828,7 @@ fn merges_crafting_systems_ingredients_and_recipes() {
         (4, 5, 5)
     );
     let (name, page, pack, npc): (String, String, Option<i64>, Option<String>) = db
-        .query_row("SELECT name, page, pack_id, npc FROM crafting_systems ORDER BY id LIMIT 1", [], |r| {
+        .query_row("SELECT name, page, pack_id, npc FROM crafting_systems WHERE name = 'Heroic Green Steel'", [], |r| {
             Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?))
         })
         .unwrap();
@@ -840,7 +840,7 @@ fn merges_crafting_systems_ingredients_and_recipes() {
     assert_eq!(
         string_column(
             &db,
-            "SELECT name || '|' || tier || '|' || COALESCE(bind, '') FROM crafting_ingredients WHERE system_id = 1
+            "SELECT name || '|' || tier || '|' || COALESCE(bind, '') FROM crafting_ingredients WHERE system_id = (SELECT id FROM crafting_systems WHERE name = 'Heroic Green Steel')
               ORDER BY id"
         ),
         [
@@ -878,7 +878,7 @@ fn merges_crafting_systems_ingredients_and_recipes() {
             &db,
             "SELECT r.option || '|' || i.name || '|' || ri.quantity FROM crafting_recipe_ingredients ri
                JOIN crafting_recipes r ON r.id = ri.recipe_id JOIN crafting_ingredients i ON i.id = ri.ingredient_id
-              WHERE r.system_id = 1 ORDER BY r.sort_order, i.id"
+              WHERE r.system_id = (SELECT id FROM crafting_systems WHERE name = 'Heroic Green Steel') ORDER BY r.sort_order, i.id"
         ),
         [
             "+5 Fortitude Save|Small Shard of Power|1",

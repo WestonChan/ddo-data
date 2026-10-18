@@ -13,25 +13,33 @@ pub(super) fn write_wiki_vendors_and_events(
 ) -> Result<()> {
     for vendor in &wiki_overrides.vendors {
         transaction.execute(
-            "INSERT INTO vendors (name, location, provenance, wiki_url, slug) VALUES (?1, ?2, ?3, ?4, ?5)",
+            "INSERT INTO vendors (name, location, provenance, wiki_url, slug, id) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
             params![
                 vendor.name,
                 vendor.location,
                 Provenance::Wiki.as_str(),
                 vendor.wiki_url,
-                crate::tree::xml_entity_slug("vendors", None, &vendor.name, None)
+                crate::tree::xml_entity_slug("vendors", None, &vendor.name, None),
+                crate::tree::xml_overlay_id(
+                    "vendors",
+                    &crate::tree::xml_entity_slug("vendors", None, &vendor.name, None)
+                )?
             ],
         )?;
         report.wiki_vendor_count += 1;
     }
     for event in &wiki_overrides.events {
         transaction.execute(
-            "INSERT INTO events (name, provenance, wiki_url, slug) VALUES (?1, ?2, ?3, ?4)",
+            "INSERT INTO events (name, provenance, wiki_url, slug, id) VALUES (?1, ?2, ?3, ?4, ?5)",
             params![
                 event.name,
                 Provenance::Wiki.as_str(),
                 event.wiki_url,
-                crate::tree::xml_entity_slug("events", None, &event.name, None)
+                crate::tree::xml_entity_slug("events", None, &event.name, None),
+                crate::tree::xml_overlay_id(
+                    "events",
+                    &crate::tree::xml_entity_slug("events", None, &event.name, None)
+                )?
             ],
         )?;
         report.wiki_event_count += 1;

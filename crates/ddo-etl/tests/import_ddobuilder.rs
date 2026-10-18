@@ -132,6 +132,132 @@ fn assert_overlay_tables_match(normalized: &Connection, ours: &Connection) {
 }
 
 #[test]
+fn database_overlay_preserves_authored_array_order_and_effect_titles() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let scratch = tempfile::tempdir().unwrap();
+    let mut base = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&fixtures.join("data"), &mut base).unwrap();
+    let mut wiki = WikiOverrides::from_database(&base).unwrap();
+    let item = wiki.items.iter_mut().find(|item| item.name == "Battle Axe of the Oozing Hunger").unwrap();
+    item.weapon.as_mut().unwrap().dr_bypass = vec!["Slash".into(), "Magic".into()];
+    item.effects.push(ddo_etl::wiki::WikiItemEffect {
+        name: "Fixture Charge — 5 Charges".into(),
+        description: Some("Caster level: 14".into()),
+        value: None,
+        target: None,
+    });
+    item.effects.push(ddo_etl::wiki::WikiItemEffect {
+        name: "Major Anger".into(),
+        description: base
+            .query_row("SELECT description_template FROM effects WHERE name = ?1", ["Major Anger"], |row| row.get(0))
+            .unwrap(),
+        value: None,
+        target: None,
+    });
+    wiki.crafting_systems[0].families = vec!["Ruby".into(), "Greensteel_Heroic".into()];
+    let mut corrections = Corrections::from_database(&base).unwrap();
+    let mut correction = corrections.entries[0].clone();
+    correction.kind = ddo_model::enums::CorrectionKind::ItemEffect;
+    correction.name = "Buckler of the Golden Age".into();
+    correction.field = "add".into();
+    correction.effect = None;
+    correction.family = None;
+    correction.selection = None;
+    correction.from = ddo_etl::corrections::CorrectionValue::Null;
+    correction.to = ddo_etl::corrections::CorrectionValue::Effect(ddo_etl::corrections::EffectAddition {
+        name: "Fixture Charge".into(),
+        description: "5 Charges: Caster level: 14".into(),
+        value: None,
+    });
+    corrections.entries.push(correction);
+    let mut written = Connection::open_in_memory().unwrap();
+    build::build_database(
+        &fixtures.join("DataFiles"),
+        &wiki,
+        &corrections,
+        &mut written,
+        &DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() },
+    )
+    .unwrap();
+    let root = scratch.path().join("data");
+    export_fixture_with_icons(&written, &fixtures.join("DataFiles"), &root);
+    let mut ours = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&root, &mut ours).unwrap();
+    let reconstructed = WikiOverrides::from_database(&ours).unwrap();
+    let item = reconstructed.items.iter().find(|item| item.name == "Battle Axe of the Oozing Hunger").unwrap();
+    assert_eq!(item.weapon.as_ref().unwrap().dr_bypass, ["Slash", "Magic"]);
+    assert!(item.effects.iter().any(|effect| effect.name == "Fixture Charge — 5 Charges"));
+    assert!(item.effects.iter().any(|effect| effect.name == "Major Anger"));
+    assert_eq!(
+        reconstructed
+            .crafting_systems
+            .iter()
+            .find(|system| system.name == wiki.crafting_systems[0].name)
+            .unwrap()
+            .families,
+        ["Ruby", "Greensteel_Heroic"]
+    );
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    build::build_database(
+        &fixtures.join("DataFiles"),
+        &reconstructed,
+        &Corrections::from_database(&ours).unwrap(),
+        &mut rebuilt,
+        &DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() },
+    )
+    .unwrap();
+    let normalized_root = scratch.path().join("normalized");
+    export_fixture_with_icons(&rebuilt, &fixtures.join("DataFiles"), &normalized_root);
+    let mut normalized = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&normalized_root, &mut normalized).unwrap();
+    for query in [
+        "SELECT verbose_name_template FROM effects WHERE name='Fixture Charge'",
+        "SELECT damage FROM item_weapon_stats WHERE item_id=(SELECT id FROM items WHERE name='Battle Axe of the Oozing Hunger')",
+        "SELECT to_value FROM corrections WHERE kind='item_effect' AND name='Buckler of the Golden Age' AND qualifier='Fixture Charge' AND field='add'",
+    ] {
+        let value = |db: &Connection| db.query_row(query, [], |row| row.get::<_, String>(0)).unwrap();
+        assert_eq!(value(&normalized), value(&ours), "{query}");
+    }
+    let value: String = normalized.query_row("SELECT to_value FROM corrections WHERE kind='item_effect' AND name='Buckler of the Golden Age' AND qualifier='Fixture Charge' AND field='add'", [], |row| row.get(0)).unwrap();
+    assert_eq!(
+        serde_json::from_str::<serde_json::Value>(&value).unwrap()["description"],
+        "5 Charges: Caster level: 14"
+    );
+}
+
+#[test]
+fn overlay_catalog_identity_survives_insertion_order() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let mut fixture = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&fixtures.join("data"), &mut fixture).unwrap();
+    let mut wiki = WikiOverrides::from_database(&fixture).unwrap();
+    let mut system = wiki.crafting_systems[0].clone();
+    system.name = "Ritual Table".into();
+    system.families.clear();
+    system.ingredients.clear();
+    system.recipes.clear();
+    wiki.crafting_systems.push(system);
+    for reversed in [false, true] {
+        if reversed {
+            wiki.crafting_systems.reverse();
+        }
+        let mut built = Connection::open_in_memory().unwrap();
+        build::build_database(
+            &fixtures.join("DataFiles"),
+            &wiki,
+            &Corrections::from_database(&fixture).unwrap(),
+            &mut built,
+            &DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() },
+        )
+        .unwrap();
+        let id: i64 =
+            built.query_row("SELECT id FROM crafting_systems WHERE name='Ritual Table'", [], |row| row.get(0)).unwrap();
+        assert_eq!(id, 28, "the XML identity catalog owns Ritual Table's identity");
+        assert_eq!(built.query_row("SELECT COUNT(*) FROM removed_entities WHERE owner_kind='crafting_systems' AND owner_id=?1 AND name='Ritual Table'", [id], |row| row.get::<_, i64>(0)).unwrap(), 1);
+    }
+}
+
+#[test]
 fn converging_overlay_socket_renames_follow_the_writer_and_have_no_import_delta() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let scratch = tempfile::tempdir().unwrap();
@@ -636,6 +762,55 @@ impl ImportWorld {
             })
             .collect()
     }
+}
+
+#[test]
+fn previous_xml_skips_later_named_wiki_facts_but_new_xml_stays_strict() {
+    let mut world = ImportWorld::new(Corrections::default());
+    let db = world.database();
+    db.execute("UPDATE adventure_packs SET name='Later Terror of Demogorgon',slug='later-terror-of-demogorgon' WHERE name='Terror of Demogorgon'", []).unwrap();
+    db.execute("INSERT INTO vendors (name,slug,location,pack_id,provenance,wiki_url) SELECT 'Later Vendor','later-vendor','Fixture location',id,'wiki','https://ddowiki.com/page/Vendor' FROM adventure_packs WHERE name='Later Terror of Demogorgon'", []).unwrap();
+    tree::rederive_data_build_tables(&db).unwrap();
+    world.options.data_dir = world.scratch.path().join("later-data");
+    tree::export_ddobuilder_tree(&db, &world.options.previous_dir, &world.options.data_dir).unwrap();
+    let ours = world.database();
+    world.options.wiki = WikiOverrides::from_database(&ours).unwrap();
+    world.options.corrections = Corrections::from_database(&ours).unwrap();
+    let file =
+        world.options.wiki.vendors.iter().find(|vendor| vendor.name == "Later Vendor").unwrap().file_name.clone();
+    let source = world.scratch.path().join("later-source");
+    copy_tree(&world.options.previous_dir, &source);
+    let quests = source.join("Quests.xml");
+    std::fs::write(
+        &quests,
+        std::fs::read_to_string(&quests).unwrap().replace("Terror of Demogorgon", "Later Terror of Demogorgon"),
+    )
+    .unwrap();
+    world.options.source_dir = source;
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    let skips = report.entries.iter().filter(|entry| entry.category == "SKIPPED WIKI FACT").collect::<Vec<_>>();
+    assert_eq!(skips.len(), 1, "{report}");
+    assert_eq!(skips[0].path, PathBuf::from(&file));
+    assert!(skips[0].detail.contains("Later Terror of Demogorgon"), "{report}");
+    assert!(skips[0].detail.contains("Later Vendor"), "{report}");
+    assert_eq!(
+        world
+            .database()
+            .query_row(
+                "SELECT p.name FROM vendors v JOIN adventure_packs p ON p.id=v.pack_id WHERE v.name='Later Vendor'",
+                [],
+                |row| row.get::<_, String>(0)
+            )
+            .unwrap(),
+        "Later Terror of Demogorgon"
+    );
+    world.options.source_dir = world.options.previous_dir.clone();
+    world.options.previous_sha = Some(NEW_SHA.into());
+    let before = world.bytes();
+    let error = import_ddobuilder(&world.options).unwrap_err();
+    assert!(format!("{error:#}").contains(&file), "{error:#}");
+    assert_eq!(before, world.bytes());
 }
 
 #[test]

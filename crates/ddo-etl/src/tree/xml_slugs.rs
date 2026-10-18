@@ -42,6 +42,23 @@ pub(crate) fn xml_entity_slug(table: &str, upstream_id: Option<i64>, name: &str,
         .map_or(base.clone(), |variant| format!("{base}-{}", slug(variant)))
 }
 
+pub(crate) fn xml_overlay_id(table: &str, identity_slug: &str) -> Result<i64> {
+    let matches = xml_identities()
+        .entity
+        .iter()
+        .filter(|identity| {
+            identity.table == table
+                && xml_entity_slug(table, Some(identity.upstream_id), &identity.name, identity.description.as_deref())
+                    == identity_slug
+        })
+        .collect::<Vec<_>>();
+    match matches.as_slice() {
+        [identity] => Ok(identity.upstream_id),
+        [] => Ok(super::ids::stable_hash(&[table, identity_slug])),
+        _ => bail!("ambiguous XML overlay identity for {table} {identity_slug:?}"),
+    }
+}
+
 pub(crate) fn augment_slug_candidates(
     name: &str,
     description: &str,
@@ -249,4 +266,18 @@ pub(crate) fn assign_xml_entity_slugs(db: &Connection) -> Result<()> {
         ensure!(missing == 0, "{table} has {missing} named rows without slugs");
     }
     insert_entity_identities(db)
+}
+
+#[cfg(test)]
+mod overlay_identity_tests {
+    #[test]
+    fn overlay_identity_uses_catalog_slugs_including_variants() {
+        for (table, slug, expected) in [
+            ("crafting_systems", "ritual-table", 28),
+            ("augments", "essence-of-the-masque-sapphire", 1644),
+            ("augments", "essence-of-the-masque-named", 2247),
+        ] {
+            assert_eq!(super::xml_overlay_id(table, slug).unwrap(), expected);
+        }
+    }
 }

@@ -10,6 +10,7 @@ use std::path::Path;
 pub(super) struct HisDatabase {
     pub(super) db: Connection,
     pub(super) first_stale: Vec<StaleCorrection>,
+    pub(super) skipped_wiki_facts: Vec<crate::build::SkippedWikiFact>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
@@ -50,8 +51,30 @@ pub(super) fn build_database_matching_his_values(
     corrections: &Corrections,
     version: &DatasetVersion,
 ) -> Result<HisDatabase> {
+    build_matching_values(source, wiki, corrections, version, false)
+}
+
+pub(super) fn build_previous_matching_his_values(
+    source: &Path,
+    wiki: &WikiOverrides,
+    corrections: &Corrections,
+    version: &DatasetVersion,
+) -> Result<HisDatabase> {
+    build_matching_values(source, wiki, corrections, version, true)
+}
+
+fn build_matching_values(
+    source: &Path,
+    wiki: &WikiOverrides,
+    corrections: &Corrections,
+    version: &DatasetVersion,
+    is_previous: bool,
+) -> Result<HisDatabase> {
+    let builder = if is_previous { crate::build::build_previous_database } else { build_database };
     let mut db = Connection::open_in_memory()?;
-    let first_stale = build_database(source, wiki, corrections, &mut db, version)?.stale_corrections;
+    let first_report = builder(source, wiki, corrections, &mut db, version)?;
+    let first_stale = first_report.stale_corrections;
+    let mut skipped_wiki_facts = first_report.skipped_wiki_facts;
     let mut rebased = corrections.clone();
     let mut changed = false;
     for correction in &mut rebased.entries {
@@ -67,7 +90,8 @@ pub(super) fn build_database_matching_his_values(
     }
     if changed {
         db = Connection::open_in_memory()?;
-        let report = build_database(source, wiki, &rebased, &mut db, version)?;
+        let report = builder(source, wiki, &rebased, &mut db, version)?;
+        skipped_wiki_facts.extend(report.skipped_wiki_facts);
         for stale in report.stale_corrections {
             let resolved = rebased.entries.iter().any(|correction| {
                 CorrectionKey::from_correction(correction).matches(&stale)
@@ -81,7 +105,9 @@ pub(super) fn build_database_matching_his_values(
             ensure!(resolved, "correction remains stale after rebasing: {stale:?}");
         }
     }
-    Ok(HisDatabase { db, first_stale })
+    skipped_wiki_facts.sort();
+    skipped_wiki_facts.dedup();
+    Ok(HisDatabase { db, first_stale, skipped_wiki_facts })
 }
 
 fn upstream_value(correction: &Correction, stale: &[StaleCorrection]) -> String {

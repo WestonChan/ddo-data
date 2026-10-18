@@ -23,9 +23,9 @@ impl QuestSeriesTable {
     fn insert_series_sql(self) -> &'static str {
         match self {
             Self::QuestChains => {
-                "INSERT INTO quest_chains (name, pack_id, provenance, wiki_url, slug) VALUES (?1, ?2, ?3, ?4, ?5)"
+                "INSERT INTO quest_chains (name, pack_id, provenance, wiki_url, slug, id) VALUES (?1, ?2, ?3, ?4, ?5, ?6)"
             }
-            Self::Sagas => "INSERT INTO sagas (name, pack_id, provenance, wiki_url, slug) VALUES (?1, ?2, ?3, ?4, ?5)",
+            Self::Sagas => "INSERT INTO sagas (name, pack_id, provenance, wiki_url, slug, id) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
         }
     }
 
@@ -106,7 +106,20 @@ fn insert_quest_series<Reward>(
     };
     transaction.execute(
         table.insert_series_sql(),
-        params![series.name, pack_id, Provenance::Wiki.as_str(), series.wiki_url, crate::tree::slug(&series.name)],
+        params![
+            series.name,
+            pack_id,
+            Provenance::Wiki.as_str(),
+            series.wiki_url,
+            crate::tree::slug(&series.name),
+            crate::tree::xml_overlay_id(
+                match table {
+                    QuestSeriesTable::QuestChains => "quest_chains",
+                    QuestSeriesTable::Sagas => "sagas",
+                },
+                &crate::tree::slug(&series.name)
+            )?
+        ],
     )?;
     let series_id = transaction.last_insert_rowid();
     for (sort_order, quest_name) in series.quests.iter().enumerate() {

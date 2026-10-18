@@ -139,7 +139,7 @@ fn events(db: &Connection, paths: &DataFilePaths) -> Result<Vec<WikiEvent>> {
 
 fn crafting_systems(db: &Connection, paths: &DataFilePaths) -> Result<Vec<CraftingSystem>> {
     let mut families =
-        groups(db, "SELECT system_id,family FROM crafting_system_families ORDER BY system_id,family", |r| {
+        groups(db, "SELECT system_id,family FROM crafting_system_families ORDER BY system_id,rowid", |r| {
             Ok((r.get(0)?, r.get::<_, String>(1)?))
         })?;
     let mut ingredients = groups(
@@ -166,8 +166,8 @@ struct WikiEffects {
 
 fn effects(db: &Connection, table: &str, owner: &str) -> Result<BTreeMap<i64, WikiEffects>> {
     let mut owners = BTreeMap::<i64, WikiEffects>::new();
-    let sql=format!("SELECT l.{owner}_id,e.name,e.is_stat,e.is_group,l.value,l.value2,b.name,e.description_template FROM {owner}_effects l JOIN {table} o ON o.id=l.{owner}_id JOIN effects e ON e.id=l.effect_id LEFT JOIN bonus_types b ON b.id=l.bonus_type_id WHERE o.provenance='wiki' ORDER BY l.{owner}_id,l.sort_order");
-    for (id, name, is_stat, is_group, value, value2, bonus_type, description) in rows(db, &sql, |r| {
+    let sql=format!("SELECT l.{owner}_id,e.name,e.is_stat,e.is_group,l.value,l.value2,b.name,e.description_template,CASE WHEN EXISTS (SELECT 1 FROM effect_bonuses WHERE effect_id=e.id) THEN e.name ELSE e.verbose_name_template END FROM {owner}_effects l JOIN {table} o ON o.id=l.{owner}_id JOIN effects e ON e.id=l.effect_id LEFT JOIN bonus_types b ON b.id=l.bonus_type_id WHERE o.provenance='wiki' ORDER BY l.{owner}_id,l.sort_order");
+    for (id, name, is_stat, is_group, value, value2, bonus_type, description, title) in rows(db, &sql, |r| {
         Ok((
             r.get::<_, i64>(0)?,
             r.get::<_, String>(1)?,
@@ -177,6 +177,7 @@ fn effects(db: &Connection, table: &str, owner: &str) -> Result<BTreeMap<i64, Wi
             r.get::<_, Option<i64>>(5)?,
             r.get::<_, Option<String>>(6)?,
             r.get::<_, Option<String>>(7)?,
+            r.get::<_, String>(8)?,
         ))
     })? {
         let owner = owners.entry(id).or_default();
@@ -194,7 +195,7 @@ fn effects(db: &Connection, table: &str, owner: &str) -> Result<BTreeMap<i64, Wi
                 !is_stat && !is_group && value2.is_none(),
                 "wiki effect {name:?} cannot be reconstructed from its amounts and type"
             );
-            owner.effects.push(WikiItemEffect { name, description, value, target: None });
+            owner.effects.push(WikiItemEffect { name: title, description, value, target: None });
         }
     }
     Ok(owners)
@@ -203,7 +204,7 @@ fn effects(db: &Connection, table: &str, owner: &str) -> Result<BTreeMap<i64, Wi
 fn items(db: &Connection, paths: &DataFilePaths) -> Result<Vec<WikiItem>> {
     let mut effects = effects(db, "items", "item")?;
     let mut sockets=groups(db,"SELECT l.item_id,s.label FROM item_augment_slots l JOIN augment_slot_types s ON s.id=l.slot_id ORDER BY l.item_id,l.sort_order",|r|Ok((r.get(0)?,r.get::<_,String>(1)?)))?;
-    let mut bypass = groups(db, "SELECT item_id,bypass FROM item_dr_bypass ORDER BY item_id,bypass", |r| {
+    let mut bypass = groups(db, "SELECT item_id,bypass FROM item_dr_bypass ORDER BY item_id,rowid", |r| {
         Ok((r.get(0)?, r.get::<_, String>(1)?))
     })?;
     let mut weapons = rows(db, "SELECT * FROM item_weapon_stats", |r| {

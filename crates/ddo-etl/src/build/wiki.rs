@@ -177,8 +177,8 @@ fn insert_wiki_quest(transaction: &Transaction, references: &OverlayReferences, 
         None => None,
     };
     transaction.execute(
-        "INSERT INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid, difficulties, provenance, slug) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)",
-        params![wiki_quest.name, pack_id, patron_id, wiki_quest.level, wiki_quest.epic_level, wiki_quest.favor, wiki_quest.is_raid.unwrap_or_default(), serde_json::to_string(wiki_quest.difficulties.as_deref().unwrap_or_default())?, Provenance::Wiki.as_str(), crate::tree::xml_entity_slug("quests", None, &wiki_quest.name, None)],
+        "INSERT INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid, difficulties, provenance, slug, id) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)",
+        params![wiki_quest.name, pack_id, patron_id, wiki_quest.level, wiki_quest.epic_level, wiki_quest.favor, wiki_quest.is_raid.unwrap_or_default(), serde_json::to_string(wiki_quest.difficulties.as_deref().unwrap_or_default())?, Provenance::Wiki.as_str(), crate::tree::xml_entity_slug("quests", None, &wiki_quest.name, None), crate::tree::xml_overlay_id("quests", &crate::tree::xml_entity_slug("quests", None, &wiki_quest.name, None))?],
     )?;
     Ok(())
 }
@@ -241,12 +241,16 @@ fn link_augment_to_quests_named_in(
 pub(super) fn write_wiki_crafting_systems(transaction: &Transaction, wiki_overrides: &WikiOverrides) -> Result<()> {
     for crafting_system in &wiki_overrides.crafting_systems {
         transaction.execute(
-            "INSERT INTO crafting_systems (name, page, npc, slug) VALUES (?1, ?2, ?3, ?4)",
+            "INSERT INTO crafting_systems (name, page, npc, slug, id) VALUES (?1, ?2, ?3, ?4, ?5)",
             params![
                 crafting_system.name,
                 crafting_system.wiki_url,
                 crafting_system.npc,
-                crate::tree::xml_entity_slug("crafting_systems", None, &crafting_system.name, None)
+                crate::tree::xml_entity_slug("crafting_systems", None, &crafting_system.name, None),
+                crate::tree::xml_overlay_id(
+                    "crafting_systems",
+                    &crate::tree::xml_entity_slug("crafting_systems", None, &crafting_system.name, None)
+                )?
             ],
         )?;
     }
@@ -453,6 +457,40 @@ struct OverlayRename {
 }
 
 impl OverlayReferences {
+    pub(super) fn known_names(
+        &self,
+        transaction: &Transaction,
+    ) -> Result<std::collections::BTreeSet<(String, String)>> {
+        let mut names = std::collections::BTreeSet::new();
+        let mut identities = std::collections::BTreeSet::new();
+        for table in [
+            "quests",
+            "adventure_packs",
+            "patrons",
+            "items",
+            "augments",
+            "set_bonuses",
+            "augment_slot_types",
+            "feats",
+            "races",
+            "enhancements",
+        ] {
+            let column = if table == "augment_slot_types" { "label" } else { "name" };
+            let mut statement = transaction.prepare(&format!("SELECT id,{column} FROM {table}"))?;
+            for row in statement.query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)))? {
+                let (id, name) = row?;
+                identities.insert((table.to_string(), id));
+                names.insert((table.to_string(), name));
+            }
+        }
+        for ((table, name), rename) in self.active_renames.borrow().iter() {
+            if rename.rows.iter().any(|(id, _)| identities.contains(&(table.clone(), *id))) {
+                names.insert((table.clone(), name.clone()));
+            }
+        }
+        Ok(names)
+    }
+
     pub(super) fn capture_renames(
         &self,
         transaction: &Transaction,
@@ -875,8 +913,8 @@ impl TableWriter<'_> {
             &wiki_augment.family,
         )?;
         self.transaction.execute(
-            "INSERT INTO augments (name, family, description, effect_description, min_level, set_bonus, provenance, slug)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
+            "INSERT INTO augments (name, family, description, effect_description, min_level, set_bonus, provenance, slug, id)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
             params![
                 wiki_augment.name,
                 wiki_augment.family,
@@ -886,6 +924,7 @@ impl TableWriter<'_> {
                 wiki_augment.set,
                 Provenance::Wiki.as_str(),
                 slug,
+                crate::tree::xml_overlay_id("augments", &slug)?,
             ],
         )?;
         let augment_id = self.transaction.last_insert_rowid();

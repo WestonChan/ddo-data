@@ -492,6 +492,22 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             &["--test", "import_ddobuilder"][..],
             "converging_non_merging_overlay_renames_name_both_corrections",
         ),
+        (
+            "ddo-etl",
+            &["--test", "import_ddobuilder"][..],
+            "database_overlay_preserves_authored_array_order_and_effect_titles",
+        ),
+        ("ddo-etl", &["--test", "import_ddobuilder"][..], "overlay_catalog_identity_survives_insertion_order"),
+        (
+            "ddo-etl",
+            &["--lib"][..],
+            "tree::xml_slugs::overlay_identity_tests::overlay_identity_uses_catalog_slugs_including_variants",
+        ),
+        (
+            "ddo-etl",
+            &["--test", "import_ddobuilder"][..],
+            "previous_xml_skips_later_named_wiki_facts_but_new_xml_stays_strict",
+        ),
     ] {
         let test_status = Command::new("cargo")
             .args(["test", "-p", crate_name])
