@@ -71,6 +71,7 @@ pub(crate) struct EffectDamage {
 pub(crate) struct EffectLine {
     #[schema(schema_with = schema_line_id)]
     pub(crate) effect_id: i64,
+    pub(crate) effect_slug: String,
     #[schema(schema_with = schema_line_name)]
     pub(crate) name: String,
     #[schema(schema_with = schema_line_tier)]
@@ -394,6 +395,8 @@ pub(crate) struct ClassesPageResponseClassesEntry {
     pub(crate) bab: Vec<f64>,
     pub(crate) base_class: Option<String>,
     pub(crate) base_class_id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) base_class_slug: Option<String>,
     pub(crate) casting_stats: Option<Vec<String>>,
     pub(crate) class_specific_feat_types: Option<Vec<String>>,
     pub(crate) description: String,
@@ -422,6 +425,8 @@ pub(crate) struct ClassesPageResponse {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ClassesDetailResponseAutomaticFeatsEntry {
     pub(crate) feat_id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) feat_slug: Option<String>,
     pub(crate) level: i64,
     pub(crate) name: String,
 }
@@ -452,6 +457,8 @@ pub(crate) struct ClassesDetailResponseSpellsEntry {
     pub(crate) max_caster_level: Option<i64>,
     pub(crate) name: String,
     pub(crate) spell_id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) spell_slug: Option<String>,
     pub(crate) spell_level: i64,
 }
 
@@ -463,6 +470,8 @@ pub(crate) struct ClassesDetailResponse {
     pub(crate) bab: Vec<f64>,
     pub(crate) base_class: Option<String>,
     pub(crate) base_class_id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) base_class_slug: Option<String>,
     pub(crate) casting_stats: Option<Vec<String>>,
     pub(crate) class_skills: Vec<String>,
     pub(crate) class_specific_feat_types: Option<Vec<String>>,
@@ -685,6 +694,8 @@ pub(crate) struct EffectCarrierLine {
     #[schema(schema_with = schema_carrier_value2)]
     pub(crate) value2: Option<i64>,
     pub(crate) effect_id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) effect_slug: Option<String>,
     pub(crate) effect: Option<String>,
     pub(crate) bonus_type: Option<String>,
     pub(crate) amount_source: Option<String>,
@@ -704,6 +715,8 @@ pub(crate) struct EffectsDetailResponseAugmentsAugmentsEntry {
     #[schema(schema_with = schema_carrier_value2)]
     pub(crate) value2: Option<i64>,
     pub(crate) effect_id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) effect_slug: Option<String>,
     pub(crate) effect: Option<String>,
     pub(crate) bonus_type: Option<String>,
     pub(crate) amount_source: Option<String>,
@@ -733,6 +746,8 @@ pub(crate) struct EffectsDetailResponseItemsItemsEntry {
     #[schema(schema_with = schema_carrier_value2)]
     pub(crate) value2: Option<i64>,
     pub(crate) effect_id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) effect_slug: Option<String>,
     pub(crate) effect: Option<String>,
     pub(crate) bonus_type: Option<String>,
     pub(crate) amount_source: Option<String>,
@@ -756,6 +771,7 @@ pub(crate) struct EffectSetTierCarrier {
     #[schema(schema_with = schema_carrier_line)]
     pub(crate) line: EffectLine,
     pub(crate) set_id: i64,
+    pub(crate) set_slug: String,
     pub(crate) set_name: String,
     pub(crate) equipped_count: i64,
     #[schema(schema_with = schema_carrier_value)]
@@ -763,6 +779,8 @@ pub(crate) struct EffectSetTierCarrier {
     #[schema(schema_with = schema_carrier_value2)]
     pub(crate) value2: Option<i64>,
     pub(crate) effect_id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) effect_slug: Option<String>,
     pub(crate) effect: Option<String>,
     pub(crate) bonus_type: Option<String>,
     pub(crate) amount_source: Option<String>,
@@ -1037,6 +1055,8 @@ pub(crate) struct FeatsPageResponseFeatsEntry {
     pub(crate) max_times_acquire: Option<i64>,
     pub(crate) name: String,
     pub(crate) source_id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) source_slug: Option<String>,
     pub(crate) source_kind: String,
     pub(crate) source_name: Option<String>,
     pub(crate) sphere: Option<String>,
@@ -1251,6 +1271,8 @@ pub(crate) struct FeatsDetailResponse {
     pub(crate) name: String,
     pub(crate) requirements: Vec<FeatsDetailResponseRequirementsEntry>,
     pub(crate) source_id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) source_slug: Option<String>,
     pub(crate) source_kind: String,
     pub(crate) source_name: Option<String>,
     pub(crate) sphere: Option<String>,
@@ -1296,6 +1318,8 @@ pub(crate) struct FiligreesPageResponseFiligreesEntry {
     pub(crate) modifiers: Vec<FiligreesPageResponseFiligreesEntryModifiersEntry>,
     pub(crate) name: String,
     pub(crate) set_id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) set_slug: Option<String>,
     pub(crate) set_name: Option<String>,
 }
 
@@ -1478,6 +1502,7 @@ pub(crate) struct ItemsDetailResponseAugmentSlotsEntry {
     pub(crate) options: Vec<ItemsDetailResponseAugmentSlotsEntryOptionsEntry>,
     pub(crate) qualifier: Option<String>,
     pub(crate) slot_type_id: i64,
+    pub(crate) slot_type_slug: String,
     pub(crate) sort_order: i64,
     pub(crate) variant: String,
 }
@@ -1494,10 +1519,14 @@ pub(crate) struct ItemsDetailResponseChallengePacksEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemsDetailResponseClickiesEntry {
     pub(crate) clickie_id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) clickie_slug: Option<String>,
     pub(crate) description: Option<String>,
     pub(crate) icon: Option<String>,
     pub(crate) name: String,
     pub(crate) spell_id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) spell_slug: Option<String>,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -1904,6 +1933,8 @@ pub(crate) struct RacesDetailResponseFeatsEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct RacesDetailResponseGrantedFeatsEntry {
     pub(crate) feat_id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) feat_slug: Option<String>,
     pub(crate) name: String,
 }
 
@@ -2060,6 +2091,7 @@ pub(crate) struct SetsDetailResponseFiligreesEntry {
     pub(crate) modifiers: Vec<SetsDetailResponseFiligreesEntryModifiersEntry>,
     pub(crate) name: String,
     pub(crate) set_id: i64,
+    pub(crate) set_slug: String,
     pub(crate) set_name: String,
 }
 
@@ -2144,6 +2176,7 @@ pub(crate) struct SpellsPageResponse {
 pub(crate) struct SpellsDetailResponseClassesEntry {
     pub(crate) class: String,
     pub(crate) class_id: i64,
+    pub(crate) class_slug: String,
     pub(crate) cost: Option<i64>,
     pub(crate) max_caster_level: Option<i64>,
     pub(crate) spell_level: i64,

@@ -66,6 +66,7 @@
       "name": "Abiding Path/Elemental Avatar +2 Wisdom",
       "set_id": null,
       "set_name": null,
+      "set_slug": null,
       "slug": "abiding-path-elemental-avatar-2-wisdom"
     },
     {
@@ -134,6 +135,7 @@
       "name": "Angelic Wings: +1 Charisma",
       "set_id": 888754620385453,
       "set_name": "Angelic Wings",
+      "set_slug": "angelic-wings",
       "slug": "angelic-wings-1-charisma"
     },
     {
@@ -202,6 +204,7 @@
       "name": "Angelic Wings: +1 Wisdom",
       "set_id": 888754620385453,
       "set_name": "Angelic Wings",
+      "set_slug": "angelic-wings",
       "slug": "angelic-wings-1-wisdom"
     }
   ],

@@ -2107,6 +2107,7 @@ async fn owner_response_schemas_share_one_typed_effect_line() {
     let line = &schemas["EffectLine"]["properties"];
     let expected: std::collections::BTreeSet<&str> = [
         "effect_id",
+        "effect_slug",
         "name",
         "tier",
         "verbose_name",
@@ -2229,6 +2230,41 @@ const ALL_LIST_PATHS: &[(&str, &str)] = &[
     ("/v1/sentient-gems", "sentient_gems"),
     ("/v1/clickies", "clickies"),
 ];
+
+#[tokio::test]
+async fn every_served_reference_carries_its_slug() {
+    let (_, _, specification) = get("/v1/openapi.json").await;
+    for &(path, rows_key) in ALL_LIST_PATHS {
+        let (status, _, page) = get(&format!("{path}?limit=10000")).await;
+        assert_eq!(status, StatusCode::OK);
+        ddo_api::reference_slugs::response_has_reference_slugs(&page, path).unwrap();
+        if specification["paths"].get(format!("{path}/{{slug}}")).is_some() {
+            let slug = page[rows_key][0]["slug"].as_str().unwrap();
+            let detail_path = format!("{path}/{slug}");
+            let (status, _, detail) = get(&detail_path).await;
+            assert_eq!(status, StatusCode::OK);
+            ddo_api::reference_slugs::response_has_reference_slugs(&detail, &detail_path).unwrap();
+        }
+    }
+    let (_, _, full_items) = get("/v1/items?view=full&limit=50").await;
+    ddo_api::reference_slugs::response_has_reference_slugs(&full_items, "/v1/items?view=full").unwrap();
+}
+
+#[tokio::test]
+async fn reference_slug_validation_rejects_missing_partners_and_mismatched_nulls() {
+    let (_, _, page) = get("/v1/classes?limit=10000").await;
+    let original = page["classes"].as_array().unwrap().iter().find(|class| class["base_class_id"].is_null()).unwrap();
+    for field in ["slug", "base_class_slug"] {
+        let mut missing = original.clone();
+        missing.as_object_mut().unwrap().remove(field);
+        assert!(ddo_api::reference_slugs::response_has_reference_slugs(&missing, "class").unwrap_err().contains(field));
+        let mut mismatched = original.clone();
+        mismatched[field] = if original[field].is_null() { original["slug"].clone() } else { Value::Null };
+        assert!(ddo_api::reference_slugs::response_has_reference_slugs(&mismatched, "class")
+            .unwrap_err()
+            .contains(field));
+    }
+}
 
 #[tokio::test]
 async fn every_scalar_list_column_and_filter_has_a_sort_key() {

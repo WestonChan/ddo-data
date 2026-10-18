@@ -6,6 +6,7 @@ pub mod entity_slugs;
 pub mod error;
 mod etag;
 mod query;
+pub mod reference_slugs;
 mod routes;
 pub mod schema_validation;
 pub mod state;

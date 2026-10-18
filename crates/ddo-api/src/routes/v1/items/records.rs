@@ -83,7 +83,7 @@ pub(super) fn item_records(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64,
     let mut slots = grouped_rows(
         db,
         ids,
-        "SELECT s.item_id AS owner_id, s.sort_order, t.id AS slot_type_id,
+        "SELECT s.item_id AS owner_id, s.sort_order, t.id AS slot_type_id, t.slug AS slot_type_slug,
         t.label, t.family, t.variant, t.qualifier FROM item_augment_slots s
         JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.item_id IN ({ids}) ORDER BY s.item_id, s.sort_order",
     )?;
@@ -148,8 +148,8 @@ pub(super) fn item_records(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64,
             db,
             ids,
             "SELECT ic.item_id AS owner_id, ic.name,
-        ic.clickie_id, ic.spell_id, c.description, c.icon FROM item_clickies ic
-        LEFT JOIN clickies c ON c.id = ic.clickie_id WHERE ic.item_id IN ({ids}) ORDER BY ic.item_id, ic.sort_order",
+        ic.clickie_id, c.slug AS clickie_slug, ic.spell_id, sp.slug AS spell_slug, c.description, c.icon FROM item_clickies ic
+        LEFT JOIN clickies c ON c.id = ic.clickie_id LEFT JOIN spells sp ON sp.id = ic.spell_id WHERE ic.item_id IN ({ids}) ORDER BY ic.item_id, ic.sort_order",
         )?,
     );
     let mut sets = grouped_rows(

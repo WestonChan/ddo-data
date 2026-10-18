@@ -435,7 +435,7 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
         .replace(&format!("j.{owner_column}"), "filtered_bonus.owner_id")
         .replace("j.sort_order", "filtered_bonus.effect_link_order");
     let sql = format!(
-        "SELECT j.{owner_column} AS owner_id, j.sort_order, e.id AS effect_id, e.name,
+        "SELECT j.{owner_column} AS owner_id, j.sort_order, e.id AS effect_id, e.slug AS effect_slug, e.name,
                 COALESCE(e.verbose_name_template, '%b1 ' || e.name || ' +{{1}}') AS verbose_name_template,
                 e.set_bonus_line_template, e.description_template, j.value, j.value2,
                 COALESCE(j.value, e.default_value,
@@ -508,7 +508,7 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
                     .unwrap_or(Value::Null);
                 let position = lines.len();
                 lines.push((sort_order, serde_json::json!({
-                    "effect_id": row["effect_id"], "name": row["name"], "tier": tier,
+                    "effect_id": row["effect_id"], "effect_slug": row["effect_slug"], "name": row["name"], "tier": tier,
                     "verbose_name": verbose_name, "description": description,
                     "value": row["template_value"], "value2": row["template_value2"],
                     "bonus_type": row["bonus_type"], "bonuses": [],

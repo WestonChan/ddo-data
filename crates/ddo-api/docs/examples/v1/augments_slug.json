@@ -23,6 +23,7 @@
       "damage": [],
       "description": null,
       "effect_id": 2476223613212715,
+      "effect_slug": "physical-resistance-rating",
       "name": "Physical Resistance Rating",
       "tier": null,
       "value": 10,

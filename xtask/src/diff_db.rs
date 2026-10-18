@@ -269,7 +269,7 @@ pub fn compare_responses(
         .keys()
         .filter_map(|path| path.strip_suffix("/{slug}").or_else(|| path.strip_suffix("/{id}")).map(str::to_string))
         .collect();
-    let mut ids_by_list_path: BTreeMap<String, BTreeSet<i64>> = BTreeMap::new();
+    let mut keys_by_list_path: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
     for (path, route) in paths {
         if path.ends_with("/{id}")
             || path.ends_with("/{slug}")
@@ -290,10 +290,15 @@ pub fn compare_responses(
             let first_rows = first.as_object().and_then(|fields| fields.values().find_map(JsonValue::as_array));
             let second_rows = second.as_object().and_then(|fields| fields.values().find_map(JsonValue::as_array));
             if detail_paths.contains(path) {
-                let ids = ids_by_list_path.entry(path.clone()).or_default();
+                let keys = keys_by_list_path.entry(path.clone()).or_default();
                 for row in first_rows.into_iter().chain(second_rows).flat_map(|rows| rows.iter()) {
-                    if let Some(id) = row["id"].as_i64() {
-                        ids.insert(id);
+                    let key = if paths.contains_key(&format!("{path}/{{slug}}")) {
+                        row["slug"].as_str().map(str::to_string)
+                    } else {
+                        row["id"].as_i64().map(|id| id.to_string())
+                    };
+                    if let Some(key) = key {
+                        keys.insert(key);
                     }
                 }
             }
@@ -308,13 +313,13 @@ pub fn compare_responses(
         }
     }
     for list_path in detail_paths {
-        let ids =
-            ids_by_list_path.get(&list_path).map(|ids| ids.iter().copied().collect::<Vec<_>>()).unwrap_or_default();
-        for id_group in ids.chunks(16) {
+        let keys =
+            keys_by_list_path.get(&list_path).map(|keys| keys.iter().cloned().collect::<Vec<_>>()).unwrap_or_default();
+        for key_group in keys.chunks(16) {
             let mut responses = runtime.block_on(async {
                 let mut requests = tokio::task::JoinSet::new();
-                for id in id_group {
-                    let request_path = format!("{list_path}/{id}");
+                for key in key_group {
+                    let request_path = format!("{list_path}/{key}");
                     let first_router = first_router.clone();
                     let second_router = second_router.clone();
                     requests.spawn(async move {

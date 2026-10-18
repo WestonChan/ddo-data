@@ -72,7 +72,7 @@ async fn vendors(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) ->
     params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The vendor with the items it offers", body = crate::routes::v1::response_schemas::VendorsDetailResponse),
-        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No vendor has this id", body = crate::error::ErrorBody)
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No vendor has this slug or numeric id", body = crate::error::ErrorBody)
     )
 )]
 async fn vendor_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
@@ -168,7 +168,7 @@ async fn events(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> 
     params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The event with the items it rewards", body = crate::routes::v1::response_schemas::EventsDetailResponse),
-        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No event has this id", body = crate::error::ErrorBody)
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No event has this slug or numeric id", body = crate::error::ErrorBody)
     )
 )]
 async fn event_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {

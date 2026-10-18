@@ -150,7 +150,7 @@ async fn quest_chains(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
     params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The quest chain with its quests and rewards", body = crate::routes::v1::response_schemas::QuestChainsDetailResponse),
-        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No quest chain has this id", body = crate::error::ErrorBody)
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No quest chain has this slug or numeric id", body = crate::error::ErrorBody)
     )
 )]
 async fn quest_chain_detail(
@@ -188,7 +188,7 @@ async fn sagas(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> R
     params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The saga with its quests and rewards", body = crate::routes::v1::response_schemas::SagasDetailResponse),
-        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No saga has this id", body = crate::error::ErrorBody)
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No saga has this slug or numeric id", body = crate::error::ErrorBody)
     )
 )]
 async fn saga_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {

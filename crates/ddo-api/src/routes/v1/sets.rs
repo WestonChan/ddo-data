@@ -26,7 +26,8 @@ const SET_LIST_SELECT: &str = "SELECT s.id, s.name, s.icon, s.is_filigree_set,
     (SELECT COUNT(*) FROM set_bonus_tiers t WHERE t.set_id = s.id) AS tier_count
     FROM set_bonuses s";
 
-const FILIGREE_SELECT: &str = "SELECT f.id, f.name, f.description, f.icon, f.menu, f.set_id, s.name AS set_name
+const FILIGREE_SELECT: &str =
+    "SELECT f.id, f.name, f.description, f.icon, f.menu, f.set_id, s.slug AS set_slug, s.name AS set_name
     FROM filigrees f LEFT JOIN set_bonuses s ON s.id = f.set_id";
 
 const SETS_SORT_FIELDS: &[(&str, &str)] = &[
@@ -72,7 +73,7 @@ async fn sets(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Re
     tag = "sets",
     summary = "Get a set",
     description = "Returns a set with tier effects, members, augments and filigrees.",
-    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The set with its child collections", body = crate::routes::v1::response_schemas::SetsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No set has this id", body = crate::error::ErrorBody))
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The set with its child collections", body = crate::routes::v1::response_schemas::SetsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No set has this slug or numeric id", body = crate::error::ErrorBody))
 )]
 async fn set_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state
@@ -135,6 +136,7 @@ const FILIGREES_SORT_FIELDS: &[(&str, &str)] = &[
     ("description", "description"),
     ("icon", "icon"),
     ("set_id", "set_id"),
+    ("set_slug", "set_slug"),
 ];
 
 declare_list_parameters!(FiligreesParameters, FILIGREES_SORT_FIELDS, "");

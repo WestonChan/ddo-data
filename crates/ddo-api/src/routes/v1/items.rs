@@ -364,7 +364,7 @@ fn bonus_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Re
     tag = "items",
     summary = "Get an item",
     description = "Returns an item with rendered effects, sockets, modifiers and drop sources.",
-    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The item with its child collections", body = crate::routes::v1::response_schemas::ItemsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No item has this id", body = crate::error::ErrorBody))
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The item with its child collections", body = crate::routes::v1::response_schemas::ItemsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No item has this slug or numeric id", body = crate::error::ErrorBody))
 )]
 async fn item_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state

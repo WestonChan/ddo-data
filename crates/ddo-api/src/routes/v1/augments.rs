@@ -148,7 +148,7 @@ async fn augments(
     tag = "augments",
     summary = "Get an augment",
     description = "Returns an augment with effects, crafting recipes, modifiers and drop sources.",
-    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The augment with its child collections", body = crate::routes::v1::response_schemas::AugmentsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No augment has this id", body = crate::error::ErrorBody))
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The augment with its child collections", body = crate::routes::v1::response_schemas::AugmentsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No augment has this slug or numeric id", body = crate::error::ErrorBody))
 )]
 async fn augment_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state

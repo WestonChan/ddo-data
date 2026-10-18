@@ -6,6 +6,7 @@
         "bonus_type": "Quality",
         "effect": "Strength",
         "effect_id": 4051823190149989,
+        "effect_slug": "strength",
         "id": 4612064944572336,
         "line": {
           "bonus_type": "Quality",
@@ -23,6 +24,7 @@
           "damage": [],
           "description": "Passive: +1 Quality bonus to Strength.",
           "effect_id": 4051823190149989,
+          "effect_slug": "strength",
           "name": "Strength",
           "tier": null,
           "value": 1,
@@ -35,6 +37,7 @@
             "bonus_type": "Quality",
             "effect": "Strength",
             "effect_id": 4051823190149989,
+            "effect_slug": "strength",
             "line": {
               "bonus_type": "Quality",
               "bonuses": [
@@ -51,6 +54,7 @@
               "damage": [],
               "description": "Passive: +1 Quality bonus to Strength.",
               "effect_id": 4051823190149989,
+              "effect_slug": "strength",
               "name": "Strength",
               "tier": null,
               "value": 1,
@@ -73,6 +77,7 @@
         "bonus_type": "Enhancement",
         "effect": "Strength",
         "effect_id": 4051823190149989,
+        "effect_slug": "strength",
         "id": 4315702330403950,
         "line": {
           "bonus_type": "Enhancement",
@@ -90,6 +95,7 @@
           "damage": [],
           "description": "Passive: +15 Enhancement bonus to Strength.",
           "effect_id": 4051823190149989,
+          "effect_slug": "strength",
           "name": "Strength",
           "tier": null,
           "value": 15,
@@ -102,6 +108,7 @@
             "bonus_type": "Enhancement",
             "effect": "Strength",
             "effect_id": 4051823190149989,
+            "effect_slug": "strength",
             "line": {
               "bonus_type": "Enhancement",
               "bonuses": [
@@ -118,6 +125,7 @@
               "damage": [],
               "description": "Passive: +15 Enhancement bonus to Strength.",
               "effect_id": 4051823190149989,
+              "effect_slug": "strength",
               "name": "Strength",
               "tier": null,
               "value": 15,
@@ -140,6 +148,7 @@
         "bonus_type": "Enhancement",
         "effect": "Strength",
         "effect_id": 4051823190149989,
+        "effect_slug": "strength",
         "id": 2820971925111537,
         "line": {
           "bonus_type": "Enhancement",
@@ -157,6 +166,7 @@
           "damage": [],
           "description": "Passive: +15 Enhancement bonus to Strength.",
           "effect_id": 4051823190149989,
+          "effect_slug": "strength",
           "name": "Strength",
           "tier": null,
           "value": 15,
@@ -169,6 +179,7 @@
             "bonus_type": "Enhancement",
             "effect": "Strength",
             "effect_id": 4051823190149989,
+            "effect_slug": "strength",
             "line": {
               "bonus_type": "Enhancement",
               "bonuses": [
@@ -185,6 +196,7 @@
               "damage": [],
               "description": "Passive: +15 Enhancement bonus to Strength.",
               "effect_id": 4051823190149989,
+              "effect_slug": "strength",
               "name": "Strength",
               "tier": null,
               "value": 15,
@@ -221,6 +233,7 @@
         "bonus_type": "Penalty",
         "effect": "Curse of Weakness",
         "effect_id": 2325010283110527,
+        "effect_slug": "curse-of-weakness",
         "id": 385053013333972,
         "line": {
           "bonus_type": "Penalty",
@@ -238,6 +251,7 @@
           "damage": [],
           "description": "Passive -1 Penalty to Strength. The minimum level required to equip this item is lower than normal due to this curse.",
           "effect_id": 2325010283110527,
+          "effect_slug": "curse-of-weakness",
           "name": "Curse of Weakness",
           "tier": null,
           "value": -1,
@@ -250,6 +264,7 @@
             "bonus_type": "Penalty",
             "effect": "Curse of Weakness",
             "effect_id": 2325010283110527,
+            "effect_slug": "curse-of-weakness",
             "line": {
               "bonus_type": "Penalty",
               "bonuses": [
@@ -266,6 +281,7 @@
               "damage": [],
               "description": "Passive -1 Penalty to Strength. The minimum level required to equip this item is lower than normal due to this curse.",
               "effect_id": 2325010283110527,
+              "effect_slug": "curse-of-weakness",
               "name": "Curse of Weakness",
               "tier": null,
               "value": -1,
@@ -288,6 +304,7 @@
         "bonus_type": "Enhancement",
         "effect": "Strength",
         "effect_id": 4051823190149989,
+        "effect_slug": "strength",
         "id": 4108751501711309,
         "line": {
           "bonus_type": "Enhancement",
@@ -305,6 +322,7 @@
           "damage": [],
           "description": "Passive: +3 Enhancement bonus to Strength.",
           "effect_id": 4051823190149989,
+          "effect_slug": "strength",
           "name": "Strength",
           "tier": null,
           "value": 3,
@@ -317,6 +335,7 @@
             "bonus_type": "Enhancement",
             "effect": "Strength",
             "effect_id": 4051823190149989,
+            "effect_slug": "strength",
             "line": {
               "bonus_type": "Enhancement",
               "bonuses": [
@@ -333,6 +352,7 @@
               "damage": [],
               "description": "Passive: +3 Enhancement bonus to Strength.",
               "effect_id": 4051823190149989,
+              "effect_slug": "strength",
               "name": "Strength",
               "tier": null,
               "value": 3,
@@ -348,6 +368,7 @@
             "bonus_type": "Insight",
             "effect": "Strength",
             "effect_id": 4051823190149989,
+            "effect_slug": "strength",
             "line": {
               "bonus_type": "Insight",
               "bonuses": [
@@ -364,6 +385,7 @@
               "damage": [],
               "description": "Passive: +1 Insight bonus to Strength.",
               "effect_id": 4051823190149989,
+              "effect_slug": "strength",
               "name": "Strength",
               "tier": null,
               "value": 1,
@@ -379,6 +401,7 @@
             "bonus_type": "Size",
             "effect": "Ram's Might",
             "effect_id": 1398627491331761,
+            "effect_slug": "rams-might",
             "line": {
               "bonus_type": "Size",
               "bonuses": [
@@ -404,6 +427,7 @@
               "damage": [],
               "description": "You permanently benefit from the spell Ram's Might.",
               "effect_id": 1398627491331761,
+              "effect_slug": "rams-might",
               "name": "Ram's Might",
               "tier": null,
               "value": 2,
@@ -426,6 +450,7 @@
         "bonus_type": "Enhancement",
         "effect": "Strength",
         "effect_id": 4051823190149989,
+        "effect_slug": "strength",
         "id": 7393741405643800,
         "line": {
           "bonus_type": "Enhancement",
@@ -443,6 +468,7 @@
           "damage": [],
           "description": "Passive: +1 Enhancement bonus to Strength.",
           "effect_id": 4051823190149989,
+          "effect_slug": "strength",
           "name": "Strength",
           "tier": null,
           "value": 1,
@@ -455,6 +481,7 @@
             "bonus_type": "Enhancement",
             "effect": "Strength",
             "effect_id": 4051823190149989,
+            "effect_slug": "strength",
             "line": {
               "bonus_type": "Enhancement",
               "bonuses": [
@@ -471,6 +498,7 @@
               "damage": [],
               "description": "Passive: +1 Enhancement bonus to Strength.",
               "effect_id": 4051823190149989,
+              "effect_slug": "strength",
               "name": "Strength",
               "tier": null,
               "value": 1,
@@ -504,6 +532,7 @@
         "bonus_type": "Artifact",
         "effect": "Strength",
         "effect_id": 4051823190149989,
+        "effect_slug": "strength",
         "equipped_count": 3,
         "line": {
           "bonus_type": "Artifact",
@@ -521,6 +550,7 @@
           "damage": [],
           "description": "Passive: +3 Artifact bonus to Strength.",
           "effect_id": 4051823190149989,
+          "effect_slug": "strength",
           "name": "Strength",
           "tier": null,
           "value": 3,
@@ -533,6 +563,7 @@
             "bonus_type": "Artifact",
             "effect": "Strength",
             "effect_id": 4051823190149989,
+            "effect_slug": "strength",
             "line": {
               "bonus_type": "Artifact",
               "bonuses": [
@@ -549,6 +580,7 @@
               "damage": [],
               "description": "Passive: +3 Artifact bonus to Strength.",
               "effect_id": 4051823190149989,
+              "effect_slug": "strength",
               "name": "Strength",
               "tier": null,
               "value": 3,
@@ -564,6 +596,7 @@
         "scale": 1.0,
         "set_id": 8789534611859326,
         "set_name": "Brutal Blows",
+        "set_slug": "brutal-blows",
         "value": 3,
         "value2": null
       },
@@ -572,6 +605,7 @@
         "bonus_type": "Quality",
         "effect": "Strength",
         "effect_id": 4051823190149989,
+        "effect_slug": "strength",
         "equipped_count": 2,
         "line": {
           "bonus_type": "Quality",
@@ -589,6 +623,7 @@
           "damage": [],
           "description": "Passive: +1 Quality bonus to Strength.",
           "effect_id": 4051823190149989,
+          "effect_slug": "strength",
           "name": "Strength",
           "tier": null,
           "value": 1,
@@ -601,6 +636,7 @@
             "bonus_type": "Quality",
             "effect": "Strength",
             "effect_id": 4051823190149989,
+            "effect_slug": "strength",
             "line": {
               "bonus_type": "Quality",
               "bonuses": [
@@ -617,6 +653,7 @@
               "damage": [],
               "description": "Passive: +1 Quality bonus to Strength.",
               "effect_id": 4051823190149989,
+              "effect_slug": "strength",
               "name": "Strength",
               "tier": null,
               "value": 1,
@@ -632,6 +669,7 @@
         "scale": 1.0,
         "set_id": 5345236199686762,
         "set_name": "Captain's Set",
+        "set_slug": "captains-set",
         "value": 1,
         "value2": null
       },
@@ -640,6 +678,7 @@
         "bonus_type": "Artifact",
         "effect": "All Ability Scores",
         "effect_id": 4181448760937974,
+        "effect_slug": "all-ability-scores",
         "equipped_count": 3,
         "line": {
           "bonus_type": "Artifact",
@@ -687,6 +726,7 @@
           "damage": [],
           "description": "+1 Artifact bonus to all Ability Scores",
           "effect_id": 4181448760937974,
+          "effect_slug": "all-ability-scores",
           "name": "All Ability Scores",
           "tier": null,
           "value": 1,
@@ -699,6 +739,7 @@
             "bonus_type": "Artifact",
             "effect": "All Ability Scores",
             "effect_id": 4181448760937974,
+            "effect_slug": "all-ability-scores",
             "line": {
               "bonus_type": "Artifact",
               "bonuses": [
@@ -745,6 +786,7 @@
               "damage": [],
               "description": "+1 Artifact bonus to all Ability Scores",
               "effect_id": 4181448760937974,
+              "effect_slug": "all-ability-scores",
               "name": "All Ability Scores",
               "tier": null,
               "value": 1,
@@ -760,6 +802,7 @@
         "scale": 1.0,
         "set_id": 7096917509038214,
         "set_name": "Devils' Infernal Dance",
+        "set_slug": "devils-infernal-dance",
         "value": 1,
         "value2": null
       }

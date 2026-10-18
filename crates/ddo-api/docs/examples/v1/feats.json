@@ -16,6 +16,7 @@
       "source_id": null,
       "source_kind": "standard",
       "source_name": null,
+      "source_slug": null,
       "sphere": null
     },
     {
@@ -34,6 +35,7 @@
       "source_id": null,
       "source_kind": "standard",
       "source_name": null,
+      "source_slug": null,
       "sphere": null
     }
   ],

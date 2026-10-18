@@ -13,6 +13,7 @@
       ],
       "base_class": "Warlock",
       "base_class_id": 7034653895455602,
+      "base_class_slug": "warlock",
       "casting_stats": [
         "Charisma"
       ],
@@ -50,6 +51,7 @@
       ],
       "base_class": null,
       "base_class_id": null,
+      "base_class_slug": null,
       "casting_stats": [
         "Intelligence"
       ],
@@ -85,6 +87,7 @@
       ],
       "base_class": "Rogue",
       "base_class_id": 8544847835393695,
+      "base_class_slug": "rogue",
       "casting_stats": [
         "Intelligence"
       ],

@@ -104,7 +104,7 @@ async fn crafting_systems(
     params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The system with its ingredients and recipes", body = crate::routes::v1::response_schemas::CraftingSystemsDetailResponse),
-        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No crafting system has this id", body = crate::error::ErrorBody)
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No crafting system has this slug or numeric id", body = crate::error::ErrorBody)
     )
 )]
 async fn crafting_system_detail(

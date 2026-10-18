@@ -248,7 +248,7 @@ fn carrier_pages(
         }
     }
     let carrier_columns = if kind != "stat" {
-        "NULL AS effect_id, NULL AS effect,
+        "NULL AS effect_id, NULL AS effect_slug, NULL AS effect,
          COALESCE(bt.name, (SELECT MIN(fixed_type.name) FROM effect_bonuses fixed_bonus
               JOIN bonus_types fixed_type ON fixed_type.id = fixed_bonus.bonus_type_id
              WHERE fixed_bonus.effect_id = j.effect_id
@@ -256,7 +256,7 @@ fn carrier_pages(
          j.value, j.value2, NULL AS amount_source, NULL AS scale"
             .to_string()
     } else {
-        "e.id AS effect_id, e.name AS effect, bt.name AS bonus_type, ob.amount AS value,
+        "e.id AS effect_id, e.slug AS effect_slug, e.name AS effect, bt.name AS bonus_type, ob.amount AS value,
          NULL AS value2, ob.amount_source, ob.scale"
             .to_string()
     };
@@ -300,7 +300,7 @@ fn carrier_pages(
         match_join = join_for("augment", "augment_id")
     );
     let tiers_sql = format!(
-        "SELECT {distinct} t.id, s.id AS set_id, s.name AS set_name, t.equipped_count,
+        "SELECT {distinct} t.id, s.id AS set_id, s.slug AS set_slug, s.name AS set_name, t.equipped_count,
                 s.name AS owner_family, t.equipped_count AS owner_level, '' AS owner_description,
                 {carrier_columns}, {match_id} AS match_id,
                 j.sort_order AS link_order,
@@ -345,7 +345,9 @@ fn carrier_pages(
             for link_row in &owner_link_rows {
                 let link_order = link_row["link_order"].as_i64().unwrap_or_default();
                 let mut carrier_line = serde_json::Map::new();
-                for field in ["effect_id", "effect", "bonus_type", "value", "value2", "amount_source", "scale"] {
+                for field in
+                    ["effect_id", "effect_slug", "effect", "bonus_type", "value", "value2", "amount_source", "scale"]
+                {
                     carrier_line.insert(field.to_string(), link_row[field].clone());
                 }
                 if kind != "stat" {
@@ -383,7 +385,7 @@ fn carrier_pages(
         .into_json("augments");
     let tiers = page(
         tiers_sql,
-        &["set_id", "set_name", "equipped_count", "name"],
+        &["set_id", "set_slug", "set_name", "equipped_count", "name"],
         "set_bonus_tier",
         pages.set_tiers_limit,
         pages.set_tiers_offset,
@@ -404,7 +406,7 @@ fn carrier_pages(
         ("set_tiers_offset" = Option<i64>, Query, description = "Set tiers to skip before this page."),
         ("include_legacy" = Option<bool>, Query, description = "Use true to include legacy items in carrier links.")),
     responses((status = 200, description = "Effect and paged carriers", body = crate::routes::v1::response_schemas::EffectsDetailResponse),
-        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No effect has this id", body = crate::error::ErrorBody))
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No effect has this slug or numeric id", body = crate::error::ErrorBody))
 )]
 async fn effect_detail(
     State(state): State<AppState>,

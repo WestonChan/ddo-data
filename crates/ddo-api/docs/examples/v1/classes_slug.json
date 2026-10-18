@@ -9,16 +9,19 @@
   "automatic_feats": [
     {
       "feat_id": 5111557867215043,
+      "feat_slug": "arcane-lore",
       "level": 1,
       "name": "Arcane Lore"
     },
     {
       "feat_id": 3051112799359561,
+      "feat_slug": "cantrip-acid-splash",
       "level": 1,
       "name": "Cantrip: Acid Splash"
     },
     {
       "feat_id": 8458379249923042,
+      "feat_slug": "cantrip-cut",
       "level": 1,
       "name": "Cantrip: Cut"
     }
@@ -30,6 +33,7 @@
   ],
   "base_class": null,
   "base_class_id": null,
+  "base_class_slug": null,
   "casting_stats": [
     "Intelligence"
   ],
@@ -221,21 +225,24 @@
       "max_caster_level": 5,
       "name": "Acid Spray",
       "spell_id": 7671686107472815,
-      "spell_level": 1
+      "spell_level": 1,
+      "spell_slug": "acid-spray"
     },
     {
       "cost": 4,
       "max_caster_level": 5,
       "name": "Burning Hands",
       "spell_id": 8125240749217451,
-      "spell_level": 1
+      "spell_level": 1,
+      "spell_slug": "burning-hands"
     },
     {
       "cost": 6,
       "max_caster_level": null,
       "name": "Cause Fear",
       "spell_id": 181304561892498,
-      "spell_level": 1
+      "spell_level": 1,
+      "spell_slug": "cause-fear"
     }
   ],
   "will": "good"

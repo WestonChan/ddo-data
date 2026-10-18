@@ -2,6 +2,7 @@ use anyhow::{ensure, Context, Result};
 use axum::body::Body;
 use axum::http::{Request, StatusCode};
 use ddo_api::drop_validation::{detail_has_unique_drop_locations, source_pack_names};
+use ddo_api::reference_slugs::response_has_reference_slugs;
 use ddo_api::schema_validation::response_matches_schema;
 use ddo_api::{app, AppState};
 use http_body_util::BodyExt;
@@ -168,7 +169,9 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
                 format!("{path}?limit={PAGE_SIZE}&offset={offset}")
             };
             let response = runtime.block_on(json_response(&router, &request_path))?;
-            if let Err(error) = response_matches_schema(&response, schema, schemas, path) {
+            if let Err(error) = response_matches_schema(&response, schema, schemas, path)
+                .and_then(|()| response_has_reference_slugs(&response, path))
+            {
                 if violations.len() < 100 {
                     violations.push(error);
                 }
@@ -204,7 +207,9 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
     loop {
         let request_path = format!("/v1/items?view=full&limit=50&offset={full_offset}");
         let response = runtime.block_on(json_response(&router, &request_path))?;
-        if let Err(error) = response_matches_schema(&response, item_page_schema, schemas, &request_path) {
+        if let Err(error) = response_matches_schema(&response, item_page_schema, schemas, &request_path)
+            .and_then(|()| response_has_reference_slugs(&response, &request_path))
+        {
             if violations.len() < 100 {
                 violations.push(error);
             }
@@ -288,6 +293,7 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
                         let violation = tokio::task::spawn_blocking(move || {
                             response_matches_schema(&response, &detail_schema, &shared_schemas, &request_path)
                                 .and_then(|()| {
+                                    response_has_reference_slugs(&response, &request_path)?;
                                     if check_drop_locations {
                                         detail_has_unique_drop_locations(&response, &request_path, &source_packs)?;
                                     }

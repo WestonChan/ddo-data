@@ -64,7 +64,7 @@ async fn races(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> R
     tag = "races",
     summary = "Get a race",
     description = "Returns a race with ability modifiers, granted feats and racial feats.",
-    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The race with its child collections", body = crate::routes::v1::response_schemas::RacesDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No race has this id", body = crate::error::ErrorBody))
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The race with its child collections", body = crate::routes::v1::response_schemas::RacesDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No race has this slug or numeric id", body = crate::error::ErrorBody))
 )]
 async fn race_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state
@@ -78,7 +78,7 @@ async fn race_detail(State(state): State<AppState>, EntityPath(id): EntityPath) 
             )?);
             race["granted_feats"] = Value::Array(json_rows(
                 db,
-                "SELECT g.feat_name AS name, g.feat_id FROM race_granted_feats g WHERE g.race_id = ?1 ORDER BY g.sort_order",
+                "SELECT g.feat_name AS name, g.feat_id, f.slug AS feat_slug FROM race_granted_feats g LEFT JOIN feats f ON f.id = g.feat_id WHERE g.race_id = ?1 ORDER BY g.sort_order",
                 [id],
             )?);
             race["feats"] = Value::Array(json_rows(

@@ -26,9 +26,10 @@ declare_query_parameters! {
 }
 
 const FEAT_COLUMNS: &str = "f.id, f.name, f.source_kind, f.source_id,
-                       CASE f.source_kind WHEN 'class' THEN (SELECT c.name FROM classes c WHERE c.id = f.source_id)
-                                          WHEN 'race' THEN (SELECT r.name FROM races r WHERE r.id = f.source_id) END AS source_name,
+                       COALESCE(c.slug, r.slug) AS source_slug,
+                       COALESCE(c.name, r.name) AS source_name,
                        f.description, f.icon, f.acquire, f.max_times_acquire, f.sphere, f.auto_acquire_ignores_requirements";
+const FEAT_TABLES: &str = "feats f LEFT JOIN classes c ON f.source_kind = 'class' AND c.id = f.source_id LEFT JOIN races r ON f.source_kind = 'race' AND r.id = f.source_id";
 
 const FEATS_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "f.name"),
@@ -37,11 +38,12 @@ const FEATS_SORT_FIELDS: &[(&str, &str)] = &[
     ("source_kind", "f.source_kind"),
     ("acquire", "f.acquire"),
     ("sphere", "f.sphere"),
-    ("auto_acquire_ignores_requirements", "auto_acquire_ignores_requirements"),
-    ("description", "description"),
-    ("icon", "icon"),
-    ("max_times_acquire", "max_times_acquire"),
-    ("source_id", "source_id"),
+    ("auto_acquire_ignores_requirements", "f.auto_acquire_ignores_requirements"),
+    ("description", "f.description"),
+    ("icon", "f.icon"),
+    ("max_times_acquire", "f.max_times_acquire"),
+    ("source_id", "f.source_id"),
+    ("source_slug", "source_slug"),
     ("source_name", "source_name"),
     ("source", "f.source_kind"),
     ("group", "(SELECT MIN(fg.group_name) FROM feat_groups fg WHERE fg.feat_id = f.id)"),
@@ -94,7 +96,7 @@ async fn feats(
             let mut page = paged_query(
                 db,
                 FEAT_COLUMNS,
-                "feats f",
+                FEAT_TABLES,
                 &query,
                 "f.name, f.source_kind, f.slug",
                 FEATS_SORT_FIELDS,
@@ -123,12 +125,12 @@ fn feat_group_names(db: &rusqlite::Connection, feat_id: i64) -> Result<Vec<Value
     tag = "feats",
     summary = "Get a feat",
     description = "Returns a feat with requirements, bonuses, attacks and modifiers.",
-    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The feat with its child collections", body = crate::routes::v1::response_schemas::FeatsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No feat has this id", body = crate::error::ErrorBody))
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The feat with its child collections", body = crate::routes::v1::response_schemas::FeatsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No feat has this slug or numeric id", body = crate::error::ErrorBody))
 )]
 async fn feat_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
-            let mut feat = json_row(db, &format!("SELECT {FEAT_COLUMNS} FROM feats f WHERE f.id = ?1"), [id])?;
+            let mut feat = json_row(db, &format!("SELECT {FEAT_COLUMNS} FROM {FEAT_TABLES} WHERE f.id = ?1"), [id])?;
             convert_to_booleans(&mut feat, &["auto_acquire_ignores_requirements"]);
             feat["groups"] = Value::Array(feat_group_names(db, id)?);
             feat["requirements"] = Value::Array(requirements_for(db, "feat", id)?);

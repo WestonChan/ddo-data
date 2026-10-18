@@ -26,6 +26,7 @@
               "damage": [],
               "description": "Provides a +9 Competence bonus to your attack rolls.",
               "effect_id": 5669595018917774,
+              "effect_slug": "attack-bonus",
               "name": "Attack Bonus",
               "tier": null,
               "value": 9,
@@ -87,6 +88,7 @@
               "damage": [],
               "description": "Passive: +9 Natural Armor Bonus to Armor Class.",
               "effect_id": 2730631434182972,
+              "effect_slug": "natural-armor",
               "name": "Natural Armor",
               "tier": null,
               "value": 9,
@@ -148,6 +150,7 @@
               "damage": [],
               "description": null,
               "effect_id": 5153904484950047,
+              "effect_slug": "saving-throws",
               "name": "Saving Throws",
               "tier": null,
               "value": 9,
@@ -193,6 +196,7 @@
       ],
       "qualifier": null,
       "slot_type_id": 3873108879693307,
+      "slot_type_slug": "crafting-variant",
       "sort_order": 0,
       "variant": "variant"
     },
@@ -202,6 +206,7 @@
       "options": [],
       "qualifier": null,
       "slot_type_id": 1357484692219291,
+      "slot_type_slug": "yellow",
       "sort_order": 1,
       "variant": "yellow"
     }
@@ -229,6 +234,7 @@
       "damage": [],
       "description": "Passive: +8 Enhancement bonus to Charisma.",
       "effect_id": 8802881441344402,
+      "effect_slug": "charisma",
       "name": "Charisma",
       "tier": null,
       "value": 8,

@@ -82,7 +82,7 @@ fn attach_ability_children(db: &rusqlite::Connection, owner_kind: &str, ability:
     tag = "enhancements",
     summary = "Get an enhancement tree",
     description = "Returns a tree with its enhancements, selections and requirements.",
-    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The tree with its child collections", body = crate::routes::v1::response_schemas::EnhancementTreesDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No tree has this id", body = crate::error::ErrorBody))
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The tree with its child collections", body = crate::routes::v1::response_schemas::EnhancementTreesDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No tree has this slug or numeric id", body = crate::error::ErrorBody))
 )]
 async fn enhancement_tree_detail(
     State(state): State<AppState>,

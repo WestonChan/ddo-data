@@ -41,6 +41,7 @@
           "damage": [],
           "description": null,
           "effect_id": 2605299391052012,
+          "effect_slug": "positive-spell-power",
           "name": "Positive Spell Power",
           "tier": null,
           "value": 36,

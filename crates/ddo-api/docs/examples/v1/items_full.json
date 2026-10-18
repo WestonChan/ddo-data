@@ -11,6 +11,7 @@
           "options": [],
           "qualifier": null,
           "slot_type_id": 1769112694563431,
+          "slot_type_slug": "green",
           "sort_order": 0,
           "variant": "green"
         },
@@ -20,6 +21,7 @@
           "options": [],
           "qualifier": null,
           "slot_type_id": 1357484692219291,
+          "slot_type_slug": "yellow",
           "sort_order": 1,
           "variant": "yellow"
         }
@@ -29,10 +31,12 @@
       "clickies": [
         {
           "clickie_id": 8668657769299021,
+          "clickie_slug": "bestow-curse",
           "description": "Target: Foe\nDuration: 2 minutes 40 seconds\nSchool: Necromancy\nSpell Resistance: Yes\nThe target is cursed, giving a -4 penalty to attack rolls, skill rolls and saves.\nA successful Will save negates this effect.",
           "icon": "BestowCurse",
           "name": "Bestow Curse",
-          "spell_id": null
+          "spell_id": null,
+          "spell_slug": null
         }
       ],
       "crafting_systems": [],
@@ -55,6 +59,7 @@
           "damage": [],
           "description": "Passive: +6 Enhancement bonus to Strength.",
           "effect_id": 4051823190149989,
+          "effect_slug": "strength",
           "name": "Strength",
           "tier": null,
           "value": 6,
@@ -77,6 +82,7 @@
           "damage": [],
           "description": "+15 Enhancement bonus to Physical Resistance Rating",
           "effect_id": 8499011149722438,
+          "effect_slug": "physical-sheltering",
           "name": "Physical Sheltering",
           "tier": null,
           "value": 15,
@@ -99,6 +105,7 @@
           "damage": [],
           "description": "Passive: 15% Enhancement Bonus to Alignment Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)",
           "effect_id": 6046083909513009,
+          "effect_slug": "alignment-absorption",
           "name": "Alignment Absorption",
           "tier": null,
           "value": 15,
@@ -255,6 +262,7 @@
           "options": [],
           "qualifier": null,
           "slot_type_id": 1347619477428085,
+          "slot_type_slug": "blue",
           "sort_order": 0,
           "variant": "blue"
         }
@@ -282,6 +290,7 @@
           "damage": [],
           "description": "Passive: +10 Enhancement bonus to Strength.",
           "effect_id": 4051823190149989,
+          "effect_slug": "strength",
           "name": "Strength",
           "tier": null,
           "value": 10,
@@ -304,6 +313,7 @@
           "damage": [],
           "description": "This item gives a +9 Resistance bonus to your Fortitude save.",
           "effect_id": 4347764377480888,
+          "effect_slug": "fortitude-save",
           "name": "Fortitude Save",
           "tier": null,
           "value": 9,
@@ -326,6 +336,7 @@
           "damage": [],
           "description": "+1 Profane bonus to all abilities.",
           "effect_id": 2841455014554526,
+          "effect_slug": "profane-well-rounded",
           "name": "Profane Well Rounded",
           "tier": null,
           "value": 1,

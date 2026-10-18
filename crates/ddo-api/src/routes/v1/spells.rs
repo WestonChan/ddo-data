@@ -98,7 +98,7 @@ async fn spells(
     tag = "spells",
     summary = "Get a spell",
     description = "Returns a spell with damage, saves and the classes that learn it.",
-    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The spell with its child collections", body = crate::routes::v1::response_schemas::SpellsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No spell has this id", body = crate::error::ErrorBody))
+    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")), responses((status = 200, description = "The spell with its child collections", body = crate::routes::v1::response_schemas::SpellsDetailResponse), (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No spell has this slug or numeric id", body = crate::error::ErrorBody))
 )]
 async fn spell_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
     state
@@ -121,7 +121,7 @@ async fn spell_detail(State(state): State<AppState>, EntityPath(id): EntityPath)
             spell["dcs"] = Value::Array(dcs);
             spell["classes"] = Value::Array(json_rows(
                 db,
-                "SELECT c.id AS class_id, c.name AS class, cs.spell_level, cs.cost, cs.max_caster_level FROM class_spells cs JOIN classes c ON c.id = cs.class_id
+                "SELECT c.id AS class_id, c.slug AS class_slug, c.name AS class, cs.spell_level, cs.cost, cs.max_caster_level FROM class_spells cs JOIN classes c ON c.id = cs.class_id
                   WHERE cs.spell_id = ?1 ORDER BY c.name",
                 [id],
             )?);

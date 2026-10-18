@@ -78,7 +78,7 @@ async fn adventure_packs(State(state): State<AppState>, ApiQuery(query, _): ApiQ
     params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The adventure pack with the items and augments any of its quests drops", body = crate::routes::v1::response_schemas::AdventurePacksDetailResponse),
-        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No adventure pack has this id", body = crate::error::ErrorBody)
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No adventure pack has this slug or numeric id", body = crate::error::ErrorBody)
     )
 )]
 async fn adventure_pack_detail(
@@ -197,7 +197,7 @@ async fn quests(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> 
     params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The quest with the items and augments it drops", body = crate::routes::v1::response_schemas::QuestsDetailResponse),
-        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No quest has this id", body = crate::error::ErrorBody)
+        (status = 308, description = "Renamed slug; follow Location to its current slug."), (status = 404, description = "No quest has this slug or numeric id", body = crate::error::ErrorBody)
     )
 )]
 async fn quest_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -> Result<Json<Value>, ApiError> {
