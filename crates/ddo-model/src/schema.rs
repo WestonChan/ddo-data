@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 37;
+pub const SCHEMA_VERSION: i64 = 38;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -12,6 +12,7 @@ fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
 }
 
 static DDL: LazyLock<String> = LazyLock::new(|| {
+    let entity_kind = sql_in_clause(crate::enums::EntityKind::ALL.iter().map(|kind| kind.as_str()));
     let item_category = sql_in_clause(ItemCategory::ALL.iter().map(|c| c.as_str()));
     let provenance = sql_in_clause(Provenance::ALL.iter().map(|s| s.as_str()));
     let handedness = sql_in_clause(Handedness::ALL.iter().map(|h| h.as_str()));
@@ -175,6 +176,33 @@ CREATE TABLE IF NOT EXISTS entity_identity (
     UNIQUE (kind, slug)
 );
 CREATE INDEX IF NOT EXISTS idx_entity_identity_row ON entity_identity(entity_id, name);
+
+CREATE TABLE IF NOT EXISTS redirects (
+    kind TEXT NOT NULL CHECK (kind {entity_kind}),
+    from_slug TEXT NOT NULL CHECK (length(from_slug) > 0),
+    to_slug TEXT NOT NULL CHECK (length(to_slug) > 0 AND from_slug <> to_slug),
+    since TEXT NOT NULL CHECK (since GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]' AND date(since, '+0 days') IS since),
+    PRIMARY KEY (kind, from_slug)
+);
+
+CREATE TABLE IF NOT EXISTS removed_slugs (
+    kind TEXT NOT NULL CHECK (kind {entity_kind}),
+    slug TEXT NOT NULL CHECK (length(slug) > 0),
+    since TEXT NOT NULL CHECK (since GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]' AND date(since, '+0 days') IS since),
+    reason TEXT NOT NULL CHECK (length(trim(reason)) > 0),
+    PRIMARY KEY (kind, slug)
+);
+
+CREATE VIEW IF NOT EXISTS served_redirects AS
+SELECT kind, from_slug, to_slug, since FROM redirects
+UNION ALL
+SELECT 'enhancement-selections', r.from_slug || substr(child.slug, length(owner.slug) + 1), child.slug, r.since
+FROM redirects r JOIN enhancements owner ON r.kind = 'enhancements' AND owner.slug = r.to_slug
+JOIN enhancement_selections child ON child.enhancement_id = owner.id
+UNION ALL
+SELECT 'crafting-ingredients', r.from_slug || substr(child.slug, length(owner.slug) + 1), child.slug, r.since
+FROM redirects r JOIN crafting_systems owner ON r.kind = 'crafting-systems' AND owner.slug = r.to_slug
+JOIN crafting_ingredients child ON child.system_id = owner.id;
 
 -- Seed tables ----------------------------------------------------------------
 

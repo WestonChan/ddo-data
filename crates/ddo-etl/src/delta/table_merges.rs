@@ -9,6 +9,8 @@ pub enum TableMerge {
 }
 
 pub const TABLE_MERGES: &[(&str, TableMerge)] = &[
+    ("redirects", TableMerge::DatasetArray { array: "redirect" }),
+    ("removed_slugs", TableMerge::DatasetArray { array: "removed" }),
     ("adventure_packs", TableMerge::Entity { owner_column: None, position_column: None }),
     ("attacks", TableMerge::Array { owner_column: "owner_id", array: "attack" }),
     ("augment_effects", TableMerge::Array { owner_column: "augment_id", array: "effect" }),

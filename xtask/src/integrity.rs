@@ -99,6 +99,16 @@ impl IntegrityCheck {
 
 pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     IntegrityCheck::hard(
+        "redirects_agree_with_current_slugs",
+        "redirects target current slugs without collisions, chains or removed current entities",
+        OffenderQuery::Built(redirect_findings),
+    ),
+    IntegrityCheck::hard(
+        "slugs_are_not_all_digits",
+        "entity slugs cannot collide with numeric detail addresses",
+        OffenderQuery::Sql("SELECT slug, entity_id, kind FROM entity_identity WHERE slug <> '' AND slug NOT GLOB '*[^0-9]*'"),
+    ),
+    IntegrityCheck::hard(
         "source_references_exist",
         "every source owner and vendor payment names an existing entity of its declared kind",
         OffenderQuery::Sql(ddo_model::sources::REFERENCE_VIOLATIONS),
@@ -1728,6 +1738,9 @@ fn empty_tables(db: &Connection, options: &IntegrityOptions) -> Result<Findings>
     let table_names = statement.query_map([], |row| row.get::<_, String>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
     let mut offenders = Vec::new();
     for table_name in table_names {
+        if matches!(table_name.as_str(), "redirects" | "removed_slugs") {
+            continue;
+        }
         let row_count: i64 = db.query_row(&format!("SELECT COUNT(*) FROM \"{table_name}\""), [], |row| row.get(0))?;
         if row_count == 0 && !options.allowed_empty_tables.contains(&table_name) {
             offenders.push(Offender { name: table_name, id: None, detail: "no rows".to_string() });
@@ -1738,6 +1751,14 @@ fn empty_tables(db: &Connection, options: &IntegrityOptions) -> Result<Findings>
         allowed_tables => allowed_tables.join(", "),
     };
     Ok(Findings { offenders: Some(offenders), notes: vec![format!("allowed empty: {allowed_text}")] })
+}
+
+fn redirect_findings(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let offenders = ddo_etl::tree::slug_lists::redirect_violations(db)?
+        .into_iter()
+        .map(|detail| Offender { name: detail.clone(), id: None, detail })
+        .collect();
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
 fn unapplied_corrections(db: &Connection, options: &IntegrityOptions) -> Result<Findings> {

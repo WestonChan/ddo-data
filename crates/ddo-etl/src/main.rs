@@ -13,6 +13,12 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum CliCommand {
+    PruneRedirects {
+        #[arg(long = "data", default_value = "data")]
+        data_dir: PathBuf,
+        #[arg(long)]
+        today: Option<String>,
+    },
     ImportDdobuilder {
         #[arg(long)]
         source: PathBuf,
@@ -76,6 +82,10 @@ enum CliCommand {
 
 fn main() -> Result<ExitCode> {
     match Cli::parse().command {
+        CliCommand::PruneRedirects { data_dir, today } => {
+            let pruned = ddo_etl::tree::slug_lists::prune_redirects(&data_dir, today.as_deref())?;
+            println!("pruned {pruned} expired redirects and removed slugs");
+        }
         CliCommand::ImportDdobuilder { source, previous, data_dir, sha, previous_sha, wiki, corrections } => {
             ddo_etl::import_ddobuilder::validate_previous_commit(&data_dir, &previous, previous_sha.clone())?;
             let wiki = match wiki {

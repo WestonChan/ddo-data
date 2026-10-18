@@ -1,3 +1,4 @@
+mod common;
 use axum::body::Body;
 use axum::http::{header, Request, StatusCode};
 use ddo_api::drop_validation::{detail_has_unique_drop_locations, source_pack_names};
@@ -95,54 +96,10 @@ async fn packs_without_release_metadata_serve_explicit_nulls() {
 
 #[tokio::test]
 async fn data_entities_build_and_serve_authored_fields_without_ids() {
-    fn fill_fixture_icons(folder: &std::path::Path, data_dir: &std::path::Path) {
-        for entry in std::fs::read_dir(folder).unwrap() {
-            let path = entry.unwrap().path();
-            if path.is_dir() {
-                fill_fixture_icons(&path, data_dir);
-                continue;
-            }
-            if path.extension().is_none_or(|extension| extension != "toml") {
-                continue;
-            }
-            let Some((_, kind)) = ddo_etl::icons::icon_kind_for_data_path(path.strip_prefix(data_dir).unwrap()) else {
-                continue;
-            };
-            for line in std::fs::read_to_string(&path).unwrap().lines() {
-                let Some((field, quoted)) = line.trim().split_once(" = ") else { continue };
-                let image_kind = match field {
-                    "icon" => kind,
-                    "background" => "ui",
-                    "small_icon" | "large_icon" => "classes",
-                    _ => continue,
-                };
-                let Some(icon) = quoted.strip_prefix('"').and_then(|value| value.strip_suffix('"')) else { continue };
-                let icon_path = data_dir
-                    .join("icons")
-                    .join(if image_kind == "*" { "" } else { image_kind })
-                    .join(format!("{icon}.png"));
-                if !icon_path.is_file() {
-                    std::fs::create_dir_all(icon_path.parent().unwrap()).unwrap();
-                    std::fs::copy(data_dir.join("icons/feats/PowerAttack.png"), icon_path).unwrap();
-                }
-            }
-        }
-    }
-
     let root = std::env::temp_dir().join(format!("ddo-api-data_dir-new-item-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&root);
     let data_dir = root.join("data");
-    let original = rusqlite::Connection::open(fixture_db_path()).unwrap();
-    ddo_etl::tree::export_database(&original, &data_dir).unwrap();
-    ddo_etl::icons::export_icons(&fixture_data_files_dir(), &data_dir.join("icons")).unwrap();
-    let missing_icons = ddo_etl::icons::complete_referenced_icons(&data_dir).unwrap().missing_icons;
-    for missing_icon in missing_icons {
-        let path = data_dir.join("icons").join(missing_icon);
-        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
-        std::fs::copy(data_dir.join("icons/feats/PowerAttack.png"), path).unwrap();
-    }
-    fill_fixture_icons(&data_dir, &data_dir);
-    ddo_etl::icons::place_enhancement_icons_beside_trees(&data_dir).unwrap();
+    common::export_fixture_data(fixture_data_files_dir().parent().unwrap(), &data_dir);
     let new_item_file = data_dir.join("packs/magic-of-myth-drannor/quests/book-burning/gear/new-api-item.toml");
     std::fs::create_dir_all(new_item_file.parent().unwrap()).unwrap();
     std::fs::write(

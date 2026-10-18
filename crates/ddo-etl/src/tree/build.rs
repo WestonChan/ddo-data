@@ -199,6 +199,7 @@ fn file_build_order(file: &SourceFile) -> u8 {
         | SourceFile::DamageTypes(_)
         | SourceFile::AugmentSlotTypes(_)
         | SourceFile::ExcludedItems(_)
+        | SourceFile::Redirects(_)
         | SourceFile::SentientGem(_)
         | SourceFile::Pack(_)
         | SourceFile::Patron(_)
@@ -285,6 +286,7 @@ fn write_data_file(
         SourceFile::OptionalBuffs(file) => {
             file.write_optional_buffs(db, path, ids)?;
         }
+        SourceFile::Redirects(file) => file.write_redirects(db)?,
         SourceFile::ExcludedItems(file) => {
             file.write_excluded_items(db)?;
         }
@@ -437,7 +439,10 @@ fn write_data_file(
 pub fn rederive_data_build_tables(db: &Connection) -> Result<()> {
     crate::delta::clear_rederived_tables(db)?;
     crate::build::effect_vocabulary::insert_data_effect_vocabulary(db)?;
-    insert_entity_identities(db)
+    insert_entity_identities(db)?;
+    let violations = super::slug_lists::redirect_violations(db)?;
+    ensure!(violations.is_empty(), "redirects.toml: {}", violations.join("\n"));
+    Ok(())
 }
 
 pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileReport> {

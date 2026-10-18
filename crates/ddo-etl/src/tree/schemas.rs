@@ -142,7 +142,9 @@ pub(crate) fn file_kind(root: &Path, path: &Path) -> Result<&'static str> {
         relative.iter().map(|part| part.to_str().context("data path is not UTF-8")).collect::<Result<Vec<_>>>()?;
     let first = segments.first().copied().context("data path has no folder")?;
     let name = path.file_name().and_then(|name| name.to_str()).context("data file has no name")?;
-    let kind = if first == "effects" && segments.len() == 2 {
+    let kind = if relative == Path::new("redirects.toml") {
+        "Redirects"
+    } else if first == "effects" && segments.len() == 2 {
         EFFECT_VOCABULARIES.iter().find(|(filename, _)| *filename == name).map_or("Effect", |(_, kind)| kind)
     } else if let Some(kind) = pack_local_kind(root, path)? {
         kind
@@ -215,6 +217,7 @@ pub(crate) enum SourceFile {
     Event(EventFile),
     Exceptions(ExceptionsFile),
     ExcludedItems(ExcludedItemsFile),
+    Redirects(RedirectsFile),
     FeatCategory(FeatCategoryFile),
     FiligreeSet(FiligreeSetFile),
     StatGroup(StatGroupFile),
@@ -315,6 +318,7 @@ impl SourceFile {
             Self::EquipmentSlots(file) => toml::Value::try_from(file).map_err(Into::into),
             Self::Event(file) => toml::Value::try_from(file).map_err(Into::into),
             Self::Exceptions(file) => toml::Value::try_from(file).map_err(Into::into),
+            Self::Redirects(file) => toml::Value::try_from(file).map_err(Into::into),
             Self::ExcludedItems(file) => toml::Value::try_from(file).map_err(Into::into),
             Self::FeatCategory(file) => toml::Value::try_from(file).map_err(Into::into),
             Self::FiligreeSet(file) => toml::Value::try_from(file).map_err(Into::into),
@@ -387,6 +391,7 @@ pub(crate) fn read_file(root: &Path, path: &Path, contents: &str) -> Result<Sour
         "EquipmentSlots" => SourceFile::EquipmentSlots(document.try_into()?),
         "Event" => SourceFile::Event(document.try_into()?),
         "Exceptions" => SourceFile::Exceptions(document.try_into()?),
+        "Redirects" => SourceFile::Redirects(document.try_into()?),
         "ExcludedItems" => SourceFile::ExcludedItems(document.try_into()?),
         "FeatCategory" => SourceFile::FeatCategory(document.try_into()?),
         "FiligreeSet" => SourceFile::FiligreeSet(document.try_into()?),
@@ -437,6 +442,7 @@ pub fn schema_files() -> Result<BTreeMap<String, String>> {
         ("equipment-slots", serde_json::to_value(schema_for!(EquipmentSlotsFile))?),
         ("event", serde_json::to_value(schema_for!(EventFile))?),
         ("exceptions", serde_json::to_value(schema_for!(ExceptionsFile))?),
+        ("redirects", serde_json::to_value(schema_for!(RedirectsFile))?),
         ("excluded-items", serde_json::to_value(schema_for!(ExcludedItemsFile))?),
         ("feat-category", serde_json::to_value(schema_for!(FeatCategoryFile))?),
         ("filigree-set", serde_json::to_value(schema_for!(FiligreeSetFile))?),
@@ -492,11 +498,12 @@ pub fn validate_taplo_config(workspace_root: &Path) -> Result<()> {
     let root_entries = std::fs::read_dir(&data_root)?
         .map(|entry| entry.map(|entry| entry.file_name().to_string_lossy().into_owned()))
         .collect::<std::io::Result<std::collections::BTreeSet<_>>>()?;
-    let expected_entries = [".schemas", "README.md", "characters", "icons", "effects", "packs", "upstream"]
-        .map(str::to_string)
-        .into_iter()
-        .collect();
-    ensure!(root_entries == expected_entries, "data root must contain only .schemas, README.md, characters, icons, effects, packs and upstream; found {root_entries:?}");
+    let expected_entries =
+        [".schemas", "README.md", "characters", "icons", "effects", "packs", "upstream", "redirects.toml"]
+            .map(str::to_string)
+            .into_iter()
+            .collect();
+    ensure!(root_entries == expected_entries, "data root must contain only .schemas, README.md, characters, icons, effects, packs, upstream and redirects.toml; found {root_entries:?}");
     for entry in walkdir::WalkDir::new(&data_root) {
         let entry = entry?;
         if !entry.file_type().is_file() || entry.path().extension().is_none_or(|extension| extension != "toml") {

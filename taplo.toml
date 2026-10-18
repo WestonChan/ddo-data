@@ -339,3 +339,8 @@ include = [
 
 [rule.schema]
 path = "data/.schemas/vendor-currencies.schema.json"
+
+[[rule]]
+include = ["data/redirects.toml"]
+[rule.schema]
+path = "data/.schemas/redirects.schema.json"

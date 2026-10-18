@@ -53,6 +53,8 @@ pub fn deny_generic_file_mappers(root: &Path) -> anyhow::Result<()> {
                     "removed_entities",
                     "entity_notes",
                     "entity_identity",
+                    "redirects",
+                    "removed_slugs",
                 ] {
                     let inserted = sql.contains(&format!("insert into {table} ("));
                     let selected = sql
@@ -106,9 +108,16 @@ mod tests {
     fn annotation_columns_must_come_from_declarations() {
         let folder = tempfile::tempdir().unwrap();
         let path = folder.path().join("annotations.rs");
-        for table in
-            ["pack_exceptions", "corrections", "citations", "removed_entities", "entity_notes", "entity_identity"]
-        {
+        for table in [
+            "pack_exceptions",
+            "corrections",
+            "citations",
+            "removed_entities",
+            "entity_notes",
+            "entity_identity",
+            "redirects",
+            "removed_slugs",
+        ] {
             for sql in [
                 format!("INSERT INTO {table} (name, field) VALUES (?1, ?2)"),
                 format!("SELECT name, field FROM {table}"),

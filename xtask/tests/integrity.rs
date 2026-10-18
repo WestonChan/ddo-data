@@ -496,6 +496,16 @@ fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
 fn injected_violations() -> Vec<InjectedViolation> {
     vec![
         violation(
+            "redirects_agree_with_current_slugs",
+            "INSERT INTO redirects (kind, from_slug, to_slug, since) VALUES ('items', 'old-item', 'missing-item', '2026-10-01');",
+            "old-item",
+        ),
+        violation(
+            "slugs_are_not_all_digits",
+            "UPDATE entity_identity SET slug = '123456' WHERE kind = 'items' AND entity_id = (SELECT MIN(id) FROM items);",
+            "123456",
+        ),
+        violation(
             "source_references_exist",
             "UPDATE quest_drops SET owner_id = -1 WHERE id = (SELECT MIN(id) FROM quest_drops);",
             "quest source",

@@ -64,6 +64,8 @@ mod event;
 pub(crate) use event::EventFile;
 mod exceptions;
 pub use exceptions::{ExceptionsFile, PackException, QuestPackException};
+mod redirects;
+pub(crate) use redirects::RedirectsFile;
 mod excluded_items;
 pub(crate) use excluded_items::ExcludedItemsFile;
 mod feat_category;

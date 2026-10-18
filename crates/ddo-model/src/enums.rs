@@ -606,7 +606,8 @@ impl LootType {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(try_from = "String", into = "String")]
 pub enum EntityKind {
     AdventurePack,
     Augment,
@@ -640,6 +641,30 @@ pub enum EntityKind {
     Vendor,
     VendorCurrency,
     WeaponType,
+}
+
+impl From<EntityKind> for String {
+    fn from(kind: EntityKind) -> Self {
+        kind.as_str().to_string()
+    }
+}
+
+impl TryFrom<String> for EntityKind {
+    type Error = String;
+
+    fn try_from(text: String) -> Result<Self, Self::Error> {
+        Self::parse(&text).ok_or_else(|| format!("unknown entity kind {text:?}"))
+    }
+}
+
+impl schemars::JsonSchema for EntityKind {
+    fn schema_name() -> std::borrow::Cow<'static, str> {
+        "EntityKind".into()
+    }
+
+    fn json_schema(_: &mut schemars::SchemaGenerator) -> schemars::Schema {
+        schemars::json_schema!({"type": "string", "enum": Self::ALL.iter().map(|kind| kind.as_str()).collect::<Vec<_>>()})
+    }
 }
 
 impl EntityKind {

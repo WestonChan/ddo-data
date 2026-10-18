@@ -522,6 +522,8 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
     write_export_file(root, fixed_data_file("damage_types")?, &toml::to_string_pretty(&file)?, &mut report)?;
     let file = kinds::WeaponTypesFile::from_rows(db)?;
     write_export_file(root, fixed_data_file("weapon_types")?, &toml::to_string_pretty(&file)?, &mut report)?;
+    let redirects = kinds::RedirectsFile::from_rows(db)?;
+    write_export_file(root, fixed_data_file("redirects")?, &toml::to_string_pretty(&redirects)?, &mut report)?;
     let file = kinds::ExcludedItemsFile::from_rows(db)?;
     write_export_file(root, fixed_data_file("excluded_items")?, &toml::to_string_pretty(&file)?, &mut report)?;
     for (id, file) in kinds::SentientGemFile::all_from_rows(db)? {

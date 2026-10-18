@@ -1,0 +1,111 @@
+{
+  "$defs": {
+    "EntityKind": {
+      "enum": [
+        "adventure-packs",
+        "augments",
+        "augment-slot-types",
+        "bonus-types",
+        "classes",
+        "clickies",
+        "crafting-systems",
+        "crafting-ingredients",
+        "damage-types",
+        "effects",
+        "enhancement-trees",
+        "enhancements",
+        "enhancement-selections",
+        "equipment-slots",
+        "events",
+        "feats",
+        "filigrees",
+        "guild-buffs",
+        "items",
+        "optional-buffs",
+        "patrons",
+        "quest-chains",
+        "quests",
+        "races",
+        "sagas",
+        "sentient-gems",
+        "sets",
+        "spells",
+        "stances",
+        "vendors",
+        "vendor-currencies",
+        "weapon-types"
+      ],
+      "type": "string"
+    },
+    "Redirect": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/EntityKind"
+        },
+        "since": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "from",
+        "to",
+        "since"
+      ],
+      "type": "object",
+      "x-table": "redirects"
+    },
+    "RemovedSlug": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/EntityKind"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "since": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "slug",
+        "since",
+        "reason"
+      ],
+      "type": "object",
+      "x-table": "removed_slugs"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "redirect": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Redirect"
+      },
+      "type": "array"
+    },
+    "removed": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/RemovedSlug"
+      },
+      "type": "array"
+    }
+  },
+  "title": "RedirectsFile",
+  "type": "object"
+}

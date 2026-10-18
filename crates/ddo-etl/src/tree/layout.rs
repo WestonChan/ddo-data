@@ -710,6 +710,8 @@ pub(super) fn folder_quest_name(root: &Path, item_path: &Path) -> Result<Option<
 }
 
 pub(super) const FIXED_DATA_FILES: &[(&str, &str)] = &[
+    ("redirects", "redirects.toml"),
+    ("removed_slugs", "redirects.toml"),
     ("stances", "characters/stances.toml"),
     ("clickies", "effects/clickies.toml"),
     ("guild_buffs", "characters/guild-buffs.toml"),
