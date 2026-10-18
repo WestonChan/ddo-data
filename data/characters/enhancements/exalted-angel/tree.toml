@@ -1583,6 +1583,36 @@ ranks = 1
 x = 4
 y = 5
 
+[[enhancement.citation]]
+field = "ranks"
+url = "https://ddowiki.com/page/Exalted_Angel"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "min_spent"
+url = "https://ddowiki.com/page/Exalted_Angel"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "Epic Empower Healing.cost_per_rank"
+url = "https://ddowiki.com/page/Exalted_Angel"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "Epic Empower Healing.description"
+url = "https://ddowiki.com/page/Exalted_Angel"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "Epic Improved Intensify.cost_per_rank"
+url = "https://ddowiki.com/page/Exalted_Angel"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "Epic Improved Intensify.description"
+url = "https://ddowiki.com/page/Exalted_Angel"
+read = "2026-10-17"
+
 [[enhancement.requirement]]
 req_type = "Level"
 value = 30

@@ -18,6 +18,26 @@ ranks = 1
 x = 0
 y = 0
 
+[[enhancement.citation]]
+field = "cost_per_rank"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "ranks"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "min_spent"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
 [[enhancement.modifier]]
 amount_type = "Simple"
 amounts = [1]
@@ -519,6 +539,56 @@ ranks = 1
 x = 5
 y = 0
 
+[[enhancement.citation]]
+field = "name"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "cost_per_rank"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "ranks"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "min_spent"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "SLA: Multivial of Acid.modifier"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "SLA: Multivial of Frost.modifier"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "SLA: Multivial of Sparks.modifier"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "SLA: Multivial of Flame.modifier"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "SLA: Multivial of Poison.modifier"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
 [[enhancement.modifier]]
 amount_type = "NotNeeded"
 bonus_type = "Enhancement"
@@ -1007,6 +1077,26 @@ min_spent = 1
 ranks = 3
 x = 4
 y = 1
+
+[[enhancement.citation]]
+field = "cost_per_rank"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "ranks"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "min_spent"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
 
 [[enhancement.modifier]]
 amount_type = "NotNeeded"

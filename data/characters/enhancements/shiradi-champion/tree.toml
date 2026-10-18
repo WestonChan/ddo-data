@@ -1178,6 +1178,31 @@ ranks = 1
 x = 3
 y = 4
 
+[[enhancement.citation]]
+field = "cost_per_rank"
+url = "https://ddowiki.com/page/Shiradi_Champion"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "ranks"
+url = "https://ddowiki.com/page/Shiradi_Champion"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "min_spent"
+url = "https://ddowiki.com/page/Shiradi_Champion"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "Overwhelming Force.cost_per_rank"
+url = "https://ddowiki.com/page/Shiradi_Champion"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "Overwhelming Force.description"
+url = "https://ddowiki.com/page/Shiradi_Champion"
+read = "2026-10-17"
+
 [[enhancement.requirement]]
 req_type = "Level"
 value = 26

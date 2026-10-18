@@ -1340,6 +1340,26 @@ ranks = 1
 x = 2
 y = 5
 
+[[enhancement.citation]]
+field = "cost_per_rank"
+url = "https://ddowiki.com/page/War_Soul_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "ranks"
+url = "https://ddowiki.com/page/War_Soul_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "min_spent"
+url = "https://ddowiki.com/page/War_Soul_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "modifier"
+url = "https://ddowiki.com/page/War_Soul_enhancements"
+read = "2026-10-17"
+
 [[enhancement.modifier]]
 amount_type = "Simple"
 amounts = [3]

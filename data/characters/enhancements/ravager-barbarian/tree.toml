@@ -402,6 +402,31 @@ ranks = 1
 x = 3
 y = 1
 
+[[enhancement.citation]]
+field = "cost_per_rank"
+url = "https://ddowiki.com/page/Ravager_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Ravager_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "ranks"
+url = "https://ddowiki.com/page/Ravager_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "min_spent"
+url = "https://ddowiki.com/page/Ravager_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "modifier"
+url = "https://ddowiki.com/page/Ravager_enhancements"
+read = "2026-10-17"
+
 [[enhancement.modifier]]
 amount_type = "Simple"
 amounts = [3]

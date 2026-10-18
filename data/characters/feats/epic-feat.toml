@@ -2418,6 +2418,16 @@ Passive: +150 Maximum Spell Points"""
 icon = "MasterOfAlignment"
 source_name = "Epic"
 
+[[row.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Master_of_Alignment"
+read = "2026-10-17"
+
+[[row.citation]]
+field = "effect"
+url = "https://ddowiki.com/page/Master_of_Alignment"
+read = "2026-10-17"
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Spell Points"
@@ -2449,6 +2459,16 @@ Passive: +150 Maximum Spell Points"""
 icon = "MasterOfTheDead"
 source_name = "Epic"
 
+[[row.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Master_of_the_Decay"
+read = "2026-10-17"
+
+[[row.citation]]
+field = "effect"
+url = "https://ddowiki.com/page/Master_of_the_Decay"
+read = "2026-10-17"
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Spell Points"
@@ -2479,6 +2499,21 @@ persistent spells like clouds, walls or guardians.
 Passive: +150 Maximum Spell Points"""
 icon = "MasterOfFire"
 source_name = "Epic"
+
+[[row.citation]]
+field = "name"
+url = "https://ddowiki.com/page/Master_of_Fire_and_Light"
+read = "2026-10-17"
+
+[[row.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Master_of_Fire_and_Light"
+read = "2026-10-17"
+
+[[row.citation]]
+field = "effect"
+url = "https://ddowiki.com/page/Master_of_Fire_and_Light"
+read = "2026-10-17"
 
 [[row.effect]]
 bonus_type = "Feat"
@@ -2599,6 +2634,16 @@ to persistent spells like clouds, walls or guardians.
 Passive: +150 Maximum Spell Points"""
 icon = "MasterOfAir"
 source_name = "Epic"
+
+[[row.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Master_of_the_Storm"
+read = "2026-10-17"
+
+[[row.citation]]
+field = "effect"
+url = "https://ddowiki.com/page/Master_of_the_Storm"
+read = "2026-10-17"
 
 [[row.effect]]
 bonus_type = "Feat"

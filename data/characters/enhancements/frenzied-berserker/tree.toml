@@ -355,6 +355,16 @@ ranks = 1
 x = 1
 y = 1
 
+[[enhancement.citation]]
+field = "cost_per_rank"
+url = "https://ddowiki.com/page/Frenzied_Berserker_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "min_spent"
+url = "https://ddowiki.com/page/Frenzied_Berserker_enhancements"
+read = "2026-10-17"
+
 [[enhancement.requirement]]
 items = ["Barbarian"]
 req_type = "ClassMinLevel"

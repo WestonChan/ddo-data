@@ -265,6 +265,21 @@ ranks = 1
 x = 2
 y = 1
 
+[[enhancement.citation]]
+field = "Celestial Mandate.cost_per_rank"
+url = "https://ddowiki.com/page/Unyielding_Sentinel"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "Celestial Mandate.description"
+url = "https://ddowiki.com/page/Unyielding_Sentinel"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "Celestial Mandate.modifier.display_name"
+url = "https://ddowiki.com/page/Unyielding_Sentinel"
+read = "2026-10-17"
+
 [[enhancement.requirement]]
 req_type = "Level"
 value = 20

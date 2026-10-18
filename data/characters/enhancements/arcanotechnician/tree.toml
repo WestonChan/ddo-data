@@ -1330,6 +1330,26 @@ ranks = 1
 x = 4
 y = 5
 
+[[enhancement.citation]]
+field = "cost_per_rank"
+url = "https://ddowiki.com/page/Arcanotechnician_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Arcanotechnician_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "ranks"
+url = "https://ddowiki.com/page/Arcanotechnician_enhancements"
+read = "2026-10-17"
+
+[[enhancement.citation]]
+field = "min_spent"
+url = "https://ddowiki.com/page/Arcanotechnician_enhancements"
+read = "2026-10-17"
+
 [[enhancement.requirement]]
 items = ["Artificer"]
 req_type = "ClassMinLevel"

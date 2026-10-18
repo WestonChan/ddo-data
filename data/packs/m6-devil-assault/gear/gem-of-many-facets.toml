@@ -15,6 +15,40 @@ material = "Gem"
 minimum_level = 5
 slot = "Trinket"
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Gem_of_Many_Facets"
+read = "2026-10-17"
+
+[[citation]]
+field = "minimum_level"
+url = "https://ddowiki.com/page/Item:Gem_of_Many_Facets"
+read = "2026-10-17"
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Item:Gem_of_Many_Facets"
+read = "2026-10-17"
+
+[[citation]]
+field = "drop_location"
+url = "https://ddowiki.com/page/Item:Gem_of_Many_Facets"
+read = "2026-10-17"
+
+[[citation]]
+field = "material"
+url = "https://ddowiki.com/page/Item:Gem_of_Many_Facets"
+read = "2026-10-17"
+
+[[citation]]
+field = "slot"
+url = "https://ddowiki.com/page/Item:Gem_of_Many_Facets"
+read = "2026-10-17"
+
+[[citation]]
+field = "socket"
+url = "https://ddowiki.com/page/Item:Gem_of_Many_Facets"
+read = "2026-10-17"
+
 [[socket]]
 slot = "crafting: set bonus 1"
 
