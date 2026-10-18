@@ -8,8 +8,8 @@ The first of three steps that make slugs the only public identifier (ddo-tools r
 - `/v1/items` filters `quest`, `quest_chain` and `saga` take slugs, ids still accepted. An unknown value is a 400 naming it, as `set` already was (previously an unknown id returned an empty list).
 - A redirected slug answers `308` with `Location` set to the current slug's path and the original query string, the data `Cache-Control`, no `ETag` and an empty body; it also works as a filter value. Redirects come from `data/redirects.toml` and last 30 days. A renamed enhancement tree or crafting system redirects its selections' or ingredients' old slugs too. Reverting a rename within the hour can loop through a cached 308.
 - Every `id` or `*_id` in a response has a `slug` or `*_slug` beside it, null exactly when the id is: `effect_slug`, `set_slug`, `base_class_slug`, `feat_slug`, `spell_slug`, `class_slug`, `source_slug`, `slot_type_slug`, `clickie_slug`. `detail_path` stays numeric in this step.
-- Schema 38 adds the `redirects` and `removed_slugs` tables and the `served_redirects` view to the database and `/v1/dump.sqlite`; no existing table changes.
-- The deploy downloads the live `/v1/dump.sqlite` and runs `cargo xtask check-redirects`, which fails when a slug the live API serves is missing without a redirect or removed row, and when a row is older than 30 days (`cargo run -p ddo-etl -- prune-redirects --data data` removes those).
+- Schema 38 adds the `redirects` and `retired_slugs` tables and the `served_redirects` view to the database and `/v1/dump.sqlite`; no existing table changes.
+- The deploy downloads the live `/v1/dump.sqlite` and runs `cargo xtask check-redirects`, which fails when a slug the live API serves is missing without a redirect or retired row, and when a row is older than 30 days (`cargo run -p ddo-etl -- prune-redirects --data data` removes those).
 
 Building from the data files changes numeric IDs for named entities once. Their IDs now derive from their name slugs, so moving a file leaves its ID unchanged. Named entity responses add `slug` beside `id`.
 
