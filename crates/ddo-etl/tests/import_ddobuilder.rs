@@ -132,6 +132,112 @@ fn assert_overlay_tables_match(normalized: &Connection, ours: &Connection) {
 }
 
 #[test]
+fn converging_overlay_socket_renames_follow_the_writer_and_have_no_import_delta() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let scratch = tempfile::tempdir().unwrap();
+    let mut fixture = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&fixtures.join("data"), &mut fixture).unwrap();
+    let mut wiki = WikiOverrides::from_database(&fixture).unwrap();
+    let mut corrections = Corrections::from_database(&fixture).unwrap();
+    for (original, target) in [
+        ("crafting: attuned to heroism 1", "crafting: reviewed tier 1"),
+        ("crafting: attuned to heroism 2", "crafting: reviewed tier 1"),
+        ("crafting: attuned to heroism 3", "crafting: reviewed tier 2"),
+        ("crafting: attuned to heroism 4", "crafting: reviewed tier 2"),
+    ] {
+        let mut correction = corrections.entries[0].clone();
+        correction.kind = ddo_model::enums::CorrectionKind::SocketLabel;
+        correction.name = original.into();
+        correction.field = "name".into();
+        correction.from = ddo_etl::corrections::CorrectionValue::Text(original.into());
+        correction.to = ddo_etl::corrections::CorrectionValue::Text(target.into());
+        correction.family = None;
+        correction.selection = None;
+        corrections.entries.push(correction);
+    }
+    let item = wiki.items.iter_mut().find(|item| item.name == "Battle Axe of the Oozing Hunger").unwrap();
+    item.augment_slots = vec!["crafting: reviewed tier 1".into(), "crafting: reviewed tier 2".into()];
+    for recipe in &mut wiki.crafting_systems[0].recipes {
+        recipe.slot = Some("crafting: reviewed tier 1".into());
+        recipe.grants_slot = Some("crafting: reviewed tier 2".into());
+    }
+    let source = scratch.path().join("DataFiles");
+    copy_tree(&fixtures.join("DataFiles"), &source);
+    let root = scratch.path().join("data");
+    let mut previous = Connection::open_in_memory().unwrap();
+    let report = build::build_database(
+        &source,
+        &wiki,
+        &corrections,
+        &mut previous,
+        &DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() },
+    )
+    .unwrap();
+    assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
+    export_fixture_with_icons(&previous, &source, &root);
+    let icons = scratch.path().join("icons");
+    ddo_etl::icons::copy_data_icons(&root, &icons).unwrap();
+    for (kind, folder) in ddo_etl::icons::ICON_KIND_SOURCE_FOLDERS {
+        if icons.join(kind).is_dir() {
+            copy_tree(&icons.join(kind), &source.join(folder));
+        }
+    }
+    let mut ours = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&root, &mut ours).unwrap();
+    let report = import_ddobuilder(&DdobuilderImportOptions {
+        previous_dir: source.clone(),
+        source_dir: source,
+        data_dir: root.clone(),
+        previous_sha: Some(PREVIOUS_SHA.into()),
+        sha: Some(NEW_SHA.into()),
+        wiki: WikiOverrides::from_database(&ours).unwrap(),
+        corrections: Corrections::from_database(&ours).unwrap(),
+    })
+    .unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert!(!report.to_string().contains("CORRECTION"), "{report}");
+    assert!(!report.to_string().contains("reviewed tier"), "{report}");
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&root, &mut rebuilt).unwrap();
+    for db in [&previous, &rebuilt] {
+        let labels = db.prepare("SELECT s.label FROM item_augment_slots l JOIN items i ON i.id=l.item_id JOIN augment_slot_types s ON s.id=l.slot_id WHERE i.name='Battle Axe of the Oozing Hunger' ORDER BY l.sort_order").unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<Result<Vec<_>, _>>().unwrap();
+        assert_eq!(labels, ["crafting: reviewed tier 1", "crafting: reviewed tier 2"]);
+        assert_eq!(db.query_row("SELECT COUNT(*) FROM crafting_recipes r JOIN augment_slot_types s ON s.id=r.slot_id JOIN augment_slot_types g ON g.id=r.grants_slot_id WHERE s.label='crafting: reviewed tier 1' AND g.label='crafting: reviewed tier 2'", [], |row| row.get::<_, i64>(0)).unwrap(), wiki.crafting_systems[0].recipes.len() as i64);
+    }
+}
+
+#[test]
+fn converging_non_merging_overlay_renames_name_both_corrections() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let mut fixture = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&fixtures.join("data"), &mut fixture).unwrap();
+    let mut corrections = Corrections::from_database(&fixture).unwrap();
+    for original in ["Masterminds of Sharn", "Chill of Ravenloft"] {
+        let mut correction = corrections.entries[0].clone();
+        correction.kind = ddo_model::enums::CorrectionKind::AdventurePack;
+        correction.name = original.into();
+        correction.field = "name".into();
+        correction.from = ddo_etl::corrections::CorrectionValue::Text(original.into());
+        correction.to = ddo_etl::corrections::CorrectionValue::Text("Converging pack".into());
+        correction.family = None;
+        correction.selection = None;
+        corrections.entries.push(correction);
+    }
+    let error = build::build_database(
+        &fixtures.join("DataFiles"),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut Connection::open_in_memory().unwrap(),
+        &DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() },
+    )
+    .unwrap_err();
+    let message = format!("{error:#}");
+    for name in ["Masterminds of Sharn", "Chill of Ravenloft", "Converging pack"] {
+        assert!(message.contains(name), "{message}");
+    }
+}
+
+#[test]
 fn overlay_references_follow_only_renames_active_in_each_xml_build() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let scratch = tempfile::tempdir().unwrap();

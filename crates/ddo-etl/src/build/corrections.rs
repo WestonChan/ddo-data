@@ -1560,7 +1560,8 @@ fn refuse_an_augment_name_taken_in_its_families(
 }
 
 pub(super) fn rename_socket_label(transaction: &Transaction, slot_type_id: i64, new_label: &str) -> Result<()> {
-    if let Some(merged_slot_type_id) = socket_label_id(transaction, new_label)? {
+    let merged_slot_type_id = canonical_socket_label_id(transaction, slot_type_id, new_label)?;
+    if merged_slot_type_id != slot_type_id {
         for (table_name, column) in [
             ("item_augment_slots", "slot_id"),
             ("item_augment_slot_option_grants", "slot_id"),
@@ -1599,6 +1600,10 @@ pub(super) fn rename_socket_label(transaction: &Transaction, slot_type_id: i64, 
         params![slot_type_id, new_label, new_variant],
     )?;
     Ok(())
+}
+
+pub(super) fn canonical_socket_label_id(transaction: &Transaction, slot_type_id: i64, new_label: &str) -> Result<i64> {
+    Ok(socket_label_id(transaction, new_label)?.unwrap_or(slot_type_id))
 }
 
 fn socket_label_id(transaction: &Transaction, label: &str) -> Result<Option<i64>> {

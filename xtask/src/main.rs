@@ -482,6 +482,16 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             &["--test", "import_ddobuilder"][..],
             "overlay_references_follow_only_renames_active_in_each_xml_build",
         ),
+        (
+            "ddo-etl",
+            &["--test", "import_ddobuilder"][..],
+            "converging_overlay_socket_renames_follow_the_writer_and_have_no_import_delta",
+        ),
+        (
+            "ddo-etl",
+            &["--test", "import_ddobuilder"][..],
+            "converging_non_merging_overlay_renames_name_both_corrections",
+        ),
     ] {
         let test_status = Command::new("cargo")
             .args(["test", "-p", crate_name])

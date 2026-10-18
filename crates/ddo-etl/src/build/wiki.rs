@@ -501,7 +501,11 @@ impl OverlayReferences {
             let rename = active
                 .entry((table.to_string(), corrected_name.to_string()))
                 .or_insert_with(|| OverlayRename { original_name: original_name.into(), rows: Vec::new() });
-            ensure!(rename.original_name == original_name, "ambiguous {table} rename target {corrected_name:?}");
+            ensure!(
+                table == "augment_slot_types" || rename.original_name == original_name,
+                "converging {table} name corrections {:?} -> {corrected_name:?} and {original_name:?} -> {corrected_name:?}",
+                rename.original_name
+            );
             for row in rows {
                 if !rename.rows.contains(&row) {
                     rename.rows.push(row);
@@ -526,6 +530,9 @@ impl OverlayReferences {
         family: Option<&str>,
     ) -> Result<Vec<i64>> {
         if let Some(rename) = self.active_renames.borrow().get(&(table.into(), name.into())) {
+            if table == "augment_slot_types" {
+                return Ok(vec![super::corrections::canonical_socket_label_id(transaction, rename.rows[0].0, name)?]);
+            }
             return Ok(rename
                 .rows
                 .iter()
@@ -622,7 +629,7 @@ impl TableWriter<'_> {
             .augment_slots
             .iter()
             .map(|label| {
-                self.written.augment_slot_type_ids_by_label.get(&self.overlay_references.upstream_name("augment_slot_types", label)).copied().with_context(|| {
+                self.overlay_references.id(self.transaction, "augment_slot_types", label)?.with_context(|| {
                     format!("augment_slots label {label:?} is not a socket label in Maetrim's files; use one /v1/augment-slot-types lists")
                 })
             })
@@ -856,7 +863,7 @@ impl TableWriter<'_> {
             .slots
             .iter()
             .map(|label| {
-                self.written.augment_slot_type_ids_by_label.get(&self.overlay_references.upstream_name("augment_slot_types", label)).copied().with_context(|| {
+                self.overlay_references.id(self.transaction, "augment_slot_types", label)?.with_context(|| {
                     format!("slots label {label:?} is not a socket label in Maetrim's files; use one /v1/augment-slot-types lists")
                 })
             })
