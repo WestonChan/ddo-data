@@ -8,7 +8,6 @@ use rusqlite::Connection;
 use serde_json::Value as JsonValue;
 use std::collections::{BTreeMap, BTreeSet};
 use std::fmt::{self, Display};
-use std::fs;
 use std::path::Path;
 use std::process::Command;
 use tower::ServiceExt;
@@ -37,45 +36,6 @@ impl DiffReport {
     pub fn is_equal(&self) -> bool {
         self.table_differences.is_empty() && self.total_response_differences == 0 && self.pairing_failures.is_empty()
     }
-}
-
-pub fn write_allowed_differences(report: &DiffReport, path: &Path) -> Result<()> {
-    anyhow::ensure!(
-        report.pairing_failures.is_empty(),
-        "response identity pairing failed: {:?}",
-        report.pairing_failures
-    );
-    let mut contents = String::new();
-    for difference in report.table_differences.iter().chain(&report.response_differences) {
-        contents.push_str(difference);
-        contents.push('\n');
-    }
-    fs::write(path, contents).with_context(|| format!("writing {}", path.display()))
-}
-
-pub fn check_allowed_differences(report: &DiffReport, path: &Path) -> Result<()> {
-    anyhow::ensure!(
-        report.pairing_failures.is_empty(),
-        "response identity pairing failed: {:?}",
-        report.pairing_failures
-    );
-    let expected = fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
-    let expected = expected.lines().filter(|line| !line.is_empty()).collect::<Vec<_>>();
-    let actual =
-        report.table_differences.iter().chain(&report.response_differences).map(String::as_str).collect::<Vec<_>>();
-    if let Some((index, (expected, actual))) =
-        expected.iter().zip(&actual).enumerate().find(|(_, pair)| pair.0 != pair.1)
-    {
-        anyhow::bail!("{}: difference {} changed: expected {expected:?}, found {actual:?}", path.display(), index + 1);
-    }
-    anyhow::ensure!(
-        expected.len() == actual.len(),
-        "{}: expected {} differences, found {}",
-        path.display(),
-        expected.len(),
-        actual.len()
-    );
-    Ok(())
 }
 
 impl Display for DiffReport {

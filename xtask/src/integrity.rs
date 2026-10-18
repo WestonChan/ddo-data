@@ -401,10 +401,9 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::warn(
         "items_without_a_source",
-        "items (other than legacy ones) with no sources row. Every kind of source now has a table, but some remain \
-         unmodelled: vendors and events no wiki file records yet (wiki-batch's vendor_names.txt and \
-         event_names.txt), DDO Store purchases, wilderness and explorer areas that are no quest, and items with \
-         no drop text. Becomes HARD once those are read or modelled; the drop_location heads below are the work list",
+        "items (other than legacy ones) with no sources row. Sources still needing records include vendors, events, \
+         DDO Store purchases, wilderness areas and items with no drop text. Becomes HARD once those are recorded; \
+         the drop_location heads below are the work list",
         OffenderQuery::Built(items_without_a_source),
     )
     .ranking_top_details(15),
@@ -634,7 +633,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     .ranking_top_details(5),
     IntegrityCheck::warn(
         "items_without_description",
-        "items with a blank description; the blank_descriptions.txt list from cargo xtask wiki-batch is the work list",
+        "items with a blank description; the rows below are the review work list",
         OffenderQuery::Sql(
             "SELECT name, id, item_category FROM items WHERE description IS NULL OR TRIM(description) = '' \
              ORDER BY name",

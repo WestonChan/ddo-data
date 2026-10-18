@@ -57,7 +57,7 @@ read = "2026-10-02"
 
 A name his text uses for a source that still exists under another name is not a legacy source. Animus says `Devil Assault (quest), End Chest`, while his quests are `Devil Assault (Normal)`, `(Hard)` and `(Elite)`: the segment links to the pack Devil Assault, and the wiki loot file links the item to the three quests.
 
-The build fails, naming the entry, when the file has a field other than these, `text` or `reason` is empty, `source` is not an `https://` URL, `read` is not a real date, or the same `text` appears twice ignoring case. `cargo xtask wiki-check` prints `legacy_source_flagged_count`, the items flagged, and `wiki-batch`'s `unlinked_drop_segments.txt` leaves out every segment that names a legacy text.
+The build fails, naming the entry, when the file has a field other than these, `text` or `reason` is empty, `source` is not an `https://` URL, `read` is not a real date, or the same `text` appears twice ignoring case. The XML reader reports the flagged items as `legacy_source_flagged_count`.
 
 ## `source_aliases.toml`
 
@@ -74,7 +74,7 @@ reason = "The Magma Forge in the Ruins of Thunderholme is where Thunder-Forged i
 - `system`: a crafting system's name in `wiki/crafting*.toml`; an alias whose system the wiki files lack links nothing.
 - `reason`: why the name stands for that system, in one sentence.
 
-The build fails, naming the entry, when the file has a field or table other than these, a field is blank, or the same `text` appears twice ignoring case (with the same `contains`, for a vendor alias). A test checks that every `system` names a crafting system in the embedded wiki files. The build report counts the rows written as `drop_text_crafting_system_source_count`, and `wiki-batch`'s `unlinked_drop_segments.txt` leaves out every segment that links one.
+The build fails, naming the entry, when the file has a field or table other than these, a field is blank, or the same `text` appears twice ignoring case (with the same `contains`, for a vendor alias). A test checks that every `system` names a crafting system in the canonical data files. The XML reader counts the rows written as `drop_text_crafting_system_source_count`.
 
 Every crafting series his drop text names is a system in `wiki/crafting*.toml`, so each such segment links its loot; the "Restored" Dragoncraft, Elfcraft and Giantcraft armours (`... Turn in 10 Restored Dragon Relics` and the Elven and Giant equivalents) link to their system by that head, though the wiki has no recipe page for them.
 

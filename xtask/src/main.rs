@@ -10,7 +10,6 @@ use xtask::api_validation::validate_api;
 use xtask::golden_refresh::{golden_merge_changes, golden_sample, merge_golden, SampleRequest};
 use xtask::integrity::{integrity_report, IntegrityOptions};
 use xtask::response_examples::{write_response_examples, write_v1_detail_snapshot, EXAMPLE_REQUESTS};
-use xtask::wiki_tools::{wiki_check_report, write_wiki_batch};
 use xtask::wiki_tooltips::check_wiki_tooltips;
 use xtask::workspace_root;
 
@@ -63,15 +62,6 @@ enum Task {
             help = "Crawl this API using its /v1/dump.sqlite identities (fetched and cached under target/ by dataset SHA); the first database remains the table baseline"
         )]
         against_api: Option<String>,
-        #[arg(long, help = "Accept exactly the committed, reviewed differences listed in this file")]
-        allow_list: Option<PathBuf>,
-        #[arg(
-            long,
-            requires = "by_slug",
-            conflicts_with = "allow_list",
-            help = "Write the observed differences for review"
-        )]
-        write_allow_list: Option<PathBuf>,
     },
     RoundTrip {
         #[arg(long = "data")]
@@ -116,29 +106,11 @@ enum Task {
         #[arg(help = "JSON file containing items, augments or sets in golden entry shape")]
         file: PathBuf,
     },
-    WikiCheck {
-        #[arg(long)]
-        wiki: Option<PathBuf>,
-        #[arg(long)]
-        corrections: Option<PathBuf>,
-        #[arg(long)]
-        source: Option<PathBuf>,
-    },
     #[command(about = "Check database integrity")]
     CheckDb {
         db: PathBuf,
         #[arg(long = "allow-empty-table")]
         allowed_empty_tables: Vec<String>,
-    },
-    WikiBatch {
-        #[arg(long)]
-        out: Option<PathBuf>,
-        #[arg(long)]
-        wiki: Option<PathBuf>,
-        #[arg(long)]
-        corrections: Option<PathBuf>,
-        #[arg(long)]
-        source: Option<PathBuf>,
     },
 }
 
@@ -177,25 +149,14 @@ fn main() -> Result<()> {
             println!("redirect dates and deployed slugs: ok");
             Ok(())
         }
-        Task::DiffDb { first, second, by_slug, against_api, allow_list, write_allow_list } => {
+        Task::DiffDb { first, second, by_slug, against_api } => {
             let report = if by_slug {
                 xtask::diff_db::diff_databases_by_slug_against_api(&first, &second, against_api.as_deref())?
             } else {
                 xtask::diff_db::diff_databases_against_api(&first, &second, against_api.as_deref())?
             };
-            if let Some(path) = write_allow_list {
-                xtask::diff_db::write_allowed_differences(&report, &path)?;
-                println!("{report}");
-                println!("wrote differences to {}", path.display());
-            } else if let Some(allow_list) = allow_list {
-                ensure!(by_slug, "--allow-list requires --by-slug");
-                xtask::diff_db::check_allowed_differences(&report, &allow_list)?;
-                println!("{}", report.to_string().lines().next().unwrap_or_default());
-                println!("all differences match {}", allow_list.display());
-            } else {
-                println!("{report}");
-                ensure!(report.is_equal(), "database differences found");
-            }
+            println!("{report}");
+            ensure!(report.is_equal(), "database differences found");
             Ok(())
         }
         Task::RoundTrip { data_dir } => xtask::round_trip::verify_round_trip(&data_dir),
@@ -231,22 +192,7 @@ fn main() -> Result<()> {
             println!("merged {} into {}\n{}", file.display(), golden_path.display(), changes.join("\n"));
             Ok(())
         }
-        Task::WikiCheck { wiki: wiki_dir, corrections: corrections_dir, source: data_files_dir } => {
-            let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
-            println!("{}", wiki_check_report(&data_files_dir, wiki_dir.as_deref(), corrections_dir.as_deref())?);
-            Ok(())
-        }
         Task::CheckDb { db: db_path, allowed_empty_tables } => check_database_integrity(&db_path, allowed_empty_tables),
-        Task::WikiBatch { out: batch_dir, wiki: wiki_dir, corrections: corrections_dir, source: data_files_dir } => {
-            let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
-            let batch_dir = batch_dir.unwrap_or_else(|| workspace_root().join("target/wiki-batch"));
-            for written_path in
-                write_wiki_batch(&data_files_dir, wiki_dir.as_deref(), corrections_dir.as_deref(), &batch_dir)?
-            {
-                println!("wrote {written_path}");
-            }
-            Ok(())
-        }
     }
 }
 
@@ -335,10 +281,6 @@ fn check_database_integrity(db_path: &Path, allowed_empty_tables: Vec<String>) -
         bail!("{} HARD integrity check(s) failed: {}", failed_check_names.len(), failed_check_names.join(", "));
     }
     Ok(())
-}
-
-fn default_data_files_dir() -> PathBuf {
-    ddo_etl::upstream::default_data_files_dir(&workspace_root())
 }
 
 fn deny_clippy_warnings() -> Result<()> {
@@ -480,6 +422,7 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         ),
         ("xtask", &["--test", "integrity"][..], "database_checks_need_no_xml_or_data_files"),
         ("ddo-etl", &["--test", "upstream"][..], "served_dataset_commands_expose_only_canonical_inputs"),
+        ("xtask", &["--test", "diff_db"][..], "database_comparison_exposes_no_difference_allowance"),
     ] {
         let test_status = Command::new("cargo")
             .args(["test", "-p", crate_name])

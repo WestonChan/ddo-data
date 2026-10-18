@@ -9,54 +9,15 @@ fn fixture_database(path: &Path) {
 }
 
 #[test]
-fn allow_list_written_from_a_report_passes_its_check() {
-    let work_dir = tempfile::tempdir().unwrap();
-    let first = work_dir.path().join("first.db");
-    let second = work_dir.path().join("second.db");
-    let allowed = work_dir.path().join("differences.allow");
-    fixture_database(&first);
-    fixture_database(&second);
-    Connection::open(&second)
-        .unwrap()
-        .execute(
-            "UPDATE items SET description = 'Edited' WHERE id = (SELECT MIN(id) FROM items WHERE is_legacy = 0)",
-            [],
-        )
-        .unwrap();
-    let mut report = diff_databases_by_slug(&first, &second).unwrap();
-    assert!(!report.table_differences.is_empty());
-    assert!(!report.response_differences.is_empty());
-    xtask::diff_db::write_allowed_differences(&report, &allowed).unwrap();
-    xtask::diff_db::check_allowed_differences(&report, &allowed).unwrap();
-    let written = std::fs::read(&allowed).unwrap();
-    assert_eq!(written.last(), Some(&b'\n'));
-    report.pairing_failures.insert("unpaired identity".into());
-    assert!(xtask::diff_db::write_allowed_differences(&report, &allowed).is_err());
-    assert_eq!(std::fs::read(&allowed).unwrap(), written);
-    xtask::diff_db::write_allowed_differences(&DiffReport::default(), &allowed).unwrap();
-    assert!(std::fs::read(&allowed).unwrap().is_empty());
-}
-
-#[test]
-fn writing_an_allow_list_requires_by_slug_and_excludes_an_existing_allow_list() {
-    for arguments in [
-        vec!["diff-db", "first.db", "second.db", "--write-allow-list", "out.allow"],
-        vec![
-            "diff-db",
-            "first.db",
-            "second.db",
-            "--by-slug",
-            "--write-allow-list",
-            "out.allow",
-            "--allow-list",
-            "in.allow",
-        ],
-    ] {
-        let output = std::process::Command::new(env!("CARGO_BIN_EXE_xtask")).args(arguments).output().unwrap();
-        assert_eq!(output.status.code(), Some(2));
-        let error = String::from_utf8(output.stderr).unwrap();
-        assert!(!error.contains("unexpected argument"), "{error}");
-        assert!(error.contains("--by-slug") || error.contains("cannot be used with"), "{error}");
+fn database_comparison_exposes_no_difference_allowance() {
+    let output = std::process::Command::new(env!("CARGO_BIN_EXE_xtask")).args(["diff-db", "--help"]).output().unwrap();
+    assert!(output.status.success());
+    let help = String::from_utf8(output.stdout).unwrap();
+    for flag in ["--allow-list", "--write-allow-list"] {
+        assert!(!help.contains(flag), "retired allowance {flag}: {help}");
+    }
+    for flag in ["--by-slug", "--against-api"] {
+        assert!(help.contains(flag), "missing comparison mode {flag}: {help}");
     }
 }
 
