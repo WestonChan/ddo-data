@@ -95,6 +95,44 @@ fn export_fixture_with_icons(db: &Connection, source: &Path, root: &Path) {
 }
 
 #[test]
+fn canonical_fixture_corrections_apply_without_changing_keys_or_values() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let mut ours = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&fixtures.join("data"), &mut ours).unwrap();
+    let corrections = Corrections::from_database(&ours).unwrap();
+    assert!(corrections.entries.iter().any(|correction| correction.family.is_some() && correction.field == "name"));
+    assert!(corrections.entries.iter().any(|correction| correction.selection.is_some() && correction.field == "name"));
+    let mut upstream = Connection::open_in_memory().unwrap();
+    let report = build::build_database(
+        &fixtures.join("DataFiles"),
+        &WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap(),
+        &corrections,
+        &mut upstream,
+        &DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-06T00:00:00Z".into() },
+    )
+    .unwrap();
+    assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
+    let ordered_corrections = |mut corrections: Corrections| {
+        corrections.entries.sort_by_key(|correction| {
+            (
+                correction.kind.as_str().to_string(),
+                correction.name.clone(),
+                correction.field.clone(),
+                correction.qualifier(),
+            )
+        });
+        corrections
+    };
+    assert_eq!(ordered_corrections(Corrections::from_database(&upstream).unwrap()), ordered_corrections(corrections));
+    let scratch = tempfile::tempdir().unwrap();
+    export_fixture_with_icons(&upstream, &fixtures.join("DataFiles"), scratch.path());
+    let mut normalized = Connection::open_in_memory().unwrap();
+    tree::build_from_data(scratch.path(), &mut normalized).unwrap();
+    let delta = ddo_etl::delta::database_delta(&normalized, &ours).unwrap();
+    assert!(delta.is_empty(), "{delta:#?}");
+}
+
+#[test]
 fn every_entity_preserves_citations_with_notes_through_the_data_tree() {
     let scratch = tempfile::tempdir().unwrap();
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");

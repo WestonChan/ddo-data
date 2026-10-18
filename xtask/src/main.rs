@@ -471,6 +471,11 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             &["--test", "import_ddobuilder"][..],
             "exported_ddobuilder_tree_builds_with_dc_icons_from_other_kinds",
         ),
+        (
+            "ddo-etl",
+            &["--test", "import_ddobuilder"][..],
+            "canonical_fixture_corrections_apply_without_changing_keys_or_values",
+        ),
     ] {
         let test_status = Command::new("cargo")
             .args(["test", "-p", crate_name])
