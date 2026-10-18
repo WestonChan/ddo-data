@@ -61,6 +61,10 @@ database_record! {
             drop_location: Option<String> => source,
             tier: String => tier,
         }
+        attached {
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>,
+        }
     }
 }
 
@@ -153,9 +157,13 @@ impl CraftingSystemFile {
             "SELECT {} FROM crafting_ingredients ORDER BY sort_order, rowid",
             CraftingSystemIngredient::select_columns()
         ))?;
-        for row in select
-            .query_map([], |row| Ok((row.get::<_, i64>("system_id")?, CraftingSystemIngredient::from_row(row)?)))?
-        {
+        for row in select.query_map([], |row| {
+            Ok((row.get::<_, i64>("system_id")?, {
+                let mut ingredient = CraftingSystemIngredient::from_row(row)?;
+                ingredient.attach_citations(annotations, row.get("id")?);
+                ingredient
+            }))
+        })? {
             let (id, record) = row?;
             files.get_mut(&id).context("crafting ingredient has no system")?.ingredient.push(record);
         }

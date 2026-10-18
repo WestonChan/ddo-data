@@ -73,21 +73,98 @@ fn fieldless_citation_does_not_make_an_upstream_item_wiki_only() {
     )
     .unwrap();
     db.execute("INSERT INTO citations (owner_kind, owner_id, field, url, read) SELECT 'items', id, '', 'https://ddowiki.com/page/Item:Reviewed', '2026-10-18' FROM items WHERE id = (SELECT MIN(id) FROM items)", []).unwrap();
-    tree::export_database(&db, scratch.path()).unwrap();
-    ddo_etl::icons::export_icons(&source, &scratch.path().join("icons")).unwrap();
-    let icons = ddo_etl::icons::complete_referenced_icons(scratch.path()).unwrap();
-    for missing in icons.missing_icons {
-        let path = scratch.path().join("icons").join(missing);
-        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
-        std::fs::copy(source.join("FeatImages/PowerAttack.png"), path).unwrap();
-    }
-    ddo_etl::icons::place_enhancement_icons_beside_trees(scratch.path()).unwrap();
+    export_fixture_with_icons(&db, &source, scratch.path());
     let mut rebuilt = Connection::open_in_memory().unwrap();
     tree::build_from_data(scratch.path(), &mut rebuilt).unwrap();
     let provenance: String = rebuilt.query_row(
         "SELECT provenance FROM items JOIN citations ON owner_kind = 'items' AND owner_id = items.id WHERE citations.url = 'https://ddowiki.com/page/Item:Reviewed'", [], |row| row.get(0)
     ).unwrap();
     assert_eq!(provenance, "maetrim");
+}
+
+fn export_fixture_with_icons(db: &Connection, source: &Path, root: &Path) {
+    tree::export_database(db, root).unwrap();
+    ddo_etl::icons::export_icons(source, &root.join("icons")).unwrap();
+    let icons = ddo_etl::icons::complete_referenced_icons(root).unwrap();
+    for missing in icons.missing_icons {
+        let path = root.join("icons").join(missing);
+        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+        std::fs::copy(source.join("FeatImages/PowerAttack.png"), path).unwrap();
+    }
+    ddo_etl::icons::place_enhancement_icons_beside_trees(root).unwrap();
+}
+
+#[test]
+fn every_entity_preserves_citations_with_notes_through_the_data_tree() {
+    let scratch = tempfile::tempdir().unwrap();
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let source = fixtures.join("DataFiles");
+    let mut db = Connection::open_in_memory().unwrap();
+    build::build_database(
+        &source,
+        &WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap(),
+        &Corrections::from_dir(&fixtures.join("data-corrections")).unwrap(),
+        &mut db,
+        &DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() },
+    )
+    .unwrap();
+    let mut expected = Vec::new();
+    for (table, merge) in ddo_etl::delta::TABLE_MERGES {
+        if !matches!(merge, ddo_etl::delta::TableMerge::Entity { .. }) {
+            continue;
+        }
+        let columns = db
+            .prepare(&format!("PRAGMA table_info({table})"))
+            .unwrap()
+            .query_map([], |row| row.get::<_, String>(1))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        let identity_column = if columns.iter().any(|column| column == "slug") { "slug" } else { "name" };
+        let limit = if matches!(*table, "stances" | "effects") { "" } else { " LIMIT 1" };
+        let rows = db
+            .prepare(&format!("SELECT id, {identity_column} FROM {table} ORDER BY {identity_column}{limit}"))
+            .unwrap()
+            .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert!(!rows.is_empty(), "fixture has no {table}");
+        for (id, slug) in rows {
+            let note = format!("Checked {table}/{slug}.");
+            db.execute("INSERT INTO citations (owner_kind, owner_id, field, url, read, note) VALUES (?1, ?2, 'review', 'https://ddowiki.com/page/Review', '2026-10-18', ?3)", rusqlite::params![table, id, note]).unwrap();
+            expected.push((table, identity_column, slug, note));
+        }
+    }
+    let stance_requirements = |db: &Connection| {
+        db.prepare("SELECT s.slug, r.group_kind, r.group_index, r.sort_order, r.req_type, r.items, r.value FROM requirements r JOIN stances s ON r.owner_kind = 'stance' AND r.owner_id = s.id ORDER BY s.slug, r.group_index, r.sort_order").unwrap()
+            .query_map([], |row| (0..7).map(|column| row.get::<_, rusqlite::types::Value>(column)).collect::<rusqlite::Result<Vec<_>>>()).unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>().unwrap()
+    };
+    let expected_requirements = stance_requirements(&db);
+    assert!(!expected_requirements.is_empty());
+    export_fixture_with_icons(&db, &source, scratch.path());
+    let before = tree::data_file_bytes(scratch.path()).unwrap();
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    tree::build_from_data(scratch.path(), &mut rebuilt).unwrap();
+    assert_eq!(expected_requirements, stance_requirements(&rebuilt));
+    let annotated = tree::annotated_entities(&rebuilt).unwrap();
+    for (table, identity_column, slug, note) in expected {
+        let id: i64 = rebuilt
+            .query_row(&format!("SELECT id FROM {table} WHERE {identity_column} = ?1"), [&slug], |row| row.get(0))
+            .unwrap();
+        let count: i64 = rebuilt
+            .query_row(
+                "SELECT COUNT(*) FROM citations WHERE owner_kind = ?1 AND owner_id = ?2 AND note = ?3",
+                rusqlite::params![table, id, note],
+                |row| row.get(0),
+            )
+            .unwrap();
+        assert_eq!(count, 1, "{table}/{slug}");
+        assert!(annotated.contains(&(table.to_string(), id)), "{table}/{slug}");
+    }
+    tree::export_database(&rebuilt, scratch.path()).unwrap();
+    assert_eq!(before, tree::data_file_bytes(scratch.path()).unwrap());
 }
 
 struct ImportWorld {

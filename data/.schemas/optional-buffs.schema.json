@@ -1,5 +1,32 @@
 {
   "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-array": "citation",
+      "x-table": "citations"
+    },
     "DdobuilderCorrection": {
       "additionalProperties": false,
       "properties": {
@@ -213,6 +240,12 @@
     "OptionalBuff": {
       "additionalProperties": false,
       "properties": {
+        "citation": {
+          "items": {
+            "$ref": "#/$defs/Citation"
+          },
+          "type": "array"
+        },
         "ddobuilder_correction": {
           "items": {
             "$ref": "#/$defs/DdobuilderCorrection"

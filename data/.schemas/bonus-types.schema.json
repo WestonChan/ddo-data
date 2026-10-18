@@ -3,6 +3,12 @@
     "BonusType": {
       "additionalProperties": false,
       "properties": {
+        "citation": {
+          "items": {
+            "$ref": "#/$defs/Citation"
+          },
+          "type": "array"
+        },
         "name": {
           "type": "string"
         },
@@ -15,6 +21,33 @@
       ],
       "type": "object",
       "x-table": "bonus_types"
+    },
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-array": "citation",
+      "x-table": "citations"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",

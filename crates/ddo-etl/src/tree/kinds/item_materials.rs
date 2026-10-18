@@ -25,7 +25,11 @@ mod tests {
             &mut crate::tree::ids::StableIds::default(),
         )
         .unwrap();
-        let restored = ItemMaterialsFile::from_rows(&db).unwrap();
+        let restored = ItemMaterialsFile::from_rows(
+            &db,
+            &crate::tree::annotations::EntityAnnotations::from_database(&db).unwrap(),
+        )
+        .unwrap();
         assert_eq!(toml::to_string(&restored).unwrap(), toml::to_string(&file).unwrap());
     }
 }

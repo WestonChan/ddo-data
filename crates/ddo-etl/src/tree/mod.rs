@@ -315,12 +315,14 @@ mod tests {
         let mut modifiers = super::modifier_rows_by_owner(&db).unwrap();
         let mut clickies = super::kinds::ClickiesFile::from_rows(
             &db,
+            &annotations,
             &mut modifiers,
             &super::export::CorrectionNoteIndex::from_database(&db).unwrap(),
         )
         .unwrap();
-        let mut guild_buffs = super::kinds::GuildBuffsFile::from_rows(&db, &mut modifiers).unwrap();
-        let mut optional_buffs = super::kinds::OptionalBuffsFile::from_rows(&db, &mut modifiers, &notes).unwrap();
+        let mut guild_buffs = super::kinds::GuildBuffsFile::from_rows(&db, &annotations, &mut modifiers).unwrap();
+        let mut optional_buffs =
+            super::kinds::OptionalBuffsFile::from_rows(&db, &annotations, &mut modifiers, &notes).unwrap();
         let trees =
             super::kinds::EnhancementTreeFile::all_from_rows(&db, &annotations, &notes, &mut modifiers).unwrap();
         let systems = super::kinds::CraftingSystemFile::all_from_rows(&db, &annotations).unwrap();

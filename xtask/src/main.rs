@@ -415,6 +415,12 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         ("ddo-api", &["--test", "api"][..], "typed_response_schemas_resolve_every_reference_and_describe_fields"),
         ("ddo-api", &["--test", "api"][..], "every_json_route_response_matches_its_openapi_schema"),
         ("ddo-etl", &["--lib"][..], "tree::tests::complete_export_query_count_does_not_grow_with_entities"),
+        ("ddo-etl", &["--lib"][..], "tree::schemas::tests::every_entity_record_declares_citations"),
+        (
+            "ddo-etl",
+            &["--test", "import_ddobuilder"][..],
+            "every_entity_preserves_citations_with_notes_through_the_data_tree",
+        ),
         ("ddo-etl", &["--lib"][..], "tree::schemas::tests::item_and_augment_sources_use_singular_tables"),
         ("ddo-etl", &["--lib"][..], "tree::schemas::tests::pack_local_entity_names_do_not_override_folder_kinds"),
         ("ddo-etl", &["--lib"][..], "tree::schemas::tests::effect_names_cannot_take_reserved_vocabulary_filenames"),

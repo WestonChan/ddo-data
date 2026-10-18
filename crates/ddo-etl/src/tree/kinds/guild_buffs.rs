@@ -17,6 +17,8 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             modifier: Vec<Modifier>,
         }
     }
@@ -31,6 +33,7 @@ pub(crate) struct GuildBuffsFile {
 impl GuildBuffsFile {
     pub(in crate::tree) fn from_rows(
         db: &Connection,
+        annotations: &crate::tree::annotations::EntityAnnotations,
         modifiers: &mut super::super::ModifierRowsByOwner,
     ) -> Result<Self> {
         let mut select =
@@ -38,6 +41,7 @@ impl GuildBuffsFile {
         let mut rows = Vec::new();
         for record in select.query_map([], |record| Ok((record.get::<_, i64>("id")?, GuildBuff::from_row(record)?)))? {
             let (id, mut row) = record?;
+            row.attach_citations(annotations, id);
             row.modifier = modifiers.remove(&("guild_buff".to_string(), id)).unwrap_or_default();
             rows.push(row);
         }

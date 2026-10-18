@@ -18,6 +18,8 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
         }
     }
@@ -44,12 +46,21 @@ impl AugmentSlotTypesFile {
         Ok(self.row.len())
     }
 
-    pub(in crate::tree) fn from_rows(db: &Connection) -> Result<Self> {
+    pub(in crate::tree) fn from_rows(
+        db: &Connection,
+        annotations: &crate::tree::annotations::EntityAnnotations,
+    ) -> Result<Self> {
         let mut select = db.prepare(&format!(
             "SELECT {} FROM augment_slot_types ORDER BY label, rowid",
             SocketType::select_columns()
         ))?;
-        let mut row = select.query_map([], SocketType::from_row)?.collect::<rusqlite::Result<Vec<_>>>()?;
+        let mut row = select
+            .query_map([], |row| {
+                let mut record = SocketType::from_row(row)?;
+                record.attach_citations(annotations, row.get("id")?);
+                Ok(record)
+            })?
+            .collect::<rusqlite::Result<Vec<_>>>()?;
         let notes = super::super::export::CorrectionNoteIndex::from_database(db)?;
         for socket in &mut row {
             socket.ddobuilder_correction = notes.for_entity("augment_slot_types", &socket.label);

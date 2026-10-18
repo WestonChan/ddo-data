@@ -13,6 +13,10 @@ database_record! {
             category: String => category,
             name: String => name,
         }
+        attached {
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>,
+        }
     }
 }
 
@@ -37,10 +41,19 @@ impl DamageTypesFile {
         Ok(self.row.len())
     }
 
-    pub(in crate::tree) fn from_rows(db: &Connection) -> Result<Self> {
+    pub(in crate::tree) fn from_rows(
+        db: &Connection,
+        annotations: &crate::tree::annotations::EntityAnnotations,
+    ) -> Result<Self> {
         let mut select =
             db.prepare(&format!("SELECT {} FROM damage_types ORDER BY name, rowid", DamageType::select_columns()))?;
-        let row = select.query_map([], DamageType::from_row)?.collect::<rusqlite::Result<Vec<_>>>()?;
+        let row = select
+            .query_map([], |row| {
+                let mut record = DamageType::from_row(row)?;
+                record.attach_citations(annotations, row.get("id")?);
+                Ok(record)
+            })?
+            .collect::<rusqlite::Result<Vec<_>>>()?;
         Ok(Self { row })
     }
 }

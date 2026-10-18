@@ -4,6 +4,10 @@ database_record! {
     pub(crate) struct VocabularyTerm in (table: &str) {
         keys { id: i64, sort_order: i64 }
         fields { name: String => name }
+        attached {
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>,
+        }
     }
 }
 
@@ -24,14 +28,22 @@ macro_rules! declare_vocabulary_file {
                 Ok(self.row.len())
             }
 
-            pub(in crate::tree) fn from_rows(db: &rusqlite::Connection) -> anyhow::Result<Self> {
+            pub(in crate::tree) fn from_rows(
+                db: &rusqlite::Connection,
+                annotations: &crate::tree::annotations::EntityAnnotations,
+            ) -> anyhow::Result<Self> {
                 let mut select = db.prepare(&format!(
                     "SELECT {} FROM {} ORDER BY sort_order",
                     super::VocabularyTerm::select_columns($table),
                     $table
                 ))?;
-                let row =
-                    select.query_map([], super::VocabularyTerm::from_row)?.collect::<rusqlite::Result<Vec<_>>>()?;
+                let row = select
+                    .query_map([], |row| {
+                        let mut term = super::VocabularyTerm::from_row(row)?;
+                        term.attach_citations(annotations, $table, row.get("id")?);
+                        Ok(term)
+                    })?
+                    .collect::<rusqlite::Result<Vec<_>>>()?;
                 Ok(Self { row })
             }
         }

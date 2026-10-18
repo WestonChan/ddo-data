@@ -18,6 +18,8 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             modifier: Vec<Modifier>,
@@ -34,6 +36,7 @@ pub(crate) struct OptionalBuffsFile {
 impl OptionalBuffsFile {
     pub(in crate::tree) fn from_rows(
         db: &Connection,
+        annotations: &crate::tree::annotations::EntityAnnotations,
         modifiers: &mut super::super::ModifierRowsByOwner,
         notes: &super::super::export::CorrectionNoteIndex,
     ) -> Result<Self> {
@@ -44,6 +47,7 @@ impl OptionalBuffsFile {
             select.query_map([], |record| Ok((record.get::<_, i64>("id")?, OptionalBuff::from_row(record)?)))?
         {
             let (id, mut row) = record?;
+            row.attach_citations(annotations, id);
             row.ddobuilder_correction = notes.for_entity("optional_buffs", &row.name);
             row.modifier = modifiers.remove(&("optional_buff".to_string(), id)).unwrap_or_default();
             rows.push(row);

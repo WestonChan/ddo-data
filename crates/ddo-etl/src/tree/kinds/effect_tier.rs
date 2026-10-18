@@ -13,6 +13,10 @@ database_record! {
         fields {
             name: String => name,
         }
+        attached {
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>,
+        }
     }
 }
 

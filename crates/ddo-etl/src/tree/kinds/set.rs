@@ -69,6 +69,8 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             augment: Vec<SetAugment>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             item: Vec<SetItem>,

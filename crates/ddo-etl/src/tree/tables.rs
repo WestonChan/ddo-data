@@ -146,6 +146,8 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<DdobuilderCorrection>,
             #[serde(flatten)]
             requirements: Requirements,
@@ -163,14 +165,18 @@ impl Stance {
         owner_id: i64,
         position: i64,
     ) -> Result<usize> {
-        self.insert(db, id, slug, owner_kind, owner_id, position)?;
-        Ok(1 + self.requirements.insert(db, "stance", db.last_insert_rowid())?)
+        let inserted = self.insert(db, id, slug, owner_kind, owner_id, position)?;
+        Ok(inserted.row_count + self.requirements.insert(db, "stance", inserted.row_id)?)
     }
 }
 
 pub(super) type StancesByOwner = BTreeMap<(String, i64), Vec<Stance>>;
 
-pub(super) fn stances_by_owner(db: &Connection, requirements: &mut RequirementRowsByOwner) -> Result<StancesByOwner> {
+pub(super) fn stances_by_owner(
+    db: &Connection,
+    annotations: &crate::tree::annotations::EntityAnnotations,
+    requirements: &mut RequirementRowsByOwner,
+) -> Result<StancesByOwner> {
     let mut stances = StancesByOwner::new();
     let mut select = db.prepare(&format!(
         "SELECT {} FROM stances ORDER BY owner_kind, owner_id, sort_order",
@@ -185,6 +191,7 @@ pub(super) fn stances_by_owner(db: &Connection, requirements: &mut RequirementRo
         ))
     })? {
         let (id, kind, owner_id, mut stance) = row?;
+        stance.attach_citations(annotations, id);
         stance.requirements = requirements.remove(&("stance".to_string(), id)).unwrap_or_default();
         stances.entry((kind, owner_id)).or_default().push(stance);
     }

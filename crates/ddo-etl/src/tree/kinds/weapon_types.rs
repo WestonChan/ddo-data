@@ -16,6 +16,10 @@ database_record! {
             #[serde(default, skip_serializing_if = "Option::is_none")]
             proficiency: Option<String> => proficiency_id [optional_reference "weapon_proficiencies"],
         }
+        attached {
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>,
+        }
     }
 }
 
@@ -40,10 +44,19 @@ impl WeaponTypesFile {
         Ok(self.row.len())
     }
 
-    pub(in crate::tree) fn from_rows(db: &Connection) -> Result<Self> {
+    pub(in crate::tree) fn from_rows(
+        db: &Connection,
+        annotations: &crate::tree::annotations::EntityAnnotations,
+    ) -> Result<Self> {
         let mut select =
             db.prepare(&format!("SELECT {} FROM weapon_types ORDER BY name, rowid", WeaponType::select_columns()))?;
-        let row = select.query_map([], WeaponType::from_row)?.collect::<rusqlite::Result<Vec<_>>>()?;
+        let row = select
+            .query_map([], |row| {
+                let mut record = WeaponType::from_row(row)?;
+                record.attach_citations(annotations, row.get("id")?);
+                Ok(record)
+            })?
+            .collect::<rusqlite::Result<Vec<_>>>()?;
         Ok(Self { row })
     }
 }

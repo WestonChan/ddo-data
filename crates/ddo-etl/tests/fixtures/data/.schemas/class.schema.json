@@ -1,5 +1,32 @@
 {
   "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-array": "citation",
+      "x-table": "citations"
+    },
     "ClassAutoFeat": {
       "additionalProperties": false,
       "properties": {
@@ -195,6 +222,12 @@
     "casting_stats": {
       "items": {
         "type": "string"
+      },
+      "type": "array"
+    },
+    "citation": {
+      "items": {
+        "$ref": "#/$defs/Citation"
       },
       "type": "array"
     },

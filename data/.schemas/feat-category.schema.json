@@ -625,6 +625,12 @@
         "auto_controlled": {
           "type": "boolean"
         },
+        "citation": {
+          "items": {
+            "$ref": "#/$defs/Citation"
+          },
+          "type": "array"
+        },
         "ddobuilder_correction": {
           "items": {
             "$ref": "#/$defs/DdobuilderCorrection"

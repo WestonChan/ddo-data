@@ -27,9 +27,12 @@ impl StancesFile {
         Ok(count)
     }
 
-    pub(in crate::tree) fn from_rows(db: &Connection) -> Result<Self> {
+    pub(in crate::tree) fn from_rows(
+        db: &Connection,
+        annotations: &crate::tree::annotations::EntityAnnotations,
+    ) -> Result<Self> {
         let mut requirements = super::super::requirement_rows_by_owner(db)?;
-        let mut stances = super::super::stances_by_owner(db, &mut requirements)?;
+        let mut stances = super::super::stances_by_owner(db, annotations, &mut requirements)?;
         Ok(Self { row: stances.remove(&("standalone".to_string(), 0)).unwrap_or_default() })
     }
 }

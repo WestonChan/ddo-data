@@ -32,6 +32,8 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             attack: Vec<Attack>,
@@ -127,6 +129,8 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             enhancement: Vec<Enhancement>,
@@ -194,7 +198,7 @@ impl EnhancementTreeFile {
     ) -> Result<BTreeMap<i64, Self>> {
         let mut files = BTreeMap::new();
         let mut requirements = super::super::requirement_rows_by_owner(db)?;
-        let mut stances = super::super::stances_by_owner(db, &mut requirements)?;
+        let mut stances = super::super::stances_by_owner(db, annotations, &mut requirements)?;
         let mut select = db.prepare(&format!(
             "SELECT {} FROM enhancement_trees ORDER BY name, id",
             EnhancementTreeFile::select_columns()
@@ -238,6 +242,7 @@ impl EnhancementTreeFile {
             Ok((row.get::<_, i64>("id")?, row.get::<_, i64>("enhancement_id")?, EnhancementSelection::from_row(row)?))
         })? {
             let (id, parent_id, mut file) = row?;
+            file.attach_citations(annotations, id);
             file.requirements = requirements.remove(&("enhancement_selection".to_string(), id)).unwrap_or_default();
             for phase in [None, Some("follow_on"), Some("this_attack")] {
                 let kind = phase.map_or_else(

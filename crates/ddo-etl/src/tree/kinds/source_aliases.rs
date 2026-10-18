@@ -160,16 +160,16 @@ impl SourceAliasesFile {
     pub(in crate::tree) fn write_source_aliases(&self, db: &rusqlite::Connection) -> anyhow::Result<usize> {
         let mut count = 0;
         for (position, alias) in self.adventure_packs.iter().enumerate() {
-            count += alias.insert(db, "adventure_pack", position as i64)?;
+            count += alias.insert(db, "adventure_pack", position as i64)?.row_count;
         }
         for (position, alias) in self.challenges.iter().enumerate() {
-            count += alias.insert(db, "challenge", position as i64, false)?;
+            count += alias.insert(db, "challenge", position as i64, false)?.row_count;
         }
         for (position, alias) in self.crafting_systems.iter().enumerate() {
-            count += alias.insert(db, "crafting_system", position as i64, false)?;
+            count += alias.insert(db, "crafting_system", position as i64, false)?.row_count;
         }
         for (position, alias) in self.vendors.iter().enumerate() {
-            count += alias.insert(db, "vendor", position as i64, false)?;
+            count += alias.insert(db, "vendor", position as i64, false)?.row_count;
         }
         Ok(count)
     }

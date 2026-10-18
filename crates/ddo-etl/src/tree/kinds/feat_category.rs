@@ -221,7 +221,7 @@ impl FeatCategoryFile {
             let (id, ability) = row?;
             feats.get_mut(&id).with_context(|| format!("DC has no feat {id}"))?.dc.push(ability);
         }
-        for ((kind, id), mut stances) in super::super::stances_by_owner(db, &mut requirements)? {
+        for ((kind, id), mut stances) in super::super::stances_by_owner(db, annotations, &mut requirements)? {
             if kind != "feat" {
                 continue;
             }

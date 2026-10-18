@@ -1,5 +1,32 @@
 {
   "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-array": "citation",
+      "x-table": "citations"
+    },
     "StatCategoryFile": {
       "enum": [
         "ability",
@@ -17,6 +44,12 @@
   "properties": {
     "category": {
       "$ref": "#/$defs/StatCategoryFile"
+    },
+    "citation": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "type": "array"
     },
     "default_value": {
       "format": "int64",

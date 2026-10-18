@@ -400,7 +400,8 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         let relative = layout.path("augments", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
-    for (id, file) in kinds::SetFile::all_from_rows(db, &notes, &mut modifiers)? {
+    for (id, mut file) in kinds::SetFile::all_from_rows(db, &notes, &mut modifiers)? {
+        file.attach_citations(&annotations, id);
         let relative = layout.path("set_bonuses", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
@@ -413,11 +414,13 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         file.attach_citations(&annotations, id);
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
-    for (id, file) in kinds::StatFile::all_from_rows(db)? {
+    for (id, mut file) in kinds::StatFile::all_from_rows(db)? {
+        file.attach_citations(&annotations, id);
         let relative = layout.path("effects", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
-    for (id, file) in kinds::StatGroupFile::all_from_rows(db)? {
+    for (id, mut file) in kinds::StatGroupFile::all_from_rows(db)? {
+        file.attach_citations(&annotations, id);
         let relative = layout.path("effects", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
@@ -435,11 +438,13 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         let relative = layout.path("adventure_packs", id)?;
         write_export_file(root, relative, &toml::to_string_pretty(&file)?, &mut report)?;
     }
-    for (id, file) in kinds::PatronFile::all_from_rows(db, &notes)? {
+    for (id, mut file) in kinds::PatronFile::all_from_rows(db, &notes)? {
+        file.attach_citations(&annotations, id);
         let relative = layout.path("patrons", id)?;
         write_export_file(root, relative, &toml::to_string_pretty(&file)?, &mut report)?;
     }
-    for (id, file) in kinds::EffectTierFile::all_from_rows(db)? {
+    for (id, mut file) in kinds::EffectTierFile::all_from_rows(db)? {
+        file.attach_citations(&annotations, id);
         let relative = layout.path("effect_tier_groups", id)?;
         write_export_file(root, relative, &toml::to_string_pretty(&file)?, &mut report)?;
     }
@@ -455,7 +460,8 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         let relative = layout.path("races", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
-    for (id, file) in kinds::ClassFile::all_from_rows(db)? {
+    for (id, mut file) in kinds::ClassFile::all_from_rows(db)? {
+        file.attach_citations(&annotations, id);
         let relative = layout.path("classes", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
@@ -463,12 +469,14 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         let relative = layout.path("crafting_systems", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
-    for (id, file) in kinds::EnhancementTreeFile::all_from_rows(db, &annotations, &notes, &mut modifiers)? {
+    for (id, mut file) in kinds::EnhancementTreeFile::all_from_rows(db, &annotations, &notes, &mut modifiers)? {
+        file.attach_citations(&annotations, id);
         let relative = layout.path("enhancement_trees", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
     let mut groups = BTreeMap::<PathBuf, kinds::SpellListFile>::new();
-    for (id, file) in kinds::SpellListFile::all_from_rows(db, &notes, &mut modifiers)? {
+    for (id, mut file) in kinds::SpellListFile::all_from_rows(db, &annotations, &notes, &mut modifiers)? {
+        file.attach_citations(&annotations, id);
         groups
             .entry(layout.path("spells", id)?.to_path_buf())
             .or_insert_with(|| kinds::SpellListFile { row: Vec::new() })
@@ -492,7 +500,8 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         write_export_file(root, &relative, &typed_file_text(&file)?, &mut report)?;
     }
     let mut groups = BTreeMap::<PathBuf, kinds::FiligreeSetFile>::new();
-    for (id, file) in kinds::FiligreeSetFile::all_from_rows(db, &mut modifiers, &notes)? {
+    for (id, mut file) in kinds::FiligreeSetFile::all_from_rows(db, &mut modifiers, &notes)? {
+        file.attach_citations(&annotations, id);
         groups
             .entry(layout.path("filigrees", id)?.to_path_buf())
             .or_insert_with(|| kinds::FiligreeSetFile { row: Vec::new() })
@@ -503,36 +512,37 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         file.row.sort_by_key(|row| row.name.clone());
         write_export_file(root, &relative, &typed_file_text(&file)?, &mut report)?;
     }
-    let file = kinds::StancesFile::from_rows(db)?;
+    let file = kinds::StancesFile::from_rows(db, &annotations)?;
     write_export_file(root, fixed_data_file("stances")?, &toml::to_string_pretty(&file)?, &mut report)?;
-    let file = kinds::ClickiesFile::from_rows(db, &mut modifiers, &notes)?;
+    let file = kinds::ClickiesFile::from_rows(db, &annotations, &mut modifiers, &notes)?;
     write_export_file(root, fixed_data_file("clickies")?, &typed_file_text(&file)?, &mut report)?;
-    let file = kinds::GuildBuffsFile::from_rows(db, &mut modifiers)?;
+    let file = kinds::GuildBuffsFile::from_rows(db, &annotations, &mut modifiers)?;
     write_export_file(root, fixed_data_file("guild_buffs")?, &typed_file_text(&file)?, &mut report)?;
-    let file = kinds::OptionalBuffsFile::from_rows(db, &mut modifiers, &notes)?;
+    let file = kinds::OptionalBuffsFile::from_rows(db, &annotations, &mut modifiers, &notes)?;
     write_export_file(root, fixed_data_file("optional_buffs")?, &typed_file_text(&file)?, &mut report)?;
-    let file = kinds::BonusTypesFile::from_rows(db)?;
+    let file = kinds::BonusTypesFile::from_rows(db, &annotations)?;
     write_export_file(root, fixed_data_file("bonus_types")?, &toml::to_string_pretty(&file)?, &mut report)?;
-    let file = kinds::ItemMaterialsFile::from_rows(db)?;
+    let file = kinds::ItemMaterialsFile::from_rows(db, &annotations)?;
     write_export_file(root, fixed_data_file("item_materials")?, &toml::to_string_pretty(&file)?, &mut report)?;
-    let file = kinds::TriggersFile::from_rows(db)?;
+    let file = kinds::TriggersFile::from_rows(db, &annotations)?;
     write_export_file(root, fixed_data_file("triggers")?, &toml::to_string_pretty(&file)?, &mut report)?;
-    let file = kinds::WeaponProficienciesFile::from_rows(db)?;
+    let file = kinds::WeaponProficienciesFile::from_rows(db, &annotations)?;
     write_export_file(root, fixed_data_file("weapon_proficiencies")?, &toml::to_string_pretty(&file)?, &mut report)?;
-    let file = kinds::EquipmentSlotsFile::from_rows(db)?;
+    let file = kinds::EquipmentSlotsFile::from_rows(db, &annotations)?;
     write_export_file(root, fixed_data_file("equipment_slots")?, &toml::to_string_pretty(&file)?, &mut report)?;
-    let file = kinds::DamageTypesFile::from_rows(db)?;
+    let file = kinds::DamageTypesFile::from_rows(db, &annotations)?;
     write_export_file(root, fixed_data_file("damage_types")?, &toml::to_string_pretty(&file)?, &mut report)?;
-    let file = kinds::WeaponTypesFile::from_rows(db)?;
+    let file = kinds::WeaponTypesFile::from_rows(db, &annotations)?;
     write_export_file(root, fixed_data_file("weapon_types")?, &toml::to_string_pretty(&file)?, &mut report)?;
     let redirects = kinds::RedirectsFile::from_rows(db)?;
     write_export_file(root, fixed_data_file("redirects")?, &toml::to_string_pretty(&redirects)?, &mut report)?;
     let file = kinds::ExcludedItemsFile::from_rows(db)?;
     write_export_file(root, fixed_data_file("excluded_items")?, &toml::to_string_pretty(&file)?, &mut report)?;
-    for (id, file) in kinds::SentientGemFile::all_from_rows(db)? {
+    for (id, mut file) in kinds::SentientGemFile::all_from_rows(db)? {
+        file.attach_citations(&annotations, id);
         write_export_file(root, layout.path("sentient_gems", id)?, &typed_file_text(&file)?, &mut report)?;
     }
-    let file = kinds::AugmentSlotTypesFile::from_rows(db)?;
+    let file = kinds::AugmentSlotTypesFile::from_rows(db, &annotations)?;
     write_export_file(root, fixed_data_file("augment_slot_types")?, &typed_file_text(&file)?, &mut report)?;
     ensure!(sources.items.is_empty() && sources.augments.is_empty(), "sources remain without an item or augment file");
     ensure!(modifiers.is_empty(), "modifiers remain without an owner file: {:?}", modifiers.keys().collect::<Vec<_>>());

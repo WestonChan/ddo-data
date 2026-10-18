@@ -1,3 +1,8 @@
+pub(super) struct InsertedRecord {
+    pub(super) row_count: usize,
+    pub(super) row_id: i64,
+}
+
 macro_rules! database_record {
     (@mirror $name:ident $table:literal $array:literal) => {
         impl $name {
@@ -120,7 +125,7 @@ macro_rules! database_record {
 
             pub(in crate::tree) fn insert(
                 &self, db: &rusqlite::Connection, $($table_parameter)* $($($context: $context_type,)*)? $($key: $key_type,)*
-            ) -> anyhow::Result<usize> {
+            ) -> anyhow::Result<crate::tree::records::InsertedRecord> {
                 let columns = [$(database_record!(@key $key $(=> $key_column)?),)* $($(stringify!($value_column),)*)? $(stringify!($column),)*].map(|column| format!("[{column}]")).join(", ");
                 let parameters = [$(concat!(":", stringify!($key)),)* $($(concat!(":", stringify!($value_column)),)*)? $(concat!(":", stringify!($column)),)*].join(", ");
                 let inserted = db.prepare_cached(&format!("INSERT INTO {} ({columns}) VALUES ({parameters})", $table))?.execute(&[
@@ -128,8 +133,9 @@ macro_rules! database_record {
                     $($((concat!(":", stringify!($value_column)), &$value as &dyn rusqlite::ToSql),)*)?
                     $((concat!(":", stringify!($column)), &database_record!(@write db, self, $field $( [ $($adapter)* ] )?) as &dyn rusqlite::ToSql),)*
                 ][..])?;
+                let row_id = db.last_insert_rowid();
                 database_record!(@insert_annotations self, db, $table, [$($key,)*], [$($($attached,)*)?]);
-                Ok(inserted)
+                Ok(crate::tree::records::InsertedRecord { row_count: inserted, row_id })
             }
         }
     };
@@ -150,7 +156,7 @@ macro_rules! database_record {
     };
     (@insert_annotations $record:ident, $db:ident, $table:expr, [$($keys:ident,)*], []) => {};
     (@citation_owner $record:ident, $db:ident, $table:expr, [(id $id:ident), $($rest:tt)*]) => {
-        crate::tree::annotations::insert_citations($db, $table, $id, &$record.citation)?;
+        crate::tree::annotations::insert_citations($db, $table, Option::<i64>::from($id).unwrap_or_else(|| $db.last_insert_rowid()), &$record.citation)?;
     };
     (@citation_owner $record:ident, $db:ident, $table:expr, [($key:ident $binding:ident), $($rest:tt)*]) => {
         database_record!(@citation_owner $record, $db, $table, [$($rest)*]);

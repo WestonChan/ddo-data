@@ -29,6 +29,10 @@ database_record! {
             #[serde(default, skip_serializing_if = "Option::is_none")]
             verbose_name_template: Option<String> => verbose_name_template,
         }
+        attached {
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>,
+        }
     }
 }
 

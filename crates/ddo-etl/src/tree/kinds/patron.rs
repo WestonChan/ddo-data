@@ -11,7 +11,9 @@ database_record! {
     pub(crate) struct PatronFile in "patrons" {
         keys { id: i64, slug: &str }
         fields { name: String => name, }
-        attached { #[serde(default, skip_serializing_if = "Vec::is_empty")]
+        attached {
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>, #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>, }
     }
 }

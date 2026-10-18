@@ -3,6 +3,14 @@ use anyhow::{Context, Result};
 use std::collections::BTreeSet;
 use std::path::{Path, PathBuf};
 
+pub(super) const PARAMETERIZED_ENTITY_KINDS: &[(&str, &str)] = &[
+    ("QuestChain", "quest_chains"),
+    ("Saga", "sagas"),
+    ("ItemMaterials", "item_materials"),
+    ("Triggers", "triggers"),
+    ("WeaponProficiencies", "weapon_proficiencies"),
+];
+
 struct NamedEntity {
     table: String,
     name: String,
@@ -70,14 +78,8 @@ impl Catalog {
     pub(in crate::tree) fn add_contents(&mut self, path: &Path, kind: &str, contents: &str) -> Result<()> {
         let document = toml::from_str(contents).with_context(|| format!("parsing {}", path.display()))?;
         let schema = schemas::file_schema(kind);
-        let fallback = match kind {
-            "QuestChain" => Some("quest_chains"),
-            "Saga" => Some("sagas"),
-            "ItemMaterials" => Some("item_materials"),
-            "Triggers" => Some("triggers"),
-            "WeaponProficiencies" => Some("weapon_proficiencies"),
-            _ => None,
-        };
+        let fallback =
+            PARAMETERIZED_ENTITY_KINDS.iter().find_map(|(file_kind, table)| (*file_kind == kind).then_some(*table));
         self.visit(&DocumentContext { path, schema, fallback }, schema, &document, "", "");
         Ok(())
     }

@@ -75,6 +75,8 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            citation: Vec<crate::tree::Citation>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             damage: Vec<SpellDamage>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             dc: Vec<SpellDifficultyClass>,
@@ -97,6 +99,7 @@ pub(crate) struct SpellListFile {
 impl SpellListFile {
     pub(in crate::tree) fn all_from_rows(
         db: &Connection,
+        annotations: &crate::tree::annotations::EntityAnnotations,
         notes: &super::super::export::CorrectionNoteIndex,
         modifiers: &mut super::super::ModifierRowsByOwner,
     ) -> Result<BTreeMap<i64, Spell>> {
@@ -127,7 +130,7 @@ impl SpellListFile {
             spells.get_mut(&id).context("dc has no spell")?.dc.push(dc);
         }
         let mut requirements = super::super::requirement_rows_by_owner(db)?;
-        for ((kind, id), mut stances) in super::super::stances_by_owner(db, &mut requirements)? {
+        for ((kind, id), mut stances) in super::super::stances_by_owner(db, annotations, &mut requirements)? {
             if kind != "spell" {
                 continue;
             }
@@ -147,10 +150,10 @@ impl SpellListFile {
             let identity = super::super::slug(&spell.name);
             let spell_id = super::super::ids::stable_hash(&["spells", &identity]);
             for (position, damage) in spell.damage.iter().enumerate() {
-                count += damage.insert(db, spell_id, position as i64)?;
+                count += damage.insert(db, spell_id, position as i64)?.row_count;
             }
             for (position, dc) in spell.dc.iter().enumerate() {
-                count += dc.insert(db, spell_id, position as i64)?;
+                count += dc.insert(db, spell_id, position as i64)?.row_count;
             }
         }
         Ok(count)
@@ -216,8 +219,9 @@ mod tests {
             file.write_spell_list(&db, Path::new("characters/spells/test.toml")).unwrap();
             let notes = super::super::super::export::CorrectionNoteIndex::from_database(&db).unwrap();
             let mut modifiers = super::super::super::modifier_rows_by_owner(&db).unwrap();
+            let annotations = crate::tree::annotations::EntityAnnotations::from_database(&db).unwrap();
             QUERY_COUNT.store(0, Ordering::SeqCst);
-            let restored = SpellListFile::all_from_rows(&db, &notes, &mut modifiers).unwrap();
+            let restored = SpellListFile::all_from_rows(&db, &annotations, &notes, &mut modifiers).unwrap();
             assert_eq!(restored.len(), counts.len() + 1);
             counts.push(QUERY_COUNT.load(Ordering::SeqCst));
         }

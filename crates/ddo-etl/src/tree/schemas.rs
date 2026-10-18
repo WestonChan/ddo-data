@@ -926,6 +926,57 @@ mod tests {
     }
 
     #[test]
+    fn every_entity_record_declares_citations() {
+        let has_citation_array = |schema: &serde_json::Value, node: &serde_json::Value| {
+            let citation = &node["properties"]["citation"];
+            let items = &citation["items"];
+            let record = items["$ref"]
+                .as_str()
+                .and_then(|reference| reference.strip_prefix("#/$defs/"))
+                .map_or(items, |name| &schema["$defs"][name]);
+            citation["type"] == "array" && record["x-table"] == "citations" && record["x-array"] == "citation"
+        };
+        let entities = crate::delta::TABLE_MERGES
+            .iter()
+            .filter_map(|(table, merge)| matches!(merge, crate::delta::TableMerge::Entity { .. }).then_some(*table))
+            .collect::<std::collections::BTreeSet<_>>();
+        let mut covered = std::collections::BTreeSet::new();
+        let mut missing = Vec::new();
+        for (file, json) in super::schema_files().unwrap() {
+            let schema: serde_json::Value = serde_json::from_str(&json).unwrap();
+            for node in std::iter::once(&schema)
+                .chain(schema["$defs"].as_object().into_iter().flat_map(|definitions| definitions.values()))
+            {
+                let Some(table) = node["x-table"].as_str().filter(|table| entities.contains(table)) else { continue };
+                covered.insert(table.to_string());
+                if !has_citation_array(&schema, node) {
+                    missing.push(format!("{file}: {table} has no citation array"));
+                }
+            }
+        }
+        for (kind, table) in super::catalog::PARAMETERIZED_ENTITY_KINDS {
+            let schema = super::file_schema(kind);
+            for node in std::iter::once(schema)
+                .chain(schema["$defs"].as_object().into_iter().flat_map(|definitions| definitions.values()))
+            {
+                if node["properties"]["name"]["type"] != "string" {
+                    continue;
+                }
+                covered.insert(table.to_string());
+                if !has_citation_array(schema, node) {
+                    missing.push(format!("{kind}: {table} has no citation array"));
+                }
+            }
+        }
+        for table in entities {
+            if !covered.contains(table) {
+                missing.push(format!("{table} has no declared entity record"));
+            }
+        }
+        assert!(missing.is_empty(), "{}", missing.join("\n"));
+    }
+
+    #[test]
     fn annotation_arrays_take_their_names_from_their_mirror_table_declarations() {
         let mut arrays = std::collections::BTreeSet::new();
         for json in super::schema_files().unwrap().values() {

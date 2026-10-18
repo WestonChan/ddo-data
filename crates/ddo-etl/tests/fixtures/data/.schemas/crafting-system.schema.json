@@ -49,6 +49,12 @@
             "null"
           ]
         },
+        "citation": {
+          "items": {
+            "$ref": "#/$defs/Citation"
+          },
+          "type": "array"
+        },
         "drop_location": {
           "type": [
             "string",
