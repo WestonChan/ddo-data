@@ -22,7 +22,7 @@ database_record! {
 database_record! {
     #[derive(Debug, Serialize, Deserialize, JsonSchema)]
     #[serde(deny_unknown_fields)]
-    pub(crate) struct RemovedSlug in "removed_slugs" {
+    pub(crate) struct RetiredSlug in "retired_slugs" {
         keys {}
         fields {
             kind: EntityKind => kind [enum_text],
@@ -39,13 +39,13 @@ pub(crate) struct RedirectsFile {
     #[serde(default)]
     pub(crate) redirect: Vec<Redirect>,
     #[serde(default)]
-    pub(crate) removed: Vec<RemovedSlug>,
+    pub(crate) retired: Vec<RetiredSlug>,
 }
 
 impl RedirectsFile {
     pub(in crate::tree) fn write_redirects(&self, db: &Connection) -> Result<()> {
         let mut targets = BTreeMap::new();
-        let mut removals = BTreeMap::new();
+        let mut retirements = BTreeMap::new();
         let mut violations = Vec::new();
         for redirect in &self.redirect {
             if let Some(previous) = targets.insert((redirect.kind.as_str(), &redirect.from), &redirect.to) {
@@ -57,13 +57,13 @@ impl RedirectsFile {
                 ));
             }
         }
-        for removed in &self.removed {
-            if let Some(previous) = removals.insert((removed.kind.as_str(), &removed.slug), &removed.reason) {
+        for retired in &self.retired {
+            if let Some(previous) = retirements.insert((retired.kind.as_str(), &retired.slug), &retired.reason) {
                 violations.push(format!(
-                    "duplicate removed {} {:?}: {previous:?} and {:?}",
-                    removed.kind.as_str(),
-                    removed.slug,
-                    removed.reason
+                    "duplicate retired {} {:?}: {previous:?} and {:?}",
+                    retired.kind.as_str(),
+                    retired.slug,
+                    retired.reason
                 ));
             }
         }
@@ -73,9 +73,9 @@ impl RedirectsFile {
                 anyhow::anyhow!("redirect {} {:?} -> {:?}: {error}", redirect.kind.as_str(), redirect.from, redirect.to)
             })?;
         }
-        for removed in &self.removed {
-            removed.insert(db).map_err(|error| {
-                anyhow::anyhow!("removed {} {:?} ({:?}): {error}", removed.kind.as_str(), removed.slug, removed.reason)
+        for retired in &self.retired {
+            retired.insert(db).map_err(|error| {
+                anyhow::anyhow!("retired {} {:?} ({:?}): {error}", retired.kind.as_str(), retired.slug, retired.reason)
             })?;
         }
         Ok(())
@@ -86,10 +86,10 @@ impl RedirectsFile {
             .prepare(&format!("SELECT {} FROM redirects ORDER BY kind, from_slug", Redirect::select_columns()))?
             .query_map([], Redirect::from_row)?
             .collect::<rusqlite::Result<_>>()?;
-        let removed = db
-            .prepare(&format!("SELECT {} FROM removed_slugs ORDER BY kind, slug", RemovedSlug::select_columns()))?
-            .query_map([], RemovedSlug::from_row)?
+        let retired = db
+            .prepare(&format!("SELECT {} FROM retired_slugs ORDER BY kind, slug", RetiredSlug::select_columns()))?
+            .query_map([], RetiredSlug::from_row)?
             .collect::<rusqlite::Result<_>>()?;
-        Ok(Self { redirect, removed })
+        Ok(Self { redirect, retired })
     }
 }

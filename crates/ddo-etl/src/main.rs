@@ -84,7 +84,7 @@ fn main() -> Result<ExitCode> {
     match Cli::parse().command {
         CliCommand::PruneRedirects { data_dir, today } => {
             let pruned = ddo_etl::tree::redirects::prune_redirects(&data_dir, today.as_deref())?;
-            println!("pruned {pruned} expired redirects and removed slugs");
+            println!("pruned {pruned} expired redirects and retired slugs");
         }
         CliCommand::ImportDdobuilder { source, previous, data_dir, sha, previous_sha, wiki, corrections } => {
             ddo_etl::import_ddobuilder::validate_previous_commit(&data_dir, &previous, previous_sha.clone())?;

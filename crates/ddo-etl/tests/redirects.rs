@@ -13,8 +13,8 @@ fn redirect(kind: &str, from: &str, to: &str, since: &str) -> String {
     format!("[[redirect]]\nkind = {kind:?}\nfrom = {from:?}\nto = {to:?}\nsince = {since:?}\n\n")
 }
 
-fn removed(kind: &str, slug: &str, since: &str) -> String {
-    format!("[[removed]]\nkind = {kind:?}\nslug = {slug:?}\nsince = {since:?}\nreason = \"No longer exists\"\n\n")
+fn retired(kind: &str, slug: &str, since: &str) -> String {
+    format!("[[retired]]\nkind = {kind:?}\nslug = {slug:?}\nsince = {since:?}\nreason = \"No longer exists\"\n\n")
 }
 
 #[test]
@@ -57,7 +57,7 @@ fn derived_redirects_follow_foreign_keys_with_overlapping_owner_slugs() {
 }
 
 #[test]
-fn numeric_redirects_and_removals_fail_the_data_build() {
+fn numeric_redirects_and_retirements_fail_the_data_build() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
@@ -67,7 +67,7 @@ fn numeric_redirects_and_removals_fail_the_data_build() {
     for slug in ["0", "12345"] {
         for (row, row_kind) in [
             (redirect("items", slug, &target, "2026-10-01"), "redirect"),
-            (removed("items", slug, "2026-10-01"), "removed"),
+            (retired("items", slug, "2026-10-01"), "retired"),
         ] {
             std::fs::write(root.join("redirects.toml"), row).unwrap();
             let result = ddo_etl::tree::build_from_data(&root, &mut Connection::open_in_memory().unwrap());
@@ -79,7 +79,7 @@ fn numeric_redirects_and_removals_fail_the_data_build() {
     }
     std::fs::write(
         root.join("redirects.toml"),
-        redirect("items", "123-item", &target, "2026-10-01") + &removed("items", "123-gone", "2026-10-01"),
+        redirect("items", "123-item", &target, "2026-10-01") + &retired("items", "123-gone", "2026-10-01"),
     )
     .unwrap();
     ddo_etl::tree::build_from_data(&root, &mut Connection::open_in_memory().unwrap()).unwrap();
@@ -103,7 +103,7 @@ fn redirect_dates_and_kinds_reject_malformed_values() {
 }
 
 #[test]
-fn expiry_reports_redirects_and_removals_at_exact_boundaries() {
+fn expiry_reports_redirects_and_retirements_at_exact_boundaries() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
@@ -112,7 +112,7 @@ fn expiry_reports_redirects_and_removals_at_exact_boundaries() {
         original.query_row("SELECT slug FROM items ORDER BY slug LIMIT 1", [], |row| row.get(0)).unwrap();
     std::fs::write(
         root.join("redirects.toml"),
-        redirect("items", "former", &target, "2026-10-01") + &removed("items", "gone", "2026-10-01"),
+        redirect("items", "former", &target, "2026-10-01") + &retired("items", "gone", "2026-10-01"),
     )
     .unwrap();
     let mut built = Connection::open_in_memory().unwrap();
@@ -185,9 +185,9 @@ fn invalid_redirects_name_both_sides_and_collect_independent_violations() {
                 + &redirect("items", "former", "other-target", "2026-10-01"),
             vec!["duplicate", "former", target.as_str(), "other-target"],
         ),
-        (removed("items", &target, "2026-10-01"), vec![target.as_str(), "current", ".toml"]),
+        (retired("items", &target, "2026-10-01"), vec![target.as_str(), "current", ".toml"]),
         (
-            redirect("items", "former", &target, "2026-10-01") + &removed("items", "former", "2026-10-01"),
+            redirect("items", "former", &target, "2026-10-01") + &retired("items", "former", "2026-10-01"),
             vec!["former", target.as_str(), "both"],
         ),
         (
@@ -222,9 +222,9 @@ fn pruning_keeps_day_thirty_and_future_rows_and_uses_export_bytes() {
     let contents = redirect("items", "day-thirty", &target, "2026-10-02")
         + &redirect("items", "day-thirty-one", &target, "2026-10-01")
         + &redirect("items", "future", &target, "2026-11-02")
-        + &removed("items", "day-thirty", "2026-10-02")
-        + &removed("items", "day-thirty-one", "2026-10-01");
-    let contents = contents.replace("slug = \"day-thirty", "slug = \"removed-day-thirty");
+        + &retired("items", "day-thirty", "2026-10-02")
+        + &retired("items", "day-thirty-one", "2026-10-01");
+    let contents = contents.replace("slug = \"day-thirty", "slug = \"retired-day-thirty");
     std::fs::write(root.join("redirects.toml"), contents).unwrap();
     let before = ddo_etl::tree::data_file_bytes(&root).unwrap();
     let output = std::process::Command::new(env!("CARGO_BIN_EXE_ddo-etl"))
@@ -259,7 +259,7 @@ fn redirect_file_round_trips_authored_rows_and_derives_owned_ingredients() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let original = common::export_fixture_data(&fixtures, &root);
     let target: String = original.query_row("SELECT slug FROM crafting_systems WHERE id IN (SELECT system_id FROM crafting_ingredients) ORDER BY slug LIMIT 1", [], |row| row.get(0)).unwrap();
-    let contents = format!("[[redirect]]\nkind = \"crafting-systems\"\nfrom = \"former-system\"\nto = {target:?}\nsince = \"2026-10-01\"\n\n[[removed]]\nkind = \"items\"\nslug = \"removed-item\"\nsince = \"2026-10-01\"\nreason = \"Duplicate item\"\n");
+    let contents = format!("[[redirect]]\nkind = \"crafting-systems\"\nfrom = \"former-system\"\nto = {target:?}\nsince = \"2026-10-01\"\n\n[[retired]]\nkind = \"items\"\nslug = \"retired-item\"\nsince = \"2026-10-01\"\nreason = \"Duplicate item\"\n");
     std::fs::write(root.join("redirects.toml"), &contents).unwrap();
     let mut built = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(&root, &mut built).unwrap();

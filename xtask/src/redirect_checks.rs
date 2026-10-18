@@ -26,7 +26,7 @@ pub fn redirect_check_violations(
     };
     let current = current_slugs(db)?;
     let declared = db
-        .prepare("SELECT kind, from_slug FROM served_redirects UNION SELECT kind, slug FROM removed_slugs")?
+        .prepare("SELECT kind, from_slug FROM served_redirects UNION SELECT kind, slug FROM retired_slugs")?
         .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?)))?
         .collect::<rusqlite::Result<BTreeSet<_>>>()?;
     let mut exempt = declared.clone();
@@ -52,7 +52,7 @@ pub fn redirect_check_violations(
     }
     for (kind, slug) in current_slugs(deployed)?.difference(&current) {
         if !exempt.contains(&(kind.clone(), slug.clone())) {
-            violations.push(format!("{kind} {slug:?} was served by the deployed database but is missing; declare a redirect or removed row in data/redirects.toml"));
+            violations.push(format!("{kind} {slug:?} was served by the deployed database but is missing; declare a redirect or retired row in data/redirects.toml"));
         }
     }
     Ok(violations)

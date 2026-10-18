@@ -512,7 +512,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "redirects_agree_with_current_slugs",
-            "INSERT INTO removed_slugs (kind, slug, since, reason) VALUES ('items', '123456', '2026-10-01', 'Removed numeric slug');",
+            "INSERT INTO retired_slugs (kind, slug, since, reason) VALUES ('items', '123456', '2026-10-01', 'Retired numeric slug');",
             "123456",
         ),
         violation(

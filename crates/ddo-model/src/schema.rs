@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS redirects (
     PRIMARY KEY (kind, from_slug)
 );
 
-CREATE TABLE IF NOT EXISTS removed_slugs (
+CREATE TABLE IF NOT EXISTS retired_slugs (
     kind TEXT NOT NULL CHECK (kind {entity_kind}),
     slug TEXT NOT NULL CHECK (length(slug) > 0),
     since TEXT NOT NULL CHECK (since GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]' AND date(since, '+0 days') IS since),

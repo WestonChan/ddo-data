@@ -28,7 +28,7 @@ fn fixture_path() -> &'static PathBuf {
                 redirects.push_str(&format!("[[redirect]]\nkind = {:?}\nfrom = {:?}\nto = {slug:?}\nsince = \"2026-10-17\"\n\n", kind.as_str(), format!("former-{}-{slug}", kind.as_str())));
             }
         }
-        redirects.push_str("[[removed]]\nkind = \"items\"\nslug = \"removed-item\"\nsince = \"2026-10-17\"\nreason = \"Removed fixture\"\n");
+        redirects.push_str("[[retired]]\nkind = \"items\"\nslug = \"retired-item\"\nsince = \"2026-10-17\"\nreason = \"Retired fixture\"\n");
         std::fs::write(data_dir.join("redirects.toml"), redirects).unwrap();
         let path = root.join("fixture.db");
         let mut built = Connection::open(&path).unwrap();
@@ -85,7 +85,7 @@ async fn every_detail_route_accepts_slugs_ids_and_cached_query_preserving_redire
         checked += 1;
     }
     assert_eq!(checked, 16);
-    let (status, _, _) = response("/v1/items/removed-item").await;
+    let (status, _, _) = response("/v1/items/retired-item").await;
     assert_eq!(status, StatusCode::NOT_FOUND);
     let slug: String =
         db.query_row("SELECT slug FROM effects WHERE slug GLOB '[0-9]-*' LIMIT 1", [], |row| row.get(0)).unwrap();

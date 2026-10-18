@@ -25,7 +25,7 @@ fn owned_stance_changes_need_no_redirect() {
     let root = folder.path().join("data");
     exported_fixture(&root);
     let deployed = build(&root);
-    deployed.execute_batch("DROP VIEW served_redirects; DROP TABLE redirects; DROP TABLE removed_slugs;").unwrap();
+    deployed.execute_batch("DROP VIEW served_redirects; DROP TABLE redirects; DROP TABLE retired_slugs;").unwrap();
     let path = walkdir::WalkDir::new(root.join("characters"))
         .into_iter()
         .map(Result::unwrap)
@@ -62,14 +62,14 @@ fn owned_stance_changes_need_no_redirect() {
 fn schema_37_child_exemptions_follow_foreign_keys_not_slug_prefixes() {
     for true_owner in ["foo", "foo-bar"] {
         for declared_owner in ["foo", "foo-bar"] {
-            for disposition in ["redirect", "removed"] {
+            for disposition in ["redirect", "retired"] {
                 let folder = tempfile::tempdir().unwrap();
                 let root = folder.path().join("data");
                 exported_fixture(&root);
                 let tree_path = overlapping_owners::write_overlapping_owners(&root, true_owner);
                 let deployed = build(&root);
                 deployed
-                    .execute_batch("DROP VIEW served_redirects; DROP TABLE redirects; DROP TABLE removed_slugs;")
+                    .execute_batch("DROP VIEW served_redirects; DROP TABLE redirects; DROP TABLE retired_slugs;")
                     .unwrap();
                 for owner in ["foo", "foo-bar"] {
                     let directory = root.join(format!("packs/shared/crafting/{owner}"));
@@ -77,7 +77,7 @@ fn schema_37_child_exemptions_follow_foreign_keys_not_slug_prefixes() {
                     let mut system: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
                     system.as_table_mut().unwrap().remove("ingredient");
                     if owner == declared_owner {
-                        if disposition == "removed" {
+                        if disposition == "retired" {
                             std::fs::remove_dir_all(directory).unwrap();
                             continue;
                         }
@@ -92,7 +92,7 @@ fn schema_37_child_exemptions_follow_foreign_keys_not_slug_prefixes() {
                 }
                 let mut tree: toml::Value = toml::from_str(&std::fs::read_to_string(&tree_path).unwrap()).unwrap();
                 let enhancements = tree["enhancement"].as_array_mut().unwrap();
-                if disposition == "removed" {
+                if disposition == "retired" {
                     enhancements.retain(|enhancement| enhancement["name"].as_str() != Some(declared_owner));
                 }
                 for enhancement in enhancements {
@@ -109,7 +109,7 @@ fn schema_37_child_exemptions_follow_foreign_keys_not_slug_prefixes() {
                     if disposition == "redirect" {
                         format!("[[redirect]]\nkind = {kind:?}\nfrom = {declared_owner:?}\nto = \"renamed-{declared_owner}\"\nsince = '2026-10-01'\n")
                     } else {
-                        format!("[[removed]]\nkind = {kind:?}\nslug = {declared_owner:?}\nsince = '2026-10-01'\nreason = 'Removed owner'\n")
+                        format!("[[retired]]\nkind = {kind:?}\nslug = {declared_owner:?}\nsince = '2026-10-01'\nreason = 'Retired owner'\n")
                     }
                 }).join("\n");
                 std::fs::write(root.join("redirects.toml"), declarations).unwrap();
@@ -134,7 +134,7 @@ fn schema_37_child_exemptions_follow_foreign_keys_not_slug_prefixes() {
 }
 
 #[test]
-fn vanished_slug_requires_a_redirect_or_removal_against_schema_37() {
+fn vanished_slug_requires_a_redirect_or_retirement_against_schema_37() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");
     exported_fixture(&root);
@@ -144,7 +144,7 @@ fn vanished_slug_requires_a_redirect_or_removal_against_schema_37() {
     let contents = "name = 'Vanished fixture'\nslot = 'Feet'\nitem_category = 'Clothing'\nwiki_url = 'https://ddowiki.com/page/Item:Vanished_fixture'\nminimum_level = 1\n";
     std::fs::write(&old_file, contents).unwrap();
     let deployed = build(&root);
-    deployed.execute_batch("DROP VIEW served_redirects; DROP TABLE redirects; DROP TABLE removed_slugs;").unwrap();
+    deployed.execute_batch("DROP VIEW served_redirects; DROP TABLE redirects; DROP TABLE retired_slugs;").unwrap();
     std::fs::remove_file(old_file).unwrap();
     let current_file = gear.join("current-fixture.toml");
     std::fs::write(&current_file, contents.replace("Vanished fixture", "Current fixture")).unwrap();
@@ -188,7 +188,7 @@ fn vanished_slug_requires_a_redirect_or_removal_against_schema_37() {
     std::fs::remove_file(current_file).unwrap();
     std::fs::write(
         root.join("redirects.toml"),
-        "[[removed]]\nkind = 'items'\nslug = 'vanished-fixture'\nsince = '2026-10-01'\nreason = 'Removed fixture'\n",
+        "[[retired]]\nkind = 'items'\nslug = 'vanished-fixture'\nsince = '2026-10-01'\nreason = 'Retired fixture'\n",
     )
     .unwrap();
     let current = build(&root);

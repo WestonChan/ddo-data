@@ -62,7 +62,7 @@
       "type": "object",
       "x-table": "redirects"
     },
-    "RemovedSlug": {
+    "RetiredSlug": {
       "additionalProperties": false,
       "properties": {
         "kind": {
@@ -85,7 +85,7 @@
         "reason"
       ],
       "type": "object",
-      "x-table": "removed_slugs"
+      "x-table": "retired_slugs"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -98,10 +98,10 @@
       },
       "type": "array"
     },
-    "removed": {
+    "retired": {
       "default": [],
       "items": {
-        "$ref": "#/$defs/RemovedSlug"
+        "$ref": "#/$defs/RetiredSlug"
       },
       "type": "array"
     }

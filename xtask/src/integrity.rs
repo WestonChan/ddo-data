@@ -100,7 +100,7 @@ impl IntegrityCheck {
 pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     IntegrityCheck::hard(
         "redirects_agree_with_current_slugs",
-        "redirects target current slugs without collisions, chains or removed current entities",
+        "redirects target current slugs without collisions, chains or retired current entities",
         OffenderQuery::Built(redirect_findings),
     ),
     IntegrityCheck::hard(
@@ -1740,7 +1740,7 @@ fn empty_tables(db: &Connection, options: &IntegrityOptions) -> Result<Findings>
     let table_names = statement.query_map([], |row| row.get::<_, String>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
     let mut offenders = Vec::new();
     for table_name in table_names {
-        if matches!(table_name.as_str(), "redirects" | "removed_slugs") {
+        if matches!(table_name.as_str(), "redirects" | "retired_slugs") {
             continue;
         }
         let row_count: i64 = db.query_row(&format!("SELECT COUNT(*) FROM \"{table_name}\""), [], |row| row.get(0))?;

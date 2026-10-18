@@ -721,7 +721,7 @@ pub(super) const FIXED_DATA_FILES: &[(&str, &str)] = &[
     ("item_materials", "effects/item-materials.toml"),
     ("optional_buffs", "characters/optional-buffs.toml"),
     ("redirects", "redirects.toml"),
-    ("removed_slugs", "redirects.toml"),
+    ("retired_slugs", "redirects.toml"),
     ("source_aliases", "upstream/source-aliases.toml"),
     ("stances", "characters/stances.toml"),
     ("triggers", "effects/triggers.toml"),

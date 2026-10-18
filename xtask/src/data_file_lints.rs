@@ -54,7 +54,7 @@ pub fn deny_generic_file_mappers(root: &Path) -> anyhow::Result<()> {
                     "entity_notes",
                     "entity_identity",
                     "redirects",
-                    "removed_slugs",
+                    "retired_slugs",
                 ] {
                     let inserted = sql.contains(&format!("insert into {table} ("));
                     let selected = sql
@@ -116,7 +116,7 @@ mod tests {
             "entity_notes",
             "entity_identity",
             "redirects",
-            "removed_slugs",
+            "retired_slugs",
         ] {
             for sql in [
                 format!("INSERT INTO {table} (name, field) VALUES (?1, ?2)"),
