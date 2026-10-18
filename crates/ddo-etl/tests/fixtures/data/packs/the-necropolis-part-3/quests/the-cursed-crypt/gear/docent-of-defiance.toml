@@ -6,7 +6,7 @@ icon = "Docent_1a"
 item_category = "Armor"
 item_type = "Docent"
 material = "Gem"
-minimum_level = 10
+minimum_level = 11
 race_required = "Construct"
 slot = "Body"
 
@@ -33,6 +33,14 @@ value = 20
 
 [[effect]]
 name = "Hidden Effect - Cursed Defiance"
+
+[[ddobuilder_correction]]
+kind = "item"
+field = "minimum_level"
+upstream = 10
+reason = "Test correction of an item's level."
+url = "https://ddowiki.com/page/Item:Docent_of_Defiance"
+read = "2026-09-29"
 
 [[source]]
 chest = "end chest"

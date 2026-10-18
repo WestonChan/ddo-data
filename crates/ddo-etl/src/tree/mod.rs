@@ -438,16 +438,8 @@ mod tests {
     #[test]
     fn fixture_export_round_trips_every_table_and_is_idempotent() {
         let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-        let wiki = WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
         let mut baseline = Connection::open_in_memory().unwrap();
-        crate::build::build_database(
-            &fixtures.join("DataFiles"),
-            &wiki,
-            &Corrections::from_dir(&fixtures.join("data-corrections")).unwrap(),
-            &mut baseline,
-            &DatasetVersion { upstream_sha: "fixture".to_string(), built_at: "2026-10-06T00:00:00Z".to_string() },
-        )
-        .unwrap();
+        build_from_data(&fixtures.join("data"), &mut baseline).unwrap();
         let root = std::env::temp_dir().join(format!("ddo-etl-data-roundtrip-{}", std::process::id()));
         std::fs::create_dir_all(&root).unwrap();
         let stale_file = root.join("packs/unsourced/gear/obsolete-item.toml");
@@ -576,6 +568,19 @@ mod tests {
             }
         }
         crate::icons::place_enhancement_icons_beside_trees(&root).unwrap();
+        let png_bytes = |folder: &Path| -> BTreeMap<std::path::PathBuf, Vec<u8>> {
+            walkdir::WalkDir::new(folder)
+                .into_iter()
+                .map(Result::unwrap)
+                .filter(|entry| {
+                    entry.file_type().is_file() && entry.path().extension().is_some_and(|extension| extension == "png")
+                })
+                .map(|entry| {
+                    (entry.path().strip_prefix(folder).unwrap().to_path_buf(), std::fs::read(entry.path()).unwrap())
+                })
+                .collect()
+        };
+        assert_eq!(png_bytes(&root), png_bytes(&fixtures.join("data")));
         let missing_icon = root.join("icons/items/Quarterstaff_6a.png");
         let icon_bytes = std::fs::read(&missing_icon).unwrap();
         std::fs::remove_file(&missing_icon).unwrap();
@@ -990,6 +995,7 @@ mod tests {
         std::fs::write(&corrected_item, altered_note).unwrap();
         let corrections = Corrections::from_data(&root).unwrap();
         let mut stale_database = Connection::open_in_memory().unwrap();
+        let wiki = WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
         let stale_report = crate::build::build_database(
             &fixtures.join("DataFiles"),
             &wiki,

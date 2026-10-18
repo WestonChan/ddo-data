@@ -6,12 +6,12 @@ verbose_name_template = "Riposte +{1}"
 
 [[bonus]]
 amount_from = 1
-rounding = "down"
-scale = 1.0
+rounding = "up"
+scale = 0.5
 target = "Armor Class"
 
 [[bonus]]
 amount_from = 1
 rounding = "down"
-scale = 1.0
+scale = 0.5
 target = "Saving Throws"

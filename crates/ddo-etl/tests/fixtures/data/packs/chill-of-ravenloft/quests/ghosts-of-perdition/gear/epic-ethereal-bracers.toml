@@ -37,6 +37,33 @@ value2 = 14
 [[effect]]
 name = "Feather Falling"
 
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "scale"
+upstream = 1.0
+reason = "Riposte grants half the listed rank to Armor Class."
+url = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+qualifier = "Armor Class / Insight"
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "rounding"
+upstream = "down"
+reason = "Riposte rounds Armor Class upward."
+url = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+qualifier = "Armor Class / Insight"
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "scale"
+upstream = 1.0
+reason = "Riposte grants half the listed rank to Saving Throws."
+url = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+qualifier = "Saving Throws / Insight"
+
 [[socket]]
 slot = "crafting: upgradeable - primary augment"
 

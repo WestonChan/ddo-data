@@ -5,10 +5,18 @@ difficulties = [
     "elite",
     "reaper",
 ]
-favor = 5
+favor = 6
 is_raid = true
 pack = "Vault of Night"
 patron = "House Kundarak"
+
+[[ddobuilder_correction]]
+kind = "quest"
+field = "favor"
+upstream = 5
+reason = "Test correction of a quest's favor."
+url = "https://ddowiki.com/page/Plane_of_Night"
+read = "2026-09-29"
 
 [[run]]
 tier = "heroic"

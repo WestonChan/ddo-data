@@ -102,13 +102,21 @@ req_type = "ClassMinLevel"
 value = 1
 
 [[enhancement.selection]]
-name = "Attack Boost"
+name = "Attack Boost Reviewed"
 cooldown_seconds = 30
 cost_per_rank = [1]
 description = "Activate to gain +[4/6/8] Action Boost bonus to hit and damage for 20 seconds."
 duration_seconds = 20
 icon = "KenseiAttackBoost"
 is_clickie = true
+
+[[enhancement.selection.ddobuilder_correction]]
+kind = "enhancement"
+field = "name"
+upstream = "Attack Boost"
+reason = "Exercise the selection rename contract."
+url = "https://ddowiki.com/page/Test"
+read = "2026-10-18"
 
 [[enhancement.selection.attack]]
 name = "Kensei: Attack Boost"

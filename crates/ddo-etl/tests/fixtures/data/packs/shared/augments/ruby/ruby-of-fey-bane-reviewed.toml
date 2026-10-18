@@ -1,4 +1,4 @@
-name = "Ruby of Fey Bane"
+name = "Ruby of Fey Bane Reviewed"
 description = """
 Additional 2d8 Bane Damage to Fey creatures on hit.
 Drops in U48 Quest: Wake me up Inside"""
@@ -33,6 +33,15 @@ targets = ["All"]
 [[modifier.requirement]]
 items = ["Fey"]
 req_type = "Stance"
+
+[[ddobuilder_correction]]
+kind = "augment"
+field = "name"
+upstream = "Ruby of Fey Bane"
+reason = "Exercise the family-qualified rename contract."
+url = "https://ddowiki.com/page/Test"
+read = "2026-10-18"
+qualifier = 'family "Ruby"'
 
 [[slot]]
 slot = "red"
