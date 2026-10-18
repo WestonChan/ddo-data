@@ -1,15 +1,13 @@
-use crate::entity_slugs::EntityPath;
+use crate::entity_slugs::{resolve_entity_slug, EntityPath};
 mod records;
 
 use crate::db::{convert_to_booleans, like_escaped_text, paged_query, paged_table_json, TableListSource, WhereClause};
 use crate::error::ApiError;
-use crate::query::{
-    declare_list_parameters, declare_query_parameters, repeated_integer_values, repeated_key_values, ApiQuery,
-};
+use crate::query::{declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery};
 use crate::state::AppState;
 use axum::extract::State;
 use axum::Json;
-use ddo_model::enums::{EquipmentSlot, ItemCategory};
+use ddo_model::enums::{EntityKind, EquipmentSlot, ItemCategory};
 use rusqlite::Connection;
 use serde_json::Value;
 use utoipa_axum::router::OpenApiRouter;
@@ -41,14 +39,14 @@ declare_query_parameters! {
         pub set_match: Option<String>,
         pub raid: Option<bool>,
         pub rare: Option<bool>,
-        #[serde(default, deserialize_with = "repeated_integer_values")]
-        pub quest: Vec<i64>,
+        #[serde(default, deserialize_with = "repeated_key_values")]
+        pub quest: Vec<String>,
         pub quest_match: Option<String>,
-        #[serde(default, deserialize_with = "repeated_integer_values")]
-        pub quest_chain: Vec<i64>,
+        #[serde(default, deserialize_with = "repeated_key_values")]
+        pub quest_chain: Vec<String>,
         pub quest_chain_match: Option<String>,
-        #[serde(default, deserialize_with = "repeated_integer_values")]
-        pub saga: Vec<i64>,
+        #[serde(default, deserialize_with = "repeated_key_values")]
+        pub saga: Vec<String>,
         pub saga_match: Option<String>,
         #[serde(default, deserialize_with = "repeated_key_values")]
         pub bonus: Vec<String>,
@@ -60,6 +58,22 @@ declare_query_parameters! {
     repeatable: ["slot", "category", "pack", "set", "quest", "quest_chain", "saga", "bonus"]
     matchable: ["pack", "set", "quest", "quest_chain", "saga", "bonus"]
     single_value_match: ["slot", "category"]
+}
+
+fn entity_filter_ids(
+    db: &Connection,
+    kind: EntityKind,
+    parameter: &str,
+    values: &[String],
+) -> Result<Vec<i64>, ApiError> {
+    values
+        .iter()
+        .map(|value| {
+            resolve_entity_slug(db, kind, value)?
+                .map(|entity| entity.id)
+                .ok_or_else(|| ApiError::BadRequest(format!("unknown {parameter} {value:?}")))
+        })
+        .collect()
 }
 
 const ITEM_LIST_COLUMNS: &str =
@@ -134,11 +148,11 @@ declare_list_parameters!(
         ("set_match" = Option<String>, Query, description = "Use `all` to require every named set, or `any` by default."),
         ("raid" = Option<bool>, Query, description = "Use true to keep items from raid quests."),
         ("rare" = Option<bool>, Query, description = "Use true to keep rare loot from quests or packs."),
-        ("quest" = Option<Vec<i64>>, Query, style = Form, explode = true, description = "Repeat quest ids from /v1/quests to match their item drops."),
+        ("quest" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat quest slugs or numeric ids from /v1/quests to match their item drops."),
         ("quest_match" = Option<String>, Query, description = "Use `all` to require every quest, or `any` by default."),
-        ("quest_chain" = Option<Vec<i64>>, Query, style = Form, explode = true, description = "Repeat quest chain ids to match end rewards."),
+        ("quest_chain" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat quest chain slugs or numeric ids to match end rewards."),
         ("quest_chain_match" = Option<String>, Query, description = "Use `all` to require every quest chain, or `any` by default."),
-        ("saga" = Option<Vec<i64>>, Query, style = Form, explode = true, description = "Repeat saga ids to match end rewards."),
+        ("saga" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat saga slugs or numeric ids to match end rewards."),
         ("saga_match" = Option<String>, Query, description = "Use `all` to require every saga, or `any` by default."),
         ("bonus" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat effect, ladder or stat names; `Constitution:Insight` narrows by type, and `Constitution:Insightful` also works."),
         ("bonus_match" = Option<String>, Query, description = "Use `all` to require every bonus, or `any` by default."),
@@ -226,17 +240,17 @@ async fn items(
             where_clause.add_repeated_filter(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest' AND d.quest_id IN (?))",
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest' AND d.quest_id = ?)",
-                &filters.quest, filters.quest_match.as_deref(),
+                &entity_filter_ids(db, EntityKind::Quest, "quest", &filters.quest)?, filters.quest_match.as_deref(),
             );
             where_clause.add_repeated_filter(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest_chain' AND d.chain_id IN (?))",
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest_chain' AND d.chain_id = ?)",
-                &filters.quest_chain, filters.quest_chain_match.as_deref(),
+                &entity_filter_ids(db, EntityKind::QuestChain, "quest_chain", &filters.quest_chain)?, filters.quest_chain_match.as_deref(),
             );
             where_clause.add_repeated_filter(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id IN (?))",
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id = ?)",
-                &filters.saga, filters.saga_match.as_deref(),
+                &entity_filter_ids(db, EntityKind::Saga, "saga", &filters.saga)?, filters.saga_match.as_deref(),
             );
             let bonus_conditions = filters.bonus.iter().map(|name| {
                 bonus_match_sql(db, name, filters.include_set_bonuses == Some(true))

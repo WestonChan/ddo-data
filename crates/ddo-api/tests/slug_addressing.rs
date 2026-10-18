@@ -21,8 +21,12 @@ fn fixture_path() -> &'static PathBuf {
         let original = common::export_fixture_data(&fixtures, &data_dir);
         let mut redirects = String::new();
         for kind in EntityKind::ALL {
-            let slug: String = original.query_row(&format!("SELECT slug FROM {} ORDER BY slug LIMIT 1", kind.table_name()), [], |row| row.get(0)).unwrap();
-            redirects.push_str(&format!("[[redirect]]\nkind = {:?}\nfrom = {:?}\nto = {slug:?}\nsince = \"2026-10-17\"\n\n", kind.as_str(), format!("former-{}-{slug}", kind.as_str())));
+            let limit = if matches!(kind, EntityKind::Quest | EntityKind::QuestChain | EntityKind::Saga) { "" } else { " LIMIT 1" };
+            let mut statement = original.prepare(&format!("SELECT slug FROM {} ORDER BY slug{limit}", kind.table_name())).unwrap();
+            for slug in statement.query_map([], |row| row.get::<_, String>(0)).unwrap() {
+                let slug = slug.unwrap();
+                redirects.push_str(&format!("[[redirect]]\nkind = {:?}\nfrom = {:?}\nto = {slug:?}\nsince = \"2026-10-17\"\n\n", kind.as_str(), format!("former-{}-{slug}", kind.as_str())));
+            }
         }
         redirects.push_str("[[removed]]\nkind = \"items\"\nslug = \"removed-item\"\nsince = \"2026-10-17\"\nreason = \"Removed fixture\"\n");
         std::fs::write(data_dir.join("redirects.toml"), redirects).unwrap();
@@ -88,4 +92,57 @@ async fn every_detail_route_accepts_slugs_ids_and_cached_query_preserving_redire
     let (status, _, body) = response(&format!("/v1/effects/{slug}")).await;
     assert_eq!(status, StatusCode::OK);
     assert_eq!(body["slug"], slug);
+}
+
+#[tokio::test]
+async fn item_source_filters_accept_current_former_and_numeric_values_under_any_and_all() {
+    let db = Connection::open(fixture_path()).unwrap();
+    for (parameter, kind, column) in [
+        ("quest", EntityKind::Quest, "quest_id"),
+        ("quest_chain", EntityKind::QuestChain, "chain_id"),
+        ("saga", EntityKind::Saga, "saga_id"),
+    ] {
+        let mut statement = db.prepare(&format!("SELECT id, slug FROM {} e WHERE EXISTS (SELECT 1 FROM sources s WHERE s.{column} = e.id AND s.item_id IS NOT NULL) ORDER BY slug LIMIT 2", kind.table_name())).unwrap();
+        let entities = statement
+            .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert!(!entities.is_empty(), "{parameter}");
+        for count in 1..=entities.len() {
+            for match_kind in ["any", "all"] {
+                let mut expected = None;
+                for spelling in ["id", "slug", "former"] {
+                    let parameters = entities[..count]
+                        .iter()
+                        .map(|(id, slug)| {
+                            let value = match spelling {
+                                "id" => id.to_string(),
+                                "slug" => slug.clone(),
+                                _ => format!("former-{}-{slug}", kind.as_str()),
+                            };
+                            format!("{parameter}={value}")
+                        })
+                        .collect::<Vec<_>>()
+                        .join("&");
+                    let (status, _, body) =
+                        response(&format!("/v1/items?{parameters}&{parameter}_match={match_kind}&limit=10000")).await;
+                    assert_eq!(status, StatusCode::OK, "{parameter} {spelling}: {body}");
+                    if count == 1 {
+                        assert!(body["total"].as_u64().unwrap() > 0, "{parameter}");
+                    }
+                    if let Some(expected) = &expected {
+                        assert_eq!(&body, expected);
+                    } else {
+                        expected = Some(body);
+                    }
+                }
+            }
+        }
+        for missing in ["unknown-slug", "999999999999999999999999999999"] {
+            let (status, _, body) = response(&format!("/v1/items?{parameter}={missing}")).await;
+            assert_eq!(status, StatusCode::BAD_REQUEST);
+            assert!(body["error"].as_str().unwrap().contains(missing));
+        }
+    }
 }

@@ -224,14 +224,6 @@ pub(crate) fn repeated_key_values<'de, D: Deserializer<'de>>(deserializer: D) ->
         .collect())
 }
 
-pub(crate) fn repeated_integer_values<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Vec<i64>, D::Error> {
-    let joined_values = String::deserialize(deserializer)?;
-    joined_values
-        .split(REPEATED_VALUE_SEPARATOR)
-        .map(|value| value.parse::<i64>().map_err(serde::de::Error::custom))
-        .collect()
-}
-
 fn repeated_sort_values<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Vec<String>, D::Error> {
     let joined_values = String::deserialize(deserializer)?;
     Ok(joined_values.split(REPEATED_VALUE_SEPARATOR).map(str::to_string).collect())

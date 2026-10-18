@@ -685,7 +685,7 @@ async fn every_repeated_source_filter_uses_union_or_intersection() {
                 rusqlite::types::Value::Integer(number) => number.to_string(),
                 other => panic!("unexpected filter value {other:?}"),
             }).collect();
-        if values.len() == 1 { values.push("999999".to_string()); }
+        if values.len() == 1 { values.push(values[0].clone()); }
         assert_eq!(values.len(), 2, "{filter} fixture needs two values");
         let single_paths: Vec<String> = values.iter().map(|value| format!("/v1/items?{}&limit=10000",
             serde_urlencoded::to_string([(filter, value)]).unwrap())).collect();
@@ -1246,7 +1246,8 @@ async fn items_filter_by_the_quest_quest_chain_or_saga_that_drops_or_rewards_the
         "a chest drop and an end reward of the quest both count"
     );
     let (status, _, unknown_quest) = get("/v1/items?quest=999999").await;
-    assert_eq!((status, &unknown_quest["total"]), (StatusCode::OK, &serde_json::json!(0)), "as an unknown pack is");
+    assert_eq!(status, StatusCode::BAD_REQUEST);
+    assert!(unknown_quest["error"].as_str().unwrap().contains("999999"));
     let (status, _, malformed) = get("/v1/items?quest=perdition").await;
     assert_eq!(status, StatusCode::BAD_REQUEST);
     assert!(malformed["error"].as_str().unwrap().contains("quest"), "{malformed}");
@@ -2462,7 +2463,9 @@ fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
         ("set", _) => "Cooking%20By%20the%20Book",
         ("kind", _) => "stat",
         ("bonus_match" | "pack_match" | "quest_match" | "quest_chain_match" | "saga_match" | "set_match", _) => "any",
-        ("quest" | "quest_chain" | "saga", _) => "1",
+        ("quest", _) => "book-burning",
+        ("quest_chain", _) => "the-lost-seekers",
+        ("saga", _) => "masterminds-of-sharn",
         (_, "boolean") => "true",
         (_, "integer" | "number") => "1",
         _ => "x",
