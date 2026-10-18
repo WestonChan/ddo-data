@@ -671,7 +671,14 @@ fn item_ids_in_page(page: &Value) -> std::collections::BTreeSet<i64> {
 
 #[tokio::test]
 async fn every_repeated_source_filter_uses_union_or_intersection() {
-    let db = rusqlite::Connection::open(fixture_db_path()).unwrap();
+    let mut wiki = fixture_wiki();
+    let mut second_chain = wiki.quest_chains[0].clone();
+    second_chain.name = "Second Fixture Chain".to_string();
+    second_chain.rewards.truncate(1);
+    wiki.quest_chains.push(second_chain);
+    let state = fixture_state_with_wiki(&wiki, "source-intersection");
+    let mut db = rusqlite::Connection::open_in_memory().unwrap();
+    build_fixture_database(&mut db, &wiki);
     for (filter, sql) in [
         ("pack", "SELECT DISTINCT ap.name FROM loot_adventure_packs lp JOIN adventure_packs ap ON ap.id = lp.pack_id ORDER BY ap.name LIMIT 2"),
         ("quest", "SELECT DISTINCT quest_id FROM sources WHERE kind = 'quest' AND quest_id IS NOT NULL ORDER BY quest_id LIMIT 2"),
@@ -679,26 +686,26 @@ async fn every_repeated_source_filter_uses_union_or_intersection() {
         ("saga", "SELECT DISTINCT saga_id FROM sources WHERE kind = 'saga' AND saga_id IS NOT NULL ORDER BY saga_id LIMIT 2"),
     ] {
         let mut statement = db.prepare(sql).unwrap();
-        let mut values: Vec<String> = statement.query_map([], |row| row.get::<_, rusqlite::types::Value>(0)).unwrap()
+        let values: Vec<String> = statement.query_map([], |row| row.get::<_, rusqlite::types::Value>(0)).unwrap()
             .map(|result| match result.unwrap() {
                 rusqlite::types::Value::Text(text) => text,
                 rusqlite::types::Value::Integer(number) => number.to_string(),
                 other => panic!("unexpected filter value {other:?}"),
             }).collect();
-        if values.len() == 1 { values.push(values[0].clone()); }
         assert_eq!(values.len(), 2, "{filter} fixture needs two values");
         let single_paths: Vec<String> = values.iter().map(|value| format!("/v1/items?{}&limit=10000",
             serde_urlencoded::to_string([(filter, value)]).unwrap())).collect();
-        let (_, _, first) = get(&single_paths[0]).await;
-        let (_, _, second) = get(&single_paths[1]).await;
+        let (_, _, first) = get_from(state.clone(), &single_paths[0]).await;
+        let (_, _, second) = get_from(state.clone(), &single_paths[1]).await;
+        assert_ne!(item_ids_in_page(&first), item_ids_in_page(&second), "{filter} needs distinct result sets");
         let base_query = serde_urlencoded::to_string([(filter, &values[0]), (filter, &values[1])]).unwrap();
-        let (status, _, any) = get(&format!("/v1/items?{base_query}&limit=10000")).await;
+        let (status, _, any) = get_from(state.clone(), &format!("/v1/items?{base_query}&limit=10000")).await;
         assert_eq!(status, StatusCode::OK, "{filter}: {any}");
-        let (status, _, all) = get(&format!("/v1/items?{base_query}&{filter}_match=all&limit=10000")).await;
+        let (status, _, all) = get_from(state.clone(), &format!("/v1/items?{base_query}&{filter}_match=all&limit=10000")).await;
         assert_eq!(status, StatusCode::OK, "{filter}: {all}");
         assert_eq!(item_ids_in_page(&any), item_ids_in_page(&first).union(&item_ids_in_page(&second)).copied().collect(), "{filter} any");
         assert_eq!(item_ids_in_page(&all), item_ids_in_page(&first).intersection(&item_ids_in_page(&second)).copied().collect(), "{filter} all");
-        let (status, _, invalid) = get(&format!("/v1/items?{filter}_match=neither")).await;
+        let (status, _, invalid) = get_from(state.clone(), &format!("/v1/items?{filter}_match=neither")).await;
         assert_eq!(status, StatusCode::BAD_REQUEST, "{filter}: {invalid}");
     }
 }
