@@ -417,19 +417,8 @@ mod tests {
 
     fn fixture_database() -> Connection {
         let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures");
-        let wiki = ddo_etl::wiki::WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
         let mut db = Connection::open_in_memory().unwrap();
-        ddo_etl::build::build_database(
-            &fixtures.join("DataFiles"),
-            &wiki,
-            &ddo_etl::corrections::Corrections::default(),
-            &mut db,
-            &ddo_model::DatasetVersion {
-                upstream_sha: "fixture".to_string(),
-                built_at: "2026-10-08T00:00:00Z".to_string(),
-            },
-        )
-        .unwrap();
+        ddo_etl::tree::build_from_data(&fixtures.join("data"), &mut db).unwrap();
         db
     }
 

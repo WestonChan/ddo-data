@@ -18,7 +18,7 @@ fn fixture_path() -> &'static PathBuf {
         std::fs::create_dir_all(&root).unwrap();
         let data_dir = root.join("data");
         let fixtures = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures");
-        let original = common::export_fixture_data(&fixtures, &data_dir);
+        let original = common::copy_fixture_data(&fixtures, &data_dir);
         let mut redirects = String::new();
         for kind in EntityKind::ALL {
             let limit = if matches!(kind, EntityKind::Quest | EntityKind::QuestChain | EntityKind::Saga) { "" } else { " LIMIT 1" };

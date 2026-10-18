@@ -59,21 +59,10 @@ mod tests {
     #[test]
     fn dump_cache_downloads_once_and_validates_the_dataset() {
         let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures");
-        let wiki = ddo_etl::wiki::WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
         let scratch = tempfile::tempdir().unwrap();
         let database = scratch.path().join("fixture.sqlite");
         let mut db = Connection::open(&database).unwrap();
-        ddo_etl::build::build_database(
-            &fixtures.join("DataFiles"),
-            &wiki,
-            &ddo_etl::corrections::Corrections::default(),
-            &mut db,
-            &ddo_model::DatasetVersion {
-                upstream_sha: "fixture".to_string(),
-                built_at: "2026-10-08T00:00:00Z".to_string(),
-            },
-        )
-        .unwrap();
+        ddo_etl::tree::build_from_data(&fixtures.join("data"), &mut db).unwrap();
         drop(db);
         use http_body_util::BodyExt;
         use tower::ServiceExt;

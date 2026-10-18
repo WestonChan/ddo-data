@@ -1,14 +1,11 @@
-use ddo_etl::corrections::Corrections;
-use ddo_etl::wiki::WikiOverrides;
 use rusqlite::Connection;
 use std::path::Path;
-use xtask::dataset::build_database_file;
 use xtask::diff_db::{compare_tables, diff_databases, diff_databases_by_slug, DiffReport};
 
 fn fixture_database(path: &Path) {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures");
-    let wiki = WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
-    build_database_file(&fixtures.join("DataFiles"), &wiki, &Corrections::default(), path).unwrap();
+    let mut db = rusqlite::Connection::open(path).unwrap();
+    ddo_etl::tree::build_from_data(&fixtures.join("data"), &mut db).unwrap();
 }
 
 #[test]
@@ -21,7 +18,10 @@ fn allow_list_written_from_a_report_passes_its_check() {
     fixture_database(&second);
     Connection::open(&second)
         .unwrap()
-        .execute("UPDATE items SET description = 'Edited' WHERE id = (SELECT MIN(id) FROM items)", [])
+        .execute(
+            "UPDATE items SET description = 'Edited' WHERE id = (SELECT MIN(id) FROM items WHERE is_legacy = 0)",
+            [],
+        )
         .unwrap();
     let mut report = diff_databases_by_slug(&first, &second).unwrap();
     assert!(!report.table_differences.is_empty());
@@ -83,7 +83,10 @@ fn a_changed_cell_names_its_table() {
     std::fs::copy(&first, &second).unwrap();
     Connection::open(&second)
         .unwrap()
-        .execute("UPDATE items SET description = 'Edited' WHERE id = (SELECT MIN(id) FROM items)", [])
+        .execute(
+            "UPDATE items SET description = 'Edited' WHERE id = (SELECT MIN(id) FROM items WHERE is_legacy = 0)",
+            [],
+        )
         .unwrap();
 
     let mut report = DiffReport::default();
@@ -126,7 +129,10 @@ fn a_changed_served_field_names_its_route() {
     std::fs::copy(&first, &second).unwrap();
     Connection::open(&second)
         .unwrap()
-        .execute("UPDATE items SET description = 'Edited' WHERE id = (SELECT MIN(id) FROM items)", [])
+        .execute(
+            "UPDATE items SET description = 'Edited' WHERE id = (SELECT MIN(id) FROM items WHERE is_legacy = 0)",
+            [],
+        )
         .unwrap();
 
     let report = diff_databases(&first, &second).unwrap();
@@ -163,7 +169,10 @@ fn by_slug_still_reports_a_changed_served_field() {
     std::fs::copy(&first, &second).unwrap();
     Connection::open(&second)
         .unwrap()
-        .execute("UPDATE items SET description = 'Edited' WHERE id = (SELECT MIN(id) FROM items)", [])
+        .execute(
+            "UPDATE items SET description = 'Edited' WHERE id = (SELECT MIN(id) FROM items WHERE is_legacy = 0)",
+            [],
+        )
         .unwrap();
 
     let report = diff_databases_by_slug(&first, &second).unwrap();

@@ -16,7 +16,7 @@ fn build(root: &Path) -> Connection {
 
 fn exported_fixture(root: &Path) {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures");
-    common::export_fixture_data(&fixtures, root);
+    common::copy_fixture_data(&fixtures, root);
 }
 
 #[test]

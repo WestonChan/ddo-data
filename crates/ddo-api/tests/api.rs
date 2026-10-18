@@ -4,33 +4,20 @@ use axum::http::{header, Request, StatusCode};
 use ddo_api::drop_validation::{detail_has_unique_drop_locations, source_pack_names};
 use ddo_api::schema_validation::response_matches_schema;
 use ddo_api::{app, AppState};
-use ddo_model::DatasetVersion;
 use http_body_util::BodyExt;
 use rusqlite::trace::{TraceEvent, TraceEventCodes};
 use serde_json::Value;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::OnceLock;
 use tower::ServiceExt;
 
-fn fixture_data_files_dir() -> PathBuf {
-    PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures/DataFiles")
+fn fixture_data_dir() -> PathBuf {
+    PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures/data")
 }
 
-fn fixture_wiki() -> ddo_etl::wiki::WikiOverrides {
-    ddo_etl::wiki::WikiOverrides::from_dir(&fixture_data_files_dir().parent().unwrap().join("wiki")).unwrap()
-}
-
-fn build_fixture_database(db: &mut rusqlite::Connection, wiki: &ddo_etl::wiki::WikiOverrides) {
-    let dataset_version =
-        DatasetVersion { upstream_sha: "fixture-sha".into(), built_at: "2026-09-21T00:00:00Z".into() };
-    let fixtures = fixture_data_files_dir().parent().unwrap().to_path_buf();
-    let mut corrections = ddo_etl::corrections::Corrections::from_dir(&fixtures.join("corrections")).unwrap();
-    corrections
-        .entries
-        .extend(ddo_etl::corrections::Corrections::from_dir(&fixtures.join("data-corrections")).unwrap().entries);
-    ddo_etl::build::build_database(&fixture_data_files_dir(), wiki, &corrections, db, &dataset_version)
-        .expect("fixture build");
+fn build_fixture_database(db: &mut rusqlite::Connection) {
+    ddo_etl::tree::build_from_data(&fixture_data_dir(), db).expect("fixture build");
 }
 
 fn fixture_db_path() -> &'static PathBuf {
@@ -39,7 +26,7 @@ fn fixture_db_path() -> &'static PathBuf {
         let path = std::env::temp_dir().join(format!("ddo-api-test-{}.db", std::process::id()));
         let _ = std::fs::remove_file(&path);
         let mut db = rusqlite::Connection::open(&path).unwrap();
-        build_fixture_database(&mut db, &fixture_wiki());
+        build_fixture_database(&mut db);
         path
     })
 }
@@ -48,13 +35,20 @@ fn fixture_state() -> AppState {
     AppState::open(fixture_db_path()).expect("state opens")
 }
 
-fn fixture_state_with_wiki(wiki: &ddo_etl::wiki::WikiOverrides, test_name: &str) -> AppState {
-    let mut db = rusqlite::Connection::open_in_memory().unwrap();
-    build_fixture_database(&mut db, wiki);
-    let path = std::env::temp_dir().join(format!("ddo-api-{test_name}-{}.db", std::process::id()));
-    let _ = std::fs::remove_file(&path);
-    db.execute("VACUUM INTO ?1", [path.to_str().unwrap()]).unwrap();
-    AppState::open(&path).unwrap()
+fn fixture_db_path_with_data_edits(test_name: &str, edit: impl FnOnce(&Path)) -> PathBuf {
+    let root = std::env::temp_dir().join(format!("ddo-api-{test_name}-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&root);
+    let data_dir = root.join("data");
+    common::copy_files(&fixture_data_dir(), &data_dir);
+    edit(&data_dir);
+    let path = root.join("fixture.db");
+    let mut db = rusqlite::Connection::open(&path).unwrap();
+    ddo_etl::tree::build_from_data(&data_dir, &mut db).unwrap();
+    path
+}
+
+fn fixture_state_with_data_edits(test_name: &str, edit: impl FnOnce(&Path)) -> AppState {
+    AppState::open(&fixture_db_path_with_data_edits(test_name, edit)).unwrap()
 }
 
 async fn get(path: &str) -> (StatusCode, axum::http::HeaderMap, Value) {
@@ -99,7 +93,7 @@ async fn data_entities_build_and_serve_authored_fields_without_ids() {
     let root = std::env::temp_dir().join(format!("ddo-api-data_dir-new-item-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&root);
     let data_dir = root.join("data");
-    common::export_fixture_data(fixture_data_files_dir().parent().unwrap(), &data_dir);
+    common::copy_files(&fixture_data_dir(), &data_dir);
     let new_item_file = data_dir.join("packs/magic-of-myth-drannor/quests/book-burning/gear/new-api-item.toml");
     std::fs::create_dir_all(new_item_file.parent().unwrap()).unwrap();
     std::fs::write(
@@ -174,7 +168,7 @@ async fn placeholder_icons_keep_their_served_names_when_the_data_omits_files() {
     let db_path = std::env::temp_dir().join(format!("ddo-api-placeholder-icons-{}.db", std::process::id()));
     let _ = std::fs::remove_file(&db_path);
     let mut db = rusqlite::Connection::open(&db_path).unwrap();
-    build_fixture_database(&mut db, &fixture_wiki());
+    build_fixture_database(&mut db);
     db.execute("INSERT INTO classes (name, large_icon, small_icon, slug) VALUES ('Unknown', 'Unknown', 'Unknown_Small', 'unknown')", [])
         .unwrap();
     let class_id = db.last_insert_rowid();
@@ -207,7 +201,7 @@ async fn item_detail_serves_every_set_with_the_primary_first() {
     let db_path = std::env::temp_dir().join(format!("ddo-api-set-order-{}.db", std::process::id()));
     let _ = std::fs::remove_file(&db_path);
     let mut db = rusqlite::Connection::open(&db_path).unwrap();
-    build_fixture_database(&mut db, &fixture_wiki());
+    build_fixture_database(&mut db);
     let (item_id, primary_set_id): (i64, i64) = db
         .query_row(
             "SELECT i.id, s.id FROM items i JOIN set_bonuses s ON s.name = i.set_bonus ORDER BY i.id LIMIT 1",
@@ -278,7 +272,8 @@ async fn detail_effects_render_family_stats_and_text_only_lines() {
         .flat_map(|line| line["bonuses"].as_array().unwrap())
         .any(|bonus| bonus["stat"] == "Healing Amplification"));
 
-    let (_, _, set) = get("/v1/sets/6").await;
+    let (_, _, sets) = get("/v1/sets").await;
+    let (_, _, set) = get(&format!("/v1/sets/{}", sets["sets"][0]["id"])).await;
     for tier in set["tiers"].as_array().unwrap() {
         assert!(tier.get("description").is_none());
         assert!(tier["effects"].is_array());
@@ -530,7 +525,11 @@ async fn family_and_stat_detail_page_their_real_carriers() {
         .any(|line| line["effect_id"] == deception["id"] && line["tier"]["group"] == "Deception"));
 
     let spell_focus = effect_named(&vocabulary, "Spell Focus Mastery", "effect").unwrap();
-    assert_eq!(spell_focus["id"], 100);
+    let expected_id: i64 = rusqlite::Connection::open(fixture_db_path())
+        .unwrap()
+        .query_row("SELECT id FROM effects WHERE name = 'Spell Focus Mastery' AND is_stat = 0", [], |row| row.get(0))
+        .unwrap();
+    assert_eq!(spell_focus["id"], expected_id);
     let (_, _, mastery) = get(spell_focus["detail_path"].as_str().unwrap()).await;
     assert!(mastery["items"]["total"].as_i64().unwrap() > 0);
     let carrier = item_detail_named("Band%20of%20Diani%20ir%27Wynarn").await;
@@ -622,7 +621,7 @@ async fn named_effect_carriers_page_links_and_nest_each_resolved_bonus() {
 
 fn fixture_state_with_sql(injected_sql: &str, test_name: &str) -> AppState {
     let mut db = rusqlite::Connection::open_in_memory().unwrap();
-    build_fixture_database(&mut db, &fixture_wiki());
+    build_fixture_database(&mut db);
     db.execute_batch(injected_sql).unwrap();
     let path = std::env::temp_dir().join(format!("ddo-api-{test_name}-{}.db", std::process::id()));
     let _ = std::fs::remove_file(&path);
@@ -676,14 +675,19 @@ fn item_ids_in_page(page: &Value) -> std::collections::BTreeSet<i64> {
 
 #[tokio::test]
 async fn every_repeated_source_filter_uses_union_or_intersection() {
-    let mut wiki = fixture_wiki();
-    let mut second_chain = wiki.quest_chains[0].clone();
-    second_chain.name = "Second Fixture Chain".to_string();
-    second_chain.rewards.truncate(1);
-    wiki.quest_chains.push(second_chain);
-    let state = fixture_state_with_wiki(&wiki, "source-intersection");
-    let mut db = rusqlite::Connection::open_in_memory().unwrap();
-    build_fixture_database(&mut db, &wiki);
+    let path = fixture_db_path_with_data_edits("source-intersection", |data_dir| {
+        std::fs::write(
+            data_dir.join("packs/free-to-play/chains/second-fixture-chain.toml"),
+            "name = \"Second Fixture Chain\"\npack = \"Free to Play\"\nquests = [\"The Grotto\"]\n\n[[citation]]\nurl = \"https://ddowiki.com/page/The_Lost_Seekers\"\nread = \"2026-10-02\"\n",
+        )
+        .unwrap();
+        let reward = data_dir.join("packs/the-necropolis-part-3/quests/the-cursed-crypt/gear/docent-of-defiance.toml");
+        let mut contents = std::fs::read_to_string(&reward).unwrap();
+        contents.push_str("\n[[source]]\nkind = \"quest_chain\"\nname = \"Second Fixture Chain\"\n");
+        std::fs::write(reward, contents).unwrap();
+    });
+    let state = AppState::open(&path).unwrap();
+    let db = rusqlite::Connection::open(&path).unwrap();
     for (filter, sql) in [
         ("pack", "SELECT DISTINCT ap.name FROM loot_adventure_packs lp JOIN adventure_packs ap ON ap.id = lp.pack_id ORDER BY ap.name LIMIT 2"),
         ("quest", "SELECT DISTINCT quest_id FROM sources WHERE kind = 'quest' AND quest_id IS NOT NULL ORDER BY quest_id LIMIT 2"),
@@ -820,7 +824,7 @@ async fn augment_page_effects_use_one_query_for_one_or_many_rows() {
 async fn version_reports_dataset_and_schema() {
     let (status, headers, json) = get("/v1/version").await;
     assert_eq!(status, StatusCode::OK);
-    assert_eq!(json["dataset"]["upstream_sha"], "fixture-sha");
+    assert_eq!(json["dataset"]["upstream_sha"], "fixture");
     assert_eq!(json["schema_version"], ddo_model::SCHEMA_VERSION);
     for count_name in [
         "effects",
@@ -849,7 +853,7 @@ async fn version_reports_dataset_and_schema() {
         ),
         (&serde_json::json!(4), &serde_json::json!(5), &serde_json::json!(5))
     );
-    assert_eq!(headers.get("x-dataset-version").unwrap(), "fixture-sha");
+    assert_eq!(headers.get("x-dataset-version").unwrap(), "fixture");
     assert!(headers.get(header::ETAG).is_some());
 }
 
@@ -1802,7 +1806,7 @@ async fn dump_and_openapi() {
 async fn icons_are_served_when_configured() {
     let icons_dir = std::env::temp_dir().join(format!("ddo-api-icons-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&icons_dir);
-    ddo_etl::icons::export_icons(&fixture_data_files_dir(), &icons_dir).unwrap();
+    common::copy_files(&fixture_data_dir().join("icons"), &icons_dir);
     let fixture_state_with_icons = || fixture_state().with_icons_dir(&icons_dir);
     let response = app(fixture_state_with_icons())
         .oneshot(Request::get("/icons/items/Quarterstaff_6a.png").body(Body::empty()).unwrap())
@@ -3516,20 +3520,26 @@ async fn version_counts_every_source_by_kind() {
 
 #[tokio::test]
 async fn item_pack_surfaces_follow_every_source_kind() {
-    let mut wiki = fixture_wiki();
-    wiki.events[0].items.clear();
-    wiki.crafting_systems.iter_mut().find(|system| system.name == "Thunder-Forged").unwrap().pack =
-        Some("Free to Play".into());
-    wiki.vendors.extend(
-        ddo_etl::wiki::WikiOverrides::from_toml_files(&[(
-            "vendors_test.toml",
-            "[[vendor]]\nname = \"Test Vendor Without a Pack\"\npage = \"https://ddowiki.com/page/Test_Vendor\"\n\
-         read = \"2026-10-03\"\nitems = [\"Green Steel Weave Boots\"]\n",
-        )])
-        .unwrap()
-        .vendors,
-    );
-    let state = fixture_state_with_wiki(&wiki, "pack-sources");
+    let state = fixture_state_with_data_edits("pack-sources", |data_dir| {
+        let ring_path = data_dir.join("packs/free-to-play/gear/acrobats-ring.toml");
+        let ring = std::fs::read_to_string(&ring_path).unwrap();
+        let event_source = "\n[[source]]\nkind = \"event\"\nname = \"Treasure of Crystal Cove\"\n";
+        assert!(ring.contains(event_source));
+        std::fs::write(ring_path, ring.replace(event_source, "")).unwrap();
+        let crafting_path = data_dir.join("packs/shared/crafting/thunder-forged/crafting.toml");
+        let crafting = std::fs::read_to_string(&crafting_path).unwrap();
+        std::fs::write(crafting_path, format!("pack = \"Free to Play\"\n{crafting}")).unwrap();
+        let vendor_folder = data_dir.join("packs/shared/vendors/test-vendor-without-a-pack");
+        std::fs::create_dir_all(&vendor_folder).unwrap();
+        std::fs::write(vendor_folder.join("vendor.toml"), "name = \"Test Vendor Without a Pack\"\nlocation = \"\"\n[[citation]]\nurl = \"https://ddowiki.com/page/Test_Vendor\"\nread = \"2026-10-03\"\n").unwrap();
+        let boots_path = data_dir.join("packs/unsourced/gear/green-steel-weave-boots.toml");
+        let boots = std::fs::read_to_string(&boots_path).unwrap();
+        std::fs::write(
+            boots_path,
+            format!("{boots}\n[[source]]\nkind = \"vendor\"\nname = \"Test Vendor Without a Pack\"\n"),
+        )
+        .unwrap();
+    });
     let (status, _, page) = get_from(state.clone(), "/v1/items?limit=10000").await;
     assert_eq!(status, StatusCode::OK);
     let items = page["items"].as_array().unwrap();
@@ -3665,21 +3675,29 @@ async fn quest_sources_preserve_distinct_chests_for_items_and_augments() {
     .into_iter()
     .enumerate()
     {
-        let mut wiki = fixture_wiki();
-        for (quest_name, chest) in [("The Grotto", first_chest), ("Redemption", second_chest)] {
-            let chest_field = chest.map_or(String::new(), |chest| format!(", chest = {chest:?}"));
-            let quest_loot = format!(
-                "[[quest]]\nname = {quest_name:?}\npage = \"https://ddowiki.com/page/Test\"\nread = \"2026-10-03\"\n\
-                 items = [{{ name = \"Bold Trinket\"{chest_field} }}, {{ name = \"Bold Trinket\", loot_type = \"reward\" }}]\n\
-                 augments = [{{ name = \"Lunar Gem of Magical Protection (Heroic)\"{chest_field} }}]\n"
-            );
-            wiki.quest_loot.extend(
-                ddo_etl::wiki::WikiOverrides::from_toml_files(&[("quest_loot_test.toml", &quest_loot)])
-                    .unwrap()
-                    .quest_loot,
-            );
-        }
-        let state = fixture_state_with_wiki(&wiki, &format!("pack-chests-{case_index}"));
+        let state = fixture_state_with_data_edits(&format!("pack-chests-{case_index}"), |data_dir| {
+            for (relative_path, is_item) in [
+                ("packs/shared/events/treasure-of-crystal-cove/gear/bold-trinket.toml", true),
+                ("packs/shared/augments/sunandmoon/lunar-gem-of-magical-protection-heroic.toml", false),
+            ] {
+                let path = data_dir.join(relative_path);
+                let mut contents = std::fs::read_to_string(&path).unwrap();
+                for (quest_name, chest) in [("The Grotto", first_chest), ("Redemption", second_chest)] {
+                    contents.push_str(&format!(
+                        "\n[[source]]\nkind = \"quest\"\nname = {quest_name:?}\nloot_type = \"chest\"\n"
+                    ));
+                    if let Some(chest) = chest {
+                        contents.push_str(&format!("chest = {chest:?}\n"));
+                    }
+                    if is_item {
+                        contents.push_str(&format!(
+                            "\n[[source]]\nkind = \"quest\"\nname = {quest_name:?}\nloot_type = \"reward\"\n"
+                        ));
+                    }
+                }
+                std::fs::write(path, contents).unwrap();
+            }
+        });
         for (resource, search_text) in
             [("items", "Bold%20Trinket"), ("augments", "Lunar%20Gem%20of%20Magical%20Protection")]
         {
@@ -3784,7 +3802,7 @@ async fn data_responses_are_fresh_for_five_minutes_then_revalidated() {
     const DATA_CACHE_CONTROL: &str = "public, max-age=300, stale-while-revalidate=3600";
     let icons_dir = std::env::temp_dir().join(format!("ddo-api-cache-icons-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&icons_dir);
-    ddo_etl::icons::export_icons(&fixture_data_files_dir(), &icons_dir).unwrap();
+    common::copy_files(&fixture_data_dir().join("icons"), &icons_dir);
     let router = app(fixture_state().with_icons_dir(&icons_dir));
     let response_to = |request: Request<Body>| router.clone().oneshot(request);
 

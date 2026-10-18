@@ -7,8 +7,7 @@ use std::sync::OnceLock;
 use xtask::dataset::build_database_file;
 use xtask::integrity::{integrity_report, CheckStatus, IntegrityOptions, Severity, INTEGRITY_CHECKS};
 
-const TABLES_EMPTY_IN_FIXTURES: [&str; 6] =
-    ["citations", "corrections", "effect_damage", "pack_exceptions", "race_feat_slots", "removed_entities"];
+const TABLES_EMPTY_IN_FIXTURES: [&str; 3] = ["effect_damage", "race_feat_slots", "removed_entities"];
 const PACK_QUEST_OVERLAP_SQL: &str =
     "INSERT INTO pack_drops (owner_kind, pack_id, owner_id, loot_type, chest, is_rare)
      SELECT CASE WHEN s.item_id IS NOT NULL THEN 'item' ELSE 'augment' END, q.pack_id, COALESCE(s.item_id, s.augment_id), s.loot_type, s.chest, s.is_rare
@@ -27,9 +26,8 @@ fn fixture_db_built_once() -> &'static Path {
     let (_, db_path) = FIXTURE_DB.get_or_init(|| {
         let work_dir = tempfile::tempdir().unwrap();
         let db_path = work_dir.path().join("fixture.db");
-        let wiki_overrides = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
-        build_database_file(&fixtures_dir().join("DataFiles"), &wiki_overrides, &Corrections::default(), &db_path)
-            .unwrap();
+        let mut db = Connection::open(&db_path).unwrap();
+        ddo_etl::tree::build_from_data(&fixtures_dir().join("data"), &mut db).unwrap();
         (work_dir, db_path)
     });
     db_path
@@ -187,7 +185,7 @@ fn cross_pack_drop_and_multi_patron_pack_are_warned() {
            SELECT 'item', last_insert_rowid(), MIN(id), 'chest', 0 FROM items;
          INSERT INTO patrons(name,slug) VALUES ('Unreviewed Patron','unreviewed-patron');
          INSERT INTO quests(name,pack_id,patron_id,slug)
-           SELECT 'Unreviewed Quest', pack_id, last_insert_rowid(), 'unreviewed-quest' FROM quests WHERE pack_id IS NOT NULL LIMIT 1;",
+           SELECT 'Unreviewed Quest', pack_id, last_insert_rowid(), 'unreviewed-quest' FROM quests WHERE pack_id IS NOT NULL AND patron_id IS NOT NULL LIMIT 1;",
     );
     let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
     assert_eq!(report.outcome("items_spanning_packs").unwrap().status, CheckStatus::Warned);
@@ -792,12 +790,14 @@ fn injected_violations() -> Vec<InjectedViolation> {
                     '%b1', COALESCE(bt.name, ''))
              FROM set_bonus_tier_effects te JOIN effects e ON e.id = te.effect_id
              LEFT JOIN bonus_types bt ON bt.id = te.bonus_type_id
-             WHERE EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
+             WHERE te.tier_id IN (SELECT t.id FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id WHERE s.name = 'Kundarak Delving Equipment')
+               AND EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
              ORDER BY te.tier_id, te.sort_order LIMIT 1;
              INSERT INTO set_bonus_tier_effects (tier_id, effect_id, sort_order)
              SELECT te.tier_id, (SELECT id FROM effects WHERE name = 'Integrity Duplicate Tier Fact'), 999
              FROM set_bonus_tier_effects te JOIN effects e ON e.id = te.effect_id
-             WHERE EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
+             WHERE te.tier_id IN (SELECT t.id FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id WHERE s.name = 'Kundarak Delving Equipment')
+               AND EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)
              ORDER BY te.tier_id, te.sort_order LIMIT 1;",
             "Kundarak Delving Equipment",
         ),

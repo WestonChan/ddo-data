@@ -1,8 +1,5 @@
-use ddo_etl::corrections::Corrections;
-use ddo_etl::wiki::WikiOverrides;
 use rusqlite::Connection;
 use std::path::Path;
-use xtask::dataset::build_database_file;
 use xtask::golden_refresh::{golden_sample, SampleRequest};
 
 #[test]
@@ -10,8 +7,8 @@ fn sample_reads_real_writer_links_for_targeted_names_and_effect_patterns() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures");
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = work_dir.path().join("fixture.db");
-    let wiki = WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
-    build_database_file(&fixtures.join("DataFiles"), &wiki, &Corrections::default(), &db_path).unwrap();
+    let mut db = rusqlite::Connection::open(&db_path).unwrap();
+    ddo_etl::tree::build_from_data(&fixtures.join("data"), &mut db).unwrap();
     let db = Connection::open(&db_path).unwrap();
     let (item_name, effect_name): (String, String) = db
         .query_row(

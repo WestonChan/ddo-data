@@ -1,8 +1,5 @@
-use ddo_etl::corrections::Corrections;
-use ddo_etl::wiki::WikiOverrides;
 use serde_json::Value;
 use std::path::{Path, PathBuf};
-use xtask::dataset::build_database_file;
 use xtask::response_examples::{write_response_examples, ExampleRequest, EXAMPLE_REQUESTS};
 
 fn fixtures_dir() -> PathBuf {
@@ -11,8 +8,8 @@ fn fixtures_dir() -> PathBuf {
 
 fn fixture_db_in(work_dir: &Path) -> PathBuf {
     let db_path = work_dir.join("fixture.db");
-    let wiki_overrides = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
-    build_database_file(&fixtures_dir().join("DataFiles"), &wiki_overrides, &Corrections::default(), &db_path).unwrap();
+    let mut db = rusqlite::Connection::open(&db_path).unwrap();
+    ddo_etl::tree::build_from_data(&fixtures_dir().join("data"), &mut db).unwrap();
     db_path
 }
 
@@ -136,13 +133,10 @@ fn refresh_fails_naming_a_documented_example_without_a_sample() {
 #[test]
 fn refresh_keeps_the_committed_quest_chain_and_saga_examples_while_no_wiki_file_records_one() {
     let work_dir = tempfile::tempdir().unwrap();
-    let db_path = work_dir.path().join("no-chains.db");
-    let wiki_overrides = WikiOverrides {
-        quest_chains: Vec::new(),
-        sagas: Vec::new(),
-        ..WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap()
-    };
-    build_database_file(&fixtures_dir().join("DataFiles"), &wiki_overrides, &Corrections::default(), &db_path).unwrap();
+    let db_path = fixture_db_in(work_dir.path());
+    let db = rusqlite::Connection::open(&db_path).unwrap();
+    db.execute_batch("PRAGMA foreign_keys = ON; DELETE FROM quest_chains; DELETE FROM sagas;").unwrap();
+    drop(db);
     let committed_examples = [
         (
             "quest-chains.json",

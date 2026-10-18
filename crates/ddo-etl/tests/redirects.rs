@@ -23,7 +23,7 @@ fn derived_redirects_follow_foreign_keys_with_overlapping_owner_slugs() {
         let folder = tempfile::tempdir().unwrap();
         let root = folder.path().join("data");
         let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-        common::export_fixture_data(&fixtures, &root);
+        common::copy_fixture_data(&fixtures, &root);
         overlapping_owners::write_overlapping_owners(&root, true_owner);
         for renamed_owner in ["foo", "foo-bar"] {
             std::fs::write(
@@ -61,7 +61,7 @@ fn numeric_redirects_and_retirements_fail_the_data_build() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-    let original = common::export_fixture_data(&fixtures, &root);
+    let original = common::copy_fixture_data(&fixtures, &root);
     let target: String =
         original.query_row("SELECT slug FROM items ORDER BY slug LIMIT 1", [], |row| row.get(0)).unwrap();
     for slug in ["0", "12345"] {
@@ -90,7 +90,7 @@ fn redirect_dates_and_kinds_reject_malformed_values() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-    let original = common::export_fixture_data(&fixtures, &root);
+    let original = common::copy_fixture_data(&fixtures, &root);
     let target: String =
         original.query_row("SELECT slug FROM items ORDER BY slug LIMIT 1", [], |row| row.get(0)).unwrap();
     for (kind, since) in
@@ -107,7 +107,7 @@ fn expiry_reports_redirects_and_retirements_at_exact_boundaries() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-    let original = common::export_fixture_data(&fixtures, &root);
+    let original = common::copy_fixture_data(&fixtures, &root);
     let target: String =
         original.query_row("SELECT slug FROM items ORDER BY slug LIMIT 1", [], |row| row.get(0)).unwrap();
     std::fs::write(
@@ -147,7 +147,7 @@ fn authored_child_redirects_cannot_duplicate_derived_redirects() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-    let original = common::export_fixture_data(&fixtures, &root);
+    let original = common::copy_fixture_data(&fixtures, &root);
     let (owner, child): (String, String) = original.query_row("SELECT s.slug, i.slug FROM crafting_ingredients i JOIN crafting_systems s ON s.id = i.system_id ORDER BY i.slug LIMIT 1", [], |row| Ok((row.get(0)?, row.get(1)?))).unwrap();
     let old_child = format!("former-system{}", &child[owner.len()..]);
     std::fs::write(
@@ -169,7 +169,7 @@ fn invalid_redirects_name_both_sides_and_collect_independent_violations() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-    let original = common::export_fixture_data(&fixtures, &root);
+    let original = common::copy_fixture_data(&fixtures, &root);
     let target: String =
         original.query_row("SELECT slug FROM items ORDER BY slug LIMIT 1", [], |row| row.get(0)).unwrap();
     let current = redirect("items", &target, "absent-target", "2026-10-01");
@@ -216,7 +216,7 @@ fn pruning_keeps_day_thirty_and_future_rows_and_uses_export_bytes() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-    let original = common::export_fixture_data(&fixtures, &root);
+    let original = common::copy_fixture_data(&fixtures, &root);
     let target: String =
         original.query_row("SELECT slug FROM items ORDER BY slug LIMIT 1", [], |row| row.get(0)).unwrap();
     let contents = redirect("items", "day-thirty", &target, "2026-10-02")
@@ -257,7 +257,7 @@ fn redirect_file_round_trips_authored_rows_and_derives_owned_ingredients() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-    let original = common::export_fixture_data(&fixtures, &root);
+    let original = common::copy_fixture_data(&fixtures, &root);
     let target: String = original.query_row("SELECT slug FROM crafting_systems WHERE id IN (SELECT system_id FROM crafting_ingredients) ORDER BY slug LIMIT 1", [], |row| row.get(0)).unwrap();
     let contents = format!("[[redirect]]\nkind = \"crafting-systems\"\nfrom = \"former-system\"\nto = {target:?}\nsince = \"2026-10-01\"\n\n[[retired]]\nkind = \"items\"\nslug = \"retired-item\"\nsince = \"2026-10-01\"\nreason = \"Duplicate item\"\n");
     std::fs::write(root.join("redirects.toml"), &contents).unwrap();

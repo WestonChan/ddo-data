@@ -30,8 +30,7 @@ jobs:
         run: |
           mkdir -p target/no-corrections
           rm -f target/fixture.db
-          cargo run -q -p ddo-etl -- build --source crates/ddo-etl/tests/fixtures/DataFiles \
-            --wiki crates/ddo-etl/tests/fixtures/wiki --corrections target/no-corrections --out target/fixture.db
+          cargo run -q -p ddo-etl -- build --data crates/ddo-etl/tests/fixtures/data --out target/fixture.db
           cargo xtask check-db target/fixture.db --source crates/ddo-etl/tests/fixtures/DataFiles --corrections target/no-corrections \
-            --allow-empty-table corrections --allow-empty-table effect_damage --allow-empty-table race_feat_slots \
+            --allow-empty-table effect_damage --allow-empty-table race_feat_slots \
             --allow-empty-table removed_entities
