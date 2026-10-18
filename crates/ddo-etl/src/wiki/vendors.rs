@@ -6,8 +6,7 @@ use std::collections::HashSet;
 #[serde(deny_unknown_fields)]
 pub struct WikiVendor {
     pub name: String,
-    pub page: String,
-    pub read: String,
+    pub wiki_url: String,
     pub location: Option<String>,
     pub pack: Option<String>,
     #[serde(default)]

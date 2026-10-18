@@ -8,8 +8,7 @@ use std::collections::HashSet;
 #[serde(deny_unknown_fields)]
 pub struct WikiQuestSeries<Reward> {
     pub name: String,
-    pub page: String,
-    pub read: String,
+    pub wiki_url: String,
     pub pack: Option<String>,
     #[serde(default)]
     pub quests: Vec<String>,

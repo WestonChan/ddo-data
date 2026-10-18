@@ -486,10 +486,10 @@ fn merge_preserves_correction_notes_removed_upstream() {
 }
 
 #[test]
-fn superseded_wiki_row_takes_his_columns_and_drops_its_primary_citation() {
+fn superseded_wiki_row_takes_his_columns_and_keeps_our_citation() {
     let previous = ordinary_fixture_database("");
-    let new = ordinary_fixture_database("DELETE FROM citations WHERE owner_kind = 'items' AND field = '' AND owner_id IN (SELECT id FROM items WHERE name = 'Battle Axe of the Oozing Hunger'); UPDATE items SET description = 'His newly supplied description', provenance = 'maetrim' WHERE name = 'Battle Axe of the Oozing Hunger'");
-    let mut ours = ordinary_fixture_database("");
+    let new = ordinary_fixture_database("UPDATE items SET description = 'His newly supplied description', provenance = 'maetrim' WHERE name = 'Battle Axe of the Oozing Hunger'");
+    let mut ours = ordinary_fixture_database("INSERT INTO citations (owner_kind, owner_id, field, url, read) SELECT 'items', id, '', 'https://ddowiki.com/page/Item:Battle_Axe_of_the_Oozing_Hunger', '2026-10-18' FROM items WHERE name = 'Battle Axe of the Oozing Hunger'");
     let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
     assert!(outcome.conflicts.is_empty());
     rederive_data_build_tables(&ours).unwrap();
@@ -503,6 +503,8 @@ fn superseded_wiki_row_takes_his_columns_and_drops_its_primary_citation() {
         .unwrap();
     assert_eq!(description, "His newly supplied description");
     assert_eq!(provenance, "maetrim");
+    let citations: i64 = rebuilt.query_row("SELECT COUNT(*) FROM citations WHERE owner_kind = 'items' AND owner_id = (SELECT id FROM items WHERE name = 'Battle Axe of the Oozing Hunger')", [], |row| row.get(0)).unwrap();
+    assert_eq!(citations, 1);
     assert!(database_delta(&ours, &rebuilt).unwrap().is_empty());
 }
 

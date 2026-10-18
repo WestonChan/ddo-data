@@ -562,7 +562,6 @@ impl ItemFile {
         let owner = super::super::sources::SourceOwner {
             drop_text: self.drop_location.as_deref(),
             minimum_level: Some(self.minimum_level),
-            explicit_wiki_sources: self.citation.iter().any(|citation| citation.field == "sources"),
         };
         for source in &self.source {
             let source = super::super::sources::SourceInput {

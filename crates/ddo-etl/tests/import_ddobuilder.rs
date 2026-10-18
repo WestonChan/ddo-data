@@ -94,42 +94,287 @@ fn export_fixture_with_icons(db: &Connection, source: &Path, root: &Path) {
     ddo_etl::icons::place_enhancement_icons_beside_trees(root).unwrap();
 }
 
+fn assert_overlay_tables_match(normalized: &Connection, ours: &Connection) {
+    let mut delta = ddo_etl::delta::database_delta(normalized, ours).unwrap();
+    delta.arrays.retain(|key, change| {
+        if key.array != "citation" {
+            return true;
+        }
+        assert!(
+            change.previous.iter().all(|citation| change.new.contains(citation)),
+            "XML citations must be a subset of C: {key:?}: {change:?}"
+        );
+        false
+    });
+    assert!(delta.is_empty(), "{delta:#?}");
+    for table in ddo_etl::database_tables::table_names(ours).unwrap() {
+        if table == "citations" {
+            continue;
+        }
+        let columns = ddo_etl::database_tables::table_columns(ours, &table).unwrap();
+        let stable_rows = |db: &Connection| {
+            ddo_etl::database_tables::table_rows(db, &table)
+                .unwrap()
+                .into_iter()
+                .map(|row| {
+                    row.into_iter()
+                        .zip(&columns)
+                        .filter_map(|(value, column)| {
+                            (column != "built_at" && !(table == "schema_version" && column == "applied_at"))
+                                .then_some(value)
+                        })
+                        .collect::<Vec<_>>()
+                })
+                .collect::<Vec<_>>()
+        };
+        assert_eq!(stable_rows(normalized), stable_rows(ours), "{table}");
+    }
+}
+
 #[test]
-fn canonical_fixture_corrections_apply_without_changing_keys_or_values() {
+fn overlay_references_follow_only_renames_active_in_each_xml_build() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let scratch = tempfile::tempdir().unwrap();
+    let mut initial = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&fixtures.join("data"), &mut initial).unwrap();
+    initial.execute("UPDATE adventure_packs SET name = 'Reviewed Masterminds of Sharn', slug = 'reviewed-masterminds-of-sharn' WHERE name = 'Masterminds of Sharn'", []).unwrap();
+    initial.execute("INSERT INTO corrections (kind,name,field,from_value,to_value,reason,source,read) VALUES ('adventure_pack','Masterminds of Sharn','name','\"Masterminds of Sharn\"','\"Reviewed Masterminds of Sharn\"','Exercise the overlay reference contract','https://ddowiki.com/page/Masterminds_of_Sharn','2026-10-18')", []).unwrap();
+    initial.execute("UPDATE vendors SET pack_id = (SELECT id FROM adventure_packs WHERE name = 'Reviewed Masterminds of Sharn') WHERE id = (SELECT MIN(id) FROM vendors)", []).unwrap();
+    tree::rederive_data_build_tables(&initial).unwrap();
+    let data_root = scratch.path().join("data");
+    export_fixture_with_icons(&initial, &fixtures.join("DataFiles"), &data_root);
+    let mut ours = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&data_root, &mut ours).unwrap();
+    let wiki = WikiOverrides::from_database(&ours).unwrap();
+    let corrections = Corrections::from_database(&ours).unwrap();
+    let version = DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-18T00:00:00Z".into() };
+    for (state, adopted) in [("previous", false), ("new-unchanged", false), ("new-adopted", true)] {
+        let source = scratch.path().join(state);
+        copy_tree(&fixtures.join("DataFiles"), &source);
+        if adopted {
+            let quests = source.join("Quests.xml");
+            let contents = std::fs::read_to_string(&quests)
+                .unwrap()
+                .replace("Masterminds of Sharn", "Reviewed Masterminds of Sharn");
+            std::fs::write(quests, contents).unwrap();
+        }
+        let mut built = Connection::open_in_memory().unwrap();
+        let report = build::build_database(&source, &wiki, &corrections, &mut built, &version).unwrap();
+        let resolved = report
+            .stale_corrections
+            .iter()
+            .filter(|correction| correction.kind == "adventure_pack")
+            .collect::<Vec<_>>();
+        assert_eq!(resolved.len(), usize::from(adopted), "{state}: {resolved:?}");
+        if adopted {
+            assert!(matches!(resolved[0].cause, build::StaleCorrectionCause::RenameDoneUpstream { .. }));
+        }
+        let pack: String = built.query_row("SELECT p.name FROM sagas s JOIN adventure_packs p ON p.id=s.pack_id WHERE s.name='Masterminds of Sharn'", [], |row| row.get(0)).unwrap();
+        assert_eq!(pack, "Reviewed Masterminds of Sharn", "{state}");
+        if !adopted {
+            let export = scratch.path().join(format!("{state}-data"));
+            export_fixture_with_icons(&built, &source, &export);
+            let mut normalized = Connection::open_in_memory().unwrap();
+            tree::build_from_data(&export, &mut normalized).unwrap();
+            assert_overlay_tables_match(&normalized, &ours);
+        }
+    }
+    let mut unknown = wiki;
+    let saga = unknown.sagas.iter_mut().find(|saga| saga.name == "Masterminds of Sharn").unwrap();
+    saga.pack = Some("A name neither XML nor a correction carries".into());
+    let owner_file = saga.file_name.clone();
+    let error = build::build_database(
+        &fixtures.join("DataFiles"),
+        &unknown,
+        &corrections,
+        &mut Connection::open_in_memory().unwrap(),
+        &version,
+    )
+    .unwrap_err();
+    assert!(format!("{error:#}").contains(&owner_file), "{error:#}");
+}
+
+#[test]
+fn canonical_fixture_reproduces_all_tables_with_xml_citations_a_subset_of_ours() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let mut ours = Connection::open_in_memory().unwrap();
     tree::build_from_data(&fixtures.join("data"), &mut ours).unwrap();
     let corrections = Corrections::from_database(&ours).unwrap();
     assert!(corrections.entries.iter().any(|correction| correction.family.is_some() && correction.field == "name"));
     assert!(corrections.entries.iter().any(|correction| correction.selection.is_some() && correction.field == "name"));
-    let mut upstream = Connection::open_in_memory().unwrap();
-    let report = build::build_database(
-        &fixtures.join("DataFiles"),
-        &WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap(),
-        &corrections,
-        &mut upstream,
-        &DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-06T00:00:00Z".into() },
+    for wiki in [WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap(), WikiOverrides::from_database(&ours).unwrap()]
+    {
+        let mut upstream = Connection::open_in_memory().unwrap();
+        let report = build::build_database(
+            &fixtures.join("DataFiles"),
+            &wiki,
+            &corrections,
+            &mut upstream,
+            &DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-06T00:00:00Z".into() },
+        )
+        .unwrap();
+        assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
+        let ordered_corrections = |mut corrections: Corrections| {
+            corrections.entries.sort_by_key(|correction| {
+                (
+                    correction.kind.as_str().to_string(),
+                    correction.name.clone(),
+                    correction.field.clone(),
+                    correction.qualifier(),
+                )
+            });
+            corrections
+        };
+        assert_eq!(
+            ordered_corrections(Corrections::from_database(&upstream).unwrap()),
+            ordered_corrections(corrections.clone())
+        );
+        let scratch = tempfile::tempdir().unwrap();
+        export_fixture_with_icons(&upstream, &fixtures.join("DataFiles"), scratch.path());
+        let mut normalized = Connection::open_in_memory().unwrap();
+        tree::build_from_data(scratch.path(), &mut normalized).unwrap();
+        assert_overlay_tables_match(&normalized, &ours);
+    }
+}
+
+#[test]
+fn source_citations_do_not_change_drop_provenance() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data");
+    let scratch = tempfile::tempdir().unwrap();
+    copy_tree(&fixtures, scratch.path());
+    let item_path = scratch.path().join("packs/shared/gear/battle-axe-of-the-oozing-hunger.toml");
+    let mut item: toml::Table = toml::from_str(&std::fs::read_to_string(&item_path).unwrap()).unwrap();
+    let provenance = |root: &Path| {
+        let mut db = Connection::open_in_memory().unwrap();
+        tree::build_from_data(root, &mut db).unwrap();
+        db.query_row("SELECT d.drop_text_segment, d.source_match FROM quest_drops d JOIN items i ON d.owner_kind = 'item' AND d.owner_id = i.id JOIN quests q ON q.id = d.quest_id WHERE i.name = 'Battle Axe of the Oozing Hunger' AND q.name = 'The Grotto'", [], |row| Ok((row.get::<_, Option<String>>(0)?, row.get::<_, Option<String>>(1)?))).unwrap()
+    };
+    let with_citation = provenance(scratch.path());
+    item.get_mut("citation")
+        .unwrap()
+        .as_array_mut()
+        .unwrap()
+        .retain(|citation| citation.get("field").and_then(toml::Value::as_str) != Some("sources"));
+    std::fs::write(&item_path, toml::to_string(&item).unwrap()).unwrap();
+    let without_citation = provenance(scratch.path());
+    assert_eq!(without_citation, (Some("Test source: The Grotto, end chest".into()), Some("The Grotto".into())));
+    assert_eq!(with_citation, without_citation, "citations only record checks");
+}
+
+#[test]
+fn database_wiki_facts_ignore_item_citation_sources_and_use_constant_queries() {
+    use rusqlite::trace::{TraceEvent, TraceEventCodes};
+    use std::sync::atomic::{AtomicUsize, Ordering};
+    static QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let scratch = tempfile::tempdir().unwrap();
+    copy_tree(&fixtures.join("data"), scratch.path());
+    let item_path = scratch.path().join("packs/shared/gear/battle-axe-of-the-oozing-hunger.toml");
+    let original: toml::Table = toml::from_str(&std::fs::read_to_string(&item_path).unwrap()).unwrap();
+    let mut previous_facts = None;
+    let mut previous_queries = None;
+    for annotation in
+        [None, Some("url = \"https://ddowiki.com/page/Item:Battle_Axe_of_the_Oozing_Hunger\""), Some("in_game = true")]
+    {
+        let mut item = original.clone();
+        item.remove("citation");
+        if let Some(annotation) = annotation {
+            let citation: toml::Table =
+                toml::from_str(&format!("{annotation}\nread = \"2026-10-18\"\nnote = \"Checked in the source\""))
+                    .unwrap();
+            item.insert("citation".into(), toml::Value::Array(vec![toml::Value::Table(citation)]));
+        }
+        std::fs::write(&item_path, toml::to_string(&item).unwrap()).unwrap();
+        let mut db = Connection::open_in_memory().unwrap();
+        tree::build_from_data(scratch.path(), &mut db).unwrap();
+        db.trace_v2(
+            TraceEventCodes::SQLITE_TRACE_STMT,
+            Some(|event| {
+                if let TraceEvent::Stmt(_, _) = event {
+                    QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+                }
+            }),
+        );
+        QUERY_COUNT.store(0, Ordering::SeqCst);
+        let wiki = WikiOverrides::from_database(&db).unwrap();
+        let queries = QUERY_COUNT.load(Ordering::SeqCst);
+        if let Some(previous) = &previous_facts {
+            assert_eq!(&wiki.items, previous);
+        }
+        if let Some(previous) = previous_queries {
+            assert_eq!(queries, previous);
+        }
+        previous_facts = Some(wiki.items);
+        previous_queries = Some(queries);
+    }
+    let mut added_item = original;
+    added_item.insert("name".into(), "Additional Wiki Axe".into());
+    added_item.remove("citation");
+    std::fs::write(
+        scratch.path().join("packs/shared/gear/additional-wiki-axe.toml"),
+        toml::to_string(&added_item).unwrap(),
     )
     .unwrap();
-    assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
-    let ordered_corrections = |mut corrections: Corrections| {
-        corrections.entries.sort_by_key(|correction| {
-            (
-                correction.kind.as_str().to_string(),
-                correction.name.clone(),
-                correction.field.clone(),
-                correction.qualifier(),
-            )
-        });
-        corrections
-    };
-    assert_eq!(ordered_corrections(Corrections::from_database(&upstream).unwrap()), ordered_corrections(corrections));
+    let mut db = Connection::open_in_memory().unwrap();
+    tree::build_from_data(scratch.path(), &mut db).unwrap();
+    db.trace_v2(
+        TraceEventCodes::SQLITE_TRACE_STMT,
+        Some(|event| {
+            if let TraceEvent::Stmt(_, _) = event {
+                QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+            }
+        }),
+    );
+    QUERY_COUNT.store(0, Ordering::SeqCst);
+    let wiki = WikiOverrides::from_database(&db).unwrap();
+    assert_eq!(wiki.items.len(), previous_facts.unwrap().len() + 1);
+    assert_eq!(
+        QUERY_COUNT.load(Ordering::SeqCst),
+        previous_queries.unwrap(),
+        "wiki reconstruction must not query per entity"
+    );
+}
+
+#[test]
+fn database_wiki_reference_failure_names_the_owning_data_file() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let mut ours = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&fixtures.join("data"), &mut ours).unwrap();
+    let wiki = WikiOverrides::from_database(&ours).unwrap();
+    let corrections = Corrections::from_database(&ours).unwrap();
     let scratch = tempfile::tempdir().unwrap();
-    export_fixture_with_icons(&upstream, &fixtures.join("DataFiles"), scratch.path());
-    let mut normalized = Connection::open_in_memory().unwrap();
-    tree::build_from_data(scratch.path(), &mut normalized).unwrap();
-    let delta = ddo_etl::delta::database_delta(&normalized, &ours).unwrap();
-    assert!(delta.is_empty(), "{delta:#?}");
+    copy_tree(&fixtures.join("DataFiles"), scratch.path());
+    std::fs::remove_file(scratch.path().join("Items/Buckler of the Golden Age.item")).unwrap();
+    let error = build::build_database(
+        scratch.path(),
+        &wiki,
+        &corrections,
+        &mut Connection::open_in_memory().unwrap(),
+        &DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-18T00:00:00Z".into() },
+    )
+    .unwrap_err();
+    let message = format!("{error:#}");
+    assert!(message.contains("Buckler of the Golden Age"), "{message}");
+    assert!(
+        message.contains("packs/magic-of-myth-drannor/quests/book-burning/gear/buckler-of-the-golden-age.toml"),
+        "{message}"
+    );
+}
+
+#[test]
+fn xml_overlay_does_not_recreate_citations_owned_by_the_data_tree() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let mut db = Connection::open_in_memory().unwrap();
+    build::build_database(
+        &fixtures.join("DataFiles"),
+        &WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap(),
+        &Corrections::default(),
+        &mut db,
+        &DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-18T00:00:00Z".into() },
+    )
+    .unwrap();
+    let count: i64 = db.query_row("SELECT COUNT(*) FROM citations WHERE url = 'https://ddowiki.com/page/Item:Battle_Axe_of_the_Oozing_Hunger'", [], |row| row.get(0)).unwrap();
+    assert_eq!(count, 0, "wiki facts must not recreate C's citations");
 }
 
 #[test]
@@ -288,6 +533,47 @@ impl ImportWorld {
 }
 
 #[test]
+fn import_reports_an_adopted_pack_rename_and_keeps_an_unchanged_one() {
+    for adopted in [false, true] {
+        let mut world = ImportWorld::new(Corrections::default());
+        let db = world.database();
+        db.execute("UPDATE adventure_packs SET name='Reviewed Terror of Demogorgon', slug='reviewed-terror-of-demogorgon' WHERE name='Terror of Demogorgon'", []).unwrap();
+        db.execute("INSERT INTO corrections (kind,name,field,from_value,to_value,reason,source,read) VALUES ('adventure_pack','Terror of Demogorgon','name','\"Terror of Demogorgon\"','\"Reviewed Terror of Demogorgon\"','Exercise the rename lifecycle','https://ddowiki.com/page/Terror_of_Demogorgon','2026-10-18')", []).unwrap();
+        db.execute("INSERT INTO vendors (name,slug,location,pack_id,provenance,wiki_url) SELECT 'Reviewed Vendor','reviewed-vendor','Fixture location',id,'wiki','https://ddowiki.com/page/Vendor' FROM adventure_packs WHERE name='Reviewed Terror of Demogorgon'", []).unwrap();
+        tree::rederive_data_build_tables(&db).unwrap();
+        world.options.data_dir = world.scratch.path().join("reviewed-data");
+        tree::export_ddobuilder_tree(&db, &world.options.previous_dir, &world.options.data_dir).unwrap();
+        let ours = world.database();
+        world.options.wiki = WikiOverrides::from_database(&ours).unwrap();
+        world.options.corrections = Corrections::from_database(&ours).unwrap();
+        let source = world.scratch.path().join("rename-source");
+        copy_tree(&world.options.previous_dir, &source);
+        if adopted {
+            let quests = source.join("Quests.xml");
+            let contents = std::fs::read_to_string(&quests)
+                .unwrap()
+                .replace("Terror of Demogorgon", "Reviewed Terror of Demogorgon");
+            std::fs::write(quests, contents).unwrap();
+        }
+        world.options.source_dir = source;
+        let report = import_ddobuilder(&world.options).unwrap();
+        assert!(!report.has_conflicts(), "{report}");
+        let text = report.to_string();
+        assert_eq!(text.contains("RESOLVED CORRECTION"), adopted, "{text}");
+        assert_eq!(text.contains("renamed upstream"), adopted, "{text}");
+        let result = world.database();
+        let pack: String = result
+            .query_row(
+                "SELECT p.name FROM vendors v JOIN adventure_packs p ON p.id=v.pack_id WHERE v.name='Reviewed Vendor'",
+                [],
+                |row| row.get(0),
+            )
+            .unwrap();
+        assert_eq!(pack, "Reviewed Terror of Demogorgon");
+    }
+}
+
+#[test]
 fn import_of_the_recorded_commit_changes_nothing() {
     let mut world = ImportWorld::new(Corrections::default());
     world.options.source_dir = world.options.previous_dir.clone();
@@ -316,6 +602,11 @@ drop_location = "Unknown"
     )])
     .unwrap();
     let world = ImportWorld::with_wiki(Corrections::default(), wiki);
+    let path = world.options.data_dir.join("packs/unsourced/gear/reviewed-trinket.toml");
+    let mut document = std::fs::read_to_string(&path).unwrap();
+    document
+        .push_str("\n[[citation]]\nurl = \"https://ddowiki.com/page/Item:Reviewed_Trinket\"\nread = \"2026-10-18\"\n");
+    std::fs::write(&path, document).unwrap();
     let provenance = |db: &Connection| -> String {
         db.query_row("SELECT provenance FROM items WHERE name = 'Reviewed Trinket'", [], |row| row.get(0)).unwrap()
     };
@@ -328,7 +619,7 @@ drop_location = "Unknown"
     let db = world.database();
     assert_eq!(provenance(&db), "maetrim");
     let citations: i64 = db.query_row("SELECT COUNT(*) FROM citations WHERE owner_kind = 'items' AND owner_id = (SELECT id FROM items WHERE name = 'Reviewed Trinket') AND field = ''", [], |row| row.get(0)).unwrap();
-    assert_eq!(citations, 0);
+    assert_eq!(citations, 1);
     let path = world.options.data_dir.join("packs/unsourced/gear/reviewed-trinket.toml");
     assert!(!std::fs::read_to_string(path).unwrap().contains("is_wiki_only"));
 }

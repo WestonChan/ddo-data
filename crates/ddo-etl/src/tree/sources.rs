@@ -105,7 +105,6 @@ struct SourceProvenance {
 pub(super) struct SourceOwner<'a> {
     pub(super) drop_text: Option<&'a str>,
     pub(super) minimum_level: Option<i64>,
-    pub(super) explicit_wiki_sources: bool,
 }
 
 pub(super) struct SourceInput<'a> {
@@ -279,9 +278,6 @@ fn source_provenance(
     if kind == "starter" {
         provenance.character_level = name.strip_prefix("Advance to level ").and_then(|level| level.parse().ok());
     }
-    if owner.explicit_wiki_sources {
-        return provenance;
-    }
     let Some(drop_text) = owner.drop_text else { return provenance };
     let alternate_name = if kind == "quest" {
         quest_epic_names.get(name).map(String::as_str)
@@ -400,7 +396,7 @@ mod tests {
         ];
         let quest_names = BTreeMap::from([("Old Grey Garl".to_string(), "Old Tomb, New Tenants".to_string())]);
         for (drop_text, name, chest, expected_segment, expected_match) in cases {
-            let owner = SourceOwner { drop_text: Some(drop_text), minimum_level: None, explicit_wiki_sources: false };
+            let owner = SourceOwner { drop_text: Some(drop_text), minimum_level: None };
             let source = SourceInput {
                 tier: None,
                 kind: "quest",
@@ -413,11 +409,6 @@ mod tests {
             let provenance = source_provenance(&owner, &source, &quest_names, &SourceAliases::default());
             assert_eq!(provenance.drop_text_segment.as_deref(), expected_segment);
             assert_eq!(provenance.source_match.as_deref(), expected_match);
-            let cited_owner = SourceOwner { explicit_wiki_sources: true, ..owner };
-            assert_eq!(
-                source_provenance(&cited_owner, &source, &quest_names, &SourceAliases::default()),
-                SourceProvenance::default()
-            );
         }
     }
 

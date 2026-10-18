@@ -8,8 +8,7 @@ use serde::Deserialize;
 #[serde(deny_unknown_fields)]
 pub struct WikiItem {
     pub name: String,
-    pub page: String,
-    pub read: String,
+    pub wiki_url: String,
     pub slot: String,
     pub category: String,
     pub item_type: Option<String>,

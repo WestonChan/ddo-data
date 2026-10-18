@@ -220,7 +220,6 @@ impl AugmentFile {
         let owner = super::super::sources::SourceOwner {
             drop_text: super::super::sources::augment_drop_text(&self.description),
             minimum_level: self.min_level,
-            explicit_wiki_sources: self.citation.iter().any(|citation| citation.field == "sources"),
         };
         for source in &self.source {
             let source = super::super::sources::SourceInput {

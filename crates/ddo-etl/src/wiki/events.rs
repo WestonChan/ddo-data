@@ -6,8 +6,7 @@ use serde::Deserialize;
 #[serde(deny_unknown_fields)]
 pub struct WikiEvent {
     pub name: String,
-    pub page: String,
-    pub read: String,
+    pub wiki_url: String,
     #[serde(default)]
     pub items: Vec<String>,
     #[serde(skip)]

@@ -132,15 +132,16 @@ impl CraftingSystemFile {
         let mut select = db.prepare(&format!("SELECT {} FROM crafting_systems ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
-            let annotation = annotations.entity("crafting_systems", id).context("crafting system has no citation")?;
-            let primary = annotation
-                .citation
-                .iter()
-                .find(|citation| citation.field.is_empty())
-                .context("crafting system has no primary citation")?;
-            file.page = file.page.filter(|page| Some(page.as_str()) != primary.source.page_url());
             file.attach_citations(annotations, id);
-            file.removed = annotation.removed.clone();
+            if let Some(annotation) = annotations.entity("crafting_systems", id) {
+                let primary_url = annotation
+                    .citation
+                    .iter()
+                    .find(|citation| citation.field.is_empty())
+                    .and_then(|citation| citation.source.page_url());
+                file.page = file.page.filter(|page| Some(page.as_str()) != primary_url);
+                file.removed = annotation.removed.clone();
+            }
             files.insert(id, file);
         }
         let mut select = db.prepare(&format!(

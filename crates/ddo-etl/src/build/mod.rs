@@ -212,9 +212,11 @@ pub fn build_database(
     }
     report.quest_count = write_quests(&transaction, &parsed_quests, &source_aliases)?;
     report.challenge_count = write_challenges(&transaction, &parsed_challenges, &source_aliases)?;
+    let overlay_references = wiki::OverlayReferences::default();
+    overlay_references.capture_renames(&transaction, corrections)?;
     corrections::apply_quest_corrections(&transaction, corrections, &mut report)?;
-    wiki::write_wiki_quests(&transaction, &wiki_overrides.quests, &mut report)?;
-    quest_series::write_wiki_quest_series(&transaction, wiki_overrides, &mut report)?;
+    wiki::write_wiki_quests(&transaction, &overlay_references, &wiki_overrides.quests, &mut report)?;
+    quest_series::write_wiki_quest_series(&transaction, &overlay_references, wiki_overrides, &mut report)?;
     crate::tree::insert_xml_vendor_currencies(&transaction)?;
     wiki::write_wiki_crafting_systems(&transaction, wiki_overrides)?;
     vendors_and_events::write_wiki_vendors_and_events(&transaction, wiki_overrides, &mut report)?;
@@ -239,6 +241,7 @@ pub fn build_database(
 
     let mut writer = TableWriter {
         transaction: &transaction,
+        overlay_references: &overlay_references,
         buff_resolver: &buff_resolver,
         effect_resolver: &effect_resolver,
         drop_text_linker: &drop_text_linker,
@@ -310,6 +313,7 @@ pub fn build_database(
     for path in files_with_extension(&data_files_dir.join("FiligreeSets"), "xml")? {
         writer.write_set_bonus_file(&path, true, &mut report).with_context(|| format!("{}", path.display()))?;
     }
+    overlay_references.capture_renames(&transaction, corrections)?;
     writer.write_wiki_items(&wiki_overrides.items, &mut report)?;
     writer.write_wiki_augments(&wiki_overrides.augments, &mut report)?;
     writer.link_pending_set_members()?;
@@ -336,9 +340,14 @@ pub fn build_database(
         &mut report,
     )?;
     corrections::record_final_set_names(&transaction)?;
-    wiki::apply_wiki_overrides(&transaction, wiki_overrides, &drop_text_linker, &mut report)?;
-    quest_series::write_wiki_quest_series_rewards(&transaction, wiki_overrides, &mut report)?;
-    vendors_and_events::write_wiki_vendor_and_event_items(&transaction, wiki_overrides, &mut report)?;
+    wiki::apply_wiki_overrides(&transaction, &overlay_references, wiki_overrides, &drop_text_linker, &mut report)?;
+    quest_series::write_wiki_quest_series_rewards(&transaction, &overlay_references, wiki_overrides, &mut report)?;
+    vendors_and_events::write_wiki_vendor_and_event_items(
+        &transaction,
+        &overlay_references,
+        wiki_overrides,
+        &mut report,
+    )?;
     for (table, owner_column) in [
         ("item_effects", "item_id"),
         ("augment_effects", "augment_id"),
@@ -400,7 +409,7 @@ pub fn build_database(
     }
     crate::tree::assign_xml_entity_slugs(&transaction)?;
     corrections::record_built_item_effect_values(&transaction)?;
-    crate::tree::store_xml_annotations(&transaction, wiki_overrides)?;
+    crate::tree::store_xml_annotations(&transaction)?;
     crate::loot_sources::reject_missing_source_references(&transaction)?;
     transaction.commit()?;
     Ok(report)
@@ -680,6 +689,7 @@ pub(crate) struct PendingDerivedEffects {
 
 pub(crate) struct TableWriter<'a> {
     transaction: &'a Transaction<'a>,
+    overlay_references: &'a wiki::OverlayReferences,
     buff_resolver: &'a BuffResolver,
     effect_resolver: &'a EffectResolver,
     drop_text_linker: &'a DropTextLinker,

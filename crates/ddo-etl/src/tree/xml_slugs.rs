@@ -98,9 +98,8 @@ pub(crate) fn insert_entity_identities(db: &Connection) -> Result<()> {
     Ok(())
 }
 
-pub(crate) fn store_xml_annotations(db: &Connection, wiki: &WikiOverrides) -> Result<()> {
-    let mut metadata = annotations::EntityAnnotations::from_xml_inputs(db)?;
-    metadata.add_wiki_citations(db, wiki)?;
+pub(crate) fn store_xml_annotations(db: &Connection) -> Result<()> {
+    let metadata = annotations::EntityAnnotations::from_xml_inputs(db)?;
     metadata.store(db)?;
     annotations::store_xml_pack_exceptions(db)
 }

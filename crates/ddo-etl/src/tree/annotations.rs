@@ -1,5 +1,4 @@
-use super::{wiki_citations, Citation, RemovedEntry, NAMED_ENTITY_TABLES};
-use crate::wiki::WikiOverrides;
+use super::{Citation, RemovedEntry, NAMED_ENTITY_TABLES};
 use anyhow::{Context, Result};
 use rusqlite::{params, Connection, OptionalExtension};
 use serde::{Deserialize, Serialize};
@@ -237,38 +236,6 @@ impl EntityAnnotations {
             _ => {}
         }
         self.entities.extend(entries.into_iter().filter(|(_, annotation)| !annotation.is_empty()));
-        Ok(())
-    }
-
-    pub(super) fn add_wiki_citations(&mut self, db: &Connection, wiki: &WikiOverrides) -> Result<()> {
-        for &table in NAMED_ENTITY_TABLES {
-            let name = if table == "augment_slot_types" { "label" } else { "name" };
-            let provenance =
-                if matches!(table, "items" | "augments" | "quests" | "quest_chains" | "sagas" | "vendors" | "events") {
-                    "provenance"
-                } else {
-                    "NULL"
-                };
-            let family = if table == "augments" { "family" } else { "NULL" };
-            let mut select =
-                db.prepare(&format!("SELECT id, {name}, {provenance}, {family} FROM {table} ORDER BY {name}, id"))?;
-            for row in select.query_map([], |row| {
-                Ok((
-                    row.get::<_, i64>(0)?,
-                    row.get::<_, String>(1)?,
-                    row.get::<_, Option<String>>(2)?,
-                    row.get::<_, Option<String>>(3)?,
-                ))
-            })? {
-                let (id, name, provenance, family) = row?;
-                let mut citations =
-                    wiki_citations(wiki, table, &name, provenance.as_deref() == Some("wiki"), family.as_deref());
-                let annotation = self.entities.entry(entity_key(table, id)).or_default();
-                citations.append(&mut annotation.citation);
-                annotation.citation = citations;
-            }
-        }
-        self.entities.retain(|_, annotation| !annotation.is_empty());
         Ok(())
     }
 }

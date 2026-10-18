@@ -41,7 +41,13 @@ impl DescriptionKind {
     }
 
     pub fn filled_description(self, maetrim_description: Option<&str>, wiki_description: &str) -> Option<String> {
-        self.text_kept_before_wiki_description(maetrim_description).map(|kept_text| kept_text + wiki_description)
+        self.text_kept_before_wiki_description(maetrim_description).map(|kept_text| {
+            if wiki_description.starts_with(&kept_text) {
+                wiki_description.to_owned()
+            } else {
+                kept_text + wiki_description
+            }
+        })
     }
 
     fn text_kept_before_wiki_description(self, maetrim_description: Option<&str>) -> Option<String> {
@@ -66,9 +72,9 @@ impl DescriptionKind {
 pub struct WikiDescription {
     pub kind: DescriptionKind,
     pub name: String,
-    pub page: String,
-    pub read: String,
     pub description: String,
+    #[serde(skip)]
+    pub file_name: String,
 }
 
 impl WikiDescription {

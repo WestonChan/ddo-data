@@ -12,35 +12,38 @@ use crate::wiki::{
 };
 use anyhow::{bail, ensure, Context, Result};
 use ddo_model::enums::{LootType, Provenance};
-use rusqlite::{params, OptionalExtension, Transaction};
+use rusqlite::{params, Transaction};
 use std::collections::{HashMap, HashSet};
 
 pub(super) fn apply_wiki_overrides(
     transaction: &Transaction,
+    references: &OverlayReferences,
     wiki_overrides: &WikiOverrides,
     drop_text_linker: &DropTextLinker,
     report: &mut BuildReport,
 ) -> Result<()> {
     for wiki_description in &wiki_overrides.descriptions {
-        fill_blank_descriptions(transaction, wiki_description, drop_text_linker, report).with_context(|| {
-            format!(
-                "wiki descriptions {} {:?} ({})",
-                wiki_description.kind.as_str(),
-                wiki_description.name,
-                wiki_description.page
-            )
-        })?;
+        fill_blank_descriptions(transaction, references, wiki_description, drop_text_linker, report).with_context(
+            || {
+                format!(
+                    "wiki descriptions {} {:?} ({})",
+                    wiki_description.kind.as_str(),
+                    wiki_description.name,
+                    wiki_description.file_name
+                )
+            },
+        )?;
     }
     for quest_loot in &wiki_overrides.quest_loot {
-        let citation = format!("wiki quest_loot {:?} ({})", quest_loot.name, quest_loot.page);
-        let quest_id = id_by_name(transaction, "quests", &quest_loot.name)?.with_context(|| {
+        let citation = format!("wiki quest_loot {:?} ({})", quest_loot.name, quest_loot.file_name);
+        let quest_id = references.id(transaction, "quests", &quest_loot.name)?.with_context(|| {
             format!(
                 "{citation}: no quest has this name in Quests.xml or Challenges.xml; fix the name to match Maetrim's"
             )
         })?;
         for listed_item in &quest_loot.items {
             let item_name = listed_item.name();
-            let item_id = id_by_name(transaction, "items", item_name)?.with_context(|| {
+            let item_id = references.id(transaction, "items", item_name)?.with_context(|| {
                 format!("{citation}: listed item {item_name:?} is not in Maetrim's items or a wiki item; names must match exactly")
             })?;
             let (added_links, replaced_pack_drops) =
@@ -52,7 +55,7 @@ pub(super) fn apply_wiki_overrides(
         }
         for listed_augment in &quest_loot.augments {
             let augment_name = listed_augment.name();
-            let augment_ids = ids_by_name(transaction, "augments", augment_name)?;
+            let augment_ids = references.ids(transaction, "augments", augment_name, None)?;
             if augment_ids.is_empty() {
                 bail!("{citation}: listed augment {augment_name:?} is not in Maetrim's augments or a wiki augment; names must match exactly");
             }
@@ -69,7 +72,7 @@ pub(super) fn apply_wiki_overrides(
         }
         for rare_item in &quest_loot.rare {
             let item_name = rare_item.name();
-            let item_id = id_by_name(transaction, "items", item_name)?.with_context(|| {
+            let item_id = references.id(transaction, "items", item_name)?.with_context(|| {
                 format!("{citation}: rare item {item_name:?} is not in Maetrim's items; report it upstream rather than adding it here")
             })?;
             report.wiki_added_quest_loot_link_count +=
@@ -78,7 +81,7 @@ pub(super) fn apply_wiki_overrides(
         }
         for rare_augment in &quest_loot.rare_augments {
             let augment_name = rare_augment.name();
-            let augment_ids = ids_by_name(transaction, "augments", augment_name)?;
+            let augment_ids = references.ids(transaction, "augments", augment_name, None)?;
             if augment_ids.is_empty() {
                 bail!("{citation}: rare augment {augment_name:?} is not in Maetrim's augments; names must match his exactly");
             }
@@ -91,8 +94,8 @@ pub(super) fn apply_wiki_overrides(
         report.wiki_quest_loot_entry_count += 1;
     }
     for wiki_quest in &wiki_overrides.quests {
-        let citation = format!("wiki quests {:?} ({})", wiki_quest.name, wiki_quest.page);
-        let quest_id = id_by_name(transaction, "quests", &wiki_quest.name)?.with_context(|| {
+        let citation = format!("wiki quests {:?} ({})", wiki_quest.name, wiki_quest.file_name);
+        let quest_id = references.id(transaction, "quests", &wiki_quest.name)?.with_context(|| {
             format!(
                 "{citation}: no quest has this name in Quests.xml or Challenges.xml; fix the name to match Maetrim's, or give the quest fields that create it"
             )
@@ -112,14 +115,15 @@ pub(super) fn apply_wiki_overrides(
         report.wiki_quest_entry_count += 1;
     }
     for crafting_system in &wiki_overrides.crafting_systems {
-        insert_crafting_system_contents(transaction, crafting_system, report)
-            .with_context(|| format!("wiki crafting {:?} ({})", crafting_system.name, crafting_system.page))?;
+        insert_crafting_system_contents(transaction, references, crafting_system, report)
+            .with_context(|| format!("wiki {} crafting {:?}", crafting_system.file_name, crafting_system.name))?;
     }
     Ok(())
 }
 
 pub(super) fn write_wiki_quests(
     transaction: &Transaction,
+    references: &OverlayReferences,
     wiki_quests: &[WikiQuest],
     report: &mut BuildReport,
 ) -> Result<()> {
@@ -145,9 +149,8 @@ pub(super) fn write_wiki_quests(
             report.wiki_quest_superseded_count += 1;
             continue;
         }
-        insert_wiki_quest(transaction, wiki_quest).with_context(|| {
-            format!("wiki {} quest {:?} ({})", wiki_quest.file_name, wiki_quest.name, wiki_quest.page)
-        })?;
+        insert_wiki_quest(transaction, references, wiki_quest)
+            .with_context(|| format!("wiki {} quest {:?}", wiki_quest.file_name, wiki_quest.name))?;
         report.wiki_quest_created_count += 1;
         if let Some(maetrim_name) = maetrim_quest_names_by_normalised_name.get(&normalised_name(&wiki_quest.name)) {
             report.probable_duplicate_wiki_quests.push(ProbableDuplicateWikiEntry {
@@ -160,15 +163,15 @@ pub(super) fn write_wiki_quests(
     Ok(())
 }
 
-fn insert_wiki_quest(transaction: &Transaction, wiki_quest: &WikiQuest) -> Result<()> {
+fn insert_wiki_quest(transaction: &Transaction, references: &OverlayReferences, wiki_quest: &WikiQuest) -> Result<()> {
     let pack_name = wiki_quest.pack.as_deref().expect("validated pack");
-    let pack_id = id_by_name(transaction, "adventure_packs", pack_name)?.with_context(|| {
+    let pack_id = references.id(transaction, "adventure_packs", pack_name)?.with_context(|| {
         format!(
             "pack {pack_name:?} is not an adventure pack in Maetrim's Quests.xml or Challenges.xml; use his spelling"
         )
     })?;
     let patron_id = match &wiki_quest.patron {
-        Some(patron_name) => Some(id_by_name(transaction, "patrons", patron_name)?.with_context(|| {
+        Some(patron_name) => Some(references.id(transaction, "patrons", patron_name)?.with_context(|| {
             format!("patron {patron_name:?} is not a patron in Maetrim's Patrons.xml; use his spelling")
         })?),
         None => None,
@@ -182,14 +185,20 @@ fn insert_wiki_quest(transaction: &Transaction, wiki_quest: &WikiQuest) -> Resul
 
 fn fill_blank_descriptions(
     transaction: &Transaction,
+    references: &OverlayReferences,
     wiki_description: &WikiDescription,
     drop_text_linker: &DropTextLinker,
     report: &mut BuildReport,
 ) -> Result<()> {
     let table_name = wiki_description.kind.table_name();
-    let mut statement = transaction.prepare(&format!("SELECT id, description FROM {table_name} WHERE name = ?1"))?;
-    let maetrim_descriptions_by_id = statement
-        .query_map(params![wiki_description.name], |r| Ok((r.get::<_, i64>(0)?, r.get::<_, Option<String>>(1)?)))?
+    let maetrim_descriptions_by_id = references
+        .ids(transaction, table_name, &wiki_description.name, None)?
+        .into_iter()
+        .map(|id| {
+            transaction.query_row(&format!("SELECT id, description FROM {table_name} WHERE id = ?1"), [id], |row| {
+                Ok((row.get::<_, i64>(0)?, row.get::<_, Option<String>>(1)?))
+            })
+        })
         .collect::<rusqlite::Result<Vec<_>>>()?;
     if maetrim_descriptions_by_id.is_empty() {
         bail!(
@@ -235,7 +244,7 @@ pub(super) fn write_wiki_crafting_systems(transaction: &Transaction, wiki_overri
             "INSERT INTO crafting_systems (name, page, npc, slug) VALUES (?1, ?2, ?3, ?4)",
             params![
                 crafting_system.name,
-                crafting_system.page,
+                crafting_system.wiki_url,
                 crafting_system.npc,
                 crate::tree::xml_entity_slug("crafting_systems", None, &crafting_system.name, None)
             ],
@@ -246,11 +255,12 @@ pub(super) fn write_wiki_crafting_systems(transaction: &Transaction, wiki_overri
 
 fn insert_crafting_system_contents(
     transaction: &Transaction,
+    references: &OverlayReferences,
     crafting_system: &CraftingSystem,
     report: &mut BuildReport,
 ) -> Result<()> {
     let pack_id = match &crafting_system.pack {
-        Some(pack_name) => Some(id_by_name(transaction, "adventure_packs", pack_name)?.with_context(|| {
+        Some(pack_name) => Some(references.id(transaction, "adventure_packs", pack_name)?.with_context(|| {
             format!(
                 "pack {pack_name:?} is not an adventure pack in Maetrim's Quests.xml or Challenges.xml; use his spelling"
             )
@@ -267,7 +277,8 @@ fn insert_crafting_system_contents(
             bail!("family {family:?} has no augments in Maetrim's Augments/; a family is an augment file's name before .Augments.xml");
         }
     }
-    let system_id = id_by_name(transaction, "crafting_systems", &crafting_system.name)?
+    let system_id = references
+        .id(transaction, "crafting_systems", &crafting_system.name)?
         .context("the crafting system row is written before his items")?;
     transaction.execute("UPDATE crafting_systems SET pack_id = ?2 WHERE id = ?1", params![system_id, pack_id])?;
     for family in &crafting_system.families {
@@ -289,6 +300,7 @@ fn insert_crafting_system_contents(
     for (sort_order, recipe) in crafting_system.recipes.iter().enumerate() {
         insert_crafting_recipe(
             transaction,
+            references,
             crafting_system,
             system_id,
             sort_order,
@@ -304,18 +316,22 @@ fn insert_crafting_system_contents(
 
 fn insert_crafting_recipe(
     transaction: &Transaction,
+    references: &OverlayReferences,
     crafting_system: &CraftingSystem,
     system_id: i64,
     sort_order: usize,
     recipe: &CraftingRecipe,
     ingredient_ids_by_name_and_tier: &HashMap<(&str, &str), i64>,
 ) -> Result<()> {
-    let slot_type_id =
-        recipe.slot.as_deref().map(|label| slot_type_id_labelled(transaction, "slot", label)).transpose()?;
+    let slot_type_id = recipe
+        .slot
+        .as_deref()
+        .map(|label| slot_type_id_labelled(transaction, references, "slot", label))
+        .transpose()?;
     let granted_slot_type_id = recipe
         .grants_slot
         .as_deref()
-        .map(|label| slot_type_id_labelled(transaction, "grants_slot", label))
+        .map(|label| slot_type_id_labelled(transaction, references, "grants_slot", label))
         .transpose()?;
     transaction.execute(
         "INSERT INTO crafting_recipes (system_id, tier, slot_id, grants_slot_id, option, note, focus_path, sort_order)
@@ -334,7 +350,7 @@ fn insert_crafting_recipe(
     let recipe_id = transaction.last_insert_rowid();
     let mut augment_order = 0_i64;
     for augment_name in &recipe.augments {
-        let augment_ids = augment_ids_named_in(transaction, augment_name, &crafting_system.families)?;
+        let augment_ids = augment_ids_named_in(transaction, references, augment_name, &crafting_system.families)?;
         if augment_ids.is_empty() {
             bail!(
                 "augment {augment_name:?} is in none of the families {}; names must match Maetrim's exactly",
@@ -364,23 +380,26 @@ fn insert_crafting_recipe(
     Ok(())
 }
 
-fn slot_type_id_labelled(transaction: &Transaction, field: &str, label: &str) -> Result<i64> {
-    transaction
-        .query_row("SELECT id FROM augment_slot_types WHERE label = ?1", params![label], |r| r.get(0))
-        .optional()?
-        .with_context(|| {
-            format!("{field} {label:?} is not a socket label in Maetrim's files; use one /v1/augment-slot-types lists")
-        })
+fn slot_type_id_labelled(
+    transaction: &Transaction,
+    references: &OverlayReferences,
+    field: &str,
+    label: &str,
+) -> Result<i64> {
+    references.id(transaction, "augment_slot_types", label)?.with_context(|| {
+        format!("{field} {label:?} is not a socket label in Maetrim's files; use one /v1/augment-slot-types lists")
+    })
 }
 
-fn augment_ids_named_in(transaction: &Transaction, augment_name: &str, families: &[String]) -> Result<Vec<i64>> {
-    let mut statement =
-        transaction.prepare_cached("SELECT id FROM augments WHERE name = ?1 AND family = ?2 ORDER BY id")?;
+fn augment_ids_named_in(
+    transaction: &Transaction,
+    references: &OverlayReferences,
+    augment_name: &str,
+    families: &[String],
+) -> Result<Vec<i64>> {
     let mut augment_ids = Vec::new();
     for family in families {
-        for id in statement.query_map(params![augment_name, family], |r| r.get(0))? {
-            augment_ids.push(id?);
-        }
+        augment_ids.extend(references.ids(transaction, "augments", augment_name, Some(family))?);
     }
     Ok(augment_ids)
 }
@@ -423,16 +442,109 @@ fn insert_listed_loot_link(
     Ok((added_links, replaced_pack_drops))
 }
 
-fn ids_by_name(transaction: &Transaction, table: &str, name: &str) -> Result<Vec<i64>> {
-    let mut statement = transaction.prepare(&format!("SELECT id FROM {table} WHERE name = ?1 ORDER BY id"))?;
-    let ids = statement.query_map(params![name], |r| r.get(0))?.collect::<rusqlite::Result<_>>()?;
-    Ok(ids)
+#[derive(Default)]
+pub(super) struct OverlayReferences {
+    active_renames: std::cell::RefCell<std::collections::BTreeMap<(String, String), OverlayRename>>,
 }
 
-fn id_by_name(transaction: &Transaction, table: &str, name: &str) -> Result<Option<i64>> {
-    Ok(transaction
-        .query_row(&format!("SELECT id FROM {table} WHERE name = ?1"), params![name], |r| r.get(0))
-        .optional()?)
+struct OverlayRename {
+    original_name: String,
+    rows: Vec<(i64, Option<String>)>,
+}
+
+impl OverlayReferences {
+    pub(super) fn capture_renames(
+        &self,
+        transaction: &Transaction,
+        corrections: &crate::corrections::Corrections,
+    ) -> Result<()> {
+        let renames = corrections
+            .entries
+            .iter()
+            .filter(|correction| correction.field == "name" && correction.selection.is_none())
+            .collect::<Vec<_>>();
+        let mut rows_by_table = std::collections::BTreeMap::new();
+        for correction in &renames {
+            let table = correction.kind.table_name();
+            if rows_by_table.contains_key(table) {
+                continue;
+            }
+            let column = correction.kind.name_column();
+            let family = if table == "augments" { "family" } else { "NULL" };
+            let mut statement =
+                transaction.prepare(&format!("SELECT id, {column}, {family} FROM {table} ORDER BY id"))?;
+            let rows = statement
+                .query_map([], |row| {
+                    Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, Option<String>>(2)?))
+                })?
+                .collect::<rusqlite::Result<Vec<_>>>()?;
+            rows_by_table.insert(table, rows);
+        }
+        let mut active = self.active_renames.borrow_mut();
+        for correction in renames {
+            let (Some(original_name), Some(corrected_name)) = (correction.from.as_text(), correction.to.as_text())
+            else {
+                continue;
+            };
+            let table = correction.kind.table_name();
+            let rows = rows_by_table[table]
+                .iter()
+                .filter(|(_, name, family)| {
+                    name == original_name
+                        && correction.family.as_ref().is_none_or(|expected| family.as_ref() == Some(expected))
+                })
+                .map(|(id, _, family)| (*id, family.clone()))
+                .collect::<Vec<_>>();
+            if rows.is_empty() {
+                continue;
+            }
+            let rename = active
+                .entry((table.to_string(), corrected_name.to_string()))
+                .or_insert_with(|| OverlayRename { original_name: original_name.into(), rows: Vec::new() });
+            ensure!(rename.original_name == original_name, "ambiguous {table} rename target {corrected_name:?}");
+            for row in rows {
+                if !rename.rows.contains(&row) {
+                    rename.rows.push(row);
+                }
+            }
+        }
+        Ok(())
+    }
+
+    fn upstream_name(&self, table: &str, name: &str) -> String {
+        self.active_renames
+            .borrow()
+            .get(&(table.into(), name.into()))
+            .map_or_else(|| name.to_owned(), |rename| rename.original_name.clone())
+    }
+
+    pub(super) fn ids(
+        &self,
+        transaction: &Transaction,
+        table: &str,
+        name: &str,
+        family: Option<&str>,
+    ) -> Result<Vec<i64>> {
+        if let Some(rename) = self.active_renames.borrow().get(&(table.into(), name.into())) {
+            return Ok(rename
+                .rows
+                .iter()
+                .filter(|(_, row_family)| family.is_none_or(|expected| row_family.as_deref() == Some(expected)))
+                .map(|(id, _)| *id)
+                .collect());
+        }
+        let column = if table == "augment_slot_types" { "label" } else { "name" };
+        let family_column = if table == "augments" { "family" } else { "NULL" };
+        let mut statement = transaction.prepare(&format!(
+            "SELECT id FROM {table} WHERE {column} = ?1 AND (?2 IS NULL OR {family_column} = ?2) ORDER BY id"
+        ))?;
+        let ids = statement.query_map(params![name, family], |row| row.get(0))?.collect::<rusqlite::Result<_>>()?;
+        Ok(ids)
+    }
+
+    pub(super) fn id(&self, transaction: &Transaction, table: &str, name: &str) -> Result<Option<i64>> {
+        Ok(self.ids(transaction, table, name, None)?.first().copied())
+    }
 }
 
 impl TableWriter<'_> {
@@ -464,7 +576,7 @@ impl TableWriter<'_> {
                 continue;
             }
             let item_id = self.write_wiki_item(wiki_item, &mut effect_ids_by_folded_name).with_context(|| {
-                format!("wiki {} item {:?} ({})", wiki_item.file_name, wiki_item.name, wiki_item.page)
+                format!("wiki {} item {:?} ({})", wiki_item.file_name, wiki_item.name, wiki_item.wiki_url)
             })?;
             report.pack_loot_link_count +=
                 self.link_to_drop_text_packs(DroppedLoot::Item(item_id), &wiki_item.drop_location)?;
@@ -498,7 +610,11 @@ impl TableWriter<'_> {
             None => None,
         };
         if let Some(set_name) = &wiki_item.set {
-            if !self.written.set_bonus_ids_by_name.contains_key(set_name) {
+            if !self
+                .written
+                .set_bonus_ids_by_name
+                .contains_key(&self.overlay_references.upstream_name("set_bonuses", set_name))
+            {
                 bail!("set {set_name:?} is not a set in Maetrim's SetBonuses.xml or FiligreeSets/; use his spelling");
             }
         }
@@ -506,7 +622,7 @@ impl TableWriter<'_> {
             .augment_slots
             .iter()
             .map(|label| {
-                self.written.augment_slot_type_ids_by_label.get(label).copied().with_context(|| {
+                self.written.augment_slot_type_ids_by_label.get(&self.overlay_references.upstream_name("augment_slot_types", label)).copied().with_context(|| {
                     format!("augment_slots label {label:?} is not a socket label in Maetrim's files; use one /v1/augment-slot-types lists")
                 })
             })
@@ -515,7 +631,7 @@ impl TableWriter<'_> {
             .quests
             .iter()
             .map(|quest| {
-                let quest_id = id_by_name(self.transaction, "quests", &quest.name)?.with_context(|| {
+                let quest_id = self.overlay_references.id(self.transaction, "quests", &quest.name)?.with_context(|| {
                     format!(
                         "quest {:?} is not a quest in Maetrim's Quests.xml or Challenges.xml or the wiki quests; use his spelling",
                         quest.name
@@ -540,7 +656,7 @@ impl TableWriter<'_> {
             set_bonus: wiki_item.set.as_deref(),
             accepts_sentience: wiki_item.accepts_sentience,
             is_minor_artifact: wiki_item.is_minor_artifact,
-            wiki_url: wiki_item.page.clone(),
+            wiki_url: wiki_item.wiki_url.clone(),
             provenance: Provenance::Wiki,
         })?;
         if let (Some(weapon), Some(weapon_type)) = (&wiki_item.weapon, wiki_item.weapon_type()) {
@@ -619,7 +735,7 @@ impl TableWriter<'_> {
             )?;
         }
         if let Some(set_name) = &wiki_item.set {
-            self.pending_set_item_links.push((item_id, set_name.clone()));
+            self.pending_set_item_links.push((item_id, self.overlay_references.upstream_name("set_bonuses", set_name)));
         }
         Ok(item_id)
     }
@@ -628,18 +744,22 @@ impl TableWriter<'_> {
         let bonus_type = bonus.bonus_type();
         if let Some(group_name) = bonus.group.as_deref() {
             ensure!(bonus.value2.is_none(), "wiki group {group_name:?} reads one value");
-            return Ok((self.effects.ensure_group(group_name)?, Some(bonus_type)));
+            return Ok((
+                self.effects.ensure_group(&self.overlay_references.upstream_name("effects", group_name))?,
+                Some(bonus_type),
+            ));
         }
         if let Some(effect_name) = bonus.effect.as_deref() {
             ensure!(bonus.value2.is_none(), "wiki effect {effect_name:?} reads one value");
             let family = self
                 .effects
-                .family_named(effect_name)
+                .family_named(&self.overlay_references.upstream_name("effects", effect_name))
                 .with_context(|| format!("wiki effect {effect_name:?} was not written"))?;
             ensure!(!family.is_stat && family.amount_count == 1, "wiki effect {effect_name:?} must read one value");
             return Ok((family.id, Some(bonus_type)));
         }
-        let stat = ddo_model::stats::Stat::by_name(bonus.name()).expect("validated wiki stat");
+        let stat = ddo_model::stats::Stat::by_name(&self.overlay_references.upstream_name("effects", bonus.name()))
+            .expect("validated wiki stat");
         let count = if bonus.value2.is_some() { 2 } else { 1 };
         let family_name = stat.name.to_string();
         if self.effects.family_named(&family_name).is_some_and(|family| family.verbose_name_template.is_empty()) {
@@ -692,8 +812,7 @@ impl TableWriter<'_> {
             names_by_family
         };
         for wiki_augment in wiki_augments {
-            let citation =
-                format!("wiki {} augment {:?} ({})", wiki_augment.file_name, wiki_augment.name, wiki_augment.page);
+            let citation = format!("wiki {} augment {:?}", wiki_augment.file_name, wiki_augment.name);
             let maetrim_family_names = maetrim_augment_names_by_family.get(&wiki_augment.family).with_context(|| {
                 format!(
                     "{citation}: family {:?} has no augments in Maetrim's Augments/; a family is an augment file's name before .Augments.xml",
@@ -725,7 +844,11 @@ impl TableWriter<'_> {
 
     fn write_wiki_augment(&mut self, wiki_augment: &WikiAugment, report: &mut BuildReport) -> Result<()> {
         if let Some(set_name) = &wiki_augment.set {
-            if !self.written.set_bonus_ids_by_name.contains_key(set_name) {
+            if !self
+                .written
+                .set_bonus_ids_by_name
+                .contains_key(&self.overlay_references.upstream_name("set_bonuses", set_name))
+            {
                 bail!("set {set_name:?} is not a set in Maetrim's SetBonuses.xml or FiligreeSets/; use his spelling");
             }
         }
@@ -733,7 +856,7 @@ impl TableWriter<'_> {
             .slots
             .iter()
             .map(|label| {
-                self.written.augment_slot_type_ids_by_label.get(label).copied().with_context(|| {
+                self.written.augment_slot_type_ids_by_label.get(&self.overlay_references.upstream_name("augment_slot_types", label)).copied().with_context(|| {
                     format!("slots label {label:?} is not a socket label in Maetrim's files; use one /v1/augment-slot-types lists")
                 })
             })
@@ -777,7 +900,8 @@ impl TableWriter<'_> {
             )?;
         }
         if let Some(set_name) = &wiki_augment.set {
-            self.pending_set_augment_links.push((augment_id, set_name.clone()));
+            self.pending_set_augment_links
+                .push((augment_id, self.overlay_references.upstream_name("set_bonuses", set_name)));
         }
         self.link_augment_to_quests(augment_id, &wiki_augment.description, report)
     }
@@ -787,11 +911,12 @@ impl TableWriter<'_> {
         effect: &WikiItemEffect,
         effect_ids_by_folded_name: &mut HashMap<String, (i64, i64)>,
     ) -> Result<(i64, i64)> {
-        let folded_name = folded_effect_name(&effect.name);
+        let effect_name = self.overlay_references.upstream_name("effects", &effect.name);
+        let folded_name = folded_effect_name(&effect_name);
         if let Some(effect_id) = effect_ids_by_folded_name.get(&folded_name) {
             return Ok(*effect_id);
         }
-        let matching_stat_family = self.effects.family_named(&effect.name).and_then(|family| {
+        let matching_stat_family = self.effects.family_named(&effect_name).and_then(|family| {
             (!family.uses_link_type
                 && self.effects.has_stats(family.id)
                 && ((family.amount_count == 0
@@ -801,7 +926,7 @@ impl TableWriter<'_> {
         });
         let effect_id = match matching_stat_family {
             Some(identity) => identity,
-            None => (self.effects.ensure_wiki_text(&effect.name, effect.description.as_deref())?, 0),
+            None => (self.effects.ensure_wiki_text(&effect_name, effect.description.as_deref())?, 0),
         };
         effect_ids_by_folded_name.insert(folded_name, effect_id);
         Ok(effect_id)

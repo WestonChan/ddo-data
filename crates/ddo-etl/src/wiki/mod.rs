@@ -1,6 +1,7 @@
 mod augments;
 mod bonuses;
 mod crafting;
+mod database;
 mod descriptions;
 mod events;
 mod items;
@@ -48,7 +49,7 @@ pub struct WikiOverrides {
 trait WikiEntry: DeserializeOwned {
     const TOML_TABLE_NAME: &'static str;
     fn name(&self) -> &str;
-    fn citation(&self) -> (&str, &str);
+    const HAS_WIKI_URL: bool = false;
     fn unique_key(&self) -> String {
         self.name().to_owned()
     }
@@ -63,11 +64,11 @@ impl WikiEntry for QuestLoot {
     fn name(&self) -> &str {
         &self.name
     }
-    fn citation(&self) -> (&str, &str) {
-        (&self.page, &self.read)
-    }
     fn validate(&self) -> Result<()> {
         QuestLoot::validate(self)
+    }
+    fn record_file_name(&mut self, file_name: &str) {
+        file_name.clone_into(&mut self.file_name);
     }
 }
 
@@ -75,9 +76,6 @@ impl WikiEntry for WikiQuest {
     const TOML_TABLE_NAME: &'static str = "quest";
     fn name(&self) -> &str {
         &self.name
-    }
-    fn citation(&self) -> (&str, &str) {
-        (&self.page, &self.read)
     }
     fn validate(&self) -> Result<()> {
         WikiQuest::validate(self)
@@ -88,15 +86,16 @@ impl WikiEntry for WikiQuest {
 }
 
 impl WikiEntry for CraftingSystem {
+    const HAS_WIKI_URL: bool = true;
     const TOML_TABLE_NAME: &'static str = "system";
     fn name(&self) -> &str {
         &self.name
     }
-    fn citation(&self) -> (&str, &str) {
-        (&self.page, &self.read)
-    }
     fn validate(&self) -> Result<()> {
         CraftingSystem::validate(self)
+    }
+    fn record_file_name(&mut self, file_name: &str) {
+        file_name.clone_into(&mut self.file_name);
     }
 }
 
@@ -105,24 +104,22 @@ impl WikiEntry for WikiDescription {
     fn name(&self) -> &str {
         &self.name
     }
-    fn citation(&self) -> (&str, &str) {
-        (&self.page, &self.read)
-    }
     fn unique_key(&self) -> String {
         format!("{} {}", self.kind.as_str(), self.name)
     }
     fn validate(&self) -> Result<()> {
         WikiDescription::validate(self)
     }
+    fn record_file_name(&mut self, file_name: &str) {
+        file_name.clone_into(&mut self.file_name);
+    }
 }
 
 impl WikiEntry for WikiItem {
+    const HAS_WIKI_URL: bool = true;
     const TOML_TABLE_NAME: &'static str = "item";
     fn name(&self) -> &str {
         &self.name
-    }
-    fn citation(&self) -> (&str, &str) {
-        (&self.page, &self.read)
     }
     fn validate(&self) -> Result<()> {
         WikiItem::validate(self)
@@ -137,9 +134,6 @@ impl WikiEntry for WikiAugment {
     fn name(&self) -> &str {
         &self.name
     }
-    fn citation(&self) -> (&str, &str) {
-        (&self.page, &self.read)
-    }
     fn unique_key(&self) -> String {
         format!("{} {}", self.family, self.name)
     }
@@ -152,12 +146,10 @@ impl WikiEntry for WikiAugment {
 }
 
 impl WikiEntry for WikiQuestChain {
+    const HAS_WIKI_URL: bool = true;
     const TOML_TABLE_NAME: &'static str = "chain";
     fn name(&self) -> &str {
         &self.name
-    }
-    fn citation(&self) -> (&str, &str) {
-        (&self.page, &self.read)
     }
     fn validate(&self) -> Result<()> {
         WikiQuestSeries::validate(self)
@@ -168,12 +160,10 @@ impl WikiEntry for WikiQuestChain {
 }
 
 impl WikiEntry for WikiSaga {
+    const HAS_WIKI_URL: bool = true;
     const TOML_TABLE_NAME: &'static str = "saga";
     fn name(&self) -> &str {
         &self.name
-    }
-    fn citation(&self) -> (&str, &str) {
-        (&self.page, &self.read)
     }
     fn validate(&self) -> Result<()> {
         WikiQuestSeries::validate(self)
@@ -184,12 +174,10 @@ impl WikiEntry for WikiSaga {
 }
 
 impl WikiEntry for WikiVendor {
+    const HAS_WIKI_URL: bool = true;
     const TOML_TABLE_NAME: &'static str = "vendor";
     fn name(&self) -> &str {
         &self.name
-    }
-    fn citation(&self) -> (&str, &str) {
-        (&self.page, &self.read)
     }
     fn validate(&self) -> Result<()> {
         WikiVendor::validate(self)
@@ -200,12 +188,10 @@ impl WikiEntry for WikiVendor {
 }
 
 impl WikiEntry for WikiEvent {
+    const HAS_WIKI_URL: bool = true;
     const TOML_TABLE_NAME: &'static str = "event";
     fn name(&self) -> &str {
         &self.name
-    }
-    fn citation(&self) -> (&str, &str) {
-        (&self.page, &self.read)
     }
     fn validate(&self) -> Result<()> {
         WikiEvent::validate(self)
@@ -277,17 +263,27 @@ fn parse_wiki_entries<'a, T: WikiEntry>(
         );
     }
     let mut entries = Vec::with_capacity(tables.len());
-    for (index, table) in tables.into_iter().enumerate() {
+    for (index, mut table) in tables.into_iter().enumerate() {
         let entry_label = match table.get("name").and_then(toml::Value::as_str) {
             Some(name) => format!("{table_name} {name:?}"),
             None => format!("{table_name} #{}", index + 1),
         };
+        let fields = table.as_table_mut().context("wiki entry must be a table")?;
+        let page = fields
+            .remove("page")
+            .and_then(|value| value.as_str().map(str::to_owned))
+            .with_context(|| format!("wiki file {file_name}: {entry_label}: missing field page"))?;
+        let read = fields
+            .remove("read")
+            .and_then(|value| value.as_str().map(str::to_owned))
+            .with_context(|| format!("wiki file {file_name}: {entry_label}: missing field read"))?;
+        validate_citation(&page, &read).with_context(|| format!("wiki file {file_name}: {entry_label}"))?;
+        if T::HAS_WIKI_URL {
+            fields.insert("wiki_url".into(), page.into());
+        }
         let mut entry: T = table.try_into().with_context(|| format!("wiki file {file_name}: {entry_label}"))?;
         entry.record_file_name(file_name);
-        let (page, read) = entry.citation();
-        validate_citation(page, read)
-            .and_then(|()| entry.validate())
-            .with_context(|| format!("wiki file {file_name}: {entry_label}"))?;
+        entry.validate().with_context(|| format!("wiki file {file_name}: {entry_label}"))?;
         if let Some(first_file) = first_file_by_entry_key.insert(entry.unique_key(), file_name) {
             bail!("wiki file {file_name}: {entry_label} is already listed in {first_file}");
         }

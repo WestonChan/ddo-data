@@ -474,7 +474,13 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         (
             "ddo-etl",
             &["--test", "import_ddobuilder"][..],
-            "canonical_fixture_corrections_apply_without_changing_keys_or_values",
+            "canonical_fixture_reproduces_all_tables_with_xml_citations_a_subset_of_ours",
+        ),
+        ("ddo-etl", &["--test", "import_ddobuilder"][..], "source_citations_do_not_change_drop_provenance"),
+        (
+            "ddo-etl",
+            &["--test", "import_ddobuilder"][..],
+            "overlay_references_follow_only_renames_active_in_each_xml_build",
         ),
     ] {
         let test_status = Command::new("cargo")

@@ -6,8 +6,6 @@ use serde::Deserialize;
 #[serde(deny_unknown_fields)]
 pub struct WikiAugment {
     pub name: String,
-    pub page: String,
-    pub read: String,
     pub family: String,
     pub min_level: i64,
     pub slots: Vec<String>,

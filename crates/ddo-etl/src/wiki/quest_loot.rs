@@ -6,8 +6,6 @@ use serde::Deserialize;
 #[serde(deny_unknown_fields)]
 pub struct QuestLoot {
     pub name: String,
-    pub page: String,
-    pub read: String,
     #[serde(default)]
     pub rare: Vec<RareDrop>,
     #[serde(default)]
@@ -16,6 +14,8 @@ pub struct QuestLoot {
     pub items: Vec<ListedDrop>,
     #[serde(default)]
     pub augments: Vec<ListedDrop>,
+    #[serde(skip)]
+    pub file_name: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Deserialize)]

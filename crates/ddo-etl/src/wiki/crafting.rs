@@ -7,8 +7,7 @@ use std::collections::HashSet;
 #[serde(deny_unknown_fields)]
 pub struct CraftingSystem {
     pub name: String,
-    pub page: String,
-    pub read: String,
+    pub wiki_url: String,
     pub pack: Option<String>,
     #[serde(default)]
     pub families: Vec<String>,
@@ -17,6 +16,8 @@ pub struct CraftingSystem {
     pub ingredients: Vec<CraftingIngredient>,
     #[serde(default, rename = "recipe")]
     pub recipes: Vec<CraftingRecipe>,
+    #[serde(skip)]
+    pub file_name: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Deserialize)]

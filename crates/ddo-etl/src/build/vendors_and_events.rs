@@ -1,4 +1,5 @@
 use super::drop_text::{insert_source_link, DroppedLoot, LootSource, SourceLink};
+use super::wiki::OverlayReferences;
 use super::BuildReport;
 use crate::wiki::WikiOverrides;
 use anyhow::{bail, Context, Result};
@@ -17,7 +18,7 @@ pub(super) fn write_wiki_vendors_and_events(
                 vendor.name,
                 vendor.location,
                 Provenance::Wiki.as_str(),
-                vendor.page,
+                vendor.wiki_url,
                 crate::tree::xml_entity_slug("vendors", None, &vendor.name, None)
             ],
         )?;
@@ -29,7 +30,7 @@ pub(super) fn write_wiki_vendors_and_events(
             params![
                 event.name,
                 Provenance::Wiki.as_str(),
-                event.page,
+                event.wiki_url,
                 crate::tree::xml_entity_slug("events", None, &event.name, None)
             ],
         )?;
@@ -40,22 +41,24 @@ pub(super) fn write_wiki_vendors_and_events(
 
 pub(super) fn write_wiki_vendor_and_event_items(
     transaction: &Transaction,
+    references: &OverlayReferences,
     wiki_overrides: &WikiOverrides,
     report: &mut BuildReport,
 ) -> Result<()> {
     for vendor in &wiki_overrides.vendors {
-        let citation = format!("wiki {} vendor {:?} ({})", vendor.file_name, vendor.name, vendor.page);
-        let vendor_id = id_named(transaction, "SELECT id FROM vendors WHERE name = ?1", &vendor.name)?
+        let citation = format!("wiki {} vendor {:?} ({})", vendor.file_name, vendor.name, vendor.wiki_url);
+        let vendor_id = references
+            .id(transaction, "vendors", &vendor.name)?
             .context("the vendor row is written before his items")?;
         if let Some(pack_name) = &vendor.pack {
-            let pack_id = id_named(transaction, "SELECT id FROM adventure_packs WHERE name = ?1", pack_name)?
+            let pack_id = references.id(transaction, "adventure_packs", pack_name)?
                 .with_context(|| {
                     format!("{citation}: pack {pack_name:?} is not an adventure pack in Maetrim's Quests.xml or Challenges.xml; use his spelling")
                 })?;
             transaction.execute("UPDATE vendors SET pack_id = ?2 WHERE id = ?1", params![vendor_id, pack_id])?;
         }
         for vendor_item in &vendor.items {
-            let item_id = listed_item_id(transaction, &citation, vendor_item.name())?;
+            let item_id = listed_item_id(transaction, references, &citation, vendor_item.name())?;
             insert_listed_item(transaction, LootSource::Vendor(vendor_id), item_id)?;
             if let Some(cost) = vendor_item.cost() {
                 let offer_id: i64 = transaction.query_row(
@@ -71,11 +74,11 @@ pub(super) fn write_wiki_vendor_and_event_items(
         }
     }
     for event in &wiki_overrides.events {
-        let citation = format!("wiki {} event {:?} ({})", event.file_name, event.name, event.page);
-        let event_id = id_named(transaction, "SELECT id FROM events WHERE name = ?1", &event.name)?
-            .context("the event row is written before his items")?;
+        let citation = format!("wiki {} event {:?} ({})", event.file_name, event.name, event.wiki_url);
+        let event_id =
+            references.id(transaction, "events", &event.name)?.context("the event row is written before his items")?;
         for item_name in &event.items {
-            let item_id = listed_item_id(transaction, &citation, item_name)?;
+            let item_id = listed_item_id(transaction, references, &citation, item_name)?;
             insert_listed_item(transaction, LootSource::Event(event_id), item_id)?;
             report.event_item_count += 1;
         }
@@ -83,8 +86,13 @@ pub(super) fn write_wiki_vendor_and_event_items(
     Ok(())
 }
 
-fn listed_item_id(transaction: &Transaction, citation: &str, item_name: &str) -> Result<i64> {
-    if let Some(item_id) = id_named(transaction, "SELECT id FROM items WHERE name = ?1", item_name)? {
+fn listed_item_id(
+    transaction: &Transaction,
+    references: &OverlayReferences,
+    citation: &str,
+    item_name: &str,
+) -> Result<i64> {
+    if let Some(item_id) = references.id(transaction, "items", item_name)? {
         return Ok(item_id);
     }
     let exclusion_reason: Option<String> = transaction
@@ -114,8 +122,4 @@ fn insert_listed_item(transaction: &Transaction, source: LootSource, item_id: i6
             source_match: None,
         },
     )
-}
-
-fn id_named(transaction: &Transaction, sql: &str, name: &str) -> Result<Option<i64>> {
-    Ok(transaction.query_row(sql, params![name], |r| r.get(0)).optional()?)
 }

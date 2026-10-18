@@ -1,6 +1,5 @@
 use crate::database_tables::{table_columns, table_names};
 use crate::map::source_alias::SourceAliases;
-use crate::wiki::WikiOverrides;
 use anyhow::{bail, ensure, Context, Result};
 use rusqlite::{Connection, OptionalExtension};
 use serde::{Deserialize, Serialize};

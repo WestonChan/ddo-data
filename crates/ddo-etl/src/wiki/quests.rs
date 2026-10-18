@@ -6,8 +6,6 @@ use serde::Deserialize;
 #[serde(deny_unknown_fields)]
 pub struct WikiQuest {
     pub name: String,
-    pub page: String,
-    pub read: String,
     pub free_to_play: bool,
     pub legendary_level: Option<i64>,
     pub zone: Option<String>,

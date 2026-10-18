@@ -45,8 +45,7 @@ fn reads_quest_loot_from_every_toml_file_in_the_directory() {
     assert_eq!(wiki.quest_loot.len(), 1);
     let entry = &wiki.quest_loot[0];
     assert_eq!(entry.name, "Book Burning");
-    assert_eq!(entry.page, "https://ddowiki.com/page/Book_Burning");
-    assert_eq!(entry.read, "2026-09-27");
+    assert_eq!(entry.file_name, "quest_loot.toml");
     assert_eq!(entry.rare.iter().map(RareDrop::name).collect::<Vec<_>>(), ["Buckler of the Golden Age"]);
     assert_eq!(
         entry.rare_augments.iter().map(RareDrop::name).collect::<Vec<_>>(),
@@ -646,7 +645,7 @@ fn reads_crafting_systems_from_crafting_files() {
     assert_eq!(wiki.crafting_systems.len(), 4);
     let system = &wiki.crafting_systems[0];
     assert_eq!(system.name, "Heroic Green Steel");
-    assert_eq!(system.page, "https://ddowiki.com/page/Green_Steel_items");
+    assert_eq!(system.wiki_url, "https://ddowiki.com/page/Green_Steel_items");
     assert_eq!(system.families, vec!["Greensteel_Heroic".to_string()]);
     assert_eq!(system.npc.as_deref(), Some("Altar of Invasion"));
     assert!(system.pack.is_none());
@@ -968,7 +967,7 @@ fn reads_descriptions_from_descriptions_files() {
     let crossbow = &wiki.descriptions[0];
     assert_eq!(crossbow.kind, DescriptionKind::Item);
     assert_eq!(crossbow.name, "+1 Ember Repeating Light Crossbow");
-    assert_eq!(crossbow.read, "2026-09-29");
+    assert_eq!(crossbow.file_name, "descriptions.toml");
     assert_eq!(crossbow.description, "Test description: a repeating crossbow that burns.");
     assert_eq!(wiki.descriptions[2].kind, DescriptionKind::Augment);
     assert_eq!(wiki.quests.len(), 4, "descriptions.toml tables are not read as quests");
