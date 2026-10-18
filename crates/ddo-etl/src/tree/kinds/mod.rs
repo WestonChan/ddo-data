@@ -171,3 +171,7 @@ pub(crate) fn declared_correctable_fields(
     }
     fields
 }
+
+pub(crate) fn selection_correctable_fields() -> &'static [crate::corrections::CorrectableField] {
+    enhancement_tree::EnhancementSelection::CORRECTABLE_FIELDS
+}

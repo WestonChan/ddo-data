@@ -20,10 +20,35 @@
       "x-table": "race_ability_modifiers"
     },
     "Citation": {
-      "additionalProperties": false,
+      "oneOf": [
+        {
+          "not": {
+            "required": [
+              "in_game"
+            ]
+          },
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "url"
+            ]
+          },
+          "required": [
+            "in_game"
+          ]
+        }
+      ],
       "properties": {
         "field": {
           "type": "string"
+        },
+        "in_game": {
+          "const": true,
+          "type": "boolean"
         },
         "note": {
           "type": [
@@ -35,14 +60,15 @@
           "type": "string"
         },
         "url": {
+          "minLength": 1,
           "type": "string"
         }
       },
       "required": [
-        "url",
         "read"
       ],
       "type": "object",
+      "unevaluatedProperties": false,
       "x-array": "citation",
       "x-table": "citations"
     },

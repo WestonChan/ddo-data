@@ -3,6 +3,8 @@ use ddo_model::enums::CorrectionKind;
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum FieldShape {
     Integer,
+    IntegerList,
+    TextList,
     Flag,
     Text,
     NamedReference { referenced_table: &'static str },
@@ -47,6 +49,12 @@ impl CorrectionFieldType for bool {
 }
 impl CorrectionFieldType for String {
     const SHAPE: FieldShape = FieldShape::Text;
+}
+impl CorrectionFieldType for Vec<i64> {
+    const SHAPE: FieldShape = FieldShape::IntegerList;
+}
+impl CorrectionFieldType for Vec<String> {
+    const SHAPE: FieldShape = FieldShape::TextList;
 }
 impl<T: CorrectionFieldType> CorrectionFieldType for Option<T> {
     const SHAPE: FieldShape = T::SHAPE;

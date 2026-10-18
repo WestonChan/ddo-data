@@ -20,7 +20,7 @@ mod file_types;
 mod icon_references;
 mod ids;
 mod kinds;
-pub(crate) use kinds::declared_correctable_fields;
+pub(crate) use kinds::{declared_correctable_fields, selection_correctable_fields};
 mod layout;
 mod pack_layout;
 mod tables;
@@ -58,7 +58,8 @@ pub struct Citation in "citations" as "citation" {
     fields {
     #[serde(default, skip_serializing_if = "String::is_empty")]
     field: String => field,
-    url: String => url,
+    #[serde(flatten)]
+    source: crate::AnnotationSource => url [annotation_source],
     read: String => read,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     note: Option<String> => note,
@@ -70,7 +71,7 @@ pub struct Citation in "citations" as "citation" {
 #[serde(deny_unknown_fields)]
 #[schemars(extend("x-table" = annotations::AppliedCorrection::TABLE, "x-array" = annotations::AppliedCorrection::ARRAY))]
 pub struct DdobuilderCorrection {
-    pub kind: String,
+    pub kind: ddo_model::enums::CorrectionKind,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub original_name: Option<String>,
     #[serde(default, skip_serializing_if = "String::is_empty")]
@@ -81,7 +82,8 @@ pub struct DdobuilderCorrection {
     #[schemars(description = "Omitted when Maetrim has no value for this field.")]
     pub upstream: Option<serde_json::Value>,
     pub reason: String,
-    pub url: String,
+    #[serde(flatten)]
+    pub source: crate::AnnotationSource,
     pub read: String,
     #[serde(default, skip_serializing_if = "String::is_empty")]
     pub qualifier: String,
@@ -666,11 +668,7 @@ mod tests {
             let error =
                 format!("{:#}", build_from_data(&root, &mut Connection::open_in_memory().unwrap()).unwrap_err());
             assert!(error.contains(&bad_note_path.display().to_string()), "{error}");
-            assert!(
-                error.contains(&format!("{retired_kind:?} is not a DDOBuilder correction"))
-                    && error.contains("[[citation]]"),
-                "{error}"
-            );
+            assert!(error.contains("unknown variant") && error.contains(retired_kind), "{error}");
         }
         std::fs::remove_file(&bad_note_path).unwrap();
         let mut from_files = Connection::open_in_memory().unwrap();

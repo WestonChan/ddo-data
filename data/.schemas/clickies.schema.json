@@ -1,10 +1,35 @@
 {
   "$defs": {
     "Citation": {
-      "additionalProperties": false,
+      "oneOf": [
+        {
+          "not": {
+            "required": [
+              "in_game"
+            ]
+          },
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "url"
+            ]
+          },
+          "required": [
+            "in_game"
+          ]
+        }
+      ],
       "properties": {
         "field": {
           "type": "string"
+        },
+        "in_game": {
+          "const": true,
+          "type": "boolean"
         },
         "note": {
           "type": [
@@ -16,14 +41,15 @@
           "type": "string"
         },
         "url": {
+          "minLength": 1,
           "type": "string"
         }
       },
       "required": [
-        "url",
         "read"
       ],
       "type": "object",
+      "unevaluatedProperties": false,
       "x-array": "citation",
       "x-table": "citations"
     },
@@ -73,8 +99,58 @@
       "type": "object",
       "x-table": "clickies"
     },
+    "CorrectionKind": {
+      "enum": [
+        "item",
+        "effect",
+        "augment",
+        "quest",
+        "feat",
+        "enhancement",
+        "enhancement_tree",
+        "clickie",
+        "optional_buff",
+        "filigree",
+        "race",
+        "class",
+        "adventure_pack",
+        "patron",
+        "set_bonus",
+        "set_tier",
+        "set_tier_bonus",
+        "spell",
+        "augment_bonus",
+        "item_bonus",
+        "item_effect",
+        "effect_damage",
+        "item_socket",
+        "socket_label"
+      ],
+      "type": "string"
+    },
     "DdobuilderCorrection": {
-      "additionalProperties": false,
+      "oneOf": [
+        {
+          "not": {
+            "required": [
+              "in_game"
+            ]
+          },
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "url"
+            ]
+          },
+          "required": [
+            "in_game"
+          ]
+        }
+      ],
       "properties": {
         "added_as_name": {
           "type": [
@@ -85,8 +161,12 @@
         "field": {
           "type": "string"
         },
+        "in_game": {
+          "const": true,
+          "type": "boolean"
+        },
         "kind": {
-          "type": "string"
+          "$ref": "#/$defs/CorrectionKind"
         },
         "original_name": {
           "type": [
@@ -107,16 +187,17 @@
           "description": "Omitted when Maetrim has no value for this field."
         },
         "url": {
+          "minLength": 1,
           "type": "string"
         }
       },
       "required": [
         "kind",
         "reason",
-        "url",
         "read"
       ],
       "type": "object",
+      "unevaluatedProperties": false,
       "x-array": "ddobuilder_correction",
       "x-table": "corrections"
     },

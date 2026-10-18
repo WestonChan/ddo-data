@@ -1156,7 +1156,8 @@ impl EnhancementTreeKind {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize, schemars::JsonSchema)]
+#[serde(rename_all = "snake_case")]
 pub enum CorrectionKind {
     Item,
     Effect,
@@ -1182,6 +1183,12 @@ pub enum CorrectionKind {
     EffectDamage,
     ItemSocket,
     SocketLabel,
+}
+
+impl std::fmt::Display for CorrectionKind {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        formatter.write_str(self.as_str())
+    }
 }
 
 impl CorrectionKind {

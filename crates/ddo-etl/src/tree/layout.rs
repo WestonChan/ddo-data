@@ -812,7 +812,7 @@ impl DataFilePaths {
             };
             for correction in notes.corrections_for_owner(table, name) {
                 let key = [
-                    correction.ddobuilder_correction.kind.clone(),
+                    correction.ddobuilder_correction.kind.as_str().to_string(),
                     correction.name.clone(),
                     correction.ddobuilder_correction.qualifier.clone(),
                     correction.ddobuilder_correction.field.clone(),

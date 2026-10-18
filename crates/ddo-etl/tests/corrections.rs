@@ -61,7 +61,7 @@ fn correction_field_names_and_shapes_preserve_the_existing_contract() {
         (CorrectionKind::Augment, "description:Text, effect_description:Text, family:Text, min_level:Integer, name:RowName, remove:Removal"),
         (CorrectionKind::Quest, "epic_level:Integer, favor:Integer, is_raid:Flag, level:Integer, name:RowName, pack:NamedReference { referenced_table: \"adventure_packs\" }, patron:NamedReference { referenced_table: \"patrons\" }, remove:Removal"),
         (CorrectionKind::Feat, "description:Text, icon:Text"),
-        (CorrectionKind::Enhancement, "description:Text, icon:Text"),
+        (CorrectionKind::Enhancement, "arrows:TextList, cooldown_seconds:Integer, cost_per_rank:IntegerList, description:Text, duration_seconds:Integer, icon:Text, is_clickie:Flag, is_tier5:Flag, min_spent:Integer, name:RowName, ranks:Integer, x:Integer, y:Integer"),
         (CorrectionKind::Spell, "description:Text, icon:Text"),
         (CorrectionKind::EnhancementTree, "icon:Text"),
         (CorrectionKind::OptionalBuff, "description:Text, icon:Text"),
@@ -329,7 +329,7 @@ fn reads_a_correction_with_typed_values_and_its_citation() {
     assert_eq!(correction.from, CorrectionValue::Integer(30));
     assert_eq!(correction.to, CorrectionValue::Integer(29));
     assert_eq!(correction.reason, "Test reason.");
-    assert_eq!(correction.source, "https://ddowiki.com/page/Test");
+    assert_eq!(correction.source.page_url(), Some("https://ddowiki.com/page/Test"));
     assert_eq!(correction.read, "2026-09-29");
     assert_eq!(correction.file_name, "corrections.toml");
 }
@@ -522,6 +522,9 @@ fn correction_json_values_round_trip_the_real_writer() {
         }
     }
     for original in [
+        CorrectionValue::Integers(vec![]),
+        CorrectionValue::Integers(vec![i64::MIN, 0, i64::MAX]),
+        CorrectionValue::Texts(vec!["null".into(), "line\nbreak".into()]),
         CorrectionValue::Integer(i64::MIN),
         CorrectionValue::Integer(i64::MAX),
         CorrectionValue::Float(0.5),
@@ -532,7 +535,7 @@ fn correction_json_values_round_trip_the_real_writer() {
         assert_eq!(CorrectionValue::from_json(&original.to_json()).unwrap(), original);
     }
     assert_eq!(CorrectionValue::from_json("true").unwrap(), CorrectionValue::Integer(1));
-    for malformed in ["", "[1]", "{", "{\"unknown\":1}"] {
+    for malformed in ["", "[1.5]", "[1,\"text\"]", "{", "{\"unknown\":1}"] {
         assert!(CorrectionValue::from_json(malformed).is_err(), "{malformed}");
     }
 }

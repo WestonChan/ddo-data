@@ -138,7 +138,7 @@ impl CraftingSystemFile {
                 .iter()
                 .find(|citation| citation.field.is_empty())
                 .context("crafting system has no primary citation")?;
-            file.page = file.page.filter(|page| page != &primary.url);
+            file.page = file.page.filter(|page| Some(page.as_str()) != primary.source.page_url());
             file.attach_citations(annotations, id);
             file.removed = annotation.removed.clone();
             files.insert(id, file);

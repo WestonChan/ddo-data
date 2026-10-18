@@ -21,6 +21,8 @@ pub const NULL_SPELLING: &str = "null";
 #[serde(from = "TomlCorrectionValue")]
 pub enum CorrectionValue {
     Integer(i64),
+    Integers(Vec<i64>),
+    Texts(Vec<String>),
     Float(f64),
     Text(String),
     Bonus(BonusAddition),
@@ -71,6 +73,8 @@ pub struct DamageRow {
 #[serde(untagged)]
 enum TomlCorrectionValue {
     Integer(i64),
+    Integers(Vec<i64>),
+    Texts(Vec<String>),
     Float(f64),
     Text(String),
     Bonus(BonusAddition),
@@ -83,6 +87,8 @@ impl From<TomlCorrectionValue> for CorrectionValue {
     fn from(toml_value: TomlCorrectionValue) -> Self {
         match toml_value {
             TomlCorrectionValue::Integer(number) => Self::Integer(number),
+            TomlCorrectionValue::Integers(numbers) => Self::Integers(numbers),
+            TomlCorrectionValue::Texts(strings) => Self::Texts(strings),
             TomlCorrectionValue::Float(number) => Self::Float(number),
             TomlCorrectionValue::Text(text) if text == NULL_SPELLING => Self::Null,
             TomlCorrectionValue::Text(text) => Self::Text(text),
@@ -116,13 +122,24 @@ impl CorrectionValue {
                     CorrectionValue::Effect(serde_json::from_value(object)?)
                 }
             }
-            serde_json::Value::Array(_) => bail!("correction value cannot be an array"),
+            serde_json::Value::Array(values) => {
+                if values.iter().all(serde_json::Value::is_string) && !values.is_empty() {
+                    Self::Texts(serde_json::from_value(serde_json::Value::Array(values))?)
+                } else {
+                    Self::Integers(
+                        serde_json::from_value(serde_json::Value::Array(values))
+                            .context("correction list must contain only integers or only text")?,
+                    )
+                }
+            }
         })
     }
 
     pub fn to_json(&self) -> String {
         match self {
             Self::Integer(number) => number.to_string(),
+            Self::Integers(numbers) => serde_json::to_string(numbers).expect("integer list serializes"),
+            Self::Texts(strings) => serde_json::to_string(strings).expect("text list serializes"),
             Self::Float(number) => serde_json::Value::from(*number).to_string(),
             Self::Text(text) => serde_json::Value::from(text.as_str()).to_string(),
             Self::Bonus(bonus) => format!(
@@ -153,7 +170,9 @@ impl CorrectionValue {
             Self::Integer(number) => SqlValue::Integer(*number),
             Self::Float(number) => SqlValue::Real(*number),
             Self::Text(text) => SqlValue::Text(text.clone()),
-            Self::Bonus(_) | Self::Tier(_) | Self::Effect(_) | Self::Damage(_) => SqlValue::Text(self.to_json()),
+            Self::Bonus(_) | Self::Tier(_) | Self::Effect(_) | Self::Damage(_) | Self::Integers(_) | Self::Texts(_) => {
+                SqlValue::Text(self.to_json())
+            }
             Self::Null => SqlValue::Null,
         }
     }
@@ -208,6 +227,8 @@ impl CorrectionValue {
     fn fits(&self, field: &CorrectableField) -> bool {
         match (self, field.shape) {
             (Self::Null, _) => field.is_nullable,
+            (Self::Integers(_), FieldShape::IntegerList) | (Self::Texts(_), FieldShape::TextList) => true,
+            (Self::Integers(numbers), FieldShape::TextList) => numbers.is_empty(),
             (Self::Integer(_), FieldShape::Integer | FieldShape::EffectBonusConstant | FieldShape::BonusDedupe) => true,
             (Self::Float(number), FieldShape::StatScale) => number.is_finite() && *number > 0.0,
             (Self::Text(rounding), FieldShape::StatRounding) => matches!(rounding.as_str(), "down" | "up" | "nearest"),
@@ -252,15 +273,20 @@ pub struct Correction {
     pub bonus_value: Option<i64>,
     pub equipped_count: Option<i64>,
     pub reason: String,
-    pub source: String,
+    pub source: crate::AnnotationSource,
     pub read: String,
     pub file_name: String,
 }
 
 impl Correction {
     pub fn correctable_field(&self) -> Result<&'static CorrectableField> {
-        correctable_field(self.kind, &self.field).with_context(|| {
-            let allowed_fields: Vec<&str> = correctable_fields(self.kind).iter().map(|field| field.name).collect();
+        let fields = if self.selection.is_some() && self.stance.is_none() && self.dc.is_none() {
+            crate::tree::selection_correctable_fields()
+        } else {
+            correctable_fields(self.kind)
+        };
+        fields.iter().find(|field| field.name == self.field).with_context(|| {
+            let allowed_fields: Vec<&str> = fields.iter().map(|field| field.name).collect();
             if self.kind == CorrectionKind::Quest && fields::WIKI_QUEST_FIELDS.contains(&self.field.as_str()) {
                 format!(
                     "field {:?} comes from the wiki's quests.toml, not Maetrim's files; correct it there. A quest correction takes {}",
@@ -354,8 +380,8 @@ impl Correction {
 
     fn validate_qualifier_keys(&self, field: &CorrectableField) -> Result<()> {
         ensure!(
-            self.selection.is_none() || (self.kind == CorrectionKind::Enhancement && self.field == "icon"),
-            "selection names an enhancement's icon row"
+            self.selection.is_none() || self.kind == CorrectionKind::Enhancement,
+            "selection names an enhancement selection row"
         );
         ensure!(
             self.stance.is_none()
@@ -418,7 +444,7 @@ impl Correction {
         Ok(())
     }
 
-    fn validate_values(&self, field: &CorrectableField) -> Result<()> {
+    pub(crate) fn validate_values(&self, field: &CorrectableField) -> Result<()> {
         match field.shape {
             FieldShape::Removal => {
                 if (&self.from, &self.to) != (&CorrectionValue::Integer(0), &CorrectionValue::Integer(1)) {
@@ -522,19 +548,26 @@ impl Correction {
         if self.reason.trim().is_empty() {
             bail!("reason is empty; say why his value is wrong");
         }
-        if self.kind == CorrectionKind::Effect && self.field == "name" && !self.source.starts_with("https://") {
+        if !self.source.is_in_game()
+            && self.kind == CorrectionKind::Effect
+            && self.field == "name"
+            && !self.source.page_url().is_some_and(|url| url.starts_with("https://"))
+        {
             bail!(
                 "an effect rename must cite the wiki page that shows the new name; source {:?} is not one",
                 self.source
             );
         }
-        let internal_template_source = self.source == "internal:effect-name-and-description"
+        let internal_template_source = self.source.page_url() == Some("internal:effect-name-and-description")
             && self.kind == CorrectionKind::Effect
             && matches!(self.field.as_str(), "verbose_name_template" | "description_template");
-        let upstream_icon_folder = self.field == "icon" && self.source.starts_with("Output/DataFiles/");
-        if !internal_template_source
+        let upstream_icon_folder =
+            self.field == "icon" && self.source.page_url().is_some_and(|url| url.starts_with("Output/DataFiles/"));
+        if !self.source.is_in_game()
+            && !internal_template_source
             && !upstream_icon_folder
-            && (!self.source.starts_with("https://") || self.source.len() == "https://".len())
+            && (!self.source.page_url().is_some_and(|url| url.starts_with("https://"))
+                || self.source.page_url() == Some("https://"))
         {
             bail!(
                 "source {:?} must be a supporting https:// URL or an internal effect-template consistency check",
@@ -550,6 +583,8 @@ impl Correction {
 
 fn expected_value_text(field: &CorrectableField) -> String {
     let non_null_text = match field.shape {
+        FieldShape::IntegerList => "an integer list",
+        FieldShape::TextList => "a text list",
         FieldShape::Integer | FieldShape::EffectBonusConstant => "an integer",
         FieldShape::StatScale => "a positive finite number",
         FieldShape::StatRounding => "down, up or nearest",
@@ -593,7 +628,8 @@ struct TomlCorrection {
     from: CorrectionValue,
     to: CorrectionValue,
     reason: String,
-    source: String,
+    source: Option<String>,
+    in_game: Option<bool>,
     read: String,
 }
 
@@ -619,7 +655,7 @@ impl TomlCorrection {
             bonus_value: self.bonus_value,
             equipped_count: self.equipped_count,
             reason: self.reason,
-            source: self.source,
+            source: crate::AnnotationSource::from_fields(self.source, self.in_game)?,
             read: self.read,
             file_name: file_name.to_string(),
         })
@@ -640,7 +676,7 @@ impl Corrections {
 
     pub fn from_database(db: &Connection) -> Result<Self> {
         let mut statement = db.prepare(
-            "SELECT kind, name, field, from_value, to_value, qualifier, reason, source, read
+            "SELECT kind, name, field, from_value, to_value, qualifier, reason, source, read, in_game
              FROM corrections ORDER BY id",
         )?;
         let rows = statement.query_map([], |row| {
@@ -652,7 +688,7 @@ impl Corrections {
                 row.get::<_, String>(4)?,
                 row.get::<_, String>(5)?,
                 row.get::<_, String>(6)?,
-                row.get::<_, String>(7)?,
+                crate::AnnotationSource::from_columns(row.get(7)?, row.get(9)?)?,
                 row.get::<_, String>(8)?,
             ))
         })?;

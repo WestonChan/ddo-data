@@ -748,21 +748,30 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         removals_by_file.push((path, removed_entries_to_insert));
     }
     ensure!(validation_errors.is_empty(), "data validation failed:\n{}", validation_errors.join("\n"));
+    let selection_renames = notes_by_file
+        .iter()
+        .flat_map(|(_, notes)| notes)
+        .filter_map(|(owner, note)| {
+            if note.field != "name" || !note.qualifier.starts_with("selection ") {
+                return None;
+            }
+            note.upstream.as_ref().and_then(serde_json::Value::as_str).map(|old_name| {
+                (
+                    (note.kind, owner.clone(), note.qualifier.clone()),
+                    correction_notes::named_row_qualifier(&[("selection", old_name)]),
+                )
+            })
+        })
+        .collect::<BTreeMap<_, _>>();
     let mut recorded_notes = BTreeMap::new();
     for (path, entity_name, note) in notes_by_file
         .into_iter()
         .flat_map(|(path, notes)| notes.into_iter().map(move |(entity_name, note)| (path, entity_name, note)))
     {
-        ensure!(
-            !matches!(note.kind.as_str(), "release" | "slug_collision"),
-            "{}: {:?} is not a DDOBuilder correction; record the review as the note of a [[citation]]",
-            path.display(),
-            note.kind
-        );
         (|| -> Result<()> {
             let correction_name = if let Some(original_name) = &note.original_name {
                 original_name.clone()
-            } else if note.field == "name" {
+            } else if note.field == "name" && note.qualifier.is_empty() {
                 note.upstream
                     .as_ref()
                     .and_then(serde_json::Value::as_str)
@@ -774,9 +783,16 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
             let (from_value, to_value) =
                 correction_notes::correction_values(&transaction, &entity_name, &note, &tier_descriptions)
                     .with_context(|| format!("{} {:?}.{}", note.kind, correction_name, note.field))?;
-            let key = (note.kind.clone(), correction_name.clone(), note.qualifier.clone(), note.field.clone());
+            let recorded_qualifier = correction_notes::renamed_qualifier(
+                &note.qualifier,
+                selection_renames
+                    .iter()
+                    .filter(|((kind, owner, _), _)| *kind == note.kind && owner == &entity_name)
+                    .map(|((_, _, current), original)| (current.as_str(), original.as_str())),
+            );
+            let key = (note.kind, correction_name.clone(), recorded_qualifier.clone(), note.field.clone());
             let evidence =
-                (from_value.clone(), to_value.clone(), note.reason.clone(), note.url.clone(), note.read.clone());
+                (from_value.clone(), to_value.clone(), note.reason.clone(), note.source.clone(), note.read.clone());
             if let Some(previous) = recorded_notes.insert(key, evidence.clone()) {
                 ensure!(
                     previous == evidence,
@@ -788,14 +804,14 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                 return Ok(());
             }
             annotations::AppliedCorrection {
-                kind: note.kind,
+                kind: note.kind.as_str().into(),
                 name: correction_name,
-                qualifier: note.qualifier,
+                qualifier: recorded_qualifier,
                 field: note.field,
                 from_value,
                 to_value,
                 reason: note.reason,
-                url: note.url,
+                source: note.source,
                 read: note.read,
             }
             .insert(&transaction)?;
@@ -814,7 +830,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
             from_value: "0".into(),
             to_value: "1".into(),
             reason: removed.reason,
-            url: removed.url,
+            source: removed.url.into(),
             read: removed.read,
         }
         .insert(&transaction)

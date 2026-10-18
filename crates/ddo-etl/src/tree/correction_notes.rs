@@ -11,6 +11,16 @@ pub(super) fn named_row_qualifier(keys: &[(&str, &str)]) -> String {
     keys.iter().map(|(key, name)| format!("{key} {name:?}")).collect::<Vec<_>>().join(", ")
 }
 
+pub(super) fn renamed_qualifier<'a>(qualifier: &str, renames: impl IntoIterator<Item = (&'a str, &'a str)>) -> String {
+    renames
+        .into_iter()
+        .find_map(|(before, after)| {
+            let suffix = qualifier.strip_prefix(before)?;
+            (suffix.is_empty() || suffix.starts_with(", ")).then(|| format!("{after}{suffix}"))
+        })
+        .unwrap_or_else(|| qualifier.to_string())
+}
+
 pub(super) fn nested_notes(
     owner_name: &str,
     notes: &[DdobuilderCorrection],
@@ -35,7 +45,7 @@ fn quoted_name(text: &str, prefix: &str) -> Result<Option<String>> {
 }
 
 fn correction_for_note(note: &DdobuilderCorrection, current_name: &str) -> Result<Correction> {
-    let kind = CorrectionKind::parse(&note.kind).with_context(|| format!("unknown correction kind {:?}", note.kind))?;
+    let kind = note.kind;
     let mut correction = Correction {
         kind,
         name: current_name.to_string(),
@@ -52,7 +62,7 @@ fn correction_for_note(note: &DdobuilderCorrection, current_name: &str) -> Resul
         bonus_value: None,
         equipped_count: None,
         reason: note.reason.clone(),
-        source: note.url.clone(),
+        source: note.source.clone(),
         read: note.read.clone(),
         file_name: String::new(),
     };
@@ -203,7 +213,7 @@ pub(super) fn correction_values(
     note: &DdobuilderCorrection,
     tier_descriptions: &BTreeMap<(String, i64), String>,
 ) -> Result<(String, String)> {
-    let correction = correction_for_note(note, current_name)?;
+    let mut correction = correction_for_note(note, current_name)?;
     let mut upstream = note.upstream.clone().unwrap_or(Value::Null);
     if note.field == "is_legacy" {
         if let Some(value) = upstream.as_bool() {
@@ -267,5 +277,8 @@ pub(super) fn correction_values(
         (_, "remove") => json!(1),
         _ => serde_json::from_str::<Value>(&data_correction_value(transaction, &correction, current_name)?.to_json())?,
     };
-    Ok((upstream.to_string(), applied.to_string()))
+    correction.from = CorrectionValue::from_json(&upstream.to_string())?;
+    correction.to = CorrectionValue::from_json(&applied.to_string())?;
+    correction.validate_values(correction.correctable_field()?)?;
+    Ok((correction.from.to_json(), correction.to.to_json()))
 }

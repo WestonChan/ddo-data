@@ -13,22 +13,22 @@ database_record! {
     pub(crate) struct EnhancementSelection in "enhancement_selections" {
         keys { id: i64, slug: &str, enhancement_id: i64, sort_order: i64 }
         fields {
-            name: String => name,
+            name: String => name [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            cooldown_seconds: Option<i64> => cooldown_seconds,
+            cooldown_seconds: Option<i64> => cooldown_seconds [correctable],
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            cost_per_rank: Vec<i64> => cost_per_rank [json],
+            cost_per_rank: Vec<i64> => cost_per_rank [correctable] [json],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            description: Option<String> => description,
+            description: Option<String> => description [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            duration_seconds: Option<i64> => duration_seconds,
-            icon: String => icon [image ""],
+            duration_seconds: Option<i64> => duration_seconds [correctable],
+            icon: String => icon [correctable] [image ""],
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
-            is_clickie: bool => is_clickie,
+            is_clickie: bool => is_clickie [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            min_spent: Option<i64> => min_spent,
+            min_spent: Option<i64> => min_spent [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            ranks: Option<i64> => ranks,
+            ranks: Option<i64> => ranks [correctable],
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -66,29 +66,29 @@ database_record! {
     pub(crate) struct Enhancement in "enhancements" {
         keys { id: i64, slug: &str, tree_id: i64 }
         fields {
-            name: String => name,
+            name: String => name [correctable],
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            arrows: Vec<String> => arrows [json],
+            arrows: Vec<String> => arrows [correctable] [json],
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            cooldown_seconds: Option<i64> => cooldown_seconds,
+            cooldown_seconds: Option<i64> => cooldown_seconds [correctable],
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            cost_per_rank: Vec<i64> => cost_per_rank [json],
+            cost_per_rank: Vec<i64> => cost_per_rank [correctable] [json],
             description: String => description [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             variant: Option<String> => variant,
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            duration_seconds: Option<i64> => duration_seconds,
+            duration_seconds: Option<i64> => duration_seconds [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             icon: Option<String> => icon [correctable] [image ""],
             internal_name: String => internal_name,
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
-            is_clickie: bool => is_clickie,
+            is_clickie: bool => is_clickie [correctable],
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
-            is_tier5: bool => is_tier5,
-            min_spent: i64 => min_spent,
-            ranks: i64 => ranks,
-            x: i64 => x,
-            y: i64 => y,
+            is_tier5: bool => is_tier5 [correctable],
+            min_spent: i64 => min_spent [correctable],
+            ranks: i64 => ranks [correctable],
+            x: i64 => x [correctable],
+            y: i64 => y [correctable],
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -426,5 +426,35 @@ impl EnhancementSelection {
             )?;
         }
         Ok(count)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{Enhancement, EnhancementSelection};
+    use std::collections::BTreeSet;
+
+    #[test]
+    fn every_enhancement_column_except_identity_is_correctable() {
+        let db = rusqlite::Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        for (table, declared) in [
+            ("enhancements", Enhancement::CORRECTABLE_FIELDS),
+            ("enhancement_selections", EnhancementSelection::CORRECTABLE_FIELDS),
+        ] {
+            let expected = db
+                .prepare(&format!("PRAGMA table_info({table})"))
+                .unwrap()
+                .query_map([], |row| row.get::<_, String>(1))
+                .unwrap()
+                .map(Result::unwrap)
+                .filter(|column| {
+                    !["id", "slug", "tree_id", "enhancement_id", "sort_order", "internal_name", "variant"]
+                        .contains(&column.as_str())
+                })
+                .collect::<BTreeSet<_>>();
+            let actual = declared.iter().map(|field| field.column.to_string()).collect::<BTreeSet<_>>();
+            assert_eq!(actual, expected, "{table}");
+        }
     }
 }

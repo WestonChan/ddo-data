@@ -66,7 +66,7 @@ impl CorrectionNoteIndex {
                 field,
                 from_value: upstream_json,
                 reason,
-                url: source,
+                source,
                 read,
                 qualifier,
                 to_value: applied_json,
@@ -80,7 +80,7 @@ impl CorrectionNoteIndex {
                 Some(upstream_value)
             };
             let applied: serde_json::Value = serde_json::from_str(&applied_json)?;
-            if field == "name" {
+            if field == "name" && qualifier.is_empty() {
                 if let Some(new_name) = applied.as_str() {
                     if new_name != name {
                         renames.entry((kind.clone(), new_name.to_string())).or_default().push(name.clone());
@@ -88,13 +88,13 @@ impl CorrectionNoteIndex {
                 }
             }
             let ddobuilder_correction = DdobuilderCorrection {
-                kind: kind.clone(),
+                kind: ddo_model::enums::CorrectionKind::parse(&kind).context("unknown stored correction kind")?,
                 original_name: None,
                 added_as_name: (kind == "item_effect" && field == "add" && applied.is_string()).then_some(true),
                 field,
                 upstream,
                 reason,
-                url: source,
+                source,
                 read,
                 qualifier,
             };
@@ -121,9 +121,27 @@ impl CorrectionNoteIndex {
         keys: &[(&str, &str)],
     ) -> Vec<DdobuilderCorrection> {
         let qualifier = super::correction_notes::named_row_qualifier(keys);
+        let renamed_qualifiers = self
+            .corrections_for_owner(table, owner_name)
+            .into_iter()
+            .filter_map(|row| {
+                let note = &row.ddobuilder_correction;
+                if note.field != "name" || !note.qualifier.starts_with("selection ") {
+                    return None;
+                }
+                row.applied.as_str().map(|name| {
+                    (note.qualifier.clone(), super::correction_notes::named_row_qualifier(&[("selection", name)]))
+                })
+            })
+            .collect::<BTreeMap<_, _>>();
         self.notes_for_owner(table, owner_name)
             .into_iter()
-            .filter(|note| note.qualifier == qualifier)
+            .filter(|note| {
+                super::correction_notes::renamed_qualifier(
+                    &note.qualifier,
+                    renamed_qualifiers.iter().map(|(before, after)| (before.as_str(), after.as_str())),
+                ) == qualifier
+            })
             .map(|mut note| {
                 note.qualifier.clear();
                 note
@@ -156,8 +174,10 @@ impl CorrectionNoteIndex {
             .map(|row| {
                 let mut note = row.ddobuilder_correction.clone();
                 note.original_name = (row.name != name && note.field != "name").then(|| row.name.clone());
-                note.added_as_name =
-                    (note.kind == "item_effect" && note.field == "add" && row.applied.is_string()).then_some(true);
+                note.added_as_name = (note.kind == ddo_model::enums::CorrectionKind::ItemEffect
+                    && note.field == "add"
+                    && row.applied.is_string())
+                .then_some(true);
                 note
             })
             .collect()
@@ -278,7 +298,7 @@ pub(super) fn wiki_citations(
             if !item.quests.is_empty() {
                 citations.push(Citation {
                     field: "sources".to_string(),
-                    url: item.page.clone(),
+                    source: item.page.clone().into(),
                     read: item.read.clone(),
                     note: None,
                 });
@@ -301,7 +321,7 @@ pub(super) fn wiki_citations(
             } else {
                 citations.push(Citation {
                     field: "quest facts".to_string(),
-                    url: quest.page.clone(),
+                    source: quest.page.clone().into(),
                     read: quest.read.clone(),
                     note: None,
                 });
@@ -345,13 +365,13 @@ pub(super) fn wiki_citations(
     {
         citations.push(Citation {
             field: "description".to_string(),
-            url: description.page.clone(),
+            source: description.page.clone().into(),
             read: description.read.clone(),
             note: None,
         });
     }
     if let (Some(url), Some(read)) = (source, read) {
-        citations.insert(0, Citation { field: String::new(), url, read, note: None });
+        citations.insert(0, Citation { field: String::new(), source: url.into(), read, note: None });
     }
     citations
 }

@@ -292,13 +292,42 @@ fn crafting_tables_accept_only_the_four_crafting_tiers_and_one_ingredient_per_na
 }
 
 #[test]
+fn annotations_require_exactly_one_page_or_in_game_source() {
+    for (url, in_game, valid) in [
+        (Some("https://ddowiki.com/page/Test"), 0, true),
+        (None, 1, true),
+        (Some("https://ddowiki.com/page/Test"), 1, false),
+        (None, 0, false),
+        (None, 2, false),
+    ] {
+        let db = fresh_db();
+        let citation = db.execute(
+            "INSERT INTO citations (owner_kind, owner_id, field, url, in_game, read) VALUES ('enhancements', 1, 'cost_per_rank', ?1, ?2, '2026-10-18')",
+            rusqlite::params![url, in_game],
+        );
+        assert_eq!(citation.is_ok(), valid, "citation: {url:?}/{in_game}");
+        let correction = db.execute(
+            "INSERT INTO corrections (kind, name, field, from_value, to_value, reason, source, in_game, read) VALUES ('enhancement', 'Test', 'cost_per_rank', '[2]', '[1]', 'Observed cost.', ?1, ?2, '2026-10-18')",
+            rusqlite::params![url, in_game],
+        );
+        assert_eq!(correction.is_ok(), valid, "correction: {url:?}/{in_game}");
+        if valid {
+            assert!(db.execute(
+                "INSERT INTO citations (owner_kind, owner_id, field, url, in_game, read) VALUES ('enhancements', 1, 'cost_per_rank', ?1, ?2, '2026-10-19')",
+                rusqlite::params![url, in_game],
+            ).is_err());
+        }
+    }
+}
+
+#[test]
 fn corrections_record_each_kind_field_and_value_change_once() {
     let db = fresh_db();
     let mut statement = db.prepare("SELECT name FROM pragma_table_info('corrections') ORDER BY cid").unwrap();
     let columns: Vec<String> = statement.query_map([], |r| r.get(0)).unwrap().map(Result::unwrap).collect();
     assert_eq!(
         columns,
-        ["id", "kind", "name", "qualifier", "field", "from_value", "to_value", "reason", "source", "read"]
+        ["id", "kind", "name", "qualifier", "field", "from_value", "to_value", "reason", "source", "in_game", "read"]
     );
     let insert_correction = |kind: &str, qualifier: &str| {
         db.execute(

@@ -131,9 +131,12 @@ fn every_entity_preserves_citations_with_notes_through_the_data_tree() {
             .unwrap();
         assert!(!rows.is_empty(), "fixture has no {table}");
         for (id, slug) in rows {
-            let note = format!("Checked {table}/{slug}.");
-            db.execute("INSERT INTO citations (owner_kind, owner_id, field, url, read, note) VALUES (?1, ?2, 'review', 'https://ddowiki.com/page/Review', '2026-10-18', ?3)", rusqlite::params![table, id, note]).unwrap();
-            expected.push((table, identity_column, slug, note));
+            for in_game in [false, true] {
+                let note = format!("Checked {table}/{slug}; in_game={in_game}.");
+                let url = (!in_game).then_some("https://ddowiki.com/page/Review");
+                db.execute("INSERT INTO citations (owner_kind, owner_id, field, url, in_game, read, note) VALUES (?1, ?2, 'review', ?3, ?4, '2026-10-18', ?5)", rusqlite::params![table, id, url, in_game, note]).unwrap();
+                expected.push((table, identity_column, slug.clone(), note, url, in_game));
+            }
         }
     }
     let stance_requirements = |db: &Connection| {
@@ -149,14 +152,14 @@ fn every_entity_preserves_citations_with_notes_through_the_data_tree() {
     tree::build_from_data(scratch.path(), &mut rebuilt).unwrap();
     assert_eq!(expected_requirements, stance_requirements(&rebuilt));
     let annotated = tree::annotated_entities(&rebuilt).unwrap();
-    for (table, identity_column, slug, note) in expected {
+    for (table, identity_column, slug, note, url, in_game) in expected {
         let id: i64 = rebuilt
             .query_row(&format!("SELECT id FROM {table} WHERE {identity_column} = ?1"), [&slug], |row| row.get(0))
             .unwrap();
         let count: i64 = rebuilt
             .query_row(
-                "SELECT COUNT(*) FROM citations WHERE owner_kind = ?1 AND owner_id = ?2 AND note = ?3",
-                rusqlite::params![table, id, note],
+                "SELECT COUNT(*) FROM citations WHERE owner_kind = ?1 AND owner_id = ?2 AND note = ?3 AND url IS ?4 AND in_game = ?5",
+                rusqlite::params![table, id, note, url, in_game],
                 |row| row.get(0),
             )
             .unwrap();
@@ -360,6 +363,268 @@ fn import_twice_changes_nothing_the_second_time() {
     let report = import_ddobuilder(&world.options).unwrap();
     assert!(!report.has_conflicts(), "{report}");
     assert_eq!(before, world.bytes());
+}
+
+#[test]
+fn every_declared_enhancement_field_agrees_between_builders() {
+    use ddo_etl::corrections::{correctable_fields, CorrectionValue};
+    use ddo_model::enums::CorrectionKind;
+    let expected = [
+        "arrows",
+        "cooldown_seconds",
+        "cost_per_rank",
+        "description",
+        "duration_seconds",
+        "icon",
+        "is_clickie",
+        "is_tier5",
+        "min_spent",
+        "name",
+        "ranks",
+        "x",
+        "y",
+    ];
+    let mut declared =
+        correctable_fields(CorrectionKind::Enhancement).iter().map(|field| field.name).collect::<Vec<_>>();
+    declared.sort();
+    assert_eq!(declared, expected);
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let source = fixtures.join("DataFiles");
+    let wiki = WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
+    let baseline_corrections = Corrections::from_dir(&fixtures.join("data-corrections")).unwrap();
+    let version = DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() };
+    let mut baseline = Connection::open_in_memory().unwrap();
+    build::build_database(&source, &wiki, &baseline_corrections, &mut baseline, &version).unwrap();
+    for selection in [false, true] {
+        for field in expected {
+            for empty_list in [false, true] {
+                if empty_list && !["cost_per_rank", "arrows"].contains(&field) {
+                    continue;
+                }
+                if selection && ["arrows", "is_tier5", "x", "y"].contains(&field) {
+                    continue;
+                }
+                let (table, row_name) = if selection {
+                    ("enhancement_selections", "Attack Boost")
+                } else {
+                    ("enhancements", "Kensei: Action Boost")
+                };
+                let original: rusqlite::types::Value = baseline
+                    .query_row(&format!("SELECT {field} FROM {table} WHERE name = ?1"), [row_name], |row| row.get(0))
+                    .unwrap();
+                let original = match original {
+                    rusqlite::types::Value::Text(encoded) if ["cost_per_rank", "arrows"].contains(&field) => {
+                        CorrectionValue::from_json(&encoded).unwrap()
+                    }
+                    value => CorrectionValue::from_sql(value),
+                };
+                let mut replacement = match field {
+                    "name" => serde_json::json!(format!("{row_name} reviewed")),
+                    "description" => serde_json::json!("Reviewed enhancement description."),
+                    "icon" => serde_json::json!("PowerAttack"),
+                    "arrows" => serde_json::json!(["ArrowUp", "ArrowRight"]),
+                    "cost_per_rank" => serde_json::json!([2, 3]),
+                    "is_clickie" => serde_json::json!(0),
+                    "is_tier5" => serde_json::json!(1),
+                    _ => serde_json::json!(7),
+                };
+                if empty_list {
+                    replacement = serde_json::json!([]);
+                }
+                let from = if original == CorrectionValue::Null { "\"null\"".into() } else { original.to_json() };
+                let qualifier = if selection { "selection = \"Attack Boost\"\n" } else { "" };
+                let text = format!(
+                    r#"[[correction]]
+kind = "enhancement"
+name = "Kensei: Action Boost"
+field = {field:?}
+from = {from}
+to = {replacement}
+{qualifier}reason = "Reviewed in test."
+source = "https://ddowiki.com/page/Test"
+read = "2026-10-18"
+"#
+                );
+                let mut corrections = baseline_corrections.clone();
+                corrections
+                    .entries
+                    .extend(Corrections::from_toml_files(&[("enhancement.toml", text.as_str())]).unwrap().entries);
+                if selection && field == "name" {
+                    corrections.entries.extend(
+                        Corrections::from_toml_files(&[(
+                            "sibling.toml",
+                            r#"[[correction]]
+kind = "enhancement"
+name = "Kensei: Action Boost"
+selection = "Attack Boost"
+field = "cost_per_rank"
+from = [1]
+to = [4]
+reason = "Sibling of renamed selection."
+source = "https://ddowiki.com/page/Test"
+read = "2026-10-18"
+"#,
+                        )])
+                        .unwrap()
+                        .entries,
+                    );
+                }
+                let mut corrected = Connection::open_in_memory().unwrap();
+                build::build_database(&source, &wiki, &corrections, &mut corrected, &version)
+                    .unwrap_or_else(|error| panic!("{table}.{field}: {error:#}"));
+                let scratch = tempfile::tempdir().unwrap();
+                export_fixture_with_icons(&corrected, &source, scratch.path());
+                let mut rebuilt = Connection::open_in_memory().unwrap();
+                tree::build_from_data(scratch.path(), &mut rebuilt)
+                    .unwrap_or_else(|error| panic!("{table}.{field}: {error:#}"));
+                for db in [&corrected, &rebuilt] {
+                    let actual: String = db.query_row(
+                    "SELECT to_value FROM corrections WHERE kind = 'enhancement' AND field = ?1 AND reason = 'Reviewed in test.'",
+                    [field], |row| row.get(0),
+                ).unwrap_or_else(|error| panic!("{table}.{field}: {error}"));
+                    assert_eq!(actual, replacement.to_string(), "{table}.{field}");
+                    if selection && field == "name" {
+                        let sibling: (String, String) = db.query_row(
+                        "SELECT qualifier, to_value FROM corrections WHERE reason = 'Sibling of renamed selection.'",
+                        [], |row| Ok((row.get(0)?, row.get(1)?)),
+                    ).unwrap();
+                        assert_eq!(sibling, ("selection \"Attack Boost\"".into(), "[4]".into()));
+                    }
+                }
+            }
+        }
+    }
+}
+
+#[test]
+fn enhancement_notes_reject_identity_fields_and_fractional_upstream_costs() {
+    for (field, upstream, expected) in [
+        ("internal_name", toml::Value::String("OldIdentity".into()), "allowed fields"),
+        ("cost_per_rank", toml::Value::Array(vec![toml::Value::Float(1.5)]), "integer"),
+    ] {
+        let world = ImportWorld::new(Corrections::default());
+        let path = world.options.data_dir.join("characters/enhancements/ravager-fighter/tree.toml");
+        let mut tree: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+        let note = toml::Table::from_iter([
+            ("kind".into(), toml::Value::String("enhancement".into())),
+            ("field".into(), toml::Value::String(field.into())),
+            ("upstream".into(), upstream),
+            ("reason".into(), toml::Value::String("Invalid correction test.".into())),
+            ("url".into(), toml::Value::String("https://ddowiki.com/page/Test".into())),
+            ("read".into(), toml::Value::String("2026-10-18".into())),
+        ]);
+        tree["enhancement"][0]
+            .as_table_mut()
+            .unwrap()
+            .insert("ddobuilder_correction".into(), toml::Value::Array(vec![toml::Value::Table(note)]));
+        std::fs::write(&path, toml::to_string_pretty(&tree).unwrap()).unwrap();
+        let error =
+            tree::build_from_data(&world.options.data_dir, &mut Connection::open_in_memory().unwrap()).unwrap_err();
+        let message = format!("{error:#}");
+        assert!(message.contains("ravager-fighter/tree.toml") && message.contains(expected), "{message}");
+    }
+}
+
+#[test]
+fn annotation_sources_and_correction_kinds_are_typed() {
+    let source_shape = serde_json::json!([
+        {"required": ["url"], "not": {"required": ["in_game"]}},
+        {"required": ["in_game"], "not": {"required": ["url"]}},
+    ]);
+    for schema in [
+        serde_json::to_value(schemars::schema_for!(tree::Citation)).unwrap(),
+        serde_json::to_value(schemars::schema_for!(tree::DdobuilderCorrection)).unwrap(),
+    ] {
+        assert_eq!(schema["oneOf"], source_shape);
+        assert_eq!(schema["properties"]["in_game"]["const"], true);
+    }
+    let schema = serde_json::to_value(schemars::schema_for!(tree::DdobuilderCorrection)).unwrap();
+    let expected_kinds = ddo_model::enums::CorrectionKind::ALL.iter().map(|kind| kind.as_str()).collect::<Vec<_>>();
+    assert_eq!(schema["$defs"]["CorrectionKind"]["enum"], serde_json::json!(expected_kinds));
+    for source in ["url = \"https://ddowiki.com/page/Test\"", "in_game = true"] {
+        let text = format!("{source}\nread = \"2026-10-18\"\nnote = \"Observed cost.\"\n");
+        let citation: tree::Citation = toml::from_str(&text).unwrap();
+        let encoded = toml::to_string(&citation).unwrap();
+        let decoded: tree::Citation = toml::from_str(&encoded).unwrap();
+        assert_eq!(toml::to_string(&decoded).unwrap(), encoded);
+        let text = format!("kind = \"enhancement\"\nfield = \"cost_per_rank\"\nreason = \"Observed cost.\"\n{source}\nread = \"2026-10-18\"\n");
+        let correction: tree::DdobuilderCorrection = toml::from_str(&text).unwrap();
+        let encoded = toml::to_string(&correction).unwrap();
+        assert_eq!(toml::to_string(&toml::from_str::<tree::DdobuilderCorrection>(&encoded).unwrap()).unwrap(), encoded);
+        for kind in ["release", "slug_collision"] {
+            assert!(toml::from_str::<tree::DdobuilderCorrection>(
+                &text.replace("\"enhancement\"", &format!("{kind:?}"))
+            )
+            .is_err());
+        }
+    }
+    for source in ["", "in_game = false", "url = \"https://ddowiki.com/page/Test\"\nin_game = true"] {
+        assert!(toml::from_str::<tree::Citation>(&format!("{source}\nread = \"2026-10-18\"\n")).is_err());
+        for (array, fields) in [
+            ("citation", ""),
+            (
+                "enhancement.ddobuilder_correction",
+                "kind = \"enhancement\"\nfield = \"cost_per_rank\"\nreason = \"Observed cost.\"\nupstream = [2]\n",
+            ),
+        ] {
+            let world = ImportWorld::new(Corrections::default());
+            let path = world.options.data_dir.join("characters/enhancements/ravager-fighter/tree.toml");
+            let original = std::fs::read_to_string(&path).unwrap();
+            std::fs::write(&path, format!("{original}\n[[{array}]]\n{fields}{source}\nread = \"2026-10-18\"\n"))
+                .unwrap();
+            let error =
+                tree::build_from_data(&world.options.data_dir, &mut Connection::open_in_memory().unwrap()).unwrap_err();
+            assert!(format!("{error:#}").contains("ravager-fighter/tree.toml"), "{error:#}");
+        }
+        assert!(toml::from_str::<tree::DdobuilderCorrection>(&format!("kind = \"enhancement\"\nfield = \"cost_per_rank\"\nreason = \"Observed cost.\"\n{source}\nread = \"2026-10-18\"\n")).is_err());
+    }
+}
+
+#[test]
+fn import_reports_enhancement_cost_resolution_conflict_and_unchanged_values() {
+    let correction = r#"[[correction]]
+kind = "enhancement"
+name = "Ravager: Draconic Power Attack"
+field = "cost_per_rank"
+from = [1]
+to = [2]
+reason = "Reviewed enhancement cost."
+source = "https://ddowiki.com/page/Test"
+read = "2026-10-18"
+"#;
+    for source in ["source = \"https://ddowiki.com/page/Test\"", "in_game = true"] {
+        let correction = correction.replace("source = \"https://ddowiki.com/page/Test\"", source);
+        for (new_cost, expected) in [(1, None), (2, Some("RESOLVED CORRECTION")), (3, Some("CONFLICT"))] {
+            let world = ImportWorld::new(Corrections::from_toml_files(&[("cost.toml", correction.as_str())]).unwrap());
+            let path = world.options.source_dir.join("EnhancementTrees/Fighter_Ravager.tree.xml");
+            let xml = std::fs::read_to_string(&path).unwrap();
+            assert!(xml.contains("<CostPerRank size=\"1\">1</CostPerRank>"));
+            std::fs::write(
+                path,
+                xml.replace(
+                    "<CostPerRank size=\"1\">1</CostPerRank>",
+                    &format!("<CostPerRank size=\"1\">{new_cost}</CostPerRank>"),
+                ),
+            )
+            .unwrap();
+            let report = import_ddobuilder(&world.options).unwrap().to_string();
+            let lines = report.lines().filter(|line| line.contains("cost_per_rank")).collect::<Vec<_>>();
+            if let Some(expected) = expected {
+                assert!(lines.iter().any(|line| line.contains(expected)), "{new_cost}: {report}");
+            } else {
+                assert!(lines.is_empty(), "{report}");
+            }
+            let cost: String = world
+                .database()
+                .query_row(
+                    "SELECT cost_per_rank FROM enhancements WHERE name = 'Ravager: Draconic Power Attack'",
+                    [],
+                    |row| row.get(0),
+                )
+                .unwrap();
+            assert_eq!(cost, "[2]");
+        }
+    }
 }
 
 fn ravager_corrections() -> Corrections {

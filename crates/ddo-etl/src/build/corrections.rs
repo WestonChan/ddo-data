@@ -112,7 +112,14 @@ fn apply_correction(
         }
         let new_name = correction.to.as_text().filter(|_| field.shape == FieldShape::RowName);
         if let Some(new_name) = new_name {
-            if !maetrim_row_ids_named(transaction, correction, new_name)?.is_empty() {
+            let renamed_ids = if correction.selection.is_some() {
+                let mut renamed = correction.clone();
+                renamed.selection = Some(new_name.to_string());
+                maetrim_row_ids_named(transaction, &renamed, &correction.name)?
+            } else {
+                maetrim_row_ids_named(transaction, correction, new_name)?
+            };
+            if !renamed_ids.is_empty() {
                 record_stale_correction(
                     report,
                     correction,
@@ -166,8 +173,8 @@ fn record_applied_correction(
     report: &mut BuildReport,
 ) -> Result<()> {
     transaction.execute(
-        "INSERT INTO corrections (kind, name, qualifier, field, from_value, to_value, reason, source, read)
-         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
+        "INSERT INTO corrections (kind, name, qualifier, field, from_value, to_value, reason, source, read, in_game)
+         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)",
         params![
             correction.kind.as_str(),
             correction.name,
@@ -176,8 +183,9 @@ fn record_applied_correction(
             correction.from.to_json(),
             correction.to.to_json(),
             correction.reason,
-            correction.source,
-            correction.read
+            correction.source.page_url(),
+            correction.read,
+            correction.source.is_in_game()
         ],
     )?;
     report.correction_applied_count += 1;
@@ -413,7 +421,7 @@ fn write_correction(
             correction.kind,
             row_ids,
         )?,
-        FieldShape::Integer | FieldShape::Flag | FieldShape::Text => {
+        FieldShape::Integer | FieldShape::Flag | FieldShape::Text | FieldShape::IntegerList | FieldShape::TextList => {
             write_column(transaction, table_name, field.column, row_ids, correction.to.to_sql())?;
             if correction.kind == CorrectionKind::Effect {
                 let effects = effects.context("effect corrections need the family cache")?;
@@ -725,6 +733,11 @@ fn current_value(
         _ => format!("SELECT {} FROM {table_name} WHERE id = ?1", field.column),
     };
     let sql_value: SqlValue = transaction.query_row(&value_sql, params![row_id], |r| r.get(0))?;
+    if matches!(field.shape, FieldShape::IntegerList | FieldShape::TextList) {
+        if let SqlValue::Text(encoded) = sql_value {
+            return CorrectionValue::from_json(&encoded);
+        }
+    }
     Ok(CorrectionValue::from_sql(sql_value))
 }
 
@@ -798,7 +811,10 @@ pub(crate) fn data_correction_value(
     ensure!(!row_ids.is_empty(), "no {} named {current_name:?} for data correction", correction.kind.as_str());
     let mut values = Vec::new();
     for row_id in row_ids {
-        let value = current_value(transaction, correction, field, row_id, None)?;
+        let mut value = current_value(transaction, correction, field, row_id, None)?;
+        if value == CorrectionValue::Null && matches!(field.shape, FieldShape::IntegerList | FieldShape::TextList) {
+            value = CorrectionValue::Integers(Vec::new());
+        }
         if !values.contains(&value) {
             values.push(value);
         }
@@ -1475,6 +1491,22 @@ fn relink_item_sets(transaction: &Transaction, item_ids: &[i64], set_name: Optio
 
 fn rename_rows(transaction: &Transaction, correction: &Correction, row_ids: &[i64]) -> Result<()> {
     let new_name = correction.to.as_text().context("a row's name cannot be null")?;
+    if correction.selection.is_some() {
+        for row_id in row_ids {
+            let exists: bool = transaction.query_row(
+                "SELECT EXISTS(SELECT 1 FROM enhancement_selections other JOIN enhancement_selections current ON other.enhancement_id = current.enhancement_id WHERE current.id = ?1 AND other.name = ?2 AND other.id != current.id)",
+                params![row_id, new_name], |row| row.get(0),
+            )?;
+            ensure!(!exists, "to {new_name:?} is already the name of another selection");
+        }
+        return write_column(
+            transaction,
+            "enhancement_selections",
+            "name",
+            row_ids,
+            SqlValue::Text(new_name.to_string()),
+        );
+    }
     match correction.kind {
         CorrectionKind::SocketLabel => return rename_socket_label(transaction, row_ids[0], new_name),
         CorrectionKind::Augment => refuse_an_augment_name_taken_in_its_families(transaction, row_ids, new_name)?,

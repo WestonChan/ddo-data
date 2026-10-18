@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 39;
+pub const SCHEMA_VERSION: i64 = 40;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -108,11 +108,14 @@ CREATE TABLE IF NOT EXISTS citations (
     owner_kind TEXT NOT NULL,
     owner_id INTEGER NOT NULL,
     field TEXT NOT NULL,
-    url TEXT NOT NULL,
+    url TEXT,
+    in_game INTEGER NOT NULL DEFAULT 0 CHECK (in_game IN (0, 1)),
     read TEXT NOT NULL,
     note TEXT,
+    CHECK ((url IS NOT NULL AND in_game = 0) OR (url IS NULL AND in_game = 1)),
     PRIMARY KEY (owner_kind, owner_id, field, url)
 );
+CREATE UNIQUE INDEX IF NOT EXISTS idx_citations_in_game ON citations(owner_kind, owner_id, field) WHERE in_game = 1;
 
 CREATE TABLE IF NOT EXISTS removed_entities (
     owner_kind TEXT NOT NULL,
@@ -1462,8 +1465,10 @@ CREATE TABLE IF NOT EXISTS corrections (
     from_value TEXT NOT NULL,                          -- his value, as JSON
     to_value   TEXT NOT NULL,                          -- the value written, as JSON
     reason     TEXT NOT NULL,
-    source     TEXT NOT NULL,                          -- URL citing the right value
+    source     TEXT,
+    in_game    INTEGER NOT NULL DEFAULT 0 CHECK (in_game IN (0, 1)),
     read       TEXT NOT NULL,                          -- YYYY-MM-DD the source was read
+    CHECK ((source IS NOT NULL AND in_game = 0) OR (source IS NULL AND in_game = 1)),
     UNIQUE (kind, name, qualifier, field)
 );
 CREATE INDEX IF NOT EXISTS idx_corrections_kind_name ON corrections(kind, name);

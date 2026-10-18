@@ -172,6 +172,7 @@ macro_rules! database_record {
             ) -> anyhow::Result<crate::tree::records::InsertedRecord> {
                 let columns = [$(database_record!(@key $key $(=> $key_column)?),)* $($(stringify!($value_column),)*)? $(stringify!($column),)*].map(|column| format!("[{column}]")).join(", ");
                 let parameters = [$(concat!(":", stringify!($key)),)* $($(concat!(":", stringify!($value_column)),)*)? $(concat!(":", stringify!($column)),)*].join(", ");
+                $(let (columns, parameters) = database_record!(@source_columns self, columns, parameters, $field $([$($adapter)*])?);)*
                 let inserted = db.prepare_cached(&format!("INSERT INTO {} ({columns}) VALUES ({parameters})", $table))?.execute(&[
                     $((concat!(":", stringify!($key)), &$key as &dyn rusqlite::ToSql),)*
                     $($((concat!(":", stringify!($value_column)), &$value as &dyn rusqlite::ToSql),)*)?
@@ -183,6 +184,23 @@ macro_rules! database_record {
             }
         }
     };
+    (@source_columns $record:ident, $columns:ident, $parameters:ident, $field:ident [annotation_source]) => {{
+        let mut columns = $columns;
+        let mut parameters = $parameters;
+        columns.push_str(", in_game");
+        parameters.push_str(if $record.$field.is_in_game() { ", 1" } else { ", 0" });
+        (columns, parameters)
+    }};
+    (@source_columns $record:ident, $columns:ident, $parameters:ident, $field:ident $([$($adapter:tt)*])?) => {
+        ($columns, $parameters)
+    };
+    (@select $table:expr, $column:ident [annotation_source]) => {
+        format!("{} AS {}, in_game", stringify!($column), stringify!($column))
+    };
+    (@read $row:ident, $column:ident [annotation_source]) => {
+        crate::AnnotationSource::from_columns($row.get(stringify!($column))?, $row.get("in_game")?)
+    };
+    (@write $db:ident, $record:ident, $field:ident [annotation_source]) => { $record.$field.page_url() };
     (@correctable_declaration []) => {};
     (@correctable_declaration [$($field:ident: $field_type:ty => $column:ident $([$($adapter:tt)*])?),+ $(,)?]) => {
         pub(crate) const CORRECTABLE_FIELDS: &'static [crate::corrections::CorrectableField] = &[
@@ -295,7 +313,7 @@ macro_rules! database_record {
     (@read $row:ident, $column:ident [json_required]) => { database_record!(@read $row, $column [json]) };
     (@write $db:ident, $record:ident, $field:ident [json_required]) => { serde_json::to_string(&$record.$field)? };
     (@write $db:ident, $record:ident, $field:ident [citation_page]) => {
-        $record.$field.as_ref().or_else(|| $record.citation.iter().find(|citation| citation.field.is_empty()).map(|citation| &citation.url)).ok_or_else(|| anyhow::anyhow!("{} has no page or primary citation", $record.name))?
+        $record.$field.as_deref().or_else(|| $record.citation.iter().filter(|citation| citation.field.is_empty()).find_map(|citation| citation.source.page_url())).ok_or_else(|| anyhow::anyhow!("{} has no page or primary citation", $record.name))?
     };
     (@read $row:ident, $column:ident [optional_json_value]) => {
         $row.get::<_, Option<String>>(stringify!($column)).and_then(|value| value.map(|encoded| serde_json::from_str(&encoded)).transpose().map_err(|error| rusqlite::Error::FromSqlConversionFailure($row.as_ref().column_index(stringify!($column)).unwrap(), rusqlite::types::Type::Text, Box::new(error))))

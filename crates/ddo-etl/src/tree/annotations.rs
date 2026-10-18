@@ -17,7 +17,7 @@ database_record! {
             from_value: String => from_value,
             to_value: String => to_value,
             reason: String => reason,
-            url: String => source,
+            source: crate::AnnotationSource => source [annotation_source],
             read: String => read,
         }
     }

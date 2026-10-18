@@ -1,3 +1,6 @@
+mod annotation_source;
+pub use annotation_source::AnnotationSource;
+
 pub mod build;
 pub mod corrections;
 pub mod database_tables;
