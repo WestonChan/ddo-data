@@ -205,6 +205,7 @@ impl EnhancementTreeFile {
         ))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, EnhancementTreeFile::from_row(row)?)))? {
             let (id, mut file) = row?;
+            file.attach_citations(annotations, id);
             file.ddobuilder_correction = notes.for_entity("enhancement_trees", &file.name);
             file.requirements = requirements.remove(&("enhancement_tree".to_string(), id)).unwrap_or_default();
             files.insert(id, file);

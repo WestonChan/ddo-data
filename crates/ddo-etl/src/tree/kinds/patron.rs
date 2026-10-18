@@ -21,12 +21,14 @@ database_record! {
 impl PatronFile {
     pub(in crate::tree) fn all_from_rows(
         db: &Connection,
+        annotations: &crate::tree::annotations::EntityAnnotations,
         notes: &super::super::export::CorrectionNoteIndex,
     ) -> Result<BTreeMap<i64, Self>> {
         let mut files = BTreeMap::new();
         let mut select = db.prepare(&format!("SELECT {} FROM patrons ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
+            file.attach_citations(annotations, id);
             file.ddobuilder_correction = notes.for_entity("patrons", &file.name);
             files.insert(id, file);
         }

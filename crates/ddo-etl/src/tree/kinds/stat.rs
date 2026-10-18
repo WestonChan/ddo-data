@@ -37,12 +37,16 @@ database_record! {
 }
 
 impl StatFile {
-    pub(in crate::tree) fn all_from_rows(db: &Connection) -> Result<BTreeMap<i64, Self>> {
+    pub(in crate::tree) fn all_from_rows(
+        db: &Connection,
+        annotations: &crate::tree::annotations::EntityAnnotations,
+    ) -> Result<BTreeMap<i64, Self>> {
         let mut files = BTreeMap::new();
         let mut select =
             db.prepare(&format!("SELECT {} FROM effects WHERE is_stat = 1 ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
-            let (id, file) = row?;
+            let (id, mut file) = row?;
+            file.attach_citations(annotations, id);
             files.insert(id, file);
         }
         Ok(files)

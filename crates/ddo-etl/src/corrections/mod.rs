@@ -1,7 +1,7 @@
 mod fields;
 pub(crate) use fields::CorrectionFieldType;
 
-pub use fields::{correctable_field, correctable_fields, CorrectableField, FieldShape};
+pub use fields::{correctable_fields, CorrectableField, FieldShape};
 
 use crate::wiki::is_iso_date;
 use anyhow::{bail, ensure, Context, Result};

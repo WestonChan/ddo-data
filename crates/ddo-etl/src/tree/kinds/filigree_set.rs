@@ -55,6 +55,7 @@ impl FiligreeSetFile {
 
     pub(in crate::tree) fn all_from_rows(
         db: &Connection,
+        annotations: &crate::tree::annotations::EntityAnnotations,
         modifiers: &mut super::super::ModifierRowsByOwner,
         notes: &super::super::export::CorrectionNoteIndex,
     ) -> Result<BTreeMap<i64, Filigree>> {
@@ -62,6 +63,7 @@ impl FiligreeSetFile {
         let mut select = db.prepare(&format!("SELECT {} FROM filigrees ORDER BY id", Filigree::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Filigree::from_row(row)?)))? {
             let (id, mut filigree) = row?;
+            filigree.attach_citations(annotations, id);
             filigree.modifier = modifiers.remove(&("filigree".to_string(), id)).unwrap_or_default();
             filigree.ddobuilder_correction = notes.for_entity("filigrees", &filigree.name);
             filigrees.insert(id, filigree);

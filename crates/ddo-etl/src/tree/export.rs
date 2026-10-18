@@ -423,8 +423,7 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         let relative = layout.path("augments", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
-    for (id, mut file) in kinds::SetFile::all_from_rows(db, &notes, &mut modifiers)? {
-        file.attach_citations(&annotations, id);
+    for (id, file) in kinds::SetFile::all_from_rows(db, &annotations, &notes, &mut modifiers)? {
         let relative = layout.path("set_bonuses", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
@@ -432,18 +431,15 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         let relative = layout.path("quests", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
-    for (id, mut file) in kinds::EffectFile::all_from_rows(db, &notes)? {
-        let relative = layout.path("effects", id)?;
-        file.attach_citations(&annotations, id);
-        write_export_file(root, relative, &file.file_text()?, &mut report)?;
-    }
-    for (id, mut file) in kinds::StatFile::all_from_rows(db)? {
-        file.attach_citations(&annotations, id);
+    for (id, file) in kinds::EffectFile::all_from_rows(db, &annotations, &notes)? {
         let relative = layout.path("effects", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
-    for (id, mut file) in kinds::StatGroupFile::all_from_rows(db)? {
-        file.attach_citations(&annotations, id);
+    for (id, file) in kinds::StatFile::all_from_rows(db, &annotations)? {
+        let relative = layout.path("effects", id)?;
+        write_export_file(root, relative, &file.file_text()?, &mut report)?;
+    }
+    for (id, file) in kinds::StatGroupFile::all_from_rows(db, &annotations)? {
         let relative = layout.path("effects", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
@@ -461,13 +457,11 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         let relative = layout.path("adventure_packs", id)?;
         write_export_file(root, relative, &toml::to_string_pretty(&file)?, &mut report)?;
     }
-    for (id, mut file) in kinds::PatronFile::all_from_rows(db, &notes)? {
-        file.attach_citations(&annotations, id);
+    for (id, file) in kinds::PatronFile::all_from_rows(db, &annotations, &notes)? {
         let relative = layout.path("patrons", id)?;
         write_export_file(root, relative, &toml::to_string_pretty(&file)?, &mut report)?;
     }
-    for (id, mut file) in kinds::EffectTierFile::all_from_rows(db)? {
-        file.attach_citations(&annotations, id);
+    for (id, file) in kinds::EffectTierFile::all_from_rows(db, &annotations)? {
         let relative = layout.path("effect_tier_groups", id)?;
         write_export_file(root, relative, &toml::to_string_pretty(&file)?, &mut report)?;
     }
@@ -483,8 +477,7 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         let relative = layout.path("races", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
-    for (id, mut file) in kinds::ClassFile::all_from_rows(db)? {
-        file.attach_citations(&annotations, id);
+    for (id, file) in kinds::ClassFile::all_from_rows(db, &annotations)? {
         let relative = layout.path("classes", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
@@ -492,14 +485,12 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         let relative = layout.path("crafting_systems", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
-    for (id, mut file) in kinds::EnhancementTreeFile::all_from_rows(db, &annotations, &notes, &mut modifiers)? {
-        file.attach_citations(&annotations, id);
+    for (id, file) in kinds::EnhancementTreeFile::all_from_rows(db, &annotations, &notes, &mut modifiers)? {
         let relative = layout.path("enhancement_trees", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
     let mut groups = BTreeMap::<PathBuf, kinds::SpellListFile>::new();
-    for (id, mut file) in kinds::SpellListFile::all_from_rows(db, &annotations, &notes, &mut modifiers)? {
-        file.attach_citations(&annotations, id);
+    for (id, file) in kinds::SpellListFile::all_from_rows(db, &annotations, &notes, &mut modifiers)? {
         groups
             .entry(layout.path("spells", id)?.to_path_buf())
             .or_insert_with(|| kinds::SpellListFile { row: Vec::new() })
@@ -523,8 +514,7 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         write_export_file(root, &relative, &typed_file_text(&file)?, &mut report)?;
     }
     let mut groups = BTreeMap::<PathBuf, kinds::FiligreeSetFile>::new();
-    for (id, mut file) in kinds::FiligreeSetFile::all_from_rows(db, &mut modifiers, &notes)? {
-        file.attach_citations(&annotations, id);
+    for (id, file) in kinds::FiligreeSetFile::all_from_rows(db, &annotations, &mut modifiers, &notes)? {
         groups
             .entry(layout.path("filigrees", id)?.to_path_buf())
             .or_insert_with(|| kinds::FiligreeSetFile { row: Vec::new() })
@@ -561,8 +551,7 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
     write_export_file(root, fixed_data_file("redirects")?, &toml::to_string_pretty(&redirects)?, &mut report)?;
     let file = kinds::ExcludedItemsFile::from_rows(db)?;
     write_export_file(root, fixed_data_file("excluded_items")?, &toml::to_string_pretty(&file)?, &mut report)?;
-    for (id, mut file) in kinds::SentientGemFile::all_from_rows(db)? {
-        file.attach_citations(&annotations, id);
+    for (id, file) in kinds::SentientGemFile::all_from_rows(db, &annotations)? {
         write_export_file(root, layout.path("sentient_gems", id)?, &typed_file_text(&file)?, &mut report)?;
     }
     let file = kinds::AugmentSlotTypesFile::from_rows(db, &annotations)?;

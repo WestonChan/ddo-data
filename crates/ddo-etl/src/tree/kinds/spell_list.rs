@@ -107,6 +107,7 @@ impl SpellListFile {
         let mut select = db.prepare(&format!("SELECT {} FROM spells ORDER BY id", Spell::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Spell::from_row(row)?)))? {
             let (id, mut spell) = row?;
+            spell.attach_citations(annotations, id);
             spell.ddobuilder_correction = notes.for_entity("spells", &spell.name);
             spell.modifier = modifiers.remove(&("spell".to_string(), id)).unwrap_or_default();
             spells.insert(id, spell);

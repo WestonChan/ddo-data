@@ -115,7 +115,3 @@ const fn kind_operations(kind: CorrectionKind) -> &'static [CorrectableField] {
         _ => &[],
     }
 }
-
-pub fn correctable_field(kind: CorrectionKind, field_name: &str) -> Option<&'static CorrectableField> {
-    correctable_fields(kind).iter().find(|field| field.name == field_name)
-}

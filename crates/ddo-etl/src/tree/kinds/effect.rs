@@ -84,6 +84,7 @@ database_record! {
 impl EffectFile {
     pub(in crate::tree) fn all_from_rows(
         db: &Connection,
+        annotations: &crate::tree::annotations::EntityAnnotations,
         notes: &super::super::export::CorrectionNoteIndex,
     ) -> Result<BTreeMap<i64, Self>> {
         let mut files = BTreeMap::new();
@@ -93,6 +94,7 @@ impl EffectFile {
         ))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
+            file.attach_citations(annotations, id);
             file.ddobuilder_correction = notes.for_entity("effects", &file.name);
             files.insert(id, file);
         }
@@ -163,7 +165,8 @@ mod tests {
         let id = super::super::super::ids::stable_hash(&["effects", "test-effect"]);
         file.write_effect(&db, Path::new("effects/test-effect.toml"), id, "test-effect").unwrap();
         let notes = super::super::super::export::CorrectionNoteIndex::from_database(&db).unwrap();
-        let all = EffectFile::all_from_rows(&db, &notes).unwrap();
+        let annotations = crate::tree::annotations::EntityAnnotations::from_database(&db).unwrap();
+        let all = EffectFile::all_from_rows(&db, &annotations, &notes).unwrap();
         let restored = &all[&id];
         assert_eq!(restored.name, "Test Effect");
         assert!(restored.bonus.is_empty());
@@ -177,6 +180,7 @@ mod tests {
         let db = Connection::open_in_memory().unwrap();
         db.execute_batch(ddo_model::ddl()).unwrap();
         let notes = super::super::super::export::CorrectionNoteIndex::from_database(&db).unwrap();
+        let annotations = crate::tree::annotations::EntityAnnotations::from_database(&db).unwrap();
         db.trace_v2(
             TraceEventCodes::SQLITE_TRACE_STMT,
             Some(|event| {
@@ -193,7 +197,7 @@ mod tests {
             let id = super::super::super::ids::stable_hash(&["effects", &identity]);
             file.write_effect(&db, Path::new("effects/test.toml"), id, &identity).unwrap();
             QUERY_COUNT.store(0, Ordering::SeqCst);
-            assert_eq!(EffectFile::all_from_rows(&db, &notes).unwrap().len(), counts.len() + 1);
+            assert_eq!(EffectFile::all_from_rows(&db, &annotations, &notes).unwrap().len(), counts.len() + 1);
             counts.push(QUERY_COUNT.load(Ordering::SeqCst));
         }
         assert_eq!(counts, vec![3, 3]);

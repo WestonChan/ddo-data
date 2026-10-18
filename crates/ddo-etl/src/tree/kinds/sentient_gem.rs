@@ -35,11 +35,20 @@ impl SentientGemFile {
         Ok(id)
     }
 
-    pub(in crate::tree) fn all_from_rows(db: &Connection) -> Result<Vec<(i64, Self)>> {
+    pub(in crate::tree) fn all_from_rows(
+        db: &Connection,
+        annotations: &crate::tree::annotations::EntityAnnotations,
+    ) -> Result<Vec<(i64, Self)>> {
         let mut select =
             db.prepare(&format!("SELECT {} FROM sentient_gems ORDER BY name, rowid", Self::select_columns()))?;
-        let rows =
-            select.query_map([], |row| Ok((row.get("id")?, Self::from_row(row)?)))?.collect::<rusqlite::Result<_>>()?;
+        let rows = select
+            .query_map([], |row| {
+                let id = row.get("id")?;
+                let mut file = Self::from_row(row)?;
+                file.attach_citations(annotations, id);
+                Ok((id, file))
+            })?
+            .collect::<rusqlite::Result<_>>()?;
         Ok(rows)
     }
 }

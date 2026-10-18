@@ -108,6 +108,7 @@ impl SetFile {
 
     pub(in crate::tree) fn all_from_rows(
         db: &Connection,
+        annotations: &crate::tree::annotations::EntityAnnotations,
         notes: &super::super::export::CorrectionNoteIndex,
         modifier_rows: &mut super::super::ModifierRowsByOwner,
     ) -> Result<BTreeMap<i64, Self>> {
@@ -115,6 +116,7 @@ impl SetFile {
         let mut select = db.prepare(&format!("SELECT {} FROM set_bonuses ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
+            file.attach_citations(annotations, id);
             file.ddobuilder_correction = notes.for_entity("set_bonuses", &file.name);
             files.insert(id, file);
         }
@@ -249,7 +251,13 @@ mod tests {
         file.write_set(&db, Path::new("packs/shared/sets/test-set.toml"), id, "test-set").unwrap();
         let notes = super::super::super::export::CorrectionNoteIndex::from_database(&db).unwrap();
         let mut modifiers = super::super::super::modifier_rows_by_owner(&db).unwrap();
-        let restored = SetFile::all_from_rows(&db, &notes, &mut modifiers).unwrap();
+        let restored = SetFile::all_from_rows(
+            &db,
+            &crate::tree::annotations::EntityAnnotations::from_database(&db).unwrap(),
+            &notes,
+            &mut modifiers,
+        )
+        .unwrap();
         assert_eq!(restored[&id].name, "Test Set");
         assert_eq!(restored[&id].icon.as_deref(), Some("TestSet"));
         assert!(restored[&id].tier.is_empty());
