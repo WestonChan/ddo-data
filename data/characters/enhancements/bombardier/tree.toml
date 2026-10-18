@@ -564,31 +564,6 @@ field = "min_spent"
 url = "https://ddowiki.com/page/Bombardier_enhancements"
 read = "2026-10-17"
 
-[[enhancement.citation]]
-field = "SLA: Multivial of Acid.modifier"
-url = "https://ddowiki.com/page/Bombardier_enhancements"
-read = "2026-10-17"
-
-[[enhancement.citation]]
-field = "SLA: Multivial of Frost.modifier"
-url = "https://ddowiki.com/page/Bombardier_enhancements"
-read = "2026-10-17"
-
-[[enhancement.citation]]
-field = "SLA: Multivial of Sparks.modifier"
-url = "https://ddowiki.com/page/Bombardier_enhancements"
-read = "2026-10-17"
-
-[[enhancement.citation]]
-field = "SLA: Multivial of Flame.modifier"
-url = "https://ddowiki.com/page/Bombardier_enhancements"
-read = "2026-10-17"
-
-[[enhancement.citation]]
-field = "SLA: Multivial of Poison.modifier"
-url = "https://ddowiki.com/page/Bombardier_enhancements"
-read = "2026-10-17"
-
 [[enhancement.modifier]]
 amount_type = "NotNeeded"
 bonus_type = "Enhancement"
@@ -668,6 +643,11 @@ Spell Critical Damage. Unlike the multivial spells, this ability requires a targ
 icon = "BomMultivialAcid"
 is_clickie = true
 
+[[enhancement.selection.citation]]
+field = "modifier"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
 [[enhancement.selection.modifier]]
 amount_type = "SpellInfo"
 amounts = [
@@ -692,6 +672,11 @@ While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
 Spell Critical Damage. Unlike the multivial spells, this ability requires a target."""
 icon = "BomMultivialFlame"
 is_clickie = true
+
+[[enhancement.selection.citation]]
+field = "modifier"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
 
 [[enhancement.selection.modifier]]
 amount_type = "SpellInfo"
@@ -718,6 +703,11 @@ Spell Critical Damage. Unlike the multivial spells, this ability requires a targ
 icon = "BomMultivialFrost"
 is_clickie = true
 
+[[enhancement.selection.citation]]
+field = "modifier"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
 [[enhancement.selection.modifier]]
 amount_type = "SpellInfo"
 amounts = [
@@ -743,6 +733,11 @@ Spell Critical Damage. Unlike the multivial spells, this ability requires a targ
 icon = "BomMultivialSparks"
 is_clickie = true
 
+[[enhancement.selection.citation]]
+field = "modifier"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
+
 [[enhancement.selection.modifier]]
 amount_type = "SpellInfo"
 amounts = [
@@ -767,6 +762,11 @@ While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
 Spell Critical Damage. Unlike the multivial spells, this ability requires a target."""
 icon = "BomMultivialPoison"
 is_clickie = true
+
+[[enhancement.selection.citation]]
+field = "modifier"
+url = "https://ddowiki.com/page/Bombardier_enhancements"
+read = "2026-10-17"
 
 [[enhancement.selection.modifier]]
 amount_type = "SpellInfo"

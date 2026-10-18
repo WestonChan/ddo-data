@@ -1193,16 +1193,6 @@ field = "min_spent"
 url = "https://ddowiki.com/page/Shiradi_Champion"
 read = "2026-10-17"
 
-[[enhancement.citation]]
-field = "Overwhelming Force.cost_per_rank"
-url = "https://ddowiki.com/page/Shiradi_Champion"
-read = "2026-10-17"
-
-[[enhancement.citation]]
-field = "Overwhelming Force.description"
-url = "https://ddowiki.com/page/Shiradi_Champion"
-read = "2026-10-17"
-
 [[enhancement.requirement]]
 req_type = "Level"
 value = 26
@@ -1229,6 +1219,16 @@ name = "Overwhelming Force"
 cost_per_rank = [2]
 description = "Pin now automatically applies 10 stacks of Track to enemies."
 icon = "ShiradiOverwhelmingForce"
+
+[[enhancement.selection.citation]]
+field = "cost_per_rank"
+url = "https://ddowiki.com/page/Shiradi_Champion"
+read = "2026-10-17"
+
+[[enhancement.selection.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Shiradi_Champion"
+read = "2026-10-17"
 
 [[enhancement.selection.requirement]]
 items = [

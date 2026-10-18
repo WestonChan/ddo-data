@@ -1593,26 +1593,6 @@ field = "min_spent"
 url = "https://ddowiki.com/page/Exalted_Angel"
 read = "2026-10-17"
 
-[[enhancement.citation]]
-field = "Epic Empower Healing.cost_per_rank"
-url = "https://ddowiki.com/page/Exalted_Angel"
-read = "2026-10-17"
-
-[[enhancement.citation]]
-field = "Epic Empower Healing.description"
-url = "https://ddowiki.com/page/Exalted_Angel"
-read = "2026-10-17"
-
-[[enhancement.citation]]
-field = "Epic Improved Intensify.cost_per_rank"
-url = "https://ddowiki.com/page/Exalted_Angel"
-read = "2026-10-17"
-
-[[enhancement.citation]]
-field = "Epic Improved Intensify.description"
-url = "https://ddowiki.com/page/Exalted_Angel"
-read = "2026-10-17"
-
 [[enhancement.requirement]]
 req_type = "Level"
 value = 30
@@ -1625,6 +1605,16 @@ The Empower Healing Metamagic no longer costs Spell Points.
 Note that this ability only reduces the Spell Point cost to zero for the related
 Metamagic, it does not grant the Feat itself."""
 icon = "MetamagicAttunementII"
+
+[[enhancement.selection.citation]]
+field = "cost_per_rank"
+url = "https://ddowiki.com/page/Exalted_Angel"
+read = "2026-10-17"
+
+[[enhancement.selection.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Exalted_Angel"
+read = "2026-10-17"
 
 [[enhancement.selection.modifier]]
 amount_type = "Simple"
@@ -1644,6 +1634,16 @@ The Intensify Metamagic no longer costs Spell Points.
 Note that this ability only reduces the Spell Point cost to zero for the related
 Metamagic, it does not grant the Feat itself."""
 icon = "MetamagicAttunementIIIntensify"
+
+[[enhancement.selection.citation]]
+field = "cost_per_rank"
+url = "https://ddowiki.com/page/Exalted_Angel"
+read = "2026-10-17"
+
+[[enhancement.selection.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Exalted_Angel"
+read = "2026-10-17"
 
 [[enhancement.selection.modifier]]
 amount_type = "Simple"
