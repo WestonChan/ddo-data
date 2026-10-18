@@ -56,39 +56,59 @@ fn recorded_corrections(db: &Connection) -> Vec<(String, String, String, String,
 fn correction_field_names_and_shapes_preserve_the_existing_contract() {
     use ddo_model::enums::CorrectionKind;
     let expected = [
-        (CorrectionKind::Item, "accepts_sentience:Flag, description:Text, drop_location:Text, enhancement_bonus:Integer, icon:Text, is_legacy:Flag, is_minor_artifact:Flag, item_category:Text, item_type:Text, material:NamedReference { referenced_table: \"item_materials\" }, minimum_level:Integer, name:RowName, race_required:Text, remove:Removal, set_bonus:SetName, slot:NamedReference { referenced_table: \"equipment_slots\" }"),
-        (CorrectionKind::Effect, "constant:EffectBonusConstant, default_value:Integer, description_template:Text, name:RowName, verbose_name_template:Text"),
-        (CorrectionKind::Augment, "description:Text, effect_description:Text, family:Text, min_level:Integer, name:RowName, remove:Removal"),
-        (CorrectionKind::Quest, "epic_level:Integer, favor:Integer, is_raid:Flag, level:Integer, name:RowName, pack:NamedReference { referenced_table: \"adventure_packs\" }, patron:NamedReference { referenced_table: \"patrons\" }, remove:Removal"),
-        (CorrectionKind::Feat, "description:Text, icon:Text"),
-        (CorrectionKind::Enhancement, "arrows:TextList, cooldown_seconds:Integer, cost_per_rank:IntegerList, description:Text, duration_seconds:Integer, icon:Text, is_clickie:Flag, is_tier5:Flag, min_spent:Integer, name:RowName, ranks:Integer, x:Integer, y:Integer"),
-        (CorrectionKind::Spell, "description:Text, icon:Text"),
-        (CorrectionKind::EnhancementTree, "icon:Text"),
-        (CorrectionKind::OptionalBuff, "description:Text, icon:Text"),
-        (CorrectionKind::Clickie, "description:Text, icon:Text"),
-        (CorrectionKind::Filigree, "description:Text, icon:Text"),
-        (CorrectionKind::Race, "description:Text"),
-        (CorrectionKind::Class, "description:Text"),
-        (CorrectionKind::AdventurePack, "name:RowName"),
-        (CorrectionKind::Patron, "name:RowName"),
-        (CorrectionKind::SocketLabel, "name:RowName"),
-        (CorrectionKind::SetBonus, "icon:Text, name:RowName"),
-        (CorrectionKind::AugmentBonus, "add:BonusAddition, bonus_type:BonusTypeName, dedupe:BonusDedupe, remove:BonusRemoval, value:Integer"),
-        (CorrectionKind::ItemBonus, "add:BonusAddition, bonus_type:BonusTypeName, remove:BonusRemoval, rounding:StatRounding, scale:StatScale, value:Integer"),
-        (CorrectionKind::SetTier, "add:TierAddition, description:Text, remove:Removal"),
-        (CorrectionKind::SetTierBonus, "add:BonusAddition, bonus_type:BonusTypeName, remove:BonusRemoval, rounding:StatRounding, scale:StatScale, value:Integer"),
-        (CorrectionKind::ItemEffect, "add:EffectAddition, bonus_type:BonusTypeName, remove:Removal, value:Integer"),
-        (CorrectionKind::EffectDamage, "add:DamageAddition, remove:DamageRemoval"),
-        (CorrectionKind::ItemSocket, "add:SocketAddition"),
+        (CorrectionKind::Item, "accepts_sentience:accepts_sentience:Flag:false, description:description:Text:true, drop_location:drop_location:Text:true, enhancement_bonus:enhancement_bonus:Integer:true, icon:icon:Text:true, is_legacy:is_legacy:Flag:false, is_minor_artifact:is_minor_artifact:Flag:false, item_category:item_category:Text:false, item_type:item_type:Text:true, material:material_id:NamedReference { referenced_table: \"item_materials\" }:true, minimum_level:minimum_level:Integer:false, name:name:RowName:false, race_required:race_required:Text:true, remove:remove:Removal:false, set_bonus:set_bonus:SetName:true, slot:slot_id:NamedReference { referenced_table: \"equipment_slots\" }:false"),
+        (CorrectionKind::Effect, "constant:constant:EffectBonusConstant:false, default_value:default_value:Integer:true, description_template:description_template:Text:true, name:name:RowName:false, verbose_name_template:verbose_name_template:Text:false"),
+        (CorrectionKind::Augment, "description:description:Text:false, effect_description:effect_description:Text:true, family:family:Text:false, min_level:min_level:Integer:true, name:name:RowName:false, remove:remove:Removal:false"),
+        (CorrectionKind::Quest, "epic_level:epic_level:Integer:true, favor:favor:Integer:true, is_raid:is_raid:Flag:false, level:level:Integer:true, name:name:RowName:false, pack:pack_id:NamedReference { referenced_table: \"adventure_packs\" }:false, patron:patron_id:NamedReference { referenced_table: \"patrons\" }:true, remove:remove:Removal:false"),
+        (CorrectionKind::Feat, "description:description:Text:true, icon:icon:Text:true"),
+        (CorrectionKind::Enhancement, "arrows:arrows:TextList:false, cooldown_seconds:cooldown_seconds:Integer:true, cost_per_rank:cost_per_rank:IntegerList:false, description:description:Text:false, duration_seconds:duration_seconds:Integer:true, icon:icon:Text:true, is_clickie:is_clickie:Flag:false, is_tier5:is_tier5:Flag:false, min_spent:min_spent:Integer:false, name:name:RowName:false, ranks:ranks:Integer:false, x:x:Integer:false, y:y:Integer:false"),
+        (CorrectionKind::Spell, "description:description:Text:false, icon:icon:Text:true"),
+        (CorrectionKind::EnhancementTree, "icon:icon:Text:false"),
+        (CorrectionKind::OptionalBuff, "description:description:Text:false, icon:icon:Text:true"),
+        (CorrectionKind::Clickie, "description:description:Text:false, icon:icon:Text:false"),
+        (CorrectionKind::Filigree, "description:description:Text:false, icon:icon:Text:false"),
+        (CorrectionKind::Race, "description:description:Text:false"),
+        (CorrectionKind::Class, "description:description:Text:false"),
+        (CorrectionKind::AdventurePack, "name:name:RowName:false"),
+        (CorrectionKind::Patron, "name:name:RowName:false"),
+        (CorrectionKind::SocketLabel, "name:label:RowName:false"),
+        (CorrectionKind::SetBonus, "icon:icon:Text:true, name:name:RowName:false"),
+        (CorrectionKind::AugmentBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, dedupe:dedupe:BonusDedupe:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
+        (CorrectionKind::ItemBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
+        (CorrectionKind::SetTier, "add:add:TierAddition:false, description:description:Text:true, remove:remove:Removal:false"),
+        (CorrectionKind::SetTierBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
+        (CorrectionKind::ItemEffect, "add:add:EffectAddition:false, bonus_type:bonus_type:BonusTypeName:false, remove:remove:Removal:false, value:value:Integer:true"),
+        (CorrectionKind::EffectDamage, "add:add:DamageAddition:false, remove:remove:DamageRemoval:false"),
+        (CorrectionKind::ItemSocket, "add:add:SocketAddition:false"),
     ];
     assert_eq!(expected.len(), CorrectionKind::ALL.len());
     for (kind, expected) in expected {
         let mut fields = ddo_etl::corrections::correctable_fields(kind)
             .iter()
-            .map(|field| format!("{}:{:?}", field.name, field.shape))
+            .map(|field| format!("{}:{}:{:?}:{}", field.name, field.column, field.shape, field.is_nullable))
             .collect::<Vec<_>>();
         fields.sort();
         assert_eq!(fields.join(", "), expected, "{kind:?}");
+    }
+    let text = correction_toml("enhancement", "Kensei: Action Boost", "name", "\"Attack Boost\"", "\"Reviewed\"")
+        + "selection = \"Attack Boost\"\n";
+    let mut selection = parsed_corrections(&[("selection.toml", &text)]).unwrap().entries.remove(0);
+    for (name, shape, is_nullable) in [
+        ("name", ddo_etl::corrections::FieldShape::RowName, false),
+        ("cooldown_seconds", ddo_etl::corrections::FieldShape::Integer, true),
+        ("cost_per_rank", ddo_etl::corrections::FieldShape::IntegerList, false),
+        ("description", ddo_etl::corrections::FieldShape::Text, true),
+        ("duration_seconds", ddo_etl::corrections::FieldShape::Integer, true),
+        ("icon", ddo_etl::corrections::FieldShape::Text, false),
+        ("is_clickie", ddo_etl::corrections::FieldShape::Flag, false),
+        ("min_spent", ddo_etl::corrections::FieldShape::Integer, true),
+        ("ranks", ddo_etl::corrections::FieldShape::Integer, true),
+    ] {
+        selection.field = name.into();
+        assert_eq!(
+            *selection.correctable_field().unwrap(),
+            ddo_etl::corrections::CorrectableField { name, column: name, shape, is_nullable }
+        );
     }
 }
 
