@@ -28,9 +28,8 @@ jobs:
           cargo xtask wiki-tooltips --db target/data-source.db
       - name: Check the fixture database's integrity
         run: |
-          mkdir -p target/no-corrections
           rm -f target/fixture.db
           cargo run -q -p ddo-etl -- build --data crates/ddo-etl/tests/fixtures/data --out target/fixture.db
-          cargo xtask check-db target/fixture.db --source crates/ddo-etl/tests/fixtures/DataFiles --corrections target/no-corrections \
+          cargo xtask check-db target/fixture.db \
             --allow-empty-table effect_damage --allow-empty-table race_feat_slots \
             --allow-empty-table removed_entities

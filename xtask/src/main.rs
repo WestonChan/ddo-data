@@ -127,18 +127,9 @@ enum Task {
         #[arg(long)]
         source: Option<PathBuf>,
     },
-    #[command(
-        about = "Check database integrity",
-        long_about = "Run database checks without source files. With --source, also audit buff_types_not_classified and effect_definitions_with_partially_mapped_targets: these compare Maetrim's buff families with the XML mapping vocabulary, which the database does not retain."
-    )]
+    #[command(about = "Check database integrity")]
     CheckDb {
         db: PathBuf,
-        #[arg(long = "data", help = "Deprecated: pack exceptions are read from the database")]
-        data_dir: Option<PathBuf>,
-        #[arg(long, help = "Also run the two XML buff-family mapping audits against this DataFiles directory")]
-        source: Option<PathBuf>,
-        #[arg(long)]
-        corrections: Option<PathBuf>,
         #[arg(long = "allow-empty-table")]
         allowed_empty_tables: Vec<String>,
     },
@@ -159,7 +150,6 @@ fn main() -> Result<()> {
         Task::Lint => {
             xtask::data_file_lints::deny_generic_file_mappers(&workspace_root().join("crates/ddo-etl/src/tree"))?;
             deny_clippy_warnings()?;
-            corrections_from(None)?;
             ddo_etl::tree::schemas::validate_source_fields(&workspace_root().join("data"))?;
             deny_invalid_data_files()?;
             deny_data_schema_drift()?;
@@ -249,19 +239,7 @@ fn main() -> Result<()> {
             println!("{}", wiki_check_report(&data_files_dir, wiki_dir.as_deref(), corrections_dir.as_deref())?);
             Ok(())
         }
-        Task::CheckDb {
-            db: db_path,
-            data_dir,
-            source: data_files_dir,
-            corrections: corrections_dir,
-            allowed_empty_tables,
-        } => check_database_integrity(
-            &db_path,
-            data_dir,
-            data_files_dir,
-            corrections_dir.as_deref(),
-            allowed_empty_tables,
-        ),
+        Task::CheckDb { db: db_path, allowed_empty_tables } => check_database_integrity(&db_path, allowed_empty_tables),
         Task::WikiBatch { out: batch_dir, wiki: wiki_dir, corrections: corrections_dir, source: data_files_dir } => {
             let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
             let batch_dir = batch_dir.unwrap_or_else(|| workspace_root().join("target/wiki-batch"));
@@ -357,17 +335,10 @@ fn refresh_response_examples(
     Ok(())
 }
 
-fn check_database_integrity(
-    db_path: &Path,
-    _data_dir: Option<PathBuf>,
-    data_files_dir: Option<PathBuf>,
-    corrections_dir: Option<&Path>,
-    allowed_empty_tables: Vec<String>,
-) -> Result<()> {
+fn check_database_integrity(db_path: &Path, allowed_empty_tables: Vec<String>) -> Result<()> {
     let db = rusqlite::Connection::open_with_flags(db_path, rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY)
         .with_context(|| format!("opening {}", db_path.display()))?;
-    let options =
-        IntegrityOptions { corrections: corrections_from(corrections_dir)?, allowed_empty_tables, data_files_dir };
+    let options = IntegrityOptions { allowed_empty_tables };
     let report = integrity_report(&db, &options)?;
     println!("{report}");
     let failed_check_names = report.failed_hard_check_names();
@@ -518,6 +489,7 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             &["--test", "import_ddobuilder"][..],
             "import_reports_mapping_audits_without_changing_success_status",
         ),
+        ("xtask", &["--test", "integrity"][..], "database_checks_need_no_xml_or_data_files"),
     ] {
         let test_status = Command::new("cargo")
             .args(["test", "-p", crate_name])

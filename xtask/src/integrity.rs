@@ -1,12 +1,9 @@
 use anyhow::{Context, Result};
-use ddo_etl::corrections::Corrections;
 use ddo_etl::map::drop_location::prerequisite_spans;
 use ddo_etl::map::effect_map::EFFECT_MAP;
-use ddo_etl::wiki::WikiOverrides;
 use rusqlite::{Connection, OptionalExtension};
-use std::collections::{BTreeMap, BTreeSet, HashSet};
+use std::collections::{BTreeMap, BTreeSet};
 use std::fmt;
-use std::path::PathBuf;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Severity {
@@ -23,9 +20,7 @@ pub enum CheckStatus {
 }
 
 pub struct IntegrityOptions {
-    pub corrections: Corrections,
     pub allowed_empty_tables: Vec<String>,
-    pub data_files_dir: Option<PathBuf>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -365,13 +360,6 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         ),
     ),
     IntegrityCheck::hard(
-        "no_stale_corrections",
-        "every correction in the corrections files (--corrections, default the embedded ones) was applied; one that \
-         was not has Maetrim's value changed under it or its rename done upstream, and cargo xtask wiki-check \
-         says which",
-        OffenderQuery::Built(unapplied_corrections),
-    ),
-    IntegrityCheck::hard(
         "trees_have_enhancements",
         "every enhancement tree has at least one enhancement",
         OffenderQuery::Sql(
@@ -435,11 +423,6 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "packs_with_several_patrons",
         "packs serving quests from several patrons need review; wiki-confirmed packs are allow-listed",
         OffenderQuery::Built(packs_with_several_patrons),
-    ),
-    IntegrityCheck::warn(
-        "drop_text_disagrees_with_quest_loot",
-        "an item drop text names a quest whose wiki loot read does not list it",
-        OffenderQuery::Built(drop_text_disagrees_with_quest_loot),
     ),
     IntegrityCheck::warn(
         "effects_named_after_stats",
@@ -983,43 +966,6 @@ fn packs_with_several_patrons(db: &Connection, _options: &IntegrityOptions) -> R
         offenders: Some(offenders),
         notes: vec![format!("{reviewed_count} wiki-reviewed multi-patron packs")],
     })
-}
-
-fn drop_text_disagrees_with_quest_loot(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
-    let wiki = WikiOverrides::embedded()?;
-    let listed = wiki
-        .quest_loot
-        .iter()
-        .filter(|quest| !quest.items.is_empty())
-        .map(|quest| {
-            let names = quest
-                .items
-                .iter()
-                .map(|item| item.name().to_string())
-                .chain(quest.rare.iter().map(|item| item.name().to_string()))
-                .collect::<BTreeSet<_>>();
-            (quest.name.as_str(), names)
-        })
-        .collect::<BTreeMap<_, _>>();
-    let mut offenders = Vec::new();
-    let mut statement = db.prepare(
-        "SELECT DISTINCT i.id, i.name, q.name FROM sources source
-         JOIN items i ON i.id = source.item_id JOIN quests q ON q.id = source.quest_id
-         WHERE source.drop_text_segment IS NOT NULL ORDER BY i.name, q.name",
-    )?;
-    for row in statement
-        .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))?
-    {
-        let (id, item, quest) = row?;
-        if listed.get(quest.as_str()).is_some_and(|names| !names.contains(&item)) {
-            offenders.push(Offender {
-                name: item,
-                id: Some(id),
-                detail: format!("drop text names {quest:?}, absent from its wiki loot read"),
-            });
-        }
-    }
-    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
 fn effects_named_like_identifiers(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
@@ -1650,33 +1596,6 @@ fn redirect_findings(db: &Connection, _options: &IntegrityOptions) -> Result<Fin
     let offenders = ddo_etl::tree::redirects::redirect_violations(db)?
         .into_iter()
         .map(|detail| Offender { name: detail.clone(), id: None, detail })
-        .collect();
-    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
-}
-
-fn unapplied_corrections(db: &Connection, options: &IntegrityOptions) -> Result<Findings> {
-    let mut statement = db.prepare("SELECT kind, name, qualifier, field FROM corrections")?;
-    let applied_keys = statement
-        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get(1)?, row.get(2)?, row.get(3)?)))?
-        .collect::<rusqlite::Result<HashSet<(String, String, String, String)>>>()?;
-    let offenders = options
-        .corrections
-        .entries
-        .iter()
-        .filter(|correction| {
-            let key = (
-                correction.kind.as_str().to_string(),
-                correction.name.clone(),
-                correction.qualifier(),
-                correction.field.clone(),
-            );
-            !applied_keys.contains(&key)
-        })
-        .map(|correction| Offender {
-            name: correction.label(),
-            id: None,
-            detail: format!("in {} but not applied", correction.file_name),
-        })
         .collect();
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }

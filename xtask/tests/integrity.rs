@@ -1,10 +1,7 @@
-use ddo_etl::corrections::Corrections;
-use ddo_etl::wiki::WikiOverrides;
 use rusqlite::Connection;
 use std::path::{Path, PathBuf};
 use std::process::{Command, Output};
 use std::sync::OnceLock;
-use xtask::dataset::build_database_file;
 use xtask::integrity::{integrity_report, CheckStatus, IntegrityOptions, Severity, INTEGRITY_CHECKS};
 
 const TABLES_EMPTY_IN_FIXTURES: [&str; 3] = ["effect_damage", "race_feat_slots", "removed_entities"];
@@ -48,23 +45,12 @@ fn fixture_db_copy_with(work_dir: &Path, injected_sql: &str) -> PathBuf {
 }
 
 fn fixture_options() -> IntegrityOptions {
-    IntegrityOptions {
-        corrections: Corrections::default(),
-        allowed_empty_tables: TABLES_EMPTY_IN_FIXTURES.iter().map(|table| table.to_string()).collect(),
-        data_files_dir: Some(fixtures_dir().join("DataFiles")),
-    }
+    IntegrityOptions { allowed_empty_tables: TABLES_EMPTY_IN_FIXTURES.iter().map(|table| table.to_string()).collect() }
 }
 
 fn check_db_output(db_path: &Path) -> Output {
-    let no_corrections_dir = tempfile::tempdir().unwrap();
     let mut command = Command::new(env!("CARGO_BIN_EXE_xtask"));
-    command
-        .arg("check-db")
-        .arg(db_path)
-        .arg("--source")
-        .arg(fixtures_dir().join("DataFiles"))
-        .arg("--corrections")
-        .arg(no_corrections_dir.path());
+    command.arg("check-db").arg(db_path);
     for table in TABLES_EMPTY_IN_FIXTURES {
         command.args(["--allow-empty-table", table]);
     }
@@ -78,12 +64,17 @@ fn stdout_of(output: &Output) -> String {
 #[test]
 fn database_checks_need_no_xml_or_data_files() {
     let db = Connection::open(fixture_db_built_once()).unwrap();
-    let options = IntegrityOptions { data_files_dir: None, ..fixture_options() };
+    let options = fixture_options();
     let report = integrity_report(&db, &options).unwrap();
     assert!(report.failed_hard_check_names().is_empty(), "{report}");
     assert_ne!(report.outcome("effect_types_not_classified").unwrap().status, CheckStatus::Skipped);
-    for check in ["buff_types_not_classified", "effect_definitions_with_partially_mapped_targets"] {
-        assert!(report.outcome(check).is_none(), "XML audit {check} belongs to the import report");
+    for check in [
+        "buff_types_not_classified",
+        "effect_definitions_with_partially_mapped_targets",
+        "no_stale_corrections",
+        "drop_text_disagrees_with_quest_loot",
+    ] {
+        assert!(report.outcome(check).is_none(), "retired input check {check} must not run against a database");
     }
 }
 
@@ -190,17 +181,6 @@ fn cross_pack_drop_and_multi_patron_pack_are_warned() {
     let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
     assert_eq!(report.outcome("items_spanning_packs").unwrap().status, CheckStatus::Warned);
     assert_eq!(report.outcome("packs_with_several_patrons").unwrap().status, CheckStatus::Warned);
-}
-
-#[test]
-fn a_drop_text_quest_missing_from_a_wiki_loot_read_is_warned() {
-    let work_dir = tempfile::tempdir().unwrap();
-    let db_path = fixture_db_copy_with(work_dir.path(),
-        "INSERT INTO quests(name,slug) VALUES ('The Proper Authorities','the-proper-authorities');
-         INSERT INTO quest_drops(owner_kind,quest_id,owner_id,loot_type,is_rare,drop_text_segment,source_match)
-           SELECT 'item', last_insert_rowid(), MIN(id), 'chest', 0, 'The Proper Authorities chest', 'The Proper Authorities' FROM items;");
-    let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
-    assert_eq!(report.outcome("drop_text_disagrees_with_quest_loot").unwrap().status, CheckStatus::Warned);
 }
 
 #[test]
@@ -1028,29 +1008,11 @@ fn tables_not_empty_prints_the_tables_allowed_to_be_empty() {
         "{report}"
     );
 
-    let options_allowing_nothing = IntegrityOptions { allowed_empty_tables: Vec::new(), ..fixture_options() };
+    let options_allowing_nothing = IntegrityOptions { allowed_empty_tables: Vec::new() };
     let strict_report = integrity_report(&db, &options_allowing_nothing).unwrap();
     let strict_outcome = strict_report.outcome("tables_not_empty").unwrap();
     assert_eq!(strict_outcome.status, CheckStatus::Failed, "{strict_report}");
     assert!(strict_outcome.notes.iter().any(|note| note == "allowed empty: none"), "{strict_report}");
-}
-
-#[test]
-fn a_correction_the_build_did_not_apply_fails_no_stale_corrections() {
-    let work_dir = tempfile::tempdir().unwrap();
-    let db_path = work_dir.path().join("fixture-with-corrections.db");
-    let corrections = Corrections::from_dir(&fixtures_dir().join("corrections")).unwrap();
-    let wiki_overrides = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
-    build_database_file(&fixtures_dir().join("DataFiles"), &wiki_overrides, &corrections, &db_path).unwrap();
-    let db = Connection::open(&db_path).unwrap();
-    let options = IntegrityOptions { corrections, ..fixture_options() };
-
-    let report = integrity_report(&db, &options).unwrap();
-    let outcome = report.outcome("no_stale_corrections").unwrap();
-
-    assert_eq!(outcome.status, CheckStatus::Failed, "{report}");
-    assert_eq!(outcome.offenders.len(), 1, "{report}");
-    assert!(outcome.offenders[0].name.contains("Ruby of Acid Damage"), "{report}");
 }
 
 #[test]
