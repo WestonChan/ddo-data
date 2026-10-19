@@ -103,5 +103,7 @@ fn a_file_named_off_its_slug_fails_the_build_naming_the_expected_slug() {
 #[test]
 fn an_unresolved_reference_fails_the_build_naming_its_file() {
     let message = fixture::data_build_error(edited(CHAIN, "\"Redemption\"", "\"A Quest Nobody Wrote\""));
-    assert!(message.contains("the-lost-seekers.toml") && message.contains("A Quest Nobody Wrote"), "{message}");
+    assert!(message.contains("the-lost-seekers.toml"), "{message}");
+    assert!(message.contains("unknown quest \"A Quest Nobody Wrote\", expected "), "{message}");
+    assert!(message.contains("; nearest: "), "{message}");
 }
