@@ -4,25 +4,33 @@ pub(super) struct InsertedRecord {
 }
 
 macro_rules! database_record {
-    (@mirror $name:ident $table:literal $array:literal) => {
+    (@mirror $visibility:vis $name:ident $table:literal $array:literal) => {
         impl $name {
-            pub(crate) const TABLE: &'static str = $table;
-            pub(crate) const ARRAY: &'static str = $array;
+            $visibility const TABLE: &'static str = $table;
+            $visibility const ARRAY: &'static str = $array;
+        }
+    };
+    (@table $visibility:vis $name:ident $table:literal) => {
+        impl $name {
+            #[allow(dead_code)]
+            $visibility const TABLE: &'static str = $table;
         }
     };
     ($visibility:vis struct $name:ident in $table:literal as $array:literal { $($body:tt)* }) => {
         database_record!(@record [$table] [] $visibility struct $name { $($body)* });
-        database_record!(@mirror $name $table $array);
+        database_record!(@mirror $visibility $name $table $array);
     };
     ($(#[$attribute:meta])* $visibility:vis struct $name:ident in $table:literal as $array:literal { $($body:tt)* }) => {
         database_record!(@record [$table] [] $(#[$attribute])* #[schemars(extend("x-table" = $table, "x-array" = $array))] $visibility struct $name { $($body)* });
-        database_record!(@mirror $name $table $array);
+        database_record!(@mirror $visibility $name $table $array);
     };
     ($visibility:vis struct $name:ident in $table:literal { $($body:tt)* }) => {
         database_record!(@record [$table] [] $visibility struct $name { $($body)* });
+        database_record!(@table $visibility $name $table);
     };
     ($(#[$attribute:meta])* $visibility:vis struct $name:ident in $table:literal { $($body:tt)* }) => {
         database_record!(@record [$table] [] $(#[$attribute])* #[schemars(extend("x-table" = $table))] $visibility struct $name { $($body)* });
+        database_record!(@table $visibility $name $table);
     };
     ($(#[$attribute:meta])* $visibility:vis struct $name:ident in ($table:ident: &str $(, $parameter:ident: &str)*) { $($body:tt)* }) => {
         database_record!(@record [$table] [$table: &str, $($parameter: &str,)*] $(#[$attribute])* $visibility struct $name { $($body)* });

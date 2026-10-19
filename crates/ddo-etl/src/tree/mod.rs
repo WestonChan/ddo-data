@@ -25,8 +25,7 @@ mod pack_layout;
 mod tables;
 mod xml_slugs;
 use annotations::wiki_url_for_name;
-pub(crate) use annotations::AppliedCorrection;
-pub use annotations::Citation;
+pub use annotations::{AppliedCorrection, Citation, EntityIdentity};
 pub(crate) use build::referenced_data_icons;
 pub use build::{build_from_data, rederive_data_build_tables};
 pub(crate) use crafting::recipe_focus_path;
@@ -37,7 +36,7 @@ pub use export::{
 };
 pub(crate) use kinds::insert_xml_vendor_currencies;
 use kinds::UpstreamCommitFile;
-pub use kinds::{ExceptionsFile, PackException, QuestPackException};
+pub use kinds::{ExceptionsFile, PackException, QuestPackException, Redirect, RetiredSlug};
 pub(crate) use layout::qualified_slug;
 use layout::*;
 pub use layout::{pack_exceptions, DataFilePaths};

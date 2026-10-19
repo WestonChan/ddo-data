@@ -298,7 +298,7 @@ pub(super) fn snapshot_delta(previous: &mut DatabaseSnapshot, new: &mut Database
                 (None, None) => unreachable!(),
             }
         }
-        if table == "corrections" {
+        if table == crate::tree::AppliedCorrection::TABLE {
             delta.correction_notes = changes;
         } else if !changes.is_empty() {
             delta.entities.insert(table, changes);
@@ -326,7 +326,10 @@ impl Display for DatabaseDelta {
             .collect();
         if !self.correction_notes.is_empty() {
             let changes = &self.correction_notes;
-            counts.insert("corrections".into(), (changes.added.len(), changes.removed.len(), changes.changed.len(), 0));
+            counts.insert(
+                crate::tree::AppliedCorrection::TABLE.into(),
+                (changes.added.len(), changes.removed.len(), changes.changed.len(), 0),
+            );
         }
         for key in self.arrays.keys() {
             let table =

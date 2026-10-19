@@ -46,7 +46,7 @@ pub struct Citation in "citations" as "citation" {
 }
 
 database_record! {
-    pub(crate) struct AppliedCorrection in "corrections" as "ddobuilder_correction" {
+    pub struct AppliedCorrection in "corrections" as "ddobuilder_correction" {
         keys {}
         fields {
             kind: String => kind,
@@ -63,7 +63,7 @@ database_record! {
 }
 
 database_record! {
-    pub(super) struct EntityIdentity in "entity_identity" {
+    pub struct EntityIdentity in "entity_identity" {
         keys {}
         fields { kind: String => kind, entity_id: i64 => entity_id, name: String => name, slug: String => slug }
     }

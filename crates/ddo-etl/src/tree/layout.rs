@@ -794,7 +794,7 @@ impl DataFilePaths {
         }
         let correction_ids: BTreeMap<_, _> = rows
             .iter()
-            .filter(|((table, _), _)| table == "corrections")
+            .filter(|((table, _), _)| table == crate::tree::AppliedCorrection::TABLE)
             .map(|((_, id), fields)| {
                 let key = ["kind", "name", "qualifier", "field"]
                     .map(|column| fields.get(column).and_then(crate::delta::sql_text).unwrap_or("").to_string());
@@ -818,7 +818,7 @@ impl DataFilePaths {
                     correction.ddobuilder_correction.field.clone(),
                 ];
                 if let Some(id) = correction_ids.get(&key) {
-                    paths.insert(("corrections".into(), *id), path.clone());
+                    paths.insert((crate::tree::AppliedCorrection::TABLE.into(), *id), path.clone());
                 }
             }
         }
@@ -829,7 +829,7 @@ impl DataFilePaths {
             let (table, owner, removal) = row?;
             let key = [removal.kind, removal.name, String::new(), "remove".to_string()];
             if let (Some(id), Some(path)) = (correction_ids.get(&key), paths.get(&(table, owner)).cloned()) {
-                paths.insert(("corrections".into(), *id), path);
+                paths.insert((crate::tree::AppliedCorrection::TABLE.into(), *id), path);
             }
         }
         let mut dataset_files: BTreeMap<String, BTreeSet<PathBuf>> = FIXED_DATA_FILES

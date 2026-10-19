@@ -1,7 +1,61 @@
 use anyhow::{bail, Context};
+use ddo_etl::tree::{AppliedCorrection, Citation, EntityIdentity, PackException, Redirect, RemovedEntry, RetiredSlug};
 use ra_ap_rustc_lexer::{tokenize, FrontmatterAllowed, TokenKind};
 use std::path::Path;
 use walkdir::WalkDir;
+
+const ANNOTATION_TABLES: [&str; 7] = [
+    PackException::TABLE,
+    AppliedCorrection::TABLE,
+    Citation::TABLE,
+    RemovedEntry::TABLE,
+    EntityIdentity::TABLE,
+    Redirect::TABLE,
+    RetiredSlug::TABLE,
+];
+
+const DECLARED_ANNOTATION_TABLES: [&str; 3] = [AppliedCorrection::TABLE, Citation::TABLE, RemovedEntry::TABLE];
+
+pub fn deny_annotation_table_literals(root: &Path) -> anyhow::Result<()> {
+    let mut findings = Vec::new();
+    for entry in WalkDir::new(root) {
+        let entry = entry?;
+        let path = entry.path();
+        if path.extension().is_none_or(|extension| extension != "rs") {
+            continue;
+        }
+        let source = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
+        let production_length = source.split("#[cfg(test)]").next().unwrap_or(&source).len();
+        let mut token_start = 0;
+        let mut previous_code = "";
+        for token in tokenize(&source, FrontmatterAllowed::No) {
+            let token_end = token_start + token.len as usize;
+            let text = &source[token_start..token_end];
+            if token_start < production_length
+                && matches!(token.kind, TokenKind::Literal { .. })
+                && previous_code != "in"
+                && DECLARED_ANNOTATION_TABLES.iter().any(|table| text == format!("{table:?}"))
+            {
+                let line = source[..token_start].matches('\n').count() + 1;
+                findings.push(format!(
+                    "{}:{line}: {text} names an annotation table; use its declared TABLE constant",
+                    path.display()
+                ));
+            }
+            if !matches!(
+                token.kind,
+                TokenKind::Whitespace | TokenKind::LineComment { .. } | TokenKind::BlockComment { .. }
+            ) {
+                previous_code = text;
+            }
+            token_start = token_end;
+        }
+    }
+    if !findings.is_empty() {
+        bail!("{}", findings.join("\n"));
+    }
+    Ok(())
+}
 
 pub fn deny_generic_file_mappers(root: &Path) -> anyhow::Result<()> {
     let mut findings = Vec::new();
@@ -46,15 +100,7 @@ pub fn deny_generic_file_mappers(root: &Path) -> anyhow::Result<()> {
             let identifier = &source[token_start..token_end];
             if token_start < production.len() && matches!(token.kind, TokenKind::Literal { .. }) {
                 let sql = identifier.to_ascii_lowercase().split_whitespace().collect::<Vec<_>>().join(" ");
-                for table in [
-                    "pack_exceptions",
-                    "corrections",
-                    "citations",
-                    "removed_entities",
-                    "entity_identity",
-                    "redirects",
-                    "retired_slugs",
-                ] {
+                for table in ANNOTATION_TABLES {
                     let inserted = sql.contains(&format!("insert into {table} ("));
                     let selected = sql
                         .split_once("select ")
@@ -107,15 +153,7 @@ mod tests {
     fn annotation_columns_must_come_from_declarations() {
         let folder = tempfile::tempdir().unwrap();
         let path = folder.path().join("annotations.rs");
-        for table in [
-            "pack_exceptions",
-            "corrections",
-            "citations",
-            "removed_entities",
-            "entity_identity",
-            "redirects",
-            "retired_slugs",
-        ] {
+        for table in ANNOTATION_TABLES {
             for sql in [
                 format!("INSERT INTO {table} (name, field) VALUES (?1, ?2)"),
                 format!("SELECT name, field FROM {table}"),
@@ -125,6 +163,19 @@ mod tests {
                 assert!(error.contains(table) && error.contains("annotations.rs:1"), "{error}");
             }
         }
+    }
+
+    #[test]
+    fn annotation_table_names_come_from_their_declarations() {
+        let folder = tempfile::tempdir().unwrap();
+        let path = folder.path().join("layout.rs");
+        for table in DECLARED_ANNOTATION_TABLES {
+            std::fs::write(&path, format!("fn path() {{ let table = {table:?}; }}\n")).unwrap();
+            let error = deny_annotation_table_literals(folder.path()).unwrap_err().to_string();
+            assert!(error.contains("layout.rs:1") && error.contains(table), "{error}");
+        }
+        std::fs::write(&path, format!("struct Entry in {:?} {{}}\n", Citation::TABLE)).unwrap();
+        deny_annotation_table_literals(folder.path()).unwrap();
     }
 
     #[test]

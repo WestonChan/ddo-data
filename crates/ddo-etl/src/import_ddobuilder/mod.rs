@@ -52,8 +52,10 @@ fn build_normalized_database(db: &Connection, source: &Path, destination: &Path)
 
 fn verification_differences(delta: &crate::delta::DatabaseDelta) -> Vec<String> {
     let mut differences = Vec::new();
-    for (table, changes) in
-        delta.entities.iter().chain(std::iter::once((&"corrections".to_string(), &delta.correction_notes)))
+    for (table, changes) in delta
+        .entities
+        .iter()
+        .chain(std::iter::once((&crate::tree::AppliedCorrection::TABLE.to_string(), &delta.correction_notes)))
     {
         differences.extend(changes.added.iter().map(|identity| format!("{table}: added {identity}")));
         differences.extend(changes.removed.iter().map(|identity| format!("{table}: removed {identity}")));

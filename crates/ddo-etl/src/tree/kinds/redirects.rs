@@ -8,7 +8,7 @@ use std::collections::BTreeMap;
 database_record! {
     #[derive(Debug, Serialize, Deserialize, JsonSchema)]
     #[serde(deny_unknown_fields)]
-    pub(crate) struct Redirect in "redirects" {
+    pub struct Redirect in "redirects" {
         keys {}
         fields {
             kind: EntityKind => kind [enum_text],
@@ -22,7 +22,7 @@ database_record! {
 database_record! {
     #[derive(Debug, Serialize, Deserialize, JsonSchema)]
     #[serde(deny_unknown_fields)]
-    pub(crate) struct RetiredSlug in "retired_slugs" {
+    pub struct RetiredSlug in "retired_slugs" {
         keys {}
         fields {
             kind: EntityKind => kind [enum_text],

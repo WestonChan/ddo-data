@@ -94,7 +94,7 @@ impl IdentityIndex {
             self.resolved.insert(key, identity.clone());
             return Ok(identity);
         }
-        if table == "corrections" {
+        if table == crate::tree::AppliedCorrection::TABLE {
             let identity = ["kind", "name", "qualifier", "field"]
                 .iter()
                 .map(|column| fields.get(*column).map(scalar_text).unwrap_or_default())

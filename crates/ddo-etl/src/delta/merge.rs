@@ -108,10 +108,10 @@ pub fn merge_delta_into(
     let local_delta = snapshot_delta(&mut previous, &mut current)?;
     let mut edits = MergeEdits::default();
     let mut changes_by_table = upstream_delta.entities;
-    changes_by_table.insert("corrections".into(), upstream_delta.correction_notes);
+    changes_by_table.insert(crate::tree::AppliedCorrection::TABLE.into(), upstream_delta.correction_notes);
     for (table, changes) in changes_by_table {
         for identity in changes.removed {
-            if table == "corrections" {
+            if table == crate::tree::AppliedCorrection::TABLE {
                 if entity_row(&current, &table, &identity).is_some() {
                     edits.outcome.kept_corrections.push(identity);
                 }

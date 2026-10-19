@@ -162,9 +162,9 @@ pub(super) fn report(
         .collect::<rusqlite::Result<BTreeMap<_, _>>>()?;
     let mut retained_index = IdentityIndex::from_db(rebuilt)?;
     for (key, id) in &correction_ids {
-        if outcome.kept_corrections.contains(&retained_index.identity("corrections", *id)?) {
+        if outcome.kept_corrections.contains(&retained_index.identity(crate::tree::AppliedCorrection::TABLE, *id)?) {
             entries.push(ImportReportEntry {
-                path: paths.path("corrections", *id)?,
+                path: paths.path(crate::tree::AppliedCorrection::TABLE, *id)?,
                 category: "KEPT CORRECTION",
                 detail: format!("{} {} [{}].{}", key.kind, quoted(&key.name), key.qualifier, key.field),
             });
@@ -176,7 +176,7 @@ pub(super) fn report(
             CorrectionEvent::Conflict { key, previous, new, ours } => (key, previous, new, Some(ours)),
         };
         let id = correction_ids.get(&key).with_context(|| format!("correction was not retained: {key:?}"))?;
-        let counts = tables.entry("corrections".into()).or_default();
+        let counts = tables.entry(crate::tree::AppliedCorrection::TABLE.into()).or_default();
         let (category, suffix) = if let Some(ours) = ours {
             conflict_count += 1;
             counts.conflicts += 1;
@@ -186,7 +186,7 @@ pub(super) fn report(
             ("RESOLVED CORRECTION", String::new())
         };
         entries.push(ImportReportEntry {
-            path: paths.path("corrections", *id)?,
+            path: paths.path(crate::tree::AppliedCorrection::TABLE, *id)?,
             category,
             detail: format!(
                 "{} {} [{}].{} previous={} new={}{}",

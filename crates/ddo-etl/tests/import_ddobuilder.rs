@@ -901,7 +901,7 @@ fn every_entity_preserves_citations_with_notes_through_the_data_tree() {
             for in_game in [false, true] {
                 let note = format!("Checked {table}/{slug}; in_game={in_game}.");
                 let url = (!in_game).then_some("https://ddowiki.com/page/Review");
-                db.execute("INSERT INTO citations (owner_kind, owner_id, field, url, in_game, read, note) VALUES (?1, ?2, 'review', ?3, ?4, '2026-10-18', ?5)", rusqlite::params![table, id, url, in_game, note]).unwrap();
+                db.execute("INSERT INTO citations (owner_kind, owner_id, field, url, in_game, read, note) VALUES (?1, ?2, '', ?3, ?4, '2026-10-18', ?5)", rusqlite::params![table, id, url, in_game, note]).unwrap();
                 expected.push((table, identity_column, slug.clone(), note, url, in_game));
             }
         }

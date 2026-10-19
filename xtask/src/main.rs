@@ -118,6 +118,7 @@ fn main() -> Result<()> {
     match Cli::parse().command {
         Task::Lint => {
             xtask::data_file_lints::deny_generic_file_mappers(&workspace_root().join("crates/ddo-etl/src/tree"))?;
+            xtask::data_file_lints::deny_annotation_table_literals(&workspace_root().join("crates/ddo-etl/src"))?;
             deny_clippy_warnings()?;
             ddo_etl::tree::schemas::validate_source_fields(&workspace_root().join("data"))?;
             deny_invalid_data_files()?;
