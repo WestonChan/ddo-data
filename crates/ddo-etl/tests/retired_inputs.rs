@@ -1,18 +1,24 @@
 use std::path::{Path, PathBuf};
 
-const RETIRED_PATHS: &[&str] = &[
-    "crates/ddo-etl/build.rs",
-    "crates/ddo-etl/data/wiki",
-    "crates/ddo-etl/data/corrections",
-    "crates/ddo-etl/tests/fixtures/wiki",
-    "crates/ddo-etl/tests/fixtures/corrections",
-    "crates/ddo-etl/tests/fixtures/data-corrections",
-    "crates/ddo-etl/tests/fixtures/import_ddobuilder/wiki",
-    "crates/ddo-etl/tests/fixtures/import_ddobuilder/corrections",
+const RETIRED_PATHS: &[&[&str]] = &[
+    &["crates", "ddo-etl", "build.rs"],
+    &["crates", "ddo-etl", "data", "wiki"],
+    &["crates", "ddo-etl", "data", "corrections"],
+    &["crates", "ddo-etl", "tests", "fixtures", "wiki"],
+    &["crates", "ddo-etl", "tests", "fixtures", "corrections"],
+    &["crates", "ddo-etl", "tests", "fixtures", "data-corrections"],
+    &["crates", "ddo-etl", "tests", "fixtures", "import_ddobuilder", "wiki"],
+    &["crates", "ddo-etl", "tests", "fixtures", "import_ddobuilder", "corrections"],
 ];
 
-const RETIRED_TEXT: &[&str] =
-    &["data/wiki", "data/corrections", "wiki-check", "wiki-batch", "wiki_check", "wiki_batch"];
+const RETIRED_NAMES: &[(&str, &str, &str)] = &[
+    ("data", "/", "wiki"),
+    ("data", "/", "corrections"),
+    ("wiki", "-", "check"),
+    ("wiki", "-", "batch"),
+    ("wiki", "_", "check"),
+    ("wiki", "_", "batch"),
+];
 
 fn workspace_root() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("../..").canonicalize().unwrap()
@@ -39,13 +45,15 @@ fn scanned_files(root: &Path) -> Vec<PathBuf> {
 #[test]
 fn retired_inputs_and_tools_are_gone_from_the_workspace() {
     let root = workspace_root();
-    let present: Vec<&str> = RETIRED_PATHS.iter().copied().filter(|path| root.join(path).exists()).collect();
+    let present: Vec<String> =
+        RETIRED_PATHS.iter().map(|segments| segments.join("/")).filter(|path| root.join(path).exists()).collect();
     assert!(present.is_empty(), "retired paths still exist: {present:?}");
     let mut mentions = Vec::new();
     for path in scanned_files(&root) {
         let text = std::fs::read_to_string(&path).unwrap_or_default();
-        for retired in RETIRED_TEXT {
-            if text.contains(retired) {
+        for (head, joiner, tail) in RETIRED_NAMES {
+            let retired = format!("{head}{joiner}{tail}");
+            if text.contains(&retired) {
                 mentions.push(format!("{} mentions {retired}", path.strip_prefix(&root).unwrap().display()));
             }
         }
