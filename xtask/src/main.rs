@@ -429,6 +429,11 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             &["--test", "import_ddobuilder"][..],
             "merged_socket_labels_resolve_when_his_files_adopt_the_name_for_every_spelling",
         ),
+        (
+            "ddo-etl",
+            &["--test", "import_ddobuilder"][..],
+            "a_merge_is_not_resolved_while_one_listed_spelling_remains_in_his_files",
+        ),
         ("ddo-etl", &["--test", "corrections"][..], "a_socket_label_merge_renames_every_listed_spelling_into_one_row"),
     ] {
         let test_status = Command::new("cargo")

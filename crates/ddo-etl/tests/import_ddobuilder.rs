@@ -363,7 +363,14 @@ struct MergedSocketLabelImport {
     recipe_count: i64,
 }
 
-fn import_with_merged_socket_labels(his_files_adopt_the_merged_names: bool) -> MergedSocketLabelImport {
+#[derive(Clone, Copy, PartialEq)]
+enum HisAdoption {
+    Nothing,
+    EverySpelling,
+    FirstSpellingOnly,
+}
+
+fn import_with_merged_socket_labels(adoption: HisAdoption) -> MergedSocketLabelImport {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let scratch = tempfile::tempdir().unwrap();
     let mut fixture = Connection::open_in_memory().unwrap();
@@ -405,11 +412,12 @@ fn import_with_merged_socket_labels(his_files_adopt_the_merged_names: bool) -> M
     copy_data_icons_into_source(&root, &source, scratch.path());
     let new_source = scratch.path().join("new");
     copy_tree(&source, &new_source);
-    if his_files_adopt_the_merged_names {
+    if adoption != HisAdoption::Nothing {
         let item = new_source.join("Items/Sireth, Spear of the Sky.item");
         let mut contents = std::fs::read_to_string(&item).unwrap();
         for (types, adopted) in HEROISM_MERGES {
-            for upstream_type in types {
+            let adopted_spellings = if adoption == HisAdoption::EverySpelling { 2 } else { 1 };
+            for upstream_type in &types[..adopted_spellings] {
                 let element = format!("<Type>{upstream_type}</Type>");
                 assert!(contents.contains(&element), "{element}");
                 contents = contents.replace(&element, &format!("<Type>{adopted}</Type>"));
@@ -438,7 +446,7 @@ fn import_with_merged_socket_labels(his_files_adopt_the_merged_names: bool) -> M
 
 #[test]
 fn merged_socket_labels_follow_the_writer_and_have_no_import_delta() {
-    let import = import_with_merged_socket_labels(false);
+    let import = import_with_merged_socket_labels(HisAdoption::Nothing);
     assert!(!import.report.contains("CORRECTION"), "{}", import.report);
     assert!(!import.report.contains("reviewed tier"), "{}", import.report);
     for db in [&import.previous, &import.rebuilt] {
@@ -502,9 +510,35 @@ fn merged_socket_labels_follow_the_writer_and_have_no_import_delta() {
 
 #[test]
 fn merged_socket_labels_resolve_when_his_files_adopt_the_name_for_every_spelling() {
-    let import = import_with_merged_socket_labels(true);
+    let import = import_with_merged_socket_labels(HisAdoption::EverySpelling);
     assert_eq!(import.report.matches("RESOLVED CORRECTION").count(), 2, "{}", import.report);
     assert!(import.report.contains("renamed upstream"), "{}", import.report);
+}
+
+#[test]
+fn a_merge_is_not_resolved_while_one_listed_spelling_remains_in_his_files() {
+    let import = import_with_merged_socket_labels(HisAdoption::FirstSpellingOnly);
+    assert!(!import.report.contains("RESOLVED CORRECTION"), "{}", import.report);
+    for db in [&import.rebuilt] {
+        assert_eq!(
+            db.query_row(
+                "SELECT COUNT(*) FROM augment_slot_types WHERE label LIKE 'crafting: attuned to heroism%'",
+                [],
+                |row| row.get::<_, i64>(0)
+            )
+            .unwrap(),
+            0
+        );
+        assert_eq!(
+            db.query_row(
+                "SELECT COUNT(*) FROM corrections WHERE kind = 'socket_label' AND to_value LIKE '%reviewed tier%'",
+                [],
+                |row| row.get::<_, i64>(0)
+            )
+            .unwrap(),
+            2
+        );
+    }
 }
 
 #[test]
