@@ -1,10 +1,6 @@
-use anyhow::{bail, Result};
-use serde::Deserialize;
-
 const AUGMENT_DROP_PLACEHOLDER: &str = "Drops in: ?";
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize)]
-#[serde(rename_all = "lowercase")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum DescriptionKind {
     Item,
     Augment,
@@ -67,24 +63,10 @@ impl DescriptionKind {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct WikiDescription {
     pub kind: DescriptionKind,
     pub name: String,
     pub description: String,
-    #[serde(skip)]
     pub file_name: String,
-}
-
-impl WikiDescription {
-    pub(super) fn validate(&self) -> Result<()> {
-        if self.description.trim().is_empty() {
-            bail!("description is empty; leave the entry out until the page has text to copy");
-        }
-        if self.description.trim() != self.description {
-            bail!("description {:?} starts or ends with whitespace; trim it", self.description);
-        }
-        Ok(())
-    }
 }

@@ -96,24 +96,13 @@ pub(crate) fn legacy_price(db: &Connection, text: &str) -> Result<Vec<VendorPric
 #[cfg(test)]
 mod tests {
     use super::{insert_prices, legacy_price, prices_by_offer, VendorPrice};
-    use crate::corrections::Corrections;
-    use crate::wiki::WikiOverrides;
-    use ddo_model::DatasetVersion;
     use rusqlite::Connection;
     use std::path::Path;
 
     fn fixture_offers() -> (Connection, i64) {
         let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-        let wiki = WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
         let mut db = Connection::open_in_memory().unwrap();
-        crate::build::build_database(
-            &fixtures.join("DataFiles"),
-            &wiki,
-            &Corrections::default(),
-            &mut db,
-            &DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-08T00:00:00Z".into() },
-        )
-        .unwrap();
+        crate::tree::build_from_data(&fixtures.join("data"), &mut db).unwrap();
         let offer = db.query_row("SELECT offer.id FROM vendor_offers offer JOIN items item ON item.id = offer.item_id WHERE item.name = 'Ethereal Great Crossbow'", [], |row| row.get(0)).unwrap();
         (db, offer)
     }

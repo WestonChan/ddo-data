@@ -1,5 +1,6 @@
 use super::*;
 use crate::tree::DataFilePaths;
+use anyhow::Result;
 use rusqlite::{Connection, Row};
 use std::collections::BTreeMap;
 

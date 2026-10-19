@@ -1,3 +1,5 @@
+mod fixture;
+
 use ddo_etl::build::{build_database, BuildReport, StaleCorrection, StaleCorrectionCause};
 use ddo_etl::corrections::{CorrectionValue, Corrections};
 use ddo_etl::wiki::WikiOverrides;
@@ -778,7 +780,7 @@ fn correcting_an_items_set_moves_its_set_link() {
 
 #[test]
 fn corrects_only_his_items_not_the_wikis() {
-    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     let corrections = parsed_corrections(&[(
         "corrections.toml",
         &correction_toml("item", "Battle Axe of the Oozing Hunger", "minimum_level", "29", "30"),
@@ -790,7 +792,7 @@ fn corrects_only_his_items_not_the_wikis() {
 
 #[test]
 fn corrects_only_his_quests_not_the_wikis() {
-    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     let corrections = parsed_corrections(&[(
         "corrections.toml",
         &correction_toml("quest", "Ghosts of Perdition", "level", "32", "31"),
@@ -802,7 +804,7 @@ fn corrects_only_his_quests_not_the_wikis() {
 
 #[test]
 fn corrects_only_his_augments_not_the_wikis() {
-    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     for correction_text in [
         correction_toml("augment", "Test Gem of Oozing Resistance", "min_level", "29", "30"),
         qualified_correction_toml(
@@ -822,7 +824,7 @@ fn corrects_only_his_augments_not_the_wikis() {
 
 #[test]
 fn runs_before_the_wiki_merge_so_a_corrected_description_is_his() {
-    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     let corrections = parsed_corrections(&[(
         "corrections.toml",
         &correction_toml("item", "+1 Ember Repeating Light Crossbow", "description", "\"null\"", "\"Corrected text.\""),
@@ -1083,7 +1085,7 @@ fn renaming_an_item_or_quest_to_a_name_already_taken_fails() {
 
 #[test]
 fn a_wiki_file_naming_the_old_spelling_fails_the_build() {
-    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     let corrections = parsed_corrections(&[(
         "corrections.toml",
         &correction_toml("augment", "Minor Fire Guard", "name", "\"Minor Fire Guard\"", "\"Lesser Fire Guard\""),

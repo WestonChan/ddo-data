@@ -423,6 +423,7 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         ("xtask", &["--test", "integrity"][..], "database_checks_need_no_xml_or_data_files"),
         ("ddo-etl", &["--test", "upstream"][..], "served_dataset_commands_expose_only_canonical_inputs"),
         ("xtask", &["--test", "diff_db"][..], "database_comparison_exposes_no_difference_allowance"),
+        ("ddo-etl", &["--test", "retired_inputs"][..], "retired_inputs_and_tools_are_gone_from_the_workspace"),
     ] {
         let test_status = Command::new("cargo")
             .args(["test", "-p", crate_name])

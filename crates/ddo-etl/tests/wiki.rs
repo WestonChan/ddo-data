@@ -1,7 +1,11 @@
+mod fixture;
+
 use ddo_etl::build::{build_database, ProbableDuplicateWikiEntry, SupersededWikiEntry};
 use ddo_etl::corrections::Corrections;
-use ddo_etl::wiki::{DescriptionKind, RareDrop, WikiOverrides};
-use ddo_model::enums::LootType;
+use ddo_etl::wiki::{
+    CraftingSystem, DescribedListedDrop, DescriptionKind, ListedDrop, QuestLoot, RareDrop, RareDropInChest,
+    WikiDescription, WikiItemEffect, WikiOverrides,
+};
 use ddo_model::DatasetVersion;
 use rusqlite::Connection;
 use std::path::PathBuf;
@@ -14,17 +18,76 @@ fn fixture_dataset_version() -> DatasetVersion {
     DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-09-20T00:00:00Z".into() }
 }
 
-fn quest_loot_toml(name: &str, rare_items: &[&str]) -> String {
-    let quoted_rare_items: Vec<String> = rare_items.iter().map(|r| format!("{r:?}")).collect();
-    format!(
-        "[[quest]]\nname = {name:?}\npage = \"https://ddowiki.com/page/{}\"\nread = \"2026-09-27\"\nrare = [{}]\n",
-        name.replace(' ', "_"),
-        quoted_rare_items.join(", ")
-    )
+fn authored_wiki(sql: &str) -> WikiOverrides {
+    let ours = fixture::database(|_| {});
+    ours.execute_batch(sql).unwrap();
+    let scratch = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&ours, scratch.path()).unwrap();
+    let source = fixtures_dir().join("DataFiles");
+    ddo_etl::icons::export_icons(&source, &scratch.path().join("icons")).unwrap();
+    for missing in ddo_etl::icons::complete_referenced_icons(scratch.path()).unwrap().missing_icons {
+        let path = scratch.path().join("icons").join(missing);
+        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+        std::fs::copy(source.join("FeatImages/PowerAttack.png"), path).unwrap();
+    }
+    ddo_etl::icons::place_enhancement_icons_beside_trees(scratch.path()).unwrap();
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(scratch.path(), &mut rebuilt).unwrap();
+    WikiOverrides::from_database(&rebuilt).unwrap()
 }
 
-fn parsed_wiki(files: &[(&str, &str)]) -> Result<WikiOverrides, String> {
-    WikiOverrides::from_toml_files(files).map_err(|e| format!("{e:#}"))
+fn fixture_wiki() -> WikiOverrides {
+    WikiOverrides::from_database(&fixture::database(|_| {})).unwrap()
+}
+
+fn crafting_wiki(edit: impl FnOnce(&mut Vec<CraftingSystem>)) -> WikiOverrides {
+    let mut crafting_systems = fixture_wiki().crafting_systems;
+    edit(&mut crafting_systems);
+    WikiOverrides { crafting_systems, ..WikiOverrides::default() }
+}
+
+fn crafting_system<'a>(systems: &'a mut [CraftingSystem], name: &str) -> &'a mut CraftingSystem {
+    systems.iter_mut().find(|system| system.name == name).unwrap()
+}
+
+type LootRow<'a> = (&'a str, &'a str, &'a str, &'a str, Option<&'a str>, bool);
+
+fn loot_wiki(drops: &[LootRow]) -> WikiOverrides {
+    let mut quest_loot: Vec<QuestLoot> = Vec::new();
+    for (quest, kind, name, loot_type, chest, rare) in drops {
+        let position = quest_loot.iter().position(|entry| entry.name == *quest).unwrap_or_else(|| {
+            quest_loot.push(QuestLoot {
+                name: (*quest).into(),
+                rare: Vec::new(),
+                rare_augments: Vec::new(),
+                items: Vec::new(),
+                augments: Vec::new(),
+                file_name: format!("packs/test/quests/{}/quest.toml", ddo_etl::tree::slug(quest)),
+            });
+            quest_loot.len() - 1
+        });
+        let entry = &mut quest_loot[position];
+        let listed = ListedDrop::Described(DescribedListedDrop {
+            name: (*name).into(),
+            loot_type: Some((*loot_type).into()),
+            chest: chest.map(String::from),
+            replaces_pack_drop: false,
+        });
+        let rare_drop = chest.map_or_else(
+            || RareDrop::Named((*name).into()),
+            |chest| RareDrop::InChest(RareDropInChest { name: (*name).into(), chest: chest.into() }),
+        );
+        let (listed_drops, rare_drops) = if *kind == "item" {
+            (&mut entry.items, &mut entry.rare)
+        } else {
+            (&mut entry.augments, &mut entry.rare_augments)
+        };
+        listed_drops.push(listed);
+        if *rare {
+            rare_drops.push(rare_drop);
+        }
+    }
+    WikiOverrides { quest_loot, ..WikiOverrides::default() }
 }
 
 fn build_report_with(wiki: &WikiOverrides) -> Result<ddo_etl::build::BuildReport, String> {
@@ -41,11 +104,10 @@ fn build_report_with(wiki: &WikiOverrides) -> Result<ddo_etl::build::BuildReport
 
 #[test]
 fn reads_quest_loot_from_every_toml_file_in_the_directory() {
-    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
-    assert_eq!(wiki.quest_loot.len(), 1);
-    let entry = &wiki.quest_loot[0];
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
+    let entry = wiki.quest_loot.iter().find(|quest| quest.name == "Book Burning").unwrap();
     assert_eq!(entry.name, "Book Burning");
-    assert_eq!(entry.file_name, "quest_loot.toml");
+    assert!(entry.file_name.ends_with("/book-burning/quest.toml"));
     assert_eq!(entry.rare.iter().map(RareDrop::name).collect::<Vec<_>>(), ["Buckler of the Golden Age"]);
     assert_eq!(
         entry.rare_augments.iter().map(RareDrop::name).collect::<Vec<_>>(),
@@ -53,52 +115,44 @@ fn reads_quest_loot_from_every_toml_file_in_the_directory() {
     );
 }
 
-const BOOK_BURNING_CITATION: &str =
-    "[[quest]]\nname = \"Book Burning\"\npage = \"https://ddowiki.com/page/Book_Burning\"\nread = \"2026-09-27\"\n";
-
-#[test]
-fn reads_a_rare_drop_as_a_name_or_a_name_with_its_chest() {
-    let toml_text = format!(
-        "{BOOK_BURNING_CITATION}rare = [\"Buckler of the Golden Age\", {{ name = \"Docent of Defiance\", chest = \"optional chest\" }}]\n"
-    );
-    let wiki = parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap();
-    let rare_drops: Vec<(&str, Option<&str>)> =
-        wiki.quest_loot[0].rare.iter().map(|drop| (drop.name(), drop.chest())).collect();
-    assert_eq!(rare_drops, [("Buckler of the Golden Age", None), ("Docent of Defiance", Some("optional chest"))]);
-    let unknown_field_text = toml_text.replace("chest = ", "chests = ");
-    assert!(
-        parsed_wiki(&[("quest_loot_a.toml", &unknown_field_text)]).is_err(),
-        "a rare drop object takes name and chest"
-    );
-}
-
-#[test]
-fn a_cited_quest_drop_replaces_the_same_pack_wide_chest() {
-    let mut wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
-    let item = wiki.items.iter_mut().find(|item| item.name == "Battle Axe of the Oozing Hunger").unwrap();
-    item.drop_location = "Free to Play, end chest".to_string();
-    item.quests.clear();
-    let quest_loot = "[[quest]]
-name = \"The Grotto\"
-page = \"https://ddowiki.com/page/The_Grotto\"
-read = \"2026-10-05\"
-items = [{ name = \"Battle Axe of the Oozing Hunger\", chest = \"end chest\", replaces_pack_drop = true }]
-";
-    wiki.quest_loot.extend(parsed_wiki(&[("quest_loot_pack_replacement.toml", quest_loot)]).unwrap().quest_loot);
+fn axe_pack_chest_rows(replaces_pack_drop: bool) -> (Vec<(String, Option<String>)>, usize) {
+    let mut wiki = fixture_wiki();
+    wiki.items.iter_mut().find(|item| item.name == WIKI_AXE).unwrap().drop_location = "Free to Play, end chest".into();
+    let grotto = wiki.quest_loot.iter_mut().find(|quest| quest.name == "The Grotto").unwrap();
+    grotto.items = vec![ListedDrop::Described(DescribedListedDrop {
+        name: WIKI_AXE.into(),
+        loot_type: Some("chest".into()),
+        chest: Some("end chest".into()),
+        replaces_pack_drop,
+    })];
     let (db, report) = built_db_with(&wiki);
-    let rows: Vec<(String, Option<String>)> = db
+    let rows = db
         .prepare(
             "SELECT s.kind, s.chest FROM sources s JOIN items i ON i.id = s.item_id
-             WHERE i.name = 'Battle Axe of the Oozing Hunger' AND s.kind IN ('quest', 'adventure_pack')
+             WHERE i.name = ?1 AND s.kind IN ('quest', 'adventure_pack') AND s.loot_type <> 'reward'
              ORDER BY s.kind, s.id",
         )
         .unwrap()
-        .query_map([], |row| Ok((row.get(0)?, row.get(1)?)))
+        .query_map([WIKI_AXE], |row| Ok((row.get(0)?, row.get(1)?)))
         .unwrap()
         .map(Result::unwrap)
         .collect();
-    assert_eq!(rows, [("quest".to_string(), Some("end chest".to_string()))]);
-    assert_eq!(report.pack_loot_link_count, 1);
+    (rows, report.pack_loot_link_count)
+}
+
+#[test]
+fn a_listed_quest_drop_replaces_the_same_pack_wide_chest_only_when_it_says_so() {
+    let (replaced, replaced_link_count) = axe_pack_chest_rows(true);
+    assert_eq!(replaced, [("quest".to_string(), Some("end chest".to_string()))]);
+    let (kept, kept_link_count) = axe_pack_chest_rows(false);
+    assert_eq!(
+        kept,
+        [
+            ("adventure_pack".to_string(), Some("end chest".to_string())),
+            ("quest".to_string(), Some("end chest".to_string()))
+        ]
+    );
+    assert_eq!(kept_link_count, replaced_link_count + 1);
 }
 
 fn quest_augment_loot_row(db: &Connection, quest: &str, augment: &str) -> Option<(String, bool, Option<String>)> {
@@ -114,21 +168,21 @@ fn quest_augment_loot_row(db: &Connection, quest: &str, augment: &str) -> Option
 
 #[test]
 fn marks_rare_augments_on_the_links_maetrims_description_made() {
-    let (db, report) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    let (db, report) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
     assert_eq!(
         quest_augment_loot_row(&db, "Book Burning", "Lunar Gem of Magical Protection (Heroic)"),
         Some(("chest".into(), true, Some("end chest".into())))
     );
-    assert_eq!((report.wiki_rare_augment_drop_count, report.wiki_added_quest_augment_loot_link_count), (1, 0));
+    assert_eq!((report.wiki_rare_augment_drop_count, report.wiki_added_quest_augment_loot_link_count), (2, 0));
 }
 
 #[test]
 fn adds_a_chest_link_for_a_rare_augment_and_fills_only_a_chest_his_text_left_blank() {
-    let toml_text = format!(
-        "{BOOK_BURNING_CITATION}rare = [{{ name = \"Buckler of the Golden Age\", chest = \"optional chest\" }}]\n\
-         rare_augments = [{{ name = \"Lunar Gem of Evocation (Heroic)\", chest = \"end chest\" }}]\n"
-    );
-    let (db, report) = built_db_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap());
+    let wiki = loot_wiki(&[
+        ("Book Burning", "item", "Buckler of the Golden Age", "chest", Some("optional chest"), true),
+        ("Book Burning", "augment", "Lunar Gem of Evocation (Heroic)", "chest", Some("end chest"), true),
+    ]);
+    let (db, report) = built_db_with(&wiki);
     assert_eq!(
         quest_augment_loot_row(&db, "Book Burning", "Lunar Gem of Evocation (Heroic)"),
         Some(("chest".into(), true, Some("end chest".into())))
@@ -147,73 +201,30 @@ fn adds_a_chest_link_for_a_rare_augment_and_fills_only_a_chest_his_text_left_bla
 
 #[test]
 fn build_fails_naming_a_rare_augment_absent_from_the_augments_table() {
-    let toml_text = format!("{BOOK_BURNING_CITATION}rare_augments = [\"Lunar Gem of Missing Things\"]\n");
-    let error = build_report_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap()).unwrap_err();
+    let wiki = loot_wiki(&[("Book Burning", "augment", "Lunar Gem of Missing Things", "chest", None, true)]);
+    let error = build_report_with(&wiki).unwrap_err();
     assert!(error.contains("Lunar Gem of Missing Things") && error.contains("Book Burning"), "{error}");
 }
 
 #[test]
-fn embedded_wiki_files_load() {
-    let wiki = WikiOverrides::embedded().unwrap();
-    assert!(wiki.quest_loot.iter().any(|q| q.name == "Book Burning"));
-}
-
-#[test]
-fn rejects_a_page_outside_ddowiki() {
-    let toml_text = quest_loot_toml("The Grotto", &[]).replace("https://ddowiki.com/page/", "https://example.com/");
-    let error = parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap_err();
-    assert!(error.contains("The Grotto") && error.contains("https://ddowiki.com/page/"), "{error}");
-}
-
-#[test]
-fn rejects_a_read_date_that_is_not_iso() {
-    for bad in ["27/09/2026", "2026-9-27", "2026-13-01", "2026-02-30", "yesterday"] {
-        let toml_text = quest_loot_toml("The Grotto", &[]).replace("2026-09-27", bad);
-        let error = parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap_err();
-        assert!(error.contains("The Grotto") && error.contains(bad), "{bad}: {error}");
-    }
-}
-
-#[test]
-fn rejects_a_quest_listed_twice_across_files() {
-    let error = parsed_wiki(&[
-        ("quest_loot_a.toml", &quest_loot_toml("The Grotto", &[])),
-        ("quest_loot_b.toml", &quest_loot_toml("The Grotto", &[])),
-    ])
-    .unwrap_err();
-    assert!(
-        error.contains("The Grotto") && error.contains("quest_loot_a.toml") && error.contains("quest_loot_b.toml"),
-        "{error}"
-    );
-}
-
-#[test]
-fn rejects_unknown_fields() {
-    let toml_text = quest_loot_toml("The Grotto", &[]) + "common = [\"Docent of Defiance\"]\n";
-    let error = parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap_err();
-    assert!(error.contains("quest_loot_a.toml") && error.contains("common"), "{error}");
-}
-
-#[test]
 fn build_fails_naming_a_quest_absent_from_the_quests_table() {
-    let wiki = parsed_wiki(&[("quest_loot_a.toml", &quest_loot_toml("The Missing Quest", &[]))]).unwrap();
+    let wiki = loot_wiki(&[("The Missing Quest", "item", "Docent of Defiance", "chest", None, true)]);
     let error = build_report_with(&wiki).unwrap_err();
     assert!(error.contains("The Missing Quest"), "{error}");
 }
 
 #[test]
 fn build_fails_naming_an_item_absent_from_the_items_table() {
-    let wiki = parsed_wiki(&[("quest_loot_a.toml", &quest_loot_toml("Book Burning", &["Buckler of the Missing Age"]))])
-        .unwrap();
+    let wiki = loot_wiki(&[("Book Burning", "item", "Buckler of the Missing Age", "chest", None, true)]);
     let error = build_report_with(&wiki).unwrap_err();
     assert!(error.contains("Buckler of the Missing Age") && error.contains("Book Burning"), "{error}");
 }
 
 #[test]
 fn build_reports_the_wiki_entries_it_applied() {
-    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     let report = build_report_with(&wiki).unwrap();
-    assert_eq!(report.wiki_quest_loot_entry_count, 1);
+    assert_eq!(report.wiki_quest_loot_entry_count, 4);
     assert_eq!(report.wiki_rare_drop_count, 1);
 }
 
@@ -242,19 +253,21 @@ fn quest_loot_row(db: &Connection, quest: &str, item: &str) -> Option<(String, b
 
 #[test]
 fn marks_rare_drops_on_the_links_maetrims_drop_text_made() {
-    let (db, report) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    let (db, report) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
     assert_eq!(quest_loot_row(&db, "Book Burning", "Buckler of the Golden Age"), Some(("chest".into(), true)));
     assert_eq!(quest_loot_row(&db, "The Cursed Crypt", "Docent of Defiance"), Some(("chest".into(), false)));
-    assert_eq!(report.wiki_added_quest_loot_link_count, 0, "Maetrim's drop text already links the buckler");
+    assert_eq!(
+        report.wiki_added_quest_loot_link_count, 2,
+        "Maetrim's drop text already links the buckler; the two added links are the wiki axe's quests"
+    );
 }
 
 #[test]
 fn adds_a_chest_link_for_a_rare_drop_and_never_changes_maetrims_loot_type() {
-    let wiki = parsed_wiki(&[
-        ("quest_loot_a.toml", &quest_loot_toml("The Grotto", &["Docent of Defiance"])),
-        ("quest_loot_b.toml", &quest_loot_toml("Caught in the Web", &["Sireth, Spear of the Sky"])),
-    ])
-    .unwrap();
+    let wiki = loot_wiki(&[
+        ("The Grotto", "item", "Docent of Defiance", "chest", None, true),
+        ("Caught in the Web", "item", "Sireth, Spear of the Sky", "raid", None, true),
+    ]);
     let (db, report) = built_db_with(&wiki);
     assert_eq!(quest_loot_row(&db, "The Grotto", "Docent of Defiance"), Some(("chest".into(), true)));
     assert_eq!(quest_loot_row(&db, "The Cursed Crypt", "Docent of Defiance"), Some(("chest".into(), false)));
@@ -263,95 +276,53 @@ fn adds_a_chest_link_for_a_rare_drop_and_never_changes_maetrims_loot_type() {
     assert_eq!(report.wiki_rare_drop_count, 2);
 }
 
-fn quest_facts_toml(name: &str, extra_lines: &str) -> String {
-    format!(
-        "[[quest]]\nname = {name:?}\npage = \"https://ddowiki.com/page/Quests_by_level_and_XP\"\nread = \"2026-09-28\"\nfree_to_play = false\n{extra_lines}"
-    )
-}
-
 #[test]
 fn reads_quest_facts_from_quests_files() {
-    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     assert_eq!(wiki.quests.len(), 4);
-    let chronoscope = &wiki.quests[0];
+    let chronoscope = wiki.quests.iter().find(|quest| quest.name == "The Chronoscope").unwrap();
     assert_eq!(chronoscope.name, "The Chronoscope");
     assert!(!chronoscope.free_to_play);
     assert_eq!(chronoscope.legendary_level, Some(34));
     assert_eq!(chronoscope.zone.as_deref(), Some("The Harbor"));
     assert_eq!(chronoscope.bestowed_by.as_deref(), Some("A harbor quest giver"));
     assert_eq!(chronoscope.flagging.as_deref(), Some("None; open to all."));
-    assert_eq!(wiki.quest_loot.len(), 1, "quests.toml tables are not read as quest loot");
-}
-
-#[test]
-fn embedded_quests_file_loads() {
-    let wiki = WikiOverrides::embedded().unwrap();
-    assert!(wiki.quests.iter().any(|q| q.name == "A Blood Pact" && q.legendary_level == Some(37)));
-}
-
-#[test]
-fn rejects_a_file_name_that_names_no_wiki_file_type() {
-    let error = parsed_wiki(&[("loot.toml", &quest_loot_toml("The Grotto", &[]))]).unwrap_err();
-    assert!(
-        error.contains("loot.toml")
-            && error.contains("quest_loot")
-            && error.contains("quests")
-            && error.contains("crafting")
-            && error.contains("items")
-            && error.contains("augments"),
-        "{error}"
-    );
-}
-
-#[test]
-fn rejects_quest_duration_and_xp_as_unknown_fields() {
-    for removed_field_line in ["duration = \"Long\"\n", "xp.epic = { normal = 100 }\n"] {
-        let error = parsed_wiki(&[("quests.toml", &quest_facts_toml("The Grotto", removed_field_line))]).unwrap_err();
-        assert!(error.contains("quests.toml") && error.contains("unknown field"), "{error}");
-    }
-}
-
-#[test]
-fn rejects_quest_facts_without_free_to_play() {
-    let toml_text = quest_facts_toml("The Grotto", "").replace("free_to_play = false\n", "");
-    let error = parsed_wiki(&[("quests.toml", &toml_text)]).unwrap_err();
-    assert!(error.contains("quests.toml") && error.contains("free_to_play"), "{error}");
-}
-
-#[test]
-fn rejects_quest_facts_citing_a_page_outside_ddowiki() {
-    let toml_text = quest_facts_toml("The Grotto", "").replace("https://ddowiki.com/page/", "https://example.com/");
-    let error = parsed_wiki(&[("quests.toml", &toml_text)]).unwrap_err();
-    assert!(error.contains("The Grotto") && error.contains("https://ddowiki.com/page/"), "{error}");
-}
-
-#[test]
-fn rejects_quest_facts_listed_twice_across_quests_files() {
-    let error = parsed_wiki(&[
-        ("quests.toml", &quest_facts_toml("The Grotto", "")),
-        ("quests_epic.toml", &quest_facts_toml("The Grotto", "")),
-    ])
-    .unwrap_err();
-    assert!(
-        error.contains("The Grotto") && error.contains("quests.toml") && error.contains("quests_epic.toml"),
-        "{error}"
-    );
 }
 
 #[test]
 fn a_quest_may_carry_both_loot_and_facts() {
-    let wiki = parsed_wiki(&[
-        ("quest_loot.toml", &quest_loot_toml("The Grotto", &[])),
-        ("quests.toml", &quest_facts_toml("The Grotto", "")),
-    ]);
-    assert!(wiki.is_ok(), "{wiki:?}");
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
+    assert!(wiki.quests.iter().any(|quest| quest.name == "The Grotto" && quest.free_to_play));
+    assert!(wiki.quest_loot.iter().any(|quest| quest.name == "The Grotto"));
 }
 
 #[test]
 fn build_fails_naming_quest_facts_for_a_quest_absent_from_the_quests_table() {
-    let wiki = parsed_wiki(&[("quests.toml", &quest_facts_toml("The Missing Quest", ""))]).unwrap();
+    let ours = fixture::database(|root| {
+        let path = root.join("packs/free-to-play/quests/the-missing-quest/quest.toml");
+        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+        std::fs::write(
+            path,
+            r#"
+name = "The Missing Quest"
+pack = "Free to Play"
+favor = 0
+is_free_to_play = true
+difficulties = ["normal"]
+[[run]]
+tier = "heroic"
+level = 1
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Test"
+read = "2026-10-02"
+"#,
+        )
+        .unwrap();
+    });
+    let wiki = WikiOverrides::from_database(&ours).unwrap();
     let error = build_report_with(&wiki).unwrap_err();
-    assert!(error.contains("The Missing Quest") && error.contains("quests"), "{error}");
+    assert!(error.contains("The Missing Quest") && error.contains("the-missing-quest/quest.toml"), "{error}");
 }
 
 type WikiQuestColumns = (bool, Option<i64>, Option<String>, Option<String>, Option<String>);
@@ -378,7 +349,7 @@ fn maetrim_columns(db: &Connection, quest: &str) -> MaetrimQuestColumns {
 
 #[test]
 fn fills_the_wiki_only_quest_columns() {
-    let (db, report) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    let (db, report) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
     assert_eq!(
         wiki_columns(&db, "The Chronoscope"),
         (
@@ -397,7 +368,7 @@ fn fills_the_wiki_only_quest_columns() {
 #[test]
 fn quest_facts_never_change_maetrims_quest_columns() {
     let (without, _) = built_db_with(&WikiOverrides::default());
-    let (with, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    let (with, _) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
     for quest in ["The Chronoscope", "The Grotto", "Book Burning"] {
         assert_eq!(maetrim_columns(&with, quest), maetrim_columns(&without, quest), "{quest}");
     }
@@ -405,20 +376,23 @@ fn quest_facts_never_change_maetrims_quest_columns() {
 
 const WIKI_QUEST: &str = "Ghosts of Perdition";
 
-fn wiki_quest_fields_toml(name: &str, extra_lines: &str) -> String {
-    quest_facts_toml(
-        name,
-        &format!(
-            "pack = \"Chill of Ravenloft\"\nlevel = 32\nfavor = 150\nis_raid = false\ndifficulties = [\"normal\"]\n{extra_lines}"
-        ),
-    )
+fn new_quest_wiki(name: &str) -> WikiOverrides {
+    let quoted_name = name.replace('\'', "''");
+    let wiki = authored_wiki(&format!(
+        "UPDATE quests SET name='{quoted_name}',slug='{}' WHERE name='Ghosts of Perdition';",
+        ddo_etl::tree::slug(name)
+    ));
+    WikiOverrides {
+        quests: wiki.quests.into_iter().filter(|quest| quest.name == name).collect(),
+        ..WikiOverrides::default()
+    }
 }
 
 #[test]
 fn reads_the_quest_fields_a_wiki_quest_carries() {
-    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     let ghosts_of_perdition = wiki.quests.iter().find(|q| q.name == WIKI_QUEST).unwrap();
-    assert_eq!(ghosts_of_perdition.file_name, "quests.toml");
+    assert!(ghosts_of_perdition.file_name.ends_with("/quests/ghosts-of-perdition/quest.toml"));
     assert_eq!(
         (ghosts_of_perdition.pack.as_deref(), ghosts_of_perdition.patron.as_deref()),
         (Some("Chill of Ravenloft"), Some("The Coin Lords"))
@@ -437,7 +411,7 @@ fn reads_the_quest_fields_a_wiki_quest_carries() {
         Some(&["normal", "hard", "elite", "reaper"].map(String::from)[..])
     );
     assert!(ghosts_of_perdition.carries_quest_fields());
-    assert!(!wiki.quests[0].carries_quest_fields(), "The Chronoscope only adds facts");
+    assert!(!wiki.quests.iter().find(|quest| quest.name == "The Chronoscope").unwrap().carries_quest_fields());
 }
 
 #[test]
@@ -465,29 +439,6 @@ fn links_maetrims_items_to_a_wiki_quest_their_drop_text_names() {
     let (_, without_report) = built_db_with(&WikiOverrides::default());
     assert_eq!(without_report.drop_text_wiki_quest_link_count, 0);
     assert_eq!(report.quest_loot_link_count, without_report.quest_loot_link_count + 2);
-}
-
-#[test]
-fn rejects_a_quest_carrying_some_quest_fields_but_not_all_naming_the_missing_one() {
-    for missing_field in ["pack", "level", "favor", "is_raid", "difficulties"] {
-        let toml_text = wiki_quest_fields_toml(WIKI_QUEST, "")
-            .lines()
-            .filter(|line| !line.starts_with(&format!("{missing_field} =")))
-            .map(|line| format!("{line}\n"))
-            .collect::<String>();
-        let error = parsed_wiki(&[("quests.toml", &toml_text)]).unwrap_err();
-        assert!(
-            error.contains("quests.toml") && error.contains(WIKI_QUEST) && error.contains(missing_field),
-            "{missing_field}: {error}"
-        );
-    }
-}
-
-#[test]
-fn rejects_a_difficulty_outside_the_six() {
-    let toml_text = wiki_quest_fields_toml(WIKI_QUEST, "").replace("[\"normal\"]", "[\"Normal\"]");
-    let error = parsed_wiki(&[("quests.toml", &toml_text)]).unwrap_err();
-    assert!(error.contains(WIKI_QUEST) && error.contains("Normal") && error.contains("reaper"), "{error}");
 }
 
 type CreatedQuestRow = (
@@ -558,11 +509,15 @@ fn creates_a_wiki_quest_maetrims_files_lack() {
 
 #[test]
 fn skips_creating_a_quest_maetrim_already_carries_and_still_adds_its_facts() {
-    let (db, report) = built_db_with_fixture_wiki();
+    let wiki = authored_wiki("UPDATE quests SET provenance='wiki',level=99,favor=999 WHERE name='The Grotto';");
+    let (db, report) = built_db_with(&wiki);
     assert_eq!(report.wiki_quest_superseded_count, 1);
     assert_eq!(
         report.superseded_wiki_quests,
-        [SupersededWikiEntry { name: "The Grotto".into(), file_name: "quests.toml".into() }]
+        [SupersededWikiEntry {
+            name: "The Grotto".into(),
+            file_name: "packs/free-to-play/quests/the-grotto/quest.toml".into()
+        }]
     );
     let (level, favor, provenance): (Option<i64>, Option<i64>, String) = db
         .query_row("SELECT level, favor, provenance FROM quests WHERE name = 'The Grotto'", [], |r| {
@@ -576,7 +531,7 @@ fn skips_creating_a_quest_maetrim_already_carries_and_still_adds_its_facts() {
 
 #[test]
 fn creates_a_probable_duplicate_wiki_quest_and_reports_both_names() {
-    let wiki = parsed_wiki(&[("quests.toml", &wiki_quest_fields_toml("The Chrono-scope", ""))]).unwrap();
+    let wiki = new_quest_wiki("The Chrono-scope");
     let (db, report) = built_db_with(&wiki);
     let created_count: i64 = db
         .query_row("SELECT COUNT(*) FROM quests WHERE name = 'The Chrono-scope' AND provenance = 'wiki'", [], |r| {
@@ -600,19 +555,21 @@ fn a_wiki_quest_with_a_new_name_is_no_probable_duplicate() {
 
 #[test]
 fn build_fails_naming_a_wiki_quest_pack_or_patron_absent_from_maetrims_files() {
-    for (field, toml_text) in [
-        ("pack", wiki_quest_fields_toml(WIKI_QUEST, "").replace("Chill of Ravenloft", "No Such Pack")),
-        ("patron", wiki_quest_fields_toml(WIKI_QUEST, "patron = \"No Such Patron\"\n")),
-    ] {
-        let wiki = parsed_wiki(&[("quests.toml", &toml_text)]).unwrap();
-        let error = build_report_with(&wiki).unwrap_err();
-        let bad_value = if field == "pack" { "No Such Pack" } else { "No Such Patron" };
+    let owner = fixture_wiki().quests.into_iter().find(|quest| quest.name == WIKI_QUEST).unwrap();
+    for (field, missing) in [("pack", "No Such Pack"), ("patron", "No Such Patron")] {
+        let mut quest = owner.clone();
+        if field == "pack" {
+            quest.pack = Some(missing.into());
+        } else {
+            quest.patron = Some(missing.into());
+        }
+        let error = build_report_with(&WikiOverrides { quests: vec![quest], ..WikiOverrides::default() }).unwrap_err();
         assert!(
-            error.contains("quests.toml")
+            error.contains(&owner.file_name)
                 && error.contains(WIKI_QUEST)
                 && error.contains(field)
-                && error.contains(bad_value),
-            "{field}: {error}"
+                && error.contains(missing),
+            "{error}"
         );
     }
 }
@@ -631,19 +588,11 @@ fn wiki_quests_never_change_maetrims_quests() {
     assert_eq!(maetrim_quests(&with), maetrim_quests(&without));
 }
 
-fn crafting_fixture_toml() -> String {
-    std::fs::read_to_string(fixtures_dir().join("wiki/crafting.toml")).unwrap()
-}
-
-fn parsed_edited_crafting(edit: impl Fn(String) -> String) -> Result<WikiOverrides, String> {
-    parsed_wiki(&[("crafting.toml", &edit(crafting_fixture_toml()))])
-}
-
 #[test]
 fn reads_crafting_systems_from_crafting_files() {
-    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     assert_eq!(wiki.crafting_systems.len(), 4);
-    let system = &wiki.crafting_systems[0];
+    let system = wiki.crafting_systems.iter().find(|system| system.name == "Heroic Green Steel").unwrap();
     assert_eq!(system.name, "Heroic Green Steel");
     assert_eq!(system.wiki_url, "https://ddowiki.com/page/Green_Steel_items");
     assert_eq!(system.families, vec!["Greensteel_Heroic".to_string()]);
@@ -654,117 +603,29 @@ fn reads_crafting_systems_from_crafting_files() {
     assert_eq!(system.recipes.len(), 3);
     assert_eq!(system.recipes[0].cost[1].ingredient, "Small Focus of Earth");
     assert_eq!(system.recipes[2].augments, Vec::<String>::new());
-    let upgrade_system = &wiki.crafting_systems[1];
+    let upgrade_system = wiki.crafting_systems.iter().find(|system| system.name == "Test Upgrade Altar").unwrap();
     assert_eq!(upgrade_system.name, "Test Upgrade Altar");
     assert!(upgrade_system.families.is_empty());
     assert_eq!(upgrade_system.recipes[0].grants_slot.as_deref(), Some("upgrade: tier 2"));
-    assert_eq!(wiki.quests.len(), 4, "crafting.toml tables are not read as quests");
-}
-
-#[test]
-fn rejects_a_crafting_cost_naming_an_undeclared_ingredient() {
-    let error = parsed_edited_crafting(|s| {
-        s.replacen("ingredient = \"Small Focus of Fire\"", "ingredient = \"Large Focus of Fire\"", 1)
-    })
-    .unwrap_err();
-    assert!(
-        error.contains("Heroic Green Steel")
-            && error.contains("Minor Fire Guard")
-            && error.contains("Large Focus of Fire"),
-        "{error}"
-    );
-}
-
-#[test]
-fn rejects_a_crafting_recipe_with_no_augments_and_no_note() {
-    let error = parsed_edited_crafting(|s| {
-        s.replace("note = \"Returns a crafted item to its blank state; no augment counterpart.\"\n", "")
-    })
-    .unwrap_err();
-    assert!(
-        error.contains("Heroic Green Steel") && error.contains("Cleanse an item") && error.contains("note"),
-        "{error}"
-    );
-}
-
-#[test]
-fn rejects_a_crafting_tier_outside_the_four() {
-    let error = parsed_edited_crafting(|s| s.replacen("tier = \"heroic\"", "tier = \"mythic\"", 1)).unwrap_err();
-    assert!(error.contains("Heroic Green Steel") && error.contains("mythic") && error.contains("legendary"), "{error}");
-}
-
-#[test]
-fn rejects_a_crafting_cost_quantity_that_is_not_positive() {
-    let error = parsed_edited_crafting(|s| s.replace("quantity = 5", "quantity = 0")).unwrap_err();
-    assert!(
-        error.contains("Heroic Green Steel") && error.contains("Shroud Commendation") && error.contains('0'),
-        "{error}"
-    );
-}
-
-#[test]
-fn rejects_a_family_less_system_whose_recipe_lists_augments_naming_the_system_and_recipe() {
-    let error = parsed_edited_crafting(|s| s.replace("families = [\"Greensteel_Heroic\"]\n", "")).unwrap_err();
-    assert!(
-        error.contains("Heroic Green Steel") && error.contains("+5 Fortitude Save") && error.contains("families"),
-        "{error}"
-    );
-}
-
-#[test]
-fn rejects_an_empty_families_list_when_a_recipe_lists_augments() {
-    let error =
-        parsed_edited_crafting(|s| s.replace("families = [\"Greensteel_Heroic\"]", "families = []")).unwrap_err();
-    assert!(error.contains("Heroic Green Steel") && error.contains("+5 Fortitude Save"), "{error}");
-}
-
-#[test]
-fn rejects_a_crafting_recipe_with_no_augments_note_or_grants_slot() {
-    let error = parsed_edited_crafting(|s| s.replace("grants_slot = \"upgrade: tier 2\"\n", "")).unwrap_err();
-    assert!(
-        error.contains("Test Upgrade Altar")
-            && error.contains("Test tier 2 upgrade")
-            && error.contains("note")
-            && error.contains("grants_slot"),
-        "{error}"
-    );
-}
-
-#[test]
-fn rejects_an_ingredient_declared_twice_in_a_system() {
-    let error =
-        parsed_edited_crafting(|s| s.replace("name = \"Small Focus of Fire\"", "name = \"Small Focus of Earth\""))
-            .unwrap_err();
-    assert!(error.contains("Heroic Green Steel") && error.contains("Small Focus of Earth"), "{error}");
-}
-
-#[test]
-fn rejects_a_crafting_system_listed_twice_across_files() {
-    let error =
-        parsed_wiki(&[("crafting.toml", &crafting_fixture_toml()), ("crafting_more.toml", &crafting_fixture_toml())])
-            .unwrap_err();
-    assert!(error.contains("Heroic Green Steel") && error.contains("crafting_more.toml"), "{error}");
-}
-
-fn build_report_with_edited_crafting(edit: impl Fn(String) -> String) -> Result<ddo_etl::build::BuildReport, String> {
-    build_report_with(&parsed_edited_crafting(edit).unwrap())
 }
 
 #[test]
 fn build_fails_naming_an_unknown_crafting_family() {
-    let error = build_report_with_edited_crafting(|s| {
-        s.replace("[\"Greensteel_Heroic\"]", "[\"Greensteel_Heroic\", \"Greensteel_Mythic\"]")
-    })
-    .unwrap_err();
+    let wiki = crafting_wiki(|systems| {
+        crafting_system(systems, "Heroic Green Steel").families = vec!["Greensteel_Mythic".into()];
+    });
+    let error = build_report_with(&wiki).unwrap_err();
     assert!(error.contains("Heroic Green Steel") && error.contains("Greensteel_Mythic"), "{error}");
 }
 
 #[test]
 fn build_fails_naming_an_augment_absent_from_the_systems_families() {
-    let error = build_report_with_edited_crafting(|s| {
-        s.replace("augments = [\"Minor Fire Guard\"]", "augments = [\"Silverscale\"]")
-    })
-    .unwrap_err();
+    let wiki = crafting_wiki(|systems| {
+        let recipes = &mut crafting_system(systems, "Heroic Green Steel").recipes;
+        recipes.iter_mut().find(|recipe| recipe.option == "Minor Fire Guard").unwrap().augments =
+            vec!["Silverscale".into()];
+    });
+    let error = build_report_with(&wiki).unwrap_err();
     assert!(
         error.contains("Heroic Green Steel") && error.contains("Silverscale") && error.contains("Greensteel_Heroic"),
         "{error}"
@@ -773,17 +634,21 @@ fn build_fails_naming_an_augment_absent_from_the_systems_families() {
 
 #[test]
 fn build_fails_naming_an_unknown_slot_label() {
-    let error = build_report_with_edited_crafting(|s| {
-        s.replacen("crafting: accessory invasion", "crafting: accessory invasions", 1)
-    })
-    .unwrap_err();
+    let wiki = crafting_wiki(|systems| {
+        let recipes = &mut crafting_system(systems, "Heroic Green Steel").recipes;
+        recipes[0].slot = Some("crafting: accessory invasions".into());
+    });
+    let error = build_report_with(&wiki).unwrap_err();
     assert!(error.contains("Heroic Green Steel") && error.contains("crafting: accessory invasions"), "{error}");
 }
 
 #[test]
 fn build_fails_naming_an_unknown_grants_slot_label() {
-    let error =
-        build_report_with_edited_crafting(|s| s.replace("\"upgrade: tier 2\"", "\"upgrade: tier 9\"")).unwrap_err();
+    let wiki = crafting_wiki(|systems| {
+        let recipes = &mut crafting_system(systems, "Test Upgrade Altar").recipes;
+        recipes[0].grants_slot = Some("upgrade: tier 9".into());
+    });
+    let error = build_report_with(&wiki).unwrap_err();
     assert!(
         error.contains("Test Upgrade Altar")
             && error.contains("Test tier 2 upgrade")
@@ -794,8 +659,10 @@ fn build_fails_naming_an_unknown_grants_slot_label() {
 
 #[test]
 fn build_fails_naming_an_unknown_pack() {
-    let error = build_report_with_edited_crafting(|s| s.replacen("npc = ", "pack = \"The Shroud Pack\"\nnpc = ", 1))
-        .unwrap_err();
+    let wiki = crafting_wiki(|systems| {
+        crafting_system(systems, "Heroic Green Steel").pack = Some("The Shroud Pack".into());
+    });
+    let error = build_report_with(&wiki).unwrap_err();
     assert!(error.contains("Heroic Green Steel") && error.contains("The Shroud Pack"), "{error}");
 }
 
@@ -822,7 +689,7 @@ fn string_column(db: &Connection, sql: &str) -> Vec<String> {
 
 #[test]
 fn merges_crafting_systems_ingredients_and_recipes() {
-    let (db, report) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    let (db, report) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
     assert_eq!(
         (report.wiki_crafting_system_count, report.wiki_crafting_recipe_count, report.wiki_crafting_ingredient_count),
         (4, 5, 5)
@@ -892,14 +759,16 @@ fn merges_crafting_systems_ingredients_and_recipes() {
 
 #[test]
 fn crafting_pack_resolves_to_maetrims_adventure_pack() {
-    let report =
-        build_report_with_edited_crafting(|s| s.replacen("npc = ", "pack = \"Free to Play\"\nnpc = ", 1)).unwrap();
-    assert_eq!(report.wiki_crafting_system_count, 2);
+    let wiki = crafting_wiki(|systems| {
+        crafting_system(systems, "Heroic Green Steel").pack = Some("Free to Play".into());
+    });
+    let report = build_report_with(&wiki).unwrap();
+    assert_eq!(report.wiki_crafting_system_count, 4);
 }
 
 #[test]
 fn merges_a_family_less_system_whose_recipes_grant_sockets() {
-    let (db, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    let (db, _) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
     assert_eq!(
         string_column(
             &db,
@@ -934,7 +803,7 @@ fn merges_a_family_less_system_whose_recipes_grant_sockets() {
 #[test]
 fn crafting_never_adds_innate_item_bonuses_or_augments() {
     let (without, _) = built_db_with(&WikiOverrides::default());
-    let (with, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    let (with, _) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
     for table in [
         "augments WHERE provenance = 'maetrim'",
         "item_effects JOIN items ON items.id = item_effects.item_id WHERE items.provenance = 'maetrim'",
@@ -948,11 +817,16 @@ fn crafting_never_adds_innate_item_bonuses_or_augments() {
     }
 }
 
-fn description_toml(kind: &str, name: &str, description: &str) -> String {
-    format!(
-        "[[entry]]\nkind = {kind:?}\nname = {name:?}\npage = \"https://ddowiki.com/page/{}\"\nread = \"2026-09-29\"\ndescription = {description:?}\n",
-        name.replace(' ', "_")
-    )
+fn description_wiki(kind: DescriptionKind, name: &str, description: &str) -> WikiOverrides {
+    WikiOverrides {
+        descriptions: vec![WikiDescription {
+            kind,
+            name: name.into(),
+            description: description.into(),
+            file_name: "packs/test/descriptions.toml".into(),
+        }],
+        ..WikiOverrides::default()
+    }
 }
 
 fn description_of(db: &Connection, table: &str, name: &str) -> Vec<Option<String>> {
@@ -962,20 +836,18 @@ fn description_of(db: &Connection, table: &str, name: &str) -> Vec<Option<String
 
 #[test]
 fn reads_descriptions_from_descriptions_files() {
-    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
-    assert_eq!(wiki.descriptions.len(), 4);
-    let crossbow = &wiki.descriptions[0];
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
+    let crossbow = wiki.descriptions.iter().find(|entry| entry.name == "+1 Ember Repeating Light Crossbow").unwrap();
     assert_eq!(crossbow.kind, DescriptionKind::Item);
     assert_eq!(crossbow.name, "+1 Ember Repeating Light Crossbow");
-    assert_eq!(crossbow.file_name, "descriptions.toml");
+    assert!(crossbow.file_name.ends_with("/1-ember-repeating-light-crossbow.toml"));
     assert_eq!(crossbow.description, "Test description: a repeating crossbow that burns.");
-    assert_eq!(wiki.descriptions[2].kind, DescriptionKind::Augment);
-    assert_eq!(wiki.quests.len(), 4, "descriptions.toml tables are not read as quests");
+    assert!(wiki.descriptions.iter().any(|entry| entry.kind == DescriptionKind::Augment));
 }
 
 #[test]
 fn fills_a_blank_item_description() {
-    let (db, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    let (db, _) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
     assert_eq!(
         description_of(&db, "items", "+1 Ember Repeating Light Crossbow"),
         [Some("Test description: a repeating crossbow that burns.".to_string())]
@@ -985,7 +857,7 @@ fn fills_a_blank_item_description() {
 #[test]
 fn never_replaces_an_item_description_maetrim_wrote() {
     let (without, _) = built_db_with(&WikiOverrides::default());
-    let (with, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    let (with, _) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
     let maetrims_description = description_of(&without, "items", "Buckler of the Golden Age");
     assert!(maetrims_description[0].as_deref().is_some_and(|text| text.starts_with("Forged in the Glory")));
     assert_eq!(description_of(&with, "items", "Buckler of the Golden Age"), maetrims_description);
@@ -993,7 +865,7 @@ fn never_replaces_an_item_description_maetrim_wrote() {
 
 #[test]
 fn fills_the_drops_in_placeholder_line_of_an_augment_and_keeps_his_lines_before_it() {
-    let (db, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    let (db, _) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
     assert_eq!(
         description_of(&db, "augments", "Lunar Gem of Evocation (Heroic)"),
         [Some("+2 Profane Bonus to Evocation DCs\nDrops in: Book Burning, end chest".to_string())]
@@ -1003,14 +875,15 @@ fn fills_the_drops_in_placeholder_line_of_an_augment_and_keeps_his_lines_before_
 #[test]
 fn links_an_augment_to_the_quests_its_wiki_description_names_before_wiki_quest_loot_marks_it() {
     let description = "Drops in: Book Burning, end chest (rare)\nThe Cursed Crypt, optional chest";
-    let quest_loot_text = format!(
-        "{BOOK_BURNING_CITATION}rare_augments = [{{ name = \"Lunar Gem of Evocation (Heroic)\", chest = \"end chest\" }}]\n"
-    );
-    let wiki = parsed_wiki(&[
-        ("descriptions.toml", &description_toml("augment", "Lunar Gem of Evocation (Heroic)", description)),
-        ("quest_loot.toml", &quest_loot_text),
-    ])
-    .unwrap();
+    let mut wiki = description_wiki(DescriptionKind::Augment, "Lunar Gem of Evocation (Heroic)", description);
+    let rare = authored_wiki("UPDATE quest_drops SET is_rare=1 WHERE owner_kind='augment' AND owner_id=(SELECT id FROM augments WHERE name='Lunar Gem of Evocation (Heroic)') AND quest_id=(SELECT id FROM quests WHERE name='Book Burning');");
+    wiki.quest_loot = rare.quest_loot.into_iter().filter(|quest| quest.name == "Book Burning").collect();
+    for quest in &mut wiki.quest_loot {
+        quest.rare.clear();
+        quest.items.clear();
+        quest.augments.clear();
+        quest.rare_augments.retain(|drop| drop.name() == "Lunar Gem of Evocation (Heroic)");
+    }
     let (db, report) = built_db_with(&wiki);
     assert_eq!(
         quest_augment_loot_row(&db, "Book Burning", "Lunar Gem of Evocation (Heroic)"),
@@ -1029,11 +902,7 @@ fn links_an_augment_to_the_quests_its_wiki_description_names_before_wiki_quest_l
 
 #[test]
 fn never_replaces_an_augment_description_without_the_placeholder() {
-    let wiki = parsed_wiki(&[(
-        "descriptions.toml",
-        &description_toml("augment", "Lunar Gem of Strength (Heroic)", "Drops in: Test Quest"),
-    )])
-    .unwrap();
+    let wiki = description_wiki(DescriptionKind::Augment, "Lunar Gem of Strength (Heroic)", "Drops in: Test Quest");
     let (db, report) = built_db_with(&wiki);
     let description = description_of(&db, "augments", "Lunar Gem of Strength (Heroic)");
     assert!(description[0].as_deref().is_some_and(|text| text.contains("Seeds of Decay")), "{description:?}");
@@ -1043,7 +912,7 @@ fn never_replaces_an_augment_description_without_the_placeholder() {
 #[test]
 fn weighs_a_feat_description_against_every_feat_with_that_name() {
     let (without, _) = built_db_with(&WikiOverrides::default());
-    let (with, _) = built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    let (with, _) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
     let maetrims_descriptions = description_of(&without, "feats", "Lay on Hands");
     assert_eq!(maetrims_descriptions.len(), 2);
     assert_eq!(description_of(&with, "feats", "Lay on Hands"), maetrims_descriptions);
@@ -1051,101 +920,73 @@ fn weighs_a_feat_description_against_every_feat_with_that_name() {
 
 #[test]
 fn build_reports_description_entries_filled_and_skipped() {
-    let report = build_report_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap()).unwrap();
+    let report = build_report_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap()).unwrap();
     assert_eq!(
         (
             report.wiki_description_entry_count,
             report.wiki_description_filled_count,
             report.wiki_description_skipped_count
         ),
-        (4, 2, 3)
+        (5, 2, 5)
     );
-}
-
-#[test]
-fn rejects_a_description_kind_outside_the_five() {
-    let error = parsed_wiki(&[("descriptions.toml", &description_toml("spell", "Fireball", "Burns."))]).unwrap_err();
-    assert!(
-        error.contains("descriptions.toml")
-            && error.contains("Fireball")
-            && error.contains("spell")
-            && error.contains("enhancement"),
-        "{error}"
-    );
-}
-
-#[test]
-fn rejects_an_empty_or_untrimmed_description() {
-    for bad in ["", "   ", " Leading space.", "Trailing newline.\n"] {
-        let error = parsed_wiki(&[("descriptions.toml", &description_toml("item", "Five Rings", bad))]).unwrap_err();
-        assert!(error.contains("Five Rings") && error.contains("description"), "{bad:?}: {error}");
-    }
-}
-
-#[test]
-fn rejects_a_kind_and_name_listed_twice_across_descriptions_files() {
-    let error = parsed_wiki(&[
-        ("descriptions.toml", &description_toml("item", "Five Rings", "One.")),
-        ("descriptions_more.toml", &description_toml("item", "Five Rings", "Two.")),
-    ])
-    .unwrap_err();
-    assert!(
-        error.contains("Five Rings") && error.contains("descriptions.toml") && error.contains("descriptions_more.toml"),
-        "{error}"
-    );
-}
-
-#[test]
-fn a_name_may_carry_a_description_for_each_kind() {
-    let wiki = parsed_wiki(&[(
-        "descriptions.toml",
-        &(description_toml("feat", "Lay on Hands", "One.") + &description_toml("enhancement", "Lay on Hands", "Two.")),
-    )]);
-    assert!(wiki.is_ok(), "{wiki:?}");
 }
 
 #[test]
 fn build_fails_naming_a_description_for_a_name_absent_from_its_kind() {
-    for kind in ["item", "augment", "race", "feat", "enhancement"] {
-        let wiki =
-            parsed_wiki(&[("descriptions.toml", &description_toml(kind, "The Missing Thing", "Missing."))]).unwrap();
+    for kind in DescriptionKind::ALL {
+        let wiki = description_wiki(kind, "The Missing Thing", "Missing.");
         let error = build_report_with(&wiki).unwrap_err();
-        assert!(error.contains("The Missing Thing") && error.contains(kind), "{kind}: {error}");
+        assert!(error.contains("The Missing Thing") && error.contains(kind.as_str()), "{kind:?}: {error}");
     }
 }
 
 #[test]
 fn build_fails_naming_an_item_description_for_a_race_name() {
-    let wiki = parsed_wiki(&[("descriptions.toml", &description_toml("item", "Dwarf", "Short."))]).unwrap();
+    let wiki = description_wiki(DescriptionKind::Item, "Dwarf", "Short.");
     let error = build_report_with(&wiki).unwrap_err();
     assert!(error.contains("Dwarf") && error.contains("item"), "{error}");
 }
 
-fn items_fixture_toml() -> String {
-    std::fs::read_to_string(fixtures_dir().join("wiki/items.toml")).unwrap()
+fn edited_axe_wiki(sql: &str) -> WikiOverrides {
+    authored_wiki(sql)
 }
 
-fn parsed_edited_items(edit: impl Fn(String) -> String) -> Result<WikiOverrides, String> {
-    let quests_fixture_toml = std::fs::read_to_string(fixtures_dir().join("wiki/quests.toml")).unwrap();
-    parsed_wiki(&[("items.toml", &edit(items_fixture_toml())), ("quests.toml", &quests_fixture_toml)])
+fn axe_effects_edited(edit: impl FnOnce(&mut Vec<WikiItemEffect>)) -> WikiOverrides {
+    let mut wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
+    edit(&mut wiki.items.iter_mut().find(|item| item.name == WIKI_AXE).unwrap().effects);
+    wiki
 }
 
 const WIKI_AXE: &str = "Battle Axe of the Oozing Hunger";
 
 #[test]
 fn reads_wiki_items_from_items_files() {
-    let wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
-    assert_eq!(wiki.items.len(), 2);
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
+    assert_eq!(wiki.items.len(), 1);
     let axe = &wiki.items[0];
     assert_eq!(axe.name, WIKI_AXE);
-    assert_eq!(axe.file_name, "items.toml");
+    assert!(axe.file_name.ends_with("/battle-axe-of-the-oozing-hunger.toml"));
     assert_eq!(
         (axe.slot.as_str(), axe.category.as_str(), axe.item_type.as_deref()),
         ("Main Hand", "Weapon", Some("Battle Axe"))
     );
     assert_eq!((axe.minimum_level, axe.enhancement_bonus), (29, Some(15)));
-    assert_eq!(axe.quests[0].name, "The Grotto");
-    assert_eq!(axe.quests[0].loot_type, "chest");
+    let listing_quests: Vec<(&str, Option<&str>)> = wiki
+        .quest_loot
+        .iter()
+        .flat_map(|quest| {
+            quest.items.iter().filter(|drop| drop.name() == WIKI_AXE).map(|drop| {
+                (
+                    quest.name.as_str(),
+                    match drop {
+                        ListedDrop::Described(drop) => drop.loot_type.as_deref(),
+                        ListedDrop::Named(_) => None,
+                    },
+                )
+            })
+        })
+        .collect();
+    assert_eq!(listing_quests, [("The Grotto", Some("chest")), ("Ghosts of Perdition", Some("reward"))]);
     assert_eq!(axe.augment_slots, ["red", "colorless"]);
     assert_eq!(axe.bonuses[1].stat.as_deref(), Some("Doublestrike"));
     assert_eq!(axe.effects[1].name, "Ethereal");
@@ -1156,23 +997,12 @@ fn reads_wiki_items_from_items_files() {
     );
     assert_eq!(weapon.dr_bypass, ["Magic", "Slash"]);
     assert!(axe.armor.is_none());
-    assert!(wiki.items[1].weapon.is_none() && wiki.items[1].quests.is_empty());
-    assert_eq!(wiki.quests.len(), 4, "items.toml tables are not read as quests");
-}
-
-#[test]
-fn rejects_a_wiki_item_listed_twice_across_items_files() {
-    let error =
-        parsed_wiki(&[("items.toml", &items_fixture_toml()), ("items_more.toml", &items_fixture_toml())]).unwrap_err();
-    assert!(error.contains(WIKI_AXE) && error.contains("items.toml") && error.contains("items_more.toml"), "{error}");
 }
 
 #[test]
 fn flags_a_wiki_item_with_a_legacy_name_as_legacy() {
     let legacy_name = format!("{WIKI_AXE} (legacy)");
-    let wiki =
-        parsed_edited_items(|s| s.replacen(&format!("name = \"{WIKI_AXE}\""), &format!("name = {legacy_name:?}"), 1))
-            .unwrap();
+    let wiki = edited_axe_wiki(&rename_item_sql(WIKI_AXE, &legacy_name));
     let (db, report) = built_db_with(&wiki);
     let is_legacy: bool =
         db.query_row("SELECT is_legacy FROM items WHERE name = ?1", [&legacy_name], |r| r.get(0)).unwrap();
@@ -1180,69 +1010,17 @@ fn flags_a_wiki_item_with_a_legacy_name_as_legacy() {
     assert_eq!(report.legacy_item_count, 4, "the wiki axe and the three legacy fixture items");
 }
 
-#[test]
-fn rejects_a_wiki_item_value_outside_maetrims_vocabularies_naming_the_item_and_field() {
-    for (field, good, bad) in [
-        ("slot", "slot = \"Main Hand\"", "slot = \"Main hand\""),
-        ("category", "category = \"Weapon\"", "category = \"Weapons\""),
-        ("item_type", "item_type = \"Battle Axe\"", "item_type = \"Battleaxe\""),
-        ("stat", "stat = \"Strength\"", "stat = \"Strenght\""),
-        ("bonus_type", "bonus_type = \"Insight\"", "bonus_type = \"Insightful\""),
-        ("loot_type", "loot_type = \"chest\"", "loot_type = \"end chest\""),
-        ("handedness", "handedness = \"One-handed\"", "handedness = \"One handed\""),
-    ] {
-        let error = parsed_edited_items(|s| s.replacen(good, bad, 1)).unwrap_err();
-        let bad_value = bad.split('"').nth(1).unwrap();
-        assert!(
-            error.contains("items.toml")
-                && error.contains(WIKI_AXE)
-                && error.contains(field)
-                && error.contains(bad_value),
-            "{field}: {error}"
-        );
-    }
-}
-
-#[test]
-fn rejects_a_weapon_without_weapon_stats_and_weapon_stats_on_jewelry() {
-    let error = parsed_edited_items(|s| {
-        let weapon_start = s.find("[item.weapon]").unwrap();
-        let weapon_end = weapon_start + s[weapon_start..].find("[[item]]").unwrap();
-        format!("{}{}", &s[..weapon_start], &s[weapon_end..])
-    })
-    .unwrap_err();
-    assert!(error.contains(WIKI_AXE) && error.contains("weapon"), "{error}");
-    let error = parsed_edited_items(|s| s.replace("category = \"Weapon\"", "category = \"Jewelry\"")).unwrap_err();
-    assert!(error.contains(WIKI_AXE) && error.contains("weapon"), "{error}");
-}
-
-#[test]
-fn rejects_armor_without_a_known_armor_type() {
-    let armor_item = "[[item]]\nname = \"Test Plate of the Oozing Hunger\"\npage = \"https://ddowiki.com/page/Item:Test\"\nread = \"2026-09-29\"\nslot = \"Body\"\ncategory = \"Armor\"\nitem_type = \"Heavy\"\nminimum_level = 29\ndrop_location = \"Test source\"\n\n[item.armor]\narmor_type = \"Heavy\"\narmor_bonus = 30\n";
-    assert!(parsed_wiki(&[("items.toml", armor_item)]).is_ok());
-    let error = parsed_wiki(&[("items.toml", &armor_item.replace("armor_type = \"Heavy\"", "armor_type = \"Plate\""))])
-        .unwrap_err();
-    assert!(
-        error.contains("Test Plate of the Oozing Hunger") && error.contains("armor_type") && error.contains("Plate"),
-        "{error}"
-    );
-    let error = parsed_wiki(&[(
-        "items.toml",
-        &armor_item.replace("\n[item.armor]\narmor_type = \"Heavy\"\narmor_bonus = 30\n", ""),
-    )])
-    .unwrap_err();
-    assert!(error.contains("Test Plate of the Oozing Hunger") && error.contains("armor"), "{error}");
-}
-
-#[test]
-fn rejects_unknown_wiki_item_fields() {
-    let error = parsed_edited_items(|s| s.replacen("minimum_level = 29", "minimum_level = 29\nrarity = \"Rare\"", 1))
-        .unwrap_err();
-    assert!(error.contains(WIKI_AXE) && error.contains("rarity"), "{error}");
+fn rename_item_sql(from: &str, to: &str) -> String {
+    format!(
+        "UPDATE items SET name='{}',slug='{}' WHERE name='{}';",
+        to.replace('\'', "''"),
+        ddo_etl::tree::slug(to),
+        from.replace('\'', "''")
+    )
 }
 
 fn built_db_with_fixture_wiki() -> (Connection, ddo_etl::build::BuildReport) {
-    built_db_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap())
+    built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap())
 }
 
 fn item_count(db: &Connection, sql_condition: &str) -> i64 {
@@ -1252,7 +1030,8 @@ fn item_count(db: &Connection, sql_condition: &str) -> i64 {
 #[test]
 fn drops_a_wiki_item_maetrim_already_carries_and_reports_it() {
     let (without, _) = built_db_with(&WikiOverrides::default());
-    let (with, report) = built_db_with_fixture_wiki();
+    let wiki = authored_wiki("UPDATE items SET provenance='wiki',minimum_level=99 WHERE name='Five Rings';");
+    let (with, report) = built_db_with(&wiki);
     assert_eq!(item_count(&with, "name = 'Five Rings'"), 1);
     assert_eq!(item_count(&with, "name = 'Five Rings' AND provenance = 'maetrim'"), 1);
     let bonus_names = |db: &Connection| {
@@ -1267,7 +1046,10 @@ fn drops_a_wiki_item_maetrim_already_carries_and_reports_it() {
     assert_eq!(report.wiki_item_superseded_count, 1);
     assert_eq!(
         report.superseded_wiki_items,
-        [SupersededWikiEntry { name: "Five Rings".into(), file_name: "items.toml".into() }]
+        [SupersededWikiEntry {
+            name: "Five Rings".into(),
+            file_name: "packs/masterminds-of-sharn/gear/five-rings.toml".into()
+        }]
     );
 }
 
@@ -1381,13 +1163,15 @@ fn writes_a_new_wiki_item_with_its_stats_bonuses_effects_sockets_set_and_quests(
 
 #[test]
 fn a_wiki_item_effect_with_a_value_reuses_the_written_buff_family() {
-    let wiki = parsed_edited_items(|source| {
-        source.replace(
-            "{ name = \"Test Oozing Hunger\", description = \"Test description: on hit, the target oozes.\", value = 3, target = \"All\" }",
-            "{ name = \"Command\", description = \"The wiki describes this command bonus.\", value = 3 }",
-        )
-    })
-    .unwrap();
+    let wiki = axe_effects_edited(|effects| {
+        let oozing = effects.iter_mut().find(|effect| effect.name == "Test Oozing Hunger").unwrap();
+        *oozing = WikiItemEffect {
+            name: "Command".into(),
+            description: Some("The wiki describes this command bonus.".into()),
+            value: Some(3),
+            target: None,
+        };
+    });
     let (db, _) = built_db_with(&wiki);
     let identity_for = |item_name: &str| -> (i64, Option<i64>, Option<i64>) {
         db.query_row(
@@ -1409,7 +1193,7 @@ fn a_wiki_item_effect_with_a_value_reuses_the_written_buff_family() {
 
 #[test]
 fn writes_a_probable_duplicate_of_a_maetrim_item_and_reports_both_names() {
-    let wiki = parsed_edited_items(|s| s.replace(WIKI_AXE, "Argentis Armor (Level 12)")).unwrap();
+    let wiki = edited_axe_wiki(&rename_item_sql(WIKI_AXE, "Argentis Armor (Level 12)"));
     let (db, report) = built_db_with(&wiki);
     assert_eq!(item_count(&db, "name = 'Argentis Armor (Level 12)' AND provenance = 'wiki'"), 1);
     assert_eq!((report.wiki_item_written_count, report.wiki_item_probable_duplicate_count), (1, 1));
@@ -1429,20 +1213,22 @@ fn a_wiki_item_with_a_new_name_is_no_probable_duplicate() {
     assert!(report.probable_duplicate_wiki_items.is_empty());
 }
 
+type ItemValueEdit = (&'static str, &'static str, fn(&mut ddo_etl::wiki::WikiItem));
+
 #[test]
 fn build_fails_naming_a_wiki_item_value_absent_from_maetrims_files() {
-    for (field, good, bad) in [
-        ("material", "material = \"Steel\"", "material = \"Byeshk\""),
-        ("set", "set = \"Inevitable Balance\"", "set = \"Inevitable Imbalance\""),
-        ("augment_slots", "augment_slots = [\"red\", \"colorless\"]", "augment_slots = [\"red\", \"colourless\"]"),
-        ("quest", "{ name = \"The Grotto\", loot_type", "{ name = \"The Grotto Revisited\", loot_type"),
-    ] {
-        let wiki = parsed_edited_items(|s| s.replacen(good, bad, 1)).unwrap();
+    let edits: [ItemValueEdit; 3] = [
+        ("material", "Byeshk", |item| item.material = Some("Byeshk".into())),
+        ("set", "Inevitable Imbalance", |item| item.set = Some("Inevitable Imbalance".into())),
+        ("augment_slots", "colourless", |item| item.augment_slots[1] = "colourless".into()),
+    ];
+    for (field, bad_value, edit) in edits {
+        let mut wiki = fixture_wiki();
+        edit(wiki.items.iter_mut().find(|item| item.name == WIKI_AXE).unwrap());
         let error = build_report_with(&wiki).unwrap_err();
-        let bad_value = if field == "augment_slots" { "colourless" } else { bad.split('"').nth(1).unwrap() };
         assert!(
             error.contains(WIKI_AXE)
-                && error.contains("items.toml")
+                && error.contains("battle-axe-of-the-oozing-hunger.toml")
                 && error.contains(field)
                 && error.contains(bad_value),
             "{field}: {error}"
@@ -1458,7 +1244,24 @@ fn wiki_items_never_change_maetrims_items() {
     assert_eq!(item_count(&without, "provenance = 'wiki'"), 0);
 }
 
-const WIKI_RUNE_ARM: &str = "[[item]]\nname = \"Test Rune Arm of the Oozing Hunger\"\npage = \"https://ddowiki.com/page/Item:Test\"\nread = \"2026-09-29\"\nslot = \"Off Hand\"\ncategory = \"Weapon\"\nitem_type = \"Rune Arm\"\nminimum_level = 29\ndrop_location = \"Test source\"\n\n[item.weapon]\nhandedness = \"Off-hand\"\n";
+const RUNE_ARM_FILE: &str = "packs/shared/gear/test-rune-arm-of-the-oozing-hunger.toml";
+
+const WIKI_RUNE_ARM: &str = r#"name = "Test Rune Arm of the Oozing Hunger"
+is_wiki_only = true
+drop_location = "Test source"
+item_category = "Weapon"
+item_type = "Rune Arm"
+minimum_level = 29
+slot = "Off Hand"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Test"
+read = "2026-09-29"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"
+"#;
 
 type WeaponStatsColumns = (
     String,
@@ -1500,9 +1303,12 @@ fn weapon_stats_columns(db: &Connection, item_name: &str) -> WeaponStatsColumns 
 
 #[test]
 fn writes_a_rune_arm_without_dice_as_maetrims_rune_arms_are_written() {
-    let wiki = parsed_wiki(&[("items.toml", WIKI_RUNE_ARM)]).unwrap();
+    let wiki = WikiOverrides::from_database(&fixture::database(|root| {
+        std::fs::write(root.join(RUNE_ARM_FILE), WIKI_RUNE_ARM).unwrap();
+    }))
+    .unwrap();
     let (db, report) = built_db_with(&wiki);
-    assert_eq!(report.wiki_item_written_count, 1);
+    assert_eq!(report.wiki_item_written_count, 2);
     let wiki_rune_arm = weapon_stats_columns(&db, "Test Rune Arm of the Oozing Hunger");
     assert_eq!(wiki_rune_arm, weapon_stats_columns(&db, "Acid Rune Arm"));
     assert_eq!(
@@ -1512,21 +1318,21 @@ fn writes_a_rune_arm_without_dice_as_maetrims_rune_arms_are_written() {
 }
 
 #[test]
-fn rejects_weapon_stats_without_handedness() {
-    let error = parsed_wiki(&[("items.toml", &WIKI_RUNE_ARM.replace("handedness = \"Off-hand\"\n", ""))]).unwrap_err();
-    assert!(error.contains("Test Rune Arm of the Oozing Hunger") && error.contains("handedness"), "{error}");
-}
-
-#[test]
 fn reuses_maetrims_effect_whose_name_differs_only_by_case_spaces_and_hyphens() {
-    let wiki = parsed_edited_items(|s| {
-        s.replacen(
-            "{ name = \"Ethereal\" },",
-            "{ name = \"Ethereal\" },\n  { name = \"Feather Falling\", description = \"Test description: not his.\" },\n  { name = \"rune arm imbue acid ii\" },",
-            1,
-        )
-    })
-    .unwrap();
+    let wiki = axe_effects_edited(|effects| {
+        effects.push(WikiItemEffect {
+            name: "Feather Falling".into(),
+            description: Some("Test description: not his.".into()),
+            value: None,
+            target: None,
+        });
+        effects.push(WikiItemEffect {
+            name: "rune arm imbue acid ii".into(),
+            description: None,
+            value: None,
+            target: None,
+        });
+    });
     let (without, _) = built_db_with(&WikiOverrides::default());
     let (db, _) = built_db_with(&wiki);
     let effect_lines = string_column(
@@ -1545,22 +1351,16 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_case_spaces_and_hyphens() {
     );
     assert!(effect_lines[2].starts_with("Feather Falling|Feather Falling: This item"), "{effect_lines:?}");
     assert_eq!(effect_lines[3], "Rune Arm Imbue - Acid II|");
-    let effect_count = |db: &Connection| -> i64 {
-        db.query_row("SELECT COUNT(*) FROM effects e WHERE e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)", [], |r| r.get(0)).unwrap()
-    };
-    assert_eq!(effect_count(&db), effect_count(&without) + 1, "only Test Oozing Hunger is new");
+    assert_eq!(non_bonus_effect_count(&db), non_bonus_effect_count(&without) + 1, "only Test Oozing Hunger is new");
 }
 
 #[test]
 fn reuses_maetrims_effect_whose_name_differs_only_by_colons_commas_periods_and_apostrophes() {
-    let wiki = parsed_edited_items(|s| {
-        s.replacen(
-            "{ name = \"Ethereal\" },",
-            "{ name = \"Ethereal\" },\n  { name = \"Maximum Charge Tier: III\" },\n  { name = \"Rune Arm Imbue: Acid II\" },\n  { name = \"Rune Arm Imbue - 'Acid', II.\" },",
-            1,
-        )
-    })
-    .unwrap();
+    let wiki = axe_effects_edited(|effects| {
+        for name in ["Maximum Charge Tier: III", "Rune Arm Imbue: Acid II", "Rune Arm Imbue - 'Acid', II."] {
+            effects.push(WikiItemEffect { name: name.into(), description: None, value: None, target: None });
+        }
+    });
     let (without, _) = built_db_with(&WikiOverrides::default());
     let (db, _) = built_db_with(&wiki);
     let effect_names = string_column(
@@ -1573,10 +1373,16 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_colons_commas_periods_and_a
         ),
     );
     assert_eq!(effect_names[2..], ["Maximum Charge Tier III", "Rune Arm Imbue - Acid II"], "{effect_names:?}");
-    let effect_count = |db: &Connection| -> i64 {
-        db.query_row("SELECT COUNT(*) FROM effects e WHERE e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)", [], |r| r.get(0)).unwrap()
-    };
-    assert_eq!(effect_count(&db), effect_count(&without) + 1, "only Test Oozing Hunger is new");
+    assert_eq!(non_bonus_effect_count(&db), non_bonus_effect_count(&without) + 1, "only Test Oozing Hunger is new");
+}
+
+fn non_bonus_effect_count(db: &Connection) -> i64 {
+    db.query_row(
+        "SELECT COUNT(*) FROM effects e WHERE e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)",
+        [],
+        |r| r.get(0),
+    )
+    .unwrap()
 }
 
 fn quest_loot_link_rows(db: &Connection, quest: &str, item: &str) -> Vec<(String, bool, Option<String>)> {
@@ -1590,45 +1396,13 @@ fn quest_loot_link_rows(db: &Connection, quest: &str, item: &str) -> Vec<(String
 }
 
 #[test]
-fn reads_a_listed_drop_as_a_name_or_a_name_with_its_loot_type_and_chest() {
-    let toml_text = format!(
-        "{BOOK_BURNING_CITATION}items = [\"Docent of Defiance\", {{ name = \"Sireth, Spear of the Sky\", loot_type = \"reward\" }}, \
-         {{ name = \"Buckler of the Golden Age\", chest = \"optional chest\" }}]\n"
-    );
-    let wiki = parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap();
-    let listed_drops: Vec<(&str, LootType, Option<&str>)> =
-        wiki.quest_loot[0].items.iter().map(|drop| (drop.name(), drop.loot_type(), drop.chest())).collect();
-    assert_eq!(
-        listed_drops,
-        [
-            ("Docent of Defiance", LootType::Chest, None),
-            ("Sireth, Spear of the Sky", LootType::Reward, None),
-            ("Buckler of the Golden Age", LootType::Chest, Some("optional chest")),
-        ]
-    );
-    let bad_loot_type_text = toml_text.replace("\"reward\"", "\"quest\"");
-    let error = parsed_wiki(&[("quest_loot_a.toml", &bad_loot_type_text)]).unwrap_err();
-    assert!(error.contains("loot_type") && error.contains("Sireth, Spear of the Sky"), "{error}");
-    let unknown_field_text = toml_text.replace("chest = ", "chests = ");
-    assert!(
-        parsed_wiki(&[("quest_loot_a.toml", &unknown_field_text)]).is_err(),
-        "a listed drop object takes name, loot_type and chest"
-    );
-    let reward_in_chest_text =
-        toml_text.replace("loot_type = \"reward\"", "loot_type = \"reward\", chest = \"end chest\"");
-    let error = parsed_wiki(&[("quest_loot_a.toml", &reward_in_chest_text)]).unwrap_err();
-    assert!(error.contains("Sireth, Spear of the Sky") && error.contains("chest"), "{error}");
-}
-
-#[test]
 fn adds_a_listed_item_link_of_its_loot_type_beside_the_one_his_text_made() {
-    let toml_text = format!(
-        "{BOOK_BURNING_CITATION}rare = [\"Sireth, Spear of the Sky\"]\n\
-         items = [{{ name = \"Docent of Defiance\", loot_type = \"reward\" }}, \
-         {{ name = \"Buckler of the Golden Age\", loot_type = \"reward\" }}, \
-         {{ name = \"Sireth, Spear of the Sky\", loot_type = \"reward\" }}]\n"
-    );
-    let (db, report) = built_db_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap());
+    let wiki = loot_wiki(&[
+        ("Book Burning", "item", "Docent of Defiance", "reward", None, false),
+        ("Book Burning", "item", "Buckler of the Golden Age", "reward", None, false),
+        ("Book Burning", "item", "Sireth, Spear of the Sky", "reward", None, true),
+    ]);
+    let (db, report) = built_db_with(&wiki);
     assert_eq!(quest_loot_link_rows(&db, "Book Burning", "Docent of Defiance"), [("reward".into(), false, None)]);
     assert_eq!(
         quest_loot_link_rows(&db, "Book Burning", "Buckler of the Golden Age"),
@@ -1644,9 +1418,9 @@ fn adds_a_listed_item_link_of_its_loot_type_beside_the_one_his_text_made() {
 }
 
 #[test]
-fn adds_no_link_for_a_listed_name_without_a_loot_type_when_his_text_links_it_already() {
-    let toml_text = format!("{BOOK_BURNING_CITATION}items = [\"Buckler of the Golden Age\"]\n");
-    let (db, report) = built_db_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap());
+fn adds_no_link_for_a_listed_drop_when_his_text_links_it_already() {
+    let wiki = loot_wiki(&[("Book Burning", "item", "Buckler of the Golden Age", "chest", Some("end chest"), false)]);
+    let (db, report) = built_db_with(&wiki);
     assert_eq!(
         quest_loot_link_rows(&db, "Book Burning", "Buckler of the Golden Age"),
         [("chest".into(), true, Some("end chest".into()))]
@@ -1656,18 +1430,18 @@ fn adds_no_link_for_a_listed_name_without_a_loot_type_when_his_text_links_it_alr
 
 #[test]
 fn build_fails_naming_a_listed_item_absent_from_the_items_table() {
-    let toml_text = format!("{BOOK_BURNING_CITATION}items = [\"Docent of Missing Things\"]\n");
-    let error = build_report_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap()).unwrap_err();
+    let wiki = loot_wiki(&[("Book Burning", "item", "Docent of Missing Things", "chest", None, false)]);
+    let error = build_report_with(&wiki).unwrap_err();
     assert!(error.contains("Docent of Missing Things") && error.contains("Book Burning"), "{error}");
 }
 
 #[test]
 fn adds_a_listed_augment_link_that_is_not_rare() {
-    let toml_text = format!(
-        "{BOOK_BURNING_CITATION}augments = [{{ name = \"Lunar Gem of Evocation (Heroic)\", chest = \"end chest\" }}, \
-         {{ name = \"Lunar Gem of Magical Protection (Heroic)\", loot_type = \"reward\" }}]\n"
-    );
-    let (db, report) = built_db_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap());
+    let wiki = loot_wiki(&[
+        ("Book Burning", "augment", "Lunar Gem of Evocation (Heroic)", "chest", Some("end chest"), false),
+        ("Book Burning", "augment", "Lunar Gem of Magical Protection (Heroic)", "reward", None, false),
+    ]);
+    let (db, report) = built_db_with(&wiki);
     assert_eq!(
         quest_augment_loot_row(&db, "Book Burning", "Lunar Gem of Evocation (Heroic)"),
         Some(("chest".into(), false, Some("end chest".into())))
@@ -1693,14 +1467,14 @@ fn adds_a_listed_augment_link_that_is_not_rare() {
 
 #[test]
 fn build_fails_naming_a_listed_augment_absent_from_the_augments_table() {
-    let toml_text = format!("{BOOK_BURNING_CITATION}augments = [\"Lunar Gem of Missing Things\"]\n");
-    let error = build_report_with(&parsed_wiki(&[("quest_loot_a.toml", &toml_text)]).unwrap()).unwrap_err();
+    let wiki = loot_wiki(&[("Book Burning", "augment", "Lunar Gem of Missing Things", "chest", None, false)]);
+    let error = build_report_with(&wiki).unwrap_err();
     assert!(error.contains("Lunar Gem of Missing Things") && error.contains("Book Burning"), "{error}");
 }
 
 #[test]
 fn links_drop_text_to_his_quest_whose_epic_name_a_wiki_quest_also_has() {
-    let wiki = parsed_wiki(&[("quests.toml", &wiki_quest_fields_toml("Return to Prison of the Planes", ""))]).unwrap();
+    let wiki = new_quest_wiki("Return to Prison of the Planes");
     let (db, _) = built_db_with(&wiki);
     let linked_quests: Vec<String> = db
         .prepare(
@@ -1717,7 +1491,7 @@ fn links_drop_text_to_his_quest_whose_epic_name_a_wiki_quest_also_has() {
 
 #[test]
 fn reports_a_wiki_quest_named_as_his_quest_s_epic_version_as_a_probable_duplicate() {
-    let wiki = parsed_wiki(&[("quests.toml", &wiki_quest_fields_toml("Return to Prison of the Planes", ""))]).unwrap();
+    let wiki = new_quest_wiki("Return to Prison of the Planes");
     let (_, report) = built_db_with(&wiki);
     assert_eq!(
         report.probable_duplicate_wiki_quests,

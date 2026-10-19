@@ -297,12 +297,12 @@ CREATE TABLE IF NOT EXISTS quests (
     difficulties TEXT  NOT NULL DEFAULT '[]',         -- JSON array of the <Casual/> … <Solo/> flags present
     is_challenge INTEGER NOT NULL DEFAULT 0 CHECK (is_challenge IN (0, 1)),  -- from Challenges.xml, not Quests.xml
     max_level  INTEGER,                               -- a challenge's <LevelRange> high end; level is the low end
-    is_free_to_play INTEGER NOT NULL DEFAULT 0 CHECK (is_free_to_play IN (0, 1)),  -- data/wiki quests `free_to_play`
-    legendary_level INTEGER,                          -- data/wiki quests `legendary_level`
-    zone       TEXT,                                  -- data/wiki quests `zone`: the page's "Takes place in"
-    bestowed_by TEXT,                                 -- data/wiki quests `bestowed_by`
-    flagging   TEXT,                                  -- data/wiki quests `flagging`, free text
-    provenance TEXT    NOT NULL DEFAULT 'maetrim' CHECK (provenance {provenance}),  -- 'wiki' for a data/wiki quests entry that creates the quest
+    is_free_to_play INTEGER NOT NULL DEFAULT 0 CHECK (is_free_to_play IN (0, 1)),  -- quest file `is_free_to_play`
+    legendary_level INTEGER,                          -- quest file `legendary_level`
+    zone       TEXT,                                  -- quest file `zone`: the page's "Takes place in"
+    bestowed_by TEXT,                                 -- quest file `bestowed_by`
+    flagging   TEXT,                                  -- quest file `flagging`, free text
+    provenance TEXT    NOT NULL DEFAULT 'maetrim' CHECK (provenance {provenance}),  -- 'wiki' for a quest file flagged `is_wiki_only`
     CHECK (is_challenge = 1 OR pack_id IS NOT NULL)
 );
 
@@ -334,8 +334,8 @@ CREATE TABLE IF NOT EXISTS items (
     accepts_sentience INTEGER NOT NULL DEFAULT 0 CHECK (accepts_sentience IN (0, 1)),  -- <IsAcceptsSentience/>
     is_minor_artifact INTEGER NOT NULL DEFAULT 0 CHECK (is_minor_artifact IN (0, 1)),  -- <MinorArtifact/>
     is_legacy         INTEGER NOT NULL DEFAULT 0 CHECK (is_legacy IN (0, 1)),  -- a '(legacy)' or '(historic)' name, every <DropLocation> segment a data/legacy_drop_sources.toml text, or an is_legacy correction
-    wiki_url          TEXT    NOT NULL CHECK (wiki_url GLOB 'https://ddowiki.com/page/?*'),  -- computed from name, or data/wiki items `page`
-    provenance        TEXT    NOT NULL DEFAULT 'maetrim' CHECK (provenance {provenance})  -- 'wiki' for a data/wiki items entry
+    wiki_url          TEXT    NOT NULL CHECK (wiki_url GLOB 'https://ddowiki.com/page/?*'),  -- computed from name, or the item file's wiki page
+    provenance        TEXT    NOT NULL DEFAULT 'maetrim' CHECK (provenance {provenance})  -- 'wiki' for an item file flagged `is_wiki_only`
 );
 CREATE INDEX IF NOT EXISTS idx_items_slot ON items(slot_id);
 CREATE INDEX IF NOT EXISTS idx_items_minimum_level ON items(minimum_level);
@@ -562,7 +562,7 @@ CREATE TABLE IF NOT EXISTS item_augment_slot_option_effects (
 CREATE INDEX IF NOT EXISTS idx_item_augment_slot_option_effects_effect
     ON item_augment_slot_option_effects(effect_id);
 
--- Quest chains and sagas (data/wiki quest_chains and sagas) ---------------------------
+-- Quest chains and sagas (data files) ---------------------------
 --
 -- Both give an end reward from an NPC after several quests, not from any one quest: a quest chain is ddowiki's
 -- "story arc", a saga the saga system's reward NPC. Maetrim's files have neither, so every row is a wiki row;
@@ -595,7 +595,7 @@ CREATE TABLE IF NOT EXISTS saga_quests (
 );
 CREATE INDEX IF NOT EXISTS idx_saga_quests_quest ON saga_quests(quest_id);
 
--- An NPC or place that sells or trades items, from data/wiki vendors files; his files have none.
+-- An NPC or place that sells or trades items, from the data files; his files have none.
 CREATE TABLE IF NOT EXISTS vendors (
     id         INTEGER PRIMARY KEY,
     slug TEXT NOT NULL UNIQUE,
@@ -607,7 +607,7 @@ CREATE TABLE IF NOT EXISTS vendors (
     wiki_url   TEXT    NOT NULL
 );
 
--- A festival or limited-time event whose rewards are items, from data/wiki events files; his files have none.
+-- A festival or limited-time event whose rewards are items, from the data files; his files have none.
 CREATE TABLE IF NOT EXISTS events (
     id         INTEGER PRIMARY KEY,
     slug TEXT NOT NULL UNIQUE,
@@ -1367,7 +1367,7 @@ CREATE TABLE IF NOT EXISTS augments (
     adds_augment       TEXT,                           -- <AddAugment>: slot type this augment opens next
     grants_augment     TEXT,                           -- <GrantAugment>: colour slot this augment adds
     weapon_class       TEXT,                           -- <WeaponClass>
-    provenance         TEXT    NOT NULL DEFAULT 'maetrim' CHECK (provenance {provenance})  -- 'wiki' for a data/wiki augments entry
+    provenance         TEXT    NOT NULL DEFAULT 'maetrim' CHECK (provenance {provenance})  -- 'wiki' for an augment file flagged `is_wiki_only`
 );
 -- Names repeat within a family (the same "Use Magic Device" exists for several slot sets), so
 -- the identity is the row, not the name.
@@ -1391,7 +1391,7 @@ CREATE TABLE IF NOT EXISTS augment_effects (
     PRIMARY KEY (augment_id, sort_order)
 );
 
--- Crafting (data/wiki crafting) --------------------------------------------------
+-- Crafting (data files) --------------------------------------------------
 
 -- A crafting system as one wiki page describes it. Its options are Maetrim's augments in `families`.
 CREATE TABLE IF NOT EXISTS crafting_systems (
@@ -1453,7 +1453,7 @@ CREATE TABLE IF NOT EXISTS crafting_recipe_ingredients (
     PRIMARY KEY (recipe_id, ingredient_id)
 );
 
--- Corrections (data/corrections) ------------------------------------------------
+-- Corrections (data files) ------------------------------------------------
 
 -- A known mistake in Maetrim's data and the value that replaced it. Values are JSON (318, "text", null).
 CREATE TABLE IF NOT EXISTS corrections (

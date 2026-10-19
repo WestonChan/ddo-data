@@ -1,5 +1,5 @@
 use super::drop_location::quest_name_spans;
-use crate::wiki::is_iso_date;
+use super::is_iso_date;
 use anyhow::{bail, Context, Result};
 use serde::Deserialize;
 

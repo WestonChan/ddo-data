@@ -1,3 +1,5 @@
+mod fixture;
+
 use ddo_etl::build::{build_database, unlinked_drop_segment_heads, BuildReport};
 use ddo_etl::corrections::Corrections;
 use ddo_etl::map::legacy_drop_source::LegacyDropSources;
@@ -19,7 +21,7 @@ fn built_fixture_db() -> (Connection, BuildReport) {
     let dataset_version = DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-10-02T00:00:00Z".into() };
     let report = build_database(
         &fixtures_dir().join("DataFiles"),
-        &WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap(),
+        &WikiOverrides::from_database(&fixture::database(|_| {})).unwrap(),
         &Corrections::default(),
         &mut db,
         &dataset_version,

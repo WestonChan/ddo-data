@@ -1,3 +1,5 @@
+mod fixture;
+
 use ddo_etl::database_tables::{table_columns, table_names, table_rows};
 use ddo_etl::delta::IdentityIndex;
 use ddo_etl::tree::data_file_bytes;
@@ -13,7 +15,7 @@ fn shared_identity_resolves_fixture_references() {
     let fixtures = root.parent().unwrap();
     ddo_etl::build::build_database(
         &fixtures.join("DataFiles"),
-        &ddo_etl::wiki::WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap(),
+        &ddo_etl::wiki::WikiOverrides::from_database(&fixture::database(|_| {})).unwrap(),
         &ddo_etl::corrections::Corrections::default(),
         &mut db,
         &ddo_model::DatasetVersion {

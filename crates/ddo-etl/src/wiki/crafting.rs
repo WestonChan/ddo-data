@@ -1,27 +1,19 @@
 use anyhow::{bail, Context, Result};
 use ddo_model::enums::CraftingTier;
-use serde::Deserialize;
-use std::collections::HashSet;
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CraftingSystem {
     pub name: String,
     pub wiki_url: String,
     pub pack: Option<String>,
-    #[serde(default)]
     pub families: Vec<String>,
     pub npc: Option<String>,
-    #[serde(default, rename = "ingredient")]
     pub ingredients: Vec<CraftingIngredient>,
-    #[serde(default, rename = "recipe")]
     pub recipes: Vec<CraftingRecipe>,
-    #[serde(skip)]
     pub file_name: String,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CraftingIngredient {
     pub name: String,
     pub tier: String,
@@ -29,22 +21,18 @@ pub struct CraftingIngredient {
     pub source: Option<String>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CraftingRecipe {
     pub tier: String,
     pub slot: Option<String>,
     pub option: String,
-    #[serde(default)]
     pub augments: Vec<String>,
     pub note: Option<String>,
     pub grants_slot: Option<String>,
-    #[serde(default)]
     pub cost: Vec<IngredientCost>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct IngredientCost {
     pub ingredient: String,
     pub quantity: i64,
@@ -72,53 +60,4 @@ impl CraftingSystem {
                 }),
         }
     }
-
-    pub(super) fn validate(&self) -> Result<()> {
-        let mut declared_ingredient_keys = HashSet::new();
-        for ingredient in &self.ingredients {
-            validate_tier(&ingredient.tier).with_context(|| format!("ingredient {:?}", ingredient.name))?;
-            if !declared_ingredient_keys.insert((ingredient.name.as_str(), ingredient.tier.as_str())) {
-                bail!("ingredient {:?} is declared twice at tier {:?}", ingredient.name, ingredient.tier);
-            }
-        }
-        for recipe in &self.recipes {
-            self.validate_recipe(recipe).with_context(|| format!("recipe {:?}", recipe.option))?;
-        }
-        Ok(())
-    }
-
-    fn validate_recipe(&self, recipe: &CraftingRecipe) -> Result<()> {
-        validate_tier(&recipe.tier)?;
-        if self.families.is_empty() && !recipe.augments.is_empty() {
-            bail!(
-                "augments names Maetrim augments, but the system has no families to find them in; \
-                 add the families or empty augments"
-            );
-        }
-        if recipe.augments.is_empty() && recipe.note.is_none() && recipe.grants_slot.is_none() {
-            bail!(
-                "augments is empty, so grants_slot must name the socket the row adds or a note must say why the \
-                 wiki row has no augment counterpart"
-            );
-        }
-        let mut costed_ingredient_keys = HashSet::new();
-        for cost in &recipe.cost {
-            if cost.quantity <= 0 {
-                bail!("cost of {:?} has quantity {}; quantities are positive integers", cost.ingredient, cost.quantity);
-            }
-            let ingredient = self.ingredient_for(recipe, &cost.ingredient)?;
-            if !costed_ingredient_keys.insert((ingredient.name.as_str(), ingredient.tier.as_str())) {
-                bail!("ingredient {:?} appears twice in the cost", cost.ingredient);
-            }
-        }
-        Ok(())
-    }
-}
-
-fn validate_tier(tier: &str) -> Result<()> {
-    if CraftingTier::parse(tier).is_none() {
-        let allowed_tiers: Vec<&str> = CraftingTier::ALL.iter().map(|t| t.as_str()).collect();
-        bail!("tier {tier:?} must be one of {}", allowed_tiers.join(", "));
-    }
-    Ok(())
 }

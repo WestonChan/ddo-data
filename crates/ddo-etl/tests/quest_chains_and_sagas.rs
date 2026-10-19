@@ -1,3 +1,5 @@
+mod fixture;
+
 use ddo_etl::build::{build_database, BuildReport};
 use ddo_etl::corrections::Corrections;
 use ddo_etl::wiki::WikiOverrides;
@@ -5,21 +7,12 @@ use ddo_model::DatasetVersion;
 use rusqlite::Connection;
 use std::path::PathBuf;
 
-const LOST_SEEKERS_CITATION: &str =
-    "[[chain]]\nname = \"The Lost Seekers\"\npage = \"https://ddowiki.com/page/The_Lost_Seekers\"\nread = \"2026-10-02\"\n";
-const SHARN_SAGA_CITATION: &str = "[[saga]]\nname = \"Masterminds of Sharn\"\n\
-     page = \"https://ddowiki.com/page/Masterminds_of_Sharn_(saga)\"\nread = \"2026-10-02\"\n";
-
 fn fixtures_dir() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures")
 }
 
 fn fixture_wiki() -> WikiOverrides {
-    WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap()
-}
-
-fn parsed_wiki(files: &[(&str, &str)]) -> Result<WikiOverrides, String> {
-    WikiOverrides::from_toml_files(files).map_err(|e| format!("{e:#}"))
+    WikiOverrides::from_database(&fixture::database(|_| {})).unwrap()
 }
 
 fn built_with(wiki: &WikiOverrides) -> Result<(Connection, BuildReport), String> {
@@ -29,12 +22,6 @@ fn built_with(wiki: &WikiOverrides) -> Result<(Connection, BuildReport), String>
         build_database(&fixtures_dir().join("DataFiles"), wiki, &Corrections::default(), &mut db, &dataset_version)
             .map_err(|e| format!("{e:#}"))?;
     Ok((db, report))
-}
-
-fn built_with_files(files: &[(&str, &str)]) -> Result<(Connection, BuildReport), String> {
-    let mut toml_files = vec![("quests.toml", include_str!("fixtures/wiki/quests.toml"))];
-    toml_files.extend_from_slice(files);
-    built_with(&parsed_wiki(&toml_files)?)
 }
 
 fn strings(db: &Connection, sql: &str) -> Vec<String> {
@@ -68,13 +55,13 @@ fn writes_a_wiki_quest_chain_with_its_pack_quests_in_order_and_rewards() {
         strings(
             &db,
             "SELECT i.name || ' ' || cr.is_rare FROM sources cr JOIN items i ON i.id = cr.item_id
-              WHERE cr.kind = 'quest_chain' AND i.name <> 'Acrobat''s Ring' ORDER BY i.name"
+              WHERE cr.kind = 'quest_chain' ORDER BY i.name"
         ),
-        ["Docent of Defiance 0", "Kundarak Delving Boots 1"]
+        ["Acrobat's Ring 0", "Docent of Defiance 0", "Kundarak Delving Boots 1"]
     );
     assert_eq!(
         (report.wiki_quest_chain_count, report.quest_chain_quest_link_count, report.quest_chain_reward_count),
-        (1, 2, 2)
+        (1, 2, 3)
     );
 }
 
@@ -95,77 +82,64 @@ fn writes_a_wiki_saga_whose_rewards_carry_their_tier() {
             &db,
             "SELECT i.name || ' ' || sr.tier || ' ' || sr.is_rare FROM sources sr
                JOIN items i ON i.id = sr.item_id JOIN sagas s ON s.id = sr.saga_id
-              WHERE s.name = 'Masterminds of Sharn' AND i.provenance = 'maetrim' AND i.name <> 'Band of Diani ir''Wynarn'
+              WHERE s.name = 'Masterminds of Sharn' AND i.provenance = 'maetrim'
               ORDER BY i.name, sr.tier"
         ),
-        ["Alabaster of the Twelve any 0", "Five Rings epic 0", "Five Rings legendary 1"]
+        [
+            "Alabaster of the Twelve any 0",
+            "Band of Diani ir'Wynarn epic 0",
+            "Five Rings epic 0",
+            "Five Rings legendary 1"
+        ]
     );
     assert_eq!(strings(&db, "SELECT provenance FROM sagas"), ["wiki", "wiki"]);
-    assert_eq!((report.wiki_saga_count, report.saga_quest_link_count, report.saga_reward_count), (2, 4, 3));
-}
-
-#[test]
-fn reads_chains_and_sagas_only_from_files_named_for_them() {
-    let wiki = fixture_wiki();
-    assert_eq!(wiki.quest_chains.len(), 1);
-    assert_eq!(wiki.sagas.len(), 2);
-    assert_eq!(wiki.quest_chains[0].file_name, "quest_chains.toml");
-    let error = parsed_wiki(&[("quest_chains.toml", SHARN_SAGA_CITATION)]).unwrap_err();
-    assert!(error.contains("[[chain]]"), "{error}");
-}
-
-#[test]
-fn rejects_a_chain_named_twice_across_files() {
-    let error =
-        parsed_wiki(&[("quest_chains.toml", LOST_SEEKERS_CITATION), ("quest_chains_b.toml", LOST_SEEKERS_CITATION)])
-            .unwrap_err();
-    assert!(error.contains("The Lost Seekers") && error.contains("quest_chains.toml"), "{error}");
-}
-
-#[test]
-fn rejects_a_quest_listed_twice_in_one_chain() {
-    let toml_text = format!("{LOST_SEEKERS_CITATION}quests = [\"The Grotto\", \"The Grotto\"]\n");
-    let error = parsed_wiki(&[("quest_chains.toml", &toml_text)]).unwrap_err();
-    assert!(error.contains("The Grotto") && error.contains("twice"), "{error}");
-}
-
-#[test]
-fn rejects_a_saga_reward_tier_outside_heroic_epic_and_legendary() {
-    let toml_text = format!("{SHARN_SAGA_CITATION}rewards = [{{ name = \"Five Rings\", tier = \"mythic\" }}]\n");
-    let error = parsed_wiki(&[("sagas.toml", &toml_text)]).unwrap_err();
-    assert!(error.contains("mythic") && error.contains("heroic, epic, legendary"), "{error}");
-}
-
-#[test]
-fn rejects_a_saga_reward_listed_twice_at_one_tier() {
-    let toml_text = format!(
-        "{SHARN_SAGA_CITATION}rewards = [{{ name = \"Five Rings\", tier = \"epic\" }}, \
-         {{ name = \"Five Rings\", tier = \"epic\", rare = true }}]\n"
-    );
-    let error = parsed_wiki(&[("sagas.toml", &toml_text)]).unwrap_err();
-    assert!(error.contains("Five Rings") && error.contains("twice"), "{error}");
-}
-
-#[test]
-fn rejects_a_tier_on_a_quest_chain_reward() {
-    let toml_text = format!("{LOST_SEEKERS_CITATION}rewards = [{{ name = \"Five Rings\", tier = \"epic\" }}]\n");
-    assert!(parsed_wiki(&[("quest_chains.toml", &toml_text)]).is_err(), "a chain reward takes name and rare");
+    assert_eq!((report.wiki_saga_count, report.saga_quest_link_count, report.saga_reward_count), (2, 4, 5));
 }
 
 #[test]
 fn build_fails_naming_a_chain_quest_item_or_pack_his_files_lack() {
-    for (field_line, missing_name) in [
-        ("quests = [\"No Such Quest\"]\n", "No Such Quest"),
-        ("rewards = [\"No Such Ring\"]\n", "No Such Ring"),
-        ("pack = \"No Such Pack\"\n", "No Such Pack"),
+    for (kind, owner, missing_name) in [
+        ("quest", "The Lost Seekers", "No Such Quest"),
+        ("quest_chain", "The Lost Seekers", "No Such Ring"),
+        ("pack", "The Lost Seekers", "No Such Pack"),
+        ("saga", "Masterminds of Sharn", "No Such Ring"),
     ] {
-        let toml_text = format!("{LOST_SEEKERS_CITATION}{field_line}");
-        let error = built_with_files(&[("quest_chains.toml", &toml_text)]).map(|_| ()).unwrap_err();
-        assert!(error.contains(missing_name) && error.contains("The Lost Seekers"), "{error}");
+        let ours = fixture::database(|root| {
+            let chain_path = root.join("packs/free-to-play/chains/the-lost-seekers.toml");
+            let mut chain: toml::Table = toml::from_str(&std::fs::read_to_string(&chain_path).unwrap()).unwrap();
+            match kind {
+                "quest" => {
+                    let path = root.join("packs/free-to-play/quests/no-such-quest/quest.toml");
+                    std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+                    std::fs::write(path, "name = \"No Such Quest\"\npack = \"Free to Play\"\nfavor = 0\ndifficulties = [\"normal\"]\n[[run]]\ntier = \"heroic\"\nlevel = 1\n").unwrap();
+                    chain.insert("quests".into(), toml::Value::Array(vec![toml::Value::String(missing_name.into())]));
+                }
+                "pack" => {
+                    let path = root.join("packs/no-such-pack/pack.toml");
+                    std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+                    std::fs::write(path, "name = \"No Such Pack\"\n").unwrap();
+                    chain.insert("pack".into(), toml::Value::String(missing_name.into()));
+                }
+                _ => {
+                    let path = root.join("packs/unsourced/gear/no-such-ring.toml");
+                    std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+                    let tier = if kind == "saga" { "tier = \"epic\"\n" } else { "" };
+                    std::fs::write(path, format!(
+                        "name = \"No Such Ring\"\nslot = \"Ring\"\nitem_category = \"Jewelry\"\nminimum_level = 1\n[[source]]\nkind = {kind:?}\nname = {owner:?}\n{tier}"
+                    )).unwrap();
+                }
+            }
+            std::fs::write(chain_path, toml::to_string(&chain).unwrap()).unwrap();
+        });
+        let wiki = WikiOverrides::from_database(&ours).unwrap();
+        let owner_file = if kind == "saga" {
+            &wiki.sagas.iter().find(|saga| saga.name == owner).unwrap().file_name
+        } else {
+            &wiki.quest_chains.iter().find(|chain| chain.name == owner).unwrap().file_name
+        };
+        let error = built_with(&wiki).map(|_| ()).unwrap_err();
+        assert!(error.contains(missing_name) && error.contains(owner) && error.contains(owner_file), "{error}");
     }
-    let toml_text = format!("{SHARN_SAGA_CITATION}rewards = [{{ name = \"No Such Ring\", tier = \"epic\" }}]\n");
-    let error = built_with_files(&[("sagas.toml", &toml_text)]).map(|_| ()).unwrap_err();
-    assert!(error.contains("No Such Ring") && error.contains("Masterminds of Sharn"), "{error}");
 }
 
 fn reward_rows(db: &Connection, sql: &str) -> Vec<String> {
@@ -223,10 +197,27 @@ fn leaves_reward_text_naming_no_recorded_chain_or_saga_unlinked() {
 
 #[test]
 fn gives_a_quest_chain_reward_no_tier_when_its_segment_names_one() {
-    let chain_text =
-        "[[chain]]\nname = \"Masterminds of Sharn\"\npage = \"https://ddowiki.com/page/Masterminds_of_Sharn\"\n\
-         read = \"2026-10-02\"\nquests = [\"The Grotto\"]\n";
-    let (db, report) = built_with_files(&[("quest_chains.toml", chain_text)]).unwrap();
+    let ours = fixture::database(|root| {
+        let path = root.join("packs/shared/chains/masterminds-of-sharn.toml");
+        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+        std::fs::write(
+            path,
+            r#"
+name = "Masterminds of Sharn"
+wiki_url = "https://ddowiki.com/page/Masterminds_of_Sharn"
+quests = ["The Grotto"]
+[[citation]]
+url = "https://ddowiki.com/page/Masterminds_of_Sharn"
+read = "2026-10-02"
+"#,
+        )
+        .unwrap();
+    });
+    let mut wiki = WikiOverrides::from_database(&ours).unwrap();
+    wiki.quest_chains.retain(|chain| chain.name == "Masterminds of Sharn");
+    let (db, report) =
+        built_with(&WikiOverrides { quest_chains: wiki.quest_chains, quests: wiki.quests, ..WikiOverrides::default() })
+            .unwrap();
     assert_eq!(
         strings(
             &db,

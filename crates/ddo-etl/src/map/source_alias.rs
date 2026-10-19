@@ -82,7 +82,7 @@ impl SourceAliases {
                 || alias.pack.trim().is_empty()
                 || alias.reason.trim().is_empty()
                 || !alias.source.starts_with("https://ddowiki.com/page/")
-                || !crate::wiki::is_iso_date(&alias.read)
+                || !super::is_iso_date(&alias.read)
             {
                 bail!("adventure pack alias {:?} needs a name, target, reason, wiki page and read date", alias.text);
             }
@@ -94,7 +94,7 @@ impl SourceAliases {
         for alias in &aliases.challenges {
             if alias.source.is_some() != alias.read.is_some()
                 || alias.source.as_ref().is_some_and(|source| !source.starts_with("https://ddowiki.com/page/"))
-                || alias.read.as_ref().is_some_and(|read| !crate::wiki::is_iso_date(read))
+                || alias.read.as_ref().is_some_and(|read| !super::is_iso_date(read))
             {
                 bail!("challenge alias {:?} needs a wiki page and read date together", alias.text);
             }

@@ -1,3 +1,5 @@
+mod fixture;
+
 use ddo_etl::build::build_database;
 use ddo_etl::corrections::Corrections;
 use ddo_etl::map::effect_map::EFFECT_MAP;
@@ -36,10 +38,6 @@ struct OpenTypedElement {
 
 fn fixtures_dir() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures")
-}
-
-fn data_dir() -> PathBuf {
-    PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("data")
 }
 
 fn files_under(dir: &Path) -> Vec<PathBuf> {
@@ -193,7 +191,7 @@ fn record_fixture_build_bonuses(sources_by_stat: &mut BTreeMap<String, String>) 
     let mut db = Connection::open_in_memory().unwrap();
     build_database(
         &fixtures_dir().join("DataFiles"),
-        &WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap(),
+        &WikiOverrides::from_database(&fixture::database(|_| {})).unwrap(),
         &Corrections::default(),
         &mut db,
         &DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-09-20T00:00:00Z".into() },
@@ -220,6 +218,11 @@ fn record_fixture_build_bonuses(sources_by_stat: &mut BTreeMap<String, String>) 
 fn stat_names_under_key(toml_value: &toml::Value, stat_names: &mut Vec<String>) {
     match toml_value {
         toml::Value::Table(table) => {
+            if table.contains_key("bonus_type") && table.contains_key("value") {
+                if let Some(toml::Value::String(stat_name)) = table.get("name") {
+                    stat_names.push(stat_name.clone());
+                }
+            }
             if table.contains_key("amount_from") {
                 if let Some(toml::Value::String(stat_name)) = table.get("target") {
                     stat_names.push(stat_name.clone());
@@ -243,18 +246,16 @@ fn stat_names_under_key(toml_value: &toml::Value, stat_names: &mut Vec<String>) 
 
 fn record_override_bonuses(sources_by_stat: &mut BTreeMap<String, String>) {
     let workspace_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../..");
-    for (dir, prefix) in [(data_dir().join("wiki"), data_dir()), (workspace_root.join("data"), workspace_root.clone())]
-    {
-        for path in files_under(&dir).into_iter().filter(|path| path.extension().is_some_and(|ext| ext == "toml")) {
-            let file_text = std::fs::read_to_string(&path).unwrap();
-            let toml_value: toml::Value =
-                toml::from_str(&file_text).unwrap_or_else(|error| panic!("{}: {error}", path.display()));
-            let mut stat_names = Vec::new();
-            stat_names_under_key(&toml_value, &mut stat_names);
-            let file_name = path.strip_prefix(&prefix).unwrap().display().to_string();
-            for stat_name in stat_names {
-                record_source(sources_by_stat, &stat_name, format!("a bonus in data/{file_name}"));
-            }
+    let data_root = workspace_root.join("data");
+    for path in files_under(&data_root).into_iter().filter(|path| path.extension().is_some_and(|ext| ext == "toml")) {
+        let file_text = std::fs::read_to_string(&path).unwrap();
+        let toml_value: toml::Value =
+            toml::from_str(&file_text).unwrap_or_else(|error| panic!("{}: {error}", path.display()));
+        let mut stat_names = Vec::new();
+        stat_names_under_key(&toml_value, &mut stat_names);
+        let file_name = path.strip_prefix(&workspace_root).unwrap().display().to_string();
+        for stat_name in stat_names {
+            record_source(sources_by_stat, &stat_name, format!("a bonus in {file_name}"));
         }
     }
 }

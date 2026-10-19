@@ -1,3 +1,5 @@
+mod fixture;
+
 use ddo_etl::build::{build_database, unlinked_drop_segment_heads, unlinked_reward_givers, BuildReport};
 use ddo_etl::corrections::Corrections;
 use ddo_etl::map::source_alias::SourceAliases;
@@ -20,27 +22,8 @@ fn built_with(wiki: &WikiOverrides) -> (Connection, BuildReport) {
 }
 
 fn built_with_fixture_wiki() -> (Connection, BuildReport) {
-    built_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap())
+    built_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap())
 }
-
-fn fixture_wiki_with(extra_file_name: &str, extra_toml: &str) -> WikiOverrides {
-    let mut toml_files: Vec<(String, String)> = std::fs::read_dir(fixtures_dir().join("wiki"))
-        .unwrap()
-        .map(|entry| entry.unwrap().path())
-        .map(|path| (path.file_name().unwrap().to_string_lossy().into_owned(), std::fs::read_to_string(&path).unwrap()))
-        .collect();
-    toml_files.sort();
-    toml_files.push((extra_file_name.to_string(), extra_toml.to_string()));
-    let borrowed_files: Vec<(&str, &str)> =
-        toml_files.iter().map(|(file_name, toml_text)| (file_name.as_str(), toml_text.as_str())).collect();
-    WikiOverrides::from_toml_files(&borrowed_files).unwrap()
-}
-
-const WIKI_ITEM_FROM_A_CRAFTING_STATION: &str =
-    "# A test item, not read from ddowiki, whose drop text names a crafting system.\n\
-     [[item]]\nname = \"Test Catalysed Ring\"\npage = \"https://ddowiki.com/page/Item:Test_Catalysed_Ring\"\n\
-     read = \"2026-10-02\"\nslot = \"Ring\"\ncategory = \"Jewelry\"\nminimum_level = 30\n\
-     drop_location = \"Catalyst Crafting, Turn in a test ring at the Strange Catalyst Forge\"\n";
 
 fn source_rows(db: &Connection, loot_name: &str) -> Vec<String> {
     let mut statement = db
@@ -64,7 +47,7 @@ fn unlinked_heads(db: &Connection) -> Vec<String> {
 
 #[test]
 fn loot_adventure_packs_has_one_row_per_loot_pack_and_source() {
-    let mut wiki = WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap();
+    let mut wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     wiki.crafting_systems.iter_mut().find(|system| system.name == "Thunder-Forged").unwrap().pack =
         Some("Free to Play".into());
     wiki.quest_chains[0].pack = Some("Masterminds of Sharn".into());
@@ -150,7 +133,21 @@ fn links_an_item_to_the_crafting_system_its_drop_text_or_station_names() {
 
 #[test]
 fn links_a_wiki_item_to_the_crafting_system_its_drop_text_names() {
-    let (db, report) = built_with(&fixture_wiki_with("items_test.toml", WIKI_ITEM_FROM_A_CRAFTING_STATION));
+    let ours = fixture::database(|root| {
+        std::fs::write(
+            root.join("packs/unsourced/gear/test-catalysed-ring.toml"),
+            r#"
+name = "Test Catalysed Ring"
+is_wiki_only = true
+slot = "Ring"
+item_category = "Jewelry"
+minimum_level = 30
+drop_location = "Catalyst Crafting, Turn in a test ring at the Strange Catalyst Forge"
+"#,
+        )
+        .unwrap();
+    });
+    let (db, report) = built_with(&WikiOverrides::from_database(&ours).unwrap());
     assert_eq!(source_rows(&db, "Test Catalysed Ring"), ["crafting_system Catalyst Crafting 0"]);
     assert_eq!(report.drop_text_crafting_system_source_count, 3);
 }
@@ -165,17 +162,18 @@ fn links_no_crafting_system_the_wiki_files_lack() {
 
 #[test]
 fn every_crafting_station_and_vendor_alias_names_a_wiki_crafting_system_or_vendor() {
-    let embedded_wiki = WikiOverrides::embedded().unwrap();
-    let crafting_system_names: Vec<String> =
-        embedded_wiki.crafting_systems.into_iter().map(|system| system.name).collect();
-    let vendor_names: Vec<String> = embedded_wiki.vendors.into_iter().map(|vendor| vendor.name).collect();
+    let mut ours = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut ours).unwrap();
+    let wiki = WikiOverrides::from_database(&ours).unwrap();
+    let crafting_system_names: Vec<String> = wiki.crafting_systems.into_iter().map(|system| system.name).collect();
+    let vendor_names: Vec<String> = wiki.vendors.into_iter().map(|vendor| vendor.name).collect();
     let aliases = SourceAliases::embedded().unwrap();
     assert!(!aliases.crafting_systems.is_empty() && !aliases.challenges.is_empty() && !aliases.vendors.is_empty());
     for alias in &aliases.crafting_systems {
-        assert!(crafting_system_names.contains(&alias.system), "{alias:?} names no system in data/wiki");
+        assert!(crafting_system_names.contains(&alias.system), "{alias:?} names no system in the canonical data tree");
     }
     for alias in &aliases.vendors {
-        assert!(vendor_names.contains(&alias.vendor), "{alias:?} names no vendor in data/wiki");
+        assert!(vendor_names.contains(&alias.vendor), "{alias:?} names no vendor in the canonical data tree");
     }
 }
 
@@ -263,7 +261,7 @@ fn writes_the_wiki_vendors_and_events_with_the_items_they_list_and_his_text_name
     assert_eq!(source_rows(&db, "Bold Trinket"), ["event Treasure of Crystal Cove 0"]);
     assert!(source_rows(&db, "Acrobat's Ring").contains(&"event Treasure of Crystal Cove 0".to_string()));
     assert_eq!((report.wiki_vendor_count, report.vendor_item_count), (1, 2));
-    assert_eq!((report.wiki_event_count, report.event_item_count), (1, 1));
+    assert_eq!((report.wiki_event_count, report.event_item_count), (1, 3));
     assert_eq!(
         (report.drop_text_vendor_source_count, report.drop_text_event_source_count),
         (1, 2),
@@ -273,63 +271,71 @@ fn writes_the_wiki_vendors_and_events_with_the_items_they_list_and_his_text_name
     assert!(!heads.iter().any(|head| head == "Morten Edgewright" || head == "Treasure of Crystal Cove"), "{heads:?}");
 }
 
-fn built_with_fixture_wiki_and(extra_file_name: &str, extra_toml: &str) -> Result<(), String> {
-    let mut db = Connection::open_in_memory().unwrap();
-    let dataset_version = DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-10-02T00:00:00Z".into() };
-    let wiki = WikiOverrides::from_toml_files(&[(extra_file_name, extra_toml)]).map_err(|e| format!("{e:#}"))?;
-    build_database(&fixtures_dir().join("DataFiles"), &wiki, &Corrections::default(), &mut db, &dataset_version)
-        .map(|_| ())
-        .map_err(|e| format!("{e:#}"))
-}
-
 #[test]
-fn rejects_a_vendor_or_event_naming_an_item_or_pack_his_files_lack_or_listing_an_item_twice() {
-    let vendor = |extra: &str| {
-        format!(
-            "# Test values, not read from ddowiki.\n[[vendor]]\nname = \"Test Vendor\"\npage = \"https://ddowiki.com/page/Test_Vendor\"\n\
-             read = \"2026-10-02\"\n{extra}"
+fn rejects_a_vendor_or_event_naming_an_item_or_pack_his_files_lack() {
+    for (kind, missing_name) in [
+        ("vendor", "No Such Item"),
+        ("event", "No Such Item"),
+        ("vendor", "No Such Pack"),
+        ("event", "Cosmetic Jackorb"),
+    ] {
+        let ours = fixture::database(|root| {
+            let owner = format!("Test {kind}");
+            let path = root.join(format!("packs/shared/{kind}s/test-{kind}/{kind}.toml"));
+            std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+            let location = if kind == "vendor" { "location = \"Test location\"\n" } else { "" };
+            let pack = if missing_name == "No Such Pack" {
+                let pack_path = root.join("packs/no-such-pack/pack.toml");
+                std::fs::create_dir_all(pack_path.parent().unwrap()).unwrap();
+                std::fs::write(pack_path, "name = \"No Such Pack\"\n").unwrap();
+                "pack = \"No Such Pack\"\n"
+            } else {
+                ""
+            };
+            std::fs::write(path, format!("name = {owner:?}\n{location}{pack}[[citation]]\nurl = \"https://ddowiki.com/page/Test\"\nread = \"2026-10-02\"\n")).unwrap();
+            if missing_name != "No Such Pack" {
+                if missing_name == "Cosmetic Jackorb" {
+                    std::fs::write(root.join("upstream/excluded-items.toml"), "row = []\n").unwrap();
+                }
+                let path = root.join(format!("packs/unsourced/gear/{}.toml", ddo_etl::tree::slug(missing_name)));
+                std::fs::write(path, format!("name = {missing_name:?}\nslot = \"Ring\"\nitem_category = \"Jewelry\"\nminimum_level = 1\n[[source]]\nkind = {kind:?}\nname = {owner:?}\n")).unwrap();
+            }
+        });
+        let wiki = WikiOverrides::from_database(&ours).unwrap();
+        let owner_file = if kind == "vendor" {
+            &wiki.vendors.iter().find(|vendor| vendor.name == "Test vendor").unwrap().file_name
+        } else {
+            &wiki.events.iter().find(|event| event.name == "Test event").unwrap().file_name
+        };
+        let mut db = Connection::open_in_memory().unwrap();
+        let dataset_version =
+            DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-10-02T00:00:00Z".into() };
+        let error = build_database(
+            &fixtures_dir().join("DataFiles"),
+            &wiki,
+            &Corrections::default(),
+            &mut db,
+            &dataset_version,
         )
-    };
-    let unknown_item =
-        built_with_fixture_wiki_and("vendors.toml", &vendor("items = [\"No Such Item\"]\n")).unwrap_err();
-    assert!(unknown_item.contains("vendors.toml") && unknown_item.contains("No Such Item"), "{unknown_item}");
-    let unknown_pack = built_with_fixture_wiki_and("vendors.toml", &vendor("pack = \"No Such Pack\"\n")).unwrap_err();
-    assert!(unknown_pack.contains("No Such Pack"), "{unknown_pack}");
-    let repeated_item = built_with_fixture_wiki_and(
-        "vendors.toml",
-        &vendor("items = [\"Bold Trinket\", { name = \"Bold Trinket\", cost = \"5 tokens\" }]\n"),
-    )
-    .unwrap_err();
-    assert!(repeated_item.contains("listed twice"), "{repeated_item}");
-    let event = "# Test values, not read from ddowiki.\n[[event]]\nname = \"Test Event\"\npage = \"https://ddowiki.com/page/Test_Event\"\n\
-                 read = \"2026-10-02\"\nitems = [\"No Such Item\"]\n";
-    let unknown_event_item = built_with_fixture_wiki_and("events.toml", event).unwrap_err();
-    assert!(
-        unknown_event_item.contains("events.toml") && unknown_event_item.contains("No Such Item"),
-        "{unknown_event_item}"
-    );
-    let excluded_item =
-        built_with_fixture_wiki_and("events.toml", &event.replace("No Such Item", "Cosmetic Jackorb")).unwrap_err();
-    assert!(
-        excluded_item.contains("Cosmetic Jackorb")
-            && excluded_item.contains("left out of the items on purpose (cosmetic shield)"),
-        "{excluded_item}"
-    );
-    let unknown_field = built_with_fixture_wiki_and("events.toml", &event.replace("items", "rewards")).unwrap_err();
-    assert!(unknown_field.contains("rewards"), "{unknown_field}");
+        .unwrap_err();
+        let message = format!("{error:#}");
+        assert!(message.contains(missing_name) && message.contains(owner_file), "{message}");
+        if missing_name == "Cosmetic Jackorb" {
+            assert!(message.contains("left out of the items on purpose (cosmetic shield)"), "{message}");
+        }
+    }
 }
-
-const VENDORS_HIS_TURN_IN_PLACES_STAND_FOR: &str =
-    "# Test values, not read from ddowiki: the vendors data/source_aliases.toml maps the fixture items' drop text heads\n\
-     # to, listing no items; the pages and dates are test values.\n\
-     [[vendor]]\nname = \"Raam Lukresh\"\npage = \"https://ddowiki.com/page/Raam_Lukresh\"\nread = \"2026-10-02\"\n\
-     [[vendor]]\nname = \"Osah Lukresh\"\npage = \"https://ddowiki.com/page/Osah_Lukresh\"\nread = \"2026-10-02\"\n\
-     [[vendor]]\nname = \"Squire Rale\"\npage = \"https://ddowiki.com/page/Squire_Rale\"\nread = \"2026-10-02\"\n\
-     [[vendor]]\nname = \"Balkar Aislin\"\npage = \"https://ddowiki.com/page/Balkar_Aislin\"\nread = \"2026-10-02\"\n";
 
 #[test]
 fn links_an_item_turned_in_at_a_place_to_the_vendor_an_alias_names_for_its_head_and_turn_in() {
-    let (db, report) = built_with(&fixture_wiki_with("vendors_aliased.toml", VENDORS_HIS_TURN_IN_PLACES_STAND_FOR));
+    let ours = fixture::database(|root| {
+        for name in ["Raam Lukresh", "Osah Lukresh", "Squire Rale", "Balkar Aislin"] {
+            let path = root.join(format!("packs/shared/vendors/{}/vendor.toml", ddo_etl::tree::slug(name)));
+            std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+            std::fs::write(path, format!("name = {name:?}\nlocation = \"Test location\"\n[[citation]]\nurl = \"https://ddowiki.com/page/Test_vendor\"\nread = \"2026-10-02\"\n")).unwrap();
+        }
+    });
+    let (db, report) = built_with(&WikiOverrides::from_database(&ours).unwrap());
     assert_eq!(
         source_rows(&db, "Macabre Great Crossbow"),
         ["vendor Raam Lukresh 0"],
@@ -370,15 +376,16 @@ fn rejects_a_vendor_alias_repeating_a_head_and_turn_in_but_keeps_one_whose_turn_
     assert!(SourceAliases::from_toml_str(&alias(" ", "Raam Lukresh")).is_err(), "a blank contains must fail");
 }
 
-const GREEN_STEEL_SYSTEMS: &str =
-    "# Test values shaped like ddowiki crafting pages: the system names are real, the pages and dates test values.\n\
-     [[system]]\nname = \"Green Steel items\"\npage = \"https://ddowiki.com/page/Green_Steel_items\"\nread = \"2026-10-02\"\n\
-     [[system]]\nname = \"Legendary Green Steel items\"\npage = \"https://ddowiki.com/page/Legendary_Green_Steel_items\"\n\
-     read = \"2026-10-02\"\n";
-
 #[test]
 fn links_an_item_made_at_a_station_two_systems_share_to_the_one_its_minimum_level_falls_in() {
-    let (db, report) = built_with(&fixture_wiki_with("crafting_green_steel.toml", GREEN_STEEL_SYSTEMS));
+    let ours = fixture::database(|root| {
+        for name in ["Green Steel items", "Legendary Green Steel items"] {
+            let path = root.join(format!("packs/shared/crafting/{}/crafting.toml", ddo_etl::tree::slug(name)));
+            std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+            std::fs::write(path, format!("name = {name:?}\n[[citation]]\nurl = \"https://ddowiki.com/page/Test_crafting\"\nread = \"2026-10-02\"\n")).unwrap();
+        }
+    });
+    let (db, report) = built_with(&WikiOverrides::from_database(&ours).unwrap());
     assert_eq!(
         source_rows(&db, "Green Steel Weave Boots"),
         ["crafting_system Green Steel items 0"],

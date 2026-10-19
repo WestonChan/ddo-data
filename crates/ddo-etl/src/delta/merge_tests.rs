@@ -17,14 +17,7 @@ fn assert_foreign_keys(db: &Connection) {
 fn ordinary_fixture_database(sql: &str) -> Connection {
     let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let mut original = Connection::open_in_memory().unwrap();
-    crate::build::build_database(
-        &root.join("DataFiles"),
-        &crate::wiki::WikiOverrides::from_dir(&root.join("wiki")).unwrap(),
-        &crate::corrections::Corrections::from_dir(&root.join("data-corrections")).unwrap(),
-        &mut original,
-        &ddo_model::DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-17T00:00:00Z".into() },
-    )
-    .unwrap();
+    crate::tree::build_from_data(&root.join("data"), &mut original).unwrap();
     original.execute_batch(sql).unwrap();
     rebuilt_ordinary_database(&original)
 }
@@ -489,7 +482,17 @@ fn merge_preserves_correction_notes_removed_upstream() {
 fn superseded_wiki_row_takes_his_columns_and_keeps_our_citation() {
     let previous = ordinary_fixture_database("");
     let new = ordinary_fixture_database("UPDATE items SET description = 'His newly supplied description', provenance = 'maetrim' WHERE name = 'Battle Axe of the Oozing Hunger'");
-    let mut ours = ordinary_fixture_database("INSERT INTO citations (owner_kind, owner_id, field, url, read) SELECT 'items', id, '', 'https://ddowiki.com/page/Item:Battle_Axe_of_the_Oozing_Hunger', '2026-10-18' FROM items WHERE name = 'Battle Axe of the Oozing Hunger'");
+    let mut ours = ordinary_fixture_database("");
+    let axe_citations = |db: &Connection| -> i64 {
+        db.query_row(
+            "SELECT COUNT(*) FROM citations WHERE owner_kind = 'items' AND owner_id = (SELECT id FROM items WHERE name = 'Battle Axe of the Oozing Hunger')",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap()
+    };
+    let citations_before = axe_citations(&ours);
+    assert!(citations_before > 0);
     let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
     assert!(outcome.conflicts.is_empty());
     rederive_data_build_tables(&ours).unwrap();
@@ -503,8 +506,7 @@ fn superseded_wiki_row_takes_his_columns_and_keeps_our_citation() {
         .unwrap();
     assert_eq!(description, "His newly supplied description");
     assert_eq!(provenance, "maetrim");
-    let citations: i64 = rebuilt.query_row("SELECT COUNT(*) FROM citations WHERE owner_kind = 'items' AND owner_id = (SELECT id FROM items WHERE name = 'Battle Axe of the Oozing Hunger')", [], |row| row.get(0)).unwrap();
-    assert_eq!(citations, 1);
+    assert_eq!(axe_citations(&rebuilt), citations_before);
     assert!(database_delta(&ours, &rebuilt).unwrap().is_empty());
 }
 

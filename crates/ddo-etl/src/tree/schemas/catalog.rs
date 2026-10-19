@@ -292,14 +292,7 @@ mod tests {
     fn catalog_names_and_slugs_match_the_real_export() {
         let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
         let mut db = rusqlite::Connection::open_in_memory().unwrap();
-        crate::build::build_database(
-            &fixtures.join("DataFiles"),
-            &crate::wiki::WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap(),
-            &crate::corrections::Corrections::from_dir(&fixtures.join("data-corrections")).unwrap(),
-            &mut db,
-            &ddo_model::DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-06T00:00:00Z".into() },
-        )
-        .unwrap();
+        crate::tree::build_from_data(&fixtures.join("data"), &mut db).unwrap();
         let offer = db.query_row("SELECT offer.id FROM vendor_offers offer JOIN items item ON item.id = offer.item_id WHERE item.name = 'Ethereal Great Crossbow'", [], |row| row.get(0)).unwrap();
         crate::vendor_prices::insert_prices(
             &db,

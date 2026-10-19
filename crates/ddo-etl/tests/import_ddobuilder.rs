@@ -1,3 +1,5 @@
+mod fixture;
+
 use ddo_etl::{build, corrections::Corrections, tree, wiki::WikiOverrides};
 use ddo_model::DatasetVersion;
 use rusqlite::Connection;
@@ -505,39 +507,37 @@ fn canonical_fixture_reproduces_all_tables_with_xml_citations_a_subset_of_ours()
     let corrections = Corrections::from_database(&ours).unwrap();
     assert!(corrections.entries.iter().any(|correction| correction.family.is_some() && correction.field == "name"));
     assert!(corrections.entries.iter().any(|correction| correction.selection.is_some() && correction.field == "name"));
-    for wiki in [WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap(), WikiOverrides::from_database(&ours).unwrap()]
-    {
-        let mut upstream = Connection::open_in_memory().unwrap();
-        let report = build::build_database(
-            &fixtures.join("DataFiles"),
-            &wiki,
-            &corrections,
-            &mut upstream,
-            &DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-06T00:00:00Z".into() },
-        )
-        .unwrap();
-        assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
-        let ordered_corrections = |mut corrections: Corrections| {
-            corrections.entries.sort_by_key(|correction| {
-                (
-                    correction.kind.as_str().to_string(),
-                    correction.name.clone(),
-                    correction.field.clone(),
-                    correction.qualifier(),
-                )
-            });
-            corrections
-        };
-        assert_eq!(
-            ordered_corrections(Corrections::from_database(&upstream).unwrap()),
-            ordered_corrections(corrections.clone())
-        );
-        let scratch = tempfile::tempdir().unwrap();
-        export_fixture_with_icons(&upstream, &fixtures.join("DataFiles"), scratch.path());
-        let mut normalized = Connection::open_in_memory().unwrap();
-        tree::build_from_data(scratch.path(), &mut normalized).unwrap();
-        assert_overlay_tables_match(&normalized, &ours);
-    }
+    let wiki = WikiOverrides::from_database(&ours).unwrap();
+    let mut upstream = Connection::open_in_memory().unwrap();
+    let report = build::build_database(
+        &fixtures.join("DataFiles"),
+        &wiki,
+        &corrections,
+        &mut upstream,
+        &DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-06T00:00:00Z".into() },
+    )
+    .unwrap();
+    assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
+    let ordered_corrections = |mut corrections: Corrections| {
+        corrections.entries.sort_by_key(|correction| {
+            (
+                correction.kind.as_str().to_string(),
+                correction.name.clone(),
+                correction.field.clone(),
+                correction.qualifier(),
+            )
+        });
+        corrections
+    };
+    assert_eq!(
+        ordered_corrections(Corrections::from_database(&upstream).unwrap()),
+        ordered_corrections(corrections.clone())
+    );
+    let scratch = tempfile::tempdir().unwrap();
+    export_fixture_with_icons(&upstream, &fixtures.join("DataFiles"), scratch.path());
+    let mut normalized = Connection::open_in_memory().unwrap();
+    tree::build_from_data(scratch.path(), &mut normalized).unwrap();
+    assert_overlay_tables_match(&normalized, &ours);
 }
 
 #[test]
@@ -670,7 +670,7 @@ fn xml_overlay_does_not_recreate_citations_owned_by_the_data_tree() {
     let mut db = Connection::open_in_memory().unwrap();
     build::build_database(
         &fixtures.join("DataFiles"),
-        &WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap(),
+        &WikiOverrides::from_database(&fixture::database(|_| {})).unwrap(),
         &Corrections::default(),
         &mut db,
         &DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-18T00:00:00Z".into() },
@@ -686,14 +686,7 @@ fn every_entity_preserves_citations_with_notes_through_the_data_tree() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let source = fixtures.join("DataFiles");
     let mut db = Connection::open_in_memory().unwrap();
-    build::build_database(
-        &source,
-        &WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap(),
-        &Corrections::from_dir(&fixtures.join("data-corrections")).unwrap(),
-        &mut db,
-        &DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() },
-    )
-    .unwrap();
+    tree::build_from_data(&fixtures.join("data"), &mut db).unwrap();
     let mut expected = Vec::new();
     for (table, merge) in ddo_etl::delta::TABLE_MERGES {
         if !matches!(merge, ddo_etl::delta::TableMerge::Entity { .. }) {
@@ -931,27 +924,26 @@ fn import_of_the_recorded_commit_changes_nothing() {
 
 #[test]
 fn import_supersedes_wiki_only_item_without_a_conflict() {
-    let wiki = WikiOverrides::from_toml_files(&[(
-        "items.toml",
+    let world = ImportWorld::new(Corrections::default());
+    let path = world.options.data_dir.join("packs/unsourced/gear/reviewed-trinket.toml");
+    std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+    std::fs::write(
+        &path,
         r#"
-[[item]]
 name = "Reviewed Trinket"
-page = "https://ddowiki.com/page/Item:Reviewed_Trinket"
-read = "2026-10-18"
+is_wiki_only = true
 slot = "Trinket"
-category = "Jewelry"
+item_category = "Jewelry"
 minimum_level = 1
 description = "Wiki description"
 drop_location = "Unknown"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Reviewed_Trinket"
+read = "2026-10-18"
 "#,
-    )])
+    )
     .unwrap();
-    let world = ImportWorld::with_wiki(Corrections::default(), wiki);
-    let path = world.options.data_dir.join("packs/unsourced/gear/reviewed-trinket.toml");
-    let mut document = std::fs::read_to_string(&path).unwrap();
-    document
-        .push_str("\n[[citation]]\nurl = \"https://ddowiki.com/page/Item:Reviewed_Trinket\"\nread = \"2026-10-18\"\n");
-    std::fs::write(&path, document).unwrap();
     let provenance = |db: &Connection| -> String {
         db.query_row("SELECT provenance FROM items WHERE name = 'Reviewed Trinket'", [], |row| row.get(0)).unwrap()
     };
@@ -1043,7 +1035,7 @@ fn import_twice_changes_nothing_the_second_time() {
 fn augment_family_rename_preserves_the_upstream_correction_name() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let source = fixtures.join("DataFiles");
-    let wiki = WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     let mut corrections = Corrections::from_dir(&fixtures.join("data-corrections")).unwrap();
     let version = DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() };
     let mut baseline = Connection::open_in_memory().unwrap();
@@ -1082,7 +1074,7 @@ read = "2026-10-18"
 fn selection_and_parent_renames_keep_the_upstream_parent_in_both_builders() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let source = fixtures.join("DataFiles");
-    let wiki = WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     let version = DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() };
     for parent_first in [true, false] {
         let mut corrections = Corrections::from_dir(&fixtures.join("data-corrections")).unwrap();
@@ -1162,7 +1154,7 @@ fn every_declared_enhancement_field_agrees_between_builders() {
     assert_eq!(declared, expected);
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let source = fixtures.join("DataFiles");
-    let wiki = WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
+    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     let baseline_corrections = Corrections::from_dir(&fixtures.join("data-corrections")).unwrap();
     let version = DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() };
     let mut baseline = Connection::open_in_memory().unwrap();

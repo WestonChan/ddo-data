@@ -292,16 +292,8 @@ mod tests {
         use std::sync::atomic::{AtomicUsize, Ordering};
         static QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
         let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-        let wiki = WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
         let mut db = Connection::open_in_memory().unwrap();
-        crate::build::build_database(
-            &fixtures.join("DataFiles"),
-            &wiki,
-            &Corrections::default(),
-            &mut db,
-            &DatasetVersion { upstream_sha: "fixture".to_string(), built_at: "2026-10-08T00:00:00Z".to_string() },
-        )
-        .unwrap();
+        build_from_data(&fixtures.join("data"), &mut db).unwrap();
         let root = std::env::temp_dir().join(format!("ddo-etl-export-scale-{}", std::process::id()));
         db.trace_v2(
             TraceEventCodes::SQLITE_TRACE_STMT,
@@ -411,14 +403,7 @@ mod tests {
     fn export_places_authored_packs_and_member_sets_together() {
         let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
         let mut db = Connection::open_in_memory().unwrap();
-        crate::build::build_database(
-            &fixtures.join("DataFiles"),
-            &WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap(),
-            &Corrections::default(),
-            &mut db,
-            &DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-14T00:00:00Z".into() },
-        )
-        .unwrap();
+        build_from_data(&fixtures.join("data"), &mut db).unwrap();
         let layout = super::ExportLayout::from_database(&db).unwrap();
         for (table, name, expected) in [
             ("vendors", "Morten Edgewright", "packs/free-to-play/vendors/morten-edgewright/vendor.toml"),
@@ -996,7 +981,9 @@ mod tests {
         std::fs::write(&corrected_item, altered_note).unwrap();
         let corrections = Corrections::from_data(&root).unwrap();
         let mut stale_database = Connection::open_in_memory().unwrap();
-        let wiki = WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap();
+        let mut ours = Connection::open_in_memory().unwrap();
+        build_from_data(&fixtures.join("data"), &mut ours).unwrap();
+        let wiki = WikiOverrides::from_database(&ours).unwrap();
         let stale_report = crate::build::build_database(
             &fixtures.join("DataFiles"),
             &wiki,

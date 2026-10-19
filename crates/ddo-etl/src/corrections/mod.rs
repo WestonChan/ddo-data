@@ -3,7 +3,7 @@ pub(crate) use fields::CorrectionFieldType;
 
 pub use fields::{correctable_fields, CorrectableField, FieldShape};
 
-use crate::wiki::is_iso_date;
+use crate::map::is_iso_date;
 use anyhow::{bail, ensure, Context, Result};
 use ddo_model::enums::CorrectionKind;
 use rusqlite::types::Value as SqlValue;

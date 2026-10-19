@@ -1,3 +1,5 @@
+mod fixture;
+
 use ddo_etl::build::build_database;
 use ddo_etl::corrections::Corrections;
 use ddo_etl::wiki::WikiOverrides;
@@ -16,7 +18,7 @@ fn built_fixture_db() -> Connection {
     let dataset_version = DatasetVersion { upstream_sha: "test".into(), built_at: "2026-09-21T00:00:00Z".into() };
     build_database(
         &data_files_fixture_dir(),
-        &WikiOverrides::from_dir(&data_files_fixture_dir().parent().unwrap().join("wiki")).unwrap(),
+        &WikiOverrides::from_database(&fixture::database(|_| {})).unwrap(),
         &Corrections::default(),
         &mut db,
         &dataset_version,

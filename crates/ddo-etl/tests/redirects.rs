@@ -280,19 +280,9 @@ fn redirect_file_round_trips_authored_rows_and_derives_owned_ingredients() {
 
 #[test]
 fn fixture_identity_kinds_match_the_entity_kind_declaration() {
+    let folder = tempfile::tempdir().unwrap();
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-    let mut db = Connection::open_in_memory().unwrap();
-    ddo_etl::build::build_database(
-        &fixtures.join("DataFiles"),
-        &ddo_etl::wiki::WikiOverrides::from_dir(&fixtures.join("wiki")).unwrap(),
-        &ddo_etl::corrections::Corrections::default(),
-        &mut db,
-        &ddo_model::DatasetVersion {
-            upstream_sha: "fixture".to_string(),
-            built_at: "2026-10-17T00:00:00Z".to_string(),
-        },
-    )
-    .unwrap();
+    let db = common::copy_fixture_data(&fixtures, &folder.path().join("data"));
     let actual: BTreeSet<String> = db
         .prepare("SELECT DISTINCT kind FROM entity_identity")
         .unwrap()

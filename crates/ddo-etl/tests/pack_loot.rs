@@ -1,3 +1,5 @@
+mod fixture;
+
 use ddo_etl::build::{build_database, BuildReport};
 use ddo_etl::corrections::Corrections;
 use ddo_etl::map::drop_location::names_store_purchase;
@@ -21,8 +23,18 @@ fn built_with(wiki: &WikiOverrides) -> (Connection, BuildReport) {
     (db, report)
 }
 
-fn built_with_files(files: &[(&str, &str)]) -> (Connection, BuildReport) {
-    built_with(&WikiOverrides::from_toml_files(files).unwrap())
+fn wiki_with_augment(name: &str, drop_line: &str, edit: impl FnOnce(&std::path::Path)) -> WikiOverrides {
+    let ours = fixture::database(|root| {
+        let path = root.join(format!("packs/shared/augments/named/{}.toml", ddo_etl::tree::slug(name)));
+        let description = format!("Test description.\nDrops in: {drop_line}");
+        std::fs::write(path, format!(
+            "name = {name:?}\nis_wiki_only = true\nfamily = \"Named\"\nmin_level = 20\ndescription = {description:?}\n[[slot]]\nslot = \"green\"\n"
+        )).unwrap();
+        edit(root);
+    });
+    let mut wiki = WikiOverrides::from_database(&ours).unwrap();
+    wiki.augments.retain(|augment| augment.name == name);
+    WikiOverrides { augments: wiki.augments, quests: wiki.quests, sagas: wiki.sagas, ..WikiOverrides::default() }
 }
 
 fn drop_rows(db: &Connection, loot_name: &str) -> Vec<String> {
@@ -52,17 +64,34 @@ fn links_an_item_whose_drop_text_names_a_pack_and_no_quest_to_the_pack() {
 
 #[test]
 fn gives_a_segment_to_the_pack_whose_longer_name_holds_a_quest_name() {
-    let quests_text = "# Test values, not read from ddowiki: a quest whose name lies inside the pack name Magic of Myth Drannor.\n\
-         [[quest]]\nname = \"Myth Drannor\"\npage = \"https://ddowiki.com/page/Myth_Drannor\"\nread = \"2026-10-02\"\n\
-         free_to_play = false\npack = \"Magic of Myth Drannor\"\nlevel = 30\nfavor = 0\nis_raid = false\ndifficulties = [\"normal\"]\n";
-    let (db, report) = built_with_files(&[("quests.toml", quests_text)]);
+    let ours = fixture::database(|root| {
+        let path = root.join("packs/magic-of-myth-drannor/quests/myth-drannor/quest.toml");
+        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+        std::fs::write(
+            path,
+            r#"
+name = "Myth Drannor"
+is_wiki_only = true
+pack = "Magic of Myth Drannor"
+favor = 0
+difficulties = ["normal"]
+[[run]]
+tier = "heroic"
+level = 30
+"#,
+        )
+        .unwrap();
+    });
+    let mut wiki = WikiOverrides::from_database(&ours).unwrap();
+    wiki.quests.retain(|quest| quest.name == "Myth Drannor");
+    let (db, report) = built_with(&WikiOverrides { quests: wiki.quests, ..WikiOverrides::default() });
     assert_eq!(drop_rows(&db, GOLDEN_AGE_CROSSBOW), ["adventure_pack Magic of Myth Drannor chest any end chest 1"]);
     assert_eq!(report.pack_loot_link_count, 1);
 }
 
 #[test]
 fn leaves_a_saga_end_reward_naming_a_pack_to_the_saga() {
-    let (db, _) = built_with(&WikiOverrides::from_dir(&fixtures_dir().join("wiki")).unwrap());
+    let (db, _) = built_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
     assert!(
         drop_rows(&db, "Band of Diani ir'Wynarn").iter().all(|row| !row.starts_with("adventure_pack")),
         "'Masterminds of Sharn saga: Epic end reward' names the pack Masterminds of Sharn too: {:?}",
@@ -72,11 +101,8 @@ fn leaves_a_saga_end_reward_naming_a_pack_to_the_saga() {
 
 #[test]
 fn links_an_augment_whose_drop_text_names_a_pack_to_the_pack() {
-    let augments_text = "# Test values, not read from ddowiki: an augment whose drop line names only a pack.\n\
-         [[augment]]\nname = \"Test Gem of Myth Drannor\"\npage = \"https://ddowiki.com/page/Item:Test_Gem_of_Myth_Drannor\"\n\
-         read = \"2026-10-02\"\nfamily = \"Named\"\nmin_level = 20\nslots = [\"green\"]\n\
-         description = \"Test description.\\nDrops in: Magic of Myth Drannor, any end chest\"\n";
-    let (db, report) = built_with_files(&[("augments.toml", augments_text)]);
+    let (db, report) =
+        built_with_augment_dropping_in("Test Gem of Myth Drannor", "Magic of Myth Drannor, any end chest");
     assert_eq!(
         drop_rows(&db, "Test Gem of Myth Drannor"),
         ["adventure_pack Magic of Myth Drannor chest any end chest 0"]
@@ -86,28 +112,14 @@ fn links_an_augment_whose_drop_text_names_a_pack_to_the_pack() {
 
 #[test]
 fn leaves_a_segment_naming_a_saga_reward_tier_unlinked_to_the_pack() {
-    let augments_text =
-        "# Test values, not read from ddowiki: an augment whose drop line is Maetrim's wording for a saga reward.\n\
-         [[augment]]\nname = \"Test Gem of the Saga\"\npage = \"https://ddowiki.com/page/Item:Test_Gem_of_the_Saga\"\n\
-         read = \"2026-10-02\"\nfamily = \"Named\"\nmin_level = 20\nslots = [\"green\"]\n\
-         description = \"Test description.\\nDrops in: Magic of Myth Drannor (Heroic), Elite and True Elite\"\n";
-    let (db, report) = built_with_files(&[("augments.toml", augments_text)]);
+    let (db, report) =
+        built_with_augment_dropping_in("Test Gem of the Saga", "Magic of Myth Drannor (Heroic), Elite and True Elite");
     assert!(drop_rows(&db, "Test Gem of the Saga").is_empty(), "True Elite is a saga's reward list");
     assert_eq!(report.pack_augment_loot_link_count, 0);
 }
 
 fn built_with_augment_dropping_in(augment_name: &str, drop_line: &str) -> (Connection, BuildReport) {
-    let augments_text = format!(
-        "# Test values, not read from ddowiki.\n[[augment]]\nname = \"{augment_name}\"\n\
-         page = \"https://ddowiki.com/page/Item:Test_Gem\"\nread = \"2026-10-02\"\nfamily = \"Named\"\n\
-         min_level = 20\nslots = [\"green\"]\ndescription = \"Test description.\\nDrops in: {drop_line}\"\n"
-    );
-    let wiki_files = [
-        ("augments.toml", augments_text.as_str()),
-        ("quests.toml", include_str!("fixtures/wiki/quests.toml")),
-        ("sagas.toml", include_str!("fixtures/wiki/sagas.toml")),
-    ];
-    built_with_files(&wiki_files)
+    built_with(&wiki_with_augment(augment_name, drop_line, |_| {}))
 }
 
 #[test]
@@ -142,31 +154,57 @@ fn recognises_a_store_purchase_as_no_drop() {
 
 #[test]
 fn leaves_a_saga_tier_after_a_saga_name_holding_a_pack_name_to_the_saga() {
-    let augments_text =
-        "# Test values, not read from ddowiki: a saga whose name holds a pack's, as a renamed pack's would.\n\
-         [[augment]]\nname = \"Test Gem of the Long Saga\"\npage = \"https://ddowiki.com/page/Item:Test_Gem\"\n\
-         read = \"2026-10-02\"\nfamily = \"Named\"\nmin_level = 20\nslots = [\"green\"]\n\
-         description = \"Test description.\\nDrops in: The Magic of Myth Drannor (Legendary), any difficulty\"\n";
-    let sagas_text = "# Test values, not read from ddowiki.\n[[saga]]\nname = \"The Magic of Myth Drannor\"\n\
-         page = \"https://ddowiki.com/page/The_Magic_of_Myth_Drannor\"\nread = \"2026-10-02\"\nquests = [\"Book Burning\"]\n";
-    let (db, report) = built_with_files(&[("augments.toml", augments_text), ("sagas.toml", sagas_text)]);
+    let wiki = wiki_with_augment(
+        "Test Gem of the Long Saga",
+        "The Magic of Myth Drannor (Legendary), any difficulty",
+        |root| {
+            let path = root.join("packs/shared/sagas/the-magic-of-myth-drannor.toml");
+            std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+            std::fs::write(
+                path,
+                r#"
+name = "The Magic of Myth Drannor"
+wiki_url = "https://ddowiki.com/page/The_Magic_of_Myth_Drannor"
+quests = ["Book Burning"]
+[[citation]]
+url = "https://ddowiki.com/page/The_Magic_of_Myth_Drannor"
+read = "2026-10-02"
+"#,
+            )
+            .unwrap();
+        },
+    );
+    let (db, report) = built_with(&wiki);
     assert!(drop_rows(&db, "Test Gem of the Long Saga").is_empty());
     assert_eq!(report.pack_augment_loot_link_count, 0);
 }
 
 #[test]
 fn links_a_wiki_item_whose_drop_text_names_a_pack_a_saga_shares_to_the_pack() {
-    let items_text =
-        "# A test item, not read from ddowiki, whose drop text names a pack a fixture saga shares a name with.\n\
-         [[item]]\nname = \"Test Ring of Sharn\"\npage = \"https://ddowiki.com/page/Item:Test_Ring_of_Sharn\"\n\
-         read = \"2026-10-02\"\nslot = \"Ring\"\ncategory = \"Jewelry\"\nminimum_level = 30\n\
-         drop_location = \"Masterminds of Sharn, any end chest, most optional chests\"\n";
-    let wiki_files = [
-        ("items_test.toml", items_text),
-        ("quests.toml", include_str!("fixtures/wiki/quests.toml")),
-        ("sagas.toml", include_str!("fixtures/wiki/sagas.toml")),
-    ];
-    let (db, report) = built_with_files(&wiki_files);
+    let ours = fixture::database(|root| {
+        let path = root.join("packs/unsourced/gear/test-ring-of-sharn.toml");
+        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+        std::fs::write(
+            path,
+            r#"
+name = "Test Ring of Sharn"
+is_wiki_only = true
+slot = "Ring"
+item_category = "Jewelry"
+minimum_level = 30
+drop_location = "Masterminds of Sharn, any end chest, most optional chests"
+"#,
+        )
+        .unwrap();
+    });
+    let mut wiki = WikiOverrides::from_database(&ours).unwrap();
+    wiki.items.retain(|item| item.name == "Test Ring of Sharn");
+    let (db, report) = built_with(&WikiOverrides {
+        items: wiki.items,
+        quests: wiki.quests,
+        sagas: wiki.sagas,
+        ..WikiOverrides::default()
+    });
     assert_eq!(
         drop_rows(&db, "Test Ring of Sharn"),
         ["adventure_pack Masterminds of Sharn chest any end chest, most optional chests 0"],

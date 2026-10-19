@@ -1,3 +1,5 @@
+mod fixture;
+
 use ddo_etl::build::{build_database, BuildReport};
 use ddo_etl::corrections::Corrections;
 use ddo_etl::diff::item_coverage;
@@ -19,7 +21,7 @@ fn built_fixture_db() -> (Connection, BuildReport) {
     let mut db = Connection::open_in_memory().unwrap();
     let report = build_database(
         &data_files_fixture_dir(),
-        &WikiOverrides::from_dir(&data_files_fixture_dir().parent().unwrap().join("wiki")).unwrap(),
+        &WikiOverrides::from_database(&fixture::database(|_| {})).unwrap(),
         &Corrections::default(),
         &mut db,
         &fixture_dataset_version(),

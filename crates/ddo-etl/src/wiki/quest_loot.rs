@@ -1,32 +1,22 @@
-use anyhow::{bail, Result};
 use ddo_model::enums::LootType;
-use serde::Deserialize;
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct QuestLoot {
     pub name: String,
-    #[serde(default)]
     pub rare: Vec<RareDrop>,
-    #[serde(default)]
     pub rare_augments: Vec<RareDrop>,
-    #[serde(default)]
     pub items: Vec<ListedDrop>,
-    #[serde(default)]
     pub augments: Vec<ListedDrop>,
-    #[serde(skip)]
     pub file_name: String,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
-#[serde(untagged)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum RareDrop {
     Named(String),
     InChest(RareDropInChest),
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct RareDropInChest {
     pub name: String,
     pub chest: String,
@@ -48,20 +38,17 @@ impl RareDrop {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
-#[serde(untagged)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ListedDrop {
     Named(String),
     Described(DescribedListedDrop),
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DescribedListedDrop {
     pub name: String,
     pub loot_type: Option<String>,
     pub chest: Option<String>,
-    #[serde(default)]
     pub replaces_pack_drop: bool,
 }
 
@@ -99,32 +86,5 @@ impl ListedDrop {
             Self::Named(_) => None,
             Self::Described(drop) => drop.loot_type.as_deref(),
         }
-    }
-}
-
-impl QuestLoot {
-    pub(super) fn validate(&self) -> Result<()> {
-        for listed_drop in self.items.iter().chain(&self.augments) {
-            if let Some(loot_type_name) = listed_drop.loot_type_name() {
-                if LootType::ALL.iter().all(|l| l.as_str() != loot_type_name) {
-                    let loot_type_names: Vec<&str> = LootType::ALL.iter().map(|l| l.as_str()).collect();
-                    bail!(
-                        "listed drop {:?}: loot_type {loot_type_name:?} must be one of {}",
-                        listed_drop.name(),
-                        loot_type_names.join(", ")
-                    );
-                }
-            }
-            if listed_drop.loot_type() == LootType::Reward && listed_drop.chest().is_some() {
-                bail!(
-                    "listed drop {:?}: a reward comes from the quest's end, not from a chest; remove its chest",
-                    listed_drop.name()
-                );
-            }
-            if listed_drop.replaces_pack_drop() && listed_drop.chest().is_none() {
-                bail!("listed drop {:?}: replaces_pack_drop needs the pack chest it replaces", listed_drop.name());
-            }
-        }
-        Ok(())
     }
 }
