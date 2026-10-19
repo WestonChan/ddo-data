@@ -31,13 +31,7 @@ pub(super) fn file_schema(kind: &str) -> &'static serde_json::Value {
             .map(|(file_name, json)| (file_name, serde_json::from_str(&json).expect("generated schema is JSON")))
             .collect()
     });
-    let mut file_name = String::new();
-    for (index, letter) in kind.chars().enumerate() {
-        if letter.is_uppercase() && index > 0 {
-            file_name.push('-');
-        }
-        file_name.extend(letter.to_lowercase());
-    }
+    let mut file_name = kebab_case(kind);
     file_name.push_str(".schema.json");
     schemas.get(&file_name).expect("every file kind has a generated schema")
 }
@@ -212,48 +206,105 @@ pub(crate) fn file_kind(root: &Path, path: &Path) -> Result<&'static str> {
     Ok(kind)
 }
 
-#[derive(Debug)]
-pub(crate) enum SourceFile {
-    Augment(AugmentFile),
-    AugmentSlotTypes(AugmentSlotTypesFile),
-    BonusTypes(BonusTypesFile),
-    Class(ClassFile),
-    Clickies(ClickiesFile),
-    CraftingSystem(CraftingSystemFile),
-    DamageTypes(DamageTypesFile),
-    Effect(EffectFile),
-    EffectTier(EffectTierFile),
-    EnhancementTree(EnhancementTreeFile),
-    EquipmentSlots(EquipmentSlotsFile),
-    Event(EventFile),
-    Exceptions(ExceptionsFile),
-    ExcludedItems(ExcludedItemsFile),
-    Redirects(RedirectsFile),
-    FeatCategory(FeatCategoryFile),
-    FiligreeSet(FiligreeSetFile),
-    StatGroup(StatGroupFile),
-    GuildBuffs(GuildBuffsFile),
-    Item(ItemFile),
-    ItemMaterials(ItemMaterialsFile),
-    OptionalBuffs(OptionalBuffsFile),
-    Pack(PackFile),
-    Patron(PatronFile),
-    Quest(QuestFile),
-    QuestChain(QuestSeriesFile),
-    Race(RaceFile),
-    Saga(QuestSeriesFile),
-    SentientGem(SentientGemFile),
-    SourceAliases(SourceAliasesFile),
-    Set(SetFile),
-    SpellList(SpellListFile),
-    Stances(StancesFile),
-    Stat(StatFile),
-    Triggers(TriggersFile),
-    UpstreamCommit(UpstreamCommitFile),
-    Vendor(VendorFile),
-    VendorCurrencies(VendorCurrenciesFile),
-    WeaponProficiencies(WeaponProficienciesFile),
-    WeaponTypes(WeaponTypesFile),
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Placement {
+    Entity(&'static str),
+    Rows(&'static str),
+    Dataset,
+}
+
+fn kebab_case(name: &str) -> String {
+    let mut kebab = String::new();
+    for (index, letter) in name.chars().enumerate() {
+        if letter.is_uppercase() && index > 0 {
+            kebab.push('-');
+        }
+        kebab.extend(letter.to_lowercase());
+    }
+    kebab
+}
+
+macro_rules! declare_file_kinds {
+    ($($variant:ident($file:ty) => $placement:expr,)+) => {
+        #[derive(Debug)]
+        pub(crate) enum SourceFile {
+            $($variant($file),)+
+        }
+
+        fn read_typed_file(kind: &str, document: toml::Value) -> Result<SourceFile> {
+            match kind {
+                $(stringify!($variant) => Ok(SourceFile::$variant(document.try_into()?)),)+
+                _ => anyhow::bail!("unknown data file kind {kind}"),
+            }
+        }
+
+        impl SourceFile {
+            #[cfg(test)]
+            pub(crate) fn as_value(&self) -> Result<toml::Value> {
+                match self {
+                    $(Self::$variant(file) => toml::Value::try_from(file).map_err(Into::into),)+
+                }
+            }
+        }
+
+        pub fn schema_files() -> Result<BTreeMap<String, String>> {
+            let schemas = [$((stringify!($variant), serde_json::to_value(schema_for!($file))?),)+];
+            schemas
+                .into_iter()
+                .map(|(variant, schema)| {
+                    Ok((
+                        format!("{}.schema.json", kebab_case(variant)),
+                        format!("{}\n", serde_json::to_string_pretty(&schema)?),
+                    ))
+                })
+                .collect()
+        }
+
+        pub const FILE_KINDS: &[(&str, Placement)] = &[$((stringify!($variant), $placement),)+];
+    };
+}
+
+declare_file_kinds! {
+    Augment(AugmentFile) => Placement::Entity("packs/shared/augments/named/{slug}.toml"),
+    AugmentSlotTypes(AugmentSlotTypesFile) => Placement::Rows("effects/augment-slot-types.toml"),
+    BonusTypes(BonusTypesFile) => Placement::Rows("effects/bonus-types.toml"),
+    Class(ClassFile) => Placement::Entity("characters/classes/{slug}.toml"),
+    Clickies(ClickiesFile) => Placement::Rows("effects/clickies.toml"),
+    CraftingSystem(CraftingSystemFile) => Placement::Entity("packs/shared/crafting/{slug}/crafting.toml"),
+    DamageTypes(DamageTypesFile) => Placement::Rows("effects/damage-types.toml"),
+    Effect(EffectFile) => Placement::Entity("effects/{slug}.toml"),
+    EffectTier(EffectTierFile) => Placement::Entity("effects/tiers/{slug}.toml"),
+    EnhancementTree(EnhancementTreeFile) => Placement::Entity("characters/enhancements/{slug}/tree.toml"),
+    EquipmentSlots(EquipmentSlotsFile) => Placement::Rows("effects/equipment-slots.toml"),
+    Event(EventFile) => Placement::Entity("packs/shared/events/{slug}/event.toml"),
+    Exceptions(ExceptionsFile) => Placement::Dataset,
+    ExcludedItems(ExcludedItemsFile) => Placement::Dataset,
+    FeatCategory(FeatCategoryFile) => Placement::Entity("characters/feats/{slug}.toml"),
+    FiligreeSet(FiligreeSetFile) => Placement::Entity("packs/shared/filigrees/{slug}.toml"),
+    StatGroup(StatGroupFile) => Placement::Entity("effects/stat-groups/{slug}.toml"),
+    GuildBuffs(GuildBuffsFile) => Placement::Rows("characters/guild-buffs.toml"),
+    Item(ItemFile) => Placement::Entity("packs/shared/gear/{slug}.toml"),
+    ItemMaterials(ItemMaterialsFile) => Placement::Rows("effects/item-materials.toml"),
+    OptionalBuffs(OptionalBuffsFile) => Placement::Rows("characters/optional-buffs.toml"),
+    Pack(PackFile) => Placement::Entity("packs/{slug}/pack.toml"),
+    Patron(PatronFile) => Placement::Entity("packs/shared/patrons/{slug}.toml"),
+    Quest(QuestFile) => Placement::Entity("packs/free-to-play/quests/{slug}/quest.toml"),
+    QuestChain(QuestSeriesFile) => Placement::Entity("packs/free-to-play/chains/{slug}.toml"),
+    Race(RaceFile) => Placement::Entity("characters/races/{slug}.toml"),
+    Redirects(RedirectsFile) => Placement::Dataset,
+    Saga(QuestSeriesFile) => Placement::Entity("packs/free-to-play/sagas/{slug}.toml"),
+    SentientGem(SentientGemFile) => Placement::Entity("packs/shared/sentient-gems/{slug}.toml"),
+    SourceAliases(SourceAliasesFile) => Placement::Dataset,
+    Set(SetFile) => Placement::Entity("packs/shared/sets/{slug}.toml"),
+    SpellList(SpellListFile) => Placement::Entity("characters/spells/{slug}.toml"),
+    Stances(StancesFile) => Placement::Rows("characters/stances.toml"),
+    Stat(StatFile) => Placement::Entity("effects/stats/{slug}.toml"),
+    Triggers(TriggersFile) => Placement::Rows("effects/triggers.toml"),
+    UpstreamCommit(super::UpstreamCommitFile) => Placement::Dataset,
+    Vendor(VendorFile) => Placement::Entity("packs/shared/vendors/{slug}/vendor.toml"),
+    VendorCurrencies(VendorCurrenciesFile) => Placement::Rows("packs/shared/vendors/currencies.toml"),
+    WeaponProficiencies(WeaponProficienciesFile) => Placement::Rows("effects/weapon-proficiencies.toml"),
+    WeaponTypes(WeaponTypesFile) => Placement::Rows("effects/weapon-types.toml"),
 }
 
 impl SourceFile {
@@ -312,52 +363,6 @@ impl SourceFile {
         }
         icons
     }
-
-    #[cfg(test)]
-    pub(crate) fn as_value(&self) -> Result<toml::Value> {
-        match self {
-            Self::Augment(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::AugmentSlotTypes(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::BonusTypes(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Class(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Clickies(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::CraftingSystem(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::DamageTypes(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Effect(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::EffectTier(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::EnhancementTree(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::EquipmentSlots(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Event(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Exceptions(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Redirects(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::ExcludedItems(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::FeatCategory(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::FiligreeSet(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::StatGroup(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::GuildBuffs(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Item(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::ItemMaterials(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::OptionalBuffs(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Pack(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Patron(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Quest(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::QuestChain(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Race(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Saga(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::SentientGem(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::SourceAliases(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Set(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::SpellList(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Stances(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Stat(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Triggers(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::UpstreamCommit(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::VendorCurrencies(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::Vendor(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::WeaponProficiencies(file) => toml::Value::try_from(file).map_err(Into::into),
-            Self::WeaponTypes(file) => toml::Value::try_from(file).map_err(Into::into),
-        }
-    }
 }
 
 pub(crate) fn read_file(root: &Path, path: &Path, contents: &str) -> Result<SourceFile> {
@@ -388,105 +393,12 @@ pub(crate) fn read_file(root: &Path, path: &Path, contents: &str) -> Result<Sour
     let mut field_errors = Vec::new();
     collect_field_errors(schema, schema, &document, "", &mut field_errors);
     ensure!(field_errors.is_empty(), "{}: {kind} has invalid fields: {}", path.display(), field_errors.join(", "));
-    Ok(match kind {
-        "Augment" => SourceFile::Augment(document.try_into()?),
-        "AugmentSlotTypes" => SourceFile::AugmentSlotTypes(document.try_into()?),
-        "BonusTypes" => SourceFile::BonusTypes(document.try_into()?),
-        "Class" => SourceFile::Class(document.try_into()?),
-        "Clickies" => SourceFile::Clickies(document.try_into()?),
-        "CraftingSystem" => SourceFile::CraftingSystem(document.try_into()?),
-        "DamageTypes" => SourceFile::DamageTypes(document.try_into()?),
-        "Effect" => SourceFile::Effect(document.try_into()?),
-        "EffectTier" => SourceFile::EffectTier(document.try_into()?),
-        "EnhancementTree" => SourceFile::EnhancementTree(document.try_into()?),
-        "EquipmentSlots" => SourceFile::EquipmentSlots(document.try_into()?),
-        "Event" => SourceFile::Event(document.try_into()?),
-        "Exceptions" => SourceFile::Exceptions(document.try_into()?),
-        "Redirects" => SourceFile::Redirects(document.try_into()?),
-        "ExcludedItems" => SourceFile::ExcludedItems(document.try_into()?),
-        "FeatCategory" => SourceFile::FeatCategory(document.try_into()?),
-        "FiligreeSet" => SourceFile::FiligreeSet(document.try_into()?),
-        "StatGroup" => SourceFile::StatGroup(document.try_into()?),
-        "GuildBuffs" => SourceFile::GuildBuffs(document.try_into()?),
-        "Item" => SourceFile::Item(document.try_into()?),
-        "ItemMaterials" => SourceFile::ItemMaterials(document.try_into()?),
-        "OptionalBuffs" => SourceFile::OptionalBuffs(document.try_into()?),
-        "Pack" => {
-            let file: PackFile = document.try_into()?;
-            let folder = super::pack_folder_name(&super::slug(&file.name), file.update.as_deref())?;
-            super::build::validate_entity_file_name(path, &folder, true, None)?;
-            SourceFile::Pack(file)
-        }
-        "Patron" => SourceFile::Patron(document.try_into()?),
-        "Quest" => SourceFile::Quest(document.try_into()?),
-        "QuestChain" => SourceFile::QuestChain(document.try_into()?),
-        "Race" => SourceFile::Race(document.try_into()?),
-        "Saga" => SourceFile::Saga(document.try_into()?),
-        "SentientGem" => SourceFile::SentientGem(document.try_into()?),
-        "SourceAliases" => SourceFile::SourceAliases(document.try_into()?),
-        "Set" => SourceFile::Set(document.try_into()?),
-        "SpellList" => SourceFile::SpellList(document.try_into()?),
-        "Stances" => SourceFile::Stances(document.try_into()?),
-        "Stat" => SourceFile::Stat(document.try_into()?),
-        "Triggers" => SourceFile::Triggers(document.try_into()?),
-        "UpstreamCommit" => SourceFile::UpstreamCommit(document.try_into()?),
-        "VendorCurrencies" => SourceFile::VendorCurrencies(document.try_into()?),
-        "Vendor" => SourceFile::Vendor(document.try_into()?),
-        "WeaponProficiencies" => SourceFile::WeaponProficiencies(document.try_into()?),
-        "WeaponTypes" => SourceFile::WeaponTypes(document.try_into()?),
-        _ => anyhow::bail!("{}: unknown data file kind {kind}", path.display()),
-    })
-}
-
-pub fn schema_files() -> Result<BTreeMap<String, String>> {
-    let schemas = [
-        ("augment", serde_json::to_value(schema_for!(AugmentFile))?),
-        ("augment-slot-types", serde_json::to_value(schema_for!(AugmentSlotTypesFile))?),
-        ("bonus-types", serde_json::to_value(schema_for!(BonusTypesFile))?),
-        ("class", serde_json::to_value(schema_for!(ClassFile))?),
-        ("clickies", serde_json::to_value(schema_for!(ClickiesFile))?),
-        ("crafting-system", serde_json::to_value(schema_for!(CraftingSystemFile))?),
-        ("damage-types", serde_json::to_value(schema_for!(DamageTypesFile))?),
-        ("effect", serde_json::to_value(schema_for!(EffectFile))?),
-        ("effect-tier", serde_json::to_value(schema_for!(EffectTierFile))?),
-        ("enhancement-tree", serde_json::to_value(schema_for!(EnhancementTreeFile))?),
-        ("equipment-slots", serde_json::to_value(schema_for!(EquipmentSlotsFile))?),
-        ("event", serde_json::to_value(schema_for!(EventFile))?),
-        ("exceptions", serde_json::to_value(schema_for!(ExceptionsFile))?),
-        ("redirects", serde_json::to_value(schema_for!(RedirectsFile))?),
-        ("excluded-items", serde_json::to_value(schema_for!(ExcludedItemsFile))?),
-        ("feat-category", serde_json::to_value(schema_for!(FeatCategoryFile))?),
-        ("filigree-set", serde_json::to_value(schema_for!(FiligreeSetFile))?),
-        ("stat-group", serde_json::to_value(schema_for!(StatGroupFile))?),
-        ("guild-buffs", serde_json::to_value(schema_for!(GuildBuffsFile))?),
-        ("item", serde_json::to_value(schema_for!(ItemFile))?),
-        ("item-materials", serde_json::to_value(schema_for!(ItemMaterialsFile))?),
-        ("optional-buffs", serde_json::to_value(schema_for!(OptionalBuffsFile))?),
-        ("pack", serde_json::to_value(schema_for!(PackFile))?),
-        ("patron", serde_json::to_value(schema_for!(PatronFile))?),
-        ("quest", serde_json::to_value(schema_for!(QuestFile))?),
-        ("quest-chain", serde_json::to_value(schema_for!(QuestSeriesFile))?),
-        ("race", serde_json::to_value(schema_for!(RaceFile))?),
-        ("saga", serde_json::to_value(schema_for!(QuestSeriesFile))?),
-        ("sentient-gem", serde_json::to_value(schema_for!(SentientGemFile))?),
-        ("source-aliases", serde_json::to_value(schema_for!(SourceAliasesFile))?),
-        ("set", serde_json::to_value(schema_for!(SetFile))?),
-        ("spell-list", serde_json::to_value(schema_for!(SpellListFile))?),
-        ("stances", serde_json::to_value(schema_for!(StancesFile))?),
-        ("stat", serde_json::to_value(schema_for!(StatFile))?),
-        ("triggers", serde_json::to_value(schema_for!(TriggersFile))?),
-        ("upstream-commit", serde_json::to_value(schema_for!(super::UpstreamCommitFile))?),
-        ("vendor", serde_json::to_value(schema_for!(VendorFile))?),
-        ("vendor-currencies", serde_json::to_value(schema_for!(VendorCurrenciesFile))?),
-        ("weapon-proficiencies", serde_json::to_value(schema_for!(WeaponProficienciesFile))?),
-        ("weapon-types", serde_json::to_value(schema_for!(WeaponTypesFile))?),
-    ];
-    schemas
-        .into_iter()
-        .map(|(name, schema)| {
-            Ok((format!("{name}.schema.json"), format!("{}\n", serde_json::to_string_pretty(&schema)?)))
-        })
-        .collect()
+    let source = read_typed_file(kind, document)?;
+    if let SourceFile::Pack(file) = &source {
+        let folder = super::pack_folder_name(&super::slug(&file.name), file.update.as_deref())?;
+        super::build::validate_entity_file_name(path, &folder, true, None)?;
+    }
+    Ok(source)
 }
 
 pub fn validate_taplo_config(workspace_root: &Path) -> Result<()> {
@@ -554,6 +466,19 @@ fn taplo_path_matches(pattern: &str, relative: &str) -> bool {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn every_placement_maps_back_to_its_own_kind() {
+        let root = std::path::Path::new("data");
+        for (kind, placement) in super::FILE_KINDS {
+            let relative = match placement {
+                super::Placement::Entity(pattern) => pattern.replace("{slug}", "example-entity"),
+                super::Placement::Rows(path) => (*path).to_string(),
+                super::Placement::Dataset => continue,
+            };
+            assert_eq!(super::file_kind(root, &root.join(&relative)).unwrap(), *kind, "{relative}");
+        }
+    }
+
     #[test]
     fn named_effects_live_at_the_effects_root() {
         let root = std::path::Path::new("data");
