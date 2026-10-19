@@ -1,5 +1,5 @@
 use crate::database_tables::table_columns;
-use crate::delta::{is_rebuilt_column, TableMerge, TABLE_MERGES};
+use crate::delta::{is_ours_only_column, is_rebuilt_column, TableMerge, TABLE_MERGES};
 use anyhow::Result;
 use rusqlite::{params_from_iter, types::Value as SqlValue, Connection};
 use std::collections::BTreeMap;
@@ -64,7 +64,7 @@ fn load_reference_target(his: &Connection, ours: &Connection, table: &str) -> Re
     }))
 }
 
-pub fn fill_blank_cells_from_ours(his: &Connection, ours: &Connection) -> Result<Vec<FilledCell>> {
+pub fn fill_cells_from_ours(his: &Connection, ours: &Connection) -> Result<Vec<FilledCell>> {
     let mut filled = Vec::new();
     let mut reference_targets: BTreeMap<String, Option<ReferenceTarget>> = BTreeMap::new();
     for (table, rule) in TABLE_MERGES {
@@ -92,6 +92,12 @@ pub fn fill_blank_cells_from_ours(his: &Connection, ours: &Connection) -> Result
             let Some((his_id, his_values)) = his_rows.get(slug) else { continue };
             let mut assignments = Vec::new();
             for ((column, our_value), his_value) in fillable.iter().zip(our_values).zip(his_values) {
+                if is_ours_only_column(table, column) {
+                    if our_value != his_value {
+                        assignments.push((*column, our_value.clone()));
+                    }
+                    continue;
+                }
                 if !is_blank(his_value) || is_blank(our_value) {
                     continue;
                 }

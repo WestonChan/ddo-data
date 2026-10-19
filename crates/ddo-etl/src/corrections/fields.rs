@@ -82,9 +82,6 @@ const EFFECT_DAMAGE_OPERATIONS: &[CorrectableField] =
 
 const ITEM_SOCKET_OPERATIONS: &[CorrectableField] = &[field("add", FieldShape::SocketAddition, false)];
 
-pub(super) const WIKI_QUEST_FIELDS: &[&str] =
-    &["is_free_to_play", "legendary_level", "zone", "bestowed_by", "flagging"];
-
 pub fn correctable_fields(kind: CorrectionKind) -> &'static [CorrectableField] {
     static FIELDS: std::sync::LazyLock<std::collections::HashMap<CorrectionKind, Vec<CorrectableField>>> =
         std::sync::LazyLock::new(|| {

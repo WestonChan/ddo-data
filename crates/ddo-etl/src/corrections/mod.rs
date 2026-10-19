@@ -252,7 +252,7 @@ impl Correction {
         };
         fields.iter().find(|field| field.name == self.field).with_context(|| {
             let allowed_fields: Vec<&str> = fields.iter().map(|field| field.name).collect();
-            if self.kind == CorrectionKind::Quest && fields::WIKI_QUEST_FIELDS.contains(&self.field.as_str()) {
+            if self.kind == CorrectionKind::Quest && crate::delta::is_ours_only_column("quests", &self.field) {
                 format!(
                     "field {:?} is a wiki fact kept in the quest's data file, not one of Maetrim's; correct it there. A quest correction takes {}",
                     self.field,

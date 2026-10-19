@@ -10,8 +10,10 @@ pub use merge::{
     merge_delta_into, AbsentChange, AppliedCounts, Conflict, ConflictSubject, DeclinedRemoval, DeletedEntity,
     MergeOutcome, RemovalDeclineReason,
 };
-pub(crate) use table_merges::is_rebuilt_column;
-pub use table_merges::{table_merge, TableMerge, REBUILT_COLUMNS, TABLE_MERGES, UNPOPULATED_COLUMNS};
+pub(crate) use table_merges::{is_ours_only_column, is_rebuilt_column};
+pub use table_merges::{
+    table_merge, TableMerge, OURS_ONLY_COLUMNS, REBUILT_COLUMNS, TABLE_MERGES, UNPOPULATED_COLUMNS,
+};
 
 #[cfg(test)]
 mod tests;

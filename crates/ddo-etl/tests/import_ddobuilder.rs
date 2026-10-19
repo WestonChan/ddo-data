@@ -192,9 +192,6 @@ fn assert_overlay_tables_match(normalized: &Connection, ours: &Connection) {
         );
         false
     });
-    if let Some(quests) = delta.entities.get_mut("quests") {
-        quests.changed.retain(|change| change.column != "is_free_to_play");
-    }
     delta
         .entities
         .retain(|_, changes| !(changes.added.is_empty() && changes.removed.is_empty() && changes.changed.is_empty()));
@@ -212,9 +209,7 @@ fn assert_overlay_tables_match(normalized: &Connection, ours: &Connection) {
                     row.into_iter()
                         .zip(&columns)
                         .filter_map(|(value, column)| {
-                            (column != "built_at"
-                                && !(table == "schema_version" && column == "applied_at")
-                                && !(table == "quests" && column == "is_free_to_play"))
+                            (column != "built_at" && !(table == "schema_version" && column == "applied_at"))
                                 .then_some(value)
                         })
                         .collect::<Vec<_>>()
@@ -626,7 +621,7 @@ fn overlay_references_follow_only_renames_active_in_each_xml_build() {
         let pack: String = built.query_row("SELECT p.name FROM sagas s JOIN adventure_packs p ON p.id=s.pack_id WHERE s.name='Masterminds of Sharn'", [], |row| row.get(0)).unwrap();
         assert_eq!(pack, "Reviewed Masterminds of Sharn", "{state}");
         if !adopted {
-            ddo_etl::import_ddobuilder::fill_blank_cells_from_ours(&built, &ours).unwrap();
+            ddo_etl::import_ddobuilder::fill_cells_from_ours(&built, &ours).unwrap();
             let export = scratch.path().join(format!("{state}-data"));
             export_fixture_with_icons(&built, &source, &export);
             let mut normalized = Connection::open_in_memory().unwrap();
@@ -683,7 +678,7 @@ fn canonical_fixture_reproduces_all_tables_with_xml_citations_a_subset_of_ours()
         ordered_corrections(Corrections::from_database(&upstream).unwrap()),
         ordered_corrections(corrections.clone())
     );
-    ddo_etl::import_ddobuilder::fill_blank_cells_from_ours(&upstream, &ours).unwrap();
+    ddo_etl::import_ddobuilder::fill_cells_from_ours(&upstream, &ours).unwrap();
     let scratch = tempfile::tempdir().unwrap();
     export_fixture_with_icons(&upstream, &fixtures.join("DataFiles"), scratch.path());
     let mut normalized = Connection::open_in_memory().unwrap();
@@ -1703,25 +1698,60 @@ fn his_added_description_applies_where_ours_had_filled_a_blank() {
     assert!(draconic_description(&world).unwrap().contains("does 3 additional point(s)"));
 }
 
+fn remove_quest(xml_root: &Path, quest: &str) {
+    let path = xml_root.join("Quests.xml");
+    let xml = std::fs::read_to_string(&path).unwrap();
+    let name = xml.find(&format!("<Name>{quest}</Name>")).unwrap();
+    let start = xml[..name].rfind("<Quest>").unwrap();
+    let end = name + xml[name..].find("</Quest>").unwrap() + "</Quest>".len();
+    std::fs::write(path, format!("{}{}", &xml[..start], &xml[end..])).unwrap();
+}
+
 #[test]
-fn quest_facts_are_kept_across_an_import() {
+fn a_quest_he_adds_that_we_already_hold_keeps_the_facts_only_we_carry() {
     let world = ImportWorld::new(Corrections::default());
-    let quest: String =
-        world.database().query_row("SELECT name FROM quests ORDER BY id LIMIT 1", [], |row| row.get(0)).unwrap();
+    let quest = "A Long Way to Mushrooms";
+    remove_quest(&world.options.previous_dir, quest);
     world.edit(&format!(
-        "UPDATE quests SET zone = 'Our zone', legendary_level = 31, flagging = 'Our flagging' WHERE name = '{}'",
-        quest.replace('\'', "''")
+        "UPDATE quests SET is_free_to_play = 1, legendary_level = 31, zone = 'Our zone', bestowed_by = 'Our giver', flagging = 'Our flagging' WHERE name = '{quest}'"
     ));
     let report = import_ddobuilder(&world.options).unwrap();
     assert!(!report.has_conflicts(), "{report}");
     assert!(!report.to_string().contains("BLANKED UPSTREAM"), "{report}");
-    let facts: (Option<String>, Option<i64>, Option<String>) = world
+    let facts: (i64, Option<i64>, Option<String>, Option<String>, Option<String>) = world
         .database()
-        .query_row("SELECT zone, legendary_level, flagging FROM quests WHERE name = ?1", [&quest], |row| {
-            Ok((row.get(0)?, row.get(1)?, row.get(2)?))
-        })
+        .query_row(
+            "SELECT is_free_to_play, legendary_level, zone, bestowed_by, flagging FROM quests WHERE name = ?1",
+            [quest],
+            |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?, row.get(4)?)),
+        )
         .unwrap();
-    assert_eq!(facts, (Some("Our zone".into()), Some(31), Some("Our flagging".into())));
+    assert_eq!(facts, (1, Some(31), Some("Our zone".into()), Some("Our giver".into()), Some("Our flagging".into())));
+}
+
+#[test]
+fn his_xml_never_carries_a_column_declared_ours_only() {
+    let mut his = Connection::open_in_memory().unwrap();
+    build::build_database(
+        &Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles"),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut his,
+        &DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() },
+    )
+    .unwrap();
+    for (table, column) in ddo_etl::delta::OURS_ONLY_COLUMNS {
+        let rows: i64 = his.query_row(&format!("SELECT COUNT(*) FROM \"{table}\""), [], |row| row.get(0)).unwrap();
+        let carried: i64 = his
+            .query_row(
+                &format!("SELECT COUNT(*) FROM \"{table}\" WHERE \"{column}\" IS NOT NULL AND \"{column}\" <> 0"),
+                [],
+                |row| row.get(0),
+            )
+            .unwrap();
+        assert!(rows > 0, "{table}");
+        assert_eq!(carried, 0, "{table}.{column} is filled by his XML build");
+    }
 }
 
 #[test]

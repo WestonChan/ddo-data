@@ -153,6 +153,14 @@ pub const REBUILT_COLUMNS: &[(&str, &str)] = &[
     ("vendor_offers", "source_match"),
 ];
 
+pub const OURS_ONLY_COLUMNS: &[(&str, &str)] = &[
+    ("quests", "is_free_to_play"),
+    ("quests", "legendary_level"),
+    ("quests", "zone"),
+    ("quests", "bestowed_by"),
+    ("quests", "flagging"),
+];
+
 pub const UNPOPULATED_COLUMNS: &[(&str, &str)] = &[
     ("effects", "default_value2"),
     ("effects", "wiki_url"),
@@ -166,6 +174,10 @@ pub fn table_merge(table: &str) -> Option<&'static TableMerge> {
 
 pub(crate) fn is_rebuilt_column(table: &str, column: &str) -> bool {
     REBUILT_COLUMNS.contains(&(table, column))
+}
+
+pub(crate) fn is_ours_only_column(table: &str, column: &str) -> bool {
+    OURS_ONLY_COLUMNS.contains(&(table, column))
 }
 
 pub(crate) fn position_column(table: &str) -> Option<&'static str> {

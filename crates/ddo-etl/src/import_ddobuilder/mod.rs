@@ -4,7 +4,7 @@ mod corrections;
 mod icons;
 mod report;
 
-pub use blanks::{fill_blank_cells_from_ours, FilledCell};
+pub use blanks::{fill_cells_from_ours, FilledCell};
 pub use report::{DdobuilderImportReport, ImportReportEntry, ImportTableCounts};
 
 use crate::corrections::Corrections;
@@ -112,8 +112,8 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
             .context("building the previous DataFiles")?;
     let new = corrections::build_database_matching_his_values(&options.source_dir, &wiki, &corrections, &new_version)
         .context("building the new DataFiles")?;
-    let previous_filled = blanks::fill_blank_cells_from_ours(&previous.db, &ours)?;
-    let new_filled = blanks::fill_blank_cells_from_ours(&new.db, &ours)?;
+    let previous_filled = blanks::fill_cells_from_ours(&previous.db, &ours)?;
+    let new_filled = blanks::fill_cells_from_ours(&new.db, &ours)?;
     let blanked_upstream = blanks::blanked_upstream(&previous.db, &previous_filled, &new_filled)?;
     let mapping_audits = audit::entries(&options.source_dir)?;
     let previous_tree = scratch.path().join("previous");
@@ -254,7 +254,7 @@ mod tests {
         assert_eq!(counts[0], counts[1]);
     }
     #[test]
-    fn blank_fill_selects_once_per_table_whatever_the_row_count() {
+    fn fill_selects_once_per_table_whatever_the_row_count() {
         use rusqlite::trace::{TraceEvent, TraceEventCodes};
         use std::sync::atomic::{AtomicUsize, Ordering};
         static SELECTS: AtomicUsize = AtomicUsize::new(0);
@@ -287,7 +287,7 @@ mod tests {
                 db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
             }
             SELECTS.store(0, Ordering::SeqCst);
-            let filled = blanks::fill_blank_cells_from_ours(&his, &ours).unwrap();
+            let filled = blanks::fill_cells_from_ours(&his, &ours).unwrap();
             counts.push(SELECTS.load(Ordering::SeqCst));
             assert_eq!(filled.len(), 1, "{filled:?}");
             assert_eq!((filled[0].table.as_str(), filled[0].column.as_str()), ("items", "description"));
