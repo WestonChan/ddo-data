@@ -111,7 +111,10 @@ fn validate_source_value(path: &Path, value: &toml::Value) -> Result<()> {
 pub fn validate_source_fields(root: &Path) -> Result<()> {
     for entry in walkdir::WalkDir::new(root) {
         let entry = entry?;
-        if !entry.file_type().is_file() || entry.path().extension().is_none_or(|extension| extension != "toml") {
+        if !entry.file_type().is_file()
+            || entry.path().extension().is_none_or(|extension| extension != "toml")
+            || in_generated_folder(entry.path().strip_prefix(root)?)
+        {
             continue;
         }
         let path = entry.path();
@@ -206,6 +209,18 @@ pub(crate) fn file_kind(root: &Path, path: &Path) -> Result<&'static str> {
     Ok(kind)
 }
 
+pub const SCHEMA_FOLDER: &str = ".schemas";
+pub const TEMPLATE_FOLDER: &str = ".templates";
+pub const GENERATED_FOLDERS: [&str; 2] = [SCHEMA_FOLDER, TEMPLATE_FOLDER];
+
+pub fn generated_folder_contents() -> Result<[(&'static str, BTreeMap<String, String>); 2]> {
+    Ok([(SCHEMA_FOLDER, schema_files()?), (TEMPLATE_FOLDER, template_files()?)])
+}
+
+pub fn in_generated_folder(path: &Path) -> bool {
+    path.components().any(|component| GENERATED_FOLDERS.iter().any(|folder| component.as_os_str() == *folder))
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Placement {
     Entity(&'static str),
@@ -224,8 +239,42 @@ fn kebab_case(name: &str) -> String {
     kebab
 }
 
+pub(super) trait FileTemplate: serde::de::DeserializeOwned {
+    const EXEMPLAR: &'static str;
+
+    fn template() -> Self {
+        toml::from_str(Self::EXEMPLAR)
+            .unwrap_or_else(|error| panic!("{} exemplar: {error}", std::any::type_name::<Self>()))
+    }
+
+    fn file_slug(exemplar: &toml::Value) -> String {
+        super::slug(exemplar["name"].as_str().expect("an exemplar names itself, or its type names the file"))
+    }
+}
+
+pub struct KindTemplate {
+    pub kind: &'static str,
+    pub file_name: String,
+    pub text: String,
+    pub slug: String,
+}
+
+macro_rules! template_text {
+    (Dataset, $file:ty) => {
+        None
+    };
+    (Rows, $file:ty) => {
+        Some((super::typed_file_text(&<$file as FileTemplate>::template())?, String::new()))
+    };
+    ($placement:ident, $file:ty) => {{
+        let exemplar = <$file as FileTemplate>::template();
+        let slug = <$file as FileTemplate>::file_slug(&toml::Value::try_from(&exemplar)?);
+        Some((super::typed_file_text(&exemplar)?, slug))
+    }};
+}
+
 macro_rules! declare_file_kinds {
-    ($($variant:ident($file:ty) => $placement:expr,)+) => {
+    ($($variant:ident($file:ty) => $placement:ident $(($path:literal))?,)+) => {
         #[derive(Debug)]
         pub(crate) enum SourceFile {
             $($variant($file),)+
@@ -260,51 +309,70 @@ macro_rules! declare_file_kinds {
                 .collect()
         }
 
-        pub const FILE_KINDS: &[(&str, Placement)] = &[$((stringify!($variant), $placement),)+];
+        pub const FILE_KINDS: &[(&str, Placement)] = &[$((stringify!($variant), Placement::$placement $(($path))?),)+];
+
+        pub fn kind_templates() -> Result<Vec<KindTemplate>> {
+            let mut templates = Vec::new();
+            $(
+                if let Some((text, slug)) = template_text!($placement, $file) {
+                    templates.push(KindTemplate {
+                        kind: stringify!($variant),
+                        file_name: format!("{}.toml", kebab_case(stringify!($variant))),
+                        text,
+                        slug,
+                    });
+                }
+            )+
+            Ok(templates)
+        }
+
+        pub fn template_files() -> Result<BTreeMap<String, String>> {
+            Ok(kind_templates()?.into_iter().map(|template| (template.file_name, template.text)).collect())
+        }
     };
 }
 
 declare_file_kinds! {
-    Augment(AugmentFile) => Placement::Entity("packs/shared/augments/named/{slug}.toml"),
-    AugmentSlotTypes(AugmentSlotTypesFile) => Placement::Rows("effects/augment-slot-types.toml"),
-    BonusTypes(BonusTypesFile) => Placement::Rows("effects/bonus-types.toml"),
-    Class(ClassFile) => Placement::Entity("characters/classes/{slug}.toml"),
-    Clickies(ClickiesFile) => Placement::Rows("effects/clickies.toml"),
-    CraftingSystem(CraftingSystemFile) => Placement::Entity("packs/shared/crafting/{slug}/crafting.toml"),
-    DamageTypes(DamageTypesFile) => Placement::Rows("effects/damage-types.toml"),
-    Effect(EffectFile) => Placement::Entity("effects/{slug}.toml"),
-    EffectTier(EffectTierFile) => Placement::Entity("effects/tiers/{slug}.toml"),
-    EnhancementTree(EnhancementTreeFile) => Placement::Entity("characters/enhancements/{slug}/tree.toml"),
-    EquipmentSlots(EquipmentSlotsFile) => Placement::Rows("effects/equipment-slots.toml"),
-    Event(EventFile) => Placement::Entity("packs/shared/events/{slug}/event.toml"),
-    Exceptions(ExceptionsFile) => Placement::Dataset,
-    ExcludedItems(ExcludedItemsFile) => Placement::Dataset,
-    FeatCategory(FeatCategoryFile) => Placement::Entity("characters/feats/{slug}.toml"),
-    FiligreeSet(FiligreeSetFile) => Placement::Entity("packs/shared/filigrees/{slug}.toml"),
-    StatGroup(StatGroupFile) => Placement::Entity("effects/stat-groups/{slug}.toml"),
-    GuildBuffs(GuildBuffsFile) => Placement::Rows("characters/guild-buffs.toml"),
-    Item(ItemFile) => Placement::Entity("packs/shared/gear/{slug}.toml"),
-    ItemMaterials(ItemMaterialsFile) => Placement::Rows("effects/item-materials.toml"),
-    OptionalBuffs(OptionalBuffsFile) => Placement::Rows("characters/optional-buffs.toml"),
-    Pack(PackFile) => Placement::Entity("packs/{slug}/pack.toml"),
-    Patron(PatronFile) => Placement::Entity("packs/shared/patrons/{slug}.toml"),
-    Quest(QuestFile) => Placement::Entity("packs/free-to-play/quests/{slug}/quest.toml"),
-    QuestChain(QuestSeriesFile) => Placement::Entity("packs/free-to-play/chains/{slug}.toml"),
-    Race(RaceFile) => Placement::Entity("characters/races/{slug}.toml"),
-    Redirects(RedirectsFile) => Placement::Dataset,
-    Saga(QuestSeriesFile) => Placement::Entity("packs/free-to-play/sagas/{slug}.toml"),
-    SentientGem(SentientGemFile) => Placement::Entity("packs/shared/sentient-gems/{slug}.toml"),
-    SourceAliases(SourceAliasesFile) => Placement::Dataset,
-    Set(SetFile) => Placement::Entity("packs/shared/sets/{slug}.toml"),
-    SpellList(SpellListFile) => Placement::Entity("characters/spells/{slug}.toml"),
-    Stances(StancesFile) => Placement::Rows("characters/stances.toml"),
-    Stat(StatFile) => Placement::Entity("effects/stats/{slug}.toml"),
-    Triggers(TriggersFile) => Placement::Rows("effects/triggers.toml"),
-    UpstreamCommit(super::UpstreamCommitFile) => Placement::Dataset,
-    Vendor(VendorFile) => Placement::Entity("packs/shared/vendors/{slug}/vendor.toml"),
-    VendorCurrencies(VendorCurrenciesFile) => Placement::Rows("packs/shared/vendors/currencies.toml"),
-    WeaponProficiencies(WeaponProficienciesFile) => Placement::Rows("effects/weapon-proficiencies.toml"),
-    WeaponTypes(WeaponTypesFile) => Placement::Rows("effects/weapon-types.toml"),
+    Augment(AugmentFile) => Entity("packs/shared/augments/named/{slug}.toml"),
+    AugmentSlotTypes(AugmentSlotTypesFile) => Rows("effects/augment-slot-types.toml"),
+    BonusTypes(BonusTypesFile) => Rows("effects/bonus-types.toml"),
+    Class(ClassFile) => Entity("characters/classes/{slug}.toml"),
+    Clickies(ClickiesFile) => Rows("effects/clickies.toml"),
+    CraftingSystem(CraftingSystemFile) => Entity("packs/shared/crafting/{slug}/crafting.toml"),
+    DamageTypes(DamageTypesFile) => Rows("effects/damage-types.toml"),
+    Effect(EffectFile) => Entity("effects/{slug}.toml"),
+    EffectTier(EffectTierFile) => Entity("effects/tiers/{slug}.toml"),
+    EnhancementTree(EnhancementTreeFile) => Entity("characters/enhancements/{slug}/tree.toml"),
+    EquipmentSlots(EquipmentSlotsFile) => Rows("effects/equipment-slots.toml"),
+    Event(EventFile) => Entity("packs/shared/events/{slug}/event.toml"),
+    Exceptions(ExceptionsFile) => Dataset,
+    ExcludedItems(ExcludedItemsFile) => Dataset,
+    FeatCategory(FeatCategoryFile) => Rows("characters/feats/deity.toml"),
+    FiligreeSet(FiligreeSetFile) => Rows("packs/shared/filigrees/electrocution.toml"),
+    StatGroup(StatGroupFile) => Entity("effects/stat-groups/{slug}.toml"),
+    GuildBuffs(GuildBuffsFile) => Rows("characters/guild-buffs.toml"),
+    Item(ItemFile) => Entity("packs/unsourced/gear/{slug}.toml"),
+    ItemMaterials(ItemMaterialsFile) => Rows("effects/item-materials.toml"),
+    OptionalBuffs(OptionalBuffsFile) => Rows("characters/optional-buffs.toml"),
+    Pack(PackFile) => Entity("packs/{slug}/pack.toml"),
+    Patron(PatronFile) => Entity("packs/shared/patrons/{slug}.toml"),
+    Quest(QuestFile) => Entity("packs/free-to-play/quests/{slug}/quest.toml"),
+    QuestChain(QuestSeriesFile) => Entity("packs/free-to-play/chains/{slug}.toml"),
+    Race(RaceFile) => Entity("characters/races/{slug}.toml"),
+    Redirects(RedirectsFile) => Dataset,
+    Saga(QuestSeriesFile) => Entity("packs/free-to-play/sagas/{slug}.toml"),
+    SentientGem(SentientGemFile) => Entity("packs/shared/sentient-gems/{slug}.toml"),
+    SourceAliases(SourceAliasesFile) => Dataset,
+    Set(SetFile) => Entity("packs/shared/sets/{slug}.toml"),
+    SpellList(SpellListFile) => Rows("characters/spells/unassigned.toml"),
+    Stances(StancesFile) => Rows("characters/stances.toml"),
+    Stat(StatFile) => Entity("effects/stats/{slug}.toml"),
+    Triggers(TriggersFile) => Rows("effects/triggers.toml"),
+    UpstreamCommit(super::UpstreamCommitFile) => Dataset,
+    Vendor(VendorFile) => Entity("packs/free-to-play/vendors/{slug}/vendor.toml"),
+    VendorCurrencies(VendorCurrenciesFile) => Rows("packs/shared/vendors/currencies.toml"),
+    WeaponProficiencies(WeaponProficienciesFile) => Rows("effects/weapon-proficiencies.toml"),
+    WeaponTypes(WeaponTypesFile) => Rows("effects/weapon-types.toml"),
 }
 
 impl SourceFile {
@@ -421,18 +489,25 @@ pub fn validate_taplo_config(workspace_root: &Path) -> Result<()> {
     let root_entries = std::fs::read_dir(&data_root)?
         .map(|entry| entry.map(|entry| entry.file_name().to_string_lossy().into_owned()))
         .collect::<std::io::Result<std::collections::BTreeSet<_>>>()?;
-    let expected_entries =
-        [".schemas", "README.md", "characters", "icons", "effects", "packs", "upstream", "redirects.toml"]
-            .map(str::to_string)
-            .into_iter()
-            .collect();
-    ensure!(root_entries == expected_entries, "data root must contain only .schemas, README.md, characters, icons, effects, packs, upstream and redirects.toml; found {root_entries:?}");
+    let expected_entries: std::collections::BTreeSet<String> = GENERATED_FOLDERS
+        .into_iter()
+        .chain(["README.md", "characters", "icons", "effects", "packs", "upstream", "redirects.toml"])
+        .map(str::to_string)
+        .collect();
+    ensure!(
+        root_entries == expected_entries,
+        "data root must contain only {}; found {root_entries:?}",
+        expected_entries.iter().cloned().collect::<Vec<_>>().join(", ")
+    );
     for entry in walkdir::WalkDir::new(&data_root) {
         let entry = entry?;
         if !entry.file_type().is_file() || entry.path().extension().is_none_or(|extension| extension != "toml") {
             continue;
         }
         let relative = entry.path().strip_prefix(workspace_root)?.to_string_lossy().replace('\\', "/");
+        if in_generated_folder(entry.path().strip_prefix(&data_root)?) {
+            continue;
+        }
         let matching = matching_taplo_rules(rules, &relative).len();
         ensure!(
             matching == 1,
@@ -760,7 +835,9 @@ mod tests {
         let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");
         for entry in walkdir::WalkDir::new(&root) {
             let entry = entry.unwrap();
-            if entry.path().extension().is_none_or(|extension| extension != "toml") {
+            if entry.path().extension().is_none_or(|extension| extension != "toml")
+                || super::in_generated_folder(entry.path().strip_prefix(&root).unwrap())
+            {
                 continue;
             }
             let kind = crate::icons::icon_kind_for_data_path(entry.path().strip_prefix(&root).unwrap())

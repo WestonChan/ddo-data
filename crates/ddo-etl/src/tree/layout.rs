@@ -674,7 +674,7 @@ pub(super) fn remove_unwritten_data_files(root: &Path, report: &DatasetFileRepor
         let path = entry.path();
         if entry.file_type().is_file()
             && path.extension().is_some_and(|extension| extension == "toml")
-            && !path.components().any(|component| component.as_os_str() == ".schemas")
+            && !schemas::in_generated_folder(path)
             && !report.written_files.contains(path)
         {
             std::fs::remove_file(path).with_context(|| format!("removing stale data file {}", path.display()))?;

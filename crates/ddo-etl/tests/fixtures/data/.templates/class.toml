@@ -1,0 +1,61 @@
+name = "Template Class"
+alignments = ["Any"]
+bab = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+]
+description = "Template description."
+fortitude = "good"
+hit_points = 10
+large_icon = "Fighter"
+reflex = "poor"
+skill_points = 2
+small_icon = "Fighter_Small"
+spell_points_per_level = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+]
+will = "poor"
+
+[[citation]]
+url = "https://ddowiki.com/page/Template"
+read = "2026-10-18"
+note = "Template: the page read and what it confirms."

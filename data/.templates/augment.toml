@@ -1,0 +1,12 @@
+name = "Template Augment"
+description = "Template description."
+family = "Named"
+min_level = 1
+
+[[citation]]
+url = "https://ddowiki.com/page/Template"
+read = "2026-10-18"
+note = "Template: the page read and what it confirms."
+
+[[slot]]
+slot = "red"

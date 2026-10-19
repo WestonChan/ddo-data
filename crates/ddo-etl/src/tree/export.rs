@@ -225,6 +225,23 @@ pub(super) fn correction_notes(db: &Connection, table: &str, name: &str) -> Resu
     Ok(CorrectionNoteIndex::from_database(db)?.for_entity(table, name))
 }
 
+fn write_generated_files(root: &Path, folder: &str, files: BTreeMap<String, String>) -> Result<()> {
+    let folder_root = root.join(folder);
+    if folder_root.exists() {
+        for entry in std::fs::read_dir(&folder_root)? {
+            let path = entry?.path();
+            if path.file_name().and_then(|name| name.to_str()).is_some_and(|name| !files.contains_key(name)) {
+                std::fs::remove_file(&path)
+                    .with_context(|| format!("removing stale generated file {}", path.display()))?;
+            }
+        }
+    }
+    for (file_name, contents) in files {
+        write_data_file(&folder_root.join(file_name), &contents)?;
+    }
+    Ok(())
+}
+
 pub(super) fn write_data_file(path: &Path, text: &str) -> Result<()> {
     std::fs::create_dir_all(path.parent().context("data file has no parent")?)?;
     std::fs::write(path, text).with_context(|| format!("writing {}", path.display()))
@@ -467,20 +484,8 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         report.row_count +=
             db.query_row(&format!("SELECT COUNT(*) FROM {table}"), [], |row| row.get::<_, i64>(0))? as usize;
     }
-    let schema_files = schemas::schema_files()?;
-    let schema_root = root.join(".schemas");
-    if schema_root.exists() {
-        for entry in std::fs::read_dir(&schema_root)? {
-            let path = entry?.path();
-            if path.extension().is_some_and(|extension| extension == "json")
-                && path.file_name().and_then(|name| name.to_str()).is_some_and(|name| !schema_files.contains_key(name))
-            {
-                std::fs::remove_file(&path).with_context(|| format!("removing stale schema {}", path.display()))?;
-            }
-        }
-    }
-    for (file_name, contents) in schema_files {
-        write_data_file(&schema_root.join(file_name), &contents)?;
+    for (folder, files) in schemas::generated_folder_contents()? {
+        write_generated_files(root, folder, files)?;
     }
     let currencies = kinds::VendorCurrenciesFile::from_rows(db, &annotations)?;
     write_export_file(root, fixed_data_file("vendor_currencies")?, &toml::to_string_pretty(&currencies)?, &mut report)?;

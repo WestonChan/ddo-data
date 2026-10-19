@@ -229,23 +229,18 @@ fn deny_invalid_data_files() -> Result<()> {
 }
 
 fn deny_data_schema_drift() -> Result<()> {
-    let schema_root = workspace_root().join("data/.schemas");
-    let expected_files = ddo_etl::tree::schemas::schema_files()?;
-    for entry in std::fs::read_dir(&schema_root)? {
-        let path = entry?.path();
-        if path.extension().is_some_and(|extension| extension == "json") {
-            let file_name = path.file_name().and_then(|name| name.to_str()).context("schema name is not UTF-8")?;
-            ensure!(
-                expected_files.contains_key(file_name),
-                "{} is an obsolete schema; run ddo-etl export",
-                path.display()
-            );
+    for (folder, expected_files) in ddo_etl::tree::schemas::generated_folder_contents()? {
+        let folder_root = workspace_root().join("data").join(folder);
+        for entry in std::fs::read_dir(&folder_root).with_context(|| format!("reading {}", folder_root.display()))? {
+            let path = entry?.path();
+            let file_name = path.file_name().and_then(|name| name.to_str()).context("generated name is not UTF-8")?;
+            ensure!(expected_files.contains_key(file_name), "{} is obsolete; run ddo-etl export", path.display());
         }
-    }
-    for (file_name, expected) in expected_files {
-        let path = schema_root.join(file_name);
-        let actual = std::fs::read_to_string(&path).with_context(|| format!("reading {}", path.display()))?;
-        ensure!(actual == expected, "{} is stale; run ddo-etl export", path.display());
+        for (file_name, expected) in expected_files {
+            let path = folder_root.join(file_name);
+            let actual = std::fs::read_to_string(&path).with_context(|| format!("reading {}", path.display()))?;
+            ensure!(actual == expected, "{} is stale; run ddo-etl export", path.display());
+        }
     }
     ddo_etl::tree::schemas::validate_taplo_config(&workspace_root())?;
     Ok(())
@@ -435,6 +430,8 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             "structural_rejections_fail_the_data_build_naming_their_file_once",
         ),
         ("ddo-etl", &["--test", "data_rejections"][..], "a_citation_field_must_be_empty_or_a_field_of_its_record"),
+        ("ddo-etl", &["--test", "templates"][..], "every_template_builds_under_its_placement_and_exports_byte_equal"),
+        ("ddo-etl", &["--test", "import_ddobuilder"][..], "import_keeps_the_generated_templates"),
         ("ddo-etl", &["--test", "import_ddobuilder"][..], "his_blank_never_erases_ours_and_the_import_says_so"),
         (
             "ddo-etl",

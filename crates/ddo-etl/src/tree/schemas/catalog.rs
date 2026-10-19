@@ -261,7 +261,10 @@ pub fn find(root: &Path, query: &str) -> Result<String> {
     let mut catalog = Catalog::default();
     for entry in walkdir::WalkDir::new(root).sort_by_file_name() {
         let entry = entry?;
-        if !entry.file_type().is_file() || entry.path().extension().is_none_or(|extension| extension != "toml") {
+        if !entry.file_type().is_file()
+            || entry.path().extension().is_none_or(|extension| extension != "toml")
+            || schemas::in_generated_folder(entry.path().strip_prefix(root)?)
+        {
             continue;
         }
         let contents = std::fs::read_to_string(entry.path())?;
@@ -304,7 +307,10 @@ mod tests {
         crate::tree::export_database(&db, &root).unwrap();
         let mut catalog = Catalog::default();
         for entry in walkdir::WalkDir::new(&root).into_iter().map(Result::unwrap) {
-            if entry.file_type().is_file() && entry.path().extension().is_some_and(|extension| extension == "toml") {
+            if entry.file_type().is_file()
+                && entry.path().extension().is_some_and(|extension| extension == "toml")
+                && !schemas::in_generated_folder(entry.path().strip_prefix(&root).unwrap())
+            {
                 catalog
                     .add_contents(
                         entry.path().strip_prefix(&root).unwrap(),
@@ -333,7 +339,10 @@ mod tests {
         assert!(catalog.reference_errors().unwrap().is_empty());
         let mut broken = Catalog::default();
         for entry in walkdir::WalkDir::new(&root).into_iter().map(Result::unwrap) {
-            if !entry.file_type().is_file() || entry.path().extension().is_none_or(|extension| extension != "toml") {
+            if !entry.file_type().is_file()
+                || entry.path().extension().is_none_or(|extension| extension != "toml")
+                || schemas::in_generated_folder(entry.path().strip_prefix(&root).unwrap())
+            {
                 continue;
             }
             let relative = entry.path().strip_prefix(&root).unwrap();

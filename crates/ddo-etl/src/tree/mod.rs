@@ -50,6 +50,7 @@ pub(crate) use xml_slugs::{
 pub mod redirects;
 pub mod schemas;
 mod sources;
+mod templates;
 
 #[derive(Debug, Clone, Serialize, Deserialize, schemars::JsonSchema)]
 #[serde(deny_unknown_fields)]
@@ -261,7 +262,9 @@ mod tests {
         for entry in walkdir::WalkDir::new(&root) {
             let entry = entry.unwrap();
             let path = entry.path();
-            if path.extension().is_some_and(|extension| extension == "toml") {
+            if path.extension().is_some_and(|extension| extension == "toml")
+                && !super::schemas::in_generated_folder(path.strip_prefix(&root).unwrap())
+            {
                 let contents = std::fs::read_to_string(path).unwrap();
                 let file = super::schemas::read_file(&root, path, &contents).unwrap();
                 assert_no_false(&file.as_value().unwrap(), &path.display().to_string());
@@ -519,7 +522,10 @@ mod tests {
         }
         for entry in walkdir::WalkDir::new(&root).into_iter().map(Result::unwrap) {
             let path = entry.path();
-            if !entry.file_type().is_file() || path.extension().is_none_or(|extension| extension != "toml") {
+            if !entry.file_type().is_file()
+                || path.extension().is_none_or(|extension| extension != "toml")
+                || super::schemas::in_generated_folder(path.strip_prefix(&root).unwrap())
+            {
                 continue;
             }
             let Some((_, kind)) = crate::icons::icon_kind_for_data_path(path.strip_prefix(&root).unwrap()) else {
@@ -671,7 +677,9 @@ mod tests {
         let mut moved_files = Vec::new();
         for entry in walkdir::WalkDir::new(&root).into_iter().map(Result::unwrap) {
             let path = entry.path();
-            if !path.extension().is_some_and(|extension| extension == "toml") {
+            if !path.extension().is_some_and(|extension| extension == "toml")
+                || super::schemas::in_generated_folder(path.strip_prefix(&root).unwrap())
+            {
                 continue;
             }
             let file = super::schemas::read_file(&root, path, &std::fs::read_to_string(path).unwrap()).unwrap();

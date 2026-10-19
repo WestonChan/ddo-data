@@ -1,0 +1,13 @@
+name = "Template Quest"
+difficulties = ["normal"]
+favor = 1
+pack = "Free to Play"
+
+[[citation]]
+url = "https://ddowiki.com/page/Template"
+read = "2026-10-18"
+note = "Template: the page read and what it confirms."
+
+[[run]]
+tier = "heroic"
+level = 1

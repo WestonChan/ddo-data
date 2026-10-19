@@ -56,7 +56,7 @@ pub(crate) fn referenced_data_icons(root: &Path) -> Result<Vec<DataIconReference
         let path = entry.path();
         if !entry.file_type().is_file()
             || path.extension().is_none_or(|extension| extension != "toml")
-            || path.components().any(|component| component.as_os_str() == ".schemas")
+            || schemas::in_generated_folder(path)
         {
             continue;
         }
@@ -472,7 +472,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         let path = entry.path();
         if !entry.file_type().is_file()
             || path.extension().is_none_or(|extension| extension != "toml")
-            || path.components().any(|component| component.as_os_str() == ".schemas")
+            || schemas::in_generated_folder(path)
         {
             continue;
         }

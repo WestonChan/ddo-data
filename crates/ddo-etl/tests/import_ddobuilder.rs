@@ -1647,6 +1647,18 @@ fn quest_facts_are_kept_across_an_import() {
 }
 
 #[test]
+fn import_keeps_the_generated_templates() {
+    let world = ImportWorld::new(Corrections::default());
+    let templates = world.options.data_dir.join(".templates");
+    let before = std::fs::read(templates.join("item.toml")).unwrap();
+    let schema_before = std::fs::read(world.options.data_dir.join(".schemas/item.schema.json")).unwrap();
+    import_ddobuilder(&world.options).unwrap();
+    assert_eq!(std::fs::read(templates.join("item.toml")).unwrap(), before);
+    assert_eq!(std::fs::read(world.options.data_dir.join(".schemas/item.schema.json")).unwrap(), schema_before);
+    assert_eq!(std::fs::read_dir(&templates).unwrap().count(), 35);
+}
+
+#[test]
 fn import_reports_a_note_his_value_now_matches() {
     let mut corrections = ravager_corrections();
     corrections.entries.retain(|entry| entry.name.contains("Draconic"));

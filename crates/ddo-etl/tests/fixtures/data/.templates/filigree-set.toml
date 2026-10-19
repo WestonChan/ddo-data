@@ -1,0 +1,11 @@
+[[row]]
+name = "Template Filigree"
+description = "Template description."
+icon = "Electrocution"
+menu = "Ravenloft"
+set = "Electrocution"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Template"
+read = "2026-10-18"
+note = "Template: the page read and what it confirms."
