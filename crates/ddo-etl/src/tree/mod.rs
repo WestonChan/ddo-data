@@ -377,7 +377,7 @@ mod tests {
                 "name = 'Scale Chain {index}'\nquests = [{quest_name:?}]\n[[citation]]\nurl = 'https://ddowiki.com/page/Example'\nread = '2026-10-14'\n"
             )).unwrap();
             let id = chain.write_quest_series(&db, Path::new("chain.toml"), &mut identities, "quest_chains").unwrap();
-            chain.insert_quests(&db, Path::new("chain.toml"), id, "quest_chain_quests", "chain_id").unwrap();
+            chain.insert_quests(&db, id, "quest_chain_quests", "chain_id").unwrap();
             added_annotations
                 .add_data_file(
                     Path::new("data"),

@@ -272,7 +272,7 @@ mod tests {
         let chain_id = chain
             .write_quest_series(&db, Path::new("chain.toml"), &mut ids::StableIds::default(), "quest_chains")
             .unwrap();
-        chain.insert_quests(&db, Path::new("chain.toml"), chain_id, "quest_chain_quests", "chain_id").unwrap();
+        chain.insert_quests(&db, chain_id, "quest_chain_quests", "chain_id").unwrap();
         assert_eq!(PackAssignments::from_database(&db).unwrap().pack("quest_chains", chain_id), Some("First Pack"));
         insert_test_item(&db, "Derived Chain Item", &[("quest_chain", "Derived Chain")]);
         insert_test_item(&db, "Second Item", &[("adventure_pack", "Second Pack")]);

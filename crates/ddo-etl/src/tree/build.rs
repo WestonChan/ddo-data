@@ -623,11 +623,11 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                 }
                 SourceFile::QuestChain(file) => {
                     let id = id.context("QuestChain file has no identity")?;
-                    file.insert_quests(&transaction, path, id, "quest_chain_quests", "chain_id")?;
+                    file.insert_quests(&transaction, id, "quest_chain_quests", "chain_id")?;
                 }
                 SourceFile::Saga(file) => {
                     let id = id.context("Saga file has no identity")?;
-                    file.insert_quests(&transaction, path, id, "saga_quests", "saga_id")?;
+                    file.insert_quests(&transaction, id, "saga_quests", "saga_id")?;
                 }
                 SourceFile::CraftingSystem(file) => {
                     let id = id.context("CraftingSystem file has no identity")?;

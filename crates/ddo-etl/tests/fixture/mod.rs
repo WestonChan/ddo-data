@@ -158,3 +158,21 @@ pub(crate) fn corrections_from(files: &[(&str, &CorrectionSet)]) -> Result<Corre
     }
     Ok(Corrections { entries })
 }
+
+pub(crate) fn data_build_error(edit: impl FnOnce(&std::path::Path)) -> String {
+    let source = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data");
+    let scratch = tempfile::tempdir().unwrap();
+    for entry in walkdir::WalkDir::new(&source).into_iter().map(Result::unwrap) {
+        if entry.file_type().is_file() {
+            let destination = scratch.path().join(entry.path().strip_prefix(&source).unwrap());
+            std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+            std::fs::copy(entry.path(), destination).unwrap();
+        }
+    }
+    edit(scratch.path());
+    let mut db = rusqlite::Connection::open_in_memory().unwrap();
+    match ddo_etl::tree::build_from_data(scratch.path(), &mut db) {
+        Ok(_) => String::new(),
+        Err(error) => format!("{error:#}").replace(&scratch.path().display().to_string(), "<data>"),
+    }
+}

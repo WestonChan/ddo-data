@@ -78,7 +78,6 @@ impl QuestSeriesFile {
     pub(in crate::tree) fn insert_quests(
         &self,
         db: &Connection,
-        path: &Path,
         id: i64,
         member_table: &str,
         owner_column: &str,
@@ -86,7 +85,7 @@ impl QuestSeriesFile {
         for (position, name) in self.quests.iter().enumerate() {
             SeriesQuest { name: name.clone() }
                 .insert(db, member_table, owner_column, id, position as i64)
-                .with_context(|| format!("{}: quest series member {name:?}", path.display()))?;
+                .with_context(|| format!("quest series member {name:?}"))?;
         }
         Ok(self.quests.len())
     }

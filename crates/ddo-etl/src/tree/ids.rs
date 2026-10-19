@@ -30,9 +30,8 @@ impl StableIds {
         {
             ensure!(
                 previous != identity,
-                "{} and {}: duplicate {kind} slug {identity:?}",
-                previous_path.display(),
-                path.display()
+                "duplicate {kind} slug {identity:?}{}",
+                if previous_path == path { String::new() } else { format!(" (also in {})", previous_path.display()) }
             );
             anyhow::bail!(
                 "{} and {}: {kind} hash collision between {previous:?} and {identity:?}",

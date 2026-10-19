@@ -973,7 +973,7 @@ mod tests {
             let id = file
                 .write_quest_series(&db, Path::new("chain.toml"), &mut ids::StableIds::default(), "quest_chains")
                 .unwrap();
-            file.insert_quests(&db, Path::new("chain.toml"), id, "quest_chain_quests", "chain_id").unwrap();
+            file.insert_quests(&db, id, "quest_chain_quests", "chain_id").unwrap();
         }
         for (name, pack) in
             [("Pack Vendor", Some("First Pack")), ("Shared Vendor", None), ("Other Shared Vendor", None)]
@@ -1010,7 +1010,7 @@ mod tests {
                 toml::from_str(&format!("name = {name:?}\nquests = {quests:?}\ncitation = []\n")).unwrap();
             let id =
                 file.write_quest_series(&db, Path::new("saga.toml"), &mut ids::StableIds::default(), "sagas").unwrap();
-            file.insert_quests(&db, Path::new("saga.toml"), id, "saga_quests", "saga_id").unwrap();
+            file.insert_quests(&db, id, "saga_quests", "saga_id").unwrap();
         }
         for family in ["Unique", "Multiple", "Unknown"] {
             let file: kinds::AugmentFile =

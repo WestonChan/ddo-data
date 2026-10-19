@@ -430,6 +430,11 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         ("ddo-etl", &["--test", "retired_inputs"][..], "retired_inputs_and_tools_are_gone_from_the_workspace"),
         (
             "ddo-etl",
+            &["--test", "data_rejections"][..],
+            "structural_rejections_fail_the_data_build_naming_their_file_once",
+        ),
+        (
+            "ddo-etl",
             &["--test", "import_ddobuilder"][..],
             "merged_socket_labels_resolve_when_his_files_adopt_the_name_for_every_spelling",
         ),
