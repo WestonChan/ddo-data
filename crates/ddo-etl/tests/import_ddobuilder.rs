@@ -519,26 +519,25 @@ fn merged_socket_labels_resolve_when_his_files_adopt_the_name_for_every_spelling
 fn a_merge_is_not_resolved_while_one_listed_spelling_remains_in_his_files() {
     let import = import_with_merged_socket_labels(HisAdoption::FirstSpellingOnly);
     assert!(!import.report.contains("RESOLVED CORRECTION"), "{}", import.report);
-    for db in [&import.rebuilt] {
-        assert_eq!(
-            db.query_row(
-                "SELECT COUNT(*) FROM augment_slot_types WHERE label LIKE 'crafting: attuned to heroism%'",
-                [],
-                |row| row.get::<_, i64>(0)
-            )
-            .unwrap(),
-            0
-        );
-        assert_eq!(
-            db.query_row(
-                "SELECT COUNT(*) FROM corrections WHERE kind = 'socket_label' AND to_value LIKE '%reviewed tier%'",
-                [],
-                |row| row.get::<_, i64>(0)
-            )
-            .unwrap(),
-            2
-        );
-    }
+    let db = &import.rebuilt;
+    assert_eq!(
+        db.query_row(
+            "SELECT COUNT(*) FROM augment_slot_types WHERE label LIKE 'crafting: attuned to heroism%'",
+            [],
+            |row| row.get::<_, i64>(0)
+        )
+        .unwrap(),
+        0
+    );
+    assert_eq!(
+        db.query_row(
+            "SELECT COUNT(*) FROM corrections WHERE kind = 'socket_label' AND to_value LIKE '%reviewed tier%'",
+            [],
+            |row| row.get::<_, i64>(0)
+        )
+        .unwrap(),
+        2
+    );
 }
 
 #[test]
