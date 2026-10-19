@@ -254,6 +254,49 @@ mod tests {
         assert_eq!(counts[0], counts[1]);
     }
     #[test]
+    fn blank_fill_selects_once_per_table_whatever_the_row_count() {
+        use rusqlite::trace::{TraceEvent, TraceEventCodes};
+        use std::sync::atomic::{AtomicUsize, Ordering};
+        static SELECTS: AtomicUsize = AtomicUsize::new(0);
+        fn trace(event: TraceEvent<'_>) {
+            if let TraceEvent::Stmt(statement, _) = event {
+                if statement.sql().trim_start().to_uppercase().starts_with("SELECT") {
+                    SELECTS.fetch_add(1, Ordering::SeqCst);
+                }
+            }
+        }
+        let mut counts = Vec::new();
+        let mut row_counts = Vec::new();
+        for data in [
+            Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data"),
+            Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data"),
+        ] {
+            let mut ours = Connection::open_in_memory().unwrap();
+            tree::build_from_data(&data, &mut ours).unwrap();
+            let copy = tempfile::tempdir().unwrap();
+            let copy_path = copy.path().join("his.db");
+            ours.execute("VACUUM INTO ?1", [copy_path.to_str().unwrap()]).unwrap();
+            let his = Connection::open(&copy_path).unwrap();
+            his.execute(
+                "UPDATE items SET description = NULL WHERE id = (SELECT MIN(id) FROM items WHERE description <> '')",
+                [],
+            )
+            .unwrap();
+            row_counts.push(ours.query_row("SELECT COUNT(*) FROM items", [], |row| row.get::<_, i64>(0)).unwrap());
+            for db in [&ours, &his] {
+                db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
+            }
+            SELECTS.store(0, Ordering::SeqCst);
+            let filled = blanks::fill_blank_cells_from_ours(&his, &ours).unwrap();
+            counts.push(SELECTS.load(Ordering::SeqCst));
+            assert_eq!(filled.len(), 1, "{filled:?}");
+            assert_eq!((filled[0].table.as_str(), filled[0].column.as_str()), ("items", "description"));
+        }
+        assert!(row_counts[1] > 10 * row_counts[0], "{row_counts:?}");
+        assert_eq!(counts[0], counts[1], "SELECT statements for {row_counts:?} items");
+    }
+
+    #[test]
     fn dataset_array_conflicts_name_their_data_file() {
         let scratch = tempfile::tempdir().unwrap();
         let previous = fixture_database(&scratch.path().join("previous"));
