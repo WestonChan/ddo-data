@@ -26,6 +26,16 @@ effect = "Abjuration Focus"
 effect_type = "SpellDC"
 targets = ["Abjuration"]
 
+[[ddobuilder_correction]]
+kind = "augment"
+field = "description"
+upstream = """
+Artifact Abjuration Focus +4
+Drops in: ?"""
+reason = """Maetrim's description gives no drop locations ("Drops in: ?"); the wiki page lists them."""
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Abjuration_(Legendary)"
+read = "2026-09-29"
+
 [[slot]]
 slot = "sun"
 

@@ -285,6 +285,14 @@ fn build_with_wiki_references(
             .flat_map(|correction| correction.upstream_names().into_iter().map(move |spelling| (spelling, correction)))
             .collect(),
         applied_socket_label_corrections: Vec::new(),
+        augment_description_corrections: corrections
+            .entries
+            .iter()
+            .filter(|correction| correction.kind == CorrectionKind::Augment && correction.field == "description")
+            .fold(HashMap::new(), |mut by_name, correction| {
+                by_name.entry(correction.name.as_str()).or_default().push(correction);
+                by_name
+            }),
         pending_set_item_links: Vec::new(),
         pending_set_augment_links: Vec::new(),
         pending_set_option_links: Vec::new(),
@@ -738,6 +746,7 @@ pub(crate) struct TableWriter<'a> {
     written: WrittenRows,
     socket_label_corrections: HashMap<&'a str, &'a Correction>,
     applied_socket_label_corrections: Vec<&'a Correction>,
+    augment_description_corrections: HashMap<&'a str, Vec<&'a Correction>>,
     pending_set_item_links: Vec<(i64, String)>,
     pending_set_augment_links: Vec<(i64, String)>,
     pending_set_option_links: Vec<(i64, String)>,

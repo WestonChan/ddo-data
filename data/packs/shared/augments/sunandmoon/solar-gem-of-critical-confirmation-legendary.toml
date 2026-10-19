@@ -22,6 +22,16 @@ bonus_type = "Artifact"
 effect_type = "Weapon_AttackAndDamageCritical"
 targets = ["All"]
 
+[[ddobuilder_correction]]
+kind = "augment"
+field = "description"
+upstream = """
+Artifact Seeker +4
+Drops in: ?"""
+reason = """Maetrim's description gives no drop locations ("Drops in: ?"); the wiki page lists them."""
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Critical_Confirmation_(Legendary)"
+read = "2026-09-29"
+
 [[slot]]
 slot = "sun"
 

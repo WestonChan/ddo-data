@@ -27,6 +27,16 @@ effect = "Evocation Focus"
 effect_type = "SpellDC"
 targets = ["Evocation"]
 
+[[ddobuilder_correction]]
+kind = "augment"
+field = "description"
+upstream = """
++4 Profane Bonus to Evocation DCs
+Drops in: ?"""
+reason = """Maetrim's description gives no drop locations ("Drops in: ?"); the wiki page lists them."""
+url = "https://ddowiki.com/page/Item:Lunar_Gem_of_Evocation_(Legendary)"
+read = "2026-09-29"
+
 [[slot]]
 slot = "moon"
 

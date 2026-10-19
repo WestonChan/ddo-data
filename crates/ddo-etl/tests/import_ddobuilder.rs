@@ -7,7 +7,7 @@ use ddo_etl::{
     wiki::WikiOverrides,
 };
 use ddo_model::DatasetVersion;
-use rusqlite::{types::Value as SqlValue, Connection};
+use rusqlite::Connection;
 use std::path::Path;
 
 #[test]
@@ -180,9 +180,6 @@ fn export_fixture_with_icons(db: &Connection, source: &Path, root: &Path) {
     ddo_etl::icons::place_enhancement_icons_beside_trees(root).unwrap();
 }
 
-const AUTHORED_OVER_HIS_VALUES: &[(&str, &str)] =
-    &[("augments", "description"), ("quests", "is_free_to_play"), ("quest_drops", "id")];
-
 fn assert_overlay_tables_match(normalized: &Connection, ours: &Connection) {
     let mut delta = ddo_etl::delta::database_delta(normalized, ours).unwrap();
     delta.arrays.retain(|key, change| {
@@ -195,19 +192,6 @@ fn assert_overlay_tables_match(normalized: &Connection, ours: &Connection) {
         );
         false
     });
-    let drops_in_placeholder = "Drops in: ?";
-    let mut placeholder_augments = Vec::new();
-    if let Some(augments) = delta.entities.get_mut("augments") {
-        augments.changed.retain(|change| {
-            let filled_placeholder =
-                change.column == "description" && change.previous.trim_end_matches('"').ends_with(drops_in_placeholder);
-            if filled_placeholder {
-                placeholder_augments.push(change.identity.clone());
-            }
-            !filled_placeholder
-        });
-    }
-    delta.arrays.retain(|key, _| !(key.array == "source" && placeholder_augments.contains(&key.owner)));
     if let Some(quests) = delta.entities.get_mut("quests") {
         quests.changed.retain(|change| change.column != "is_free_to_play");
     }
@@ -215,47 +199,23 @@ fn assert_overlay_tables_match(normalized: &Connection, ours: &Connection) {
         .entities
         .retain(|_, changes| !(changes.added.is_empty() && changes.removed.is_empty() && changes.changed.is_empty()));
     assert!(delta.is_empty(), "{delta:#?}");
-    let placeholder_augment_ids: Vec<i64> = ours
-        .prepare("SELECT id FROM augments WHERE id IN (SELECT id FROM augments)")
-        .unwrap()
-        .query_map([], |row| row.get(0))
-        .unwrap()
-        .map(Result::unwrap)
-        .filter(|id: &i64| {
-            normalized
-                .query_row("SELECT description FROM augments WHERE id = ?1", [id], |row| {
-                    row.get::<_, Option<String>>(0)
-                })
-                .ok()
-                .flatten()
-                .is_some_and(|description| description.ends_with("Drops in: ?"))
-        })
-        .collect();
     for table in ddo_etl::database_tables::table_names(ours).unwrap() {
         if table == "citations" {
             continue;
         }
         let columns = ddo_etl::database_tables::table_columns(ours, &table).unwrap();
-        let owner_kind_column = columns.iter().position(|column| column == "owner_kind");
-        let owner_id_column = columns.iter().position(|column| column == "owner_id");
         let stable_rows = |db: &Connection| {
             ddo_etl::database_tables::table_rows(db, &table)
                 .unwrap()
                 .into_iter()
-                .filter(|row| {
-                    let (Some(kind), Some(id)) = (owner_kind_column, owner_id_column) else { return true };
-                    table != "quest_drops"
-                        || !matches!((&row[kind], &row[id]), (SqlValue::Text(kind), SqlValue::Integer(id))
-                            if kind == "augment" && placeholder_augment_ids.contains(id))
-                })
                 .map(|row| {
                     row.into_iter()
                         .zip(&columns)
                         .filter_map(|(value, column)| {
                             (column != "built_at"
                                 && !(table == "schema_version" && column == "applied_at")
-                                && !AUTHORED_OVER_HIS_VALUES.contains(&(table.as_str(), column.as_str())))
-                            .then_some(value)
+                                && !(table == "quests" && column == "is_free_to_play"))
+                                .then_some(value)
                         })
                         .collect::<Vec<_>>()
                 })
@@ -937,6 +897,106 @@ fn every_entity_preserves_citations_with_notes_through_the_data_tree() {
     assert_eq!(before, tree::data_file_bytes(scratch.path()).unwrap());
 }
 
+const PLACEHOLDER_AUGMENT: &str = "Lunar Gem of Evocation (Heroic)";
+const PLACEHOLDER_AUGMENT_FILE: &str = "Augments/SunAndMoon.Augments.xml";
+const WIKI_DROPS_LINE: &str = "Drops in: A Blood Pact, end chest\nFlocked Together, optional chest";
+
+fn placeholder_augment_description(drops: &str) -> String {
+    format!("+2 Profane Bonus to Evocation DCs\nDrops in: {drops}")
+}
+
+fn write_placeholder_augment(xml_root: &Path, minimum_level: u32, drops: &str) {
+    let path = xml_root.join(PLACEHOLDER_AUGMENT_FILE);
+    std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+    std::fs::write(
+        path,
+        format!(
+            "<?xml version='1.0' encoding='utf-8'?>\n<Augments>\n  <Augment>\n    <Name>{PLACEHOLDER_AUGMENT}</Name>\n    <Description>{}</Description>\n    <MinLevel>{minimum_level}</MinLevel>\n    <Type>Moon</Type>\n    <Icon>HistoryBookWhite</Icon>\n    <Effect>\n      <Type>SpellDC</Type>\n      <Bonus>Profane</Bonus>\n      <AType>Simple</AType>\n      <Amount size=\"1\">2</Amount>\n      <Item>Evocation</Item>\n    </Effect>\n  </Augment>\n</Augments>\n",
+            placeholder_augment_description(drops)
+        ),
+    )
+    .unwrap();
+}
+
+fn placeholder_augment_correction() -> Corrections {
+    fixture::corrections_from(&[(
+        "placeholder.toml",
+        &fixture::correction_between(
+            "augment",
+            PLACEHOLDER_AUGMENT,
+            "description",
+            CorrectionValue::Text(placeholder_augment_description("?")),
+            CorrectionValue::Text(placeholder_augment_description(WIKI_DROPS_LINE.strip_prefix("Drops in: ").unwrap())),
+        )
+        .cited(
+            "Maetrim's description gives no drop locations; the wiki page lists them.",
+            "https://ddowiki.com/page/Item:Lunar_Gem_of_Evocation_(Heroic)",
+            "2026-10-18",
+        ),
+    )])
+    .unwrap()
+}
+
+fn placeholder_augment_state(world: &ImportWorld) -> (String, i64, Vec<String>) {
+    let db = world.database();
+    let (description, minimum_level): (String, i64) = db
+        .query_row("SELECT description, min_level FROM augments WHERE name = ?1", [PLACEHOLDER_AUGMENT], |row| {
+            Ok((row.get(0)?, row.get(1)?))
+        })
+        .unwrap();
+    let sources = db
+        .prepare(
+            "SELECT q.name FROM quest_drops d JOIN quests q ON q.id = d.quest_id
+             WHERE d.owner_kind = 'augment' AND d.owner_id = (SELECT id FROM augments WHERE name = ?1) ORDER BY q.name",
+        )
+        .unwrap()
+        .query_map([PLACEHOLDER_AUGMENT], |row| row.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    (description, minimum_level, sources)
+}
+
+#[test]
+fn a_placeholder_augment_keeps_its_correction_and_sources_when_he_edits_another_field() {
+    let world = ImportWorld::with_placeholder_augment();
+    let before = placeholder_augment_state(&world);
+    assert_eq!(before.0, placeholder_augment_description(WIKI_DROPS_LINE.strip_prefix("Drops in: ").unwrap()));
+    assert_eq!(before.2, ["A Blood Pact", "Flocked Together"]);
+    write_placeholder_augment(&world.options.source_dir, 2, "?");
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert!(!report.to_string().contains("CORRECTION"), "{report}");
+    assert_eq!(placeholder_augment_state(&world), (before.0, 2, before.2));
+    let kept = Corrections::from_database(&world.database()).unwrap();
+    assert_eq!(kept.entries.len(), 1);
+    assert_eq!(kept.entries[0].to, placeholder_augment_correction().entries[0].to);
+}
+
+#[test]
+fn a_placeholder_augment_reports_our_correction_when_he_fills_in_its_description() {
+    let world = ImportWorld::with_placeholder_augment();
+    let before = placeholder_augment_state(&world);
+    write_placeholder_augment(&world.options.source_dir, 1, "Back to the Abyss, end chest");
+    let report = import_ddobuilder(&world.options).unwrap();
+    let rendered = report.to_string();
+    assert_eq!(report.conflict_count(), 1, "{rendered}");
+    let conflict = rendered.lines().find(|line| line.contains(": CONFLICT")).unwrap();
+    assert!(
+        conflict.contains("CONFLICT augment \"Lunar Gem of Evocation (Heroic)\"")
+            && conflict.contains(".description")
+            && conflict.contains("Back to the Abyss, end chest"),
+        "{rendered}"
+    );
+    assert_eq!(placeholder_augment_state(&world), before);
+    let kept = Corrections::from_database(&world.database()).unwrap();
+    assert_eq!(kept.entries[0].to, placeholder_augment_correction().entries[0].to);
+    assert_eq!(
+        kept.entries[0].from,
+        CorrectionValue::Text(placeholder_augment_description("Back to the Abyss, end chest"))
+    );
+}
+
 struct ImportWorld {
     scratch: tempfile::TempDir,
     options: DdobuilderImportOptions,
@@ -948,11 +1008,29 @@ impl ImportWorld {
     }
 
     fn with_wiki(corrections: Corrections, wiki: WikiOverrides) -> Self {
+        Self::with_sources(corrections, wiki, |_| {})
+    }
+
+    fn with_placeholder_augment() -> Self {
+        Self::with_sources(placeholder_augment_correction(), WikiOverrides::default(), |previous_dir| {
+            write_placeholder_augment(previous_dir, 1, "?");
+            let icons = previous_dir.join("AugmentImages");
+            std::fs::create_dir_all(&icons).unwrap();
+            std::fs::copy(
+                Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data/icons/augments/HistoryBookWhite.png"),
+                icons.join("HistoryBookWhite.png"),
+            )
+            .unwrap();
+        })
+    }
+
+    fn with_sources(corrections: Corrections, wiki: WikiOverrides, add_to_previous: impl FnOnce(&Path)) -> Self {
         let scratch = tempfile::tempdir().unwrap();
         let previous_dir = scratch.path().join("previous");
         let source_dir = scratch.path().join("new");
         let data_dir = scratch.path().join("data");
         copy_tree(&fixture_root().join("ba7e18e/DataFiles"), &previous_dir);
+        add_to_previous(&previous_dir);
         copy_tree(&previous_dir, &source_dir);
         copy_tree(&fixture_root().join("d1350a0c/DataFiles"), &source_dir);
         let mut db = Connection::open_in_memory().unwrap();

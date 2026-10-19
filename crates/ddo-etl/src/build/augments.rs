@@ -59,7 +59,8 @@ impl TableWriter<'_> {
                 )?;
             }
             if let Some(description) = augment.description.as_deref() {
-                self.link_augment_to_quests(augment_id, description, report)?;
+                let drop_description = self.corrected_description(&augment.name, &family, description);
+                self.link_augment_to_quests(augment_id, drop_description, report)?;
             }
             self.write_modifiers(ModifierSource::Augment, augment_id, &augment.effects)?;
             let augment_owner =
@@ -155,6 +156,17 @@ impl TableWriter<'_> {
             links.remove(second_index);
         }
         Ok(links)
+    }
+
+    fn corrected_description<'a>(&'a self, name: &str, family: &str, description: &'a str) -> &'a str {
+        self.augment_description_corrections
+            .get(name.trim())
+            .into_iter()
+            .flatten()
+            .filter(|correction| correction.family.as_deref().is_none_or(|corrected| corrected == family))
+            .find(|correction| correction.from.as_text() == Some(description))
+            .and_then(|correction| correction.to.as_text())
+            .unwrap_or(description)
     }
 
     pub(super) fn link_augment_to_quests(

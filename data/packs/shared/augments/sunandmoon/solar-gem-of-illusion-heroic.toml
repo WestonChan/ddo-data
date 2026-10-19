@@ -27,6 +27,16 @@ effect = "Illusion Focus"
 effect_type = "SpellDC"
 targets = ["Illusion"]
 
+[[ddobuilder_correction]]
+kind = "augment"
+field = "description"
+upstream = """
+Artifact Illusion Focus +2
+Drops in: ?"""
+reason = """Maetrim's description gives no drop locations ("Drops in: ?"); the wiki page lists them."""
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Illusion_(Heroic)"
+read = "2026-09-29"
+
 [[slot]]
 slot = "sun"
 
