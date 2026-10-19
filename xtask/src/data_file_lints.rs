@@ -57,6 +57,101 @@ pub fn deny_annotation_table_literals(root: &Path) -> anyhow::Result<()> {
     Ok(())
 }
 
+const CITATION_FIELD_READERS: &str = "tree/annotations.rs";
+
+fn reads_citation_field(literal: &str) -> bool {
+    let sql = literal.to_ascii_lowercase().split_whitespace().collect::<Vec<_>>().join(" ");
+    if !sql.contains("select ") {
+        return false;
+    }
+    let words: Vec<&str> =
+        sql.split(|character: char| !is_word_character(character)).filter(|word| !word.is_empty()).collect();
+    let Some(table_position) =
+        words.windows(2).position(|pair| matches!(pair[0], "from" | "join") && pair[1] == Citation::TABLE)
+    else {
+        return false;
+    };
+    let after_table = &words[table_position + 2..];
+    let alias = match after_table.first() {
+        Some(&"as") => after_table.get(1),
+        other => other,
+    }
+    .copied()
+    .filter(|word| !is_sql_keyword(word));
+    sql.match_indices("field").any(|(position, _)| {
+        let before = &sql[..position];
+        let after = &sql[position + "field".len()..];
+        let part_of_word = |character: Option<char>| character.is_some_and(is_word_character);
+        if part_of_word(before.chars().next_back()) || part_of_word(after.chars().next()) {
+            return false;
+        }
+        match before.strip_suffix('.') {
+            None => true,
+            Some(qualified_name) => {
+                let owner = qualified_name.rsplit(|character: char| !is_word_character(character)).next();
+                owner == Some(Citation::TABLE) || owner == alias
+            }
+        }
+    })
+}
+
+fn is_word_character(character: char) -> bool {
+    character.is_alphanumeric() || character == '_'
+}
+
+fn is_sql_keyword(word: &str) -> bool {
+    matches!(
+        word,
+        "where"
+            | "on"
+            | "join"
+            | "left"
+            | "inner"
+            | "cross"
+            | "group"
+            | "order"
+            | "limit"
+            | "union"
+            | "using"
+            | "and"
+            | "or"
+    )
+}
+
+pub fn deny_citation_field_reads(roots: &[&Path]) -> anyhow::Result<()> {
+    let mut findings = Vec::new();
+    for root in roots {
+        for entry in WalkDir::new(root) {
+            let entry = entry?;
+            let path = entry.path();
+            if path.extension().is_none_or(|extension| extension != "rs") || path.ends_with(CITATION_FIELD_READERS) {
+                continue;
+            }
+            let source = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
+            let production_length = source.split("#[cfg(test)]").next().unwrap_or(&source).len();
+            let mut token_start = 0;
+            for token in tokenize(&source, FrontmatterAllowed::No) {
+                let token_end = token_start + token.len as usize;
+                if token_start < production_length
+                    && matches!(token.kind, TokenKind::Literal { .. })
+                    && reads_citation_field(&source[token_start..token_end])
+                {
+                    let line = source[..token_start].matches('\n').count() + 1;
+                    findings.push(format!(
+                        "{}:{line}: reads a citation's field; only {CITATION_FIELD_READERS} may",
+                        path.display()
+                    ));
+                }
+                token_start = token_end;
+            }
+        }
+    }
+    if !findings.is_empty() {
+        bail!("{}", findings.join("\n"));
+    }
+    Ok(())
+}
+
 pub fn deny_unlisted_records(tree_root: &Path) -> anyhow::Result<()> {
     let registry_path = tree_root.join("schemas.rs");
     let registry =
@@ -217,6 +312,41 @@ mod tests {
         }
         std::fs::write(&path, format!("struct Entry in {:?} {{}}\n", Citation::TABLE)).unwrap();
         deny_annotation_table_literals(folder.path()).unwrap();
+    }
+
+    #[test]
+    fn a_citation_field_is_read_only_by_the_annotation_module() {
+        let folder = tempfile::tempdir().unwrap();
+        let wiki = folder.path().join("wiki");
+        std::fs::create_dir_all(&wiki).unwrap();
+        let reader = wiki.join("database.rs");
+        for sql in [
+            "SELECT c.url FROM citations c WHERE c.field = 'description'",
+            "SELECT url FROM citations WHERE field = 'description'",
+            "SELECT d.id FROM descriptions d JOIN citations AS owner ON owner.owner_id = d.id WHERE owner.field <> ''",
+            "SELECT citations.field FROM citations",
+        ] {
+            std::fs::write(&reader, format!("fn read_descriptions() {{ db.prepare({sql:?}); }}\n")).unwrap();
+            let error = deny_citation_field_reads(&[folder.path()]).unwrap_err().to_string();
+            assert!(error.contains("database.rs:1") && error.contains("citation"), "{sql}: {error}");
+        }
+        for sql in [
+            "SELECT url FROM citations WHERE owner_id = 1",
+            "SELECT field FROM corrections WHERE name = ''",
+            "SELECT c.url FROM citations c JOIN corrections k ON k.name = c.url WHERE k.field = 'description'",
+            "INSERT INTO citations (owner_id, field) VALUES (1, '')",
+        ] {
+            std::fs::write(&reader, format!("fn read_descriptions() {{ db.prepare({sql:?}); }}\n")).unwrap();
+            deny_citation_field_reads(&[folder.path()]).unwrap_or_else(|error| panic!("{sql}: {error}"));
+        }
+        std::fs::create_dir_all(folder.path().join("tree")).unwrap();
+        std::fs::write(
+            folder.path().join("tree/annotations.rs"),
+            "fn read() { db.prepare(\"SELECT c.field FROM citations c\"); }\n",
+        )
+        .unwrap();
+        std::fs::write(&reader, "fn read_descriptions() {}\n#[cfg(test)]\nmod tests { fn t() { db.prepare(\"SELECT field FROM citations\"); } }\n").unwrap();
+        deny_citation_field_reads(&[folder.path()]).unwrap();
     }
 
     #[test]

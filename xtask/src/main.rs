@@ -119,6 +119,10 @@ fn main() -> Result<()> {
         Task::Lint => {
             xtask::data_file_lints::deny_generic_file_mappers(&workspace_root().join("crates/ddo-etl/src/tree"))?;
             xtask::data_file_lints::deny_annotation_table_literals(&workspace_root().join("crates/ddo-etl/src"))?;
+            xtask::data_file_lints::deny_citation_field_reads(&[
+                &workspace_root().join("crates/ddo-etl/src"),
+                &workspace_root().join("xtask/src"),
+            ])?;
             xtask::data_file_lints::deny_unlisted_records(&workspace_root().join("crates/ddo-etl/src/tree"))?;
             deny_clippy_warnings()?;
             ddo_etl::tree::schemas::validate_source_fields(&workspace_root().join("data"))?;
