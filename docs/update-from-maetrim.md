@@ -66,6 +66,15 @@ The report is the pull-request body of the future automation, so it is complete 
 - `NEEDS RESEARCH`: an adventure pack he added has no `update` or `released`. It landed in a folder named only by its slug. Read [Modules and updates](https://ddowiki.com/page/Modules_and_updates), add `update`, `released` and a `[[citation]]` to its `pack.toml`, then rebuild through the database (`build --data data --out ddo.db`, `export --db ddo.db --out data`) so the folder gets its update tag.
 - `ICON CONFLICT` / `ICON DECLINED`: both sides changed an image's bytes, or he removed one we still reference. Ours stays.
 - `CHANGED UPSTREAM, ABSENT IN OURS`: he changed an entity we deleted. Nothing was applied; the line is for the record.
+- `BLANKED UPSTREAM, OURS KEPT`: he emptied a value he used to have. His blank never erases ours, so ours stays. Check whether the value is still right.
+- `SKIPPED WIKI FACT`: a wiki fact in the data files names something his previous files spelled differently or lacked. It was left out of his previous build only, and nothing in `data/` changed because of it.
+- The mapping audits (`UNCLASSIFIED BUFF TYPE`, `PARTIALLY MAPPED EFFECT`): his XML uses a buff family or effect target that `crates/ddo-etl/data/effect_map.toml` does not map. They never change the exit code. Map them there when the effect matters.
+
+How his values meet ours:
+- **His blank never erases ours.** In both of his builds, a value he leaves empty (NULL or empty text, but not 0 or false) is taken from ours before the comparison. A value he adds where his file was blank is applied as his change.
+- **Five quest columns are always ours.** These are free-to-play, legendary level, zone, quest giver and flagging (`OURS_ONLY_COLUMNS`), because his files never carry them.
+- **A merge of several of his spellings is one correction.** It is a single `[[ddobuilder_correction]]` whose `upstream` lists them all, for example the heroism socket labels. Two separate corrections with the same target fail the build.
+- **The 12 SunAndMoon gems are corrections.** His descriptions for them end in "Drops in: ?", and each carries a description correction with the wiki's drops line. When he edits one of those descriptions, the correction goes stale and is reported as a `CONFLICT`. An edit of any other field of those gems applies cleanly.
 
 Every edit after the import is an ordinary data-file edit: change the TOML, add the `[[ddobuilder_correction]]` or `[[citation]]` that records why, rebuild.
 
@@ -96,4 +105,4 @@ Two commits: the import (`Import DDOBuilder <short sha> into the data files`, bo
 
 ## When his build fails
 
-Until V9 chunk 2 removes them, the embedded `crates/ddo-etl/data/corrections/` and `crates/ddo-etl/data/wiki/` folders are still inputs to his XML build. An entry there naming something he removed stops the import at "building the new DataFiles". Delete that embedded entry (the data files keep our note, so the removal is declined and reported if we annotated it) and run again. A `missing image files` stop means his XML names an image his folders lack: add an icon-null correction like the ones `docs/data-icons.md` lists.
+His XML is built with the wiki facts and corrections the data files hold. In his new build (B), a wiki fact naming something he removed stops the import at "building the new DataFiles" and names the data file holding the fact. Settle it in that file: remove or re-point the fact, and run again. In his previous build (A), such a fact is only left out and listed as `SKIPPED WIKI FACT`, because his previous files predate names the data files already use. A `missing image files` stop means his XML names an image his folders lack: add an icon-null correction like the ones `docs/data-icons.md` lists.

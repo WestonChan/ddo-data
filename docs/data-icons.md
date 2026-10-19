@@ -6,7 +6,7 @@ Items and augments use these shared image categories wherever they live under `d
 
 An enhancement tree lives at `characters/enhancements/<tree>/tree.toml`. Artwork referenced by only that tree lives beside it in `characters/enhancements/<tree>/icons/`. Artwork referenced by several trees stays in `icons/enhancements/`. The build looks in the owning tree first, then the global enhancement kind. The build requires exact spelling, rejects icons in another kind, and rejects unreferenced art in a tree's own folder.
 
-`ddo-etl export --source` writes this layout. `ddo-etl export --db` writes TOML from database tables only; PNGs are copied separately for a round trip because the database does not contain image bytes. `ddo-etl icons --data` combines the tree-local and global files into the flat `enhancements/` folder served by the API and copies the other image kinds without renaming them.
+`ddo-etl export --db` writes TOML from database tables only; PNGs are copied separately for a round trip because the database does not contain image bytes. `ddo-etl icons --data` combines the tree-local and global files into the flat `enhancements/` folder served by the API and copies the other image kinds without renaming them.
 
 ## Remaining case corrections
 

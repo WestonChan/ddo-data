@@ -25,7 +25,7 @@ fn workspace_root() -> PathBuf {
 }
 
 fn scanned_files(root: &Path) -> Vec<PathBuf> {
-    ["crates", "xtask", ".github"]
+    ["crates", "xtask", ".github", "docs", "AGENTS.md", "README.md", "data/README.md"]
         .iter()
         .flat_map(|top| walkdir::WalkDir::new(root.join(top)))
         .map(Result::unwrap)

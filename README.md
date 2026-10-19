@@ -38,7 +38,7 @@ Requires a stable Rust toolchain (`rustup`). `rust-toolchain.toml` pins the chan
 cargo test
 ```
 
-The dataset is checked in under [`data/`](data/README.md), one TOML file per entity or existing rules group, and the deploy builds from it. Maetrim's DDOBuilderV2 files enter through `ddo-etl import-ddobuilder` ([`docs/update-from-maetrim.md`](docs/update-from-maetrim.md)); the XML build path (`build --source`, a sparse checkout of DDOBuilderV2 under the gitignored `upstream/`) remains until V9 chunk 2 removes it. Build the data files:
+The dataset is checked in under [`data/`](data/README.md), one TOML file per entity or existing rules group, and the deploy builds from it. Maetrim's DDOBuilderV2 files enter only through `ddo-etl import-ddobuilder` ([`docs/update-from-maetrim.md`](docs/update-from-maetrim.md)), which merges his changes into the data files; nothing else reads his XML. Build the data files:
 
 ```bash
 cargo run -p ddo-etl -- build --data data --out ddo.db
@@ -46,19 +46,20 @@ cargo run -p ddo-etl -- icons --data data --out icons
 cargo xtask round-trip --data data
 ```
 
-`ddo-etl export --db ddo.db --out DIR` exports the data files from the database; PNGs are copied separately. See [data editing](data/README.md) and [image layout](docs/data-icons.md). Deployment continues to build from XML until V9 chunk 2.
+`ddo-etl export --db ddo.db --out DIR` exports the data files from the database; PNGs are copied separately. See [data editing](data/README.md) and [image layout](docs/data-icons.md). Copy a file from `data/.templates/` to start a new entity of any kind.
 
 ### Available Commands
 
 | Command | Description |
 |---|---|
 | `cargo test --workspace` | Run every crate's tests |
-| `cargo lint` | Clippy plus the no-comments check, as CI runs it |
+| `cargo lint` | Clippy, the data-file checks and the no-comments check, as CI runs it |
 | `cargo xtask no-comments --fix` | Strip every comment and doc comment from the crates |
 | `cargo fmt --all --check` | Formatting check, as CI runs it |
-| `cargo run -p ddo-etl -- build --source <DataFiles> --out ddo.db` | Build the game database |
+| `cargo run -p ddo-etl -- build --data data --out ddo.db` | Build the game database from the data files |
+| `cargo run --release -p ddo-etl -- import-ddobuilder --previous <DataFiles> --source <DataFiles> --data data` | Merge a new DDOBuilderV2 push into the data files |
 | `cargo run -p ddo-etl -- diff --db ddo.db --legacy <old ddo.db>` | Compare item coverage against a previous database |
-| `cargo run -p ddo-etl -- icons --source <DataFiles> --out icons` | Flatten upstream's image folders for the API to serve |
+| `cargo run -p ddo-etl -- icons --data data --out icons` | Flatten the data files' image folders for the API to serve |
 | `DDO_DB_PATH=ddo.db ICONS_DIR=icons cargo run -p ddo-api` | Serve the API on http://localhost:8080 (docs at `/v1/docs`, spec at `/v1/openapi.json`) |
 
 ## API
