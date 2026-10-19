@@ -153,7 +153,7 @@ drop_location = "Catalyst Crafting, Turn in a test ring at the Strange Catalyst 
 }
 
 #[test]
-fn links_no_crafting_system_the_wiki_files_lack() {
+fn links_no_crafting_system_the_data_files_lack() {
     let (db, report) = built_with(&WikiOverrides::default());
     assert_eq!(source_rows(&db, "Visor of Fraz-Urb'luu"), Vec::<String>::new());
     assert_eq!(report.drop_text_crafting_system_source_count, 0);

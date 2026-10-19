@@ -331,7 +331,11 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         ),
         ("ddo-etl", &["--test", "import_ddobuilder"][..], "annotation_sources_and_correction_kinds_are_typed"),
         ("ddo-model", &["--test", "schema"][..], "annotations_require_exactly_one_page_or_in_game_source"),
-        ("ddo-etl", &["--test", "corrections"][..], "correction_field_names_and_shapes_preserve_the_existing_contract"),
+        (
+            "ddo-etl",
+            &["--test", "corrections"][..],
+            "correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability",
+        ),
         (
             "ddo-etl",
             &["--test", "import_ddobuilder"][..],

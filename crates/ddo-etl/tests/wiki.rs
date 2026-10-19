@@ -102,7 +102,7 @@ fn build_report_with(wiki: &WikiOverrides) -> Result<ddo_etl::build::BuildReport
 }
 
 #[test]
-fn reads_quest_loot_from_every_toml_file_in_the_directory() {
+fn reader_emits_a_quests_rare_drops_by_name_and_by_chest() {
     let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     let entry = wiki.quest_loot.iter().find(|quest| quest.name == "Book Burning").unwrap();
     assert_eq!(entry.name, "Book Burning");
@@ -548,7 +548,7 @@ fn wiki_quests_never_change_maetrims_quests() {
 }
 
 #[test]
-fn reads_crafting_systems_from_crafting_files() {
+fn reader_emits_crafting_systems_with_their_ingredients_and_recipes() {
     let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     assert_eq!(wiki.crafting_systems.len(), 4);
     let system = wiki.crafting_systems.iter().find(|system| system.name == "Heroic Green Steel").unwrap();

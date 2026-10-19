@@ -55,7 +55,7 @@ fn recorded_corrections(db: &Connection) -> Vec<(String, String, String, String,
 }
 
 #[test]
-fn correction_field_names_and_shapes_preserve_the_existing_contract() {
+fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
     use ddo_model::enums::CorrectionKind;
     let expected = [
         (CorrectionKind::Item, "accepts_sentience:accepts_sentience:Flag:false, description:description:Text:true, drop_location:drop_location:Text:true, enhancement_bonus:enhancement_bonus:Integer:true, icon:icon:Text:true, is_legacy:is_legacy:Flag:false, is_minor_artifact:is_minor_artifact:Flag:false, item_category:item_category:Text:false, item_type:item_type:Text:true, material:material_id:NamedReference { referenced_table: \"item_materials\" }:true, minimum_level:minimum_level:Integer:false, name:name:RowName:false, race_required:race_required:Text:true, remove:remove:Removal:false, set_bonus:set_bonus:SetName:true, slot:slot_id:NamedReference { referenced_table: \"equipment_slots\" }:false"),
@@ -337,7 +337,7 @@ fn item_effect_corrections_change_a_text_line_type_or_remove_its_link() {
 }
 
 #[test]
-fn embedded_corrections_load_and_fix_the_furys_rage_level() {
+fn committed_data_corrects_the_furys_rage_level() {
     let corrections = committed_corrections().clone();
     let furys_rage = corrections.entries.iter().find(|c| c.name == "The Fury's Rage").unwrap();
     assert_eq!(
@@ -813,7 +813,7 @@ fn flags_an_item_legacy_and_counts_it() {
 }
 
 #[test]
-fn embedded_corrections_flag_the_tempests_spine_armours_the_wiki_says_no_longer_drop() {
+fn committed_data_flags_the_tempests_spine_armours_the_wiki_says_no_longer_drop() {
     let corrections = committed_corrections().clone();
     for (old_name, replacement_name) in [
         ("Mithral Breastplate of the Elements", "Elemental Mithral Breastplate"),
@@ -1017,7 +1017,7 @@ fn renaming_an_item_or_quest_to_a_name_already_taken_fails() {
 }
 
 #[test]
-fn a_wiki_file_naming_the_old_spelling_fails_the_build() {
+fn a_wiki_fact_naming_the_old_spelling_fails_the_build() {
     let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     let corrections = validated_corrections(&[(
         "corrections.toml",
@@ -1640,7 +1640,7 @@ fn set_tier_qualifiers_must_be_complete_and_match_the_added_tier() {
 }
 
 #[test]
-fn embedded_set_corrections_keep_only_fact_changes() {
+fn committed_data_set_corrections_keep_only_fact_changes() {
     let corrections = committed_corrections().clone();
     let set_bonus_additions = corrections
         .entries
@@ -1660,7 +1660,7 @@ fn embedded_set_corrections_keep_only_fact_changes() {
 }
 
 #[test]
-fn embedded_set_corrections_fix_feather_falling_and_remove_only_celeritys_movement_bonus() {
+fn committed_data_set_corrections_fix_feather_falling_and_remove_only_celeritys_movement_bonus() {
     let corrections = committed_corrections().clone();
     assert!(corrections.entries.iter().any(|correction| {
         correction.kind.as_str() == "set_tier"
