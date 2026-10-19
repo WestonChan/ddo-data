@@ -14,41 +14,6 @@ slot = "Trinket"
 url = "https://ddowiki.com/page/Item:Legendary_Gem_of_Many_Facets"
 read = "2026-10-17"
 
-[[citation]]
-field = "minimum_level"
-url = "https://ddowiki.com/page/Item:Legendary_Gem_of_Many_Facets"
-read = "2026-10-17"
-
-[[citation]]
-field = "description"
-url = "https://ddowiki.com/page/Item:Legendary_Gem_of_Many_Facets"
-read = "2026-10-17"
-
-[[citation]]
-field = "drop_location"
-url = "https://ddowiki.com/page/Item:Legendary_Gem_of_Many_Facets"
-read = "2026-10-17"
-
-[[citation]]
-field = "material"
-url = "https://ddowiki.com/page/Item:Legendary_Gem_of_Many_Facets"
-read = "2026-10-17"
-
-[[citation]]
-field = "slot"
-url = "https://ddowiki.com/page/Item:Legendary_Gem_of_Many_Facets"
-read = "2026-10-17"
-
-[[citation]]
-field = "socket"
-url = "https://ddowiki.com/page/Item:Legendary_Gem_of_Many_Facets"
-read = "2026-10-17"
-
-[[citation]]
-field = "effects"
-url = "https://ddowiki.com/page/Item:Legendary_Gem_of_Many_Facets"
-read = "2026-10-17"
-
 [[effect]]
 name = "Mythic Trinket Boost +1 or +3"
 

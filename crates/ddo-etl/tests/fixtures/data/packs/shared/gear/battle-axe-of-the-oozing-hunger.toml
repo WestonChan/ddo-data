@@ -13,11 +13,6 @@ slot = "Main Hand"
 url = "https://ddowiki.com/page/Item:Battle_Axe_of_the_Oozing_Hunger"
 read = "2026-09-29"
 
-[[citation]]
-field = "sources"
-url = "https://ddowiki.com/page/Item:Battle_Axe_of_the_Oozing_Hunger"
-read = "2026-09-29"
-
 [[dr_bypass]]
 bypass = "Magic"
 

@@ -11,11 +11,6 @@ slot = "Trinket"
 url = "https://ddowiki.com/page/Item:Legendary_Pair_of_Mind_Flayer_Nickels"
 read = "2026-09-30"
 
-[[citation]]
-field = "sources"
-url = "https://ddowiki.com/page/Item:Legendary_Pair_of_Mind_Flayer_Nickels"
-read = "2026-09-30"
-
 [[effect]]
 name = "Doublestrike"
 bonus_type = "Enhancement"

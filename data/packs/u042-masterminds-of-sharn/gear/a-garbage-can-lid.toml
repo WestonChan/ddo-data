@@ -20,11 +20,6 @@ shield_bonus = 9
 url = "https://ddowiki.com/page/Item:A_Garbage_Can_Lid%3F"
 read = "2026-09-30"
 
-[[citation]]
-field = "sources"
-url = "https://ddowiki.com/page/Item:A_Garbage_Can_Lid%3F"
-read = "2026-09-30"
-
 [[dr_bypass]]
 bypass = "Bludgeon"
 

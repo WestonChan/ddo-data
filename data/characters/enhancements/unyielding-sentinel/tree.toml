@@ -292,17 +292,6 @@ icon = "U51CelestialMandate"
 is_clickie = true
 
 [[enhancement.selection.citation]]
-field = "cost_per_rank"
-url = "https://ddowiki.com/page/Unyielding_Sentinel"
-read = "2026-10-17"
-
-[[enhancement.selection.citation]]
-field = "description"
-url = "https://ddowiki.com/page/Unyielding_Sentinel"
-read = "2026-10-17"
-
-[[enhancement.selection.citation]]
-field = "modifier.display_name"
 url = "https://ddowiki.com/page/Unyielding_Sentinel"
 read = "2026-10-17"
 

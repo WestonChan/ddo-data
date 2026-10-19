@@ -12,11 +12,6 @@ slot = "Runearm"
 url = "https://ddowiki.com/page/Item:Resplendence"
 read = "2026-09-30"
 
-[[citation]]
-field = "sources"
-url = "https://ddowiki.com/page/Item:Resplendence"
-read = "2026-09-30"
-
 [[effect]]
 name = "Light Spell Power"
 bonus_type = "Equipment"

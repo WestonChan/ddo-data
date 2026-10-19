@@ -1584,12 +1584,6 @@ x = 4
 y = 5
 
 [[enhancement.citation]]
-field = "ranks"
-url = "https://ddowiki.com/page/Exalted_Angel"
-read = "2026-10-17"
-
-[[enhancement.citation]]
-field = "min_spent"
 url = "https://ddowiki.com/page/Exalted_Angel"
 read = "2026-10-17"
 
@@ -1607,12 +1601,6 @@ Metamagic, it does not grant the Feat itself."""
 icon = "MetamagicAttunementII"
 
 [[enhancement.selection.citation]]
-field = "cost_per_rank"
-url = "https://ddowiki.com/page/Exalted_Angel"
-read = "2026-10-17"
-
-[[enhancement.selection.citation]]
-field = "description"
 url = "https://ddowiki.com/page/Exalted_Angel"
 read = "2026-10-17"
 
@@ -1636,12 +1624,6 @@ Metamagic, it does not grant the Feat itself."""
 icon = "MetamagicAttunementIIIntensify"
 
 [[enhancement.selection.citation]]
-field = "cost_per_rank"
-url = "https://ddowiki.com/page/Exalted_Angel"
-read = "2026-10-17"
-
-[[enhancement.selection.citation]]
-field = "description"
 url = "https://ddowiki.com/page/Exalted_Angel"
 read = "2026-10-17"
 

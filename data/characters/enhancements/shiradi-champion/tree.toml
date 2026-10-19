@@ -1179,17 +1179,6 @@ x = 3
 y = 4
 
 [[enhancement.citation]]
-field = "cost_per_rank"
-url = "https://ddowiki.com/page/Shiradi_Champion"
-read = "2026-10-17"
-
-[[enhancement.citation]]
-field = "ranks"
-url = "https://ddowiki.com/page/Shiradi_Champion"
-read = "2026-10-17"
-
-[[enhancement.citation]]
-field = "min_spent"
 url = "https://ddowiki.com/page/Shiradi_Champion"
 read = "2026-10-17"
 
@@ -1221,12 +1210,6 @@ description = "Pin now automatically applies 10 stacks of Track to enemies."
 icon = "ShiradiOverwhelmingForce"
 
 [[enhancement.selection.citation]]
-field = "cost_per_rank"
-url = "https://ddowiki.com/page/Shiradi_Champion"
-read = "2026-10-17"
-
-[[enhancement.selection.citation]]
-field = "description"
 url = "https://ddowiki.com/page/Shiradi_Champion"
 read = "2026-10-17"
 

@@ -2419,12 +2419,6 @@ icon = "MasterOfAlignment"
 source_name = "Epic"
 
 [[row.citation]]
-field = "description"
-url = "https://ddowiki.com/page/Master_of_Alignment"
-read = "2026-10-17"
-
-[[row.citation]]
-field = "effect"
 url = "https://ddowiki.com/page/Master_of_Alignment"
 read = "2026-10-17"
 
@@ -2460,12 +2454,6 @@ icon = "MasterOfTheDead"
 source_name = "Epic"
 
 [[row.citation]]
-field = "description"
-url = "https://ddowiki.com/page/Master_of_the_Decay"
-read = "2026-10-17"
-
-[[row.citation]]
-field = "effect"
 url = "https://ddowiki.com/page/Master_of_the_Decay"
 read = "2026-10-17"
 
@@ -2501,17 +2489,6 @@ icon = "MasterOfFire"
 source_name = "Epic"
 
 [[row.citation]]
-field = "name"
-url = "https://ddowiki.com/page/Master_of_Fire_and_Light"
-read = "2026-10-17"
-
-[[row.citation]]
-field = "description"
-url = "https://ddowiki.com/page/Master_of_Fire_and_Light"
-read = "2026-10-17"
-
-[[row.citation]]
-field = "effect"
 url = "https://ddowiki.com/page/Master_of_Fire_and_Light"
 read = "2026-10-17"
 
@@ -2636,12 +2613,6 @@ icon = "MasterOfAir"
 source_name = "Epic"
 
 [[row.citation]]
-field = "description"
-url = "https://ddowiki.com/page/Master_of_the_Storm"
-read = "2026-10-17"
-
-[[row.citation]]
-field = "effect"
 url = "https://ddowiki.com/page/Master_of_the_Storm"
 read = "2026-10-17"
 
