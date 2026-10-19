@@ -1,6 +1,6 @@
 use super::drop_text::{
-    insert_source_link, insert_source_link_unless_linked_as, insert_source_link_unless_loot_linked_there,
-    mark_quest_source_link_rare, DropTextLinker, DroppedLoot, SourceLink,
+    insert_source_link_unless_linked_as, insert_source_link_unless_loot_linked_there, mark_quest_source_link_rare,
+    DropTextLinker, DroppedLoot, SourceLink,
 };
 use super::effects::EffectOwner;
 use super::items::{ArmorStatsRow, ItemRow, WeaponStatsRow};
@@ -46,11 +46,8 @@ pub(super) fn apply_wiki_overrides(
             let item_id = references.id(transaction, "items", item_name)?.with_context(|| {
                 format!("{citation}: listed item {item_name:?} is not in Maetrim's items or a wiki item; names must match exactly")
             })?;
-            let (added_links, replaced_pack_drops) =
+            report.wiki_added_quest_loot_link_count +=
                 insert_listed_loot_link(transaction, quest_id, DroppedLoot::Item(item_id), listed_item)?;
-            report.wiki_added_quest_loot_link_count += added_links;
-            report.pack_loot_link_count =
-                report.pack_loot_link_count.checked_sub(replaced_pack_drops).context("replacing item pack source")?;
             report.wiki_loot_drop_count += 1;
         }
         for listed_augment in &quest_loot.augments {
@@ -60,13 +57,8 @@ pub(super) fn apply_wiki_overrides(
                 bail!("{citation}: listed augment {augment_name:?} is not in Maetrim's augments or a wiki augment; names must match exactly");
             }
             for augment_id in augment_ids {
-                let (added_links, replaced_pack_drops) =
+                report.wiki_added_quest_augment_loot_link_count +=
                     insert_listed_loot_link(transaction, quest_id, DroppedLoot::Augment(augment_id), listed_augment)?;
-                report.wiki_added_quest_augment_loot_link_count += added_links;
-                report.pack_augment_loot_link_count = report
-                    .pack_augment_loot_link_count
-                    .checked_sub(replaced_pack_drops)
-                    .context("replacing augment pack source")?;
             }
             report.wiki_loot_augment_drop_count += 1;
         }
@@ -422,7 +414,7 @@ fn insert_listed_loot_link(
     quest_id: i64,
     loot: DroppedLoot,
     listed_drop: &ListedDrop,
-) -> Result<(usize, usize)> {
+) -> Result<usize> {
     let listed_source_link =
         SourceLink { chest: listed_drop.chest(), ..SourceLink::from_quest(quest_id, loot, listed_drop.loot_type()) };
     let added_links = if listed_drop.names_loot_type() {
@@ -430,20 +422,7 @@ fn insert_listed_loot_link(
     } else {
         insert_source_link_unless_loot_linked_there(transaction, &listed_source_link)
     }?;
-    let replaced_pack_drops = if listed_drop.replaces_pack_drop() {
-        let chest = listed_drop.chest().context("replaces_pack_drop needs a chest")?;
-        let deleted = transaction.execute(
-            "DELETE FROM pack_drops
-             WHERE pack_id = (SELECT pack_id FROM quests WHERE id = ?1)
-               AND owner_kind = ?2 AND owner_id = ?3 AND loot_type = ?4 AND chest = ?5",
-            params![quest_id, loot.kind(), loot.id(), listed_drop.loot_type().as_str(), chest],
-        )?;
-        ensure!(deleted == 1, "wiki quest drop {:?} must replace exactly one pack-wide source", listed_drop.name());
-        deleted
-    } else {
-        0
-    };
-    Ok((added_links, replaced_pack_drops))
+    Ok(added_links)
 }
 
 #[derive(Default)]
@@ -673,20 +652,6 @@ impl TableWriter<'_> {
                 })
             })
             .collect::<Result<Vec<i64>>>()?;
-        let quest_links = wiki_item
-            .quests
-            .iter()
-            .map(|quest| {
-                let quest_id = self.overlay_references.id(self.transaction, "quests", &quest.name)?.with_context(|| {
-                    format!(
-                        "quest {:?} is not a quest in Maetrim's Quests.xml or Challenges.xml or the wiki quests; use his spelling",
-                        quest.name
-                    )
-                })?;
-                Ok((quest_id, quest.loot_type()))
-            })
-            .collect::<Result<Vec<(i64, LootType)>>>()?;
-
         let item_id = self.insert_item_row(&ItemRow {
             name: &wiki_item.name,
             equipment_slot: wiki_item.equipment_slot(),
@@ -773,12 +738,6 @@ impl TableWriter<'_> {
         }
         for (sort_order, slot_type_id) in slot_type_ids.into_iter().enumerate() {
             self.insert_item_augment_slot(item_id, sort_order, slot_type_id)?;
-        }
-        for (quest_id, loot_type) in quest_links {
-            insert_source_link(
-                self.transaction,
-                &SourceLink::from_quest(quest_id, DroppedLoot::Item(item_id), loot_type),
-            )?;
         }
         if let Some(set_name) = &wiki_item.set {
             self.pending_set_item_links.push((item_id, self.overlay_references.upstream_name("set_bonuses", set_name)));

@@ -71,7 +71,6 @@ fn loot_wiki(drops: &[LootRow]) -> WikiOverrides {
             name: (*name).into(),
             loot_type: Some((*loot_type).into()),
             chest: chest.map(String::from),
-            replaces_pack_drop: false,
         });
         let rare_drop = chest.map_or_else(
             || RareDrop::Named((*name).into()),
@@ -113,46 +112,6 @@ fn reads_quest_loot_from_every_toml_file_in_the_directory() {
         entry.rare_augments.iter().map(RareDrop::name).collect::<Vec<_>>(),
         ["Lunar Gem of Magical Protection (Heroic)"]
     );
-}
-
-fn axe_pack_chest_rows(replaces_pack_drop: bool) -> (Vec<(String, Option<String>)>, usize) {
-    let mut wiki = fixture_wiki();
-    wiki.items.iter_mut().find(|item| item.name == WIKI_AXE).unwrap().drop_location = "Free to Play, end chest".into();
-    let grotto = wiki.quest_loot.iter_mut().find(|quest| quest.name == "The Grotto").unwrap();
-    grotto.items = vec![ListedDrop::Described(DescribedListedDrop {
-        name: WIKI_AXE.into(),
-        loot_type: Some("chest".into()),
-        chest: Some("end chest".into()),
-        replaces_pack_drop,
-    })];
-    let (db, report) = built_db_with(&wiki);
-    let rows = db
-        .prepare(
-            "SELECT s.kind, s.chest FROM sources s JOIN items i ON i.id = s.item_id
-             WHERE i.name = ?1 AND s.kind IN ('quest', 'adventure_pack') AND s.loot_type <> 'reward'
-             ORDER BY s.kind, s.id",
-        )
-        .unwrap()
-        .query_map([WIKI_AXE], |row| Ok((row.get(0)?, row.get(1)?)))
-        .unwrap()
-        .map(Result::unwrap)
-        .collect();
-    (rows, report.pack_loot_link_count)
-}
-
-#[test]
-fn a_listed_quest_drop_replaces_the_same_pack_wide_chest_only_when_it_says_so() {
-    let (replaced, replaced_link_count) = axe_pack_chest_rows(true);
-    assert_eq!(replaced, [("quest".to_string(), Some("end chest".to_string()))]);
-    let (kept, kept_link_count) = axe_pack_chest_rows(false);
-    assert_eq!(
-        kept,
-        [
-            ("adventure_pack".to_string(), Some("end chest".to_string())),
-            ("quest".to_string(), Some("end chest".to_string()))
-        ]
-    );
-    assert_eq!(kept_link_count, replaced_link_count + 1);
 }
 
 fn quest_augment_loot_row(db: &Connection, quest: &str, augment: &str) -> Option<(String, bool, Option<String>)> {

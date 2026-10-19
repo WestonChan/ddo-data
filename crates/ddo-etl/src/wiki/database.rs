@@ -64,7 +64,7 @@ fn quest_loot(db: &Connection, paths: &DataFilePaths) -> Result<Vec<QuestLoot>> 
         let quest = quests.entry(id).or_insert_with(|| QuestLoot { name, rare:Vec::new(),rare_augments:Vec::new(),items:Vec::new(),augments:Vec::new(),file_name:String::new() });
         quest.file_name=paths.path("quests",id)?.display().to_string();
         if listed {
-            let drop = ListedDrop::Described(DescribedListedDrop { name:owner_name.clone(),loot_type:Some(loot_type),chest:chest.clone(),replaces_pack_drop:false });
+            let drop = ListedDrop::Described(DescribedListedDrop { name:owner_name.clone(),loot_type:Some(loot_type),chest:chest.clone() });
             if owner_kind=="item" { quest.items.push(drop); } else { quest.augments.push(drop); }
         }
         if rare {
@@ -242,7 +242,7 @@ fn items(db: &Connection, paths: &DataFilePaths) -> Result<Vec<WikiItem>> {
     .collect::<BTreeMap<_, _>>();
     rows(db,"SELECT i.*,s.name AS slot,m.name AS material FROM items i JOIN equipment_slots s ON s.id=i.slot_id LEFT JOIN item_materials m ON m.id=i.material_id WHERE i.provenance='wiki' ORDER BY i.id",|r|Ok((r.get::<_,i64>("id")?,WikiItem{
         name:r.get("name")?,wiki_url:r.get("wiki_url")?,slot:r.get("slot")?,category:r.get("item_category")?,item_type:r.get("item_type")?,minimum_level:r.get("minimum_level")?,enhancement_bonus:r.get("enhancement_bonus")?,material:r.get("material")?,race_required:r.get("race_required")?,description:r.get("description")?,drop_location:r.get("drop_location")?,set:r.get("set_bonus")?,accepts_sentience:r.get("accepts_sentience")?,is_minor_artifact:r.get("is_minor_artifact")?,
-        quests:Vec::new(),augment_slots:Vec::new(),bonuses:Vec::new(),effects:Vec::new(),weapon:None,armor:None,file_name:String::new()
+        augment_slots:Vec::new(),bonuses:Vec::new(),effects:Vec::new(),weapon:None,armor:None,file_name:String::new()
     })))?.into_iter().map(|(id,mut item)|{
         item.file_name=paths.path("items",id)?.display().to_string();
         let grants=effects.remove(&id).unwrap_or_default();

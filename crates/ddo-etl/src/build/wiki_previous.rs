@@ -107,9 +107,6 @@ pub(super) fn omit_unresolved_previous_facts(
         item.augment_slots.retain(|name| {
             references.fact("augment_slot_types", name, &item.file_name, format!("{} socket {name}", item.name))
         });
-        item.quests.retain(|quest| {
-            references.fact("quests", &quest.name, &item.file_name, format!("{} source {}", item.name, quest.name))
-        });
     }
     for augment in &mut wiki.augments {
         references.optional("set_bonuses", &mut augment.set, &augment.file_name, format!("{} set", augment.name));

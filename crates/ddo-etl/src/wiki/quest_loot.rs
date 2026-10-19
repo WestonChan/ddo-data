@@ -49,7 +49,6 @@ pub struct DescribedListedDrop {
     pub name: String,
     pub loot_type: Option<String>,
     pub chest: Option<String>,
-    pub replaces_pack_drop: bool,
 }
 
 impl ListedDrop {
@@ -75,10 +74,6 @@ impl ListedDrop {
 
     pub fn names_loot_type(&self) -> bool {
         self.loot_type_name().is_some()
-    }
-
-    pub fn replaces_pack_drop(&self) -> bool {
-        matches!(self, Self::Described(drop) if drop.replaces_pack_drop)
     }
 
     fn loot_type_name(&self) -> Option<&str> {

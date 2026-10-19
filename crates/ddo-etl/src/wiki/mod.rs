@@ -15,7 +15,7 @@ pub use bonuses::WikiBonus;
 pub use crafting::{CraftingIngredient, CraftingRecipe, CraftingSystem, IngredientCost};
 pub use descriptions::{DescriptionKind, WikiDescription};
 pub use events::WikiEvent;
-pub use items::{WikiArmorStats, WikiItem, WikiItemEffect, WikiItemQuest, WikiWeaponStats};
+pub use items::{WikiArmorStats, WikiItem, WikiItemEffect, WikiWeaponStats};
 pub use quest_loot::{DescribedListedDrop, ListedDrop, QuestLoot, RareDrop, RareDropInChest};
 pub use quest_series::{
     DescribedQuestChainReward, DescribedSagaReward, QuestChainReward, QuestSeriesReward, SagaReward, WikiQuestChain,

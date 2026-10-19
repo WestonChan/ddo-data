@@ -1,5 +1,5 @@
 use super::bonuses::WikiBonus;
-use ddo_model::enums::{ArmorType, EquipmentSlot, Handedness, ItemCategory, LootType};
+use ddo_model::enums::{ArmorType, EquipmentSlot, Handedness, ItemCategory};
 use ddo_model::seeds::WeaponType;
 
 #[derive(Debug, Clone, PartialEq)]
@@ -15,7 +15,6 @@ pub struct WikiItem {
     pub race_required: Option<String>,
     pub description: Option<String>,
     pub drop_location: String,
-    pub quests: Vec<WikiItemQuest>,
     pub set: Option<String>,
     pub accepts_sentience: bool,
     pub is_minor_artifact: bool,
@@ -25,12 +24,6 @@ pub struct WikiItem {
     pub weapon: Option<WikiWeaponStats>,
     pub armor: Option<WikiArmorStats>,
     pub file_name: String,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct WikiItemQuest {
-    pub name: String,
-    pub loot_type: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -61,12 +54,6 @@ pub struct WikiArmorStats {
     pub arcane_spell_failure: Option<i64>,
     pub armor_check_penalty: Option<i64>,
     pub shield_bonus: Option<i64>,
-}
-
-impl WikiItemQuest {
-    pub fn loot_type(&self) -> LootType {
-        LootType::ALL.iter().copied().find(|l| l.as_str() == self.loot_type).expect("validated loot_type")
-    }
 }
 
 impl WikiWeaponStats {
