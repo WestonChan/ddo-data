@@ -1,6 +1,7 @@
 name = "Unholy Defiler of the Hidden Hand"
 npc = "Unholy Defiler of the Hidden Hand, Morgrave University - Upper Commons, in the rafters above Steps Obliss (reached from the barrels in the nearby tavern); visible only while wearing Steps' Lenses of Seein' Hidden Hand Secrets, which Steps Obliss gives after talking to him on 14 consecutive days on one character"
 pack = "Vecna Unleashed"
+page = "https://ddowiki.com/page/Unholy_Defiler_of_the_Hidden_Hand"
 
 [[ingredient]]
 name = "Gray Dust of Vile Darkness"

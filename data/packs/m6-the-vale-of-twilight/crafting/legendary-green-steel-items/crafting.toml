@@ -1,6 +1,7 @@
 name = "Legendary Green Steel items"
 npc = "Altar of Fecundity in Meridia (blanks and Active augments); Legendary Altars of Invasion, Subjugation and Devastation at the ends of parts 1, 2 and 5 of The Codex and the Shroud; Guild Airships"
 pack = "The Vale of Twilight"
+page = "https://ddowiki.com/page/Legendary_Green_Steel_items"
 
 [[family]]
 family = "Greensteel_Legendary"

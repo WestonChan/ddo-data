@@ -7,7 +7,7 @@ use ddo_etl::{
     wiki::WikiOverrides,
 };
 use ddo_model::DatasetVersion;
-use rusqlite::Connection;
+use rusqlite::{types::Value as SqlValue, Connection};
 use std::path::Path;
 
 #[test]
@@ -180,6 +180,9 @@ fn export_fixture_with_icons(db: &Connection, source: &Path, root: &Path) {
     ddo_etl::icons::place_enhancement_icons_beside_trees(root).unwrap();
 }
 
+const AUTHORED_OVER_HIS_VALUES: &[(&str, &str)] =
+    &[("augments", "description"), ("quests", "is_free_to_play"), ("quest_drops", "id")];
+
 fn assert_overlay_tables_match(normalized: &Connection, ours: &Connection) {
     let mut delta = ddo_etl::delta::database_delta(normalized, ours).unwrap();
     delta.arrays.retain(|key, change| {
@@ -192,22 +195,67 @@ fn assert_overlay_tables_match(normalized: &Connection, ours: &Connection) {
         );
         false
     });
+    let drops_in_placeholder = "Drops in: ?";
+    let mut placeholder_augments = Vec::new();
+    if let Some(augments) = delta.entities.get_mut("augments") {
+        augments.changed.retain(|change| {
+            let filled_placeholder =
+                change.column == "description" && change.previous.trim_end_matches('"').ends_with(drops_in_placeholder);
+            if filled_placeholder {
+                placeholder_augments.push(change.identity.clone());
+            }
+            !filled_placeholder
+        });
+    }
+    delta.arrays.retain(|key, _| !(key.array == "source" && placeholder_augments.contains(&key.owner)));
+    if let Some(quests) = delta.entities.get_mut("quests") {
+        quests.changed.retain(|change| change.column != "is_free_to_play");
+    }
+    delta
+        .entities
+        .retain(|_, changes| !(changes.added.is_empty() && changes.removed.is_empty() && changes.changed.is_empty()));
     assert!(delta.is_empty(), "{delta:#?}");
+    let placeholder_augment_ids: Vec<i64> = ours
+        .prepare("SELECT id FROM augments WHERE id IN (SELECT id FROM augments)")
+        .unwrap()
+        .query_map([], |row| row.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .filter(|id: &i64| {
+            normalized
+                .query_row("SELECT description FROM augments WHERE id = ?1", [id], |row| {
+                    row.get::<_, Option<String>>(0)
+                })
+                .ok()
+                .flatten()
+                .is_some_and(|description| description.ends_with("Drops in: ?"))
+        })
+        .collect();
     for table in ddo_etl::database_tables::table_names(ours).unwrap() {
         if table == "citations" {
             continue;
         }
         let columns = ddo_etl::database_tables::table_columns(ours, &table).unwrap();
+        let owner_kind_column = columns.iter().position(|column| column == "owner_kind");
+        let owner_id_column = columns.iter().position(|column| column == "owner_id");
         let stable_rows = |db: &Connection| {
             ddo_etl::database_tables::table_rows(db, &table)
                 .unwrap()
                 .into_iter()
+                .filter(|row| {
+                    let (Some(kind), Some(id)) = (owner_kind_column, owner_id_column) else { return true };
+                    table != "quest_drops"
+                        || !matches!((&row[kind], &row[id]), (SqlValue::Text(kind), SqlValue::Integer(id))
+                            if kind == "augment" && placeholder_augment_ids.contains(id))
+                })
                 .map(|row| {
                     row.into_iter()
                         .zip(&columns)
                         .filter_map(|(value, column)| {
-                            (column != "built_at" && !(table == "schema_version" && column == "applied_at"))
-                                .then_some(value)
+                            (column != "built_at"
+                                && !(table == "schema_version" && column == "applied_at")
+                                && !AUTHORED_OVER_HIS_VALUES.contains(&(table.as_str(), column.as_str())))
+                            .then_some(value)
                         })
                         .collect::<Vec<_>>()
                 })
@@ -618,6 +666,7 @@ fn overlay_references_follow_only_renames_active_in_each_xml_build() {
         let pack: String = built.query_row("SELECT p.name FROM sagas s JOIN adventure_packs p ON p.id=s.pack_id WHERE s.name='Masterminds of Sharn'", [], |row| row.get(0)).unwrap();
         assert_eq!(pack, "Reviewed Masterminds of Sharn", "{state}");
         if !adopted {
+            ddo_etl::import_ddobuilder::fill_blank_cells_from_ours(&built, &ours).unwrap();
             let export = scratch.path().join(format!("{state}-data"));
             export_fixture_with_icons(&built, &source, &export);
             let mut normalized = Connection::open_in_memory().unwrap();
@@ -674,6 +723,7 @@ fn canonical_fixture_reproduces_all_tables_with_xml_citations_a_subset_of_ours()
         ordered_corrections(Corrections::from_database(&upstream).unwrap()),
         ordered_corrections(corrections.clone())
     );
+    ddo_etl::import_ddobuilder::fill_blank_cells_from_ours(&upstream, &ours).unwrap();
     let scratch = tempfile::tempdir().unwrap();
     export_fixture_with_icons(&upstream, &fixtures.join("DataFiles"), scratch.path());
     let mut normalized = Connection::open_in_memory().unwrap();
@@ -799,10 +849,7 @@ fn database_wiki_reference_failure_names_the_owning_data_file() {
     .unwrap_err();
     let message = format!("{error:#}");
     assert!(message.contains("Buckler of the Golden Age"), "{message}");
-    assert!(
-        message.contains("packs/magic-of-myth-drannor/quests/book-burning/gear/buckler-of-the-golden-age.toml"),
-        "{message}"
-    );
+    assert!(message.contains("packs/magic-of-myth-drannor/quests/book-burning/quest.toml"), "{message}");
 }
 
 #[test]
@@ -1525,6 +1572,78 @@ fn ravager_corrections() -> Corrections {
         )),
     )])
     .unwrap()
+}
+
+const DRACONIC_TREE: &str = "EnhancementTrees/Fighter_Ravager.tree.xml";
+
+fn blank_draconic_description(xml_root: &Path) {
+    let path = xml_root.join(DRACONIC_TREE);
+    let xml = std::fs::read_to_string(&path).unwrap();
+    let start = xml.find("<Description>Your Power Attack feat does").unwrap();
+    let end = start + xml[start..].find("</Description>").unwrap() + "</Description>".len();
+    std::fs::write(path, format!("{}<Description></Description>{}", &xml[..start], &xml[end..])).unwrap();
+}
+
+fn draconic_description(world: &ImportWorld) -> Option<String> {
+    world
+        .database()
+        .query_row("SELECT description FROM enhancements WHERE internal_name = 'DLRavDraconicPowerAttack'", [], |row| {
+            row.get(0)
+        })
+        .unwrap()
+}
+
+#[test]
+fn his_blank_never_erases_ours_and_the_import_says_so() {
+    let world = ImportWorld::new(Corrections::default());
+    let before = draconic_description(&world).unwrap();
+    assert!(before.contains("[1/2/3]"));
+    blank_draconic_description(&world.options.source_dir);
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    let text = report.to_string();
+    assert!(
+        text.lines().any(|line| line.contains("BLANKED UPSTREAM, OURS KEPT")
+            && line.contains("ravager-fighter/tree.toml")
+            && line.contains("description")),
+        "{text}"
+    );
+    assert_eq!(draconic_description(&world).as_deref(), Some(before.as_str()));
+}
+
+#[test]
+fn his_added_description_applies_where_ours_had_filled_a_blank() {
+    let world = ImportWorld::new(Corrections::default());
+    blank_draconic_description(&world.options.previous_dir);
+    world.edit(
+        "UPDATE enhancements SET description = 'Our researched text.' WHERE internal_name = 'DLRavDraconicPowerAttack'",
+    );
+    assert_eq!(draconic_description(&world).as_deref(), Some("Our researched text."));
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert!(!report.to_string().contains("BLANKED UPSTREAM"), "{report}");
+    assert!(draconic_description(&world).unwrap().contains("does 3 additional point(s)"));
+}
+
+#[test]
+fn quest_facts_are_kept_across_an_import() {
+    let world = ImportWorld::new(Corrections::default());
+    let quest: String =
+        world.database().query_row("SELECT name FROM quests ORDER BY id LIMIT 1", [], |row| row.get(0)).unwrap();
+    world.edit(&format!(
+        "UPDATE quests SET zone = 'Our zone', legendary_level = 31, flagging = 'Our flagging' WHERE name = '{}'",
+        quest.replace('\'', "''")
+    ));
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert!(!report.to_string().contains("BLANKED UPSTREAM"), "{report}");
+    let facts: (Option<String>, Option<i64>, Option<String>) = world
+        .database()
+        .query_row("SELECT zone, legendary_level, flagging FROM quests WHERE name = ?1", [&quest], |row| {
+            Ok((row.get(0)?, row.get(1)?, row.get(2)?))
+        })
+        .unwrap();
+    assert_eq!(facts, (Some("Our zone".into()), Some(31), Some("Our flagging".into())));
 }
 
 #[test]

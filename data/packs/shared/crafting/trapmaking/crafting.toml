@@ -1,5 +1,6 @@
 name = "Trapmaking"
 npc = "Device Workstation, ground level of the House Cannith Enclave; also a guild airship amenity at guild level 30 (24 Gold Seal). Needs the Trapmaking feat (auto-granted to level 4 Rogues and Artificers and level 3 Dark Hunters)"
+page = "https://ddowiki.com/page/Trapmaking"
 
 [[ingredient]]
 name = "Mechanical Trap Parts"

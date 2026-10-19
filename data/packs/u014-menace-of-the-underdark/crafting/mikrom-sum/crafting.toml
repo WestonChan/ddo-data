@@ -1,6 +1,7 @@
 name = "Mikrom Sum"
 npc = "Mikrom Sum, Purple Dragon Knight patron vendor in north-central Eveningstar next to Battlemaster Dint; every upgrade and purchase needs Oversword status (375 Purple Dragon Knights favor)"
 pack = "Menace of the Underdark"
+page = "https://ddowiki.com/page/Mikrom_Sum"
 
 [[ingredient]]
 name = "Commendation of Heroism"

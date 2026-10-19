@@ -87,7 +87,6 @@ pub struct BuildReport {
     pub wiki_rare_augment_drop_count: usize,
     pub wiki_added_quest_augment_loot_link_count: usize,
     pub wiki_loot_augment_drop_count: usize,
-    pub wiki_quest_entry_count: usize,
     pub wiki_quest_created_count: usize,
     pub wiki_quest_superseded_count: usize,
     pub wiki_quest_probable_duplicate_count: usize,
@@ -96,10 +95,6 @@ pub struct BuildReport {
     pub wiki_crafting_system_count: usize,
     pub wiki_crafting_recipe_count: usize,
     pub wiki_crafting_ingredient_count: usize,
-    pub wiki_description_entry_count: usize,
-    pub wiki_description_filled_count: usize,
-    pub wiki_description_skipped_count: usize,
-    pub wiki_description_augment_link_count: usize,
     pub wiki_item_written_count: usize,
     pub wiki_item_superseded_count: usize,
     pub wiki_item_probable_duplicate_count: usize,
@@ -385,7 +380,7 @@ fn build_with_wiki_references(
         &mut report,
     )?;
     corrections::record_final_set_names(&transaction)?;
-    wiki::apply_wiki_overrides(&transaction, &overlay_references, wiki_overrides, &drop_text_linker, &mut report)?;
+    wiki::apply_wiki_overrides(&transaction, &overlay_references, wiki_overrides, &mut report)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, &overlay_references, wiki_overrides, &mut report)?;
     vendors_and_events::write_wiki_vendor_and_event_items(
         &transaction,

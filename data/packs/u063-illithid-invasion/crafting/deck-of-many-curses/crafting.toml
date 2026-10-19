@@ -1,5 +1,6 @@
 name = "Deck of Many Curses"
 pack = "Illithid Invasion"
+page = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
 
 [[family]]
 family = "DeckOfManyCurses"

@@ -1,5 +1,6 @@
 name = "Test Upgrade Altar"
 npc = "Test Altar Keeper"
+page = "https://ddowiki.com/page/Test_Upgrade_Altar"
 
 [[ingredient]]
 name = "Test Upgrade Token"

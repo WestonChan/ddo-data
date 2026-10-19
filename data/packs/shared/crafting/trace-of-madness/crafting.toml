@@ -1,5 +1,6 @@
 name = "Trace of Madness"
 npc = 'Altar of Insanity, Hall of the Planes in the Tower of the Twelve (head south from the tower entrance to the purple "Door" icon; the altar is on the right)'
+page = "https://ddowiki.com/page/Altar_of_Insanity"
 
 [[family]]
 family = "Other"

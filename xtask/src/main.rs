@@ -433,6 +433,12 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             &["--test", "data_rejections"][..],
             "structural_rejections_fail_the_data_build_naming_their_file_once",
         ),
+        ("ddo-etl", &["--test", "import_ddobuilder"][..], "his_blank_never_erases_ours_and_the_import_says_so"),
+        (
+            "ddo-etl",
+            &["--test", "import_ddobuilder"][..],
+            "his_added_description_applies_where_ours_had_filled_a_blank",
+        ),
         (
             "ddo-etl",
             &["--test", "import_ddobuilder"][..],

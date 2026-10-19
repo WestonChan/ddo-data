@@ -1,5 +1,6 @@
 name = "Dragoncraft Armor"
 npc = "Sangefar, Gianthold"
+page = "https://ddowiki.com/page/Dragoncraft_Armor"
 
 [[ingredient]]
 name = "Ancient Dragon Relic"

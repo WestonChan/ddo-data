@@ -1,6 +1,7 @@
 name = "Schism Shard Crafting"
 npc = "Varron Tertius <Schism Shard Collector> in The Gatekeepers' Grove; Killing Time must be completed to speak with him and view the recipes"
 pack = "Dragonblood Prophecy"
+page = "https://ddowiki.com/page/Schism_Shard_Crafting"
 
 [[ingredient]]
 name = "Schism Shard"

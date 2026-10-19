@@ -1,5 +1,6 @@
 name = "Nebula Fragment Crafting"
 npc = "Lahar in The Twelve: present a Nebula Fragment to receive the Star Fragments: Frame quest; the completed Frame (Bound to Account, not consumed, shareable through the bank) must be in the inventory to open his Perfected Crafting interface"
+page = "https://ddowiki.com/page/Item:Nebula_Fragment"
 
 [[ingredient]]
 name = "Nebula Fragment"

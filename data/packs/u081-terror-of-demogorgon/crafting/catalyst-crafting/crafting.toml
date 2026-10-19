@@ -1,6 +1,7 @@
 name = "Catalyst Crafting"
 npc = "Strange Catalyst Forge in Gravenhollow"
 pack = "Terror of Demogorgon"
+page = "https://ddowiki.com/page/Catalyst_Crafting"
 
 [[ingredient]]
 name = "Abyssal Gem"

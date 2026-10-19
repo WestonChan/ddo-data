@@ -1,6 +1,7 @@
 name = "Slave Lords Crafting"
 npc = "Garvon <Armorer and Outfitter>, in the Forsaken Temple just inside the Slave Pits of the Undercity entrance"
 pack = "Against the Slave Lords"
+page = "https://ddowiki.com/page/Slave_Lords_Crafting"
 
 [[family]]
 family = "Slavelords_Heroic"

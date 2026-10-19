@@ -1,6 +1,7 @@
 name = "Tome of Untold Legends"
 npc = "Bilk Howland, Upper Necropolis, The Necropolis (level 10 minimum; gather the 8 Tome pages into a Tome: Binding and turn it in)"
 pack = "The Necropolis, Part 4"
+page = "https://ddowiki.com/page/Tome_of_Untold_Legends"
 
 [[ingredient]]
 name = "Tome: Binding"

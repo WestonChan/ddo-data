@@ -278,6 +278,7 @@ fn a_crafting_recipe_may_yield_a_wiki_augment() {
             path,
             r#"
 name = "Test Named Forge"
+page = "https://ddowiki.com/page/Test_Named_Forge"
 [[citation]]
 url = "https://ddowiki.com/page/Test_Named_Forge"
 read = "2026-10-01"

@@ -237,7 +237,7 @@ mod tests {
                 .unwrap();
         }
         let system: kinds::CraftingSystemFile = toml::from_str(
-            "name = 'Derived System'\n[[citation]]\nurl = 'https://ddowiki.com/page/Example'\nread = '2026-10-14'\n",
+            "name = 'Derived System'\npage = 'https://ddowiki.com/page/Example'\n[[citation]]\nurl = 'https://ddowiki.com/page/Example'\nread = '2026-10-14'\n",
         )
         .unwrap();
         system.write_crafting_system(&db, Path::new("crafting.toml"), &mut ids::StableIds::default()).unwrap();
@@ -357,7 +357,7 @@ mod tests {
             ("Known System", vec!["Known Augment"], Some("First Pack")),
             ("Partial System", vec!["Known Augment", "Unknown Augment"], None),
         ] {
-            let mut contents = format!("name = {name:?}\n[[citation]]\nurl = 'https://ddowiki.com/page/Example'\nread = '2026-10-14'\n[[recipe]]\noption = 'Craft augments'\ntier = 'any'\n");
+            let mut contents = format!("name = {name:?}\npage = 'https://ddowiki.com/page/Example'\n[[citation]]\nurl = 'https://ddowiki.com/page/Example'\nread = '2026-10-14'\n[[recipe]]\noption = 'Craft augments'\ntier = 'any'\n");
             for output in outputs {
                 contents.push_str(&format!("[[recipe.augment]]\nname = {output:?}\nfamily = 'Named'\nlevel = 1\n"));
             }

@@ -26,6 +26,7 @@ mod tables;
 mod xml_slugs;
 use annotations::wiki_url_for_name;
 pub(crate) use annotations::AppliedCorrection;
+pub use annotations::Citation;
 pub(crate) use build::referenced_data_icons;
 pub use build::{build_from_data, rederive_data_build_tables};
 pub(crate) use crafting::recipe_focus_path;
@@ -50,23 +51,6 @@ pub(crate) use xml_slugs::{
 pub mod redirects;
 pub mod schemas;
 mod sources;
-
-database_record! {
-#[derive(Debug, Clone, Serialize, Deserialize, schemars::JsonSchema)]
-#[serde(deny_unknown_fields)]
-pub struct Citation in "citations" as "citation" {
-    keys { owner_kind: &str, owner_id: i64 }
-    fields {
-    #[serde(default, skip_serializing_if = "String::is_empty")]
-    field: String => field,
-    #[serde(flatten)]
-    source: crate::AnnotationSource => url [annotation_source],
-    read: String => read,
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    note: Option<String> => note,
-    }
-}
-}
 
 #[derive(Debug, Clone, Serialize, Deserialize, schemars::JsonSchema)]
 #[serde(deny_unknown_fields)]

@@ -1,6 +1,7 @@
 name = "Zhentarim Attuned"
 npc = "Zhentarim Improvement UI, opened by double-clicking Black Stones in the inventory (which also previews the upgrades); attuned by the Zhentarim mage Whisper"
 pack = "The Haunted Halls of Eveningstar"
+page = "https://ddowiki.com/page/Zhentarim_Attuned"
 
 [[ingredient]]
 name = "Black Stone"

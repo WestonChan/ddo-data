@@ -1,6 +1,7 @@
 name = "Alchemical Crafting"
 npc = "Cannith Melting Station (House Cannith Manufactury) makes the manufactured ingredients; Cannith Reforging Station (Artificer Workshops, Toven's Workshop) adds the material type and crafts every Legendary tier; Cannith Binding Station (Research Facility, Eldritch Site Prime) adds heroic Tiers 1-3; a second Melting and Reforging Station stand in Sharn - Cliffside Docks District, and the Melting Station is also a Guild Ship amenity"
 pack = "Secrets of the Artificers"
+page = "https://ddowiki.com/page/Alchemical_Crafting"
 
 [[family]]
 family = "Alchemical"

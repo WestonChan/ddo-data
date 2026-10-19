@@ -1,9 +1,49 @@
-use super::{Citation, RemovedEntry, NAMED_ENTITY_TABLES};
+use super::{RemovedEntry, NAMED_ENTITY_TABLES};
 use anyhow::{Context, Result};
 use rusqlite::{params, Connection, OptionalExtension};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use std::path::Path;
+
+#[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize, schemars::JsonSchema)]
+#[serde(transparent)]
+#[schemars(transparent)]
+pub struct CitationField(String);
+
+impl CitationField {
+    fn is_whole_entity(&self) -> bool {
+        self.0.is_empty()
+    }
+}
+
+impl rusqlite::types::ToSql for CitationField {
+    fn to_sql(&self) -> rusqlite::Result<rusqlite::types::ToSqlOutput<'_>> {
+        self.0.to_sql()
+    }
+}
+
+impl rusqlite::types::FromSql for CitationField {
+    fn column_result(value: rusqlite::types::ValueRef<'_>) -> rusqlite::types::FromSqlResult<Self> {
+        String::column_result(value).map(Self)
+    }
+}
+
+database_record! {
+#[derive(Debug, Clone, Serialize, Deserialize, schemars::JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct Citation in "citations" as "citation" {
+    keys { owner_kind: &str, owner_id: i64 }
+    fields {
+    #[serde(default, skip_serializing_if = "CitationField::is_whole_entity")]
+    field: CitationField => field,
+    #[serde(flatten)]
+    source: crate::AnnotationSource => url [annotation_source],
+    read: String => read,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    note: Option<String> => note,
+    }
+}
+}
 
 database_record! {
     pub(crate) struct AppliedCorrection in "corrections" as "ddobuilder_correction" {

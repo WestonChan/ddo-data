@@ -1,5 +1,6 @@
 name = "Reaper Forge"
 npc = "Raven Queen Augur, Eberron Hall of Heroes (introduced in Update 52)"
+page = "https://ddowiki.com/page/Reaper_Forge"
 
 [[family]]
 family = "Reaper"

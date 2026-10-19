@@ -58,28 +58,16 @@ pub(super) fn omit_unresolved_previous_facts(
     known.extend(wiki.augments.iter().map(|augment| ("augments".into(), augment.name.clone())));
     let mut references = PreviousReferences { known, early, skipped };
     wiki.quests.retain(|quest| {
-        if quest.carries_quest_fields() {
-            let valid = quest.pack.as_ref().is_none_or(|name| {
-                references.fact("adventure_packs", name, &quest.file_name, format!("{} quest", quest.name))
-            }) && quest
-                .patron
-                .as_ref()
-                .is_none_or(|name| references.fact("patrons", name, &quest.file_name, format!("{} quest", quest.name)));
-            if valid {
-                references.known.insert(("quests".into(), quest.name.clone()));
-            }
-            valid
-        } else {
-            references.fact("quests", &quest.name, &quest.file_name, format!("{} quest facts", quest.name))
+        let valid = quest.pack.as_ref().is_none_or(|name| {
+            references.fact("adventure_packs", name, &quest.file_name, format!("{} quest", quest.name))
+        }) && quest
+            .patron
+            .as_ref()
+            .is_none_or(|name| references.fact("patrons", name, &quest.file_name, format!("{} quest", quest.name)));
+        if valid {
+            references.known.insert(("quests".into(), quest.name.clone()));
         }
-    });
-    wiki.descriptions.retain(|description| {
-        references.fact(
-            description.kind.table_name(),
-            &description.name,
-            &description.file_name,
-            format!("{} description", description.name),
-        )
+        valid
     });
     wiki.quest_loot.retain_mut(|quest| {
         if !references.fact("quests", &quest.name, &quest.file_name, format!("{} loot", quest.name)) {

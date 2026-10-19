@@ -1,6 +1,7 @@
 name = "Cauldron of Sora Katra"
 npc = "Cauldron of Sora Katra, southwest corner of Lordsmarch Plaza, south of the palace entrance; its window lists every recipe and filters by the item dragged in or a keyword"
 pack = "Attack on Stormreach"
+page = "https://ddowiki.com/page/Cauldron_of_Sora_Katra"
 
 [[ingredient]]
 name = "Astral Shard"

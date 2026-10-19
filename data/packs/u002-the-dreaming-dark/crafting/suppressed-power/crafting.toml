@@ -1,6 +1,7 @@
 name = "Suppressed Power"
 npc = "Dreamforge, final room of The Dreaming Dark quest after The Devourer of Dreams is defeated; the quest must be completed each visit, and forcefields stop switching to alts. Its list interface previews the upgrades"
 pack = "The Dreaming Dark"
+page = "https://ddowiki.com/page/Dreamforge"
 
 [[ingredient]]
 name = "Essence of Horrors"

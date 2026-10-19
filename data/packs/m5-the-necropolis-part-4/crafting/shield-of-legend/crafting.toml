@@ -1,6 +1,7 @@
 name = "Shield of Legend"
 npc = "Racella Unary, Upper Necropolis, The Necropolis (level 10 minimum; gather the 8 Shield Fragments into a Shield: Frame and turn it in)"
 pack = "The Necropolis, Part 4"
+page = "https://ddowiki.com/page/Shield_of_Legend"
 
 [[ingredient]]
 name = "Shield: Frame"

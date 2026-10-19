@@ -1,6 +1,7 @@
 name = "Cauldron of Cadence"
 npc = 'Cauldron of Cadence in The Feywild, reached through the Hut from Beyond on the north side of the Stormreach Harbor docks (choose "Journey to the Feywild through the Hut from Beyond")'
 pack = "Fables of the Feywild"
+page = "https://ddowiki.com/page/Cauldron_of_Cadence"
 
 [[family]]
 family = "Named"

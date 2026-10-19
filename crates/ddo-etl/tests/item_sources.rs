@@ -382,7 +382,7 @@ fn links_an_item_made_at_a_station_two_systems_share_to_the_one_its_minimum_leve
         for name in ["Green Steel items", "Legendary Green Steel items"] {
             let path = root.join(format!("packs/shared/crafting/{}/crafting.toml", ddo_etl::tree::slug(name)));
             std::fs::create_dir_all(path.parent().unwrap()).unwrap();
-            std::fs::write(path, format!("name = {name:?}\n[[citation]]\nurl = \"https://ddowiki.com/page/Test_crafting\"\nread = \"2026-10-02\"\n")).unwrap();
+            std::fs::write(path, format!("name = {name:?}\npage = \"https://ddowiki.com/page/Test_crafting\"\n[[citation]]\nurl = \"https://ddowiki.com/page/Test_crafting\"\nread = \"2026-10-02\"\n")).unwrap();
         }
     });
     let (db, report) = built_with(&WikiOverrides::from_database(&ours).unwrap());

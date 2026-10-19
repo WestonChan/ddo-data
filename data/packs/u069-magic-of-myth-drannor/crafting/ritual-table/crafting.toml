@@ -1,6 +1,7 @@
 name = "Ritual Table"
 npc = "Ritual Table in a side room of the raid Threats Old and New (Outskirts of Myth Drannor; introduced in Update 69); accessible only after completing the raid"
 pack = "Magic of Myth Drannor"
+page = "https://ddowiki.com/page/Ritual_Table"
 
 [[family]]
 family = "SealedInFire"

@@ -12,7 +12,7 @@ pub(crate) fn write_overlapping_owners(root: &Path, true_owner: &str) -> PathBuf
         } else {
             String::new()
         };
-        std::fs::write(path, format!("name = {owner:?}\n[[citation]]\nurl = \"https://ddowiki.com/page/Foo\"\nread = \"2026-10-01\"\n{ingredient}")).unwrap();
+        std::fs::write(path, format!("name = {owner:?}\npage = \"https://ddowiki.com/page/Foo\"\n[[citation]]\nurl = \"https://ddowiki.com/page/Foo\"\nread = \"2026-10-01\"\n{ingredient}")).unwrap();
     }
     let tree_path = walkdir::WalkDir::new(root.join("characters/enhancements"))
         .into_iter()

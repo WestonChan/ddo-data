@@ -3,8 +3,8 @@ mod fixture;
 use ddo_etl::build::{build_database, ProbableDuplicateWikiEntry, SupersededWikiEntry};
 use ddo_etl::corrections::Corrections;
 use ddo_etl::wiki::{
-    CraftingSystem, DescribedListedDrop, DescriptionKind, ListedDrop, QuestLoot, RareDrop, RareDropInChest,
-    WikiDescription, WikiItemEffect, WikiOverrides,
+    CraftingSystem, DescribedListedDrop, ListedDrop, QuestLoot, RareDrop, RareDropInChest, WikiItemEffect,
+    WikiOverrides,
 };
 use ddo_model::DatasetVersion;
 use rusqlite::Connection;
@@ -235,104 +235,6 @@ fn adds_a_chest_link_for_a_rare_drop_and_never_changes_maetrims_loot_type() {
     assert_eq!(report.wiki_rare_drop_count, 2);
 }
 
-#[test]
-fn reads_quest_facts_from_quests_files() {
-    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
-    assert_eq!(wiki.quests.len(), 4);
-    let chronoscope = wiki.quests.iter().find(|quest| quest.name == "The Chronoscope").unwrap();
-    assert_eq!(chronoscope.name, "The Chronoscope");
-    assert!(!chronoscope.free_to_play);
-    assert_eq!(chronoscope.legendary_level, Some(34));
-    assert_eq!(chronoscope.zone.as_deref(), Some("The Harbor"));
-    assert_eq!(chronoscope.bestowed_by.as_deref(), Some("A harbor quest giver"));
-    assert_eq!(chronoscope.flagging.as_deref(), Some("None; open to all."));
-}
-
-#[test]
-fn a_quest_may_carry_both_loot_and_facts() {
-    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
-    assert!(wiki.quests.iter().any(|quest| quest.name == "The Grotto" && quest.free_to_play));
-    assert!(wiki.quest_loot.iter().any(|quest| quest.name == "The Grotto"));
-}
-
-#[test]
-fn build_fails_naming_quest_facts_for_a_quest_absent_from_the_quests_table() {
-    let ours = fixture::database(|root| {
-        let path = root.join("packs/free-to-play/quests/the-missing-quest/quest.toml");
-        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
-        std::fs::write(
-            path,
-            r#"
-name = "The Missing Quest"
-pack = "Free to Play"
-favor = 0
-is_free_to_play = true
-difficulties = ["normal"]
-[[run]]
-tier = "heroic"
-level = 1
-[[citation]]
-field = "quest facts"
-url = "https://ddowiki.com/page/Test"
-read = "2026-10-02"
-"#,
-        )
-        .unwrap();
-    });
-    let wiki = WikiOverrides::from_database(&ours).unwrap();
-    let error = build_report_with(&wiki).unwrap_err();
-    assert!(error.contains("The Missing Quest") && error.contains("the-missing-quest/quest.toml"), "{error}");
-}
-
-type WikiQuestColumns = (bool, Option<i64>, Option<String>, Option<String>, Option<String>);
-
-fn wiki_columns(db: &Connection, quest: &str) -> WikiQuestColumns {
-    db.query_row(
-        "SELECT is_free_to_play, legendary_level, zone, bestowed_by, flagging FROM quests WHERE name = ?1",
-        [quest],
-        |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?)),
-    )
-    .unwrap()
-}
-
-type MaetrimQuestColumns = (Option<i64>, Option<i64>, Option<i64>, Option<i64>, Option<i64>, bool, String);
-
-fn maetrim_columns(db: &Connection, quest: &str) -> MaetrimQuestColumns {
-    db.query_row(
-        "SELECT level, epic_level, pack_id, patron_id, favor, is_raid, difficulties FROM quests WHERE name = ?1",
-        [quest],
-        |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?, r.get(5)?, r.get(6)?)),
-    )
-    .unwrap()
-}
-
-#[test]
-fn fills_the_wiki_only_quest_columns() {
-    let (db, report) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
-    assert_eq!(
-        wiki_columns(&db, "The Chronoscope"),
-        (
-            false,
-            Some(34),
-            Some("The Harbor".into()),
-            Some("A harbor quest giver".into()),
-            Some("None; open to all.".into())
-        )
-    );
-    assert_eq!(wiki_columns(&db, "The Grotto"), (true, None, None, None, None));
-    assert_eq!(wiki_columns(&db, "Caught in the Web"), (false, None, None, None, None));
-    assert_eq!(report.wiki_quest_entry_count, 4);
-}
-
-#[test]
-fn quest_facts_never_change_maetrims_quest_columns() {
-    let (without, _) = built_db_with(&WikiOverrides::default());
-    let (with, _) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
-    for quest in ["The Chronoscope", "The Grotto", "Book Burning"] {
-        assert_eq!(maetrim_columns(&with, quest), maetrim_columns(&without, quest), "{quest}");
-    }
-}
-
 const WIKI_QUEST: &str = "Ghosts of Perdition";
 
 fn new_quest_wiki(name: &str) -> WikiOverrides {
@@ -345,32 +247,6 @@ fn new_quest_wiki(name: &str) -> WikiOverrides {
         quests: wiki.quests.into_iter().filter(|quest| quest.name == name).collect(),
         ..WikiOverrides::default()
     }
-}
-
-#[test]
-fn reads_the_quest_fields_a_wiki_quest_carries() {
-    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
-    let ghosts_of_perdition = wiki.quests.iter().find(|q| q.name == WIKI_QUEST).unwrap();
-    assert!(ghosts_of_perdition.file_name.ends_with("/quests/ghosts-of-perdition/quest.toml"));
-    assert_eq!(
-        (ghosts_of_perdition.pack.as_deref(), ghosts_of_perdition.patron.as_deref()),
-        (Some("Chill of Ravenloft"), Some("The Coin Lords"))
-    );
-    assert_eq!(
-        (
-            ghosts_of_perdition.level,
-            ghosts_of_perdition.epic_level,
-            ghosts_of_perdition.favor,
-            ghosts_of_perdition.is_raid
-        ),
-        (Some(32), Some(33), Some(150), Some(false))
-    );
-    assert_eq!(
-        ghosts_of_perdition.difficulties.as_deref(),
-        Some(&["normal", "hard", "elite", "reaper"].map(String::from)[..])
-    );
-    assert!(ghosts_of_perdition.carries_quest_fields());
-    assert!(!wiki.quests.iter().find(|quest| quest.name == "The Chronoscope").unwrap().carries_quest_fields());
 }
 
 #[test]
@@ -400,45 +276,18 @@ fn links_maetrims_items_to_a_wiki_quest_their_drop_text_names() {
     assert_eq!(report.quest_loot_link_count, without_report.quest_loot_link_count + 2);
 }
 
-type CreatedQuestRow = (
-    String,
-    Option<String>,
-    Option<i64>,
-    Option<i64>,
-    Option<i64>,
-    bool,
-    String,
-    bool,
-    Option<i64>,
-    Option<String>,
-    String,
-);
+type CreatedQuestRow = (String, Option<String>, Option<i64>, Option<i64>, Option<i64>, bool, String, String);
 
 #[test]
 fn creates_a_wiki_quest_maetrims_files_lack() {
     let (db, report) = built_db_with_fixture_wiki();
     let quest_row: CreatedQuestRow = db
         .query_row(
-            "SELECT ap.name, p.name, q.level, q.epic_level, q.favor, q.is_raid, q.difficulties, q.is_free_to_play,
-                    q.legendary_level, q.zone, q.provenance
+            "SELECT ap.name, p.name, q.level, q.epic_level, q.favor, q.is_raid, q.difficulties, q.provenance
                FROM quests q JOIN adventure_packs ap ON ap.id = q.pack_id LEFT JOIN patrons p ON p.id = q.patron_id
               WHERE q.name = ?1",
             [WIKI_QUEST],
-            |r| {
-                Ok((
-                    r.get(0)?,
-                    r.get(1)?,
-                    r.get(2)?,
-                    r.get(3)?,
-                    r.get(4)?,
-                    r.get(5)?,
-                    r.get(6)?,
-                    r.get(7)?,
-                    r.get(8)?,
-                    r.get(9)?,
-                    r.get(10)?,
-                ))
-            },
+            |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?, r.get(4)?, r.get(5)?, r.get(6)?, r.get(7)?)),
         )
         .unwrap();
     assert_eq!(
@@ -451,9 +300,6 @@ fn creates_a_wiki_quest_maetrims_files_lack() {
             Some(150),
             false,
             "[\"normal\",\"hard\",\"elite\",\"reaper\"]".into(),
-            false,
-            Some(34),
-            Some("Test zone".into()),
             "wiki".into()
         )
     );
@@ -467,7 +313,7 @@ fn creates_a_wiki_quest_maetrims_files_lack() {
 }
 
 #[test]
-fn skips_creating_a_quest_maetrim_already_carries_and_still_adds_its_facts() {
+fn skips_creating_a_quest_maetrim_already_carries() {
     let wiki = authored_wiki("UPDATE quests SET provenance='wiki',level=99,favor=999 WHERE name='The Grotto';");
     let (db, report) = built_db_with(&wiki);
     assert_eq!(report.wiki_quest_superseded_count, 1);
@@ -485,7 +331,6 @@ fn skips_creating_a_quest_maetrim_already_carries_and_still_adds_its_facts() {
         .unwrap();
     assert_ne!((level, favor), (Some(99), Some(999)), "his level and favor stand");
     assert_eq!(provenance, "maetrim");
-    assert!(wiki_columns(&db, "The Grotto").0, "free_to_play still applies to his row");
 }
 
 #[test]
@@ -774,136 +619,6 @@ fn crafting_never_adds_innate_item_bonuses_or_augments() {
             |c: &Connection| c.query_row(&format!("SELECT COUNT(*) FROM {table}"), [], |r| r.get::<_, i64>(0)).unwrap();
         assert_eq!(count(&with), count(&without), "{table}");
     }
-}
-
-fn description_wiki(kind: DescriptionKind, name: &str, description: &str) -> WikiOverrides {
-    WikiOverrides {
-        descriptions: vec![WikiDescription {
-            kind,
-            name: name.into(),
-            description: description.into(),
-            file_name: "packs/test/descriptions.toml".into(),
-        }],
-        ..WikiOverrides::default()
-    }
-}
-
-fn description_of(db: &Connection, table: &str, name: &str) -> Vec<Option<String>> {
-    let mut statement = db.prepare(&format!("SELECT description FROM {table} WHERE name = ?1 ORDER BY id")).unwrap();
-    statement.query_map([name], |r| r.get(0)).unwrap().map(Result::unwrap).collect()
-}
-
-#[test]
-fn reads_descriptions_from_descriptions_files() {
-    let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
-    let crossbow = wiki.descriptions.iter().find(|entry| entry.name == "+1 Ember Repeating Light Crossbow").unwrap();
-    assert_eq!(crossbow.kind, DescriptionKind::Item);
-    assert_eq!(crossbow.name, "+1 Ember Repeating Light Crossbow");
-    assert!(crossbow.file_name.ends_with("/1-ember-repeating-light-crossbow.toml"));
-    assert_eq!(crossbow.description, "Test description: a repeating crossbow that burns.");
-    assert!(wiki.descriptions.iter().any(|entry| entry.kind == DescriptionKind::Augment));
-}
-
-#[test]
-fn fills_a_blank_item_description() {
-    let (db, _) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
-    assert_eq!(
-        description_of(&db, "items", "+1 Ember Repeating Light Crossbow"),
-        [Some("Test description: a repeating crossbow that burns.".to_string())]
-    );
-}
-
-#[test]
-fn never_replaces_an_item_description_maetrim_wrote() {
-    let (without, _) = built_db_with(&WikiOverrides::default());
-    let (with, _) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
-    let maetrims_description = description_of(&without, "items", "Buckler of the Golden Age");
-    assert!(maetrims_description[0].as_deref().is_some_and(|text| text.starts_with("Forged in the Glory")));
-    assert_eq!(description_of(&with, "items", "Buckler of the Golden Age"), maetrims_description);
-}
-
-#[test]
-fn fills_the_drops_in_placeholder_line_of_an_augment_and_keeps_his_lines_before_it() {
-    let (db, _) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
-    assert_eq!(
-        description_of(&db, "augments", "Lunar Gem of Evocation (Heroic)"),
-        [Some("+2 Profane Bonus to Evocation DCs\nDrops in: Book Burning, end chest".to_string())]
-    );
-}
-
-#[test]
-fn links_an_augment_to_the_quests_its_wiki_description_names_before_wiki_quest_loot_marks_it() {
-    let description = "Drops in: Book Burning, end chest (rare)\nThe Cursed Crypt, optional chest";
-    let mut wiki = description_wiki(DescriptionKind::Augment, "Lunar Gem of Evocation (Heroic)", description);
-    let rare = authored_wiki("UPDATE quest_drops SET is_rare=1 WHERE owner_kind='augment' AND owner_id=(SELECT id FROM augments WHERE name='Lunar Gem of Evocation (Heroic)') AND quest_id=(SELECT id FROM quests WHERE name='Book Burning');");
-    wiki.quest_loot = rare.quest_loot.into_iter().filter(|quest| quest.name == "Book Burning").collect();
-    for quest in &mut wiki.quest_loot {
-        quest.rare.clear();
-        quest.items.clear();
-        quest.augments.clear();
-        quest.rare_augments.retain(|drop| drop.name() == "Lunar Gem of Evocation (Heroic)");
-    }
-    let (db, report) = built_db_with(&wiki);
-    assert_eq!(
-        quest_augment_loot_row(&db, "Book Burning", "Lunar Gem of Evocation (Heroic)"),
-        Some(("chest".into(), true, Some("end chest".into())))
-    );
-    assert_eq!(
-        quest_augment_loot_row(&db, "The Cursed Crypt", "Lunar Gem of Evocation (Heroic)"),
-        Some(("chest".into(), false, Some("optional chest".into())))
-    );
-    assert_eq!(
-        (report.wiki_description_augment_link_count, report.wiki_added_quest_augment_loot_link_count),
-        (2, 0),
-        "the description's links exist before the wiki quest loot marks one rare"
-    );
-}
-
-#[test]
-fn never_replaces_an_augment_description_without_the_placeholder() {
-    let wiki = description_wiki(DescriptionKind::Augment, "Lunar Gem of Strength (Heroic)", "Drops in: Test Quest");
-    let (db, report) = built_db_with(&wiki);
-    let description = description_of(&db, "augments", "Lunar Gem of Strength (Heroic)");
-    assert!(description[0].as_deref().is_some_and(|text| text.contains("Seeds of Decay")), "{description:?}");
-    assert_eq!((report.wiki_description_filled_count, report.wiki_description_skipped_count), (0, 1));
-}
-
-#[test]
-fn weighs_a_feat_description_against_every_feat_with_that_name() {
-    let (without, _) = built_db_with(&WikiOverrides::default());
-    let (with, _) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
-    let maetrims_descriptions = description_of(&without, "feats", "Lay on Hands");
-    assert_eq!(maetrims_descriptions.len(), 2);
-    assert_eq!(description_of(&with, "feats", "Lay on Hands"), maetrims_descriptions);
-}
-
-#[test]
-fn build_reports_description_entries_filled_and_skipped() {
-    let report = build_report_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap()).unwrap();
-    assert_eq!(
-        (
-            report.wiki_description_entry_count,
-            report.wiki_description_filled_count,
-            report.wiki_description_skipped_count
-        ),
-        (5, 2, 5)
-    );
-}
-
-#[test]
-fn build_fails_naming_a_description_for_a_name_absent_from_its_kind() {
-    for kind in DescriptionKind::ALL {
-        let wiki = description_wiki(kind, "The Missing Thing", "Missing.");
-        let error = build_report_with(&wiki).unwrap_err();
-        assert!(error.contains("The Missing Thing") && error.contains(kind.as_str()), "{kind:?}: {error}");
-    }
-}
-
-#[test]
-fn build_fails_naming_an_item_description_for_a_race_name() {
-    let wiki = description_wiki(DescriptionKind::Item, "Dwarf", "Short.");
-    let error = build_report_with(&wiki).unwrap_err();
-    assert!(error.contains("Dwarf") && error.contains("item"), "{error}");
 }
 
 fn edited_axe_wiki(sql: &str) -> WikiOverrides {

@@ -1,5 +1,6 @@
 name = "Augmentation Altar"
 npc = "Augmentation Altar inside the Temple of Silith-tar in the raid Den of Vipers (introduced in Update 72)"
+page = "https://ddowiki.com/page/Augmentation_Altar"
 
 [[family]]
 family = "SealedInFire"

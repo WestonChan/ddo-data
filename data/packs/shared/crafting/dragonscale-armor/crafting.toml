@@ -1,5 +1,6 @@
 name = "Dragonscale Armor"
 npc = "Master Scalesmiths (Gianthold colors); Altar of Epic Rituals (Epic Red); Mikrom Sum, requires 375 Purple Dragon Knights favor (Cormyrian)"
+page = "https://ddowiki.com/page/Dragonscale_Armor"
 
 [[ingredient]]
 name = "Black Dragon Scale"

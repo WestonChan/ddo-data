@@ -1,6 +1,7 @@
 name = "Stormreaver Monument"
 npc = "Stormreaver Monument, southwest corner of the Gianthold camp, west of the mailbox; its list interface previews the upgrades"
 pack = "Ruins of Gianthold"
+page = "https://ddowiki.com/page/Stormreaver_Monument"
 
 [[ingredient]]
 name = "Seal of the Stormreaver"

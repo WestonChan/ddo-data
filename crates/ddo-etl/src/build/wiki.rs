@@ -1,14 +1,13 @@
 use super::drop_text::{
     insert_source_link_unless_linked_as, insert_source_link_unless_loot_linked_there, mark_quest_source_link_rare,
-    DropTextLinker, DroppedLoot, SourceLink,
+    DroppedLoot, SourceLink,
 };
 use super::effects::EffectOwner;
 use super::items::{ArmorStatsRow, ItemRow, WeaponStatsRow};
 use super::{BuildReport, ProbableDuplicateWikiEntry, SupersededWikiEntry, TableWriter};
-use crate::map::drop_location::drop_text_in_description;
 use crate::wiki::{
-    CraftingRecipe, CraftingSystem, DescriptionKind, ListedDrop, WikiAugment, WikiBonus, WikiDescription, WikiItem,
-    WikiItemEffect, WikiOverrides, WikiQuest,
+    CraftingRecipe, CraftingSystem, ListedDrop, WikiAugment, WikiBonus, WikiItem, WikiItemEffect, WikiOverrides,
+    WikiQuest,
 };
 use anyhow::{bail, ensure, Context, Result};
 use ddo_model::enums::{LootType, Provenance};
@@ -19,21 +18,8 @@ pub(super) fn apply_wiki_overrides(
     transaction: &Transaction,
     references: &OverlayReferences,
     wiki_overrides: &WikiOverrides,
-    drop_text_linker: &DropTextLinker,
     report: &mut BuildReport,
 ) -> Result<()> {
-    for wiki_description in &wiki_overrides.descriptions {
-        fill_blank_descriptions(transaction, references, wiki_description, drop_text_linker, report).with_context(
-            || {
-                format!(
-                    "wiki descriptions {} {:?} ({})",
-                    wiki_description.kind.as_str(),
-                    wiki_description.name,
-                    wiki_description.file_name
-                )
-            },
-        )?;
-    }
     for quest_loot in &wiki_overrides.quest_loot {
         let citation = format!("wiki quest_loot {:?} ({})", quest_loot.name, quest_loot.file_name);
         let quest_id = references.id(transaction, "quests", &quest_loot.name)?.with_context(|| {
@@ -85,27 +71,6 @@ pub(super) fn apply_wiki_overrides(
         }
         report.wiki_quest_loot_entry_count += 1;
     }
-    for wiki_quest in &wiki_overrides.quests {
-        let citation = format!("wiki quests {:?} ({})", wiki_quest.name, wiki_quest.file_name);
-        let quest_id = references.id(transaction, "quests", &wiki_quest.name)?.with_context(|| {
-            format!(
-                "{citation}: no quest has this name in Quests.xml or Challenges.xml; fix the name to match Maetrim's, or give the quest fields that create it"
-            )
-        })?;
-        transaction.execute(
-            "UPDATE quests SET is_free_to_play = ?2, legendary_level = ?3, zone = ?4, bestowed_by = ?5, flagging = ?6
-              WHERE id = ?1",
-            params![
-                quest_id,
-                wiki_quest.free_to_play,
-                wiki_quest.legendary_level,
-                wiki_quest.zone,
-                wiki_quest.bestowed_by,
-                wiki_quest.flagging
-            ],
-        )?;
-        report.wiki_quest_entry_count += 1;
-    }
     for crafting_system in &wiki_overrides.crafting_systems {
         insert_crafting_system_contents(transaction, references, crafting_system, report)
             .with_context(|| format!("wiki {} crafting {:?}", crafting_system.file_name, crafting_system.name))?;
@@ -133,7 +98,7 @@ pub(super) fn write_wiki_quests(
             maetrim_quest_names_by_normalised_name.entry(normalised_name(epic_name)).or_insert(name.as_str());
         }
     }
-    for wiki_quest in wiki_quests.iter().filter(|wiki_quest| wiki_quest.carries_quest_fields()) {
+    for wiki_quest in wiki_quests {
         if maetrim_quest_name_set.contains(wiki_quest.name.as_str()) {
             report
                 .superseded_wiki_quests
@@ -173,61 +138,6 @@ fn insert_wiki_quest(transaction: &Transaction, references: &OverlayReferences, 
         params![wiki_quest.name, pack_id, patron_id, wiki_quest.level, wiki_quest.epic_level, wiki_quest.favor, wiki_quest.is_raid.unwrap_or_default(), serde_json::to_string(wiki_quest.difficulties.as_deref().unwrap_or_default())?, Provenance::Wiki.as_str(), crate::tree::xml_entity_slug("quests", None, &wiki_quest.name, None), crate::tree::xml_overlay_id("quests", &crate::tree::xml_entity_slug("quests", None, &wiki_quest.name, None))?],
     )?;
     Ok(())
-}
-
-fn fill_blank_descriptions(
-    transaction: &Transaction,
-    references: &OverlayReferences,
-    wiki_description: &WikiDescription,
-    drop_text_linker: &DropTextLinker,
-    report: &mut BuildReport,
-) -> Result<()> {
-    let table_name = wiki_description.kind.table_name();
-    let maetrim_descriptions_by_id = references
-        .ids(transaction, table_name, &wiki_description.name, None)?
-        .into_iter()
-        .map(|id| {
-            transaction.query_row(&format!("SELECT id, description FROM {table_name} WHERE id = ?1"), [id], |row| {
-                Ok((row.get::<_, i64>(0)?, row.get::<_, Option<String>>(1)?))
-            })
-        })
-        .collect::<rusqlite::Result<Vec<_>>>()?;
-    if maetrim_descriptions_by_id.is_empty() {
-        bail!(
-            "no {} in Maetrim's files has this name (matched against {table_name}.name); fix the name to match his",
-            wiki_description.kind.as_str()
-        );
-    }
-    for (row_id, maetrim_description) in maetrim_descriptions_by_id {
-        match wiki_description.kind.filled_description(maetrim_description.as_deref(), &wiki_description.description) {
-            Some(filled_description) => {
-                transaction.execute(
-                    &format!("UPDATE {table_name} SET description = ?2 WHERE id = ?1"),
-                    params![row_id, filled_description],
-                )?;
-                report.wiki_description_filled_count += 1;
-                if wiki_description.kind == DescriptionKind::Augment {
-                    report.wiki_description_augment_link_count +=
-                        link_augment_to_quests_named_in(transaction, drop_text_linker, row_id, &filled_description)?;
-                }
-            }
-            None => report.wiki_description_skipped_count += 1,
-        }
-    }
-    report.wiki_description_entry_count += 1;
-    Ok(())
-}
-
-fn link_augment_to_quests_named_in(
-    transaction: &Transaction,
-    drop_text_linker: &DropTextLinker,
-    augment_id: i64,
-    description: &str,
-) -> Result<usize> {
-    let Some(drop_text) = drop_text_in_description(description) else {
-        return Ok(0);
-    };
-    Ok(drop_text_linker.link_loot_to_quests_named_in(transaction, DroppedLoot::Augment(augment_id), drop_text)?.len())
 }
 
 pub(super) fn write_wiki_crafting_systems(transaction: &Transaction, wiki_overrides: &WikiOverrides) -> Result<()> {

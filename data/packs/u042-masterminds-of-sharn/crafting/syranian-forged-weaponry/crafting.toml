@@ -1,6 +1,7 @@
 name = "Syranian Forged Weaponry"
 npc = "Rayne Cloud, City of Sharn Docks district; Cannith Melting Station in the Lower Docks of Sharn (stage 1: 4 Reforged Metallic, 4 Reforged Dense, 3 Reforged Pliable, 3 Reforged Glowing Ingot; stage 2: 2 Energizing Alloy, 2 Dampening Alloy; stage 3: 1 Caustic Compound, 1 Stabilizing Compound; stage 4: choose the item)"
 pack = "Masterminds of Sharn"
+page = "https://ddowiki.com/page/Syranian_Forged_Weaponry"
 
 [[ingredient]]
 name = "Iron Defender Claws"

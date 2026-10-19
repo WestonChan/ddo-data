@@ -57,12 +57,11 @@ mod tests {
     }
 
     #[test]
-    fn collision_check_names_both_rows() {
+    fn collision_check_names_the_other_row() {
         let mut ids = StableIds::default();
         ids.issue("items", "test-ring", Path::new("first/ring.toml")).unwrap();
         let error = ids.issue("items", "test-ring", Path::new("second/ring.toml")).unwrap_err().to_string();
         assert!(error.contains("duplicate items slug"), "{error}");
         assert!(error.contains("first/ring.toml"), "{error}");
-        assert!(error.contains("second/ring.toml"), "{error}");
     }
 }

@@ -26,7 +26,6 @@ impl WikiOverrides {
         Ok(Self {
             quests: quests(db, &paths)?,
             quest_loot: quest_loot(db, &paths)?,
-            descriptions: descriptions(db, &paths)?,
             crafting_systems: crafting_systems(db, &paths)?,
             quest_chains: quest_chains(db, &paths)?,
             sagas: sagas(db, &paths)?,
@@ -39,18 +38,16 @@ impl WikiOverrides {
 }
 
 fn quests(db: &Connection, paths: &DataFilePaths) -> Result<Vec<WikiQuest>> {
-    rows(db, "SELECT q.*, p.name AS pack, patron.name AS patron FROM quests q LEFT JOIN adventure_packs p ON p.id=q.pack_id LEFT JOIN patrons patron ON patron.id=q.patron_id WHERE q.provenance='wiki' OR EXISTS (SELECT 1 FROM citations c WHERE c.owner_kind='quests' AND c.owner_id=q.id AND c.field='quest facts') ORDER BY q.id", |row| {
-        let wiki_only = row.get::<_, String>("provenance")? == "wiki";
+    rows(db, "SELECT q.*, p.name AS pack, patron.name AS patron FROM quests q LEFT JOIN adventure_packs p ON p.id=q.pack_id LEFT JOIN patrons patron ON patron.id=q.patron_id WHERE q.provenance='wiki' ORDER BY q.id", |row| {
         Ok((row.get::<_, i64>("id")?, WikiQuest {
-            name: row.get("name")?, free_to_play: row.get("is_free_to_play")?,
-            legendary_level: row.get("legendary_level")?, zone: row.get("zone")?, bestowed_by: row.get("bestowed_by")?, flagging: row.get("flagging")?,
-            pack: if wiki_only { row.get("pack")? } else { None },
-            patron: if wiki_only { row.get("patron")? } else { None },
-            level: if wiki_only { row.get("level")? } else { None },
-            epic_level: if wiki_only { row.get("epic_level")? } else { None },
-            favor: if wiki_only { row.get("favor")? } else { None },
-            is_raid: if wiki_only { Some(row.get("is_raid")?) } else { None },
-            difficulties: if wiki_only { Some(serde_json::from_str(&row.get::<_, String>("difficulties")?).map_err(|error| rusqlite::Error::FromSqlConversionFailure(0, rusqlite::types::Type::Text, Box::new(error)))?) } else { None },
+            name: row.get("name")?,
+            pack: row.get("pack")?,
+            patron: row.get("patron")?,
+            level: row.get("level")?,
+            epic_level: row.get("epic_level")?,
+            favor: row.get("favor")?,
+            is_raid: Some(row.get("is_raid")?),
+            difficulties: Some(serde_json::from_str(&row.get::<_, String>("difficulties")?).map_err(|error| rusqlite::Error::FromSqlConversionFailure(0, rusqlite::types::Type::Text, Box::new(error)))?),
             file_name: String::new(),
         }))
     })?.into_iter().map(|(id, mut quest)| { quest.file_name=paths.path("quests",id)?.display().to_string(); Ok(quest) }).collect()
@@ -73,17 +70,6 @@ fn quest_loot(db: &Connection, paths: &DataFilePaths) -> Result<Vec<QuestLoot>> 
         }
     }
     Ok(quests.into_values().collect())
-}
-
-fn descriptions(db: &Connection, paths: &DataFilePaths) -> Result<Vec<WikiDescription>> {
-    let mut descriptions = Vec::new();
-    for kind in DescriptionKind::ALL {
-        let table = kind.table_name();
-        for (id,name,description) in rows(db,&format!("SELECT id,name,description FROM {table} e WHERE EXISTS (SELECT 1 FROM citations c WHERE c.owner_kind='{table}' AND c.owner_id=e.id AND c.field='description') AND COALESCE(description,'')<>'' ORDER BY id"),|r| Ok((r.get::<_,i64>(0)?,r.get(1)?,r.get(2)?)))? {
-            descriptions.push(WikiDescription {kind,name,description,file_name:paths.path(table,id)?.display().to_string()});
-        }
-    }
-    Ok(descriptions)
 }
 
 fn quest_chains(db: &Connection, paths: &DataFilePaths) -> Result<Vec<WikiQuestChain>> {

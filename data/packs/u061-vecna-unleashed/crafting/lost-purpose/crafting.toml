@@ -1,6 +1,7 @@
 name = "Lost Purpose"
 npc = "Cannith Repurposing Station, Morgrave University - Upper Commons (introduced in Update 61)"
 pack = "Vecna Unleashed"
+page = "https://ddowiki.com/page/Lost_Purpose"
 
 [[family]]
 family = "LostPurpose"

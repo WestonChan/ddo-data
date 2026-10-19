@@ -1,6 +1,7 @@
 name = "Dragontouched Armor"
 npc = "Vorace, across from the Stormreaver in Reaver's Refuge, beside the Dragontouched Eldritch, Tempest and Sovereign Altars"
 pack = "The Reaver's Reach"
+page = "https://ddowiki.com/page/Dragontouched_Armor"
 
 [[family]]
 family = "Dragontouched_EldritchRune"

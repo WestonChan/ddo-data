@@ -1,5 +1,6 @@
 name = "Heroic Green Steel"
 npc = "Altar of Invasion"
+page = "https://ddowiki.com/page/Green_Steel_items"
 
 [[family]]
 family = "Greensteel_Heroic"

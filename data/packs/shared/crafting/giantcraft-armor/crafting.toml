@@ -1,5 +1,6 @@
 name = "Giantcraft Armor"
 npc = "Horatin, Gianthold"
+page = "https://ddowiki.com/page/Giantcraft_Armor"
 
 [[ingredient]]
 name = "Ancient Giant Relic"

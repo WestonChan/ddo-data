@@ -1,6 +1,7 @@
 name = "Thunder-Forged"
 npc = "Magma Forge, in the lower area of The Ruins of Thunderholme; a fast travel NPC in The Thunder Peaks public area takes you there once you have defeated the Dragon Emissary (Sarva Bellistrae), flagging for the Temple of the Deathwyrm raid"
 pack = "Shadowfell Conspiracy"
+page = "https://ddowiki.com/page/Thunder-Forged"
 
 [[family]]
 family = "Thunderforged"

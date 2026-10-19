@@ -1,6 +1,7 @@
 name = "Esoteric Table"
 npc = "Esoteric Table at the entrance of Fire Over Morgrave, Morgrave University - Upper Commons (introduced in Update 61); usable before the raid starts or after it completes, locked during the fight; speak to Geth to enter (level 20 or higher)"
 pack = "Vecna Unleashed"
+page = "https://ddowiki.com/page/Esoteric_Table"
 
 [[family]]
 family = "PlanarSearing"

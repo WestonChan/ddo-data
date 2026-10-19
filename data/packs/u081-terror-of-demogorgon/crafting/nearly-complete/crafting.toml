@@ -1,6 +1,7 @@
 name = "Nearly Complete"
 npc = "Duergar Completion Forge, Gravenhollow"
 pack = "Terror of Demogorgon"
+page = "https://ddowiki.com/page/Nearly_Complete"
 
 [[family]]
 family = "NearlyComplete"

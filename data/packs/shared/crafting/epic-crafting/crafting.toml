@@ -1,5 +1,6 @@
 name = "Epic Crafting"
 npc = "Altar of Epic Rituals in the Twelve, outside the Tower of the Twelve to the south by south-west (converts heroic items to epic ML 20; a new item, so Mythic boosts and slotted augments are wiped). Nearby: NPC Lahar (Epic Trader selling augments and hearts of wood for Tokens of the Twelve; Seal Scroll Shard Cruncher turning pre-Update 50 scrolls, seals and shards into pack ingredients) and the Legacy Altar of Epic Rituals (old-version epic items from a scroll, seal and shard set, or converting a legacy epic item into a new blank version, losing Mythic/Reaper bonuses, rituals, augments, curses and Sentient Jewels)"
+page = "https://ddowiki.com/page/Epic_Crafting"
 
 [[ingredient]]
 name = "Desert Sand Crystal"

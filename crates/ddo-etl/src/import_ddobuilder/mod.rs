@@ -1,8 +1,10 @@
 mod audit;
+mod blanks;
 mod corrections;
 mod icons;
 mod report;
 
+pub use blanks::{fill_blank_cells_from_ours, FilledCell};
 pub use report::{DdobuilderImportReport, ImportReportEntry, ImportTableCounts};
 
 use crate::corrections::Corrections;
@@ -108,6 +110,9 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
             .context("building the previous DataFiles")?;
     let new = corrections::build_database_matching_his_values(&options.source_dir, &wiki, &corrections, &new_version)
         .context("building the new DataFiles")?;
+    let previous_filled = blanks::fill_blank_cells_from_ours(&previous.db, &ours)?;
+    let new_filled = blanks::fill_blank_cells_from_ours(&new.db, &ours)?;
+    let blanked_upstream = blanks::blanked_upstream(&previous.db, &previous_filled, &new_filled)?;
     let mapping_audits = audit::entries(&options.source_dir)?;
     let previous_tree = scratch.path().join("previous");
     let new_tree = scratch.path().join("new");
@@ -143,6 +148,13 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
         &old_paths,
     )?;
     report.entries.extend(mapping_audits);
+    for cell in blanked_upstream {
+        report.entries.push(ImportReportEntry {
+            path: old_paths.path(&cell.table, cell.ours_id)?,
+            category: "BLANKED UPSTREAM, OURS KEPT",
+            detail: format!("{} {}.{}", cell.table, cell.slug, cell.column),
+        });
+    }
     report.files = tree::replace_data_files(&staging, &options.data_dir)?;
     report.entries.extend(previous.skipped_wiki_facts.into_iter().map(|skipped| ImportReportEntry {
         path: skipped.file_name.into(),

@@ -1,5 +1,6 @@
 name = "Nearly Finished"
 npc = "Cannith Reforging Station (combine the item with melted materials); Cannith Melting Station (make the cost ingredients)"
+page = "https://ddowiki.com/page/Nearly_Finished"
 
 [[ingredient]]
 name = "Energizing Alloy"

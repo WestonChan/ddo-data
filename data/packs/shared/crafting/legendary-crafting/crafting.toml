@@ -1,5 +1,6 @@
 name = "Legendary Crafting"
 npc = "Altar of Legendary Rituals in The Twelve (introduced in Update 50)"
+page = "https://ddowiki.com/page/Legendary_Crafting"
 
 [[ingredient]]
 name = "Desert Sand Crystal"

@@ -1,5 +1,6 @@
 name = "Soulforge"
 npc = "Soulforge altar, Eberron Hall of Heroes (lower level, first room, south-west corner)"
+page = "https://ddowiki.com/page/Soulforge"
 
 [[family]]
 family = "Named"

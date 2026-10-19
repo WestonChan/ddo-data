@@ -1,6 +1,7 @@
 name = "Viktranium Experiment Crafting"
 npc = "Workbenches in Ludendorf City Hall, one each for the Heroic and Legendary systems; the Wicked Viktranium Experiment device stands at the start of the Relentless raid (and at the matching spot in the Ludendorf Wax Museum in the Lamordia wilderness)"
 pack = "The Chill of Ravenloft"
+page = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
 
 [[family]]
 family = "Lamordia_Heroic"

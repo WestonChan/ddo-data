@@ -964,7 +964,11 @@ mod file_name_tests {
         for (name, contents, path) in [
             ("Pack", "name = 'Pack'\n", "packs/wrong/pack.toml"),
             ("Quest", "name = 'Quest'\npack = 'Pack'\n", "packs/pack/wrong/quest.toml"),
-            ("Crafting", "name = 'Crafting'\ncitation = []\n", "packs/pack/crafting/wrong/crafting.toml"),
+            (
+                "Crafting",
+                "name = 'Crafting'\npage = 'https://ddowiki.com/page/Crafting'\ncitation = []\n",
+                "packs/pack/crafting/wrong/crafting.toml",
+            ),
             ("Vendor", "name = 'Vendor'\nlocation = 'Here'\ncitation = []\n", "packs/pack/vendors/wrong/vendor.toml"),
             ("Event", "name = 'Event'\ncitation = []\n", "packs/pack/events/wrong/event.toml"),
         ] {

@@ -1,5 +1,6 @@
 name = "Stone of Change"
 npc = "Stone of Change, an Eldritch Device: outside The Marketplace Bank; just right of the entrance to the tower of The Twelve; Guild Airship amenity (Stone of Change Contract, Gold Seal lv 32 and Standard lv 40)"
+page = "https://ddowiki.com/page/Stone_of_Change"
 
 [[ingredient]]
 name = "Siberys Dragonshard Fragment"

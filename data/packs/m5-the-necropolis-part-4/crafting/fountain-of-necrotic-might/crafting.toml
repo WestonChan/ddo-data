@@ -1,6 +1,7 @@
 name = "Fountain of Necrotic Might"
 npc = "Fountain of Necrotic Might, Upper Necropolis: one to the right on zoning in from the Lower Necropolis, one near the Litany of the Dead Part 4 quest givers; its list interface previews the upgrades"
 pack = "The Necropolis, Part 4"
+page = "https://ddowiki.com/page/Fountain_of_Necrotic_Might"
 
 [[ingredient]]
 name = "Seal of the Black Abbot"

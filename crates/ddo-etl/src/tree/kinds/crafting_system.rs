@@ -105,8 +105,7 @@ database_record! {
             npc: Option<String> => npc,
             #[serde(default, skip_serializing_if = "Option::is_none")]
             pack: Option<String> => pack_id [optional_reference "adventure_packs"],
-            #[serde(default, skip_serializing_if = "Option::is_none")]
-            page: Option<String> => page [citation_page],
+            page: String => page,
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -134,12 +133,6 @@ impl CraftingSystemFile {
             let (id, mut file) = row?;
             file.attach_citations(annotations, id);
             if let Some(annotation) = annotations.entity("crafting_systems", id) {
-                let primary_url = annotation
-                    .citation
-                    .iter()
-                    .find(|citation| citation.field.is_empty())
-                    .and_then(|citation| citation.source.page_url());
-                file.page = file.page.filter(|page| Some(page.as_str()) != primary_url);
                 file.removed = annotation.removed.clone();
             }
             files.insert(id, file);

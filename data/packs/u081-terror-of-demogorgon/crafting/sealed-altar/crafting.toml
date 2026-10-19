@@ -1,6 +1,7 @@
 name = "Sealed Altar"
 npc = "Sealed Altar, upstairs in Gravenhollow; invisible until you stand at the furthest south point of the upper floor (near the glowing green spike) for ten seconds"
 pack = "Terror of Demogorgon"
+page = "https://ddowiki.com/page/Sealed_Altar"
 
 [[ingredient]]
 name = "Abyssal Gem"

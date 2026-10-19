@@ -1,6 +1,7 @@
 name = "Dampened"
 npc = "Altar of Vulkoor, Raveneye Refugee Camp in The Red Fens (no preview of upgrades); epic and legendary upgrades at the Altar of Epic Rituals and Altar of Legendary Rituals"
 pack = "The Red Fens"
+page = "https://ddowiki.com/page/Dampened"
 
 [[ingredient]]
 name = "Golden Swamp Pearl"

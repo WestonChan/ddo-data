@@ -1,6 +1,7 @@
 name = "Dinosaur Bone crafting"
 npc = "Sharpened Bone, whose barter window creates Isle of Dread augments and Dinosaur Bone weapons; augments are slotted through the Augment Item UI in the inventory panel"
 pack = "The Isle of Dread"
+page = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
 
 [[family]]
 family = "DinosaurBone"

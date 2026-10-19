@@ -1,5 +1,6 @@
 name = "Elfcraft Armor"
 npc = "Hoorunoe, Gianthold"
+page = "https://ddowiki.com/page/Elfcraft_Armor"
 
 [[ingredient]]
 name = "Ancient Elven Relic"

@@ -312,9 +312,6 @@ macro_rules! database_record {
     (@write $db:ident, $record:ident, $field:ident [bonus]) => { $record.bonus.as_ref().or($record.bonus_type.as_ref()) };
     (@read $row:ident, $column:ident [json_required]) => { database_record!(@read $row, $column [json]) };
     (@write $db:ident, $record:ident, $field:ident [json_required]) => { serde_json::to_string(&$record.$field)? };
-    (@write $db:ident, $record:ident, $field:ident [citation_page]) => {
-        $record.$field.as_deref().or_else(|| $record.citation.iter().filter(|citation| citation.field.is_empty()).find_map(|citation| citation.source.page_url())).ok_or_else(|| anyhow::anyhow!("{} has no page or primary citation", $record.name))?
-    };
     (@read $row:ident, $column:ident [optional_json_value]) => {
         $row.get::<_, Option<String>>(stringify!($column)).and_then(|value| value.map(|encoded| serde_json::from_str(&encoded)).transpose().map_err(|error| rusqlite::Error::FromSqlConversionFailure($row.as_ref().column_index(stringify!($column)).unwrap(), rusqlite::types::Type::Text, Box::new(error))))
     };
@@ -340,7 +337,6 @@ macro_rules! database_record {
     (@adapter [bonus ]) => {};
     (@adapter [optional_json_value ]) => {};
     (@adapter [json_required ]) => {};
-    (@adapter [citation_page ]) => {};
     (@adapter [json ]) => {};
     (@adapter [default_text ]) => {};
     (@adapter [image $kind:literal]) => {};
