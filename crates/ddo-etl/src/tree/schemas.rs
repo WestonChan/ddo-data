@@ -469,6 +469,165 @@ pub(crate) fn read_file(root: &Path, path: &Path, contents: &str) -> Result<Sour
     Ok(source)
 }
 
+macro_rules! declared_records {
+    ($($record:ty,)+) => {
+        pub(crate) fn declared_record_columns() -> BTreeMap<String, std::collections::BTreeSet<String>> {
+            let mut declared: BTreeMap<String, std::collections::BTreeSet<String>> = BTreeMap::new();
+            $(
+                for (table, columns) in <$record as super::records::DeclaredRecord>::declared_columns() {
+                    declared.entry(table.to_string()).or_default().extend(columns.into_iter().map(str::to_string));
+                }
+            )+
+            declared
+        }
+    };
+}
+
+declared_records! {
+    super::annotations::Citation,
+    super::annotations::AppliedCorrection,
+    super::annotations::EntityIdentity,
+    super::kinds::augment::AugmentEffect,
+    super::kinds::augment::AugmentSlot,
+    super::kinds::augment::AugmentFile,
+    super::kinds::augment_slot_types::SocketType,
+    super::kinds::bonus_types::BonusType,
+    super::kinds::class::ClassAutoFeat,
+    super::kinds::class::ClassFeatSlot,
+    super::kinds::class::ClassSpell,
+    super::kinds::class::ClassSpellSlot,
+    super::kinds::class::ClassFile,
+    super::kinds::clickies::Clickie,
+    super::kinds::crafting_system::CraftingSystemRecipeAugment,
+    super::kinds::crafting_system::CraftingSystemRecipeIngredient,
+    super::kinds::crafting_system::CraftingSystemFamily,
+    super::kinds::crafting_system::CraftingSystemIngredient,
+    super::kinds::crafting_system::CraftingSystemRecipe,
+    super::kinds::crafting_system::CraftingSystemFile,
+    super::kinds::damage_types::DamageType,
+    super::kinds::effect::EffectBonus,
+    super::kinds::effect::EffectDamage,
+    super::kinds::effect::EffectFile,
+    super::kinds::effect_tier::EffectTierFile,
+    super::kinds::enhancement_tree::EnhancementSelection,
+    super::kinds::enhancement_tree::SelectorExclusion,
+    super::kinds::enhancement_tree::Enhancement,
+    super::kinds::enhancement_tree::EnhancementTreeFile,
+    super::kinds::equipment_slots::EquipmentSlot,
+    super::kinds::event::EventFile,
+    super::kinds::exceptions::PackException,
+    super::kinds::exceptions::QuestPackException,
+    super::kinds::excluded_items::ExcludedItem,
+    super::kinds::feat_category::ConditionalFeatGroup,
+    super::kinds::feat_category::FeatGroup,
+    super::kinds::feat_category::FeatSubItem,
+    super::kinds::feat_category::Feat,
+    super::kinds::filigree_set::Filigree,
+    super::kinds::guild_buffs::GuildBuff,
+    super::kinds::item::SocketOptionEffect,
+    super::kinds::item::SocketGrant,
+    super::kinds::item::SocketSet,
+    super::kinds::item::Armor,
+    super::kinds::item::ItemClickie,
+    super::kinds::item::ItemDrBypass,
+    super::kinds::item::ItemEffect,
+    super::kinds::item::SocketOption,
+    super::kinds::item::Socket,
+    super::kinds::item::Weapon,
+    super::kinds::item::ItemFile,
+    super::kinds::VocabularyTerm,
+    super::kinds::optional_buffs::OptionalBuff,
+    super::kinds::pack::PackFile,
+    super::kinds::patron::PatronFile,
+    super::kinds::quest::QuestFile,
+    super::kinds::quest_series::QuestSeriesFile,
+    super::kinds::quest_series::SeriesQuest,
+    super::kinds::race::AbilityModifier,
+    super::kinds::race::RaceFeatSlot,
+    super::kinds::race::RaceGrantedFeat,
+    super::kinds::race::RaceFile,
+    super::kinds::redirects::Redirect,
+    super::kinds::redirects::RetiredSlug,
+    super::kinds::sentient_gem::SentientGemFile,
+    super::kinds::set::SetAugment,
+    super::kinds::set::SetItem,
+    super::kinds::set::SetTier,
+    super::kinds::set::SetFile,
+    super::kinds::source_aliases::AdventurePackAlias,
+    super::kinds::source_aliases::ChallengeAlias,
+    super::kinds::source_aliases::CraftingSystemAlias,
+    super::kinds::source_aliases::VendorAlias,
+    super::kinds::spell_list::SpellDamage,
+    super::kinds::spell_list::SpellDifficultyClass,
+    super::kinds::spell_list::Spell,
+    super::kinds::stat::StatFile,
+    super::kinds::stat_group::StatGroupFile,
+    super::kinds::upstream_commit::UpstreamCommitFile,
+    super::kinds::vendor::VendorFile,
+    super::kinds::vendor_currencies::VendorCurrency,
+    super::kinds::weapon_types::WeaponType,
+    super::RemovedEntry,
+    super::tables::Requirement,
+    super::tables::Modifier,
+    super::tables::Attack,
+    super::tables::DifficultyClass,
+    super::tables::Stance,
+    super::tables::Skill,
+    super::tables::EffectGrant,
+}
+
+pub(crate) fn declared_columns_by_table() -> BTreeMap<String, std::collections::BTreeSet<String>> {
+    let mut declared = declared_record_columns();
+    for (table, columns) in crate::loot_sources::declared_columns() {
+        declared.entry(table.to_string()).or_default().extend(columns.into_iter().map(str::to_string));
+    }
+    declared
+        .entry("vendor_offer_costs".to_string())
+        .or_default()
+        .extend(crate::vendor_prices::OFFER_COST_COLUMNS.into_iter().map(str::to_string));
+    declared
+}
+
+pub(crate) fn undeclared_columns(
+    db: &rusqlite::Connection,
+    declared: &BTreeMap<String, std::collections::BTreeSet<String>>,
+) -> Result<Vec<String>> {
+    use crate::delta::{is_rebuilt_column, table_merge, TableMerge, UNPOPULATED_COLUMNS};
+    let mut findings = Vec::new();
+    for table in crate::database_tables::table_names(db)? {
+        if matches!(table_merge(&table), Some(TableMerge::Rederived | TableMerge::DatasetVersion)) {
+            continue;
+        }
+        let mut statement = db.prepare(&format!("PRAGMA table_info(\"{table}\")"))?;
+        let columns = statement
+            .query_map([], |row| Ok((row.get::<_, String>(1)?, row.get::<_, String>(2)?, row.get::<_, i64>(5)?)))?
+            .collect::<rusqlite::Result<Vec<_>>>()?;
+        let primary_keys = columns.iter().filter(|(_, _, key)| *key > 0).count();
+        for (column, column_type, key) in &columns {
+            let is_rowid_alias = *key > 0 && primary_keys == 1 && column_type.eq_ignore_ascii_case("INTEGER");
+            let covered = declared.get(&table).is_some_and(|names| names.contains(column))
+                || super::annotations::ANNOTATION_COLUMNS.contains(&column.as_str())
+                || UNPOPULATED_COLUMNS.contains(&(table.as_str(), column.as_str()));
+            if !covered && !is_rowid_alias && !is_rebuilt_column(&table, column) {
+                findings.push(format!("{table}.{column}"));
+            }
+        }
+    }
+    Ok(findings)
+}
+
+pub fn validate_column_coverage() -> Result<()> {
+    let db = rusqlite::Connection::open_in_memory()?;
+    db.execute_batch(ddo_model::ddl())?;
+    let findings = undeclared_columns(&db, &declared_columns_by_table())?;
+    ensure!(
+        findings.is_empty(),
+        "columns no record declaration writes, no build rebuilds and no list marks unpopulated: {}",
+        findings.join(", ")
+    );
+    Ok(())
+}
+
 pub fn validate_taplo_config(workspace_root: &Path) -> Result<()> {
     let path = workspace_root.join("taplo.toml");
     let config: toml::Value =
@@ -541,6 +700,45 @@ fn taplo_path_matches(pattern: &str, relative: &str) -> bool {
 
 #[cfg(test)]
 mod tests {
+    fn ddl_database() -> rusqlite::Connection {
+        let db = rusqlite::Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        db
+    }
+
+    #[test]
+    fn every_database_column_is_declared_by_a_record_or_rebuilt() {
+        super::validate_column_coverage().unwrap();
+    }
+
+    #[test]
+    fn every_schema_x_columns_list_is_part_of_the_declared_columns() {
+        let declared = super::declared_columns_by_table();
+        let mut checked = 0;
+        for schema in super::schema_files().unwrap().values() {
+            let document: serde_json::Value = serde_json::from_str(schema).unwrap();
+            for definition in document["$defs"].as_object().into_iter().flatten().map(|(_, definition)| definition) {
+                let (Some(table), Some(columns)) = (definition["x-table"].as_str(), definition["x-columns"].as_array())
+                else {
+                    continue;
+                };
+                for column in columns.iter().filter_map(serde_json::Value::as_str) {
+                    assert!(declared[table].contains(column), "{table}.{column}");
+                }
+                checked += 1;
+            }
+        }
+        assert!(checked > 50, "{checked}");
+    }
+
+    #[test]
+    fn a_ddl_column_no_declaration_writes_is_reported() {
+        let db = ddl_database();
+        db.execute_batch("ALTER TABLE patrons ADD COLUMN injected_column TEXT").unwrap();
+        let findings = super::undeclared_columns(&db, &super::declared_columns_by_table()).unwrap();
+        assert_eq!(findings, ["patrons.injected_column"]);
+    }
+
     #[test]
     fn every_placement_maps_back_to_its_own_kind() {
         let root = std::path::Path::new("data");

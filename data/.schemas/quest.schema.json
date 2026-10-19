@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "CorrectionKind": {
@@ -278,5 +287,27 @@
   ],
   "title": "QuestFile",
   "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "level",
+    "epic_level",
+    "legendary_level",
+    "name",
+    "provenance",
+    "bestowed_by",
+    "variant",
+    "difficulties",
+    "epic_name",
+    "favor",
+    "flagging",
+    "is_challenge",
+    "is_free_to_play",
+    "is_raid",
+    "max_level",
+    "pack_id",
+    "patron_id",
+    "zone"
+  ],
   "x-table": "quests"
 }

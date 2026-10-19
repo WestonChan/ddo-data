@@ -482,7 +482,11 @@ items = ["Improved Critical: Bludgeoning Weapons"]
 database_record! {
     #[derive(Debug, serde::Serialize, serde::Deserialize, schemars::JsonSchema)]
     #[serde(deny_unknown_fields)]
-    pub(crate) struct Skill in (table: &str, owner_column: &str) {
+    pub(crate) struct Skill in (table: &str, owner_column: &str) uses {
+        "class_skills" => "class_id",
+        "class_auto_buy_skills" => "class_id",
+        "race_auto_buy_skills" => "race_id",
+    } {
         keys { owner_id: i64 => owner_column }
         fields { skill: String => skill }
     }
@@ -491,7 +495,10 @@ database_record! {
 database_record! {
     #[derive(Debug, serde::Serialize, serde::Deserialize, schemars::JsonSchema)]
     #[serde(deny_unknown_fields)]
-    pub(crate) struct EffectGrant in (table: &str, owner_column: &str) {
+    pub(crate) struct EffectGrant in (table: &str, owner_column: &str) uses {
+        "feat_effects" => "feat_id",
+        "set_bonus_tier_effects" => "tier_id",
+    } {
         keys { owner_id: i64 => owner_column, sort_order: i64 }
         fields {
             #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -499,6 +506,8 @@ database_record! {
             effect: String => effect_id [reference "effects"],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             value: Option<i64> => value,
+            #[serde(default, skip_serializing_if = "Option::is_none")]
+            value2: Option<i64> => value2,
         }
         derived_corrections {
             GRANT_CORRECTIONS { value => value [Integer true], bonus_type => bonus_type [BonusTypeName false] }

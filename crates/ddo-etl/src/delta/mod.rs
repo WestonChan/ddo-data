@@ -11,7 +11,7 @@ pub use merge::{
     MergeOutcome, RemovalDeclineReason,
 };
 pub(crate) use table_merges::is_rebuilt_column;
-pub use table_merges::{table_merge, TableMerge, REBUILT_COLUMNS, TABLE_MERGES};
+pub use table_merges::{table_merge, TableMerge, REBUILT_COLUMNS, TABLE_MERGES, UNPOPULATED_COLUMNS};
 
 #[cfg(test)]
 mod tests;

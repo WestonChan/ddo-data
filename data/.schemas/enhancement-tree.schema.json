@@ -32,6 +32,15 @@
         "icon"
       ],
       "type": "object",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "name",
+        "cooldown_seconds",
+        "description",
+        "duration_seconds",
+        "icon"
+      ],
       "x-table": "attacks"
     },
     "Citation": {
@@ -85,6 +94,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "CorrectionKind": {
@@ -266,6 +284,23 @@
         "icon"
       ],
       "type": "object",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "sort_order",
+        "name",
+        "amount",
+        "base_class_level",
+        "class_level",
+        "dc_type",
+        "dc_versus",
+        "description",
+        "icon",
+        "mod_ability",
+        "other",
+        "skill",
+        "tactical"
+      ],
       "x-table": "dcs"
     },
     "Enhancement": {
@@ -413,6 +448,26 @@
         "y"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "slug",
+        "tree_id",
+        "name",
+        "arrows",
+        "cooldown_seconds",
+        "cost_per_rank",
+        "description",
+        "variant",
+        "duration_seconds",
+        "icon",
+        "internal_name",
+        "is_clickie",
+        "is_tier5",
+        "min_spent",
+        "ranks",
+        "x",
+        "y"
+      ],
       "x-table": "enhancements"
     },
     "EnhancementSelection": {
@@ -523,6 +578,21 @@
         "icon"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "slug",
+        "enhancement_id",
+        "sort_order",
+        "name",
+        "cooldown_seconds",
+        "cost_per_rank",
+        "description",
+        "duration_seconds",
+        "icon",
+        "is_clickie",
+        "min_spent",
+        "ranks"
+      ],
       "x-table": "enhancement_selections"
     },
     "FileNumber": {
@@ -686,6 +756,33 @@
         "effect_type"
       ],
       "type": "object",
+      "x-columns": [
+        "source_kind",
+        "source_id",
+        "sort_order",
+        "amount_type",
+        "amounts",
+        "apply_as_item_effect",
+        "bonus",
+        "bonus_type_id",
+        "cap",
+        "damage",
+        "dice_bonus",
+        "dice_damage",
+        "dice_number",
+        "dice_sides",
+        "display_name",
+        "effect_id",
+        "effect_type",
+        "extra_types",
+        "is_item_specific",
+        "is_rare",
+        "percent",
+        "rank",
+        "stack_source",
+        "targets",
+        "value"
+      ],
       "x-table": "modifiers"
     },
     "Requirement": {
@@ -718,6 +815,16 @@
         "req_type"
       ],
       "type": "object",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "group_kind",
+        "group_index",
+        "sort_order",
+        "items",
+        "req_type",
+        "value"
+      ],
       "x-table": "requirements"
     },
     "RequirementGroup": {
@@ -750,6 +857,10 @@
         "internal_name"
       ],
       "type": "object",
+      "x-columns": [
+        "enhancement_id",
+        "internal_name"
+      ],
       "x-table": "enhancement_selector_exclusions"
     },
     "Stance": {
@@ -811,6 +922,19 @@
         "icon"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "slug",
+        "owner_kind",
+        "owner_id",
+        "sort_order",
+        "name",
+        "auto_controlled",
+        "description",
+        "group_name",
+        "icon",
+        "incompatible"
+      ],
       "x-table": "stances"
     }
   },
@@ -878,5 +1002,15 @@
   ],
   "title": "EnhancementTreeFile",
   "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "name",
+    "background",
+    "icon",
+    "is_legacy",
+    "kind",
+    "version"
+  ],
   "x-table": "enhancement_trees"
 }

@@ -37,6 +37,9 @@ fn ingredient_matches(db: &Connection, name: &str) -> Result<Vec<(String, i64)>>
     Ok(matches)
 }
 
+pub(crate) const OFFER_COST_COLUMNS: [&str; 5] =
+    ["offer_id", "ingredient_kind", "ingredient_id", "quantity", "sort_order"];
+
 pub(crate) fn insert_prices(db: &Connection, offer_id: i64, prices: &[VendorPrice]) -> Result<()> {
     let (vendor, item): (String, String) = db.query_row("SELECT vendor.name, item.name FROM vendor_offers offer
         JOIN vendors vendor ON vendor.id = offer.vendor_id JOIN items item ON item.id = offer.item_id WHERE offer.id = ?1", [offer_id], |row| Ok((row.get(0)?, row.get(1)?)))?;
@@ -49,8 +52,11 @@ pub(crate) fn insert_prices(db: &Connection, offer_id: i64, prices: &[VendorPric
             matches.len()
         );
         ensure!(price.quantity > 0, "vendor {vendor:?}, item {item:?}: price quantity must be positive");
-        db.prepare_cached("INSERT INTO vendor_offer_costs (offer_id, ingredient_kind, ingredient_id, quantity, sort_order) VALUES (?1, ?2, ?3, ?4, ?5)")?
-            .execute(params![offer_id, matches[0].0, matches[0].1, price.quantity, position as i64])?;
+        db.prepare_cached(&format!(
+            "INSERT INTO vendor_offer_costs ({}) VALUES (?1, ?2, ?3, ?4, ?5)",
+            OFFER_COST_COLUMNS.join(", ")
+        ))?
+        .execute(params![offer_id, matches[0].0, matches[0].1, price.quantity, position as i64])?;
     }
     Ok(())
 }

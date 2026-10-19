@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "DamageType": {
@@ -74,6 +83,12 @@
         "name"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "slug",
+        "category",
+        "name"
+      ],
       "x-table": "damage_types"
     }
   },

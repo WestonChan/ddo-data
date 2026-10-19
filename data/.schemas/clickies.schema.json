@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "Clickie": {
@@ -97,6 +106,14 @@
         "icon"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "slug",
+        "name",
+        "description",
+        "icon",
+        "school"
+      ],
       "x-table": "clickies"
     },
     "CorrectionKind": {
@@ -362,6 +379,33 @@
         "effect_type"
       ],
       "type": "object",
+      "x-columns": [
+        "source_kind",
+        "source_id",
+        "sort_order",
+        "amount_type",
+        "amounts",
+        "apply_as_item_effect",
+        "bonus",
+        "bonus_type_id",
+        "cap",
+        "damage",
+        "dice_bonus",
+        "dice_damage",
+        "dice_number",
+        "dice_sides",
+        "display_name",
+        "effect_id",
+        "effect_type",
+        "extra_types",
+        "is_item_specific",
+        "is_rare",
+        "percent",
+        "rank",
+        "stack_source",
+        "targets",
+        "value"
+      ],
       "x-table": "modifiers"
     },
     "Requirement": {
@@ -394,6 +438,16 @@
         "req_type"
       ],
       "type": "object",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "group_kind",
+        "group_index",
+        "sort_order",
+        "items",
+        "req_type",
+        "value"
+      ],
       "x-table": "requirements"
     },
     "RequirementGroup": {

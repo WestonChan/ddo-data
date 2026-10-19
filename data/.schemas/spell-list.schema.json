@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "CorrectionKind": {
@@ -316,6 +325,33 @@
         "effect_type"
       ],
       "type": "object",
+      "x-columns": [
+        "source_kind",
+        "source_id",
+        "sort_order",
+        "amount_type",
+        "amounts",
+        "apply_as_item_effect",
+        "bonus",
+        "bonus_type_id",
+        "cap",
+        "damage",
+        "dice_bonus",
+        "dice_damage",
+        "dice_number",
+        "dice_sides",
+        "display_name",
+        "effect_id",
+        "effect_type",
+        "extra_types",
+        "is_item_specific",
+        "is_rare",
+        "percent",
+        "rank",
+        "stack_source",
+        "targets",
+        "value"
+      ],
       "x-table": "modifiers"
     },
     "Requirement": {
@@ -348,6 +384,16 @@
         "req_type"
       ],
       "type": "object",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "group_kind",
+        "group_index",
+        "sort_order",
+        "items",
+        "req_type",
+        "value"
+      ],
       "x-table": "requirements"
     },
     "RequirementGroup": {
@@ -453,6 +499,17 @@
         "description"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "slug",
+        "name",
+        "cost",
+        "description",
+        "icon",
+        "max_caster_level",
+        "metamagics",
+        "schools"
+      ],
       "x-table": "spells"
     },
     "SpellDamage": {
@@ -521,6 +578,19 @@
         }
       },
       "type": "object",
+      "x-columns": [
+        "spell_id",
+        "sort_order",
+        "base_dice_bonus",
+        "base_dice_number",
+        "base_dice_sides",
+        "bonus_dice_bonus",
+        "bonus_dice_number",
+        "bonus_dice_sides",
+        "damage",
+        "per_caster_levels",
+        "spell_power"
+      ],
       "x-table": "spell_damage"
     },
     "SpellDifficultyClass": {
@@ -560,6 +630,16 @@
         "dc_versus"
       ],
       "type": "object",
+      "x-columns": [
+        "spell_id",
+        "sort_order",
+        "amount",
+        "casting_stat_mod",
+        "dc_type",
+        "dc_versus",
+        "mod_abilities",
+        "schools"
+      ],
       "x-table": "spell_dcs"
     },
     "Stance": {
@@ -621,6 +701,19 @@
         "icon"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "slug",
+        "owner_kind",
+        "owner_id",
+        "sort_order",
+        "name",
+        "auto_controlled",
+        "description",
+        "group_name",
+        "icon",
+        "incompatible"
+      ],
       "x-table": "stances"
     }
   },

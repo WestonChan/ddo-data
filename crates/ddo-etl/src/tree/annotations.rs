@@ -69,6 +69,9 @@ database_record! {
     }
 }
 
+pub(crate) const VARIANT_COLUMN: &str = "variant";
+pub(crate) const ANNOTATION_COLUMNS: [&str; 1] = [VARIANT_COLUMN];
+
 pub(super) fn wiki_url_for_name(table: &str, name: &str) -> Option<String> {
     let page = name.replace(' ', "_").replace('+', "%2B");
     match table {
@@ -172,7 +175,8 @@ impl EntityAnnotations {
             {
                 continue;
             }
-            let mut statement = db.prepare(&format!("SELECT id, variant FROM {table} WHERE variant IS NOT NULL"))?;
+            let mut statement =
+                db.prepare(&format!("SELECT id, {VARIANT_COLUMN} FROM {table} WHERE {VARIANT_COLUMN} IS NOT NULL"))?;
             for row in statement.query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)))? {
                 let (id, variant) = row?;
                 metadata.entities.entry(entity_key(table, id)).or_default().variant = Some(variant);
@@ -203,7 +207,7 @@ impl EntityAnnotations {
             let (table, id) = key.split_once('/').with_context(|| format!("entity annotation {key:?} has no table"))?;
             let id = id.parse::<i64>()?;
             if let Some(variant) = &annotation.variant {
-                db.execute(&format!("UPDATE {table} SET variant = ?1 WHERE id = ?2"), params![variant, id])?;
+                db.execute(&format!("UPDATE {table} SET {VARIANT_COLUMN} = ?1 WHERE id = ?2"), params![variant, id])?;
             }
             insert_citations(db, table, id, &annotation.citation)?;
             for removed in &annotation.removed {

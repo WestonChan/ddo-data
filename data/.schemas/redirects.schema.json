@@ -60,6 +60,12 @@
         "since"
       ],
       "type": "object",
+      "x-columns": [
+        "kind",
+        "from_slug",
+        "to_slug",
+        "since"
+      ],
       "x-table": "redirects"
     },
     "RetiredSlug": {
@@ -85,6 +91,12 @@
         "reason"
       ],
       "type": "object",
+      "x-columns": [
+        "kind",
+        "slug",
+        "since",
+        "reason"
+      ],
       "x-table": "retired_slugs"
     }
   },

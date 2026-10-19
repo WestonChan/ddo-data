@@ -17,6 +17,8 @@ database_record! {
             bonus_type: Option<String> => bonus_type_id [optional_reference "bonus_types"],
             effect: String => effect_id [reference "effects"],
             value: i64 => value,
+            #[serde(default, skip_serializing_if = "Option::is_none")]
+            value2: Option<i64> => value2,
         }
     }
 }

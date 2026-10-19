@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "CorrectionKind": {
@@ -185,6 +194,16 @@
         "req_type"
       ],
       "type": "object",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "group_kind",
+        "group_index",
+        "sort_order",
+        "items",
+        "req_type",
+        "value"
+      ],
       "x-table": "requirements"
     },
     "RequirementGroup": {
@@ -265,6 +284,19 @@
         "icon"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "slug",
+        "owner_kind",
+        "owner_id",
+        "sort_order",
+        "name",
+        "auto_controlled",
+        "description",
+        "group_name",
+        "icon",
+        "incompatible"
+      ],
       "x-table": "stances"
     }
   },

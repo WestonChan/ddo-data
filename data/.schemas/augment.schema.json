@@ -31,6 +31,14 @@
         "value"
       ],
       "type": "object",
+      "x-columns": [
+        "augment_id",
+        "sort_order",
+        "effect_id",
+        "bonus_type_id",
+        "value",
+        "value2"
+      ],
       "x-table": "augment_effects"
     },
     "AugmentSlot": {
@@ -45,6 +53,10 @@
         "slot"
       ],
       "type": "object",
+      "x-columns": [
+        "augment_id",
+        "slot_id"
+      ],
       "x-table": "augment_slots"
     },
     "AugmentSource": {
@@ -136,6 +148,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "CorrectionKind": {
@@ -401,6 +422,33 @@
         "effect_type"
       ],
       "type": "object",
+      "x-columns": [
+        "source_kind",
+        "source_id",
+        "sort_order",
+        "amount_type",
+        "amounts",
+        "apply_as_item_effect",
+        "bonus",
+        "bonus_type_id",
+        "cap",
+        "damage",
+        "dice_bonus",
+        "dice_damage",
+        "dice_number",
+        "dice_sides",
+        "display_name",
+        "effect_id",
+        "effect_type",
+        "extra_types",
+        "is_item_specific",
+        "is_rare",
+        "percent",
+        "rank",
+        "stack_source",
+        "targets",
+        "value"
+      ],
       "x-table": "modifiers"
     },
     "Requirement": {
@@ -433,6 +481,16 @@
         "req_type"
       ],
       "type": "object",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "group_kind",
+        "group_index",
+        "sort_order",
+        "items",
+        "req_type",
+        "value"
+      ],
       "x-table": "requirements"
     },
     "RequirementGroup": {
@@ -596,5 +654,28 @@
   ],
   "title": "AugmentFile",
   "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "name",
+    "provenance",
+    "adds_augment",
+    "variant",
+    "choose_level",
+    "description",
+    "dual_values",
+    "effect_description",
+    "enter_value",
+    "family",
+    "grants_augment",
+    "icon",
+    "level_values",
+    "level_values2",
+    "levels",
+    "min_level",
+    "set_bonus",
+    "suppress_set_bonus",
+    "weapon_class"
+  ],
   "x-table": "augments"
 }

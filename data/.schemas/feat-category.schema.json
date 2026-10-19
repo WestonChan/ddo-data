@@ -32,6 +32,15 @@
         "icon"
       ],
       "type": "object",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "name",
+        "cooldown_seconds",
+        "description",
+        "duration_seconds",
+        "icon"
+      ],
       "x-table": "attacks"
     },
     "Citation": {
@@ -85,6 +94,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "ConditionalFeatGroup": {
@@ -110,6 +128,11 @@
         }
       },
       "type": "object",
+      "x-columns": [
+        "id",
+        "feat_id",
+        "groups"
+      ],
       "x-table": "feat_conditional_groups"
     },
     "CorrectionKind": {
@@ -291,6 +314,23 @@
         "icon"
       ],
       "type": "object",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "sort_order",
+        "name",
+        "amount",
+        "base_class_level",
+        "class_level",
+        "dc_type",
+        "dc_versus",
+        "description",
+        "icon",
+        "mod_ability",
+        "other",
+        "skill",
+        "tactical"
+      ],
       "x-table": "dcs"
     },
     "EffectGrant": {
@@ -313,12 +353,36 @@
             "integer",
             "null"
           ]
+        },
+        "value2": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
         }
       },
       "required": [
         "effect"
       ],
-      "type": "object"
+      "type": "object",
+      "x-columns": [
+        "sort_order",
+        "bonus_type_id",
+        "effect_id",
+        "value",
+        "value2"
+      ],
+      "x-uses": [
+        [
+          "feat_effects",
+          "feat_id"
+        ],
+        [
+          "set_bonus_tier_effects",
+          "tier_id"
+        ]
+      ]
     },
     "Feat": {
       "additionalProperties": false,
@@ -449,6 +513,20 @@
         "acquire"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "slug",
+        "source_kind",
+        "source_id",
+        "name",
+        "acquire",
+        "variant",
+        "auto_acquire_ignores_requirements",
+        "description",
+        "icon",
+        "max_times_acquire",
+        "sphere"
+      ],
       "x-table": "feats"
     },
     "FeatGroup": {
@@ -462,6 +540,10 @@
         "group_name"
       ],
       "type": "object",
+      "x-columns": [
+        "feat_id",
+        "group_name"
+      ],
       "x-table": "feat_groups"
     },
     "FeatSubItem": {
@@ -484,6 +566,13 @@
         "icon"
       ],
       "type": "object",
+      "x-columns": [
+        "feat_id",
+        "sort_order",
+        "name",
+        "description",
+        "icon"
+      ],
       "x-table": "feat_sub_items"
     },
     "FileNumber": {
@@ -647,6 +736,33 @@
         "effect_type"
       ],
       "type": "object",
+      "x-columns": [
+        "source_kind",
+        "source_id",
+        "sort_order",
+        "amount_type",
+        "amounts",
+        "apply_as_item_effect",
+        "bonus",
+        "bonus_type_id",
+        "cap",
+        "damage",
+        "dice_bonus",
+        "dice_damage",
+        "dice_number",
+        "dice_sides",
+        "display_name",
+        "effect_id",
+        "effect_type",
+        "extra_types",
+        "is_item_specific",
+        "is_rare",
+        "percent",
+        "rank",
+        "stack_source",
+        "targets",
+        "value"
+      ],
       "x-table": "modifiers"
     },
     "Requirement": {
@@ -679,6 +795,16 @@
         "req_type"
       ],
       "type": "object",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "group_kind",
+        "group_index",
+        "sort_order",
+        "items",
+        "req_type",
+        "value"
+      ],
       "x-table": "requirements"
     },
     "RequirementGroup": {
@@ -759,6 +885,19 @@
         "icon"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "slug",
+        "owner_kind",
+        "owner_id",
+        "sort_order",
+        "name",
+        "auto_controlled",
+        "description",
+        "group_name",
+        "icon",
+        "incompatible"
+      ],
       "x-table": "stances"
     }
   },

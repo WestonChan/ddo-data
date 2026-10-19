@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "CorrectionKind": {
@@ -195,6 +204,16 @@
         "target"
       ],
       "type": "object",
+      "x-columns": [
+        "effect_id",
+        "sort_order",
+        "amount_from",
+        "bonus_type_id",
+        "constant",
+        "rounding",
+        "scale",
+        "target_effect_id"
+      ],
       "x-table": "effect_bonuses"
     },
     "EffectDamage": {
@@ -239,6 +258,17 @@
         "trigger"
       ],
       "type": "object",
+      "x-columns": [
+        "effect_id",
+        "sort_order",
+        "amount_from",
+        "damage_type_id",
+        "dice_bonus",
+        "dice_number",
+        "dice_sides",
+        "scale",
+        "trigger_id"
+      ],
       "x-table": "effect_damage"
     }
   },
@@ -328,5 +358,20 @@
   ],
   "title": "EffectFile",
   "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "is_stat",
+    "is_group",
+    "name",
+    "variant",
+    "default_value",
+    "description_template",
+    "home_bonus_type_id",
+    "set_bonus_line_template",
+    "tier",
+    "tier_group_id",
+    "verbose_name_template"
+  ],
   "x-table": "effects"
 }

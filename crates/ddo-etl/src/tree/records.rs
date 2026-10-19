@@ -1,6 +1,11 @@
+#[derive(Debug)]
 pub(super) struct InsertedRecord {
     pub(super) row_count: usize,
     pub(super) row_id: i64,
+}
+
+pub(crate) trait DeclaredRecord {
+    fn declared_columns() -> Vec<(&'static str, Vec<&'static str>)>;
 }
 
 macro_rules! database_record {
@@ -17,25 +22,25 @@ macro_rules! database_record {
         }
     };
     ($visibility:vis struct $name:ident in $table:literal as $array:literal { $($body:tt)* }) => {
-        database_record!(@record [$table] [] $visibility struct $name { $($body)* });
+        database_record!(@record [$table] [] [] $visibility struct $name { $($body)* });
         database_record!(@mirror $visibility $name $table $array);
     };
     ($(#[$attribute:meta])* $visibility:vis struct $name:ident in $table:literal as $array:literal { $($body:tt)* }) => {
-        database_record!(@record [$table] [] $(#[$attribute])* #[schemars(extend("x-table" = $table, "x-array" = $array))] $visibility struct $name { $($body)* });
+        database_record!(@record [$table] [] [] $(#[$attribute])* #[schemars(extend("x-table" = $table, "x-array" = $array))] #[schemars(transform = $name::describe_columns)] $visibility struct $name { $($body)* });
         database_record!(@mirror $visibility $name $table $array);
     };
     ($visibility:vis struct $name:ident in $table:literal { $($body:tt)* }) => {
-        database_record!(@record [$table] [] $visibility struct $name { $($body)* });
+        database_record!(@record [$table] [] [] $visibility struct $name { $($body)* });
         database_record!(@table $visibility $name $table);
     };
     ($(#[$attribute:meta])* $visibility:vis struct $name:ident in $table:literal { $($body:tt)* }) => {
-        database_record!(@record [$table] [] $(#[$attribute])* #[schemars(extend("x-table" = $table))] $visibility struct $name { $($body)* });
+        database_record!(@record [$table] [] [] $(#[$attribute])* #[schemars(extend("x-table" = $table))] #[schemars(transform = $name::describe_columns)] $visibility struct $name { $($body)* });
         database_record!(@table $visibility $name $table);
     };
-    ($(#[$attribute:meta])* $visibility:vis struct $name:ident in ($table:ident: &str $(, $parameter:ident: &str)*) { $($body:tt)* }) => {
-        database_record!(@record [$table] [$table: &str, $($parameter: &str,)*] $(#[$attribute])* $visibility struct $name { $($body)* });
+    ($(#[$attribute:meta])* $visibility:vis struct $name:ident in ($table:ident: &str $(, $parameter:ident: &str)*) uses { $($use_table:literal $(=> $use_owner:literal)?),+ $(,)? } { $($body:tt)* }) => {
+        database_record!(@record [$table] [$table: &str, $($parameter: &str,)*] [$(($use_table $(=> $use_owner)?))+] $(#[$attribute])* #[schemars(transform = $name::describe_columns)] $visibility struct $name { $($body)* });
     };
-    (@record [$table:expr] [$($parameters:tt)*]
+    (@record [$table:expr] [$($parameters:tt)*] [$($uses:tt)*]
         $(#[$attribute:meta])* $visibility:vis struct $name:ident {
             $(context { $($context:tt)* })?
             keys { $($keys:tt)* }
@@ -45,7 +50,7 @@ macro_rules! database_record {
         }
     ) => {
         database_record!(@fields
-            [[$table] [$($parameters)*] $(#[$attribute])* $visibility struct $name]
+            [[$table] [$($parameters)*] [$($uses)*] $(#[$attribute])* $visibility struct $name]
             [$(context { $($context)* })? keys { $($keys)* } $(values { $($values)* })?]
             [] [$($tail)*] [] $($fields)*);
     };
@@ -120,7 +125,7 @@ macro_rules! database_record {
             [$($fields)* $(#[$attribute])* $field: $field_type => $column $([$($adapter)*])?,]
             [$($tail)*] [$($corrections)*] $($($rest)*)?);
     };
-    (@emit [$table:expr] [$($table_parameter:tt)*]
+    (@emit [$table:expr] [$($table_parameter:tt)*] [$(($use_table:literal $(=> $use_owner:literal)?))*]
         $(#[$attribute:meta])*
         $visibility:vis struct $name:ident {
             $(context { $($context:ident: $context_type:ty),* $(,)? })?
@@ -145,6 +150,12 @@ macro_rules! database_record {
             $($( $(#[$attached_attribute])* $visibility $attached: $attached_type, )*)?
         }
 
+        impl crate::tree::records::DeclaredRecord for $name {
+            fn declared_columns() -> Vec<(&'static str, Vec<&'static str>)> {
+                database_record!(@declared [$($table_parameter)*] $table, $name)
+            }
+        }
+
         impl crate::tree::icon_references::IconReferences for $name {
             fn append_icons<'a>(&'a self, kind: &'a str, icons: &mut Vec<(&'a str, &'a str, &'static str)>) {
                 let _ = (kind, &icons);
@@ -166,6 +177,26 @@ macro_rules! database_record {
 
             database_record!(@citation_attachment [$table] [$($table_parameter)*] [$($($attached,)*)?]);
 
+            #[allow(dead_code)]
+            pub(crate) const USES: &'static [(&'static str, &'static str)] = &[$(database_record!(@use_pair $use_table $($use_owner)?),)*];
+
+            #[allow(dead_code, clippy::vec_init_then_push)]
+            pub(crate) fn column_names() -> Vec<&'static str> {
+                let mut columns: Vec<&'static str> = Vec::new();
+                $(database_record!(@push_key columns $key $(=> $key_column)?);)*
+                $($(columns.push(stringify!($value_column));)*)?
+                $(columns.push(stringify!($column)); database_record!(@push_adapter_columns columns $([$($adapter)*])?);)*
+                columns
+            }
+
+            #[allow(dead_code)]
+            pub(crate) fn describe_columns(schema: &mut schemars::Schema) {
+                schema.insert("x-columns".to_string(), serde_json::json!(Self::column_names()));
+                if !Self::USES.is_empty() {
+                    schema.insert("x-uses".to_string(), serde_json::json!(Self::USES));
+                }
+            }
+
             pub(in crate::tree) fn select_columns($($table_parameter)*) -> String {
                 let _ = $table;
                 [$(format!("{} AS {}", database_record!(@key $key $(=> $key_column)?), stringify!($key)),)* $($(stringify!($value_column).to_string(),)*)? $(database_record!(@select $table, $column $( [ $($adapter)* ] )?),)* $($(format!("{} AS {}", $projection, stringify!($projected)),)*)?].join(", ")
@@ -178,6 +209,7 @@ macro_rules! database_record {
             pub(in crate::tree) fn insert(
                 &self, db: &rusqlite::Connection, $($table_parameter)* $($($context: $context_type,)*)? $($key: $key_type,)*
             ) -> anyhow::Result<crate::tree::records::InsertedRecord> {
+                database_record!(@require_use [$($table_parameter)*] Self::USES);
                 let columns = [$(database_record!(@key $key $(=> $key_column)?),)* $($(stringify!($value_column),)*)? $(stringify!($column),)*].map(|column| format!("[{column}]")).join(", ");
                 let parameters = [$(concat!(":", stringify!($key)),)* $($(concat!(":", stringify!($value_column)),)*)? $(concat!(":", stringify!($column)),)*].join(", ");
                 $(let (columns, parameters) = database_record!(@source_columns self, columns, parameters, $field $([$($adapter)*])?);)*
@@ -191,6 +223,32 @@ macro_rules! database_record {
                 Ok(crate::tree::records::InsertedRecord { row_count: inserted, row_id })
             }
         }
+    };
+    (@declared [] $table:expr, $name:ident) => { vec![($table, $name::column_names())] };
+    (@declared [$($parameters:tt)+] $table:expr, $name:ident) => {
+        $name::USES
+            .iter()
+            .map(|(table, owner_column)| {
+                let mut columns = $name::column_names();
+                if !owner_column.is_empty() {
+                    columns.push(owner_column);
+                }
+                (*table, columns)
+            })
+            .collect()
+    };
+    (@use_pair $table:literal) => { ($table, "") };
+    (@use_pair $table:literal $owner:literal) => { ($table, $owner) };
+    (@push_key $columns:ident $key:ident) => { $columns.push(stringify!($key)); };
+    (@push_key $columns:ident $key:ident => $column:expr) => {};
+    (@push_adapter_columns $columns:ident [annotation_source]) => { $columns.push("in_game"); };
+    (@push_adapter_columns $columns:ident $([$($adapter:tt)*])?) => {};
+    (@require_use [] $uses:expr) => {};
+    (@require_use [$table:ident: &str,] $uses:expr) => {
+        anyhow::ensure!($uses.iter().any(|(declared, _)| *declared == $table), "{} is not a declared use of this record", $table);
+    };
+    (@require_use [$table:ident: &str, $owner:ident: &str,] $uses:expr) => {
+        anyhow::ensure!($uses.contains(&($table, $owner)), "{} owned by {} is not a declared use of this record", $table, $owner);
     };
     (@source_columns $record:ident, $columns:ident, $parameters:ident, $field:ident [annotation_source]) => {{
         let mut columns = $columns;
@@ -375,7 +433,10 @@ mod tests {
     database_record! {
         #[derive(Debug, serde::Serialize, serde::Deserialize, schemars::JsonSchema)]
         #[serde(deny_unknown_fields)]
-        pub(crate) struct TestSkill in (table: &str, owner_column: &str) {
+        pub(crate) struct TestSkill in (table: &str, owner_column: &str) uses {
+            "class_skills" => "class_id",
+            "race_skills" => "race_id",
+        } {
             keys { owner_id: i64 => owner_column }
             fields { skill: String => skill }
         }
@@ -421,6 +482,17 @@ mod tests {
             assert_eq!(owner_id, 7);
             assert_eq!(restored.skill, "Balance");
         }
+    }
+
+    #[test]
+    fn an_undeclared_use_of_a_parameterized_record_is_rejected() {
+        let db = Connection::open_in_memory().unwrap();
+        db.execute_batch("CREATE TABLE other_skills (owner_ref INTEGER, skill TEXT)").unwrap();
+        let record = TestSkill { skill: "Balance".into() };
+        let error = record.insert(&db, "other_skills", "owner_ref", 1).unwrap_err().to_string();
+        assert!(error.contains("other_skills") && error.contains("declared use"), "{error}");
+        let wrong_owner = record.insert(&db, "class_skills", "race_id", 1).unwrap_err().to_string();
+        assert!(wrong_owner.contains("class_skills") && wrong_owner.contains("race_id"), "{wrong_owner}");
     }
 
     #[test]

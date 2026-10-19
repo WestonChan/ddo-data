@@ -57,6 +57,47 @@ pub fn deny_annotation_table_literals(root: &Path) -> anyhow::Result<()> {
     Ok(())
 }
 
+pub fn deny_unlisted_records(tree_root: &Path) -> anyhow::Result<()> {
+    let registry_path = tree_root.join("schemas.rs");
+    let registry =
+        std::fs::read_to_string(&registry_path).with_context(|| format!("reading {}", registry_path.display()))?;
+    let registry = registry.split_once("declared_records! {").map_or("", |(_, listed)| listed);
+    let mut findings = Vec::new();
+    for entry in WalkDir::new(tree_root) {
+        let entry = entry?;
+        let path = entry.path();
+        if path.extension().is_none_or(|extension| extension != "rs") || path.ends_with("records.rs") {
+            continue;
+        }
+        let source = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
+        let production = source.split("#[cfg(test)]").next().unwrap_or(&source);
+        let tokens = tokenize(production, FrontmatterAllowed::No).scan(0, |offset, token| {
+            let start = *offset;
+            *offset += token.len as usize;
+            Some((token.kind, &production[start..*offset]))
+        });
+        let code: Vec<&str> = tokens
+            .filter(|(kind, _)| {
+                !matches!(kind, TokenKind::Whitespace | TokenKind::LineComment { .. } | TokenKind::BlockComment { .. })
+            })
+            .map(|(_, text)| text)
+            .collect();
+        for window in code.windows(4) {
+            if window[0] == "struct" && window[2] == "in" && !registry.contains(&format!("::{},", window[1])) {
+                findings.push(format!(
+                    "{}: record {} is declared with database_record! but missing from declared_records! in schemas.rs",
+                    path.display(),
+                    window[1]
+                ));
+            }
+        }
+    }
+    if !findings.is_empty() {
+        bail!("{}", findings.join("\n"));
+    }
+    Ok(())
+}
+
 pub fn deny_generic_file_mappers(root: &Path) -> anyhow::Result<()> {
     let mut findings = Vec::new();
     for entry in WalkDir::new(root) {
@@ -176,6 +217,20 @@ mod tests {
         }
         std::fs::write(&path, format!("struct Entry in {:?} {{}}\n", Citation::TABLE)).unwrap();
         deny_annotation_table_literals(folder.path()).unwrap();
+    }
+
+    #[test]
+    fn a_record_missing_from_the_registry_is_reported() {
+        let folder = tempfile::tempdir().unwrap();
+        std::fs::write(folder.path().join("schemas.rs"), "declared_records! {\n    super::kinds::Listed,\n}\n")
+            .unwrap();
+        std::fs::write(
+            folder.path().join("kind.rs"),
+            "database_record! {\n    pub struct Listed in \"things\" {}\n}\ndatabase_record! {\n    pub struct Forgotten in \"things\" {}\n}\n",
+        )
+        .unwrap();
+        let error = deny_unlisted_records(folder.path()).unwrap_err().to_string();
+        assert!(error.contains("Forgotten") && !error.contains("Listed"), "{error}");
     }
 
     #[test]

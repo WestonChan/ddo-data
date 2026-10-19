@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     }
   },
@@ -79,5 +88,12 @@
   ],
   "title": "EventFile",
   "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "provenance",
+    "name",
+    "wiki_url"
+  ],
   "x-table": "events"
 }

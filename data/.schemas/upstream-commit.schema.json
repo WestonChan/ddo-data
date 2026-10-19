@@ -11,5 +11,9 @@
   ],
   "title": "UpstreamCommitFile",
   "type": "object",
+  "x-columns": [
+    "built_at",
+    "upstream_sha"
+  ],
   "x-table": "dataset_version"
 }

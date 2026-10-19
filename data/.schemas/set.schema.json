@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "CorrectionKind": {
@@ -175,12 +184,36 @@
             "integer",
             "null"
           ]
+        },
+        "value2": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
         }
       },
       "required": [
         "effect"
       ],
-      "type": "object"
+      "type": "object",
+      "x-columns": [
+        "sort_order",
+        "bonus_type_id",
+        "effect_id",
+        "value",
+        "value2"
+      ],
+      "x-uses": [
+        [
+          "feat_effects",
+          "feat_id"
+        ],
+        [
+          "set_bonus_tier_effects",
+          "tier_id"
+        ]
+      ]
     },
     "FileNumber": {
       "anyOf": [
@@ -343,6 +376,33 @@
         "effect_type"
       ],
       "type": "object",
+      "x-columns": [
+        "source_kind",
+        "source_id",
+        "sort_order",
+        "amount_type",
+        "amounts",
+        "apply_as_item_effect",
+        "bonus",
+        "bonus_type_id",
+        "cap",
+        "damage",
+        "dice_bonus",
+        "dice_damage",
+        "dice_number",
+        "dice_sides",
+        "display_name",
+        "effect_id",
+        "effect_type",
+        "extra_types",
+        "is_item_specific",
+        "is_rare",
+        "percent",
+        "rank",
+        "stack_source",
+        "targets",
+        "value"
+      ],
       "x-table": "modifiers"
     },
     "Requirement": {
@@ -375,6 +435,16 @@
         "req_type"
       ],
       "type": "object",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "group_kind",
+        "group_index",
+        "sort_order",
+        "items",
+        "req_type",
+        "value"
+      ],
       "x-table": "requirements"
     },
     "RequirementGroup": {
@@ -412,6 +482,10 @@
         "family"
       ],
       "type": "object",
+      "x-columns": [
+        "set_id",
+        "augment_id"
+      ],
       "x-table": "set_bonus_augments"
     },
     "SetItem": {
@@ -432,6 +506,10 @@
         "name"
       ],
       "type": "object",
+      "x-columns": [
+        "set_id",
+        "item_id"
+      ],
       "x-table": "set_bonus_items"
     },
     "SetTier": {
@@ -464,6 +542,11 @@
         "equipped_count"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "set_id",
+        "equipped_count"
+      ],
       "x-table": "set_bonus_tiers"
     }
   },
@@ -519,5 +602,12 @@
   ],
   "title": "SetFile",
   "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "name",
+    "icon",
+    "is_filigree_set"
+  ],
   "x-table": "set_bonuses"
 }

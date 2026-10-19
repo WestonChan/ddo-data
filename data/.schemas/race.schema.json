@@ -17,6 +17,12 @@
         "stat"
       ],
       "type": "object",
+      "x-columns": [
+        "race_id",
+        "sort_order",
+        "modifier",
+        "stat_id"
+      ],
       "x-table": "race_ability_modifiers"
     },
     "Citation": {
@@ -70,6 +76,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "RaceFeatSlot": {
@@ -94,6 +109,12 @@
         "level"
       ],
       "type": "object",
+      "x-columns": [
+        "race_id",
+        "feat_type",
+        "level",
+        "update_list"
+      ],
       "x-table": "race_feat_slots"
     },
     "RaceGrantedFeat": {
@@ -114,6 +135,12 @@
         }
       },
       "type": "object",
+      "x-columns": [
+        "race_id",
+        "sort_order",
+        "feat_id",
+        "feat_name"
+      ],
       "x-table": "race_granted_feats"
     },
     "Skill": {
@@ -126,7 +153,24 @@
       "required": [
         "skill"
       ],
-      "type": "object"
+      "type": "object",
+      "x-columns": [
+        "skill"
+      ],
+      "x-uses": [
+        [
+          "class_skills",
+          "class_id"
+        ],
+        [
+          "class_auto_buy_skills",
+          "class_id"
+        ],
+        [
+          "race_auto_buy_skills",
+          "race_id"
+        ]
+      ]
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -209,5 +253,18 @@
   ],
   "title": "RaceFile",
   "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "name",
+    "build_points",
+    "description",
+    "iconic_class",
+    "is_construct",
+    "no_past_life",
+    "short_name",
+    "skill_points",
+    "starting_world"
+  ],
   "x-table": "races"
 }

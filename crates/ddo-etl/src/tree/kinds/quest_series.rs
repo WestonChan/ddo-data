@@ -6,7 +6,7 @@ use std::path::Path;
 database_record! {
     #[derive(Debug, serde::Serialize, serde::Deserialize, schemars::JsonSchema)]
     #[serde(deny_unknown_fields)]
-    pub(crate) struct QuestSeriesFile in (table: &str) {
+    pub(crate) struct QuestSeriesFile in (table: &str) uses { "quest_chains", "sagas" } {
         context { wiki_url: &str }
         keys { id: i64, slug: &str, provenance: &str }
         fields {
@@ -27,7 +27,10 @@ database_record! {
 
 database_record! {
     #[derive(Debug, serde::Serialize, serde::Deserialize, schemars::JsonSchema)]
-    pub(crate) struct SeriesQuest in (table: &str, owner_column: &str) {
+    pub(crate) struct SeriesQuest in (table: &str, owner_column: &str) uses {
+        "quest_chain_quests" => "chain_id",
+        "saga_quests" => "saga_id",
+    } {
         keys { owner_id: i64 => owner_column, sort_order: i64 }
         fields { name: String => quest_id [reference "quests"] }
     }

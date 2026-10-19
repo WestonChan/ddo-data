@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "VocabularyTerm": {
@@ -69,7 +78,26 @@
       "required": [
         "name"
       ],
-      "type": "object"
+      "type": "object",
+      "x-columns": [
+        "id",
+        "sort_order",
+        "name"
+      ],
+      "x-uses": [
+        [
+          "item_materials",
+          ""
+        ],
+        [
+          "weapon_proficiencies",
+          ""
+        ],
+        [
+          "triggers",
+          ""
+        ]
+      ]
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",

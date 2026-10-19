@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "CraftingSystemFamily": {
@@ -64,6 +73,10 @@
         "family"
       ],
       "type": "object",
+      "x-columns": [
+        "system_id",
+        "family"
+      ],
       "x-table": "crafting_system_families"
     },
     "CraftingSystemIngredient": {
@@ -99,6 +112,16 @@
         "tier"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "slug",
+        "system_id",
+        "sort_order",
+        "name",
+        "bind",
+        "source",
+        "tier"
+      ],
       "x-table": "crafting_ingredients"
     },
     "CraftingSystemRecipe": {
@@ -154,6 +177,17 @@
         "tier"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "system_id",
+        "sort_order",
+        "focus_path",
+        "grants_slot_id",
+        "note",
+        "option",
+        "slot_id",
+        "tier"
+      ],
       "x-table": "crafting_recipes"
     },
     "CraftingSystemRecipeAugment": {
@@ -185,6 +219,11 @@
         "level"
       ],
       "type": "object",
+      "x-columns": [
+        "recipe_id",
+        "sort_order",
+        "augment_id"
+      ],
       "x-table": "crafting_recipe_augments"
     },
     "CraftingSystemRecipeIngredient": {
@@ -210,6 +249,12 @@
         "quantity"
       ],
       "type": "object",
+      "x-columns": [
+        "recipe_id",
+        "sort_order",
+        "ingredient_id",
+        "quantity"
+      ],
       "x-table": "crafting_recipe_ingredients"
     },
     "RemovedEntry": {
@@ -240,6 +285,15 @@
       ],
       "type": "object",
       "x-array": "removed",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "kind",
+        "name",
+        "reason",
+        "url",
+        "read"
+      ],
       "x-table": "removed_entities"
     }
   },
@@ -303,5 +357,13 @@
   ],
   "title": "CraftingSystemFile",
   "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "name",
+    "npc",
+    "pack_id",
+    "page"
+  ],
   "x-table": "crafting_systems"
 }

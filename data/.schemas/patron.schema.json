@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "CorrectionKind": {
@@ -180,5 +189,10 @@
   ],
   "title": "PatronFile",
   "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "name"
+  ],
   "x-table": "patrons"
 }

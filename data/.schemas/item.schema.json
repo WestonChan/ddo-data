@@ -67,6 +67,18 @@
         "armor_type"
       ],
       "type": "object",
+      "x-columns": [
+        "item_id",
+        "adamantine_body",
+        "arcane_spell_failure",
+        "armor_bonus",
+        "armor_check_penalty",
+        "armor_type",
+        "damage_reduction",
+        "max_dex_bonus",
+        "mithral_body",
+        "shield_bonus"
+      ],
       "x-table": "item_armor_stats"
     },
     "Citation": {
@@ -120,6 +132,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "CorrectionKind": {
@@ -271,6 +292,13 @@
         "name"
       ],
       "type": "object",
+      "x-columns": [
+        "item_id",
+        "sort_order",
+        "name",
+        "clickie_id",
+        "spell_id"
+      ],
       "x-table": "item_clickies"
     },
     "ItemDrBypass": {
@@ -284,6 +312,10 @@
         "bypass"
       ],
       "type": "object",
+      "x-columns": [
+        "item_id",
+        "bypass"
+      ],
       "x-table": "item_dr_bypass"
     },
     "ItemEffect": {
@@ -319,6 +351,14 @@
         "name"
       ],
       "type": "object",
+      "x-columns": [
+        "item_id",
+        "sort_order",
+        "effect_id",
+        "bonus_type_id",
+        "value",
+        "value2"
+      ],
       "x-table": "item_effects"
     },
     "ItemSource": {
@@ -514,6 +554,33 @@
         "effect_type"
       ],
       "type": "object",
+      "x-columns": [
+        "source_kind",
+        "source_id",
+        "sort_order",
+        "amount_type",
+        "amounts",
+        "apply_as_item_effect",
+        "bonus",
+        "bonus_type_id",
+        "cap",
+        "damage",
+        "dice_bonus",
+        "dice_damage",
+        "dice_number",
+        "dice_sides",
+        "display_name",
+        "effect_id",
+        "effect_type",
+        "extra_types",
+        "is_item_specific",
+        "is_rare",
+        "percent",
+        "rank",
+        "stack_source",
+        "targets",
+        "value"
+      ],
       "x-table": "modifiers"
     },
     "RemovedEntry": {
@@ -544,6 +611,15 @@
       ],
       "type": "object",
       "x-array": "removed",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "kind",
+        "name",
+        "reason",
+        "url",
+        "read"
+      ],
       "x-table": "removed_entities"
     },
     "Requirement": {
@@ -576,6 +652,16 @@
         "req_type"
       ],
       "type": "object",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "group_kind",
+        "group_index",
+        "sort_order",
+        "items",
+        "req_type",
+        "value"
+      ],
       "x-table": "requirements"
     },
     "RequirementGroup": {
@@ -615,6 +701,11 @@
         "slot"
       ],
       "type": "object",
+      "x-columns": [
+        "item_id",
+        "sort_order",
+        "slot_id"
+      ],
       "x-table": "item_augment_slots"
     },
     "SocketGrant": {
@@ -629,6 +720,11 @@
         "slot"
       ],
       "type": "object",
+      "x-columns": [
+        "option_id",
+        "sort_order",
+        "slot_id"
+      ],
       "x-table": "item_augment_slot_option_grants"
     },
     "SocketOption": {
@@ -686,6 +782,16 @@
         "name"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "item_id",
+        "slot_order",
+        "option_order",
+        "name",
+        "description",
+        "icon",
+        "min_level"
+      ],
       "x-table": "item_augment_slot_options"
     },
     "SocketOptionEffect": {
@@ -705,6 +811,13 @@
         "value": {
           "format": "int64",
           "type": "integer"
+        },
+        "value2": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
         }
       },
       "required": [
@@ -712,6 +825,14 @@
         "value"
       ],
       "type": "object",
+      "x-columns": [
+        "option_id",
+        "sort_order",
+        "bonus_type_id",
+        "effect_id",
+        "value",
+        "value2"
+      ],
       "x-table": "item_augment_slot_option_effects"
     },
     "SocketSet": {
@@ -726,6 +847,10 @@
         "set"
       ],
       "type": "object",
+      "x-columns": [
+        "option_id",
+        "set_id"
+      ],
       "x-table": "item_augment_slot_option_sets"
     },
     "VendorPrice": {
@@ -816,6 +941,21 @@
         "weapon_type"
       ],
       "type": "object",
+      "x-columns": [
+        "item_id",
+        "damage",
+        "critical",
+        "attack_modifier",
+        "base_dice_bonus",
+        "base_dice_count",
+        "base_dice_sides",
+        "critical_multiplier",
+        "critical_threat_range",
+        "damage_modifier",
+        "damage_multiplier",
+        "handedness",
+        "weapon_type_id"
+      ],
       "x-table": "item_weapon_stats"
     }
   },
@@ -974,5 +1114,25 @@
   ],
   "title": "ItemFile",
   "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "name",
+    "provenance",
+    "accepts_sentience",
+    "description",
+    "drop_location",
+    "enhancement_bonus",
+    "icon",
+    "is_legacy",
+    "is_minor_artifact",
+    "item_category",
+    "item_type",
+    "material_id",
+    "minimum_level",
+    "race_required",
+    "slot_id",
+    "wiki_url"
+  ],
   "x-table": "items"
 }

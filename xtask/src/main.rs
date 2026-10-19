@@ -119,8 +119,10 @@ fn main() -> Result<()> {
         Task::Lint => {
             xtask::data_file_lints::deny_generic_file_mappers(&workspace_root().join("crates/ddo-etl/src/tree"))?;
             xtask::data_file_lints::deny_annotation_table_literals(&workspace_root().join("crates/ddo-etl/src"))?;
+            xtask::data_file_lints::deny_unlisted_records(&workspace_root().join("crates/ddo-etl/src/tree"))?;
             deny_clippy_warnings()?;
             ddo_etl::tree::schemas::validate_source_fields(&workspace_root().join("data"))?;
+            ddo_etl::tree::schemas::validate_column_coverage()?;
             deny_invalid_data_files()?;
             deny_data_schema_drift()?;
             deny_contract_or_scale_regressions()?;
@@ -432,6 +434,14 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         ("ddo-etl", &["--test", "data_rejections"][..], "a_citation_field_must_be_empty_or_a_field_of_its_record"),
         ("ddo-etl", &["--test", "templates"][..], "every_template_builds_under_its_placement_and_exports_byte_equal"),
         ("ddo-etl", &["--test", "import_ddobuilder"][..], "import_keeps_the_generated_templates"),
+        (
+            "ddo-etl",
+            &["--test", "data_rejections"][..],
+            "a_file_named_off_its_slug_fails_the_build_naming_the_expected_slug",
+        ),
+        ("ddo-etl", &["--test", "data_rejections"][..], "an_unresolved_reference_fails_the_build_naming_its_file"),
+        ("ddo-etl", &["--lib"][..], "tree::schemas::tests::a_ddl_column_no_declaration_writes_is_reported"),
+        ("ddo-etl", &["--lib"][..], "tree::records::tests::an_undeclared_use_of_a_parameterized_record_is_rejected"),
         ("ddo-etl", &["--test", "import_ddobuilder"][..], "his_blank_never_erases_ours_and_the_import_says_so"),
         (
             "ddo-etl",

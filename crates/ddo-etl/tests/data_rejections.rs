@@ -87,3 +87,21 @@ fn a_citation_field_must_be_empty_or_a_field_of_its_record() {
         assert!(message.contains("alabaster-of-the-twelve.toml") && message.contains(field), "{field}: {message}");
     }
 }
+
+#[test]
+fn a_file_named_off_its_slug_fails_the_build_naming_the_expected_slug() {
+    let message = fixture::data_build_error(|root| {
+        std::fs::rename(
+            root.join("packs/shared/gear/alabaster-of-the-twelve.toml"),
+            root.join("packs/shared/gear/alabaster-twelve.toml"),
+        )
+        .unwrap();
+    });
+    assert!(message.contains("alabaster-twelve.toml") && message.contains("alabaster-of-the-twelve"), "{message}");
+}
+
+#[test]
+fn an_unresolved_reference_fails_the_build_naming_its_file() {
+    let message = fixture::data_build_error(edited(CHAIN, "\"Redemption\"", "\"A Quest Nobody Wrote\""));
+    assert!(message.contains("the-lost-seekers.toml") && message.contains("A Quest Nobody Wrote"), "{message}");
+}

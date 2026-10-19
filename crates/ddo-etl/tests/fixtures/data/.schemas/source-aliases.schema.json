@@ -30,6 +30,16 @@
         "read"
       ],
       "type": "object",
+      "x-columns": [
+        "kind",
+        "row_index",
+        "text",
+        "target_name",
+        "placement_only",
+        "reason",
+        "url",
+        "read"
+      ],
       "x-table": "source_aliases"
     },
     "ChallengeAlias": {
@@ -63,6 +73,16 @@
         "reason"
       ],
       "type": "object",
+      "x-columns": [
+        "kind",
+        "row_index",
+        "placement_only",
+        "text",
+        "target_name",
+        "reason",
+        "url",
+        "read"
+      ],
       "x-table": "source_aliases"
     },
     "CraftingSystemAlias": {
@@ -98,6 +118,16 @@
         "reason"
       ],
       "type": "object",
+      "x-columns": [
+        "kind",
+        "row_index",
+        "placement_only",
+        "text",
+        "min_minimum_level",
+        "max_minimum_level",
+        "target_name",
+        "reason"
+      ],
       "x-table": "source_aliases"
     },
     "VendorAlias": {
@@ -125,6 +155,15 @@
         "reason"
       ],
       "type": "object",
+      "x-columns": [
+        "kind",
+        "row_index",
+        "placement_only",
+        "text",
+        "contains",
+        "target_name",
+        "reason"
+      ],
       "x-table": "source_aliases"
     }
   },

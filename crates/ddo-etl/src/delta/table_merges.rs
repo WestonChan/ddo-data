@@ -128,6 +128,7 @@ pub const TABLE_MERGES: &[(&str, TableMerge)] = &[
 ];
 
 pub const REBUILT_COLUMNS: &[(&str, &str)] = &[
+    ("items", "set_bonus"),
     ("quest_chains", "provenance"),
     ("sagas", "provenance"),
     ("vendors", "provenance"),
@@ -150,6 +151,13 @@ pub const REBUILT_COLUMNS: &[(&str, &str)] = &[
     ("starter_gear", "source_match"),
     ("vendor_offers", "drop_text_segment"),
     ("vendor_offers", "source_match"),
+];
+
+pub const UNPOPULATED_COLUMNS: &[(&str, &str)] = &[
+    ("effects", "default_value2"),
+    ("effects", "wiki_url"),
+    ("effect_bonuses", "trigger_id"),
+    ("triggers", "description"),
 ];
 
 pub fn table_merge(table: &str) -> Option<&'static TableMerge> {

@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "EffectBonus": {
@@ -93,6 +102,16 @@
         "target"
       ],
       "type": "object",
+      "x-columns": [
+        "effect_id",
+        "sort_order",
+        "amount_from",
+        "bonus_type_id",
+        "constant",
+        "rounding",
+        "scale",
+        "target_effect_id"
+      ],
       "x-table": "effect_bonuses"
     }
   },
@@ -141,5 +160,16 @@
   ],
   "title": "StatGroupFile",
   "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "is_stat",
+    "is_group",
+    "name",
+    "description_template",
+    "home_bonus_type_id",
+    "set_bonus_line_template",
+    "verbose_name_template"
+  ],
   "x-table": "effects"
 }

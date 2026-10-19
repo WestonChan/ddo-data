@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "CorrectionKind": {
@@ -192,6 +201,14 @@
         "variant"
       ],
       "type": "object",
+      "x-columns": [
+        "id",
+        "slug",
+        "family",
+        "label",
+        "qualifier",
+        "variant"
+      ],
       "x-table": "augment_slot_types"
     }
   },

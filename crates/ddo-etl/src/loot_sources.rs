@@ -1,6 +1,6 @@
 use anyhow::{ensure, Result};
 use ddo_model::enums::SourceKind;
-use rusqlite::{params, Connection, OptionalExtension};
+use rusqlite::{params_from_iter, types::Value, Connection, OptionalExtension};
 
 pub(crate) struct LootSource<'a> {
     pub kind: SourceKind,
@@ -53,9 +53,23 @@ impl LootSource<'_> {
             .optional()?)
     }
 
+    fn column_value(&self, column: &str) -> Value {
+        let text = |value: Option<&str>| value.map_or(Value::Null, |text| Value::Text(text.to_string()));
+        match column {
+            "owner_kind" => Value::Text(self.owner_kind.to_string()),
+            "item_id" | "owner_id" => Value::Integer(self.owner_id),
+            "drop_text_segment" => text(self.drop_text_segment),
+            "source_match" => text(self.source_match),
+            "loot_type" => text(self.loot_type),
+            "chest" => text(self.chest),
+            "tier" => Value::Text(self.tier.unwrap_or("any").to_string()),
+            "is_rare" => Value::Integer(i64::from(self.is_rare)),
+            identifying if identifying == self.kind.identifying_column() => Value::Integer(self.target_id),
+            unknown => unreachable!("source column {unknown} has no value"),
+        }
+    }
+
     pub(crate) fn insert(&self, db: &Connection) -> Result<i64> {
-        let table = self.kind.table_name();
-        let target = self.kind.identifying_column();
         ensure!(
             self.kind.has_loot_type() || (self.loot_type.is_none() && self.chest.is_none()),
             "{:?} cannot carry drop-only fields",
@@ -64,16 +78,43 @@ impl LootSource<'_> {
         ensure!(self.kind == SourceKind::Saga || self.tier.is_none(), "only a saga source can carry a tier");
         if self.kind == SourceKind::Vendor {
             ensure!(self.owner_kind == "item", "a vendor offer must output an item");
-            db.prepare_cached("INSERT INTO vendor_offers (vendor_id, item_id, drop_text_segment, source_match, is_rare) VALUES (?1, ?2, ?3, ?4, ?5)")?.execute(params![self.target_id, self.owner_id, self.drop_text_segment, self.source_match, self.is_rare])?;
-        } else if self.kind.has_loot_type() {
-            db.prepare_cached(&format!("INSERT INTO {table} ({target}, owner_kind, owner_id, drop_text_segment, source_match, loot_type, chest, is_rare) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)"))?.execute(params![self.target_id, self.owner_kind, self.owner_id, self.drop_text_segment, self.source_match, self.loot_type, self.chest, self.is_rare])?;
-        } else if self.kind == SourceKind::Saga {
-            db.prepare_cached("INSERT INTO saga_rewards (saga_id, owner_kind, owner_id, drop_text_segment, source_match, tier, is_rare) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)")?.execute(params![self.target_id, self.owner_kind, self.owner_id, self.drop_text_segment, self.source_match, self.tier.unwrap_or("any"), self.is_rare])?;
-        } else {
-            db.prepare_cached(&format!("INSERT INTO {table} ({target}, owner_kind, owner_id, drop_text_segment, source_match, is_rare) VALUES (?1, ?2, ?3, ?4, ?5, ?6)"))?.execute(params![self.target_id, self.owner_kind, self.owner_id, self.drop_text_segment, self.source_match, self.is_rare])?;
         }
+        let columns = insert_columns(self.kind);
+        let placeholders = (1..=columns.len()).map(|index| format!("?{index}")).collect::<Vec<_>>().join(", ");
+        let values = columns.iter().map(|column| self.column_value(column)).collect::<Vec<_>>();
+        db.prepare_cached(&format!(
+            "INSERT INTO {} ({}) VALUES ({placeholders})",
+            self.kind.table_name(),
+            columns.join(", ")
+        ))?
+        .execute(params_from_iter(values))?;
         Ok(db.last_insert_rowid())
     }
+}
+
+fn insert_columns(kind: SourceKind) -> Vec<&'static str> {
+    let identifying = kind.identifying_column();
+    match kind {
+        SourceKind::Vendor => vec![identifying, "item_id", "drop_text_segment", "source_match", "is_rare"],
+        SourceKind::Saga => {
+            vec![identifying, "owner_kind", "owner_id", "drop_text_segment", "source_match", "tier", "is_rare"]
+        }
+        _ if kind.has_loot_type() => vec![
+            identifying,
+            "owner_kind",
+            "owner_id",
+            "drop_text_segment",
+            "source_match",
+            "loot_type",
+            "chest",
+            "is_rare",
+        ],
+        _ => vec![identifying, "owner_kind", "owner_id", "drop_text_segment", "source_match", "is_rare"],
+    }
+}
+
+pub(crate) fn declared_columns() -> Vec<(&'static str, Vec<&'static str>)> {
+    SourceKind::ALL.iter().map(|kind| (kind.table_name(), insert_columns(*kind))).collect()
 }
 
 pub(crate) fn reject_missing_source_references(db: &Connection) -> Result<()> {

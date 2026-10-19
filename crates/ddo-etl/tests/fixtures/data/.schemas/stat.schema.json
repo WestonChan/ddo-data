@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "StatCategoryFile": {
@@ -133,5 +142,20 @@
   ],
   "title": "StatFile",
   "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "is_stat",
+    "is_group",
+    "name",
+    "category",
+    "default_value",
+    "description_template",
+    "home_bonus_type_id",
+    "set_bonus_line_template",
+    "tier",
+    "tier_group_id",
+    "verbose_name_template"
+  ],
   "x-table": "effects"
 }

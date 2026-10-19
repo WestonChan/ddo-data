@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     }
   },
@@ -92,5 +101,23 @@
     "citation"
   ],
   "title": "QuestSeriesFile",
-  "type": "object"
+  "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "provenance",
+    "name",
+    "pack_id",
+    "wiki_url"
+  ],
+  "x-uses": [
+    [
+      "quest_chains",
+      ""
+    ],
+    [
+      "sagas",
+      ""
+    ]
+  ]
 }

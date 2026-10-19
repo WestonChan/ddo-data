@@ -15,6 +15,14 @@
         "url"
       ],
       "type": "object",
+      "x-columns": [
+        "pack_name",
+        "rule",
+        "row_index",
+        "entity_kind",
+        "entity_name",
+        "url"
+      ],
       "x-table": "pack_exceptions"
     },
     "QuestPackException": {
@@ -40,6 +48,16 @@
         "read"
       ],
       "type": "object",
+      "x-columns": [
+        "pack_name",
+        "rule",
+        "row_index",
+        "entity_kind",
+        "entity_name",
+        "reason",
+        "url",
+        "read"
+      ],
       "x-table": "pack_exceptions"
     }
   },

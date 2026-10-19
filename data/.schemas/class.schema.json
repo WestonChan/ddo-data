@@ -51,6 +51,15 @@
       "type": "object",
       "unevaluatedProperties": false,
       "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
       "x-table": "citations"
     },
     "ClassAutoFeat": {
@@ -84,6 +93,12 @@
         "level"
       ],
       "type": "object",
+      "x-columns": [
+        "class_id",
+        "feat_id",
+        "feat_name",
+        "level"
+      ],
       "x-table": "class_auto_feats"
     },
     "ClassFeatSlot": {
@@ -114,6 +129,15 @@
         "level"
       ],
       "type": "object",
+      "x-columns": [
+        "class_id",
+        "sort_order",
+        "auto_populate",
+        "feat_type",
+        "level",
+        "singular",
+        "update_list"
+      ],
       "x-table": "class_feat_slots"
     },
     "ClassSpell": {
@@ -153,6 +177,14 @@
         "spell_name"
       ],
       "type": "object",
+      "x-columns": [
+        "class_id",
+        "cost",
+        "max_caster_level",
+        "spell_id",
+        "spell_level",
+        "spell_name"
+      ],
       "x-table": "class_spells"
     },
     "ClassSpellSlot": {
@@ -177,6 +209,12 @@
         "spell_level"
       ],
       "type": "object",
+      "x-columns": [
+        "class_id",
+        "class_level",
+        "slots",
+        "spell_level"
+      ],
       "x-table": "class_spell_slots"
     },
     "FileNumber": {
@@ -209,7 +247,24 @@
       "required": [
         "skill"
       ],
-      "type": "object"
+      "type": "object",
+      "x-columns": [
+        "skill"
+      ],
+      "x-uses": [
+        [
+          "class_skills",
+          "class_id"
+        ],
+        [
+          "class_auto_buy_skills",
+          "class_id"
+        ],
+        [
+          "race_auto_buy_skills",
+          "race_id"
+        ]
+      ]
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -346,5 +401,26 @@
   ],
   "title": "ClassFile",
   "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "base_class_id",
+    "name",
+    "alignments",
+    "bab",
+    "base_class",
+    "casting_stats",
+    "class_specific_feat_types",
+    "description",
+    "fortitude",
+    "hit_points",
+    "large_icon",
+    "not_heroic",
+    "reflex",
+    "skill_points",
+    "small_icon",
+    "spell_points_per_level",
+    "will"
+  ],
   "x-table": "classes"
 }

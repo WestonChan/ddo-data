@@ -15,6 +15,10 @@
         "reason"
       ],
       "type": "object",
+      "x-columns": [
+        "name",
+        "reason"
+      ],
       "x-table": "excluded_items"
     }
   },
