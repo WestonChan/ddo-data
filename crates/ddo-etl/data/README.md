@@ -5,7 +5,6 @@ The vocabularies the ETL maps Maetrim's DDOBuilderV2 files through. Each is embe
 - `effect_map.toml`: his item buff families and effect types, as stats, bonus types and effects.
 - `legacy_drop_sources.toml`: the names in his drop text of quests that no longer exist, so the items only they dropped are flagged legacy (below).
 - `source_aliases.toml`: the station or place names his drop text uses for a source recorded under another name: a crafting system's station, the place a challenge pack's rewards are turned in, or the place a vendor takes a turn-in (below).
-- `corrections/`: his values a ddowiki page contradicts; see [`corrections/README.md`](corrections/README.md).
 
 ## `effect_map.toml`
 
@@ -35,7 +34,7 @@ His `Items/` files carry some items that a player cannot get or that carry nothi
 
 An item that once dropped but no longer does is written in full and flagged instead: `items.is_legacy = 1`. The build flags an item when its `DropLocation` has at least one segment (the text between `;` or line breaks) and every segment names a text in `legacy_drop_sources.toml` and no quest, quest chain, saga or adventure pack of his or of a wiki file. An item with any other segment is current, and its legacy segments simply link nothing. A legacy text that later becomes a quest's name again (a quest correction renaming one, say) is a current quest in every segment that names it.
 
-Two other kinds of legacy item are flagged the same way. An item whose name carries `(legacy)` or `(historic)` as a parenthesised word, ignoring case, is an old version his files keep beside the current one (`Brawling Gloves (legacy) (level 12)`, `Allegiance (historic)`), whether it comes from his files or a wiki items file. An old version the wiki says was replaced and no longer drops, under a name that does not say so, is flagged by an `is_legacy` correction (`from = 0`, `to = 1`) citing the page; see [`corrections/README.md`](corrections/README.md). `/v1/items` leaves every legacy item out of its rows and `total` unless `include_legacy=true`, `/v1/items/{id}` serves one with `is_legacy: true`, `/v1/version` counts them as `legacy_items`, and the build report as `legacy_item_count`.
+Two other kinds of legacy item are flagged the same way. An item whose name carries `(legacy)` or `(historic)` as a parenthesised word, ignoring case, is an old version his files keep beside the current one (`Brawling Gloves (legacy) (level 12)`, `Allegiance (historic)`), whether it comes from his files or a wiki items file. An old version the wiki says was replaced and no longer drops, under a name that does not say so, is flagged by an `is_legacy` correction (`from = 0`, `to = 1`) citing the page; they are recorded as `[[ddobuilder_correction]]` notes in the item's data file. `/v1/items` leaves every legacy item out of its rows and `total` unless `include_legacy=true`, `/v1/items/{id}` serves one with `is_legacy: true`, `/v1/version` counts them as `legacy_items`, and the build report as `legacy_item_count`.
 
 ## `legacy_drop_sources.toml`
 

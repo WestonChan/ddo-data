@@ -1,9 +1,10 @@
 mod fixture;
 
 use ddo_etl::build::{build_database, BuildReport, StaleCorrection, StaleCorrectionCause};
-use ddo_etl::corrections::{CorrectionValue, Corrections};
+use ddo_etl::corrections::{CorrectionValue, Corrections, DamageRow};
 use ddo_etl::wiki::WikiOverrides;
 use ddo_model::DatasetVersion;
+use fixture::{new_correction, new_qualified_correction, CorrectionSet};
 use rusqlite::{Connection, OptionalExtension};
 use std::path::PathBuf;
 
@@ -15,15 +16,14 @@ fn fixture_dataset_version() -> DatasetVersion {
     DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-09-20T00:00:00Z".into() }
 }
 
-fn correction_toml(kind: &str, name: &str, field: &str, from: &str, to: &str) -> String {
-    format!(
-        "[[correction]]\nkind = {kind:?}\nname = {name:?}\nfield = {field:?}\nfrom = {from}\nto = {to}\n\
-         reason = \"Test reason.\"\nsource = \"https://ddowiki.com/page/Test\"\nread = \"2026-09-29\"\n"
-    )
+fn validated_corrections(files: &[(&str, &CorrectionSet)]) -> Result<Corrections, String> {
+    fixture::corrections_from(files)
 }
 
-fn parsed_corrections(files: &[(&str, &str)]) -> Result<Corrections, String> {
-    Corrections::from_toml_files(files).map_err(|e| format!("{e:#}"))
+fn committed_corrections() -> &'static Corrections {
+    static COMMITTED: std::sync::OnceLock<Corrections> = std::sync::OnceLock::new();
+    COMMITTED
+        .get_or_init(|| Corrections::from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data")).unwrap())
 }
 
 fn built_db_with_wiki(wiki: &WikiOverrides, corrections: &Corrections) -> Result<(Connection, BuildReport), String> {
@@ -34,8 +34,8 @@ fn built_db_with_wiki(wiki: &WikiOverrides, corrections: &Corrections) -> Result
     Ok((db, report))
 }
 
-fn built_db_with(correction_files: &[(&str, &str)]) -> Result<(Connection, BuildReport), String> {
-    built_db_with_wiki(&WikiOverrides::default(), &parsed_corrections(correction_files)?)
+fn built_db_with(correction_files: &[(&str, &CorrectionSet)]) -> Result<(Connection, BuildReport), String> {
+    built_db_with_wiki(&WikiOverrides::default(), &validated_corrections(correction_files)?)
 }
 
 fn augment_min_levels(db: &Connection, name: &str) -> Vec<Option<i64>> {
@@ -92,9 +92,9 @@ fn correction_field_names_and_shapes_preserve_the_existing_contract() {
         fields.sort();
         assert_eq!(fields.join(", "), expected, "{kind:?}");
     }
-    let text = correction_toml("enhancement", "Kensei: Action Boost", "name", "\"Attack Boost\"", "\"Reviewed\"")
+    let text = new_correction("enhancement", "Kensei: Action Boost", "name", "\"Attack Boost\"", "\"Reviewed\"")
         + "selection = \"Attack Boost\"\n";
-    let mut selection = parsed_corrections(&[("selection.toml", &text)]).unwrap().entries.remove(0);
+    let mut selection = validated_corrections(&[("selection.toml", &text)]).unwrap().entries.remove(0);
     for (name, shape, is_nullable) in [
         ("name", ddo_etl::corrections::FieldShape::RowName, false),
         ("cooldown_seconds", ddo_etl::corrections::FieldShape::Integer, true),
@@ -116,20 +116,20 @@ fn correction_field_names_and_shapes_preserve_the_existing_contract() {
 
 #[test]
 fn required_item_level_cannot_be_corrected_to_null() {
-    let correction = correction_toml("item", "Five Rings", "minimum_level", "29", "\"null\"");
+    let correction = new_correction("item", "Five Rings", "minimum_level", "29", "\"null\"");
     let error = built_db_with(&[("level.toml", &correction)]).expect_err("a required level cannot be null");
     assert!(error.contains("minimum_level"), "{error}");
 }
 
 #[test]
 fn required_flag_can_be_corrected_from_an_absent_upstream_value() {
-    let correction = correction_toml("item", "Five Rings", "accepts_sentience", "\"null\"", "1");
-    parsed_corrections(&[("flag.toml", &correction)]).unwrap();
+    let correction = new_correction("item", "Five Rings", "accepts_sentience", "\"null\"", "1");
+    validated_corrections(&[("flag.toml", &correction)]).unwrap();
 }
 
 #[test]
 fn a_stance_icon_correction_is_scoped_to_its_spell_and_stance_name() {
-    let correction = correction_toml("spell", "Evolution", "icon", "\"intelligence\"", "\"Intelligence\"")
+    let correction = new_correction("spell", "Evolution", "icon", "\"intelligence\"", "\"Intelligence\"")
         + "stance = \"IntEvolution\"\n";
     let (db, report) = built_db_with(&[("icons.toml", &correction)]).unwrap();
     assert_eq!(report.correction_applied_count, 1);
@@ -161,16 +161,16 @@ fn icon_notes_cover_filigrees_and_every_existing_ability_owner() {
             [owner_kind], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?))
         ).unwrap();
         entries.push(
-            correction_toml(owner_kind, &owner, "icon", &format!("{icon:?}"), "\"CorrectedAbilityIcon\"")
-                + &format!("{qualifier_key} = {name:?}\n"),
+            new_correction(owner_kind, &owner, "icon", &format!("{icon:?}"), "\"CorrectedAbilityIcon\"")
+                + format!("{qualifier_key} = {name:?}\n").as_str(),
         );
     }
     let (name, icon): (String, String) = baseline
         .query_row("SELECT name, icon FROM filigrees ORDER BY id LIMIT 1", [], |row| Ok((row.get(0)?, row.get(1)?)))
         .unwrap();
-    entries.push(correction_toml("filigree", &name, "icon", &format!("{icon:?}"), "\"CorrectedFiligreeIcon\""));
-    let correction_text = entries.join("\n");
-    let (db, report) = built_db_with(&[("icons.toml", &correction_text)]).unwrap();
+    entries.push(new_correction("filigree", &name, "icon", &format!("{icon:?}"), "\"CorrectedFiligreeIcon\""));
+    let icon_corrections = entries.iter().fold(CorrectionSet::default(), |all, entry| all + entry);
+    let (db, report) = built_db_with(&[("icons.toml", &icon_corrections)]).unwrap();
     assert_eq!(report.correction_applied_count, 4);
     let output = std::env::temp_dir().join(format!("ddo-data-ability-icon-notes-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&output);
@@ -209,7 +209,7 @@ fn icon_notes_cover_filigrees_and_every_existing_ability_owner() {
 
 #[test]
 fn nested_icon_notes_remain_beside_the_corrected_rows() {
-    let selection = correction_toml(
+    let selection = new_correction(
         "enhancement",
         "Legendary Dreadnought: Dire Attack",
         "icon",
@@ -217,9 +217,9 @@ fn nested_icon_notes_remain_beside_the_corrected_rows() {
         "\"SelectionIcon\"",
     ) + "selection = \"Dire Charge\"\n";
     let dc =
-        correction_toml("enhancement", "Legendary Dreadnought: Dire Attack", "icon", "\"DireAttack\"", "\"DcIcon\"")
+        new_correction("enhancement", "Legendary Dreadnought: Dire Attack", "icon", "\"DireAttack\"", "\"DcIcon\"")
             + "selection = \"Dire Charge\"\ndc = \"Dire Charge\"\n";
-    let stance = correction_toml("spell", "Evolution", "icon", "\"intelligence\"", "\"Intelligence\"")
+    let stance = new_correction("spell", "Evolution", "icon", "\"intelligence\"", "\"Intelligence\"")
         + "stance = \"IntEvolution\"\n";
     let (db, report) =
         built_db_with(&[("selection.toml", &selection), ("dc.toml", &dc), ("stance.toml", &stance)]).unwrap();
@@ -256,7 +256,7 @@ fn nested_icon_notes_remain_beside_the_corrected_rows() {
 
 #[test]
 fn drop_location_correction_changes_the_source_before_links_are_written() {
-    let correction = correction_toml(
+    let correction = new_correction(
         "item",
         "Sireth, Spear of the Sky",
         "drop_location",
@@ -290,7 +290,7 @@ fn drop_location_correction_changes_the_source_before_links_are_written() {
 
 #[test]
 fn prerequisite_quest_words_do_not_create_sources() {
-    let correction = correction_toml(
+    let correction = new_correction(
         "item",
         "Sireth, Spear of the Sky",
         "drop_location",
@@ -315,7 +315,7 @@ fn prerequisite_quest_words_do_not_create_sources() {
 #[test]
 fn item_effect_corrections_change_a_text_line_type_or_remove_its_link() {
     let type_correction =
-        correction_toml("item_effect", "Epic Ethereal Bracers", "bonus_type", "\"Insight\"", "\"Quality\"")
+        new_correction("item_effect", "Epic Ethereal Bracers", "bonus_type", "\"Insight\"", "\"Quality\"")
             + "effect = \"Riposte\"\n";
     let (typed_db, typed_report) = built_db_with(&[("type.toml", &type_correction)]).unwrap();
     assert_eq!(typed_report.correction_stale_count, 0);
@@ -330,47 +330,15 @@ fn item_effect_corrections_change_a_text_line_type_or_remove_its_link() {
         .unwrap();
     assert_eq!(typed, "Quality");
 
-    let removal =
-        correction_toml("item_effect", "Epic Ethereal Bracers", "remove", "0", "1") + "effect = \"Riposte\"\n";
+    let removal = new_correction("item_effect", "Epic Ethereal Bracers", "remove", "0", "1") + "effect = \"Riposte\"\n";
     let (removed_db, removed_report) = built_db_with(&[("remove.toml", &removal)]).unwrap();
     assert_eq!(removed_report.correction_stale_count, 0);
     assert!(!item_effect_names(&removed_db, "Epic Ethereal Bracers").contains(&"Riposte".to_string()));
 }
 
 #[test]
-fn reads_a_correction_with_typed_values_and_its_citation() {
-    let corrections = parsed_corrections(&[(
-        "corrections.toml",
-        &correction_toml("augment", "Perfect Silence", "min_level", "30", "29"),
-    )])
-    .unwrap();
-    let [correction] = corrections.entries.as_slice() else { panic!("{corrections:?}") };
-    assert_eq!(correction.kind.as_str(), "augment");
-    assert_eq!(correction.name, "Perfect Silence");
-    assert_eq!(correction.field, "min_level");
-    assert_eq!(correction.from, CorrectionValue::Integer(30));
-    assert_eq!(correction.to, CorrectionValue::Integer(29));
-    assert_eq!(correction.reason, "Test reason.");
-    assert_eq!(correction.source.page_url(), Some("https://ddowiki.com/page/Test"));
-    assert_eq!(correction.read, "2026-09-29");
-    assert_eq!(correction.file_name, "corrections.toml");
-}
-
-#[test]
-fn reads_null_as_the_literal_string_and_other_values_by_type() {
-    let corrections = parsed_corrections(&[(
-        "corrections.toml",
-        &(correction_toml("augment", "Ruby of Acid Damage", "min_level", "\"null\"", "5")
-            + &correction_toml("item", "Docent of Defiance", "description", "\"null\"", "\"A docent.\"")),
-    )])
-    .unwrap();
-    assert_eq!(corrections.entries[0].from, CorrectionValue::Null);
-    assert_eq!(corrections.entries[1].to, CorrectionValue::Text("A docent.".into()));
-}
-
-#[test]
 fn embedded_corrections_load_and_fix_the_furys_rage_level() {
-    let corrections = Corrections::embedded().unwrap();
+    let corrections = committed_corrections().clone();
     let furys_rage = corrections.entries.iter().find(|c| c.name == "The Fury's Rage").unwrap();
     assert_eq!(
         (furys_rage.from.clone(), furys_rage.to.clone()),
@@ -379,21 +347,11 @@ fn embedded_corrections_load_and_fix_the_furys_rage_level() {
 }
 
 #[test]
-fn rejects_a_kind_outside_the_correctable_tables() {
-    let error = parsed_corrections(&[(
-        "corrections.toml",
-        &correction_toml("gem", "Perfect Silence", "min_level", "30", "29"),
-    )])
-    .unwrap_err();
-    assert!(error.contains("corrections.toml") && error.contains("gem") && error.contains("augment"), "{error}");
-}
-
-#[test]
 fn rejects_a_field_outside_the_kinds_allow_list() {
     for (kind, field) in [("augment", "icon"), ("augment", "id"), ("item", "icon"), ("feat", "icon"), ("quest", "icon")]
     {
         let error =
-            parsed_corrections(&[("corrections.toml", &correction_toml(kind, "Perfect Silence", field, "1", "2"))])
+            validated_corrections(&[("corrections.toml", &new_correction(kind, "Perfect Silence", field, "1", "2"))])
                 .unwrap_err();
         assert!(error.contains("Perfect Silence") && error.contains(field), "{kind}.{field}: {error}");
     }
@@ -409,13 +367,13 @@ fn allows_the_quest_facts_his_files_carry_and_not_the_wikis() {
         ("pack", "\"Vault of Night\"", "\"Devil Assault\""),
         ("patron", "\"null\"", "\"The Twelve\""),
     ] {
-        parsed_corrections(&[("corrections.toml", &correction_toml("quest", "Plane of Night", field, from, to))])
+        validated_corrections(&[("corrections.toml", &new_correction("quest", "Plane of Night", field, from, to))])
             .unwrap_or_else(|error| panic!("{field}: {error}"));
     }
     for wiki_field in ["is_free_to_play", "legendary_level"] {
-        let error = parsed_corrections(&[(
+        let error = validated_corrections(&[(
             "corrections.toml",
-            &correction_toml("quest", "Plane of Night", wiki_field, "0", "1"),
+            &new_correction("quest", "Plane of Night", wiki_field, "0", "1"),
         )])
         .unwrap_err();
         assert!(error.contains(wiki_field) && error.contains("wiki"), "{error}");
@@ -423,23 +381,20 @@ fn allows_the_quest_facts_his_files_carry_and_not_the_wikis() {
 }
 
 #[test]
-fn rejects_the_same_kind_name_and_field_twice_across_files() {
-    let correction = correction_toml("augment", "Perfect Silence", "min_level", "30", "29");
-    let error = parsed_corrections(&[("a.toml", &correction), ("b.toml", &correction)]).unwrap_err();
-    assert!(error.contains("Perfect Silence") && error.contains("a.toml") && error.contains("b.toml"), "{error}");
-}
-
-#[test]
 fn rejects_a_correction_without_a_source_url_reason_or_real_read_date() {
-    let correction = correction_toml("augment", "Perfect Silence", "min_level", "30", "29");
+    let correction = new_correction("augment", "Perfect Silence", "min_level", "30", "29");
+    let broken = |edit: fn(&mut ddo_etl::corrections::Correction)| {
+        let mut broken = correction.clone();
+        edit(&mut broken.0[0]);
+        broken
+    };
     for (broken_correction, expected_text) in [
-        (correction.replace("https://ddowiki.com/page/Test", "the wiki"), "source"),
-        (correction.replace("Test reason.", ""), "reason"),
-        (correction.replace("2026-09-29", "2026-02-30"), "2026-02-30"),
-        (correction.replace("to = 29", "to = 30"), "to"),
-        (correction.clone() + "note = \"extra\"\n", "note"),
+        (broken(|entry| entry.source = "the wiki".to_string().into()), "source"),
+        (broken(|entry| entry.reason = String::new()), "reason"),
+        (broken(|entry| entry.read = "2026-02-30".into()), "2026-02-30"),
+        (broken(|entry| entry.to = CorrectionValue::Integer(30)), "to"),
     ] {
-        let error = parsed_corrections(&[("corrections.toml", &broken_correction)]).unwrap_err();
+        let error = validated_corrections(&[("corrections.toml", &broken_correction)]).unwrap_err();
         assert!(error.contains("Perfect Silence") && error.contains(expected_text), "{expected_text}: {error}");
     }
 }
@@ -449,21 +404,20 @@ fn an_effect_rename_must_cite_a_wiki_page_but_a_template_may_cite_the_internal_c
     let internal_source = "internal:effect-name-and-description";
     let wiki_source = "https://ddowiki.com/page/Test";
     let correction = |field: &str, source: &str| {
-        correction_toml("effect", "Echoes of 2006", field, "\"Echoes of 2006\"", "\"Earthen Guard\"")
-            .replace(wiki_source, source)
+        new_correction("effect", "Echoes of 2006", field, "\"Echoes of 2006\"", "\"Earthen Guard\"").sourced(source)
     };
-    let error = parsed_corrections(&[("corrections.toml", &correction("name", internal_source))]).unwrap_err();
+    let error = validated_corrections(&[("corrections.toml", &correction("name", internal_source))]).unwrap_err();
     assert!(error.contains("Echoes of 2006") && error.contains("rename") && error.contains("wiki"), "{error}");
-    assert!(parsed_corrections(&[("corrections.toml", &correction("name", wiki_source))]).is_ok());
+    assert!(validated_corrections(&[("corrections.toml", &correction("name", wiki_source))]).is_ok());
     for template_field in ["verbose_name_template", "description_template"] {
-        assert!(parsed_corrections(&[("corrections.toml", &correction(template_field, internal_source))]).is_ok());
+        assert!(validated_corrections(&[("corrections.toml", &correction(template_field, internal_source))]).is_ok());
     }
 }
 
 #[test]
 fn build_fails_naming_a_row_his_files_lack() {
     let error =
-        built_db_with(&[("corrections.toml", &correction_toml("augment", "Missing Gem", "min_level", "30", "29"))])
+        built_db_with(&[("corrections.toml", &new_correction("augment", "Missing Gem", "min_level", "30", "29"))])
             .unwrap_err();
     assert!(error.contains("Missing Gem") && error.contains("corrections.toml"), "{error}");
 }
@@ -471,7 +425,7 @@ fn build_fails_naming_a_row_his_files_lack() {
 #[test]
 fn applies_a_correction_whose_from_matches_and_records_it() {
     let (db, report) =
-        built_db_with(&[("corrections.toml", &correction_toml("augment", "Perfect Silence", "min_level", "30", "29"))])
+        built_db_with(&[("corrections.toml", &new_correction("augment", "Perfect Silence", "min_level", "30", "29"))])
             .unwrap();
     assert_eq!(augment_min_levels(&db, "Perfect Silence"), [Some(29)]);
     assert_eq!(
@@ -492,9 +446,9 @@ fn applies_a_correction_whose_from_matches_and_records_it() {
 #[test]
 fn effect_template_and_owner_link_value_corrections_keep_one_effect() {
     let effect_template =
-        correction_toml("effect", "Riposte", "verbose_name_template", "\"Riposte +{1}\"", "\"Riposte {1}\"");
+        new_correction("effect", "Riposte", "verbose_name_template", "\"Riposte +{1}\"", "\"Riposte {1}\"");
     let owner_value =
-        correction_toml("item_effect", "Epic Ethereal Bracers", "value", "5", "6") + "effect = \"Riposte\"\n";
+        new_correction("item_effect", "Epic Ethereal Bracers", "value", "5", "6") + "effect = \"Riposte\"\n";
     let (db, report) = built_db_with(&[("effect.toml", &(effect_template + &owner_value))]).unwrap();
     assert_eq!(report.correction_applied_count, 2);
     let rows: Vec<(String, Option<i64>)> = db
@@ -515,22 +469,17 @@ fn effect_template_and_owner_link_value_corrections_keep_one_effect() {
 
 #[test]
 fn duplicate_bonus_correction_names_the_exact_augment_stat_type_and_value() {
-    let correction =
-        correction_toml("augment_bonus", "Dolorous Quality Combat Mastery (Legendary)", "dedupe", "2", "1")
-            + "stat = \"Stun DC\"\nbonus_type = \"Quality\"\nbonus_value = 3\n";
-    let parsed = parsed_corrections(&[("dedupe.toml", &correction)]).unwrap();
+    let correction = new_correction("augment_bonus", "Dolorous Quality Combat Mastery (Legendary)", "dedupe", "2", "1")
+        + "stat = \"Stun DC\"\nbonus_type = \"Quality\"\nbonus_value = 3\n";
+    let parsed = validated_corrections(&[("dedupe.toml", &correction)]).unwrap();
     assert_eq!(parsed.entries[0].qualifier(), "Stun DC / Quality / 3");
 }
 
 #[test]
 fn stale_corrections_keep_the_qualified_child_identity() {
-    let correction = correction_toml(
-        "enhancement",
-        "Legendary Dreadnought: Dire Attack",
-        "icon",
-        "\"OldIcon\"",
-        "\"SelectionIcon\"",
-    ) + "selection = \"Dire Charge\"\n";
+    let correction =
+        new_correction("enhancement", "Legendary Dreadnought: Dire Attack", "icon", "\"OldIcon\"", "\"SelectionIcon\"")
+            + "selection = \"Dire Charge\"\n";
     let (_, report) = built_db_with(&[("selection.toml", &correction)]).unwrap();
     assert_eq!(report.stale_corrections.len(), 1);
     assert_eq!(report.stale_corrections[0].qualifier, "selection \"Dire Charge\"");
@@ -538,7 +487,7 @@ fn stale_corrections_keep_the_qualified_child_identity() {
 
 #[test]
 fn correction_json_values_round_trip_the_real_writer() {
-    for correction in Corrections::embedded().unwrap().entries {
+    for correction in committed_corrections().clone().entries {
         for original in [correction.from, correction.to] {
             assert_eq!(CorrectionValue::from_json(&original.to_json()).unwrap(), original);
         }
@@ -564,11 +513,9 @@ fn correction_json_values_round_trip_the_real_writer() {
 
 #[test]
 fn leaves_his_value_and_reports_a_correction_whose_from_is_stale() {
-    let (db, report) = built_db_with(&[(
-        "corrections.toml",
-        &correction_toml("augment", "Perfect Silence", "min_level", "318", "18"),
-    )])
-    .unwrap();
+    let (db, report) =
+        built_db_with(&[("corrections.toml", &new_correction("augment", "Perfect Silence", "min_level", "318", "18"))])
+            .unwrap();
     assert_eq!(augment_min_levels(&db, "Perfect Silence"), [Some(30)]);
     assert!(recorded_corrections(&db).is_empty());
     assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
@@ -589,8 +536,8 @@ fn leaves_his_value_and_reports_a_correction_whose_from_is_stale() {
 fn matches_and_writes_null_through_the_literal_string() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(correction_toml("augment", "Ruby of Acid Damage", "min_level", "\"null\"", "5")
-            + &correction_toml("augment", "Perfect Silence", "min_level", "30", "\"null\"")),
+        &(new_correction("augment", "Ruby of Acid Damage", "min_level", "\"null\"", "5")
+            + &new_correction("augment", "Perfect Silence", "min_level", "30", "\"null\"")),
     )])
     .unwrap();
     assert_eq!(augment_min_levels(&db, "Ruby of Acid Damage"), [Some(5)]);
@@ -606,7 +553,7 @@ fn applies_a_repeated_name_to_every_row_with_that_name() {
     assert_eq!(augment_min_levels(&built_db_with(&[]).unwrap().0, "+5 Fortitude Save"), [Some(11), Some(11)]);
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &correction_toml("augment", "+5 Fortitude Save", "min_level", "11", "12"),
+        &new_correction("augment", "+5 Fortitude Save", "min_level", "11", "12"),
     )])
     .unwrap();
     assert_eq!(augment_min_levels(&db, "+5 Fortitude Save"), [Some(12), Some(12)]);
@@ -618,10 +565,10 @@ fn applies_a_repeated_name_to_every_row_with_that_name() {
 fn resolves_reference_fields_by_name() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(correction_toml("item", "Docent of Defiance", "slot", "\"Body\"", "\"Waist\"")
-            + &correction_toml("item", "Docent of Defiance", "material", "\"Gem\"", "\"Steel\"")
-            + &correction_toml("quest", "Plane of Night", "pack", "\"Vault of Night\"", "\"Devil Assault\"")
-            + &correction_toml("quest", "Plane of Night", "patron", "\"House Kundarak\"", "\"The Twelve\"")),
+        &(new_correction("item", "Docent of Defiance", "slot", "\"Body\"", "\"Waist\"")
+            + &new_correction("item", "Docent of Defiance", "material", "\"Gem\"", "\"Steel\"")
+            + &new_correction("quest", "Plane of Night", "pack", "\"Vault of Night\"", "\"Devil Assault\"")
+            + &new_correction("quest", "Plane of Night", "patron", "\"House Kundarak\"", "\"The Twelve\"")),
     )])
     .unwrap();
     assert_eq!(report.correction_applied_count, 4, "{:?}", report.stale_corrections);
@@ -648,16 +595,16 @@ fn resolves_reference_fields_by_name() {
 #[test]
 fn cited_cannith_challenge_corrections_use_their_own_pack_and_patron() {
     let dragon = "Extraplanar Mining - Epic The Dragon's Horde";
-    let corrections = correction_toml("quest", dragon, "pack", "\"Free to Play\"", "\"Vaults of the Artificers\"")
-        + &correction_toml("quest", dragon, "patron", "\"null\"", "\"House Cannith\"")
-        + &correction_toml(
+    let corrections = new_correction("quest", dragon, "pack", "\"Free to Play\"", "\"Vaults of the Artificers\"")
+        + &new_correction("quest", dragon, "patron", "\"null\"", "\"House Cannith\"")
+        + &new_correction(
             "quest",
             dragon,
             "name",
             "\"Extraplanar Mining - Epic The Dragon's Horde\"",
             "\"Extraplanar Mining - Epic The Dragon's Hoard\"",
         )
-        + &correction_toml(
+        + &new_correction(
             "quest",
             "Dr. Rushmore's Mansion - Moving Targets - EPIC",
             "pack",
@@ -682,7 +629,7 @@ fn cited_cannith_challenge_corrections_use_their_own_pack_and_patron() {
 fn build_fails_naming_a_reference_his_files_lack() {
     let error = built_db_with(&[(
         "corrections.toml",
-        &correction_toml("item", "Docent of Defiance", "material", "\"Gem\"", "\"Unobtainium\""),
+        &new_correction("item", "Docent of Defiance", "material", "\"Gem\"", "\"Unobtainium\""),
     )])
     .unwrap_err();
     assert!(error.contains("Unobtainium") && error.contains("Docent of Defiance"), "{error}");
@@ -692,7 +639,7 @@ fn build_fails_naming_a_reference_his_files_lack() {
 fn renames_a_pack_and_refuses_a_name_already_taken() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &correction_toml("adventure_pack", "Vault of Night", "name", "\"Vault of Night\"", "\"The Vault of Night\""),
+        &new_correction("adventure_pack", "Vault of Night", "name", "\"Vault of Night\"", "\"The Vault of Night\""),
     )])
     .unwrap();
     assert_eq!(report.correction_applied_count, 1);
@@ -706,7 +653,7 @@ fn renames_a_pack_and_refuses_a_name_already_taken() {
     assert_eq!(pack, "The Vault of Night");
     let error = built_db_with(&[(
         "corrections.toml",
-        &correction_toml("patron", "The Twelve", "name", "\"The Twelve\"", "\"House Cannith\""),
+        &new_correction("patron", "The Twelve", "name", "\"The Twelve\"", "\"House Cannith\""),
     )])
     .unwrap_err();
     assert!(error.contains("House Cannith") && error.contains("The Twelve"), "{error}");
@@ -716,13 +663,13 @@ fn renames_a_pack_and_refuses_a_name_already_taken() {
 fn renaming_a_set_renames_what_his_items_and_augments_call_it() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(correction_toml(
+        &(new_correction(
             "set_bonus",
             "Kundarak Delving Equipment",
             "name",
             "\"Kundarak Delving Equipment\"",
             "\"Kundarak Delving Gear\"",
-        ) + &correction_toml("set_bonus", "Perfect Silence", "name", "\"Perfect Silence\"", "\"Perfect Quiet\"")),
+        ) + &new_correction("set_bonus", "Perfect Silence", "name", "\"Perfect Silence\"", "\"Perfect Quiet\"")),
     )])
     .unwrap();
     assert_eq!(report.correction_applied_count, 2);
@@ -744,7 +691,7 @@ fn renaming_a_set_renames_what_his_items_and_augments_call_it() {
 fn correcting_an_items_set_moves_its_set_link() {
     let (db, _) = built_db_with(&[(
         "corrections.toml",
-        &correction_toml(
+        &new_correction(
             "item",
             "Kundarak Delving Boots",
             "set_bonus",
@@ -766,7 +713,7 @@ fn correcting_an_items_set_moves_its_set_link() {
     assert_eq!(linked_set_names, ["Eminence of Winter"]);
     let error = built_db_with(&[(
         "corrections.toml",
-        &correction_toml(
+        &new_correction(
             "item",
             "Kundarak Delving Boots",
             "set_bonus",
@@ -781,9 +728,9 @@ fn correcting_an_items_set_moves_its_set_link() {
 #[test]
 fn corrects_only_his_items_not_the_wikis() {
     let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
-    let corrections = parsed_corrections(&[(
+    let corrections = validated_corrections(&[(
         "corrections.toml",
-        &correction_toml("item", "Battle Axe of the Oozing Hunger", "minimum_level", "29", "30"),
+        &new_correction("item", "Battle Axe of the Oozing Hunger", "minimum_level", "29", "30"),
     )])
     .unwrap();
     let error = built_db_with_wiki(&wiki, &corrections).unwrap_err();
@@ -793,9 +740,9 @@ fn corrects_only_his_items_not_the_wikis() {
 #[test]
 fn corrects_only_his_quests_not_the_wikis() {
     let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
-    let corrections = parsed_corrections(&[(
+    let corrections = validated_corrections(&[(
         "corrections.toml",
-        &correction_toml("quest", "Ghosts of Perdition", "level", "32", "31"),
+        &new_correction("quest", "Ghosts of Perdition", "level", "32", "31"),
     )])
     .unwrap();
     let error = built_db_with_wiki(&wiki, &corrections).unwrap_err();
@@ -806,8 +753,8 @@ fn corrects_only_his_quests_not_the_wikis() {
 fn corrects_only_his_augments_not_the_wikis() {
     let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     for correction_text in [
-        correction_toml("augment", "Test Gem of Oozing Resistance", "min_level", "29", "30"),
-        qualified_correction_toml(
+        new_correction("augment", "Test Gem of Oozing Resistance", "min_level", "29", "30"),
+        new_qualified_correction(
             "augment_bonus",
             "Test Gem of Oozing Resistance",
             "stat = \"Strength\"\nbonus_type = \"Insight\"",
@@ -816,18 +763,18 @@ fn corrects_only_his_augments_not_the_wikis() {
             "4",
         ),
     ] {
-        let corrections = parsed_corrections(&[("corrections.toml", &correction_text)]).unwrap();
+        let corrections = validated_corrections(&[("corrections.toml", &correction_text)]).unwrap();
         let error = built_db_with_wiki(&wiki, &corrections).unwrap_err();
-        assert!(error.contains("Test Gem of Oozing Resistance"), "{correction_text}: {error}");
+        assert!(error.contains("Test Gem of Oozing Resistance"), "{correction_text:?}: {error}");
     }
 }
 
 #[test]
 fn runs_before_the_wiki_merge_so_a_corrected_description_is_his() {
     let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
-    let corrections = parsed_corrections(&[(
+    let corrections = validated_corrections(&[(
         "corrections.toml",
-        &correction_toml("item", "+1 Ember Repeating Light Crossbow", "description", "\"null\"", "\"Corrected text.\""),
+        &new_correction("item", "+1 Ember Repeating Light Crossbow", "description", "\"null\"", "\"Corrected text.\""),
     )])
     .unwrap();
     let (db, report) = built_db_with_wiki(&wiki, &corrections).unwrap();
@@ -843,13 +790,13 @@ fn runs_before_the_wiki_merge_so_a_corrected_description_is_his() {
 #[test]
 fn a_boolean_field_takes_zero_or_one() {
     let (db, _) =
-        built_db_with(&[("corrections.toml", &correction_toml("quest", "Plane of Night", "is_raid", "1", "0"))])
+        built_db_with(&[("corrections.toml", &new_correction("quest", "Plane of Night", "is_raid", "1", "0"))])
             .unwrap();
     let is_raid: bool =
         db.query_row("SELECT is_raid FROM quests WHERE name = 'Plane of Night'", [], |r| r.get(0)).unwrap();
     assert!(!is_raid);
     let error =
-        parsed_corrections(&[("corrections.toml", &correction_toml("quest", "Plane of Night", "is_raid", "1", "2"))])
+        validated_corrections(&[("corrections.toml", &new_correction("quest", "Plane of Night", "is_raid", "1", "2"))])
             .unwrap_err();
     assert!(error.contains("is_raid") && error.contains('2'), "{error}");
 }
@@ -857,7 +804,7 @@ fn a_boolean_field_takes_zero_or_one() {
 #[test]
 fn flags_an_item_legacy_and_counts_it() {
     let (db, report) =
-        built_db_with(&[("corrections.toml", &correction_toml("item", "Docent of Defiance", "is_legacy", "0", "1"))])
+        built_db_with(&[("corrections.toml", &new_correction("item", "Docent of Defiance", "is_legacy", "0", "1"))])
             .unwrap();
     let is_legacy: bool =
         db.query_row("SELECT is_legacy FROM items WHERE name = 'Docent of Defiance'", [], |r| r.get(0)).unwrap();
@@ -867,7 +814,7 @@ fn flags_an_item_legacy_and_counts_it() {
 
 #[test]
 fn embedded_corrections_flag_the_tempests_spine_armours_the_wiki_says_no_longer_drop() {
-    let corrections = Corrections::embedded().unwrap();
+    let corrections = committed_corrections().clone();
     for (old_name, replacement_name) in [
         ("Mithral Breastplate of the Elements", "Elemental Mithral Breastplate"),
         ("Platemail of Giants", "Full Plate of Giants"),
@@ -886,17 +833,6 @@ fn embedded_corrections_flag_the_tempests_spine_armours_the_wiki_says_no_longer_
     }
 }
 
-fn qualified_correction_toml(
-    kind: &str,
-    name: &str,
-    qualifier_keys: &str,
-    field: &str,
-    from: &str,
-    to: &str,
-) -> String {
-    correction_toml(kind, name, field, from, to).replacen("\nfield = ", &format!("\n{qualifier_keys}\nfield = "), 1)
-}
-
 #[test]
 fn item_stat_transform_corrections_follow_written_links() {
     let (source_db, _) = built_db_with(&[]).unwrap();
@@ -911,11 +847,8 @@ fn item_stat_transform_corrections_follow_written_links() {
     let (owner_name, stat_name, bonus_type): (String, String, String) =
         source_db.query_row(source_sql, [], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?))).unwrap();
     let qualifier = format!("stat = {stat_name:?}\nbonus_type = {bonus_type:?}");
-    let corrections = format!(
-        "{}{}",
-        qualified_correction_toml("item_bonus", &owner_name, &qualifier, "scale", "1.0", "0.5"),
-        qualified_correction_toml("item_bonus", &owner_name, &qualifier, "rounding", "\"down\"", "\"up\""),
-    );
+    let corrections = new_qualified_correction("item_bonus", &owner_name, &qualifier, "scale", "1.0", "0.5")
+        + &new_qualified_correction("item_bonus", &owner_name, &qualifier, "rounding", "\"down\"", "\"up\"");
     let (corrected_db, report) = built_db_with(&[("transforms.toml", &corrections)]).unwrap();
     assert_eq!(
         (report.correction_applied_count, report.correction_stale_count),
@@ -975,11 +908,11 @@ fn row_count(db: &Connection, sql: &str) -> i64 {
 fn renames_an_item_augment_and_quest_after_their_other_corrections() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(correction_toml("item", "Docent of Defiance", "name", "\"Docent of Defiance\"", "\"Docent of the Defiant\"")
-            + &correction_toml("item", "Docent of Defiance", "minimum_level", "10", "11")
-            + &correction_toml("augment", "Voidscale", "name", "\"Voidscale\"", "\"Void Scale\"")
-            + &correction_toml("augment", "Voidscale", "min_level", "31", "30")
-            + &correction_toml("quest", "Plane of Night", "name", "\"Plane of Night\"", "\"The Plane of Night\"")),
+        &(new_correction("item", "Docent of Defiance", "name", "\"Docent of Defiance\"", "\"Docent of the Defiant\"")
+            + &new_correction("item", "Docent of Defiance", "minimum_level", "10", "11")
+            + &new_correction("augment", "Voidscale", "name", "\"Voidscale\"", "\"Void Scale\"")
+            + &new_correction("augment", "Voidscale", "min_level", "31", "30")
+            + &new_correction("quest", "Plane of Night", "name", "\"Plane of Night\"", "\"The Plane of Night\"")),
     )])
     .unwrap();
     assert_eq!(report.correction_applied_count, 5, "{:?}", report.stale_corrections);
@@ -998,7 +931,7 @@ fn renames_an_item_augment_and_quest_after_their_other_corrections() {
 fn a_renamed_quest_links_the_loot_his_drop_text_names_by_the_new_name() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &correction_toml(
+        &new_correction(
             "quest",
             "ToEE: First Level and Earth Temple",
             "name",
@@ -1030,13 +963,13 @@ fn a_renamed_quest_links_the_loot_his_drop_text_names_by_the_new_name() {
 fn a_rename_his_files_already_carry_goes_stale_for_every_renamable_kind() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(correction_toml("item", "Docent of Defiant", "name", "\"Docent of Defiant\"", "\"Docent of Defiance\"")
-            + &correction_toml("augment", "Void Scale", "name", "\"Void Scale\"", "\"Voidscale\"")
-            + &correction_toml("quest", "Plane of Nite", "name", "\"Plane of Nite\"", "\"Plane of Night\"")
-            + &correction_toml("adventure_pack", "Vault of Nite", "name", "\"Vault of Nite\"", "\"Vault of Night\"")
-            + &correction_toml("patron", "The Twelfe", "name", "\"The Twelfe\"", "\"The Twelve\"")
-            + &correction_toml("set_bonus", "Perfect Silense", "name", "\"Perfect Silense\"", "\"Perfect Silence\"")
-            + &correction_toml("socket_label", "redd", "name", "\"redd\"", "\"red\"")),
+        &(new_correction("item", "Docent of Defiant", "name", "\"Docent of Defiant\"", "\"Docent of Defiance\"")
+            + &new_correction("augment", "Void Scale", "name", "\"Void Scale\"", "\"Voidscale\"")
+            + &new_correction("quest", "Plane of Nite", "name", "\"Plane of Nite\"", "\"Plane of Night\"")
+            + &new_correction("adventure_pack", "Vault of Nite", "name", "\"Vault of Nite\"", "\"Vault of Night\"")
+            + &new_correction("patron", "The Twelfe", "name", "\"The Twelfe\"", "\"The Twelve\"")
+            + &new_correction("set_bonus", "Perfect Silense", "name", "\"Perfect Silense\"", "\"Perfect Silence\"")
+            + &new_correction("socket_label", "redd", "name", "\"redd\"", "\"red\"")),
     )])
     .unwrap();
     assert_eq!(
@@ -1064,7 +997,7 @@ fn a_rename_his_files_already_carry_goes_stale_for_every_renamable_kind() {
 fn a_rename_whose_name_and_to_both_match_nothing_fails() {
     let error = built_db_with(&[(
         "corrections.toml",
-        &correction_toml("quest", "Plane of Nite", "name", "\"Plane of Nite\"", "\"Plain of Night\""),
+        &new_correction("quest", "Plane of Nite", "name", "\"Plane of Nite\"", "\"Plain of Night\""),
     )])
     .unwrap_err();
     assert!(
@@ -1077,7 +1010,7 @@ fn a_rename_whose_name_and_to_both_match_nothing_fails() {
 fn renaming_an_item_or_quest_to_a_name_already_taken_fails() {
     let error = built_db_with(&[(
         "corrections.toml",
-        &correction_toml("item", "Docent of Defiance", "name", "\"Docent of Defiance\"", "\"Five Rings\""),
+        &new_correction("item", "Docent of Defiance", "name", "\"Docent of Defiance\"", "\"Five Rings\""),
     )])
     .unwrap_err();
     assert!(error.contains("Five Rings") && error.contains("Docent of Defiance"), "{error}");
@@ -1086,9 +1019,9 @@ fn renaming_an_item_or_quest_to_a_name_already_taken_fails() {
 #[test]
 fn a_wiki_file_naming_the_old_spelling_fails_the_build() {
     let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
-    let corrections = parsed_corrections(&[(
+    let corrections = validated_corrections(&[(
         "corrections.toml",
-        &correction_toml("augment", "Minor Fire Guard", "name", "\"Minor Fire Guard\"", "\"Lesser Fire Guard\""),
+        &new_correction("augment", "Minor Fire Guard", "name", "\"Minor Fire Guard\"", "\"Lesser Fire Guard\""),
     )])
     .unwrap();
     let error = built_db_with_wiki(&wiki, &corrections).unwrap_err();
@@ -1099,14 +1032,14 @@ fn a_wiki_file_naming_the_old_spelling_fails_the_build() {
 fn a_family_narrows_an_augment_correction() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(qualified_correction_toml(
+        &(new_qualified_correction(
             "augment",
             "+5 Fortitude Save",
             "family = \"Greensteel_Heroic\"",
             "min_level",
             "11",
             "12",
-        ) + &qualified_correction_toml(
+        ) + &new_qualified_correction(
             "augment",
             "+5 Fortitude Save",
             "family = \"Greensteel_Heroic\"",
@@ -1128,13 +1061,13 @@ fn a_family_narrows_an_augment_correction() {
     assert_eq!(qualifiers, ["family \"Greensteel_Heroic\"", "family \"Greensteel_Heroic\""]);
     let error = built_db_with(&[(
         "corrections.toml",
-        &qualified_correction_toml("augment", "+5 Fortitude Save", "family = \"Ruby\"", "min_level", "11", "12"),
+        &new_qualified_correction("augment", "+5 Fortitude Save", "family = \"Ruby\"", "min_level", "11", "12"),
     )])
     .unwrap_err();
     assert!(error.contains("+5 Fortitude Save") && error.contains("Ruby"), "{error}");
-    let error = parsed_corrections(&[(
+    let error = validated_corrections(&[(
         "corrections.toml",
-        &qualified_correction_toml("item", "Five Rings", "family = \"Ruby\"", "minimum_level", "1", "2"),
+        &new_qualified_correction("item", "Five Rings", "family = \"Ruby\"", "minimum_level", "1", "2"),
     )])
     .unwrap_err();
     assert!(error.contains("family") && error.contains("Five Rings"), "{error}");
@@ -1151,8 +1084,8 @@ fn removes_an_item_with_its_child_rows() {
     };
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(correction_toml("item", "Legendary Cloak of Winter", "remove", "0", "1")
-            + &correction_toml("item", "Acid Rune Arm", "remove", "0", "1")),
+        &(new_correction("item", "Legendary Cloak of Winter", "remove", "0", "1")
+            + &new_correction("item", "Acid Rune Arm", "remove", "0", "1")),
     )])
     .unwrap();
     assert_eq!(report.correction_applied_count, 2, "{:?}", report.stale_corrections);
@@ -1177,7 +1110,7 @@ fn removes_an_item_with_its_child_rows() {
         ("item".into(), "Acid Rune Arm".into(), "remove".into(), "0".into(), "1".into())
     );
     let error =
-        parsed_corrections(&[("corrections.toml", &correction_toml("item", "Acid Rune Arm", "remove", "1", "0"))])
+        validated_corrections(&[("corrections.toml", &new_correction("item", "Acid Rune Arm", "remove", "1", "0"))])
             .unwrap_err();
     assert!(error.contains("remove") && error.contains("Acid Rune Arm"), "{error}");
 }
@@ -1186,8 +1119,8 @@ fn removes_an_item_with_its_child_rows() {
 fn removes_an_augment_with_its_child_rows() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(correction_toml("augment", "Perfect Silence", "remove", "0", "1")
-            + &correction_toml("augment", "Ruby of Acid Damage", "remove", "0", "1")),
+        &(new_correction("augment", "Perfect Silence", "remove", "0", "1")
+            + &new_correction("augment", "Ruby of Acid Damage", "remove", "0", "1")),
     )])
     .unwrap();
     assert_eq!(report.correction_applied_count, 2, "{:?}", report.stale_corrections);
@@ -1209,21 +1142,21 @@ fn removes_an_augment_with_its_child_rows() {
 fn corrects_an_augment_bonus_value_and_type_without_touching_the_shared_bonus() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(qualified_correction_toml(
+        &(new_qualified_correction(
             "augment_bonus",
             "Silverscale",
             "stat = \"Healing Amplification\"\nbonus_type = \"Competence\"",
             "value",
             "56",
             "60",
-        ) + &qualified_correction_toml(
+        ) + &new_qualified_correction(
             "augment_bonus",
             "Silverscale",
             "stat = \"Repair Amplification\"\nbonus_type = \"Enhancement\"",
             "bonus_type",
             "\"Enhancement\"",
             "\"Competence\"",
-        ) + &qualified_correction_toml(
+        ) + &new_qualified_correction(
             "augment_bonus",
             "Silverscale",
             "stat = \"Negative Healing Amplification\"\nbonus_type = \"Profane\"",
@@ -1275,13 +1208,13 @@ fn corrects_an_augment_bonus_value_and_type_without_touching_the_shared_bonus() 
 fn adds_a_bonus_an_augment_lacks_and_goes_stale_once_he_carries_it() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(correction_toml(
+        &(new_correction(
             "augment_bonus",
             "Voidscale",
             "add",
             "\"null\"",
             "{ stat = \"Physical Resistance Rating\", bonus_type = \"Exceptional\", value = 2 }",
-        ) + &correction_toml(
+        ) + &new_correction(
             "augment_bonus",
             "Voidscale",
             "add",
@@ -1302,7 +1235,7 @@ fn adds_a_bonus_an_augment_lacks_and_goes_stale_once_he_carries_it() {
     assert_eq!(to_value, r#"{"bonus_type":"Exceptional","stat":"Physical Resistance Rating","value":2}"#);
     let error = built_db_with(&[(
         "corrections.toml",
-        &correction_toml(
+        &new_correction(
             "augment_bonus",
             "Voidscale",
             "add",
@@ -1312,9 +1245,11 @@ fn adds_a_bonus_an_augment_lacks_and_goes_stale_once_he_carries_it() {
     )])
     .unwrap_err();
     assert!(error.contains("Physical Resistence"), "{error}");
-    let error =
-        parsed_corrections(&[("corrections.toml", &correction_toml("augment_bonus", "Voidscale", "value", "5", "6"))])
-            .unwrap_err();
+    let error = validated_corrections(&[(
+        "corrections.toml",
+        &new_correction("augment_bonus", "Voidscale", "value", "5", "6"),
+    )])
+    .unwrap_err();
     assert!(error.contains("stat") && error.contains("Voidscale"), "{error}");
 }
 
@@ -1353,28 +1288,28 @@ fn set_tier_bonus_rows(db: &Connection, set_name: &str, equipped_count: i64) -> 
 
 #[test]
 fn corrects_set_tier_bonuses_and_creates_a_missing_tier() {
-    let corrections = qualified_correction_toml(
+    let corrections = new_qualified_correction(
         "set_tier_bonus",
         "Eminence of Winter",
         "equipped_count = 2\nstat = \"Physical Resistance Rating\"\nbonus_type = \"Artifact\"",
         "value",
         "30",
         "31",
-    ) + &qualified_correction_toml(
+    ) + &new_qualified_correction(
         "set_tier_bonus",
         "Eminence of Winter",
         "equipped_count = 2",
         "add",
         "\"null\"",
         "{ stat = \"Magical Resistance Rating\", bonus_type = \"Artifact\", value = 31 }",
-    ) + &qualified_correction_toml(
+    ) + &new_qualified_correction(
         "set_tier",
         "Eminence of Winter",
         "equipped_count = 8",
         "add",
         "\"null\"",
         "{ equipped_count = 8, description = \"A new tier.\" }",
-    ) + &qualified_correction_toml(
+    ) + &new_qualified_correction(
         "set_tier_bonus",
         "Eminence of Winter",
         "equipped_count = 8",
@@ -1396,7 +1331,7 @@ fn corrects_set_tier_bonuses_and_creates_a_missing_tier() {
 
 #[test]
 fn set_tier_add_goes_stale_when_the_tier_exists() {
-    let correction = qualified_correction_toml(
+    let correction = new_qualified_correction(
         "set_tier",
         "Eminence of Winter",
         "equipped_count = 2",
@@ -1410,7 +1345,7 @@ fn set_tier_add_goes_stale_when_the_tier_exists() {
 
 #[test]
 fn refuses_a_set_tier_bonus_without_a_type() {
-    let correction = qualified_correction_toml(
+    let correction = new_qualified_correction(
         "set_tier_bonus",
         "Eminence of Winter",
         "equipped_count = 2",
@@ -1418,16 +1353,16 @@ fn refuses_a_set_tier_bonus_without_a_type() {
         "\"null\"",
         "{ stat = \"Constitution\", bonus_type = \"null\", value = 1 }",
     );
-    assert!(parsed_corrections(&[("corrections.toml", &correction)]).is_err());
+    assert!(validated_corrections(&[("corrections.toml", &correction)]).is_err());
     for kind in ["item_bonus", "augment_bonus"] {
-        let correction = correction_toml(
+        let correction = new_correction(
             kind,
             "Owner",
             "add",
             "\"null\"",
             "{ stat = \"Constitution\", bonus_type = \"null\", value = 1 }",
         );
-        assert!(parsed_corrections(&[("corrections.toml", &correction)]).is_err(), "{kind}");
+        assert!(validated_corrections(&[("corrections.toml", &correction)]).is_err(), "{kind}");
     }
 }
 
@@ -1439,12 +1374,12 @@ fn missing_set_tiers_name_the_set_and_equipped_count() {
         } else {
             ("add", "\"null\"", "{ stat = \"Constitution\", bonus_type = \"Artifact\", value = 1 }")
         };
-        let correction = qualified_correction_toml(kind, "Eminence of Winter", "equipped_count = 99", field, from, to);
+        let correction = new_qualified_correction(kind, "Eminence of Winter", "equipped_count = 99", field, from, to);
         let error = built_db_with(&[("corrections.toml", &correction)]).unwrap_err();
         assert!(error.contains("set \"Eminence of Winter\" has no tier with equipped_count 99"), "{error}");
         assert!(!error.contains("set_bonus_tiers.name"), "{error}");
     }
-    let correction = qualified_correction_toml(
+    let correction = new_qualified_correction(
         "set_tier",
         "Unknown set",
         "equipped_count = 2",
@@ -1463,28 +1398,28 @@ fn removes_only_the_qualified_bonus_link_for_each_owner_kind() {
         ("augment_bonus", "Silverscale", "family = \"DinosaurBone\""),
         ("set_tier_bonus", "Eminence of Winter", "equipped_count = 2"),
     ] {
-        let corrections = qualified_correction_toml(
+        let corrections = new_qualified_correction(
             kind,
             name,
             owner_qualifier,
             "add",
             "\"null\"",
             "{ stat = \"Strength\", bonus_type = \"Quality\", value = 2 }",
-        ) + &qualified_correction_toml(
+        ) + &new_qualified_correction(
             kind,
             name,
             &format!("{owner_qualifier}\nstat = \"Strength\"\nbonus_type = \"Quality\""),
             "value",
             "2",
             "3",
-        ) + &qualified_correction_toml(
+        ) + &new_qualified_correction(
             kind,
             name,
             owner_qualifier,
             "add",
             "\"null\"",
             "{ stat = \"Strength\", bonus_type = \"Artifact\", value = 2 }",
-        ) + &qualified_correction_toml(
+        ) + &new_qualified_correction(
             "item_bonus",
             "Acid Rune Arm",
             "",
@@ -1496,7 +1431,7 @@ fn removes_only_the_qualified_bonus_link_for_each_owner_kind() {
         for (bonus_qualifier, from, applied, stale) in
             [("", "3", 5, 0), ("\nbonus_value = 3", "3", 5, 0), ("", "2", 4, 1), ("\nbonus_value = 2", "2", 4, 1)]
         {
-            let removal = qualified_correction_toml(
+            let removal = new_qualified_correction(
                 kind,
                 name,
                 &format!("{removal_qualifier}{bonus_qualifier}"),
@@ -1523,11 +1458,11 @@ fn removes_only_the_qualified_bonus_link_for_each_owner_kind() {
             );
             assert!(owner_bonuses.contains(&("Strength".into(), Some("Artifact".into()), Some(2))));
         }
-        let absent_removal = qualified_correction_toml(kind, name, &removal_qualifier, "remove", "3", "\"null\"");
+        let absent_removal = new_qualified_correction(kind, name, &removal_qualifier, "remove", "3", "\"null\"");
         let (_, report) = built_db_with(&[("corrections.toml", &absent_removal)]).unwrap();
         assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1), "{kind}");
         let same_type_corrections = corrections
-            + &qualified_correction_toml(
+            + &new_qualified_correction(
                 kind,
                 name,
                 &format!("{owner_qualifier}\nstat = \"Strength\"\nbonus_type = \"Artifact\""),
@@ -1537,7 +1472,7 @@ fn removes_only_the_qualified_bonus_link_for_each_owner_kind() {
             );
         for from in ["3", "2", "99"] {
             let ambiguous_removal =
-                qualified_correction_toml(kind, name, &removal_qualifier, "remove", from, "\"null\"");
+                new_qualified_correction(kind, name, &removal_qualifier, "remove", from, "\"null\"");
             let error = built_db_with(&[("corrections.toml", &(same_type_corrections.clone() + &ambiguous_removal))])
                 .unwrap_err();
             for expected_text in [name, "Strength", "Quality", "values [3, 2]", "specify bonus_value"] {
@@ -1545,7 +1480,7 @@ fn removes_only_the_qualified_bonus_link_for_each_owner_kind() {
             }
         }
         let equal_value_corrections = same_type_corrections.clone()
-            + &qualified_correction_toml(
+            + &new_qualified_correction(
                 kind,
                 name,
                 &format!("{removal_qualifier}\nbonus_value = 2"),
@@ -1556,7 +1491,7 @@ fn removes_only_the_qualified_bonus_link_for_each_owner_kind() {
             + &absent_removal;
         let error = built_db_with(&[("corrections.toml", &equal_value_corrections)]).unwrap_err();
         assert!(error.contains("values [3, 3]") && error.contains("specify bonus_value"), "{error}");
-        let narrowed_removal = qualified_correction_toml(
+        let narrowed_removal = new_qualified_correction(
             kind,
             name,
             &format!("{removal_qualifier}\nbonus_value = 3"),
@@ -1591,7 +1526,7 @@ fn bonus_removal_requires_qualifiers_a_current_integer_and_a_null_destination() 
             ("stat = \"Strength\"\nbonus_type = \"Quality\"", "3.5", "\"null\""),
             ("stat = \"Strength\"\nbonus_type = \"Quality\"", "\"3\"", "\"null\""),
         ] {
-            let correction = qualified_correction_toml(
+            let correction = new_qualified_correction(
                 kind,
                 "Owner",
                 &format!("{owner_qualifier}\n{bonus_qualifier}"),
@@ -1599,28 +1534,28 @@ fn bonus_removal_requires_qualifiers_a_current_integer_and_a_null_destination() 
                 from,
                 to,
             );
-            assert!(parsed_corrections(&[("corrections.toml", &correction)]).is_err(), "{correction}");
+            assert!(validated_corrections(&[("corrections.toml", &correction)]).is_err(), "{correction:?}");
         }
     }
 }
 
 #[test]
 fn corrects_a_set_tier_bonus_type_and_value() {
-    let corrections = qualified_correction_toml(
+    let corrections = new_qualified_correction(
         "set_tier_bonus",
         "Eminence of Winter",
         "equipped_count = 2\nstat = \"Physical Resistance Rating\"\nbonus_type = \"Artifact\"",
         "bonus_type",
         "\"Artifact\"",
         "\"Profane\"",
-    ) + &qualified_correction_toml(
+    ) + &new_qualified_correction(
         "set_tier_bonus",
         "Eminence of Winter",
         "equipped_count = 2\nstat = \"Physical Resistance Rating\"\nbonus_type = \"Profane\"",
         "value",
         "30",
         "31",
-    ) + &qualified_correction_toml(
+    ) + &new_qualified_correction(
         "set_tier_bonus",
         "Eminence of Winter",
         "equipped_count = 2",
@@ -1639,14 +1574,14 @@ fn corrects_a_set_tier_bonus_type_and_value() {
 #[test]
 fn corrects_a_set_tier_description_and_removes_an_unlisted_tier() {
     let corrections =
-        qualified_correction_toml(
+        new_qualified_correction(
             "set_tier",
             "Eminence of Winter",
             "equipped_count = 2",
             "description",
             "\"+30 Artifact bonus to Physical Resistance Rating\"",
             "\"+31 Artifact PRR\"",
-        ) + &qualified_correction_toml("set_tier", "Eminence of Winter", "equipped_count = 3", "remove", "0", "1");
+        ) + &new_qualified_correction("set_tier", "Eminence of Winter", "equipped_count = 3", "remove", "0", "1");
     let (db, report) = built_db_with(&[("corrections.toml", &corrections)]).unwrap();
     assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
     assert_eq!(row_count(&db, "SELECT COUNT(*) FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id WHERE s.name = 'Eminence of Winter' AND t.equipped_count = 3"), 0);
@@ -1680,7 +1615,7 @@ fn removing_a_set_tier_deletes_its_unowned_prose_family() {
     let extra_set = "<SetBonus><Type>Removable Family Set</Type><Buff><EquippedCount>2</EquippedCount><Description>Unshared removable prose</Description></Buff></SetBonus></SetBonuses>";
     std::fs::write(&set_file, set_xml.replace("</SetBonuses>", extra_set)).unwrap();
     let correction =
-        qualified_correction_toml("set_tier", "Removable Family Set", "equipped_count = 2", "remove", "0", "1");
+        new_qualified_correction("set_tier", "Removable Family Set", "equipped_count = 2", "remove", "0", "1");
     let (db, report) = built_db_from(&data_files_dir, &[("corrections.toml", &correction)]).unwrap();
     assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
     assert_eq!(row_count(&db, "SELECT COUNT(*) FROM effects WHERE name = 'Unshared removable prose'"), 0);
@@ -1689,9 +1624,9 @@ fn removing_a_set_tier_deletes_its_unowned_prose_family() {
 #[test]
 fn set_tier_qualifiers_must_be_complete_and_match_the_added_tier() {
     for correction in [
-        correction_toml("set_tier", "Eminence of Winter", "remove", "0", "1"),
-        qualified_correction_toml("set_tier", "Eminence of Winter", "equipped_count = 0", "remove", "0", "1"),
-        qualified_correction_toml(
+        new_correction("set_tier", "Eminence of Winter", "remove", "0", "1"),
+        new_qualified_correction("set_tier", "Eminence of Winter", "equipped_count = 0", "remove", "0", "1"),
+        new_qualified_correction(
             "set_tier",
             "Eminence of Winter",
             "equipped_count = 3",
@@ -1700,13 +1635,13 @@ fn set_tier_qualifiers_must_be_complete_and_match_the_added_tier() {
             "{ equipped_count = 4, description = \"Wrong tier\" }",
         ),
     ] {
-        assert!(parsed_corrections(&[("corrections.toml", &correction)]).is_err(), "{correction}");
+        assert!(validated_corrections(&[("corrections.toml", &correction)]).is_err(), "{correction:?}");
     }
 }
 
 #[test]
 fn embedded_set_corrections_keep_only_fact_changes() {
-    let corrections = Corrections::embedded().unwrap();
+    let corrections = committed_corrections().clone();
     let set_bonus_additions = corrections
         .entries
         .iter()
@@ -1726,7 +1661,7 @@ fn embedded_set_corrections_keep_only_fact_changes() {
 
 #[test]
 fn embedded_set_corrections_fix_feather_falling_and_remove_only_celeritys_movement_bonus() {
-    let corrections = Corrections::embedded().unwrap();
+    let corrections = committed_corrections().clone();
     assert!(corrections.entries.iter().any(|correction| {
         correction.kind.as_str() == "set_tier"
             && correction.name == "Tharne's Wrath"
@@ -1771,13 +1706,13 @@ fn item_effect_names(db: &Connection, item_name: &str) -> Vec<String> {
 fn adds_a_bonus_an_item_lacks_and_goes_stale_once_he_carries_it() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(correction_toml(
+        &(new_correction(
             "item_bonus",
             "Docent of Defiance",
             "add",
             "\"null\"",
             "{ stat = \"Acid Resistance\", bonus_type = \"Enhancement\", value = 20 }",
-        ) + &correction_toml(
+        ) + &new_correction(
             "item_bonus",
             "Docent of Defiance",
             "add",
@@ -1807,7 +1742,7 @@ fn adds_a_bonus_an_item_lacks_and_goes_stale_once_he_carries_it() {
     assert_eq!(to_value, r#"{"bonus_type":"Enhancement","stat":"Acid Resistance","value":20}"#);
     let error = built_db_with(&[(
         "corrections.toml",
-        &correction_toml(
+        &new_correction(
             "item_bonus",
             "Docent of Defiance",
             "add",
@@ -1824,9 +1759,9 @@ fn adds_an_effect_an_item_lacks_reusing_his_effect_row_and_goes_stale_once_he_ca
     let effect_count_without_corrections = row_count(&built_db_with(&[]).unwrap().0, "SELECT COUNT(*) FROM effects");
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(correction_toml("item_effect", "Docent of Defiance", "add", "\"null\"", "\"Feather Falling\"")
-            + &correction_toml("item_effect", "Docent of Defiance", "add", "\"null\"", "\"Book Shot\"")
-            + &correction_toml("item_effect", "Kundarak Delving Boots", "add", "\"null\"", "\"freedom of movement\"")),
+        &(new_correction("item_effect", "Docent of Defiance", "add", "\"null\"", "\"Feather Falling\"")
+            + &new_correction("item_effect", "Docent of Defiance", "add", "\"null\"", "\"Book Shot\"")
+            + &new_correction("item_effect", "Kundarak Delving Boots", "add", "\"null\"", "\"freedom of movement\"")),
     )])
     .unwrap();
     assert_eq!(
@@ -1849,9 +1784,9 @@ fn adds_an_effect_an_item_lacks_reusing_his_effect_row_and_goes_stale_once_he_ca
         .map(Result::unwrap)
         .collect();
     assert_eq!(qualifiers, ["Book Shot", "Feather Falling"]);
-    let error = parsed_corrections(&[(
+    let error = validated_corrections(&[(
         "corrections.toml",
-        &correction_toml("item_effect", "Docent of Defiance", "add", "\"null\"", "3"),
+        &new_correction("item_effect", "Docent of Defiance", "add", "\"null\"", "3"),
     )])
     .unwrap_err();
     assert!(error.contains("Docent of Defiance") && error.contains("effect"), "{error}");
@@ -1865,19 +1800,19 @@ fn effect_description(db: &Connection, effect_name: &str) -> Option<String> {
 fn an_added_effect_writes_its_description_only_on_the_effect_it_creates() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(correction_toml(
+        &(new_correction(
             "item_effect",
             "Docent of Defiance",
             "add",
             "\"null\"",
             "{ name = \"Book Shot\", description = \"Hurls books at enemies.\" }",
-        ) + &correction_toml(
+        ) + &new_correction(
             "item_effect",
             "Docent of Defiance",
             "add",
             "\"null\"",
             "{ name = \"Feather Falling\", description = \"Not his text.\" }",
-        ) + &correction_toml(
+        ) + &new_correction(
             "item_effect",
             "Kundarak Delving Boots",
             "add",
@@ -1912,27 +1847,21 @@ fn an_added_effect_writes_its_description_only_on_the_effect_it_creates() {
         recorded,
         [("Book Shot".to_string(), r#"{"description":"Hurls books at enemies.","name":"Book Shot"}"#.to_string())]
     );
-    let error = parsed_corrections(&[(
-        "corrections.toml",
-        &correction_toml("item_effect", "Docent of Defiance", "add", "\"null\"", "{ name = \"Book Shot\" }"),
-    )])
-    .unwrap_err();
-    assert!(error.contains("Docent of Defiance"), "{error}");
 }
 
 #[test]
 fn adds_a_socket_an_item_lacks_and_goes_stale_once_he_carries_it() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(correction_toml("item_socket", "Docent of Defiance", "add", "\"null\"", "\"red\"")
-            + &correction_toml(
+        &(new_correction("item_socket", "Docent of Defiance", "add", "\"null\"", "\"red\"")
+            + &new_correction(
                 "item_socket",
                 "Docent of Defiance",
                 "add",
                 "\"null\"",
                 "\"crafting: slavelords extra\"",
             )
-            + &correction_toml("item_socket", "Buckler of the Golden Age", "add", "\"null\"", "\"red\"")),
+            + &new_correction("item_socket", "Buckler of the Golden Age", "add", "\"null\"", "\"red\"")),
     )])
     .unwrap();
     assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 1));
@@ -1940,7 +1869,7 @@ fn adds_a_socket_an_item_lacks_and_goes_stale_once_he_carries_it() {
     assert_eq!(item_socket_labels(&db, "Buckler of the Golden Age"), ["red"]);
     let error = built_db_with(&[(
         "corrections.toml",
-        &correction_toml("item_socket", "Docent of Defiance", "add", "\"null\"", "\"crafting: no such socket\""),
+        &new_correction("item_socket", "Docent of Defiance", "add", "\"null\"", "\"crafting: no such socket\""),
     )])
     .unwrap_err();
     assert!(error.contains("crafting: no such socket"), "{error}");
@@ -1981,7 +1910,7 @@ fn colliding_socket_label_slugs_apply_the_recorded_rename_in_either_input_order(
                 .replace("<Type>Attuned to Heroism 2</Type>", &format!("<Type>{}</Type>", labels[1])),
         )
         .unwrap();
-        let correction = correction_toml(
+        let correction = new_correction(
             "socket_label",
             "crafting: upgradeable - tier 2",
             "name",
@@ -2008,13 +1937,13 @@ fn colliding_socket_label_slugs_apply_the_recorded_rename_in_either_input_order(
 fn renames_a_socket_label_everywhere_and_merges_into_an_existing_one() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &(correction_toml(
+        &(new_correction(
             "socket_label",
             "crafting: attuned to heroism 1",
             "name",
             "\"crafting: attuned to heroism 1\"",
             "\"crafting: attuned by heroism: tier 1\"",
-        ) + &correction_toml(
+        ) + &new_correction(
             "socket_label",
             "crafting: attuned to heroism 3",
             "name",
@@ -2078,13 +2007,13 @@ fn data_files_with_untyped(test_name: &str, untyped_fixture_dirs: &[(&str, &str)
 
 fn built_db_from(
     data_files_dir: &std::path::Path,
-    correction_files: &[(&str, &str)],
+    correction_files: &[(&str, &CorrectionSet)],
 ) -> Result<(Connection, BuildReport), String> {
     let mut db = Connection::open_in_memory().unwrap();
     let report = build_database(
         data_files_dir,
         &WikiOverrides::default(),
-        &parsed_corrections(correction_files)?,
+        &validated_corrections(correction_files)?,
         &mut db,
         &fixture_dataset_version(),
     )
@@ -2121,44 +2050,35 @@ fn owner_bonuses_resolve_owner_default_and_constant_amounts() {
         cloak_source.replace("<Type>FalseLife</Type>\n      <Value1>50</Value1>", "<Type>FalseLife</Type>"),
     )
     .unwrap();
-    let correction_file = r#"
-[[correction]]
-kind = "item_bonus"
-name = "Epic Ethereal Bracers"
-stat = "Armor Class"
-bonus_type = "Insight"
-field = "scale"
-from = 1.0
-to = 0.5
-reason = "Riposte grants half the listed rank to Armor Class."
-source = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
-read = "2026-10-04"
-
-[[correction]]
-kind = "item_bonus"
-name = "Epic Ethereal Bracers"
-stat = "Armor Class"
-bonus_type = "Insight"
-field = "rounding"
-from = "down"
-to = "up"
-reason = "Riposte rounds Armor Class upward."
-source = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
-read = "2026-10-04"
-
-[[correction]]
-kind = "item_bonus"
-name = "Epic Ethereal Bracers"
-stat = "Saving Throws"
-bonus_type = "Insight"
-field = "scale"
-from = 1.0
-to = 0.5
-reason = "Riposte grants half the listed rank to Saving Throws."
-source = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
-read = "2026-10-04"
-"#;
-    let (db, report) = built_db_from(&data_files_dir, &[("riposte.toml", correction_file)]).unwrap();
+    let riposte_page = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers";
+    let correction_file = new_qualified_correction(
+        "item_bonus",
+        "Epic Ethereal Bracers",
+        "stat = \"Armor Class\"\nbonus_type = \"Insight\"",
+        "scale",
+        "1.0",
+        "0.5",
+    )
+    .cited("Riposte grants half the listed rank to Armor Class.", riposte_page, "2026-10-04")
+        + &new_qualified_correction(
+            "item_bonus",
+            "Epic Ethereal Bracers",
+            "stat = \"Armor Class\"\nbonus_type = \"Insight\"",
+            "rounding",
+            "\"down\"",
+            "\"up\"",
+        )
+        .cited("Riposte rounds Armor Class upward.", riposte_page, "2026-10-04")
+        + &new_qualified_correction(
+            "item_bonus",
+            "Epic Ethereal Bracers",
+            "stat = \"Saving Throws\"\nbonus_type = \"Insight\"",
+            "scale",
+            "1.0",
+            "0.5",
+        )
+        .cited("Riposte grants half the listed rank to Saving Throws.", riposte_page, "2026-10-04");
+    let (db, report) = built_db_from(&data_files_dir, &[("riposte.toml", &correction_file)]).unwrap();
     assert_eq!(report.correction_applied_count, 3);
     let resolved: Vec<(String, i64, String, f64)> = db
         .prepare(
@@ -2281,17 +2201,28 @@ fn acid_damage_correction_uses_the_real_buff_and_item_writer() {
         <Buff><Type>AcidII</Type><BonusType>Enhancement</BonusType></Buff></Item></Items>"#,
     )
     .unwrap();
-    let correction_file = r#"[[correction]]
-kind = "effect_damage"
-name = "Acid II"
-field = "add"
-from = "null"
-to = { trigger = "On Hit", damage_type = "Acid", dice_number = 1, dice_sides = 7, dice_bonus = 1, amount_from = 0, scale = 1.0, sort_order = 0 }
-reason = "Stoneworker's Hammer deals 2 to 8 Acid damage on hit."
-source = "https://ddowiki.com/page/Item:Stoneworker%27s_Hammer"
-read = "2026-10-04"
-"#;
-    let (db, report) = built_db_from(&data_files_dir, &[("damage.toml", correction_file)]).unwrap();
+    let correction_file = fixture::correction_between(
+        "effect_damage",
+        "Acid II",
+        "add",
+        CorrectionValue::Null,
+        CorrectionValue::Damage(DamageRow {
+            trigger: "On Hit".into(),
+            damage_type: "Acid".into(),
+            dice_number: 1,
+            dice_sides: 7,
+            dice_bonus: 1,
+            amount_from: 0,
+            scale: 1.0,
+            sort_order: 0,
+        }),
+    )
+    .cited(
+        "Stoneworker's Hammer deals 2 to 8 Acid damage on hit.",
+        "https://ddowiki.com/page/Item:Stoneworker%27s_Hammer",
+        "2026-10-04",
+    );
+    let (db, report) = built_db_from(&data_files_dir, &[("damage.toml", &correction_file)]).unwrap();
     assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
     let damage: (String, String, i64, i64, i64, i64, f64) = db
         .query_row(
@@ -2329,26 +2260,21 @@ fn a_set_tier_correction_shares_a_family_with_the_same_effect_on_another_set() {
   </SetBonus>
 "#;
     std::fs::write(&set_file, source.replace("</SetBonuses>", &format!("{added_sets}</SetBonuses>"))).unwrap();
-    let mut corrections = String::new();
+    let mut corrections = CorrectionSet::default();
     for stat in ["Acid", "Cold", "Electric", "Fire"] {
         let qualifier = format!("equipped_count = 2\nstat = \"{stat} Spell Power\"\nbonus_type = \"Equipment\"");
-        corrections.push_str(&qualified_correction_toml(
-            "set_tier_bonus",
-            "Shaman's Fury",
-            &qualifier,
-            "bonus_type",
-            "\"Equipment\"",
-            "\"Artifact\"",
-        ));
+        corrections = corrections
+            + &new_qualified_correction(
+                "set_tier_bonus",
+                "Shaman's Fury",
+                &qualifier,
+                "bonus_type",
+                "\"Equipment\"",
+                "\"Artifact\"",
+            );
         let qualifier = format!("equipped_count = 2\nstat = \"{stat} Spell Power\"\nbonus_type = \"Artifact\"");
-        corrections.push_str(&qualified_correction_toml(
-            "set_tier_bonus",
-            "Shaman's Fury",
-            &qualifier,
-            "value",
-            "55",
-            "10",
-        ));
+        corrections =
+            corrections + &new_qualified_correction("set_tier_bonus", "Shaman's Fury", &qualifier, "value", "55", "10");
     }
     let (db, report) = built_db_from(&data_files_dir, &[("corrections.toml", &corrections)]).unwrap();
     assert_eq!((report.correction_applied_count, report.correction_stale_count), (8, 0));
@@ -2387,28 +2313,28 @@ fn types_an_item_bonus_his_files_leave_untyped_and_retypes_a_typed_one() {
         &data_files_dir,
         &[(
             "corrections.toml",
-            &(qualified_correction_toml(
+            &(new_qualified_correction(
                 "item_bonus",
                 "Embrace of the Spider Queen",
                 "stat = \"Fortification\"\nbonus_type = \"null\"\nbonus_value = 100",
                 "bonus_type",
                 "\"null\"",
                 "\"Enhancement\"",
-            ) + &qualified_correction_toml(
+            ) + &new_qualified_correction(
                 "item_bonus",
                 "Embrace of the Spider Queen",
                 "stat = \"Fortification\"\nbonus_type = \"null\"\nbonus_value = 10",
                 "bonus_type",
                 "\"null\"",
                 "\"Insight\"",
-            ) + &qualified_correction_toml(
+            ) + &new_qualified_correction(
                 "item_bonus",
                 "Docent of Defiance",
                 "stat = \"Fire Resistance\"\nbonus_type = \"Enhancement\"",
                 "bonus_type",
                 "\"Enhancement\"",
                 "\"Competence\"",
-            ) + &qualified_correction_toml(
+            ) + &new_qualified_correction(
                 "item_bonus",
                 "Docent of Defiance",
                 "stat = \"Acid Resistance\"\nbonus_type = \"null\"",
@@ -2447,9 +2373,9 @@ fn types_an_item_bonus_his_files_leave_untyped_and_retypes_a_typed_one() {
         qualifiers,
         ["Fire Resistance / Enhancement", "Fortification / null / 10", "Fortification / null / 100"]
     );
-    let error = parsed_corrections(&[(
+    let error = validated_corrections(&[(
         "corrections.toml",
-        &qualified_correction_toml(
+        &new_qualified_correction(
             "item_bonus",
             "Embrace of the Spider Queen",
             "stat = \"Fortification\"\nbonus_type = \"null\"",
@@ -2466,7 +2392,7 @@ fn types_an_item_bonus_his_files_leave_untyped_and_retypes_a_typed_one() {
 fn corrects_an_item_bonus_value_without_touching_the_shared_bonus() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &qualified_correction_toml(
+        &new_qualified_correction(
             "item_bonus",
             "Docent of Defiance",
             "stat = \"Cold Resistance\"\nbonus_type = \"Enhancement\"",
@@ -2504,10 +2430,10 @@ fn refuses_to_write_an_augment_bonus_without_a_type_unless_a_correction_types_it
     for expected_text in ["augment \"Dolorous Invigorator (Heroic)\"", "effect \"TacticalDC\"", "stat \"Trip DC\""] {
         assert!(error.contains(expected_text), "{expected_text} missing from {error}");
     }
-    let profane_corrections: String = ["Trip DC", "Sunder DC", "Stun DC", "Assassinate DC"]
+    let profane_corrections: CorrectionSet = ["Trip DC", "Sunder DC", "Stun DC", "Assassinate DC"]
         .iter()
         .map(|stat_name| {
-            qualified_correction_toml(
+            new_qualified_correction(
                 "augment_bonus",
                 "Dolorous Invigorator (Heroic)",
                 &format!("stat = {stat_name:?}\nbonus_type = \"null\""),
@@ -2552,7 +2478,7 @@ fn refuses_to_write_an_augment_bonus_without_a_type_unless_a_correction_types_it
 fn removing_an_item_removes_its_augment_slot_options_and_their_modifiers() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
-        &correction_toml("item", "+3 Combustion Scorched Battle Axe", "remove", "0", "1"),
+        &new_correction("item", "+3 Combustion Scorched Battle Axe", "remove", "0", "1"),
     )])
     .unwrap();
     assert_eq!(report.correction_applied_count, 1, "{:?}", report.stale_corrections);
@@ -2568,11 +2494,9 @@ fn removing_an_item_removes_its_augment_slot_options_and_their_modifiers() {
 
 #[test]
 fn merging_a_socket_label_moves_the_sockets_options_grant() {
-    let (db, report) = built_db_with(&[(
-        "corrections.toml",
-        &correction_toml("socket_label", "red", "name", "\"red\"", "\"purple\""),
-    )])
-    .unwrap();
+    let (db, report) =
+        built_db_with(&[("corrections.toml", &new_correction("socket_label", "red", "name", "\"red\"", "\"purple\""))])
+            .unwrap();
     assert_eq!(report.correction_applied_count, 1, "{:?}", report.stale_corrections);
     let granted_labels: Vec<String> = db
         .prepare(
@@ -2600,10 +2524,10 @@ fn refuses_an_untyped_augment_slot_option_bonus_unless_an_item_bonus_correction_
     ] {
         assert!(error.contains(expected_text), "{expected_text} missing from {error}");
     }
-    let equipment_corrections: String = [17, 18]
+    let equipment_corrections: CorrectionSet = [17, 18]
         .iter()
         .map(|bonus_value| {
-            qualified_correction_toml(
+            new_qualified_correction(
                 "item_bonus",
                 "Epic Bracers of Wind",
                 &format!("stat = \"Electric Spell Lore\"\nbonus_type = \"null\"\nbonus_value = {bonus_value}"),

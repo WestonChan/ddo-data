@@ -176,23 +176,28 @@ mod tests {
         let duplicate = contents[start..end].replace("<Description>", "<Description>Different source prose: ");
         std::fs::write(&augment_path, contents.replace("</Augments>", &format!("{duplicate}</Augments>"))).unwrap();
         let wiki = WikiOverrides::default();
-        let corrections_root = scratch.path().join("corrections");
-        std::fs::create_dir(&corrections_root).unwrap();
-        std::fs::write(
-            corrections_root.join("attack.toml"),
-            r#"[[correction]]
-kind = "augment"
-name = "Voidscale"
-field = "description"
-from = "Previous text"
-to = "Reviewed text"
-reason = "Test disagreement between two XML augment records."
-source = "https://ddowiki.com/page/Augment:Voidscale"
-read = "2026-10-17"
-"#,
-        )
-        .unwrap();
-        let corrections = Corrections::from_dir(&corrections_root).unwrap();
+        let corrections = Corrections {
+            entries: vec![crate::corrections::Correction {
+                kind: ddo_model::enums::CorrectionKind::Augment,
+                name: "Voidscale".into(),
+                field: "description".into(),
+                from: crate::corrections::CorrectionValue::Text("Previous text".into()),
+                to: crate::corrections::CorrectionValue::Text("Reviewed text".into()),
+                family: None,
+                selection: None,
+                stance: None,
+                dc: None,
+                effect: None,
+                stat: None,
+                bonus_type: None,
+                bonus_value: None,
+                equipped_count: None,
+                reason: "Test disagreement between two XML augment records.".into(),
+                source: "https://ddowiki.com/page/Augment:Voidscale".to_string().into(),
+                read: "2026-10-17".into(),
+                file_name: "attack.toml".into(),
+            }],
+        };
         let error = build_database_matching_his_values(
             &source,
             &wiki,

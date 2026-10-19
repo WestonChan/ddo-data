@@ -11,14 +11,10 @@ use rusqlite::Connection;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::path::Path;
-use std::sync::OnceLock;
 
-const CORRECTION_TABLE_NAME: &str = "correction";
-static EMBEDDED_CORRECTIONS: OnceLock<Result<Corrections, String>> = OnceLock::new();
 pub const NULL_SPELLING: &str = "null";
 
-#[derive(Debug, Clone, PartialEq, Deserialize)]
-#[serde(from = "TomlCorrectionValue")]
+#[derive(Debug, Clone, PartialEq)]
 pub enum CorrectionValue {
     Integer(i64),
     Integers(Vec<i64>),
@@ -67,37 +63,6 @@ pub struct DamageRow {
     pub amount_from: i64,
     pub scale: f64,
     pub sort_order: i64,
-}
-
-#[derive(Deserialize)]
-#[serde(untagged)]
-enum TomlCorrectionValue {
-    Integer(i64),
-    Integers(Vec<i64>),
-    Texts(Vec<String>),
-    Float(f64),
-    Text(String),
-    Bonus(BonusAddition),
-    Tier(TierAddition),
-    Effect(EffectAddition),
-    Damage(DamageRow),
-}
-
-impl From<TomlCorrectionValue> for CorrectionValue {
-    fn from(toml_value: TomlCorrectionValue) -> Self {
-        match toml_value {
-            TomlCorrectionValue::Integer(number) => Self::Integer(number),
-            TomlCorrectionValue::Integers(numbers) => Self::Integers(numbers),
-            TomlCorrectionValue::Texts(strings) => Self::Texts(strings),
-            TomlCorrectionValue::Float(number) => Self::Float(number),
-            TomlCorrectionValue::Text(text) if text == NULL_SPELLING => Self::Null,
-            TomlCorrectionValue::Text(text) => Self::Text(text),
-            TomlCorrectionValue::Bonus(bonus) => Self::Bonus(bonus),
-            TomlCorrectionValue::Tier(tier) => Self::Tier(tier),
-            TomlCorrectionValue::Effect(effect) => Self::Effect(effect),
-            TomlCorrectionValue::Damage(damage) => Self::Damage(damage),
-        }
-    }
 }
 
 impl CorrectionValue {
@@ -289,7 +254,7 @@ impl Correction {
             let allowed_fields: Vec<&str> = fields.iter().map(|field| field.name).collect();
             if self.kind == CorrectionKind::Quest && fields::WIKI_QUEST_FIELDS.contains(&self.field.as_str()) {
                 format!(
-                    "field {:?} comes from the wiki's quests.toml, not Maetrim's files; correct it there. A quest correction takes {}",
+                    "field {:?} is a wiki fact kept in the quest's data file, not one of Maetrim's; correct it there. A quest correction takes {}",
                     self.field,
                     allowed_fields.join(", ")
                 )
@@ -538,7 +503,7 @@ impl Correction {
         Ok(())
     }
 
-    fn validate(&self) -> Result<()> {
+    pub fn validate(&self) -> Result<()> {
         let field = self.correctable_field()?;
         self.validate_qualifier_keys(field)?;
         self.validate_values(field)?;
@@ -607,58 +572,6 @@ fn expected_value_text(field: &CorrectableField) -> String {
         format!("{non_null_text}, or \"null\"")
     } else {
         format!("{non_null_text}; it cannot be null")
-    }
-}
-
-#[derive(Deserialize)]
-#[serde(deny_unknown_fields)]
-struct TomlCorrection {
-    kind: String,
-    name: String,
-    field: String,
-    family: Option<String>,
-    selection: Option<String>,
-    stance: Option<String>,
-    dc: Option<String>,
-    effect: Option<String>,
-    stat: Option<String>,
-    bonus_type: Option<String>,
-    bonus_value: Option<i64>,
-    equipped_count: Option<i64>,
-    from: CorrectionValue,
-    to: CorrectionValue,
-    reason: String,
-    source: Option<String>,
-    in_game: Option<bool>,
-    read: String,
-}
-
-impl TomlCorrection {
-    fn into_correction(self, file_name: &str) -> Result<Correction> {
-        let kind = CorrectionKind::parse(&self.kind).with_context(|| {
-            let allowed_kinds: Vec<&str> = CorrectionKind::ALL.iter().map(|kind| kind.as_str()).collect();
-            format!("kind {:?} is not one of {}", self.kind, allowed_kinds.join(", "))
-        })?;
-        Ok(Correction {
-            kind,
-            name: self.name,
-            field: self.field,
-            from: self.from,
-            to: self.to,
-            family: self.family,
-            selection: self.selection,
-            stance: self.stance,
-            dc: self.dc,
-            effect: self.effect,
-            stat: self.stat,
-            bonus_type: self.bonus_type,
-            bonus_value: self.bonus_value,
-            equipped_count: self.equipped_count,
-            reason: self.reason,
-            source: crate::AnnotationSource::from_fields(self.source, self.in_game)?,
-            read: self.read,
-            file_name: file_name.to_string(),
-        })
     }
 }
 
@@ -736,55 +649,6 @@ impl Corrections {
         }
         Ok(Self { entries })
     }
-
-    pub fn embedded() -> Result<Self> {
-        EMBEDDED_CORRECTIONS
-            .get_or_init(|| {
-                Self::from_dir(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data/corrections"))
-                    .map_err(|error| format!("{error:#}"))
-            })
-            .clone()
-            .map_err(|error| anyhow::anyhow!("{error}"))
-    }
-
-    pub fn from_dir(dir: &Path) -> Result<Self> {
-        let mut paths: Vec<_> = std::fs::read_dir(dir)
-            .with_context(|| format!("listing {}", dir.display()))?
-            .filter_map(|e| e.ok().map(|e| e.path()))
-            .filter(|p| p.extension().is_some_and(|x| x == "toml"))
-            .collect();
-        paths.sort();
-        let toml_files = paths
-            .iter()
-            .map(|path| {
-                let toml_text = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
-                Ok((path.file_name().unwrap_or_default().to_string_lossy().into_owned(), toml_text))
-            })
-            .collect::<Result<Vec<_>>>()?;
-        Self::from_toml_files(
-            &toml_files
-                .iter()
-                .map(|(file_name, toml_text)| (file_name.as_str(), toml_text.as_str()))
-                .collect::<Vec<_>>(),
-        )
-    }
-
-    pub fn from_toml_files(toml_files: &[(&str, &str)]) -> Result<Self> {
-        let mut corrections = Self::default();
-        let mut first_file_by_label: HashMap<String, &str> = HashMap::new();
-        for (file_name, toml_text) in toml_files {
-            for correction in parse_correction_file(file_name, toml_text)? {
-                if let Some(first_file) = first_file_by_label.insert(correction.label(), file_name) {
-                    bail!(
-                        "correction file {file_name}: {} is already corrected in {first_file}; a field is corrected once",
-                        correction.label()
-                    );
-                }
-                corrections.entries.push(correction);
-            }
-        }
-        Ok(corrections)
-    }
 }
 
 fn set_correction_qualifiers(correction: &mut Correction, qualifier: &str) -> Result<()> {
@@ -820,38 +684,6 @@ fn set_correction_qualifiers(correction: &mut Correction, qualifier: &str) -> Re
     Ok(())
 }
 
-fn parse_correction_file(file_name: &str, toml_text: &str) -> Result<Vec<Correction>> {
-    let mut document: toml::Table =
-        toml::from_str(toml_text).with_context(|| format!("correction file {file_name}"))?;
-    let tables = match document.remove(CORRECTION_TABLE_NAME) {
-        None => Vec::new(),
-        Some(toml::Value::Array(tables)) => tables,
-        Some(_) => bail!(
-            "correction file {file_name}: {CORRECTION_TABLE_NAME} must be an array of tables, written [[{CORRECTION_TABLE_NAME}]]"
-        ),
-    };
-    if let Some(unknown_key) = document.keys().next() {
-        bail!("correction file {file_name}: unknown top-level key {unknown_key:?}; the file holds only [[{CORRECTION_TABLE_NAME}]] tables");
-    }
-    tables
-        .into_iter()
-        .enumerate()
-        .map(|(index, table)| {
-            let entry_label = match table.get("name").and_then(toml::Value::as_str) {
-                Some(name) => format!("{CORRECTION_TABLE_NAME} {name:?}"),
-                None => format!("{CORRECTION_TABLE_NAME} #{}", index + 1),
-            };
-            let correction = table
-                .try_into::<TomlCorrection>()
-                .map_err(anyhow::Error::from)
-                .and_then(|toml_correction| toml_correction.into_correction(file_name))
-                .with_context(|| format!("correction file {file_name}: {entry_label}"))?;
-            correction.validate().with_context(|| format!("correction file {file_name}: {}", correction.label()))?;
-            Ok(correction)
-        })
-        .collect()
-}
-
 #[cfg(test)]
 mod tests {
     use super::{CorrectionValue, Corrections, DamageRow};
@@ -873,7 +705,6 @@ mod tests {
         assert_eq!(constitution.to, CorrectionValue::Integers(vec![1]));
         assert_eq!(constitution.source.page_url(), Some("https://ddowiki.com/page/Reaper_enhancements"));
         assert_eq!(constitution.read, "2026-10-08");
-        assert_eq!(corrections.entries.len(), Corrections::embedded().unwrap().entries.len() + 1);
         let tree: toml::Value = toml::from_str(
             &std::fs::read_to_string(root.join("characters/enhancements/grim-barricade/tree.toml")).unwrap(),
         )

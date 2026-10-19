@@ -1,9 +1,18 @@
 use std::path::{Path, PathBuf};
 
-const RETIRED_PATHS: &[&str] =
-    &["crates/ddo-etl/build.rs", "crates/ddo-etl/data/wiki", "crates/ddo-etl/tests/fixtures/wiki"];
+const RETIRED_PATHS: &[&str] = &[
+    "crates/ddo-etl/build.rs",
+    "crates/ddo-etl/data/wiki",
+    "crates/ddo-etl/data/corrections",
+    "crates/ddo-etl/tests/fixtures/wiki",
+    "crates/ddo-etl/tests/fixtures/corrections",
+    "crates/ddo-etl/tests/fixtures/data-corrections",
+    "crates/ddo-etl/tests/fixtures/import_ddobuilder/wiki",
+    "crates/ddo-etl/tests/fixtures/import_ddobuilder/corrections",
+];
 
-const RETIRED_TEXT: &[&str] = &["data/wiki"];
+const RETIRED_TEXT: &[&str] =
+    &["data/wiki", "data/corrections", "wiki-check", "wiki-batch", "wiki_check", "wiki_batch"];
 
 fn workspace_root() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("../..").canonicalize().unwrap()

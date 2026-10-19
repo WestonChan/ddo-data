@@ -1,6 +1,11 @@
 mod fixture;
 
-use ddo_etl::{build, corrections::Corrections, tree, wiki::WikiOverrides};
+use ddo_etl::{
+    build,
+    corrections::{CorrectionValue, Corrections},
+    tree,
+    wiki::WikiOverrides,
+};
 use ddo_model::DatasetVersion;
 use rusqlite::Connection;
 use std::path::Path;
@@ -144,7 +149,7 @@ fn fieldless_citation_does_not_make_an_upstream_item_wiki_only() {
     let scratch = tempfile::tempdir().unwrap();
     let source = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles");
     let mut db = Connection::open_in_memory().unwrap();
-    let corrections = Corrections::from_dir(&source.parent().unwrap().join("data-corrections")).unwrap();
+    let corrections = fixture::fixture_icon_corrections();
     build::build_database(
         &source,
         &WikiOverrides::default(),
@@ -1036,7 +1041,7 @@ fn augment_family_rename_preserves_the_upstream_correction_name() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let source = fixtures.join("DataFiles");
     let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
-    let mut corrections = Corrections::from_dir(&fixtures.join("data-corrections")).unwrap();
+    let mut corrections = fixture::fixture_icon_corrections();
     let version = DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() };
     let mut baseline = Connection::open_in_memory().unwrap();
     build::build_database(&source, &wiki, &corrections, &mut baseline, &version).unwrap();
@@ -1044,20 +1049,11 @@ fn augment_family_rename_preserves_the_upstream_correction_name() {
         .query_row("SELECT name, family FROM augments ORDER BY id LIMIT 1", [], |row| Ok((row.get(0)?, row.get(1)?)))
         .unwrap();
     let renamed = format!("{name} reviewed");
-    let text = format!(
-        r#"[[correction]]
-kind = "augment"
-name = {name:?}
-family = {family:?}
-field = "name"
-from = {name:?}
-to = {renamed:?}
-reason = "Reviewed family rename."
-source = "https://ddowiki.com/page/Test"
-read = "2026-10-18"
-"#
-    );
-    corrections.entries.extend(Corrections::from_toml_files(&[("rename.toml", &text)]).unwrap().entries);
+    let rename = fixture::new_correction("augment", &name, "name", &format!("{name:?}"), &format!("{renamed:?}"))
+        + format!("family = {family:?}").as_str();
+    corrections
+        .entries
+        .extend(rename.cited("Reviewed family rename.", "https://ddowiki.com/page/Test", "2026-10-18").0);
     let mut corrected = Connection::open_in_memory().unwrap();
     build::build_database(&source, &wiki, &corrections, &mut corrected, &version).unwrap();
     let scratch = tempfile::tempdir().unwrap();
@@ -1077,7 +1073,7 @@ fn selection_and_parent_renames_keep_the_upstream_parent_in_both_builders() {
     let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
     let version = DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() };
     for parent_first in [true, false] {
-        let mut corrections = Corrections::from_dir(&fixtures.join("data-corrections")).unwrap();
+        let mut corrections = fixture::fixture_icon_corrections();
         let mut renames = [
             ("", "Kensei: Action Boost", "Kensei: Action Boost Reviewed"),
             ("selection = \"Attack Boost\"\n", "Attack Boost", "Attack Boost Reviewed"),
@@ -1086,19 +1082,14 @@ fn selection_and_parent_renames_keep_the_upstream_parent_in_both_builders() {
             renames.reverse();
         }
         for (qualifier, before, after) in renames {
-            let text = format!(
-                r#"[[correction]]
-kind = "enhancement"
-name = "Kensei: Action Boost"
-field = "name"
-from = {before:?}
-to = {after:?}
-{qualifier}reason = "Paired rename."
-source = "https://ddowiki.com/page/Test"
-read = "2026-10-18"
-"#
-            );
-            corrections.entries.extend(Corrections::from_toml_files(&[("paired.toml", &text)]).unwrap().entries);
+            let rename = fixture::new_correction(
+                "enhancement",
+                "Kensei: Action Boost",
+                "name",
+                &format!("{before:?}"),
+                &format!("{after:?}"),
+            ) + qualifier;
+            corrections.entries.extend(rename.cited("Paired rename.", "https://ddowiki.com/page/Test", "2026-10-18").0);
         }
         let mut corrected = Connection::open_in_memory().unwrap();
         let report = build::build_database(&source, &wiki, &corrections, &mut corrected, &version).unwrap();
@@ -1155,7 +1146,7 @@ fn every_declared_enhancement_field_agrees_between_builders() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let source = fixtures.join("DataFiles");
     let wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
-    let baseline_corrections = Corrections::from_dir(&fixtures.join("data-corrections")).unwrap();
+    let baseline_corrections = fixture::fixture_icon_corrections();
     let version = DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() };
     let mut baseline = Connection::open_in_memory().unwrap();
     build::build_database(&source, &wiki, &baseline_corrections, &mut baseline, &version).unwrap();
@@ -1197,40 +1188,23 @@ fn every_declared_enhancement_field_agrees_between_builders() {
                 }
                 let from = if original == CorrectionValue::Null { "\"null\"".into() } else { original.to_json() };
                 let qualifier = if selection { "selection = \"Attack Boost\"\n" } else { "" };
-                let text = format!(
-                    r#"[[correction]]
-kind = "enhancement"
-name = "Kensei: Action Boost"
-field = {field:?}
-from = {from}
-to = {replacement}
-{qualifier}reason = "Reviewed in test."
-source = "https://ddowiki.com/page/Test"
-read = "2026-10-18"
-"#
-                );
+                let correction = fixture::new_correction(
+                    "enhancement",
+                    "Kensei: Action Boost",
+                    field,
+                    &from,
+                    &replacement.to_string(),
+                ) + qualifier;
                 let mut corrections = baseline_corrections.clone();
                 corrections
                     .entries
-                    .extend(Corrections::from_toml_files(&[("enhancement.toml", text.as_str())]).unwrap().entries);
+                    .extend(correction.cited("Reviewed in test.", "https://ddowiki.com/page/Test", "2026-10-18").0);
                 if selection && field == "name" {
+                    let sibling =
+                        fixture::new_correction("enhancement", "Kensei: Action Boost", "cost_per_rank", "[1]", "[4]")
+                            + "selection = \"Attack Boost\"\n";
                     corrections.entries.extend(
-                        Corrections::from_toml_files(&[(
-                            "sibling.toml",
-                            r#"[[correction]]
-kind = "enhancement"
-name = "Kensei: Action Boost"
-selection = "Attack Boost"
-field = "cost_per_rank"
-from = [1]
-to = [4]
-reason = "Sibling of renamed selection."
-source = "https://ddowiki.com/page/Test"
-read = "2026-10-18"
-"#,
-                        )])
-                        .unwrap()
-                        .entries,
+                        sibling.cited("Sibling of renamed selection.", "https://ddowiki.com/page/Test", "2026-10-18").0,
                     );
                 }
                 let mut corrected = Connection::open_in_memory().unwrap();
@@ -1346,20 +1320,19 @@ fn annotation_sources_and_correction_kinds_are_typed() {
 
 #[test]
 fn import_reports_enhancement_cost_resolution_conflict_and_unchanged_values() {
-    let correction = r#"[[correction]]
-kind = "enhancement"
-name = "Ravager: Draconic Power Attack"
-field = "cost_per_rank"
-from = [1]
-to = [2]
-reason = "Reviewed enhancement cost."
-source = "https://ddowiki.com/page/Test"
-read = "2026-10-18"
-"#;
-    for source in ["source = \"https://ddowiki.com/page/Test\"", "in_game = true"] {
-        let correction = correction.replace("source = \"https://ddowiki.com/page/Test\"", source);
+    let cost_correction =
+        fixture::new_correction("enhancement", "Ravager: Draconic Power Attack", "cost_per_rank", "[1]", "[2]").cited(
+            "Reviewed enhancement cost.",
+            "https://ddowiki.com/page/Test",
+            "2026-10-18",
+        );
+    for in_game in [false, true] {
+        let mut correction = cost_correction.clone();
+        if in_game {
+            correction.0[0].source = ddo_etl::AnnotationSource::InGame;
+        }
         for (new_cost, expected) in [(1, None), (2, Some("RESOLVED CORRECTION")), (3, Some("CONFLICT"))] {
-            let world = ImportWorld::new(Corrections::from_toml_files(&[("cost.toml", correction.as_str())]).unwrap());
+            let world = ImportWorld::new(fixture::corrections_from(&[("cost.toml", &correction)]).unwrap());
             let path = world.options.source_dir.join("EnhancementTrees/Fighter_Ravager.tree.xml");
             let xml = std::fs::read_to_string(&path).unwrap();
             assert!(xml.contains("<CostPerRank size=\"1\">1</CostPerRank>"));
@@ -1392,7 +1365,30 @@ read = "2026-10-18"
 }
 
 fn ravager_corrections() -> Corrections {
-    Corrections::from_dir(&fixture_root().join("corrections")).unwrap()
+    let page = "https://ddowiki.com/page/Ravager_enhancements";
+    let description = |name: &str, from: &str, to: &str| {
+        fixture::correction_between(
+            "enhancement",
+            name,
+            "description",
+            CorrectionValue::Text(from.into()),
+            CorrectionValue::Text(to.into()),
+        )
+        .cited("Fixture wiki research.", page, "2026-10-17")
+    };
+    fixture::corrections_from(&[(
+        "ravager.toml",
+        &(description(
+            "Ravager: Draconic Power Attack",
+            "Your Power Attack feat does [1/2/3] additional point(s) of bonus damage.\nNote: Stacks with Improved Power Attack. Damage is doubled when Two Handed\nFighting or fighting in an animal form.",
+            "Your Power Attack feat does 3 additional point(s) of bonus damage.\nNote: Stacks with Improved Power Attack. Damage is doubled when Two Handed\nFighting or fighting in an animal form.",
+        ) + &description(
+            "Ravager: Barbarian Power Attack",
+            "Your Power Attack feat does [1/2/3] additional point(s) of bonus damage.\nDamage is doubled when Two Handed Fighting or fighting in an animal form..",
+            "Our researched Barbarian Power Attack description.",
+        )),
+    )])
+    .unwrap()
 }
 
 #[test]
