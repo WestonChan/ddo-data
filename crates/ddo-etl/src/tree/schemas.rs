@@ -59,6 +59,17 @@ fn collect_field_errors(
                 errors.push(format!("{location}{field}"));
             }
         }
+        for citation in fields.get("citation").and_then(toml::Value::as_array).into_iter().flatten() {
+            let Some(cited_field) = citation.get("field").and_then(toml::Value::as_str).filter(|name| !name.is_empty())
+            else {
+                continue;
+            };
+            if definition["properties"].get(cited_field).is_none() {
+                errors.push(format!(
+                    "{location}citation field {cited_field:?} is neither empty nor a field or array of this record"
+                ));
+            }
+        }
         for (name, child) in fields {
             if let Some(property) = definition["properties"].get(name) {
                 if child.as_bool() == Some(false)

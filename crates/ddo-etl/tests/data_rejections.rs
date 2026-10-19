@@ -65,3 +65,25 @@ fn structural_rejections_fail_the_data_build_naming_their_file_once() {
     }
     assert!(failures.is_empty(), "{}", failures.join("\n"));
 }
+
+#[test]
+fn a_citation_field_must_be_empty_or_a_field_of_its_record() {
+    const ITEM: &str = "packs/shared/gear/alabaster-of-the-twelve.toml";
+    let cite = |field: &'static str| {
+        move |root: &std::path::Path| {
+            let path = root.join(ITEM);
+            let mut text = std::fs::read_to_string(&path).unwrap();
+            text.push_str(&format!(
+                "\n[[citation]]\nfield = {field:?}\nurl = \"https://ddowiki.com/page/Item:Test\"\nread = \"2026-10-18\"\n"
+            ));
+            std::fs::write(path, text).unwrap();
+        }
+    };
+    for field in ["description", "minimum_level", "source", "socket"] {
+        assert_eq!(fixture::data_build_error(cite(field)), "", "{field}");
+    }
+    for field in ["quest facts", "sources", "modifier.display_name", "nonsense"] {
+        let message = fixture::data_build_error(cite(field));
+        assert!(message.contains("alabaster-of-the-twelve.toml") && message.contains(field), "{field}: {message}");
+    }
+}
