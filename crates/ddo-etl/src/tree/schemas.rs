@@ -225,6 +225,7 @@ pub fn in_generated_folder(path: &Path) -> bool {
 pub enum Placement {
     Entity(&'static str),
     Rows(&'static str),
+    GroupedRows(&'static str),
     Dataset,
 }
 
@@ -264,6 +265,9 @@ macro_rules! template_text {
         None
     };
     (Rows, $file:ty) => {
+        Some((super::typed_file_text(&<$file as FileTemplate>::template())?, String::new()))
+    };
+    (GroupedRows, $file:ty) => {
         Some((super::typed_file_text(&<$file as FileTemplate>::template())?, String::new()))
     };
     ($placement:ident, $file:ty) => {{
@@ -347,8 +351,8 @@ declare_file_kinds! {
     Event(EventFile) => Entity("packs/shared/events/{slug}/event.toml"),
     Exceptions(ExceptionsFile) => Dataset,
     ExcludedItems(ExcludedItemsFile) => Dataset,
-    FeatCategory(FeatCategoryFile) => Rows("characters/feats/deity.toml"),
-    FiligreeSet(FiligreeSetFile) => Rows("packs/shared/filigrees/electrocution.toml"),
+    FeatCategory(FeatCategoryFile) => GroupedRows("characters/feats/{group}.toml"),
+    FiligreeSet(FiligreeSetFile) => GroupedRows("packs/shared/filigrees/{group}.toml"),
     StatGroup(StatGroupFile) => Entity("effects/stat-groups/{slug}.toml"),
     GuildBuffs(GuildBuffsFile) => Rows("characters/guild-buffs.toml"),
     Item(ItemFile) => Entity("packs/unsourced/gear/{slug}.toml"),
@@ -364,7 +368,7 @@ declare_file_kinds! {
     SentientGem(SentientGemFile) => Entity("packs/shared/sentient-gems/{slug}.toml"),
     SourceAliases(SourceAliasesFile) => Dataset,
     Set(SetFile) => Entity("packs/shared/sets/{slug}.toml"),
-    SpellList(SpellListFile) => Rows("characters/spells/unassigned.toml"),
+    SpellList(SpellListFile) => GroupedRows("characters/spells/{group}.toml"),
     Stances(StancesFile) => Rows("characters/stances.toml"),
     Stat(StatFile) => Entity("effects/stats/{slug}.toml"),
     Triggers(TriggersFile) => Rows("effects/triggers.toml"),
@@ -774,12 +778,24 @@ mod tests {
     }
 
     #[test]
+    fn grouped_rows_name_their_group_and_single_files_do_not() {
+        for (kind, placement) in super::FILE_KINDS {
+            match placement {
+                super::Placement::GroupedRows(pattern) => assert!(pattern.contains("{group}"), "{kind}"),
+                super::Placement::Rows(path) => assert!(!path.contains('{'), "{kind}"),
+                super::Placement::Entity(_) | super::Placement::Dataset => {}
+            }
+        }
+    }
+
+    #[test]
     fn every_placement_maps_back_to_its_own_kind() {
         let root = std::path::Path::new("data");
         for (kind, placement) in super::FILE_KINDS {
             let relative = match placement {
                 super::Placement::Entity(pattern) => pattern.replace("{slug}", "example-entity"),
                 super::Placement::Rows(path) => (*path).to_string(),
+                super::Placement::GroupedRows(pattern) => pattern.replace("{group}", "example-group"),
                 super::Placement::Dataset => continue,
             };
             assert_eq!(super::file_kind(root, &root.join(&relative)).unwrap(), *kind, "{relative}");

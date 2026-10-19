@@ -21,7 +21,7 @@ fn every_template_builds_under_its_placement_and_exports_byte_equal() {
     copy_tree(&workspace.join("data"), &data);
     let templates = kind_templates().unwrap();
     let mut entity_files: Vec<(&str, PathBuf, String)> = Vec::new();
-    let mut row_templates: Vec<(&str, PathBuf, toml::Value)> = Vec::new();
+    let mut row_templates: Vec<(&str, PathBuf, bool, toml::Value)> = Vec::new();
     for (kind, placement) in FILE_KINDS {
         let template = templates.iter().find(|template| template.kind == *kind);
         match (placement, template) {
@@ -35,11 +35,15 @@ fn every_template_builds_under_its_placement_and_exports_byte_equal() {
                 entity_files.push((kind, path, template.text.clone()));
             }
             (Placement::Rows(path), Some(template)) => {
-                row_templates.push((kind, PathBuf::from(path), toml::from_str(&template.text).unwrap()));
+                row_templates.push((kind, PathBuf::from(path), false, toml::from_str(&template.text).unwrap()));
+            }
+            (Placement::GroupedRows(pattern), Some(template)) => {
+                let path = PathBuf::from(pattern.replace("{group}", "template-group"));
+                row_templates.push((kind, path, true, toml::from_str(&template.text).unwrap()));
             }
         }
     }
-    for (kind, path, template) in &row_templates {
+    for (kind, path, _, template) in &row_templates {
         let mut file: toml::Value = match std::fs::read_to_string(data.join(path)) {
             Ok(text) => toml::from_str(&text).unwrap(),
             Err(_) => toml::from_str("row = []").unwrap(),
@@ -58,11 +62,26 @@ fn every_template_builds_under_its_placement_and_exports_byte_equal() {
     let exported = scratch.path().join("exported");
     ddo_etl::tree::export_database(&db, &exported).unwrap();
     let mut failures = Vec::new();
-    for (kind, path, template) in &row_templates {
-        let rebuilt: toml::Value = toml::from_str(&std::fs::read_to_string(exported.join(path)).unwrap()).unwrap();
+    for (kind, path, is_grouped, template) in &row_templates {
+        let exported_files: Vec<PathBuf> = if *is_grouped {
+            std::fs::read_dir(exported.join(path.parent().unwrap()))
+                .unwrap()
+                .map(|entry| entry.unwrap().path())
+                .filter(|file| file.extension().is_some_and(|extension| extension == "toml"))
+                .collect()
+        } else {
+            vec![exported.join(path)]
+        };
+        let exported_rows: Vec<toml::Value> = exported_files
+            .iter()
+            .flat_map(|file| {
+                let rebuilt: toml::Value = toml::from_str(&std::fs::read_to_string(file).unwrap()).unwrap();
+                rebuilt["row"].as_array().unwrap().clone()
+            })
+            .collect();
         for row in template["row"].as_array().unwrap() {
             let name = row.get("name").or_else(|| row.get("label")).and_then(toml::Value::as_str).unwrap();
-            let present = rebuilt["row"].as_array().unwrap().iter().any(|candidate| {
+            let present = exported_rows.iter().any(|candidate| {
                 candidate.get("name").or_else(|| candidate.get("label")).and_then(toml::Value::as_str) == Some(name)
             });
             if !present {
