@@ -576,6 +576,13 @@ declared_records! {
     super::tables::EffectGrant,
 }
 
+pub const UNPOPULATED_COLUMNS: &[(&str, &str)] = &[
+    ("effects", "default_value2"),
+    ("effects", "wiki_url"),
+    ("effect_bonuses", "trigger_id"),
+    ("triggers", "description"),
+];
+
 pub(crate) fn declared_columns_by_table() -> BTreeMap<String, std::collections::BTreeSet<String>> {
     let mut declared = declared_record_columns();
     for (table, columns) in crate::loot_sources::declared_columns() {
@@ -592,7 +599,7 @@ pub(crate) fn undeclared_columns(
     db: &rusqlite::Connection,
     declared: &BTreeMap<String, std::collections::BTreeSet<String>>,
 ) -> Result<Vec<String>> {
-    use crate::delta::{is_rebuilt_column, table_merge, TableMerge, UNPOPULATED_COLUMNS};
+    use crate::delta::{is_rebuilt_column, table_merge, TableMerge};
     let mut findings = Vec::new();
     for table in crate::database_tables::table_names(db)? {
         if matches!(table_merge(&table), Some(TableMerge::Rederived | TableMerge::DatasetVersion)) {
@@ -625,6 +632,21 @@ pub fn validate_column_coverage() -> Result<()> {
         "columns no record declaration writes, no build rebuilds and no list marks unpopulated: {}",
         findings.join(", ")
     );
+    Ok(())
+}
+
+pub fn validate_unpopulated_columns(db: &rusqlite::Connection) -> Result<()> {
+    let mut populated = Vec::new();
+    for (table, column) in UNPOPULATED_COLUMNS {
+        let rows: i64 =
+            db.query_row(&format!("SELECT COUNT(*) FROM \"{table}\" WHERE \"{column}\" IS NOT NULL"), [], |row| {
+                row.get(0)
+            })?;
+        if rows > 0 {
+            populated.push(format!("{table}.{column} ({rows} rows)"));
+        }
+    }
+    ensure!(populated.is_empty(), "columns listed as unpopulated hold values: {}", populated.join(", "));
     Ok(())
 }
 
@@ -737,6 +759,18 @@ mod tests {
         db.execute_batch("ALTER TABLE patrons ADD COLUMN injected_column TEXT").unwrap();
         let findings = super::undeclared_columns(&db, &super::declared_columns_by_table()).unwrap();
         assert_eq!(findings, ["patrons.injected_column"]);
+    }
+
+    #[test]
+    fn a_column_listed_unpopulated_that_holds_a_value_is_reported() {
+        let fixtures = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+        let mut db = rusqlite::Connection::open_in_memory().unwrap();
+        crate::tree::build_from_data(&fixtures.join("data"), &mut db).unwrap();
+        super::validate_unpopulated_columns(&db).unwrap();
+        db.execute("UPDATE effects SET wiki_url = 'https://ddowiki.com/page/Injected' WHERE id = (SELECT MIN(id) FROM effects)", [])
+            .unwrap();
+        let error = super::validate_unpopulated_columns(&db).unwrap_err().to_string();
+        assert!(error.contains("effects.wiki_url (1 rows)"), "{error}");
     }
 
     #[test]

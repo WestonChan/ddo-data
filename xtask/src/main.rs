@@ -231,7 +231,7 @@ fn deny_invalid_data_files() -> Result<()> {
     ddo_etl::tree::build_from_data(&data_root, &mut db)?;
     let violations = xtask::redirect_checks::redirect_check_violations(&db, None, None)?;
     ensure!(violations.is_empty(), "{}", violations.join("\n"));
-    Ok(())
+    ddo_etl::tree::schemas::validate_unpopulated_columns(&db)
 }
 
 fn deny_data_schema_drift() -> Result<()> {

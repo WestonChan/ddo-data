@@ -161,13 +161,6 @@ pub const OURS_ONLY_COLUMNS: &[(&str, &str)] = &[
     ("quests", "flagging"),
 ];
 
-pub const UNPOPULATED_COLUMNS: &[(&str, &str)] = &[
-    ("effects", "default_value2"),
-    ("effects", "wiki_url"),
-    ("effect_bonuses", "trigger_id"),
-    ("triggers", "description"),
-];
-
 pub fn table_merge(table: &str) -> Option<&'static TableMerge> {
     TABLE_MERGES.iter().find_map(|(name, rule)| (*name == table).then_some(rule))
 }
