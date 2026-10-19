@@ -287,7 +287,7 @@ fn build_with_wiki_references(
             .entries
             .iter()
             .filter(|correction| correction.kind == CorrectionKind::SocketLabel && correction.field == "name")
-            .map(|correction| (correction.name.as_str(), correction))
+            .flat_map(|correction| correction.upstream_names().into_iter().map(move |spelling| (spelling, correction)))
             .collect(),
         applied_socket_label_corrections: Vec::new(),
         pending_set_item_links: Vec::new(),
@@ -776,11 +776,25 @@ impl TableWriter<'_> {
         if let Some(existing_label) = self.written.augment_slot_labels_by_slug.get(&identity).cloned() {
             let correction = [slot_type.label.as_str(), existing_label.as_str()].into_iter()
                 .filter_map(|label| self.socket_label_corrections.get(label).copied())
-                .find(|correction| correction.from.as_text() == Some(correction.name.as_str()) &&
-                    correction.to.as_text().is_some_and(|target| target == slot_type.label || target == existing_label))
+                .find(|correction| {
+                    let spellings = correction.upstream_names();
+                    let renames_between_them = correction
+                        .to
+                        .as_text()
+                        .is_some_and(|target| target == slot_type.label || target == existing_label);
+                    let merges_both = spellings.contains(&slot_type.label.as_str())
+                        && spellings.contains(&existing_label.as_str());
+                    renames_between_them || merges_both
+                })
                 .with_context(|| format!("socket labels {existing_label:?} and {:?} share slug {identity:?} without a correction joining them", slot_type.label))?;
+            ensure!(
+                correction.upstream_names().len() <= 2,
+                "socket labels {existing_label:?} and {:?} share slug {identity:?}; {} merges more than those two",
+                slot_type.label,
+                correction.label()
+            );
             let target = correction.to.as_text().context("a socket label rename has a target")?;
-            ensure!(target != correction.name, "socket label correction must change the label");
+            ensure!(!correction.upstream_names().contains(&target), "socket label correction must change the label");
             let id = self.written.augment_slot_type_ids_by_label[&existing_label];
             if existing_label != target {
                 corrections::rename_socket_label(self.transaction, id, target)?;

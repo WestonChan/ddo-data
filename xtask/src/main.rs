@@ -387,12 +387,12 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         (
             "ddo-etl",
             &["--test", "import_ddobuilder"][..],
-            "converging_overlay_socket_renames_follow_the_writer_and_have_no_import_delta",
+            "merged_socket_labels_follow_the_writer_and_have_no_import_delta",
         ),
         (
             "ddo-etl",
             &["--test", "import_ddobuilder"][..],
-            "converging_non_merging_overlay_renames_name_both_corrections",
+            "separate_corrections_with_one_target_fail_naming_both_on_every_kind",
         ),
         (
             "ddo-etl",
@@ -424,6 +424,12 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         ("ddo-etl", &["--test", "upstream"][..], "served_dataset_commands_expose_only_canonical_inputs"),
         ("xtask", &["--test", "diff_db"][..], "database_comparison_exposes_no_difference_allowance"),
         ("ddo-etl", &["--test", "retired_inputs"][..], "retired_inputs_and_tools_are_gone_from_the_workspace"),
+        (
+            "ddo-etl",
+            &["--test", "import_ddobuilder"][..],
+            "merged_socket_labels_resolve_when_his_files_adopt_the_name_for_every_spelling",
+        ),
+        ("ddo-etl", &["--test", "corrections"][..], "a_socket_label_merge_renames_every_listed_spelling_into_one_row"),
     ] {
         let test_status = Command::new("cargo")
             .args(["test", "-p", crate_name])

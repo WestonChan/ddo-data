@@ -772,9 +772,10 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
             let correction_name = if let Some(original_name) = &note.original_name {
                 original_name.clone()
             } else if note.field == "name" && !correction_notes::is_selection_rename(&note.field, &note.qualifier) {
-                note.upstream
-                    .as_ref()
+                let upstream = note.upstream.as_ref();
+                upstream
                     .and_then(serde_json::Value::as_str)
+                    .or_else(|| upstream.and_then(|spellings| spellings.get(0)).and_then(serde_json::Value::as_str))
                     .with_context(|| format!("correction for {entity_name:?} has no upstream name"))?
                     .to_string()
             } else {

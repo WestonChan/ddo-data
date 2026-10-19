@@ -269,6 +269,13 @@ impl Correction {
         })
     }
 
+    pub fn upstream_names(&self) -> Vec<&str> {
+        match &self.from {
+            CorrectionValue::Texts(spellings) if self.field == "name" => spellings.iter().map(String::as_str).collect(),
+            _ => vec![self.name.as_str()],
+        }
+    }
+
     pub fn label(&self) -> String {
         let qualifier = self.qualifier();
         if qualifier.is_empty() {
@@ -460,6 +467,23 @@ impl Correction {
                 if !matches!((&self.from, &self.to), (CorrectionValue::Null, CorrectionValue::Text(_))) {
                     bail!("an add takes from = \"null\" and to = the socket label to add");
                 }
+            }
+            FieldShape::RowName if matches!(self.from, CorrectionValue::Texts(_)) => {
+                let (CorrectionValue::Texts(spellings), CorrectionValue::Text(merged_name)) = (&self.from, &self.to)
+                else {
+                    bail!("a merge takes from = the list of his spellings and to = the name they merge into");
+                };
+                ensure!(
+                    self.kind == CorrectionKind::SocketLabel,
+                    "only a socket_label rename merges rows, so only it lists several spellings in from"
+                );
+                ensure!(
+                    spellings.len() >= 2
+                        && spellings.iter().all(|spelling| !spelling.trim().is_empty())
+                        && spellings.iter().collect::<std::collections::HashSet<_>>().len() == spellings.len()
+                        && !spellings.contains(merged_name),
+                    "a merge lists at least two distinct spellings, none of them its to"
+                );
             }
             FieldShape::EffectAddition => {
                 if !matches!(

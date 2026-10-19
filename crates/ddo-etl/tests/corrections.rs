@@ -1933,6 +1933,69 @@ fn colliding_socket_label_slugs_apply_the_recorded_rename_in_either_input_order(
     }
 }
 
+fn merge_of(kind: &str, spellings: &[&str], target: &str) -> CorrectionSet {
+    fixture::correction_between(
+        kind,
+        spellings[0],
+        "name",
+        CorrectionValue::Texts(spellings.iter().map(|spelling| spelling.to_string()).collect()),
+        CorrectionValue::Text(target.into()),
+    )
+}
+
+#[test]
+fn a_socket_label_merge_lists_two_distinct_spellings_and_only_socket_labels_merge() {
+    let valid = merge_of(
+        "socket_label",
+        &["crafting: attuned to heroism 1", "crafting: attuned to heroism tier 1"],
+        "crafting: attuned by heroism: tier 1",
+    );
+    assert!(validated_corrections(&[("corrections.toml", &valid)]).is_ok());
+    for (merge, expected_text) in [
+        (merge_of("adventure_pack", &["Vault of Night", "Vault of Nite"], "The Vault of Night"), "socket_label"),
+        (merge_of("socket_label", &["crafting: one"], "crafting: two"), "two distinct spellings"),
+        (merge_of("socket_label", &["crafting: one", "crafting: one"], "crafting: two"), "two distinct spellings"),
+        (merge_of("socket_label", &["crafting: one", "crafting: two"], "crafting: two"), "none of them its to"),
+    ] {
+        let error = validated_corrections(&[("corrections.toml", &merge)]).unwrap_err();
+        assert!(error.contains(expected_text), "{expected_text}: {error}");
+    }
+}
+
+#[test]
+fn a_socket_label_merge_renames_every_listed_spelling_into_one_row() {
+    let merge = merge_of(
+        "socket_label",
+        &["crafting: attuned to heroism 1", "crafting: attuned to heroism 2"],
+        "crafting: attuned by heroism: tier 1",
+    );
+    let (db, report) = built_db_with(&[("corrections.toml", &merge)]).unwrap();
+    assert_eq!(
+        (report.correction_applied_count, report.correction_stale_count),
+        (1, 0),
+        "{:?}",
+        report.stale_corrections
+    );
+    assert_eq!(
+        &item_socket_labels(&db, "Sireth, Spear of the Sky")[..2],
+        ["crafting: attuned by heroism: tier 1", "crafting: attuned by heroism: tier 1"]
+    );
+    assert_eq!(
+        row_count(&db, "SELECT COUNT(*) FROM augment_slot_types WHERE label IN ('crafting: attuned to heroism 1', 'crafting: attuned to heroism 2')"),
+        0
+    );
+    assert_eq!(
+        recorded_corrections(&db),
+        [(
+            "socket_label".into(),
+            "crafting: attuned to heroism 1".into(),
+            "name".into(),
+            r#"["crafting: attuned to heroism 1","crafting: attuned to heroism 2"]"#.into(),
+            r#""crafting: attuned by heroism: tier 1""#.into()
+        )]
+    );
+}
+
 #[test]
 fn renames_a_socket_label_everywhere_and_merges_into_an_existing_one() {
     let (db, report) = built_db_with(&[(

@@ -96,7 +96,12 @@ fn apply_correction(
     report: &mut BuildReport,
 ) -> Result<()> {
     let field = correction.correctable_field()?;
-    let row_ids = maetrim_row_ids_named(transaction, correction, &correction.name)?;
+    let mut row_ids = Vec::new();
+    for spelling in correction.upstream_names() {
+        row_ids.extend(maetrim_row_ids_named(transaction, correction, spelling)?);
+    }
+    row_ids.sort_unstable();
+    row_ids.dedup();
     if row_ids.is_empty() {
         if matches!(correction.kind, CorrectionKind::SetTier | CorrectionKind::SetTierBonus) {
             if id_named(transaction, "set_bonuses", &correction.name)?.is_none() {
@@ -140,7 +145,7 @@ fn apply_correction(
         bail!(
             "no {} in Maetrim's files{family_text} is named {:?}{rename_text} (matched against {}.{}); use his exact name",
             correction.kind.as_str(),
-            correction.name,
+            correction.upstream_names().join(" or "),
             correction.kind.table_name(),
             correction.kind.name_column()
         );
@@ -152,7 +157,17 @@ fn apply_correction(
             maetrim_values.push(maetrim_value);
         }
     }
-    if maetrim_values != [correction.from.clone()] {
+    let merged_spellings = match (&correction.from, field.shape) {
+        (CorrectionValue::Texts(spellings), FieldShape::RowName) => Some(spellings),
+        _ => None,
+    };
+    let still_matches_his_value = match merged_spellings {
+        Some(spellings) => maetrim_values
+            .iter()
+            .all(|value| matches!(value, CorrectionValue::Text(current_name) if spellings.contains(current_name))),
+        None => maetrim_values == [correction.from.clone()],
+    };
+    if !still_matches_his_value {
         let maetrim_value_texts: Vec<String> = maetrim_values.iter().map(CorrectionValue::to_json).collect();
         record_stale_correction(
             report,
@@ -1509,7 +1524,12 @@ fn rename_rows(transaction: &Transaction, correction: &Correction, row_ids: &[i6
         );
     }
     match correction.kind {
-        CorrectionKind::SocketLabel => return rename_socket_label(transaction, row_ids[0], new_name),
+        CorrectionKind::SocketLabel => {
+            for row_id in row_ids {
+                rename_socket_label(transaction, *row_id, new_name)?;
+            }
+            return Ok(());
+        }
         CorrectionKind::Augment => refuse_an_augment_name_taken_in_its_families(transaction, row_ids, new_name)?,
         _ => {
             if id_named(transaction, correction.kind.table_name(), new_name)?.is_some() {

@@ -343,29 +343,44 @@ fn overlay_catalog_identity_survives_insertion_order() {
     }
 }
 
-#[test]
-fn converging_overlay_socket_renames_follow_the_writer_and_have_no_import_delta() {
+const HEROISM_MERGES: [([&str; 2], &str); 2] = [
+    (["Attuned to Heroism 1", "Attuned to Heroism 2"], "Reviewed Tier 1"),
+    (["Attuned to Heroism 3", "Attuned to Heroism 4"], "Reviewed Tier 2"),
+];
+
+fn crafting_label(upstream_type: &str) -> String {
+    format!("crafting: {}", upstream_type.to_lowercase())
+}
+
+fn heroism_merges() -> Vec<([String; 2], String)> {
+    HEROISM_MERGES.iter().map(|(types, target)| (types.map(crafting_label), crafting_label(target))).collect()
+}
+
+struct MergedSocketLabelImport {
+    report: String,
+    previous: Connection,
+    rebuilt: Connection,
+    recipe_count: i64,
+}
+
+fn import_with_merged_socket_labels(his_files_adopt_the_merged_names: bool) -> MergedSocketLabelImport {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let scratch = tempfile::tempdir().unwrap();
     let mut fixture = Connection::open_in_memory().unwrap();
     tree::build_from_data(&fixtures.join("data"), &mut fixture).unwrap();
     let mut wiki = WikiOverrides::from_database(&fixture).unwrap();
     let mut corrections = Corrections::from_database(&fixture).unwrap();
-    for (original, target) in [
-        ("crafting: attuned to heroism 1", "crafting: reviewed tier 1"),
-        ("crafting: attuned to heroism 2", "crafting: reviewed tier 1"),
-        ("crafting: attuned to heroism 3", "crafting: reviewed tier 2"),
-        ("crafting: attuned to heroism 4", "crafting: reviewed tier 2"),
-    ] {
-        let mut correction = corrections.entries[0].clone();
-        correction.kind = ddo_model::enums::CorrectionKind::SocketLabel;
-        correction.name = original.into();
-        correction.field = "name".into();
-        correction.from = ddo_etl::corrections::CorrectionValue::Text(original.into());
-        correction.to = ddo_etl::corrections::CorrectionValue::Text(target.into());
-        correction.family = None;
-        correction.selection = None;
-        corrections.entries.push(correction);
+    for (spellings, target) in heroism_merges() {
+        corrections.entries.extend(
+            fixture::correction_between(
+                "socket_label",
+                &spellings[0],
+                "name",
+                CorrectionValue::Texts(spellings.to_vec()),
+                CorrectionValue::Text(target),
+            )
+            .0,
+        );
     }
     let item = wiki.items.iter_mut().find(|item| item.name == "Battle Axe of the Oozing Hunger").unwrap();
     item.augment_slots = vec!["crafting: reviewed tier 1".into(), "crafting: reviewed tier 2".into()];
@@ -388,56 +403,144 @@ fn converging_overlay_socket_renames_follow_the_writer_and_have_no_import_delta(
     assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
     export_fixture_with_icons(&previous, &source, &root);
     copy_data_icons_into_source(&root, &source, scratch.path());
-    let mut ours = Connection::open_in_memory().unwrap();
-    tree::build_from_data(&root, &mut ours).unwrap();
+    let new_source = scratch.path().join("new");
+    copy_tree(&source, &new_source);
+    if his_files_adopt_the_merged_names {
+        let item = new_source.join("Items/Sireth, Spear of the Sky.item");
+        let mut contents = std::fs::read_to_string(&item).unwrap();
+        for (types, adopted) in HEROISM_MERGES {
+            for upstream_type in types {
+                let element = format!("<Type>{upstream_type}</Type>");
+                assert!(contents.contains(&element), "{element}");
+                contents = contents.replace(&element, &format!("<Type>{adopted}</Type>"));
+            }
+        }
+        std::fs::write(item, contents).unwrap();
+    }
     let report = import_ddobuilder(&DdobuilderImportOptions {
-        previous_dir: source.clone(),
-        source_dir: source,
+        previous_dir: source,
+        source_dir: new_source,
         data_dir: root.clone(),
         previous_sha: Some(PREVIOUS_SHA.into()),
         sha: Some(NEW_SHA.into()),
     })
     .unwrap();
     assert!(!report.has_conflicts(), "{report}");
-    assert!(!report.to_string().contains("CORRECTION"), "{report}");
-    assert!(!report.to_string().contains("reviewed tier"), "{report}");
     let mut rebuilt = Connection::open_in_memory().unwrap();
     tree::build_from_data(&root, &mut rebuilt).unwrap();
-    for db in [&previous, &rebuilt] {
-        let labels = db.prepare("SELECT s.label FROM item_augment_slots l JOIN items i ON i.id=l.item_id JOIN augment_slot_types s ON s.id=l.slot_id WHERE i.name='Battle Axe of the Oozing Hunger' ORDER BY l.sort_order").unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<Result<Vec<_>, _>>().unwrap();
-        assert_eq!(labels, ["crafting: reviewed tier 1", "crafting: reviewed tier 2"]);
-        assert_eq!(db.query_row("SELECT COUNT(*) FROM crafting_recipes r JOIN augment_slot_types s ON s.id=r.slot_id JOIN augment_slot_types g ON g.id=r.grants_slot_id WHERE s.label='crafting: reviewed tier 1' AND g.label='crafting: reviewed tier 2'", [], |row| row.get::<_, i64>(0)).unwrap(), wiki.crafting_systems[0].recipes.len() as i64);
+    MergedSocketLabelImport {
+        report: report.to_string(),
+        previous,
+        rebuilt,
+        recipe_count: wiki.crafting_systems[0].recipes.len() as i64,
     }
 }
 
 #[test]
-fn converging_non_merging_overlay_renames_name_both_corrections() {
+fn merged_socket_labels_follow_the_writer_and_have_no_import_delta() {
+    let import = import_with_merged_socket_labels(false);
+    assert!(!import.report.contains("CORRECTION"), "{}", import.report);
+    assert!(!import.report.contains("reviewed tier"), "{}", import.report);
+    for db in [&import.previous, &import.rebuilt] {
+        let labels = db.prepare("SELECT s.label FROM item_augment_slots l JOIN items i ON i.id=l.item_id JOIN augment_slot_types s ON s.id=l.slot_id WHERE i.name='Battle Axe of the Oozing Hunger' ORDER BY l.sort_order").unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<Result<Vec<_>, _>>().unwrap();
+        assert_eq!(labels, ["crafting: reviewed tier 1", "crafting: reviewed tier 2"]);
+        assert_eq!(db.query_row("SELECT COUNT(*) FROM crafting_recipes r JOIN augment_slot_types s ON s.id=r.slot_id JOIN augment_slot_types g ON g.id=r.grants_slot_id WHERE s.label='crafting: reviewed tier 1' AND g.label='crafting: reviewed tier 2'", [], |row| row.get::<_, i64>(0)).unwrap(), import.recipe_count);
+        let sireth_labels = db
+            .prepare("SELECT s.label FROM item_augment_slots l JOIN items i ON i.id=l.item_id JOIN augment_slot_types s ON s.id=l.slot_id WHERE i.name='Sireth, Spear of the Sky' AND s.label LIKE 'crafting: %' ORDER BY l.sort_order")
+            .unwrap()
+            .query_map([], |row| row.get::<_, String>(0))
+            .unwrap()
+            .collect::<Result<Vec<_>, _>>()
+            .unwrap();
+        assert_eq!(
+            &sireth_labels[..4],
+            [
+                "crafting: reviewed tier 1",
+                "crafting: reviewed tier 1",
+                "crafting: reviewed tier 2",
+                "crafting: reviewed tier 2"
+            ]
+        );
+        assert_eq!(
+            db.query_row(
+                "SELECT COUNT(*) FROM augment_slot_types WHERE label LIKE 'crafting: attuned to heroism%'",
+                [],
+                |row| row.get::<_, i64>(0)
+            )
+            .unwrap(),
+            0
+        );
+        let merges = db
+            .prepare("SELECT name, from_value, to_value FROM corrections WHERE kind = 'socket_label' AND to_value LIKE '%reviewed tier%' ORDER BY id")
+            .unwrap()
+            .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))
+            .unwrap()
+            .collect::<Result<Vec<_>, _>>()
+            .unwrap();
+        let expected: Vec<(String, String, String)> = heroism_merges()
+            .iter()
+            .map(|(spellings, target)| {
+                (
+                    spellings[0].clone(),
+                    serde_json::to_string(spellings).unwrap(),
+                    serde_json::to_string(target).unwrap(),
+                )
+            })
+            .collect();
+        assert_eq!(merges, expected);
+    }
+    assert_eq!(
+        Corrections::from_database(&import.previous)
+            .unwrap()
+            .entries
+            .iter()
+            .filter(|entry| matches!(entry.from, CorrectionValue::Texts(_)))
+            .count(),
+        2
+    );
+}
+
+#[test]
+fn merged_socket_labels_resolve_when_his_files_adopt_the_name_for_every_spelling() {
+    let import = import_with_merged_socket_labels(true);
+    assert_eq!(import.report.matches("RESOLVED CORRECTION").count(), 2, "{}", import.report);
+    assert!(import.report.contains("renamed upstream"), "{}", import.report);
+}
+
+#[test]
+fn separate_corrections_with_one_target_fail_naming_both_on_every_kind() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let mut fixture = Connection::open_in_memory().unwrap();
     tree::build_from_data(&fixtures.join("data"), &mut fixture).unwrap();
-    let mut corrections = Corrections::from_database(&fixture).unwrap();
-    for original in ["Masterminds of Sharn", "Chill of Ravenloft"] {
-        let mut correction = corrections.entries[0].clone();
-        correction.kind = ddo_model::enums::CorrectionKind::AdventurePack;
-        correction.name = original.into();
-        correction.field = "name".into();
-        correction.from = ddo_etl::corrections::CorrectionValue::Text(original.into());
-        correction.to = ddo_etl::corrections::CorrectionValue::Text("Converging pack".into());
-        correction.family = None;
-        correction.selection = None;
-        corrections.entries.push(correction);
-    }
-    let error = build::build_database(
-        &fixtures.join("DataFiles"),
-        &WikiOverrides::default(),
-        &corrections,
-        &mut Connection::open_in_memory().unwrap(),
-        &DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() },
-    )
-    .unwrap_err();
-    let message = format!("{error:#}");
-    for name in ["Masterminds of Sharn", "Chill of Ravenloft", "Converging pack"] {
-        assert!(message.contains(name), "{message}");
+    for (kind, originals, target) in [
+        ("adventure_pack", ["Masterminds of Sharn", "Chill of Ravenloft"], "Converging pack"),
+        ("socket_label", ["crafting: attuned to heroism 1", "crafting: attuned to heroism 2"], "crafting: converging"),
+    ] {
+        let mut corrections = Corrections::from_database(&fixture).unwrap();
+        for original in originals {
+            corrections.entries.extend(
+                fixture::correction_between(
+                    kind,
+                    original,
+                    "name",
+                    CorrectionValue::Text(original.into()),
+                    CorrectionValue::Text(target.into()),
+                )
+                .0,
+            );
+        }
+        let error = build::build_database(
+            &fixtures.join("DataFiles"),
+            &WikiOverrides::default(),
+            &corrections,
+            &mut Connection::open_in_memory().unwrap(),
+            &DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() },
+        )
+        .unwrap_err();
+        let message = format!("{error:#}");
+        for name in originals.into_iter().chain([target]) {
+            assert!(message.contains(name), "{kind}: {message}");
+        }
     }
 }
 

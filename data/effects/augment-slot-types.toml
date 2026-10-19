@@ -99,15 +99,10 @@ variant = "attuned by heroism: tier 1"
 [[row.ddobuilder_correction]]
 kind = "socket_label"
 field = "name"
-upstream = "crafting: attuned to heroism 1"
-reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 1, the label his Stormreaver items use."
-url = "https://ddowiki.com/page/Stormreaver_Monument"
-read = "2026-09-30"
-
-[[row.ddobuilder_correction]]
-kind = "socket_label"
-field = "name"
-upstream = "crafting: attuned to heroism tier 1"
+upstream = [
+    "crafting: attuned to heroism 1",
+    "crafting: attuned to heroism tier 1",
+]
 reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 1, the label his Stormreaver items use."
 url = "https://ddowiki.com/page/Stormreaver_Monument"
 read = "2026-09-30"
@@ -120,15 +115,10 @@ variant = "attuned by heroism: tier 2"
 [[row.ddobuilder_correction]]
 kind = "socket_label"
 field = "name"
-upstream = "crafting: attuned to heroism 2"
-reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 2, the label his Stormreaver items use."
-url = "https://ddowiki.com/page/Stormreaver_Monument"
-read = "2026-09-30"
-
-[[row.ddobuilder_correction]]
-kind = "socket_label"
-field = "name"
-upstream = "crafting: attuned to heroism tier 2"
+upstream = [
+    "crafting: attuned to heroism 2",
+    "crafting: attuned to heroism tier 2",
+]
 reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 2, the label his Stormreaver items use."
 url = "https://ddowiki.com/page/Stormreaver_Monument"
 read = "2026-09-30"

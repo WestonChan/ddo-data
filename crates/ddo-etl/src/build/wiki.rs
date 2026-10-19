@@ -520,15 +520,16 @@ impl OverlayReferences {
         }
         let mut active = self.active_renames.borrow_mut();
         for correction in renames {
-            let (Some(original_name), Some(corrected_name)) = (correction.from.as_text(), correction.to.as_text())
-            else {
+            let Some(corrected_name) = correction.to.as_text() else {
                 continue;
             };
+            let original_name = correction.name.as_str();
+            let upstream_names = correction.upstream_names();
             let table = correction.kind.table_name();
             let rows = rows_by_table[table]
                 .iter()
                 .filter(|(_, name, family)| {
-                    name == original_name
+                    upstream_names.contains(&name.as_str())
                         && correction.family.as_ref().is_none_or(|expected| family.as_ref() == Some(expected))
                 })
                 .map(|(id, _, family)| (*id, family.clone()))
@@ -540,7 +541,7 @@ impl OverlayReferences {
                 .entry((table.to_string(), corrected_name.to_string()))
                 .or_insert_with(|| OverlayRename { original_name: original_name.into(), rows: Vec::new() });
             ensure!(
-                table == "augment_slot_types" || rename.original_name == original_name,
+                rename.original_name == original_name,
                 "converging {table} name corrections {:?} -> {corrected_name:?} and {original_name:?} -> {corrected_name:?}",
                 rename.original_name
             );
