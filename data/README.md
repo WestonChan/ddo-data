@@ -57,6 +57,7 @@ data/
   redirects.toml
   icons/<kind>/<Name>.png
   .schemas/
+  .templates/
   README.md
 ```
 

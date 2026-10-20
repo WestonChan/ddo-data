@@ -46,12 +46,12 @@
     "vendor_items": 585,
     "vendors": 13,
     "wiki_augments": 4,
-    "wiki_items": 153,
+    "wiki_items": 150,
     "wiki_quests": 4
   },
   "dataset": {
-    "built_at": "2026-10-18T04:41:58Z",
+    "built_at": "2026-10-20T02:27:48Z",
     "upstream_sha": "d1350a0c6ec396a65dc02680fa9801a14a79ebf3"
   },
-  "schema_version": 38
+  "schema_version": 40
 }
