@@ -18,7 +18,14 @@ fn fixture_path() -> &'static PathBuf {
         std::fs::create_dir_all(&root).unwrap();
         let data_dir = root.join("data");
         let fixtures = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures");
-        let original = common::copy_fixture_data(&fixtures, &data_dir);
+        common::copy_fixture_data(&fixtures, &data_dir);
+        std::fs::write(
+            data_dir.join("effects/5-artifact-bonus-to-hit-and-damage-versus-evil-creatures.toml"),
+            include_str!("../../../data/effects/5-artifact-bonus-to-hit-and-damage-versus-evil-creatures.toml"),
+        )
+        .unwrap();
+        let mut original = Connection::open_in_memory().unwrap();
+        ddo_etl::tree::build_from_data(&data_dir, &mut original).unwrap();
         let mut redirects = String::new();
         for kind in EntityKind::ALL {
             let limit = if matches!(kind, EntityKind::Quest | EntityKind::QuestChain | EntityKind::Saga) { "" } else { " LIMIT 1" };
