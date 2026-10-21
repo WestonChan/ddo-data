@@ -27,8 +27,8 @@ correction: the ETL refuses to write an untyped one and the schema declares `bon
 NOT NULL, so a new untyped buff upstream stops the deploy until a correction or a mapping types it.
 
 The ETL and the API share the schema and ship together in one Docker image, which is why they live
-in one repository. The plan, phase status and design decisions live in the DDO Tools roadmap under
-its "V-series" section.
+in one repository. Planning and phase status live in the [DDO Tools project](https://github.com/users/WestonChan/projects/2);
+design decisions in `ddo-tools/docs/architecture.md`.
 
 ## Getting Started
 

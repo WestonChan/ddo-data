@@ -2,7 +2,7 @@
 
 ## Slug addressing (schema 38, 2026-10-18)
 
-The first of three steps that make slugs the only public identifier (ddo-tools roadmap 4e item 7). This step only adds; every existing field and numeric path still works.
+The first of three steps that make slugs the only public identifier (chunk 3 is [ddo-data#20](https://github.com/WestonChan/ddo-data/issues/20)). This step only adds; every existing field and numeric path still works.
 
 - Every detail route takes the entity's slug: `/v1/items/legendary-bracers-of-the-demons-consort`, `/v1/effects/combat-mastery`, and so on for all 16 detail routes. A numeric id still resolves on the same path. Slugs are unique per kind; effects, stats and groups are one kind. No current slug is all digits, so a numeric path can never mean a slug.
 - `/v1/items` filters `quest`, `quest_chain` and `saga` take slugs, ids still accepted. An unknown value is a 400 naming it, as `set` already was (previously an unknown id returned an empty list).

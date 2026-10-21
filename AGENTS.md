@@ -61,11 +61,10 @@ From that one declaration come its schema in `data/.schemas/` (`taplo.toml` maps
 
 **Where the API surface is.** `crates/ddo-api/src/routes/` has one file per resource (`items` with its slot, weapon, damage and socket vocabularies, `augments`, `sets` with filigrees and sentient gems, `feats`, `stances` for the standalone stance list, `buffs` for guild and optional buffs, `races`, `classes`, `enhancement_trees`, `spells`, `bonuses` for bonus types and the effects vocabulary (`/v1/effects`, stats and named effects with `kind`; `/v1/effects/{slug}` for either), `quests` for quests, challenges, packs and patrons, `quest_series` for quest chains and sagas, `vendors_and_events` for the wiki vendors and events, `crafting` for the wiki crafting systems, `dump`, `version`); Every detail route is `/v1/<kind>/{slug}`, resolved by `entity_slugs.rs` through the one `EntityKind` declaration in `crates/ddo-model/src/enums.rs` (current slug, then a redirect's 308, then, until ids leave the API, a numeric id); every served `*_id` has a `*_slug` beside it, checked by `reference_slugs.rs`. `db.rs` holds the shared query helpers; `etag.rs` and `cache_policy.rs` the caching headers and `state.rs` the pool. The ETL mirrors it: `crates/ddo-etl/src/xml/` parses, `map/` applies `data/*.toml` vocabularies, `build/` writes tables.
 
-**Planning.** The roadmap for both repos is `ddo-tools/docs/roadmap.md` (V-series section).
-- **V1–V7 are done.** V7 filled what DDOBuilderV2 lacks from ddowiki: rarity, quest facts, 37 crafting systems and descriptions. Those facts now live in the data files.
-- **V9 is done except chunk 4's edit tooling.** It made the data files canonical, imported Maetrim's updates, and removed the XML build path.
-- **V11 is next on the data side:** triggers, and checking effects against the wiki. (V10, data issue reports, shares V8's Fly volume.)
-- **V8** adds `/v1/builds` on a Fly volume for build sharing.
+**Planning.** What is planned, in progress and done, for both repos, is the [DDO Tools project](https://github.com/users/WestonChan/projects/2): one epic per phase (a parent issue labelled `epic`), each chunk a sub-issue in the repo it touches, board order as priority order, and the next work in **Ready**. Read it with `gh project item-list 2 --owner WestonChan --format json`, the data-side epics with `gh issue list -R WestonChan/ddo-data --label epic`, and one with `gh issue view <number> -R WestonChan/ddo-data`. `ddo-tools/docs/architecture.md` is the design record and spec for the V-series (how the data files, the import and the API came to be), not a tracker.
+- **Write to it** when work is agreed: `gh issue create -R WestonChan/ddo-data`, as a sub-issue of its epic, added to the project. No scratch TODO files or TODO comments for work that belongs on the board.
+- **Move the status as the work moves** (Backlog, Ready, In progress, Done): the sibling checkout's `scripts/project-status.sh <ddo-tools|ddo-data> <issue number> <status>` does it, and closing the issue sets Done. The orchestrator runs it and puts the issue's text in a sandboxed implementer's brief, since Codex's sandbox cannot reach the private project.
+- **Close the issue in the same commit that ships the work**, with `Closes #N` (or `Closes WestonChan/ddo-tools#N`) in the message; close the epic with its last sub-issue.
 
 ## Structure
 
@@ -74,7 +73,7 @@ From that one declaration come its schema in `data/.schemas/` (`taplo.toml` maps
 - `crates/ddo-api` — axum read API over the ETL output. OpenAPI at `/v1/docs`, strong ETags, `X-Dataset-Version`, rate limiting, `/v1/dump.sqlite`, icons at `/icons/`.
 - `xtask` — repo tooling behind `cargo xtask`. Not published.
 - `upstream/` — gitignored sparse checkout of DDOBuilderV2, used to prepare the import's `--previous`/`--source` directories. The deploy never reads it.
-- Planning lives in the ddo-tools roadmap (`docs/roadmap.md`, V-series section), not here.
+- Planning lives in the DDO Tools project (see Planning), not here.
 
 **Wiki facts and corrections.** Everything read from ddowiki lives in the data files beside his values. That covers:
 - which quest drops are rare
@@ -101,7 +100,7 @@ Wiki facts behave differently in each build:
 - **In A,** a wiki fact naming something only his later files have is left out and reported as `SKIPPED WIKI FACT`.
 - **In B,** such a fact fails the import, naming its data file.
 
-The 12 SunAndMoon gems whose description he leaves as "Drops in: ?" carry a description correction. His edit to one of those descriptions is reported as the stale-correction CONFLICT, for a person to settle. The XML-only mapping audits print as import report lines. The roadmap's V9 entry records the XML-path inputs this replaced and why they went; the `retired_inputs` guard keeps them gone.
+The 12 SunAndMoon gems whose description he leaves as "Drops in: ?" carry a description correction. His edit to one of those descriptions is reported as the stale-correction CONFLICT, for a person to settle. The XML-only mapping audits print as import report lines. The V9 entry in `ddo-tools/docs/architecture.md` records the XML-path inputs this replaced and why they went; the `retired_inputs` guard keeps them gone.
 
 ## Worktrees
 
@@ -115,7 +114,7 @@ The worktree compiles from scratch into its own `target/` (a few minutes the fir
 
 ## Code Quality
 
-- **No comments, no doc comments.** Code carries its meaning in names, types, and tests. Do not write `//`, `/* */`, `///`, or `//!`. If something needs a comment to be understood, rename, split, or restructure it until it doesn't. Reasoning that cannot live in code goes in the ddo-tools roadmap or `docs/` there. `cargo lint` fails on any comment; `cargo xtask no-comments --fix` strips them.
+- **No comments, no doc comments.** Code carries its meaning in names, types, and tests. Do not write `//`, `/* */`, `///`, or `//!`. If something needs a comment to be understood, rename, split, or restructure it until it doesn't. Reasoning that cannot live in code goes in `ddo-tools/docs/architecture.md`, a `docs/` file here, or the issue. `cargo lint` fails on any comment; `cargo xtask no-comments --fix` strips them.
 - **Turn findings into lint rules.** When you fix or review a problem a machine could have caught (a convention broken in more than one place, a bug pattern, a rule in this file that nothing enforces), suggest a check that `cargo lint` runs so it can't come back: a clippy lint in `[workspace.lints]` or `clippy.toml`, or an `xtask` check. Say what it would flag today and include it in your final report. Add it yourself when it's cheap and needs no new dependency; a new crate needs the maintainer's approval first.
 - **Names carry the meaning comments would have.** Follow the naming rules below.
 - **Keep code clean and refactor freely.** Improve adjacent code you touch; don't leave a file worse than you found it.
@@ -156,6 +155,6 @@ Write the failing test first, confirm it fails for the right reason, then the mi
 
 ## Commits
 
-Plain imperative subjects, no prefixes. One logical change per commit, passing `cargo lint` and tests. Push to `main` directly; CI runs on every push, and the deploy workflow runs on every push that changes more than Markdown and on dispatch.
+Plain imperative subjects, no prefixes. One logical change per commit, passing `cargo lint` and tests, with `Closes #N` in the message of the commit that finishes an issue. Push to `main` directly; CI runs on every push, and the deploy workflow runs on every push that changes more than Markdown and on dispatch.
 
 `.github/dependabot.yml` opens weekly PRs (Mondays, after a 7-day cooldown) for Cargo and GitHub Actions, minor and patch bumps grouped into one PR per ecosystem, majors separate, `unicode-ident` with `unicode-properties` always together (see the pin above), and `utoipa` with `utoipa-axum` and `utoipa-scalar` always together because they share one `utoipa` type. The `utoipa` and `unicode` groups come before `cargo-minor-and-patch` in the file because a dependency joins the first group it matches. Merging one deploys, so merge only once CI passes, then pull `main`.
