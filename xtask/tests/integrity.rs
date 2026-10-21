@@ -24,10 +24,34 @@ fn fixture_db_built_once() -> &'static Path {
         let work_dir = tempfile::tempdir().unwrap();
         let db_path = work_dir.path().join("fixture.db");
         let mut db = Connection::open(&db_path).unwrap();
-        ddo_etl::tree::build_from_data(&fixtures_dir().join("data"), &mut db).unwrap();
+        let tree = work_dir.path().join("data");
+        copy_fixture_tree(&tree);
+        let production = fixtures_dir().join("../../../../data/effects");
+        for name in ["shadow-striker", "baphomets-tactics"] {
+            let contents = std::fs::read_to_string(production.join(format!("{name}.toml"))).unwrap();
+            let contents = if name == "shadow-striker" { contents.replace("+20%", "+15%") } else { contents };
+            std::fs::write(tree.join(format!("effects/{name}.toml")), contents).unwrap();
+        }
+        let carrier = tree.join("packs/vault-of-night/quests/plane-of-night/gear/kundarak-delving-boots.toml");
+        let mut contents = std::fs::read_to_string(&carrier).unwrap();
+        contents.push_str("\n[[effect]]\nname = \"Shadow Striker\"\n\n[[effect]]\nname = \"Baphomet's Tactics\"\n");
+        std::fs::write(carrier, contents).unwrap();
+        ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
         (work_dir, db_path)
     });
     db_path
+}
+
+fn copy_fixture_tree(destination: &Path) {
+    let source = fixtures_dir().join("data");
+    for entry in walkdir::WalkDir::new(&source) {
+        let entry = entry.unwrap();
+        if entry.file_type().is_file() {
+            let target = destination.join(entry.path().strip_prefix(&source).unwrap());
+            std::fs::create_dir_all(target.parent().unwrap()).unwrap();
+            std::fs::copy(entry.path(), target).unwrap();
+        }
+    }
 }
 
 fn fixture_db_copy_in(work_dir: &Path) -> PathBuf {
@@ -46,6 +70,103 @@ fn fixture_db_copy_with(work_dir: &Path, injected_sql: &str) -> PathBuf {
 
 fn fixture_options() -> IntegrityOptions {
     IntegrityOptions { allowed_empty_tables: TABLES_EMPTY_IN_FIXTURES.iter().map(|table| table.to_string()).collect() }
+}
+
+fn template_violations() -> Vec<(&'static str, &'static str, &'static str)> {
+    vec![
+        ("T1", "Doublestrike and Doubleshot", "UPDATE effects SET description_template = REPLACE(description_template, '{1}', '5') WHERE name = 'Doublestrike and Doubleshot'"),
+        ("T2", "Doublestrike and Doubleshot", "UPDATE effects SET verbose_name_template = REPLACE(verbose_name_template, '{1}', '5') WHERE name = 'Doublestrike and Doubleshot'"),
+        ("T2", "Doublestrike and Doubleshot", "UPDATE effects SET verbose_name_template = REPLACE(verbose_name_template, '{1}', '{2}') WHERE name = 'Doublestrike and Doubleshot'"),
+        ("T3", "Doublestrike and Doubleshot", "UPDATE effects SET description_template = REPLACE(description_template, '%b1', 'Enhancement') WHERE name = 'Doublestrike and Doubleshot'"),
+        ("T3", "Doublestrike and Doubleshot", "UPDATE effects SET set_bonus_line_template = REPLACE(set_bonus_line_template, '%b1', 'Enhancement') WHERE name = 'Doublestrike and Doubleshot'"),
+        ("T4", "Command", "UPDATE effects SET description_template = REPLACE(description_template, 'Insightful', '') WHERE name = 'Command'"),
+        ("T5", "Doublestrike and Doubleshot", "UPDATE effects SET description_template = REPLACE(description_template, '{1}%', '{1}') WHERE name = 'Doublestrike and Doubleshot'"),
+        ("T6", "Shadow Striker", "UPDATE effects SET description_template = REPLACE(description_template, '+15% Enhancement Bonus to Ranged', '+20% Enhancement Bonus to Ranged') WHERE name = 'Shadow Striker'"),
+    ]
+}
+
+#[test]
+fn template_check_reports_each_injected_cause() {
+    let mut missing = Vec::new();
+    for (cause, effect_name, injected_sql) in template_violations() {
+        let scratch = tempfile::tempdir().unwrap();
+        let db = Connection::open(fixture_db_copy_with(scratch.path(), injected_sql)).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("effect_templates_without_their_placeholders").unwrap();
+        let findings = outcome.offenders.iter().filter(|offender| offender.name == effect_name).collect::<Vec<_>>();
+        if findings.len() != 1 || !findings[0].detail.contains(cause) {
+            missing.push(format!("{cause}: {effect_name}: {findings:?}"));
+        }
+        if cause == "T5" {
+            let rendered = report.outcome("effect_descriptions_without_their_amounts").unwrap();
+            assert!(!rendered.offenders.iter().any(|offender| offender.name == effect_name), "{rendered}");
+        }
+    }
+    assert!(missing.is_empty(), "{}", missing.join("\n"));
+}
+
+#[test]
+fn constant_literals_use_declared_units_and_matching_values() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+    let has_constant_finding = |name: &str| {
+        integrity_report(&db, &fixture_options())
+            .unwrap()
+            .outcome("effect_templates_without_their_placeholders")
+            .unwrap()
+            .offenders
+            .iter()
+            .any(|offender| offender.name == name && offender.detail.contains("T6"))
+    };
+    assert!(!has_constant_finding("Shadow Striker"));
+    assert!(!has_constant_finding("Baphomet's Tactics"));
+    db.execute("UPDATE effects SET description_template = REPLACE(description_template, '+3%', '+3') WHERE name = 'Shadow Striker'", []).unwrap();
+    assert!(has_constant_finding("Shadow Striker"));
+    db.execute("UPDATE effects SET description_template = REPLACE(description_template, '+3 ', '+3% ') WHERE name = 'Shadow Striker'", []).unwrap();
+    assert!(!has_constant_finding("Shadow Striker"));
+    db.execute("UPDATE effects SET description_template = REPLACE(description_template, '+15% Enhancement Bonus to Ranged', '+20% Enhancement Bonus to Ranged') WHERE name = 'Shadow Striker'", []).unwrap();
+    assert!(has_constant_finding("Shadow Striker"));
+    db.execute("UPDATE effects SET description_template = REPLACE(description_template, '+20% Enhancement Bonus to Ranged', '+15% Enhancement Bonus to Ranged') WHERE name = 'Shadow Striker'", []).unwrap();
+    assert!(!has_constant_finding("Shadow Striker"));
+}
+
+#[test]
+fn mixed_unit_templates_state_each_unit_without_renderer_restoration() {
+    let scratch = tempfile::tempdir().unwrap();
+    let tree = scratch.path().join("data");
+    copy_fixture_tree(&tree);
+    let production = fixtures_dir().join("../../../../data/effects/stat-groups");
+    let names =
+        ["dodge-and-dodge-cap", "melee-power-and-doublestrike", "doublestrike-doubleshot-and-offhand-strike-chance"];
+    let mut group_names = Vec::new();
+    for slug in names {
+        let path = production.join(format!("{slug}.toml"));
+        let contents = std::fs::read_to_string(&path).unwrap();
+        let parsed: toml::Value = toml::from_str(&contents).unwrap();
+        group_names.push(parsed["name"].as_str().unwrap().to_string());
+        std::fs::copy(path, tree.join(format!("effects/stat-groups/{slug}.toml"))).unwrap();
+    }
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("effect_templates_without_their_placeholders").unwrap();
+    let incorrect =
+        outcome.offenders.iter().filter(|offender| group_names.contains(&offender.name)).collect::<Vec<_>>();
+    assert!(incorrect.is_empty(), "{incorrect:?}");
+}
+
+#[test]
+fn served_type_check_requires_the_granted_type() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db = Connection::open(fixture_db_copy_with(scratch.path(),
+        "UPDATE effects SET description_template = REPLACE(description_template, 'Insightful', 'Profane') WHERE name = 'Command'"
+    )).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("effect_descriptions_without_their_amounts").unwrap();
+    assert!(
+        outcome.offenders.iter().any(|offender| offender.name == "Command" && offender.detail.contains("type missing")),
+        "{outcome}"
+    );
 }
 
 #[test]
@@ -94,15 +215,7 @@ fn served_amount_check_distinguishes_restored_units_from_missing_units() {
 fn shared_stat_set_report_lists_a_duplicate_but_not_a_constant_twin() {
     let scratch = tempfile::tempdir().unwrap();
     let exported = scratch.path().join("data");
-    let fixture_tree = fixtures_dir().join("data");
-    for entry in walkdir::WalkDir::new(&fixture_tree) {
-        let entry = entry.unwrap();
-        if entry.file_type().is_file() {
-            let destination = exported.join(entry.path().strip_prefix(&fixture_tree).unwrap());
-            std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
-            std::fs::copy(entry.path(), destination).unwrap();
-        }
-    }
+    copy_fixture_tree(&exported);
     let frozen_thunderstorm =
         std::fs::read_to_string(fixtures_dir().join("../../../../data/effects/power-of-the-frozen-thunderstorm.toml"))
             .unwrap();
@@ -519,7 +632,7 @@ fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
 }
 
 fn injected_violations() -> Vec<InjectedViolation> {
-    vec![
+    let mut violations = vec![
         violation(
             "effect_descriptions_without_their_amounts",
             "UPDATE effects SET description_template = REPLACE(description_template, '{1}%', '{1}'),
@@ -939,7 +1052,15 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "INSERT INTO set_bonuses (name, slug) VALUES ('Integrity Probe Set', 'integrity-probe-set');",
             "Integrity Probe Set",
         ),
-    ]
+    ];
+    violations.extend(
+        template_violations()
+            .into_iter()
+            .map(|(_, effect, sql)| violation("effect_templates_without_their_placeholders", sql, effect)),
+    );
+    violations.push(violation("effect_descriptions_without_their_amounts",
+        "UPDATE effects SET description_template = REPLACE(description_template, 'Insightful', 'Profane') WHERE name = 'Command'", "Command"));
+    violations
 }
 
 #[test]

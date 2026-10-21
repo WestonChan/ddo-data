@@ -91,6 +91,11 @@ impl IntegrityCheck {
 
 pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     IntegrityCheck::warn(
+        "effect_templates_without_their_placeholders",
+        "templates use the granted slots, types and units, and amount literals match granted constants",
+        OffenderQuery::Built(effect_templates_without_their_placeholders),
+    ),
+    IntegrityCheck::warn(
         "effect_descriptions_without_their_amounts",
         "served descriptions or fallback lines state every granted amount with its unit, and line claims match grants",
         OffenderQuery::Built(effect_descriptions_without_their_amounts),
@@ -1006,14 +1011,27 @@ fn effects_named_like_identifiers(db: &Connection, _options: &IntegrityOptions) 
 }
 
 fn effect_descriptions_without_their_amounts(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
-    let mut statement = db.prepare("SELECT name, verbose_name_template FROM effects WHERE is_stat = 1")?;
-    let percent_stats = statement
-        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, Option<String>>(1)?)))?
-        .collect::<rusqlite::Result<Vec<_>>>()?
-        .into_iter()
-        .filter(|(_, template)| template.as_deref().is_some_and(ddo_model::effect_amount::line_template_states_percent))
-        .map(|(name, _)| name)
-        .collect::<BTreeSet<_>>();
+    let mut statement = db.prepare(
+        "SELECT e.id, e.name, e.is_stat, e.verbose_name_template, bt.name
+        FROM effects e LEFT JOIN bonus_types bt ON bt.id = e.home_bonus_type_id",
+    )?;
+    let mut percent_stats = BTreeSet::new();
+    let mut home_types = BTreeMap::new();
+    for row in statement.query_map([], |row| {
+        Ok((
+            row.get::<_, i64>(0)?,
+            row.get::<_, String>(1)?,
+            row.get::<_, bool>(2)?,
+            row.get::<_, Option<String>>(3)?,
+            row.get::<_, Option<String>>(4)?,
+        ))
+    })? {
+        let (id, name, is_stat, template, home_type) = row?;
+        if is_stat && template.as_deref().is_some_and(ddo_model::effect_amount::line_template_states_percent) {
+            percent_stats.insert(name);
+        }
+        home_types.insert(id, home_type);
+    }
     let mut offenders = Vec::new();
     let mut cause_counts = BTreeMap::<&str, usize>::new();
     for (table, owner_column) in EFFECT_OWNER_LINKS {
@@ -1021,7 +1039,18 @@ fn effect_descriptions_without_their_amounts(db: &Connection, _options: &Integri
             .map_err(|error| anyhow::anyhow!("rendering {table}: {error:?}"))?
         {
             for (sort_order, line) in lines {
-                let causes = served_amount_causes(&line, &percent_stats);
+                let mut causes = served_amount_causes(&line, &percent_stats);
+                let home_type =
+                    line["effect_id"].as_i64().and_then(|id| home_types.get(&id)).and_then(Option::as_deref);
+                let description = line["description"].as_str();
+                let text = description.or_else(|| line["verbose_name"].as_str()).unwrap_or_default();
+                if line["bonuses"].as_array().into_iter().flatten().any(|bonus| {
+                    bonus["bonus_type"].as_str().is_some_and(|bonus_type| {
+                        !bonus_type_is_stated(text, bonus_type, home_type, description.is_some())
+                    })
+                }) {
+                    causes.insert("type missing");
+                }
                 if causes.is_empty() {
                     continue;
                 }
@@ -1047,13 +1076,219 @@ fn effect_descriptions_without_their_amounts(db: &Connection, _options: &Integri
     })
 }
 
+struct EffectTemplates {
+    name: String,
+    is_stat: bool,
+    is_group: bool,
+    description: Option<String>,
+    line: Option<String>,
+    set_line: Option<String>,
+    link_count: i64,
+}
+
+struct TemplateBonus {
+    target_id: i64,
+    amount_from: i64,
+    constant: Option<i64>,
+    bonus_type_id: Option<i64>,
+}
+
+fn effect_templates_without_their_placeholders(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let links = EFFECT_OWNER_LINKS
+        .iter()
+        .map(|(table, _)| format!("SELECT effect_id FROM {table}"))
+        .collect::<Vec<_>>()
+        .join(" UNION ALL ");
+    let mut statement = db.prepare(&format!(
+        "WITH links AS ({links}), counts AS (
+        SELECT effect_id, COUNT(*) AS link_count FROM links GROUP BY effect_id)
+        SELECT e.id, e.name, e.is_stat, e.is_group, e.description_template, e.verbose_name_template,
+            e.set_bonus_line_template, COALESCE(c.link_count, 0)
+        FROM effects e LEFT JOIN counts c ON c.effect_id = e.id ORDER BY e.name"
+    ))?;
+    let effects = statement
+        .query_map([], |row| {
+            Ok((
+                row.get::<_, i64>(0)?,
+                EffectTemplates {
+                    name: row.get(1)?,
+                    is_stat: row.get(2)?,
+                    is_group: row.get(3)?,
+                    description: row.get(4)?,
+                    line: row.get(5)?,
+                    set_line: row.get(6)?,
+                    link_count: row.get(7)?,
+                },
+            ))
+        })?
+        .collect::<rusqlite::Result<BTreeMap<_, _>>>()?;
+    let constant_amount = ddo_model::effect_amount::rounded_amount_sql("constant", "scale", "rounding");
+    let mut statement = db.prepare(&format!(
+        "SELECT effect_id, target_effect_id, amount_from, {constant_amount}, bonus_type_id
+        FROM effect_bonuses ORDER BY effect_id, sort_order"
+    ))?;
+    let mut bonuses_by_effect = BTreeMap::<i64, Vec<TemplateBonus>>::new();
+    for row in statement.query_map([], |row| {
+        Ok((
+            row.get::<_, i64>(0)?,
+            TemplateBonus {
+                target_id: row.get(1)?,
+                amount_from: row.get(2)?,
+                constant: row.get(3)?,
+                bonus_type_id: row.get(4)?,
+            },
+        ))
+    })? {
+        let (effect_id, bonus) = row?;
+        bonuses_by_effect.entry(effect_id).or_default().push(bonus);
+    }
+    let mut statement = db.prepare("SELECT id, name FROM bonus_types")?;
+    let bonus_types = statement
+        .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)))?
+        .collect::<rusqlite::Result<BTreeMap<_, _>>>()?;
+    let mut offenders = Vec::new();
+    let mut counts = BTreeMap::<&str, (usize, i64)>::new();
+    for (id, effect) in effects.iter().filter(|(_, effect)| !effect.is_stat) {
+        let bonuses = bonuses_by_effect.get(id).map(Vec::as_slice).unwrap_or_default();
+        let causes = template_causes(effect, bonuses, &effects, &bonuses_by_effect, &bonus_types);
+        if causes.is_empty() {
+            continue;
+        }
+        for cause in &causes {
+            let count = counts.entry(cause).or_default();
+            count.0 += 1;
+            count.1 += effect.link_count;
+        }
+        offenders.push(Offender {
+            name: effect.name.clone(),
+            id: Some(*id),
+            detail: format!("{} links: {}", effect.link_count, causes.into_iter().collect::<Vec<_>>().join("; ")),
+        });
+    }
+    offenders.sort_by(|left, right| left.name.cmp(&right.name));
+    Ok(Findings {
+        offenders: Some(offenders),
+        notes: counts
+            .into_iter()
+            .map(|(cause, (effects, links))| format!("{cause}: {effects} effects, {links} links"))
+            .collect(),
+    })
+}
+
+fn template_causes(
+    effect: &EffectTemplates,
+    bonuses: &[TemplateBonus],
+    effects: &BTreeMap<i64, EffectTemplates>,
+    bonuses_by_effect: &BTreeMap<i64, Vec<TemplateBonus>>,
+    bonus_types: &BTreeMap<i64, String>,
+) -> BTreeSet<&'static str> {
+    let mut causes = BTreeSet::new();
+    let slots =
+        bonuses.iter().filter(|bonus| bonus.amount_from > 0).map(|bonus| bonus.amount_from).collect::<BTreeSet<_>>();
+    let mut percent_slots = BTreeSet::new();
+    let mut constants = Vec::new();
+    for bonus in bonuses {
+        let targets = if effects.get(&bonus.target_id).is_some_and(|target| target.is_group) {
+            bonuses_by_effect
+                .get(&bonus.target_id)
+                .into_iter()
+                .flatten()
+                .map(|member| member.target_id)
+                .collect::<Vec<_>>()
+        } else {
+            vec![bonus.target_id]
+        };
+        for target in targets {
+            let percent = effects
+                .get(&target)
+                .and_then(|stat| stat.line.as_deref())
+                .is_some_and(ddo_model::effect_amount::line_template_states_percent);
+            if percent && bonus.amount_from > 0 {
+                percent_slots.insert(bonus.amount_from);
+            }
+            if let Some(constant) = bonus.constant {
+                constants.push((constant, percent));
+            }
+        }
+    }
+    let constant_matches = |token: &AmountToken| {
+        constants.iter().any(|(amount, percent)| token.matches_amount(*amount) && (!percent || token.percent))
+    };
+    if let Some(description) = &effect.description {
+        for slot in &slots {
+            let placeholder = format!("{{{slot}}}");
+            if !description.contains(&placeholder) {
+                causes.insert("T1: description lacks a slot its rows read");
+            }
+        }
+        for slot in [1, 2] {
+            let placeholder = format!("{{{slot}}}");
+            let percent_placeholder = format!("{placeholder}%");
+            if description.contains(&placeholder)
+                && !description.contains(&percent_placeholder)
+                && (percent_slots.contains(&slot)
+                    || (slot == 1 && constants.iter().any(|(_, percent)| *percent))
+                    || effect.line.as_deref().is_some_and(|line| line.contains(&percent_placeholder)))
+            {
+                causes.insert("T5: unit only through the renderer's restore");
+            }
+        }
+        if bonuses.iter().any(|bonus| bonus.bonus_type_id.is_none()) && !description.contains("%b1") {
+            causes.insert("T3: link-typed rows lack %b1 in description or set line");
+        }
+        if bonuses
+            .iter()
+            .filter_map(|bonus| bonus.bonus_type_id)
+            .filter_map(|id| bonus_types.get(&id))
+            .any(|bonus_type| !bonus_type_is_stated(description, bonus_type, None, true))
+        {
+            causes.insert("T4: fixed type word missing from description");
+        }
+    }
+    if bonuses.iter().any(|bonus| bonus.bonus_type_id.is_none())
+        && effect.set_line.as_deref().is_some_and(|line| !line.contains("%b1"))
+    {
+        causes.insert("T3: link-typed rows lack %b1 in description or set line");
+    }
+    for line in [effect.line.as_deref(), effect.set_line.as_deref()].into_iter().flatten() {
+        let literal_for_slot = !slots.is_empty()
+            && amount_tokens(line).iter().any(|token| token.is_amount_literal() && !constant_matches(token));
+        let unread_slot = !slots.is_empty()
+            && [1, 2].into_iter().any(|slot| {
+                !slots.contains(&slot)
+                    && [format!("+{{{slot}}}"), format!("-{{{slot}}}"), format!("{{{slot}}}%")]
+                        .iter()
+                        .any(|claim| line.contains(claim))
+            });
+        if literal_for_slot || unread_slot {
+            causes.insert("T2: line claims a literal for a slot or a slot its rows do not read");
+        }
+    }
+    if !constants.is_empty()
+        && [effect.description.as_deref(), effect.line.as_deref(), effect.set_line.as_deref()]
+            .into_iter()
+            .flatten()
+            .any(|template| {
+                amount_tokens(template).iter().any(|token| token.is_amount_literal() && !constant_matches(token))
+            })
+    {
+        causes.insert("T6: amount literal does not match a granted constant");
+    }
+    causes
+}
+
 struct AmountToken {
     amount: f64,
     signed: bool,
     percent: bool,
+    literal: bool,
 }
 
 impl AmountToken {
+    fn is_amount_literal(&self) -> bool {
+        self.literal
+    }
+
     fn matches_amount(&self, amount: i64) -> bool {
         if self.signed {
             self.amount == amount as f64
@@ -1063,6 +1298,26 @@ impl AmountToken {
     }
 }
 
+fn bonus_type_is_stated(text: &str, bonus_type: &str, home_type: Option<&str>, in_description: bool) -> bool {
+    if matches!(bonus_type, "Stacking" | "Untyped") {
+        return true;
+    }
+    let line_word = ddo_api::bonus_type_line_word(bonus_type, if in_description { None } else { home_type });
+    if !in_description && line_word.is_none() {
+        return true;
+    }
+    let words =
+        text.split(|character: char| !character.is_alphabetic()).filter(|word| !word.is_empty()).collect::<Vec<_>>();
+    let contains_type = |name: &str| {
+        let type_words = name.split_whitespace().collect::<Vec<_>>();
+        !type_words.is_empty()
+            && words.windows(type_words.len()).any(|phrase| {
+                phrase.iter().zip(&type_words).all(|(word, expected)| word.eq_ignore_ascii_case(expected))
+            })
+    };
+    (in_description && contains_type(bonus_type)) || line_word.is_some_and(contains_type)
+}
+
 fn amount_tokens(text: &str) -> Vec<AmountToken> {
     let bytes = text.as_bytes();
     let mut tokens = Vec::new();
@@ -1070,6 +1325,10 @@ fn amount_tokens(text: &str) -> Vec<AmountToken> {
     while position < bytes.len() {
         let start = position;
         let signed = matches!(bytes[position], b'+' | b'-');
+        if signed && position > 0 && bytes[position - 1].is_ascii_digit() {
+            position += 1;
+            continue;
+        }
         if signed {
             position += 1;
         }
@@ -1077,11 +1336,37 @@ fn amount_tokens(text: &str) -> Vec<AmountToken> {
             position += 1;
             continue;
         }
-        while bytes.get(position).is_some_and(|byte| byte.is_ascii_digit() || *byte == b'.') {
+        while bytes.get(position).is_some_and(|byte| {
+            byte.is_ascii_digit() || (*byte == b'.' && bytes.get(position + 1).is_some_and(u8::is_ascii_digit))
+        }) {
             position += 1;
         }
         if let Ok(amount) = text[start..position].parse() {
-            tokens.push(AmountToken { amount, signed, percent: bytes.get(position) == Some(&b'%') });
+            let percent = bytes.get(position) == Some(&b'%');
+            let before = text[..start]
+                .split_whitespace()
+                .next_back()
+                .unwrap_or_default()
+                .trim_matches(|character: char| !character.is_ascii_alphabetic())
+                .to_ascii_lowercase();
+            let after = text[position + usize::from(percent)..]
+                .split_whitespace()
+                .next()
+                .unwrap_or_default()
+                .trim_matches(|character: char| !character.is_ascii_alphabetic())
+                .to_ascii_lowercase();
+            let dice = (bytes.get(position).is_some_and(|byte| matches!(byte, b'd' | b'D'))
+                && bytes.get(position + 1).is_some_and(u8::is_ascii_digit))
+                || (start >= 2 && matches!(bytes[start - 1], b'd' | b'D') && bytes[start - 2].is_ascii_digit());
+            let placeholder = start > 0 && bytes[start - 1] == b'{';
+            let excluded = dice
+                || placeholder
+                || matches!(before.as_str(), "dc" | "level" | "cr" | "rank" | "tier")
+                || matches!(
+                    after.trim_end_matches('s'),
+                    "second" | "minute" | "hour" | "round" | "turn" | "time" | "stack"
+                );
+            tokens.push(AmountToken { amount, signed, percent, literal: (signed || percent) && !excluded });
         }
     }
     tokens
@@ -1118,7 +1403,7 @@ fn served_amount_causes(line: &serde_json::Value, percent_stats: &BTreeSet<Strin
         };
         causes.insert(cause);
     }
-    for token in amount_tokens(verbose_name).iter().filter(|token| token.signed || token.percent) {
+    for token in amount_tokens(verbose_name).iter().filter(|token| token.is_amount_literal()) {
         if granted_amounts
             .iter()
             .any(|(amount, percent, _)| token.matches_amount(*amount) && (!percent || token.percent))
@@ -1936,6 +2221,63 @@ mod served_amount_tests {
     use std::path::Path;
     use std::sync::atomic::{AtomicUsize, Ordering};
 
+    #[test]
+    fn amount_literals_exclude_ranks_dice_thresholds_durations_and_ranges() {
+        let excluded = [
+            "15d6",
+            "+15d6",
+            "7d8",
+            "DC 25",
+            "DC +25",
+            "level +5",
+            "CR +4",
+            "rank +3",
+            "tier +2",
+            "for 10 seconds",
+            "for +10 minutes",
+            "+2 hours",
+            "+1 round",
+            "+2 turns",
+            "+3 times",
+            "+4 stacks",
+            "Dragon's Edge 7",
+            "Spell Lore VI",
+            "Critical Multiplier (19-20)",
+            "+{1}%",
+            "{2}",
+        ];
+        let unexpected = excluded
+            .into_iter()
+            .filter(|text| amount_tokens(text).iter().any(AmountToken::is_amount_literal))
+            .collect::<Vec<_>>();
+        assert!(unexpected.is_empty(), "misclassified literals: {unexpected:?}");
+        for text in ["+20%", "-6", "20%", "+2.5%", "damage: -6.", "DC 25, +3%", "+3%, +2 stacks"] {
+            assert!(amount_tokens(text).iter().any(AmountToken::is_amount_literal), "{text}");
+        }
+    }
+
+    #[test]
+    fn type_words_follow_description_and_line_conventions() {
+        for (text, bonus_type, home, description, stated) in [
+            ("+4 Insightful bonus", "Insight", None, true, true),
+            ("+4 Insight bonus", "Insight", None, true, true),
+            ("+4 Profane bonus", "Insight", None, true, false),
+            ("a -6 PENALTY", "Penalty", None, true, true),
+            ("+2 Damage", "Stacking", None, true, true),
+            ("+2 Damage", "Untyped", None, true, true),
+            ("+2 Damage", "Equipment", None, false, true),
+            ("+2 Damage", "Enhancement", None, false, true),
+            ("+2 Damage", "Insight", Some("Insight"), false, true),
+            ("+2 Damage", "Insight", Some("Insight"), true, false),
+            ("+2 Damage", "Equipment", None, true, false),
+            ("insightfully +4", "Insight", None, true, false),
+            ("+4 Natural Armor bonus", "Natural Armor", None, true, true),
+            ("+4 armor enhancement bonus", "Armor Enhancement", None, true, true),
+        ] {
+            assert_eq!(bonus_type_is_stated(text, bonus_type, home, description), stated, "{text}, {bonus_type}");
+        }
+    }
+
     fn line_with_bonuses(description: Option<&str>, line: &str, amounts: &[i64], scale: f64) -> serde_json::Value {
         json!({"description": description, "verbose_name": line,
             "bonuses": amounts.iter().map(|amount| json!({"stat": "Doublestrike", "value": amount, "scale": scale})).collect::<Vec<_>>()})
@@ -1971,7 +2313,7 @@ mod served_amount_tests {
     }
 
     #[test]
-    fn served_amount_check_uses_eleven_queries_for_one_and_fifty_owners() {
+    fn text_checks_use_fixed_query_counts_for_one_and_fifty_effects_and_owners() {
         static STATEMENTS: AtomicUsize = AtomicUsize::new(0);
         fn trace(event: TraceEvent<'_>) {
             if matches!(event, TraceEvent::Stmt(_, _)) {
@@ -1987,7 +2329,6 @@ mod served_amount_tests {
                 "effects/bonus-types.toml",
                 "effects/stats/doublestrike.toml",
                 "effects/stats/doubleshot.toml",
-                "effects/stat-groups/doublestrike-and-doubleshot.toml",
             ] {
                 let destination = scratch.path().join(relative);
                 std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
@@ -1995,9 +2336,18 @@ mod served_amount_tests {
             }
             let sets = scratch.path().join("packs/shared/sets");
             std::fs::create_dir_all(&sets).unwrap();
+            let groups = scratch.path().join("effects/stat-groups");
+            std::fs::create_dir_all(&groups).unwrap();
+            let group =
+                std::fs::read_to_string(source.join("effects/stat-groups/doublestrike-and-doubleshot.toml")).unwrap();
             for index in 0..owner_count {
+                std::fs::write(
+                    groups.join(format!("amount-group-{index}.toml")),
+                    group.replace("Doublestrike and Doubleshot", &format!("Amount Group {index}")),
+                )
+                .unwrap();
                 std::fs::write(sets.join(format!("amount-probe-{index}.toml")), format!(
-                    "name = \"Amount Probe {index}\"\n[[tier]]\nequipped_count = 2\n[[tier.effect]]\neffect = \"Doublestrike and Doubleshot\"\nvalue = 3\nbonus_type = \"Artifact\"\n"
+                    "name = \"Amount Probe {index}\"\n[[tier]]\nequipped_count = 2\n[[tier.effect]]\neffect = \"Amount Group {index}\"\nvalue = 3\nbonus_type = \"Artifact\"\n"
                 )).unwrap();
             }
             let mut db = Connection::open_in_memory().unwrap();
@@ -2009,6 +2359,16 @@ mod served_amount_tests {
                     .unwrap();
             db.trace_v2(TraceEventCodes::empty(), None);
             assert_eq!(STATEMENTS.load(Ordering::SeqCst), 11, "{owner_count} owners");
+            assert!(findings.offenders.unwrap().is_empty());
+            db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
+            STATEMENTS.store(0, Ordering::SeqCst);
+            let findings = effect_templates_without_their_placeholders(
+                &db,
+                &IntegrityOptions { allowed_empty_tables: Vec::new() },
+            )
+            .unwrap();
+            db.trace_v2(TraceEventCodes::empty(), None);
+            assert_eq!(STATEMENTS.load(Ordering::SeqCst), 3, "{owner_count} effects");
             assert!(findings.offenders.unwrap().is_empty());
         }
     }

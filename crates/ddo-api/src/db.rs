@@ -610,18 +610,21 @@ fn render_description_template(template: &str, row: &Value) -> String {
     render_effect_template(&signed_template, row)
 }
 
+pub fn bonus_type_line_word<'a>(bonus_type: &'a str, home_type: Option<&str>) -> Option<&'a str> {
+    if home_type == Some(bonus_type) || matches!(bonus_type, "Enhancement" | "Equipment") {
+        None
+    } else if bonus_type == "Insight" {
+        Some("Insightful")
+    } else {
+        Some(bonus_type)
+    }
+}
+
 fn render_verbose_name(row: &Value) -> String {
     let template = row["verbose_name_template"].as_str().unwrap_or("");
     let mut rendered_row = row.clone();
     let bonus_type = row["bonus_type"].as_str().unwrap_or("");
-    let home_type = row["home_bonus_type"].as_str().unwrap_or("");
-    let visible_type = if bonus_type == home_type || matches!(bonus_type, "Enhancement" | "Equipment") {
-        ""
-    } else if bonus_type == "Insight" {
-        "Insightful"
-    } else {
-        bonus_type
-    };
+    let visible_type = bonus_type_line_word(bonus_type, row["home_bonus_type"].as_str()).unwrap_or("");
     rendered_row["template_bonus_type"] = Value::String(visible_type.to_string());
     let name = row["name"].as_str().unwrap_or("");
     let template = if !template.contains("{1}")
