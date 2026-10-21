@@ -20,12 +20,7 @@ value = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Healing Amplification"
-value = 10
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Negative Healing Amplification"
+effect = "Healing and Negative Healing Amplification"
 value = 10
 
 [[tier.effect]]

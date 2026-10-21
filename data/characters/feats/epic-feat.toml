@@ -764,12 +764,7 @@ source_name = "Epic"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Physical Resistance Rating"
-value = 5
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Magical Resistance Rating"
+effect = "Sheltering"
 value = 5
 
 [[row.group]]
@@ -788,6 +783,7 @@ targets = ["%"]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Feat"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -1184,27 +1180,7 @@ source_name = "Epic"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Bluff"
-value = 5
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Diplomacy"
-value = 5
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Haggle"
-value = 5
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Intimidate"
-value = 5
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Perform"
+effect = "Bluff, Diplomacy, Haggle, Intimidate and Perform"
 value = 5
 
 [[row.group]]
@@ -1214,6 +1190,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Feat"
+effect = "Bluff, Diplomacy, Haggle, Intimidate and Perform"
 effect_type = "SkillBonus"
 targets = [
     "Bluff",
@@ -1243,12 +1220,7 @@ value = 4
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Magical Resistance Rating"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Magical Resistance Rating Cap"
+effect = "Magical Resistance Rating and Magical Resistance Rating Cap"
 value = 10
 
 [[row.group]]
@@ -1270,6 +1242,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Feat"
+effect = "Magical Resistance Rating and Magical Resistance Rating Cap"
 effect_type = "MRR"
 extra_types = ["MRRCap"]
 targets = ["All"]
@@ -2035,12 +2008,7 @@ source_name = "Epic"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Hireling Physical Resistance Rating"
-value = 25
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Hireling Magical Resistance Rating"
+effect = "Hireling Magical and Hireling Physical Resistance Rating"
 value = 25
 
 [[row.group]]
@@ -2050,6 +2018,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [25]
 bonus_type = "Feat"
+effect = "Hireling Magical and Hireling Physical Resistance Rating"
 effect_type = "HirelingPRR"
 extra_types = ["HirelingMRR"]
 
@@ -2717,12 +2686,7 @@ source_name = "Epic"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Melee Attack Speed"
-value = -10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Ranged Attack Speed"
+effect = "Melee and Ranged Attack Speed"
 value = -10
 
 [[row.effect]]
@@ -2737,6 +2701,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [-10]
 bonus_type = "Feat"
+effect = "Melee and Ranged Attack Speed"
 effect_type = "Weapon_Alacrity"
 targets = [
     "All",

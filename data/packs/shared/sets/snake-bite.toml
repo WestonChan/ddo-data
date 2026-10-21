@@ -6,7 +6,9 @@ is_filigree_set = true
 equipped_count = 2
 
 [[tier.effect]]
-effect = "+4 Saving throws versus Poison"
+bonus_type = "Stacking"
+effect = "Poison Save"
+value = 4
 
 [[tier.modifier]]
 amount_type = "Stacks"

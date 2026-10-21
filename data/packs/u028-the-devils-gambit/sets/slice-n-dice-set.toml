@@ -1,34 +1,29 @@
 name = "Slice 'n Dice Set"
 icon = "SliceAndDice"
 
+[[citation]]
+field = "tier"
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+note = "The tier lines were checked; this replaces the add corrections the prose mapping superseded."
+
 [[item]]
 name = "Dice"
 
 [[item]]
 name = "Slice"
 
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Seeker +1 Quality at 2 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 2, Seeker / Quality"
-
 [[tier]]
 equipped_count = 2
 
 [[tier.effect]]
-effect = "+1 Quality bonus to Seeker"
-
-[[tier.effect]]
 bonus_type = "Quality"
-effect = "Sneak Attack Hit"
+effect = "Seeker"
 value = 1
 
 [[tier.effect]]
 bonus_type = "Quality"
-effect = "Seeker"
+effect = "Sneak Attack Hit"
 value = 1
 
 [[tier.modifier]]

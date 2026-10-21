@@ -22,19 +22,14 @@ value = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Search"
-value = 5
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Spot"
+effect = "Search and Spot"
 value = 5
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Artifact"
-effect = "Sneak Attack Dice"
+effect = "Search and Spot"
 effect_type = "Doublestrike"
 extra_types = ["Doubleshot"]
 
@@ -42,13 +37,14 @@ extra_types = ["Doubleshot"]
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Artifact"
-effect = "Sneak Attack Dice"
+effect = "Search and Spot"
 effect_type = "SneakAttackDice"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Artifact"
+effect = "Search and Spot"
 effect_type = "SkillBonus"
 targets = [
     "Search",

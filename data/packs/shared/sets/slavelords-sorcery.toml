@@ -9,28 +9,10 @@ family = "Slavelords_Heroic"
 kind = "set_tier_bonus"
 field = "value"
 upstream = 2
-reason = "The wiki gives Intelligence +1 Artifact at 5 pieces."
+reason = "The wiki gives Intelligence, Wisdom and Charisma +1 Artifact at 5 pieces."
 url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
-qualifier = "equipped_count 5, Intelligence / Artifact"
-
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "value"
-upstream = 2
-reason = "The wiki gives Wisdom +1 Artifact at 5 pieces."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 5, Wisdom / Artifact"
-
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "value"
-upstream = 2
-reason = "The wiki gives Charisma +1 Artifact at 5 pieces."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 5, Charisma / Artifact"
+qualifier = "equipped_count 5, Intelligence, Wisdom and Charisma / Artifact"
 
 [[tier]]
 equipped_count = 3
@@ -66,17 +48,7 @@ equipped_count = 5
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Intelligence"
-value = 1
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Wisdom"
-value = 1
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Charisma"
+effect = "Intelligence, Wisdom and Charisma"
 value = 1
 
 [[tier.effect]]

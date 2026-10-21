@@ -8,17 +8,7 @@ icon = "DeckOfCurses"
 min_level = 1
 
 [[effect]]
-name = "Magical Resistance Rating Cap"
-bonus_type = "Fortune"
-value = 2
-
-[[effect]]
-name = "Dodge Cap"
-bonus_type = "Fortune"
-value = 2
-
-[[effect]]
-name = "Max Dex Bonus (Armor)"
+name = "Magical Resistance Rating Cap, Dodge Cap and Max Dex Bonus (Armor)"
 bonus_type = "Fortune"
 value = 2
 
@@ -26,6 +16,7 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Fortune"
+effect = "Magical Resistance Rating Cap, Dodge Cap and Max Dex Bonus (Armor)"
 effect_type = "MRRCap"
 extra_types = [
     "DodgeCapBonus",

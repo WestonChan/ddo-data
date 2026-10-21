@@ -12,48 +12,19 @@ equipped_count = 2
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Light Spell Lore"
+effect = "Silver Flame Lore"
 value = 2
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Chaos Spell Lore"
-value = 2
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Evil Spell Lore"
-value = 2
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Good Spell Lore"
-value = 2
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Law Spell Lore"
-value = 2
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Positive Spell Lore"
-value = 2
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Light and Alignment Spell Power"
-value = 10
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Positive Spell Power"
+effect = "Power of the Silver Flame"
 value = 10
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Artifact"
+effect = "Power of the Silver Flame"
 effect_type = "SpellLore"
 targets = [
     "Light/Alignment",
@@ -68,6 +39,7 @@ targets = [
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Artifact"
+effect = "Power of the Silver Flame"
 effect_type = "SpellPower"
 targets = [
     "Light/Alignment",

@@ -22,32 +22,28 @@ value = 30
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Balance"
-value = 5
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Repair"
+effect = "Balance and Repair"
 value = 5
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Artifact"
-effect = "Magical Resistance Rating Cap"
+effect = "Balance and Repair"
 effect_type = "MRR"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Artifact"
-effect = "Magical Resistance Rating Cap"
+effect = "Balance and Repair"
 effect_type = "MRRCap"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Artifact"
+effect = "Balance and Repair"
 effect_type = "SkillBonus"
 targets = [
     "Balance",

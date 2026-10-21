@@ -24,12 +24,13 @@ value = 15
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Artifact"
-effect = "Fortification Bypass"
+effect = "Melee and Ranged Power"
 effect_type = "FortificationBypass"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
 effect_type = "MeleePower"
 extra_types = ["RangedPower"]

@@ -32,26 +32,27 @@ value = 15
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Artifact"
-effect = "Helpless Damage"
+effect = "Melee and Ranged Power"
 effect_type = "PRR"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [100]
 bonus_type = "Artifact"
-effect = "Helpless Damage"
+effect = "Melee and Ranged Power"
 effect_type = "ThreatBonusMelee"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Artifact"
-effect = "Helpless Damage"
+effect = "Melee and Ranged Power"
 effect_type = "HelplessDamage"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
 effect_type = "MeleePower"
 extra_types = ["RangedPower"]

@@ -19,6 +19,7 @@ max_dex_bonus = 0
 
 [[effect]]
 name = "Power of the Dark Restoration"
+bonus_type = "Equipment"
 value = 80
 
 [[effect]]

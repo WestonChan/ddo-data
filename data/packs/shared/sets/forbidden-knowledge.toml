@@ -1,6 +1,12 @@
 name = "Forbidden Knowledge"
 icon = "ForbiddenKnowledge"
 
+[[citation]]
+field = "tier"
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+note = "The tier lines were checked; this replaces the add corrections the prose mapping superseded."
+
 [[augment]]
 name = "Forbidden Knowledge"
 family = "LostPurpose"
@@ -125,22 +131,6 @@ name = "World-Weary Wrappings"
 [[item]]
 name = "Wristbound Register"
 
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Attack Bonus +1 Profane at 4 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 4, Attack Bonus / Profane"
-
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Damage Bonus +1 Profane at 4 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 4, Damage Bonus / Profane"
-
 [[tier]]
 equipped_count = 3
 
@@ -165,16 +155,8 @@ effect = "All Ability Scores"
 value = 1
 
 [[tier.effect]]
-effect = "+1 Profane bonus to Attack and Damage"
-
-[[tier.effect]]
 bonus_type = "Profane"
-effect = "Attack Bonus"
-value = 1
-
-[[tier.effect]]
-bonus_type = "Profane"
-effect = "Damage Bonus"
+effect = "Attack and Damage"
 value = 1
 
 [[tier.modifier]]

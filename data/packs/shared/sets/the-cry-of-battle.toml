@@ -12,17 +12,7 @@ value = 4
 
 [[tier.effect]]
 bonus_type = "Stacking"
-effect = "Hireling Melee Power"
-value = 20
-
-[[tier.effect]]
-bonus_type = "Stacking"
-effect = "Hireling Physical Resistance Rating"
-value = 20
-
-[[tier.effect]]
-bonus_type = "Stacking"
-effect = "Hireling Magical Resistance Rating"
+effect = "Hireling Magical Resistance Rating, Hireling Melee Power and Hireling Physical Resistance Rating"
 value = 20
 
 [[tier.modifier]]
@@ -36,6 +26,7 @@ effect_type = "HirelingAbilityBonus"
 amount_type = "Simple"
 amounts = [20]
 bonus_type = "Stacking"
+effect = "Hireling Magical Resistance Rating, Hireling Melee Power and Hireling Physical Resistance Rating"
 effect_type = "HirelingMeleePower"
 extra_types = [
     "HirelingPRR",
@@ -52,17 +43,7 @@ value = 4
 
 [[tier.effect]]
 bonus_type = "Stacking"
-effect = "Hireling Melee Power"
-value = 20
-
-[[tier.effect]]
-bonus_type = "Stacking"
-effect = "Hireling Physical Resistance Rating"
-value = 20
-
-[[tier.effect]]
-bonus_type = "Stacking"
-effect = "Hireling Magical Resistance Rating"
+effect = "Hireling Magical Resistance Rating, Hireling Melee Power and Hireling Physical Resistance Rating"
 value = 20
 
 [[tier.modifier]]
@@ -76,6 +57,7 @@ effect_type = "HirelingAbilityBonus"
 amount_type = "Simple"
 amounts = [20]
 bonus_type = "Stacking"
+effect = "Hireling Magical Resistance Rating, Hireling Melee Power and Hireling Physical Resistance Rating"
 effect_type = "HirelingMeleePower"
 extra_types = [
     "HirelingPRR",

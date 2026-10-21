@@ -1,0 +1,15 @@
+name = "Balance and Repair"
+description_template = "+{1} %b1 bonus to Balance and Repair."
+verbose_name_template = "%b1 Balance and Repair +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Balance"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Repair"

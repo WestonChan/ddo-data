@@ -24,7 +24,9 @@ qualifier = "equipped_count 3, Movement Speed / Enhancement"
 equipped_count = 2
 
 [[tier.effect]]
-effect = "+2 Doublestrike and Doubleshot"
+bonus_type = "Stacking"
+effect = "Doublestrike and Doubleshot"
+value = 2
 
 [[tier.modifier]]
 amount_type = "Stacks"
@@ -39,12 +41,7 @@ description = "Permanent Haste: 15% melee and ranged attack speed."
 
 [[tier.effect]]
 bonus_type = "Enhancement"
-effect = "Melee Attack Speed"
-value = 15
-
-[[tier.effect]]
-bonus_type = "Enhancement"
-effect = "Ranged Attack Speed"
+effect = "Melee and Ranged Attack Speed"
 value = 15
 
 [[tier.modifier]]
@@ -60,5 +57,6 @@ amount_type = "Simple"
 amounts = [15]
 apply_as_item_effect = true
 bonus_type = "Enhancement"
+effect = "Melee and Ranged Attack Speed"
 effect_type = "Weapon_Alacrity"
 targets = ["All"]

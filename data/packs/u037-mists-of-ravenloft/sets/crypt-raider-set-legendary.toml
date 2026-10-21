@@ -40,12 +40,7 @@ value = 15
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Melee Threat Generation"
-value = -20
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Ranged Threat Generation"
+effect = "Melee and Ranged Threat Generation"
 value = -20
 
 [[tier.effect]]

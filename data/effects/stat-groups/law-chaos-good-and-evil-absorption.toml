@@ -1,0 +1,27 @@
+name = "Law, Chaos, Good and Evil Absorption"
+description_template = "+{1}% %b1 bonus to Law, Chaos, Good and Evil Absorption."
+verbose_name_template = "%b1 Law, Chaos, Good and Evil Absorption +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Law Absorption"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Chaos Absorption"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Good Absorption"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Evil Absorption"

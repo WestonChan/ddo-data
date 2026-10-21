@@ -33,64 +33,40 @@ value = 15
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Melee Threat Generation"
+effect = "Melee, Spell and Ranged Threat Generation"
 value = 75
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Ranged Threat Generation"
-value = 75
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Spell Threat Generation"
-value = 75
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Fire Absorption"
-value = 10
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Cold Absorption"
-value = 10
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Acid Absorption"
-value = 10
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Electric Absorption"
+effect = "Fire, Cold, Electric and Acid Absorption"
 value = 10
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Artifact"
-effect = "Magical Resistance Rating"
+effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "ACPercent"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Artifact"
-effect = "Magical Resistance Rating"
+effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "PRR"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Artifact"
-effect = "Magical Resistance Rating"
+effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "MRR"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [75]
 bonus_type = "Artifact"
+effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "ThreatBonusMelee"
 extra_types = [
     "ThreatBonusRanged",
@@ -101,6 +77,7 @@ extra_types = [
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Artifact"
+effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "EnergyAbsorbance"
 targets = [
     "Fire",

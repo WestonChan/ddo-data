@@ -49,6 +49,7 @@ value = 20
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Artifact"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 

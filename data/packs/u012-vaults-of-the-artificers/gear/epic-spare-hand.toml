@@ -47,12 +47,7 @@ min_level = 20
 
 [[socket.option.effect]]
 bonus_type = "Competence"
-effect = "Disable Device"
-value = 18
-
-[[socket.option.effect]]
-bonus_type = "Competence"
-effect = "Open Lock"
+effect = "Disable Device and Open Lock"
 value = 18
 
 [[socket.option.effect]]
@@ -67,6 +62,7 @@ slot = "colorless"
 amount_type = "Simple"
 amounts = [18]
 bonus_type = "Competence"
+effect = "Disable Device and Open Lock"
 effect_type = "SkillBonus"
 targets = [
     "Disable Device",

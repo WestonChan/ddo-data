@@ -1,0 +1,33 @@
+name = "Fire, Cold, Electric, Acid and Sonic Absorption"
+description_template = "+{1}% %b1 bonus to Fire, Cold, Electric, Acid and Sonic Absorption."
+verbose_name_template = "%b1 Fire, Cold, Electric, Acid and Sonic Absorption +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Fire Absorption"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Cold Absorption"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Electric Absorption"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Acid Absorption"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Sonic Absorption"

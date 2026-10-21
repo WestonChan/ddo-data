@@ -1,0 +1,33 @@
+name = "Light, Chaos, Good, Evil and Law Spell Lore"
+description_template = "+{1}% %b1 bonus to Light, Chaos, Good, Evil and Law Spell Lore."
+verbose_name_template = "%b1 Light, Chaos, Good, Evil and Law Spell Lore +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Light Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Chaos Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Good Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Evil Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Law Spell Lore"

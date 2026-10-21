@@ -20,5 +20,6 @@ amount_type = "Simple"
 amounts = [2]
 bonus = "Insightful"
 bonus_type = "Insight"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]

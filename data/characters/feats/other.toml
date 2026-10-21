@@ -152,17 +152,7 @@ value = 2
 
 [[row.effect]]
 bonus_type = "Racial"
-effect = "Acid Resistance"
-value = 5
-
-[[row.effect]]
-bonus_type = "Racial"
-effect = "Cold Resistance"
-value = 5
-
-[[row.effect]]
-bonus_type = "Racial"
-effect = "Electric Resistance"
+effect = "Cold, Electric and Acid Resistance"
 value = 5
 
 [[row.modifier]]
@@ -195,6 +185,7 @@ targets = [
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Racial"
+effect = "Cold, Electric and Acid Resistance"
 effect_type = "EnergyResistance"
 targets = [
     "Acid",
@@ -908,42 +899,22 @@ value = 999
 
 [[row.effect]]
 bonus_type = "Shield"
-effect = "Physical Resistance Rating"
+effect = "Sheltering"
 value = 0
 
 [[row.effect]]
 bonus_type = "Shield"
-effect = "Magical Resistance Rating"
-value = 0
-
-[[row.effect]]
-bonus_type = "Shield"
-effect = "Physical Resistance Rating"
+effect = "Sheltering"
 value = 5
 
 [[row.effect]]
 bonus_type = "Shield"
-effect = "Magical Resistance Rating"
-value = 5
-
-[[row.effect]]
-bonus_type = "Shield"
-effect = "Physical Resistance Rating"
+effect = "Sheltering"
 value = 10
 
 [[row.effect]]
 bonus_type = "Shield"
-effect = "Magical Resistance Rating"
-value = 10
-
-[[row.effect]]
-bonus_type = "Shield"
-effect = "Physical Resistance Rating"
-value = 15
-
-[[row.effect]]
-bonus_type = "Shield"
-effect = "Magical Resistance Rating"
+effect = "Sheltering"
 value = 15
 
 [[row.modifier]]
@@ -1123,6 +1094,7 @@ amount_type = "Simple"
 amounts = [0]
 bonus_type = "Shield"
 display_name = "Equipped Buckler PRR/MRR Bonus"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -1135,6 +1107,7 @@ amount_type = "Simple"
 amounts = [5]
 bonus_type = "Shield"
 display_name = "Equipped Small Shield PRR/MRR Bonus"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -1147,6 +1120,7 @@ amount_type = "Simple"
 amounts = [10]
 bonus_type = "Shield"
 display_name = "Equipped Large Shield PRR/MRR Bonus"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -1159,6 +1133,7 @@ amount_type = "Simple"
 amounts = [15]
 bonus_type = "Shield"
 display_name = "Equipped Tower Shield PRR/MRR Bonus"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -2334,23 +2309,14 @@ icon = "ElvenFeats"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Listen"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Search"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Spot"
+effect = "Listen, Search and Spot"
 value = 2
 
 [[row.modifier]]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
+effect = "Listen, Search and Spot"
 effect_type = "SkillBonus"
 targets = [
     "Listen",
@@ -3593,18 +3559,14 @@ icon = "GnomishProficiences"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Haggle"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Use Magic Device"
+effect = "Haggle and Use Magic Device"
 value = 2
 
 [[row.modifier]]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
+effect = "Haggle and Use Magic Device"
 effect_type = "SkillBonus"
 targets = [
     "Haggle",
@@ -3820,23 +3782,14 @@ source_name = "Half-Elf"
 
 [[row.effect]]
 bonus_type = "Racial"
-effect = "Listen"
-value = 1
-
-[[row.effect]]
-bonus_type = "Racial"
-effect = "Search"
-value = 1
-
-[[row.effect]]
-bonus_type = "Racial"
-effect = "Spot"
+effect = "Listen, Search and Spot"
 value = 1
 
 [[row.modifier]]
 amount_type = "Simple"
 amounts = [1]
 bonus_type = "Racial"
+effect = "Listen, Search and Spot"
 effect_type = "SkillBonus"
 targets = [
     "Listen",
@@ -3929,18 +3882,14 @@ source_name = "Halfling"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Jump"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Move Silently"
+effect = "Jump and Move Silently"
 value = 2
 
 [[row.modifier]]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
+effect = "Jump and Move Silently"
 effect_type = "SkillBonus"
 targets = [
     "Jump",
@@ -6259,22 +6208,7 @@ value = 3
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Acid Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Cold Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Electric Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Fire Absorption"
+effect = "Fire, Cold, Electric and Acid Absorption"
 value = 1
 
 [[row.modifier]]
@@ -6417,6 +6351,7 @@ amount_type = "Simple"
 amounts = [1]
 bonus_type = "Feat"
 display_name = "Past Life: Arcane Sphere: Energy Absorbance"
+effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "EnergyAbsorbance"
 targets = [
     "Acid",
@@ -6444,22 +6379,7 @@ sphere = "Arcane"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Acid Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Cold Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Electric Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Fire Absorption"
+effect = "Fire, Cold, Electric and Acid Absorption"
 value = 1
 
 [[row.modifier]]
@@ -6591,6 +6511,7 @@ amount_type = "Simple"
 amounts = [1]
 bonus_type = "Feat"
 display_name = "Past Life: Arcane Sphere: Energy Absorbance"
+effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "EnergyAbsorbance"
 targets = [
     "Acid",
@@ -6624,22 +6545,7 @@ value = 1
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Acid Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Cold Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Electric Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Fire Absorption"
+effect = "Fire, Cold, Electric and Acid Absorption"
 value = 1
 
 [[row.modifier]]
@@ -6782,6 +6688,7 @@ amount_type = "Simple"
 amounts = [1]
 bonus_type = "Feat"
 display_name = "Past Life: Arcane Sphere: Energy Absorbance"
+effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "EnergyAbsorbance"
 targets = [
     "Acid",
@@ -6809,22 +6716,7 @@ sphere = "Arcane"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Acid Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Cold Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Electric Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Fire Absorption"
+effect = "Fire, Cold, Electric and Acid Absorption"
 value = 1
 
 [[row.modifier]]
@@ -6967,6 +6859,7 @@ amount_type = "Simple"
 amounts = [1]
 bonus_type = "Feat"
 display_name = "Past Life: Arcane Sphere: Energy Absorbance"
+effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "EnergyAbsorbance"
 targets = [
     "Acid",
@@ -6996,47 +6889,12 @@ sphere = "Arcane"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Acid Spell Lore"
+effect = "Fire, Cold, Electric, Acid and Sonic Spell Lore"
 value = 3
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Cold Spell Lore"
-value = 3
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Electric Spell Lore"
-value = 3
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Fire Spell Lore"
-value = 3
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Sonic Spell Lore"
-value = 3
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Acid Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Cold Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Electric Absorption"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Fire Absorption"
+effect = "Fire, Cold, Electric and Acid Absorption"
 value = 1
 
 [[row.modifier]]
@@ -7167,6 +7025,7 @@ effect_type = "FatePoint"
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Feat"
+effect = "Fire, Cold, Electric, Acid and Sonic Spell Lore"
 effect_type = "SpellLore"
 targets = [
     "Acid",
@@ -7185,6 +7044,7 @@ amount_type = "Simple"
 amounts = [1]
 bonus_type = "Feat"
 display_name = "Past Life: Arcane Sphere: Energy Absorbance"
+effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "EnergyAbsorbance"
 targets = [
     "Acid",
@@ -7329,18 +7189,14 @@ source_name = "Stormsinger"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Electric Spell Power"
-value = 5
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Sonic Spell Power"
+effect = "Power of the Thunderstorm"
 value = 5
 
 [[row.modifier]]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Feat"
+effect = "Power of the Thunderstorm"
 effect_type = "SpellPower"
 targets = [
     "Electric",
@@ -7874,27 +7730,7 @@ sphere = "Divine"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Acid Absorption"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Cold Absorption"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Electric Absorption"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Fire Absorption"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Sonic Absorption"
+effect = "Fire, Cold, Electric, Acid and Sonic Absorption"
 value = 10
 
 [[row.effect]]
@@ -8031,6 +7867,7 @@ amount_type = "Simple"
 amounts = [10]
 bonus_type = "Feat"
 display_name = "Past Life: Arcane Sphere: Energy Absorbance"
+effect = "Fire, Cold, Electric, Acid and Sonic Absorption"
 effect_type = "EnergyAbsorbance"
 targets = [
     "Acid",
@@ -8241,17 +8078,7 @@ sphere = "Divine"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Negative Spell Power"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Poison Spell Power"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Positive Spell Power"
+effect = "Power of the Dark Restoration"
 value = 10
 
 [[row.effect]]
@@ -8387,6 +8214,7 @@ effect_type = "FatePoint"
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Feat"
+effect = "Power of the Dark Restoration"
 effect_type = "SpellPower"
 targets = [
     "Negative",
@@ -8538,18 +8366,14 @@ source_name = "Blight Caster"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Acid Spell Power"
-value = 5
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Poison Spell Power"
+effect = "Acid and Poison Spell Power"
 value = 5
 
 [[row.modifier]]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Feat"
+effect = "Acid and Poison Spell Power"
 effect_type = "SpellPower"
 targets = [
     "Acid",
@@ -11172,27 +10996,7 @@ source_name = "Ranger"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Acid Resistance"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Cold Resistance"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Electric Resistance"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Fire Resistance"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Sonic Resistance"
+effect = "Fire, Cold, Electric, Acid and Sonic Resistance"
 value = 2
 
 [[row.modifier]]
@@ -11207,6 +11011,7 @@ targets = ["Ranged"]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
+effect = "Fire, Cold, Electric, Acid and Sonic Resistance"
 effect_type = "EnergyResistance"
 targets = [
     "Acid",

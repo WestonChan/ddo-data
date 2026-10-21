@@ -10,12 +10,7 @@ equipped_count = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Healing Amplification"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Repair Amplification"
+effect = "Healing and Repair Amplification"
 value = 30
 
 [[tier.effect]]
@@ -37,7 +32,7 @@ value = 15
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Artifact"
-effect = "Strikethrough"
+effect = "Melee and Ranged Power"
 effect_type = "HealingAmplification"
 extra_types = ["RepairAmplification"]
 
@@ -45,7 +40,7 @@ extra_types = ["RepairAmplification"]
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Artifact"
-effect = "Strikethrough"
+effect = "Melee and Ranged Power"
 effect_type = "SpellPower"
 targets = [
     "Repair",
@@ -56,12 +51,13 @@ targets = [
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Artifact"
-effect = "Strikethrough"
+effect = "Melee and Ranged Power"
 effect_type = "Strikethrough"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
 effect_type = "MeleePower"
 extra_types = ["RangedPower"]

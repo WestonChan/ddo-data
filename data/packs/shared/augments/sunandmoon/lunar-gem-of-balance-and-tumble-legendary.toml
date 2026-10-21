@@ -7,12 +7,7 @@ icon = "HistoryBookWhite"
 min_level = 30
 
 [[effect]]
-name = "Balance"
-bonus_type = "Profane"
-value = 6
-
-[[effect]]
-name = "Tumble"
+name = "Balance and Tumble"
 bonus_type = "Profane"
 value = 6
 
@@ -20,6 +15,7 @@ value = 6
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Profane"
+effect = "Balance and Tumble"
 effect_type = "SkillBonus"
 targets = [
     "Balance",

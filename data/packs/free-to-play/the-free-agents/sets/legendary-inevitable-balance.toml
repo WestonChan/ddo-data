@@ -35,17 +35,13 @@ description = "10% Melee Power, 10% Doublestrike, and extra Bane damage on sneak
 
 [[tier.effect]]
 bonus_type = "Stacking"
-effect = "Melee Power"
-value = 10
-
-[[tier.effect]]
-bonus_type = "Stacking"
-effect = "Doublestrike"
+effect = "Melee Power and Doublestrike"
 value = 10
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Stacking"
+effect = "Melee Power and Doublestrike"
 effect_type = "MeleePower"
 extra_types = ["Doublestrike"]

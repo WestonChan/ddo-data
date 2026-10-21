@@ -26,12 +26,7 @@ bonus_type = "Enhancement"
 value = 30
 
 [[effect]]
-name = "Melee Attack Speed"
-bonus_type = "Enhancement"
-value = 15
-
-[[effect]]
-name = "Ranged Attack Speed"
+name = "Melee and Ranged Attack Speed"
 bonus_type = "Enhancement"
 value = 15
 
@@ -48,6 +43,7 @@ amount_type = "Simple"
 amounts = [15]
 apply_as_item_effect = true
 bonus_type = "Enhancement"
+effect = "Melee and Ranged Attack Speed"
 effect_type = "Weapon_Alacrity"
 targets = ["All"]
 

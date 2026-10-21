@@ -112,23 +112,14 @@ equipped_count = 5
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Intelligence"
-value = 3
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Wisdom"
-value = 3
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Charisma"
+effect = "Intelligence, Wisdom and Charisma"
 value = 3
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Artifact"
+effect = "Intelligence, Wisdom and Charisma"
 effect_type = "AbilityBonus"
 targets = [
     "Intelligence",

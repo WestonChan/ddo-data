@@ -10,22 +10,7 @@ bonus_type = "Orb"
 value = 10
 
 [[effect]]
-name = "Cold Resistance"
-bonus_type = "Orb"
-value = 10
-
-[[effect]]
-name = "Electric Resistance"
-bonus_type = "Orb"
-value = 10
-
-[[effect]]
-name = "Fire Resistance"
-bonus_type = "Orb"
-value = 10
-
-[[effect]]
-name = "Sonic Resistance"
+name = "Fire, Cold, Electric and Sonic Resistance"
 bonus_type = "Orb"
 value = 10
 
@@ -76,6 +61,7 @@ amount_type = "Simple"
 amounts = [10]
 bonus_type = "Orb"
 damage = "Acid"
+effect = "Fire, Cold, Electric and Sonic Resistance"
 effect_type = "EnergyResistance"
 targets = [
     "Cold",

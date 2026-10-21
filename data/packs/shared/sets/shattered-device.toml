@@ -6,7 +6,9 @@ is_filigree_set = true
 equipped_count = 2
 
 [[tier.effect]]
-effect = "+3 to Attack and Damage with weapons"
+bonus_type = "Stacking"
+effect = "Attack and Damage"
+value = 3
 
 [[tier.modifier]]
 amount_type = "Simple"
@@ -27,6 +29,7 @@ value = 3
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Stacking"
+effect = "Doublestrike and Doubleshot"
 effect_type = "Doublestrike"
 extra_types = ["Doubleshot"]
 

@@ -1,6 +1,7 @@
 name = "Power of the Moonlit Haunt"
 description_template = "Passive: {1} %b1 bonus to Negative, Force and Poison Spell Power."
 home_bonus_type = "Equipment"
+set_bonus_line_template = "+{1} %b1 Bonus to Negative, Poison and Force Spell Power"
 verbose_name_template = "%b1 Power of the Moonlit Haunt +{1}"
 
 [[bonus]]

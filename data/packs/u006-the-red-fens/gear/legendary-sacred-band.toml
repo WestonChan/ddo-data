@@ -16,6 +16,7 @@ value = 13
 
 [[effect]]
 name = "Silver Flame Lore"
+bonus_type = "Equipment"
 value = 21
 
 [[effect]]

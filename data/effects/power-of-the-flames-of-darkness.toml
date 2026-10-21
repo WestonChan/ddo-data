@@ -1,6 +1,7 @@
 name = "Power of the Flames of Darkness"
 description_template = "Passive: {1} Equipment bonus to Fire, Negative, and Poison Spell Power."
 home_bonus_type = "Equipment"
+set_bonus_line_template = "+{1} Equipment Bonus to Negative, Poison and Fire Spell Power"
 verbose_name_template = "Power of the Flames of Darkness +{1}"
 
 [[bonus]]

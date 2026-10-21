@@ -27,12 +27,7 @@ source_name = "Dhampir Dark Bargainer"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Physical Resistance Rating"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Magical Resistance Rating"
+effect = "Sheltering"
 value = 10
 
 [[row.group]]
@@ -42,6 +37,7 @@ group_name = "Dark Gift Upgrade"
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Feat"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 

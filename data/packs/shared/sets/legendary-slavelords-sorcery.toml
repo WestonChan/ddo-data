@@ -58,24 +58,14 @@ value = 4
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Intelligence"
-value = 2
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Wisdom"
-value = 2
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Charisma"
+effect = "Intelligence, Wisdom and Charisma"
 value = 2
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Artifact"
-effect = "Spell DCs"
+effect = "Intelligence, Wisdom and Charisma"
 effect_type = "SpellPower"
 targets = ["All"]
 
@@ -83,7 +73,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [4]
 bonus_type = "Artifact"
-effect = "Spell DCs"
+effect = "Intelligence, Wisdom and Charisma"
 effect_type = "SpellDC"
 targets = ["All"]
 
@@ -91,6 +81,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Artifact"
+effect = "Intelligence, Wisdom and Charisma"
 effect_type = "AbilityBonus"
 targets = [
     "Intelligence",

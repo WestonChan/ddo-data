@@ -1,0 +1,15 @@
+name = "Melee Power and Doublestrike"
+description_template = "+{1} %b1 bonus to Melee Power and Doublestrike."
+verbose_name_template = "%b1 Melee Power and Doublestrike +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Melee Power"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Doublestrike"

@@ -39,12 +39,7 @@ equipped_count = 5
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Strength"
-value = 1
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Dexterity"
+effect = "Strength and Dexterity"
 value = 1
 
 [[tier.effect]]

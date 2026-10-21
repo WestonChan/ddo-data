@@ -1,2 +1,145 @@
-redirect = []
 retired = []
+
+[[redirect]]
+kind = "effects"
+from = "1-profane-bonus-to-attack-and-damage"
+to = "attack-and-damage"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "1-quality-bonus-to-seeker"
+to = "seeker"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "2-artifact-bonus-to-attack-and-damage"
+to = "attack-and-damage"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "2-damage"
+to = "damage-bonus"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "2-doublestrike-and-doubleshot"
+to = "doublestrike-and-doubleshot"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "2-imbue-dice"
+to = "imbue-dice"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "2-quality-bonus-to-seeker"
+to = "seeker"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "2-to-attack-and-damage"
+to = "attack-and-damage"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "3-artifact-bonus-to-attack-and-damage"
+to = "attack-and-damage"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "3-artifact-bonus-to-attack-and-damage-2"
+to = "attack-and-damage"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "3-artifact-bonus-to-critical-attack-and-damage"
+to = "seeker"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "3-artifact-bonus-to-hit-and-damage"
+to = "attack-and-damage"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "3-artifact-bonus-to-shield-armor-class"
+to = "shield-armor-class"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "3-artifact-bonus-to-your-to-hit-and-damage-rolls"
+to = "attack-and-damage"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "3-chance-to-deflect-missiles"
+to = "missile-deflection"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "3-to-attack-and-damage-with-weapons"
+to = "attack-and-damage"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "4-artifact-bonus-to-attack-and-damage"
+to = "attack-and-damage"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "4-profane-bonus-to-attack-and-damage"
+to = "attack-and-damage"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "4-saving-throws-versus-poison"
+to = "poison-save"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "5-cold-spell-critical-damage"
+to = "cold-spell-critical-damage"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "5-healing-amplification"
+to = "healing-amplification"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "5-melee-and-ranged-power"
+to = "melee-and-ranged-power"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "5-profane-bonus-to-hit-and-damage"
+to = "attack-and-damage"
+since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "5-ranged-power"
+to = "ranged-power"
+since = "2026-10-20"

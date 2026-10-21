@@ -29,5 +29,6 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Stacking"
+effect = "Doublestrike and Doubleshot"
 effect_type = "Doublestrike"
 extra_types = ["Doubleshot"]

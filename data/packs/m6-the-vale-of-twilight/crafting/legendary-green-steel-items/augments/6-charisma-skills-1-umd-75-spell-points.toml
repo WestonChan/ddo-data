@@ -7,27 +7,7 @@ Ethereal
 Escalation"""
 
 [[effect]]
-name = "Bluff"
-bonus_type = "Quality"
-value = 6
-
-[[effect]]
-name = "Diplomacy"
-bonus_type = "Quality"
-value = 6
-
-[[effect]]
-name = "Haggle"
-bonus_type = "Quality"
-value = 6
-
-[[effect]]
-name = "Intimidate"
-bonus_type = "Quality"
-value = 6
-
-[[effect]]
-name = "Perform"
+name = "Bluff, Diplomacy, Haggle, Intimidate and Perform"
 bonus_type = "Quality"
 value = 6
 
@@ -45,6 +25,7 @@ value = 75
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Quality"
+effect = "Bluff, Diplomacy, Haggle, Intimidate and Perform"
 effect_type = "SkillBonus"
 targets = [
     "Bluff",

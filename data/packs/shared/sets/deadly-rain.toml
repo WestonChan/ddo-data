@@ -6,7 +6,9 @@ is_filigree_set = true
 equipped_count = 2
 
 [[tier.effect]]
-effect = "+5 Ranged Power"
+bonus_type = "Stacking"
+effect = "Ranged Power"
+value = 5
 
 [[tier.modifier]]
 amount_type = "Stacks"
@@ -18,7 +20,9 @@ effect_type = "RangedPower"
 equipped_count = 3
 
 [[tier.effect]]
-effect = "+2 Damage"
+bonus_type = "Stacking"
+effect = "Damage Bonus"
+value = 2
 
 [[tier.modifier]]
 amount_type = "Stacks"
@@ -31,7 +35,9 @@ targets = ["All"]
 equipped_count = 4
 
 [[tier.effect]]
-effect = "+3% Chance to Deflect Missiles"
+bonus_type = "Stacking"
+effect = "Missile Deflection"
+value = 3
 
 [[tier.modifier]]
 amount_type = "Stacks"

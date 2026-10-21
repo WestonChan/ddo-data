@@ -13,17 +13,7 @@ bonus_type = "Fortune"
 value = 5
 
 [[effect]]
-name = "Offhand Strike Chance"
-bonus_type = "Fortune"
-value = 2
-
-[[effect]]
-name = "Doublestrike"
-bonus_type = "Fortune"
-value = 2
-
-[[effect]]
-name = "Doubleshot"
+name = "Doublestrike, Doubleshot and Offhand Strike Chance"
 bonus_type = "Fortune"
 value = 2
 
@@ -38,6 +28,7 @@ effect_type = "Strikethrough"
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Fortune"
+effect = "Doublestrike, Doubleshot and Offhand Strike Chance"
 effect_type = "OffHandAttackBonus"
 extra_types = [
     "Doublestrike",

@@ -53,18 +53,14 @@ min_level = 12
 
 [[socket.option.effect]]
 bonus_type = "Competence"
-effect = "Spot"
-value = 13
-
-[[socket.option.effect]]
-bonus_type = "Competence"
-effect = "Search"
+effect = "Search and Spot"
 value = 13
 
 [[socket.option.modifier]]
 amount_type = "Simple"
 amounts = [13]
 bonus_type = "Competence"
+effect = "Search and Spot"
 effect_type = "SkillBonus"
 targets = [
     "Spot",

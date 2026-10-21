@@ -1,0 +1,15 @@
+name = "Magical Resistance Rating and Magical Resistance Rating Cap"
+description_template = "+{1} %b1 bonus to Magical Resistance Rating and Magical Resistance Rating Cap."
+verbose_name_template = "%b1 Magical Resistance Rating and Magical Resistance Rating Cap +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Magical Resistance Rating"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Magical Resistance Rating Cap"

@@ -48,17 +48,7 @@ value = 10
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Melee Threat Generation"
-value = -10
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Ranged Threat Generation"
-value = -10
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Spell Threat Generation"
+effect = "Melee, Spell and Ranged Threat Generation"
 value = -10
 
 [[tier.effect]]
@@ -70,7 +60,7 @@ value = -10
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Artifact"
-effect = "Cold Spell Power"
+effect = "Melee, Spell and Ranged Threat Generation"
 effect_type = "MeleePower"
 extra_types = ["RangedPower"]
 
@@ -78,7 +68,7 @@ extra_types = ["RangedPower"]
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Artifact"
-effect = "Cold Spell Power"
+effect = "Melee, Spell and Ranged Threat Generation"
 effect_type = "SpellPower"
 targets = ["Cold"]
 
@@ -86,6 +76,7 @@ targets = ["Cold"]
 amount_type = "Simple"
 amounts = [-10]
 bonus_type = "Artifact"
+effect = "Melee, Spell and Ranged Threat Generation"
 effect_type = "ThreatBonusMelee"
 extra_types = [
     "ThreatBonusRanged",

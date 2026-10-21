@@ -1,0 +1,15 @@
+name = "Jump and Move Silently"
+description_template = "+{1} %b1 bonus to Jump and Move Silently."
+verbose_name_template = "%b1 Jump and Move Silently +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Jump"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Move Silently"

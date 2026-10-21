@@ -17,34 +17,19 @@ value = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Intelligence"
+effect = "Intelligence, Wisdom and Charisma"
 value = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Wisdom"
-value = 3
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Charisma"
-value = 3
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Concentration"
-value = 5
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Perform"
+effect = "Concentration and Perform"
 value = 5
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Artifact"
-effect = "Spell DCs"
+effect = "Concentration and Perform"
 effect_type = "SpellDC"
 targets = ["All"]
 
@@ -52,6 +37,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Artifact"
+effect = "Concentration and Perform"
 effect_type = "AbilityBonus"
 targets = [
     "Intelligence",
@@ -63,6 +49,7 @@ targets = [
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Artifact"
+effect = "Concentration and Perform"
 effect_type = "SkillBonus"
 targets = [
     "Concentration",

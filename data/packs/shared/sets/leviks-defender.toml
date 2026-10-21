@@ -26,12 +26,7 @@ value = 20
 
 [[tier.effect]]
 bonus_type = "Insight"
-effect = "Fortitude Save"
-value = 1
-
-[[tier.effect]]
-bonus_type = "Insight"
-effect = "Will Save"
+effect = "Fortitude and Will Save"
 value = 1
 
 [[tier.modifier]]
@@ -39,7 +34,7 @@ amount_type = "Simple"
 amounts = [3]
 bonus = "Insightful"
 bonus_type = "Insight"
-effect = "Melee Threat Generation"
+effect = "Fortitude and Will Save"
 effect_type = "ACBonus"
 
 [[tier.modifier]]
@@ -47,7 +42,7 @@ amount_type = "Simple"
 amounts = [20]
 bonus = "Insightful"
 bonus_type = "Insight"
-effect = "Melee Threat Generation"
+effect = "Fortitude and Will Save"
 effect_type = "ThreatBonusMelee"
 
 [[tier.modifier]]
@@ -55,6 +50,7 @@ amount_type = "Simple"
 amounts = [1]
 bonus = "Insightful"
 bonus_type = "Insight"
+effect = "Fortitude and Will Save"
 effect_type = "SaveBonus"
 targets = [
     "Fortitude",

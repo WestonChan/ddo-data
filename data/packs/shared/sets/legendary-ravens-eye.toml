@@ -1,27 +1,17 @@
 name = "Legendary Raven's Eye"
 icon = "RavensEye"
 
+[[citation]]
+field = "tier"
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+note = "The tier lines were checked; this replaces the add corrections the prose mapping superseded."
+
 [[item]]
 name = "Legendary Raven's Sight"
 
 [[item]]
 name = "Legendary Raven's Talons"
-
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Attack Bonus +3 Artifact at 2 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 2, Attack Bonus / Artifact"
-
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Damage Bonus +3 Artifact at 2 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 2, Damage Bonus / Artifact"
 
 [[ddobuilder_correction]]
 kind = "set_tier_bonus"
@@ -35,7 +25,9 @@ qualifier = "equipped_count 2, Sneak Attack / Artifact"
 equipped_count = 2
 
 [[tier.effect]]
-effect = "+3 Artifact bonus to Attack and Damage"
+bonus_type = "Artifact"
+effect = "Attack and Damage"
+value = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
@@ -49,23 +41,8 @@ value = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Search"
+effect = "Search and Spot"
 value = 7
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Spot"
-value = 7
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Attack Bonus"
-value = 3
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Damage Bonus"
-value = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
@@ -76,6 +53,7 @@ value = 3
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Artifact"
+effect = "Search and Spot"
 effect_type = "Weapon_AttackAndDamage"
 targets = ["All"]
 
@@ -83,6 +61,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Artifact"
+effect = "Search and Spot"
 effect_type = "SneakAttackAttack"
 extra_types = ["SneakAttackDamage"]
 
@@ -90,6 +69,7 @@ extra_types = ["SneakAttackDamage"]
 amount_type = "Simple"
 amounts = [7]
 bonus_type = "Artifact"
+effect = "Search and Spot"
 effect_type = "SkillBonus"
 targets = [
     "Search",

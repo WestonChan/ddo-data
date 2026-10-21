@@ -116,22 +116,12 @@ source_name = "Blight Caster"
 
 [[row.effect]]
 bonus_type = "Combat Style"
-effect = "Melee Attack Speed"
-value = 20
-
-[[row.effect]]
-bonus_type = "Combat Style"
-effect = "Ranged Attack Speed"
+effect = "Melee and Ranged Attack Speed"
 value = 20
 
 [[row.effect]]
 bonus_type = "Penalty"
-effect = "Intelligence"
-value = -2
-
-[[row.effect]]
-bonus_type = "Penalty"
-effect = "Charisma"
+effect = "Intelligence and Charisma"
 value = -2
 
 [[row.effect]]
@@ -162,6 +152,7 @@ amount_type = "Simple"
 amounts = [20]
 apply_as_item_effect = true
 bonus_type = "Combat Style"
+effect = "Melee and Ranged Attack Speed"
 effect_type = "Weapon_Alacrity"
 targets = ["All"]
 
@@ -173,6 +164,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [-2]
 bonus_type = "Penalty"
+effect = "Intelligence and Charisma"
 effect_type = "AbilityBonus"
 targets = [
     "Intelligence",
@@ -266,12 +258,7 @@ source_name = "Druid"
 
 [[row.effect]]
 bonus_type = "Penalty"
-effect = "Intelligence"
-value = -2
-
-[[row.effect]]
-bonus_type = "Penalty"
-effect = "Charisma"
+effect = "Intelligence and Charisma"
 value = -2
 
 [[row.effect]]
@@ -296,6 +283,7 @@ group_name = "Wild Shape"
 amount_type = "Simple"
 amounts = [-2]
 bonus_type = "Penalty"
+effect = "Intelligence and Charisma"
 effect_type = "AbilityBonus"
 targets = [
     "Intelligence",
@@ -373,12 +361,7 @@ value = -15
 
 [[row.effect]]
 bonus_type = "Penalty"
-effect = "Intelligence"
-value = -2
-
-[[row.effect]]
-bonus_type = "Penalty"
-effect = "Charisma"
+effect = "Intelligence and Charisma"
 value = -2
 
 [[row.effect]]
@@ -417,6 +400,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [-2]
 bonus_type = "Penalty"
+effect = "Intelligence and Charisma"
 effect_type = "AbilityBonus"
 targets = [
     "Intelligence",
@@ -658,22 +642,12 @@ source_name = "Blight Caster"
 
 [[row.effect]]
 bonus_type = "Combat Style"
-effect = "Melee Attack Speed"
-value = 10
-
-[[row.effect]]
-bonus_type = "Combat Style"
-effect = "Ranged Attack Speed"
+effect = "Melee and Ranged Attack Speed"
 value = 10
 
 [[row.effect]]
 bonus_type = "Penalty"
-effect = "Intelligence"
-value = -2
-
-[[row.effect]]
-bonus_type = "Penalty"
-effect = "Charisma"
+effect = "Intelligence and Charisma"
 value = -2
 
 [[row.effect]]
@@ -694,6 +668,7 @@ amount_type = "Simple"
 amounts = [10]
 apply_as_item_effect = true
 bonus_type = "Combat Style"
+effect = "Melee and Ranged Attack Speed"
 effect_type = "Weapon_Alacrity"
 targets = ["All"]
 
@@ -705,6 +680,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [-2]
 bonus_type = "Penalty"
+effect = "Intelligence and Charisma"
 effect_type = "AbilityBonus"
 targets = [
     "Intelligence",
@@ -965,12 +941,7 @@ value = -15
 
 [[row.effect]]
 bonus_type = "Penalty"
-effect = "Intelligence"
-value = -2
-
-[[row.effect]]
-bonus_type = "Penalty"
-effect = "Charisma"
+effect = "Intelligence and Charisma"
 value = -2
 
 [[row.effect]]
@@ -1009,6 +980,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [-2]
 bonus_type = "Penalty"
+effect = "Intelligence and Charisma"
 effect_type = "AbilityBonus"
 targets = [
     "Intelligence",
@@ -1061,22 +1033,12 @@ source_name = "Druid"
 
 [[row.effect]]
 bonus_type = "Combat Style"
-effect = "Melee Attack Speed"
-value = 20
-
-[[row.effect]]
-bonus_type = "Combat Style"
-effect = "Ranged Attack Speed"
+effect = "Melee and Ranged Attack Speed"
 value = 20
 
 [[row.effect]]
 bonus_type = "Penalty"
-effect = "Intelligence"
-value = -2
-
-[[row.effect]]
-bonus_type = "Penalty"
-effect = "Charisma"
+effect = "Intelligence and Charisma"
 value = -2
 
 [[row.effect]]
@@ -1130,6 +1092,7 @@ amount_type = "Simple"
 amounts = [20]
 apply_as_item_effect = true
 bonus_type = "Combat Style"
+effect = "Melee and Ranged Attack Speed"
 effect_type = "Weapon_Alacrity"
 targets = ["All"]
 
@@ -1141,6 +1104,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [-2]
 bonus_type = "Penalty"
+effect = "Intelligence and Charisma"
 effect_type = "AbilityBonus"
 targets = [
     "Intelligence",
@@ -1201,22 +1165,12 @@ source_name = "Druid"
 
 [[row.effect]]
 bonus_type = "Combat Style"
-effect = "Melee Attack Speed"
-value = 10
-
-[[row.effect]]
-bonus_type = "Combat Style"
-effect = "Ranged Attack Speed"
+effect = "Melee and Ranged Attack Speed"
 value = 10
 
 [[row.effect]]
 bonus_type = "Penalty"
-effect = "Intelligence"
-value = -2
-
-[[row.effect]]
-bonus_type = "Penalty"
-effect = "Charisma"
+effect = "Intelligence and Charisma"
 value = -2
 
 [[row.effect]]
@@ -1237,6 +1191,7 @@ amount_type = "Simple"
 amounts = [10]
 apply_as_item_effect = true
 bonus_type = "Combat Style"
+effect = "Melee and Ranged Attack Speed"
 effect_type = "Weapon_Alacrity"
 targets = ["All"]
 
@@ -1248,6 +1203,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [-2]
 bonus_type = "Penalty"
+effect = "Intelligence and Charisma"
 effect_type = "AbilityBonus"
 targets = [
     "Intelligence",

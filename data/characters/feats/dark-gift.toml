@@ -129,12 +129,7 @@ source_name = "Dhampir Dark Bargainer"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Physical Resistance Rating"
-value = 5
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Magical Resistance Rating"
+effect = "Sheltering"
 value = 5
 
 [[row.group]]
@@ -155,6 +150,7 @@ targets = ["Form of Pain"]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Feat"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 

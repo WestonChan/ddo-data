@@ -9,27 +9,7 @@ Ethereal
 Escalation"""
 
 [[effect]]
-name = "Bluff"
-bonus_type = "Insight"
-value = 11
-
-[[effect]]
-name = "Diplomacy"
-bonus_type = "Insight"
-value = 11
-
-[[effect]]
-name = "Haggle"
-bonus_type = "Insight"
-value = 11
-
-[[effect]]
-name = "Intimidate"
-bonus_type = "Insight"
-value = 11
-
-[[effect]]
-name = "Perform"
+name = "Bluff, Diplomacy, Haggle, Intimidate and Perform"
 bonus_type = "Insight"
 value = 11
 
@@ -48,6 +28,7 @@ amount_type = "Simple"
 amounts = [11]
 bonus = "Insightful"
 bonus_type = "Insight"
+effect = "Bluff, Diplomacy, Haggle, Intimidate and Perform"
 effect_type = "SkillBonus"
 targets = [
     "Bluff",

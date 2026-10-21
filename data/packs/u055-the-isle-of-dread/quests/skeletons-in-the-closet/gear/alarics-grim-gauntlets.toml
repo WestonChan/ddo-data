@@ -19,6 +19,7 @@ value = 23
 
 [[effect]]
 name = "Power of the Dark Restoration"
+bonus_type = "Equipment"
 value = 155
 
 [[effect]]

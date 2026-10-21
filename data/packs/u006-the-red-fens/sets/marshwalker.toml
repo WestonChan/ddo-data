@@ -17,25 +17,21 @@ value = 30
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Jump"
-value = 3
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Tumble"
+effect = "Jump and Tumble"
 value = 3
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Enhancement"
-effect = "Movement Speed"
+effect = "Jump and Tumble"
 effect_type = "MovementSpeed"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Artifact"
+effect = "Jump and Tumble"
 effect_type = "SkillBonus"
 targets = [
     "Jump",

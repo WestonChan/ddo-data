@@ -1,0 +1,15 @@
+name = "Enchantment and Illusion Focus"
+description_template = "+{1} %b1 bonus to Enchantment and Illusion Focus."
+verbose_name_template = "%b1 Enchantment and Illusion Focus +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Enchantment Focus"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Illusion Focus"

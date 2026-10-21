@@ -15,12 +15,7 @@ equipped_count = 2
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Cold Spell Power"
-value = 10
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Fire Spell Power"
+effect = "Fire and Cold Spell Power"
 value = 10
 
 [[tier.effect]]

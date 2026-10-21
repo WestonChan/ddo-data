@@ -863,6 +863,16 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         )
         .collect::<Vec<_>>();
     validate_pack_exceptions(&transaction, &pack_exceptions)?;
+    let valued_prose = crate::groupings::Groupings::from_database(&transaction)?.valued_prose_duplicates();
+    ensure!(
+        valued_prose.is_empty(),
+        "valued prose duplicates stats or groupings:\n{}",
+        valued_prose
+            .iter()
+            .map(|duplicate| format!("{} -> {}", duplicate.prose_name, duplicate.target_name))
+            .collect::<Vec<_>>()
+            .join("\n")
+    );
     crate::loot_sources::reject_missing_source_references(&transaction)?;
     let invalid_reference: Option<(String, i64, String, i64)> = transaction
         .query_row("PRAGMA foreign_key_check", [], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)))

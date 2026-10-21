@@ -1,0 +1,21 @@
+name = "Fire, Acid and Poison Spell Lore"
+description_template = "+{1}% %b1 bonus to Fire, Acid and Poison Spell Lore."
+verbose_name_template = "%b1 Fire, Acid and Poison Spell Lore +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Fire Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Acid Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Poison Spell Lore"

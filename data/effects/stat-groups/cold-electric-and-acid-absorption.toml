@@ -1,0 +1,21 @@
+name = "Cold, Electric and Acid Absorption"
+description_template = "+{1}% %b1 bonus to Cold, Electric and Acid Absorption."
+verbose_name_template = "%b1 Cold, Electric and Acid Absorption +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Cold Absorption"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Electric Absorption"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Acid Absorption"

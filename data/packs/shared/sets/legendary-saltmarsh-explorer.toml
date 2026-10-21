@@ -131,12 +131,7 @@ value = 30
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Melee and Ranged Power"
-value = 15
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Universal Spell Power"
+effect = "Melee, Ranged and Universal Spell Power"
 value = 15
 
 [[tier.effect]]

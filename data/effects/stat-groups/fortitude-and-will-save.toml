@@ -1,0 +1,15 @@
+name = "Fortitude and Will Save"
+description_template = "+{1} %b1 bonus to Fortitude and Will Save."
+verbose_name_template = "%b1 Fortitude and Will Save +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Fortitude Save"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Will Save"

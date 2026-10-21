@@ -5,12 +5,7 @@ icon = "Reaper"
 min_level = 1
 
 [[effect]]
-name = "Melee Power"
-bonus_type = "Reaper"
-value = 3
-
-[[effect]]
-name = "Ranged Power"
+name = "Melee and Ranged Power"
 bonus_type = "Reaper"
 value = 3
 
@@ -23,6 +18,7 @@ value = 3
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Reaper"
+effect = "Melee and Ranged Power"
 effect_type = "MeleePower"
 extra_types = ["RangedPower"]
 

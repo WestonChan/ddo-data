@@ -1,6 +1,12 @@
 name = "Legendary Wrath of Sora Kell"
 icon = "WrathOfSoraKell"
 
+[[citation]]
+field = "tier"
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+note = "The tier lines were checked; this replaces the add corrections the prose mapping superseded."
+
 [[item]]
 name = "Legendary Katra's Razor Wit"
 primary = true
@@ -26,22 +32,6 @@ primary = true
 [[item]]
 name = "Legendary Teraza's Sight"
 
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Attack Bonus +3 Artifact at 3 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 3, Attack Bonus / Artifact"
-
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Damage Bonus +3 Artifact at 3 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 3, Damage Bonus / Artifact"
-
 [[tier]]
 equipped_count = 3
 
@@ -56,21 +46,13 @@ effect = "Physical Resistance Rating"
 value = 30
 
 [[tier.effect]]
-effect = "+3 Artifact bonus to Hit and Damage"
+bonus_type = "Artifact"
+effect = "Attack and Damage"
+value = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
 effect = "Imbue Dice"
-value = 3
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Attack Bonus"
-value = 3
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Damage Bonus"
 value = 3
 
 [[tier.modifier]]

@@ -47,27 +47,7 @@ level_values = [
 ]
 
 [[effect]]
-name = "Light Spell Lore"
-bonus_type = "Enhancement"
-value = 27
-
-[[effect]]
-name = "Chaos Spell Lore"
-bonus_type = "Enhancement"
-value = 27
-
-[[effect]]
-name = "Evil Spell Lore"
-bonus_type = "Enhancement"
-value = 27
-
-[[effect]]
-name = "Good Spell Lore"
-bonus_type = "Enhancement"
-value = 27
-
-[[effect]]
-name = "Law Spell Lore"
+name = "Light, Chaos, Good, Evil and Law Spell Lore"
 bonus_type = "Enhancement"
 value = 27
 
@@ -75,6 +55,7 @@ value = 27
 amount_type = "Simple"
 amounts = [27]
 bonus_type = "Enhancement"
+effect = "Light, Chaos, Good, Evil and Law Spell Lore"
 effect_type = "SpellLore"
 targets = [
     "Light/Alignment",

@@ -33,22 +33,7 @@ value = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Assassinate"
-value = 3
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Trip DC"
-value = 3
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Sunder DC"
-value = 3
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Stun DC"
+effect = "Trip, Sunder, Stun and Assassinate DC"
 value = 3
 
 [[tier.effect]]

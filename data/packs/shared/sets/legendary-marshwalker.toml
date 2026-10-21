@@ -27,12 +27,7 @@ value = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Jump"
-value = 7
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Tumble"
+effect = "Jump and Tumble"
 value = 7
 
 [[tier.modifier]]
@@ -40,14 +35,14 @@ amount_type = "Simple"
 amounts = [30]
 apply_as_item_effect = true
 bonus_type = "Enhancement"
-effect = "Saving Throws"
+effect = "Jump and Tumble"
 effect_type = "MovementSpeed"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Artifact"
-effect = "Saving Throws"
+effect = "Jump and Tumble"
 effect_type = "AbilityBonus"
 targets = ["Dexterity"]
 
@@ -55,7 +50,7 @@ targets = ["Dexterity"]
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Artifact"
-effect = "Saving Throws"
+effect = "Jump and Tumble"
 effect_type = "SaveBonus"
 targets = ["All"]
 
@@ -63,6 +58,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [7]
 bonus_type = "Artifact"
+effect = "Jump and Tumble"
 effect_type = "SkillBonus"
 targets = [
     "Jump",

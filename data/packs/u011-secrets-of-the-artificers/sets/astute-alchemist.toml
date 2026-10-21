@@ -12,38 +12,19 @@ equipped_count = 2
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Acid Spell Lore"
+effect = "Fire, Acid and Poison Spell Lore"
 value = 6
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Fire Spell Lore"
-value = 6
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Poison Spell Lore"
-value = 6
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Acid Spell Power"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Fire Spell Power"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Poison Spell Power"
+effect = "Fire, Acid and Poison Spell Power"
 value = 30
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Artifact"
+effect = "Fire, Acid and Poison Spell Power"
 effect_type = "SpellLore"
 targets = [
     "Acid",
@@ -55,6 +36,7 @@ targets = [
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Artifact"
+effect = "Fire, Acid and Poison Spell Power"
 effect_type = "SpellPower"
 targets = [
     "Acid",

@@ -48,12 +48,7 @@ min_level = 26
 
 [[socket.option.effect]]
 bonus_type = "Insight"
-effect = "Constitution"
-value = 4
-
-[[socket.option.effect]]
-bonus_type = "Insight"
-effect = "Dexterity"
+effect = "Dexterity and Constitution"
 value = 4
 
 [[socket.option.modifier]]
@@ -61,6 +56,7 @@ amount_type = "Simple"
 amounts = [4]
 bonus = "Insightful"
 bonus_type = "Insight"
+effect = "Dexterity and Constitution"
 effect_type = "AbilityBonus"
 targets = [
     "Constitution",

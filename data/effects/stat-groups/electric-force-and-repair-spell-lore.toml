@@ -1,0 +1,21 @@
+name = "Electric, Force and Repair Spell Lore"
+description_template = "+{1}% %b1 bonus to Electric, Force and Repair Spell Lore."
+verbose_name_template = "%b1 Electric, Force and Repair Spell Lore +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Electric Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Force Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Repair Spell Lore"

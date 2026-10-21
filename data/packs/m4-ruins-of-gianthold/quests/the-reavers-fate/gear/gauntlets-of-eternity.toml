@@ -47,12 +47,7 @@ min_level = 13
 
 [[socket.option.effect]]
 bonus_type = "Competence"
-effect = "Heal"
-value = 15
-
-[[socket.option.effect]]
-bonus_type = "Competence"
-effect = "Repair"
+effect = "Heal and Repair"
 value = 15
 
 [[socket.option.effect]]
@@ -64,6 +59,7 @@ value = 72
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Competence"
+effect = "Heal and Repair"
 effect_type = "SkillBonus"
 targets = [
     "Heal",

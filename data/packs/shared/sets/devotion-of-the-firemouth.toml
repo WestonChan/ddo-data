@@ -59,24 +59,14 @@ value = 15
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Melee Threat Generation"
-value = 100
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Ranged Threat Generation"
-value = 100
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Spell Threat Generation"
+effect = "Melee, Spell and Ranged Threat Generation"
 value = 100
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Artifact"
-effect = "Armor Class Percentage"
+effect = "Melee, Spell and Ranged Threat Generation"
 effect_type = "HealingAmplification"
 extra_types = [
     "NegativeHealingAmplification",
@@ -87,20 +77,21 @@ extra_types = [
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Artifact"
-effect = "Armor Class Percentage"
+effect = "Melee, Spell and Ranged Threat Generation"
 effect_type = "PRR"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Artifact"
-effect = "Armor Class Percentage"
+effect = "Melee, Spell and Ranged Threat Generation"
 effect_type = "ACPercent"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [100]
 bonus_type = "Artifact"
+effect = "Melee, Spell and Ranged Threat Generation"
 effect_type = "ThreatBonusMelee"
 extra_types = [
     "ThreatBonusRanged",

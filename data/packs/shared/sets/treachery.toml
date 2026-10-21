@@ -6,7 +6,9 @@ is_filigree_set = true
 equipped_count = 2
 
 [[tier.effect]]
-effect = "+5 Melee and Ranged Power"
+bonus_type = "Stacking"
+effect = "Melee and Ranged Power"
+value = 5
 
 [[tier.modifier]]
 amount_type = "Stacks"

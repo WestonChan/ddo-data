@@ -1,0 +1,27 @@
+name = "Disable Device, Open Lock, Search and Spot"
+description_template = "+{1} %b1 bonus to Disable Device, Open Lock, Search and Spot."
+verbose_name_template = "%b1 Disable Device, Open Lock, Search and Spot +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Disable Device"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Open Lock"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Search"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Spot"

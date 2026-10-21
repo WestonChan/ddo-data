@@ -348,22 +348,17 @@ mod tests {
             .unwrap();
         }
         let mut db = Connection::open_in_memory().unwrap();
+        let error = crate::tree::build_from_data(scratch.path(), &mut db).unwrap_err().to_string();
+        for name in ["+5 Ranged Power", "+2 Doublestrike and Doubleshot", "-6% Artifact bonus to RANGED POWER Bonus"] {
+            assert!(error.contains(name), "{error}");
+            std::fs::remove_file(
+                scratch.path().join("effects").join(format!("{}.toml", ddo_model::identity::slug(name))),
+            )
+            .unwrap();
+        }
+        let mut db = Connection::open_in_memory().unwrap();
         crate::tree::build_from_data(scratch.path(), &mut db).unwrap();
-        let index = Groupings::from_database(&db).unwrap();
-        assert_eq!(
-            index.valued_prose_duplicates(),
-            vec![
-                ValuedProseDuplicate {
-                    prose_name: "+2 Doublestrike and Doubleshot".into(),
-                    target_name: "Doublestrike and Doubleshot".into()
-                },
-                ValuedProseDuplicate { prose_name: "+5 Ranged Power".into(), target_name: "Ranged Power".into() },
-                ValuedProseDuplicate {
-                    prose_name: "-6% Artifact bonus to RANGED POWER Bonus".into(),
-                    target_name: "Ranged Power".into()
-                },
-            ]
-        );
+        assert!(Groupings::from_database(&db).unwrap().valued_prose_duplicates().is_empty());
         for malformed in ["", "+", "+. Ranged Power", "Ranged Power"] {
             assert_eq!(valued_prose_target(malformed), None, "{malformed}");
         }

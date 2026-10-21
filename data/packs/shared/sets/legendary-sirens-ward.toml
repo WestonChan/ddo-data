@@ -1,19 +1,17 @@
 name = "Legendary Siren's Ward"
 icon = "SirensWard"
 
+[[citation]]
+field = "tier"
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+note = "The tier lines were checked; this replaces the add corrections the prose mapping superseded."
+
 [[item]]
 name = "Legendary Siren's Belt"
 
 [[item]]
 name = "Legendary Siren's Charm"
-
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Shield Armor Class +3 Artifact at 2 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 2, Shield Armor Class / Artifact"
 
 [[tier]]
 equipped_count = 2
@@ -27,9 +25,6 @@ value = 15
 bonus_type = "Artifact"
 effect = "Saving Throws"
 value = 3
-
-[[tier.effect]]
-effect = "+3 Artifact bonus to Shield Armor Class"
 
 [[tier.effect]]
 bonus_type = "Artifact"

@@ -12,12 +12,7 @@ source_name = "Epic"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Melee Power"
-value = 20
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Ranged Power"
+effect = "Melee and Ranged Power"
 value = 20
 
 [[row.effect]]
@@ -47,6 +42,7 @@ group_name = "Legendary Feat"
 amount_type = "Simple"
 amounts = [20]
 bonus_type = "Feat"
+effect = "Melee and Ranged Power"
 effect_type = "MeleePower"
 extra_types = ["RangedPower"]
 
@@ -124,32 +120,7 @@ value = 30
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Positive Spell Power"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Light Spell Power"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Chaos Spell Power"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Evil Spell Power"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Good Spell Power"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Law Spell Power"
+effect = "Power of the Silver Flame"
 value = 10
 
 [[row.effect]]
@@ -198,6 +169,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Feat"
+effect = "Power of the Silver Flame"
 effect_type = "SpellPower"
 targets = [
     "Positive",
@@ -503,22 +475,12 @@ value = 4
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Doublestrike"
+effect = "Doublestrike and Doubleshot"
 value = 4
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Doubleshot"
-value = 4
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Dodge"
-value = 4
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Dodge Cap"
+effect = "Dodge and Dodge Cap"
 value = 4
 
 [[row.effect]]
@@ -546,6 +508,7 @@ targets = [
 amount_type = "Simple"
 amounts = [4]
 bonus_type = "Feat"
+effect = "Doublestrike and Doubleshot"
 effect_type = "Doublestrike"
 extra_types = ["Doubleshot"]
 
@@ -554,6 +517,7 @@ amount_type = "Simple"
 amounts = [4]
 bonus_type = "Feat"
 display_name = "Scion of the Astral Plane (Centered)"
+effect = "Doublestrike and Doubleshot"
 effect_type = "Doublestrike"
 extra_types = ["Doubleshot"]
 
@@ -565,6 +529,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [4]
 bonus_type = "Feat"
+effect = "Dodge and Dodge Cap"
 effect_type = "DodgeBonus"
 extra_types = ["DodgeCapBonus"]
 
@@ -597,12 +562,7 @@ value = 6
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Melee Power"
-value = 5
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Ranged Power"
+effect = "Melee and Ranged Power"
 value = 5
 
 [[row.effect]]
@@ -631,6 +591,7 @@ effect_type = "SneakAttackDice"
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Feat"
+effect = "Melee and Ranged Power"
 effect_type = "MeleePower"
 extra_types = ["RangedPower"]
 
@@ -677,12 +638,7 @@ value = 30
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Sonic Spell Critical Damage"
-value = 15
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Force Spell Critical Damage"
+effect = "Sonic and Force Spell Critical Damage"
 value = 15
 
 [[row.effect]]
@@ -692,12 +648,7 @@ value = 10
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Enchantment Focus"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Illusion Focus"
+effect = "Enchantment and Illusion Focus"
 value = 2
 
 [[row.effect]]
@@ -737,6 +688,7 @@ effect_type = "UniversalSpellPower"
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Feat"
+effect = "Sonic and Force Spell Critical Damage"
 effect_type = "SpellCriticalDamage"
 targets = [
     "Sonic",
@@ -757,6 +709,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
+effect = "Enchantment and Illusion Focus"
 effect_type = "SpellDC"
 targets = [
     "Enchantment",
@@ -813,12 +766,7 @@ value = 2
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Dodge"
-value = 4
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Dodge Cap"
+effect = "Dodge and Dodge Cap"
 value = 4
 
 [[row.effect]]
@@ -869,6 +817,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [4]
 bonus_type = "Feat"
+effect = "Dodge and Dodge Cap"
 effect_type = "DodgeBonus"
 extra_types = ["DodgeCapBonus"]
 
@@ -928,12 +877,7 @@ source_name = "Epic"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Conjuration Focus"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Transmutation Focus"
+effect = "Conjuration and Transmutation Focus"
 value = 2
 
 [[row.effect]]
@@ -948,12 +892,7 @@ value = 20
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Acid Spell Power"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Poison Spell Power"
+effect = "Acid and Poison Spell Power"
 value = 10
 
 [[row.effect]]
@@ -978,6 +917,7 @@ group_name = "Legendary Feat"
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
+effect = "Conjuration and Transmutation Focus"
 effect_type = "SpellDC"
 targets = [
     "Conjuration",
@@ -1003,6 +943,7 @@ effect_type = "PRR"
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Feat"
+effect = "Acid and Poison Spell Power"
 effect_type = "SpellPower"
 targets = [
     "Acid",
@@ -1069,12 +1010,7 @@ value = 2
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Physical Resistance Rating"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Magical Resistance Rating"
+effect = "Sheltering"
 value = 10
 
 [[row.effect]]
@@ -1125,6 +1061,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Feat"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 

@@ -7,12 +7,7 @@ icon = "HistoryBookWhite"
 min_level = 30
 
 [[effect]]
-name = "Disable Device"
-bonus_type = "Artifact"
-value = 6
-
-[[effect]]
-name = "Open Lock"
+name = "Disable Device and Open Lock"
 bonus_type = "Artifact"
 value = 6
 
@@ -20,6 +15,7 @@ value = 6
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Artifact"
+effect = "Disable Device and Open Lock"
 effect_type = "SkillBonus"
 targets = [
     "Disable Device",

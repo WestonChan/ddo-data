@@ -5,12 +5,7 @@ icon = "DeckOfCurses"
 min_level = 1
 
 [[effect]]
-name = "Concentration"
-bonus_type = "Fortune"
-value = 2
-
-[[effect]]
-name = "Spellcraft"
+name = "Concentration and Spellcraft"
 bonus_type = "Fortune"
 value = 2
 
@@ -18,6 +13,7 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Fortune"
+effect = "Concentration and Spellcraft"
 effect_type = "SkillBonus"
 targets = [
     "Concentration",

@@ -1,0 +1,21 @@
+name = "Strength, Dexterity and Constitution"
+description_template = "+{1} %b1 bonus to Strength, Dexterity and Constitution."
+verbose_name_template = "%b1 Strength, Dexterity and Constitution +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Strength"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Dexterity"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Constitution"

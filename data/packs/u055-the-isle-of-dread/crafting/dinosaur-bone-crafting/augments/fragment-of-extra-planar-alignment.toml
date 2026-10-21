@@ -7,22 +7,7 @@ icon = "ScaleLightOrange"
 min_level = 31
 
 [[effect]]
-name = "Law Absorption"
-bonus_type = "Enhancement"
-value = 23
-
-[[effect]]
-name = "Chaos Absorption"
-bonus_type = "Enhancement"
-value = 23
-
-[[effect]]
-name = "Good Absorption"
-bonus_type = "Enhancement"
-value = 23
-
-[[effect]]
-name = "Evil Absorption"
+name = "Law, Chaos, Good and Evil Absorption"
 bonus_type = "Enhancement"
 value = 23
 
@@ -30,6 +15,7 @@ value = 23
 amount_type = "Simple"
 amounts = [23]
 bonus_type = "Enhancement"
+effect = "Law, Chaos, Good and Evil Absorption"
 effect_type = "EnergyAbsorbance"
 targets = [
     "Lawful",

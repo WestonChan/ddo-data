@@ -7,12 +7,7 @@ icon = "HistoryBookWhite"
 min_level = 30
 
 [[effect]]
-name = "Repair"
-bonus_type = "Artifact"
-value = 6
-
-[[effect]]
-name = "Use Magic Device"
+name = "Repair and Use Magic Device"
 bonus_type = "Artifact"
 value = 6
 
@@ -20,6 +15,7 @@ value = 6
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Artifact"
+effect = "Repair and Use Magic Device"
 effect_type = "SkillBonus"
 targets = [
     "Repair",

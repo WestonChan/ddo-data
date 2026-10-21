@@ -23,17 +23,7 @@ value = 25
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Intelligence"
-value = 2
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Wisdom"
-value = 2
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Charisma"
+effect = "Intelligence, Wisdom and Charisma"
 value = 2
 
 [[tier.effect]]

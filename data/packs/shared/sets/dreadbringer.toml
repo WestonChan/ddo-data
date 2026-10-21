@@ -14,6 +14,7 @@ value = 5
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Stacking"
+effect = "Melee and Ranged Power"
 effect_type = "MeleePower"
 extra_types = ["RangedPower"]
 
@@ -44,6 +45,7 @@ value = 10
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Stacking"
+effect = "Melee and Ranged Power"
 effect_type = "MeleePower"
 extra_types = ["RangedPower"]
 

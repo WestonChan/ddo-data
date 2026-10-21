@@ -1,0 +1,21 @@
+name = "Doublestrike, Doubleshot and Offhand Strike Chance"
+description_template = "+{1} %b1 bonus to Doublestrike, Doubleshot and Offhand Strike Chance."
+verbose_name_template = "%b1 Doublestrike, Doubleshot and Offhand Strike Chance +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Doublestrike"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Doubleshot"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Offhand Strike Chance"

@@ -7,12 +7,7 @@ icon = "HistoryBookWhite"
 min_level = 1
 
 [[effect]]
-name = "Repair"
-bonus_type = "Profane"
-value = 2
-
-[[effect]]
-name = "Use Magic Device"
+name = "Repair and Use Magic Device"
 bonus_type = "Profane"
 value = 2
 
@@ -20,6 +15,7 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Profane"
+effect = "Repair and Use Magic Device"
 effect_type = "SkillBonus"
 targets = [
     "Repair",

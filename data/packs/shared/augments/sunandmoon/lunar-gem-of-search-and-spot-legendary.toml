@@ -7,12 +7,7 @@ icon = "HistoryBookWhite"
 min_level = 30
 
 [[effect]]
-name = "Search"
-bonus_type = "Profane"
-value = 6
-
-[[effect]]
-name = "Spot"
+name = "Search and Spot"
 bonus_type = "Profane"
 value = 6
 
@@ -20,6 +15,7 @@ value = 6
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Profane"
+effect = "Search and Spot"
 effect_type = "SkillBonus"
 targets = [
     "Search",

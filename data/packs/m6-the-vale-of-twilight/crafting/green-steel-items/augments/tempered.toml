@@ -7,12 +7,7 @@ icon = "ShardOfGreatPower"
 min_level = 11
 
 [[effect]]
-name = "Intimidate"
-bonus_type = "Competence"
-value = 7
-
-[[effect]]
-name = "Repair"
+name = "Intimidate and Repair"
 bonus_type = "Competence"
 value = 7
 
@@ -25,6 +20,7 @@ value = 10
 amount_type = "Simple"
 amounts = [7]
 bonus_type = "Competence"
+effect = "Intimidate and Repair"
 effect_type = "SkillBonus"
 targets = [
     "Intimidate",

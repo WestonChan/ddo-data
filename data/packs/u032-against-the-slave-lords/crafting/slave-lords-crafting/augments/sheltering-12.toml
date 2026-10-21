@@ -5,12 +5,7 @@ icon = "SlavelordsPrefix"
 min_level = 8
 
 [[effect]]
-name = "Physical Resistance Rating"
-bonus_type = "Enhancement"
-value = 12
-
-[[effect]]
-name = "Magical Resistance Rating"
+name = "Sheltering"
 bonus_type = "Enhancement"
 value = 12
 
@@ -18,6 +13,7 @@ value = 12
 amount_type = "Simple"
 amounts = [12]
 bonus_type = "Enhancement"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 

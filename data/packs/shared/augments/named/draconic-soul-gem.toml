@@ -7,22 +7,7 @@ icon = "DraconicSoulGem"
 min_level = 25
 
 [[effect]]
-name = "Acid Resistance"
-bonus_type = "Enhancement"
-value = 30
-
-[[effect]]
-name = "Cold Resistance"
-bonus_type = "Enhancement"
-value = 30
-
-[[effect]]
-name = "Electric Resistance"
-bonus_type = "Enhancement"
-value = 30
-
-[[effect]]
-name = "Fire Resistance"
+name = "Fire, Cold, Electric and Acid Resistance"
 bonus_type = "Enhancement"
 value = 30
 
@@ -30,6 +15,7 @@ value = 30
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Enhancement"
+effect = "Fire, Cold, Electric and Acid Resistance"
 effect_type = "EnergyResistance"
 targets = [
     "Acid",

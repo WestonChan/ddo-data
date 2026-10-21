@@ -65,27 +65,7 @@ value = 8
 
 [[socket.option.effect]]
 bonus_type = "Orb"
-effect = "Acid Resistance"
-value = 8
-
-[[socket.option.effect]]
-bonus_type = "Orb"
-effect = "Cold Resistance"
-value = 8
-
-[[socket.option.effect]]
-bonus_type = "Orb"
-effect = "Fire Resistance"
-value = 8
-
-[[socket.option.effect]]
-bonus_type = "Orb"
-effect = "Electric Resistance"
-value = 8
-
-[[socket.option.effect]]
-bonus_type = "Orb"
-effect = "Sonic Resistance"
+effect = "Fire, Cold, Electric, Acid and Sonic Resistance"
 value = 8
 
 [[socket.option.grant]]
@@ -107,6 +87,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [8]
 bonus_type = "Orb"
+effect = "Fire, Cold, Electric, Acid and Sonic Resistance"
 effect_type = "EnergyResistance"
 targets = [
     "Acid",

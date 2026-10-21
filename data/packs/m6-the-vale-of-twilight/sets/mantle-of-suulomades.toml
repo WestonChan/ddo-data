@@ -24,6 +24,7 @@ value = 15
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Artifact"
+effect = "Doublestrike and Doubleshot"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -31,5 +32,6 @@ extra_types = ["MRR"]
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Artifact"
+effect = "Doublestrike and Doubleshot"
 effect_type = "Doublestrike"
 extra_types = ["Doubleshot"]

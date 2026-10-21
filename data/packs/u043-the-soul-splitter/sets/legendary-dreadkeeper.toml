@@ -24,22 +24,12 @@ equipped_count = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Negative and Poison Spell Power"
+effect = "Power of the Moonlit Haunt"
 value = 30
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Force Spell Power"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Negative and Poison Spell Lore"
-value = 6
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Force Spell Lore"
+effect = "Moonlit Haunt Lore"
 value = 6
 
 [[tier.effect]]

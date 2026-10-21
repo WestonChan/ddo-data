@@ -32,19 +32,20 @@ value = 5
 amount_type = "Simple"
 amounts = [1]
 bonus_type = "Artifact"
-effect = "Helpless Damage"
+effect = "Doublestrike and Doubleshot"
 effect_type = "SneakAttackDice"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Artifact"
-effect = "Helpless Damage"
+effect = "Doublestrike and Doubleshot"
 effect_type = "HelplessDamage"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Artifact"
+effect = "Doublestrike and Doubleshot"
 effect_type = "Doublestrike"
 extra_types = ["Doubleshot"]

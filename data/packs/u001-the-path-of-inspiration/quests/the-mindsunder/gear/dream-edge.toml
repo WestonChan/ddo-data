@@ -356,12 +356,7 @@ value = 10
 
 [[socket.option.effect]]
 bonus_type = "Enhancement"
-effect = "Hide"
-value = 5
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Move Silently"
+effect = "Hide and Move Silently"
 value = 5
 
 [[socket.option.modifier]]
@@ -383,6 +378,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Enhancement"
+effect = "Hide and Move Silently"
 effect_type = "SkillBonus"
 targets = [
     "Hide",

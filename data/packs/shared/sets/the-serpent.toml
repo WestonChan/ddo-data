@@ -36,18 +36,14 @@ equipped_count = 4
 
 [[tier.effect]]
 bonus_type = "Stacking"
-effect = "Conjuration Focus"
-value = 2
-
-[[tier.effect]]
-bonus_type = "Stacking"
-effect = "Transmutation Focus"
+effect = "Conjuration and Transmutation Focus"
 value = 2
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Stacking"
+effect = "Conjuration and Transmutation Focus"
 effect_type = "SpellDC"
 targets = [
     "Conjuration",

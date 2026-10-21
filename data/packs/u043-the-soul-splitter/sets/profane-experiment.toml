@@ -26,12 +26,7 @@ value = 10
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Intelligence"
-value = 2
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Constitution"
+effect = "Constitution and Intelligence"
 value = 2
 
 [[tier.effect]]

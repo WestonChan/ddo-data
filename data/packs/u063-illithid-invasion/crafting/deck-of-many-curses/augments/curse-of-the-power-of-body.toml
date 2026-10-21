@@ -5,17 +5,7 @@ icon = "DeckOfCurses"
 min_level = 1
 
 [[effect]]
-name = "Strength"
-bonus_type = "Fortune"
-value = 1
-
-[[effect]]
-name = "Dexterity"
-bonus_type = "Fortune"
-value = 1
-
-[[effect]]
-name = "Constitution"
+name = "Strength, Dexterity and Constitution"
 bonus_type = "Fortune"
 value = 1
 
@@ -23,6 +13,7 @@ value = 1
 amount_type = "Simple"
 amounts = [1]
 bonus_type = "Fortune"
+effect = "Strength, Dexterity and Constitution"
 effect_type = "AbilityBonus"
 targets = [
     "Strength",

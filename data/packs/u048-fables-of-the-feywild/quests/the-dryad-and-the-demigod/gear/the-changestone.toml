@@ -263,12 +263,7 @@ value = 30
 
 [[socket.option.effect]]
 bonus_type = "Enhancement"
-effect = "Melee Attack Speed"
-value = 15
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Ranged Attack Speed"
+effect = "Melee and Ranged Attack Speed"
 value = 15
 
 [[socket.option.modifier]]
@@ -284,6 +279,7 @@ amount_type = "Simple"
 amounts = [15]
 apply_as_item_effect = true
 bonus_type = "Enhancement"
+effect = "Melee and Ranged Attack Speed"
 effect_type = "Weapon_Alacrity"
 targets = ["All"]
 

@@ -7,17 +7,7 @@ icon = "HistoryBookWhite"
 min_level = 1
 
 [[effect]]
-name = "Diplomacy"
-bonus_type = "Profane"
-value = 2
-
-[[effect]]
-name = "Intimidate"
-bonus_type = "Profane"
-value = 2
-
-[[effect]]
-name = "Bluff"
+name = "Bluff, Diplomacy and Intimidate"
 bonus_type = "Profane"
 value = 2
 
@@ -25,6 +15,7 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Profane"
+effect = "Bluff, Diplomacy and Intimidate"
 effect_type = "SkillBonus"
 targets = [
     "Diplomacy",

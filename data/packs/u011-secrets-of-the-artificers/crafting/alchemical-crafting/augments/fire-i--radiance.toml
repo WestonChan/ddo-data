@@ -35,27 +35,7 @@ bonus_type = "Equipment"
 value = 152
 
 [[effect]]
-name = "Light Spell Lore"
-bonus_type = "Equipment"
-value = 21
-
-[[effect]]
-name = "Chaos Spell Lore"
-bonus_type = "Equipment"
-value = 21
-
-[[effect]]
-name = "Evil Spell Lore"
-bonus_type = "Equipment"
-value = 21
-
-[[effect]]
-name = "Good Spell Lore"
-bonus_type = "Equipment"
-value = 21
-
-[[effect]]
-name = "Law Spell Lore"
+name = "Light, Chaos, Good, Evil and Law Spell Lore"
 bonus_type = "Equipment"
 value = 21
 
@@ -76,6 +56,7 @@ targets = [
 amount_type = "Simple"
 amounts = [21]
 bonus_type = "Equipment"
+effect = "Light, Chaos, Good, Evil and Law Spell Lore"
 effect_type = "SpellLore"
 targets = [
     "Light/Alignment",

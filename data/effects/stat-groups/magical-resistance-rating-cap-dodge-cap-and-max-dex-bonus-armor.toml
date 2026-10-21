@@ -1,0 +1,21 @@
+name = "Magical Resistance Rating Cap, Dodge Cap and Max Dex Bonus (Armor)"
+description_template = "+{1} %b1 bonus to Magical Resistance Rating Cap, Dodge Cap and Max Dex Bonus (Armor)."
+verbose_name_template = "%b1 Magical Resistance Rating Cap, Dodge Cap and Max Dex Bonus (Armor) +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Magical Resistance Rating Cap"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Dodge Cap"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Max Dex Bonus (Armor)"

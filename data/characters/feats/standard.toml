@@ -167,12 +167,7 @@ icon = "Acrobatic"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Jump"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Tumble"
+effect = "Jump and Tumble"
 value = 2
 
 [[row.group]]
@@ -185,6 +180,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
+effect = "Jump and Tumble"
 effect_type = "SkillBonus"
 targets = [
     "Jump",
@@ -687,12 +683,7 @@ icon = "Alertness"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Listen"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Spot"
+effect = "Listen and Spot"
 value = 2
 
 [[row.group]]
@@ -705,6 +696,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
+effect = "Listen and Spot"
 effect_type = "SkillBonus"
 targets = [
     "Listen",
@@ -719,12 +711,7 @@ icon = "Athletic"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Balance"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Swim"
+effect = "Balance and Swim"
 value = 2
 
 [[row.group]]
@@ -737,6 +724,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
+effect = "Balance and Swim"
 effect_type = "SkillBonus"
 targets = [
     "Balance",
@@ -4819,12 +4807,7 @@ source_name = "Fighter"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Physical Resistance Rating"
-value = 12
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Magical Resistance Rating"
+effect = "Sheltering"
 value = 12
 
 [[row.group]]
@@ -4840,6 +4823,7 @@ group_name = "Fighter Bonus Feat"
 amount_type = "Simple"
 amounts = [12]
 bonus_type = "Feat"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -4861,12 +4845,7 @@ source_name = "Fighter"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Physical Resistance Rating"
-value = 6
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Magical Resistance Rating"
+effect = "Sheltering"
 value = 6
 
 [[row.group]]
@@ -4882,6 +4861,7 @@ group_name = "Fighter Bonus Feat"
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Feat"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -4903,12 +4883,7 @@ source_name = "Fighter"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Physical Resistance Rating"
-value = 9
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Magical Resistance Rating"
+effect = "Sheltering"
 value = 9
 
 [[row.group]]
@@ -4924,6 +4899,7 @@ group_name = "Fighter Bonus Feat"
 amount_type = "Simple"
 amounts = [9]
 bonus_type = "Feat"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -4964,12 +4940,7 @@ source_name = "Fighter"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Physical Resistance Rating"
-value = 3
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Magical Resistance Rating"
+effect = "Sheltering"
 value = 3
 
 [[row.group]]
@@ -4985,6 +4956,7 @@ group_name = "Fighter Bonus Feat"
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Feat"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -9237,12 +9209,7 @@ icon = "Negotiator"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Diplomacy"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Haggle"
+effect = "Diplomacy and Haggle"
 value = 2
 
 [[row.group]]
@@ -9255,6 +9222,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
+effect = "Diplomacy and Haggle"
 effect_type = "SkillBonus"
 targets = [
     "Diplomacy",
@@ -9269,12 +9237,7 @@ icon = "NimbleFingers"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Disable Device"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Open Lock"
+effect = "Disable Device and Open Lock"
 value = 2
 
 [[row.group]]
@@ -9287,6 +9250,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
+effect = "Disable Device and Open Lock"
 effect_type = "SkillBonus"
 targets = [
     "Disable Device",
@@ -10083,12 +10047,7 @@ value = 15
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Hide"
-value = 30
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Move Silently"
+effect = "Hide and Move Silently"
 value = 30
 
 [[row.group]]
@@ -10130,6 +10089,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Feat"
+effect = "Hide and Move Silently"
 effect_type = "SkillBonus"
 targets = [
     "Hide",
@@ -11338,12 +11298,7 @@ icon = "SelfSufficient"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Heal"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Repair"
+effect = "Heal and Repair"
 value = 2
 
 [[row.group]]
@@ -11356,6 +11311,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
+effect = "Heal and Repair"
 effect_type = "SkillBonus"
 targets = [
     "Heal",
@@ -11370,82 +11326,22 @@ icon = "ShieldDeflection"
 
 [[row.effect]]
 bonus_type = "Enhancement"
-effect = "Acid Absorption"
+effect = "Fire, Cold, Electric and Acid Absorption"
 value = 20
 
 [[row.effect]]
 bonus_type = "Enhancement"
-effect = "Cold Absorption"
-value = 20
-
-[[row.effect]]
-bonus_type = "Enhancement"
-effect = "Electric Absorption"
-value = 20
-
-[[row.effect]]
-bonus_type = "Enhancement"
-effect = "Fire Absorption"
-value = 20
-
-[[row.effect]]
-bonus_type = "Enhancement"
-effect = "Acid Absorption"
+effect = "Fire, Cold, Electric and Acid Absorption"
 value = 25
 
 [[row.effect]]
 bonus_type = "Enhancement"
-effect = "Cold Absorption"
-value = 25
-
-[[row.effect]]
-bonus_type = "Enhancement"
-effect = "Electric Absorption"
-value = 25
-
-[[row.effect]]
-bonus_type = "Enhancement"
-effect = "Fire Absorption"
-value = 25
-
-[[row.effect]]
-bonus_type = "Enhancement"
-effect = "Acid Absorption"
+effect = "Fire, Cold, Electric and Acid Absorption"
 value = 30
 
 [[row.effect]]
 bonus_type = "Enhancement"
-effect = "Cold Absorption"
-value = 30
-
-[[row.effect]]
-bonus_type = "Enhancement"
-effect = "Electric Absorption"
-value = 30
-
-[[row.effect]]
-bonus_type = "Enhancement"
-effect = "Fire Absorption"
-value = 30
-
-[[row.effect]]
-bonus_type = "Enhancement"
-effect = "Acid Absorption"
-value = 40
-
-[[row.effect]]
-bonus_type = "Enhancement"
-effect = "Cold Absorption"
-value = 40
-
-[[row.effect]]
-bonus_type = "Enhancement"
-effect = "Electric Absorption"
-value = 40
-
-[[row.effect]]
-bonus_type = "Enhancement"
-effect = "Fire Absorption"
+effect = "Fire, Cold, Electric and Acid Absorption"
 value = 40
 
 [[row.group]]
@@ -11458,6 +11354,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [20]
 bonus_type = "Enhancement"
+effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "EnergyAbsorbance"
 targets = [
     "Acid",
@@ -11478,6 +11375,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [25]
 bonus_type = "Enhancement"
+effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "EnergyAbsorbance"
 targets = [
     "Acid",
@@ -11498,6 +11396,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Enhancement"
+effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "EnergyAbsorbance"
 targets = [
     "Acid",
@@ -11518,6 +11417,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [40]
 bonus_type = "Enhancement"
+effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "EnergyAbsorbance"
 targets = [
     "Acid",
@@ -13566,12 +13466,7 @@ icon = "Stealthy"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Hide"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Move Silently"
+effect = "Hide and Move Silently"
 value = 2
 
 [[row.group]]
@@ -13584,6 +13479,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
+effect = "Hide and Move Silently"
 effect_type = "SkillBonus"
 targets = [
     "Hide",

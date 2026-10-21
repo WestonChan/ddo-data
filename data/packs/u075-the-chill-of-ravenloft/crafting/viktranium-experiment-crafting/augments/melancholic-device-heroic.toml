@@ -10,12 +10,7 @@ bonus_type = "Equipment"
 value = 10
 
 [[effect]]
-name = "Hide"
-bonus_type = "Enhancement"
-value = 5
-
-[[effect]]
-name = "Move Silently"
+name = "Hide and Move Silently"
 bonus_type = "Enhancement"
 value = 5
 
@@ -44,6 +39,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Enhancement"
+effect = "Hide and Move Silently"
 effect_type = "SkillBonus"
 targets = [
     "Hide",

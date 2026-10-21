@@ -1,0 +1,27 @@
+name = "Trip, Sunder, Stun and Assassinate DC"
+description_template = "+{1} %b1 bonus to Trip, Sunder, Stun and Assassinate DC."
+verbose_name_template = "%b1 Trip, Sunder, Stun and Assassinate DC +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Trip DC"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Sunder DC"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Stun DC"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Assassinate DC"

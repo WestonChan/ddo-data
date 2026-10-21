@@ -1717,12 +1717,7 @@ source_name = "Cleric"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Melee Power"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Ranged Power"
+effect = "Melee and Ranged Power"
 value = 10
 
 [[row.group]]
@@ -1732,6 +1727,7 @@ group_name = "Domain Feat"
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Feat"
+effect = "Melee and Ranged Power"
 effect_type = "MeleePower"
 extra_types = ["RangedPower"]
 

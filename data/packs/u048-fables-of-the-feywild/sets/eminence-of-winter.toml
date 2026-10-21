@@ -133,23 +133,14 @@ equipped_count = 5
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Melee Threat Generation"
-value = 100
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Ranged Threat Generation"
-value = 100
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Spell Threat Generation"
+effect = "Melee, Spell and Ranged Threat Generation"
 value = 100
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [100]
 bonus_type = "Artifact"
+effect = "Melee, Spell and Ranged Threat Generation"
 effect_type = "ThreatBonusMelee"
 extra_types = [
     "ThreatBonusRanged",

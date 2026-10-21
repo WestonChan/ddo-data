@@ -35,26 +35,10 @@ qualifier = "equipped_count 2"
 [[ddobuilder_correction]]
 kind = "set_tier_bonus"
 field = "add"
-reason = "The wiki gives Electric Spell Power +30 Artifact at 2 pieces; his tier lacks it."
+reason = "The wiki gives Electric, Repair and Force Spell Power +30 Artifact at 2 pieces; his tier lacks it."
 url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
-qualifier = "equipped_count 2, Electric Spell Power / Artifact"
-
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Repair Spell Power +30 Artifact at 2 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 2, Repair Spell Power / Artifact"
-
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Force Spell Power +30 Artifact at 2 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 2, Force Spell Power / Artifact"
+qualifier = "equipped_count 2, Electric, Force and Repair Spell Power / Artifact"
 
 [[tier]]
 equipped_count = 2
@@ -67,39 +51,19 @@ value = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Electric Spell Lore"
+effect = "Electric, Force and Repair Spell Lore"
 value = 6
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Repair Spell Lore"
-value = 6
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Force Spell Lore"
-value = 6
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Electric Spell Power"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Repair Spell Power"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Force Spell Power"
+effect = "Electric, Force and Repair Spell Power"
 value = 30
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Artifact"
-effect = "Rune Arm Spell Focus"
+effect = "Electric, Force and Repair Spell Lore"
 effect_type = "SpellDC"
 targets = ["Rune Arm"]
 
@@ -107,6 +71,7 @@ targets = ["Rune Arm"]
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Artifact"
+effect = "Electric, Force and Repair Spell Lore"
 effect_type = "SpellLore"
 targets = [
     "Electric",

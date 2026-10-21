@@ -22,19 +22,14 @@ value = 30
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Disable Device"
-value = 5
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Open Lock"
+effect = "Disable Device and Open Lock"
 value = 5
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Artifact"
-effect = "Fortification Bypass"
+effect = "Disable Device and Open Lock"
 effect_type = "MeleePower"
 extra_types = ["RangedPower"]
 
@@ -42,13 +37,14 @@ extra_types = ["RangedPower"]
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Artifact"
-effect = "Fortification Bypass"
+effect = "Disable Device and Open Lock"
 effect_type = "FortificationBypass"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Artifact"
+effect = "Disable Device and Open Lock"
 effect_type = "SkillBonus"
 targets = [
     "Disable Device",

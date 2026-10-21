@@ -298,19 +298,12 @@ name = "The Legendary Compass Rose"
 
 [[ddobuilder_correction]]
 kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Attack Bonus +4 Profane at 5 pieces; his tier lacks it."
+field = "value"
+upstream = 5
+reason = "The wiki gives Attack Bonus and Damage Bonus +4 Profane at 5 pieces; his tier says +5."
 url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
-qualifier = "equipped_count 5, Attack Bonus / Profane"
-
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Damage Bonus +4 Profane at 5 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 5, Damage Bonus / Profane"
+qualifier = "equipped_count 5, Attack and Damage / Profane"
 
 [[tier]]
 equipped_count = 5
@@ -341,16 +334,8 @@ effect = "All Ability Scores"
 value = 2
 
 [[tier.effect]]
-effect = "+5 Profane bonus to hit and damage"
-
-[[tier.effect]]
 bonus_type = "Profane"
-effect = "Attack Bonus"
-value = 4
-
-[[tier.effect]]
-bonus_type = "Profane"
-effect = "Damage Bonus"
+effect = "Attack and Damage"
 value = 4
 
 [[tier.modifier]]

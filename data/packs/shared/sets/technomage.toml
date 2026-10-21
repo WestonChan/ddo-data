@@ -30,6 +30,7 @@ value = 10
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Stacking"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 

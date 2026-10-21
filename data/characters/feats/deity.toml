@@ -455,12 +455,7 @@ icon = "Helm"
 
 [[row.effect]]
 bonus_type = "Sacred"
-effect = "Spot"
-value = 5
-
-[[row.effect]]
-bonus_type = "Sacred"
-effect = "Search"
+effect = "Search and Spot"
 value = 5
 
 [[row.effect]]
@@ -486,6 +481,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Sacred"
+effect = "Search and Spot"
 effect_type = "SkillBonus"
 targets = [
     "Spot",

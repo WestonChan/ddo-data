@@ -1,0 +1,15 @@
+name = "Hireling Magical and Hireling Physical Resistance Rating"
+description_template = "+{1} %b1 bonus to Hireling Magical and Hireling Physical Resistance Rating."
+verbose_name_template = "%b1 Hireling Magical and Hireling Physical Resistance Rating +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Hireling Magical Resistance Rating"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Hireling Physical Resistance Rating"

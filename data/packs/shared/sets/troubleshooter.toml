@@ -17,12 +17,7 @@ value = 1
 
 [[tier.effect]]
 bonus_type = "Competence"
-effect = "Disable Device"
-value = 3
-
-[[tier.effect]]
-bonus_type = "Competence"
-effect = "Open Lock"
+effect = "Disable Device and Open Lock"
 value = 3
 
 [[tier.modifier]]
@@ -30,7 +25,7 @@ amount_type = "Simple"
 amounts = [1]
 bonus = "Insightful"
 bonus_type = "Insight"
-effect = "Saving Throws"
+effect = "Disable Device and Open Lock"
 effect_type = "SaveBonus"
 targets = ["All"]
 
@@ -38,6 +33,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Competence"
+effect = "Disable Device and Open Lock"
 effect_type = "SkillBonus"
 targets = [
     "Disable Device",

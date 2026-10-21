@@ -1,6 +1,12 @@
 name = "Wrath of Sora Kell"
 icon = "WrathOfSoraKell"
 
+[[citation]]
+field = "tier"
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+note = "The tier lines were checked; this replaces the add corrections the prose mapping superseded."
+
 [[item]]
 name = "Katra's Razor Wit"
 
@@ -18,22 +24,6 @@ name = "Teraza's Perfect Sight"
 
 [[item]]
 name = "Teraza's Sight"
-
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Attack Bonus +3 Artifact at 3 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 3, Attack Bonus / Artifact"
-
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Damage Bonus +3 Artifact at 3 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 3, Damage Bonus / Artifact"
 
 [[ddobuilder_correction]]
 kind = "set_tier_bonus"
@@ -57,16 +47,8 @@ effect = "Physical Resistance Rating"
 value = 5
 
 [[tier.effect]]
-effect = "+3 Artifact bonus to attack and damage"
-
-[[tier.effect]]
 bonus_type = "Artifact"
-effect = "Attack Bonus"
-value = 3
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Damage Bonus"
+effect = "Attack and Damage"
 value = 3
 
 [[tier.effect]]

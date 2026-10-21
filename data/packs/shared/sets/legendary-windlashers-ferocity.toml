@@ -42,6 +42,7 @@ value = 15
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
 effect_type = "Doublestrike"
 extra_types = ["Doubleshot"]
 
@@ -49,5 +50,6 @@ extra_types = ["Doubleshot"]
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
 effect_type = "MeleePower"
 extra_types = ["RangedPower"]

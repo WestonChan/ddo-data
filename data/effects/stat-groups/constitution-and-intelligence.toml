@@ -1,0 +1,15 @@
+name = "Constitution and Intelligence"
+description_template = "+{1} %b1 bonus to Constitution and Intelligence."
+verbose_name_template = "%b1 Constitution and Intelligence +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Constitution"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Intelligence"

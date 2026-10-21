@@ -393,12 +393,7 @@ source_name = "Epic"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Physical Resistance Rating"
-value = 3
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Magical Resistance Rating"
+effect = "Sheltering"
 value = 3
 
 [[row.effect]]
@@ -413,6 +408,7 @@ group_name = "Epic Destiny Feat"
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Feat"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -1225,17 +1221,7 @@ source_name = "Epic"
 
 [[row.effect]]
 bonus_type = "Stacking"
-effect = "Melee Threat Generation"
-value = 200
-
-[[row.effect]]
-bonus_type = "Stacking"
-effect = "Ranged Threat Generation"
-value = 200
-
-[[row.effect]]
-bonus_type = "Stacking"
-effect = "Spell Threat Generation"
+effect = "Melee, Spell and Ranged Threat Generation"
 value = 200
 
 [[row.group]]
@@ -1245,6 +1231,7 @@ group_name = "Epic Destiny Feat"
 amount_type = "Simple"
 amounts = [200]
 bonus_type = "Stacking"
+effect = "Melee, Spell and Ranged Threat Generation"
 effect_type = "ThreatBonusMelee"
 extra_types = [
     "ThreatBonusRanged",
@@ -1395,12 +1382,7 @@ source_name = "Epic"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Doublestrike"
-value = 2
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Doubleshot"
+effect = "Doublestrike and Doubleshot"
 value = 2
 
 [[row.effect]]
@@ -1415,6 +1397,7 @@ group_name = "Epic Destiny Feat"
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
+effect = "Doublestrike and Doubleshot"
 effect_type = "Doublestrike"
 extra_types = ["Doubleshot"]
 

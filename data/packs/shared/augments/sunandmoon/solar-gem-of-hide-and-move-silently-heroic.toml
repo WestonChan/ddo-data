@@ -7,12 +7,7 @@ icon = "HistoryBookWhite"
 min_level = 1
 
 [[effect]]
-name = "Hide"
-bonus_type = "Artifact"
-value = 2
-
-[[effect]]
-name = "Move Silently"
+name = "Hide and Move Silently"
 bonus_type = "Artifact"
 value = 2
 
@@ -20,6 +15,7 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Artifact"
+effect = "Hide and Move Silently"
 effect_type = "SkillBonus"
 targets = [
     "Hide",

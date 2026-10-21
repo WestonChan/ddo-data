@@ -10,22 +10,7 @@ bonus_type = "Profane"
 value = 2
 
 [[effect]]
-name = "Trip DC"
-bonus_type = "Profane"
-value = 2
-
-[[effect]]
-name = "Sunder DC"
-bonus_type = "Profane"
-value = 2
-
-[[effect]]
-name = "Stun DC"
-bonus_type = "Profane"
-value = 2
-
-[[effect]]
-name = "Assassinate"
+name = "Trip, Sunder, Stun and Assassinate DC"
 bonus_type = "Profane"
 value = 2
 
@@ -41,6 +26,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Profane"
+effect = "Trip, Sunder, Stun and Assassinate DC"
 effect_type = "TacticalDC"
 targets = [
     "Trip",

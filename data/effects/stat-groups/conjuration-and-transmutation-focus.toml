@@ -1,0 +1,15 @@
+name = "Conjuration and Transmutation Focus"
+description_template = "+{1} %b1 bonus to Conjuration and Transmutation Focus."
+verbose_name_template = "%b1 Conjuration and Transmutation Focus +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Conjuration Focus"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Transmutation Focus"

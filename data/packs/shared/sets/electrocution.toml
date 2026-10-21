@@ -22,7 +22,9 @@ targets = ["Electric"]
 equipped_count = 3
 
 [[tier.effect]]
-effect = "+2 Imbue Dice"
+bonus_type = "Stacking"
+effect = "Imbue Dice"
+value = 2
 
 [[tier.modifier]]
 amount_type = "Stacks"

@@ -24,42 +24,12 @@ equipped_count = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Electric Spell Power"
+effect = "Fire, Electric, Force and Repair Spell Power"
 value = 30
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Fire Spell Power"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Force Spell Power"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Repair Spell Power"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Electric Spell Lore"
-value = 6
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Fire Spell Lore"
-value = 6
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Force Spell Lore"
-value = 6
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Repair Spell Lore"
+effect = "Fire, Electric, Force and Repair Spell Lore"
 value = 6
 
 [[tier.effect]]

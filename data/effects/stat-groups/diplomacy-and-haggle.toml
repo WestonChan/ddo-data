@@ -1,0 +1,15 @@
+name = "Diplomacy and Haggle"
+description_template = "+{1} %b1 bonus to Diplomacy and Haggle."
+verbose_name_template = "%b1 Diplomacy and Haggle +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Diplomacy"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Haggle"

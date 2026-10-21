@@ -5,17 +5,7 @@ icon = "Lamordia"
 min_level = 34
 
 [[effect]]
-name = "Melee Threat Generation"
-bonus_type = "Insight"
-value = -25
-
-[[effect]]
-name = "Ranged Threat Generation"
-bonus_type = "Insight"
-value = -25
-
-[[effect]]
-name = "Spell Threat Generation"
+name = "Melee, Spell and Ranged Threat Generation"
 bonus_type = "Insight"
 value = -25
 
@@ -24,6 +14,7 @@ amount_type = "Simple"
 amounts = [-25]
 bonus = "Insightful"
 bonus_type = "Insight"
+effect = "Melee, Spell and Ranged Threat Generation"
 effect_type = "ThreatBonusMelee"
 extra_types = [
     "ThreatBonusRanged",
