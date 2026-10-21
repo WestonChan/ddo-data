@@ -5,6 +5,7 @@ pub mod integrity;
 pub mod redirect_checks;
 pub mod response_examples;
 pub mod round_trip;
+pub mod upstream_parity;
 pub mod wiki_tooltips;
 
 use std::path::{Path, PathBuf};

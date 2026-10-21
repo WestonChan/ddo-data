@@ -50,6 +50,37 @@ fn build_normalized_database(db: &Connection, source: &Path, destination: &Path)
     Ok(normalized)
 }
 
+pub struct NormalizedUpstreamDatabase {
+    pub db: Connection,
+    filled: Vec<FilledCell>,
+    first_stale: Vec<crate::build::StaleCorrection>,
+    skipped_wiki_facts: Vec<crate::build::SkippedWikiFact>,
+}
+
+pub fn normalized_upstream_database(
+    source: &Path,
+    ours: &Connection,
+    version: &ddo_model::DatasetVersion,
+    is_previous: bool,
+    destination: &Path,
+) -> Result<NormalizedUpstreamDatabase> {
+    let wiki = WikiOverrides::from_database(ours)?;
+    let corrections = Corrections::from_database(ours)?;
+    let upstream = if is_previous {
+        corrections::build_previous_matching_his_values(source, &wiki, &corrections, version)?
+    } else {
+        corrections::build_database_matching_his_values(source, &wiki, &corrections, version)?
+    };
+    let filled = blanks::fill_cells_from_ours(&upstream.db, ours)?;
+    let db = build_normalized_database(&upstream.db, source, destination)?;
+    Ok(NormalizedUpstreamDatabase {
+        db,
+        filled,
+        first_stale: upstream.first_stale,
+        skipped_wiki_facts: upstream.skipped_wiki_facts,
+    })
+}
+
 fn verification_differences(delta: &crate::delta::DatabaseDelta) -> Vec<String> {
     let mut differences = Vec::new();
     for (table, changes) in delta
@@ -103,27 +134,19 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
     let scratch = tempfile::tempdir()?;
     let mut ours = Connection::open_in_memory()?;
     tree::build_from_data(&options.data_dir, &mut ours)?;
-    let wiki = WikiOverrides::from_database(&ours)?;
     let corrections = Corrections::from_database(&ours)?;
     let old_paths = DataFilePaths::from_database(&ours)?;
     let annotated = tree::annotated_entities(&ours)?;
-    let previous =
-        corrections::build_previous_matching_his_values(&options.previous_dir, &wiki, &corrections, &previous_version)
-            .context("building the previous DataFiles")?;
-    let new = corrections::build_database_matching_his_values(&options.source_dir, &wiki, &corrections, &new_version)
-        .context("building the new DataFiles")?;
-    let previous_filled = blanks::fill_cells_from_ours(&previous.db, &ours)?;
-    let new_filled = blanks::fill_cells_from_ours(&new.db, &ours)?;
-    let blanked_upstream = blanks::blanked_upstream(&previous.db, &previous_filled, &new_filled)?;
-    let mapping_audits = audit::entries(&options.source_dir)?;
     let previous_tree = scratch.path().join("previous");
     let new_tree = scratch.path().join("new");
-    let previous_normalized = build_normalized_database(&previous.db, &options.previous_dir, &previous_tree)
-        .context("exporting the previous DataFiles")?;
-    let new_normalized =
-        build_normalized_database(&new.db, &options.source_dir, &new_tree).context("exporting the new DataFiles")?;
+    let previous = normalized_upstream_database(&options.previous_dir, &ours, &previous_version, true, &previous_tree)
+        .context("building the previous DataFiles")?;
+    let new = normalized_upstream_database(&options.source_dir, &ours, &new_version, false, &new_tree)
+        .context("building the new DataFiles")?;
+    let blanked_upstream = blanks::blanked_upstream(&previous.db, &previous.filled, &new.filled)?;
+    let mapping_audits = audit::entries(&options.source_dir)?;
     let events = corrections::correction_events(&previous.first_stale, &new.first_stale, &corrections, &ours)?;
-    let outcome = merge_delta_into(&mut ours, &previous_normalized, &new_normalized, &annotated)?;
+    let outcome = merge_delta_into(&mut ours, &previous.db, &new.db, &annotated)?;
     ours.execute("UPDATE dataset_version SET upstream_sha = ?1", [&new_version.upstream_sha])?;
     tree::rederive_data_build_tables(&ours)?;
     let staging = scratch.path().join("staging");
@@ -146,7 +169,7 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
         events,
         icons,
         &rebuilt,
-        &new_normalized,
+        &new.db,
         &old_paths,
     )?;
     report.entries.extend(mapping_audits);

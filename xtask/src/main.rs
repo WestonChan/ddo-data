@@ -67,6 +67,14 @@ enum Task {
         #[arg(long = "data")]
         data_dir: PathBuf,
     },
+    UpstreamParity {
+        #[arg(long)]
+        source: PathBuf,
+        #[arg(long = "data")]
+        data_dir: PathBuf,
+        #[arg(long)]
+        write_db: Option<PathBuf>,
+    },
     WikiTooltips {
         #[arg(long)]
         db: PathBuf,
@@ -167,6 +175,15 @@ fn main() -> Result<()> {
             Ok(())
         }
         Task::RoundTrip { data_dir } => xtask::round_trip::verify_round_trip(&data_dir),
+        Task::UpstreamParity { source, data_dir, write_db } => {
+            let differences = xtask::upstream_parity::upstream_parity(&source, &data_dir, write_db.as_deref())?;
+            for difference in &differences {
+                println!("{difference}");
+            }
+            println!("{} upstream parity differences", differences.len());
+            ensure!(differences.is_empty(), "upstream parity differences found");
+            Ok(())
+        }
         Task::WikiTooltips { db } => {
             let report = check_wiki_tooltips(&db)?;
             println!("{report}");
