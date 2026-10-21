@@ -915,8 +915,8 @@ impl CorrectedBonus {
         format!(
             "SELECT {selected_columns} FROM {table_name}
               JOIN effects e ON e.id = {table_name}.effect_id
-              LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND (e.is_group = 0 OR es.sort_order = 0)
-              WHERE {table_name}.{owner_column} = ?1 AND (es.target_effect_id = ?2 OR ((e.is_stat = 1 OR e.is_group = 1) AND e.id = ?2))
+              LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND ((e.is_group = 0 AND e.id != ?2) OR es.sort_order = 0)
+              WHERE {table_name}.{owner_column} = ?1 AND (es.target_effect_id = ?2 OR e.id = ?2)
                 AND COALESCE(es.bonus_type_id, {table_name}.bonus_type_id) IS ?3
                 AND (?4 IS NULL OR {effective_value} = ?4)
               ORDER BY {table_name}.sort_order"
@@ -971,9 +971,9 @@ impl CorrectedBonus {
         let mut statement = transaction.prepare(&format!(
             "SELECT COALESCE(es.bonus_type_id, {table_name}.bonus_type_id), bonus_types.name FROM {table_name}
                JOIN effects e ON e.id = {table_name}.effect_id
-               LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND (e.is_group = 0 OR es.sort_order = 0)
+               LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND ((e.is_group = 0 AND e.id != ?2) OR es.sort_order = 0)
                LEFT JOIN bonus_types ON bonus_types.id = COALESCE(es.bonus_type_id, {table_name}.bonus_type_id)
-              WHERE {table_name}.{owner_column} = ?1 AND (es.target_effect_id = ?2 OR ((e.is_stat = 1 OR e.is_group = 1) AND e.id = ?2))
+              WHERE {table_name}.{owner_column} = ?1 AND (es.target_effect_id = ?2 OR e.id = ?2)
                 AND (?3 IS NULL OR {effective_value} = ?3)
               ORDER BY {table_name}.sort_order"
         ))?;
@@ -1010,6 +1010,16 @@ fn repoint_bonuses(
     new_value: Option<i64>,
 ) -> Result<()> {
     let BonusLinkTable { table_name, owner_column } = corrected_bonus.link_table;
+    if effects.family(corrected_bonus.stat_id).is_some_and(|family| !family.is_stat) {
+        let groupings = crate::groupings::Groupings::from_database(transaction)?;
+        let requested_type = new_bonus_type_id.or(corrected_bonus.bonus_type_id);
+        ensure!(
+            groupings.by_stat_set.values().flatten().any(|grouping| grouping.id == corrected_bonus.stat_id
+                && requested_type.is_some_and(|bonus_type| grouping.accepts_value_at_type(bonus_type))),
+            "effect {:?} cannot take one value at the corrected bonus type",
+            effects.family(corrected_bonus.stat_id).map(|family| &family.name)
+        );
+    }
     for owner_id in owner_ids {
         let mut statement = transaction.prepare(&corrected_bonus.matching_bonuses_sql(&format!(
             "{table_name}.sort_order, {table_name}.effect_id, {table_name}.bonus_type_id, {table_name}.value, {table_name}.value2, COALESCE(es.amount_from, 1)"
@@ -1032,10 +1042,16 @@ fn repoint_bonuses(
         for BonusToRepoint { sort_order, effect_id, link_bonus_type_id, value, second_value, amount_from } in
             matching_bonuses
         {
-            if effects.family(effect_id).is_some_and(|family| family.is_stat || family.is_group) {
+            if effect_id == corrected_bonus.stat_id
+                || effects.family(effect_id).is_some_and(|family| family.is_stat || family.is_group)
+            {
+                let link_type = effects
+                    .family(effect_id)
+                    .filter(|family| family.is_stat || family.uses_link_type)
+                    .and(new_bonus_type_id);
                 transaction.execute(
                     &format!("UPDATE {table_name} SET bonus_type_id = COALESCE(?3, bonus_type_id), value = COALESCE(?4, value) WHERE {owner_column} = ?1 AND sort_order = ?2"),
-                    params![owner_id, sort_order, new_bonus_type_id, new_value],
+                    params![owner_id, sort_order, link_type, new_value],
                 )?;
                 continue;
             }
@@ -1102,9 +1118,22 @@ fn add_bonus(
             effects.ensure_family(&bonus.stat, &template, None, 1)?
         }
     };
-    let stat = ddo_model::stats::Stat::by_name(&bonus.stat).context("validated stat exists")?;
     let bonus_type = ddo_model::enums::BonusType::parse(bonus_type_name).context("validated bonus type exists")?;
-    effects.ensure_stat(effect_id, stat, Some(bonus_type), 1, None, 0)?;
+    if let Some(stat) = ddo_model::stats::Stat::by_name(&bonus.stat) {
+        effects.ensure_stat(effect_id, stat, Some(bonus_type), 1, None, 0)?;
+    } else {
+        let groupings = crate::groupings::Groupings::from_database(transaction)?;
+        ensure!(
+            groupings
+                .by_stat_set
+                .values()
+                .flatten()
+                .any(|grouping| grouping.id == effect_id && grouping.accepts_value_at_type(bonus_type.id())),
+            "added effect {:?} cannot take one value at {}",
+            bonus.stat,
+            bonus_type.name()
+        );
+    }
     let BonusLinkTable { table_name, owner_column } = link_table;
     for owner_id in owner_ids {
         let next_order: i64 = transaction.query_row(
@@ -1122,7 +1151,10 @@ fn add_bonus(
             owner,
             *owner_id,
             effect_id,
-            Some(bonus_type),
+            effects
+                .family(effect_id)
+                .is_some_and(|family| family.is_stat || family.uses_link_type)
+                .then_some(bonus_type),
             (Some(bonus.value), None),
             next_order as usize,
         )?;

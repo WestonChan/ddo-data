@@ -145,8 +145,9 @@ fn added_bonus_value(
     let mut statement = transaction.prepare(
         "SELECT DISTINCT bonus.amount FROM owner_bonuses bonus
            JOIN effects stat ON stat.id = bonus.stat_id
+           LEFT JOIN effects linked ON linked.id = bonus.via_effect_id
            LEFT JOIN bonus_types bonus_type ON bonus_type.id = bonus.bonus_type_id
-          WHERE bonus.owner_kind = ?1 AND bonus.owner_id = ?2 AND stat.name = ?3
+          WHERE bonus.owner_kind = ?1 AND bonus.owner_id = ?2 AND (stat.name = ?3 OR linked.name = ?3)
             AND bonus_type.name IS ?4",
     )?;
     let amounts = statement

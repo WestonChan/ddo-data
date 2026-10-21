@@ -54,6 +54,25 @@ fn recorded_corrections(db: &Connection) -> Vec<(String, String, String, String,
         .collect()
 }
 
+fn rebuilt_correction_notes(db: &Connection) -> Corrections {
+    let mut corrections = Corrections::from_database(db).unwrap();
+    corrections.entries.extend(fixture::fixture_icon_corrections().entries);
+    let (normalized, _) = built_db_with_wiki(&WikiOverrides::default(), &corrections).unwrap();
+    let scratch = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&normalized, scratch.path()).unwrap();
+    let source = fixtures_dir().join("data");
+    for entry in walkdir::WalkDir::new(&source).into_iter().map(Result::unwrap).filter(|entry| {
+        entry.file_type().is_file() && entry.path().extension().is_some_and(|extension| extension == "png")
+    }) {
+        let destination = scratch.path().join(entry.path().strip_prefix(&source).unwrap());
+        std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+        std::fs::copy(entry.path(), destination).unwrap();
+    }
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(scratch.path(), &mut rebuilt).unwrap();
+    Corrections::from_database(&rebuilt).unwrap()
+}
+
 #[test]
 fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
     use ddo_model::enums::CorrectionKind;
@@ -1700,6 +1719,112 @@ fn item_effect_names(db: &Connection, item_name: &str) -> Vec<String> {
     .unwrap()
     .map(Result::unwrap)
     .collect()
+}
+
+#[test]
+fn corrects_a_named_grouping_link_without_changing_its_definition() {
+    let corrections = new_qualified_correction(
+        "item_bonus",
+        "Band of Diani ir'Wynarn",
+        "stat = \"Potency\"\nbonus_type = \"Quality\"",
+        "bonus_type",
+        "\"Quality\"",
+        "\"Artifact\"",
+    ) + &new_qualified_correction(
+        "item_bonus",
+        "Band of Diani ir'Wynarn",
+        "stat = \"Potency\"\nbonus_type = \"Artifact\"",
+        "value",
+        "26",
+        "30",
+    );
+    let (db, report) = built_db_with(&[("corrections.toml", &corrections)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
+    let bonuses: Vec<(String, i64)> = db
+        .prepare(
+            "SELECT bt.name, b.amount FROM owner_bonuses b JOIN items i ON i.id = b.owner_id
+         JOIN effects e ON e.id = b.via_effect_id JOIN bonus_types bt ON bt.id = b.bonus_type_id
+         WHERE b.owner_kind = 'item' AND i.name = 'Band of Diani ir''Wynarn' AND e.name = 'Potency'",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get(0)?, row.get(1)?)))
+        .unwrap()
+        .collect::<rusqlite::Result<_>>()
+        .unwrap();
+    assert_eq!(bonuses, vec![("Artifact".to_string(), 30); 15]);
+    assert_eq!(db.query_row("SELECT COUNT(*) FROM effect_bonuses WHERE effect_id = (SELECT id FROM effects WHERE name = 'Potency') AND bonus_type_id IS NULL AND amount_from = 1", [], |row| row.get::<_, i64>(0)).unwrap(), 1);
+    let restored = rebuilt_correction_notes(&db);
+    assert!(restored.entries.iter().any(|correction| correction.stat.as_deref() == Some("Potency")
+        && correction.field == "value"
+        && correction.to == CorrectionValue::Integer(30)));
+}
+
+#[test]
+fn corrects_a_fixed_type_grouping_value_without_adding_a_link_type() {
+    let correction = new_qualified_correction(
+        "item_bonus",
+        "Lantern of the Abyss",
+        "stat = \"Power of the Firestorm\"\nbonus_type = \"Equipment\"",
+        "value",
+        "86",
+        "90",
+    );
+    let (db, report) = built_db_with(&[("corrections.toml", &correction)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let link: (i64, Option<i64>) = db.query_row(
+        "SELECT link.value, link.bonus_type_id FROM item_effects link JOIN items i ON i.id = link.item_id
+         JOIN effects e ON e.id = link.effect_id WHERE i.name = 'Lantern of the Abyss' AND e.name = 'Power of the Firestorm'",
+        [], |row| Ok((row.get(0)?, row.get(1)?))).unwrap();
+    assert_eq!(link, (90, None));
+    let restored = rebuilt_correction_notes(&db);
+    assert!(restored
+        .entries
+        .iter()
+        .any(|entry| entry.name == "Lantern of the Abyss" && entry.to == CorrectionValue::Integer(90)));
+}
+
+#[test]
+fn adds_one_link_for_a_stat_or_grouping() {
+    for (name, bonus_type) in [
+        ("Acid Resistance", "Artifact"),
+        ("Doublestrike and Doubleshot", "Artifact"),
+        ("Potency", "Artifact"),
+        ("Power of the Firestorm", "Equipment"),
+    ] {
+        let correction = new_correction(
+            "item_bonus",
+            "Docent of Defiance",
+            "add",
+            "\"null\"",
+            &format!("{{ stat = \"{name}\", bonus_type = \"{bonus_type}\", value = 10 }}"),
+        );
+        let (db, report) = built_db_with(&[("corrections.toml", &correction)]).unwrap();
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+        assert_eq!(db.query_row("SELECT COUNT(*) FROM item_effects link JOIN items i ON i.id = link.item_id JOIN effects e ON e.id = link.effect_id WHERE i.name = 'Docent of Defiance' AND e.name = ?1 AND link.value = 10", [name], |row| row.get::<_, i64>(0)).unwrap(), 1);
+        let restored = rebuilt_correction_notes(&db);
+        assert!(
+            restored.entries.iter().any(|entry| entry.name == "Docent of Defiance"
+                && entry.field == "add"
+                && entry.to == correction.0[0].to),
+            "{:?}",
+            restored.entries
+        );
+    }
+}
+
+#[test]
+fn grouping_additions_reject_two_slots_and_incompatible_fixed_types() {
+    for name in ["Deception", "Power of the Firestorm"] {
+        let correction = new_correction(
+            "item_bonus",
+            "Docent of Defiance",
+            "add",
+            "\"null\"",
+            &format!("{{ stat = \"{name}\", bonus_type = \"Artifact\", value = 10 }}"),
+        );
+        let error = built_db_with(&[("corrections.toml", &correction)]).unwrap_err();
+        assert!(error.contains(name) && error.contains("cannot take one value"), "{error}");
+    }
 }
 
 #[test]
