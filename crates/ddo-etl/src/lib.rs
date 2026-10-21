@@ -6,6 +6,7 @@ pub mod corrections;
 pub mod database_tables;
 pub mod delta;
 pub mod diff;
+pub mod groupings;
 pub mod icons;
 pub mod import_ddobuilder;
 mod loot_sources;

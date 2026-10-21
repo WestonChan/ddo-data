@@ -90,6 +90,11 @@ impl IntegrityCheck {
 }
 
 pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
+    IntegrityCheck::warn(
+        "effects_sharing_a_stat_set",
+        "link-valued effects sharing expanded stats await source verification in effect-groups chunk 2",
+        OffenderQuery::Built(effects_sharing_a_stat_set),
+    ).showing_every_offender(),
     IntegrityCheck::hard(
         "redirects_agree_with_current_slugs",
         "redirects target current slugs without collisions, chains or retired current entities",
@@ -1473,6 +1478,20 @@ fn stat_link_findings(db: &Connection, condition: &str, detail: &str) -> Result<
         })
         .collect::<Vec<_>>();
     Ok(Findings { offenders: Some(offenders_from_sql(db, &queries.join(" UNION ALL "))?), notes: Vec::new() })
+}
+
+fn effects_sharing_a_stat_set(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let groupings = ddo_etl::groupings::Groupings::from_database(db)?;
+    let offenders = groupings
+        .pairs()
+        .into_iter()
+        .map(|pair| Offender {
+            name: format!("{} / {}", pair.first.name, pair.second.name),
+            id: Some(pair.first.id),
+            detail: format!("{:?}: {:?}", pair.kind, pair.first.stat_ids),
+        })
+        .collect();
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
 fn stat_links_without_bonus_types(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {

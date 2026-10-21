@@ -48,6 +48,41 @@ fn fixture_options() -> IntegrityOptions {
     IntegrityOptions { allowed_empty_tables: TABLES_EMPTY_IN_FIXTURES.iter().map(|table| table.to_string()).collect() }
 }
 
+#[test]
+fn shared_stat_set_report_lists_a_duplicate_but_not_a_constant_twin() {
+    let scratch = tempfile::tempdir().unwrap();
+    let exported = scratch.path().join("data");
+    let fixture_tree = fixtures_dir().join("data");
+    for entry in walkdir::WalkDir::new(&fixture_tree) {
+        let entry = entry.unwrap();
+        if entry.file_type().is_file() {
+            let destination = exported.join(entry.path().strip_prefix(&fixture_tree).unwrap());
+            std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+            std::fs::copy(entry.path(), destination).unwrap();
+        }
+    }
+    let frozen_thunderstorm =
+        std::fs::read_to_string(fixtures_dir().join("../../../../data/effects/power-of-the-frozen-thunderstorm.toml"))
+            .unwrap();
+    std::fs::write(exported.join("effects/power-of-the-frozen-thunderstorm.toml"), &frozen_thunderstorm).unwrap();
+    let duplicate = frozen_thunderstorm.replace("Power of the Frozen Thunderstorm", "Frozen Thunderstorm Duplicate");
+    std::fs::write(exported.join("effects/stat-groups/frozen-thunderstorm-duplicate.toml"), duplicate).unwrap();
+    let constant = frozen_thunderstorm
+        .replace("Power of the Frozen Thunderstorm", "Frozen Thunderstorm Constant")
+        .replace("{1}", "30")
+        .replace("amount_from = 1", "amount_from = 0\nconstant = 30");
+    std::fs::write(exported.join("effects/frozen-thunderstorm-constant.toml"), constant).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&exported, &mut db).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("effects_sharing_a_stat_set").expect("shared stat set report");
+    let printed = format!("{outcome}");
+    assert!(printed.contains("Power of the Frozen Thunderstorm"), "{printed}");
+    assert!(printed.contains("Frozen Thunderstorm Duplicate"), "{printed}");
+    assert!(!printed.contains("Frozen Thunderstorm Constant"), "{printed}");
+    assert_eq!(outcome.status, CheckStatus::Warned);
+}
+
 fn check_db_output(db_path: &Path) -> Output {
     let mut command = Command::new(env!("CARGO_BIN_EXE_xtask"));
     command.arg("check-db").arg(db_path);
