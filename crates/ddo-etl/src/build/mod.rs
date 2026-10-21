@@ -42,6 +42,7 @@ use std::path::{Path, PathBuf};
 
 #[derive(Debug, Default, Clone, PartialEq, Eq)]
 pub struct BuildReport {
+    pub derived_effect_lines: Vec<DerivedEffectLines>,
     pub shared_target_splits: Vec<DerivedEffectSplit>,
     pub line_splits: Vec<DerivedEffectSplit>,
     pub held_back_effects: Vec<DerivedEffectSplit>,
@@ -134,7 +135,16 @@ pub struct BuildReport {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
+pub struct DerivedEffectLines {
+    pub owner_kind: String,
+    pub owner_name: String,
+    pub stat_names: Vec<String>,
+    pub link_count: usize,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DerivedEffectSplit {
+    pub source_index: usize,
     pub owner_kind: String,
     pub owner_name: String,
     pub owner_id: i64,
@@ -304,6 +314,7 @@ fn build_with_wiki_references(
         effects: effects::EffectCache::new(&transaction),
         groupings,
         grouping_answers: HashSet::new(),
+        derived_effect_lines: Vec::new(),
         shared_target_splits: Vec::new(),
         line_splits: Vec::new(),
         line_split_corrections: corrections.entries.iter().filter(|correction| correction.field == "lines").collect(),
@@ -508,6 +519,7 @@ fn build_with_wiki_references(
     corrections::record_built_item_effect_values(&transaction)?;
     crate::tree::store_xml_annotations(&transaction)?;
     crate::loot_sources::reject_missing_source_references(&transaction)?;
+    report.derived_effect_lines = std::mem::take(&mut writer.derived_effect_lines);
     report.shared_target_splits = std::mem::take(&mut writer.shared_target_splits);
     report.line_splits = std::mem::take(&mut writer.line_splits);
     report.held_back_effects = std::mem::take(&mut writer.held_back_effects);
@@ -798,6 +810,7 @@ pub(crate) struct TableWriter<'a> {
     effects: effects::EffectCache<'a>,
     groupings: &'a crate::groupings::Groupings,
     grouping_answers: HashSet<i64>,
+    derived_effect_lines: Vec<DerivedEffectLines>,
     shared_target_splits: Vec<DerivedEffectSplit>,
     line_splits: Vec<DerivedEffectSplit>,
     line_split_corrections: Vec<&'a Correction>,

@@ -217,18 +217,37 @@ impl TableWriter<'_> {
             let first_link = links.len();
             let split_count = self.shared_target_splits.len();
             let removed_before = self.removed_derived_bonus_count;
-            if let Some(grouped_links) =
-                self.grouped_effect_link(owner, modifier_source, owner_id, effect, &mut derived_by_type)?
-            {
+            let source_index = self.derived_effect_lines.len();
+            self.derived_effect_lines.push(super::DerivedEffectLines {
+                owner_kind: modifier_source.as_str().to_string(),
+                owner_name: owner.name.to_string(),
+                stat_names: Vec::new(),
+                link_count: 0,
+            });
+            let grouped_links =
+                self.write_grouped_effect_links(owner, modifier_source, owner_id, effect, &mut derived_by_type)?;
+            self.derived_effect_lines[source_index].stat_names = derived_by_type
+                .iter()
+                .flatten()
+                .map(|bonus| bonus.stat.name.to_string())
+                .collect::<std::collections::BTreeSet<_>>()
+                .into_iter()
+                .collect();
+            if let Some(grouped_links) = grouped_links {
                 if grouped_links.len() == 1 {
                     self.transaction.execute(
                         "UPDATE modifiers SET effect_id = ?4 WHERE source_kind = ?1 AND source_id = ?2 AND sort_order = ?3",
                         params![modifier_source.as_str(), owner_id, source_order as i64, grouped_links[0].effect_id],
                     )?;
                 }
+                self.derived_effect_lines[source_index].link_count = grouped_links.len();
                 links.extend(grouped_links);
                 continue;
             }
+            let preserve_member_lines = self
+                .held_back_effects
+                .last()
+                .is_some_and(|held| held.source_index == source_index && held.reason.starts_with("different "));
             for (type_index, effect_type) in effect.types.iter().enumerate() {
                 if derived_by_type[type_index].is_empty() && self.removed_derived_bonus_count != removed_before {
                     continue;
@@ -289,7 +308,9 @@ impl TableWriter<'_> {
                                 .flatten()
                         })
                 });
-                let groups: Vec<(Vec<_>, Option<&str>)> = if all_abilities || effect_type == "SkillBonusAbility" {
+                let groups: Vec<(Vec<_>, Option<&str>)> = if preserve_member_lines {
+                    derived_bonuses.into_iter().map(|bonus| (vec![bonus], None)).collect()
+                } else if all_abilities || effect_type == "SkillBonusAbility" {
                     vec![(derived_bonuses, None)]
                 } else if let Some((shared_target, shared_name)) = named_shared_target {
                     let members = &EFFECT_MAP.effect.targeted[effect_type].targets[shared_target];
@@ -314,7 +335,9 @@ impl TableWriter<'_> {
                 };
                 for (group_order, (bonuses, shared_name)) in groups.into_iter().enumerate() {
                     let first_bonus = bonuses[0];
-                    let target = if all_abilities {
+                    let target = if preserve_member_lines {
+                        None
+                    } else if all_abilities {
                         Some("All")
                     } else if let Some((shared_target, _)) = named_shared_target {
                         shared_name.map(|_| shared_target).or_else(|| {
@@ -330,9 +353,10 @@ impl TableWriter<'_> {
                     } else {
                         effect.targets.first().map(String::as_str)
                     };
-                    links.push(self.derived_line(owner, effect_type, target, &bonuses, shared_name)?);
+                    links.push(self.write_derived_line(owner, effect_type, target, &bonuses, shared_name)?);
                 }
             }
+            self.derived_effect_lines[source_index].link_count = links.len() - first_link;
             if links.len() - first_link <= 1 {
                 self.shared_target_splits.truncate(split_count);
             }
@@ -371,7 +395,7 @@ impl TableWriter<'_> {
         Ok(derived_bonuses)
     }
 
-    fn derived_line(
+    fn write_derived_line(
         &mut self,
         owner: &BonusOwner,
         effect_type: &str,
@@ -458,7 +482,7 @@ impl TableWriter<'_> {
         })
     }
 
-    fn grouped_effect_link(
+    fn write_grouped_effect_links(
         &mut self,
         owner: &BonusOwner,
         source: ModifierSource,
@@ -466,9 +490,13 @@ impl TableWriter<'_> {
         effect: &Effect,
         derived_by_type: &mut [Vec<crate::map::effect::DerivedBonus>],
     ) -> Result<Option<Vec<DerivedEffectLink>>> {
-        if derived_by_type.iter().any(Vec::is_empty) {
-            return Ok(None);
-        }
+        let types_without_stats = effect
+            .types
+            .iter()
+            .zip(derived_by_type.iter())
+            .filter(|(_, bonuses)| bonuses.is_empty())
+            .map(|(effect_type, _)| effect_type.as_str())
+            .collect::<Vec<_>>();
         let original_stats =
             derived_by_type.iter().flatten().map(|bonus| bonus.stat.id).collect::<std::collections::BTreeSet<_>>();
         if original_stats.len() > 1 {
@@ -553,7 +581,9 @@ impl TableWriter<'_> {
         if stats.len() < 2 {
             return Ok(None);
         }
+        let source_index = self.derived_effect_lines.len() - 1;
         let split = |reason| super::DerivedEffectSplit {
+            source_index,
             owner_kind: source.as_str().to_string(),
             owner_name: owner.name.to_string(),
             owner_id,
@@ -562,30 +592,31 @@ impl TableWriter<'_> {
             stats: stats.iter().cloned().collect(),
             reason,
         };
-        if !shared_targets.is_empty() {
-            self.shared_target_splits.push(split(shared_targets.join(", ")));
+        if !types_without_stats.is_empty() {
+            self.held_back_effects
+                .push(split(format!("effect types without derived stats: {}", types_without_stats.join(", "))));
             return Ok(None);
         }
         let value = bonuses[0].1.value;
-        anyhow::ensure!(
-            bonuses.iter().all(|(_, bonus)| bonus.value == value),
-            "{:?} {:?} has different values within one effect",
-            owner.kind,
-            owner.name
-        );
+        if bonuses.iter().any(|(_, bonus)| bonus.value != value) {
+            self.held_back_effects.push(split("different values within one effect".to_string()));
+            return Ok(None);
+        }
         let mut bonus_type = None;
         for (effect_type, bonus) in &bonuses {
             let resolved = self.bonus_type_of(
                 &BonusOrigin { owner, source_name: effect_type, stat_name: bonus.stat.name, value: Some(bonus.value) },
                 bonus.bonus_type,
             )?;
-            anyhow::ensure!(
-                bonus_type.is_none_or(|previous| previous == resolved),
-                "{:?} {:?} has different types within one effect",
-                owner.kind,
-                owner.name
-            );
+            if bonus_type.is_some_and(|previous| previous != resolved) {
+                self.held_back_effects.push(split("different types within one effect".to_string()));
+                return Ok(None);
+            }
             bonus_type = Some(resolved);
+        }
+        if !shared_targets.is_empty() {
+            self.shared_target_splits.push(split(shared_targets.join(", ")));
+            return Ok(None);
         }
         let bonus_type = bonus_type.expect("multi-stat effect has a bonus type");
         let matching = self.groupings.by_stat_set.get(&stats).map(Vec::as_slice).unwrap_or_default();
@@ -631,7 +662,7 @@ impl TableWriter<'_> {
                                         .is_some_and(|stat| stat.id == bonus.stat.id)
                                 })
                                 .map(String::as_str);
-                            self.derived_line(owner, effect_type, target, &[*bonus], None)?
+                            self.write_derived_line(owner, effect_type, target, &[*bonus], None)?
                         } else {
                             let line_grouping = self.groupings.grouping_named(&line_name).ok_or_else(|| {
                                 anyhow::anyhow!(
@@ -645,7 +676,7 @@ impl TableWriter<'_> {
                                 correction.label()
                             );
                             let effect_id = self.effects.ensure_indexed_grouping(line_grouping, self.groupings)?;
-                            self.grouping_line(owner, effect_id, bonus_type, value)?
+                            self.write_grouping_line(owner, effect_id, bonus_type, value)?
                         };
                         link.is_split_line = true;
                         split_links.push(link);
@@ -739,10 +770,10 @@ impl TableWriter<'_> {
                 return Ok(None);
             }
         };
-        Ok(Some(vec![self.grouping_line(owner, effect_id, bonus_type, value)?]))
+        Ok(Some(vec![self.write_grouping_line(owner, effect_id, bonus_type, value)?]))
     }
 
-    fn grouping_line(
+    fn write_grouping_line(
         &mut self,
         owner: &BonusOwner,
         effect_id: i64,

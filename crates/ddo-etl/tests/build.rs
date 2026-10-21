@@ -415,6 +415,177 @@ fn avalanche_uses_the_existing_frozen_thunderstorm_effect() {
     );
 }
 
+fn assert_every_multi_stat_effect_has_one_link_or_an_exception(report: &BuildReport) {
+    let exceptions = report
+        .shared_target_splits
+        .iter()
+        .chain(&report.line_splits)
+        .chain(&report.held_back_effects)
+        .map(|split| split.source_index)
+        .collect::<std::collections::BTreeSet<_>>();
+    let mut checked = 0;
+    for (index, output) in report.derived_effect_lines.iter().enumerate() {
+        if output.stat_names.len() > 1 {
+            checked += 1;
+            assert!(output.link_count == 1 || exceptions.contains(&index), "{index}: {output:?}");
+        }
+    }
+    assert!(checked > 0);
+}
+
+#[test]
+fn every_fixture_multi_stat_effect_has_one_link_or_a_recorded_exception() {
+    let mut owner_kinds = std::collections::BTreeSet::new();
+    for (_, report) in [built_fixture_db(), built_ambiguous_fixture_db()] {
+        assert_every_multi_stat_effect_has_one_link_or_an_exception(&report);
+        owner_kinds.extend(
+            report
+                .derived_effect_lines
+                .into_iter()
+                .filter(|output| output.stat_names.len() > 1)
+                .map(|output| output.owner_kind),
+        );
+    }
+    for kind in ["augment", "feat", "item_augment_slot_option", "set_bonus_tier"] {
+        assert!(owner_kinds.contains(kind), "{owner_kinds:?}");
+    }
+}
+
+#[test]
+fn partially_mapped_multi_stat_effects_keep_their_lines_and_are_held() {
+    let source = fixture::xml_source();
+    let path = source.path().join("SetBonuses.xml");
+    let contents = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        path,
+        contents.replace("<Type>Doubleshot</Type>", "<Type>Doubleshot</Type><Type>Weapon_AttackAndDamage</Type>"),
+    )
+    .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_every_multi_stat_effect_has_one_link_or_an_exception(&report);
+    assert!(report.held_back_effects.iter().any(|effect| effect.reason.contains("without derived stats")
+        && effect.effect_types.contains(&"Weapon_AttackAndDamage".to_string())));
+}
+
+fn create_untyped_shadow_source() -> tempfile::TempDir {
+    let source = fixture::xml_source();
+    std::fs::write(
+        source.path().join("Augments/WoefulShadow.Augments.xml"),
+        include_str!("fixtures/effect-groups/WoefulShadow.Augments.xml").replace("<Bonus>Profane</Bonus>", ""),
+    )
+    .unwrap();
+    std::fs::copy(
+        data_files_fixture_dir().parent().unwrap().join("effect-groups/icons/Lamordia.png"),
+        source.path().join("AugmentImages/Lamordia.png"),
+    )
+    .unwrap();
+    source
+}
+
+#[test]
+fn mixed_types_from_owner_corrections_keep_stat_lines_and_are_held() {
+    let source = create_untyped_shadow_source();
+    let corrections = fixture::new_qualified_correction(
+        "augment_bonus",
+        "Woeful Shadow (Legendary)",
+        "stat = 'Doublestrike'\nbonus_type = 'null'",
+        "bonus_type",
+        "\"null\"",
+        "\"Profane\"",
+    ) + &fixture::new_qualified_correction(
+        "augment_bonus",
+        "Woeful Shadow (Legendary)",
+        "stat = 'Doubleshot'\nbonus_type = 'null'",
+        "bonus_type",
+        "\"null\"",
+        "\"Artifact\"",
+    );
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &fixture::corrections_from(&[("mixed-types.toml", &corrections)]).unwrap(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_every_multi_stat_effect_has_one_link_or_an_exception(&report);
+    assert!(report
+        .held_back_effects
+        .iter()
+        .any(|effect| effect.owner_name == "Woeful Shadow (Legendary)" && effect.reason.contains("different types")));
+    let bonuses = db.prepare(
+        "SELECT e.name,bt.name,b.amount FROM owner_bonuses b JOIN augments a ON a.id=b.owner_id
+         JOIN effects e ON e.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id
+         WHERE b.owner_kind='augment' AND a.name='Woeful Shadow (Legendary)' AND e.name IN ('Doublestrike','Doubleshot') ORDER BY e.name"
+    ).unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?)))
+        .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(bonuses, [("Doubleshot".into(), "Artifact".into(), 3), ("Doublestrike".into(), "Profane".into(), 3)]);
+}
+
+#[test]
+fn mixed_types_inside_an_ability_group_keep_every_members_type() {
+    let source = create_untyped_shadow_source();
+    let path = source.path().join("Augments/WoefulShadow.Augments.xml");
+    let contents = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        path,
+        contents.replace(
+            "<Type>Doublestrike</Type>\n      <Type>Doubleshot</Type>",
+            "<Type>AbilityBonus</Type><Item>All</Item>",
+        ),
+    )
+    .unwrap();
+    let stats = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
+    let corrections = stats
+        .iter()
+        .enumerate()
+        .map(|(index, stat)| {
+            fixture::new_qualified_correction(
+                "augment_bonus",
+                "Woeful Shadow (Legendary)",
+                &format!("stat = {stat:?}\nbonus_type = 'null'"),
+                "bonus_type",
+                "\"null\"",
+                if index == 0 { "\"Artifact\"" } else { "\"Profane\"" },
+            )
+        })
+        .collect::<fixture::CorrectionSet>();
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &fixture::corrections_from(&[("mixed-abilities.toml", &corrections)]).unwrap(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_every_multi_stat_effect_has_one_link_or_an_exception(&report);
+    for (index, stat) in stats.iter().enumerate() {
+        let bonus: (String, i64) = db
+            .query_row(
+                "SELECT bt.name,b.amount FROM owner_bonuses b JOIN augments a ON a.id=b.owner_id
+             JOIN effects e ON e.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id
+             WHERE b.owner_kind='augment' AND a.name='Woeful Shadow (Legendary)' AND e.name=?1",
+                [stat],
+                |row| Ok((row.get(0)?, row.get(1)?)),
+            )
+            .unwrap();
+        assert_eq!(bonus, (if index == 0 { "Artifact".into() } else { "Profane".into() }, 3));
+    }
+}
+
 #[test]
 fn ambiguous_upstream_stat_sets_keep_their_stat_links_and_are_reported() {
     let (db, report) = built_ambiguous_fixture_db();
