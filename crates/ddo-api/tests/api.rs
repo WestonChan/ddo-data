@@ -1128,6 +1128,55 @@ fn effect_named<'a>(effects: &'a Value, name: &str, kind: &str) -> Option<&'a Va
 }
 
 #[tokio::test]
+async fn grouped_hruit_spell_power_matches_each_stat_on_items_sets_and_carriers() {
+    let state = fixture_state_with_data_edits("hruit-group-filters", |root| {
+        let item = root.join("packs/unsourced/gear/legendary-bronze-dragonscale-plate.toml");
+        std::fs::create_dir_all(item.parent().unwrap()).unwrap();
+        std::fs::write(item, "name = 'Legendary Bronze Dragonscale Plate'\nitem_category = 'Armor'\nitem_type = 'Heavy'\nminimum_level = 29\nslot = 'Body'\n[[armor]]\narmor_type = 'Heavy'\narmor_bonus = 25\narmor_check_penalty = -5\narcane_spell_failure = 35\nmax_dex_bonus = 6\n").unwrap();
+        let set = root.join("packs/shared/sets/legendary-hruits-influence.toml");
+        let contents = std::fs::read_to_string(&set).unwrap();
+        std::fs::write(set, format!("{contents}\n[[item]]\nname = 'Legendary Bronze Dragonscale Plate'\n")).unwrap();
+    });
+    for (name, slug) in [("Fire", "fire"), ("Cold", "cold"), ("Electric", "electric"), ("Positive", "positive")] {
+        let filter = format!("{name}%20Spell%20Power");
+        let (status, _, items) =
+            get_from(state.clone(), &format!("/v1/items?bonus={filter}&include_set_bonuses=true&limit=1000")).await;
+        assert_eq!(status, StatusCode::OK, "{items}");
+        assert!(item_names(&items).contains(&"Legendary Bronze Dragonscale Plate"), "{name}: {items}");
+        let (status, _, carriers) =
+            get_from(state.clone(), &format!("/v1/effects/{slug}-spell-power?set_tiers_limit=1000")).await;
+        assert_eq!(status, StatusCode::OK, "{carriers}");
+        assert!(
+            carriers["set_tiers"]["set_tiers"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .any(|tier| tier["set_name"] == "Legendary Hruit's Influence" && tier["equipped_count"] == 3),
+            "{carriers}"
+        );
+    }
+    let (_, _, set) = get_from(state.clone(), "/v1/sets/legendary-hruits-influence").await;
+    assert_eq!(set["tiers"][0]["effects"].as_array().unwrap().len(), 4);
+    let lines = set["tiers"][0]["effects"].as_array().unwrap();
+    let power = lines.iter().find(|line| line["name"] == "Fire, Cold, Electric and Positive Spell Power").unwrap();
+    let bonuses = power["bonuses"].as_array().unwrap();
+    assert_eq!(bonuses.len(), 4);
+    for stat in ["Fire Spell Power", "Cold Spell Power", "Electric Spell Power", "Positive Spell Power"] {
+        assert!(bonuses
+            .iter()
+            .any(|bonus| bonus["stat"] == stat && bonus["value"] == 30 && bonus["bonus_type"] == "Artifact"));
+    }
+    let (status, _, group) =
+        get_from(state, "/v1/effects/fire-cold-electric-and-positive-spell-power?set_tiers_limit=1000").await;
+    assert_eq!(status, StatusCode::OK, "{group}");
+    assert!(group["set_tiers"]["set_tiers"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|tier| tier["set_name"] == "Legendary Hruit's Influence" && tier["equipped_count"] == 3));
+}
+
+#[tokio::test]
 async fn effect_vocabulary_lists_each_family_and_stat_with_carrier_counts() {
     let (status, _, rows) = get_list_rows("/v1/effects").await;
     assert_eq!(status, StatusCode::OK);
