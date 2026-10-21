@@ -1,0 +1,52 @@
+<SetBonus>
+    <Type>Slice 'n Dice Set</Type>
+    <Icon>SliceAndDice</Icon>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+1 Quality bonus to Seeker</Description>
+      <Effect>
+        <Type>Weapon_AttackAndDamageCritical</Type>
+        <Bonus>Quality</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+1 Quality bonus to Sneak Attack</Description>
+      <Effect>
+        <Type>SneakAttackAttack</Type>
+        <Bonus>Quality</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Buff>
+  </SetBonus>
+  
+<SetBonus>
+    <Type>Epic Slice 'n Dice</Type>
+    <Icon>SliceAndDice</Icon>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+2 Quality bonus to Seeker</Description>
+      <Effect>
+        <Type>Weapon_AttackAndDamageCritical</Type>
+        <Bonus>Quality</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+2 Quality bonus to Sneak Attack</Description>
+      <Effect>
+        <Type>SneakAttackAttack</Type>
+        <Bonus>Quality</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </Buff>
+  </SetBonus>
+  

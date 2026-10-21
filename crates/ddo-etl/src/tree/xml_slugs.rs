@@ -25,17 +25,52 @@ pub(super) fn xml_identities() -> &'static XmlIdentityCatalog {
     &CATALOG
 }
 
+pub(super) struct XmlEntityName<'a> {
+    pub(super) upstream_id: Option<i64>,
+    pub(super) name: &'a str,
+    pub(super) description: Option<&'a str>,
+}
+
+pub(super) fn matching_xml_identity<'a, T>(
+    candidates: impl IntoIterator<Item = (T, &'a XmlIdentity, XmlEntityName<'a>)>,
+) -> Option<T> {
+    let mut best_match = None;
+    let mut best_rank = 0;
+    let mut match_count = 0;
+    for (candidate, identity, entity) in candidates {
+        if identity.name != entity.name {
+            continue;
+        }
+        let rank = if Some(identity.upstream_id) == entity.upstream_id {
+            2
+        } else if identity.description.as_deref().is_none_or(|description| Some(description) == entity.description) {
+            1
+        } else {
+            continue;
+        };
+        if rank > best_rank {
+            best_match = Some(candidate);
+            best_rank = rank;
+            match_count = 1;
+        } else if rank == best_rank {
+            match_count += 1;
+        }
+    }
+    if match_count == 1 {
+        best_match
+    } else {
+        None
+    }
+}
+
 pub(crate) fn xml_entity_slug(table: &str, upstream_id: Option<i64>, name: &str, description: Option<&str>) -> String {
-    let matches = xml_identities()
-        .entity
-        .iter()
-        .filter(|identity| identity.table == table && identity.name == name)
-        .collect::<Vec<_>>();
-    let identity = matches.iter().find(|identity| Some(identity.upstream_id) == upstream_id).copied().or_else(|| {
-        let descriptions =
-            matches.iter().filter(|identity| identity.description.as_deref() == description).collect::<Vec<_>>();
-        (descriptions.len() == 1).then(|| *descriptions[0])
-    });
+    let identity = matching_xml_identity(
+        xml_identities()
+            .entity
+            .iter()
+            .filter(|identity| identity.table == table)
+            .map(|identity| (identity, identity, XmlEntityName { upstream_id, name, description })),
+    );
     let base = if table == "augments" { augment_name_slug(name) } else { slug(name) };
     identity
         .and_then(|identity| identity.variant.as_ref())
@@ -270,6 +305,52 @@ pub(crate) fn assign_xml_entity_slugs(db: &Connection) -> Result<()> {
 
 #[cfg(test)]
 mod overlay_identity_tests {
+    use super::{matching_xml_identity, xml_identities, XmlEntityName};
+
+    #[test]
+    fn shifted_identity_requires_one_matching_row() {
+        let identity = xml_identities().entity.iter().find(|identity| identity.name == "Dhovras' Armlet").unwrap();
+        let candidates = [90001, 90002];
+        let matching = |ids: &[i64]| {
+            matching_xml_identity(ids.iter().map(|id| {
+                (*id, identity, XmlEntityName { upstream_id: Some(*id), name: &identity.name, description: None })
+            }))
+        };
+        assert_eq!(matching(&candidates), None);
+        assert_eq!(matching(&[]), None);
+        assert_eq!(matching(&candidates[..1]), Some(90001));
+        assert_eq!(matching(&[90001, identity.upstream_id]), Some(identity.upstream_id));
+    }
+
+    #[test]
+    fn shifted_identity_honors_description_and_case() {
+        let identity = xml_identities().entity.iter().find(|identity| identity.description.is_some()).unwrap();
+        for description in [None, Some("another description")] {
+            assert!(matching_xml_identity([(
+                1,
+                identity,
+                XmlEntityName { upstream_id: None, name: &identity.name, description }
+            )])
+            .is_none());
+        }
+        assert_eq!(
+            matching_xml_identity([(
+                1,
+                identity,
+                XmlEntityName { upstream_id: None, name: &identity.name, description: identity.description.as_deref() }
+            )]),
+            Some(1)
+        );
+        let identity = xml_identities().entity.iter().find(|identity| identity.name == "Underwater action").unwrap();
+        assert!(matching_xml_identity([(
+            1,
+            identity,
+            XmlEntityName { upstream_id: Some(identity.upstream_id), name: "Underwater Action", description: None }
+        )])
+        .is_none());
+        assert_eq!(super::xml_entity_slug("effects", Some(90001), "Underwater action", None), "underwater-action-2");
+    }
+
     #[test]
     fn overlay_identity_uses_catalog_slugs_including_variants() {
         for (table, slug, expected) in [

@@ -100,6 +100,42 @@ fn a_structured_set_effect_takes_precedence_over_its_prose_vocabulary() {
 }
 
 #[test]
+fn valued_prose_reuses_a_stats_existing_description() {
+    let source = fixture::xml_source();
+    let path = source.path().join("SetBonuses.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        path,
+        original.replace(
+            "</SetBonuses>",
+            &format!("{}</SetBonuses>", include_str!("fixtures/effect-groups/ValuedProseSets.xml")),
+        ),
+    )
+    .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let amounts = db
+        .prepare("SELECT amount FROM owner_bonuses WHERE owner_kind = 'set_bonus_tier' AND stat_id = (SELECT id FROM effects WHERE name = 'Seeker') AND bonus_type_id = (SELECT id FROM bonus_types WHERE name = 'Quality') ORDER BY amount")
+        .unwrap()
+        .query_map([], |row| row.get::<_, i64>(0))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(amounts, [1, 2]);
+    let description: String =
+        db.query_row("SELECT description_template FROM effects WHERE name = 'Seeker'", [], |row| row.get(0)).unwrap();
+    assert!(description.contains("confirm critical hits"), "{description}");
+}
+
+#[test]
 fn fabricators_valued_prose_links_attack_and_damage_once() {
     let (db, _) = built_fixture_db();
     let links = db
@@ -118,6 +154,40 @@ fn fabricators_valued_prose_links_attack_and_damage_once() {
         .unwrap();
     assert!(links.contains(&("Attack and Damage".into(), Some("Artifact".into()), Some(2))), "{links:?}");
     assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name = '+2 Artifact bonus to attack and damage'"), 0);
+}
+
+#[test]
+fn shifted_effect_ids_keep_catalog_variants_and_citations() {
+    let source = fixture::xml_source();
+    let sets = source.path().join("SetBonuses.xml");
+    let original = std::fs::read_to_string(&sets).unwrap();
+    std::fs::write(
+        sets,
+        original.replace(
+            "</SetBonuses>",
+            &format!("{}</SetBonuses>", include_str!("fixtures/effect-groups/IdentitySets.xml")),
+        ),
+    )
+    .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let (id, slug, variant): (i64, String, Option<String>) = db
+        .query_row("SELECT id, slug, variant FROM effects WHERE name = 'Underwater action'", [], |row| {
+            Ok((row.get(0)?, row.get(1)?, row.get(2)?))
+        })
+        .unwrap();
+    assert_ne!(id, 2093);
+    assert_eq!(slug, "underwater-action-2");
+    assert_eq!(variant.as_deref(), Some("2"));
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM citations c JOIN effects e ON e.id = c.owner_id WHERE c.owner_kind = 'effects' AND e.name = 'Underwater action'"), 1);
 }
 
 #[test]

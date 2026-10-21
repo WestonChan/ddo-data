@@ -1,0 +1,84 @@
+<SetBonus>
+    <Type>Devil's Infernal Dance</Type>
+    <Icon>WrathOfSoraKell</Icon>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+1 Artifact Ability Bonus</Description>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+5% Artifact Doublestrike/Doubleshot</Description>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+10% Artifact Fortification Bypass</Description>
+      <Effect>
+        <Type>FortificationBypass</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+5 Artifact Melee/Ranged Power</Description>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Buff>
+  </SetBonus>
+  
+<SetBonus>
+      <Type>Celerity</Type>
+      <Icon>Celerity</Icon>
+      <Buff>
+         <EquippedCount>2</EquippedCount>
+         <Description>+2 Doublestrike and Doubleshot</Description>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Type>Doubleshot</Type>
+            <Bonus>Stacking</Bonus>
+            <AType>Stacks</AType>
+            <Amount size="1">2</Amount>
+         </Effect>
+      </Buff>
+      <Buff>
+         <EquippedCount>3</EquippedCount>
+         <Description>Permanent Haste spell</Description>
+         <Effect>
+            <Type>MovementSpeed</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">32</Amount>
+            <ApplyAsItemEffect />
+         </Effect>
+         <Effect>
+            <Type>Weapon_Alacrity</Type>
+            <Bonus>Enhancement</Bonus>
+            <AType>Simple</AType>
+            <Amount size="1">15</Amount>
+            <Item>All</Item>
+            <ApplyAsItemEffect />
+         </Effect>
+      </Buff>
+   </SetBonus>
+   

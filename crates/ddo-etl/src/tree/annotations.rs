@@ -119,7 +119,6 @@ impl EntityAnnotations {
         let mut matching_entities = BTreeMap::new();
         for identity in &catalog.entity {
             let table = identity.table.clone();
-            let old_id = identity.upstream_id;
             let expected_name = identity.name.clone();
             let annotation = EntityAnnotation {
                 expected_name: Some(expected_name.clone()),
@@ -128,33 +127,29 @@ impl EntityAnnotations {
                 removed: identity.removed.clone(),
                 variant: identity.variant.clone(),
             };
-            let exact = if let Some(description) = annotation.expected_description.as_deref() {
-                db.query_row(
-                    &format!("SELECT id FROM {table} WHERE id = ?1 AND name = ?2 AND description = ?3"),
-                    rusqlite::params![old_id, expected_name, description],
-                    |row| row.get::<_, i64>(0),
-                )
-                .optional()?
+            let description_column = if super::table_columns(db, &table)?.iter().any(|column| column == "description") {
+                "description"
             } else {
-                db.query_row(
-                    &format!("SELECT id FROM {table} WHERE id = ?1 AND name = ?2"),
-                    rusqlite::params![old_id, expected_name],
-                    |row| row.get::<_, i64>(0),
+                "NULL"
+            };
+            let mut statement =
+                db.prepare(&format!("SELECT id, name, {description_column} FROM {table} WHERE name = ?1"))?;
+            let matches = statement
+                .query_map([&expected_name], |row| {
+                    Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, Option<String>>(2)?))
+                })?
+                .collect::<rusqlite::Result<Vec<_>>>()?;
+            let id = super::xml_slugs::matching_xml_identity(matches.iter().map(|(id, name, description)| {
+                (
+                    *id,
+                    identity,
+                    super::xml_slugs::XmlEntityName {
+                        upstream_id: Some(*id),
+                        name,
+                        description: description.as_deref(),
+                    },
                 )
-                .optional()?
-            };
-            let id = if let Some(id) = exact {
-                Some(id)
-            } else if let Some(description) = annotation.expected_description.as_deref() {
-                let mut statement =
-                    db.prepare(&format!("SELECT id FROM {table} WHERE name = ?1 AND description = ?2 LIMIT 2"))?;
-                let matches = statement
-                    .query_map([expected_name.as_str(), description], |row| row.get::<_, i64>(0))?
-                    .collect::<rusqlite::Result<Vec<_>>>()?;
-                (matches.len() == 1).then(|| matches[0])
-            } else {
-                None
-            };
+            }));
             if let Some(id) = id {
                 matching_entities.insert(entity_key(&table, id), annotation);
             }

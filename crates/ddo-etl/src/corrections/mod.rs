@@ -675,8 +675,46 @@ impl Corrections {
     }
 }
 
+pub(crate) fn correction_qualifier_parts(mut qualifier: &str) -> Vec<&str> {
+    let mut parts = Vec::new();
+    while !qualifier.is_empty() {
+        if !["selection ", "dc ", "stance ", "family ", "effect ", "equipped_count ", "stat "]
+            .iter()
+            .any(|prefix| qualifier.starts_with(prefix))
+        {
+            parts.push(qualifier);
+            break;
+        }
+        let mut quoted = false;
+        let mut escaped = false;
+        let separator = qualifier.char_indices().find_map(|(index, character)| {
+            if escaped {
+                escaped = false;
+            } else if character == '\\' && quoted {
+                escaped = true;
+            } else if character == '"' {
+                quoted = !quoted;
+            } else if character == ',' && !quoted && qualifier[index..].starts_with(", ") {
+                return Some(index);
+            }
+            None
+        });
+        match separator {
+            Some(index) => {
+                parts.push(&qualifier[..index]);
+                qualifier = &qualifier[index + 2..];
+            }
+            None => {
+                parts.push(qualifier);
+                break;
+            }
+        }
+    }
+    parts
+}
+
 fn set_correction_qualifiers(correction: &mut Correction, qualifier: &str) -> Result<()> {
-    for part in qualifier.split(", ").filter(|part| !part.is_empty()) {
+    for part in correction_qualifier_parts(qualifier) {
         if let Some(selection) = part.strip_prefix("selection ") {
             correction.selection = Some(serde_json::from_str(selection)?);
         } else if let Some(dc) = part.strip_prefix("dc ") {

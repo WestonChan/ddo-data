@@ -537,6 +537,200 @@ fn correction_json_values_round_trip_the_real_writer() {
 }
 
 #[test]
+fn an_added_grouping_can_come_only_from_the_canonical_index() {
+    let addition = new_qualified_correction(
+        "set_tier_bonus",
+        "Fabricator's Ingenuity",
+        "equipped_count = 2",
+        "add",
+        "\"null\"",
+        "{ stat = \"Elemental Resonance\", bonus_type = \"Artifact\", value = 3 }",
+    );
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::grouping_cases(),
+        &fixtures_dir().join("DataFiles"),
+        &WikiOverrides::default(),
+        &validated_corrections(&[("add.toml", &addition)]).unwrap(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let bonuses = set_tier_bonus_rows(&db, "Fabricator's Ingenuity", 2);
+    for stat in ["Acid Spell Power", "Cold Spell Power", "Electric Spell Power", "Fire Spell Power"] {
+        assert!(bonuses.contains(&(stat.into(), "Artifact".into(), 3)), "{bonuses:?}");
+    }
+}
+
+#[test]
+fn member_guard_ignores_a_grouping_at_another_value() {
+    let source = fixture::xml_source();
+    let path = source.path().join("SetBonuses.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let sets =
+        include_str!("fixtures/effect-groups/MemberRemovalSets.xml").replace("<Type>FortificationBypass</Type>", "");
+    std::fs::write(&path, original.replace("</SetBonuses>", &format!("{sets}</SetBonuses>"))).unwrap();
+    let correction = new_qualified_correction(
+        "set_tier_bonus",
+        "Devil's Infernal Dance",
+        "equipped_count = 3\nstat = \"Doubleshot\"\nbonus_type = \"Artifact\"\nbonus_value = 10",
+        "value",
+        "10",
+        "11",
+    );
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &validated_corrections(&[("value.toml", &correction)]).unwrap(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let bonuses = set_tier_bonus_rows(&db, "Devil's Infernal Dance", 3);
+    assert!(bonuses.contains(&("Doubleshot".into(), "Artifact".into(), 5)));
+    assert!(bonuses.contains(&("Doubleshot".into(), "Artifact".into(), 11)));
+}
+
+#[test]
+fn member_removal_precedes_grouping_and_matches_only_its_value() {
+    let source = fixture::xml_source();
+    let path = source.path().join("SetBonuses.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        &path,
+        original.replace(
+            "</SetBonuses>",
+            &format!("{}</SetBonuses>", include_str!("fixtures/effect-groups/MemberRemovalSets.xml")),
+        ),
+    )
+    .unwrap();
+    let corrections = Corrections {
+        entries: committed_corrections()
+            .entries
+            .iter()
+            .filter(|entry| {
+                entry.kind == ddo_model::enums::CorrectionKind::SetTierBonus
+                    && entry.field == "remove"
+                    && ["Devil's Infernal Dance", "Celerity"].contains(&entry.name.as_str())
+            })
+            .cloned()
+            .collect(),
+    };
+    assert_eq!(corrections.entries.len(), 2);
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
+    let bonuses = set_tier_bonus_rows(&db, "Devil's Infernal Dance", 3);
+    assert!(bonuses.contains(&("Fortification Bypass".into(), "Artifact".into(), 10)));
+    assert!(bonuses.contains(&("Doubleshot".into(), "Artifact".into(), 5)));
+    assert!(!bonuses.contains(&("Doubleshot".into(), "Artifact".into(), 10)));
+    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM effects WHERE name = 'Doubleshot and Fortification Bypass'"), 0);
+    assert_eq!(
+        set_tier_bonus_rows(&db, "Celerity", 2),
+        [("Doublestrike".into(), "Stacking".into(), 2), ("Doubleshot".into(), "Stacking".into(), 2)]
+    );
+    assert!(!set_tier_bonus_rows(&db, "Celerity", 3).iter().any(|(name, _, _)| name == "Movement Speed"));
+    let restored = Corrections::from_database(&db).unwrap();
+    for expected in &corrections.entries {
+        let actual = restored.entries.iter().find(|entry| entry.name == expected.name).unwrap();
+        assert_eq!(actual.qualifier(), expected.qualifier());
+        assert_eq!(actual.from, expected.from);
+        assert_eq!(actual.to, expected.to);
+    }
+    let unchanged_source = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(&path, unchanged_source.replace("<Amount size=\"1\">10</Amount>", "<Amount size=\"1\">11</Amount>"))
+        .unwrap();
+    let mut changed_db = Connection::open_in_memory().unwrap();
+    let changed = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut changed_db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!((changed.correction_applied_count, changed.correction_stale_count), (1, 1));
+    assert_eq!(changed.stale_corrections[0].name, "Devil's Infernal Dance");
+    std::fs::write(&path, unchanged_source).unwrap();
+    let mut remove_all = corrections.clone();
+    let mut second_removal =
+        remove_all.entries.iter().find(|entry| entry.name == "Devil's Infernal Dance").unwrap().clone();
+    second_removal.stat = Some("Fortification Bypass".into());
+    remove_all.entries.push(second_removal);
+    let mut empty_db = Connection::open_in_memory().unwrap();
+    let empty = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &remove_all,
+        &mut empty_db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!((empty.correction_applied_count, empty.correction_stale_count), (3, 0));
+    assert!(!set_tier_bonus_rows(&empty_db, "Devil's Infernal Dance", 3)
+        .iter()
+        .any(|(name, _, amount)| name == "Fortification Bypass" || (name == "Doubleshot" && *amount == 10)));
+    assert_eq!(
+        row_count(&empty_db, "SELECT COUNT(*) FROM effects WHERE name = '+10% Artifact Fortification Bypass'"),
+        0
+    );
+}
+
+#[test]
+fn grouping_names_with_commas_survive_correction_exports() {
+    let correction = new_qualified_correction(
+        "set_tier_bonus",
+        "Legendary Hruit's Influence",
+        "equipped_count = 3\nstat = \"Fire, Cold, Electric and Positive Spell Power\"\nbonus_type = \"Artifact\"",
+        "value",
+        "30",
+        "31",
+    );
+    let (db, report) = built_db_with(&[("group-value.toml", &correction)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let restored = rebuilt_correction_notes(&db);
+    let grouping = restored.entries.iter().find(|entry| entry.name == "Legendary Hruit's Influence").unwrap();
+    assert_eq!(grouping.stat.as_deref(), Some("Fire, Cold, Electric and Positive Spell Power"));
+    assert_eq!(grouping.equipped_count, Some(3));
+    assert_eq!(grouping.from, CorrectionValue::Integer(30));
+    assert_eq!(grouping.to, CorrectionValue::Integer(31));
+    let addition = new_qualified_correction(
+        "set_tier_bonus",
+        "Fabricator's Ingenuity",
+        "equipped_count = 2",
+        "add",
+        "\"null\"",
+        "{ stat = \"Fire, Cold, Electric and Positive Spell Power\", bonus_type = \"Artifact\", value = 2 }",
+    );
+    let (db, report) = built_db_with(&[("group-add.toml", &addition)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let restored = rebuilt_correction_notes(&db);
+    let added = restored.entries.iter().find(|entry| entry.name == "Fabricator's Ingenuity").unwrap();
+    assert_eq!(
+        added.to,
+        CorrectionValue::Bonus(ddo_etl::corrections::BonusAddition {
+            stat: "Fire, Cold, Electric and Positive Spell Power".into(),
+            bonus_type: "Artifact".into(),
+            value: 2,
+        })
+    );
+}
+
+#[test]
 fn leaves_his_value_and_reports_a_correction_whose_from_is_stale() {
     let (db, report) =
         built_db_with(&[("corrections.toml", &new_correction("augment", "Perfect Silence", "min_level", "318", "18"))])

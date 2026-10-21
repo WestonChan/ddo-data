@@ -634,17 +634,6 @@ read = "2026-10-07"
 note = "The capitalized effect has a water-breathing description; this row has no description."
 
 [[entity]]
-table = "effects"
-upstream_id = 2099
-name = "+3 Artifact bonus to attack and damage"
-variant = "2"
-[[entity.citation]]
-field = "name"
-url = "upstream/Output/DataFiles/SetBonuses.xml"
-read = "2026-10-07"
-note = "The case-variant effects have different description templates and owner links."
-
-[[entity]]
 table = "feats"
 upstream_id = 31
 name = "Eschew Materials"

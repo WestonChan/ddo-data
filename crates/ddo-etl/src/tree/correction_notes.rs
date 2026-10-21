@@ -70,7 +70,7 @@ fn correction_for_note(note: &DdobuilderCorrection, current_name: &str) -> Resul
         read: note.read.clone(),
         file_name: String::new(),
     };
-    for part in note.qualifier.split(", ").filter(|part| !part.is_empty()) {
+    for part in crate::corrections::correction_qualifier_parts(&note.qualifier) {
         if let Some(selection) = quoted_name(part, "selection ")? {
             correction.selection = Some(selection);
         } else if let Some(dc) = quoted_name(part, "dc ")? {

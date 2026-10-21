@@ -88,6 +88,7 @@ impl TableWriter<'_> {
         first_order: usize,
     ) -> Result<usize> {
         let owner = BonusOwner { kind: BonusOwnerKind::SetBonusTier, name: set_name, family: None };
+        let removed_before = self.removed_derived_bonus_count;
         let derived_links =
             self.ensure_derived_effects(&owner, ModifierSource::SetBonusTier, tier_id, &tier.effects)?;
         let links = self.collapse_set_tier_stat_groups(derived_links)?;
@@ -101,18 +102,26 @@ impl TableWriter<'_> {
                 first_order + offset,
             )?;
         }
-        if links.is_empty() {
+        if links.is_empty() && self.removed_derived_bonus_count == removed_before {
             if let Some(description) = trimmed_non_empty(tier.description.as_deref()) {
                 if let Some(rule) = EFFECT_MAP.set_tier_prose_bonus(description, self.groupings)? {
                     let bonus_type =
                         ddo_model::enums::BonusType::parse(&rule.bonus_type).expect("validated prose type");
                     let effect_id = if let Some(stat) = Stat::by_name(&rule.effect) {
-                        let effect_id = self.effects.ensure_family(
-                            &rule.effect,
-                            &format!("%b1 {} +{{1}}", rule.effect),
-                            None,
-                            1,
-                        )?;
+                        let existing = self
+                            .effects
+                            .family_named(&rule.effect)
+                            .filter(|family| !family.verbose_name_template.is_empty())
+                            .map(|family| family.id);
+                        let effect_id = match existing {
+                            Some(effect_id) => effect_id,
+                            None => self.effects.ensure_family(
+                                &rule.effect,
+                                &format!("%b1 {} +{{1}}", rule.effect),
+                                None,
+                                1,
+                            )?,
+                        };
                         self.effects.ensure_stat(effect_id, stat, Some(bonus_type), 1, None, 0)?;
                         effect_id
                     } else if let Some(grouping) =

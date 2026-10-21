@@ -204,7 +204,7 @@ impl TableWriter<'_> {
     ) -> Result<Vec<DerivedEffectLink>> {
         let mut links = Vec::new();
         for (source_order, effect) in effects.iter().enumerate() {
-            let derived_by_type = effect
+            let mut derived_by_type = effect
                 .types
                 .iter()
                 .map(|effect_type| {
@@ -215,7 +215,10 @@ impl TableWriter<'_> {
                 .collect::<Result<Vec<_>>>()?;
             let first_link = links.len();
             let split_count = self.shared_target_splits.len();
-            if let Some(link) = self.grouped_effect_link(owner, modifier_source, owner_id, effect, &derived_by_type)? {
+            let removed_before = self.removed_derived_bonus_count;
+            if let Some(link) =
+                self.grouped_effect_link(owner, modifier_source, owner_id, effect, &mut derived_by_type)?
+            {
                 self.transaction.execute(
                     "UPDATE modifiers SET effect_id = ?4 WHERE source_kind = ?1 AND source_id = ?2 AND sort_order = ?3",
                     params![modifier_source.as_str(), owner_id, source_order as i64, link.effect_id],
@@ -224,6 +227,9 @@ impl TableWriter<'_> {
                 continue;
             }
             for (type_index, effect_type) in effect.types.iter().enumerate() {
+                if derived_by_type[type_index].is_empty() && self.removed_derived_bonus_count != removed_before {
+                    continue;
+                }
                 let mut single_type_effect = effect.clone();
                 single_type_effect.types = vec![effect_type.clone()];
                 if (effect_type == "SpellPower"
@@ -454,11 +460,76 @@ impl TableWriter<'_> {
         source: ModifierSource,
         owner_id: i64,
         effect: &Effect,
-        derived_by_type: &[Vec<crate::map::effect::DerivedBonus>],
+        derived_by_type: &mut [Vec<crate::map::effect::DerivedBonus>],
     ) -> Result<Option<DerivedEffectLink>> {
+        if derived_by_type.iter().any(Vec::is_empty) {
+            return Ok(None);
+        }
+        let original_stats =
+            derived_by_type.iter().flatten().map(|bonus| bonus.stat.id).collect::<std::collections::BTreeSet<_>>();
+        if original_stats.len() > 1 {
+            let removals = self
+                .bonus_removal_corrections
+                .iter()
+                .copied()
+                .filter(|correction| {
+                    correction.name == owner.name
+                        && match owner.kind {
+                            BonusOwnerKind::SetBonusTier => {
+                                correction.kind == ddo_model::enums::CorrectionKind::SetTierBonus
+                            }
+                            BonusOwnerKind::Augment => {
+                                correction.kind == ddo_model::enums::CorrectionKind::AugmentBonus
+                            }
+                            _ => false,
+                        }
+                })
+                .collect::<Vec<_>>();
+            for correction in removals {
+                if !super::corrections::removal_owner_matches(self.transaction, correction, owner_id)? {
+                    continue;
+                }
+                let mut resolved_bonuses = Vec::new();
+                for (effect_type, derived) in effect.types.iter().zip(derived_by_type.iter()) {
+                    for bonus in derived {
+                        let bonus_type = self.bonus_type_of(
+                            &BonusOrigin {
+                                owner,
+                                source_name: effect_type,
+                                stat_name: bonus.stat.name,
+                                value: Some(bonus.value),
+                            },
+                            bonus.bonus_type,
+                        )?;
+                        resolved_bonuses.push((bonus.stat.id, bonus_type.id(), bonus.value));
+                    }
+                }
+                let removed = super::corrections::removed_derived_bonus_indices(
+                    self.transaction,
+                    correction,
+                    owner_id,
+                    &resolved_bonuses,
+                )?;
+                if !removed.is_empty() {
+                    self.removed_derived_bonus_count += removed.len();
+                    if !self.applied_bonus_removal_corrections.iter().any(|applied| std::ptr::eq(*applied, correction))
+                    {
+                        self.applied_bonus_removal_corrections.push(correction);
+                    }
+                    let mut index = 0;
+                    for derived in derived_by_type.iter_mut() {
+                        derived.retain(|_| {
+                            let survives = !removed.contains(&index);
+                            index += 1;
+                            survives
+                        });
+                    }
+                }
+            }
+        }
         let mut bonuses = Vec::new();
         let mut shared_targets = Vec::new();
-        for (effect_type, derived) in effect.types.iter().zip(derived_by_type) {
+        for (effect_type, derived) in effect.types.iter().zip(derived_by_type.iter()) {
             if let Some(targeted) = EFFECT_MAP.effect.targeted.get(effect_type) {
                 let targets = if effect.targets.is_empty() {
                     vec!["All"]
@@ -470,9 +541,6 @@ impl TableWriter<'_> {
                         shared_targets.push(format!("effect.targeted.{effect_type}.shared_targets.{target}"));
                     }
                 }
-            }
-            if derived.is_empty() {
-                return Ok(None);
             }
             bonuses.extend(derived.iter().copied().map(|bonus| (effect_type.as_str(), bonus)));
         }

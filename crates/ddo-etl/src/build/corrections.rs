@@ -79,7 +79,7 @@ fn apply_corrections_where(
 
 fn apply_correction(
     transaction: &Transaction,
-    effects: Option<&mut EffectCache<'_>>,
+    mut effects: Option<&mut EffectCache<'_>>,
     correction: &Correction,
     context: Option<&CorrectionContext<'_>>,
     report: &mut BuildReport,
@@ -140,6 +140,15 @@ fn apply_correction(
             correction.kind.table_name(),
             correction.kind.name_column()
         );
+    }
+    if let (CorrectionValue::Bonus(bonus), Some(context), Some(cache)) =
+        (&correction.to, context, effects.as_deref_mut())
+    {
+        if let Some(grouping) =
+            context.groupings.by_stat_set.values().flatten().find(|grouping| grouping.name == bonus.stat)
+        {
+            cache.ensure_indexed_grouping(grouping, context.groupings)?;
+        }
     }
     if correction.kind.corrects_a_bonus() && field.shape != FieldShape::BonusAddition {
         if let Some(context) = context {
@@ -926,6 +935,44 @@ fn reject_answer_definition_correction(
     Ok(())
 }
 
+pub(super) fn removal_owner_matches(transaction: &Transaction, correction: &Correction, owner_id: i64) -> Result<bool> {
+    Ok(maetrim_row_ids_named(transaction, correction, &correction.name)?.contains(&owner_id))
+}
+
+pub(super) fn removed_derived_bonus_indices(
+    transaction: &Transaction,
+    correction: &Correction,
+    owner_id: i64,
+    bonuses: &[(i64, i64, i64)],
+) -> Result<HashSet<usize>> {
+    let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
+    let BonusLinkTable { table_name, owner_column } = corrected_bonus.link_table;
+    let query = format!(
+        "WITH {table_name} ({owner_column},effect_id,bonus_type_id,value,value2,sort_order) AS
+          (SELECT ?5,json_extract(value, '$[0]'),json_extract(value, '$[1]'),json_extract(value, '$[2]'),NULL,key FROM json_each(?6)) {}",
+        corrected_bonus.matching_bonuses_sql(&format!("{table_name}.sort_order, {}", corrected_bonus.effective_value_sql()))
+    );
+    let mut statement = transaction.prepare(&query)?;
+    let matches = statement
+        .query_map(
+            params![
+                owner_id,
+                corrected_bonus.stat_id,
+                corrected_bonus.bonus_type_id,
+                corrected_bonus.bonus_value,
+                owner_id,
+                serde_json::to_string(bonuses)?
+            ],
+            |row| Ok((row.get::<_, i64>(0)?, row.get::<_, i64>(1)?)),
+        )?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    Ok(matches
+        .into_iter()
+        .filter(|(_, amount)| correction.from == CorrectionValue::Integer(*amount))
+        .map(|(index, _)| usize::try_from(index).expect("JSON array index is nonnegative"))
+        .collect())
+}
+
 fn reject_group_member_correction(
     transaction: &Transaction,
     groupings: &crate::groupings::Groupings,
@@ -940,13 +987,17 @@ fn reject_group_member_correction(
         .iter()
         .flat_map(|(stats, members)| members.iter().map(move |grouping| (grouping.name.as_str(), (stats, grouping))))
         .collect::<HashMap<_, _>>();
-    let BonusLinkTable { table_name, owner_column } = BonusLinkTable::of(correction.kind)?;
-    let mut statement = transaction.prepare(&format!(
-        "SELECT DISTINCT e.name FROM {table_name} link
-         JOIN effects e ON e.id = link.effect_id
-         WHERE link.{owner_column} IN (SELECT value FROM json_each(?1))"
-    ))?;
-    for row in statement.query_map([serde_json::to_string(owner_ids)?], |row| row.get::<_, String>(0))? {
+    let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
+    let mut statement = transaction.prepare(&corrected_bonus.matching_bonuses_sql("DISTINCT e.name"))?;
+    for row in statement.query_map(
+        params![
+            serde_json::to_string(owner_ids)?,
+            corrected_bonus.stat_id,
+            corrected_bonus.bonus_type_id,
+            corrected_bonus.bonus_value
+        ],
+        |row| row.get::<_, String>(0),
+    )? {
         let effect_name = row?;
         let Some((stats, grouping)) = by_name.get(effect_name.as_str()) else {
             continue;
@@ -993,8 +1044,9 @@ impl CorrectedBonus {
         format!(
             "SELECT {selected_columns} FROM {table_name}
               JOIN effects e ON e.id = {table_name}.effect_id
-              LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND ((e.is_group = 0 AND e.id != ?2) OR es.sort_order = 0)
-              WHERE {table_name}.{owner_column} IN (SELECT value FROM json_each(?1)) AND (es.target_effect_id = ?2 OR e.id = ?2)
+              LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND (e.id != ?2 OR es.sort_order = 0)
+              LEFT JOIN effect_bonuses expanded ON expanded.effect_id = es.target_effect_id AND e.id != ?2 AND es.target_effect_id != ?2
+              WHERE {table_name}.{owner_column} IN (SELECT value FROM json_each(?1)) AND (es.target_effect_id = ?2 OR expanded.target_effect_id = ?2 OR e.id = ?2)
                 AND COALESCE(es.bonus_type_id, {table_name}.bonus_type_id) IS ?3
                 AND (?4 IS NULL OR {effective_value} = ?4)
               ORDER BY {table_name}.sort_order"
