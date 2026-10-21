@@ -358,6 +358,8 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Universal Spell Lore" = "+{1}% %b1 Bonus to Spell Critical Chance"
 
 [description_templates]
+"Silver Flame Lore" = "Passive: Your Positive, Light, and Alignment spells gain a {1} %b1 bonus to their chance to critical hit."
+"Power of the Dark Restoration" = "Passive: {1} %b1 bonus to Negative, Poison and Positive Spell Power."
 "Acid Intensity" = "+{1}% %b1 bonus to critical damage with Acid spells."
 "Spell Powers" = "{1} %b1 bonus to each individual spell power. (Universal Spell Power is a different statistic)"
 "Light and Alignment Spell Power" = "{1} %b1 bonus to Light and Alignment spell power."

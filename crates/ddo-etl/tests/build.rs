@@ -249,6 +249,19 @@ fn fixed_equipment_groupings_take_their_bonus_type_from_item_links() {
                 |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)),
             )
             .unwrap();
+        let description: String = db
+            .query_row("SELECT description_template FROM effects WHERE id = ?1", [effect_id], |row| row.get(0))
+            .unwrap();
+        assert!(description.contains("%b1"), "{name}: {description}");
+        let slug = name.to_lowercase().replace(' ', "-");
+        let canonical: toml::Value = toml::from_str(
+            &std::fs::read_to_string(
+                PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(format!("../../data/effects/{slug}.toml")),
+            )
+            .unwrap(),
+        )
+        .unwrap();
+        assert_eq!(canonical["description_template"].as_str(), Some(description.as_str()), "{name}");
         assert_eq!(linked_type.as_deref(), Some("Equipment"), "{name}");
         assert_eq!(home_type.as_deref(), Some("Equipment"), "{name}");
         assert_eq!(

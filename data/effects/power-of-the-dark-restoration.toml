@@ -1,5 +1,5 @@
 name = "Power of the Dark Restoration"
-description_template = "Passive: {1} Equipment bonus to Negative, Poison and Positive Spell Power."
+description_template = "Passive: {1} %b1 bonus to Negative, Poison and Positive Spell Power."
 home_bonus_type = "Equipment"
 set_bonus_line_template = "+{1} %b1 Bonus to Positive, Negative and Poison Spell Power"
 verbose_name_template = "%b1 Power of the Dark Restoration +{1}"
