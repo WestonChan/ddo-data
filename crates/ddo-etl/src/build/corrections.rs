@@ -85,7 +85,6 @@ fn apply_correction(
     report: &mut BuildReport,
 ) -> Result<()> {
     let set_tier_descriptions_by_id = context.map(|context| context.set_tier_descriptions_by_id);
-    let buff_resolver = context.map(|context| context.buff_resolver);
     let field = correction.correctable_field()?;
     let mut row_ids = Vec::new();
     for spelling in correction.upstream_names() {
@@ -144,9 +143,7 @@ fn apply_correction(
     if let (CorrectionValue::Bonus(bonus), Some(context), Some(cache)) =
         (&correction.to, context, effects.as_deref_mut())
     {
-        if let Some(grouping) =
-            context.groupings.by_stat_set.values().flatten().find(|grouping| grouping.name == bonus.stat)
-        {
+        if let Some(grouping) = context.groupings.grouping_named(&bonus.stat) {
             cache.ensure_indexed_grouping(grouping, context.groupings)?;
         }
     }
@@ -188,7 +185,7 @@ fn apply_correction(
     if let Some(context) = context {
         reject_answer_definition_correction(transaction, context.grouping_answers, correction, field, &row_ids)?;
     }
-    write_correction(transaction, effects, correction, field, &row_ids, buff_resolver)?;
+    write_correction(transaction, effects, correction, field, &row_ids, context)?;
     record_applied_correction(transaction, correction, report)
 }
 
@@ -235,8 +232,9 @@ fn write_correction(
     correction: &Correction,
     field: &CorrectableField,
     row_ids: &[i64],
-    buff_resolver: Option<&BuffResolver>,
+    context: Option<&CorrectionContext<'_>>,
 ) -> Result<()> {
+    let buff_resolver = context.map(|context| context.buff_resolver);
     let table_name = correction.target_table_name();
     match field.shape {
         FieldShape::EffectBonusConstant => {
@@ -298,6 +296,7 @@ fn write_correction(
             repoint_bonuses(
                 transaction,
                 effects.context("bonus corrections need the family cache")?,
+                context.context("bonus corrections need the canonical grouping index")?.groupings,
                 &corrected_bonus,
                 row_ids,
                 corrected_bonus.bonus_type_id,
@@ -311,6 +310,7 @@ fn write_correction(
             repoint_bonuses(
                 transaction,
                 effects.context("bonus corrections need the family cache")?,
+                context.context("bonus corrections need the canonical grouping index")?.groupings,
                 &corrected_bonus,
                 row_ids,
                 Some(new_type_id),
@@ -333,6 +333,7 @@ fn write_correction(
             add_bonus(
                 transaction,
                 effects.context("bonus corrections need the family cache")?,
+                context.context("bonus corrections need the canonical grouping index")?.groupings,
                 BonusLinkTable::of(correction.kind)?,
                 row_ids,
                 bonus,
@@ -588,11 +589,15 @@ fn damage_row_is_present(transaction: &Transaction, effect_id: i64, damage: &Dam
     Ok(present)
 }
 
-fn split_line_value(transaction: &Transaction, correction: &Correction, owner_id: i64) -> Result<CorrectionValue> {
+fn split_line_value(
+    transaction: &Transaction,
+    groupings: &crate::groupings::Groupings,
+    correction: &Correction,
+    owner_id: i64,
+) -> Result<CorrectionValue> {
     if correction.from.as_text() == Some(NO_SUCH_BONUS) {
         return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
     }
-    let groupings = crate::groupings::Groupings::from_database(transaction)?;
     let upstream = correction.from.as_text().context("a lines split needs an upstream grouping name")?;
     let expected_stats = groupings.expanded_stat_names(upstream)?;
     let table = BonusLinkTable::of(correction.kind)?;
@@ -628,7 +633,7 @@ fn split_line_value(transaction: &Transaction, correction: &Correction, owner_id
     );
     let mut resolved = correction.clone();
     resolved.to = CorrectionValue::Texts(names.into_iter().collect());
-    resolved.line_split_stats(&groupings)?;
+    resolved.line_split_stats(groupings)?;
     Ok(resolved.to)
 }
 
@@ -642,12 +647,13 @@ fn current_value(
     let table_name = correction.target_table_name();
     let value_sql = match field.shape {
         FieldShape::BonusLines => {
-            let table = BonusLinkTable::of(correction.kind)?;
-            let present: bool = transaction.query_row(
-                &format!("SELECT EXISTS(SELECT 1 FROM {} l JOIN effects e ON e.id=l.effect_id JOIN bonus_types bt ON bt.id=l.bonus_type_id WHERE l.{}=?1 AND e.name=?2 AND bt.name=?3)", table.table_name, table.owner_column),
-                params![row_id, correction.stat, correction.bonus_type],
-                |row| row.get(0),
-            )?;
+            let Some(bonus) = CorrectedBonus::from_correction_if_effect_exists(transaction, correction)? else {
+                return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
+            };
+            let mut statement = transaction.prepare(&bonus.matching_bonuses_sql("e.id"))?;
+            let ids = statement.query_map(params![row_id, bonus.stat_id, bonus.bonus_type_id, bonus.bonus_value], |row| row.get::<_, i64>(0))?
+                .collect::<rusqlite::Result<Vec<_>>>()?;
+            let present = ids.contains(&bonus.stat_id);
             return Ok(CorrectionValue::Text(if present {
                 correction.stat.clone().context("lines correction names a grouping")?
             } else {
@@ -893,6 +899,7 @@ pub(crate) fn data_correction_value(
     transaction: &Transaction,
     correction: &Correction,
     current_name: &str,
+    groupings: &crate::groupings::Groupings,
 ) -> Result<CorrectionValue> {
     let field = correction.correctable_field()?;
     let row_ids = maetrim_row_ids_named(transaction, correction, current_name)?;
@@ -900,7 +907,7 @@ pub(crate) fn data_correction_value(
     let mut values = Vec::new();
     for row_id in row_ids {
         let mut value = if field.shape == FieldShape::BonusLines {
-            split_line_value(transaction, correction, row_id)?
+            split_line_value(transaction, groupings, correction, row_id)?
         } else {
             current_value(transaction, correction, field, row_id, None)?
         };
@@ -1052,11 +1059,6 @@ fn reject_group_member_correction(
     let Some(stat) = correction.stat.as_deref().and_then(ddo_model::stats::Stat::by_name) else {
         return Ok(());
     };
-    let by_name = groupings
-        .by_stat_set
-        .iter()
-        .flat_map(|(stats, members)| members.iter().map(move |grouping| (grouping.name.as_str(), (stats, grouping))))
-        .collect::<HashMap<_, _>>();
     let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
     let mut statement = transaction.prepare(&corrected_bonus.matching_bonuses_sql("DISTINCT e.name"))?;
     for row in statement.query_map(
@@ -1069,11 +1071,11 @@ fn reject_group_member_correction(
         |row| row.get::<_, String>(0),
     )? {
         let effect_name = row?;
-        let Some((stats, grouping)) = by_name.get(effect_name.as_str()) else {
+        let Some(grouping) = groupings.grouping_named(&effect_name) else {
             continue;
         };
         ensure!(
-            !stats.contains(stat.name),
+            !grouping.stat_ids.contains(&groupings.effect_named(stat.name).expect("indexed stat exists").id),
             "stat {:?} is behind grouping {:?}; name the grouping in the correction",
             stat.name,
             grouping.name
@@ -1093,22 +1095,32 @@ struct BonusToRepoint {
 
 impl CorrectedBonus {
     fn of(transaction: &Transaction, correction: &Correction) -> Result<Self> {
+        Self::from_correction_if_effect_exists(transaction, correction)?.with_context(|| {
+            format!(
+                "stat {:?} is not an effect; use its exact name",
+                correction.bonus_key().map_or("", |(stat, _)| stat)
+            )
+        })
+    }
+
+    fn from_correction_if_effect_exists(transaction: &Transaction, correction: &Correction) -> Result<Option<Self>> {
         let (stat_name, bonus_type_name) = correction.bonus_key().context("a bonus correction names its bonus")?;
-        let stat_id = id_named(transaction, "effects", stat_name)?
-            .with_context(|| format!("stat {stat_name:?} is not an effect; use its exact name"))?;
+        let Some(stat_id) = id_named(transaction, "effects", stat_name)? else {
+            return Ok(None);
+        };
         let bonus_type_id = match bonus_type_name {
             NULL_SPELLING => None,
             _ => Some(bonus_type_id_named(transaction, bonus_type_name)?),
         };
-        Ok(Self {
+        Ok(Some(Self {
             link_table: BonusLinkTable::of(correction.kind)?,
             stat_id,
             bonus_type_id,
             bonus_value: correction.bonus_value,
-        })
+        }))
     }
 
-    fn matching_bonuses_sql(&self, selected_columns: &str) -> String {
+    fn bonus_rows_sql(&self, selected_columns: &str) -> String {
         let BonusLinkTable { table_name, owner_column, .. } = self.link_table;
         let effective_value = self.effective_value_sql();
         format!(
@@ -1116,10 +1128,17 @@ impl CorrectedBonus {
               JOIN effects e ON e.id = {table_name}.effect_id
               LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND (e.id != ?2 OR es.sort_order = 0)
               LEFT JOIN effect_bonuses expanded ON expanded.effect_id = es.target_effect_id AND e.id != ?2 AND es.target_effect_id != ?2
+              LEFT JOIN bonus_types ON bonus_types.id = COALESCE(es.bonus_type_id, {table_name}.bonus_type_id)
               WHERE {table_name}.{owner_column} IN (SELECT value FROM json_each(?1)) AND (es.target_effect_id = ?2 OR expanded.target_effect_id = ?2 OR e.id = ?2)
-                AND COALESCE(es.bonus_type_id, {table_name}.bonus_type_id) IS ?3
-                AND (?4 IS NULL OR {effective_value} = ?4)
-              ORDER BY {table_name}.sort_order"
+                AND (?4 IS NULL OR {effective_value} = ?4)"
+        )
+    }
+
+    fn matching_bonuses_sql(&self, selected_columns: &str) -> String {
+        let table_name = self.link_table.table_name;
+        format!(
+            "{} AND COALESCE(es.bonus_type_id, {table_name}.bonus_type_id) IS ?3 ORDER BY {table_name}.sort_order",
+            self.bonus_rows_sql(selected_columns)
         )
     }
 
@@ -1166,19 +1185,14 @@ impl CorrectedBonus {
     }
 
     fn bonus_type_on(&self, transaction: &Transaction, owner_id: i64) -> Result<CorrectionValue> {
-        let BonusLinkTable { table_name, owner_column, .. } = self.link_table;
-        let effective_value = self.effective_value_sql();
-        let mut statement = transaction.prepare(&format!(
-            "SELECT COALESCE(es.bonus_type_id, {table_name}.bonus_type_id), bonus_types.name FROM {table_name}
-               JOIN effects e ON e.id = {table_name}.effect_id
-               LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND ((e.is_group = 0 AND e.id != ?2) OR es.sort_order = 0)
-               LEFT JOIN bonus_types ON bonus_types.id = COALESCE(es.bonus_type_id, {table_name}.bonus_type_id)
-              WHERE {table_name}.{owner_column} IN (SELECT value FROM json_each(?1)) AND (es.target_effect_id = ?2 OR e.id = ?2)
-                AND (?3 IS NULL OR {effective_value} = ?3)
-              ORDER BY {table_name}.sort_order"
-        ))?;
+        let table_name = self.link_table.table_name;
+        let selected = format!("COALESCE(es.bonus_type_id, {table_name}.bonus_type_id), bonus_types.name");
+        let mut statement =
+            transaction.prepare(&format!("{} ORDER BY {table_name}.sort_order", self.bonus_rows_sql(&selected)))?;
         let bonus_types_on_stat: Vec<(Option<i64>, Option<String>)> = statement
-            .query_map(params![owner_id, self.stat_id, self.bonus_value], |r| Ok((r.get(0)?, r.get(1)?)))?
+            .query_map(params![owner_id, self.stat_id, self.bonus_type_id, self.bonus_value], |row| {
+                Ok((row.get(0)?, row.get(1)?))
+            })?
             .collect::<rusqlite::Result<_>>()?;
         let matching_type = bonus_types_on_stat.iter().find(|(type_id, _)| *type_id == self.bonus_type_id);
         Ok(match matching_type.or(bonus_types_on_stat.first()) {
@@ -1202,20 +1216,19 @@ fn item_effect_names(transaction: &Transaction, item_id: i64) -> Result<Vec<Stri
 fn repoint_bonuses(
     transaction: &Transaction,
     effects: &mut EffectCache<'_>,
+    groupings: &crate::groupings::Groupings,
     corrected_bonus: &CorrectedBonus,
     owner_ids: &[i64],
     new_bonus_type_id: Option<i64>,
     new_value: Option<i64>,
 ) -> Result<()> {
     let BonusLinkTable { table_name, owner_column, .. } = corrected_bonus.link_table;
-    if effects.family(corrected_bonus.stat_id).is_some_and(|family| !family.is_stat) {
-        let groupings = crate::groupings::Groupings::from_database(transaction)?;
+    if let Some(family) = effects.family(corrected_bonus.stat_id).filter(|family| !family.is_stat) {
         let requested_type = new_bonus_type_id.or(corrected_bonus.bonus_type_id);
         ensure!(
-            groupings.by_stat_set.values().flatten().any(|grouping| grouping.id == corrected_bonus.stat_id
-                && requested_type
-                    .and_then(|id| ddo_model::enums::BonusType::ALL.iter().find(|bonus_type| bonus_type.id() == id))
-                    .is_some_and(|bonus_type| grouping.accepts_value_at_type(bonus_type.name()))),
+            groupings.grouping_named(&family.name).is_some_and(|grouping| requested_type
+                .and_then(|id| ddo_model::enums::BonusType::ALL.iter().find(|bonus_type| bonus_type.id() == id))
+                .is_some_and(|bonus_type| grouping.accepts_value_at_type(bonus_type.name()))),
             "effect {:?} cannot take one value at the corrected bonus type",
             effects.family(corrected_bonus.stat_id).map(|family| &family.name)
         );
@@ -1303,6 +1316,7 @@ fn repoint_bonuses(
 fn add_bonus(
     transaction: &Transaction,
     effects: &mut EffectCache<'_>,
+    groupings: &crate::groupings::Groupings,
     link_table: BonusLinkTable,
     owner_ids: &[i64],
     bonus: &BonusAddition,
@@ -1322,13 +1336,10 @@ fn add_bonus(
     if let Some(stat) = ddo_model::stats::Stat::by_name(&bonus.stat) {
         effects.ensure_stat(effect_id, stat, Some(bonus_type), 1, None, 0)?;
     } else {
-        let groupings = crate::groupings::Groupings::from_database(transaction)?;
         ensure!(
             groupings
-                .by_stat_set
-                .values()
-                .flatten()
-                .any(|grouping| grouping.id == effect_id && grouping.accepts_value_at_type(bonus_type.name())),
+                .grouping_named(&bonus.stat)
+                .is_some_and(|grouping| grouping.accepts_value_at_type(bonus_type.name())),
             "added effect {:?} cannot take one value at {}",
             bonus.stat,
             bonus_type.name()
@@ -1868,4 +1879,99 @@ fn id_named(transaction: &Transaction, table_name: &str, name: &str) -> Result<O
     Ok(transaction
         .query_row(&format!("SELECT id FROM {table_name} WHERE name = ?1"), params![name], |r| r.get(0))
         .optional()?)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn bonus_correction(kind: CorrectionKind, stat: &str, bonus_type: &str, field: &str) -> Correction {
+        Correction {
+            kind,
+            name: String::new(),
+            field: field.into(),
+            from: CorrectionValue::Text(stat.into()),
+            to: CorrectionValue::Texts(vec![]),
+            family: None,
+            selection: None,
+            stance: None,
+            dc: None,
+            effect: None,
+            stat: Some(stat.into()),
+            bonus_type: Some(bonus_type.into()),
+            bonus_value: None,
+            equipped_count: None,
+            reason: "Test".into(),
+            source: "https://ddowiki.com/page/Test".to_string().into(),
+            read: "2026-10-21".into(),
+            file_name: "test.toml".into(),
+        }
+    }
+
+    #[test]
+    fn bonus_type_reader_agrees_with_matching_for_every_expanded_fixture_bonus() {
+        let mut db = rusqlite::Connection::open_in_memory().unwrap();
+        crate::tree::build_from_data(
+            &std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data"),
+            &mut db,
+        )
+        .unwrap();
+        let rows = db
+            .prepare(
+                "SELECT DISTINCT b.owner_id, stat.name, bt.name FROM owner_bonuses b
+             JOIN effects stat ON stat.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id
+             WHERE b.owner_kind='item'",
+            )
+            .unwrap()
+            .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        let transaction = db.transaction().unwrap();
+        for (owner, stat, bonus_type) in rows {
+            let correction = bonus_correction(CorrectionKind::ItemBonus, &stat, &bonus_type, "bonus_type");
+            let bonus = CorrectedBonus::of(&transaction, &correction).unwrap();
+            assert!(bonus.is_present_on(&transaction, owner).unwrap(), "{owner}: {stat} / {bonus_type}");
+            assert_eq!(
+                bonus.bonus_type_on(&transaction, owner).unwrap(),
+                CorrectionValue::Text(bonus_type),
+                "{owner}: {stat}"
+            );
+        }
+    }
+
+    #[test]
+    fn fixed_type_grouping_is_present_to_the_lines_reader() {
+        let source = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data");
+        let scratch = tempfile::tempdir().unwrap();
+        for entry in
+            walkdir::WalkDir::new(&source).into_iter().map(Result::unwrap).filter(|entry| entry.file_type().is_file())
+        {
+            let target = scratch.path().join(entry.path().strip_prefix(&source).unwrap());
+            std::fs::create_dir_all(target.parent().unwrap()).unwrap();
+            std::fs::copy(entry.path(), target).unwrap();
+        }
+        let path = scratch.path().join("packs/shared/sets/anger-of-the-avalanche.toml");
+        let contents = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(
+            path,
+            contents.replace(
+                "bonus_type = \"Artifact\"\neffect = \"Power of the Frozen Thunderstorm\"",
+                "effect = \"Power of the Firestorm\"",
+            ),
+        )
+        .unwrap();
+        let mut db = rusqlite::Connection::open_in_memory().unwrap();
+        crate::tree::build_from_data(scratch.path(), &mut db).unwrap();
+        let owner = db.query_row(
+            "SELECT t.id FROM set_bonus_tiers t JOIN set_bonuses s ON s.id=t.set_id WHERE s.name='Anger of the Avalanche'",
+            [], |row| row.get::<_, i64>(0),
+        ).unwrap();
+        let correction = bonus_correction(CorrectionKind::SetTierBonus, "Power of the Firestorm", "Equipment", "lines");
+        let transaction = db.transaction().unwrap();
+        assert_eq!(
+            current_value(&transaction, &correction, correction.correctable_field().unwrap(), owner, None).unwrap(),
+            CorrectionValue::Text("Power of the Firestorm".into())
+        );
+    }
 }

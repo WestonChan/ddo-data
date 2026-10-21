@@ -101,7 +101,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::SocketLabel, "name:label:RowName:false"),
         (CorrectionKind::SetBonus, "icon:icon:Text:true, name:name:RowName:false"),
         (CorrectionKind::AugmentBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, dedupe:dedupe:BonusDedupe:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
-        (CorrectionKind::ItemBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
+        (CorrectionKind::ItemBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
         (CorrectionKind::SetTier, "add:add:TierAddition:false, description:description:Text:true, remove:remove:Removal:false"),
         (CorrectionKind::SetTierBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
         (CorrectionKind::ItemEffect, "add:add:EffectAddition:false, bonus_type:bonus_type:BonusTypeName:false, remove:remove:Removal:false, value:value:Integer:true"),
@@ -490,6 +490,188 @@ fn effect_template_and_owner_link_value_corrections_keep_one_effect() {
     let template: String =
         db.query_row("SELECT verbose_name_template FROM effects WHERE name = 'Riposte'", [], |row| row.get(0)).unwrap();
     assert_eq!(template, "Riposte {1}");
+}
+
+#[test]
+fn item_line_splits_are_rejected_until_the_item_writer_applies_them() {
+    let correction = new_qualified_correction(
+        "item_bonus",
+        "Lantern of the Abyss",
+        "stat = 'Power of the Firestorm'\nbonus_type = 'Equipment'",
+        "lines",
+        "\"Power of the Firestorm\"",
+        "[\"Fire Spell Power\", \"Electric Spell Power\"]",
+    );
+    let error = validated_corrections(&[("item-lines.toml", &correction)]).unwrap_err();
+    assert!(error.contains("item_bonus") && error.contains("before inserting links"), "{error}");
+}
+
+#[test]
+fn grouping_value_corrections_use_the_corrected_canonical_definition() {
+    let correction = new_qualified_correction(
+        "item_bonus",
+        "Epic Ethereal Bracers",
+        "stat = 'Riposte'\nbonus_type = 'Insight'",
+        "value",
+        "5",
+        "6",
+    );
+    let error = built_db_with(&[("riposte-value.toml", &correction)]).unwrap_err();
+    assert!(error.contains("Riposte") && error.contains("cannot take one value"), "{error}");
+}
+
+#[test]
+fn grouping_definition_queries_do_not_grow_with_corrections() {
+    use rusqlite::trace::{TraceEvent, TraceEventCodes};
+    use std::cell::Cell;
+    thread_local! { static READS: Cell<usize> = const { Cell::new(0) }; }
+    fn trace(event: TraceEvent<'_>) {
+        if let TraceEvent::Stmt(statement, _) = event {
+            let sql = statement.sql();
+            if sql.starts_with("SELECT e.id, e.name, e.slug, e.is_stat, e.is_group")
+                || sql.starts_with("SELECT b.effect_id, b.target_effect_id, bt.name, b.amount_from")
+            {
+                READS.set(READS.get() + 1);
+            }
+        }
+    }
+    let index = fixture::groupings();
+    let query_count = |count| {
+        let source = fixture::xml_source();
+        let path = source.path().join("SetBonuses.xml");
+        let xml = std::fs::read_to_string(&path).unwrap();
+        let start = xml.find("<Type>Kundarak Delving Equipment</Type>").unwrap();
+        let opening = xml[..start].rfind("<SetBonus>").unwrap();
+        let closing = start + xml[start..].find("</SetBonus>").unwrap() + "</SetBonus>".len();
+        let template = &xml[opening..closing];
+        let mut corrections = CorrectionSet::default();
+        let mut additions = String::new();
+        for index in 0..count {
+            let name = format!("Kundarak Query Probe {index}");
+            additions.push_str(&template.replace("Kundarak Delving Equipment", &name));
+            corrections = corrections
+                + &new_qualified_correction(
+                    "set_tier_bonus",
+                    &name,
+                    "equipped_count = 3\nstat = 'Doublestrike and Doubleshot'\nbonus_type = 'Artifact'",
+                    "value",
+                    "5",
+                    "6",
+                );
+        }
+        std::fs::write(path, xml.replace("</SetBonuses>", &format!("{additions}</SetBonuses>"))).unwrap();
+        let corrections = validated_corrections(&[("queries.toml", &corrections)]).unwrap();
+        let mut db = Connection::open_in_memory().unwrap();
+        READS.set(0);
+        db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
+        let report = build_database(
+            index,
+            source.path(),
+            &WikiOverrides::default(),
+            &corrections,
+            &mut db,
+            &fixture_dataset_version(),
+        )
+        .unwrap();
+        db.trace_v2(TraceEventCodes::empty(), None);
+        assert_eq!(report.correction_applied_count, count);
+        READS.get()
+    };
+    assert_eq!(query_count(1), query_count(50));
+}
+
+#[test]
+fn a_split_uses_its_named_partition_even_when_other_effects_share_the_stats() {
+    let canonical = fixture::database(|root| {
+        let source = fixtures_dir().join("effect-groups/data");
+        for entry in
+            walkdir::WalkDir::new(&source).into_iter().map(Result::unwrap).filter(|entry| entry.file_type().is_file())
+        {
+            let target = root.join(entry.path().strip_prefix(&source).unwrap());
+            std::fs::create_dir_all(target.parent().unwrap()).unwrap();
+            std::fs::copy(entry.path(), target).unwrap();
+        }
+        std::fs::write(root.join("effects/stat-groups/cold-negative-and-poison-spell-power.toml"),
+            "name = \"Cold, Negative and Poison Spell Power\"\ndescription_template = \"{1} %b1 bonus to Cold, Negative and Poison Spell Power.\"\nverbose_name_template = \"%b1 Cold, Negative and Poison Spell Power +{1}\"\n".to_string()
+            + &["Cold Spell Power", "Negative Spell Power", "Poison Spell Power"].map(|name|
+                format!("\n[[bonus]]\namount_from = 1\nrounding = \"down\"\nscale = 1.0\ntarget = {name:?}\n")
+            ).join("")
+        ).unwrap();
+    });
+    let index = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let source = fixture::xml_source();
+    std::fs::write(
+        source.path().join("Augments/WoefulShadow.Augments.xml"),
+        include_str!("fixtures/effect-groups/WoefulShadow.Augments.xml").replace(
+            "<Type>Doublestrike</Type>\n      <Type>Doubleshot</Type>",
+            "<Type>SpellPower</Type><Item>Cold</Item><Item>Negative</Item><Item>Poison</Item>",
+        ),
+    )
+    .unwrap();
+    std::fs::copy(
+        fixtures_dir().join("effect-groups/icons/Lamordia.png"),
+        source.path().join("AugmentImages/Lamordia.png"),
+    )
+    .unwrap();
+    let correction = new_qualified_correction(
+        "augment_bonus",
+        "Woeful Shadow (Legendary)",
+        "stat = 'Cold, Negative and Poison Spell Power'\nbonus_type = 'Profane'",
+        "lines",
+        "\"Cold, Negative and Poison Spell Power\"",
+        "[\"Cold Spell Power\", \"Negative and Poison Spell Power\"]",
+    );
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        &index,
+        source.path(),
+        &WikiOverrides::default(),
+        &validated_corrections(&[("partition.toml", &correction)]).unwrap(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let names = db.prepare("SELECT e.name FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name='Woeful Shadow (Legendary)' AND l.value=3 ORDER BY e.name")
+        .unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(names, ["Cold Spell Power", "Negative and Poison Spell Power"]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+}
+
+#[test]
+fn fixed_type_grouping_splits_into_stat_lines_at_its_resolved_type() {
+    let source = fixture::xml_source();
+    std::fs::write(
+        source.path().join("Augments/WoefulShadow.Augments.xml"),
+        include_str!("fixtures/effect-groups/WoefulShadow.Augments.xml")
+            .replace(
+                "<Type>Doublestrike</Type>\n      <Type>Doubleshot</Type>",
+                "<Type>SpellPower</Type><Item>Fire</Item><Item>Electric</Item>",
+            )
+            .replace("<Bonus>Profane</Bonus>", "<Bonus>Equipment</Bonus>"),
+    )
+    .unwrap();
+    std::fs::copy(
+        fixtures_dir().join("effect-groups/icons/Lamordia.png"),
+        source.path().join("AugmentImages/Lamordia.png"),
+    )
+    .unwrap();
+    let correction = new_qualified_correction(
+        "augment_bonus",
+        "Woeful Shadow (Legendary)",
+        "stat = 'Power of the Firestorm'\nbonus_type = 'Equipment'",
+        "lines",
+        "\"Power of the Firestorm\"",
+        "[\"Fire Spell Power\", \"Electric Spell Power\"]",
+    );
+    let (db, report) = built_db_from(source.path(), &[("fixed-type-split.toml", &correction)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let lines = db.prepare("SELECT e.name,bt.name,l.value FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN bonus_types bt ON bt.id=l.bonus_type_id JOIN augments a ON a.id=l.augment_id WHERE a.name='Woeful Shadow (Legendary)' AND l.value=3 ORDER BY e.name")
+        .unwrap().query_map([], |row| Ok((row.get::<_, String>(0)?,row.get::<_, String>(1)?,row.get::<_, i64>(2)?)))
+        .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        lines,
+        [("Electric Spell Power".into(), "Equipment".into(), 3), ("Fire Spell Power".into(), "Equipment".into(), 3)]
+    );
 }
 
 #[test]

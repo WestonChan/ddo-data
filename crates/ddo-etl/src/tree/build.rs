@@ -763,6 +763,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
             })
         })
         .collect::<BTreeMap<_, _>>();
+    let groupings = crate::groupings::Groupings::from_database(&transaction)?;
     let mut recorded_notes = BTreeMap::new();
     for (path, entity_name, note) in notes_by_file
         .into_iter()
@@ -782,7 +783,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                 entity_name.clone()
             };
             let (from_value, to_value) =
-                correction_notes::correction_values(&transaction, &entity_name, &note, &tier_descriptions)
+                correction_notes::correction_values(&transaction, &entity_name, &note, &tier_descriptions, &groupings)
                     .with_context(|| format!("{} {:?}.{}", note.kind, correction_name, note.field))?;
             let recorded_qualifier = correction_notes::renamed_qualifier(
                 &note.qualifier,
@@ -863,7 +864,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         )
         .collect::<Vec<_>>();
     validate_pack_exceptions(&transaction, &pack_exceptions)?;
-    let valued_prose = crate::groupings::Groupings::from_database(&transaction)?.valued_prose_duplicates();
+    let valued_prose = groupings.valued_prose_duplicates();
     ensure!(
         valued_prose.is_empty(),
         "valued prose duplicates stats or groupings:\n{}",

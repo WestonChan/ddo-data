@@ -217,6 +217,7 @@ pub(super) fn correction_values(
     current_name: &str,
     note: &DdobuilderCorrection,
     tier_descriptions: &BTreeMap<(String, i64), String>,
+    groupings: &crate::groupings::Groupings,
 ) -> Result<(String, String)> {
     let mut correction = correction_for_note(note, current_name)?;
     let mut upstream = note.upstream.clone().unwrap_or(Value::Null);
@@ -261,7 +262,7 @@ pub(super) fn correction_values(
                 json!(value)
             } else {
                 serde_json::from_str::<Value>(
-                    &data_correction_value(transaction, &correction, current_name)?.to_json(),
+                    &data_correction_value(transaction, &correction, current_name, groupings)?.to_json(),
                 )?
             }
         }
@@ -281,7 +282,9 @@ pub(super) fn correction_values(
         }
         (CorrectionKind::SetTierBonus, "remove") => Value::Null,
         (_, "remove") => json!(1),
-        _ => serde_json::from_str::<Value>(&data_correction_value(transaction, &correction, current_name)?.to_json())?,
+        _ => serde_json::from_str::<Value>(
+            &data_correction_value(transaction, &correction, current_name, groupings)?.to_json(),
+        )?,
     };
     correction.from = CorrectionValue::from_json(&upstream.to_string())?;
     correction.to = CorrectionValue::from_json(&applied.to_string())?;

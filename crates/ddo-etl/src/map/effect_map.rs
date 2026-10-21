@@ -612,9 +612,7 @@ impl EffectMap {
             return Ok(None);
         };
         if Stat::by_name(&rule.effect).is_none() {
-            if let Some(grouping) =
-                groupings.by_stat_set.values().flatten().find(|grouping| grouping.name == rule.effect)
-            {
+            if let Some(grouping) = groupings.grouping_named(&rule.effect) {
                 anyhow::ensure!(
                     grouping.accepts_value_at_type(&rule.bonus_type),
                     "prose bonus {:?} cannot take one value at {}",

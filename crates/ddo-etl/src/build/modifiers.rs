@@ -612,11 +612,11 @@ impl TableWriter<'_> {
                     }
                     let mut partitions = correction.line_split_stats(self.groupings)?;
                     self.effects.ensure_indexed_grouping(grouping, self.groupings)?;
-                    partitions.sort_by_key(|partition| {
+                    partitions.sort_by_key(|(_, partition)| {
                         bonuses.iter().position(|(_, bonus)| partition.contains(bonus.stat.name))
                     });
                     let mut split_links = Vec::new();
-                    for partition in partitions {
+                    for (line_name, partition) in partitions {
                         let mut link = if partition.len() == 1 {
                             let (effect_type, bonus) = bonuses
                                 .iter()
@@ -633,13 +633,12 @@ impl TableWriter<'_> {
                                 .map(String::as_str);
                             self.derived_line(owner, effect_type, target, &[*bonus], None)?
                         } else {
-                            let Some([line_grouping]) = self.groupings.by_stat_set.get(&partition).map(Vec::as_slice)
-                            else {
-                                anyhow::bail!(
-                                    "{}: split line has no unique grouping for {partition:?}",
+                            let line_grouping = self.groupings.grouping_named(&line_name).ok_or_else(|| {
+                                anyhow::anyhow!(
+                                    "{}: split line {line_name:?} is not a link-valued grouping",
                                     correction.label()
-                                );
-                            };
+                                )
+                            })?;
                             anyhow::ensure!(
                                 line_grouping.accepts_value_at_type(bonus_type.name()),
                                 "{}: split line cannot take this value and type",
@@ -667,9 +666,7 @@ impl TableWriter<'_> {
                 let declared = EFFECT_MAP
                     .group_names()
                     .into_iter()
-                    .filter(|name| {
-                        !self.groupings.by_id.values().any(|effect| &effect.name == name && !effect.is_group)
-                    })
+                    .filter(|name| self.groupings.effect_named(name).is_none_or(|effect| effect.is_group))
                     .find(|name| {
                         EFFECT_MAP
                             .group_members(name)
@@ -693,9 +690,7 @@ impl TableWriter<'_> {
                         .iter()
                         .filter(|name| {
                             self.groupings
-                                .by_id
-                                .values()
-                                .find(|effect| &effect.name == *name)
+                                .effect_named(name)
                                 .map(|effect| effect.verbose_name_template.as_str())
                                 .filter(|template| !template.is_empty())
                                 .or_else(|| EFFECT_MAP.line_templates.get(name.as_str()).map(String::as_str))

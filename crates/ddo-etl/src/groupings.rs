@@ -118,17 +118,22 @@ fn valued_prose_target(name: &str) -> Option<String> {
 
 #[derive(Debug, Default)]
 pub struct Groupings {
+    by_name: HashMap<String, i64>,
     pub by_stat_set: HashMap<BTreeSet<String>, Vec<Grouping>>,
     pub by_id: BTreeMap<i64, Grouping>,
 }
 
 impl Groupings {
+    pub(crate) fn effect_named(&self, name: &str) -> Option<&Grouping> {
+        self.by_name.get(name).and_then(|id| self.by_id.get(id))
+    }
+
+    pub(crate) fn grouping_named(&self, name: &str) -> Option<&Grouping> {
+        self.effect_named(name).filter(|effect| effect.stat_ids.len() >= 2)
+    }
+
     pub(crate) fn expanded_stat_names(&self, name: &str) -> Result<BTreeSet<String>> {
-        let effect = self
-            .by_id
-            .values()
-            .find(|effect| effect.name == name)
-            .with_context(|| format!("unknown effect {name:?}"))?;
+        let effect = self.effect_named(name).with_context(|| format!("unknown effect {name:?}"))?;
         if ddo_model::stats::Stat::by_name(name).is_some() {
             return Ok(BTreeSet::from([name.to_string()]));
         }
@@ -227,7 +232,8 @@ impl Groupings {
             .filter(|effect| effect.is_group)
             .map(|effect| (effect.id, effect.bonuses.iter().map(|bonus| bonus.target_id).collect::<BTreeSet<_>>()))
             .collect::<BTreeMap<_, _>>();
-        let mut groupings = Self { by_stat_set: HashMap::new(), by_id: effects_by_id.clone() };
+        let by_name = effects_by_id.values().map(|effect| (effect.name.clone(), effect.id)).collect();
+        let mut groupings = Self { by_name, by_stat_set: HashMap::new(), by_id: effects_by_id.clone() };
         for mut effect in effects_by_id.into_values() {
             if effect.bonuses.is_empty()
                 || effect.bonuses.iter().any(|bonus| {
@@ -252,6 +258,7 @@ impl Groupings {
             }
             if effect.stat_ids.len() >= 2 {
                 let names = effect.stat_ids.iter().map(|id| groupings.by_id[id].name.clone()).collect();
+                groupings.by_id.insert(effect.id, effect.clone());
                 groupings.by_stat_set.entry(names).or_default().push(effect);
             }
         }

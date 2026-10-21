@@ -248,7 +248,7 @@ impl Correction {
     pub(crate) fn line_split_stats(
         &self,
         groupings: &crate::groupings::Groupings,
-    ) -> Result<Vec<std::collections::BTreeSet<String>>> {
+    ) -> Result<Vec<(String, std::collections::BTreeSet<String>)>> {
         self.validate_values(self.correctable_field()?)?;
         let CorrectionValue::Text(upstream) = &self.from else { unreachable!() };
         let CorrectionValue::Texts(lines) = &self.to else { unreachable!() };
@@ -263,7 +263,7 @@ impl Correction {
                 self.label()
             );
             combined.extend(stats.iter().cloned());
-            partitions.push(stats);
+            partitions.push((line.clone(), stats));
         }
         ensure!(
             expected.len() >= 2 && combined == expected,
@@ -274,6 +274,11 @@ impl Correction {
     }
 
     pub fn correctable_field(&self) -> Result<&'static CorrectableField> {
+        ensure!(
+            self.kind != CorrectionKind::ItemBonus || self.field != "lines",
+            "item_bonus lines are unsupported because item buffs do not apply split corrections before inserting links"
+        );
+
         let fields = if self.selection.is_some() && self.stance.is_none() && self.dc.is_none() {
             crate::tree::selection_correctable_fields()
         } else {
