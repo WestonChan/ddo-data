@@ -79,6 +79,9 @@ fn shared_stat_set_report_lists_a_duplicate_but_not_a_constant_twin() {
     let printed = format!("{outcome}");
     assert!(printed.contains("Power of the Frozen Thunderstorm"), "{printed}");
     assert!(printed.contains("Frozen Thunderstorm Duplicate"), "{printed}");
+    for stat in ["Cold Spell Power", "Electric Spell Power", "Sonic Spell Power"] {
+        assert!(printed.contains(stat), "{printed}");
+    }
     assert!(!printed.contains("Frozen Thunderstorm Constant"), "{printed}");
     assert_eq!(outcome.status, CheckStatus::Warned);
 }

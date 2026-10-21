@@ -92,7 +92,7 @@ impl IntegrityCheck {
 pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     IntegrityCheck::warn(
         "effects_sharing_a_stat_set",
-        "link-valued effects sharing expanded stats await source verification in effect-groups chunk 2",
+        "link-valued effects sharing expanded stats require source verification before choosing a grouping",
         OffenderQuery::Built(effects_sharing_a_stat_set),
     ).showing_every_offender(),
     IntegrityCheck::hard(
@@ -1485,10 +1485,15 @@ fn effects_sharing_a_stat_set(db: &Connection, _options: &IntegrityOptions) -> R
     let offenders = groupings
         .pairs()
         .into_iter()
-        .map(|pair| Offender {
-            name: format!("{} / {}", pair.first.name, pair.second.name),
-            id: Some(pair.first.id),
-            detail: format!("{:?}: {:?}", pair.kind, pair.first.stat_ids),
+        .map(|pair| {
+            let mut stat_names =
+                pair.first.stat_ids.iter().map(|id| groupings.by_id[id].name.as_str()).collect::<Vec<_>>();
+            stat_names.sort_unstable();
+            Offender {
+                name: format!("{} / {}", pair.first.name, pair.second.name),
+                id: Some(pair.first.id),
+                detail: format!("{:?}: {}", pair.kind, stat_names.join(", ")),
+            }
         })
         .collect();
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
