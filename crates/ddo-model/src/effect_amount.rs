@@ -1,3 +1,7 @@
+pub fn line_template_states_percent(template: &str) -> bool {
+    template.contains("{1}%")
+}
+
 pub fn rounded_amount_sql(amount: &str, scale: &str, rounding: &str) -> String {
     let scaled_amount = format!("(({amount}) * ({scale}))");
     let truncated_amount = format!("CAST({scaled_amount} AS INTEGER)");

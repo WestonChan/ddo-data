@@ -416,6 +416,14 @@ pub(crate) fn effects_via<P: Params>(
         .collect())
 }
 
+pub fn served_effect_lines(
+    db: &Connection,
+    junction_table: &str,
+    owner_column: &str,
+) -> Result<BTreeMap<i64, Vec<(i64, Value)>>, ApiError> {
+    effects_via_with_link_order(db, junction_table, owner_column, "1 = 1", [])
+}
+
 pub(crate) fn effects_via_with_link_order<P: Params>(
     db: &Connection,
     junction_table: &str,
@@ -635,7 +643,10 @@ fn render_verbose_name(row: &Value) -> String {
 
 fn render_set_bonus_line(row: &Value) -> String {
     let template = row["set_bonus_line_template"].as_str().map(str::to_string).unwrap_or_else(|| {
-        let unit = if row["verbose_name_template"].as_str().is_some_and(|template| template.contains("{1}%")) {
+        let unit = if row["verbose_name_template"]
+            .as_str()
+            .is_some_and(ddo_model::effect_amount::line_template_states_percent)
+        {
             "%"
         } else {
             ""

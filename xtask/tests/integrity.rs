@@ -49,6 +49,48 @@ fn fixture_options() -> IntegrityOptions {
 }
 
 #[test]
+fn served_amount_check_distinguishes_restored_units_from_missing_units() {
+    for (injected_sql, expected_cause) in [
+        (
+            "UPDATE effects SET description_template = REPLACE(description_template, '{1}%', '{1}')
+          WHERE name = 'Doublestrike and Doubleshot'",
+            None,
+        ),
+        (
+            "UPDATE effects SET description_template = REPLACE(description_template, '{1}%', '{1}'),
+          verbose_name_template = REPLACE(verbose_name_template, '{1}%', '{1}')
+          WHERE name = 'Doublestrike and Doubleshot'",
+            Some("unit missing"),
+        ),
+        (
+            "UPDATE effects SET set_bonus_line_template = REPLACE(set_bonus_line_template, '{1}%', '{1}')
+          WHERE name = 'Doublestrike and Doubleshot'",
+            Some("unit missing"),
+        ),
+        (
+            "UPDATE effects SET description_template = 'Grants a bonus to Doublestrike and Doubleshot.'
+          WHERE name = 'Doublestrike and Doubleshot'",
+            Some("description omits an amount or states a different one"),
+        ),
+    ] {
+        let scratch = tempfile::tempdir().unwrap();
+        let db = Connection::open(fixture_db_copy_with(scratch.path(), injected_sql)).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("effect_descriptions_without_their_amounts").unwrap();
+        let findings = outcome
+            .offenders
+            .iter()
+            .filter(|offender| offender.name == "Doublestrike and Doubleshot")
+            .collect::<Vec<_>>();
+        if let Some(cause) = expected_cause {
+            assert!(findings.iter().any(|offender| offender.detail.contains(cause)), "{injected_sql}: {outcome}");
+        } else {
+            assert!(findings.is_empty(), "the renderer restores the unit: {findings:?}");
+        }
+    }
+}
+
+#[test]
 fn shared_stat_set_report_lists_a_duplicate_but_not_a_constant_twin() {
     let scratch = tempfile::tempdir().unwrap();
     let exported = scratch.path().join("data");
@@ -478,6 +520,25 @@ fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
 
 fn injected_violations() -> Vec<InjectedViolation> {
     vec![
+        violation(
+            "effect_descriptions_without_their_amounts",
+            "UPDATE effects SET description_template = REPLACE(description_template, '{1}%', '{1}'),
+             verbose_name_template = REPLACE(verbose_name_template, '{1}%', '{1}')
+             WHERE name = 'Doublestrike and Doubleshot';",
+            "Doublestrike and Doubleshot",
+        ),
+        violation(
+            "effect_descriptions_without_their_amounts",
+            "UPDATE effects SET set_bonus_line_template = REPLACE(set_bonus_line_template, '{1}%', '{1}')
+             WHERE name = 'Doublestrike and Doubleshot';",
+            "Doublestrike and Doubleshot",
+        ),
+        violation(
+            "effect_descriptions_without_their_amounts",
+            "UPDATE effects SET description_template = 'Grants a bonus to Doublestrike and Doubleshot.'
+             WHERE name = 'Doublestrike and Doubleshot';",
+            "Doublestrike and Doubleshot",
+        ),
         violation(
             "redirects_agree_with_current_slugs",
             "INSERT INTO redirects (kind, from_slug, to_slug, since) VALUES ('items', 'old-item', 'missing-item', '2026-10-01');",

@@ -11,6 +11,7 @@ mod routes;
 pub mod schema_validation;
 pub mod state;
 
+pub use db::served_effect_lines;
 pub use docs::ResponseExample;
 pub use state::AppState;
 

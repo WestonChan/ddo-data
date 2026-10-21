@@ -91,6 +91,11 @@ impl IntegrityCheck {
 
 pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     IntegrityCheck::warn(
+        "effect_descriptions_without_their_amounts",
+        "served descriptions or fallback lines state every granted amount with its unit, and line claims match grants",
+        OffenderQuery::Built(effect_descriptions_without_their_amounts),
+    ),
+    IntegrityCheck::warn(
         "effects_sharing_a_stat_set",
         "link-valued effects sharing expanded stats require source verification before choosing a grouping",
         OffenderQuery::Built(effects_sharing_a_stat_set),
@@ -1000,6 +1005,135 @@ fn effects_named_like_identifiers(db: &Connection, _options: &IntegrityOptions) 
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
+fn effect_descriptions_without_their_amounts(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let mut statement = db.prepare("SELECT name, verbose_name_template FROM effects WHERE is_stat = 1")?;
+    let percent_stats = statement
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, Option<String>>(1)?)))?
+        .collect::<rusqlite::Result<Vec<_>>>()?
+        .into_iter()
+        .filter(|(_, template)| template.as_deref().is_some_and(ddo_model::effect_amount::line_template_states_percent))
+        .map(|(name, _)| name)
+        .collect::<BTreeSet<_>>();
+    let mut offenders = Vec::new();
+    let mut cause_counts = BTreeMap::<&str, usize>::new();
+    for (table, owner_column) in EFFECT_OWNER_LINKS {
+        for (owner_id, lines) in ddo_api::served_effect_lines(db, table, owner_column)
+            .map_err(|error| anyhow::anyhow!("rendering {table}: {error:?}"))?
+        {
+            for (sort_order, line) in lines {
+                let causes = served_amount_causes(&line, &percent_stats);
+                if causes.is_empty() {
+                    continue;
+                }
+                for cause in &causes {
+                    *cause_counts.entry(cause).or_default() += 1;
+                }
+                offenders.push(Offender {
+                    name: line["name"].as_str().unwrap_or_default().to_string(),
+                    id: line["effect_id"].as_i64(),
+                    detail: format!(
+                        "{table} owner {owner_id}, line {sort_order}: {}; description {}; line {}",
+                        causes.into_iter().collect::<Vec<_>>().join("; "),
+                        line["description"],
+                        line["verbose_name"]
+                    ),
+                });
+            }
+        }
+    }
+    Ok(Findings {
+        offenders: Some(offenders),
+        notes: cause_counts.into_iter().map(|(cause, count)| format!("{cause}: {count} links")).collect(),
+    })
+}
+
+struct AmountToken {
+    amount: f64,
+    signed: bool,
+    percent: bool,
+}
+
+impl AmountToken {
+    fn matches_amount(&self, amount: i64) -> bool {
+        if self.signed {
+            self.amount == amount as f64
+        } else {
+            self.amount == amount.unsigned_abs() as f64
+        }
+    }
+}
+
+fn amount_tokens(text: &str) -> Vec<AmountToken> {
+    let bytes = text.as_bytes();
+    let mut tokens = Vec::new();
+    let mut position = 0;
+    while position < bytes.len() {
+        let start = position;
+        let signed = matches!(bytes[position], b'+' | b'-');
+        if signed {
+            position += 1;
+        }
+        if !bytes.get(position).is_some_and(u8::is_ascii_digit) {
+            position += 1;
+            continue;
+        }
+        while bytes.get(position).is_some_and(|byte| byte.is_ascii_digit() || *byte == b'.') {
+            position += 1;
+        }
+        if let Ok(amount) = text[start..position].parse() {
+            tokens.push(AmountToken { amount, signed, percent: bytes.get(position) == Some(&b'%') });
+        }
+    }
+    tokens
+}
+
+fn served_amount_causes(line: &serde_json::Value, percent_stats: &BTreeSet<String>) -> BTreeSet<&'static str> {
+    let mut causes = BTreeSet::new();
+    let Some(bonuses) = line["bonuses"].as_array().filter(|bonuses| !bonuses.is_empty()) else { return causes };
+    let description = line["description"].as_str();
+    let verbose_name = line["verbose_name"].as_str().unwrap_or_default();
+    let text_tokens = amount_tokens(description.unwrap_or(verbose_name));
+    let granted_amounts = bonuses
+        .iter()
+        .filter_map(|bonus| {
+            Some((
+                bonus["value"].as_i64()?,
+                bonus["stat"].as_str().is_some_and(|stat| percent_stats.contains(stat)),
+                bonus["scale"].as_f64().is_some_and(|scale| scale != 1.0),
+            ))
+        })
+        .collect::<Vec<_>>();
+    for (amount, percent, scaled) in &granted_amounts {
+        if text_tokens.iter().any(|token| token.matches_amount(*amount) && (!percent || token.percent)) {
+            continue;
+        }
+        let cause = if *percent && text_tokens.iter().any(|token| token.matches_amount(*amount)) {
+            "unit missing"
+        } else if *scaled {
+            "scaled or rounded amount"
+        } else if description.is_none() {
+            "description missing, and the line short as well"
+        } else {
+            "description omits an amount or states a different one"
+        };
+        causes.insert(cause);
+    }
+    for token in amount_tokens(verbose_name).iter().filter(|token| token.signed || token.percent) {
+        if granted_amounts
+            .iter()
+            .any(|(amount, percent, _)| token.matches_amount(*amount) && (!percent || token.percent))
+        {
+            continue;
+        }
+        if granted_amounts.iter().any(|(amount, _, _)| token.matches_amount(*amount)) {
+            causes.insert("unit missing");
+        } else {
+            causes.insert("line claim that is not a granted amount");
+        }
+    }
+    causes
+}
+
 fn effect_link_amount_counts(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let count = "CASE WHEN e.is_stat = 1 THEN 1
                  WHEN INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '{2}') > 0 THEN 2
@@ -1792,4 +1926,90 @@ pub fn integrity_report(db: &Connection, options: &IntegrityOptions) -> Result<I
     let outcomes =
         INTEGRITY_CHECKS.iter().map(|check| outcome_of(check, db, options)).collect::<Result<Vec<CheckOutcome>>>()?;
     Ok(IntegrityReport { outcomes })
+}
+
+#[cfg(test)]
+mod served_amount_tests {
+    use super::*;
+    use rusqlite::trace::{TraceEvent, TraceEventCodes};
+    use serde_json::json;
+    use std::path::Path;
+    use std::sync::atomic::{AtomicUsize, Ordering};
+
+    fn line_with_bonuses(description: Option<&str>, line: &str, amounts: &[i64], scale: f64) -> serde_json::Value {
+        json!({"description": description, "verbose_name": line,
+            "bonuses": amounts.iter().map(|amount| json!({"stat": "Doublestrike", "value": amount, "scale": scale})).collect::<Vec<_>>()})
+    }
+
+    #[test]
+    fn served_amounts_require_every_slot_and_respect_sign_and_unit() {
+        let examples = [
+            (Some("+4 Enhancement bonus to hit and 6 Damage for Sneak Attacks."), "Deception +4", vec![4, 6], false, true),
+            (Some("Passive: +4 Insightful bonus on Charisma based skill checks, imposing a -6 penalty on Hide checks."), "Insightful Command +4", vec![4, -6], false, true),
+            (Some("+4 bonus to hit."), "Deception +4", vec![4, 6], false, false),
+            (Some("22 points of damage"), "Dragon's Edge 7", vec![22], false, true),
+            (Some("-6 penalty"), "Command", vec![-6], false, true),
+            (Some("+6 penalty"), "Command", vec![-6], false, false),
+            (Some("reduced by 4 SP"), "Efficiency", vec![-4], false, true),
+            (Some("3% bonus"), "Doublestrike +3%", vec![3], true, true),
+            (Some("3 bonus"), "Doublestrike +3%", vec![3], true, false),
+            (Some("3% bonus"), "Doublestrike +3", vec![3], true, false),
+            (Some("3 bonus"), "Doublestrike +4", vec![3], false, false),
+        ];
+        for (description, line, amounts, percent, passes) in examples {
+            let percent_stats = if percent { BTreeSet::from(["Doublestrike".to_string()]) } else { BTreeSet::new() };
+            let causes = served_amount_causes(&line_with_bonuses(description, line, &amounts, 1.0), &percent_stats);
+            assert_eq!(causes.is_empty(), passes, "{description:?}, {line}: {causes:?}");
+        }
+        let riposte = line_with_bonuses(Some("+10 bonus to AC and to Saves"), "Riposte +10", &[5], 0.5);
+        assert!(served_amount_causes(&riposte, &BTreeSet::new()).contains("scaled or rounded amount"));
+        let missing = line_with_bonuses(None, "Doublestrike", &[3], 1.0);
+        assert!(served_amount_causes(&missing, &BTreeSet::new())
+            .contains("description missing, and the line short as well"));
+        let empty = line_with_bonuses(None, "Flavor +99", &[], 1.0);
+        assert!(served_amount_causes(&empty, &BTreeSet::new()).is_empty());
+    }
+
+    #[test]
+    fn served_amount_check_uses_eleven_queries_for_one_and_fifty_owners() {
+        static STATEMENTS: AtomicUsize = AtomicUsize::new(0);
+        fn trace(event: TraceEvent<'_>) {
+            if matches!(event, TraceEvent::Stmt(_, _)) {
+                STATEMENTS.fetch_add(1, Ordering::SeqCst);
+            }
+        }
+        let source = Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures/data");
+        for owner_count in [1, 50] {
+            let scratch = tempfile::tempdir().unwrap();
+            for relative in [
+                "upstream/commit.toml",
+                "upstream/source-aliases.toml",
+                "effects/bonus-types.toml",
+                "effects/stats/doublestrike.toml",
+                "effects/stats/doubleshot.toml",
+                "effects/stat-groups/doublestrike-and-doubleshot.toml",
+            ] {
+                let destination = scratch.path().join(relative);
+                std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+                std::fs::copy(source.join(relative), destination).unwrap();
+            }
+            let sets = scratch.path().join("packs/shared/sets");
+            std::fs::create_dir_all(&sets).unwrap();
+            for index in 0..owner_count {
+                std::fs::write(sets.join(format!("amount-probe-{index}.toml")), format!(
+                    "name = \"Amount Probe {index}\"\n[[tier]]\nequipped_count = 2\n[[tier.effect]]\neffect = \"Doublestrike and Doubleshot\"\nvalue = 3\nbonus_type = \"Artifact\"\n"
+                )).unwrap();
+            }
+            let mut db = Connection::open_in_memory().unwrap();
+            ddo_etl::tree::build_from_data(scratch.path(), &mut db).unwrap();
+            db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
+            STATEMENTS.store(0, Ordering::SeqCst);
+            let findings =
+                effect_descriptions_without_their_amounts(&db, &IntegrityOptions { allowed_empty_tables: Vec::new() })
+                    .unwrap();
+            db.trace_v2(TraceEventCodes::empty(), None);
+            assert_eq!(STATEMENTS.load(Ordering::SeqCst), 11, "{owner_count} owners");
+            assert!(findings.offenders.unwrap().is_empty());
+        }
+    }
 }
