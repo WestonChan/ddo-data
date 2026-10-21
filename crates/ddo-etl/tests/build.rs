@@ -67,6 +67,98 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 }
 
 #[test]
+fn fixed_equipment_groupings_take_their_bonus_type_from_item_links() {
+    let source = fixture::xml_source();
+    let buffs = source.path().join("ItemBuffs.xml");
+    let original = std::fs::read_to_string(&buffs).unwrap();
+    std::fs::write(
+        buffs,
+        original.replace("</Buffs>", &format!("{}</Buffs>", include_str!("fixtures/effect-groups/ItemBuffs.xml"))),
+    )
+    .unwrap();
+    let item = source.path().join("Items/Legendary Cloak of Winter.item");
+    let original = std::fs::read_to_string(&item).unwrap();
+    std::fs::write(
+        item,
+        original.replace(
+            "  </Item>",
+            "<Buff><Type>Silver Flame Lore</Type><Value1>6</Value1></Buff><Buff><Type>PowerOfTheDarkRestoration</Type><Value1>80</Value1></Buff></Item>",
+        ),
+    )
+    .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    for (name, value, stats) in [
+        (
+            "Silver Flame Lore",
+            6,
+            vec![
+                "Chaos Spell Lore",
+                "Evil Spell Lore",
+                "Good Spell Lore",
+                "Law Spell Lore",
+                "Light Spell Lore",
+                "Positive Spell Lore",
+            ],
+        ),
+        (
+            "Power of the Dark Restoration",
+            80,
+            vec!["Negative Spell Power", "Poison Spell Power", "Positive Spell Power"],
+        ),
+    ] {
+        let (effect_id, linked_type, home_type): (i64, Option<String>, Option<String>) = db
+            .query_row(
+                "SELECT e.id, bt.name, home.name FROM item_effects link JOIN effects e ON e.id = link.effect_id
+             JOIN items i ON i.id = link.item_id LEFT JOIN bonus_types bt ON bt.id = link.bonus_type_id
+             LEFT JOIN bonus_types home ON home.id = e.home_bonus_type_id
+             WHERE i.name = 'Legendary Cloak of Winter' AND e.name = ?1",
+                [name],
+                |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)),
+            )
+            .unwrap();
+        assert_eq!(linked_type.as_deref(), Some("Equipment"), "{name}");
+        assert_eq!(home_type.as_deref(), Some("Equipment"), "{name}");
+        assert_eq!(
+            db.query_row(
+                "SELECT COUNT(*) FROM effect_bonuses WHERE effect_id = ?1 AND bonus_type_id IS NOT NULL",
+                [effect_id],
+                |row| row.get::<_, i64>(0)
+            )
+            .unwrap(),
+            0,
+            "{name}"
+        );
+        let bonuses = db
+            .prepare(
+                "SELECT s.name, bt.name, ob.amount FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id
+             JOIN bonus_types bt ON bt.id = ob.bonus_type_id WHERE ob.owner_kind = 'item' AND ob.via_effect_id = ?1
+             AND ob.owner_id = (SELECT id FROM items WHERE name = 'Legendary Cloak of Winter')
+             ORDER BY s.name",
+            )
+            .unwrap()
+            .query_map([effect_id], |row| {
+                Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?))
+            })
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert_eq!(
+            bonuses,
+            stats.into_iter().map(|stat| (stat.to_string(), "Equipment".to_string(), value)).collect::<Vec<_>>()
+        );
+    }
+}
+
+#[test]
 fn a_new_lore_group_keeps_percent_when_c_has_no_stat_template() {
     let canonical = fixture::database(|root| {
         std::fs::remove_file(root.join("packs/shared/sets/legendary-hruits-influence.toml")).unwrap();

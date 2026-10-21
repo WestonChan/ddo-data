@@ -213,11 +213,6 @@ impl TableWriter<'_> {
                     }
                     let family_name = self.buff_resolver.family_name(buff, stats.first().map(|stat| stat.stat.name));
                     let family_text = self.buff_resolver.family_template(buff);
-                    let uses_link_type = family_text.contains("%b1");
-                    if uses_link_type {
-                        ensure!(typed_stats.iter().all(|(_, bonus_type)| Some(*bonus_type) == first_type),
-                            "item {item_name:?} family {family_name:?} resolves to multiple bonus types for one %b1 slot");
-                    }
                     let (mut verbose_name_template, description_template) =
                         if family_text.is_empty() { (family_name.clone(), None) } else { split_template(&family_text) };
                     let constant_amounts: std::collections::BTreeSet<i64> = stats
@@ -265,7 +260,12 @@ impl TableWriter<'_> {
                     {
                         self.effects.set_defaults(effect_id, defaults)?;
                     }
-                    let link_typed = uses_link_type || typed_stats.len() == 1;
+                    let link_typed =
+                        self.effects.family(effect_id).expect("effect cached").uses_link_type || typed_stats.len() == 1;
+                    if link_typed {
+                        ensure!(typed_stats.iter().all(|(_, bonus_type)| Some(*bonus_type) == first_type),
+                            "item {item_name:?} family {family_name:?} resolves to multiple bonus types for one %b1 slot");
+                    }
                     let rules: Vec<BonusRule> = typed_stats
                         .into_iter()
                         .map(|(resolved_stat, bonus_type)| {

@@ -1,0 +1,30 @@
+  <Buff>
+    <Type>PowerOfTheDarkRestoration</Type>
+    <DisplayText>Power of the Dark Restoration %v1: Passive: %v1 Equipment bonus to Negative, Poison and Positive Spell Power.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Negative</Item>
+      <Item>Poison</Item>
+      <Item>Positive</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Silver Flame Lore</Type>
+    <DisplayText>Silver Flame Lore %v1: Passive: Your Positive, Light, and Alignment spells gain a %v1 Equipment bonus to their chance to critical hit.</DisplayText>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Light/Alignment</Item>
+      <Item>Chaos</Item>
+      <Item>Evil</Item>
+      <Item>Good</Item>
+      <Item>Lawful</Item>
+      <Item>Positive</Item>
+    </Effect>
+  </Buff>
