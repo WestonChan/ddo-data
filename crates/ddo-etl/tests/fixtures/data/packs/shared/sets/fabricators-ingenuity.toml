@@ -10,7 +10,9 @@ effect = "Fortification"
 value = 25
 
 [[tier.effect]]
-effect = "+2 Artifact bonus to attack and damage"
+bonus_type = "Artifact"
+effect = "Attack and Damage"
+value = 2
 
 [[tier.modifier]]
 amount_type = "Simple"

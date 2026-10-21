@@ -1,3 +1,5 @@
+mod fixture;
+
 use ddo_etl::map::augment_slot::AugmentSlotType;
 use ddo_etl::map::bonus_type::parse_buff_bonus_type;
 use ddo_etl::map::buff::{AmountFrom, BuffResolutionSource, BuffResolver, FamilyResolution, ResolvedBuff};
@@ -766,6 +768,43 @@ fn a_missing_placeholder_value_affects_only_its_item() {
     assert!(matches!(resolver.family_resolution("Silent Moves").unwrap(), FamilyResolution::EffectFallback(_)));
     assert!(matches!(resolver.resolved(&valued).unwrap(), ResolvedBuff::Bonuses { .. }));
     assert!(matches!(resolver.resolved(&missing).unwrap(), ResolvedBuff::Bonuses { .. }));
+}
+
+#[test]
+fn valued_set_prose_rules_validate_types_targets_and_unique_descriptions() {
+    let source = include_str!("../data/effect_map.toml");
+    let vocabulary = EffectMap::from_toml(source).unwrap();
+    assert_eq!(vocabulary.set_tier_prose_bonuses.len(), 24);
+    for rule in &vocabulary.set_tier_prose_bonuses {
+        assert!(vocabulary.set_tier_prose_bonus(&rule.description, fixture::groupings()).unwrap().is_some());
+    }
+    let duplicate = "\n[[set_tier_prose_bonuses]]\ndescription = \"+1 Profane bonus to Attack and Damage\"\neffect = \"Attack Bonus\"\nbonus_type = \"Profane\"\nvalue = 1\n";
+    for invalid in [
+        format!("{source}{duplicate}"),
+        source.replacen("bonus_type = \"Profane\"", "bonus_type = \"Unknown Type\"", 1),
+        source.replacen("effect = \"Attack and Damage\"", "effect = \"\"", 1),
+    ] {
+        let error = EffectMap::from_toml(&invalid).unwrap_err();
+        assert!(error.to_string().contains("set_tier_prose_bonuses"), "{error}");
+    }
+    for target in ["Unknown Stat", "Hallowed", "Deception", "Power of the Firestorm"] {
+        let invalid = source.replacen("effect = \"Attack and Damage\"", &format!("effect = {target:?}"), 1);
+        let vocabulary = EffectMap::from_toml(&invalid).unwrap();
+        let error =
+            vocabulary.set_tier_prose_bonus("+1 Profane bonus to Attack and Damage", fixture::groupings()).unwrap_err();
+        assert!(error.to_string().contains(target), "{error}");
+    }
+    for description in [
+        "+5 Artifact bonus to hit and damage versus Evil creatures",
+        "+2 Artifact bonus to damage with ranged and thrown weapons.",
+        "5% Spell critical damage, +2% per additional augment",
+        "+2 Uses of Wild Empathy",
+        "+5% Poison Spell Critical Damage",
+        "3rd Degree Burns",
+        "+10 Positive, Negative and Repair Amplification",
+    ] {
+        assert!(vocabulary.set_tier_prose_bonus(description, fixture::groupings()).unwrap().is_none(), "{description}");
+    }
 }
 
 #[test]

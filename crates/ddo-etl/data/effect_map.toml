@@ -15,6 +15,150 @@ Nullification = "Negative and Poison Spell Power"
 Radiance = "Light and Alignment Spell Power"
 VoidLore = "Negative and Poison Spell Lore"
 
+[[set_tier_prose_bonuses]]
+description = "+1 Profane bonus to Attack and Damage"
+effect = "Attack and Damage"
+bonus_type = "Profane"
+value = 1
+
+[[set_tier_prose_bonuses]]
+description = "+1 Quality bonus to Seeker"
+effect = "Seeker"
+bonus_type = "Quality"
+value = 1
+
+[[set_tier_prose_bonuses]]
+description = "+2 Artifact bonus to attack and damage."
+effect = "Attack and Damage"
+bonus_type = "Artifact"
+value = 2
+
+[[set_tier_prose_bonuses]]
+description = "+2 Damage"
+effect = "Damage Bonus"
+bonus_type = "Stacking"
+value = 2
+
+[[set_tier_prose_bonuses]]
+description = "+2 Doublestrike and Doubleshot"
+effect = "Doublestrike and Doubleshot"
+bonus_type = "Stacking"
+value = 2
+
+[[set_tier_prose_bonuses]]
+description = "+2 Imbue Dice"
+effect = "Imbue Dice"
+bonus_type = "Stacking"
+value = 2
+
+[[set_tier_prose_bonuses]]
+description = "+2 Quality bonus to Seeker"
+effect = "Seeker"
+bonus_type = "Quality"
+value = 2
+
+[[set_tier_prose_bonuses]]
+description = "+2 To Attack and Damage"
+effect = "Attack and Damage"
+bonus_type = "Stacking"
+value = 2
+
+[[set_tier_prose_bonuses]]
+description = "+3 Artifact bonus to Attack and Damage"
+effect = "Attack and Damage"
+bonus_type = "Artifact"
+value = 3
+
+[[set_tier_prose_bonuses]]
+description = "+3 Artifact bonus to Critical Attack and Damage"
+effect = "Seeker"
+bonus_type = "Artifact"
+value = 3
+
+[[set_tier_prose_bonuses]]
+description = "+3 Artifact bonus to Hit and Damage."
+effect = "Attack and Damage"
+bonus_type = "Artifact"
+value = 3
+
+[[set_tier_prose_bonuses]]
+description = "+3 Artifact bonus to Shield Armor Class"
+effect = "Shield Armor Class"
+bonus_type = "Artifact"
+value = 3
+
+[[set_tier_prose_bonuses]]
+description = "+3 Artifact bonus to attack and damage."
+effect = "Attack and Damage"
+bonus_type = "Artifact"
+value = 3
+
+[[set_tier_prose_bonuses]]
+description = "+3 Artifact bonus to your To-Hit and Damage rolls"
+effect = "Attack and Damage"
+bonus_type = "Artifact"
+value = 3
+
+[[set_tier_prose_bonuses]]
+description = "+3 to Attack and Damage with weapons"
+effect = "Attack and Damage"
+bonus_type = "Stacking"
+value = 3
+
+[[set_tier_prose_bonuses]]
+description = "+3% Chance to Deflect Missiles"
+effect = "Missile Deflection"
+bonus_type = "Stacking"
+value = 3
+
+[[set_tier_prose_bonuses]]
+description = "+4 Artifact bonus to attack and damage"
+effect = "Attack and Damage"
+bonus_type = "Artifact"
+value = 4
+
+[[set_tier_prose_bonuses]]
+description = "+4 Profane bonus to Attack and Damage"
+effect = "Attack and Damage"
+bonus_type = "Profane"
+value = 4
+
+[[set_tier_prose_bonuses]]
+description = "+4 Saving throws versus Poison"
+effect = "Poison Save"
+bonus_type = "Stacking"
+value = 4
+
+[[set_tier_prose_bonuses]]
+description = "+5 Healing Amplification"
+effect = "Healing Amplification"
+bonus_type = "Stacking"
+value = 5
+
+[[set_tier_prose_bonuses]]
+description = "+5 Melee and Ranged Power"
+effect = "Melee and Ranged Power"
+bonus_type = "Stacking"
+value = 5
+
+[[set_tier_prose_bonuses]]
+description = "+5 Profane bonus to hit and damage"
+effect = "Attack and Damage"
+bonus_type = "Profane"
+value = 5
+
+[[set_tier_prose_bonuses]]
+description = "+5 Ranged Power"
+effect = "Ranged Power"
+bonus_type = "Stacking"
+value = 5
+
+[[set_tier_prose_bonuses]]
+description = "+5% Cold Spell Critical Damage"
+effect = "Cold Spell Critical Damage"
+bonus_type = "Stacking"
+value = 5
+
 [names]
 "DR 1/-" = "DR 1/-"
 "DR 1/Chaotic" = "DR 1/Chaotic"

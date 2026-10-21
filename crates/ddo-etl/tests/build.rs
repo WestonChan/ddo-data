@@ -67,6 +67,60 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 }
 
 #[test]
+fn a_structured_set_effect_takes_precedence_over_its_prose_vocabulary() {
+    let source = fixture::xml_source();
+    let path = source.path().join("SetBonuses.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    assert_eq!(original.matches("<Type>Weapon_AttackAndDamage</Type>").count(), 1);
+    std::fs::write(path, original.replace("<Type>Weapon_AttackAndDamage</Type>", "<Type>Weapon_Attack</Type>"))
+        .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert!(report.matched_set_tier_prose.is_empty());
+    let bonuses = db
+        .prepare(
+            "SELECT stat.name, ob.amount FROM owner_bonuses ob JOIN effects stat ON stat.id = ob.stat_id
+         JOIN set_bonus_tiers tier ON tier.id = ob.owner_id JOIN set_bonuses owner ON owner.id = tier.set_id
+         WHERE ob.owner_kind = 'set_bonus_tier' AND owner.name = 'Fabricator''s Ingenuity' ORDER BY stat.name",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?)))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(bonuses, vec![("Attack Bonus".into(), 2), ("Fortification".into(), 25)]);
+}
+
+#[test]
+fn fabricators_valued_prose_links_attack_and_damage_once() {
+    let (db, _) = built_fixture_db();
+    let links = db
+        .prepare(
+            "SELECT e.name, bt.name, link.value FROM set_bonus_tier_effects link
+         JOIN set_bonus_tiers tier ON tier.id = link.tier_id JOIN set_bonuses owner ON owner.id = tier.set_id
+         JOIN effects e ON e.id = link.effect_id LEFT JOIN bonus_types bt ON bt.id = link.bonus_type_id
+         WHERE owner.name = 'Fabricator''s Ingenuity' AND tier.equipped_count = 2 ORDER BY link.sort_order",
+        )
+        .unwrap()
+        .query_map([], |row| {
+            Ok((row.get::<_, String>(0)?, row.get::<_, Option<String>>(1)?, row.get::<_, Option<i64>>(2)?))
+        })
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert!(links.contains(&("Attack and Damage".into(), Some("Artifact".into()), Some(2))), "{links:?}");
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name = '+2 Artifact bonus to attack and damage'"), 0);
+}
+
+#[test]
 fn fixed_equipment_groupings_take_their_bonus_type_from_item_links() {
     let source = fixture::xml_source();
     let buffs = source.path().join("ItemBuffs.xml");
@@ -1544,7 +1598,7 @@ fn writes_sets_filigrees_and_their_items() {
                        WHERE structured.tier_id = te.tier_id AND (e.is_stat = 1 OR EXISTS
                        (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)))",
     );
-    assert_eq!(tiers_with_prose_and_structured_facts, 1);
+    assert_eq!(tiers_with_prose_and_structured_facts, 0);
     let tier_modifier_count = count(&db, &format!("SELECT COUNT(*) FROM modifiers m JOIN set_bonus_tiers t ON t.id = m.source_id WHERE m.source_kind = 'set_bonus_tier' AND t.set_id = {winter}"));
     assert!(tier_modifier_count >= 1);
     let winter_tier_bonuses: Vec<(i64, String, i64)> = db

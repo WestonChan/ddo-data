@@ -37,13 +37,14 @@ use ddo_model::enums::{BonusType, CorrectionKind, FeatSource, ModifierSource};
 use ddo_model::{seeds, DatasetVersion, SCHEMA_VERSION};
 use drop_text::DropTextLinker;
 use rusqlite::{params, Connection, OptionalExtension, Transaction};
-use std::collections::{BTreeMap, HashMap, HashSet};
+use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet};
 use std::path::{Path, PathBuf};
 
 #[derive(Debug, Default, Clone, PartialEq, Eq)]
 pub struct BuildReport {
     pub shared_target_splits: Vec<DerivedEffectSplit>,
     pub held_back_effects: Vec<DerivedEffectSplit>,
+    pub matched_set_tier_prose: BTreeSet<SetTierProseMatch>,
     pub skipped_wiki_facts: Vec<SkippedWikiFact>,
     pub written_item_count: usize,
     pub skipped_cosmetic_item_count: usize,
@@ -140,6 +141,13 @@ pub struct DerivedEffectSplit {
     pub targets: Vec<String>,
     pub stats: Vec<String>,
     pub reason: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+pub struct SetTierProseMatch {
+    pub set_name: String,
+    pub equipped_count: i64,
+    pub description: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -297,6 +305,7 @@ fn build_with_wiki_references(
         grouping_answers: HashSet::new(),
         shared_target_splits: Vec::new(),
         held_back_effects: Vec::new(),
+        matched_set_tier_prose: BTreeSet::new(),
         written: WrittenRows::default(),
         socket_label_corrections: corrections
             .entries
@@ -485,6 +494,7 @@ fn build_with_wiki_references(
     crate::loot_sources::reject_missing_source_references(&transaction)?;
     report.shared_target_splits = std::mem::take(&mut writer.shared_target_splits);
     report.held_back_effects = std::mem::take(&mut writer.held_back_effects);
+    report.matched_set_tier_prose = std::mem::take(&mut writer.matched_set_tier_prose);
     transaction.commit()?;
     Ok(report)
 }
@@ -773,6 +783,7 @@ pub(crate) struct TableWriter<'a> {
     grouping_answers: HashSet<i64>,
     shared_target_splits: Vec<DerivedEffectSplit>,
     held_back_effects: Vec<DerivedEffectSplit>,
+    matched_set_tier_prose: BTreeSet<SetTierProseMatch>,
     written: WrittenRows,
     socket_label_corrections: HashMap<&'a str, &'a Correction>,
     applied_socket_label_corrections: Vec<&'a Correction>,

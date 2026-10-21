@@ -20,6 +20,8 @@ pub struct EffectMap {
     #[serde(default)]
     pub augment_line_names: Vec<AugmentLineName>,
     #[serde(default)]
+    pub set_tier_prose_bonuses: Vec<SetTierProseBonus>,
+    #[serde(default)]
     pub augment_combined_lines: Vec<AugmentCombinedLine>,
     #[serde(default)]
     pub option_companion_targets: BTreeMap<String, Vec<String>>,
@@ -62,6 +64,15 @@ pub struct SkillAbilityGroups {
     pub source: String,
     pub read: String,
     pub skills: BTreeMap<String, Vec<String>>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct SetTierProseBonus {
+    pub description: String,
+    pub effect: String,
+    pub bonus_type: String,
+    pub value: i64,
 }
 
 #[derive(Debug, Deserialize)]
@@ -181,6 +192,19 @@ impl EffectMap {
 
     pub fn from_toml(toml_text: &str) -> Result<Self> {
         let vocabulary: Self = toml::from_str(toml_text)?;
+        let mut prose_descriptions = BTreeSet::new();
+        for rule in &vocabulary.set_tier_prose_bonuses {
+            if rule.description.trim().is_empty()
+                || rule.effect.trim().is_empty()
+                || BonusType::parse(&rule.bonus_type).is_none()
+                || !prose_descriptions.insert(&rule.description)
+            {
+                bail!(
+                    "effect_map.toml [[set_tier_prose_bonuses]] has an invalid or repeated rule for {:?}",
+                    rule.description
+                );
+            }
+        }
         let mut reserved_ids = BTreeSet::new();
         for (name, effect_id) in &vocabulary.named_effect_ids {
             if name.trim().is_empty()
@@ -577,6 +601,31 @@ impl EffectMap {
 
     pub fn is_linkable_named_effect(&self, effect_name: &str) -> bool {
         self.named_effect_ids.contains_key(effect_name) || self.family.groups.contains_key(effect_name)
+    }
+
+    pub fn set_tier_prose_bonus(
+        &self,
+        description: &str,
+        groupings: &crate::groupings::Groupings,
+    ) -> Result<Option<&SetTierProseBonus>> {
+        let Some(rule) = self.set_tier_prose_bonuses.iter().find(|rule| rule.description == description) else {
+            return Ok(None);
+        };
+        if Stat::by_name(&rule.effect).is_none() {
+            if let Some(grouping) =
+                groupings.by_stat_set.values().flatten().find(|grouping| grouping.name == rule.effect)
+            {
+                anyhow::ensure!(
+                    grouping.accepts_value_at_type(&rule.bonus_type),
+                    "prose bonus {:?} cannot take one value at {}",
+                    rule.effect,
+                    rule.bonus_type
+                );
+            } else if self.group_members(&rule.effect).is_none() {
+                bail!("prose bonus {description:?} names {:?}, which is not a stat or grouping in C", rule.effect);
+            }
+        }
+        Ok(Some(rule))
     }
 
     pub fn group_members(&self, group_name: &str) -> Option<&[String]> {

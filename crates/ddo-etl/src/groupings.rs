@@ -86,6 +86,36 @@ pub struct GroupingPair<'a> {
     pub kind: GroupingPairKind,
 }
 
+#[derive(Debug, PartialEq, Eq)]
+pub struct ValuedProseDuplicate {
+    pub prose_name: String,
+    pub target_name: String,
+}
+
+fn valued_prose_target(name: &str) -> Option<String> {
+    let lowered = name.to_lowercase();
+    let text = lowered.trim();
+    if !text.starts_with(['+', '-']) {
+        return None;
+    }
+    let number_end = text
+        .char_indices()
+        .find(|(index, letter)| *index > 0 && !letter.is_ascii_digit() && *letter != '.')
+        .map_or(text.len(), |(index, _)| index);
+    text[..number_end].parse::<f64>().ok()?;
+    let amount_suffix = &text[number_end..];
+    let mut target = amount_suffix.strip_prefix('%').unwrap_or(amount_suffix).trim();
+    for bonus_type in ddo_model::enums::BonusType::ALL {
+        let prefix = format!("{} ", bonus_type.name().to_lowercase());
+        if let Some(rest) = target.strip_prefix(&prefix) {
+            target = rest;
+            break;
+        }
+    }
+    target = target.strip_prefix("bonus to ").unwrap_or(target);
+    Some(target.strip_suffix(" bonus").unwrap_or(target).to_string())
+}
+
 #[derive(Debug, Default)]
 pub struct Groupings {
     pub by_stat_set: HashMap<BTreeSet<String>, Vec<Grouping>>,
@@ -93,6 +123,32 @@ pub struct Groupings {
 }
 
 impl Groupings {
+    pub fn valued_prose_duplicates(&self) -> Vec<ValuedProseDuplicate> {
+        let names = self
+            .by_id
+            .values()
+            .filter(|effect| ddo_model::stats::Stat::by_name(&effect.name).is_some())
+            .map(|effect| effect.name.as_str())
+            .chain(self.by_stat_set.values().flatten().map(|grouping| grouping.name.as_str()))
+            .collect::<BTreeSet<_>>();
+        let mut duplicates = Vec::new();
+        for effect in self.by_id.values().filter(|effect| !effect.is_group && effect.bonuses.is_empty()) {
+            let Some(target) = valued_prose_target(&effect.name) else { continue };
+            for name in &names {
+                let normalized = name.to_lowercase();
+                if target == normalized.strip_suffix(" bonus").unwrap_or(&normalized) {
+                    duplicates.push(ValuedProseDuplicate {
+                        prose_name: effect.name.clone(),
+                        target_name: (*name).to_string(),
+                    });
+                }
+            }
+        }
+        duplicates
+            .sort_by(|left, right| (&left.prose_name, &left.target_name).cmp(&(&right.prose_name, &right.target_name)));
+        duplicates
+    }
+
     pub fn from_database(db: &Connection) -> Result<Self> {
         let mut statement = db.prepare(
             "SELECT e.id, e.name, e.slug, e.is_stat, e.is_group, e.verbose_name_template, e.description_template,
@@ -239,6 +295,58 @@ mod tests {
     use rusqlite::trace::{TraceEvent, TraceEventCodes};
     use std::path::Path;
     use std::sync::atomic::{AtomicUsize, Ordering};
+
+    #[test]
+    fn valued_prose_names_duplicate_stats_and_groups_but_not_conditional_lines() {
+        let source = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data");
+        let scratch = tempfile::tempdir().unwrap();
+        for relative in [
+            "upstream/commit.toml",
+            "upstream/source-aliases.toml",
+            "effects/bonus-types.toml",
+            "effects/stats/ranged-power.toml",
+            "effects/stats/doublestrike.toml",
+            "effects/stats/doubleshot.toml",
+            "effects/stat-groups/doublestrike-and-doubleshot.toml",
+        ] {
+            let destination = scratch.path().join(relative);
+            std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+            std::fs::copy(source.join(relative), destination).unwrap();
+        }
+        for name in [
+            "+5 Ranged Power",
+            "+2 Doublestrike and Doubleshot",
+            "-6% Artifact bonus to RANGED POWER Bonus",
+            "+5 Artifact bonus to hit and damage versus Evil creatures",
+        ] {
+            let path = scratch.path().join("effects").join(format!("{}.toml", ddo_model::identity::slug(name)));
+            std::fs::write(
+                path,
+                format!("name = {name:?}\nverbose_name_template = {name:?}\ndescription_template = {name:?}\n"),
+            )
+            .unwrap();
+        }
+        let mut db = Connection::open_in_memory().unwrap();
+        crate::tree::build_from_data(scratch.path(), &mut db).unwrap();
+        let index = Groupings::from_database(&db).unwrap();
+        assert_eq!(
+            index.valued_prose_duplicates(),
+            vec![
+                ValuedProseDuplicate {
+                    prose_name: "+2 Doublestrike and Doubleshot".into(),
+                    target_name: "Doublestrike and Doubleshot".into()
+                },
+                ValuedProseDuplicate { prose_name: "+5 Ranged Power".into(), target_name: "Ranged Power".into() },
+                ValuedProseDuplicate {
+                    prose_name: "-6% Artifact bonus to RANGED POWER Bonus".into(),
+                    target_name: "Ranged Power".into()
+                },
+            ]
+        );
+        for malformed in ["", "+", "+. Ranged Power", "Ranged Power"] {
+            assert_eq!(valued_prose_target(malformed), None, "{malformed}");
+        }
+    }
 
     #[test]
     fn stat_order_and_repeated_targets_do_not_change_the_group_name() {

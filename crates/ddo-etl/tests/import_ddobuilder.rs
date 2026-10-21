@@ -119,6 +119,46 @@ fn canonical_wiki_rows_do_not_appear_in_an_unrelated_import_delta() {
 }
 
 #[test]
+fn import_reports_a_valued_prose_entry_that_stopped_matching() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let scratch = tempfile::tempdir().unwrap();
+    let root = scratch.path().join("data");
+    let previous = scratch.path().join("previous");
+    let source = scratch.path().join("source");
+    copy_tree(&fixtures.join("data"), &root);
+    copy_tree(&fixtures.join("DataFiles"), &previous);
+    copy_data_icons_into_source(&root, &previous, scratch.path());
+    copy_tree(&previous, &source);
+    let path = source.join("SetBonuses.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    assert!(original.contains("+2 Artifact bonus to attack and damage."));
+    std::fs::write(
+        path,
+        original.replace("+2 Artifact bonus to attack and damage.", "+3 Artifact bonus to Attack and Damage"),
+    )
+    .unwrap();
+    let report = import_ddobuilder(&DdobuilderImportOptions {
+        previous_dir: previous,
+        source_dir: source,
+        data_dir: root,
+        previous_sha: Some("fixture".into()),
+        sha: Some("fixture-next".into()),
+    })
+    .unwrap();
+    let audit = report
+        .entries
+        .iter()
+        .find(|entry| entry.category == "UNMATCHED SET TIER PROSE BONUS")
+        .expect("missing prose audit");
+    assert!(
+        audit.detail.contains("Fabricator's Ingenuity")
+            && audit.detail.contains("2 pieces")
+            && audit.detail.contains("+2 Artifact bonus to attack and damage."),
+        "{audit:?}"
+    );
+}
+
+#[test]
 fn import_reports_mapping_audits_without_changing_success_status() {
     let world = ImportWorld::new(Corrections::default());
     let path = world.options.source_dir.join("ItemBuffs.xml");

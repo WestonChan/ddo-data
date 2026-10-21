@@ -54,6 +54,7 @@ pub struct NormalizedUpstreamDatabase {
     pub db: Connection,
     pub shared_target_splits: Vec<crate::build::DerivedEffectSplit>,
     pub held_back_effects: Vec<crate::build::DerivedEffectSplit>,
+    matched_set_tier_prose: BTreeSet<crate::build::SetTierProseMatch>,
     filled: Vec<FilledCell>,
     first_stale: Vec<crate::build::StaleCorrection>,
     skipped_wiki_facts: Vec<crate::build::SkippedWikiFact>,
@@ -80,6 +81,7 @@ pub fn normalized_upstream_database(
         db,
         shared_target_splits: upstream.shared_target_splits,
         held_back_effects: upstream.held_back_effects,
+        matched_set_tier_prose: upstream.matched_set_tier_prose,
         filled,
         first_stale: upstream.first_stale,
         skipped_wiki_facts: upstream.skipped_wiki_facts,
@@ -149,7 +151,9 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
     let new = normalized_upstream_database(&options.source_dir, &ours, &new_version, false, &new_tree)
         .context("building the new DataFiles")?;
     let blanked_upstream = blanks::blanked_upstream(&previous.db, &previous.filled, &new.filled)?;
-    let mapping_audits = audit::entries(&options.source_dir)?;
+    let mut mapping_audits = audit::entries(&options.source_dir)?;
+    mapping_audits
+        .extend(audit::unmatched_set_tier_prose(&previous.matched_set_tier_prose, &new.matched_set_tier_prose));
     let events = corrections::correction_events(&previous.first_stale, &new.first_stale, &corrections, &ours)?;
     let outcome = merge_delta_into(&mut ours, &previous.db, &new.db, &annotated)?;
     ours.execute("UPDATE dataset_version SET upstream_sha = ?1", [&new_version.upstream_sha])?;

@@ -103,6 +103,43 @@ impl TableWriter<'_> {
         }
         if links.is_empty() {
             if let Some(description) = trimmed_non_empty(tier.description.as_deref()) {
+                if let Some(rule) = EFFECT_MAP.set_tier_prose_bonus(description, self.groupings)? {
+                    let bonus_type =
+                        ddo_model::enums::BonusType::parse(&rule.bonus_type).expect("validated prose type");
+                    let effect_id = if let Some(stat) = Stat::by_name(&rule.effect) {
+                        let effect_id = self.effects.ensure_family(
+                            &rule.effect,
+                            &format!("%b1 {} +{{1}}", rule.effect),
+                            None,
+                            1,
+                        )?;
+                        self.effects.ensure_stat(effect_id, stat, Some(bonus_type), 1, None, 0)?;
+                        effect_id
+                    } else if let Some(grouping) =
+                        self.groupings.by_stat_set.values().flatten().find(|grouping| grouping.name == rule.effect)
+                    {
+                        self.effects.ensure_indexed_grouping(grouping, self.groupings)?
+                    } else {
+                        self.effects.ensure_group(&rule.effect)?
+                    };
+                    let family = self.effects.family(effect_id).expect("prose effect cached");
+                    let linked_type = (family.is_stat || family.uses_link_type).then_some(bonus_type);
+                    self.effects.insert_link(
+                        EffectOwner::SetBonusTier,
+                        tier_id,
+                        effect_id,
+                        linked_type,
+                        (Some(rule.value), None),
+                        first_order,
+                    )?;
+                    self.grouping_answers.insert(effect_id);
+                    self.matched_set_tier_prose.insert(super::SetTierProseMatch {
+                        set_name: set_name.to_string(),
+                        equipped_count: tier.equipped_count,
+                        description: description.to_string(),
+                    });
+                    return Ok(1);
+                }
                 let family_name = self.buff_resolver.set_tier_prose_name(set_name, tier.equipped_count, description)?;
                 let existing = self
                     .effects

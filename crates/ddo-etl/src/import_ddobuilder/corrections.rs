@@ -13,6 +13,7 @@ pub(super) struct HisDatabase {
     pub(super) skipped_wiki_facts: Vec<crate::build::SkippedWikiFact>,
     pub(super) shared_target_splits: Vec<crate::build::DerivedEffectSplit>,
     pub(super) held_back_effects: Vec<crate::build::DerivedEffectSplit>,
+    pub(super) matched_set_tier_prose: std::collections::BTreeSet<crate::build::SetTierProseMatch>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
@@ -82,6 +83,7 @@ fn build_matching_values(
     let mut skipped_wiki_facts = first_report.skipped_wiki_facts;
     let mut shared_target_splits = first_report.shared_target_splits;
     let mut held_back_effects = first_report.held_back_effects;
+    let mut matched_set_tier_prose = first_report.matched_set_tier_prose;
     let mut rebased = corrections.clone();
     let mut changed = false;
     for correction in &mut rebased.entries {
@@ -100,6 +102,7 @@ fn build_matching_values(
         let report = builder(groupings, source, wiki, &rebased, &mut db, version)?;
         shared_target_splits = report.shared_target_splits;
         held_back_effects = report.held_back_effects;
+        matched_set_tier_prose = report.matched_set_tier_prose;
         skipped_wiki_facts.extend(report.skipped_wiki_facts);
         for stale in report.stale_corrections {
             let resolved = rebased.entries.iter().any(|correction| {
@@ -116,7 +119,14 @@ fn build_matching_values(
     }
     skipped_wiki_facts.sort();
     skipped_wiki_facts.dedup();
-    Ok(HisDatabase { db, first_stale, skipped_wiki_facts, shared_target_splits, held_back_effects })
+    Ok(HisDatabase {
+        db,
+        first_stale,
+        skipped_wiki_facts,
+        shared_target_splits,
+        held_back_effects,
+        matched_set_tier_prose,
+    })
 }
 
 fn upstream_value(correction: &Correction, stale: &[StaleCorrection]) -> String {

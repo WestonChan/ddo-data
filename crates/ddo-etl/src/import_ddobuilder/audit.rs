@@ -9,6 +9,23 @@ use std::path::Path;
 
 const MAPPING_PATH: &str = "crates/ddo-etl/data/effect_map.toml";
 
+pub(super) fn unmatched_set_tier_prose(
+    previous: &BTreeSet<crate::build::SetTierProseMatch>,
+    current: &BTreeSet<crate::build::SetTierProseMatch>,
+) -> Vec<ImportReportEntry> {
+    previous
+        .difference(current)
+        .map(|matched| ImportReportEntry {
+            path: MAPPING_PATH.into(),
+            category: "UNMATCHED SET TIER PROSE BONUS",
+            detail: format!(
+                "{:?} at {} pieces no longer matches {:?}",
+                matched.set_name, matched.equipped_count, matched.description
+            ),
+        })
+        .collect()
+}
+
 pub(super) fn entries(source: &Path) -> Result<Vec<ImportReportEntry>> {
     let definitions = item_buffs::parse(&source.join("ItemBuffs.xml"))?;
     let mut entries = unclassified_buff_types(source, &definitions)?;
