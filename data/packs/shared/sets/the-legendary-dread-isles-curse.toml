@@ -1,6 +1,12 @@
 name = "The Legendary Dread Isle's Curse"
 icon = "TheDreadIslesCurse"
 
+[[citation]]
+field = "tier"
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+note = "The wiki gives Attack Bonus and Damage Bonus +4 Profane at 5 pieces."
+
 [[augment]]
 name = "The Legendary Dread Isle's Curse"
 family = "DinosaurBone"
@@ -300,9 +306,9 @@ name = "The Legendary Compass Rose"
 kind = "set_tier_bonus"
 field = "value"
 upstream = 5
-reason = "The wiki gives Attack Bonus and Damage Bonus +4 Profane at 5 pieces; his tier says +5."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
+reason = "The in-game 5-piece bonus gives +4 Profane to hit and damage; his tier says +5."
+in_game = true
+read = "2026-10-21"
 qualifier = "equipped_count 5, Attack and Damage / Profane"
 
 [[tier]]
