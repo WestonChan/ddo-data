@@ -689,27 +689,50 @@ impl TableWriter<'_> {
                         self.effects.family_named(&name).is_none_or(|family| family.is_group),
                         "new stat group {name:?} collides with an existing named effect"
                     );
-                    let percent = stats.iter().all(|name| {
-                        self.groupings
-                            .by_id
-                            .values()
-                            .find(|effect| &effect.name == name)
-                            .map(|effect| effect.verbose_name_template.as_str())
-                            .filter(|template| !template.is_empty())
-                            .or_else(|| EFFECT_MAP.line_templates.get(name).map(String::as_str))
-                            .is_some_and(|template| template.contains("{1}%"))
-                    });
+                    let percent_stats = stats
+                        .iter()
+                        .filter(|name| {
+                            self.groupings
+                                .by_id
+                                .values()
+                                .find(|effect| &effect.name == *name)
+                                .map(|effect| effect.verbose_name_template.as_str())
+                                .filter(|template| !template.is_empty())
+                                .or_else(|| EFFECT_MAP.line_templates.get(name.as_str()).map(String::as_str))
+                                .is_some_and(|template| template.contains("{1}%"))
+                        })
+                        .cloned()
+                        .collect::<std::collections::BTreeSet<_>>();
                     let members = ddo_model::stats::STATS
                         .iter()
                         .filter(|stat| stats.contains(stat.name))
                         .map(|stat| stat.name.to_string())
                         .collect::<Vec<_>>();
-                    let suffix = if percent { "%" } else { "" };
+                    let suffix = if percent_stats.len() == stats.len() { "%" } else { "" };
+                    let mixed_units = !percent_stats.is_empty() && percent_stats.len() != stats.len();
+                    let template = if mixed_units {
+                        members
+                            .iter()
+                            .map(|member| {
+                                let unit = if percent_stats.contains(member) { "%" } else { "" };
+                                format!("+{{1}}{unit} %b1 Bonus to {member}")
+                            })
+                            .collect::<Vec<_>>()
+                            .join(" and ")
+                    } else {
+                        format!("%b1 {name} +{{1}}{suffix}")
+                    };
+                    let description = if mixed_units {
+                        format!("{}.", template.replace("Bonus to", "bonus to"))
+                    } else {
+                        format!("+{{1}}{suffix} %b1 bonus to {name}.")
+                    };
                     self.effects.ensure_flat_group(
                         &name,
                         &members,
-                        percent,
-                        Some(&format!("+{{1}}{suffix} %b1 bonus to {name}.")),
+                        &template,
+                        Some(&description),
+                        mixed_units.then_some(template.as_str()),
                     )?
                 }
             }

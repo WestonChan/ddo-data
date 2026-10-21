@@ -305,6 +305,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Charisma Skills" = "none"
 
 [line_templates]
+"Doublestrike and Doubleshot" = "%b1 Doublestrike and Doubleshot +{1}%"
 "Acid Spell Lore" = "%b1 Acid Spell Lore +{1}%"
 "Blighted Lore" = "%b1 Blighted Lore +{1}%"
 "Chaos Spell Lore" = "%b1 Chaos Spell Lore +{1}%"

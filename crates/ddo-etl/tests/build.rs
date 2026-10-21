@@ -283,6 +283,41 @@ fn fixed_equipment_groupings_take_their_bonus_type_from_item_links() {
 }
 
 #[test]
+fn generated_mixed_unit_groups_keep_each_members_unit() {
+    let canonical = fixture::database(|root| {
+        std::fs::remove_file(root.join("effects/stat-groups/melee-power-and-doublestrike.toml")).unwrap();
+        let set = root.join("packs/shared/sets/inevitable-balance.toml");
+        let contents = std::fs::read_to_string(&set).unwrap();
+        std::fs::write(
+            set,
+            format!(
+                "{}\n[[tier.effect]]\nbonus_type = 'Stacking'\neffect = 'Doublestrike'\nvalue = 5\n",
+                contents.replace("Melee Power and Doublestrike", "Melee Power")
+            ),
+        )
+        .unwrap();
+    });
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        &groupings,
+        &data_files_fixture_dir(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let templates: (String, String, String) = db.query_row(
+        "SELECT verbose_name_template, COALESCE(set_bonus_line_template, ''), description_template FROM effects WHERE name = 'Melee Power and Doublestrike'",
+        [], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)),
+    ).unwrap();
+    assert_eq!(templates.0, "+{1} %b1 Bonus to Melee Power and +{1}% %b1 Bonus to Doublestrike");
+    assert_eq!(templates.1, templates.0);
+    assert_eq!(templates.2, "+{1} %b1 bonus to Melee Power and +{1}% %b1 bonus to Doublestrike.");
+}
+
+#[test]
 fn a_new_lore_group_keeps_percent_when_c_has_no_stat_template() {
     let canonical = fixture::database(|root| {
         std::fs::remove_file(root.join("packs/shared/sets/legendary-hruits-influence.toml")).unwrap();

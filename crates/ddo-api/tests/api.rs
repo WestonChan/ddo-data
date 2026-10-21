@@ -1128,6 +1128,15 @@ fn effect_named<'a>(effects: &'a Value, name: &str, kind: &str) -> Option<&'a Va
 }
 
 #[tokio::test]
+async fn mixed_unit_set_lines_render_each_stat_with_its_own_unit() {
+    let (_, _, set) = get("/v1/sets/inevitable-balance").await;
+    let line = &set["tiers"][0]["effects"][0];
+    assert_eq!(line["verbose_name"], "+5 Stacking Bonus to Melee Power and +5% Stacking Bonus to Doublestrike");
+    let (_, _, group) = get("/v1/effects/doublestrike-and-doubleshot").await;
+    assert_eq!(group["verbose_name_template"], "%b1 Doublestrike and Doubleshot +{1}%");
+}
+
+#[tokio::test]
 async fn grouped_hruit_spell_power_matches_each_stat_on_items_sets_and_carriers() {
     let state = fixture_state_with_data_edits("hruit-group-filters", |root| {
         let item = root.join("packs/unsourced/gear/legendary-bronze-dragonscale-plate.toml");

@@ -397,20 +397,21 @@ impl<'a> EffectCache<'a> {
             .strip_suffix(" Skills")
             .filter(|ability| EFFECT_MAP.skill_ability_groups.skills.contains_key(*ability))
             .map(|ability| format!("{{1}} %b1 bonus to all {ability} based skills."));
-        self.ensure_flat_group(name, members, false, description.as_deref())
+        let template = EFFECT_MAP.line_templates.get(name).cloned().unwrap_or_else(|| format!("%b1 {name} +{{1}}"));
+        self.ensure_flat_group(name, members, &template, description.as_deref(), None)
     }
 
     pub(super) fn ensure_flat_group(
         &mut self,
         name: &str,
         members: &[String],
-        percent: bool,
+        verbose_name_template: &str,
         description: Option<&str>,
+        set_bonus_line_template: Option<&str>,
     ) -> Result<i64> {
-        let suffix = if percent { "%" } else { "" };
         let id = match self.family_named(name) {
             Some(family) => family.id,
-            None => self.ensure_family(name, &format!("%b1 {name} +{{1}}{suffix}"), description, 1)?,
+            None => self.ensure_family(name, verbose_name_template, description, 1)?,
         };
         let family = self.family(id).expect("group family cached");
         ensure!(!family.is_stat && family.amount_count == 1, "group {name:?} must be a one-value named effect");
@@ -431,6 +432,10 @@ impl<'a> EffectCache<'a> {
         if !is_group {
             self.transaction.execute("UPDATE effects SET is_group = 1 WHERE id = ?1", [id])?;
             self.families_by_id.get_mut(&id).expect("group family cached").is_group = true;
+        }
+        if let Some(template) = set_bonus_line_template {
+            self.transaction
+                .execute("UPDATE effects SET set_bonus_line_template = ?2 WHERE id = ?1", params![id, template])?;
         }
         for (sort_order, member) in members.iter().enumerate() {
             self.ensure_stat(id, Stat::by_name(member).expect("validated group member"), None, 1, None, sort_order)?;
