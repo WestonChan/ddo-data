@@ -43,6 +43,7 @@ use std::path::{Path, PathBuf};
 #[derive(Debug, Default, Clone, PartialEq, Eq)]
 pub struct BuildReport {
     pub shared_target_splits: Vec<DerivedEffectSplit>,
+    pub line_splits: Vec<DerivedEffectSplit>,
     pub held_back_effects: Vec<DerivedEffectSplit>,
     pub matched_set_tier_prose: BTreeSet<SetTierProseMatch>,
     pub skipped_wiki_facts: Vec<SkippedWikiFact>,
@@ -304,6 +305,9 @@ fn build_with_wiki_references(
         groupings,
         grouping_answers: HashSet::new(),
         shared_target_splits: Vec::new(),
+        line_splits: Vec::new(),
+        line_split_corrections: corrections.entries.iter().filter(|correction| correction.field == "lines").collect(),
+        applied_line_split_corrections: Vec::new(),
         held_back_effects: Vec::new(),
         matched_set_tier_prose: BTreeSet::new(),
         written: WrittenRows::default(),
@@ -413,6 +417,7 @@ fn build_with_wiki_references(
     corrections_applied_while_writing.extend(applied_drop_location_corrections);
     corrections_applied_while_writing.extend(&writer.applied_socket_label_corrections);
     corrections_applied_while_writing.extend(&writer.applied_bonus_removal_corrections);
+    corrections_applied_while_writing.extend(&writer.applied_line_split_corrections);
     corrections::record_corrections_applied_while_writing(
         &transaction,
         &corrections_applied_while_writing,
@@ -504,6 +509,7 @@ fn build_with_wiki_references(
     crate::tree::store_xml_annotations(&transaction)?;
     crate::loot_sources::reject_missing_source_references(&transaction)?;
     report.shared_target_splits = std::mem::take(&mut writer.shared_target_splits);
+    report.line_splits = std::mem::take(&mut writer.line_splits);
     report.held_back_effects = std::mem::take(&mut writer.held_back_effects);
     report.matched_set_tier_prose = std::mem::take(&mut writer.matched_set_tier_prose);
     transaction.commit()?;
@@ -793,6 +799,9 @@ pub(crate) struct TableWriter<'a> {
     groupings: &'a crate::groupings::Groupings,
     grouping_answers: HashSet<i64>,
     shared_target_splits: Vec<DerivedEffectSplit>,
+    line_splits: Vec<DerivedEffectSplit>,
+    line_split_corrections: Vec<&'a Correction>,
+    applied_line_split_corrections: Vec<&'a Correction>,
     held_back_effects: Vec<DerivedEffectSplit>,
     matched_set_tier_prose: BTreeSet<SetTierProseMatch>,
     written: WrittenRows,

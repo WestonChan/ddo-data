@@ -14,6 +14,7 @@ pub(super) struct DerivedEffectLink {
     pub(super) bonus_type: Option<ddo_model::enums::BonusType>,
     pub(super) value: Option<i64>,
     pub(super) value2: Option<i64>,
+    pub(super) is_split_line: bool,
 }
 
 impl TableWriter<'_> {
@@ -216,14 +217,16 @@ impl TableWriter<'_> {
             let first_link = links.len();
             let split_count = self.shared_target_splits.len();
             let removed_before = self.removed_derived_bonus_count;
-            if let Some(link) =
+            if let Some(grouped_links) =
                 self.grouped_effect_link(owner, modifier_source, owner_id, effect, &mut derived_by_type)?
             {
-                self.transaction.execute(
-                    "UPDATE modifiers SET effect_id = ?4 WHERE source_kind = ?1 AND source_id = ?2 AND sort_order = ?3",
-                    params![modifier_source.as_str(), owner_id, source_order as i64, link.effect_id],
-                )?;
-                links.push(link);
+                if grouped_links.len() == 1 {
+                    self.transaction.execute(
+                        "UPDATE modifiers SET effect_id = ?4 WHERE source_kind = ?1 AND source_id = ?2 AND sort_order = ?3",
+                        params![modifier_source.as_str(), owner_id, source_order as i64, grouped_links[0].effect_id],
+                    )?;
+                }
+                links.extend(grouped_links);
                 continue;
             }
             for (type_index, effect_type) in effect.types.iter().enumerate() {
@@ -255,6 +258,7 @@ impl TableWriter<'_> {
                             })?
                             .id;
                         links.push(DerivedEffectLink {
+                            is_split_line: false,
                             effect_id,
                             bonus_type: Some(bonus_type),
                             value: Some(value),
@@ -326,94 +330,7 @@ impl TableWriter<'_> {
                     } else {
                         effect.targets.first().map(String::as_str)
                     };
-                    let mut resolved_types = bonuses.iter().map(|bonus| {
-                        self.bonus_type_of(
-                            &BonusOrigin {
-                                owner,
-                                source_name: effect_type,
-                                stat_name: bonus.stat.name,
-                                value: Some(bonus.value),
-                            },
-                            bonus.bonus_type,
-                        )
-                    });
-                    let bonus_type = resolved_types.next().expect("derived group has a first bonus")?;
-                    for resolved_type in resolved_types {
-                        anyhow::ensure!(
-                            resolved_type? == bonus_type,
-                            "{:?} {:?} has different types within one {effect_type} line",
-                            owner.kind,
-                            owner.name
-                        );
-                    }
-                    if effect_type == "SkillBonusAbility" {
-                        let ability = target.expect("resolved skill group has an ability target");
-                        let effect_id = self.effects.ensure_group(&format!("{ability} Skills"))?;
-                        links.push(DerivedEffectLink {
-                            effect_id,
-                            bonus_type: Some(bonus_type),
-                            value: Some(first_bonus.value),
-                            value2: None,
-                        });
-                        continue;
-                    }
-                    let source_name = shared_name.map(str::to_string).unwrap_or_else(|| {
-                        self.buff_resolver.effect_tier_name(effect_type, target, first_bonus.stat.name)
-                    });
-                    let family_name = if owner.kind == BonusOwnerKind::Augment {
-                        EFFECT_MAP.augment_line_name(owner.name, &source_name).unwrap_or(&source_name).to_string()
-                    } else {
-                        source_name
-                    };
-                    let existing = self
-                        .effects
-                        .family_named(&family_name)
-                        .filter(|family| !family.verbose_name_template.is_empty())
-                        .map(|family| (family.id, family.amount_count, family.uses_link_type));
-                    let (effect_id, count, uses_link_type) = match existing {
-                        Some(family) => family,
-                        None => {
-                            let (verbose_name_template, description_template) = if all_abilities {
-                                ("%b1 All Ability Scores +{1}".to_string(), Some("{1} %b1 bonus to all Ability Scores"))
-                            } else {
-                                (format!("%b1 {family_name} +{{1}}"), None)
-                            };
-                            let effect_id = self.effects.ensure_family(
-                                &family_name,
-                                &verbose_name_template,
-                                description_template,
-                                1,
-                            )?;
-                            (effect_id, 1, true)
-                        }
-                    };
-                    let stat_bonus_type = (!uses_link_type).then_some(bonus_type);
-                    let existing_stat = self.effects.stat(
-                        effect_id,
-                        first_bonus.stat.id,
-                        stat_bonus_type.map(ddo_model::enums::BonusType::id),
-                    );
-                    let (amount_from, constant) =
-                        existing_stat.unwrap_or(if count == 0 { (0, Some(first_bonus.value)) } else { (1, None) });
-                    let rules: Vec<BonusRule> = bonuses
-                        .iter()
-                        .map(|bonus| BonusRule { stat: bonus.stat, bonus_type: stat_bonus_type, amount_from, constant })
-                        .collect();
-                    self.effects.ensure_bonus_rules(effect_id, &rules)?;
-                    let (value, value2) = match amount_from {
-                        0 => (None, None),
-                        1 => (Some(first_bonus.value), None),
-                        2 => (Some(first_bonus.value), Some(first_bonus.value)),
-                        _ => unreachable!(),
-                    };
-                    links.push(DerivedEffectLink {
-                        effect_id,
-                        bonus_type: (uses_link_type
-                            || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
-                        .then_some(bonus_type),
-                        value,
-                        value2,
-                    });
+                    links.push(self.derived_line(owner, effect_type, target, &bonuses, shared_name)?);
                 }
             }
             if links.len() - first_link <= 1 {
@@ -454,6 +371,93 @@ impl TableWriter<'_> {
         Ok(derived_bonuses)
     }
 
+    fn derived_line(
+        &mut self,
+        owner: &BonusOwner,
+        effect_type: &str,
+        target: Option<&str>,
+        bonuses: &[crate::map::effect::DerivedBonus],
+        shared_name: Option<&str>,
+    ) -> Result<DerivedEffectLink> {
+        let first_bonus = bonuses[0];
+        let all_abilities = bonuses.len() > 1 && effect_type == "AbilityBonus" && target == Some("All");
+        let mut resolved_types = bonuses.iter().map(|bonus| {
+            self.bonus_type_of(
+                &BonusOrigin { owner, source_name: effect_type, stat_name: bonus.stat.name, value: Some(bonus.value) },
+                bonus.bonus_type,
+            )
+        });
+        let bonus_type = resolved_types.next().expect("derived group has a first bonus")?;
+        for resolved_type in resolved_types {
+            anyhow::ensure!(
+                resolved_type? == bonus_type,
+                "{:?} {:?} has different types within one {effect_type} line",
+                owner.kind,
+                owner.name
+            );
+        }
+        if let ("SkillBonusAbility", Some(ability)) = (effect_type, target) {
+            let effect_id = self.effects.ensure_group(&format!("{ability} Skills"))?;
+            return Ok(DerivedEffectLink {
+                is_split_line: false,
+                effect_id,
+                bonus_type: Some(bonus_type),
+                value: Some(first_bonus.value),
+                value2: None,
+            });
+        }
+        let source_name = shared_name
+            .map(str::to_string)
+            .unwrap_or_else(|| self.buff_resolver.effect_tier_name(effect_type, target, first_bonus.stat.name));
+        let family_name = if owner.kind == BonusOwnerKind::Augment {
+            EFFECT_MAP.augment_line_name(owner.name, &source_name).unwrap_or(&source_name).to_string()
+        } else {
+            source_name
+        };
+        let existing = self
+            .effects
+            .family_named(&family_name)
+            .filter(|family| !family.verbose_name_template.is_empty())
+            .map(|family| (family.id, family.amount_count, family.uses_link_type));
+        let (effect_id, count, uses_link_type) = match existing {
+            Some(family) => family,
+            None => {
+                let (verbose_name_template, description_template) = if all_abilities {
+                    ("%b1 All Ability Scores +{1}".to_string(), Some("{1} %b1 bonus to all Ability Scores"))
+                } else {
+                    (format!("%b1 {family_name} +{{1}}"), None)
+                };
+                let effect_id =
+                    self.effects.ensure_family(&family_name, &verbose_name_template, description_template, 1)?;
+                (effect_id, 1, true)
+            }
+        };
+        let stat_bonus_type = (!uses_link_type).then_some(bonus_type);
+        let existing_stat =
+            self.effects.stat(effect_id, first_bonus.stat.id, stat_bonus_type.map(ddo_model::enums::BonusType::id));
+        let (amount_from, constant) =
+            existing_stat.unwrap_or(if count == 0 { (0, Some(first_bonus.value)) } else { (1, None) });
+        let rules: Vec<BonusRule> = bonuses
+            .iter()
+            .map(|bonus| BonusRule { stat: bonus.stat, bonus_type: stat_bonus_type, amount_from, constant })
+            .collect();
+        self.effects.ensure_bonus_rules(effect_id, &rules)?;
+        let (value, value2) = match amount_from {
+            0 => (None, None),
+            1 => (Some(first_bonus.value), None),
+            2 => (Some(first_bonus.value), Some(first_bonus.value)),
+            _ => unreachable!(),
+        };
+        Ok(DerivedEffectLink {
+            is_split_line: false,
+            effect_id,
+            bonus_type: (uses_link_type || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
+                .then_some(bonus_type),
+            value,
+            value2,
+        })
+    }
+
     fn grouped_effect_link(
         &mut self,
         owner: &BonusOwner,
@@ -461,7 +465,7 @@ impl TableWriter<'_> {
         owner_id: i64,
         effect: &Effect,
         derived_by_type: &mut [Vec<crate::map::effect::DerivedBonus>],
-    ) -> Result<Option<DerivedEffectLink>> {
+    ) -> Result<Option<Vec<DerivedEffectLink>>> {
         if derived_by_type.iter().any(Vec::is_empty) {
             return Ok(None);
         }
@@ -585,6 +589,76 @@ impl TableWriter<'_> {
         }
         let bonus_type = bonus_type.expect("multi-stat effect has a bonus type");
         let matching = self.groupings.by_stat_set.get(&stats).map(Vec::as_slice).unwrap_or_default();
+        if let [grouping] = matching {
+            if grouping.accepts_value_at_type(bonus_type.name()) {
+                let split_corrections = self
+                    .line_split_corrections
+                    .iter()
+                    .copied()
+                    .filter(|correction| {
+                        correction.name == owner.name
+                            && correction.from.as_text() == Some(grouping.name.as_str())
+                            && correction.bonus_type.as_deref() == Some(bonus_type.name())
+                            && matches!(
+                                (owner.kind, correction.kind),
+                                (BonusOwnerKind::Augment, ddo_model::enums::CorrectionKind::AugmentBonus)
+                                    | (BonusOwnerKind::SetBonusTier, ddo_model::enums::CorrectionKind::SetTierBonus)
+                            )
+                    })
+                    .collect::<Vec<_>>();
+                for correction in split_corrections {
+                    if !super::corrections::removal_owner_matches(self.transaction, correction, owner_id)? {
+                        continue;
+                    }
+                    let mut partitions = correction.line_split_stats(self.groupings)?;
+                    self.effects.ensure_indexed_grouping(grouping, self.groupings)?;
+                    partitions.sort_by_key(|partition| {
+                        bonuses.iter().position(|(_, bonus)| partition.contains(bonus.stat.name))
+                    });
+                    let mut split_links = Vec::new();
+                    for partition in partitions {
+                        let mut link = if partition.len() == 1 {
+                            let (effect_type, bonus) = bonuses
+                                .iter()
+                                .find(|(_, bonus)| partition.contains(bonus.stat.name))
+                                .expect("validated split member");
+                            let target = effect
+                                .targets
+                                .iter()
+                                .find(|target| {
+                                    EFFECT_MAP
+                                        .effect_stat(effect_type, target)
+                                        .is_some_and(|stat| stat.id == bonus.stat.id)
+                                })
+                                .map(String::as_str);
+                            self.derived_line(owner, effect_type, target, &[*bonus], None)?
+                        } else {
+                            let Some([line_grouping]) = self.groupings.by_stat_set.get(&partition).map(Vec::as_slice)
+                            else {
+                                anyhow::bail!(
+                                    "{}: split line has no unique grouping for {partition:?}",
+                                    correction.label()
+                                );
+                            };
+                            anyhow::ensure!(
+                                line_grouping.accepts_value_at_type(bonus_type.name()),
+                                "{}: split line cannot take this value and type",
+                                correction.label()
+                            );
+                            let effect_id = self.effects.ensure_indexed_grouping(line_grouping, self.groupings)?;
+                            self.grouping_line(owner, effect_id, bonus_type, value)?
+                        };
+                        link.is_split_line = true;
+                        split_links.push(link);
+                    }
+                    if !self.applied_line_split_corrections.iter().any(|applied| std::ptr::eq(*applied, correction)) {
+                        self.applied_line_split_corrections.push(correction);
+                    }
+                    self.line_splits.push(split(correction.label()));
+                    return Ok(Some(split_links));
+                }
+            }
+        }
         let effect_id = match matching {
             [grouping] if grouping.accepts_value_at_type(bonus_type.name()) => {
                 self.effects.ensure_indexed_grouping(grouping, self.groupings)?
@@ -647,6 +721,16 @@ impl TableWriter<'_> {
                 return Ok(None);
             }
         };
+        Ok(Some(vec![self.grouping_line(owner, effect_id, bonus_type, value)?]))
+    }
+
+    fn grouping_line(
+        &mut self,
+        owner: &BonusOwner,
+        effect_id: i64,
+        bonus_type: ddo_model::enums::BonusType,
+        value: i64,
+    ) -> Result<DerivedEffectLink> {
         let name = self.effects.family(effect_id).expect("grouping cached").name.clone();
         let effect_id = if owner.kind == BonusOwnerKind::Augment {
             if let Some(line_name) = EFFECT_MAP.augment_line_name(owner.name, &name) {
@@ -662,12 +746,13 @@ impl TableWriter<'_> {
         };
         self.grouping_answers.insert(effect_id);
         let family = self.effects.family(effect_id).expect("grouping cached");
-        Ok(Some(DerivedEffectLink {
+        Ok(DerivedEffectLink {
+            is_split_line: false,
             effect_id,
             bonus_type: family.uses_link_type.then_some(bonus_type),
             value: Some(value),
             value2: None,
-        }))
+        })
     }
 
     fn ensure_targeted_fixed_effect(&mut self, effect: &Effect, links: &mut Vec<DerivedEffectLink>) -> Result<()> {
@@ -681,7 +766,7 @@ impl TableWriter<'_> {
             };
             let effect_id =
                 self.effects.ensure_family(&family_name, &verbose_name_template, None, i64::from(value.is_some()))?;
-            links.push(DerivedEffectLink { effect_id, bonus_type: None, value, value2: None });
+            links.push(DerivedEffectLink { is_split_line: false, effect_id, bonus_type: None, value, value2: None });
             return Ok(());
         }
         let Some(stat_name) = EFFECT_MAP.effect.fixed.get(&effect.types[0]) else {
@@ -693,13 +778,19 @@ impl TableWriter<'_> {
         let family_name = format!("{stat_name} ({target})");
         if effect.types[0] == "Weapon_CriticalRange" && effect.amount_type.as_deref() == Some("Stacks") {
             let effect_id = self.effects.ensure_family(&family_name, &family_name, None, 0)?;
-            links.push(DerivedEffectLink { effect_id, bonus_type: None, value: None, value2: None });
+            links.push(DerivedEffectLink {
+                is_split_line: false,
+                effect_id,
+                bonus_type: None,
+                value: None,
+                value2: None,
+            });
             return Ok(());
         }
         let value = effect.simple_integer_amount();
         let verbose_name_template = format!("{stat_name} +{{1}} ({target})");
         let effect_id = self.effects.ensure_family(&family_name, &verbose_name_template, None, 1)?;
-        links.push(DerivedEffectLink { effect_id, bonus_type: None, value, value2: None });
+        links.push(DerivedEffectLink { is_split_line: false, effect_id, bonus_type: None, value, value2: None });
         Ok(())
     }
 }

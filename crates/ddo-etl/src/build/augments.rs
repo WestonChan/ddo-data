@@ -148,6 +148,7 @@ impl TableWriter<'_> {
                 .ok_or_else(|| anyhow::anyhow!("augment {augment_name:?} needs effect {:?}", rule.effect_name))?
                 .id;
             links[first_index] = DerivedEffectLink {
+                is_split_line: false,
                 effect_id,
                 bonus_type: None,
                 value: Some(rule.first_value_from),

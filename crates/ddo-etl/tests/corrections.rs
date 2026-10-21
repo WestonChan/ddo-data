@@ -100,10 +100,10 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::Patron, "name:name:RowName:false"),
         (CorrectionKind::SocketLabel, "name:label:RowName:false"),
         (CorrectionKind::SetBonus, "icon:icon:Text:true, name:name:RowName:false"),
-        (CorrectionKind::AugmentBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, dedupe:dedupe:BonusDedupe:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
-        (CorrectionKind::ItemBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
+        (CorrectionKind::AugmentBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, dedupe:dedupe:BonusDedupe:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
+        (CorrectionKind::ItemBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
         (CorrectionKind::SetTier, "add:add:TierAddition:false, description:description:Text:true, remove:remove:Removal:false"),
-        (CorrectionKind::SetTierBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
+        (CorrectionKind::SetTierBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
         (CorrectionKind::ItemEffect, "add:add:EffectAddition:false, bonus_type:bonus_type:BonusTypeName:false, remove:remove:Removal:false, value:value:Integer:true"),
         (CorrectionKind::EffectDamage, "add:add:DamageAddition:false, remove:remove:DamageRemoval:false"),
         (CorrectionKind::ItemSocket, "add:add:SocketAddition:false"),
@@ -490,6 +490,109 @@ fn effect_template_and_owner_link_value_corrections_keep_one_effect() {
     let template: String =
         db.query_row("SELECT verbose_name_template FROM effects WHERE name = 'Riposte'", [], |row| row.get(0)).unwrap();
     assert_eq!(template, "Riposte {1}");
+}
+
+#[test]
+fn a_lines_split_preserves_the_default_and_follows_value_changes() {
+    let source = fixture::xml_source();
+    let augment = source.path().join("Augments/WoefulShadow.Augments.xml");
+    std::fs::write(&augment, include_str!("fixtures/effect-groups/WoefulShadow.Augments.xml")).unwrap();
+    std::fs::copy(
+        fixtures_dir().join("effect-groups/icons/Lamordia.png"),
+        source.path().join("AugmentImages/Lamordia.png"),
+    )
+    .unwrap();
+    let correction = new_qualified_correction(
+        "augment_bonus",
+        "Woeful Shadow (Legendary)",
+        "stat = 'Doublestrike and Doubleshot'\nbonus_type = 'Profane'\n",
+        "lines",
+        "\"Doublestrike and Doubleshot\"",
+        "[\"Doubleshot\", \"Doublestrike\"]",
+    );
+    let line_names = |db: &Connection| {
+        db.prepare("SELECT e.name FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name='Woeful Shadow (Legendary)' AND l.value IN (3,4) ORDER BY e.name").unwrap()
+            .query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
+    };
+    let (default_db, _) = built_db_from(source.path(), &[]).unwrap();
+    assert_eq!(line_names(&default_db), ["Doublestrike and Doubleshot"]);
+    let (split_db, report) = built_db_from(source.path(), &[("woeful-shadow.toml", &correction)]).unwrap();
+    assert_eq!(line_names(&split_db), ["Doubleshot", "Doublestrike"]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    assert_eq!(report.line_splits.len(), 1);
+    assert!(report.line_splits[0].reason.ends_with(".lines"));
+    let exported = tempfile::tempdir().unwrap();
+    let mut export_corrections = Corrections::from_database(&split_db).unwrap();
+    export_corrections.entries.extend(fixture::fixture_icon_corrections().entries);
+    let mut normalized = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &export_corrections,
+        &mut normalized,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    ddo_etl::tree::export_database(&normalized, exported.path()).unwrap();
+    for entry in walkdir::WalkDir::new(fixtures_dir().join("data")).into_iter().map(Result::unwrap).filter(|entry| {
+        entry.file_type().is_file() && entry.path().extension().is_some_and(|extension| extension == "png")
+    }) {
+        let destination = exported.path().join(entry.path().strip_prefix(fixtures_dir().join("data")).unwrap());
+        std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+        std::fs::copy(entry.path(), destination).unwrap();
+    }
+    std::fs::copy(
+        fixtures_dir().join("effect-groups/icons/Lamordia.png"),
+        exported.path().join("icons/augments/Lamordia.png"),
+    )
+    .unwrap();
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(exported.path(), &mut rebuilt).unwrap();
+    assert_eq!(recorded_corrections(&normalized), recorded_corrections(&rebuilt));
+    let path = walkdir::WalkDir::new(exported.path())
+        .into_iter()
+        .map(Result::unwrap)
+        .find(|entry| entry.file_name() == "woeful-shadow-legendary.toml")
+        .unwrap()
+        .into_path();
+    let contents = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(&path, contents.replace("name = \"Doubleshot\"", "name = \"Ranged Power\"")).unwrap();
+    let error =
+        ddo_etl::tree::build_from_data(exported.path(), &mut Connection::open_in_memory().unwrap()).unwrap_err();
+    let message = format!("{error:#}");
+    assert!(message.contains("woeful-shadow-legendary.toml") && message.contains("split"), "{message}");
+    let annotation = contents.split_once("[[ddobuilder_correction]]").unwrap().1.split("\n[").next().unwrap();
+    std::fs::write(&path, format!("{contents}\n[[ddobuilder_correction]]{annotation}")).unwrap();
+    let duplicate =
+        ddo_etl::tree::build_from_data(exported.path(), &mut Connection::open_in_memory().unwrap()).unwrap_err();
+    assert!(format!("{duplicate:#}").contains("conflicting notes"), "{duplicate:#}");
+    std::fs::write(
+        &augment,
+        include_str!("fixtures/effect-groups/WoefulShadow.Augments.xml").replace(">3</Amount>", ">4</Amount>"),
+    )
+    .unwrap();
+    let (changed, report) = built_db_from(source.path(), &[("woeful-shadow.toml", &correction)]).unwrap();
+    assert_eq!(line_names(&changed), ["Doubleshot", "Doublestrike"]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+}
+
+#[test]
+fn a_lines_split_survives_the_set_tier_group_fallback() {
+    let correction = new_qualified_correction(
+        "set_tier_bonus",
+        "Kundarak Delving Equipment",
+        "equipped_count = 3\nstat = 'Doublestrike and Doubleshot'\nbonus_type = 'Artifact'\n",
+        "lines",
+        "\"Doublestrike and Doubleshot\"",
+        "[\"Doubleshot\", \"Doublestrike\"]",
+    );
+    let (db, report) = built_db_with(&[("kundarak-split.toml", &correction)]).unwrap();
+    let names = db.prepare("SELECT e.name FROM set_bonus_tier_effects l JOIN effects e ON e.id=l.effect_id JOIN set_bonus_tiers t ON t.id=l.tier_id JOIN set_bonuses s ON s.id=t.set_id WHERE s.name='Kundarak Delving Equipment' AND e.name IN ('Doublestrike','Doubleshot','Doublestrike and Doubleshot') ORDER BY e.name").unwrap()
+        .query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(names, ["Doubleshot", "Doublestrike"]);
+    assert_eq!(report.line_splits.len(), 1);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
 }
 
 #[test]

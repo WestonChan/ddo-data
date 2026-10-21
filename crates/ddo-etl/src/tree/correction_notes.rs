@@ -220,6 +220,7 @@ pub(super) fn correction_values(
 ) -> Result<(String, String)> {
     let mut correction = correction_for_note(note, current_name)?;
     let mut upstream = note.upstream.clone().unwrap_or(Value::Null);
+    correction.from = CorrectionValue::from_json(&upstream.to_string())?;
     if note.field == "is_legacy" {
         if let Some(value) = upstream.as_bool() {
             upstream = json!(i64::from(value));

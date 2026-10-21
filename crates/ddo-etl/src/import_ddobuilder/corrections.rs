@@ -12,6 +12,7 @@ pub(super) struct HisDatabase {
     pub(super) first_stale: Vec<StaleCorrection>,
     pub(super) skipped_wiki_facts: Vec<crate::build::SkippedWikiFact>,
     pub(super) shared_target_splits: Vec<crate::build::DerivedEffectSplit>,
+    pub(super) line_splits: Vec<crate::build::DerivedEffectSplit>,
     pub(super) held_back_effects: Vec<crate::build::DerivedEffectSplit>,
     pub(super) matched_set_tier_prose: std::collections::BTreeSet<crate::build::SetTierProseMatch>,
 }
@@ -82,6 +83,7 @@ fn build_matching_values(
     let first_stale = first_report.stale_corrections;
     let mut skipped_wiki_facts = first_report.skipped_wiki_facts;
     let mut shared_target_splits = first_report.shared_target_splits;
+    let mut line_splits = first_report.line_splits;
     let mut held_back_effects = first_report.held_back_effects;
     let mut matched_set_tier_prose = first_report.matched_set_tier_prose;
     let mut rebased = corrections.clone();
@@ -101,6 +103,7 @@ fn build_matching_values(
         db = Connection::open_in_memory()?;
         let report = builder(groupings, source, wiki, &rebased, &mut db, version)?;
         shared_target_splits = report.shared_target_splits;
+        line_splits = report.line_splits;
         held_back_effects = report.held_back_effects;
         matched_set_tier_prose = report.matched_set_tier_prose;
         skipped_wiki_facts.extend(report.skipped_wiki_facts);
@@ -124,6 +127,7 @@ fn build_matching_values(
         first_stale,
         skipped_wiki_facts,
         shared_target_splits,
+        line_splits,
         held_back_effects,
         matched_set_tier_prose,
     })

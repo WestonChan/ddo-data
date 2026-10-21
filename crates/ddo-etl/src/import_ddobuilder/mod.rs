@@ -53,6 +53,7 @@ fn build_normalized_database(db: &Connection, source: &Path, destination: &Path)
 pub struct NormalizedUpstreamDatabase {
     pub db: Connection,
     pub shared_target_splits: Vec<crate::build::DerivedEffectSplit>,
+    pub line_splits: Vec<crate::build::DerivedEffectSplit>,
     pub held_back_effects: Vec<crate::build::DerivedEffectSplit>,
     matched_set_tier_prose: BTreeSet<crate::build::SetTierProseMatch>,
     filled: Vec<FilledCell>,
@@ -80,6 +81,7 @@ pub fn normalized_upstream_database(
     Ok(NormalizedUpstreamDatabase {
         db,
         shared_target_splits: upstream.shared_target_splits,
+        line_splits: upstream.line_splits,
         held_back_effects: upstream.held_back_effects,
         matched_set_tier_prose: upstream.matched_set_tier_prose,
         filled,

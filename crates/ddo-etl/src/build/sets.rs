@@ -190,7 +190,7 @@ impl TableWriter<'_> {
                 members.iter().map(|name| Stat::by_name(name).expect("validated group member").id).collect();
             for first_index in 0..remaining.len() {
                 let Some(first) = remaining[first_index].as_ref() else { continue };
-                if first.effect_id != member_ids[0] {
+                if first.is_split_line || first.effect_id != member_ids[0] {
                     continue;
                 }
                 let indices: Vec<Vec<usize>> = member_ids
@@ -203,7 +203,8 @@ impl TableWriter<'_> {
                                 candidate
                                     .as_ref()
                                     .filter(|candidate| {
-                                        candidate.effect_id == *member_id
+                                        !candidate.is_split_line
+                                            && candidate.effect_id == *member_id
                                             && candidate.bonus_type == first.bonus_type
                                             && (candidate.value, candidate.value2) == (first.value, first.value2)
                                     })

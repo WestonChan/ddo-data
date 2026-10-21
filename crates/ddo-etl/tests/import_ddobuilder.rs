@@ -51,6 +51,99 @@ use std::path::PathBuf;
 const PREVIOUS_SHA: &str = "ba7e18eecafb1bb5fd6b6cf52cc0b6395bbeb20c";
 const NEW_SHA: &str = "d1350a0c6ec396a65dc02680fa9801a14a79ebf3";
 
+fn woeful_split_import() -> ImportWorld {
+    let correction = fixture::new_qualified_correction(
+        "augment_bonus",
+        "Woeful Shadow (Legendary)",
+        "stat = 'Doublestrike and Doubleshot'\nbonus_type = 'Profane'\n",
+        "lines",
+        "\"Doublestrike and Doubleshot\"",
+        "[\"Doubleshot\", \"Doublestrike\"]",
+    );
+    ImportWorld::with_sources(
+        fixture::corrections_from(&[("woeful-shadow.toml", &correction)]).unwrap(),
+        WikiOverrides::default(),
+        |source| {
+            std::fs::create_dir_all(source.join("Augments")).unwrap();
+            std::fs::create_dir_all(source.join("AugmentImages")).unwrap();
+            std::fs::write(
+                source.join("Augments/WoefulShadow.Augments.xml"),
+                include_str!("fixtures/effect-groups/WoefulShadow.Augments.xml"),
+            )
+            .unwrap();
+            std::fs::write(
+                source.join("AugmentImages/Lamordia.png"),
+                include_bytes!("fixtures/effect-groups/icons/Lamordia.png"),
+            )
+            .unwrap();
+        },
+    )
+}
+
+fn woeful_lines(db: &Connection) -> Vec<(String, i64)> {
+    db.prepare("SELECT e.name,l.value FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id JOIN bonus_types bt ON bt.id=l.bonus_type_id WHERE a.name='Woeful Shadow (Legendary)' AND bt.name='Profane' ORDER BY e.name").unwrap()
+        .query_map([], |row| Ok((row.get(0)?,row.get(1)?))).unwrap().collect::<rusqlite::Result<_>>().unwrap()
+}
+
+#[test]
+fn a_split_import_accepts_a_changed_amount_without_conflict() {
+    let world = woeful_split_import();
+    let path = world.options.source_dir.join("Augments/WoefulShadow.Augments.xml");
+    let xml = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(path, xml.replace(">3</Amount>", ">4</Amount>")).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert_eq!(woeful_lines(&world.database()), [("Doubleshot".into(), 4), ("Doublestrike".into(), 4)]);
+}
+
+#[test]
+fn a_split_import_reports_a_missing_grouping_and_takes_the_new_lines() {
+    let world = woeful_split_import();
+    let path = world.options.source_dir.join("Augments/WoefulShadow.Augments.xml");
+    let xml = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(path, xml.replace("<Type>Doubleshot</Type>", "<Type>RangedPower</Type>")).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    let text = report.to_string();
+    assert!(
+        text.lines().any(|line| line.contains("CONFLICT") && line.contains("no such bonus") && line.contains("lines")),
+        "{text}"
+    );
+    let rebuilt = world.database();
+    assert_eq!(woeful_lines(&rebuilt), [("Ranged Power and Doublestrike".into(), 3)]);
+    let upstream: String = rebuilt
+        .query_row(
+            "SELECT from_value FROM corrections WHERE name='Woeful Shadow (Legendary)' AND field='lines'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(upstream, "\"no such bonus\"");
+}
+
+#[test]
+fn a_split_import_reports_a_changed_type_or_removed_effect() {
+    for removed in [false, true] {
+        let world = woeful_split_import();
+        let path = world.options.source_dir.join("Augments/WoefulShadow.Augments.xml");
+        let xml = std::fs::read_to_string(&path).unwrap();
+        let changed = if removed {
+            let start = xml.find("    <Effect>").unwrap();
+            let end = start + xml[start..].find("</Effect>").unwrap() + "</Effect>".len();
+            format!("{}{}", &xml[..start], &xml[end..])
+        } else {
+            xml.replace("<Bonus>Profane</Bonus>", "<Bonus>Artifact</Bonus>")
+        };
+        std::fs::write(path, changed).unwrap();
+        let report = import_ddobuilder(&world.options).unwrap();
+        assert!(report.has_conflicts(), "{report}");
+        assert!(report.to_string().contains("no such bonus"), "{report}");
+        let rebuilt = world.database();
+        assert!(woeful_lines(&rebuilt).is_empty());
+        let count: i64 = rebuilt.query_row("SELECT COUNT(*) FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name='Woeful Shadow (Legendary)' AND e.name='Doublestrike and Doubleshot'", [], |row| row.get(0)).unwrap();
+        assert_eq!(count, i64::from(!removed));
+    }
+}
+
 fn fixture_root() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/import_ddobuilder")
 }

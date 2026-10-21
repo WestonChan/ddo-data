@@ -123,6 +123,27 @@ pub struct Groupings {
 }
 
 impl Groupings {
+    pub(crate) fn expanded_stat_names(&self, name: &str) -> Result<BTreeSet<String>> {
+        let effect = self
+            .by_id
+            .values()
+            .find(|effect| effect.name == name)
+            .with_context(|| format!("unknown effect {name:?}"))?;
+        if ddo_model::stats::Stat::by_name(name).is_some() {
+            return Ok(BTreeSet::from([name.to_string()]));
+        }
+        let mut stats = BTreeSet::new();
+        for bonus in &effect.bonuses {
+            let target = &self.by_id[&bonus.target_id];
+            if target.is_group {
+                stats.extend(target.bonuses.iter().map(|member| self.by_id[&member.target_id].name.clone()));
+            } else {
+                stats.insert(target.name.clone());
+            }
+        }
+        Ok(stats)
+    }
+
     pub fn valued_prose_duplicates(&self) -> Vec<ValuedProseDuplicate> {
         let names = self
             .by_id

@@ -13,6 +13,7 @@ use std::collections::HashMap;
 use std::path::Path;
 
 pub const NULL_SPELLING: &str = "null";
+pub(crate) const NO_SUCH_BONUS: &str = "no such bonus";
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum CorrectionValue {
@@ -244,6 +245,34 @@ pub struct Correction {
 }
 
 impl Correction {
+    pub(crate) fn line_split_stats(
+        &self,
+        groupings: &crate::groupings::Groupings,
+    ) -> Result<Vec<std::collections::BTreeSet<String>>> {
+        self.validate_values(self.correctable_field()?)?;
+        let CorrectionValue::Text(upstream) = &self.from else { unreachable!() };
+        let CorrectionValue::Texts(lines) = &self.to else { unreachable!() };
+        let expected = groupings.expanded_stat_names(upstream)?;
+        let mut combined = std::collections::BTreeSet::new();
+        let mut partitions = Vec::new();
+        for line in lines {
+            let stats = groupings.expanded_stat_names(line)?;
+            ensure!(
+                !stats.is_empty() && stats.is_disjoint(&combined),
+                "{}: split lines have empty or overlapping stats",
+                self.label()
+            );
+            combined.extend(stats.iter().cloned());
+            partitions.push(stats);
+        }
+        ensure!(
+            expected.len() >= 2 && combined == expected,
+            "{}: split lines have different stats from {upstream:?}",
+            self.label()
+        );
+        Ok(partitions)
+    }
+
     pub fn correctable_field(&self) -> Result<&'static CorrectableField> {
         let fields = if self.selection.is_some() && self.stance.is_none() && self.dc.is_none() {
             crate::tree::selection_correctable_fields()
@@ -398,6 +427,9 @@ impl Correction {
         if field.shape == FieldShape::BonusDedupe && self.bonus_value.is_none() {
             bail!("an augment_bonus dedupe correction needs bonus_value to identify the duplicate amount");
         }
+        if field.shape == FieldShape::BonusLines && self.bonus_value.is_some() {
+            bail!("a lines correction names a grouping and type without a value");
+        }
         if self.kind == CorrectionKind::Effect && field.name == "constant" {
             if self.stat.is_none() || self.bonus_type.is_some() || self.bonus_value.is_some() {
                 bail!("an effect constant correction names exactly one stat");
@@ -418,6 +450,23 @@ impl Correction {
 
     pub(crate) fn validate_values(&self, field: &CorrectableField) -> Result<()> {
         match field.shape {
+            FieldShape::BonusLines if self.from.as_text() == Some(NO_SUCH_BONUS) => {
+                ensure!(
+                    self.to.as_text() == Some(NO_SUCH_BONUS)
+                        || matches!(&self.to, CorrectionValue::Texts(lines) if lines.len() >= 2),
+                    "a missing lines target records its missing bonus or its previous split lines"
+                );
+            }
+            FieldShape::BonusLines => {
+                let (CorrectionValue::Text(grouping), CorrectionValue::Texts(lines)) = (&self.from, &self.to) else {
+                    bail!("a lines split takes one upstream grouping name and a list of separate lines");
+                };
+                ensure!(self.stat.as_ref() == Some(grouping), "a lines qualifier must name its upstream grouping");
+                ensure!(
+                    lines.len() >= 2 && lines.iter().all(|name| !name.trim().is_empty()),
+                    "a lines split requires at least two named lines"
+                );
+            }
             FieldShape::Removal => {
                 if (&self.from, &self.to) != (&CorrectionValue::Integer(0), &CorrectionValue::Integer(1)) {
                     bail!("a remove takes from = 0 (his files still carry the row) and to = 1");
@@ -587,6 +636,7 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::BonusAddition => "a { stat, bonus_type, value } table",
         FieldShape::BonusRemoval => "the current integer value for from and \"null\" for to",
         FieldShape::BonusDedupe => "2 for from and 1 for to",
+        FieldShape::BonusLines => "an upstream grouping name and a list of separate lines",
         FieldShape::TierAddition => "a { equipped_count, description } table",
         FieldShape::EffectAddition => "an effect name or a { name, description } table",
         FieldShape::DamageAddition | FieldShape::DamageRemoval => "a damage row",

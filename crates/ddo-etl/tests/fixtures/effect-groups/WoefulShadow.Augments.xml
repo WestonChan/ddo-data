@@ -1,0 +1,31 @@
+<Augments>
+  <Augment>
+    <Name>Woeful Shadow (Legendary)</Name>
+    <Description>+3% Profane Doublestrike and Doubleshot, +15% Enhancement Bonus to Melee Alacrity,
++20% Enhancement Bonus to Ranged Alacrity.</Description>
+    <MinLevel>34</MinLevel>
+    <Type>Woeful Slot (Weapon)</Type>
+    <Icon>Lamordia</Icon>
+    <Effect>
+      <Type>Doublestrike</Type>
+      <Type>Doubleshot</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+    </Effect>
+    <Effect>
+      <Type>WeaponAlacrityClass</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+      <Item>Melee</Item>
+    </Effect>
+    <Effect>
+      <Type>WeaponAlacrityClass</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+      <Item>Ranged</Item>
+    </Effect>
+  </Augment>
+</Augments>
