@@ -92,6 +92,7 @@ fn loot_wiki(drops: &[LootRow]) -> WikiOverrides {
 fn build_report_with(wiki: &WikiOverrides) -> Result<ddo_etl::build::BuildReport, String> {
     let mut db = Connection::open_in_memory().unwrap();
     build_database(
+        fixture::groupings(),
         &fixtures_dir().join("DataFiles"),
         wiki,
         &Corrections::default(),
@@ -190,6 +191,7 @@ fn build_reports_the_wiki_entries_it_applied() {
 fn built_db_with(wiki: &WikiOverrides) -> (Connection, ddo_etl::build::BuildReport) {
     let mut db = Connection::open_in_memory().unwrap();
     let report = build_database(
+        fixture::groupings(),
         &fixtures_dir().join("DataFiles"),
         wiki,
         &Corrections::default(),

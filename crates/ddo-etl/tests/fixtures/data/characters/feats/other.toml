@@ -127,42 +127,22 @@ value = 999
 
 [[row.effect]]
 bonus_type = "Shield"
-effect = "Physical Resistance Rating"
+effect = "Physical and Magical Resistance Rating"
 value = 0
 
 [[row.effect]]
 bonus_type = "Shield"
-effect = "Magical Resistance Rating"
-value = 0
-
-[[row.effect]]
-bonus_type = "Shield"
-effect = "Physical Resistance Rating"
+effect = "Physical and Magical Resistance Rating"
 value = 5
 
 [[row.effect]]
 bonus_type = "Shield"
-effect = "Magical Resistance Rating"
-value = 5
-
-[[row.effect]]
-bonus_type = "Shield"
-effect = "Physical Resistance Rating"
+effect = "Physical and Magical Resistance Rating"
 value = 10
 
 [[row.effect]]
 bonus_type = "Shield"
-effect = "Magical Resistance Rating"
-value = 10
-
-[[row.effect]]
-bonus_type = "Shield"
-effect = "Physical Resistance Rating"
-value = 15
-
-[[row.effect]]
-bonus_type = "Shield"
-effect = "Magical Resistance Rating"
+effect = "Physical and Magical Resistance Rating"
 value = 15
 
 [[row.modifier]]
@@ -342,6 +322,7 @@ amount_type = "Simple"
 amounts = [0]
 bonus_type = "Shield"
 display_name = "Equipped Buckler PRR/MRR Bonus"
+effect = "Physical and Magical Resistance Rating"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -354,6 +335,7 @@ amount_type = "Simple"
 amounts = [5]
 bonus_type = "Shield"
 display_name = "Equipped Small Shield PRR/MRR Bonus"
+effect = "Physical and Magical Resistance Rating"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -366,6 +348,7 @@ amount_type = "Simple"
 amounts = [10]
 bonus_type = "Shield"
 display_name = "Equipped Large Shield PRR/MRR Bonus"
+effect = "Physical and Magical Resistance Rating"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -378,6 +361,7 @@ amount_type = "Simple"
 amounts = [15]
 bonus_type = "Shield"
 display_name = "Equipped Tower Shield PRR/MRR Bonus"
+effect = "Physical and Magical Resistance Rating"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -428,18 +412,14 @@ source_name = "Paladin"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Armor Class"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Saving Throws"
+effect = "Parrying"
 value = 1
 
 [[row.modifier]]
 amount_type = "Simple"
 amounts = [1]
 bonus_type = "Feat"
+effect = "Parrying"
 effect_type = "ACBonus"
 extra_types = ["SaveBonus"]
 targets = ["All"]

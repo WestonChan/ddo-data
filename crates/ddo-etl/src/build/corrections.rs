@@ -11,14 +11,21 @@ use anyhow::{bail, ensure, Context, Result};
 use ddo_model::enums::{CorrectionKind, ModifierSource, Provenance};
 use rusqlite::types::Value as SqlValue;
 use rusqlite::{params, params_from_iter, OptionalExtension, Transaction};
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
+
+pub(super) struct CorrectionContext<'a> {
+    pub set_tier_descriptions_by_id: &'a HashMap<i64, String>,
+    pub buff_resolver: &'a BuffResolver,
+    pub groupings: &'a crate::groupings::Groupings,
+    pub grouping_answers: &'a HashSet<i64>,
+}
 
 pub(super) fn apply_quest_corrections(
     transaction: &Transaction,
     corrections: &Corrections,
     report: &mut BuildReport,
 ) -> Result<()> {
-    apply_corrections_where(transaction, None, corrections, None, None, report, |correction| {
+    apply_corrections_where(transaction, None, corrections, None, report, |correction| {
         correction.kind == CorrectionKind::Quest
     })
 }
@@ -28,24 +35,15 @@ pub(super) fn apply_non_quest_corrections(
     effects: &mut EffectCache<'_>,
     corrections: &Corrections,
     corrections_applied_while_writing: &[&Correction],
-    set_tier_descriptions_by_id: &HashMap<i64, String>,
-    buff_resolver: &BuffResolver,
+    context: &CorrectionContext<'_>,
     report: &mut BuildReport,
 ) -> Result<()> {
-    apply_corrections_where(
-        transaction,
-        Some(effects),
-        corrections,
-        Some(set_tier_descriptions_by_id),
-        Some(buff_resolver),
-        report,
-        |correction| {
-            correction.kind != CorrectionKind::Quest
-                && !corrections_applied_while_writing
-                    .iter()
-                    .any(|applied_correction| std::ptr::eq(*applied_correction, correction))
-        },
-    )
+    apply_corrections_where(transaction, Some(effects), corrections, Some(context), report, |correction| {
+        correction.kind != CorrectionKind::Quest
+            && !corrections_applied_while_writing
+                .iter()
+                .any(|applied_correction| std::ptr::eq(*applied_correction, correction))
+    })
 }
 
 pub(super) fn record_corrections_applied_while_writing(
@@ -63,8 +61,7 @@ fn apply_corrections_where(
     transaction: &Transaction,
     mut effects: Option<&mut EffectCache<'_>>,
     corrections: &Corrections,
-    set_tier_descriptions_by_id: Option<&HashMap<i64, String>>,
-    buff_resolver: Option<&BuffResolver>,
+    context: Option<&CorrectionContext<'_>>,
     report: &mut BuildReport,
     is_applied_in_this_pass: impl Fn(&Correction) -> bool,
 ) -> Result<()> {
@@ -74,15 +71,8 @@ fn apply_corrections_where(
         });
     renames.sort_by_key(|correction| correction.selection.is_none());
     for correction in field_corrections.into_iter().chain(renames) {
-        apply_correction(
-            transaction,
-            effects.as_deref_mut(),
-            correction,
-            set_tier_descriptions_by_id,
-            buff_resolver,
-            report,
-        )
-        .with_context(|| format!("correction file {}: {}", correction.file_name, correction.label()))?;
+        apply_correction(transaction, effects.as_deref_mut(), correction, context, report)
+            .with_context(|| format!("correction file {}: {}", correction.file_name, correction.label()))?;
     }
     Ok(())
 }
@@ -91,10 +81,11 @@ fn apply_correction(
     transaction: &Transaction,
     effects: Option<&mut EffectCache<'_>>,
     correction: &Correction,
-    set_tier_descriptions_by_id: Option<&HashMap<i64, String>>,
-    buff_resolver: Option<&BuffResolver>,
+    context: Option<&CorrectionContext<'_>>,
     report: &mut BuildReport,
 ) -> Result<()> {
+    let set_tier_descriptions_by_id = context.map(|context| context.set_tier_descriptions_by_id);
+    let buff_resolver = context.map(|context| context.buff_resolver);
     let field = correction.correctable_field()?;
     let mut row_ids = Vec::new();
     for spelling in correction.upstream_names() {
@@ -150,6 +141,11 @@ fn apply_correction(
             correction.kind.name_column()
         );
     }
+    if correction.kind.corrects_a_bonus() && field.shape != FieldShape::BonusAddition {
+        if let Some(context) = context {
+            reject_group_member_correction(transaction, context.groupings, correction, &row_ids)?;
+        }
+    }
     let mut maetrim_values: Vec<CorrectionValue> = Vec::new();
     for row_id in &row_ids {
         let maetrim_value = current_value(transaction, correction, field, *row_id, set_tier_descriptions_by_id)?;
@@ -178,6 +174,9 @@ fn apply_correction(
             },
         );
         return Ok(());
+    }
+    if let Some(context) = context {
+        reject_answer_definition_correction(transaction, context.grouping_answers, correction, field, &row_ids)?;
     }
     write_correction(transaction, effects, correction, field, &row_ids, buff_resolver)?;
     record_applied_correction(transaction, correction, report)
@@ -883,6 +882,85 @@ struct CorrectedBonus {
     bonus_value: Option<i64>,
 }
 
+fn reject_answer_definition_correction(
+    transaction: &Transaction,
+    grouping_answers: &HashSet<i64>,
+    correction: &Correction,
+    field: &CorrectableField,
+    owner_ids: &[i64],
+) -> Result<()> {
+    let affected_effects = match field.shape {
+        FieldShape::EffectBonusConstant => {
+            let mut statement =
+                transaction.prepare("SELECT id, name FROM effects WHERE id IN (SELECT value FROM json_each(?1))")?;
+            let affected_effects = statement
+                .query_map([serde_json::to_string(owner_ids)?], |row| {
+                    Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?))
+                })?
+                .collect::<rusqlite::Result<Vec<_>>>()?;
+            affected_effects
+        }
+        FieldShape::StatScale | FieldShape::StatRounding => {
+            let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
+            let mut statement = transaction.prepare(&corrected_bonus.matching_bonuses_sql("DISTINCT e.id, e.name"))?;
+            let affected_effects = statement
+                .query_map(
+                    params![
+                        serde_json::to_string(owner_ids)?,
+                        corrected_bonus.stat_id,
+                        corrected_bonus.bonus_type_id,
+                        corrected_bonus.bonus_value
+                    ],
+                    |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)),
+                )?
+                .collect::<rusqlite::Result<Vec<_>>>()?;
+            affected_effects
+        }
+        _ => return Ok(()),
+    };
+    for (effect_id, name) in affected_effects {
+        if grouping_answers.contains(&effect_id) {
+            bail!("definition correction {} cannot change grouping lookup answer {name:?}", correction.label());
+        }
+    }
+    Ok(())
+}
+
+fn reject_group_member_correction(
+    transaction: &Transaction,
+    groupings: &crate::groupings::Groupings,
+    correction: &Correction,
+    owner_ids: &[i64],
+) -> Result<()> {
+    let Some(stat) = correction.stat.as_deref().and_then(ddo_model::stats::Stat::by_name) else {
+        return Ok(());
+    };
+    let by_name = groupings
+        .by_stat_set
+        .iter()
+        .flat_map(|(stats, members)| members.iter().map(move |grouping| (grouping.name.as_str(), (stats, grouping))))
+        .collect::<HashMap<_, _>>();
+    let BonusLinkTable { table_name, owner_column } = BonusLinkTable::of(correction.kind)?;
+    let mut statement = transaction.prepare(&format!(
+        "SELECT DISTINCT e.name FROM {table_name} link
+         JOIN effects e ON e.id = link.effect_id
+         WHERE link.{owner_column} IN (SELECT value FROM json_each(?1))"
+    ))?;
+    for row in statement.query_map([serde_json::to_string(owner_ids)?], |row| row.get::<_, String>(0))? {
+        let effect_name = row?;
+        let Some((stats, grouping)) = by_name.get(effect_name.as_str()) else {
+            continue;
+        };
+        ensure!(
+            !stats.contains(stat.name),
+            "stat {:?} is behind grouping {:?}; name the grouping in the correction",
+            stat.name,
+            grouping.name
+        );
+    }
+    Ok(())
+}
+
 struct BonusToRepoint {
     sort_order: i64,
     effect_id: i64,
@@ -916,7 +994,7 @@ impl CorrectedBonus {
             "SELECT {selected_columns} FROM {table_name}
               JOIN effects e ON e.id = {table_name}.effect_id
               LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND ((e.is_group = 0 AND e.id != ?2) OR es.sort_order = 0)
-              WHERE {table_name}.{owner_column} = ?1 AND (es.target_effect_id = ?2 OR e.id = ?2)
+              WHERE {table_name}.{owner_column} IN (SELECT value FROM json_each(?1)) AND (es.target_effect_id = ?2 OR e.id = ?2)
                 AND COALESCE(es.bonus_type_id, {table_name}.bonus_type_id) IS ?3
                 AND (?4 IS NULL OR {effective_value} = ?4)
               ORDER BY {table_name}.sort_order"
@@ -973,7 +1051,7 @@ impl CorrectedBonus {
                JOIN effects e ON e.id = {table_name}.effect_id
                LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND ((e.is_group = 0 AND e.id != ?2) OR es.sort_order = 0)
                LEFT JOIN bonus_types ON bonus_types.id = COALESCE(es.bonus_type_id, {table_name}.bonus_type_id)
-              WHERE {table_name}.{owner_column} = ?1 AND (es.target_effect_id = ?2 OR e.id = ?2)
+              WHERE {table_name}.{owner_column} IN (SELECT value FROM json_each(?1)) AND (es.target_effect_id = ?2 OR e.id = ?2)
                 AND (?3 IS NULL OR {effective_value} = ?3)
               ORDER BY {table_name}.sort_order"
         ))?;
@@ -1015,7 +1093,9 @@ fn repoint_bonuses(
         let requested_type = new_bonus_type_id.or(corrected_bonus.bonus_type_id);
         ensure!(
             groupings.by_stat_set.values().flatten().any(|grouping| grouping.id == corrected_bonus.stat_id
-                && requested_type.is_some_and(|bonus_type| grouping.accepts_value_at_type(bonus_type))),
+                && requested_type
+                    .and_then(|id| ddo_model::enums::BonusType::ALL.iter().find(|bonus_type| bonus_type.id() == id))
+                    .is_some_and(|bonus_type| grouping.accepts_value_at_type(bonus_type.name()))),
             "effect {:?} cannot take one value at the corrected bonus type",
             effects.family(corrected_bonus.stat_id).map(|family| &family.name)
         );
@@ -1128,7 +1208,7 @@ fn add_bonus(
                 .by_stat_set
                 .values()
                 .flatten()
-                .any(|grouping| grouping.id == effect_id && grouping.accepts_value_at_type(bonus_type.id())),
+                .any(|grouping| grouping.id == effect_id && grouping.accepts_value_at_type(bonus_type.name())),
             "added effect {:?} cannot take one value at {}",
             bonus.stat,
             bonus_type.name()

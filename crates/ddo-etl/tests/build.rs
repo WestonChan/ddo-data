@@ -20,6 +20,7 @@ fn fixture_dataset_version() -> DatasetVersion {
 fn built_fixture_db() -> (Connection, BuildReport) {
     let mut db = Connection::open_in_memory().unwrap();
     let report = build_database(
+        fixture::groupings(),
         &data_files_fixture_dir(),
         &WikiOverrides::from_database(&fixture::database(|_| {})).unwrap(),
         &Corrections::default(),
@@ -30,6 +31,32 @@ fn built_fixture_db() -> (Connection, BuildReport) {
     (db, report)
 }
 
+fn built_ambiguous_fixture_db() -> (Connection, BuildReport) {
+    let source = fixture::xml_source();
+    let cases = data_files_fixture_dir().parent().unwrap().join("effect-groups");
+    for (file, closing_tag) in [
+        ("Augments/Ruby.Augments.xml", "</Augments>"),
+        ("Augments/SunAndMoon.Augments.xml", "</Augments>"),
+        ("Feats.xml", "</Feats>"),
+    ] {
+        let path = source.path().join(file);
+        let original = std::fs::read_to_string(&path).unwrap();
+        let addition = std::fs::read_to_string(cases.join(file)).unwrap();
+        std::fs::write(path, original.replace(closing_tag, &format!("{addition}{closing_tag}"))).unwrap();
+    }
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::grouping_cases(),
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    (db, report)
+}
+
 fn count(db: &Connection, sql: &str) -> i64 {
     db.query_row(sql, [], |r| r.get(0)).unwrap()
 }
@@ -37,6 +64,223 @@ fn count(db: &Connection, sql: &str) -> i64 {
 fn item_id(db: &Connection, name: &str) -> i64 {
     db.query_row("SELECT id FROM items WHERE name = ?1", params![name], |r| r.get(0))
         .unwrap_or_else(|e| panic!("{name}: {e}"))
+}
+
+#[test]
+fn a_new_lore_group_keeps_percent_when_c_has_no_stat_template() {
+    let canonical = fixture::database(|root| {
+        std::fs::remove_file(root.join("packs/shared/sets/legendary-hruits-influence.toml")).unwrap();
+        std::fs::remove_file(root.join("effects/stat-groups/fire-cold-electric-and-positive-spell-lore.toml")).unwrap();
+    });
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        &groupings,
+        &data_files_fixture_dir(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let template: String = db
+        .query_row(
+            "SELECT verbose_name_template FROM effects WHERE name = 'Fire, Cold, Electric and Positive Spell Lore'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(template, "%b1 Fire, Cold, Electric and Positive Spell Lore +{1}%");
+}
+
+#[test]
+fn hruits_single_effect_grants_four_spell_powers_on_one_line() {
+    let (db, _) = built_fixture_db();
+    let tier: i64 = db
+        .query_row(
+            "SELECT t.id FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id
+         WHERE s.name = 'Legendary Hruit''s Influence' AND t.equipped_count = 3",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(
+        db.query_row("SELECT COUNT(*) FROM set_bonus_tier_effects WHERE tier_id = ?1", [tier], |row| row
+            .get::<_, i64>(0))
+            .unwrap(),
+        4
+    );
+    let bonuses = db
+        .prepare(
+            "SELECT s.name, b.name, ob.amount, ob.via_effect_id FROM owner_bonuses ob
+         JOIN effects s ON s.id = ob.stat_id JOIN bonus_types b ON b.id = ob.bonus_type_id
+         WHERE ob.owner_kind = 'set_bonus_tier' AND ob.owner_id = ?1 AND s.name LIKE '%Spell Power' ORDER BY s.name",
+        )
+        .unwrap()
+        .query_map([tier], |row| {
+            Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?, row.get::<_, i64>(3)?))
+        })
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(
+        bonuses
+            .iter()
+            .map(|(name, bonus_type, amount, _)| (name.as_str(), bonus_type.as_str(), *amount))
+            .collect::<Vec<_>>(),
+        vec![
+            ("Cold Spell Power", "Artifact", 30),
+            ("Electric Spell Power", "Artifact", 30),
+            ("Fire Spell Power", "Artifact", 30),
+            ("Positive Spell Power", "Artifact", 30),
+        ]
+    );
+    assert!(bonuses.iter().all(|bonus| bonus.3 == bonuses[0].3));
+    let nested_groups = db
+        .prepare(
+            "SELECT DISTINCT target.name FROM effect_bonuses b JOIN effects target ON target.id = b.target_effect_id
+         JOIN effects owner ON owner.id = b.effect_id WHERE target.is_group = 1 AND owner.is_group = 0",
+        )
+        .unwrap()
+        .query_map([], |row| row.get::<_, String>(0))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    let declared_groups = ddo_etl::map::effect_map::EFFECT_MAP.group_names();
+    assert!(nested_groups.iter().all(|name| declared_groups.contains(name)), "{nested_groups:?}");
+}
+
+#[test]
+fn avalanche_uses_the_existing_frozen_thunderstorm_effect() {
+    let (db, _) = built_fixture_db();
+    assert_eq!(
+        count(
+            &db,
+            "SELECT COUNT(*) FROM set_bonus_tier_effects link JOIN effects e ON e.id = link.effect_id
+         JOIN set_bonus_tiers t ON t.id = link.tier_id JOIN set_bonuses s ON s.id = t.set_id
+         WHERE s.name = 'Anger of the Avalanche' AND e.name = 'Power of the Frozen Thunderstorm'"
+        ),
+        1
+    );
+}
+
+#[test]
+fn ambiguous_upstream_stat_sets_keep_their_stat_links_and_are_reported() {
+    let (db, report) = built_ambiguous_fixture_db();
+    for (owner, expected_stats) in [
+        ("Ruby of Negative Spell Power", vec!["Negative Spell Power", "Poison Spell Power"]),
+        ("Solar Gem of Tactical DCs (Heroic)", vec!["Stun DC", "Sunder DC", "Trip DC"]),
+    ] {
+        let mut statement = db
+            .prepare(
+                "SELECT DISTINCT e.name FROM augment_effects link JOIN augments a ON a.id = link.augment_id
+             JOIN effects e ON e.id = link.effect_id WHERE a.name = ?1 ORDER BY e.name",
+            )
+            .unwrap();
+        let linked = statement
+            .query_map([owner], |row| row.get::<_, String>(0))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert_eq!(linked, expected_stats, "{owner}");
+        assert!(report.held_back_effects.iter().any(|effect| effect.owner_name == owner), "{owner}");
+    }
+    assert!(report.shared_target_splits.iter().all(|split| split.reason.contains("shared_targets")));
+}
+
+#[test]
+fn two_slot_deception_cannot_replace_a_single_value_sneak_attack_line() {
+    let (db, report) = built_ambiguous_fixture_db();
+    let names = db.prepare(
+        "SELECT e.name FROM feat_effects link JOIN feats f ON f.id = link.feat_id JOIN effects e ON e.id = link.effect_id
+         WHERE f.name = 'Past Life: Ranger - Dark Hunter' ORDER BY e.name",
+    ).unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(names, ["Sneak Attack Damage", "Sneak Attack Hit"]);
+    assert!(report
+        .held_back_effects
+        .iter()
+        .any(|effect| effect.owner_name == "Past Life: Ranger - Dark Hunter" && effect.reason.contains("Deception")));
+}
+
+#[test]
+fn mixed_fixed_types_keep_the_amplification_stats_separate() {
+    let (db, report) = built_ambiguous_fixture_db();
+    let names = db
+        .prepare(
+            "SELECT e.name FROM set_bonus_tier_effects link JOIN effects e ON e.id = link.effect_id
+         JOIN set_bonus_tiers t ON t.id = link.tier_id JOIN set_bonuses s ON s.id = t.set_id
+         WHERE s.name = 'Eminence of Winter' AND t.equipped_count = 3 ORDER BY e.name",
+        )
+        .unwrap()
+        .query_map([], |row| row.get::<_, String>(0))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(names, ["Healing Amplification", "Negative Healing Amplification", "Repair Amplification"]);
+    assert!(report
+        .held_back_effects
+        .iter()
+        .any(|effect| effect.owner_name == "Eminence of Winter"
+            && effect.reason.contains("Lifeblood of the Undead Prince")));
+}
+
+#[test]
+fn kundaraks_multi_type_effect_keeps_one_doublestrike_and_doubleshot_link() {
+    let (db, _) = built_fixture_db();
+    assert_eq!(
+        count(
+            &db,
+            "SELECT COUNT(*) FROM set_bonus_tier_effects link JOIN effects e ON e.id = link.effect_id
+         JOIN set_bonus_tiers t ON t.id = link.tier_id JOIN set_bonuses s ON s.id = t.set_id
+         WHERE s.name = 'Kundarak Delving Equipment' AND e.name = 'Doublestrike and Doubleshot' AND link.value = 5"
+        ),
+        1
+    );
+}
+
+#[test]
+fn ambiguous_set_lines_keep_the_declared_group_and_shared_targets_record_the_split() {
+    let source = data_files_fixture_dir();
+    let scratch = fixture::xml_source();
+    std::fs::copy(source.parent().unwrap().join("effect-groups/SetBonuses.xml"), scratch.path().join("SetBonuses.xml"))
+        .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::grouping_cases(),
+        scratch.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!(
+        count(
+            &db,
+            "SELECT COUNT(*) FROM set_bonus_tier_effects link JOIN effects e ON e.id = link.effect_id
+         JOIN set_bonus_tiers t ON t.id = link.tier_id JOIN set_bonuses s ON s.id = t.set_id
+         WHERE s.name = 'The Desert''s Starless Nights' AND e.name = 'Negative and Poison Spell Power'"
+        ),
+        1
+    );
+    assert!(report
+        .held_back_effects
+        .iter()
+        .any(|effect| effect.owner_name == "The Desert's Starless Nights" && effect.reason.contains("Nullification")));
+    let split = report.shared_target_splits.iter().find(|effect| effect.owner_name == "Eminence of Summer").unwrap();
+    assert_eq!(split.reason, "effect.targeted.TacticalDC.shared_targets.General");
+    let names = db
+        .prepare(
+            "SELECT e.name FROM set_bonus_tier_effects link JOIN effects e ON e.id = link.effect_id
+         JOIN set_bonus_tiers t ON t.id = link.tier_id JOIN set_bonuses s ON s.id = t.set_id
+         WHERE s.name = 'Eminence of Summer' AND t.equipped_count = 4 ORDER BY e.name",
+        )
+        .unwrap()
+        .query_map([], |row| row.get::<_, String>(0))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(names, ["Assassinate", "Rune Arm DC", "Tactics"]);
 }
 
 #[test]
@@ -1176,7 +1420,7 @@ fn writes_augments_with_slots_bonuses_and_modifiers() {
 #[test]
 fn writes_sets_filigrees_and_their_items() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.set_bonus_count, 8, "seven gear sets and one filigree set");
+    assert_eq!(report.set_bonus_count, 10, "nine gear sets and one filigree set");
     let (icon, filigree): (String, bool) = db
         .query_row("SELECT icon, is_filigree_set FROM set_bonuses WHERE name = 'The Inevitable Grave'", [], |r| {
             Ok((r.get(0)?, r.get(1)?))

@@ -189,4 +189,88 @@
       </Effect>
     </Buff>
   </SetBonus>
+  <SetBonus>
+    <Type>Anger of the Avalanche</Type>
+    <Icon>AngerOfTheAvalanche</Icon>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+6% Artifact bonus to Cold, Sonic, and Electric Spell Critical Chance</Description>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+        <Item>Cold</Item>
+        <Item>Sonic</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+30 Artifact bonus to Cold, Sonic, and Electric Spell Power</Description>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+        <Item>Cold</Item>
+        <Item>Sonic</Item>
+        <Item>Electric</Item>
+      </Effect>
+    </Buff>
+  </SetBonus>
+  <SetBonus>
+    <Type>Legendary Hruit's Influence</Type>
+    <Icon>HruitsInfluence</Icon>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+30 Artifact bonus to Fire, Cold, Lightning and Positive spell power</Description>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+        <Item>Fire</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Positive</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+6% Artifact bonus to Fire, Cold, Lightning and Positive spell critical chance</Description>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">6</Amount>
+        <Item>Fire</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Positive</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+3 Artifact bonus to Wisdom</Description>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>Wisdom</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+3 Artifact bonus to Spell DCs</Description>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+  </SetBonus>
 </SetBonuses>

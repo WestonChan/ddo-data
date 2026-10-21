@@ -1,0 +1,16 @@
+name = "Negative and Poison Spell Power"
+description_template = "{1} %b1 bonus to Negative and Poison spell power."
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Negative and Poison Spell Power +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Negative Spell Power"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Poison Spell Power"

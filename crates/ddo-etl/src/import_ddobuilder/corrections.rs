@@ -11,6 +11,8 @@ pub(super) struct HisDatabase {
     pub(super) db: Connection,
     pub(super) first_stale: Vec<StaleCorrection>,
     pub(super) skipped_wiki_facts: Vec<crate::build::SkippedWikiFact>,
+    pub(super) shared_target_splits: Vec<crate::build::DerivedEffectSplit>,
+    pub(super) held_back_effects: Vec<crate::build::DerivedEffectSplit>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
@@ -46,24 +48,27 @@ pub(super) enum CorrectionEvent {
 }
 
 pub(super) fn build_database_matching_his_values(
+    groupings: &crate::groupings::Groupings,
     source: &Path,
     wiki: &WikiOverrides,
     corrections: &Corrections,
     version: &DatasetVersion,
 ) -> Result<HisDatabase> {
-    build_matching_values(source, wiki, corrections, version, false)
+    build_matching_values(groupings, source, wiki, corrections, version, false)
 }
 
 pub(super) fn build_previous_matching_his_values(
+    groupings: &crate::groupings::Groupings,
     source: &Path,
     wiki: &WikiOverrides,
     corrections: &Corrections,
     version: &DatasetVersion,
 ) -> Result<HisDatabase> {
-    build_matching_values(source, wiki, corrections, version, true)
+    build_matching_values(groupings, source, wiki, corrections, version, true)
 }
 
 fn build_matching_values(
+    groupings: &crate::groupings::Groupings,
     source: &Path,
     wiki: &WikiOverrides,
     corrections: &Corrections,
@@ -72,9 +77,11 @@ fn build_matching_values(
 ) -> Result<HisDatabase> {
     let builder = if is_previous { crate::build::build_previous_database } else { build_database };
     let mut db = Connection::open_in_memory()?;
-    let first_report = builder(source, wiki, corrections, &mut db, version)?;
+    let first_report = builder(groupings, source, wiki, corrections, &mut db, version)?;
     let first_stale = first_report.stale_corrections;
     let mut skipped_wiki_facts = first_report.skipped_wiki_facts;
+    let mut shared_target_splits = first_report.shared_target_splits;
+    let mut held_back_effects = first_report.held_back_effects;
     let mut rebased = corrections.clone();
     let mut changed = false;
     for correction in &mut rebased.entries {
@@ -90,7 +97,9 @@ fn build_matching_values(
     }
     if changed {
         db = Connection::open_in_memory()?;
-        let report = builder(source, wiki, &rebased, &mut db, version)?;
+        let report = builder(groupings, source, wiki, &rebased, &mut db, version)?;
+        shared_target_splits = report.shared_target_splits;
+        held_back_effects = report.held_back_effects;
         skipped_wiki_facts.extend(report.skipped_wiki_facts);
         for stale in report.stale_corrections {
             let resolved = rebased.entries.iter().any(|correction| {
@@ -107,7 +116,7 @@ fn build_matching_values(
     }
     skipped_wiki_facts.sort();
     skipped_wiki_facts.dedup();
-    Ok(HisDatabase { db, first_stale, skipped_wiki_facts })
+    Ok(HisDatabase { db, first_stale, skipped_wiki_facts, shared_target_splits, held_back_effects })
 }
 
 fn upstream_value(correction: &Correction, stale: &[StaleCorrection]) -> String {
@@ -199,6 +208,7 @@ mod tests {
             }],
         };
         let error = build_database_matching_his_values(
+            crate::groupings::fixture_groupings(),
             &source,
             &wiki,
             &corrections,

@@ -5,7 +5,7 @@ use std::collections::{BTreeMap, BTreeSet, HashMap};
 #[derive(Debug, Clone)]
 pub struct GroupingBonus {
     pub target_id: i64,
-    pub bonus_type_id: Option<i64>,
+    pub bonus_type: Option<String>,
     pub amount_from: i64,
     pub constant: Option<i64>,
     pub scale: f64,
@@ -22,7 +22,7 @@ pub struct Grouping {
     pub verbose_name_template: String,
     pub description_template: Option<String>,
     pub set_bonus_line_template: Option<String>,
-    pub home_bonus_type_id: Option<i64>,
+    pub home_bonus_type: Option<String>,
     pub default_value: Option<i64>,
     pub bonuses: Vec<GroupingBonus>,
     pub stat_ids: BTreeSet<i64>,
@@ -30,16 +30,46 @@ pub struct Grouping {
 }
 
 impl Grouping {
-    pub fn accepts_value_at_type(&self, bonus_type_id: i64) -> bool {
-        self.bonuses.iter().all(|bonus| {
-            bonus.amount_from == 1
-                && bonus.constant.is_none()
-                && bonus.scale == 1.0
-                && bonus.rounding == "down"
-                && bonus.trigger_id.is_none()
-                && bonus.bonus_type_id.is_none_or(|fixed| fixed == bonus_type_id)
-        }) && self.bonuses.iter().map(|bonus| bonus.bonus_type_id).collect::<BTreeSet<_>>().len() == 1
+    pub fn accepts_value_at_type(&self, bonus_type: &str) -> bool {
+        !self.verbose_name_template.contains("{2}")
+            && !self.description_template.as_deref().is_some_and(|template| template.contains("{2}"))
+            && self.bonuses.iter().all(|bonus| {
+                bonus.amount_from == 1
+                    && bonus.constant.is_none()
+                    && bonus.scale == 1.0
+                    && bonus.rounding == "down"
+                    && bonus.trigger_id.is_none()
+                    && bonus.bonus_type.as_deref().is_none_or(|fixed| fixed == bonus_type)
+            })
+            && self.bonuses.iter().map(|bonus| bonus.bonus_type.as_deref()).collect::<BTreeSet<_>>().len() == 1
     }
+}
+
+pub fn name_from_stats(stats: &BTreeSet<String>) -> Result<String> {
+    let names = ddo_model::stats::STATS
+        .iter()
+        .filter(|stat| stats.contains(stat.name))
+        .map(|stat| stat.name)
+        .collect::<Vec<_>>();
+    anyhow::ensure!(
+        names.len() == stats.len() && names.len() >= 2,
+        "group requires at least two known stats: {stats:?}"
+    );
+    let words = names.iter().map(|name| name.split_whitespace().collect::<Vec<_>>()).collect::<Vec<_>>();
+    let common_suffix = (1..words.iter().map(Vec::len).min().unwrap())
+        .take_while(|length| {
+            words.iter().all(|name| name[name.len() - length..] == words[0][words[0].len() - length..])
+        })
+        .last()
+        .unwrap_or(0);
+    let mut prefixes = words.iter().map(|name| name[..name.len() - common_suffix].join(" ")).collect::<Vec<_>>();
+    let last = prefixes.pop().unwrap();
+    let mut name = format!("{} and {last}", prefixes.join(", "));
+    if common_suffix > 0 {
+        name.push(' ');
+        name.push_str(&words[0][words[0].len() - common_suffix..].join(" "));
+    }
+    Ok(name)
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
@@ -58,14 +88,16 @@ pub struct GroupingPair<'a> {
 
 #[derive(Debug, Default)]
 pub struct Groupings {
-    pub by_stat_set: HashMap<BTreeSet<i64>, Vec<Grouping>>,
+    pub by_stat_set: HashMap<BTreeSet<String>, Vec<Grouping>>,
+    pub by_id: BTreeMap<i64, Grouping>,
 }
 
 impl Groupings {
     pub fn from_database(db: &Connection) -> Result<Self> {
         let mut statement = db.prepare(
-            "SELECT id, name, slug, is_stat, is_group, verbose_name_template, description_template,
-                    set_bonus_line_template, home_bonus_type_id, default_value FROM effects ORDER BY name",
+            "SELECT e.id, e.name, e.slug, e.is_stat, e.is_group, e.verbose_name_template, e.description_template,
+                    e.set_bonus_line_template, bt.name, e.default_value FROM effects e
+               LEFT JOIN bonus_types bt ON bt.id = e.home_bonus_type_id ORDER BY e.name",
         )?;
         let effects = statement
             .query_map([], |row| {
@@ -79,7 +111,7 @@ impl Groupings {
                         verbose_name_template: row.get::<_, Option<String>>(5)?.unwrap_or_default(),
                         description_template: row.get(6)?,
                         set_bonus_line_template: row.get(7)?,
-                        home_bonus_type_id: row.get(8)?,
+                        home_bonus_type: row.get(8)?,
                         default_value: row.get(9)?,
                         bonuses: Vec::new(),
                         stat_ids: BTreeSet::new(),
@@ -92,15 +124,16 @@ impl Groupings {
             effects.iter().filter(|(is_stat, _)| *is_stat).map(|(_, effect)| effect.id).collect::<BTreeSet<_>>();
         let mut effects_by_id = effects.into_iter().map(|(_, effect)| (effect.id, effect)).collect::<BTreeMap<_, _>>();
         let mut statement = db.prepare(
-            "SELECT effect_id, target_effect_id, bonus_type_id, amount_from, constant, scale, rounding, trigger_id
-               FROM effect_bonuses ORDER BY effect_id, sort_order",
+            "SELECT b.effect_id, b.target_effect_id, bt.name, b.amount_from, b.constant, b.scale, b.rounding, b.trigger_id
+               FROM effect_bonuses b LEFT JOIN bonus_types bt ON bt.id = b.bonus_type_id
+               ORDER BY b.effect_id, b.sort_order",
         )?;
         for row in statement.query_map([], |row| {
             Ok((
                 row.get::<_, i64>(0)?,
                 GroupingBonus {
                     target_id: row.get(1)?,
-                    bonus_type_id: row.get(2)?,
+                    bonus_type: row.get(2)?,
                     amount_from: row.get(3)?,
                     constant: row.get(4)?,
                     scale: row.get(5)?,
@@ -117,10 +150,16 @@ impl Groupings {
             .filter(|effect| effect.is_group)
             .map(|effect| (effect.id, effect.bonuses.iter().map(|bonus| bonus.target_id).collect::<BTreeSet<_>>()))
             .collect::<BTreeMap<_, _>>();
-        let mut groupings = Self::default();
+        let mut groupings = Self { by_stat_set: HashMap::new(), by_id: effects_by_id.clone() };
         for mut effect in effects_by_id.into_values() {
             if effect.bonuses.is_empty()
-                || effect.bonuses.iter().any(|bonus| !matches!(bonus.amount_from, 1 | 2) || bonus.constant.is_some())
+                || effect.bonuses.iter().any(|bonus| {
+                    !matches!(bonus.amount_from, 1 | 2)
+                        || bonus.constant.is_some()
+                        || bonus.scale != 1.0
+                        || bonus.rounding != "down"
+                        || bonus.trigger_id.is_some()
+                })
             {
                 continue;
             }
@@ -135,7 +174,8 @@ impl Groupings {
                 }
             }
             if effect.stat_ids.len() >= 2 {
-                groupings.by_stat_set.entry(effect.stat_ids.clone()).or_default().push(effect);
+                let names = effect.stat_ids.iter().map(|id| groupings.by_id[id].name.clone()).collect();
+                groupings.by_stat_set.entry(names).or_default().push(effect);
             }
         }
         for members in groupings.by_stat_set.values_mut() {
@@ -180,11 +220,69 @@ fn ladder_name(name: &str) -> &str {
 }
 
 #[cfg(test)]
+pub(crate) fn fixture_groupings() -> &'static Groupings {
+    static GROUPINGS: std::sync::OnceLock<Groupings> = std::sync::OnceLock::new();
+    GROUPINGS.get_or_init(|| {
+        let mut db = Connection::open_in_memory().unwrap();
+        crate::tree::build_from_data(
+            &std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data"),
+            &mut db,
+        )
+        .unwrap();
+        Groupings::from_database(&db).unwrap()
+    })
+}
+
+#[cfg(test)]
 mod tests {
     use super::*;
     use rusqlite::trace::{TraceEvent, TraceEventCodes};
     use std::path::Path;
     use std::sync::atomic::{AtomicUsize, Ordering};
+
+    #[test]
+    fn stat_order_and_repeated_targets_do_not_change_the_group_name() {
+        let first = ["Fire Spell Power", "Cold Spell Power", "Electric Spell Power", "Positive Spell Power"];
+        let second = [
+            "Cold Spell Power",
+            "Fire Spell Power",
+            "Positive Spell Power",
+            "Electric Spell Power",
+            "Fire Spell Power",
+        ];
+        for names in [first.as_slice(), second.as_slice()] {
+            let stats = names.iter().map(|name| (*name).to_string()).collect();
+            assert_eq!(name_from_stats(&stats).unwrap(), "Fire, Cold, Electric and Positive Spell Power");
+        }
+        assert!(name_from_stats(&BTreeSet::new()).is_err());
+        assert!(name_from_stats(&BTreeSet::from(["Fire Spell Power".to_string()])).is_err());
+        assert!(name_from_stats(&BTreeSet::from(["Fire Spell Power".to_string(), "Unknown".to_string()])).is_err());
+    }
+
+    #[test]
+    fn only_single_slot_and_compatible_type_definitions_accept_one_value() {
+        let source = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+        let scratch = tempfile::tempdir().unwrap();
+        for directory in ["data", "effect-groups/data"] {
+            let root = source.join(directory);
+            for entry in
+                walkdir::WalkDir::new(&root).into_iter().map(Result::unwrap).filter(|entry| entry.file_type().is_file())
+            {
+                let destination = scratch.path().join(entry.path().strip_prefix(&root).unwrap());
+                std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+                std::fs::copy(entry.path(), destination).unwrap();
+            }
+        }
+        let mut db = Connection::open_in_memory().unwrap();
+        crate::tree::build_from_data(scratch.path(), &mut db).unwrap();
+        let index = Groupings::from_database(&db).unwrap();
+        assert!(!index.by_stat_set.values().flatten().any(|grouping| grouping.name == "Riposte"));
+        let named = |name: &str| index.by_stat_set.values().flatten().find(|grouping| grouping.name == name).unwrap();
+        assert!(named("Power of the Frozen Thunderstorm").accepts_value_at_type("Artifact"));
+        assert!(!named("Deception").accepts_value_at_type("Equipment"));
+        assert!(!named("Lifeblood of the Undead Prince").accepts_value_at_type("Competence"));
+        assert!(!named("Lifeblood of the Undead Prince").accepts_value_at_type("Profane"));
+    }
 
     #[test]
     fn index_uses_two_queries_for_one_and_fifty_effects() {

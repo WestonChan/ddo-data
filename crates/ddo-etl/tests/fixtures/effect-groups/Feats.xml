@@ -1,0 +1,16 @@
+<Feat>
+      <Name>Past Life: Ranger - Dark Hunter</Name>
+      <Description>You were a Ranger Dark Hunter in a past life.
+Each time you acquire this feat you gain +1 to Sneak Attack and Damage.
+This feat can be stacked up to three times.</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>HeroicPastLife</Acquire>
+      <Icon>PastLifeRanger</Icon>
+      <Effect>
+        <Type>SneakAttackAttack</Type>
+        <Type>SneakAttackDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>

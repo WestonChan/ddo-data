@@ -18,9 +18,15 @@ fn fixture_wiki() -> WikiOverrides {
 fn built_with(wiki: &WikiOverrides) -> Result<(Connection, BuildReport), String> {
     let mut db = Connection::open_in_memory().unwrap();
     let dataset_version = DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-10-02T00:00:00Z".into() };
-    let report =
-        build_database(&fixtures_dir().join("DataFiles"), wiki, &Corrections::default(), &mut db, &dataset_version)
-            .map_err(|e| format!("{e:#}"))?;
+    let report = build_database(
+        fixture::groupings(),
+        &fixtures_dir().join("DataFiles"),
+        wiki,
+        &Corrections::default(),
+        &mut db,
+        &dataset_version,
+    )
+    .map_err(|e| format!("{e:#}"))?;
     Ok((db, report))
 }
 

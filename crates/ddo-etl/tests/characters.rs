@@ -17,6 +17,7 @@ fn built_fixture_db() -> Connection {
     let mut db = Connection::open_in_memory().unwrap();
     let dataset_version = DatasetVersion { upstream_sha: "test".into(), built_at: "2026-09-21T00:00:00Z".into() };
     build_database(
+        fixture::groupings(),
         &data_files_fixture_dir(),
         &WikiOverrides::from_database(&fixture::database(|_| {})).unwrap(),
         &Corrections::default(),

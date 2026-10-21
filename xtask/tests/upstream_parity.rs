@@ -13,7 +13,15 @@ fn normalized_fixture_matches_and_reports_an_edited_link() {
         .join("../crates/ddo-etl/tests/fixtures/import_ddobuilder/ba7e18e/DataFiles");
     let version = ddo_model::DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-20T00:00:00Z".into() };
     let mut original = Connection::open_in_memory().unwrap();
-    build_database(&source, &WikiOverrides::default(), &Corrections::default(), &mut original, &version).unwrap();
+    let mut grouping_db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(
+        &Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures/data"),
+        &mut grouping_db,
+    )
+    .unwrap();
+    let groupings = ddo_etl::groupings::Groupings::from_database(&grouping_db).unwrap();
+    build_database(&groupings, &source, &WikiOverrides::default(), &Corrections::default(), &mut original, &version)
+        .unwrap();
     let exported = scratch.path().join("ours");
     ddo_etl::tree::export_ddobuilder_tree(&original, &source, &exported).unwrap();
     let mut ours = Connection::open_in_memory().unwrap();

@@ -14,6 +14,7 @@ fn shared_identity_resolves_fixture_references() {
     let mut db = Connection::open_in_memory().unwrap();
     let fixtures = root.parent().unwrap();
     ddo_etl::build::build_database(
+        fixture::groupings(),
         &fixtures.join("DataFiles"),
         &ddo_etl::wiki::WikiOverrides::from_database(&fixture::database(|_| {})).unwrap(),
         &ddo_etl::corrections::Corrections::default(),

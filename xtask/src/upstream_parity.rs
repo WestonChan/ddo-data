@@ -49,5 +49,11 @@ pub fn upstream_parity(source: &Path, data_dir: &Path, write_db: Option<&Path>) 
     if let Some(destination) = write_db {
         upstream.db.execute("VACUUM INTO ?1", [destination.to_string_lossy().as_ref()])?;
     }
+    for split in upstream.shared_target_splits {
+        println!("SHARED TARGET SPLIT: {split:?}");
+    }
+    for split in upstream.held_back_effects {
+        println!("HELD BACK EFFECT: {split:?}");
+    }
     upstream_differences(&upstream.db, &ours)
 }

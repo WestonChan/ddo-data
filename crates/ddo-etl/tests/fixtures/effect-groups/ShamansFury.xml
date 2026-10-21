@@ -1,0 +1,50 @@
+<SetBonus>
+    <Type>Shaman's Fury</Type>
+    <Icon>ShamansFury</Icon>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+55 Equipment bonus to your Acid, Cold, Electric, and Fire Spell Power.</Description>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Equipment</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">55</Amount>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Fire</Item>
+      </Effect>
+    </Buff>
+  </SetBonus>
+<SetBonus>
+    <Type>Epic Shaman's Fury</Type>
+    <Icon>ShamansFury</Icon>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+4% Artifact bonus to Fire, Cold, Electric, and Acid Spell Critical chance</Description>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Artifact</Bonus>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+20 Artifact bonus Fire, Cold, Electric, and Acid Spell Power</Description>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Artifact</Bonus>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Fire</Item>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+    </Buff>
+  </SetBonus>

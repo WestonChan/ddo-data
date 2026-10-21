@@ -1,0 +1,19 @@
+<Augment>
+      <Name>Ruby of Negative Spell Power</Name>
+      <Description>Your negative/poison based spells have better effect</Description>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Icon>Ruby</Icon>
+      <ChooseLevel/>
+      <Levels size="10">1 4 8 12 16 20 24 28 32 36</Levels>
+      <LevelValue size="10">38 55 70 84 97 111 125 139 153 166</LevelValue>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <Item>Negative</Item>
+         <Item>Poison</Item>
+         <AType>Simple</AType>
+         <Amount size="1">138</Amount>
+      </Effect>
+   </Augment>

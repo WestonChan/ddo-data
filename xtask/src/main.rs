@@ -315,6 +315,7 @@ fn deny_clippy_warnings() -> Result<()> {
 
 fn deny_contract_or_scale_regressions() -> Result<()> {
     for (crate_name, test_target, test_name) in [
+        ("ddo-etl", &["--lib"][..], "groupings::tests::index_uses_two_queries_for_one_and_fifty_effects"),
         ("ddo-etl", &["--lib"][..], "tree::build::file_name_tests::pseudo_pack_names_cannot_be_real_packs"),
         (
             "ddo-etl",

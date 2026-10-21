@@ -397,9 +397,20 @@ impl<'a> EffectCache<'a> {
             .strip_suffix(" Skills")
             .filter(|ability| EFFECT_MAP.skill_ability_groups.skills.contains_key(*ability))
             .map(|ability| format!("{{1}} %b1 bonus to all {ability} based skills."));
+        self.ensure_flat_group(name, members, false, description.as_deref())
+    }
+
+    pub(super) fn ensure_flat_group(
+        &mut self,
+        name: &str,
+        members: &[String],
+        percent: bool,
+        description: Option<&str>,
+    ) -> Result<i64> {
+        let suffix = if percent { "%" } else { "" };
         let id = match self.family_named(name) {
             Some(family) => family.id,
-            None => self.ensure_family(name, &format!("%b1 {name} +{{1}}"), description.as_deref(), 1)?,
+            None => self.ensure_family(name, &format!("%b1 {name} +{{1}}{suffix}"), description, 1)?,
         };
         let family = self.family(id).expect("group family cached");
         ensure!(!family.is_stat && family.amount_count == 1, "group {name:?} must be a one-value named effect");
@@ -413,7 +424,7 @@ impl<'a> EffectCache<'a> {
                 self.transaction
                     .execute("UPDATE effects SET description_template = ?2 WHERE id = ?1", params![id, description])?;
                 let family = self.families_by_id.get_mut(&id).expect("group family cached");
-                family.description_template = Some(description);
+                family.description_template = Some(description.to_string());
                 family.uses_link_type = true;
             }
         }
@@ -425,6 +436,70 @@ impl<'a> EffectCache<'a> {
             self.ensure_stat(id, Stat::by_name(member).expect("validated group member"), None, 1, None, sort_order)?;
         }
         Ok(id)
+    }
+
+    pub(super) fn ensure_indexed_grouping(
+        &mut self,
+        grouping: &crate::groupings::Grouping,
+        index: &crate::groupings::Groupings,
+    ) -> Result<i64> {
+        if let Some(family) = self.family_named(&grouping.name) {
+            return Ok(family.id);
+        }
+        let id = self.ensure_family(
+            &grouping.name,
+            &grouping.verbose_name_template,
+            grouping.description_template.as_deref(),
+            1,
+        )?;
+        self.transaction.execute(
+            "UPDATE effects SET is_group = ?2, set_bonus_line_template = ?3, home_bonus_type_id = ?4, default_value = ?5 WHERE id = ?1",
+            params![id, grouping.is_group, grouping.set_bonus_line_template,
+                grouping.home_bonus_type.as_deref().and_then(BonusType::parse).map(BonusType::id), grouping.default_value],
+        )?;
+        self.families_by_id.get_mut(&id).unwrap().is_group = grouping.is_group;
+        for (sort_order, bonus) in grouping.bonuses.iter().enumerate() {
+            let target = &index.by_id[&bonus.target_id];
+            let bonus_type = bonus
+                .bonus_type
+                .as_deref()
+                .map(|name| BonusType::parse(name).context("indexed bonus type is known"))
+                .transpose()?;
+            if target.is_group {
+                let target_id = self.ensure_indexed_grouping(target, index)?;
+                let stat = Stat::by_name(&index.by_id[&target.bonuses[0].target_id].name)
+                    .context("group member is a known stat")?;
+                self.ensure_group_target(
+                    id,
+                    target_id,
+                    BonusRule { stat, bonus_type, amount_from: 1, constant: None },
+                    sort_order,
+                )?;
+            } else {
+                self.ensure_stat(
+                    id,
+                    Stat::by_name(&target.name).context("grouping target is a known stat")?,
+                    bonus_type,
+                    1,
+                    None,
+                    sort_order,
+                )?;
+            }
+        }
+        self.refresh_family(id)?;
+        Ok(id)
+    }
+
+    pub(super) fn fill_group_description(&mut self, group_id: i64, description: &str) -> Result<()> {
+        let family = self.families_by_id.get_mut(&group_id).context("group is cached")?;
+        if family.description_template.is_none() {
+            self.transaction.execute(
+                "UPDATE effects SET description_template = ?2 WHERE id = ?1",
+                params![group_id, description],
+            )?;
+            family.description_template = Some(description.to_string());
+        }
+        Ok(())
     }
 
     fn ensure_group_target(&mut self, family_id: i64, group_id: i64, rule: BonusRule, sort_order: usize) -> Result<()> {
@@ -830,6 +905,32 @@ mod tests {
     use ddo_model::enums::BonusType;
     use ddo_model::stats::Stat;
     use rusqlite::Connection;
+
+    #[test]
+    fn indexed_grouping_is_the_same_with_an_empty_or_populated_cache() {
+        let index = crate::groupings::fixture_groupings();
+        let stats =
+            ["Cold Spell Power", "Electric Spell Power", "Sonic Spell Power"].map(str::to_string).into_iter().collect();
+        let [grouping] = index.by_stat_set[&stats].as_slice() else {
+            panic!("one Frozen Thunderstorm grouping");
+        };
+        assert_eq!(grouping.name, "Power of the Frozen Thunderstorm");
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        ddo_model::seeds::insert_all(&db).unwrap();
+        let transaction = db.transaction().unwrap();
+        let mut effects = EffectCache::new(&transaction);
+        let first = effects.ensure_indexed_grouping(grouping, index).unwrap();
+        let second = effects.ensure_indexed_grouping(grouping, index).unwrap();
+        assert_eq!(first, second);
+        assert_eq!(
+            transaction
+                .query_row("SELECT COUNT(*) FROM effect_bonuses WHERE effect_id = ?1", [first], |row| row
+                    .get::<_, i64>(0))
+                .unwrap(),
+            3
+        );
+    }
 
     #[test]
     fn untitled_paragraph_becomes_description_with_a_concise_line_template() {

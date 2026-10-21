@@ -976,6 +976,7 @@ mod tests {
         build_from_data(&fixtures.join("data"), &mut ours).unwrap();
         let wiki = WikiOverrides::from_database(&ours).unwrap();
         let stale_report = crate::build::build_database(
+            crate::groupings::fixture_groupings(),
             &fixtures.join("DataFiles"),
             &wiki,
             &corrections,

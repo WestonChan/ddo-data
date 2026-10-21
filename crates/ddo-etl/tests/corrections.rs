@@ -28,9 +28,15 @@ fn committed_corrections() -> &'static Corrections {
 
 fn built_db_with_wiki(wiki: &WikiOverrides, corrections: &Corrections) -> Result<(Connection, BuildReport), String> {
     let mut db = Connection::open_in_memory().unwrap();
-    let report =
-        build_database(&fixtures_dir().join("DataFiles"), wiki, corrections, &mut db, &fixture_dataset_version())
-            .map_err(|e| format!("{e:#}"))?;
+    let report = build_database(
+        fixture::groupings(),
+        &fixtures_dir().join("DataFiles"),
+        wiki,
+        corrections,
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .map_err(|e| format!("{e:#}"))?;
     Ok((db, report))
 }
 
@@ -853,34 +859,17 @@ fn committed_data_flags_the_tempests_spine_armours_the_wiki_says_no_longer_drop(
 }
 
 #[test]
-fn item_stat_transform_corrections_follow_written_links() {
-    let (source_db, _) = built_db_with(&[]).unwrap();
-    let source_sql = "SELECT i.name, s.name, bt.name FROM items i
-             JOIN item_effects l ON l.item_id = i.id
-             JOIN effects e ON e.id = l.effect_id
-             JOIN effect_bonuses es ON es.effect_id = e.id
-             JOIN effects s ON s.id = es.target_effect_id
-             JOIN bonus_types bt ON bt.id = COALESCE(es.bonus_type_id, l.bonus_type_id)
-             WHERE es.amount_from = 1 AND l.value IS NOT NULL AND es.scale = 1 AND e.is_group = 0 AND s.is_stat = 1
-             ORDER BY l.value % 2 DESC, l.value DESC LIMIT 1";
-    let (owner_name, stat_name, bonus_type): (String, String, String) =
-        source_db.query_row(source_sql, [], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?))).unwrap();
-    let qualifier = format!("stat = {stat_name:?}\nbonus_type = {bonus_type:?}");
-    let corrections = new_qualified_correction("item_bonus", &owner_name, &qualifier, "scale", "1.0", "0.5")
-        + &new_qualified_correction("item_bonus", &owner_name, &qualifier, "rounding", "\"down\"", "\"up\"");
-    let (corrected_db, report) = built_db_with(&[("transforms.toml", &corrections)]).unwrap();
-    assert_eq!(
-        (report.correction_applied_count, report.correction_stale_count),
-        (2, 0),
-        "{:?}",
-        report.stale_corrections
+fn a_member_correction_cannot_split_a_two_slot_grouping() {
+    let correction = new_qualified_correction(
+        "item_bonus",
+        "Kundarak Delving Boots",
+        "stat = \"Movement Speed\"\nbonus_type = \"Enhancement\"",
+        "scale",
+        "1.0",
+        "0.5",
     );
-    let corrected_sql = source_sql
-        .replace("SELECT i.name, s.name, bt.name", "SELECT es.scale, es.rounding, l.value")
-        .replace("AND es.scale = 1", "AND es.scale = 0.5");
-    let (scale, rounding, _): (f64, String, i64) =
-        corrected_db.query_row(&corrected_sql, [], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?))).unwrap();
-    assert_eq!((scale, rounding.as_str()), (0.5, "up"));
+    let error = built_db_with(&[("speed-scale.toml", &correction)]).unwrap_err();
+    assert!(error.contains("Movement Speed") && error.contains("grouping \"Speed\""), "{error}");
 }
 
 fn item_names(db: &Connection) -> Vec<String> {
@@ -2199,6 +2188,7 @@ fn built_db_from(
 ) -> Result<(Connection, BuildReport), String> {
     let mut db = Connection::open_in_memory().unwrap();
     let report = build_database(
+        fixture::groupings(),
         data_files_dir,
         &WikiOverrides::default(),
         &validated_corrections(correction_files)?,
@@ -2207,6 +2197,20 @@ fn built_db_from(
     )
     .map_err(|e| format!("{e:#}"))?;
     Ok((db, report))
+}
+
+#[test]
+fn a_definition_correction_cannot_change_a_grouping_answer() {
+    let correction = new_qualified_correction(
+        "set_tier_bonus",
+        "Anger of the Avalanche",
+        "equipped_count = 2\nstat = \"Power of the Frozen Thunderstorm\"\nbonus_type = \"Artifact\"",
+        "scale",
+        "1.0",
+        "0.5",
+    );
+    let error = built_db_with(&[("grouping-scale.toml", &correction)]).unwrap_err();
+    assert!(error.contains("Power of the Frozen Thunderstorm") && error.contains("lookup answer"), "{error}");
 }
 
 #[test]
@@ -2431,60 +2435,83 @@ fn a_set_tier_correction_shares_a_family_with_the_same_effect_on_another_set() {
     let data_files_dir = data_files_with_untyped("shared-set-family", &[]);
     let set_file = data_files_dir.join("SetBonuses.xml");
     let source = std::fs::read_to_string(&set_file).unwrap();
-    let added_sets = r#"
-  <SetBonus>
-    <Type>Shaman's Fury</Type>
-    <Buff><EquippedCount>2</EquippedCount><Description>+55 Equipment bonus to your Acid, Cold, Electric, and Fire Spell Power.</Description>
-      <Effect><Type>SpellPower</Type><Bonus>Equipment</Bonus><AType>Simple</AType><Amount size="1">55</Amount>
-        <Item>Acid</Item><Item>Cold</Item><Item>Electric</Item><Item>Fire</Item></Effect>
-    </Buff>
-  </SetBonus>
-  <SetBonus>
-    <Type>Epic Shaman's Fury</Type>
-    <Buff><EquippedCount>2</EquippedCount><Description>+20 Artifact bonus Fire, Cold, Electric, and Acid Spell Power</Description>
-      <Effect><Type>SpellPower</Type><Bonus>Artifact</Bonus><AType>Simple</AType><Amount size="1">20</Amount>
-        <Item>Acid</Item><Item>Cold</Item><Item>Electric</Item><Item>Fire</Item></Effect>
-    </Buff>
-  </SetBonus>
-"#;
+    let added_sets = include_str!("fixtures/effect-groups/ShamansFury.xml");
     std::fs::write(&set_file, source.replace("</SetBonuses>", &format!("{added_sets}</SetBonuses>"))).unwrap();
-    let mut corrections = CorrectionSet::default();
-    for stat in ["Acid", "Cold", "Electric", "Fire"] {
-        let qualifier = format!("equipped_count = 2\nstat = \"{stat} Spell Power\"\nbonus_type = \"Equipment\"");
-        corrections = corrections
-            + &new_qualified_correction(
-                "set_tier_bonus",
-                "Shaman's Fury",
-                &qualifier,
-                "bonus_type",
-                "\"Equipment\"",
-                "\"Artifact\"",
-            );
-        let qualifier = format!("equipped_count = 2\nstat = \"{stat} Spell Power\"\nbonus_type = \"Artifact\"");
-        corrections =
-            corrections + &new_qualified_correction("set_tier_bonus", "Shaman's Fury", &qualifier, "value", "55", "10");
-    }
-    let (db, report) = built_db_from(&data_files_dir, &[("corrections.toml", &corrections)]).unwrap();
-    assert_eq!((report.correction_applied_count, report.correction_stale_count), (8, 0));
+    let corrections = new_qualified_correction(
+        "set_tier_bonus",
+        "Shaman's Fury",
+        "equipped_count = 2\nstat = \"Elemental Resonance\"\nbonus_type = \"Equipment\"",
+        "bonus_type",
+        "\"Equipment\"",
+        "\"Artifact\"",
+    ) + &new_qualified_correction(
+        "set_tier_bonus",
+        "Shaman's Fury",
+        "equipped_count = 2\nstat = \"Elemental Resonance\"\nbonus_type = \"Artifact\"",
+        "value",
+        "55",
+        "10",
+    ) + &new_qualified_correction(
+        "set_tier_bonus",
+        "Shaman's Fury",
+        "equipped_count = 2",
+        "add",
+        "\"null\"",
+        "{ stat = \"Fire, Cold, Electric and Acid Spell Lore\", bonus_type = \"Artifact\", value = 2 }",
+    );
+    let build = |corrections: &CorrectionSet| {
+        let mut db = Connection::open_in_memory().unwrap();
+        let report = build_database(
+            fixture::grouping_cases(),
+            &data_files_dir,
+            &WikiOverrides::default(),
+            &validated_corrections(&[("corrections.toml", corrections)]).unwrap(),
+            &mut db,
+            &fixture_dataset_version(),
+        )?;
+        Ok::<_, anyhow::Error>((db, report))
+    };
+    let (db, report) = build(&corrections).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (3, 0));
+    let member_correction = new_qualified_correction(
+        "set_tier_bonus",
+        "Shaman's Fury",
+        "equipped_count = 2\nstat = \"Fire Spell Power\"\nbonus_type = \"Equipment\"",
+        "value",
+        "55",
+        "10",
+    );
+    let error = format!("{:#}", build(&member_correction).unwrap_err());
+    assert!(error.contains("Elemental Resonance") && error.contains("grouping"), "{error}");
     let mut first_family_id = None;
     for (set_name, expected_value) in [("Shaman's Fury", 10), ("Epic Shaman's Fury", 20)] {
         let rows = set_tier_bonus_rows(&db, set_name, 2);
-        assert_eq!(rows.len(), 4, "{set_name}: {rows:?}");
+        assert_eq!(rows.len(), 8, "{set_name}: {rows:?}");
         assert!(
-            rows.iter().all(|(_, bonus_type, value)| bonus_type == "Artifact" && *value == expected_value),
+            rows.iter().all(|(stat, bonus_type, value)| bonus_type == "Artifact"
+                && *value
+                    == if stat.ends_with("Spell Lore") {
+                        if set_name == "Shaman's Fury" {
+                            2
+                        } else {
+                            4
+                        }
+                    } else {
+                        expected_value
+                    }),
             "{set_name}: {rows:?}"
         );
         let family: (i64, String, String, Option<i64>) = db
             .query_row(
                 "SELECT e.id, e.name, e.verbose_name_template, te.value FROM set_bonus_tiers t JOIN set_bonuses s ON s.id = t.set_id
              JOIN set_bonus_tier_effects te ON te.tier_id = t.id JOIN effects e ON e.id = te.effect_id
-             WHERE s.name = ?1 AND t.equipped_count = 2 AND e.name = 'Acid Spell Power'",
+             WHERE s.name = ?1 AND t.equipped_count = 2 AND e.name = 'Elemental Resonance'",
                 [set_name],
                 |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)),
             )
             .unwrap();
-        assert_eq!(family.1, "Acid Spell Power", "{family:?}");
-        assert_eq!(family.2, "%b1 Acid Spell Power +{1}", "{family:?}");
+        assert_eq!(family.1, "Elemental Resonance", "{family:?}");
+        assert_eq!(family.2, "%b1 Elemental Resonance +{1}", "{family:?}");
         assert_eq!(family.3, Some(expected_value));
         if let Some(first_id) = first_family_id {
             assert_eq!(family.0, first_id);
@@ -2492,6 +2519,12 @@ fn a_set_tier_correction_shares_a_family_with_the_same_effect_on_another_set() {
             first_family_id = Some(family.0);
         }
     }
+    let changed = std::fs::read_to_string(&set_file)
+        .unwrap()
+        .replace("<Amount size=\"1\">55</Amount>", "<Amount size=\"1\">56</Amount>");
+    std::fs::write(&set_file, changed).unwrap();
+    let (_, report) = build(&corrections).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 1));
 }
 
 #[test]

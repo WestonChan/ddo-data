@@ -8,6 +8,7 @@ pub(super) fn fixture_database() -> Connection {
     let source = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/import_ddobuilder/ba7e18e/DataFiles");
     let mut original = Connection::open_in_memory().unwrap();
     crate::build::build_database(
+        crate::groupings::fixture_groupings(),
         &source,
         &crate::wiki::WikiOverrides::default(),
         &crate::corrections::Corrections::default(),

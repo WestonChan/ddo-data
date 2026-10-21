@@ -1,0 +1,19 @@
+<Augment>
+    <Name>Solar Gem of Tactical DCs (Heroic)</Name>
+    <Description>+1 Artifact Bonus to Tactical DCs.
+Drops in: The Key to the Mythal, end chest
+Dinosaur Crisis, end chest
+The Body Snatchers, end chest</Description>
+    <MinLevel>1</MinLevel>
+    <Type>Sun</Type>
+    <Icon>HistoryBookWhite</Icon>
+    <Effect>
+      <Type>TacticalDC</Type>
+      <Bonus>Artifact</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>Stun</Item>
+      <Item>Sunder</Item>
+      <Item>Trip</Item>
+    </Effect>
+  </Augment>

@@ -16,6 +16,7 @@ fn exported_ddobuilder_tree_builds_with_dc_icons_from_other_kinds() {
     let root = std::env::temp_dir().join(format!("ddo-import-dc-icons-{}", std::process::id()));
     let mut db = Connection::open_in_memory().unwrap();
     build::build_database(
+        fixture::groupings(),
         &source,
         &WikiOverrides::default(),
         &Corrections::default(),
@@ -151,6 +152,7 @@ fn fieldless_citation_does_not_make_an_upstream_item_wiki_only() {
     let mut db = Connection::open_in_memory().unwrap();
     let corrections = fixture::fixture_icon_corrections();
     build::build_database(
+        fixture::groupings(),
         &source,
         &WikiOverrides::default(),
         &corrections,
@@ -261,6 +263,7 @@ fn database_overlay_preserves_authored_array_order_and_effect_titles() {
     corrections.entries.push(correction);
     let mut written = Connection::open_in_memory().unwrap();
     build::build_database(
+        fixture::groupings(),
         &fixtures.join("DataFiles"),
         &wiki,
         &corrections,
@@ -288,6 +291,7 @@ fn database_overlay_preserves_authored_array_order_and_effect_titles() {
     );
     let mut rebuilt = Connection::open_in_memory().unwrap();
     build::build_database(
+        fixture::groupings(),
         &fixtures.join("DataFiles"),
         &reconstructed,
         &Corrections::from_database(&ours).unwrap(),
@@ -332,6 +336,7 @@ fn overlay_catalog_identity_survives_insertion_order() {
         }
         let mut built = Connection::open_in_memory().unwrap();
         build::build_database(
+            fixture::groupings(),
             &fixtures.join("DataFiles"),
             &wiki,
             &Corrections::from_database(&fixture).unwrap(),
@@ -403,6 +408,7 @@ fn import_with_merged_socket_labels(adoption: HisAdoption) -> MergedSocketLabelI
     let root = scratch.path().join("data");
     let mut previous = Connection::open_in_memory().unwrap();
     let report = build::build_database(
+        fixture::groupings(),
         &source,
         &wiki,
         &corrections,
@@ -566,6 +572,7 @@ fn separate_corrections_with_one_target_fail_naming_both_on_every_kind() {
             );
         }
         let error = build::build_database(
+            fixture::groupings(),
             &fixtures.join("DataFiles"),
             &WikiOverrides::default(),
             &corrections,
@@ -608,7 +615,8 @@ fn overlay_references_follow_only_renames_active_in_each_xml_build() {
             std::fs::write(quests, contents).unwrap();
         }
         let mut built = Connection::open_in_memory().unwrap();
-        let report = build::build_database(&source, &wiki, &corrections, &mut built, &version).unwrap();
+        let report =
+            build::build_database(fixture::groupings(), &source, &wiki, &corrections, &mut built, &version).unwrap();
         let resolved = report
             .stale_corrections
             .iter()
@@ -634,6 +642,7 @@ fn overlay_references_follow_only_renames_active_in_each_xml_build() {
     saga.pack = Some("A name neither XML nor a correction carries".into());
     let owner_file = saga.file_name.clone();
     let error = build::build_database(
+        fixture::groupings(),
         &fixtures.join("DataFiles"),
         &unknown,
         &corrections,
@@ -655,6 +664,7 @@ fn canonical_fixture_reproduces_all_tables_with_xml_citations_a_subset_of_ours()
     let wiki = WikiOverrides::from_database(&ours).unwrap();
     let mut upstream = Connection::open_in_memory().unwrap();
     let report = build::build_database(
+        fixture::groupings(),
         &fixtures.join("DataFiles"),
         &wiki,
         &corrections,
@@ -795,6 +805,7 @@ fn database_wiki_reference_failure_names_the_owning_data_file() {
     copy_tree(&fixtures.join("DataFiles"), scratch.path());
     std::fs::remove_file(scratch.path().join("Items/Buckler of the Golden Age.item")).unwrap();
     let error = build::build_database(
+        fixture::groupings(),
         scratch.path(),
         &wiki,
         &corrections,
@@ -812,6 +823,7 @@ fn xml_overlay_does_not_recreate_citations_owned_by_the_data_tree() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let mut db = Connection::open_in_memory().unwrap();
     build::build_database(
+        fixture::groupings(),
         &fixtures.join("DataFiles"),
         &WikiOverrides::from_database(&fixture::database(|_| {})).unwrap(),
         &Corrections::default(),
@@ -1030,6 +1042,7 @@ impl ImportWorld {
         copy_tree(&fixture_root().join("d1350a0c/DataFiles"), &source_dir);
         let mut db = Connection::open_in_memory().unwrap();
         build::build_database(
+            fixture::groupings(),
             &previous_dir,
             &wiki,
             &corrections,
@@ -1300,7 +1313,7 @@ fn augment_family_rename_preserves_the_upstream_correction_name() {
     let mut corrections = fixture::fixture_icon_corrections();
     let version = DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() };
     let mut baseline = Connection::open_in_memory().unwrap();
-    build::build_database(&source, &wiki, &corrections, &mut baseline, &version).unwrap();
+    build::build_database(fixture::groupings(), &source, &wiki, &corrections, &mut baseline, &version).unwrap();
     let (name, family): (String, String) = baseline
         .query_row("SELECT name, family FROM augments ORDER BY id LIMIT 1", [], |row| Ok((row.get(0)?, row.get(1)?)))
         .unwrap();
@@ -1311,7 +1324,7 @@ fn augment_family_rename_preserves_the_upstream_correction_name() {
         .entries
         .extend(rename.cited("Reviewed family rename.", "https://ddowiki.com/page/Test", "2026-10-18").0);
     let mut corrected = Connection::open_in_memory().unwrap();
-    build::build_database(&source, &wiki, &corrections, &mut corrected, &version).unwrap();
+    build::build_database(fixture::groupings(), &source, &wiki, &corrections, &mut corrected, &version).unwrap();
     let scratch = tempfile::tempdir().unwrap();
     export_fixture_with_icons(&corrected, &source, scratch.path());
     let mut rebuilt = Connection::open_in_memory().unwrap();
@@ -1348,7 +1361,9 @@ fn selection_and_parent_renames_keep_the_upstream_parent_in_both_builders() {
             corrections.entries.extend(rename.cited("Paired rename.", "https://ddowiki.com/page/Test", "2026-10-18").0);
         }
         let mut corrected = Connection::open_in_memory().unwrap();
-        let report = build::build_database(&source, &wiki, &corrections, &mut corrected, &version).unwrap();
+        let report =
+            build::build_database(fixture::groupings(), &source, &wiki, &corrections, &mut corrected, &version)
+                .unwrap();
         assert!(report.stale_corrections.is_empty());
         let scratch = tempfile::tempdir().unwrap();
         export_fixture_with_icons(&corrected, &source, scratch.path());
@@ -1405,7 +1420,8 @@ fn every_declared_enhancement_field_agrees_between_builders() {
     let baseline_corrections = fixture::fixture_icon_corrections();
     let version = DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-10-18T00:00:00Z".into() };
     let mut baseline = Connection::open_in_memory().unwrap();
-    build::build_database(&source, &wiki, &baseline_corrections, &mut baseline, &version).unwrap();
+    build::build_database(fixture::groupings(), &source, &wiki, &baseline_corrections, &mut baseline, &version)
+        .unwrap();
     for selection in [false, true] {
         for field in expected {
             for empty_list in [false, true] {
@@ -1464,7 +1480,7 @@ fn every_declared_enhancement_field_agrees_between_builders() {
                     );
                 }
                 let mut corrected = Connection::open_in_memory().unwrap();
-                build::build_database(&source, &wiki, &corrections, &mut corrected, &version)
+                build::build_database(fixture::groupings(), &source, &wiki, &corrections, &mut corrected, &version)
                     .unwrap_or_else(|error| panic!("{table}.{field}: {error:#}"));
                 let scratch = tempfile::tempdir().unwrap();
                 export_fixture_with_icons(&corrected, &source, scratch.path());
@@ -1733,6 +1749,7 @@ fn a_quest_he_adds_that_we_already_hold_keeps_the_facts_only_we_carry() {
 fn his_xml_never_carries_a_column_declared_ours_only() {
     let mut his = Connection::open_in_memory().unwrap();
     build::build_database(
+        fixture::groupings(),
         &Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles"),
         &WikiOverrides::default(),
         &Corrections::default(),
@@ -2046,6 +2063,7 @@ fn import_lists_an_added_pack_as_needing_research() {
     let empty_data = world.scratch.path().join("without-pack");
     let mut db = Connection::open_in_memory().unwrap();
     build::build_database(
+        fixture::groupings(),
         &world.options.previous_dir,
         &WikiOverrides::default(),
         &Corrections::default(),

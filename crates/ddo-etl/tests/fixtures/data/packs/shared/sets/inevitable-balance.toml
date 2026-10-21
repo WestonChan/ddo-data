@@ -9,17 +9,13 @@ equipped_count = 2
 
 [[tier.effect]]
 bonus_type = "Stacking"
-effect = "Melee Power"
-value = 5
-
-[[tier.effect]]
-bonus_type = "Stacking"
-effect = "Doublestrike"
+effect = "Melee Power and Doublestrike"
 value = 5
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Stacking"
+effect = "Melee Power and Doublestrike"
 effect_type = "MeleePower"
 extra_types = ["Doublestrike"]

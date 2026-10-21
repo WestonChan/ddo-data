@@ -1,0 +1,28 @@
+name = "Elemental Resonance"
+description_template = "Passive: {1} %b1 bonus to Acid, Fire, Electric and Cold Spell Power."
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Elemental Resonance +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Acid Spell Power"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Cold Spell Power"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Electric Spell Power"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Fire Spell Power"

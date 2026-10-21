@@ -1,0 +1,39 @@
+name = "Anger of the Avalanche"
+icon = "AngerOfTheAvalanche"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Cold, Electric and Sonic Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Power of the Frozen Thunderstorm"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Power of the Frozen Thunderstorm"
+effect_type = "SpellLore"
+targets = [
+    "Cold",
+    "Sonic",
+    "Electric",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Power of the Frozen Thunderstorm"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Sonic",
+    "Electric",
+]

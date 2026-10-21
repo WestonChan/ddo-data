@@ -190,6 +190,7 @@ fn record_map_targets(sources_by_stat: &mut BTreeMap<String, String>) {
 fn record_fixture_build_bonuses(sources_by_stat: &mut BTreeMap<String, String>) {
     let mut db = Connection::open_in_memory().unwrap();
     build_database(
+        fixture::groupings(),
         &fixtures_dir().join("DataFiles"),
         &WikiOverrides::from_database(&fixture::database(|_| {})).unwrap(),
         &Corrections::default(),

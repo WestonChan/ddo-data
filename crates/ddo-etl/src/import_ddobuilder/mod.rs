@@ -52,6 +52,8 @@ fn build_normalized_database(db: &Connection, source: &Path, destination: &Path)
 
 pub struct NormalizedUpstreamDatabase {
     pub db: Connection,
+    pub shared_target_splits: Vec<crate::build::DerivedEffectSplit>,
+    pub held_back_effects: Vec<crate::build::DerivedEffectSplit>,
     filled: Vec<FilledCell>,
     first_stale: Vec<crate::build::StaleCorrection>,
     skipped_wiki_facts: Vec<crate::build::SkippedWikiFact>,
@@ -66,15 +68,18 @@ pub fn normalized_upstream_database(
 ) -> Result<NormalizedUpstreamDatabase> {
     let wiki = WikiOverrides::from_database(ours)?;
     let corrections = Corrections::from_database(ours)?;
+    let groupings = crate::groupings::Groupings::from_database(ours)?;
     let upstream = if is_previous {
-        corrections::build_previous_matching_his_values(source, &wiki, &corrections, version)?
+        corrections::build_previous_matching_his_values(&groupings, source, &wiki, &corrections, version)?
     } else {
-        corrections::build_database_matching_his_values(source, &wiki, &corrections, version)?
+        corrections::build_database_matching_his_values(&groupings, source, &wiki, &corrections, version)?
     };
     let filled = blanks::fill_cells_from_ours(&upstream.db, ours)?;
     let db = build_normalized_database(&upstream.db, source, destination)?;
     Ok(NormalizedUpstreamDatabase {
         db,
+        shared_target_splits: upstream.shared_target_splits,
+        held_back_effects: upstream.held_back_effects,
         filled,
         first_stale: upstream.first_stale,
         skipped_wiki_facts: upstream.skipped_wiki_facts,
@@ -198,6 +203,7 @@ mod tests {
         let source = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/import_ddobuilder/ba7e18e/DataFiles");
         let mut original = Connection::open_in_memory().unwrap();
         build_database(
+            crate::groupings::fixture_groupings(),
             &source,
             &WikiOverrides::default(),
             &Corrections::default(),

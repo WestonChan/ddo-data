@@ -1,0 +1,122 @@
+<SetBonuses>
+<SetBonus>
+    <Type>Eminence of Summer</Type>
+    <Icon>EminenceOfSummer</Icon>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+30 Artifact bonus to Magical Resistance Rating</Description>
+      <Effect>
+        <Type>MRR</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+30% Artifact bonus to Fortification Bypass</Description>
+      <Effect>
+        <Type>FortificationBypass</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>4</EquippedCount>
+      <Description>+5 Artifact bonus to Tactical Abilities</Description>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>Assassinate</Item>
+        <Item>Trip</Item>
+        <Item>Sunder</Item>
+        <Item>Stun</Item>
+        <Item>General</Item>
+        <Item>Rune Arm</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+15% Artifact bonus to damage versus Helpless</Description>
+      <Effect>
+        <Type>HelplessDamage</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>6</EquippedCount>
+      <Description>+15% Artifact bonus to Doublestrike and Doubleshot</Description>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doubleshot</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>7</EquippedCount>
+      <Description>+15 Artifact bonus to Melee and Ranged power</Description>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+      </Effect>
+      <Effect>
+        <Type>RangedPower</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+      </Effect>
+    </Buff>
+  </SetBonus>
+<SetBonus>
+    <Type>The Desert's Starless Nights</Type>
+    <Icon>Menechtarun</Icon>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+2% Artifact bonus to Negative and Poison Spell Critical Chance</Description>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Negative</Item>
+        <Item>Poison</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+10 Artifact bonus to Negative and Poison Spell Power</Description>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>Negative</Item>
+        <Item>Poison</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+5% Artifact bonus to Damage vs the Helpless</Description>
+      <Effect>
+        <Type>HelplessDamage</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Buff>
+  </SetBonus>
+</SetBonuses>

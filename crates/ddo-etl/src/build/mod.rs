@@ -42,6 +42,8 @@ use std::path::{Path, PathBuf};
 
 #[derive(Debug, Default, Clone, PartialEq, Eq)]
 pub struct BuildReport {
+    pub shared_target_splits: Vec<DerivedEffectSplit>,
+    pub held_back_effects: Vec<DerivedEffectSplit>,
     pub skipped_wiki_facts: Vec<SkippedWikiFact>,
     pub written_item_count: usize,
     pub skipped_cosmetic_item_count: usize,
@@ -130,6 +132,17 @@ pub struct BuildReport {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
+pub struct DerivedEffectSplit {
+    pub owner_kind: String,
+    pub owner_name: String,
+    pub owner_id: i64,
+    pub effect_types: Vec<String>,
+    pub targets: Vec<String>,
+    pub stats: Vec<String>,
+    pub reason: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SupersededWikiEntry {
     pub name: String,
     pub file_name: String,
@@ -158,26 +171,29 @@ pub struct ProbableDuplicateWikiEntry {
 }
 
 pub fn build_database(
+    groupings: &crate::groupings::Groupings,
     data_files_dir: &Path,
     wiki_overrides: &WikiOverrides,
     corrections: &Corrections,
     db: &mut Connection,
     dataset_version: &DatasetVersion,
 ) -> Result<BuildReport> {
-    build_with_wiki_references(data_files_dir, wiki_overrides, corrections, db, dataset_version, false)
+    build_with_wiki_references(groupings, data_files_dir, wiki_overrides, corrections, db, dataset_version, false)
 }
 
 pub fn build_previous_database(
+    groupings: &crate::groupings::Groupings,
     data_files_dir: &Path,
     wiki_overrides: &WikiOverrides,
     corrections: &Corrections,
     db: &mut Connection,
     dataset_version: &DatasetVersion,
 ) -> Result<BuildReport> {
-    build_with_wiki_references(data_files_dir, wiki_overrides, corrections, db, dataset_version, true)
+    build_with_wiki_references(groupings, data_files_dir, wiki_overrides, corrections, db, dataset_version, true)
 }
 
 fn build_with_wiki_references(
+    groupings: &crate::groupings::Groupings,
     data_files_dir: &Path,
     wiki_overrides: &WikiOverrides,
     corrections: &Corrections,
@@ -277,6 +293,10 @@ fn build_with_wiki_references(
         drop_text_linker: &drop_text_linker,
         untyped_bonus_corrections: UntypedBonusCorrections::from_corrections(corrections)?,
         effects: effects::EffectCache::new(&transaction),
+        groupings,
+        grouping_answers: HashSet::new(),
+        shared_target_splits: Vec::new(),
+        held_back_effects: Vec::new(),
         written: WrittenRows::default(),
         socket_label_corrections: corrections
             .entries
@@ -383,8 +403,12 @@ fn build_with_wiki_references(
         &mut writer.effects,
         corrections,
         &corrections_applied_while_writing,
-        &writer.written.set_tier_descriptions_by_id,
-        &buff_resolver,
+        &corrections::CorrectionContext {
+            set_tier_descriptions_by_id: &writer.written.set_tier_descriptions_by_id,
+            buff_resolver: &buff_resolver,
+            groupings,
+            grouping_answers: &writer.grouping_answers,
+        },
         &mut report,
     )?;
     corrections::record_final_set_names(&transaction)?;
@@ -459,6 +483,8 @@ fn build_with_wiki_references(
     corrections::record_built_item_effect_values(&transaction)?;
     crate::tree::store_xml_annotations(&transaction)?;
     crate::loot_sources::reject_missing_source_references(&transaction)?;
+    report.shared_target_splits = std::mem::take(&mut writer.shared_target_splits);
+    report.held_back_effects = std::mem::take(&mut writer.held_back_effects);
     transaction.commit()?;
     Ok(report)
 }
@@ -743,6 +769,10 @@ pub(crate) struct TableWriter<'a> {
     drop_text_linker: &'a DropTextLinker,
     untyped_bonus_corrections: UntypedBonusCorrections<'a>,
     effects: effects::EffectCache<'a>,
+    groupings: &'a crate::groupings::Groupings,
+    grouping_answers: HashSet<i64>,
+    shared_target_splits: Vec<DerivedEffectSplit>,
+    held_back_effects: Vec<DerivedEffectSplit>,
     written: WrittenRows,
     socket_label_corrections: HashMap<&'a str, &'a Correction>,
     applied_socket_label_corrections: Vec<&'a Correction>,

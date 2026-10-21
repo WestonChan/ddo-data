@@ -15,9 +15,15 @@ fn fixtures_dir() -> PathBuf {
 fn built_with(wiki: &WikiOverrides) -> (Connection, BuildReport) {
     let mut db = Connection::open_in_memory().unwrap();
     let dataset_version = DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-10-02T00:00:00Z".into() };
-    let report =
-        build_database(&fixtures_dir().join("DataFiles"), wiki, &Corrections::default(), &mut db, &dataset_version)
-            .unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        &fixtures_dir().join("DataFiles"),
+        wiki,
+        &Corrections::default(),
+        &mut db,
+        &dataset_version,
+    )
+    .unwrap();
     (db, report)
 }
 
@@ -311,6 +317,7 @@ fn rejects_a_vendor_or_event_naming_an_item_or_pack_his_files_lack() {
         let dataset_version =
             DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-10-02T00:00:00Z".into() };
         let error = build_database(
+            fixture::groupings(),
             &fixtures_dir().join("DataFiles"),
             &wiki,
             &Corrections::default(),

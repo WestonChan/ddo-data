@@ -4,6 +4,43 @@ use ddo_etl::corrections::{Correction, CorrectionValue, Corrections};
 use ddo_model::enums::CorrectionKind;
 use std::ops::Add;
 
+pub(crate) fn groupings() -> &'static ddo_etl::groupings::Groupings {
+    static GROUPINGS: std::sync::OnceLock<ddo_etl::groupings::Groupings> = std::sync::OnceLock::new();
+    GROUPINGS.get_or_init(|| ddo_etl::groupings::Groupings::from_database(&database(|_| {})).unwrap())
+}
+
+pub(crate) fn grouping_cases() -> &'static ddo_etl::groupings::Groupings {
+    static GROUPINGS: std::sync::OnceLock<ddo_etl::groupings::Groupings> = std::sync::OnceLock::new();
+    GROUPINGS.get_or_init(|| {
+        let db = database(|root| {
+            let source = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/effect-groups/data");
+            for entry in walkdir::WalkDir::new(&source)
+                .into_iter()
+                .map(Result::unwrap)
+                .filter(|entry| entry.file_type().is_file())
+            {
+                let destination = root.join(entry.path().strip_prefix(&source).unwrap());
+                std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+                std::fs::copy(entry.path(), destination).unwrap();
+            }
+        });
+        ddo_etl::groupings::Groupings::from_database(&db).unwrap()
+    })
+}
+
+pub(crate) fn xml_source() -> tempfile::TempDir {
+    let source = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles");
+    let scratch = tempfile::tempdir().unwrap();
+    for entry in
+        walkdir::WalkDir::new(&source).into_iter().map(Result::unwrap).filter(|entry| entry.file_type().is_file())
+    {
+        let destination = scratch.path().join(entry.path().strip_prefix(&source).unwrap());
+        std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+        std::fs::copy(entry.path(), destination).unwrap();
+    }
+    scratch
+}
+
 pub(crate) fn database(edit: impl FnOnce(&std::path::Path)) -> rusqlite::Connection {
     let source = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data");
     let scratch = tempfile::tempdir().unwrap();

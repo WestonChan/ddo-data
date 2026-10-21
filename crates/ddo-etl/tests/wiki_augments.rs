@@ -47,6 +47,7 @@ fn replace_file_text(root: &std::path::Path, path: &str, before: &str, after: &s
 fn built_db_with(wiki: &WikiOverrides) -> Result<(Connection, BuildReport), String> {
     let mut db = Connection::open_in_memory().unwrap();
     let report = build_database(
+        fixture::groupings(),
         &fixtures_dir().join("DataFiles"),
         wiki,
         &Corrections::default(),

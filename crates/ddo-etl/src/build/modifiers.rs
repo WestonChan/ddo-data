@@ -204,8 +204,26 @@ impl TableWriter<'_> {
     ) -> Result<Vec<DerivedEffectLink>> {
         let mut links = Vec::new();
         for (source_order, effect) in effects.iter().enumerate() {
+            let derived_by_type = effect
+                .types
+                .iter()
+                .map(|effect_type| {
+                    let mut single_type = effect.clone();
+                    single_type.types = vec![effect_type.clone()];
+                    self.owner_derived_bonuses(owner, &single_type)
+                })
+                .collect::<Result<Vec<_>>>()?;
             let first_link = links.len();
-            for effect_type in &effect.types {
+            let split_count = self.shared_target_splits.len();
+            if let Some(link) = self.grouped_effect_link(owner, modifier_source, owner_id, effect, &derived_by_type)? {
+                self.transaction.execute(
+                    "UPDATE modifiers SET effect_id = ?4 WHERE source_kind = ?1 AND source_id = ?2 AND sort_order = ?3",
+                    params![modifier_source.as_str(), owner_id, source_order as i64, link.effect_id],
+                )?;
+                links.push(link);
+                continue;
+            }
+            for (type_index, effect_type) in effect.types.iter().enumerate() {
                 let mut single_type_effect = effect.clone();
                 single_type_effect.types = vec![effect_type.clone()];
                 if (effect_type == "SpellPower"
@@ -239,21 +257,7 @@ impl TableWriter<'_> {
                         continue;
                     }
                 }
-                let mut derived_bonuses = self.effect_resolver.derive_bonuses(&single_type_effect)?;
-                for rule in EFFECT_MAP.effect.owner_extra_stats.iter().filter(|rule| {
-                    rule.owner_kind == "augment"
-                        && owner.kind == BonusOwnerKind::Augment
-                        && rule.owner_name == owner.name
-                        && rule.effect_type == *effect_type
-                }) {
-                    if let Some(first) = derived_bonuses.first().copied() {
-                        derived_bonuses.push(crate::map::effect::DerivedBonus {
-                            stat: ddo_model::stats::Stat::by_name(&rule.stat).expect("validated extra stat"),
-                            bonus_type: first.bonus_type,
-                            value: first.value,
-                        });
-                    }
-                }
+                let derived_bonuses = derived_by_type[type_index].clone();
                 if derived_bonuses.is_empty() {
                     self.ensure_targeted_fixed_effect(&single_type_effect, &mut links)?;
                     continue;
@@ -406,6 +410,9 @@ impl TableWriter<'_> {
                     });
                 }
             }
+            if links.len() - first_link <= 1 {
+                self.shared_target_splits.truncate(split_count);
+            }
             if let Some(first) = links.get(first_link) {
                 if links[first_link..].iter().all(|link| link.effect_id == first.effect_id) {
                     self.transaction.execute(
@@ -416,6 +423,183 @@ impl TableWriter<'_> {
             }
         }
         Ok(links)
+    }
+
+    fn owner_derived_bonuses(
+        &self,
+        owner: &BonusOwner,
+        effect: &Effect,
+    ) -> Result<Vec<crate::map::effect::DerivedBonus>> {
+        let mut derived_bonuses = self.effect_resolver.derive_bonuses(effect)?;
+        for rule in EFFECT_MAP.effect.owner_extra_stats.iter().filter(|rule| {
+            rule.owner_kind == "augment"
+                && owner.kind == BonusOwnerKind::Augment
+                && rule.owner_name == owner.name
+                && rule.effect_type == effect.types[0]
+        }) {
+            if let Some(first) = derived_bonuses.first().copied() {
+                derived_bonuses.push(crate::map::effect::DerivedBonus {
+                    stat: ddo_model::stats::Stat::by_name(&rule.stat).expect("validated extra stat"),
+                    bonus_type: first.bonus_type,
+                    value: first.value,
+                });
+            }
+        }
+        Ok(derived_bonuses)
+    }
+
+    fn grouped_effect_link(
+        &mut self,
+        owner: &BonusOwner,
+        source: ModifierSource,
+        owner_id: i64,
+        effect: &Effect,
+        derived_by_type: &[Vec<crate::map::effect::DerivedBonus>],
+    ) -> Result<Option<DerivedEffectLink>> {
+        let mut bonuses = Vec::new();
+        let mut shared_targets = Vec::new();
+        for (effect_type, derived) in effect.types.iter().zip(derived_by_type) {
+            if let Some(targeted) = EFFECT_MAP.effect.targeted.get(effect_type) {
+                let targets = if effect.targets.is_empty() {
+                    vec!["All"]
+                } else {
+                    effect.targets.iter().map(String::as_str).collect()
+                };
+                for target in targets {
+                    if targeted.shared_targets.contains_key(target) {
+                        shared_targets.push(format!("effect.targeted.{effect_type}.shared_targets.{target}"));
+                    }
+                }
+            }
+            if derived.is_empty() {
+                return Ok(None);
+            }
+            bonuses.extend(derived.iter().copied().map(|bonus| (effect_type.as_str(), bonus)));
+        }
+        let stats =
+            bonuses.iter().map(|(_, bonus)| bonus.stat.name.to_string()).collect::<std::collections::BTreeSet<_>>();
+        if stats.len() < 2 {
+            return Ok(None);
+        }
+        let split = |reason| super::DerivedEffectSplit {
+            owner_kind: source.as_str().to_string(),
+            owner_name: owner.name.to_string(),
+            owner_id,
+            effect_types: effect.types.clone(),
+            targets: effect.targets.clone(),
+            stats: stats.iter().cloned().collect(),
+            reason,
+        };
+        if !shared_targets.is_empty() {
+            self.shared_target_splits.push(split(shared_targets.join(", ")));
+            return Ok(None);
+        }
+        let value = bonuses[0].1.value;
+        anyhow::ensure!(
+            bonuses.iter().all(|(_, bonus)| bonus.value == value),
+            "{:?} {:?} has different values within one effect",
+            owner.kind,
+            owner.name
+        );
+        let mut bonus_type = None;
+        for (effect_type, bonus) in &bonuses {
+            let resolved = self.bonus_type_of(
+                &BonusOrigin { owner, source_name: effect_type, stat_name: bonus.stat.name, value: Some(bonus.value) },
+                bonus.bonus_type,
+            )?;
+            anyhow::ensure!(
+                bonus_type.is_none_or(|previous| previous == resolved),
+                "{:?} {:?} has different types within one effect",
+                owner.kind,
+                owner.name
+            );
+            bonus_type = Some(resolved);
+        }
+        let bonus_type = bonus_type.expect("multi-stat effect has a bonus type");
+        let matching = self.groupings.by_stat_set.get(&stats).map(Vec::as_slice).unwrap_or_default();
+        let effect_id = match matching {
+            [grouping] if grouping.accepts_value_at_type(bonus_type.name()) => {
+                self.effects.ensure_indexed_grouping(grouping, self.groupings)?
+            }
+            [] => {
+                let declared = EFFECT_MAP
+                    .group_names()
+                    .into_iter()
+                    .filter(|name| {
+                        !self.groupings.by_id.values().any(|effect| &effect.name == name && !effect.is_group)
+                    })
+                    .find(|name| {
+                        EFFECT_MAP
+                            .group_members(name)
+                            .unwrap()
+                            .iter()
+                            .cloned()
+                            .collect::<std::collections::BTreeSet<_>>()
+                            == stats
+                    });
+                if let Some(name) = declared {
+                    let id = self.effects.ensure_group(&name)?;
+                    self.effects.fill_group_description(id, &format!("+{{1}} %b1 bonus to {name}."))?;
+                    id
+                } else {
+                    let name = crate::groupings::name_from_stats(&stats)?;
+                    anyhow::ensure!(
+                        self.effects.family_named(&name).is_none_or(|family| family.is_group),
+                        "new stat group {name:?} collides with an existing named effect"
+                    );
+                    let percent = stats.iter().all(|name| {
+                        self.groupings
+                            .by_id
+                            .values()
+                            .find(|effect| &effect.name == name)
+                            .map(|effect| effect.verbose_name_template.as_str())
+                            .filter(|template| !template.is_empty())
+                            .or_else(|| EFFECT_MAP.line_templates.get(name).map(String::as_str))
+                            .is_some_and(|template| template.contains("{1}%"))
+                    });
+                    let members = ddo_model::stats::STATS
+                        .iter()
+                        .filter(|stat| stats.contains(stat.name))
+                        .map(|stat| stat.name.to_string())
+                        .collect::<Vec<_>>();
+                    let suffix = if percent { "%" } else { "" };
+                    self.effects.ensure_flat_group(
+                        &name,
+                        &members,
+                        percent,
+                        Some(&format!("+{{1}}{suffix} %b1 bonus to {name}.")),
+                    )?
+                }
+            }
+            _ => {
+                self.held_back_effects.push(split(format!(
+                    "no unique usable grouping: {}",
+                    matching.iter().map(|grouping| grouping.name.as_str()).collect::<Vec<_>>().join(", ")
+                )));
+                return Ok(None);
+            }
+        };
+        let name = self.effects.family(effect_id).expect("grouping cached").name.clone();
+        let effect_id = if owner.kind == BonusOwnerKind::Augment {
+            if let Some(line_name) = EFFECT_MAP.augment_line_name(owner.name, &name) {
+                self.effects
+                    .family_named(line_name)
+                    .ok_or_else(|| anyhow::anyhow!("augment line {line_name:?} is not cached"))?
+                    .id
+            } else {
+                effect_id
+            }
+        } else {
+            effect_id
+        };
+        self.grouping_answers.insert(effect_id);
+        let family = self.effects.family(effect_id).expect("grouping cached");
+        Ok(Some(DerivedEffectLink {
+            effect_id,
+            bonus_type: family.uses_link_type.then_some(bonus_type),
+            value: Some(value),
+            value2: None,
+        }))
     }
 
     fn ensure_targeted_fixed_effect(&mut self, effect: &Effect, links: &mut Vec<DerivedEffectLink>) -> Result<()> {
