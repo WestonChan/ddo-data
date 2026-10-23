@@ -30,6 +30,17 @@ pub struct Grouping {
 }
 
 impl Grouping {
+    fn is_link_valued(&self) -> bool {
+        !self.bonuses.is_empty()
+            && self.bonuses.iter().all(|bonus| {
+                matches!(bonus.amount_from, 1 | 2)
+                    && bonus.constant.is_none()
+                    && bonus.scale == 1.0
+                    && bonus.rounding == "down"
+                    && bonus.trigger_id.is_none()
+            })
+    }
+
     pub fn accepts_value_at_type(&self, bonus_type: &str) -> bool {
         !self.verbose_name_template.contains("{2}")
             && !self.description_template.as_deref().is_some_and(|template| template.contains("{2}"))
@@ -77,6 +88,13 @@ pub enum GroupingPairKind {
     Wrapper,
     LinkValued,
     Ladder,
+    ConstantValued,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum GroupingPairDomain {
+    LinkValued,
+    AllBonuses,
 }
 
 #[derive(Debug)]
@@ -129,7 +147,7 @@ impl Groupings {
     }
 
     pub(crate) fn grouping_named(&self, name: &str) -> Option<&Grouping> {
-        self.effect_named(name).filter(|effect| effect.stat_ids.len() >= 2)
+        self.effect_named(name).filter(|effect| effect.stat_ids.len() >= 2 && effect.is_link_valued())
     }
 
     pub(crate) fn expanded_stat_names(&self, name: &str) -> Result<BTreeSet<String>> {
@@ -235,17 +253,6 @@ impl Groupings {
         let by_name = effects_by_id.values().map(|effect| (effect.name.clone(), effect.id)).collect();
         let mut groupings = Self { by_name, by_stat_set: HashMap::new(), by_id: effects_by_id.clone() };
         for mut effect in effects_by_id.into_values() {
-            if effect.bonuses.is_empty()
-                || effect.bonuses.iter().any(|bonus| {
-                    !matches!(bonus.amount_from, 1 | 2)
-                        || bonus.constant.is_some()
-                        || bonus.scale != 1.0
-                        || bonus.rounding != "down"
-                        || bonus.trigger_id.is_some()
-                })
-            {
-                continue;
-            }
             effect.is_wrapper = !effect.is_group
                 && effect.bonuses.len() == 1
                 && members_by_group.contains_key(&effect.bonuses[0].target_id);
@@ -256,9 +263,9 @@ impl Groupings {
                     effect.stat_ids.insert(bonus.target_id);
                 }
             }
-            if effect.stat_ids.len() >= 2 {
+            groupings.by_id.insert(effect.id, effect.clone());
+            if effect.stat_ids.len() >= 2 && effect.is_link_valued() {
                 let names = effect.stat_ids.iter().map(|id| groupings.by_id[id].name.clone()).collect();
-                groupings.by_id.insert(effect.id, effect.clone());
                 groupings.by_stat_set.entry(names).or_default().push(effect);
             }
         }
@@ -268,15 +275,24 @@ impl Groupings {
         Ok(groupings)
     }
 
-    pub fn pairs(&self) -> Vec<GroupingPair<'_>> {
+    pub fn pairs(&self, domain: GroupingPairDomain) -> Vec<GroupingPair<'_>> {
+        let mut members_by_stats = BTreeMap::<_, Vec<_>>::new();
+        for effect in self.by_id.values() {
+            if effect.stat_ids.len() >= 2 && (domain == GroupingPairDomain::AllBonuses || effect.is_link_valued()) {
+                members_by_stats.entry(&effect.stat_ids).or_default().push(effect);
+            }
+        }
         let mut pairs = Vec::new();
-        for members in self.by_stat_set.values() {
+        for members in members_by_stats.values_mut() {
+            members.sort_by_key(|effect| &effect.name);
             for (index, first) in members.iter().enumerate() {
                 for second in &members[index + 1..] {
                     let kind = if ladder_name(&first.name) == ladder_name(&second.name) {
                         GroupingPairKind::Ladder
                     } else if first.is_wrapper || second.is_wrapper {
                         GroupingPairKind::Wrapper
+                    } else if first.bonuses.iter().chain(&second.bonuses).any(|bonus| bonus.constant.is_some()) {
+                        GroupingPairKind::ConstantValued
                     } else {
                         GroupingPairKind::LinkValued
                     };
@@ -413,6 +429,41 @@ mod tests {
         assert!(!named("Deception").accepts_value_at_type("Equipment"));
         assert!(!named("Lifeblood of the Undead Prince").accepts_value_at_type("Competence"));
         assert!(!named("Lifeblood of the Undead Prince").accepts_value_at_type("Profane"));
+    }
+
+    #[test]
+    fn exact_constant_matches_are_reported_without_containment_matches() {
+        let source = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");
+        let scratch = tempfile::tempdir().unwrap();
+        for relative in [
+            "upstream/commit.toml",
+            "upstream/source-aliases.toml",
+            "effects/bonus-types.toml",
+            "effects/stats/trip-dc.toml",
+            "effects/stats/sunder-dc.toml",
+            "effects/stats/stun-dc.toml",
+            "effects/baphomets-tactics.toml",
+            "effects/combat-mastery.toml",
+        ] {
+            let destination = scratch.path().join(relative);
+            std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+            std::fs::copy(source.join(relative), destination).unwrap();
+        }
+        let mastery = std::fs::read_to_string(source.join("effects/combat-mastery.toml")).unwrap();
+        let partial = mastery.rsplit_once("[[bonus]]").unwrap().0.replace("Combat Mastery", "Trip and Sunder DC");
+        std::fs::write(scratch.path().join("effects/trip-and-sunder-dc.toml"), partial).unwrap();
+        let mut db = Connection::open_in_memory().unwrap();
+        crate::tree::build_from_data(scratch.path(), &mut db).unwrap();
+        let index = Groupings::from_database(&db).unwrap();
+        let pairs = index.pairs(GroupingPairDomain::AllBonuses);
+        let matches = pairs
+            .iter()
+            .filter(|pair| pair.first.name == "Baphomet's Tactics")
+            .map(|pair| pair.second.name.as_str())
+            .collect::<Vec<_>>();
+        assert_eq!(matches, ["Combat Mastery"]);
+        assert!(index.grouping_named("Baphomet's Tactics").is_none());
+        assert!(index.pairs(GroupingPairDomain::LinkValued).is_empty());
     }
 
     #[test]

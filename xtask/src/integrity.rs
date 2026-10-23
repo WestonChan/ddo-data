@@ -2090,7 +2090,7 @@ fn stat_link_findings(db: &Connection, condition: &str, detail: &str) -> Result<
 fn effects_sharing_a_stat_set(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let groupings = ddo_etl::groupings::Groupings::from_database(db)?;
     let offenders = groupings
-        .pairs()
+        .pairs(ddo_etl::groupings::GroupingPairDomain::LinkValued)
         .into_iter()
         .map(|pair| {
             let mut stat_names =
