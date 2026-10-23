@@ -263,6 +263,135 @@ fn template_amount_literals_need_a_definition_but_ranks_and_context_numbers_do_n
 }
 
 #[test]
+fn digit_warnings_classify_unmodelled_numbers_without_duplicate_literal_findings() {
+    let scratch = tempfile::tempdir().unwrap();
+    let tree = scratch.path().join("data");
+    copy_fixture_tree(&tree);
+    let cases = [
+        (
+            "Acidic 3",
+            Some("Acidic 3"),
+            Some("Deals 3d6 Acid damage."),
+            None,
+            Some("rank-named step, nothing modelled"),
+            None,
+        ),
+        ("Rank With Type 3", Some("%b1 Rank With Type 3"), None, None, Some("rank-named step, nothing modelled"), None),
+        ("DR 5/-", Some("DR 5/-"), None, None, Some("unmodelled mechanic number"), None),
+        ("On Hit Reduction", Some("Reduce resistance by 10"), None, None, Some("unmodelled mechanic number"), None),
+        ("Charges", Some("Absorb Spells - 5 Charges"), None, None, Some("unmodelled mechanic number"), None),
+        ("Dice Ammunition", Some("Deals 8d6 Fire damage"), None, None, Some("unmodelled mechanic number"), None),
+        ("3rd Degree Burns", Some("3rd Degree Burns"), None, None, Some("unmodelled mechanic number"), None),
+        ("Difficulty Class", Some("DC +25"), None, None, Some("unmodelled mechanic number"), None),
+        ("Level Threshold", Some("level 25%"), None, None, Some("unmodelled mechanic number"), None),
+        ("Challenge Rating", Some("CR 4"), None, None, Some("unmodelled mechanic number"), None),
+        ("Rank Threshold", Some("rank +3"), None, None, Some("unmodelled mechanic number"), None),
+        ("Tier Threshold", Some("tier +2"), None, None, Some("unmodelled mechanic number"), None),
+        ("Duration", Some("Lasts +10 seconds"), None, None, Some("unmodelled mechanic number"), None),
+        (
+            "Dragon's Edge 7",
+            Some("Dragon's Edge 7 +22"),
+            Some("Grants +21 Damage."),
+            Some(21),
+            Some("rank-named step beside a modelled constant"),
+            Some("T6"),
+        ),
+        (
+            "Constant Charges",
+            Some("Constant Charges 5"),
+            Some("Grants +5 Damage."),
+            Some(5),
+            Some("number beside a modelled constant"),
+            None,
+        ),
+        ("Constant Amount", Some("Constant Amount +5"), Some("Grants +5 Damage."), Some(5), None, None),
+        ("+2 Charges of Something 3", Some("+2 Charges of Something 3"), None, None, None, Some("T7")),
+        ("Description Dice", Some("Description Dice"), Some("Deals 3d6 Fire damage."), None, None, None),
+        ("Line Slot", Some("Line Slot {1} 3"), None, None, None, None),
+        ("Description Slot", Some("Description Slot 3"), Some("Grants {1}."), None, None, None),
+        ("Empty Line", Some(""), None, None, None, None),
+        ("Roman VI", Some("Roman VI"), None, None, None, None),
+        ("Type Token", Some("%b1 Type Token"), None, None, None, None),
+    ];
+    for (name, line, description, constant, _, _) in &cases {
+        let mut contents = format!("name = {name:?}\n");
+        if let Some(line) = line {
+            contents.push_str(&format!("verbose_name_template = {line:?}\n"));
+        }
+        if let Some(description) = description {
+            contents.push_str(&format!("description_template = {description:?}\n"));
+        }
+        if let Some(constant) = constant {
+            contents.push_str(&format!("[[bonus]]\ntarget = \"Damage Bonus\"\namount_from = 0\nconstant = {constant}\nbonus_type = \"Equipment\"\nscale = 1.0\nrounding = \"down\"\n"));
+        }
+        std::fs::write(tree.join(format!("effects/{}.toml", ddo_model::identity::slug(name))), contents).unwrap();
+    }
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let digits = report.outcome("effect_templates_with_digits_without_amounts").expect("digits WARN is registered");
+    assert_eq!(digits.severity, Severity::Warn);
+    let templates = report.outcome("effect_templates_without_their_placeholders").unwrap();
+    for (name, _, _, _, digit_cause, template_cause) in cases {
+        let findings = digits.offenders.iter().filter(|finding| finding.name == name).collect::<Vec<_>>();
+        assert_eq!(findings.len(), usize::from(digit_cause.is_some()), "{name}: {findings:?}");
+        if let Some(cause) = digit_cause {
+            assert_eq!(findings[0].detail, cause, "{name}");
+        }
+        let literal_causes = templates
+            .offenders
+            .iter()
+            .filter(|finding| finding.name == name)
+            .flat_map(|finding| finding.detail.split("; "))
+            .filter(|cause| cause.contains("T6:") || cause.contains("T7:"))
+            .collect::<Vec<_>>();
+        assert_eq!(literal_causes.len(), usize::from(template_cause.is_some()), "{name}: {literal_causes:?}");
+        if let Some(cause) = template_cause {
+            assert!(literal_causes[0].contains(cause), "{name}: {literal_causes:?}");
+        }
+    }
+}
+
+#[test]
+fn fixed_template_types_share_the_served_hidden_type_rule() {
+    let scratch = tempfile::tempdir().unwrap();
+    let tree = scratch.path().join("data");
+    copy_fixture_tree(&tree);
+    let production = fixtures_dir().join("../../../../data/effects");
+    for slug in [
+        "rams-might",
+        "ghostly",
+        "enhanced-ghostly",
+        "hidden-effect-all-threat",
+        "stealth-strike",
+        "eternal-faith",
+        "blood",
+    ] {
+        std::fs::copy(production.join(format!("{slug}.toml")), tree.join(format!("effects/{slug}.toml"))).unwrap();
+    }
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("effect_templates_without_their_placeholders").unwrap();
+    let checked_names = [
+        "Ram's Might",
+        "Ghostly",
+        "Enhanced Ghostly",
+        "Hidden Effect All Threat",
+        "Stealth Strike",
+        "Eternal Faith",
+        "Blood",
+    ];
+    let missing_types = outcome
+        .offenders
+        .iter()
+        .filter(|finding| checked_names.contains(&finding.name.as_str()) && finding.detail.contains("T4:"))
+        .map(|finding| finding.name.as_str())
+        .collect::<Vec<_>>();
+    assert_eq!(missing_types, ["Blood"]);
+}
+
+#[test]
 fn mixed_constant_and_slot_templates_assign_each_defect_once() {
     let scratch = tempfile::tempdir().unwrap();
     let tree = scratch.path().join("data");
@@ -1220,6 +1349,13 @@ fn injected_violations() -> Vec<InjectedViolation> {
             .into_iter()
             .map(|(_, effect, sql)| violation("effect_templates_without_their_placeholders", sql, effect)),
     );
+    violations.push(violation(
+        "effect_templates_with_digits_without_amounts",
+        "INSERT INTO effects (name, slug, verbose_name_template) VALUES ('Unmodelled Charges', 'unmodelled-charges', 'Absorb Spells - 5 Charges');
+         INSERT INTO item_effects (item_id, effect_id, sort_order)
+         SELECT (SELECT MIN(id) FROM items), id, 9999 FROM effects WHERE name = 'Unmodelled Charges'",
+        "Unmodelled Charges",
+    ));
     violations.push(violation("effect_descriptions_without_their_amounts",
         "UPDATE effects SET description_template = REPLACE(description_template, 'Insightful', 'Profane') WHERE name = 'Command'", "Command"));
     violations

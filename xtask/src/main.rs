@@ -315,6 +315,17 @@ fn deny_clippy_warnings() -> Result<()> {
 
 fn deny_contract_or_scale_regressions() -> Result<()> {
     for (crate_name, test_target, test_name) in [
+        (
+            "xtask",
+            &["--lib"][..],
+            "integrity::served_amount_tests::text_checks_use_fixed_query_counts_for_one_and_fifty_effects_and_owners",
+        ),
+        (
+            "xtask",
+            &["--test", "integrity"][..],
+            "digit_warnings_classify_unmodelled_numbers_without_duplicate_literal_findings",
+        ),
+        ("xtask", &["--test", "integrity"][..], "fixed_template_types_share_the_served_hidden_type_rule"),
         ("ddo-etl", &["--lib"][..], "groupings::tests::index_uses_two_queries_for_one_and_fifty_effects"),
         ("ddo-etl", &["--lib"][..], "tree::build::file_name_tests::pseudo_pack_names_cannot_be_real_packs"),
         (

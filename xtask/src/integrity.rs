@@ -96,6 +96,13 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Built(effect_templates_without_their_placeholders),
     ),
     IntegrityCheck::warn(
+        "effect_templates_with_digits_without_amounts",
+        "families whose rendered template contains a digit even though owner links carry no amount: \
+         decide whether the digit is a fixed rule, an unmodelled amount or prose; \
+         listed by cause; rank-named steps are listed separately (ddo-data#56)",
+        OffenderQuery::Built(effect_templates_with_digits_without_amounts),
+    ),
+    IntegrityCheck::warn(
         "effect_descriptions_without_their_amounts",
         "served descriptions or fallback lines state every granted amount with its unit, and line claims match grants",
         OffenderQuery::Built(effect_descriptions_without_their_amounts),
@@ -1076,6 +1083,59 @@ fn effect_descriptions_without_their_amounts(db: &Connection, _options: &Integri
     })
 }
 
+fn effect_templates_with_digits_without_amounts(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let mut statement = db.prepare(
+        "WITH bonuses AS (
+            SELECT effect_id, COUNT(*) AS bonus_count, SUM(amount_from = 0) AS constant_count
+            FROM effect_bonuses GROUP BY effect_id)
+        SELECT e.id, e.name, e.verbose_name_template,
+            COALESCE(b.bonus_count, 0), COALESCE(b.constant_count, 0)
+        FROM effects e LEFT JOIN bonuses b ON b.effect_id = e.id
+        WHERE e.is_stat = 0
+          AND INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '{1}') = 0
+        ORDER BY e.name",
+    )?;
+    let mut offenders = Vec::new();
+    let mut cause_counts = BTreeMap::<&str, usize>::new();
+    for row in statement.query_map([], |row| {
+        Ok((
+            row.get::<_, i64>(0)?,
+            row.get::<_, String>(1)?,
+            row.get::<_, String>(2)?,
+            row.get::<_, i64>(3)?,
+            row.get::<_, i64>(4)?,
+        ))
+    })? {
+        let (id, name, line, bonus_count, constant_count) = row?;
+        let numbers = amount_tokens(&line);
+        if !numbers.iter().any(|number| !number.is_amount_literal())
+            || (bonus_count == 0 && numbers.iter().any(AmountToken::is_amount_literal))
+        {
+            continue;
+        }
+        let title = effect_template_title(&line);
+        let rank_named = name.rsplit_once(' ').is_some_and(|(_, rank)| {
+            !rank.is_empty()
+                && rank.bytes().all(|byte| byte.is_ascii_digit())
+                && (title == name
+                    || (constant_count > 0
+                        && title.strip_prefix(&name).is_some_and(|suffix| suffix.starts_with(char::is_whitespace))))
+        });
+        let cause = match (constant_count > 0, rank_named && (bonus_count == 0 || constant_count > 0)) {
+            (false, true) => "rank-named step, nothing modelled",
+            (false, false) => "unmodelled mechanic number",
+            (true, true) => "rank-named step beside a modelled constant",
+            (true, false) => "number beside a modelled constant",
+        };
+        *cause_counts.entry(cause).or_default() += 1;
+        offenders.push(Offender { name, id: Some(id), detail: cause.to_string() });
+    }
+    Ok(Findings {
+        offenders: Some(offenders),
+        notes: cause_counts.into_iter().map(|(cause, count)| format!("{cause}: {count} effects")).collect(),
+    })
+}
+
 struct EffectTemplates {
     name: String,
     is_stat: bool,
@@ -1084,6 +1144,7 @@ struct EffectTemplates {
     line: Option<String>,
     set_line: Option<String>,
     link_count: i64,
+    home_bonus_type_id: Option<i64>,
 }
 
 struct TemplateBonus {
@@ -1103,7 +1164,7 @@ fn effect_templates_without_their_placeholders(db: &Connection, _options: &Integ
         "WITH links AS ({links}), counts AS (
         SELECT effect_id, COUNT(*) AS link_count FROM links GROUP BY effect_id)
         SELECT e.id, e.name, e.is_stat, e.is_group, e.description_template, e.verbose_name_template,
-            e.set_bonus_line_template, COALESCE(c.link_count, 0)
+            e.set_bonus_line_template, COALESCE(c.link_count, 0), e.home_bonus_type_id
         FROM effects e LEFT JOIN counts c ON c.effect_id = e.id ORDER BY e.name"
     ))?;
     let effects = statement
@@ -1118,6 +1179,7 @@ fn effect_templates_without_their_placeholders(db: &Connection, _options: &Integ
                     line: row.get(5)?,
                     set_line: row.get(6)?,
                     link_count: row.get(7)?,
+                    home_bonus_type_id: row.get(8)?,
                 },
             ))
         })?
@@ -1183,6 +1245,7 @@ fn template_causes(
     bonus_types: &BTreeMap<i64, String>,
 ) -> BTreeSet<&'static str> {
     let mut causes = BTreeSet::new();
+    let home_type = effect.home_bonus_type_id.and_then(|id| bonus_types.get(&id)).map(String::as_str);
     let slots =
         bonuses.iter().filter(|bonus| bonus.amount_from > 0).map(|bonus| bonus.amount_from).collect::<BTreeSet<_>>();
     let mut percent_slots = BTreeSet::new();
@@ -1241,14 +1304,7 @@ fn template_causes(
             causes.insert("T3: link-typed rows lack %b1 in description or set line");
         }
         if bonuses.iter().filter_map(|bonus| bonus.bonus_type_id).filter_map(|id| bonus_types.get(&id)).any(
-            |bonus_type| {
-                !explicit_bonus_type_is_stated(
-                    description,
-                    bonus_type,
-                    ddo_api::bonus_type_line_word(bonus_type, None, ddo_api::BonusTypeWording::Enchantment),
-                    true,
-                )
-            },
+            |bonus_type| !served_bonus_type_is_stated(description, bonus_type, home_type, EffectTextKind::Description),
         ) {
             causes.insert("T4: fixed type word missing from description");
         }
@@ -2558,6 +2614,7 @@ mod served_amount_tests {
             assert_eq!(STATEMENTS.load(Ordering::SeqCst), 3, "{owner_count} effects");
             assert!(findings.offenders.unwrap().is_empty());
             for (name, statement_count) in [
+                ("effect_templates_with_digits_without_amounts", 1),
                 ("effect_line_rendering_tokens", 2),
                 ("effect_templates_disagree_with_names", 1),
                 ("effect_template_numbers_match_names", 1),
