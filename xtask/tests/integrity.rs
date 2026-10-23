@@ -156,6 +156,113 @@ fn mixed_unit_templates_state_each_unit_without_renderer_restoration() {
 }
 
 #[test]
+fn set_lines_state_their_raw_bonus_type() {
+    let scratch = tempfile::tempdir().unwrap();
+    let tree = scratch.path().join("data");
+    copy_fixture_tree(&tree);
+    std::fs::write(
+        tree.join("packs/shared/sets/insight-lines.toml"),
+        r#"name = "Insight Lines"
+[[tier]]
+equipped_count = 2
+[[tier.effect]]
+effect = "Melee Threat Generation"
+bonus_type = "Insight"
+value = 20
+[[tier.effect]]
+effect = "Saving Throws"
+bonus_type = "Insight"
+value = 3
+[[tier.effect]]
+effect = "Sneak Attack Hit"
+bonus_type = "Insight"
+value = 4
+[[tier.effect]]
+effect = "Sneak Attack Damage"
+bonus_type = "Insight"
+value = 4
+"#,
+    )
+    .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
+    let owner: i64 = db
+        .query_row(
+            "SELECT t.id FROM set_bonus_tiers t JOIN set_bonuses s ON s.id=t.set_id WHERE s.name='Insight Lines'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    let lines = ddo_api::served_effect_lines(&db, "set_bonus_tier_effects", "tier_id").unwrap();
+    assert_eq!(lines[&owner].len(), 4);
+    for (_, line) in &lines[&owner] {
+        assert!(line["description"].is_null());
+        assert!(line["verbose_name"].as_str().unwrap().contains("Insight Bonus"));
+    }
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("effect_descriptions_without_their_amounts").unwrap();
+    let incorrect = outcome
+        .offenders
+        .iter()
+        .filter(|finding| {
+            finding.detail.contains(&format!("set_bonus_tier_effects owner {owner},"))
+                && finding.detail.contains("type missing")
+        })
+        .collect::<Vec<_>>();
+    assert!(incorrect.is_empty(), "{incorrect:?}");
+}
+
+#[test]
+fn mixed_constant_and_slot_templates_assign_each_defect_once() {
+    let scratch = tempfile::tempdir().unwrap();
+    let tree = scratch.path().join("data");
+    copy_fixture_tree(&tree);
+    std::fs::write(
+        tree.join("effects/mixed-amounts.toml"),
+        r#"name = "Mixed Amounts"
+description_template = "+{1} %b1 bonus to Armor Class and +3% Artifact bonus to Doublestrike."
+verbose_name_template = "Mixed Amounts +{1}"
+set_bonus_line_template = "+{1} %b1 Bonus to Armor Class and +3% Artifact Bonus to Doublestrike"
+[[bonus]]
+target = "Armor Class"
+amount_from = 1
+scale = 1.0
+rounding = "down"
+[[bonus]]
+target = "Doublestrike"
+amount_from = 0
+constant = 3
+bonus_type = "Artifact"
+scale = 1.0
+rounding = "down"
+"#,
+    )
+    .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
+    let mut failures = Vec::new();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("effect_templates_without_their_placeholders").unwrap();
+    if outcome.offenders.iter().any(|finding| finding.name == "Mixed Amounts" && finding.detail.contains("T5")) {
+        failures.push("flat slot 1 acquired the constant row's percent unit".to_string());
+    }
+    for column in ["verbose_name_template", "set_bonus_line_template"] {
+        db.execute(
+            &format!("UPDATE effects SET {column}='Mixed Amounts +{{1}} and +4%' WHERE name='Mixed Amounts'"),
+            [],
+        )
+        .unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("effect_templates_without_their_placeholders").unwrap();
+        let finding = outcome.offenders.iter().find(|finding| finding.name == "Mixed Amounts").unwrap();
+        if !finding.detail.contains("T6") || finding.detail.contains("T2") {
+            failures.push(format!("{column}: {}", finding.detail));
+        }
+    }
+    assert!(failures.is_empty(), "{}", failures.join("\n"));
+}
+
+#[test]
 fn served_type_check_requires_the_granted_type() {
     let scratch = tempfile::tempdir().unwrap();
     let db = Connection::open(fixture_db_copy_with(scratch.path(),

@@ -11,7 +11,7 @@ mod routes;
 pub mod schema_validation;
 pub mod state;
 
-pub use db::{bonus_type_line_word, served_effect_lines};
+pub use db::{bonus_type_line_word, served_effect_lines, BonusTypeWording};
 pub use docs::ResponseExample;
 pub use state::AppState;
 

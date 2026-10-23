@@ -1027,7 +1027,11 @@ fn effect_descriptions_without_their_amounts(db: &Connection, _options: &Integri
         ))
     })? {
         let (id, name, is_stat, template, home_type) = row?;
-        if is_stat && template.as_deref().is_some_and(ddo_model::effect_amount::line_template_states_percent) {
+        if is_stat
+            && template
+                .as_deref()
+                .is_some_and(|template| ddo_model::effect_amount::line_template_states_percent(template, 1))
+        {
             percent_stats.insert(name);
         }
         home_types.insert(id, home_type);
@@ -1044,10 +1048,17 @@ fn effect_descriptions_without_their_amounts(db: &Connection, _options: &Integri
                     line["effect_id"].as_i64().and_then(|id| home_types.get(&id)).and_then(Option::as_deref);
                 let description = line["description"].as_str();
                 let text = description.or_else(|| line["verbose_name"].as_str()).unwrap_or_default();
+                let text_kind = if description.is_some() {
+                    EffectTextKind::Description
+                } else if table == "set_bonus_tier_effects" {
+                    EffectTextKind::SetLine
+                } else {
+                    EffectTextKind::EnchantmentLine
+                };
                 if line["bonuses"].as_array().into_iter().flatten().any(|bonus| {
-                    bonus["bonus_type"].as_str().is_some_and(|bonus_type| {
-                        !bonus_type_is_stated(text, bonus_type, home_type, description.is_some())
-                    })
+                    bonus["bonus_type"]
+                        .as_str()
+                        .is_some_and(|bonus_type| !served_bonus_type_is_stated(text, bonus_type, home_type, text_kind))
                 }) {
                     causes.insert("type missing");
                 }
@@ -1202,7 +1213,7 @@ fn template_causes(
             let percent = effects
                 .get(&target)
                 .and_then(|stat| stat.line.as_deref())
-                .is_some_and(ddo_model::effect_amount::line_template_states_percent);
+                .is_some_and(|template| ddo_model::effect_amount::line_template_states_percent(template, 1));
             if percent && bonus.amount_from > 0 {
                 percent_slots.insert(bonus.amount_from);
             }
@@ -1223,12 +1234,13 @@ fn template_causes(
         }
         for slot in [1, 2] {
             let placeholder = format!("{{{slot}}}");
-            let percent_placeholder = format!("{placeholder}%");
             if description.contains(&placeholder)
-                && !description.contains(&percent_placeholder)
+                && !ddo_model::effect_amount::line_template_states_percent(description, slot)
                 && (percent_slots.contains(&slot)
-                    || (slot == 1 && constants.iter().any(|(_, percent)| *percent))
-                    || effect.line.as_deref().is_some_and(|line| line.contains(&percent_placeholder)))
+                    || effect
+                        .line
+                        .as_deref()
+                        .is_some_and(|line| ddo_model::effect_amount::line_template_states_percent(line, slot)))
             {
                 causes.insert("T5: unit only through the renderer's restore");
             }
@@ -1236,12 +1248,16 @@ fn template_causes(
         if bonuses.iter().any(|bonus| bonus.bonus_type_id.is_none()) && !description.contains("%b1") {
             causes.insert("T3: link-typed rows lack %b1 in description or set line");
         }
-        if bonuses
-            .iter()
-            .filter_map(|bonus| bonus.bonus_type_id)
-            .filter_map(|id| bonus_types.get(&id))
-            .any(|bonus_type| !bonus_type_is_stated(description, bonus_type, None, true))
-        {
+        if bonuses.iter().filter_map(|bonus| bonus.bonus_type_id).filter_map(|id| bonus_types.get(&id)).any(
+            |bonus_type| {
+                !explicit_bonus_type_is_stated(
+                    description,
+                    bonus_type,
+                    ddo_api::bonus_type_line_word(bonus_type, None, ddo_api::BonusTypeWording::Enchantment),
+                    true,
+                )
+            },
+        ) {
             causes.insert("T4: fixed type word missing from description");
         }
     }
@@ -1251,8 +1267,8 @@ fn template_causes(
         causes.insert("T3: link-typed rows lack %b1 in description or set line");
     }
     for line in [effect.line.as_deref(), effect.set_line.as_deref()].into_iter().flatten() {
-        let literal_for_slot = !slots.is_empty()
-            && amount_tokens(line).iter().any(|token| token.is_amount_literal() && !constant_matches(token));
+        let literal_for_slot =
+            !slots.is_empty() && constants.is_empty() && amount_tokens(line).iter().any(AmountToken::is_amount_literal);
         let unread_slot = !slots.is_empty()
             && [1, 2].into_iter().any(|slot| {
                 !slots.contains(&slot)
@@ -1298,12 +1314,42 @@ impl AmountToken {
     }
 }
 
-fn bonus_type_is_stated(text: &str, bonus_type: &str, home_type: Option<&str>, in_description: bool) -> bool {
-    if matches!(bonus_type, "Stacking" | "Untyped") {
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum EffectTextKind {
+    Description,
+    EnchantmentLine,
+    SetLine,
+}
+
+fn served_bonus_type_is_stated(
+    text: &str,
+    bonus_type: &str,
+    home_type: Option<&str>,
+    text_kind: EffectTextKind,
+) -> bool {
+    if ddo_api::bonus_type_line_word(bonus_type, home_type, ddo_api::BonusTypeWording::Enchantment).is_none() {
         return true;
     }
-    let line_word = ddo_api::bonus_type_line_word(bonus_type, if in_description { None } else { home_type });
-    if !in_description && line_word.is_none() {
+    let wording = if text_kind == EffectTextKind::SetLine {
+        ddo_api::BonusTypeWording::SetBonus
+    } else {
+        ddo_api::BonusTypeWording::Enchantment
+    };
+    explicit_bonus_type_is_stated(
+        text,
+        bonus_type,
+        ddo_api::bonus_type_line_word(bonus_type, home_type, wording),
+        text_kind == EffectTextKind::Description,
+    )
+}
+
+fn explicit_bonus_type_is_stated(
+    text: &str,
+    bonus_type: &str,
+    line_word: Option<&str>,
+    accepts_type_name: bool,
+) -> bool {
+    if matches!(bonus_type, "Stacking" | "Untyped") {
         return true;
     }
     let words =
@@ -1315,7 +1361,7 @@ fn bonus_type_is_stated(text: &str, bonus_type: &str, home_type: Option<&str>, i
                 phrase.iter().zip(&type_words).all(|(word, expected)| word.eq_ignore_ascii_case(expected))
             })
     };
-    (in_description && contains_type(bonus_type)) || line_word.is_some_and(contains_type)
+    (accepts_type_name && contains_type(bonus_type)) || line_word.is_some_and(contains_type)
 }
 
 fn amount_tokens(text: &str) -> Vec<AmountToken> {
@@ -2268,13 +2314,23 @@ mod served_amount_tests {
             ("+2 Damage", "Equipment", None, false, true),
             ("+2 Damage", "Enhancement", None, false, true),
             ("+2 Damage", "Insight", Some("Insight"), false, true),
-            ("+2 Damage", "Insight", Some("Insight"), true, false),
-            ("+2 Damage", "Equipment", None, true, false),
+            ("+2 Damage", "Insight", Some("Insight"), true, true),
+            ("+2 Damage", "Equipment", None, true, true),
+            ("+2 Damage", "Enhancement", None, true, true),
             ("insightfully +4", "Insight", None, true, false),
             ("+4 Natural Armor bonus", "Natural Armor", None, true, true),
             ("+4 armor enhancement bonus", "Armor Enhancement", None, true, true),
         ] {
-            assert_eq!(bonus_type_is_stated(text, bonus_type, home, description), stated, "{text}, {bonus_type}");
+            assert_eq!(
+                served_bonus_type_is_stated(
+                    text,
+                    bonus_type,
+                    home,
+                    if description { EffectTextKind::Description } else { EffectTextKind::EnchantmentLine }
+                ),
+                stated,
+                "{text}, {bonus_type}"
+            );
         }
     }
 

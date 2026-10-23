@@ -601,17 +601,30 @@ fn render_description_template(template: &str, row: &Value) -> String {
         signed_template.push_str(remainder);
     }
     let line_template = row["verbose_name_template"].as_str().unwrap_or("");
-    for slot in ["{1}", "{2}"] {
-        let percent_slot = format!("{slot}%");
-        if line_template.contains(&percent_slot) && !template.contains(&percent_slot) {
-            signed_template = signed_template.replace(slot, &percent_slot);
+    for slot in [1, 2] {
+        if ddo_model::effect_amount::line_template_states_percent(line_template, slot)
+            && !ddo_model::effect_amount::line_template_states_percent(template, slot)
+        {
+            signed_template = signed_template.replace(&format!("{{{slot}}}"), &format!("{{{slot}}}%"));
         }
     }
     render_effect_template(&signed_template, row)
 }
 
-pub fn bonus_type_line_word<'a>(bonus_type: &'a str, home_type: Option<&str>) -> Option<&'a str> {
-    if home_type == Some(bonus_type) || matches!(bonus_type, "Enhancement" | "Equipment") {
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub enum BonusTypeWording {
+    Enchantment,
+    SetBonus,
+}
+
+pub fn bonus_type_line_word<'a>(
+    bonus_type: &'a str,
+    home_type: Option<&str>,
+    wording: BonusTypeWording,
+) -> Option<&'a str> {
+    if wording == BonusTypeWording::SetBonus {
+        Some(bonus_type)
+    } else if home_type == Some(bonus_type) || matches!(bonus_type, "Enhancement" | "Equipment") {
         None
     } else if bonus_type == "Insight" {
         Some("Insightful")
@@ -624,7 +637,8 @@ fn render_verbose_name(row: &Value) -> String {
     let template = row["verbose_name_template"].as_str().unwrap_or("");
     let mut rendered_row = row.clone();
     let bonus_type = row["bonus_type"].as_str().unwrap_or("");
-    let visible_type = bonus_type_line_word(bonus_type, row["home_bonus_type"].as_str()).unwrap_or("");
+    let visible_type =
+        bonus_type_line_word(bonus_type, row["home_bonus_type"].as_str(), BonusTypeWording::Enchantment).unwrap_or("");
     rendered_row["template_bonus_type"] = Value::String(visible_type.to_string());
     let name = row["name"].as_str().unwrap_or("");
     let template = if !template.contains("{1}")
@@ -648,7 +662,7 @@ fn render_set_bonus_line(row: &Value) -> String {
     let template = row["set_bonus_line_template"].as_str().map(str::to_string).unwrap_or_else(|| {
         let unit = if row["verbose_name_template"]
             .as_str()
-            .is_some_and(ddo_model::effect_amount::line_template_states_percent)
+            .is_some_and(|template| ddo_model::effect_amount::line_template_states_percent(template, 1))
         {
             "%"
         } else {
@@ -656,7 +670,14 @@ fn render_set_bonus_line(row: &Value) -> String {
         };
         format!("+{{1}}{unit} %b1 Bonus to {}", row["name"].as_str().unwrap_or(""))
     });
-    render_effect_template(&template, row).split_whitespace().collect::<Vec<_>>().join(" ")
+    let mut rendered_row = row.clone();
+    let bonus_type = row["template_bonus_type"].as_str().or_else(|| row["bonus_type"].as_str()).unwrap_or("");
+    rendered_row["template_bonus_type"] = Value::String(
+        bonus_type_line_word(bonus_type, row["home_bonus_type"].as_str(), BonusTypeWording::SetBonus)
+            .unwrap_or("")
+            .to_string(),
+    );
+    render_effect_template(&template, &rendered_row).split_whitespace().collect::<Vec<_>>().join(" ")
 }
 
 #[cfg(test)]
