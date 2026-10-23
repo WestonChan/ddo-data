@@ -1031,6 +1031,12 @@ fn ambiguous_set_lines_keep_the_declared_group_and_cited_tactics_removals_apply(
 #[test]
 fn potency_grants_each_named_spell_power_without_granting_universal_spell_power() {
     let (db, _) = built_fixture_db();
+    assert_eq!(count(&db, "SELECT is_group FROM effects WHERE name = 'Potency'"), 1);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name = 'Spell Powers'"), 0);
+    assert_eq!(
+        count(&db, "SELECT COUNT(*) FROM effect_bonuses b JOIN effects e ON e.id = b.target_effect_id WHERE b.effect_id = (SELECT id FROM effects WHERE name = 'Potency') AND e.is_stat = 1 AND b.amount_from = 1 AND b.bonus_type_id IS NULL"),
+        15
+    );
     let item = item_id(&db, "Band of Diani ir'Wynarn");
     let spell_powers: Vec<String> = db
         .prepare(
@@ -1061,6 +1067,7 @@ fn an_augment_potency_effect_grants_each_spell_power_through_the_shared_family()
         )
         .unwrap();
     assert_eq!(linked_family, "Potency");
+    assert_eq!(count(&db, "SELECT is_group FROM effects WHERE name = 'Potency'"), 1);
     let spell_powers: Vec<(String, i64)> = db
         .prepare(
             "SELECT s.name, ob.amount FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id

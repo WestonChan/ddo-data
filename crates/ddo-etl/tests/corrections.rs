@@ -2470,7 +2470,7 @@ fn corrects_a_named_grouping_link_without_changing_its_definition() {
         .collect::<rusqlite::Result<_>>()
         .unwrap();
     assert_eq!(bonuses, vec![("Artifact".to_string(), 30); 15]);
-    assert_eq!(db.query_row("SELECT COUNT(*) FROM effect_bonuses WHERE effect_id = (SELECT id FROM effects WHERE name = 'Potency') AND bonus_type_id IS NULL AND amount_from = 1", [], |row| row.get::<_, i64>(0)).unwrap(), 1);
+    assert_eq!(db.query_row("SELECT COUNT(*) FROM effect_bonuses WHERE effect_id = (SELECT id FROM effects WHERE name = 'Potency') AND bonus_type_id IS NULL AND amount_from = 1", [], |row| row.get::<_, i64>(0)).unwrap(), 15);
     let restored = rebuilt_correction_notes(&db);
     assert!(restored.entries.iter().any(|correction| correction.stat.as_deref() == Some("Potency")
         && correction.field == "value"

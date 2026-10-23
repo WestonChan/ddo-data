@@ -501,7 +501,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::hard(
         "universal_spell_power_has_no_elemental_types",
-        "Equipment, Insight and Quality spell power is granted through the Spell Powers group",
+        "Equipment, Insight and Quality spell power is granted through the Potency group",
         OffenderQuery::Sql(
             "SELECT ob.owner_kind || ':' || ob.owner_id, ob.owner_id,
                     'Universal Spell Power with ' || bt.name

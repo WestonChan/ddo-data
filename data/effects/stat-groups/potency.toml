@@ -1,7 +1,12 @@
-name = "Spell Powers"
+name = "Potency"
 description_template = "{1} %b1 bonus to each individual spell power. (Universal Spell Power is a different statistic)"
 home_bonus_type = "Equipment"
-verbose_name_template = "%b1 Spell Powers +{1}"
+set_bonus_line_template = "+{1} %b1 Bonus to all Spell Powers"
+verbose_name_template = "%b1 Potency +{1}"
+
+[[citation]]
+url = "https://ddowiki.com/page/Potency"
+read = "2026-10-23"
 
 [[bonus]]
 amount_from = 1

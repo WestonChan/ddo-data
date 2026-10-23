@@ -9,7 +9,7 @@ enhancement = ["WeaponEnchantment", "ArmorEnchantment", "ShieldEnchantment"]
 owner_type_precedence = ["ExtraLayOnHands", "Constitution Skills - Exceptional", "Charisma Skills - Exceptional", "Strength Skills - Exceptional", "Wisdom Skills - Exceptional"]
 
 [family.groups]
-Potency = "Spell Powers"
+Potency = "Potency"
 Nullification = "Negative and Poison Spell Power"
 Radiance = "Light and Alignment Spell Power"
 VoidLore = "Negative and Poison Spell Lore"
@@ -360,7 +360,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Silver Flame Lore" = "Passive: Your Positive, Light, and Alignment spells gain a {1} %b1 bonus to their chance to critical hit."
 "Power of the Dark Restoration" = "Passive: {1} %b1 bonus to Negative, Poison and Positive Spell Power."
 "Acid Intensity" = "+{1}% %b1 bonus to critical damage with Acid spells."
-"Spell Powers" = "{1} %b1 bonus to each individual spell power. (Universal Spell Power is a different statistic)"
+Potency = "{1} %b1 bonus to each individual spell power. (Universal Spell Power is a different statistic)"
 "Light and Alignment Spell Power" = "{1} %b1 bonus to Light and Alignment spell power."
 "Negative and Poison Spell Power" = "{1} %b1 bonus to Negative and Poison spell power."
 "Negative and Poison Spell Lore" = "Passive: Your Negative Energy and Poison spells gain a {1}% %b1 bonus to their chance to critical hit."
@@ -399,7 +399,7 @@ Wizardry = ["Wizardry I", "Wizardry II", "Wizardry III", "Wizardry V", "Wizardry
 Sheltering = ["Physical Resistance Rating", "Magical Resistance Rating"]
 "Melee and Ranged Power" = ["Melee Power", "Ranged Power"]
 "Doublestrike and Doubleshot" = ["Doublestrike", "Doubleshot"]
-"Spell Powers" = ["Fire Spell Power", "Cold Spell Power", "Electric Spell Power", "Acid Spell Power", "Sonic Spell Power", "Light Spell Power", "Force Spell Power", "Negative Spell Power", "Positive Spell Power", "Repair Spell Power", "Poison Spell Power", "Chaos Spell Power", "Good Spell Power", "Evil Spell Power", "Law Spell Power"]
+Potency = ["Fire Spell Power", "Cold Spell Power", "Electric Spell Power", "Acid Spell Power", "Sonic Spell Power", "Light Spell Power", "Force Spell Power", "Negative Spell Power", "Positive Spell Power", "Repair Spell Power", "Poison Spell Power", "Chaos Spell Power", "Good Spell Power", "Evil Spell Power", "Law Spell Power"]
 
 [[augment_line_names]]
 augment = "Dolorous Invigorator (Heroic)"
