@@ -1137,6 +1137,44 @@ async fn mixed_unit_set_lines_render_each_stat_with_its_own_unit() {
 }
 
 #[tokio::test]
+async fn combat_mastery_composition_keeps_bonuses_filters_and_carriers() {
+    let path = fixture_db_path_with_data_edits("combat-mastery-compose", |root| {
+        let cases = fixture_data_dir().parent().unwrap().join("effect-groups/data");
+        common::copy_files(&cases, root);
+    });
+    let db = rusqlite::Connection::open(&path).unwrap();
+    let bonuses = db
+        .prepare(
+            "SELECT stat.name,bt.name,b.amount FROM owner_bonuses b
+         JOIN items i ON i.id=b.owner_id JOIN effects stat ON stat.id=b.stat_id
+         JOIN effects g ON g.id=b.group_effect_id JOIN bonus_types bt ON bt.id=b.bonus_type_id
+         WHERE b.owner_kind='item' AND i.name='Echo of Heartcleaver' AND g.name='Combat Mastery' ORDER BY stat.name",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?)))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(
+        bonuses,
+        ["Stun DC", "Sunder DC", "Trip DC"].map(|stat| (stat.to_string(), "Enhancement".to_string(), 13))
+    );
+    let state = AppState::open(&path).unwrap();
+    let (status, _, items) = get_from(state.clone(), "/v1/items?bonus=Combat%20Mastery&limit=1000").await;
+    assert_eq!(status, StatusCode::OK);
+    assert!(item_names(&items).contains(&"Echo of Heartcleaver"), "{items}");
+    let (status, _, group) = get_from(state.clone(), "/v1/effects/combat-mastery?items_limit=1000").await;
+    assert_eq!(status, StatusCode::OK);
+    assert!(
+        group["items"]["items"].as_array().unwrap().iter().any(|item| item["name"] == "Echo of Heartcleaver"),
+        "{group}"
+    );
+    let (status, headers, _) = get_from(state, "/v1/effects/tactics").await;
+    assert_eq!(status, StatusCode::PERMANENT_REDIRECT);
+    assert_eq!(headers[header::LOCATION], "/v1/effects/combat-mastery");
+}
+
+#[tokio::test]
 async fn grouped_hruit_spell_power_matches_each_stat_on_items_sets_and_carriers() {
     let state = fixture_state_with_data_edits("hruit-group-filters", |root| {
         let item = root.join("packs/unsourced/gear/legendary-bronze-dragonscale-plate.toml");

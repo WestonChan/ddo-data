@@ -8691,7 +8691,7 @@ value = 1
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 value = 1
 
 [[row.modifier]]
@@ -8706,7 +8706,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [1]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 effect_type = "TacticalDC"
 targets = [
     "Trip",
@@ -8984,7 +8984,7 @@ sphere = "Martial"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 value = 2
 
 [[row.effect]]
@@ -9120,7 +9120,7 @@ effect_type = "FatePoint"
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 effect_type = "TacticalDC"
 targets = [
     "Trip",

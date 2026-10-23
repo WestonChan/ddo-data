@@ -1,0 +1,16 @@
+name = "Dodge and Dodge Cap"
+description_template = "+{1}% %b1 bonus to Dodge and +{1} %b1 bonus to Dodge Cap."
+set_bonus_line_template = "+{1}% %b1 Bonus to Dodge and +{1} %b1 Bonus to Dodge Cap"
+verbose_name_template = "+{1}% %b1 Bonus to Dodge and +{1} %b1 Bonus to Dodge Cap"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Dodge"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Dodge Cap"

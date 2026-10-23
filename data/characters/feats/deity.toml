@@ -731,7 +731,7 @@ icon = "Onatar"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 value = 3
 
 [[row.effect]]
@@ -762,7 +762,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 effect_type = "TacticalDC"
 targets = [
     "Trip",

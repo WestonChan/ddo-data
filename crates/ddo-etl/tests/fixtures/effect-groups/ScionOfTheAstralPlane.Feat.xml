@@ -1,0 +1,61 @@
+<Feat>
+      <Name>Scion of the Astral Plane</Name>
+      <Description>+4 to Tactical Feat and Assassinate DCs, +4% Doublestrike and Doubleshot.
+An additional +4 (Doublestrike/Doubleshot) if you are centered.
++4% Dodge and Dodge Cap, +4 to Reflex Saves.</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfTheAstralPlane</Icon>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Trip</Item>
+        <Item>Sunder</Item>
+        <Item>Stun</Item>
+        <Item>General</Item>
+        <Item>Assassinate</Item>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Scion of the Astral Plane (Centered)</DisplayName>
+        <Type>Doublestrike</Type>
+        <Type>Doubleshot</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Centered</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Type>DodgeCapBonus</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Reflex</Item>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+    </Feat>

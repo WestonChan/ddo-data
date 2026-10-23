@@ -72,5 +72,14 @@ url = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)"
 read = "2026-10-02"
 qualifier = "Assassinate DC / null"
 
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = "Trip, Sunder, Stun and Assassinate DC"
+reason = "The page lists Profane Combat Mastery and Profane Assassinate as separate enchantments."
+url = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)"
+read = "2026-10-23"
+qualifier = "Trip, Sunder, Stun and Assassinate DC / Profane"
+
 [[slot]]
 slot = "lamordia: dolorous (armor)"

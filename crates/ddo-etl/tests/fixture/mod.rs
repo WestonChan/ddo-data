@@ -41,6 +41,43 @@ pub(crate) fn xml_source() -> tempfile::TempDir {
     scratch
 }
 
+pub(crate) fn write_scion_feat(source: &std::path::Path) {
+    let path = source.join("Feats.xml");
+    let feats = std::fs::read_to_string(&path).unwrap();
+    let scion = include_str!("../fixtures/effect-groups/ScionOfTheAstralPlane.Feat.xml");
+    std::fs::write(path, feats.replace("</Feats>", &format!("{scion}</Feats>"))).unwrap();
+    std::fs::create_dir_all(source.join("FeatImages")).unwrap();
+    std::fs::write(
+        source.join("FeatImages/ScionOfTheAstralPlane.png"),
+        include_bytes!("../fixtures/effect-groups/icons/ScionOfTheAstralPlane.png"),
+    )
+    .unwrap();
+}
+
+pub(crate) fn scion_dodge_split() -> CorrectionSet {
+    new_qualified_correction(
+        "feat_bonus",
+        "Scion of the Astral Plane",
+        "stat = 'Dodge and Dodge Cap'\nbonus_type = 'Feat'",
+        "lines",
+        "\"Dodge and Dodge Cap\"",
+        "[\"Dodge\", \"Dodge Cap\"]",
+    )
+}
+
+pub(crate) fn scion_dodge_lines(db: &rusqlite::Connection) -> Vec<(String, i64)> {
+    db.prepare(
+        "SELECT e.name,l.value FROM feat_effects l JOIN effects e ON e.id=l.effect_id
+         JOIN feats f ON f.id=l.feat_id WHERE f.name='Scion of the Astral Plane'
+         AND e.name LIKE '%Dodge%' ORDER BY e.name",
+    )
+    .unwrap()
+    .query_map([], |row| Ok((row.get(0)?, row.get(1)?)))
+    .unwrap()
+    .collect::<rusqlite::Result<_>>()
+    .unwrap()
+}
+
 pub(crate) fn write_search_and_spot_item(source: &std::path::Path, amount: i64, include_spot: bool) {
     std::fs::create_dir_all(source.join("Items")).unwrap();
     let mut item = include_str!("../fixtures/effect-groups/SearchAndSpot.item")

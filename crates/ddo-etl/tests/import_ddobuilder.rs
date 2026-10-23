@@ -129,6 +129,42 @@ fn a_merge_import_reports_a_missing_member_and_keeps_the_correction() {
 }
 
 #[test]
+fn feat_lines_import_follows_amounts_and_reports_changed_stats() {
+    for changed_stats in [false, true] {
+        let corrections = fixture::corrections_from(&[("feat-split.toml", &fixture::scion_dodge_split())]).unwrap();
+        let world = ImportWorld::with_sources(
+            fixture::grouping_cases(),
+            corrections,
+            WikiOverrides::default(),
+            fixture::write_scion_feat,
+        );
+        let path = world.options.source_dir.join("Feats.xml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        let edited = if changed_stats {
+            original.replace("<Type>DodgeCapBonus</Type>", "<Type>RangedPower</Type>")
+        } else {
+            original.replace(">4</Amount>", ">5</Amount>")
+        };
+        assert_ne!(edited, original);
+        std::fs::write(path, edited).unwrap();
+        let report = import_ddobuilder(&world.options).unwrap();
+        assert_eq!(report.has_conflicts(), changed_stats, "{report}");
+        let db = world.database();
+        if changed_stats {
+            let from: String = db
+                .query_row("SELECT from_value FROM corrections WHERE kind='feat_bonus' AND field='lines'", [], |row| {
+                    row.get(0)
+                })
+                .unwrap();
+            assert_eq!(from, "\"no such bonus\"");
+            assert_eq!(fixture::scion_dodge_lines(&db), [("Ranged Power and Dodge".into(), 4)]);
+        } else {
+            assert_eq!(fixture::scion_dodge_lines(&db), [("Dodge".into(), 5), ("Dodge Cap".into(), 5)]);
+        }
+    }
+}
+
+#[test]
 fn a_split_import_accepts_a_changed_amount_without_conflict() {
     let world = woeful_split_import();
     let path = world.options.source_dir.join("Augments/WoefulShadow.Augments.xml");

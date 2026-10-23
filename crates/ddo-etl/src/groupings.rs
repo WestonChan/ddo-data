@@ -443,13 +443,13 @@ mod tests {
             "effects/stats/sunder-dc.toml",
             "effects/stats/stun-dc.toml",
             "effects/baphomets-tactics.toml",
-            "effects/combat-mastery.toml",
+            "effects/stat-groups/combat-mastery.toml",
         ] {
             let destination = scratch.path().join(relative);
             std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
             std::fs::copy(source.join(relative), destination).unwrap();
         }
-        let mastery = std::fs::read_to_string(source.join("effects/combat-mastery.toml")).unwrap();
+        let mastery = std::fs::read_to_string(source.join("effects/stat-groups/combat-mastery.toml")).unwrap();
         let partial = mastery.rsplit_once("[[bonus]]").unwrap().0.replace("Combat Mastery", "Trip and Sunder DC");
         std::fs::write(scratch.path().join("effects/trip-and-sunder-dc.toml"), partial).unwrap();
         let mut db = Connection::open_in_memory().unwrap();

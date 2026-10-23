@@ -44,6 +44,7 @@ amount_type = "Simple"
 amounts = [5]
 bonus = "Insightful"
 bonus_type = "Insight"
+effect = "Combat Mastery"
 effect_type = "TacticalDC"
 targets = [
     "Stun",

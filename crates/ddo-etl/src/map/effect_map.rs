@@ -120,8 +120,6 @@ pub struct TargetedEffect {
     pub qualified_name: Option<String>,
     #[serde(default)]
     pub family_names: BTreeMap<String, String>,
-    #[serde(default)]
-    pub shared_targets: BTreeMap<String, String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -355,11 +353,6 @@ impl EffectMap {
                     || !targeted.targets.values().any(|stat_names| stat_names.contains(stat_name))
                 {
                     bail!("effect_map.toml [effect.targeted] {effect_type} has a family name for unmapped stat {stat_name:?}");
-                }
-            }
-            for (target, family_name) in &targeted.shared_targets {
-                if family_name.trim().is_empty() || targeted.targets.get(target).is_none_or(|stats| stats.len() < 2) {
-                    bail!("effect_map.toml [effect.targeted] {effect_type} has invalid shared target {target:?}");
                 }
             }
         }

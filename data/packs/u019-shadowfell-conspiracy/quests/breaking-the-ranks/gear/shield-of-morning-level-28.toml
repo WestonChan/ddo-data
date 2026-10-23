@@ -120,7 +120,7 @@ amount_type = "Simple"
 amounts = [4]
 bonus = "Insightful"
 bonus_type = "Insight"
-effect = "Tactics"
+effect = "Combat Mastery"
 effect_type = "TacticalDC"
 targets = [
     "Trip",

@@ -143,3 +143,9 @@ kind = "effects"
 from = "5-ranged-power"
 to = "ranged-power"
 since = "2026-10-20"
+
+[[redirect]]
+kind = "effects"
+from = "tactics"
+to = "combat-mastery"
+since = "2026-10-23"

@@ -1,0 +1,5 @@
+[[redirect]]
+kind = "effects"
+from = "tactics"
+to = "combat-mastery"
+since = "2026-10-23"

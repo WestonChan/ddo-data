@@ -52,7 +52,6 @@ fn build_normalized_database(db: &Connection, source: &Path, destination: &Path)
 
 pub struct NormalizedUpstreamDatabase {
     pub db: Connection,
-    pub shared_target_splits: Vec<crate::build::DerivedEffectSplit>,
     pub line_splits: Vec<crate::build::DerivedEffectSplit>,
     pub held_back_effects: Vec<crate::build::DerivedEffectSplit>,
     matched_set_tier_prose: BTreeSet<crate::build::SetTierProseMatch>,
@@ -80,7 +79,6 @@ pub fn normalized_upstream_database(
     let db = build_normalized_database(&upstream.db, source, destination)?;
     Ok(NormalizedUpstreamDatabase {
         db,
-        shared_target_splits: upstream.shared_target_splits,
         line_splits: upstream.line_splits,
         held_back_effects: upstream.held_back_effects,
         matched_set_tier_prose: upstream.matched_set_tier_prose,

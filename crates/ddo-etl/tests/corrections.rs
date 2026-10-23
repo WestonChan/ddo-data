@@ -88,6 +88,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::Augment, "description:description:Text:false, effect_description:effect_description:Text:true, family:family:Text:false, min_level:min_level:Integer:true, name:name:RowName:false, remove:remove:Removal:false"),
         (CorrectionKind::Quest, "epic_level:epic_level:Integer:true, favor:favor:Integer:true, is_raid:is_raid:Flag:false, level:level:Integer:true, name:name:RowName:false, pack:pack_id:NamedReference { referenced_table: \"adventure_packs\" }:false, patron:patron_id:NamedReference { referenced_table: \"patrons\" }:true, remove:remove:Removal:false"),
         (CorrectionKind::Feat, "description:description:Text:true, icon:icon:Text:true"),
+        (CorrectionKind::FeatBonus, "lines:lines:BonusLines:false"),
         (CorrectionKind::Enhancement, "arrows:arrows:TextList:false, cooldown_seconds:cooldown_seconds:Integer:true, cost_per_rank:cost_per_rank:IntegerList:false, description:description:Text:false, duration_seconds:duration_seconds:Integer:true, icon:icon:Text:true, is_clickie:is_clickie:Flag:false, is_tier5:is_tier5:Flag:false, min_spent:min_spent:Integer:false, name:name:RowName:false, ranks:ranks:Integer:false, x:x:Integer:false, y:y:Integer:false"),
         (CorrectionKind::Spell, "description:description:Text:false, icon:icon:Text:true"),
         (CorrectionKind::EnhancementTree, "icon:icon:Text:false"),
@@ -648,7 +649,7 @@ fn an_augment_lines_merge_accepts_a_fixed_type_grouping() {
 }
 
 #[test]
-fn a_lines_merge_keeps_its_explicit_name_instead_of_an_upstream_alias() {
+fn a_lines_merge_uses_the_grouping_named_by_its_correction() {
     let source = fixture::xml_source();
     let original = include_str!("fixtures/effect-groups/WoefulShadow.Augments.xml");
     let first_effect = original.split_once("    <Effect>").unwrap().1.split_once("    </Effect>").unwrap().0;
@@ -678,10 +679,10 @@ fn a_lines_merge_keeps_its_explicit_name_instead_of_an_upstream_alias() {
     let correction = new_qualified_correction(
         "augment_bonus",
         "Dolorous Invigorator (Legendary)",
-        "stat = 'Tactics'\nbonus_type = 'Profane'",
+        "stat = 'Combat Mastery'\nbonus_type = 'Profane'",
         "lines",
         "['Trip DC', 'Sunder DC', 'Stun DC']",
-        "'Tactics'",
+        "'Combat Mastery'",
     );
     let mut db = Connection::open_in_memory().unwrap();
     let report = build_database(
@@ -694,7 +695,7 @@ fn a_lines_merge_keeps_its_explicit_name_instead_of_an_upstream_alias() {
     )
     .unwrap();
     let name = db.query_row("SELECT e.name FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name='Dolorous Invigorator (Legendary)' AND l.value=3", [], |row| row.get::<_, String>(0)).unwrap();
-    assert_eq!(name, "Tactics");
+    assert_eq!(name, "Combat Mastery");
     assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
 }
 
@@ -878,6 +879,37 @@ fn fixed_type_grouping_splits_into_stat_lines_at_its_resolved_type() {
         lines,
         [("Electric Spell Power".into(), "Equipment".into(), 3), ("Fire Spell Power".into(), "Equipment".into(), 3)]
     );
+}
+
+#[test]
+fn feat_lines_split_and_merge_follow_the_real_writer() {
+    let source = fixture::xml_source();
+    fixture::write_scion_feat(source.path());
+    let correction = fixture::scion_dodge_split();
+    let (split, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("feat-split.toml", &correction)]).unwrap();
+    assert_eq!(fixture::scion_dodge_lines(&split), [("Dodge".into(), 4), ("Dodge Cap".into(), 4)]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let path = source.path().join("Feats.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let separate = original.replace(
+        "<Type>DodgeBonus</Type>\n        <Type>DodgeCapBonus</Type>",
+        "<Type>DodgeBonus</Type><Bonus>Feat</Bonus><AType>Simple</AType><Amount size=\"1\">4</Amount></Effect><Effect><Type>DodgeCapBonus</Type>",
+    );
+    assert_ne!(separate, original);
+    std::fs::write(&path, separate).unwrap();
+    let merge = new_qualified_correction(
+        "feat_bonus",
+        "Scion of the Astral Plane",
+        "stat = 'Dodge and Dodge Cap'\nbonus_type = 'Feat'",
+        "lines",
+        "[\"Dodge\", \"Dodge Cap\"]",
+        "\"Dodge and Dodge Cap\"",
+    );
+    let (merged, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("feat-merge.toml", &merge)]).unwrap();
+    assert_eq!(fixture::scion_dodge_lines(&merged), [("Dodge and Dodge Cap".into(), 4)]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
 }
 
 #[test]
@@ -3396,7 +3428,7 @@ fn refuses_to_write_an_augment_bonus_without_a_type_unless_a_correction_types_it
         .unwrap()
         .map(Result::unwrap)
         .collect();
-    assert_eq!(lines, ["Spell Focus Mastery", "Combat Mastery", "Assassinate"]);
+    assert_eq!(lines, ["Spell Focus Mastery", "Trip, Sunder, Stun and Assassinate DC"]);
     assert_eq!(row_count(&db, "SELECT COUNT(*) FROM corrections WHERE kind = 'augment_bonus'"), 4);
 }
 

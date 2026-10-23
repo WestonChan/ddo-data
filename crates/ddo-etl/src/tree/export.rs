@@ -26,7 +26,7 @@ pub(super) const NOTE_KINDS_BY_TABLE: &[(&str, &[&str])] = &[
     ("quests", &["quest"]),
     ("set_bonuses", &["set_bonus", "set_tier", "set_tier_bonus"]),
     ("effects", &["effect", "effect_damage"]),
-    ("feats", &["feat"]),
+    ("feats", &["feat", "feat_bonus"]),
     ("races", &["race"]),
     ("classes", &["class"]),
     ("adventure_packs", &["adventure_pack"]),

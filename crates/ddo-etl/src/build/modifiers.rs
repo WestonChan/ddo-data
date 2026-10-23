@@ -21,7 +21,6 @@ pub(super) struct DerivedEffectLink {
 enum GroupingOutcome {
     Grouped(Vec<DerivedEffectLink>),
     Split { links: Vec<DerivedEffectLink>, correction: String },
-    SharedTargets(Vec<String>),
     Held(GroupingHold),
     NotGrouped,
 }
@@ -90,10 +89,8 @@ impl TableWriter<'_> {
                     }
                 }
             }
-            let mut links = self.ensure_derived_effects(&owner, modifier_source, owner_id, &mapped_effects)?;
-            if let Some(option_name) = normalized_option_name.as_deref() {
-                self.collapse_combat_mastery_option(option_name, &mut links)?;
-            }
+            let links = self.ensure_derived_effects(&owner, modifier_source, owner_id, &mapped_effects)?;
+            let links = self.write_merged_lines(&owner, owner_id, links)?;
             for (sort_order, link) in links.into_iter().enumerate() {
                 self.effects.insert_link(
                     owner_kind,
@@ -104,49 +101,6 @@ impl TableWriter<'_> {
                     sort_order,
                 )?;
             }
-        }
-        Ok(())
-    }
-
-    fn collapse_combat_mastery_option(&self, option_name: &str, links: &mut Vec<DerivedEffectLink>) -> Result<()> {
-        if !option_name.contains("Combat Mastery") {
-            return Ok(());
-        }
-        let source_names = ["Tactics", "Trip DC", "Sunder DC", "Stun DC"];
-        let matching_indices: Vec<usize> = links
-            .iter()
-            .enumerate()
-            .filter_map(|(index, link)| {
-                self.effects
-                    .family(link.effect_id)
-                    .filter(|family| source_names.contains(&family.name.as_str()))
-                    .map(|_| index)
-            })
-            .collect();
-        let source_set: std::collections::BTreeSet<&str> = matching_indices
-            .iter()
-            .filter_map(|index| self.effects.family(links[*index].effect_id).map(|family| family.name.as_str()))
-            .collect();
-        anyhow::ensure!(
-            source_set == std::collections::BTreeSet::from(["Tactics"])
-                || source_set == std::collections::BTreeSet::from(["Trip DC", "Sunder DC", "Stun DC"]),
-            "option {option_name:?} names Combat Mastery but grants {source_set:?}"
-        );
-        let first_index = matching_indices[0];
-        let first_type = links[first_index].bonus_type;
-        let first_value = links[first_index].value;
-        anyhow::ensure!(
-            matching_indices.iter().all(|index| {
-                links[*index].bonus_type == first_type
-                    && links[*index].value == first_value
-                    && links[*index].value2.is_none()
-            }),
-            "option {option_name:?} names one Combat Mastery line with different amounts or types"
-        );
-        links[first_index].effect_id =
-            self.effects.family_named("Combat Mastery").expect("declared Combat Mastery effect").id;
-        for index in matching_indices.into_iter().skip(1).rev() {
-            links.remove(index);
         }
         Ok(())
     }
@@ -242,7 +196,6 @@ impl TableWriter<'_> {
                 })
                 .collect::<Result<Vec<_>>>()?;
             let first_link = links.len();
-            let split_count = self.shared_target_splits.len();
             let types_had_stats = derived_by_type.iter().map(|bonuses| !bonuses.is_empty()).collect::<Vec<_>>();
             let source_index = self.derived_effect_lines.len();
             let outcome = self.write_grouped_effect_links(owner, owner_id, effect, &mut derived_by_type)?;
@@ -276,10 +229,6 @@ impl TableWriter<'_> {
                 GroupingOutcome::Split { links, correction } => {
                     self.line_splits.push(split(correction));
                     Some(links)
-                }
-                GroupingOutcome::SharedTargets(entries) => {
-                    self.shared_target_splits.push(split(entries.join(", ")));
-                    None
                 }
                 GroupingOutcome::Held(hold) => {
                     self.held_back_effects.push(split(hold.reason()));
@@ -343,47 +292,13 @@ impl TableWriter<'_> {
                 }
                 let all_abilities =
                     effect_type == "AbilityBonus" && effect.targets.iter().any(|target| target == "All");
-                let named_shared_target = EFFECT_MAP.effect.targeted.get(effect_type).and_then(|targeted| {
-                    effect
-                        .targets
-                        .iter()
-                        .find_map(|target| {
-                            targeted.shared_targets.get(target).map(|name| (target.as_str(), name.as_str()))
-                        })
-                        .or_else(|| {
-                            effect
-                                .targets
-                                .is_empty()
-                                .then(|| targeted.shared_targets.get("All").map(|name| ("All", name.as_str())))
-                                .flatten()
-                        })
-                });
-                let groups: Vec<(Vec<_>, Option<&str>)> = if preserve_member_lines {
-                    derived_bonuses.into_iter().map(|bonus| (vec![bonus], None)).collect()
-                } else if all_abilities || effect_type == "SkillBonusAbility" {
-                    vec![(derived_bonuses, None)]
-                } else if let Some((shared_target, shared_name)) = named_shared_target {
-                    let members = &EFFECT_MAP.effect.targeted[effect_type].targets[shared_target];
-                    let mut remaining = derived_bonuses;
-                    let mut grouped = Vec::new();
-                    while let Some(first) = remaining.first().copied() {
-                        if members.iter().any(|member| member == first.stat.name) {
-                            let shared: Vec<_> = remaining
-                                .iter()
-                                .copied()
-                                .filter(|bonus| members.iter().any(|member| member == bonus.stat.name))
-                                .collect();
-                            remaining.retain(|bonus| !members.iter().any(|member| member == bonus.stat.name));
-                            grouped.push((shared, Some(shared_name)));
-                        } else {
-                            grouped.push((vec![remaining.remove(0)], None));
-                        }
-                    }
-                    grouped
-                } else {
-                    derived_bonuses.into_iter().map(|bonus| (vec![bonus], None)).collect()
-                };
-                for (group_order, (bonuses, shared_name)) in groups.into_iter().enumerate() {
+                let groups: Vec<Vec<_>> =
+                    if !preserve_member_lines && (all_abilities || effect_type == "SkillBonusAbility") {
+                        vec![derived_bonuses]
+                    } else {
+                        derived_bonuses.into_iter().map(|bonus| vec![bonus]).collect()
+                    };
+                for (group_order, bonuses) in groups.into_iter().enumerate() {
                     let first_bonus = bonuses[0];
                     let target = if preserve_member_lines {
                         if all_abilities || effect_type == "SkillBonusAbility" {
@@ -398,29 +313,16 @@ impl TableWriter<'_> {
                         }
                     } else if all_abilities {
                         Some("All")
-                    } else if let Some((shared_target, _)) = named_shared_target {
-                        shared_name.map(|_| shared_target).or_else(|| {
-                            effect.targets.iter().find_map(|target| {
-                                EFFECT_MAP
-                                    .effect_stat(effect_type, target)
-                                    .filter(|stat| stat.id == first_bonus.stat.id)
-                                    .map(|_| target.as_str())
-                            })
-                        })
                     } else if effect.targets.len() > group_order {
                         Some(effect.targets[group_order].as_str())
                     } else {
                         effect.targets.first().map(String::as_str)
                     };
-                    let line_name = shared_name
-                        .or_else(|| (preserve_member_lines && target.is_none()).then_some(first_bonus.stat.name));
+                    let line_name = (preserve_member_lines && target.is_none()).then_some(first_bonus.stat.name);
                     links.push(self.write_derived_line(owner, effect_type, target, &bonuses, line_name)?);
                 }
             }
             self.derived_effect_lines[source_index].link_count = links.len() - first_link;
-            if links.len() - first_link <= 1 {
-                self.shared_target_splits.truncate(split_count);
-            }
             if let Some(first) = links.get(first_link) {
                 if links[first_link..].iter().all(|link| link.effect_id == first.effect_id) {
                     self.transaction.execute(
@@ -630,20 +532,7 @@ impl TableWriter<'_> {
             }
         }
         let mut bonuses = Vec::new();
-        let mut shared_targets = Vec::new();
         for (effect_type, derived) in effect.types.iter().zip(derived_by_type.iter()) {
-            if let Some(targeted) = EFFECT_MAP.effect.targeted.get(effect_type) {
-                let targets = if effect.targets.is_empty() {
-                    vec!["All"]
-                } else {
-                    effect.targets.iter().map(String::as_str).collect()
-                };
-                for target in targets {
-                    if targeted.shared_targets.contains_key(target) {
-                        shared_targets.push(format!("effect.targeted.{effect_type}.shared_targets.{target}"));
-                    }
-                }
-            }
             bonuses.extend(derived.iter().copied().map(|bonus| (effect_type.as_str(), bonus)));
         }
         let stats =
@@ -669,9 +558,6 @@ impl TableWriter<'_> {
             }
             bonus_type = Some(resolved);
         }
-        if !shared_targets.is_empty() {
-            return Ok(GroupingOutcome::SharedTargets(shared_targets));
-        }
         let bonus_type = bonus_type.expect("multi-stat effect has a bonus type");
         let matching = self.groupings.by_stat_set.get(&stats).map(Vec::as_slice).unwrap_or_default();
         if let [grouping] = matching {
@@ -687,6 +573,7 @@ impl TableWriter<'_> {
                             && matches!(
                                 (owner.kind, correction.kind),
                                 (BonusOwnerKind::Augment, ddo_model::enums::CorrectionKind::AugmentBonus)
+                                    | (BonusOwnerKind::Feat, ddo_model::enums::CorrectionKind::FeatBonus)
                                     | (BonusOwnerKind::SetBonusTier, ddo_model::enums::CorrectionKind::SetTierBonus)
                             )
                     })
@@ -831,6 +718,7 @@ impl TableWriter<'_> {
         let kind = match owner.kind {
             BonusOwnerKind::Item => CorrectionKind::ItemBonus,
             BonusOwnerKind::Augment => CorrectionKind::AugmentBonus,
+            BonusOwnerKind::Feat => CorrectionKind::FeatBonus,
             BonusOwnerKind::SetBonusTier => CorrectionKind::SetTierBonus,
             _ => return Ok(links),
         };

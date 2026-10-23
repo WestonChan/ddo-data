@@ -13868,7 +13868,7 @@ source_name = "Fighter"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 value = 4
 
 [[row.group]]
@@ -13884,7 +13884,7 @@ group_name = "Fighter Bonus Feat"
 amount_type = "Simple"
 amounts = [4]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 effect_type = "TacticalDC"
 targets = [
     "Trip",
@@ -13907,7 +13907,7 @@ source_name = "Fighter"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 value = 6
 
 [[row.group]]
@@ -13923,7 +13923,7 @@ group_name = "Fighter Bonus Feat"
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 effect_type = "TacticalDC"
 targets = [
     "Trip",
@@ -13946,7 +13946,7 @@ source_name = "Fighter"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 value = 8
 
 [[row.group]]
@@ -13962,7 +13962,7 @@ group_name = "Fighter Bonus Feat"
 amount_type = "Simple"
 amounts = [8]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 effect_type = "TacticalDC"
 targets = [
     "Trip",
@@ -13985,7 +13985,7 @@ source_name = "Fighter"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 value = 2
 
 [[row.group]]
@@ -14001,7 +14001,7 @@ group_name = "Fighter Bonus Feat"
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 effect_type = "TacticalDC"
 targets = [
     "Trip",

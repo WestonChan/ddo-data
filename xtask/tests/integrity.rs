@@ -27,7 +27,7 @@ fn fixture_db_built_once() -> &'static Path {
         let tree = work_dir.path().join("data");
         copy_fixture_tree(&tree);
         let production = fixtures_dir().join("../../../../data/effects");
-        for name in ["shadow-striker", "baphomets-tactics"] {
+        for name in ["shadow-striker", "baphomets-tactics", "stat-groups/combat-mastery"] {
             let contents = std::fs::read_to_string(production.join(format!("{name}.toml"))).unwrap();
             let contents = if name == "shadow-striker" { contents.replace("+20%", "+15%") } else { contents };
             std::fs::write(tree.join(format!("effects/{name}.toml")), contents).unwrap();

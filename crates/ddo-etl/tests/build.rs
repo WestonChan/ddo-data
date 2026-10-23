@@ -428,11 +428,85 @@ fn avalanche_uses_the_existing_frozen_thunderstorm_effect() {
     );
 }
 
+#[test]
+fn scion_keeps_tactical_and_assassinate_dcs_on_one_line() {
+    let source = fixture::xml_source();
+    fixture::write_scion_feat(source.path());
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::grouping_cases(),
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let links = db.prepare(
+        "SELECT DISTINCT e.name,l.value FROM feat_effects l JOIN effects e ON e.id=l.effect_id
+         JOIN feats f ON f.id=l.feat_id JOIN owner_bonuses b ON b.owner_kind='feat' AND b.owner_id=f.id AND b.via_effect_id=e.id
+         JOIN effects stat ON stat.id=b.stat_id WHERE f.name='Scion of the Astral Plane' AND stat.name IN ('Trip DC','Sunder DC','Stun DC','Assassinate DC')",
+    ).unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?)))
+        .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(links, [("Trip, Sunder, Stun and Assassinate DC".into(), 4)]);
+}
+
+#[test]
+fn combat_mastery_composition_and_cited_dolorous_splits_follow_the_xml_writer() {
+    let source = fixture::xml_source();
+    let buffs = source.path().join("ItemBuffs.xml");
+    let original = std::fs::read_to_string(&buffs).unwrap();
+    std::fs::write(
+        buffs,
+        original.replace(
+            "</Buffs>",
+            &format!("{}</Buffs>", include_str!("fixtures/effect-groups/BaphometsTactics.Buff.xml")),
+        ),
+    )
+    .unwrap();
+    std::fs::write(
+        source.path().join("Augments/DolorousInvigorator.Augments.xml"),
+        include_str!("fixtures/effect-groups/DolorousInvigorator.Augments.xml"),
+    )
+    .unwrap();
+    std::fs::write(
+        source.path().join("Items/EchoOfHeartcleaver.item"),
+        include_str!("fixtures/effect-groups/EchoOfHeartcleaver.item"),
+    )
+    .unwrap();
+    let mut corrections =
+        Corrections::from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data")).unwrap();
+    corrections.entries.retain(|entry| {
+        matches!(entry.name.as_str(), "Dolorous Invigorator (Heroic)" | "Dolorous Invigorator (Legendary)")
+    });
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::grouping_cases(),
+        source.path(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!(report.correction_stale_count, 0, "{:?}", report.stale_corrections);
+    assert_eq!(report.line_splits.len(), 2);
+    for tier in ["Heroic", "Legendary"] {
+        let owner = format!("Dolorous Invigorator ({tier})");
+        let lines = db.prepare("SELECT e.name FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name=? ORDER BY l.sort_order")
+            .unwrap().query_map([owner], |row| row.get::<_,String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(lines, ["Spell Focus Mastery", "Combat Mastery", "Assassinate"]);
+    }
+    let bonuses = db.prepare("SELECT target.name,bt.name,b.constant FROM effect_bonuses b JOIN effects e ON e.id=b.effect_id JOIN effects target ON target.id=b.target_effect_id JOIN bonus_types bt ON bt.id=b.bonus_type_id WHERE e.name=\"Baphomet's Tactics\"")
+        .unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?)))
+        .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(bonuses, [("Combat Mastery".into(), "Enhancement".into(), 13)]);
+}
+
 fn assert_every_multi_stat_effect_has_one_link_or_an_exception(report: &BuildReport) {
     let exceptions = report
-        .shared_target_splits
+        .line_splits
         .iter()
-        .chain(&report.line_splits)
         .chain(&report.held_back_effects)
         .map(|split| split.source_index)
         .collect::<std::collections::BTreeSet<_>>();
@@ -836,7 +910,7 @@ fn ambiguous_upstream_stat_sets_keep_their_stat_links_and_are_reported() {
     let (db, report) = built_ambiguous_fixture_db();
     for (owner, expected_stats) in [
         ("Ruby of Negative Spell Power", vec!["Negative Spell Power", "Poison Spell Power"]),
-        ("Solar Gem of Tactical DCs (Heroic)", vec!["Stun DC", "Sunder DC", "Trip DC"]),
+        ("Solar Gem of Tactical DCs (Heroic)", vec!["Combat Mastery"]),
     ] {
         let mut statement = db
             .prepare(
@@ -850,9 +924,12 @@ fn ambiguous_upstream_stat_sets_keep_their_stat_links_and_are_reported() {
             .collect::<rusqlite::Result<Vec<_>>>()
             .unwrap();
         assert_eq!(linked, expected_stats, "{owner}");
-        assert!(report.held_back_effects.iter().any(|effect| effect.owner_name == owner), "{owner}");
+        assert_eq!(
+            report.held_back_effects.iter().any(|effect| effect.owner_name == owner),
+            owner == "Ruby of Negative Spell Power",
+            "{owner}"
+        );
     }
-    assert!(report.shared_target_splits.iter().all(|split| split.reason.contains("shared_targets")));
 }
 
 #[test]
@@ -906,17 +983,20 @@ fn kundaraks_multi_type_effect_keeps_one_doublestrike_and_doubleshot_link() {
 }
 
 #[test]
-fn ambiguous_set_lines_keep_the_declared_group_and_shared_targets_record_the_split() {
+fn ambiguous_set_lines_keep_the_declared_group_and_cited_tactics_removals_apply() {
     let source = data_files_fixture_dir();
     let scratch = fixture::xml_source();
     std::fs::copy(source.parent().unwrap().join("effect-groups/SetBonuses.xml"), scratch.path().join("SetBonuses.xml"))
         .unwrap();
     let mut db = Connection::open_in_memory().unwrap();
+    let mut corrections =
+        Corrections::from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data")).unwrap();
+    corrections.entries.retain(|entry| entry.name == "Eminence of Summer");
     let report = build_database(
         fixture::grouping_cases(),
         scratch.path(),
         &WikiOverrides::default(),
-        &Corrections::default(),
+        &corrections,
         &mut db,
         &fixture_dataset_version(),
     )
@@ -934,8 +1014,6 @@ fn ambiguous_set_lines_keep_the_declared_group_and_shared_targets_record_the_spl
         .held_back_effects
         .iter()
         .any(|effect| effect.owner_name == "The Desert's Starless Nights" && effect.reason.contains("Nullification")));
-    let split = report.shared_target_splits.iter().find(|effect| effect.owner_name == "Eminence of Summer").unwrap();
-    assert_eq!(split.reason, "effect.targeted.TacticalDC.shared_targets.General");
     let names = db
         .prepare(
             "SELECT e.name FROM set_bonus_tier_effects link JOIN effects e ON e.id = link.effect_id
@@ -947,7 +1025,7 @@ fn ambiguous_set_lines_keep_the_declared_group_and_shared_targets_record_the_spl
         .unwrap()
         .collect::<rusqlite::Result<Vec<_>>>()
         .unwrap();
-    assert_eq!(names, ["Assassinate", "Rune Arm DC", "Tactics"]);
+    assert_eq!(names, ["Combat Mastery"]);
 }
 
 #[test]

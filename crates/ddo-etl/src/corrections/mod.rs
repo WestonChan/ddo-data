@@ -433,10 +433,7 @@ impl Correction {
             bail!("family narrows only an augment or augment_bonus correction, not a {}", self.kind.as_str());
         }
         let names_a_bonus = self.stat.is_some() || self.bonus_type.is_some() || self.bonus_value.is_some();
-        let needs_a_bonus = matches!(
-            self.kind,
-            CorrectionKind::AugmentBonus | CorrectionKind::ItemBonus | CorrectionKind::SetTierBonus
-        ) && field.shape != FieldShape::BonusAddition;
+        let needs_a_bonus = self.kind.corrects_a_bonus() && field.shape != FieldShape::BonusAddition;
         let needs_a_tier = matches!(self.kind, CorrectionKind::SetTier | CorrectionKind::SetTierBonus);
         if needs_a_tier != self.equipped_count.is_some() {
             bail!("a set_tier or set_tier_bonus correction requires equipped_count, and other kinds forbid it");
@@ -458,9 +455,7 @@ impl Correction {
                 bail!("an effect constant correction names exactly one stat");
             }
         } else if names_a_bonus && !needs_a_bonus {
-            bail!(
-                "stat, bonus_type and bonus_value name the bonus of an augment_bonus, item_bonus or set_tier_bonus value, bonus_type, scale, rounding or remove correction; an add names them in to"
-            );
+            bail!("stat, bonus_type and bonus_value require a bonus correction; an add names them in to");
         }
         if field.shape == FieldShape::BonusTypeName
             && self.kind != CorrectionKind::ItemEffect
@@ -810,11 +805,7 @@ fn set_correction_qualifiers(correction: &mut Correction, qualifier: &str) -> Re
             correction.equipped_count = Some(count.parse()?);
         } else if let Some(stat) = part.strip_prefix("stat ") {
             correction.stat = Some(serde_json::from_str(stat)?);
-        } else if matches!(
-            correction.kind,
-            CorrectionKind::ItemBonus | CorrectionKind::AugmentBonus | CorrectionKind::SetTierBonus
-        ) && !matches!(correction.to, CorrectionValue::Bonus(_))
-        {
+        } else if correction.kind.corrects_a_bonus() && !matches!(correction.to, CorrectionValue::Bonus(_)) {
             let names = part.split(" / ").collect::<Vec<_>>();
             ensure!((2..=3).contains(&names.len()), "{} has invalid bonus qualifier {part:?}", correction.label());
             correction.stat = Some(names[0].to_string());

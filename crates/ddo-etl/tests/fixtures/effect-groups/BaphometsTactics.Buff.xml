@@ -1,0 +1,13 @@
+<Buff>
+    <Type>Baphomet's Tactics</Type>
+    <DisplayText>Baphomet's Tactics: +13 Enhancement bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts. In addition, on hit with this weapon, you deal an extra 15d6 Bludgeoning Damage to Bosses and creatures who have been knocked down.</DisplayText>
+    <Effect>
+      <Type>TacticalDC</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">13</Amount>
+      <Item>Trip</Item>
+      <Item>Sunder</Item>
+      <Item>Stun</Item>
+    </Effect>
+  </Buff>

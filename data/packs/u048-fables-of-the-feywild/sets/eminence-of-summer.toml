@@ -58,6 +58,24 @@ name = "The Prince's Gauntlet"
 [[item]]
 name = "Titania's Glory"
 
+[[ddobuilder_correction]]
+kind = "set_tier_bonus"
+field = "remove"
+upstream = 5
+reason = "The set line grants +5 Artifact bonus to your Tactical Abilities, interpreted as Combat Mastery; it names no other DC."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-23"
+qualifier = "equipped_count 4, Assassinate DC / Artifact"
+
+[[ddobuilder_correction]]
+kind = "set_tier_bonus"
+field = "remove"
+upstream = 5
+reason = "The set line grants +5 Artifact bonus to your Tactical Abilities, interpreted as Combat Mastery; it names no other DC."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-23"
+qualifier = "equipped_count 4, Rune Arm DC / Artifact"
+
 [[tier]]
 equipped_count = 2
 
@@ -93,23 +111,14 @@ equipped_count = 4
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Assassinate"
-value = 5
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Tactics"
-value = 5
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Rune Arm DC"
+effect = "Combat Mastery"
 value = 5
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Artifact"
+effect = "Combat Mastery"
 effect_type = "TacticalDC"
 targets = [
     "Assassinate",

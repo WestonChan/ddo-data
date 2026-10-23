@@ -7,18 +7,12 @@ family = "Named"
 icon = "HistoryBookOrange"
 min_level = 32
 
-[[effect]]
-name = "Stun DC"
-bonus_type = "Enhancement"
-value = 11
+[[citation]]
+url = "https://ddowiki.com/page/Item:A_Treatise_on_Battle"
+read = "2026-10-23"
 
 [[effect]]
-name = "Sunder DC"
-bonus_type = "Enhancement"
-value = 11
-
-[[effect]]
-name = "Trip DC"
+name = "Combat Mastery"
 bonus_type = "Enhancement"
 value = 11
 
@@ -26,6 +20,7 @@ value = 11
 amount_type = "Simple"
 amounts = [11]
 bonus_type = "Enhancement"
+effect = "Combat Mastery"
 effect_type = "TacticalDC"
 targets = [
     "Stun",

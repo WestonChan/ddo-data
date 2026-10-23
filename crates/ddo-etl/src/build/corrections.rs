@@ -1047,15 +1047,17 @@ struct BonusLinkTable {
 
 impl BonusLinkTable {
     const AUGMENT: Self = Self { table_name: "augment_effects", owner_column: "augment_id" };
+    const FEAT: Self = Self { table_name: "feat_effects", owner_column: "feat_id" };
     const ITEM: Self = Self { table_name: "item_effects", owner_column: "item_id" };
     const SET_TIER: Self = Self { table_name: "set_bonus_tier_effects", owner_column: "tier_id" };
 
     fn of(kind: CorrectionKind) -> Result<Self> {
         match kind {
             CorrectionKind::AugmentBonus => Ok(Self::AUGMENT),
+            CorrectionKind::FeatBonus => Ok(Self::FEAT),
             CorrectionKind::ItemBonus => Ok(Self::ITEM),
             CorrectionKind::SetTierBonus => Ok(Self::SET_TIER),
-            _ => bail!("only an augment_bonus, item_bonus or set_tier_bonus correction names a bonus"),
+            _ => bail!("only an augment_bonus, feat_bonus, item_bonus or set_tier_bonus correction names a bonus"),
         }
     }
     fn bonus_rows_sql(&self, selected_columns: &str) -> String {

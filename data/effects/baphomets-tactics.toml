@@ -9,20 +9,8 @@ bonus_type = "Enhancement"
 constant = 13
 rounding = "down"
 scale = 1.0
-target = "Trip DC"
+target = "Combat Mastery"
 
-[[bonus]]
-amount_from = 0
-bonus_type = "Enhancement"
-constant = 13
-rounding = "down"
-scale = 1.0
-target = "Sunder DC"
-
-[[bonus]]
-amount_from = 0
-bonus_type = "Enhancement"
-constant = 13
-rounding = "down"
-scale = 1.0
-target = "Stun DC"
+[[citation]]
+url = "https://ddowiki.com/page/Item:Echo_of_Heartcleaver"
+read = "2026-10-23"

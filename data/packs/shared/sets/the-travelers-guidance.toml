@@ -15,7 +15,7 @@ value = 1
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Tactics"
+effect = "Combat Mastery"
 value = 1
 
 [[tier.effect]]

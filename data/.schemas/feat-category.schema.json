@@ -156,6 +156,7 @@
         "set_tier_bonus",
         "spell",
         "augment_bonus",
+        "feat_bonus",
         "item_bonus",
         "item_effect",
         "effect_damage",

@@ -2657,7 +2657,7 @@ source_name = "Epic"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 value = 2
 
 [[row.group]]
@@ -2667,7 +2667,7 @@ group_name = "Epic Destiny Feat"
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
-effect = "Tactics"
+effect = "Combat Mastery"
 effect_type = "TacticalDC"
 targets = [
     "Trip",

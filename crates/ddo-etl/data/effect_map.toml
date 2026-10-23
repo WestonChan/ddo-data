@@ -3,7 +3,6 @@ description_trim_period = ["Sheltering"]
 [named_effect_ids]
 "Spell Focus Mastery" = 100
 "Combat Mastery" = 118
-Tactics = 198
 
 [family]
 enhancement = ["WeaponEnchantment", "ArmorEnchantment", "ShieldEnchantment"]
@@ -367,7 +366,6 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Negative and Poison Spell Lore" = "Passive: Your Negative Energy and Poison spells gain a {1}% %b1 bonus to their chance to critical hit."
 "Spell Focus Mastery" = "+{1} %b1 bonus to the DC of all spells."
 "Combat Mastery" = "+{1} %b1 bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts."
-Tactics = "+{1} %b1 bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts."
 "Doublestrike and Doubleshot" = "+{1}% %b1 bonus to Doublestrike and Doubleshot."
 "Melee and Ranged Power" = "+{1} %b1 bonus to Melee and Ranged Power."
 Assassinate = "+{1} %b1 bonus to the DC of character's Assassinate attempts."
@@ -393,6 +391,7 @@ Deception = ["Deception", "Improved Deception"]
 Wizardry = ["Wizardry I", "Wizardry II", "Wizardry III", "Wizardry V", "Wizardry VI", "Wizardry VII", "Wizardry IX", "Wizardry X", "Wizardry XI"]
 
 [groups]
+"Combat Mastery" = ["Trip DC", "Sunder DC", "Stun DC"]
 "Negative and Poison Spell Power" = ["Negative Spell Power", "Poison Spell Power"]
 "Light and Alignment Spell Power" = ["Light Spell Power", "Chaos Spell Power", "Evil Spell Power", "Good Spell Power", "Law Spell Power"]
 "Negative and Poison Spell Lore" = ["Negative Spell Lore", "Poison Spell Lore"]
@@ -404,13 +403,6 @@ Sheltering = ["Physical Resistance Rating", "Magical Resistance Rating"]
 
 [[augment_line_names]]
 augment = "Dolorous Invigorator (Heroic)"
-source_name = "Tactics"
-effect_name = "Combat Mastery"
-source = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(heroic)"
-read = "2026-10-05"
-
-[[augment_line_names]]
-augment = "Dolorous Invigorator (Heroic)"
 source_name = "Spell DCs"
 effect_name = "Spell Focus Mastery"
 source = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(heroic)"
@@ -418,44 +410,9 @@ read = "2026-10-05"
 
 [[augment_line_names]]
 augment = "Dolorous Invigorator (Legendary)"
-source_name = "Tactics"
-effect_name = "Combat Mastery"
-source = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)"
-read = "2026-10-05"
-
-[[augment_line_names]]
-augment = "Dolorous Invigorator (Legendary)"
 source_name = "Spell DCs"
 effect_name = "Spell Focus Mastery"
 source = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)"
-read = "2026-10-05"
-
-[[augment_line_names]]
-augment = "Dolorous Quality Combat Mastery (Heroic)"
-source_name = "Tactics"
-effect_name = "Combat Mastery"
-source = "https://ddowiki.com/page/Item:Dolorous_Quality_Combat_Mastery_(heroic)"
-read = "2026-10-05"
-
-[[augment_line_names]]
-augment = "Dolorous Quality Combat Mastery (Legendary)"
-source_name = "Tactics"
-effect_name = "Combat Mastery"
-source = "https://ddowiki.com/page/Item:Dolorous_Quality_Combat_Mastery_(legendary)"
-read = "2026-10-05"
-
-[[augment_line_names]]
-augment = "Combat Mastery"
-source_name = "Tactics"
-effect_name = "Combat Mastery"
-source = "maetrim:Augments/CannithAndRandomItem.Augments.xml"
-read = "2026-10-05"
-
-[[augment_line_names]]
-augment = "Insightful Combat Mastery"
-source_name = "Tactics"
-effect_name = "Combat Mastery"
-source = "maetrim:Augments/CannithAndRandomItem.Augments.xml"
 read = "2026-10-05"
 
 [[augment_combined_lines]]
@@ -707,7 +664,6 @@ family_names = { "Melee Attack Speed" = "Melee Alacrity", "Ranged Attack Speed" 
 
 [effect.targeted.TacticalDC]
 targets = { All = ["Trip DC", "Sunder DC", "Stun DC"], General = ["Trip DC", "Sunder DC", "Stun DC"], Trip = ["Trip DC"], Sunder = ["Sunder DC"], Stun = ["Stun DC"], Assassinate = ["Assassinate DC"], "Rune Arm" = ["Rune Arm DC"], Vertigo = ["Trip DC"] }
-shared_targets = { All = "Tactics", General = "Tactics" }
 family_names = { "Assassinate DC" = "Assassinate" }
 
 [[effect.owner_extra_stats]]

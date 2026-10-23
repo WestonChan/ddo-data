@@ -1178,6 +1178,7 @@ pub enum CorrectionKind {
     SetTierBonus,
     Spell,
     AugmentBonus,
+    FeatBonus,
     ItemBonus,
     ItemEffect,
     EffectDamage,
@@ -1212,6 +1213,7 @@ impl CorrectionKind {
         Self::SetTierBonus,
         Self::Spell,
         Self::AugmentBonus,
+        Self::FeatBonus,
         Self::ItemBonus,
         Self::ItemEffect,
         Self::EffectDamage,
@@ -1240,6 +1242,7 @@ impl CorrectionKind {
             Self::SetTierBonus => "set_tier_bonus",
             Self::Spell => "spell",
             Self::AugmentBonus => "augment_bonus",
+            Self::FeatBonus => "feat_bonus",
             Self::ItemBonus => "item_bonus",
             Self::ItemEffect => "item_effect",
             Self::EffectDamage => "effect_damage",
@@ -1254,7 +1257,7 @@ impl CorrectionKind {
             Self::Effect => "effects",
             Self::Augment => "augments",
             Self::Quest => "quests",
-            Self::Feat => "feats",
+            Self::Feat | Self::FeatBonus => "feats",
             Self::Enhancement => "enhancements",
             Self::EnhancementTree => "enhancement_trees",
             Self::Clickie => "clickies",
@@ -1275,7 +1278,7 @@ impl CorrectionKind {
     }
 
     pub const fn corrects_a_bonus(self) -> bool {
-        matches!(self, Self::AugmentBonus | Self::ItemBonus | Self::SetTierBonus)
+        matches!(self, Self::AugmentBonus | Self::FeatBonus | Self::ItemBonus | Self::SetTierBonus)
     }
 
     pub const fn name_column(self) -> &'static str {

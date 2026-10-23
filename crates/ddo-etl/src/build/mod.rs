@@ -43,7 +43,6 @@ use std::path::{Path, PathBuf};
 #[derive(Debug, Default, Clone, PartialEq, Eq)]
 pub struct BuildReport {
     pub derived_effect_lines: Vec<DerivedEffectLines>,
-    pub shared_target_splits: Vec<DerivedEffectSplit>,
     pub line_splits: Vec<DerivedEffectSplit>,
     pub held_back_effects: Vec<DerivedEffectSplit>,
     pub matched_set_tier_prose: BTreeSet<SetTierProseMatch>,
@@ -315,7 +314,6 @@ fn build_with_wiki_references(
         groupings,
         grouping_answers: HashSet::new(),
         derived_effect_lines: Vec::new(),
-        shared_target_splits: Vec::new(),
         line_splits: Vec::new(),
         line_corrections: corrections.entries.iter().filter(|correction| correction.field == "lines").collect(),
         applied_line_corrections: Vec::new(),
@@ -520,7 +518,6 @@ fn build_with_wiki_references(
     crate::tree::store_xml_annotations(&transaction)?;
     crate::loot_sources::reject_missing_source_references(&transaction)?;
     report.derived_effect_lines = std::mem::take(&mut writer.derived_effect_lines);
-    report.shared_target_splits = std::mem::take(&mut writer.shared_target_splits);
     report.line_splits = std::mem::take(&mut writer.line_splits);
     report.held_back_effects = std::mem::take(&mut writer.held_back_effects);
     report.matched_set_tier_prose = std::mem::take(&mut writer.matched_set_tier_prose);
@@ -811,7 +808,6 @@ pub(crate) struct TableWriter<'a> {
     groupings: &'a crate::groupings::Groupings,
     grouping_answers: HashSet<i64>,
     derived_effect_lines: Vec<DerivedEffectLines>,
-    shared_target_splits: Vec<DerivedEffectSplit>,
     line_splits: Vec<DerivedEffectSplit>,
     line_corrections: Vec<&'a Correction>,
     applied_line_corrections: Vec<&'a Correction>,
