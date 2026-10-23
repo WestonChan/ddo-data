@@ -12,19 +12,22 @@ pub(crate) fn groupings() -> &'static ddo_etl::groupings::Groupings {
 pub(crate) fn grouping_cases() -> &'static ddo_etl::groupings::Groupings {
     static GROUPINGS: std::sync::OnceLock<ddo_etl::groupings::Groupings> = std::sync::OnceLock::new();
     GROUPINGS.get_or_init(|| {
-        let db = database(|root| {
-            let source = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/effect-groups/data");
-            for entry in walkdir::WalkDir::new(&source)
-                .into_iter()
-                .map(Result::unwrap)
-                .filter(|entry| entry.file_type().is_file())
-            {
-                let destination = root.join(entry.path().strip_prefix(&source).unwrap());
-                std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
-                std::fs::copy(entry.path(), destination).unwrap();
-            }
-        });
+        let db = grouping_case_database(|_| {});
         ddo_etl::groupings::Groupings::from_database(&db).unwrap()
+    })
+}
+
+pub(crate) fn grouping_case_database(edit: impl Fn(&std::path::Path)) -> rusqlite::Connection {
+    database(|root| {
+        let source = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/effect-groups/data");
+        for entry in
+            walkdir::WalkDir::new(&source).into_iter().map(Result::unwrap).filter(|entry| entry.file_type().is_file())
+        {
+            let destination = root.join(entry.path().strip_prefix(&source).unwrap());
+            std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+            std::fs::copy(entry.path(), destination).unwrap();
+        }
+        edit(root);
     })
 }
 

@@ -5,12 +5,7 @@ icon = "SlavelordsSuffix"
 min_level = 8
 
 [[effect]]
-name = "Negative Spell Lore"
-bonus_type = "Equipment"
-value = 10
-
-[[effect]]
-name = "Poison Spell Lore"
+name = "Void Lore"
 bonus_type = "Equipment"
 value = 10
 
@@ -18,6 +13,7 @@ value = 10
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Equipment"
+effect = "Void Lore"
 effect_type = "SpellLore"
 targets = [
     "Negative",

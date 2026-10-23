@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 41;
+pub const SCHEMA_VERSION: i64 = 42;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -398,6 +398,8 @@ CREATE TABLE IF NOT EXISTS effects (
     wiki_url             TEXT CHECK (wiki_url IS NULL OR wiki_url GLOB 'https://ddowiki.com/page/?*'),
     tier_group_id        INTEGER REFERENCES effect_tier_groups(id),
     tier                 INTEGER CHECK (tier IS NULL OR tier > 0),
+    stat_set_verdict      TEXT CHECK (stat_set_verdict IN ('distinct', 'composes')),
+    stat_set_reason       TEXT CHECK (stat_set_reason IS NULL OR TRIM(stat_set_reason) <> ''),
     CHECK ((is_stat = 1) = (category IS NOT NULL)),
     CHECK (is_stat = 0 OR is_group = 0),
     CHECK (is_stat = 1 OR verbose_name_template IS NOT NULL),
@@ -405,6 +407,7 @@ CREATE TABLE IF NOT EXISTS effects (
     CHECK (default_value IS NULL OR INSTR(COALESCE(verbose_name_template, '') || COALESCE(description_template, ''), '{{1}}') > 0),
     CHECK (default_value2 IS NULL OR INSTR(COALESCE(verbose_name_template, '') || COALESCE(description_template, ''), '{{2}}') > 0),
     CHECK ((tier_group_id IS NULL) = (tier IS NULL)),
+    CHECK ((stat_set_verdict IS NULL) = (stat_set_reason IS NULL)),
     UNIQUE (tier_group_id, tier)
 );
 

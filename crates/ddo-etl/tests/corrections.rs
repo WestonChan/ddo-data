@@ -789,15 +789,7 @@ fn grouping_definition_queries_do_not_grow_with_corrections() {
 
 #[test]
 fn a_split_uses_its_named_partition_even_when_other_effects_share_the_stats() {
-    let canonical = fixture::database(|root| {
-        let source = fixtures_dir().join("effect-groups/data");
-        for entry in
-            walkdir::WalkDir::new(&source).into_iter().map(Result::unwrap).filter(|entry| entry.file_type().is_file())
-        {
-            let target = root.join(entry.path().strip_prefix(&source).unwrap());
-            std::fs::create_dir_all(target.parent().unwrap()).unwrap();
-            std::fs::copy(entry.path(), target).unwrap();
-        }
+    let canonical = fixture::grouping_case_database(|root| {
         std::fs::write(root.join("effects/stat-groups/cold-negative-and-poison-spell-power.toml"),
             "name = \"Cold, Negative and Poison Spell Power\"\ndescription_template = \"{1} %b1 bonus to Cold, Negative and Poison Spell Power.\"\nverbose_name_template = \"%b1 Cold, Negative and Poison Spell Power +{1}\"\n".to_string()
             + &["Cold Spell Power", "Negative Spell Power", "Poison Spell Power"].map(|name|

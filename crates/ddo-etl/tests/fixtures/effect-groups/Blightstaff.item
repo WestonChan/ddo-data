@@ -1,0 +1,40 @@
+<Items>
+  <Item>
+    <Name>Blightstaff</Name>
+    <Description>Before becoming a prized trophy for House Cannith, this twisted staff of broken
+branches was once wielded by a witch with unholy, dangerous powers of disease.</Description>
+    <MinLevel>29</MinLevel>
+    <EquipmentSlot>
+      <Weapon1 />
+    </EquipmentSlot>
+    <Weapon>Quarterstaff</Weapon>
+    <AttackModifier>Strength</AttackModifier>
+    <DamageModifier>Strength</DamageModifier>
+    <DRBypass>Bludgeon</DRBypass>
+    <DRBypass>Magic</DRBypass>
+    <WeaponDamage>4.8</WeaponDamage>
+    <BaseDice>
+      <Number>1</Number>
+      <Sides>6</Sides>
+      <Bonus>6</Bonus>
+    </BaseDice>
+    <CriticalMultiplier>2</CriticalMultiplier>
+    <CriticalThreatRange>1</CriticalThreatRange>
+    <Material>Wood</Material>
+    <Buff>
+      <Type>BlightedLore</Type>
+      <Value1>22</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <ItemAugment>
+      <Type>Red</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Purple</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Orange</Type>
+    </ItemAugment>
+    <IsAcceptsSentience />
+  </Item>
+</Items>

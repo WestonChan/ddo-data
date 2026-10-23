@@ -47,12 +47,7 @@ level_values = [
 ]
 
 [[effect]]
-name = "Negative Spell Lore"
-bonus_type = "Equipment"
-value = 13
-
-[[effect]]
-name = "Poison Spell Lore"
+name = "Void Lore"
 bonus_type = "Equipment"
 value = 13
 
@@ -60,6 +55,7 @@ value = 13
 amount_type = "Simple"
 amounts = [13]
 bonus_type = "Equipment"
+effect = "Void Lore"
 effect_type = "SpellLore"
 targets = [
     "Negative",

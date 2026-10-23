@@ -310,7 +310,7 @@ fn build_with_wiki_references(
         effect_resolver: &effect_resolver,
         drop_text_linker: &drop_text_linker,
         untyped_bonus_corrections: UntypedBonusCorrections::from_corrections(corrections)?,
-        effects: effects::EffectCache::new(&transaction),
+        effects: effects::EffectCache::new(&transaction, groupings),
         groupings,
         grouping_answers: HashSet::new(),
         derived_effect_lines: Vec::new(),

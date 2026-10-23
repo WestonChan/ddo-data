@@ -53,7 +53,7 @@ field = "value"
 reason = "The wiki Void Lore tier grants 13% Negative and Poison spell lore."
 url = "https://ddowiki.com/page/Item:Docent_of_Shadow_(level_8)"
 read = "2026-10-04"
-qualifier = "Negative and Poison Spell Lore / Equipment"
+qualifier = "Void Lore / Equipment"
 
 [[source]]
 kind = "event"

@@ -144,7 +144,7 @@ fn apply_correction(
         (&correction.to, context, effects.as_deref_mut())
     {
         if let Some(grouping) = context.groupings.grouping_named(&bonus.stat) {
-            cache.ensure_indexed_grouping(grouping, context.groupings)?;
+            cache.ensure_indexed_grouping(grouping)?;
         }
     }
     if correction.kind.corrects_a_bonus() && !matches!(field.shape, FieldShape::BonusAddition | FieldShape::BonusLines)

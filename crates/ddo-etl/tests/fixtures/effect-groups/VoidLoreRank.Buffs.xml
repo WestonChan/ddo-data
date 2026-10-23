@@ -1,0 +1,13 @@
+<Buff>
+  <Type>VoidLoreNumeral</Type>
+  <DisplayText>%b1 Void Lore %i1: Passive: Your Negative Energy and Poison spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+  <Ignore>Equipment</Ignore>
+  <Effect>
+    <Type>SpellLore</Type>
+    <Bonus>Not Set</Bonus>
+    <AType>Simple</AType>
+    <Amount size="1">0</Amount>
+    <Item>Negative</Item>
+    <Item>Poison</Item>
+  </Effect>
+</Buff>

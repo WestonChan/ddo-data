@@ -63,6 +63,10 @@ database_record! {
             #[serde(default, skip_serializing_if = "Option::is_none")]
             set_bonus_line_template: Option<String> => set_bonus_line_template,
             #[serde(default, skip_serializing_if = "Option::is_none")]
+            stat_set_verdict: Option<String> => stat_set_verdict,
+            #[serde(default, skip_serializing_if = "Option::is_none")]
+            stat_set_reason: Option<String> => stat_set_reason,
+            #[serde(default, skip_serializing_if = "Option::is_none")]
             tier: Option<i64> => tier,
             #[serde(default, skip_serializing_if = "Option::is_none")]
             tier_group: Option<String> => tier_group_id [optional_reference "effect_tier_groups"],
@@ -161,7 +165,7 @@ mod tests {
     fn named_effect_round_trips_through_its_table() {
         let db = Connection::open_in_memory().unwrap();
         db.execute_batch(ddo_model::ddl()).unwrap();
-        let file: EffectFile = toml::from_str("name = 'Test Effect'\nverbose_name_template = 'Test Effect'\n").unwrap();
+        let file: EffectFile = toml::from_str("name = 'Test Effect'\nverbose_name_template = 'Test Effect'\nstat_set_verdict = 'distinct'\nstat_set_reason = 'Different mechanic'\n").unwrap();
         let id = super::super::super::ids::stable_hash(&["effects", "test-effect"]);
         file.write_effect(&db, Path::new("effects/test-effect.toml"), id, "test-effect").unwrap();
         let notes = super::super::super::export::CorrectionNoteIndex::from_database(&db).unwrap();
@@ -171,7 +175,7 @@ mod tests {
         assert_eq!(restored.name, "Test Effect");
         assert!(restored.bonus.is_empty());
         assert!(restored.damage.is_empty());
-        assert_eq!(restored.file_text().unwrap(), "name = \"Test Effect\"\nverbose_name_template = \"Test Effect\"\n");
+        assert_eq!(restored.file_text().unwrap(), "name = \"Test Effect\"\nstat_set_verdict = \"distinct\"\nstat_set_reason = \"Different mechanic\"\nverbose_name_template = \"Test Effect\"\n");
     }
 
     #[test]

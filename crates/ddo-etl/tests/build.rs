@@ -933,6 +933,41 @@ fn ambiguous_upstream_stat_sets_keep_their_stat_links_and_are_reported() {
 }
 
 #[test]
+fn declared_ladder_steps_stay_addressable_without_blocking_their_group() {
+    for verdict in [None, Some("distinct"), Some("composes")] {
+        let db = fixture::grouping_case_database(|root| {
+            let path = root.join("effects/void-lore-vi.toml");
+            let original = std::fs::read_to_string(&path).unwrap();
+            let contents = match verdict {
+                Some(verdict) => {
+                    original.replace("stat_set_verdict = \"distinct\"", &format!("stat_set_verdict = \"{verdict}\""))
+                }
+                None => original.lines().filter(|line| !line.starts_with("stat_set_")).collect::<Vec<_>>().join("\n"),
+            };
+            std::fs::write(path, contents).unwrap();
+        });
+        let groupings = ddo_etl::groupings::Groupings::from_database(&db).unwrap();
+        let stats = ["Negative Spell Lore".to_string(), "Poison Spell Lore".to_string()].into_iter().collect();
+        let candidates = groupings.by_stat_set[&stats].iter().map(|effect| effect.name.as_str()).collect::<Vec<_>>();
+        let expected = if verdict.is_some() { vec!["Void Lore"] } else { vec!["Void Lore", "Void Lore VI"] };
+        assert_eq!(candidates, expected, "{verdict:?}");
+        assert!(groupings.by_id.values().any(|effect| effect.name == "Void Lore VI"));
+        assert_eq!(
+            groupings
+                .pairs(ddo_etl::groupings::GroupingPairDomain::LinkValued)
+                .iter()
+                .any(|pair| pair.first.name == "Void Lore VI" || pair.second.name == "Void Lore VI"),
+            verdict.is_none(),
+            "{verdict:?}"
+        );
+        assert!(groupings
+            .pairs(ddo_etl::groupings::GroupingPairDomain::AllBonuses)
+            .iter()
+            .any(|pair| pair.first.name == "Void Lore" && pair.second.name == "Void Lore VI"));
+    }
+}
+
+#[test]
 fn two_slot_deception_cannot_replace_a_single_value_sneak_attack_line() {
     let (db, report) = built_ambiguous_fixture_db();
     let names = db.prepare(
@@ -1028,7 +1063,11 @@ fn ambiguous_set_lines_keep_the_declared_group_and_cited_tactics_removals_apply(
     assert_eq!(names, ["Combat Mastery"]);
 }
 
-fn build_wrapper_fixture(item_xml: &str, buff_definitions_xml: &str) -> Connection {
+fn build_wrapper_fixture(
+    groupings: &ddo_etl::groupings::Groupings,
+    item_xml: &str,
+    buff_definitions_xml: &str,
+) -> Connection {
     let source = fixture::xml_source();
     let path = source.path().join("ItemBuffs.xml");
     let definitions = std::fs::read_to_string(&path).unwrap();
@@ -1036,7 +1075,7 @@ fn build_wrapper_fixture(item_xml: &str, buff_definitions_xml: &str) -> Connecti
     std::fs::write(source.path().join("Items/Wrapper.item"), item_xml).unwrap();
     let mut db = Connection::open_in_memory().unwrap();
     build_database(
-        fixture::groupings(),
+        groupings,
         source.path(),
         &WikiOverrides::default(),
         &Corrections::default(),
@@ -1090,6 +1129,7 @@ fn assert_wrapper_group(db: &Connection, item_name: &str, group_name: &str, memb
 #[test]
 fn radiance_buffs_link_five_spell_powers_at_each_owners_type() {
     let db = build_wrapper_fixture(
+        fixture::groupings(),
         include_str!("fixtures/effect-groups/Radiance.item"),
         include_str!("fixtures/effect-groups/Radiance.Buffs.xml"),
     );
@@ -1106,6 +1146,7 @@ fn radiance_buffs_link_five_spell_powers_at_each_owners_type() {
 #[test]
 fn nullification_buffs_link_two_spell_powers_at_each_owners_type() {
     let db = build_wrapper_fixture(
+        fixture::groupings(),
         include_str!("fixtures/effect-groups/Darksphere.item"),
         include_str!("fixtures/effect-groups/Darksphere.Buffs.xml"),
     );
@@ -1117,6 +1158,56 @@ fn nullification_buffs_link_two_spell_powers_at_each_owners_type() {
         &[("Equipment", 115), ("Insight", 57)],
     );
     assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Negative and Poison Spell Power'"), 0);
+}
+
+#[test]
+fn void_lore_buffs_link_both_spell_lores_at_the_owners_type() {
+    let items = include_str!("fixtures/effect-groups/Blightstaff.item").replace("</Items>", "")
+        + &include_str!("fixtures/effect-groups/Darksphere.item").replace("<Items>", "");
+    let definitions = include_str!("fixtures/effect-groups/Blightstaff.Buffs.xml").to_string()
+        + include_str!("fixtures/effect-groups/Darksphere.Buffs.xml");
+    let db = build_wrapper_fixture(fixture::groupings(), &items, &definitions);
+    assert_wrapper_group(
+        &db,
+        "Darksphere",
+        "Void Lore",
+        &["Negative Spell Lore", "Poison Spell Lore"],
+        &[("Equipment", 17)],
+    );
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Negative and Poison Spell Lore'"), 0);
+}
+
+#[test]
+fn declared_ladder_buffs_keep_flat_bonuses_and_their_declaration() {
+    let db = build_wrapper_fixture(
+        fixture::grouping_cases(),
+        include_str!("fixtures/effect-groups/VoidLoreRank.item"),
+        include_str!("fixtures/effect-groups/VoidLoreRank.Buffs.xml"),
+    );
+    let targets = db.prepare("SELECT target.name FROM effect_bonuses b JOIN effects e ON e.id=b.effect_id JOIN effects target ON target.id=b.target_effect_id WHERE e.name='Void Lore VI' ORDER BY target.name")
+        .unwrap().query_map([], |row| row.get::<_,String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(targets, ["Negative Spell Lore", "Poison Spell Lore"]);
+    let declaration: (String, String) = db
+        .query_row("SELECT stat_set_verdict,stat_set_reason FROM effects WHERE name='Void Lore VI'", [], |row| {
+            Ok((row.get(0)?, row.get(1)?))
+        })
+        .unwrap();
+    assert_eq!(
+        declaration,
+        (
+            "distinct".to_string(),
+            "steps of one ladder differ in amount; one-enchantment ladders are ddo-data#57".to_string()
+        )
+    );
+    let bonuses = db.prepare("SELECT s.name,t.name,b.amount FROM owner_bonuses b JOIN effects s ON s.id=b.stat_id JOIN bonus_types t ON t.id=b.bonus_type_id JOIN items i ON i.id=b.owner_id WHERE b.owner_kind='item' AND i.name='Death''s Touch' ORDER BY s.name")
+        .unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        bonuses,
+        [
+            ("Negative Spell Lore".to_string(), "Equipment".to_string(), 14),
+            ("Poison Spell Lore".to_string(), "Equipment".to_string(), 14)
+        ]
+    );
 }
 
 #[test]

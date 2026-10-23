@@ -5,12 +5,7 @@ icon = "Lamordia"
 min_level = 34
 
 [[effect]]
-name = "Negative Spell Lore"
-bonus_type = "Equipment"
-value = 23
-
-[[effect]]
-name = "Poison Spell Lore"
+name = "Void Lore"
 bonus_type = "Equipment"
 value = 23
 
@@ -18,6 +13,7 @@ value = 23
 amount_type = "Simple"
 amounts = [23]
 bonus_type = "Equipment"
+effect = "Void Lore"
 effect_type = "SpellLore"
 targets = [
     "Negative",

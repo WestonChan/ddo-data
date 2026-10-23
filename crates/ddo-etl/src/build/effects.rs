@@ -35,6 +35,7 @@ type StatAmount = (i64, Option<i64>);
 
 pub(super) struct EffectCache<'a> {
     transaction: &'a Transaction<'a>,
+    groupings: &'a crate::groupings::Groupings,
     families_by_name: HashMap<String, i64>,
     families_by_id: HashMap<i64, CachedEffect>,
     stats: HashMap<StatIdentity, StatAmount>,
@@ -102,7 +103,7 @@ impl<'a> EffectCache<'a> {
         }
         Ok(())
     }
-    pub(super) fn new(transaction: &'a Transaction<'a>) -> Self {
+    pub(super) fn new(transaction: &'a Transaction<'a>, groupings: &'a crate::groupings::Groupings) -> Self {
         let mut families_by_name = HashMap::new();
         let mut families_by_id = HashMap::new();
         for stat in STATS {
@@ -126,6 +127,7 @@ impl<'a> EffectCache<'a> {
         }
         Self {
             transaction,
+            groupings,
             families_by_name,
             families_by_id,
             stats: HashMap::new(),
@@ -300,11 +302,12 @@ impl<'a> EffectCache<'a> {
         validate_templates(name, verbose_name_template, description_template, count)?;
         let identity =
             crate::tree::xml_entity_slug("effects", EFFECT_MAP.named_effect_ids.get(name).copied(), name, None);
+        let indexed = self.groupings.effect_named(name);
         self.transaction
             .execute(
                 "INSERT INTO effects (id, name, verbose_name_template, description_template, home_bonus_type_id,
-                                  set_bonus_line_template, slug)
-                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+                                  set_bonus_line_template, slug, stat_set_verdict, stat_set_reason)
+                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
                 params![
                     EFFECT_MAP.named_effect_ids.get(name),
                     name,
@@ -312,7 +315,9 @@ impl<'a> EffectCache<'a> {
                     description_template,
                     EFFECT_MAP.home_bonus_types.get(name).and_then(|name| BonusType::parse(name)).map(BonusType::id),
                     EFFECT_MAP.set_bonus_line_templates.get(name),
-                    identity
+                    identity,
+                    indexed.and_then(|effect| effect.stat_set_verdict.as_deref()),
+                    indexed.and_then(|effect| effect.stat_set_reason.as_deref())
                 ],
             )
             .with_context(|| {
@@ -443,11 +448,8 @@ impl<'a> EffectCache<'a> {
         Ok(id)
     }
 
-    pub(super) fn ensure_indexed_grouping(
-        &mut self,
-        grouping: &crate::groupings::Grouping,
-        index: &crate::groupings::Groupings,
-    ) -> Result<i64> {
+    pub(super) fn ensure_indexed_grouping(&mut self, grouping: &crate::groupings::Grouping) -> Result<i64> {
+        let index = self.groupings;
         if let Some(family) = self.family_named(&grouping.name) {
             return Ok(family.id);
         }
@@ -471,7 +473,7 @@ impl<'a> EffectCache<'a> {
                 .map(|name| BonusType::parse(name).context("indexed bonus type is known"))
                 .transpose()?;
             if target.is_group {
-                let target_id = self.ensure_indexed_grouping(target, index)?;
+                let target_id = self.ensure_indexed_grouping(target)?;
                 let stat = Stat::by_name(&index.by_id[&target.bonuses[0].target_id].name)
                     .context("group member is a known stat")?;
                 self.ensure_group_target(
@@ -540,7 +542,12 @@ impl<'a> EffectCache<'a> {
 
     pub(super) fn ensure_bonus_rules(&mut self, family_id: i64, rules: &[BonusRule]) -> Result<()> {
         let family = self.family(family_id).expect("family cached before its rules");
-        if family.is_stat {
+        if family.is_stat
+            || self
+                .groupings
+                .effect_named(&family.name)
+                .is_some_and(|effect| effect.stat_set_verdict.as_deref() == Some("distinct"))
+        {
             for (sort_order, rule) in rules.iter().enumerate() {
                 self.ensure_stat(family_id, rule.stat, rule.bonus_type, rule.amount_from, rule.constant, sort_order)?;
             }
@@ -924,9 +931,9 @@ mod tests {
         db.execute_batch(ddo_model::ddl()).unwrap();
         ddo_model::seeds::insert_all(&db).unwrap();
         let transaction = db.transaction().unwrap();
-        let mut effects = EffectCache::new(&transaction);
-        let first = effects.ensure_indexed_grouping(grouping, index).unwrap();
-        let second = effects.ensure_indexed_grouping(grouping, index).unwrap();
+        let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
+        let first = effects.ensure_indexed_grouping(grouping).unwrap();
+        let second = effects.ensure_indexed_grouping(grouping).unwrap();
         assert_eq!(first, second);
         assert_eq!(
             transaction
@@ -942,7 +949,7 @@ mod tests {
         let mut db = Connection::open_in_memory().unwrap();
         db.execute_batch(ddo_model::ddl()).unwrap();
         let transaction = db.transaction().unwrap();
-        let mut effects = EffectCache::new(&transaction);
+        let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
         let paragraph = "Any creature struck by this weapon must succeed on a DC 17 Will save or be paralyzed. The target may try again to end the effect later.";
         let effect_id = effects.ensure_family("Paralyzing", paragraph, None, 0).unwrap();
         let templates: (String, Option<String>) = transaction
@@ -960,7 +967,7 @@ mod tests {
         let mut db = Connection::open_in_memory().unwrap();
         db.execute_batch(ddo_model::ddl()).unwrap();
         let transaction = db.transaction().unwrap();
-        let mut effects = EffectCache::new(&transaction);
+        let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
         let source = "This item surrounds the wearer with an invisible but tangible field of force, granting %b1 armor bonus to AC, just as though he were wearing armor.";
         let effect_id = effects.ensure_family("Armor Bonus", "Armor Bonus +{1}", Some(source), 1).unwrap();
         let description: String = transaction
@@ -974,7 +981,7 @@ mod tests {
         let mut db = Connection::open_in_memory().unwrap();
         db.execute_batch(ddo_model::ddl()).unwrap();
         let transaction = db.transaction().unwrap();
-        let mut effects = EffectCache::new(&transaction);
+        let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
         let base_description = "This weapon has a tendency to drive those it strikes insane. On an attack roll of 20 which is confirmed as a critical hit the target will go wild and attack its own allies for 15 seconds if it fails a DC 25 Will save. Enemies driven wild in this way, however, have a chance of coming to their senses if damaged.";
         let stronger_description = base_description.replace("DC 25", "DC 122");
         let base = effects.ensure_family("Wild Frenzy", "Wild Frenzy", Some(base_description), 0).unwrap();
@@ -999,7 +1006,7 @@ mod tests {
         db.execute_batch(ddo_model::ddl()).unwrap();
         ddo_model::seeds::insert_all(&db).unwrap();
         let transaction = db.transaction().unwrap();
-        let mut effects = EffectCache::new(&transaction);
+        let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
         effects.ensure_family("Dexterity Skills", "%b1 Dexterity Skills +{1}", None, 1).unwrap();
         for ability in ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"] {
             let group_name = format!("{ability} Skills");
@@ -1017,7 +1024,7 @@ mod tests {
         db.execute_batch(ddo_model::ddl()).unwrap();
         ddo_model::seeds::insert_all(&db).unwrap();
         let transaction = db.transaction().unwrap();
-        let mut effects = EffectCache::new(&transaction);
+        let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
         let stat_id = effects
             .ensure_family(
                 "Illusion Save",
@@ -1045,7 +1052,7 @@ mod tests {
         let mut db = Connection::open_in_memory().unwrap();
         db.execute_batch(ddo_model::ddl()).unwrap();
         let transaction = db.transaction().unwrap();
-        let mut effects = EffectCache::new(&transaction);
+        let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
         let stat_id = effects.ensure_family("Riposte", "Riposte {1}", None, 1).unwrap();
         let error = effects.ensure_text("Riposte", "Riposte").unwrap_err();
         assert!(error.to_string().contains("[names]"));
@@ -1067,7 +1074,7 @@ mod tests {
         .unwrap();
         let item_id = db.last_insert_rowid();
         let transaction = db.transaction().unwrap();
-        let mut effects = EffectCache::new(&transaction);
+        let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
         let effect_id = effects.ensure_family("Dual Speed", "Dual Speed {1}: {2}", None, 2).unwrap();
         for (sort_order, (stat_name, amount_from)) in
             [("Movement Speed", 1), ("Melee Attack Speed", 2)].into_iter().enumerate()
@@ -1113,7 +1120,7 @@ mod tests {
         .unwrap();
         let item_id = db.last_insert_rowid();
         let transaction = db.transaction().unwrap();
-        let mut effects = EffectCache::new(&transaction);
+        let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
         let destination =
             effects.ensure_family("Earthen Guard", "Earthen Guard", Some("A Stone Skin may trigger."), 0).unwrap();
         let source =
@@ -1141,7 +1148,7 @@ mod tests {
         .unwrap();
         let item_id = db.last_insert_rowid();
         let transaction = db.transaction().unwrap();
-        let mut effects = EffectCache::new(&transaction);
+        let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
         let stat_id = Stat::by_name("Movement Speed").unwrap().id;
         assert!(effects.ensure_family("Movement Speed", "Movement Speed {1} {2}", None, 2).is_err());
         effects.ensure_family("Movement Speed", "Movement Speed {1}", None, 1).unwrap();

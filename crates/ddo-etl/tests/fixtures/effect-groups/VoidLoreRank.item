@@ -1,0 +1,32 @@
+<Items>
+  <Item>
+    <NoAutoUpdate />
+    <Name>Death's Touch</Name>
+    <Description>A palpable aura of evil radiates from this malevolent weapon.</Description>
+    <MinLevel>18</MinLevel>
+    <EquipmentSlot>
+      <Weapon1 />
+      <Weapon2 />
+    </EquipmentSlot>
+    <Weapon>Sickle</Weapon>
+    <AttackModifier>Strength</AttackModifier>
+    <DamageModifier>Strength</DamageModifier>
+    <DRBypass>Evil</DRBypass>
+    <DRBypass>Magic</DRBypass>
+    <DRBypass>Slash</DRBypass>
+    <WeaponDamage>2.6</WeaponDamage>
+    <BaseDice>
+      <Number>1</Number>
+      <Sides>7</Sides>
+    </BaseDice>
+    <CriticalMultiplier>2</CriticalMultiplier>
+    <CriticalThreatRange>3</CriticalThreatRange>
+    <Material>Steel</Material>
+    <Buff>
+      <Type>VoidLoreNumeral</Type>
+      <Value1>14</Value1>
+      <BonusType>Equipment</BonusType>
+      <Description1>VI</Description1>
+    </Buff>
+  </Item>
+</Items>

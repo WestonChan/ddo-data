@@ -1,0 +1,15 @@
+<Buff>
+  <Type>BlightedLore</Type>
+  <DisplayText>%b1 Blighted Lore %v1: Passive: Your Acid, Negative, Poison and Evil spells gain a %v1 %b1 bonus to their chance to critical hit.</DisplayText>
+  <Ignore>Equipment</Ignore>
+  <Effect>
+    <Type>SpellLore</Type>
+    <Bonus>Not Set</Bonus>
+    <AType>Simple</AType>
+    <Amount size="1">0</Amount>
+    <Item>Acid</Item>
+    <Item>Evil</Item>
+    <Item>Negative</Item>
+    <Item>Poison</Item>
+  </Effect>
+</Buff>

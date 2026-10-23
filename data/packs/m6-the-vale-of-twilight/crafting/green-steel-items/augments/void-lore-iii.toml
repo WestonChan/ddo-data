@@ -9,12 +9,7 @@ icon = "ShardOfPower"
 min_level = 11
 
 [[effect]]
-name = "Negative Spell Lore"
-bonus_type = "Equipment"
-value = 6
-
-[[effect]]
-name = "Poison Spell Lore"
+name = "Void Lore"
 bonus_type = "Equipment"
 value = 6
 
@@ -22,6 +17,7 @@ value = 6
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Equipment"
+effect = "Void Lore"
 effect_type = "SpellLore"
 targets = [
     "Negative",

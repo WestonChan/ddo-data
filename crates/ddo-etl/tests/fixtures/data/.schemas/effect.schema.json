@@ -83,6 +83,7 @@
         "set_tier_bonus",
         "spell",
         "augment_bonus",
+        "feat_bonus",
         "item_bonus",
         "item_effect",
         "effect_damage",
@@ -328,6 +329,18 @@
         "null"
       ]
     },
+    "stat_set_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "stat_set_verdict": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
     "tier": {
       "format": "int64",
       "type": [
@@ -369,6 +382,8 @@
     "description_template",
     "home_bonus_type_id",
     "set_bonus_line_template",
+    "stat_set_verdict",
+    "stat_set_reason",
     "tier",
     "tier_group_id",
     "verbose_name_template"

@@ -24,12 +24,18 @@ pub struct Grouping {
     pub set_bonus_line_template: Option<String>,
     pub home_bonus_type: Option<String>,
     pub default_value: Option<i64>,
+    pub stat_set_verdict: Option<String>,
+    pub stat_set_reason: Option<String>,
     pub bonuses: Vec<GroupingBonus>,
     pub stat_ids: BTreeSet<i64>,
     pub is_wrapper: bool,
 }
 
 impl Grouping {
+    fn is_grouping_candidate(&self) -> bool {
+        self.stat_ids.len() >= 2 && self.is_link_valued() && self.stat_set_verdict.is_none()
+    }
+
     fn is_link_valued(&self) -> bool {
         !self.bonuses.is_empty()
             && self.bonuses.iter().all(|bonus| {
@@ -196,7 +202,7 @@ impl Groupings {
     pub fn from_database(db: &Connection) -> Result<Self> {
         let mut statement = db.prepare(
             "SELECT e.id, e.name, e.slug, e.is_stat, e.is_group, e.verbose_name_template, e.description_template,
-                    e.set_bonus_line_template, bt.name, e.default_value FROM effects e
+                    e.set_bonus_line_template, bt.name, e.default_value, e.stat_set_verdict, e.stat_set_reason FROM effects e
                LEFT JOIN bonus_types bt ON bt.id = e.home_bonus_type_id ORDER BY e.name",
         )?;
         let effects = statement
@@ -213,6 +219,8 @@ impl Groupings {
                         set_bonus_line_template: row.get(7)?,
                         home_bonus_type: row.get(8)?,
                         default_value: row.get(9)?,
+                        stat_set_verdict: row.get(10)?,
+                        stat_set_reason: row.get(11)?,
                         bonuses: Vec::new(),
                         stat_ids: BTreeSet::new(),
                         is_wrapper: false,
@@ -264,7 +272,7 @@ impl Groupings {
                 }
             }
             groupings.by_id.insert(effect.id, effect.clone());
-            if effect.stat_ids.len() >= 2 && effect.is_link_valued() {
+            if effect.is_grouping_candidate() {
                 let names = effect.stat_ids.iter().map(|id| groupings.by_id[id].name.clone()).collect();
                 groupings.by_stat_set.entry(names).or_default().push(effect);
             }
@@ -278,7 +286,10 @@ impl Groupings {
     pub fn pairs(&self, domain: GroupingPairDomain) -> Vec<GroupingPair<'_>> {
         let mut members_by_stats = BTreeMap::<_, Vec<_>>::new();
         for effect in self.by_id.values() {
-            if effect.stat_ids.len() >= 2 && (domain == GroupingPairDomain::AllBonuses || effect.is_link_valued()) {
+            if match domain {
+                GroupingPairDomain::AllBonuses => effect.stat_ids.len() >= 2,
+                GroupingPairDomain::LinkValued => effect.is_grouping_candidate(),
+            } {
                 members_by_stats.entry(&effect.stat_ids).or_default().push(effect);
             }
         }

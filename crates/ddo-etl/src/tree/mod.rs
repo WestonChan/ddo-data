@@ -408,6 +408,53 @@ mod tests {
     }
 
     #[test]
+    fn stat_set_declarations_round_trip_for_named_effects_and_groups() {
+        let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data");
+        let source = tempfile::tempdir().unwrap();
+        let exported = tempfile::tempdir().unwrap();
+        let files = [
+            "upstream/commit.toml",
+            "upstream/source-aliases.toml",
+            "effects/bonus-types.toml",
+            "effects/stats/doublestrike.toml",
+            "effects/stats/doubleshot.toml",
+            "effects/stat-groups/doublestrike-and-doubleshot.toml",
+        ];
+        for relative in files {
+            let destination = source.path().join(relative);
+            std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+            std::fs::copy(fixtures.join(relative), destination).unwrap();
+        }
+        let group_path = source.path().join("effects/stat-groups/doublestrike-and-doubleshot.toml");
+        let original = std::fs::read_to_string(&group_path).unwrap();
+        std::fs::write(
+            &group_path,
+            format!("stat_set_verdict = 'distinct'\nstat_set_reason = 'Different mechanic'\n{original}"),
+        )
+        .unwrap();
+        std::fs::write(source.path().join("effects/composed-effect.toml"),
+            "name = 'Composed Effect'\nverbose_name_template = 'Composed Effect +{1}'\nstat_set_verdict = 'composes'\nstat_set_reason = 'Additional mechanic'\n\n[[bonus]]\namount_from = 1\nrounding = 'down'\nscale = 1.0\ntarget = 'Doublestrike and Doubleshot'\nbonus_type = 'Equipment'\n"
+        ).unwrap();
+        let mut original_db = Connection::open_in_memory().unwrap();
+        build_from_data(source.path(), &mut original_db).unwrap();
+        export_database(&original_db, exported.path()).unwrap();
+        let mut rebuilt = Connection::open_in_memory().unwrap();
+        build_from_data(exported.path(), &mut rebuilt).unwrap();
+        assert_eq!(table_rows(&original_db, "effects").unwrap(), table_rows(&rebuilt, "effects").unwrap());
+        for (name, verdict, reason) in [
+            ("Doublestrike and Doubleshot", "distinct", "Different mechanic"),
+            ("Composed Effect", "composes", "Additional mechanic"),
+        ] {
+            let actual: (String, String) = rebuilt
+                .query_row("SELECT stat_set_verdict,stat_set_reason FROM effects WHERE name=?1", [name], |row| {
+                    Ok((row.get(0)?, row.get(1)?))
+                })
+                .unwrap();
+            assert_eq!(actual, (verdict.to_string(), reason.to_string()));
+        }
+    }
+
+    #[test]
     fn fixture_export_round_trips_every_table_and_is_idempotent() {
         let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
         let mut baseline = Connection::open_in_memory().unwrap();

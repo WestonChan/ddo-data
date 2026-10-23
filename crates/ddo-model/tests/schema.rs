@@ -1028,6 +1028,42 @@ fn effect_urls_and_tier_positions_are_checked() {
 }
 
 #[test]
+fn stat_set_declarations_require_a_known_verdict_and_a_nonblank_reason() {
+    let db = fresh_db();
+    db.execute(
+        "INSERT INTO effects (name,slug,verbose_name_template,stat_set_verdict,stat_set_reason)
+         VALUES ('Declared Effect','declared-effect','Declared Effect','distinct','Different rank')",
+        [],
+    )
+    .unwrap();
+    for (verdict, reason) in
+        [(None, None), (Some("distinct"), Some("Different rank")), (Some("composes"), Some("Additional mechanic"))]
+    {
+        db.execute(
+            "UPDATE effects SET stat_set_verdict=?1,stat_set_reason=?2 WHERE slug='declared-effect'",
+            rusqlite::params![verdict, reason],
+        )
+        .unwrap();
+    }
+    for (verdict, reason) in [
+        (Some("distinct"), None),
+        (None, Some("Different rank")),
+        (Some("distinct"), Some("")),
+        (Some("composes"), Some("   ")),
+        (Some("unknown"), Some("Different rank")),
+    ] {
+        assert!(
+            db.execute(
+                "UPDATE effects SET stat_set_verdict=?1,stat_set_reason=?2 WHERE slug='declared-effect'",
+                rusqlite::params![verdict, reason],
+            )
+            .is_err(),
+            "{verdict:?}: {reason:?}"
+        );
+    }
+}
+
+#[test]
 fn effect_owner_links_require_the_first_amount_before_the_second() {
     let db = fresh_db();
     db.execute(

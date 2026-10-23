@@ -129,7 +129,7 @@ impl TableWriter<'_> {
                         self.effects.ensure_stat(effect_id, stat, Some(bonus_type), 1, None, 0)?;
                         effect_id
                     } else if let Some(grouping) = self.groupings.grouping_named(&rule.effect) {
-                        self.effects.ensure_indexed_grouping(grouping, self.groupings)?
+                        self.effects.ensure_indexed_grouping(grouping)?
                     } else {
                         self.effects.ensure_group(&rule.effect)?
                     };

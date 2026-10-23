@@ -17,6 +17,10 @@ database_record! {
             home_bonus_type: Option<String> => home_bonus_type_id [optional_reference "bonus_types"],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             set_bonus_line_template: Option<String> => set_bonus_line_template,
+            #[serde(default, skip_serializing_if = "Option::is_none")]
+            stat_set_verdict: Option<String> => stat_set_verdict,
+            #[serde(default, skip_serializing_if = "Option::is_none")]
+            stat_set_reason: Option<String> => stat_set_reason,
             verbose_name_template: String => verbose_name_template,
         }
         attached {

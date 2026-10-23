@@ -44,12 +44,7 @@ value = 5
 
 [[socket.option.effect]]
 bonus_type = "Equipment"
-effect = "Negative Spell Lore"
-value = 15
-
-[[socket.option.effect]]
-bonus_type = "Equipment"
-effect = "Poison Spell Lore"
+effect = "Void Lore"
 value = 15
 
 [[socket.option.modifier]]
@@ -68,6 +63,7 @@ effect_type = "SneakAttackDamage"
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Equipment"
+effect = "Void Lore"
 effect_type = "SpellLore"
 targets = [
     "Negative",

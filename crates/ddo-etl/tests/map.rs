@@ -1064,7 +1064,7 @@ fn spell_power_and_lore_groups_carry_the_description_of_the_effect_that_grants_t
         ("Radiance", "{1} %b1 bonus to Light and Alignment spell power."),
         ("Nullification", "{1} %b1 bonus to Negative and Poison spell power."),
         (
-            "Negative and Poison Spell Lore",
+            "Void Lore",
             "Passive: Your Negative Energy and Poison spells gain a {1}% %b1 bonus to their chance to critical hit.",
         ),
     ] {

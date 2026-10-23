@@ -7,4 +7,10 @@ verbose_name_template = "%b1 Void Lore +{1}%"
 amount_from = 1
 rounding = "down"
 scale = 1.0
-target = "Negative and Poison Spell Lore"
+target = "Negative Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Poison Spell Lore"

@@ -1,0 +1,21 @@
+name = "Void Lore"
+description_template = "Passive: Your Negative Energy and Poison spells gain a {1}% %b1 bonus to their chance to critical hit."
+home_bonus_type = "Equipment"
+set_bonus_line_template = "%b1 Negative and Poison Spell Lore +{1}"
+verbose_name_template = "%b1 Void Lore +{1}%"
+
+[[citation]]
+url = "https://ddowiki.com/page/Spell_Lore"
+read = "2026-10-23"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Negative Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Poison Spell Lore"

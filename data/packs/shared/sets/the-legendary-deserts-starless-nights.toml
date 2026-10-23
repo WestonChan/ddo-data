@@ -30,7 +30,7 @@ equipped_count = 2
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Negative and Poison Spell Lore"
+effect = "Void Lore"
 value = 6
 
 [[tier.effect]]

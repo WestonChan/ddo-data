@@ -19,4 +19,4 @@ target = "Evil Spell Lore"
 amount_from = 1
 rounding = "down"
 scale = 1.0
-target = "Negative and Poison Spell Lore"
+target = "Void Lore"
