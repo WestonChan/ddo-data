@@ -82,6 +82,7 @@ fn template_violations() -> Vec<(&'static str, &'static str, &'static str)> {
         ("T4", "Command", "UPDATE effects SET description_template = REPLACE(description_template, 'Insightful', '') WHERE name = 'Command'"),
         ("T5", "Doublestrike and Doubleshot", "UPDATE effects SET description_template = REPLACE(description_template, '{1}%', '{1}') WHERE name = 'Doublestrike and Doubleshot'"),
         ("T6", "Shadow Striker", "UPDATE effects SET description_template = REPLACE(description_template, '+15% Enhancement Bonus to Ranged', '+20% Enhancement Bonus to Ranged') WHERE name = 'Shadow Striker'"),
+        ("T7", "Unmodelled Amount", "INSERT INTO effects (name, slug, verbose_name_template) VALUES ('Unmodelled Amount', 'unmodelled-amount', 'Unmodelled Amount +7%'); INSERT INTO item_effects (item_id, effect_id, sort_order) SELECT (SELECT MIN(id) FROM items), id, 9999 FROM effects WHERE name = 'Unmodelled Amount'"),
     ]
 }
 
@@ -210,6 +211,55 @@ value = 4
         })
         .collect::<Vec<_>>();
     assert!(incorrect.is_empty(), "{incorrect:?}");
+}
+
+#[test]
+fn a_fixed_home_type_fills_the_rendering_token_without_a_link_type() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_in(scratch.path());
+    let db = Connection::open(db_path).unwrap();
+    db.execute("UPDATE effects SET description_template='{1}% %b1 bonus to Fire and Electric Spell Lore.' WHERE name='Firestorm Lore'", []).unwrap();
+    db.execute(
+        "INSERT INTO item_effects (item_id, effect_id, sort_order, value)
+        SELECT (SELECT MIN(id) FROM items),id,995,4 FROM effects WHERE name='Firestorm Lore'",
+        [],
+    )
+    .unwrap();
+    let lines = ddo_api::served_effect_lines(&db, "item_effects", "item_id").unwrap();
+    let line = lines.values().flatten().find(|(_, line)| line["name"] == "Firestorm Lore").unwrap();
+    assert!(line.1["description"].as_str().unwrap().contains("Equipment"));
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("effect_line_rendering_tokens").unwrap();
+    assert!(!outcome.offenders.iter().any(|finding| finding.name == "Firestorm Lore"), "{:?}", outcome.offenders);
+}
+
+#[test]
+fn template_amount_literals_need_a_definition_but_ranks_and_context_numbers_do_not() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db_path = fixture_db_copy_in(scratch.path());
+    let db = Connection::open(db_path).unwrap();
+    for (name, template) in [
+        ("Unmodelled Amount", "Unmodelled Amount +7%"),
+        ("Rank Probe 7", "Rank Probe 7"),
+        ("Roman Probe VI", "Roman Probe VI"),
+        ("Dice Probe", "Dice Probe 15d6"),
+        ("DC Probe", "DC Probe DC +25"),
+        ("Level Probe", "Level Probe level +25"),
+        ("Time Probe", "Time Probe for +10 seconds"),
+    ] {
+        db.execute(
+            "INSERT INTO effects (name,slug,verbose_name_template) VALUES (?1,?2,?3)",
+            [name, &name.to_ascii_lowercase().replace(" ", "-"), template],
+        )
+        .unwrap();
+    }
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("effect_templates_without_their_placeholders").unwrap();
+    let finding = outcome.offenders.iter().find(|finding| finding.name == "Unmodelled Amount");
+    assert!(finding.is_some_and(|finding| finding.detail.contains("T7")), "{:?}", outcome.offenders);
+    for name in ["Rank Probe 7", "Roman Probe VI", "Dice Probe", "DC Probe", "Level Probe", "Time Probe"] {
+        assert!(!outcome.offenders.iter().any(|finding| finding.name == name), "{name}: {:?}", outcome.offenders);
+    }
 }
 
 #[test]
@@ -485,14 +535,19 @@ fn cross_pack_drop_and_multi_patron_pack_are_warned() {
 
 #[test]
 fn effect_line_rendering_faults_fail_the_hard_check() {
-    for bad_template in ["%b1 Enhancement bonus to Strength.", "Gain {3} bonus to Strength."] {
+    for (column, template, should_fail) in [
+        ("description_template", "%b1 Enhancement bonus to Strength.", true),
+        ("description_template", "Gain {3} bonus to Strength.", true),
+        ("verbose_name_template", "%b1 Enhancement bonus to Strength.", false),
+    ] {
         let work_dir = tempfile::tempdir().unwrap();
         let db_path = fixture_db_copy_in(work_dir.path());
         let db = Connection::open(&db_path).unwrap();
-        db.execute("UPDATE effects SET description_template = ?1 WHERE name = 'Strength'", [bad_template]).unwrap();
+        db.execute("UPDATE effects SET home_bonus_type_id = NULL WHERE name = 'Strength'", []).unwrap();
+        db.execute(&format!("UPDATE effects SET {column} = ?1 WHERE name = 'Strength'"), [template]).unwrap();
         let report = integrity_report(&db, &fixture_options()).unwrap();
         let outcome = report.outcome("effect_line_rendering_tokens").unwrap();
-        assert_eq!(outcome.status, CheckStatus::Failed, "{bad_template}: {report}");
+        assert_eq!(outcome.status == CheckStatus::Failed, should_fail, "{column}: {template}: {report}");
     }
 }
 
@@ -934,7 +989,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "hitpoints",
         ),
         violation(
-            "effect_templates_with_digits_without_amounts",
+            "effect_templates_disagree_with_names",
             "INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Integrity Probe Glow', 'Glow 7', 'integrity-probe-glow'); \
              INSERT INTO item_effects (item_id, effect_id, sort_order) \
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",

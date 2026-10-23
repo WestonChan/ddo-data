@@ -528,17 +528,6 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     )
     .showing_every_offender(),
     IntegrityCheck::warn(
-        "effect_templates_with_digits_without_amounts",
-        "families whose rendered template contains a digit even though owner links carry no amount: \
-         decide whether the digit is a fixed rule, an unmodelled amount or prose",
-        OffenderQuery::Sql(
-            "SELECT e.name, e.id, 'digit in template without an owner amount' FROM effects e \
-             WHERE e.is_stat = 0 AND INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '{1}') = 0
-               AND e.verbose_name_template GLOB '*[0-9]*' \
-             ORDER BY e.name",
-        ),
-    ),
-    IntegrityCheck::warn(
         "items_have_minimum_level",
         "every item has a minimum level of 1 or more. WARN until the follow-up: the Cannith Crafted blanks take their \
          level from the crafting step, and Quiver of Alacrity has MinLevel 0 in Maetrim's file",
@@ -1226,9 +1215,10 @@ fn template_causes(
         constants.iter().any(|(amount, percent)| token.matches_amount(*amount) && (!percent || token.percent))
     };
     if let Some(description) = &effect.description {
+        let tokens = effect_text_tokens(description);
         for slot in &slots {
-            let placeholder = format!("{{{slot}}}");
-            if !description.contains(&placeholder) {
+            if !tokens.iter().any(|token| matches!(token.kind, EffectTextTokenKind::AmountSlot(read) if read == *slot))
+            {
                 causes.insert("T1: description lacks a slot its rows read");
             }
         }
@@ -1245,7 +1235,9 @@ fn template_causes(
                 causes.insert("T5: unit only through the renderer's restore");
             }
         }
-        if bonuses.iter().any(|bonus| bonus.bonus_type_id.is_none()) && !description.contains("%b1") {
+        if bonuses.iter().any(|bonus| bonus.bonus_type_id.is_none())
+            && !tokens.iter().any(|token| matches!(token.kind, EffectTextTokenKind::BonusType))
+        {
             causes.insert("T3: link-typed rows lack %b1 in description or set line");
         }
         if bonuses.iter().filter_map(|bonus| bonus.bonus_type_id).filter_map(|id| bonus_types.get(&id)).any(
@@ -1262,23 +1254,32 @@ fn template_causes(
         }
     }
     if bonuses.iter().any(|bonus| bonus.bonus_type_id.is_none())
-        && effect.set_line.as_deref().is_some_and(|line| !line.contains("%b1"))
+        && effect.set_line.as_deref().is_some_and(|line| {
+            !effect_text_tokens(line).iter().any(|token| matches!(token.kind, EffectTextTokenKind::BonusType))
+        })
     {
         causes.insert("T3: link-typed rows lack %b1 in description or set line");
     }
     for line in [effect.line.as_deref(), effect.set_line.as_deref()].into_iter().flatten() {
-        let literal_for_slot =
-            !slots.is_empty() && constants.is_empty() && amount_tokens(line).iter().any(AmountToken::is_amount_literal);
+        let tokens = effect_text_tokens(line);
+        let literal_for_slot = !slots.is_empty()
+            && constants.is_empty()
+            && tokens
+                .iter()
+                .any(|token| matches!(token.kind, EffectTextTokenKind::Number(amount) if amount.is_amount_literal()));
         let unread_slot = !slots.is_empty()
-            && [1, 2].into_iter().any(|slot| {
-                !slots.contains(&slot)
-                    && [format!("+{{{slot}}}"), format!("-{{{slot}}}"), format!("{{{slot}}}%")]
-                        .iter()
-                        .any(|claim| line.contains(claim))
+            && tokens.iter().any(|token| {
+                matches!(token.kind, EffectTextTokenKind::AmountSlot(slot) if !slots.contains(&slot))
+                    && (token.text.starts_with(['+', '-']) || token.text.ends_with('%'))
             });
         if literal_for_slot || unread_slot {
             causes.insert("T2: line claims a literal for a slot or a slot its rows do not read");
         }
+    }
+    if bonuses.is_empty()
+        && effect.line.as_deref().is_some_and(|line| amount_tokens(line).iter().any(AmountToken::is_amount_literal))
+    {
+        causes.insert("T7: line claims an amount without a bonus definition");
     }
     if !constants.is_empty()
         && [effect.description.as_deref(), effect.line.as_deref(), effect.set_line.as_deref()]
@@ -1293,11 +1294,13 @@ fn template_causes(
     causes
 }
 
+#[derive(Clone, Copy)]
 struct AmountToken {
     amount: f64,
     signed: bool,
     percent: bool,
     literal: bool,
+    identity: bool,
 }
 
 impl AmountToken {
@@ -1312,6 +1315,208 @@ impl AmountToken {
             self.amount == amount.unsigned_abs() as f64
         }
     }
+}
+
+enum EffectTextTokenKind {
+    Number(AmountToken),
+    Word,
+    AmountSlot(i64),
+    BonusType,
+    UnfilledPlaceholder,
+}
+
+struct EffectTextToken<'a> {
+    text: &'a str,
+    start: usize,
+    end: usize,
+    kind: EffectTextTokenKind,
+}
+
+fn effect_text_tokens(text: &str) -> Vec<EffectTextToken<'_>> {
+    let bytes = text.as_bytes();
+    let mut tokens = Vec::new();
+    let mut position = 0;
+    while position < bytes.len() {
+        let start = position;
+        let signed = matches!(bytes[position], b'+' | b'-');
+        let value_start = position + usize::from(signed);
+        if bytes.get(value_start) == Some(&b'{') && bytes.get(value_start + 1).is_some_and(u8::is_ascii_digit) {
+            position = value_start + 1;
+            while bytes.get(position).is_some_and(u8::is_ascii_alphanumeric) {
+                position += 1;
+            }
+            if bytes.get(position) == Some(&b'}') {
+                position += 1;
+            }
+            let kind = match &text[value_start..position] {
+                "{1}" => EffectTextTokenKind::AmountSlot(1),
+                "{2}" => EffectTextTokenKind::AmountSlot(2),
+                _ => EffectTextTokenKind::UnfilledPlaceholder,
+            };
+            if bytes.get(position) == Some(&b'%') {
+                position += 1;
+            }
+            tokens.push(EffectTextToken { text: &text[start..position], start, end: position, kind });
+            continue;
+        }
+        if bytes[position] == b'%' && bytes.get(position + 1).is_some_and(u8::is_ascii_alphabetic) {
+            position += 1;
+            while bytes.get(position).is_some_and(u8::is_ascii_alphanumeric) {
+                position += 1;
+            }
+            let kind = if &text[start..position] == "%b1" {
+                EffectTextTokenKind::BonusType
+            } else {
+                EffectTextTokenKind::UnfilledPlaceholder
+            };
+            tokens.push(EffectTextToken { text: &text[start..position], start, end: position, kind });
+            continue;
+        }
+        if bytes[position].is_ascii_alphabetic() {
+            while bytes.get(position).is_some_and(u8::is_ascii_alphabetic) {
+                position += 1;
+            }
+            tokens.push(EffectTextToken {
+                text: &text[start..position],
+                start,
+                end: position,
+                kind: EffectTextTokenKind::Word,
+            });
+            continue;
+        }
+        if signed && position > 0 && bytes[position - 1].is_ascii_digit() {
+            position += 1;
+            continue;
+        }
+        if signed {
+            position += 1;
+        }
+        if !bytes.get(position).is_some_and(u8::is_ascii_digit) {
+            position += 1;
+            continue;
+        }
+        while bytes.get(position).is_some_and(|byte| {
+            byte.is_ascii_digit() || (*byte == b'.' && bytes.get(position + 1).is_some_and(u8::is_ascii_digit))
+        }) {
+            position += 1;
+        }
+        if let Ok(amount) = text[start..position].parse() {
+            let percent = bytes.get(position) == Some(&b'%');
+            let before = text[..start]
+                .split_whitespace()
+                .next_back()
+                .unwrap_or_default()
+                .trim_matches(|character: char| !character.is_ascii_alphabetic())
+                .to_ascii_lowercase();
+            let after = text[position + usize::from(percent)..]
+                .split_whitespace()
+                .next()
+                .unwrap_or_default()
+                .trim_matches(|character: char| !character.is_ascii_alphabetic())
+                .to_ascii_lowercase();
+            let dice = (bytes.get(position).is_some_and(|byte| matches!(byte, b'd' | b'D'))
+                && bytes.get(position + 1).is_some_and(u8::is_ascii_digit))
+                || (start >= 2 && matches!(bytes[start - 1], b'd' | b'D') && bytes[start - 2].is_ascii_digit());
+            let excluded = dice
+                || matches!(before.as_str(), "dc" | "level" | "cr" | "rank" | "tier")
+                || matches!(
+                    after.trim_end_matches('s'),
+                    "second" | "minute" | "hour" | "round" | "turn" | "time" | "stack"
+                );
+            let identity = !dice
+                && !bytes.get(position).is_some_and(u8::is_ascii_alphanumeric)
+                && (start == 0 || !bytes[start - 1].is_ascii_alphanumeric());
+            position += usize::from(percent);
+            tokens.push(EffectTextToken {
+                text: &text[start..position],
+                start,
+                end: position,
+                kind: EffectTextTokenKind::Number(AmountToken {
+                    amount,
+                    signed,
+                    percent,
+                    literal: (signed || percent) && !excluded,
+                    identity,
+                }),
+            });
+        }
+    }
+    tokens
+}
+
+fn amount_tokens(text: &str) -> Vec<AmountToken> {
+    effect_text_tokens(text)
+        .into_iter()
+        .filter_map(|token| match token.kind {
+            EffectTextTokenKind::Number(amount) => Some(amount),
+            _ => None,
+        })
+        .collect()
+}
+
+fn has_unfilled_effect_token(template: &str) -> bool {
+    effect_text_tokens(template).iter().any(|token| matches!(token.kind, EffectTextTokenKind::UnfilledPlaceholder))
+}
+
+fn dice_terms(text: &str) -> Vec<(u32, u32)> {
+    effect_text_tokens(text)
+        .windows(3)
+        .filter_map(|tokens| {
+            let [count, separator, sides] = tokens else { return None };
+            if separator.text != "d"
+                || count.end != separator.start
+                || separator.end != sides.start
+                || (count.start > 0 && text[..count.start].ends_with(char::is_alphanumeric))
+            {
+                return None;
+            }
+            Some((count.text.parse().ok()?, sides.text.parse().ok()?))
+        })
+        .collect()
+}
+
+fn effect_template_title(template: &str) -> String {
+    let mut title = String::new();
+    let mut cursor = 0;
+    for token in effect_text_tokens(template) {
+        if matches!(token.kind, EffectTextTokenKind::AmountSlot(_) | EffectTextTokenKind::BonusType) {
+            title.push_str(&template[cursor..token.start]);
+            cursor = token.end;
+        }
+    }
+    title.push_str(&template[cursor..]);
+    title.split_whitespace().collect::<Vec<_>>().join(" ")
+}
+
+fn effect_identity_numbers(source: &str) -> Vec<String> {
+    effect_text_tokens(source)
+        .into_iter()
+        .filter_map(|token| match token.kind {
+            EffectTextTokenKind::Number(amount) if amount.identity => Some(amount.amount.abs().to_string()),
+            EffectTextTokenKind::Word
+                if matches!(
+                    token.text,
+                    "I" | "II"
+                        | "III"
+                        | "IV"
+                        | "V"
+                        | "VI"
+                        | "VII"
+                        | "VIII"
+                        | "IX"
+                        | "X"
+                        | "XI"
+                        | "XII"
+                        | "XIII"
+                        | "XIV"
+                        | "XV"
+                ) =>
+            {
+                Some(token.text.to_string())
+            }
+            _ => None,
+        })
+        .collect()
 }
 
 #[derive(Clone, Copy, PartialEq, Eq)]
@@ -1352,8 +1557,11 @@ fn explicit_bonus_type_is_stated(
     if matches!(bonus_type, "Stacking" | "Untyped") {
         return true;
     }
-    let words =
-        text.split(|character: char| !character.is_alphabetic()).filter(|word| !word.is_empty()).collect::<Vec<_>>();
+    let words = effect_text_tokens(text)
+        .into_iter()
+        .filter(|token| matches!(token.kind, EffectTextTokenKind::Word))
+        .map(|token| token.text)
+        .collect::<Vec<_>>();
     let contains_type = |name: &str| {
         let type_words = name.split_whitespace().collect::<Vec<_>>();
         !type_words.is_empty()
@@ -1362,60 +1570,6 @@ fn explicit_bonus_type_is_stated(
             })
     };
     (accepts_type_name && contains_type(bonus_type)) || line_word.is_some_and(contains_type)
-}
-
-fn amount_tokens(text: &str) -> Vec<AmountToken> {
-    let bytes = text.as_bytes();
-    let mut tokens = Vec::new();
-    let mut position = 0;
-    while position < bytes.len() {
-        let start = position;
-        let signed = matches!(bytes[position], b'+' | b'-');
-        if signed && position > 0 && bytes[position - 1].is_ascii_digit() {
-            position += 1;
-            continue;
-        }
-        if signed {
-            position += 1;
-        }
-        if !bytes.get(position).is_some_and(u8::is_ascii_digit) {
-            position += 1;
-            continue;
-        }
-        while bytes.get(position).is_some_and(|byte| {
-            byte.is_ascii_digit() || (*byte == b'.' && bytes.get(position + 1).is_some_and(u8::is_ascii_digit))
-        }) {
-            position += 1;
-        }
-        if let Ok(amount) = text[start..position].parse() {
-            let percent = bytes.get(position) == Some(&b'%');
-            let before = text[..start]
-                .split_whitespace()
-                .next_back()
-                .unwrap_or_default()
-                .trim_matches(|character: char| !character.is_ascii_alphabetic())
-                .to_ascii_lowercase();
-            let after = text[position + usize::from(percent)..]
-                .split_whitespace()
-                .next()
-                .unwrap_or_default()
-                .trim_matches(|character: char| !character.is_ascii_alphabetic())
-                .to_ascii_lowercase();
-            let dice = (bytes.get(position).is_some_and(|byte| matches!(byte, b'd' | b'D'))
-                && bytes.get(position + 1).is_some_and(u8::is_ascii_digit))
-                || (start >= 2 && matches!(bytes[start - 1], b'd' | b'D') && bytes[start - 2].is_ascii_digit());
-            let placeholder = start > 0 && bytes[start - 1] == b'{';
-            let excluded = dice
-                || placeholder
-                || matches!(before.as_str(), "dc" | "level" | "cr" | "rank" | "tier")
-                || matches!(
-                    after.trim_end_matches('s'),
-                    "second" | "minute" | "hour" | "round" | "turn" | "time" | "stack"
-                );
-            tokens.push(AmountToken { amount, signed, percent, literal: (signed || percent) && !excluded });
-        }
-    }
-    tokens
 }
 
 fn served_amount_causes(line: &serde_json::Value, percent_stats: &BTreeSet<String>) -> BTreeSet<&'static str> {
@@ -1527,7 +1681,10 @@ fn effect_line_rendering_tokens(db: &Connection, _options: &IntegrityOptions) ->
         let (name, templates, home_type) = &templates_by_effect[&effect_id];
         for (field, template) in ["verbose_name", "set_bonus_line", "description"].into_iter().zip(templates) {
             let Some(template) = template else { continue };
-            if template.contains("%b1") && bonus_type.is_none() {
+            if effect_text_tokens(template).iter().any(|token| matches!(token.kind, EffectTextTokenKind::BonusType))
+                && bonus_type.is_none()
+                && home_type.is_none()
+            {
                 offenders.push(Offender {
                     name: name.clone(),
                     id: Some(effect_id),
@@ -1535,9 +1692,13 @@ fn effect_line_rendering_tokens(db: &Connection, _options: &IntegrityOptions) ->
                 });
                 continue;
             }
-            let Some(bonus_type) = bonus_type.as_deref() else { continue };
-            let shown_type =
-                if field == "verbose_name" && home_type.as_deref() == Some(bonus_type) { "" } else { bonus_type };
+            let Some(bonus_type) = bonus_type.as_deref().or(home_type.as_deref()) else { continue };
+            let shown_type = if field == "verbose_name" {
+                ddo_api::bonus_type_line_word(bonus_type, home_type.as_deref(), ddo_api::BonusTypeWording::Enchantment)
+                    .unwrap_or("")
+            } else {
+                bonus_type
+            };
             let rendered = template.replace("%b1", shown_type).to_ascii_lowercase();
             let repeated_type =
                 format!("{} {} bonus", shown_type.to_ascii_lowercase(), shown_type.to_ascii_lowercase());
@@ -1551,28 +1712,6 @@ fn effect_line_rendering_tokens(db: &Connection, _options: &IntegrityOptions) ->
         }
     }
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
-}
-
-fn has_unfilled_effect_token(template: &str) -> bool {
-    let bytes = template.as_bytes();
-    let mut index = 0;
-    while index < bytes.len() {
-        if bytes[index] == b'{'
-            && bytes.get(index + 1).is_some_and(u8::is_ascii_digit)
-            && !template[index..].starts_with("{1}")
-            && !template[index..].starts_with("{2}")
-        {
-            return true;
-        }
-        if bytes[index] == b'%'
-            && bytes.get(index + 1).is_some_and(u8::is_ascii_alphabetic)
-            && !template[index..].starts_with("%b1")
-        {
-            return true;
-        }
-        index += 1;
-    }
-    false
 }
 
 fn effect_links_missing_first_amount(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
@@ -1649,35 +1788,49 @@ fn effects_with_tied_home_bonus_types(db: &Connection, _options: &IntegrityOptio
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
-fn effect_templates_disagree_with_names(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
-    let mut offenders = Vec::new();
-    for (id, name, template) in in_use_effect_templates(db)? {
-        let title = effect_template_title(&template);
-        let alias = EFFECT_MAP.template_name_aliases.get(&name).map(String::as_str);
-        let matched_name = std::iter::once(name.as_str())
-            .chain(alias)
-            .any(|candidate| title.to_ascii_lowercase().contains(&candidate.to_ascii_lowercase()));
-        let name_numbers = effect_number_tokens(&name);
-        if !matched_name || (!name_numbers.is_empty() && name_numbers != effect_number_tokens(&title)) {
-            offenders.push(Offender { name, id: Some(id), detail: format!("template {template:?}") });
-        }
-    }
-    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+#[derive(PartialEq, Eq)]
+enum EffectTitleMismatch {
+    Name,
+    Number,
 }
 
-fn effect_template_numbers_mismatch_names(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+fn effect_title_mismatch(name: &str, template: &str) -> Option<EffectTitleMismatch> {
+    let title = effect_template_title(template);
+    let name_numbers = effect_identity_numbers(name);
+    let title_numbers = effect_identity_numbers(&title);
+    if !name_numbers.is_empty()
+        && !title_numbers.is_empty()
+        && !name_numbers.iter().all(|number| title_numbers.contains(number))
+    {
+        return Some(EffectTitleMismatch::Number);
+    }
+    let alias = EFFECT_MAP.template_name_aliases.get(name).map(String::as_str);
+    let matched_name = std::iter::once(name)
+        .chain(alias)
+        .any(|candidate| title.to_ascii_lowercase().contains(&candidate.to_ascii_lowercase()));
+    (!matched_name || (!name_numbers.is_empty() && name_numbers != title_numbers)).then_some(EffectTitleMismatch::Name)
+}
+
+fn effect_title_mismatches(db: &Connection, mismatch: EffectTitleMismatch) -> Result<Findings> {
     let offenders = in_use_effect_templates(db)?
         .into_iter()
         .filter_map(|(id, name, template)| {
-            let name_numbers = effect_number_tokens(&name);
-            let template_numbers = effect_number_tokens(&effect_template_title(&template));
-            (!name_numbers.is_empty()
-                && !template_numbers.is_empty()
-                && !name_numbers.iter().all(|token| template_numbers.contains(token)))
-            .then_some(Offender { name, id: Some(id), detail: format!("template {template:?}") })
+            (effect_title_mismatch(&name, &template).as_ref() == Some(&mismatch)).then_some(Offender {
+                name,
+                id: Some(id),
+                detail: format!("template {template:?}"),
+            })
         })
         .collect();
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+}
+
+fn effect_templates_disagree_with_names(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    effect_title_mismatches(db, EffectTitleMismatch::Name)
+}
+
+fn effect_template_numbers_mismatch_names(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    effect_title_mismatches(db, EffectTitleMismatch::Number)
 }
 
 fn owner_bonuses_repeated_across_links(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
@@ -1733,29 +1886,6 @@ fn owner_bonuses_repeated_across_links(db: &Connection, _options: &IntegrityOpti
         }
     }
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
-}
-
-fn dice_terms(text: &str) -> Vec<(u32, u32)> {
-    let mut terms = Vec::new();
-    let characters: Vec<char> = text.chars().collect();
-    for (index, character) in characters.iter().enumerate() {
-        if *character != 'd' || index == 0 || !characters[index - 1].is_ascii_digit() {
-            continue;
-        }
-        let count_start =
-            (0..index).rev().take_while(|position| characters[*position].is_ascii_digit()).last().unwrap_or(index);
-        let sides_end =
-            (index + 1..characters.len()).take_while(|position| characters[*position].is_ascii_digit()).count();
-        if sides_end == 0 || (count_start > 0 && characters[count_start - 1].is_alphanumeric()) {
-            continue;
-        }
-        let count: String = characters[count_start..index].iter().collect();
-        let sides: String = characters[index + 1..index + 1 + sides_end].iter().collect();
-        if let (Ok(count), Ok(sides)) = (count.parse(), sides.parse()) {
-            terms.push((count, sides));
-        }
-    }
-    terms
 }
 
 fn has_fewer_critical_dice_than_hit_dice(description: &str) -> bool {
@@ -1834,54 +1964,6 @@ fn in_use_effect_templates(db: &Connection) -> Result<Vec<(i64, String, String)>
         .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))?
         .collect::<rusqlite::Result<Vec<_>>>()?;
     Ok(templates)
-}
-
-fn effect_template_title(template: &str) -> String {
-    template
-        .replace("%b1", "")
-        .replace("+{1}%", "")
-        .replace("-{1}%", "")
-        .replace("{1}%", "")
-        .replace("+{2}%", "")
-        .replace("-{2}%", "")
-        .replace("{2}%", "")
-        .replace("+{1}", "")
-        .replace("-{1}", "")
-        .replace("{1}", "")
-        .replace("+{2}", "")
-        .replace("-{2}", "")
-        .replace("{2}", "")
-        .split_whitespace()
-        .collect::<Vec<_>>()
-        .join(" ")
-}
-
-fn effect_number_tokens(source: &str) -> Vec<String> {
-    source
-        .split(|character: char| !character.is_ascii_alphanumeric())
-        .filter(|token| {
-            !token.is_empty()
-                && (token.chars().all(|character| character.is_ascii_digit())
-                    || matches!(
-                        *token,
-                        "I" | "II"
-                            | "III"
-                            | "IV"
-                            | "V"
-                            | "VI"
-                            | "VII"
-                            | "VIII"
-                            | "IX"
-                            | "X"
-                            | "XI"
-                            | "XII"
-                            | "XIII"
-                            | "XIV"
-                            | "XV"
-                    ))
-        })
-        .map(str::to_string)
-        .collect()
 }
 
 fn skill_groups_with_different_home_bonus_types(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
@@ -2303,6 +2385,20 @@ mod served_amount_tests {
     }
 
     #[test]
+    fn template_consumers_share_placeholder_and_numeric_boundaries() {
+        let template = "Spell Lore VI +{1}% (%b1)";
+        assert_eq!(effect_identity_numbers(template), ["VI"]);
+        assert!(!has_unfilled_effect_token(template));
+        assert!(!amount_tokens(template).iter().any(AmountToken::is_amount_literal));
+        for template in ["Gain {3}", "Gain %v1", "Gain %i1"] {
+            assert!(has_unfilled_effect_token(template), "{template}");
+        }
+        for template in ["Gain +20%bonus", "15d6", "DC +25", "for +10 seconds", "Dragon's Edge 7", "Spell Lore VI"] {
+            assert!(!has_unfilled_effect_token(template), "{template}");
+        }
+    }
+
+    #[test]
     fn type_words_follow_description_and_line_conventions() {
         for (text, bonus_type, home, description, stated) in [
             ("+4 Insightful bonus", "Insight", None, true, true),
@@ -2426,6 +2522,21 @@ mod served_amount_tests {
             db.trace_v2(TraceEventCodes::empty(), None);
             assert_eq!(STATEMENTS.load(Ordering::SeqCst), 3, "{owner_count} effects");
             assert!(findings.offenders.unwrap().is_empty());
+            for (name, statement_count) in [
+                ("effect_line_rendering_tokens", 2),
+                ("effect_templates_disagree_with_names", 1),
+                ("effect_template_numbers_match_names", 1),
+                ("effect_descriptions_with_fewer_critical_dice_than_hit_dice", 1),
+            ] {
+                let check = INTEGRITY_CHECKS.iter().find(|check| check.name == name).unwrap();
+                let OffenderQuery::Built(query) = &check.offender_query else { panic!("built check") };
+                db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
+                STATEMENTS.store(0, Ordering::SeqCst);
+                let findings = query(&db, &IntegrityOptions { allowed_empty_tables: Vec::new() }).unwrap();
+                db.trace_v2(TraceEventCodes::empty(), None);
+                assert_eq!(STATEMENTS.load(Ordering::SeqCst), statement_count, "{name}: {owner_count} owners");
+                assert!(findings.offenders.unwrap().is_empty(), "{name}");
+            }
         }
     }
 }
