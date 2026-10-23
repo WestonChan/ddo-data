@@ -1,7 +1,12 @@
-name = "Negative and Poison Spell Power"
+name = "Nullification"
 description_template = "{1} %b1 bonus to Negative and Poison spell power."
 home_bonus_type = "Equipment"
-verbose_name_template = "%b1 Negative and Poison Spell Power +{1}"
+set_bonus_line_template = "+{1} %b1 Bonus to Negative and Poison Spell Power"
+verbose_name_template = "%b1 Nullification +{1}"
+
+[[citation]]
+url = "https://ddowiki.com/page/Nullification"
+read = "2026-10-23"
 
 [[bonus]]
 amount_from = 1

@@ -5,12 +5,7 @@ icon = "Claw"
 min_level = 31
 
 [[effect]]
-name = "Negative Spell Power"
-bonus_type = "Equipment"
-value = 149
-
-[[effect]]
-name = "Poison Spell Power"
+name = "Nullification"
 bonus_type = "Equipment"
 value = 149
 
@@ -18,6 +13,7 @@ value = 149
 amount_type = "Simple"
 amounts = [149]
 bonus_type = "Equipment"
+effect = "Nullification"
 effect_type = "SpellPower"
 targets = [
     "Negative",

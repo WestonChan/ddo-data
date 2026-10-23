@@ -32,7 +32,7 @@ value = 4
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Negative and Poison Spell Power"
+effect = "Nullification"
 value = 20
 
 [[tier.effect]]

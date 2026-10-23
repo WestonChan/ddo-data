@@ -14,4 +14,4 @@ target = "Cold Spell Power"
 amount_from = 1
 rounding = "down"
 scale = 1.0
-target = "Negative and Poison Spell Power"
+target = "Nullification"

@@ -1,0 +1,26 @@
+<Buff>
+  <Type>Nullification</Type>
+  <DisplayText>%b1 Nullification %v1: %v1 %b1 bonus to Negative and Poison spell power.</DisplayText>
+  <Ignore>Equipment</Ignore>
+  <Effect>
+    <Type>SpellPower</Type>
+    <Bonus>Not Set</Bonus>
+    <AType>Simple</AType>
+    <Amount size="1">0</Amount>
+    <Item>Negative</Item>
+    <Item>Poison</Item>
+  </Effect>
+</Buff>
+<Buff>
+  <Type>VoidLore</Type>
+  <DisplayText>%b1 Void Lore %v1%: Passive: Your Negative Energy and Poison spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+  <Ignore>Equipment</Ignore>
+  <Effect>
+    <Type>SpellLore</Type>
+    <Bonus>Not Set</Bonus>
+    <AType>Simple</AType>
+    <Amount size="1">0</Amount>
+    <Item>Negative</Item>
+    <Item>Poison</Item>
+  </Effect>
+</Buff>

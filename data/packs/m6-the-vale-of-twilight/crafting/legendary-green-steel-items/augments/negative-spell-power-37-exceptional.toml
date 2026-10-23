@@ -4,12 +4,7 @@ family = "Greensteel_Legendary"
 min_level = 1
 
 [[effect]]
-name = "Negative Spell Power"
-bonus_type = "Exceptional"
-value = 37
-
-[[effect]]
-name = "Poison Spell Power"
+name = "Nullification"
 bonus_type = "Exceptional"
 value = 37
 
@@ -17,6 +12,7 @@ value = 37
 amount_type = "Simple"
 amounts = [37]
 bonus_type = "Exceptional"
+effect = "Nullification"
 effect_type = "SpellPower"
 targets = [
     "Negative",

@@ -5,12 +5,7 @@ icon = "SlavelordsSuffix"
 min_level = 28
 
 [[effect]]
-name = "Negative Spell Power"
-bonus_type = "Equipment"
-value = 142
-
-[[effect]]
-name = "Poison Spell Power"
+name = "Nullification"
 bonus_type = "Equipment"
 value = 142
 
@@ -18,6 +13,7 @@ value = 142
 amount_type = "Simple"
 amounts = [142]
 bonus_type = "Equipment"
+effect = "Nullification"
 effect_type = "SpellPower"
 targets = [
     "Negative",

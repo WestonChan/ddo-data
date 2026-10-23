@@ -5,12 +5,7 @@ family = "Thunderforged"
 min_level = 24
 
 [[effect]]
-name = "Negative Spell Power"
-bonus_type = "Equipment"
-value = 150
-
-[[effect]]
-name = "Poison Spell Power"
+name = "Nullification"
 bonus_type = "Equipment"
 value = 150
 
@@ -24,6 +19,7 @@ amount_type = "Simple"
 amounts = [150]
 bonus_type = "Equipment"
 display_name = "Dwarvencraft Nullification"
+effect = "Nullification"
 effect_type = "SpellPower"
 targets = [
     "Negative",

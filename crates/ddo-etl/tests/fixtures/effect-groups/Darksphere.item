@@ -1,0 +1,40 @@
+<Items>
+  <Item>
+    <Name>Darksphere</Name>
+    <Description>This cursed orb spells the doom of those who would oppose its wielder.</Description>
+    <MinLevel>21</MinLevel>
+    <EquipmentSlot>
+      <Weapon2 />
+    </EquipmentSlot>
+    <Weapon>Orb</Weapon>
+    <AttackModifier>Intelligence</AttackModifier>
+    <DamageModifier>Charisma</DamageModifier>
+    <WeaponDamage>1</WeaponDamage>
+    <BaseDice>
+      <Number>1</Number>
+      <Sides>4</Sides>
+    </BaseDice>
+    <CriticalMultiplier>2</CriticalMultiplier>
+    <CriticalThreatRange>2</CriticalThreatRange>
+    <ShieldBonus>0</ShieldBonus>
+    <Material>Glass</Material>
+    <Buff>
+      <Type>VoidLore</Type>
+      <Value1>17</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Nullification</Type>
+      <Value1>115</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Nullification</Type>
+      <Value1>57</Value1>
+      <BonusType>Insightful</BonusType>
+    </Buff>
+    <ItemAugment>
+      <Type>Purple</Type>
+    </ItemAugment>
+  </Item>
+</Items>

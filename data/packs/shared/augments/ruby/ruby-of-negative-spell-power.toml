@@ -29,12 +29,7 @@ levels = [
 ]
 
 [[effect]]
-name = "Negative Spell Power"
-bonus_type = "Equipment"
-value = 138
-
-[[effect]]
-name = "Poison Spell Power"
+name = "Nullification"
 bonus_type = "Equipment"
 value = 138
 
@@ -42,6 +37,7 @@ value = 138
 amount_type = "Simple"
 amounts = [138]
 bonus_type = "Equipment"
+effect = "Nullification"
 effect_type = "SpellPower"
 targets = [
     "Negative",

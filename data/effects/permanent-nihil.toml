@@ -9,4 +9,4 @@ bonus_type = "Alchemical"
 constant = 30
 rounding = "down"
 scale = 1.0
-target = "Negative and Poison Spell Power"
+target = "Nullification"

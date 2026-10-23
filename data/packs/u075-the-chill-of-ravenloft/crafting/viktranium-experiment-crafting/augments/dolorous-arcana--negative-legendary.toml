@@ -5,12 +5,7 @@ icon = "Lamordia"
 min_level = 34
 
 [[effect]]
-name = "Negative Spell Power"
-bonus_type = "Insight"
-value = 79
-
-[[effect]]
-name = "Poison Spell Power"
+name = "Nullification"
 bonus_type = "Insight"
 value = 79
 
@@ -19,6 +14,7 @@ amount_type = "Simple"
 amounts = [79]
 bonus = "Insightful"
 bonus_type = "Insight"
+effect = "Nullification"
 effect_type = "SpellPower"
 targets = [
     "Negative",

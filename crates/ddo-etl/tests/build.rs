@@ -1006,7 +1006,7 @@ fn ambiguous_set_lines_keep_the_declared_group_and_cited_tactics_removals_apply(
             &db,
             "SELECT COUNT(*) FROM set_bonus_tier_effects link JOIN effects e ON e.id = link.effect_id
          JOIN set_bonus_tiers t ON t.id = link.tier_id JOIN set_bonuses s ON s.id = t.set_id
-         WHERE s.name = 'The Desert''s Starless Nights' AND e.name = 'Negative and Poison Spell Power'"
+         WHERE s.name = 'The Desert''s Starless Nights' AND e.name = 'Nullification'"
         ),
         1
     );
@@ -1101,6 +1101,22 @@ fn radiance_buffs_link_five_spell_powers_at_each_owners_type() {
         &[("Equipment", 111), ("Insight", 55)],
     );
     assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Light and Alignment Spell Power'"), 0);
+}
+
+#[test]
+fn nullification_buffs_link_two_spell_powers_at_each_owners_type() {
+    let db = build_wrapper_fixture(
+        include_str!("fixtures/effect-groups/Darksphere.item"),
+        include_str!("fixtures/effect-groups/Darksphere.Buffs.xml"),
+    );
+    assert_wrapper_group(
+        &db,
+        "Darksphere",
+        "Nullification",
+        &["Negative Spell Power", "Poison Spell Power"],
+        &[("Equipment", 115), ("Insight", 57)],
+    );
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Negative and Poison Spell Power'"), 0);
 }
 
 #[test]

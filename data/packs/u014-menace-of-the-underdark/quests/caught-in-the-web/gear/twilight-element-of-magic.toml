@@ -162,18 +162,14 @@ min_level = 23
 
 [[socket.option.effect]]
 bonus_type = "Equipment"
-effect = "Negative Spell Power"
-value = 120
-
-[[socket.option.effect]]
-bonus_type = "Equipment"
-effect = "Poison Spell Power"
+effect = "Nullification"
 value = 120
 
 [[socket.option.modifier]]
 amount_type = "Simple"
 amounts = [120]
 bonus_type = "Equipment"
+effect = "Nullification"
 effect_type = "SpellPower"
 targets = [
     "Negative",

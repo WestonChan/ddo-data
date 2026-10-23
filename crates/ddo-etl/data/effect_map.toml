@@ -10,7 +10,7 @@ owner_type_precedence = ["ExtraLayOnHands", "Constitution Skills - Exceptional",
 
 [family.groups]
 Potency = "Potency"
-Nullification = "Negative and Poison Spell Power"
+Nullification = "Nullification"
 Radiance = "Radiance"
 VoidLore = "Negative and Poison Spell Lore"
 
@@ -362,7 +362,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Acid Intensity" = "+{1}% %b1 bonus to critical damage with Acid spells."
 Potency = "{1} %b1 bonus to each individual spell power. (Universal Spell Power is a different statistic)"
 Radiance = "{1} %b1 bonus to Light and Alignment spell power."
-"Negative and Poison Spell Power" = "{1} %b1 bonus to Negative and Poison spell power."
+"Nullification" = "{1} %b1 bonus to Negative and Poison spell power."
 "Negative and Poison Spell Lore" = "Passive: Your Negative Energy and Poison spells gain a {1}% %b1 bonus to their chance to critical hit."
 "Spell Focus Mastery" = "+{1} %b1 bonus to the DC of all spells."
 "Combat Mastery" = "+{1} %b1 bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts."
@@ -392,7 +392,7 @@ Wizardry = ["Wizardry I", "Wizardry II", "Wizardry III", "Wizardry V", "Wizardry
 
 [groups]
 "Combat Mastery" = ["Trip DC", "Sunder DC", "Stun DC"]
-"Negative and Poison Spell Power" = ["Negative Spell Power", "Poison Spell Power"]
+"Nullification" = ["Negative Spell Power", "Poison Spell Power"]
 Radiance = ["Light Spell Power", "Chaos Spell Power", "Evil Spell Power", "Good Spell Power", "Law Spell Power"]
 "Negative and Poison Spell Lore" = ["Negative Spell Lore", "Poison Spell Lore"]
 "All Ability Scores" = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
