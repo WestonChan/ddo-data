@@ -60,32 +60,7 @@ min_level = 13
 
 [[socket.option.effect]]
 bonus_type = "Exceptional"
-effect = "Bluff"
-value = 2
-
-[[socket.option.effect]]
-bonus_type = "Exceptional"
-effect = "Diplomacy"
-value = 2
-
-[[socket.option.effect]]
-bonus_type = "Exceptional"
-effect = "Haggle"
-value = 2
-
-[[socket.option.effect]]
-bonus_type = "Exceptional"
-effect = "Intimidate"
-value = 2
-
-[[socket.option.effect]]
-bonus_type = "Exceptional"
-effect = "Perform"
-value = 2
-
-[[socket.option.effect]]
-bonus_type = "Exceptional"
-effect = "Use Magic Device"
+effect = "Charisma Skills"
 value = 2
 
 [[socket.option.effect]]
@@ -97,6 +72,7 @@ value = 5
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Exceptional"
+effect = "Charisma Skills"
 effect_type = "SkillBonus"
 targets = [
     "Bluff",

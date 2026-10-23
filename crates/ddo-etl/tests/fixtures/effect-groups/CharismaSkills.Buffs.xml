@@ -1,0 +1,17 @@
+<Buff>
+  <Type>Charisma Skills - Exceptional</Type>
+  <DisplayText>Charisma Skills - Exceptional Bonus %v1: Passive %v1 Exceptional bonus to the Charisma based skills of: Bluff, Diplomacy, Haggle, Intimidate, Perform and Use Magic Device (UMD)</DisplayText>
+  <Ignore>Competence</Ignore>
+  <Effect>
+    <Type>SkillBonus</Type>
+    <Bonus>Competence</Bonus>
+    <AType>Simple</AType>
+    <Amount size="1">3</Amount>
+    <Item>Bluff</Item>
+    <Item>Diplomacy</Item>
+    <Item>Haggle</Item>
+    <Item>Intimidate</Item>
+    <Item>Perform</Item>
+    <Item>Use Magic Device</Item>
+  </Effect>
+</Buff>

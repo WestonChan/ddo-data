@@ -13,6 +13,7 @@ Potency = "Potency"
 Nullification = "Nullification"
 Radiance = "Radiance"
 VoidLore = "Void Lore"
+"Charisma Skills - Exceptional" = "Charisma Skills"
 
 [[set_tier_prose_bonuses]]
 description = "+1 Profane bonus to Attack and Damage"
@@ -159,6 +160,7 @@ bonus_type = "Stacking"
 value = 5
 
 [names]
+"Charisma Skills - Exceptional" = "Charisma Skills"
 "DR 1/-" = "DR 1/-"
 "DR 1/Chaotic" = "DR 1/Chaotic"
 "DR 10/Evil" = "DR 10/Evil"
@@ -304,6 +306,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Charisma Skills" = "none"
 
 [line_templates]
+"Charisma Skills" = "%b1 Charisma Skills +{1}"
 "Doublestrike and Doubleshot" = "%b1 Doublestrike and Doubleshot +{1}%"
 "Acid Spell Lore" = "%b1 Acid Spell Lore +{1}%"
 "Blighted Lore" = "%b1 Blighted Lore +{1}%"
@@ -358,6 +361,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Universal Spell Lore" = "+{1}% %b1 Bonus to Spell Critical Chance"
 
 [description_templates]
+"Charisma Skills" = "{1} %b1 bonus to all Charisma based skills."
 "Silver Flame Lore" = "Passive: Your Positive, Light, and Alignment spells gain a {1} %b1 bonus to their chance to critical hit."
 "Power of the Dark Restoration" = "Passive: {1} %b1 bonus to Negative, Poison and Positive Spell Power."
 "Acid Intensity" = "+{1}% %b1 bonus to critical damage with Acid spells."

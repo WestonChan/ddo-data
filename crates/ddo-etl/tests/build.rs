@@ -1211,6 +1211,101 @@ fn declared_ladder_buffs_keep_flat_bonuses_and_their_declaration() {
 }
 
 #[test]
+fn exceptional_charisma_buffs_link_the_six_skills() {
+    for (amount, expected) in [(None, 3), (Some(2), 2)] {
+        let item_xml = include_str!("fixtures/effect-groups/CharismaSkills.item").replace(
+            "<Value1>2</Value1>",
+            &amount.map(|amount| format!("<Value1>{amount}</Value1>")).unwrap_or_default(),
+        );
+        let db = build_wrapper_fixture(
+            fixture::groupings(),
+            &item_xml,
+            include_str!("fixtures/effect-groups/CharismaSkills.Buffs.xml"),
+        );
+        assert_wrapper_group(
+            &db,
+            "Pink and Green Ioun Stone (unsuppressed)",
+            "Charisma Skills",
+            &["Bluff", "Diplomacy", "Haggle", "Intimidate", "Perform", "Use Magic Device"],
+            &[("Exceptional", expected)],
+        );
+        assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Charisma Skills - Exceptional Bonus'"), 0);
+        let defaults: (Option<i64>, Option<i64>) = db
+            .query_row("SELECT default_value,default_value2 FROM effects WHERE name='Charisma Skills'", [], |row| {
+                Ok((row.get(0)?, row.get(1)?))
+            })
+            .unwrap();
+        assert_eq!(defaults, (None, None), "a group never carries a definition default");
+        let linked_amount: Option<i64> = db.query_row("SELECT l.value FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name='Pink and Green Ioun Stone (unsuppressed)' AND e.name='Charisma Skills'", [], |row| row.get(0)).unwrap();
+        assert_eq!(linked_amount, Some(expected));
+    }
+}
+
+#[test]
+fn explicit_zero_overrides_a_grouped_buffs_definition_default() {
+    let item_xml =
+        include_str!("fixtures/effect-groups/CharismaSkills.item").replace("<Value1>2</Value1>", "<Value1>0</Value1>");
+    let db = build_wrapper_fixture(
+        fixture::groupings(),
+        &item_xml,
+        include_str!("fixtures/effect-groups/CharismaSkills.Buffs.xml"),
+    );
+    let amounts: (Option<i64>, Option<i64>) = db.query_row("SELECT l.value,e.default_value FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name='Pink and Green Ioun Stone (unsuppressed)' AND e.name='Charisma Skills'", [], |row| Ok((row.get(0)?,row.get(1)?))).unwrap();
+    assert_eq!(amounts, (Some(0), None));
+    assert_eq!(count(&db,"SELECT COUNT(*) FROM owner_bonuses b JOIN items i ON i.id=b.owner_id WHERE b.owner_kind='item' AND i.name='Pink and Green Ioun Stone (unsuppressed)'"), 0);
+}
+
+#[test]
+fn grouped_definition_defaults_survive_export_and_rebuild_on_owner_links() {
+    let source = fixture::xml_source();
+    let path = source.path().join("ItemBuffs.xml");
+    let definitions = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        path,
+        definitions.replace(
+            "</Buffs>",
+            &format!("{}</Buffs>", include_str!("fixtures/effect-groups/CharismaSkills.Buffs.xml")),
+        ),
+    )
+    .unwrap();
+    let item_xml = include_str!("fixtures/effect-groups/CharismaSkills.item");
+    let missing_amount = item_xml
+        .replace("<Value1>2</Value1>", "")
+        .replace("Pink and Green Ioun Stone (unsuppressed)", "Default Charisma Skills");
+    std::fs::write(source.path().join("Items/ExplicitCharismaSkills.item"), item_xml).unwrap();
+    std::fs::write(source.path().join("Items/DefaultCharismaSkills.item"), missing_amount).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &fixture::fixture_icon_corrections(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let exported = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&db, exported.path()).unwrap();
+    let images = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data");
+    for entry in walkdir::WalkDir::new(&images).into_iter().map(Result::unwrap).filter(|entry| {
+        entry.file_type().is_file() && entry.path().extension().is_some_and(|extension| extension == "png")
+    }) {
+        let destination = exported.path().join(entry.path().strip_prefix(&images).unwrap());
+        std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+        std::fs::copy(entry.path(), destination).unwrap();
+    }
+    let before = ddo_etl::tree::data_file_bytes(exported.path()).unwrap();
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(exported.path(), &mut rebuilt).unwrap();
+    for (name, amount) in [("Default Charisma Skills", 3), ("Pink and Green Ioun Stone (unsuppressed)", 2)] {
+        let linked_amount: Option<i64> = rebuilt.query_row("SELECT l.value FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name=?1 AND e.name='Charisma Skills'", [name], |row| row.get(0)).unwrap();
+        assert_eq!(linked_amount, Some(amount), "{name}");
+    }
+    ddo_etl::tree::export_database(&rebuilt, exported.path()).unwrap();
+    assert_eq!(before, ddo_etl::tree::data_file_bytes(exported.path()).unwrap());
+}
+
+#[test]
 fn potency_grants_each_named_spell_power_without_granting_universal_spell_power() {
     let (db, _) = built_fixture_db();
     assert_eq!(count(&db, "SELECT is_group FROM effects WHERE name = 'Potency'"), 1);

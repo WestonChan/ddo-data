@@ -631,6 +631,7 @@ impl<'a> EffectCache<'a> {
 
     pub(super) fn set_defaults(&mut self, family_id: i64, defaults: (Option<i64>, Option<i64>)) -> Result<()> {
         let family = self.families_by_id.get_mut(&family_id).expect("family is cached before its defaults");
+        ensure!(!family.is_group, "group {} cannot carry definition defaults", family.name);
         let (first, second) = defaults;
         ensure!(
             first.is_none_or(|value| family.default_value.is_none_or(|current| current == value))
@@ -998,6 +999,26 @@ mod tests {
         assert_eq!(templates.0, "Wild Frenzy +{1}");
         assert!(templates.1.contains("DC {1} Will save"));
         assert_eq!(templates.2, 25);
+    }
+
+    #[test]
+    fn group_defaults_are_rejected() {
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        ddo_model::seeds::insert_all(&db).unwrap();
+        let transaction = db.transaction().unwrap();
+        let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
+        let group_id = effects.ensure_group("Charisma Skills").unwrap();
+        for defaults in [(Some(3), None), (None, Some(3)), (None, None)] {
+            let error = effects.set_defaults(group_id, defaults).unwrap_err().to_string();
+            assert!(error.contains("group Charisma Skills cannot carry definition defaults"), "{error}");
+        }
+        let defaults: (Option<i64>, Option<i64>) = transaction
+            .query_row("SELECT default_value, default_value2 FROM effects WHERE id=?1", [group_id], |row| {
+                Ok((row.get(0)?, row.get(1)?))
+            })
+            .unwrap();
+        assert_eq!(defaults, (None, None));
     }
 
     #[test]

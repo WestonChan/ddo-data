@@ -253,12 +253,6 @@ impl TableWriter<'_> {
                         description_template.as_deref(),
                         count,
                     )?;
-                    let defaults = self.buff_resolver.definition_defaults(buff.kind.trim(), count);
-                    if defaults != (None, None)
-                        && self.written.written_effect_defaults.insert((effect_id, defaults.0, defaults.1))
-                    {
-                        self.effects.set_defaults(effect_id, defaults)?;
-                    }
                     let link_typed =
                         self.effects.family(effect_id).expect("effect cached").uses_link_type || typed_stats.len() == 1;
                     if link_typed {
@@ -282,8 +276,17 @@ impl TableWriter<'_> {
                         })
                         .collect();
                     self.effects.ensure_bonus_rules(effect_id, &rules)?;
-                    let family_amount_count = self.effects.family(effect_id).expect("effect cached").amount_count;
-                    let (value, value2) = self.buff_resolver.link_amounts(buff, family_amount_count);
+                    let family = self.effects.family(effect_id).expect("effect cached");
+                    let defaults = self.buff_resolver.definition_defaults(buff.kind.trim(), family.amount_count);
+                    let (mut value, mut value2) = self.buff_resolver.link_amounts(buff, family.amount_count);
+                    if family.is_group {
+                        value = value.or(defaults.0);
+                        value2 = value2.or(defaults.1);
+                    } else if defaults != (None, None)
+                        && self.written.written_effect_defaults.insert((effect_id, defaults.0, defaults.1))
+                    {
+                        self.effects.set_defaults(effect_id, defaults)?;
+                    }
                     links.push(DerivedEffectLink {
                         effect_id,
                         bonus_type: (link_typed || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
