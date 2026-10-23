@@ -17,6 +17,32 @@ pub(super) struct DerivedEffectLink {
     pub(super) is_split_line: bool,
 }
 
+enum GroupingOutcome {
+    Grouped(Vec<DerivedEffectLink>),
+    Split { links: Vec<DerivedEffectLink>, correction: String },
+    SharedTargets(Vec<String>),
+    Held(GroupingHold),
+    NotGrouped,
+}
+
+enum GroupingHold {
+    TypesWithoutStats(Vec<String>),
+    DifferentValues,
+    DifferentTypes,
+    NoUsableGrouping(Vec<String>),
+}
+
+impl GroupingHold {
+    fn reason(&self) -> String {
+        match self {
+            Self::TypesWithoutStats(types) => format!("effect types without derived stats: {}", types.join(", ")),
+            Self::DifferentValues => "different values within one effect".to_string(),
+            Self::DifferentTypes => "different types within one effect".to_string(),
+            Self::NoUsableGrouping(names) => format!("no unique usable grouping: {}", names.join(", ")),
+        }
+    }
+}
+
 impl TableWriter<'_> {
     pub(super) fn link_pending_derived_effects(&mut self) -> Result<()> {
         let pending = std::mem::take(&mut self.pending_derived_effects);
@@ -216,23 +242,50 @@ impl TableWriter<'_> {
                 .collect::<Result<Vec<_>>>()?;
             let first_link = links.len();
             let split_count = self.shared_target_splits.len();
-            let removed_before = self.removed_derived_bonus_count;
+            let types_had_stats = derived_by_type.iter().map(|bonuses| !bonuses.is_empty()).collect::<Vec<_>>();
             let source_index = self.derived_effect_lines.len();
-            self.derived_effect_lines.push(super::DerivedEffectLines {
-                owner_kind: modifier_source.as_str().to_string(),
-                owner_name: owner.name.to_string(),
-                stat_names: Vec::new(),
-                link_count: 0,
-            });
-            let grouped_links =
-                self.write_grouped_effect_links(owner, modifier_source, owner_id, effect, &mut derived_by_type)?;
-            self.derived_effect_lines[source_index].stat_names = derived_by_type
+            let outcome = self.write_grouped_effect_links(owner, owner_id, effect, &mut derived_by_type)?;
+            let stat_names = derived_by_type
                 .iter()
                 .flatten()
                 .map(|bonus| bonus.stat.name.to_string())
                 .collect::<std::collections::BTreeSet<_>>()
                 .into_iter()
-                .collect();
+                .collect::<Vec<_>>();
+            self.derived_effect_lines.push(super::DerivedEffectLines {
+                owner_kind: modifier_source.as_str().to_string(),
+                owner_name: owner.name.to_string(),
+                stat_names: stat_names.clone(),
+                link_count: 0,
+            });
+            let split = |reason| super::DerivedEffectSplit {
+                source_index,
+                owner_kind: modifier_source.as_str().to_string(),
+                owner_name: owner.name.to_string(),
+                owner_id,
+                effect_types: effect.types.clone(),
+                targets: effect.targets.clone(),
+                stats: stat_names.clone(),
+                reason,
+            };
+            let preserve_member_lines =
+                matches!(outcome, GroupingOutcome::Held(GroupingHold::DifferentTypes | GroupingHold::DifferentValues));
+            let grouped_links = match outcome {
+                GroupingOutcome::Grouped(links) => Some(links),
+                GroupingOutcome::Split { links, correction } => {
+                    self.line_splits.push(split(correction));
+                    Some(links)
+                }
+                GroupingOutcome::SharedTargets(entries) => {
+                    self.shared_target_splits.push(split(entries.join(", ")));
+                    None
+                }
+                GroupingOutcome::Held(hold) => {
+                    self.held_back_effects.push(split(hold.reason()));
+                    None
+                }
+                GroupingOutcome::NotGrouped => None,
+            };
             if let Some(grouped_links) = grouped_links {
                 if grouped_links.len() == 1 {
                     self.transaction.execute(
@@ -244,12 +297,8 @@ impl TableWriter<'_> {
                 links.extend(grouped_links);
                 continue;
             }
-            let preserve_member_lines = self
-                .held_back_effects
-                .last()
-                .is_some_and(|held| held.source_index == source_index && held.reason.starts_with("different "));
             for (type_index, effect_type) in effect.types.iter().enumerate() {
-                if derived_by_type[type_index].is_empty() && self.removed_derived_bonus_count != removed_before {
+                if types_had_stats[type_index] && derived_by_type[type_index].is_empty() {
                     continue;
                 }
                 let mut single_type_effect = effect.clone();
@@ -336,7 +385,22 @@ impl TableWriter<'_> {
                 for (group_order, (bonuses, shared_name)) in groups.into_iter().enumerate() {
                     let first_bonus = bonuses[0];
                     let target = if preserve_member_lines {
-                        None
+                        if all_abilities || effect_type == "SkillBonusAbility" {
+                            Some(first_bonus.stat.name)
+                        } else {
+                            effect
+                                .targets
+                                .iter()
+                                .find_map(|target| {
+                                    EFFECT_MAP
+                                        .effect_stat(effect_type, target)
+                                        .filter(|stat| stat.id == first_bonus.stat.id)
+                                        .map(|_| target.as_str())
+                                })
+                                .or_else(|| {
+                                    effect.targets.get(group_order).or(effect.targets.first()).map(String::as_str)
+                                })
+                        }
                     } else if all_abilities {
                         Some("All")
                     } else if let Some((shared_target, _)) = named_shared_target {
@@ -420,7 +484,7 @@ impl TableWriter<'_> {
                 owner.name
             );
         }
-        if let ("SkillBonusAbility", Some(ability)) = (effect_type, target) {
+        if let ("SkillBonusAbility", Some(ability), true) = (effect_type, target, bonuses.len() > 1) {
             let effect_id = self.effects.ensure_group(&format!("{ability} Skills"))?;
             return Ok(DerivedEffectLink {
                 is_split_line: false,
@@ -430,9 +494,13 @@ impl TableWriter<'_> {
                 value2: None,
             });
         }
-        let source_name = shared_name
-            .map(str::to_string)
-            .unwrap_or_else(|| self.buff_resolver.effect_tier_name(effect_type, target, first_bonus.stat.name));
+        let source_name = shared_name.map(str::to_string).unwrap_or_else(|| {
+            if effect_type == "SkillBonusAbility" && bonuses.len() == 1 {
+                first_bonus.stat.name.to_string()
+            } else {
+                self.buff_resolver.effect_tier_name(effect_type, target, first_bonus.stat.name)
+            }
+        });
         let family_name = if owner.kind == BonusOwnerKind::Augment {
             EFFECT_MAP.augment_line_name(owner.name, &source_name).unwrap_or(&source_name).to_string()
         } else {
@@ -485,17 +553,16 @@ impl TableWriter<'_> {
     fn write_grouped_effect_links(
         &mut self,
         owner: &BonusOwner,
-        source: ModifierSource,
         owner_id: i64,
         effect: &Effect,
         derived_by_type: &mut [Vec<crate::map::effect::DerivedBonus>],
-    ) -> Result<Option<Vec<DerivedEffectLink>>> {
+    ) -> Result<GroupingOutcome> {
         let types_without_stats = effect
             .types
             .iter()
             .zip(derived_by_type.iter())
             .filter(|(_, bonuses)| bonuses.is_empty())
-            .map(|(effect_type, _)| effect_type.as_str())
+            .map(|(effect_type, _)| effect_type.clone())
             .collect::<Vec<_>>();
         let original_stats =
             derived_by_type.iter().flatten().map(|bonus| bonus.stat.id).collect::<std::collections::BTreeSet<_>>();
@@ -579,28 +646,14 @@ impl TableWriter<'_> {
         let stats =
             bonuses.iter().map(|(_, bonus)| bonus.stat.name.to_string()).collect::<std::collections::BTreeSet<_>>();
         if stats.len() < 2 {
-            return Ok(None);
+            return Ok(GroupingOutcome::NotGrouped);
         }
-        let source_index = self.derived_effect_lines.len() - 1;
-        let split = |reason| super::DerivedEffectSplit {
-            source_index,
-            owner_kind: source.as_str().to_string(),
-            owner_name: owner.name.to_string(),
-            owner_id,
-            effect_types: effect.types.clone(),
-            targets: effect.targets.clone(),
-            stats: stats.iter().cloned().collect(),
-            reason,
-        };
         if !types_without_stats.is_empty() {
-            self.held_back_effects
-                .push(split(format!("effect types without derived stats: {}", types_without_stats.join(", "))));
-            return Ok(None);
+            return Ok(GroupingOutcome::Held(GroupingHold::TypesWithoutStats(types_without_stats)));
         }
         let value = bonuses[0].1.value;
         if bonuses.iter().any(|(_, bonus)| bonus.value != value) {
-            self.held_back_effects.push(split("different values within one effect".to_string()));
-            return Ok(None);
+            return Ok(GroupingOutcome::Held(GroupingHold::DifferentValues));
         }
         let mut bonus_type = None;
         for (effect_type, bonus) in &bonuses {
@@ -609,14 +662,12 @@ impl TableWriter<'_> {
                 bonus.bonus_type,
             )?;
             if bonus_type.is_some_and(|previous| previous != resolved) {
-                self.held_back_effects.push(split("different types within one effect".to_string()));
-                return Ok(None);
+                return Ok(GroupingOutcome::Held(GroupingHold::DifferentTypes));
             }
             bonus_type = Some(resolved);
         }
         if !shared_targets.is_empty() {
-            self.shared_target_splits.push(split(shared_targets.join(", ")));
-            return Ok(None);
+            return Ok(GroupingOutcome::SharedTargets(shared_targets));
         }
         let bonus_type = bonus_type.expect("multi-stat effect has a bonus type");
         let matching = self.groupings.by_stat_set.get(&stats).map(Vec::as_slice).unwrap_or_default();
@@ -684,8 +735,7 @@ impl TableWriter<'_> {
                     if !self.applied_line_split_corrections.iter().any(|applied| std::ptr::eq(*applied, correction)) {
                         self.applied_line_split_corrections.push(correction);
                     }
-                    self.line_splits.push(split(correction.label()));
-                    return Ok(Some(split_links));
+                    return Ok(GroupingOutcome::Split { links: split_links, correction: correction.label() });
                 }
             }
         }
@@ -765,14 +815,12 @@ impl TableWriter<'_> {
                 }
             }
             _ => {
-                self.held_back_effects.push(split(format!(
-                    "no unique usable grouping: {}",
-                    matching.iter().map(|grouping| grouping.name.as_str()).collect::<Vec<_>>().join(", ")
+                return Ok(GroupingOutcome::Held(GroupingHold::NoUsableGrouping(
+                    matching.iter().map(|grouping| grouping.name.clone()).collect(),
                 )));
-                return Ok(None);
             }
         };
-        Ok(Some(vec![self.write_grouping_line(owner, effect_id, bonus_type, value)?]))
+        Ok(GroupingOutcome::Grouped(vec![self.write_grouping_line(owner, effect_id, bonus_type, value)?]))
     }
 
     fn write_grouping_line(

@@ -1074,8 +1074,11 @@ fn reject_group_member_correction(
         let Some(grouping) = groupings.grouping_named(&effect_name) else {
             continue;
         };
+        let indexed_stat = groupings
+            .effect_named(stat.name)
+            .with_context(|| format!("stat {:?} is absent from the canonical grouping definitions", stat.name))?;
         ensure!(
-            !grouping.stat_ids.contains(&groupings.effect_named(stat.name).expect("indexed stat exists").id),
+            !grouping.stat_ids.contains(&indexed_stat.id),
             "stat {:?} is behind grouping {:?}; name the grouping in the correction",
             stat.name,
             grouping.name
@@ -1906,6 +1909,46 @@ mod tests {
             read: "2026-10-21".into(),
             file_name: "test.toml".into(),
         }
+    }
+
+    #[test]
+    fn a_group_member_missing_from_the_canonical_tree_returns_an_error() {
+        let fixture = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data");
+        let scratch = tempfile::tempdir().unwrap();
+        std::fs::create_dir_all(scratch.path().join("upstream")).unwrap();
+        std::fs::write(scratch.path().join("upstream/source-aliases.toml"), "").unwrap();
+        std::fs::copy(fixture.join("upstream/commit.toml"), scratch.path().join("upstream/commit.toml")).unwrap();
+        std::fs::create_dir_all(scratch.path().join("effects/stats")).unwrap();
+        for slug in ["fire-spell-power", "electric-spell-power", "sonic-spell-power"] {
+            std::fs::copy(
+                fixture.join(format!("effects/stats/{slug}.toml")),
+                scratch.path().join(format!("effects/stats/{slug}.toml")),
+            )
+            .unwrap();
+        }
+        std::fs::copy(fixture.join("effects/bonus-types.toml"), scratch.path().join("effects/bonus-types.toml"))
+            .unwrap();
+        let contents = std::fs::read_to_string(fixture.join("effects/power-of-the-frozen-thunderstorm.toml")).unwrap();
+        std::fs::write(
+            scratch.path().join("effects/power-of-the-frozen-thunderstorm.toml"),
+            contents.replace("Cold Spell Power", "Fire Spell Power"),
+        )
+        .unwrap();
+        let mut canonical = rusqlite::Connection::open_in_memory().unwrap();
+        crate::tree::build_from_data(scratch.path(), &mut canonical).unwrap();
+        let groupings = crate::groupings::Groupings::from_database(&canonical).unwrap();
+        assert!(groupings.effect_named("Cold Spell Power").is_none());
+        let mut upstream = rusqlite::Connection::open_in_memory().unwrap();
+        crate::tree::build_from_data(&fixture, &mut upstream).unwrap();
+        let owner = upstream.query_row(
+            "SELECT t.id FROM set_bonus_tiers t JOIN set_bonuses s ON s.id=t.set_id WHERE s.name='Anger of the Avalanche'",
+            [], |row| row.get::<_, i64>(0),
+        ).unwrap();
+        let transaction = upstream.transaction().unwrap();
+        let correction = bonus_correction(CorrectionKind::SetTierBonus, "Cold Spell Power", "Artifact", "value");
+        let error = reject_group_member_correction(&transaction, &groupings, &correction, &[owner]).unwrap_err();
+        let message = error.to_string();
+        assert!(message.contains("Cold Spell Power") && message.contains("canonical"), "{message}");
     }
 
     #[test]

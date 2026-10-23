@@ -505,6 +505,135 @@ fn create_untyped_shadow_source() -> tempfile::TempDir {
 }
 
 #[test]
+fn member_removal_keeps_a_sibling_type_without_derived_stats() {
+    let source = create_untyped_shadow_source();
+    let path = source.path().join("Augments/WoefulShadow.Augments.xml");
+    let contents = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        path,
+        contents.replace(
+            "<Type>Doublestrike</Type>\n      <Type>Doubleshot</Type>",
+            "<Type>SpellPower</Type><Type>Weapon_CriticalRange</Type><Bonus>Profane</Bonus><Item>Fire</Item><Item>Cold</Item>",
+        ),
+    ).unwrap();
+    let corrections = fixture::new_qualified_correction(
+        "augment_bonus",
+        "Woeful Shadow (Legendary)",
+        "stat = 'Fire Spell Power'\nbonus_type = 'Profane'\nbonus_value = 3",
+        "remove",
+        "3",
+        "\"null\"",
+    );
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &fixture::corrections_from(&[("removal.toml", &corrections)]).unwrap(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let names = db
+        .prepare(
+            "SELECT e.name FROM augment_effects link JOIN effects e ON e.id=link.effect_id
+         JOIN augments a ON a.id=link.augment_id WHERE a.name='Woeful Shadow (Legendary)'",
+        )
+        .unwrap()
+        .query_map([], |row| row.get::<_, String>(0))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert!(names.contains(&"Critical Threat Range (Fire, Cold)".to_string()), "{names:?}");
+    assert_eq!(
+        count(
+            &db,
+            "SELECT COUNT(*) FROM owner_bonuses b JOIN augments a ON a.id=b.owner_id
+         JOIN effects s ON s.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id
+         WHERE b.owner_kind='augment' AND a.name='Woeful Shadow (Legendary)'
+         AND s.name='Fire Spell Power' AND bt.name='Profane' AND b.amount=3"
+        ),
+        0
+    );
+}
+
+#[test]
+fn held_member_lines_keep_their_targeted_family_names() {
+    let source = create_untyped_shadow_source();
+    let path = source.path().join("Augments/WoefulShadow.Augments.xml");
+    let contents = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        path,
+        contents.replace(
+            "<Type>Doublestrike</Type>\n      <Type>Doubleshot</Type>",
+            "<Type>SpellPower</Type><Item>Fire</Item><Item>Cold</Item>",
+        ),
+    )
+    .unwrap();
+    let path = source.path().join("ItemBuffs.xml");
+    let contents = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        path,
+        contents.replace(
+            "</Buffs>",
+            r#"<Buff>
+        <Type>SpellPower</Type><DisplayText>Spell Power %i1 %v1: %v1 %b1 bonus to %i1 Spell Power.</DisplayText>
+        <Effect><Type>SpellPower</Type><Bonus>Not Set</Bonus><AType>Simple</AType>
+        <Amount size="1">0</Amount><Item>Fire</Item><Item>Cold</Item></Effect>
+        </Buff></Buffs>"#,
+        ),
+    )
+    .unwrap();
+    let corrections = fixture::new_qualified_correction(
+        "augment_bonus",
+        "Woeful Shadow (Legendary)",
+        "stat = 'Fire Spell Power'\nbonus_type = 'null'",
+        "bonus_type",
+        "\"null\"",
+        "\"Artifact\"",
+    ) + &fixture::new_qualified_correction(
+        "augment_bonus",
+        "Woeful Shadow (Legendary)",
+        "stat = 'Cold Spell Power'\nbonus_type = 'null'",
+        "bonus_type",
+        "\"null\"",
+        "\"Profane\"",
+    );
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &fixture::corrections_from(&[("targeted-types.toml", &corrections)]).unwrap(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_every_multi_stat_effect_has_one_link_or_an_exception(&report);
+    let lines = db
+        .prepare(
+            "SELECT e.name, s.name, bt.name FROM owner_bonuses b JOIN effects e ON e.id=b.via_effect_id
+         JOIN effects s ON s.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id
+         JOIN augments a ON a.id=b.owner_id WHERE b.owner_kind='augment'
+         AND a.name='Woeful Shadow (Legendary)' AND s.name IN ('Fire Spell Power','Cold Spell Power')
+         ORDER BY e.name",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(
+        lines,
+        [
+            ("Spell Power Cold".into(), "Cold Spell Power".into(), "Profane".into()),
+            ("Spell Power Fire".into(), "Fire Spell Power".into(), "Artifact".into()),
+        ]
+    );
+}
+
+#[test]
 fn mixed_types_from_owner_corrections_keep_stat_lines_and_are_held() {
     let source = create_untyped_shadow_source();
     let corrections = fixture::new_qualified_correction(
