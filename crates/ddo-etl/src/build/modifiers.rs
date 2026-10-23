@@ -484,15 +484,21 @@ impl TableWriter<'_> {
                 owner.name
             );
         }
-        if let ("SkillBonusAbility", Some(ability), true) = (effect_type, target, bonuses.len() > 1) {
-            let effect_id = self.effects.ensure_group(&format!("{ability} Skills"))?;
-            return Ok(DerivedEffectLink {
-                is_split_line: false,
-                effect_id,
-                bonus_type: Some(bonus_type),
-                value: Some(first_bonus.value),
-                value2: None,
+        if let ("SkillBonusAbility", Some(ability)) = (effect_type, target) {
+            let complete_skill_group = EFFECT_MAP.skill_ability_groups.skills.get(ability).is_some_and(|members| {
+                members.iter().all(|member| bonuses.iter().any(|bonus| bonus.stat.name == member))
+                    && bonuses.iter().all(|bonus| members.iter().any(|member| member == bonus.stat.name))
             });
+            if complete_skill_group {
+                let effect_id = self.effects.ensure_group(&format!("{ability} Skills"))?;
+                return Ok(DerivedEffectLink {
+                    is_split_line: false,
+                    effect_id,
+                    bonus_type: Some(bonus_type),
+                    value: Some(first_bonus.value),
+                    value2: None,
+                });
+            }
         }
         let source_name = shared_name.map(str::to_string).unwrap_or_else(|| {
             if effect_type == "SkillBonusAbility" && bonuses.len() == 1 {

@@ -559,6 +559,78 @@ fn member_removal_keeps_a_sibling_type_without_derived_stats() {
 }
 
 #[test]
+fn a_skill_group_with_one_member_keeps_its_declared_group_link() {
+    let source = fixture::xml_source();
+    let path = source.path().join("Augments/Named.Augments.xml");
+    let contents = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(path, contents.replace("<Item>Charisma</Item>", "<Item>Constitution</Item>")).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let (effect, stat, amount, bonus_type): (String, String, i64, String) = db
+        .query_row(
+            "SELECT e.name,s.name,b.amount,bt.name FROM owner_bonuses b
+             JOIN augments a ON a.id=b.owner_id JOIN effects e ON e.id=COALESCE(b.via_effect_id,b.stat_id)
+             JOIN effects s ON s.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id
+             WHERE b.owner_kind='augment' AND a.name='Storm''s Bulwark' AND s.name='Concentration'",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)),
+        )
+        .unwrap();
+    assert_eq!(
+        (effect.as_str(), stat.as_str(), amount, bonus_type.as_str()),
+        ("Constitution Skills", "Concentration", 5, "Insight")
+    );
+}
+
+#[test]
+fn a_skill_group_reduced_to_one_member_does_not_restore_removed_stats() {
+    let corrections = ["Diplomacy", "Haggle", "Intimidate", "Perform", "Use Magic Device"]
+        .into_iter()
+        .map(|stat| {
+            fixture::new_qualified_correction(
+                "augment_bonus",
+                "Storm's Bulwark",
+                &format!("stat = {stat:?}\nbonus_type = 'Insight'\nbonus_value = 5"),
+                "remove",
+                "5",
+                "\"null\"",
+            )
+        })
+        .collect::<fixture::CorrectionSet>();
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        &data_files_fixture_dir(),
+        &WikiOverrides::default(),
+        &fixture::corrections_from(&[("skill-removals.toml", &corrections)]).unwrap(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (5, 0));
+    let skills = db
+        .prepare(
+            "SELECT s.name FROM owner_bonuses b JOIN augments a ON a.id=b.owner_id
+             JOIN effects s ON s.id=b.stat_id WHERE b.owner_kind='augment'
+             AND a.name='Storm''s Bulwark' AND s.category='skill' ORDER BY s.name",
+        )
+        .unwrap()
+        .query_map([], |row| row.get::<_, String>(0))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(skills, ["Bluff"]);
+}
+
+#[test]
 fn held_member_lines_keep_their_targeted_family_names() {
     let source = create_untyped_shadow_source();
     let path = source.path().join("Augments/WoefulShadow.Augments.xml");
