@@ -40,24 +40,39 @@ impl TableWriter<'_> {
             )?;
             let set_id = self.transaction.last_insert_rowid();
             self.written.set_bonus_ids_by_name.insert(set_name.to_string(), set_id);
-            let mut tier_ids_and_orders: HashMap<i64, (i64, usize)> = HashMap::new();
+            let mut tier_links: HashMap<i64, (i64, Vec<DerivedEffectLink>)> = HashMap::new();
             for tier in &set_bonus.tiers {
-                let (tier_id, next_order) = match tier_ids_and_orders.entry(tier.equipped_count) {
-                    std::collections::hash_map::Entry::Occupied(entry) => *entry.get(),
+                let tier_id = match tier_links.entry(tier.equipped_count) {
+                    std::collections::hash_map::Entry::Occupied(entry) => entry.get().0,
                     std::collections::hash_map::Entry::Vacant(entry) => {
                         self.transaction.execute(
                             "INSERT INTO set_bonus_tiers (set_id, equipped_count) VALUES (?1, ?2)",
                             params![set_id, tier.equipped_count],
                         )?;
-                        *entry.insert((self.transaction.last_insert_rowid(), 0))
+                        entry.insert((self.transaction.last_insert_rowid(), Vec::new())).0
                     }
                 };
                 if let Some(description) = trimmed_non_empty(tier.description.as_deref()) {
                     self.written.set_tier_descriptions_by_id.entry(tier_id).or_insert_with(|| description.to_string());
                 }
                 self.write_modifiers(ModifierSource::SetBonusTier, tier_id, &tier.effects)?;
-                let written_count = self.write_set_tier_effects(set_name, tier_id, tier, next_order)?;
-                tier_ids_and_orders.insert(tier.equipped_count, (tier_id, next_order + written_count));
+                let links = self.write_set_tier_effects(set_name, tier_id, tier)?;
+                tier_links.get_mut(&tier.equipped_count).expect("tier exists").1.extend(links);
+            }
+            let mut tiers = tier_links.into_values().collect::<Vec<_>>();
+            tiers.sort_by_key(|(tier_id, _)| *tier_id);
+            let owner = BonusOwner { kind: BonusOwnerKind::SetBonusTier, name: set_name, family: None };
+            for (tier_id, links) in tiers {
+                for (sort_order, link) in self.write_merged_lines(&owner, tier_id, links)?.into_iter().enumerate() {
+                    self.effects.insert_link(
+                        EffectOwner::SetBonusTier,
+                        tier_id,
+                        link.effect_id,
+                        link.bonus_type,
+                        (link.value, link.value2),
+                        sort_order,
+                    )?;
+                }
             }
         }
         for filigree in &set_bonus_file.filigrees {
@@ -85,23 +100,12 @@ impl TableWriter<'_> {
         set_name: &str,
         tier_id: i64,
         tier: &SetBonusTier,
-        first_order: usize,
-    ) -> Result<usize> {
+    ) -> Result<Vec<DerivedEffectLink>> {
         let owner = BonusOwner { kind: BonusOwnerKind::SetBonusTier, name: set_name, family: None };
         let removed_before = self.removed_derived_bonus_count;
         let derived_links =
             self.ensure_derived_effects(&owner, ModifierSource::SetBonusTier, tier_id, &tier.effects)?;
         let links = self.collapse_set_tier_stat_groups(derived_links)?;
-        for (offset, link) in links.iter().enumerate() {
-            self.effects.insert_link(
-                EffectOwner::SetBonusTier,
-                tier_id,
-                link.effect_id,
-                link.bonus_type,
-                (link.value, link.value2),
-                first_order + offset,
-            )?;
-        }
         if links.is_empty() && self.removed_derived_bonus_count == removed_before {
             if let Some(description) = trimmed_non_empty(tier.description.as_deref()) {
                 if let Some(rule) = EFFECT_MAP.set_tier_prose_bonus(description, self.groupings)? {
@@ -131,21 +135,19 @@ impl TableWriter<'_> {
                     };
                     let family = self.effects.family(effect_id).expect("prose effect cached");
                     let linked_type = (family.is_stat || family.uses_link_type).then_some(bonus_type);
-                    self.effects.insert_link(
-                        EffectOwner::SetBonusTier,
-                        tier_id,
-                        effect_id,
-                        linked_type,
-                        (Some(rule.value), None),
-                        first_order,
-                    )?;
                     self.grouping_answers.insert(effect_id);
                     self.matched_set_tier_prose.insert(super::SetTierProseMatch {
                         set_name: set_name.to_string(),
                         equipped_count: tier.equipped_count,
                         description: description.to_string(),
                     });
-                    return Ok(1);
+                    return Ok(vec![DerivedEffectLink {
+                        effect_id,
+                        bonus_type: linked_type,
+                        value: Some(rule.value),
+                        value2: None,
+                        is_split_line: false,
+                    }]);
                 }
                 let family_name = self.buff_resolver.set_tier_prose_name(set_name, tier.equipped_count, description)?;
                 let existing = self
@@ -160,18 +162,16 @@ impl TableWriter<'_> {
                     ),
                     None => self.effects.ensure_family( &family_name, description, None, 0)?,
                 };
-                self.effects.insert_link(
-                    EffectOwner::SetBonusTier,
-                    tier_id,
+                return Ok(vec![DerivedEffectLink {
                     effect_id,
-                    None,
-                    (None, None),
-                    first_order,
-                )?;
-                return Ok(1);
+                    bonus_type: None,
+                    value: None,
+                    value2: None,
+                    is_split_line: false,
+                }]);
             }
         }
-        Ok(links.len())
+        Ok(links)
     }
 
     fn collapse_set_tier_stat_groups(&mut self, links: Vec<DerivedEffectLink>) -> Result<Vec<DerivedEffectLink>> {

@@ -61,6 +61,7 @@ fn woeful_split_import() -> ImportWorld {
         "[\"Doubleshot\", \"Doublestrike\"]",
     );
     ImportWorld::with_sources(
+        fixture::groupings(),
         fixture::corrections_from(&[("woeful-shadow.toml", &correction)]).unwrap(),
         WikiOverrides::default(),
         |source| {
@@ -83,6 +84,48 @@ fn woeful_split_import() -> ImportWorld {
 fn woeful_lines(db: &Connection) -> Vec<(String, i64)> {
     db.prepare("SELECT e.name,l.value FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id JOIN bonus_types bt ON bt.id=l.bonus_type_id WHERE a.name='Woeful Shadow (Legendary)' AND bt.name='Profane' ORDER BY e.name").unwrap()
         .query_map([], |row| Ok((row.get(0)?,row.get(1)?))).unwrap().collect::<rusqlite::Result<_>>().unwrap()
+}
+
+#[test]
+fn a_merge_import_accepts_a_changed_amount_without_conflict() {
+    let corrections = fixture::corrections_from(&[("keylock-merge.toml", &fixture::search_and_spot_merge())]).unwrap();
+    let world = ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {
+        fixture::write_search_and_spot_item(source, 20, true);
+    });
+    fixture::write_search_and_spot_item(&world.options.source_dir, 21, true);
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    let db = world.database();
+    assert_eq!(fixture::search_and_spot_lines(&db), [("Search and Spot".into(), Some(21))]);
+    let upstream: String = db
+        .query_row(
+            "SELECT from_value FROM corrections WHERE name='Legendary Keylock Ring' AND field='lines'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(serde_json::from_str::<serde_json::Value>(&upstream).unwrap(), serde_json::json!(["Search", "Spot"]));
+}
+
+#[test]
+fn a_merge_import_reports_a_missing_member_and_keeps_the_correction() {
+    let corrections = fixture::corrections_from(&[("keylock-merge.toml", &fixture::search_and_spot_merge())]).unwrap();
+    let world = ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {
+        fixture::write_search_and_spot_item(source, 20, true);
+    });
+    fixture::write_search_and_spot_item(&world.options.source_dir, 20, false);
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(report.has_conflicts() && report.to_string().contains("no such bonus"), "{report}");
+    let db = world.database();
+    assert_eq!(fixture::search_and_spot_lines(&db), [("Search".into(), Some(20))]);
+    let upstream: String = db
+        .query_row(
+            "SELECT from_value FROM corrections WHERE name='Legendary Keylock Ring' AND field='lines'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(upstream, "\"no such bonus\"");
 }
 
 #[test]
@@ -1148,23 +1191,34 @@ impl ImportWorld {
     }
 
     fn with_wiki(corrections: Corrections, wiki: WikiOverrides) -> Self {
-        Self::with_sources(corrections, wiki, |_| {})
+        Self::with_sources(fixture::groupings(), corrections, wiki, |_| {})
     }
 
     fn with_placeholder_augment() -> Self {
-        Self::with_sources(placeholder_augment_correction(), WikiOverrides::default(), |previous_dir| {
-            write_placeholder_augment(previous_dir, 1, "?");
-            let icons = previous_dir.join("AugmentImages");
-            std::fs::create_dir_all(&icons).unwrap();
-            std::fs::copy(
-                Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data/icons/augments/HistoryBookWhite.png"),
-                icons.join("HistoryBookWhite.png"),
-            )
-            .unwrap();
-        })
+        Self::with_sources(
+            fixture::groupings(),
+            placeholder_augment_correction(),
+            WikiOverrides::default(),
+            |previous_dir| {
+                write_placeholder_augment(previous_dir, 1, "?");
+                let icons = previous_dir.join("AugmentImages");
+                std::fs::create_dir_all(&icons).unwrap();
+                std::fs::copy(
+                    Path::new(env!("CARGO_MANIFEST_DIR"))
+                        .join("tests/fixtures/data/icons/augments/HistoryBookWhite.png"),
+                    icons.join("HistoryBookWhite.png"),
+                )
+                .unwrap();
+            },
+        )
     }
 
-    fn with_sources(corrections: Corrections, wiki: WikiOverrides, add_to_previous: impl FnOnce(&Path)) -> Self {
+    fn with_sources(
+        groupings: &ddo_etl::groupings::Groupings,
+        corrections: Corrections,
+        wiki: WikiOverrides,
+        add_to_previous: impl FnOnce(&Path),
+    ) -> Self {
         let scratch = tempfile::tempdir().unwrap();
         let previous_dir = scratch.path().join("previous");
         let source_dir = scratch.path().join("new");
@@ -1175,7 +1229,7 @@ impl ImportWorld {
         copy_tree(&fixture_root().join("d1350a0c/DataFiles"), &source_dir);
         let mut db = Connection::open_in_memory().unwrap();
         build::build_database(
-            fixture::groupings(),
+            groupings,
             &previous_dir,
             &wiki,
             &corrections,

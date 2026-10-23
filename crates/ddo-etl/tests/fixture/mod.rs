@@ -41,6 +41,48 @@ pub(crate) fn xml_source() -> tempfile::TempDir {
     scratch
 }
 
+pub(crate) fn write_search_and_spot_item(source: &std::path::Path, amount: i64, include_spot: bool) {
+    std::fs::create_dir_all(source.join("Items")).unwrap();
+    let mut item = include_str!("../fixtures/effect-groups/SearchAndSpot.item")
+        .replace("<Value1>20</Value1>", &format!("<Value1>{amount}</Value1>"));
+    if !include_spot {
+        let target = item.find("<Item>Spot</Item>").unwrap();
+        let start = item[..target].rfind("<Buff>").unwrap();
+        let end = target + item[target..].find("</Buff>").unwrap() + "</Buff>".len();
+        item.replace_range(start..end, "");
+    }
+    std::fs::write(source.join("Items/SearchAndSpot.item"), item).unwrap();
+    let path = source.join("ItemBuffs.xml");
+    if !ddo_etl::xml::item_buffs::parse(&path).unwrap().contains_key("SkillBonus") {
+        let buffs = std::fs::read_to_string(&path).unwrap();
+        let definition = include_str!("../fixtures/effect-groups/SkillBonus.Buff.xml");
+        std::fs::write(path, buffs.replace("</Buffs>", &format!("{definition}</Buffs>"))).unwrap();
+    }
+}
+
+pub(crate) fn search_and_spot_merge() -> CorrectionSet {
+    new_qualified_correction(
+        "item_bonus",
+        "Legendary Keylock Ring",
+        "stat = 'Search and Spot'\nbonus_type = 'Competence'",
+        "lines",
+        "[\"Search\", \"Spot\"]",
+        "\"Search and Spot\"",
+    )
+}
+
+pub(crate) fn search_and_spot_lines(db: &rusqlite::Connection) -> Vec<(String, Option<i64>)> {
+    db.prepare(
+        "SELECT e.name,l.value FROM item_effects l JOIN effects e ON e.id=l.effect_id
+         JOIN items i ON i.id=l.item_id WHERE i.name='Legendary Keylock Ring' ORDER BY l.sort_order",
+    )
+    .unwrap()
+    .query_map([], |row| Ok((row.get(0)?, row.get(1)?)))
+    .unwrap()
+    .collect::<rusqlite::Result<_>>()
+    .unwrap()
+}
+
 pub(crate) fn database(edit: impl FnOnce(&std::path::Path)) -> rusqlite::Connection {
     let source = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data");
     let scratch = tempfile::tempdir().unwrap();

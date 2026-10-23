@@ -245,21 +245,37 @@ pub struct Correction {
 }
 
 impl Correction {
-    pub(crate) fn line_split_stats(
+    pub(crate) fn line_partition_stats(
         &self,
         groupings: &crate::groupings::Groupings,
     ) -> Result<Vec<(String, std::collections::BTreeSet<String>)>> {
         self.validate_values(self.correctable_field()?)?;
-        let CorrectionValue::Text(upstream) = &self.from else { unreachable!() };
-        let CorrectionValue::Texts(lines) = &self.to else { unreachable!() };
-        let expected = groupings.expanded_stat_names(upstream)?;
+        let (grouping, lines) = match (&self.from, &self.to) {
+            (CorrectionValue::Text(grouping), CorrectionValue::Texts(lines))
+            | (CorrectionValue::Texts(lines), CorrectionValue::Text(grouping)) => (grouping, lines),
+            _ => unreachable!(),
+        };
+        let bonus_type = self.bonus_type.as_deref().context("a lines correction needs a named type")?;
+        let value_line = |name: &str| {
+            ensure!(
+                groupings.grouping_named(name).is_some_and(|grouping| grouping.accepts_value_at_type(bonus_type)),
+                "{}: line {name:?} cannot take one value at {bonus_type}",
+                self.label()
+            );
+            Ok(())
+        };
+        value_line(grouping)?;
+        let expected = groupings.expanded_stat_names(grouping)?;
         let mut combined = std::collections::BTreeSet::new();
         let mut partitions = Vec::new();
         for line in lines {
             let stats = groupings.expanded_stat_names(line)?;
+            if matches!(self.to, CorrectionValue::Texts(_)) && stats.len() >= 2 {
+                value_line(line)?;
+            }
             ensure!(
                 !stats.is_empty() && stats.is_disjoint(&combined),
-                "{}: split lines have empty or overlapping stats",
+                "{}: split or merged lines have empty or overlapping stats",
                 self.label()
             );
             combined.extend(stats.iter().cloned());
@@ -267,7 +283,7 @@ impl Correction {
         }
         ensure!(
             expected.len() >= 2 && combined == expected,
-            "{}: split lines have different stats from {upstream:?}",
+            "{}: split or merged lines have different stats from {grouping:?}",
             self.label()
         );
         Ok(partitions)
@@ -275,7 +291,9 @@ impl Correction {
 
     pub fn correctable_field(&self) -> Result<&'static CorrectableField> {
         ensure!(
-            self.kind != CorrectionKind::ItemBonus || self.field != "lines",
+            self.kind != CorrectionKind::ItemBonus
+                || self.field != "lines"
+                || !matches!(self.to, CorrectionValue::Texts(_)),
             "item_bonus lines are unsupported because item buffs do not apply split corrections before inserting links"
         );
 
@@ -458,18 +476,26 @@ impl Correction {
             FieldShape::BonusLines if self.from.as_text() == Some(NO_SUCH_BONUS) => {
                 ensure!(
                     self.to.as_text() == Some(NO_SUCH_BONUS)
+                        || (self.to.as_text() == self.stat.as_deref() && self.stat.is_some())
                         || matches!(&self.to, CorrectionValue::Texts(lines) if lines.len() >= 2),
-                    "a missing lines target records its missing bonus or its previous split lines"
+                    "a missing lines target records its missing bonus or its previous corrected lines"
                 );
             }
             FieldShape::BonusLines => {
-                let (CorrectionValue::Text(grouping), CorrectionValue::Texts(lines)) = (&self.from, &self.to) else {
-                    bail!("a lines split takes one upstream grouping name and a list of separate lines");
+                let (grouping, lines) = match (&self.from, &self.to) {
+                    (CorrectionValue::Text(grouping), CorrectionValue::Texts(lines))
+                    | (CorrectionValue::Texts(lines), CorrectionValue::Text(grouping)) => (grouping, lines),
+                    _ => bail!(
+                        "a lines correction takes a grouping name and a list of separate lines in either direction"
+                    ),
                 };
-                ensure!(self.stat.as_ref() == Some(grouping), "a lines qualifier must name its upstream grouping");
+                ensure!(self.stat.as_ref() == Some(grouping), "a lines qualifier must name its grouping");
                 ensure!(
-                    lines.len() >= 2 && lines.iter().all(|name| !name.trim().is_empty()),
-                    "a lines split requires at least two named lines"
+                    !grouping.trim().is_empty()
+                        && lines.len() >= 2
+                        && lines.iter().all(|name| !name.trim().is_empty())
+                        && lines.iter().collect::<std::collections::BTreeSet<_>>().len() == lines.len(),
+                    "a lines correction requires a grouping and at least two distinct named lines"
                 );
             }
             FieldShape::Removal => {
@@ -641,7 +667,7 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::BonusAddition => "a { stat, bonus_type, value } table",
         FieldShape::BonusRemoval => "the current integer value for from and \"null\" for to",
         FieldShape::BonusDedupe => "2 for from and 1 for to",
-        FieldShape::BonusLines => "an upstream grouping name and a list of separate lines",
+        FieldShape::BonusLines => "a grouping name and a list of separate lines in either direction",
         FieldShape::TierAddition => "a { equipped_count, description } table",
         FieldShape::EffectAddition => "an effect name or a { name, description } table",
         FieldShape::DamageAddition | FieldShape::DamageRemoval => "a damage row",

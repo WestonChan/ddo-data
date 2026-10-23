@@ -69,8 +69,11 @@ const AUGMENT_BONUS_OPERATIONS: &[CorrectableField] = &[
     field("lines", FieldShape::BonusLines, false),
 ];
 
-const ITEM_BONUS_OPERATIONS: &[CorrectableField] =
-    &[field("add", FieldShape::BonusAddition, false), field("remove", FieldShape::BonusRemoval, false)];
+const ITEM_BONUS_OPERATIONS: &[CorrectableField] = &[
+    field("add", FieldShape::BonusAddition, false),
+    field("remove", FieldShape::BonusRemoval, false),
+    field("lines", FieldShape::BonusLines, false),
+];
 const SET_TIER_BONUS_OPERATIONS: &[CorrectableField] = &[
     field("add", FieldShape::BonusAddition, false),
     field("remove", FieldShape::BonusRemoval, false),

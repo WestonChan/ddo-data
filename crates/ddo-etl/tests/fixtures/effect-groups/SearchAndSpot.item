@@ -1,0 +1,23 @@
+<Items>
+  <Item>
+    <Name>Legendary Keylock Ring</Name>
+    <MinLevel>29</MinLevel>
+    <EquipmentSlot>
+      <Ring />
+    </EquipmentSlot>
+    <Buff>
+      <Type>SkillBonus</Type>
+      <Value1>20</Value1>
+      <BonusType>Competence</BonusType>
+      <Description1>Search</Description1>
+      <Item>Search</Item>
+    </Buff>
+    <Buff>
+      <Type>SkillBonus</Type>
+      <Value1>20</Value1>
+      <BonusType>Competence</BonusType>
+      <Description1>Spot</Description1>
+      <Item>Spot</Item>
+    </Buff>
+  </Item>
+</Items>

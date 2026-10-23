@@ -1,6 +1,7 @@
 use super::bonus_types::{BonusOrigin, BonusOwner, BonusOwnerKind};
 use super::drop_text::DroppedLoot;
 use super::effects::{amount_count, split_template, BonusRule, EffectOwner};
+use super::modifiers::DerivedEffectLink;
 use super::quest_series::QuestSeriesTable;
 use super::{joined_non_empty, trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::buff::{BuffResolutionSource, ResolvedBuff};
@@ -171,11 +172,11 @@ impl TableWriter<'_> {
             self.insert_armor_stats(item_id, &ArmorStatsRow::from_item(item, armor_type))?;
         }
 
-        let mut sort_order = 0;
+        let mut links = Vec::new();
+        let item_owner = BonusOwner { kind: BonusOwnerKind::Item, name: item_name, family: None };
         for (buff, resolved_buff) in resolved_buffs {
             match resolved_buff {
                 ResolvedBuff::Bonuses { source: _, stats } => {
-                    let item_owner = BonusOwner { kind: BonusOwnerKind::Item, name: item_name, family: None };
                     let mut typed_stats = Vec::with_capacity(stats.len());
                     for resolved_stat in &stats {
                         let stat = resolved_stat.stat;
@@ -200,15 +201,13 @@ impl TableWriter<'_> {
                         let ability =
                             buff.target.as_deref().expect("resolved skill group has an ability target").trim();
                         let group_id = self.effects.ensure_group(&format!("{ability} Skills"))?;
-                        self.effects.insert_link(
-                            EffectOwner::Item,
-                            item_id,
-                            group_id,
-                            first_type,
-                            (buff.value, None),
-                            sort_order,
-                        )?;
-                        sort_order += 1;
+                        links.push(DerivedEffectLink {
+                            effect_id: group_id,
+                            bonus_type: first_type,
+                            value: buff.value,
+                            value2: None,
+                            is_split_line: false,
+                        });
                         continue;
                     }
                     let family_name = self.buff_resolver.family_name(buff, stats.first().map(|stat| stat.stat.name));
@@ -284,17 +283,16 @@ impl TableWriter<'_> {
                         .collect();
                     self.effects.ensure_bonus_rules(effect_id, &rules)?;
                     let family_amount_count = self.effects.family(effect_id).expect("effect cached").amount_count;
-                    self.effects.insert_link(
-                        EffectOwner::Item,
-                        item_id,
+                    let (value, value2) = self.buff_resolver.link_amounts(buff, family_amount_count);
+                    links.push(DerivedEffectLink {
                         effect_id,
-                        (link_typed || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
+                        bonus_type: (link_typed || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
                             .then_some(first_type)
                             .flatten(),
-                        self.buff_resolver.link_amounts(buff, family_amount_count),
-                        sort_order,
-                    )?;
-                    sort_order += 1;
+                        value,
+                        value2,
+                        is_split_line: false,
+                    });
                 }
                 ResolvedBuff::Effect { .. } => {
                     let family_name = self.buff_resolver.family_name(buff, None);
@@ -317,18 +315,22 @@ impl TableWriter<'_> {
                     let uses_link_type = self.effects.family(effect_id).expect("effect cached").uses_link_type;
                     let bonus_type = if uses_link_type { self.buff_resolver.link_bonus_type(buff)? } else { None };
                     let family_amount_count = self.effects.family(effect_id).expect("effect cached").amount_count;
-                    self.effects.insert_link(
-                        EffectOwner::Item,
-                        item_id,
-                        effect_id,
-                        bonus_type,
-                        self.buff_resolver.link_amounts(buff, family_amount_count),
-                        sort_order,
-                    )?;
-                    sort_order += 1;
+                    let (value, value2) = self.buff_resolver.link_amounts(buff, family_amount_count);
+                    links.push(DerivedEffectLink { effect_id, bonus_type, value, value2, is_split_line: false });
                 }
                 ResolvedBuff::EnhancementBonus(_) => unreachable!("filtered above"),
             }
+        }
+
+        for (sort_order, link) in self.write_merged_lines(&item_owner, item_id, links)?.into_iter().enumerate() {
+            self.effects.insert_link(
+                EffectOwner::Item,
+                item_id,
+                link.effect_id,
+                link.bonus_type,
+                (link.value, link.value2),
+                sort_order,
+            )?;
         }
 
         for (slot_order, augment_slot) in item.augment_slots.iter().enumerate() {

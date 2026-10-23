@@ -101,7 +101,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::SocketLabel, "name:label:RowName:false"),
         (CorrectionKind::SetBonus, "icon:icon:Text:true, name:name:RowName:false"),
         (CorrectionKind::AugmentBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, dedupe:dedupe:BonusDedupe:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
-        (CorrectionKind::ItemBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
+        (CorrectionKind::ItemBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
         (CorrectionKind::SetTier, "add:add:TierAddition:false, description:description:Text:true, remove:remove:Removal:false"),
         (CorrectionKind::SetTierBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
         (CorrectionKind::ItemEffect, "add:add:EffectAddition:false, bonus_type:bonus_type:BonusTypeName:false, remove:remove:Removal:false, value:value:Integer:true"),
@@ -493,6 +493,212 @@ fn effect_template_and_owner_link_value_corrections_keep_one_effect() {
 }
 
 #[test]
+fn a_lines_merge_combines_item_buffs_and_reports_missing_members() {
+    let source = fixture::xml_source();
+    let correction = fixture::search_and_spot_merge();
+    for amount in [20, 21, 0] {
+        fixture::write_search_and_spot_item(source.path(), amount, true);
+        let (separate, _) = built_db_from_index(fixture::grouping_cases(), source.path(), &[]).unwrap();
+        assert_eq!(
+            fixture::search_and_spot_lines(&separate),
+            [("Search".into(), Some(amount)), ("Spot".into(), Some(amount))]
+        );
+        let (merged, report) =
+            built_db_from_index(fixture::grouping_cases(), source.path(), &[("merged-lines.toml", &correction)])
+                .unwrap();
+        assert_eq!(fixture::search_and_spot_lines(&merged), [("Search and Spot".into(), Some(amount))]);
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+        let bonuses = |db: &Connection| {
+            db.prepare("SELECT s.name,b.bonus_type_id,b.amount FROM owner_bonuses b JOIN effects s ON s.id=b.stat_id JOIN items i ON i.id=b.owner_id WHERE b.owner_kind='item' AND i.name='Legendary Keylock Ring' ORDER BY s.name")
+                .unwrap().query_map([], |row| Ok((row.get::<_, String>(0)?,row.get::<_, i64>(1)?,row.get::<_, i64>(2)?)))
+                .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
+        };
+        assert_eq!(bonuses(&merged), bonuses(&separate));
+    }
+    fixture::write_search_and_spot_item(source.path(), 20, true);
+    let item_path = source.path().join("Items/SearchAndSpot.item");
+    let original = std::fs::read_to_string(&item_path).unwrap();
+    std::fs::write(&item_path, original.replacen("<Value1>20</Value1>", "<Value1>21</Value1>", 1)).unwrap();
+    let error = built_db_from_index(fixture::grouping_cases(), source.path(), &[("merged-lines.toml", &correction)])
+        .unwrap_err();
+    assert!(error.contains("different types or values"), "{error}");
+    let search_buff = original.split_once("<Buff>").unwrap().1.split_once("</Buff>").unwrap().0;
+    std::fs::write(
+        &item_path,
+        original.replace("</Item>\n</Items>", &format!("<Buff>{search_buff}</Buff></Item>\n</Items>")),
+    )
+    .unwrap();
+    let error = built_db_from_index(fixture::grouping_cases(), source.path(), &[("merged-lines.toml", &correction)])
+        .unwrap_err();
+    assert!(error.contains("matches several links"), "{error}");
+    std::fs::write(
+        &item_path,
+        original.replacen("<BonusType>Competence</BonusType>", "<BonusType>Insight</BonusType>", 1),
+    )
+    .unwrap();
+    let (db, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("merged-lines.toml", &correction)]).unwrap();
+    assert_eq!(fixture::search_and_spot_lines(&db), [("Search".into(), Some(20)), ("Spot".into(), Some(20))]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+    fixture::write_search_and_spot_item(source.path(), 20, false);
+    let (db, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("merged-lines.toml", &correction)]).unwrap();
+    assert_eq!(fixture::search_and_spot_lines(&db), [("Search".into(), Some(20))]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+    assert!(matches!(&report.stale_corrections[0].cause,
+        StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\""));
+}
+
+#[test]
+fn a_lines_merge_and_split_cannot_both_apply_to_one_line() {
+    let qualifier = "equipped_count = 3\nstat = 'Doublestrike and Doubleshot'\nbonus_type = 'Artifact'";
+    let merge = new_qualified_correction(
+        "set_tier_bonus",
+        "Kundarak Delving Equipment",
+        qualifier,
+        "lines",
+        "[\"Doublestrike\", \"Doubleshot\"]",
+        "\"Doublestrike and Doubleshot\"",
+    );
+    let split = new_qualified_correction(
+        "set_tier_bonus",
+        "Kundarak Delving Equipment",
+        qualifier,
+        "lines",
+        "\"Doublestrike and Doubleshot\"",
+        "[\"Doublestrike\", \"Doubleshot\"]",
+    );
+    let error = built_db_with(&[("both-directions.toml", &(merge + &split))]).unwrap_err();
+    assert!(error.contains("merge") && error.contains("split") && error.contains("Doublestrike"), "{error}");
+}
+
+#[test]
+fn archons_resistances_stay_separate_without_a_lines_merge() {
+    let source = fixture::xml_source();
+    let buffs_path = source.path().join("ItemBuffs.xml");
+    let buffs = std::fs::read_to_string(&buffs_path).unwrap();
+    std::fs::write(
+        &buffs_path,
+        buffs.replace("</Buffs>", &format!("{}</Buffs>", include_str!("fixtures/effect-groups/Sheltering.Buff.xml"))),
+    )
+    .unwrap();
+    let path = source.path().join("SetBonuses.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        &path,
+        original.replace(
+            "</SetBonuses>",
+            &format!("{}</SetBonuses>", include_str!("fixtures/effect-groups/Archons.SetBonus.xml")),
+        ),
+    )
+    .unwrap();
+    let names = |db: &Connection| {
+        db.prepare("SELECT e.name FROM set_bonus_tier_effects l JOIN effects e ON e.id=l.effect_id JOIN set_bonus_tiers t ON t.id=l.tier_id JOIN set_bonuses s ON s.id=t.set_id WHERE s.name='Legendary Armaments of the Archons' AND t.equipped_count=3 ORDER BY l.sort_order")
+            .unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
+    };
+    let (separate, _) = built_db_from(source.path(), &[]).unwrap();
+    assert_eq!(
+        names(&separate),
+        ["Physical Resistance Rating", "Magical Resistance Rating", "Armor Class Percentage", "Maximum Hit Points"]
+    );
+}
+
+#[test]
+fn an_augment_lines_merge_accepts_a_fixed_type_grouping() {
+    let source = fixture::xml_source();
+    let original = include_str!("fixtures/effect-groups/WoefulShadow.Augments.xml");
+    let first_effect = original.split_once("    <Effect>").unwrap().1.split_once("    </Effect>").unwrap().0;
+    let separate_effects = ["Fire", "Electric"]
+        .map(|target| {
+            format!(
+                "    <Effect>{}    </Effect>",
+                first_effect
+                    .replace(
+                        "<Type>Doublestrike</Type>\n      <Type>Doubleshot</Type>",
+                        &format!("<Type>SpellPower</Type><Item>{target}</Item>")
+                    )
+                    .replace("<Bonus>Profane</Bonus>", "<Bonus>Equipment</Bonus>")
+            )
+        })
+        .join("\n");
+    std::fs::write(
+        source.path().join("Augments/WoefulShadow.Augments.xml"),
+        original.replacen(&format!("    <Effect>{first_effect}    </Effect>"), &separate_effects, 1),
+    )
+    .unwrap();
+    std::fs::copy(
+        fixtures_dir().join("effect-groups/icons/Lamordia.png"),
+        source.path().join("AugmentImages/Lamordia.png"),
+    )
+    .unwrap();
+    let correction = new_qualified_correction(
+        "augment_bonus",
+        "Woeful Shadow (Legendary)",
+        "stat = 'Power of the Firestorm'\nbonus_type = 'Equipment'",
+        "lines",
+        "['Fire Spell Power', 'Electric Spell Power']",
+        "'Power of the Firestorm'",
+    );
+    let (merged, report) = built_db_from(source.path(), &[("fixed-merge.toml", &correction)]).unwrap();
+    let lines = merged.prepare("SELECT e.name,l.bonus_type_id,l.value FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name='Woeful Shadow (Legendary)' ORDER BY l.sort_order")
+        .unwrap().query_map([], |row| Ok((row.get::<_, String>(0)?,row.get::<_, Option<i64>>(1)?,row.get::<_, Option<i64>>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(lines[0], ("Power of the Firestorm".into(), None, Some(3)));
+    assert_eq!(lines.len(), 3);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+}
+
+#[test]
+fn a_lines_merge_keeps_its_explicit_name_instead_of_an_upstream_alias() {
+    let source = fixture::xml_source();
+    let original = include_str!("fixtures/effect-groups/WoefulShadow.Augments.xml");
+    let first_effect = original.split_once("    <Effect>").unwrap().1.split_once("    </Effect>").unwrap().0;
+    let separate_effects = ["Trip", "Sunder", "Stun"]
+        .map(|target| {
+            format!(
+                "    <Effect>{}    </Effect>",
+                first_effect.replace(
+                    "<Type>Doublestrike</Type>\n      <Type>Doubleshot</Type>",
+                    &format!("<Type>TacticalDC</Type><Item>{target}</Item>")
+                )
+            )
+        })
+        .join("\n");
+    std::fs::write(
+        source.path().join("Augments/WoefulShadow.Augments.xml"),
+        original
+            .replacen(&format!("    <Effect>{first_effect}    </Effect>"), &separate_effects, 1)
+            .replace("Woeful Shadow (Legendary)", "Dolorous Invigorator (Legendary)"),
+    )
+    .unwrap();
+    std::fs::copy(
+        fixtures_dir().join("effect-groups/icons/Lamordia.png"),
+        source.path().join("AugmentImages/Lamordia.png"),
+    )
+    .unwrap();
+    let correction = new_qualified_correction(
+        "augment_bonus",
+        "Dolorous Invigorator (Legendary)",
+        "stat = 'Tactics'\nbonus_type = 'Profane'",
+        "lines",
+        "['Trip DC', 'Sunder DC', 'Stun DC']",
+        "'Tactics'",
+    );
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::grouping_cases(),
+        source.path(),
+        &WikiOverrides::default(),
+        &validated_corrections(&[("explicit-line.toml", &correction)]).unwrap(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let name = db.query_row("SELECT e.name FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name='Dolorous Invigorator (Legendary)' AND l.value=3", [], |row| row.get::<_, String>(0)).unwrap();
+    assert_eq!(name, "Tactics");
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+}
+
+#[test]
 fn item_line_splits_are_rejected_until_the_item_writer_applies_them() {
     let correction = new_qualified_correction(
         "item_bonus",
@@ -743,7 +949,7 @@ fn a_lines_split_preserves_the_default_and_follows_value_changes() {
     let error =
         ddo_etl::tree::build_from_data(exported.path(), &mut Connection::open_in_memory().unwrap()).unwrap_err();
     let message = format!("{error:#}");
-    assert!(message.contains("woeful-shadow-legendary.toml") && message.contains("split"), "{message}");
+    assert!(message.contains("woeful-shadow-legendary.toml") && message.contains(".lines"), "{message}");
     let annotation = contents.split_once("[[ddobuilder_correction]]").unwrap().1.split("\n[").next().unwrap();
     std::fs::write(&path, format!("{contents}\n[[ddobuilder_correction]]{annotation}")).unwrap();
     let duplicate =
@@ -2677,10 +2883,18 @@ fn built_db_from(
     data_files_dir: &std::path::Path,
     correction_files: &[(&str, &CorrectionSet)],
 ) -> Result<(Connection, BuildReport), String> {
+    built_db_from_index(fixture::groupings(), data_files_dir, correction_files)
+}
+
+fn built_db_from_index(
+    groupings: &ddo_etl::groupings::Groupings,
+    source: &std::path::Path,
+    correction_files: &[(&str, &CorrectionSet)],
+) -> Result<(Connection, BuildReport), String> {
     let mut db = Connection::open_in_memory().unwrap();
     let report = build_database(
-        fixture::groupings(),
-        data_files_dir,
+        groupings,
+        source,
         &WikiOverrides::default(),
         &validated_corrections(correction_files)?,
         &mut db,

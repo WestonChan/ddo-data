@@ -1,0 +1,12 @@
+<Buff>
+    <Type>Sheltering</Type>
+    <DisplayText>%b1 Sheltering %v1: %v1 %b1 bonus to Physical and Magical Resistance Ratings.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>PRR</Type>
+      <Type>MRR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>

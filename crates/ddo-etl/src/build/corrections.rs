@@ -589,7 +589,94 @@ fn damage_row_is_present(transaction: &Transaction, effect_id: i64, damage: &Dam
     Ok(present)
 }
 
-fn split_line_value(
+#[derive(Debug, PartialEq, Eq)]
+pub(super) struct LineBonus {
+    pub(super) order: usize,
+    pub(super) effect_name: String,
+    pub(super) stat_name: String,
+    pub(super) bonus_type: Option<String>,
+    pub(super) amount: Option<i64>,
+}
+
+pub(super) struct LineMerge {
+    pub(super) orders: std::collections::BTreeSet<usize>,
+    pub(super) stats: std::collections::BTreeSet<String>,
+    pub(super) amount: i64,
+}
+
+pub(super) fn line_bonus_rows(
+    transaction: &Transaction,
+    kind: CorrectionKind,
+    owner_id: i64,
+    pending: Option<&[super::modifiers::DerivedEffectLink]>,
+) -> Result<Vec<LineBonus>> {
+    let table = BonusLinkTable::of(kind)?;
+    let selected = format!(
+        "{}.sort_order,e.name,resolved_stat.name,bonus_types.name,{}",
+        table.table_name,
+        table.effective_value_sql()
+    );
+    let mut query = format!("{} AND (e.is_stat=1 OR es.effect_id IS NOT NULL)", table.bonus_rows_sql(&selected));
+    let mut arguments = vec![SqlValue::Integer(owner_id), SqlValue::Null, SqlValue::Null, SqlValue::Null];
+    if let Some(pending) = pending {
+        let links = pending
+            .iter()
+            .map(|link| (link.effect_id, link.bonus_type.map(ddo_model::enums::BonusType::id), link.value, link.value2))
+            .collect::<Vec<_>>();
+        query = format!(
+            "WITH {} ({},effect_id,bonus_type_id,value,value2,sort_order) AS
+             (SELECT ?1,json_extract(value,'$[0]'),json_extract(value,'$[1]'),json_extract(value,'$[2]'),json_extract(value,'$[3]'),key FROM json_each(?5)) {query}",
+            table.table_name, table.owner_column
+        );
+        arguments.push(SqlValue::Text(serde_json::to_string(&links)?));
+    }
+    let mut statement = transaction.prepare(&query)?;
+    let rows = statement
+        .query_map(params_from_iter(arguments), |row| {
+            let order = row.get::<_, i64>(0)?;
+            Ok(LineBonus {
+                order: usize::try_from(order).map_err(|_| rusqlite::Error::IntegralValueOutOfRange(0, order))?,
+                effect_name: row.get(1)?,
+                stat_name: row.get(2)?,
+                bonus_type: row.get(3)?,
+                amount: row.get(4)?,
+            })
+        })?
+        .collect::<rusqlite::Result<_>>()?;
+    Ok(rows)
+}
+
+pub(super) fn line_merge_selection(correction: &Correction, rows: &[LineBonus]) -> Result<Option<LineMerge>> {
+    let CorrectionValue::Texts(names) = &correction.from else { unreachable!() };
+    let mut orders = std::collections::BTreeSet::new();
+    for name in names {
+        let matches = rows
+            .iter()
+            .filter(|row| row.effect_name == *name && row.bonus_type == correction.bonus_type)
+            .map(|row| row.order)
+            .collect::<std::collections::BTreeSet<_>>();
+        if matches.is_empty() {
+            return Ok(None);
+        }
+        ensure!(matches.len() == 1, "{}: merge source {name:?} matches several links", correction.label());
+        orders.extend(matches);
+    }
+    let selected = rows.iter().filter(|row| orders.contains(&row.order)).collect::<Vec<_>>();
+    let amount = selected
+        .first()
+        .and_then(|row| row.amount)
+        .with_context(|| format!("{}: merged lines have no amount", correction.label()))?;
+    let stats = selected.iter().map(|row| row.stat_name.clone()).collect::<std::collections::BTreeSet<_>>();
+    ensure!(
+        selected.len() == stats.len()
+            && selected.iter().all(|row| row.amount == Some(amount) && row.bonus_type == correction.bonus_type),
+        "{}: merged lines have overlapping stats or different types or values",
+        correction.label()
+    );
+    Ok(Some(LineMerge { orders, stats, amount }))
+}
+
+fn corrected_lines_value(
     transaction: &Transaction,
     groupings: &crate::groupings::Groupings,
     correction: &Correction,
@@ -598,42 +685,48 @@ fn split_line_value(
     if correction.from.as_text() == Some(NO_SUCH_BONUS) {
         return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
     }
+    let rows = line_bonus_rows(transaction, correction.kind, owner_id, None)?;
+    if matches!(correction.from, CorrectionValue::Texts(_)) {
+        let grouping = correction.stat.as_deref().context("a lines merge names its grouping")?;
+        let mut resolved = correction.clone();
+        resolved.to = CorrectionValue::Text(grouping.to_string());
+        resolved.line_partition_stats(groupings)?;
+        let target = groupings
+            .grouping_named(grouping)
+            .with_context(|| format!("{}: merge target is not a link-valued grouping", correction.label()))?;
+        let selected = rows.iter().filter(|row| row.effect_name == grouping).collect::<Vec<_>>();
+        let amount = selected.first().and_then(|row| row.amount);
+        ensure!(
+            selected.iter().map(|row| row.stat_name.clone()).collect::<std::collections::BTreeSet<_>>()
+                == groupings.expanded_stat_names(&target.name)?
+                && selected.iter().map(|row| row.order).collect::<std::collections::BTreeSet<_>>().len() == 1
+                && amount.is_some()
+                && selected.iter().all(|row| row.amount == amount && row.bonus_type == correction.bonus_type),
+            "{}: a merge must leave one grouping link at one type and value",
+            correction.label()
+        );
+        return Ok(resolved.to);
+    }
     let upstream = correction.from.as_text().context("a lines split needs an upstream grouping name")?;
     let expected_stats = groupings.expanded_stat_names(upstream)?;
-    let table = BonusLinkTable::of(correction.kind)?;
-    let mut statement = transaction.prepare(&format!(
-        "SELECT e.name, stat.name, bt.name, b.amount FROM {} l JOIN effects e ON e.id=l.effect_id
-         JOIN owner_bonuses b ON b.owner_kind=?1 AND b.owner_id=l.{} AND COALESCE(b.via_effect_id,b.stat_id)=l.effect_id
-         JOIN effects stat ON stat.id=b.stat_id LEFT JOIN bonus_types bt ON bt.id=b.bonus_type_id
-         WHERE l.{}=?2 ORDER BY e.name",
-        table.table_name, table.owner_column, table.owner_column
-    ))?;
-    let rows = statement
-        .query_map(params![table.owner_kind, owner_id], |row| {
-            Ok((
-                row.get::<_, String>(0)?,
-                row.get::<_, String>(1)?,
-                row.get::<_, Option<String>>(2)?,
-                row.get::<_, Option<i64>>(3)?,
-            ))
-        })?
-        .collect::<rusqlite::Result<Vec<_>>>()?;
     let names = rows
         .iter()
-        .filter(|(_, stat, bonus_type, _)| expected_stats.contains(stat) && bonus_type == &correction.bonus_type)
-        .map(|(name, _, _, _)| name.clone())
+        .filter(|row| expected_stats.contains(&row.stat_name) && row.bonus_type == correction.bonus_type)
+        .map(|row| row.effect_name.clone())
         .collect::<std::collections::BTreeSet<_>>();
-    let split_value = rows.iter().find(|(name, _, _, _)| names.contains(name)).and_then(|row| row.3);
+    let split_value = rows.iter().find(|row| names.contains(&row.effect_name)).and_then(|row| row.amount);
     ensure!(
-        rows.iter().filter(|(name, _, _, _)| names.contains(name)).all(|(_, stat, bonus_type, value)| {
-            expected_stats.contains(stat) && bonus_type == &correction.bonus_type && *value == split_value
+        rows.iter().filter(|row| names.contains(&row.effect_name)).all(|row| {
+            expected_stats.contains(&row.stat_name)
+                && row.bonus_type == correction.bonus_type
+                && row.amount == split_value
         }),
         "{}: split lines have different stats, types or values",
         correction.label()
     );
     let mut resolved = correction.clone();
     resolved.to = CorrectionValue::Texts(names.into_iter().collect());
-    resolved.line_split_stats(groupings)?;
+    resolved.line_partition_stats(groupings)?;
     Ok(resolved.to)
 }
 
@@ -647,6 +740,14 @@ fn current_value(
     let table_name = correction.target_table_name();
     let value_sql = match field.shape {
         FieldShape::BonusLines => {
+            if matches!(correction.from, CorrectionValue::Texts(_)) {
+                let rows = line_bonus_rows(transaction, correction.kind, row_id, None)?;
+                return Ok(if line_merge_selection(correction, &rows)?.is_some() {
+                    correction.from.clone()
+                } else {
+                    CorrectionValue::Text(NO_SUCH_BONUS.to_string())
+                });
+            }
             let Some(bonus) = CorrectedBonus::from_correction_if_effect_exists(transaction, correction)? else {
                 return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
             };
@@ -907,7 +1008,7 @@ pub(crate) fn data_correction_value(
     let mut values = Vec::new();
     for row_id in row_ids {
         let mut value = if field.shape == FieldShape::BonusLines {
-            split_line_value(transaction, groupings, correction, row_id)?
+            corrected_lines_value(transaction, groupings, correction, row_id)?
         } else {
             current_value(transaction, correction, field, row_id, None)?
         };
@@ -942,14 +1043,12 @@ fn bonus_type_id_named(transaction: &Transaction, bonus_type_name: &str) -> Resu
 struct BonusLinkTable {
     table_name: &'static str,
     owner_column: &'static str,
-    owner_kind: &'static str,
 }
 
 impl BonusLinkTable {
-    const AUGMENT: Self = Self { table_name: "augment_effects", owner_column: "augment_id", owner_kind: "augment" };
-    const ITEM: Self = Self { table_name: "item_effects", owner_column: "item_id", owner_kind: "item" };
-    const SET_TIER: Self =
-        Self { table_name: "set_bonus_tier_effects", owner_column: "tier_id", owner_kind: "set_bonus_tier" };
+    const AUGMENT: Self = Self { table_name: "augment_effects", owner_column: "augment_id" };
+    const ITEM: Self = Self { table_name: "item_effects", owner_column: "item_id" };
+    const SET_TIER: Self = Self { table_name: "set_bonus_tier_effects", owner_column: "tier_id" };
 
     fn of(kind: CorrectionKind) -> Result<Self> {
         match kind {
@@ -958,6 +1057,31 @@ impl BonusLinkTable {
             CorrectionKind::SetTierBonus => Ok(Self::SET_TIER),
             _ => bail!("only an augment_bonus, item_bonus or set_tier_bonus correction names a bonus"),
         }
+    }
+    fn bonus_rows_sql(&self, selected_columns: &str) -> String {
+        let BonusLinkTable { table_name, owner_column, .. } = *self;
+        let effective_value = self.effective_value_sql();
+        format!(
+            "SELECT {selected_columns} FROM {table_name}
+              JOIN effects e ON e.id = {table_name}.effect_id
+              LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND (?2 IS NULL OR e.id != ?2 OR es.sort_order = 0)
+              LEFT JOIN effect_bonuses expanded ON expanded.effect_id = es.target_effect_id AND (?2 IS NULL OR (e.id != ?2 AND es.target_effect_id != ?2))
+              LEFT JOIN bonus_types ON bonus_types.id = COALESCE(es.bonus_type_id, {table_name}.bonus_type_id)
+              JOIN effects resolved_stat ON resolved_stat.id = COALESCE(expanded.target_effect_id, es.target_effect_id, e.id)
+              WHERE {table_name}.{owner_column} IN (SELECT value FROM json_each(?1)) AND (?2 IS NULL OR es.target_effect_id = ?2 OR expanded.target_effect_id = ?2 OR e.id = ?2)
+                AND (?4 IS NULL OR {effective_value} = ?4)"
+        )
+    }
+
+    fn effective_value_sql(&self) -> String {
+        let table_name = self.table_name;
+        let source = format!(
+            "CASE WHEN e.is_stat = 1 THEN COALESCE({table_name}.value, e.default_value)
+             WHEN es.amount_from = 0 THEN es.constant WHEN es.amount_from = 1 THEN COALESCE({table_name}.value, e.default_value)
+             ELSE COALESCE({table_name}.value2, e.default_value2) END"
+        );
+        let scaled = ddo_model::effect_amount::rounded_amount_sql(&source, "es.scale", "es.rounding");
+        format!("CASE WHEN e.is_stat = 1 THEN {source} ELSE {scaled} END")
     }
 }
 
@@ -1027,7 +1151,7 @@ pub(super) fn removed_derived_bonus_indices(
     let query = format!(
         "WITH {table_name} ({owner_column},effect_id,bonus_type_id,value,value2,sort_order) AS
           (SELECT ?5,json_extract(value, '$[0]'),json_extract(value, '$[1]'),json_extract(value, '$[2]'),NULL,key FROM json_each(?6)) {}",
-        corrected_bonus.matching_bonuses_sql(&format!("{table_name}.sort_order, {}", corrected_bonus.effective_value_sql()))
+        corrected_bonus.matching_bonuses_sql(&format!("{table_name}.sort_order, {}", corrected_bonus.link_table.effective_value_sql()))
     );
     let mut statement = transaction.prepare(&query)?;
     let matches = statement
@@ -1123,37 +1247,12 @@ impl CorrectedBonus {
         }))
     }
 
-    fn bonus_rows_sql(&self, selected_columns: &str) -> String {
-        let BonusLinkTable { table_name, owner_column, .. } = self.link_table;
-        let effective_value = self.effective_value_sql();
-        format!(
-            "SELECT {selected_columns} FROM {table_name}
-              JOIN effects e ON e.id = {table_name}.effect_id
-              LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND (e.id != ?2 OR es.sort_order = 0)
-              LEFT JOIN effect_bonuses expanded ON expanded.effect_id = es.target_effect_id AND e.id != ?2 AND es.target_effect_id != ?2
-              LEFT JOIN bonus_types ON bonus_types.id = COALESCE(es.bonus_type_id, {table_name}.bonus_type_id)
-              WHERE {table_name}.{owner_column} IN (SELECT value FROM json_each(?1)) AND (es.target_effect_id = ?2 OR expanded.target_effect_id = ?2 OR e.id = ?2)
-                AND (?4 IS NULL OR {effective_value} = ?4)"
-        )
-    }
-
     fn matching_bonuses_sql(&self, selected_columns: &str) -> String {
         let table_name = self.link_table.table_name;
         format!(
             "{} AND COALESCE(es.bonus_type_id, {table_name}.bonus_type_id) IS ?3 ORDER BY {table_name}.sort_order",
-            self.bonus_rows_sql(selected_columns)
+            self.link_table.bonus_rows_sql(selected_columns)
         )
-    }
-
-    fn effective_value_sql(&self) -> String {
-        let table_name = self.link_table.table_name;
-        let source = format!(
-            "CASE WHEN e.is_stat = 1 THEN COALESCE({table_name}.value, e.default_value)
-             WHEN es.amount_from = 0 THEN es.constant WHEN es.amount_from = 1 THEN COALESCE({table_name}.value, e.default_value)
-             ELSE COALESCE({table_name}.value2, e.default_value2) END"
-        );
-        let scaled = ddo_model::effect_amount::rounded_amount_sql(&source, "es.scale", "es.rounding");
-        format!("CASE WHEN e.is_stat = 1 THEN {source} ELSE {scaled} END")
     }
 
     fn stat_row_ids_on(&self, transaction: &Transaction, owner_id: i64) -> Result<Vec<i64>> {
@@ -1176,7 +1275,7 @@ impl CorrectedBonus {
     }
 
     fn values_on(&self, transaction: &Transaction, owner_id: i64) -> Result<Vec<CorrectionValue>> {
-        let selected_value = self.effective_value_sql();
+        let selected_value = self.link_table.effective_value_sql();
         let mut statement = transaction.prepare(&self.matching_bonuses_sql(&selected_value))?;
         let bonus_values = statement
             .query_map(params![owner_id, self.stat_id, self.bonus_type_id, self.bonus_value], |row| {
@@ -1190,8 +1289,8 @@ impl CorrectedBonus {
     fn bonus_type_on(&self, transaction: &Transaction, owner_id: i64) -> Result<CorrectionValue> {
         let table_name = self.link_table.table_name;
         let selected = format!("COALESCE(es.bonus_type_id, {table_name}.bonus_type_id), bonus_types.name");
-        let mut statement =
-            transaction.prepare(&format!("{} ORDER BY {table_name}.sort_order", self.bonus_rows_sql(&selected)))?;
+        let mut statement = transaction
+            .prepare(&format!("{} ORDER BY {table_name}.sort_order", self.link_table.bonus_rows_sql(&selected)))?;
         let bonus_types_on_stat: Vec<(Option<i64>, Option<String>)> = statement
             .query_map(params![owner_id, self.stat_id, self.bonus_type_id, self.bonus_value], |row| {
                 Ok((row.get(0)?, row.get(1)?))
@@ -1980,6 +2079,81 @@ mod tests {
                 CorrectionValue::Text(bonus_type),
                 "{owner}: {stat}"
             );
+        }
+    }
+
+    #[test]
+    fn pending_line_bonuses_match_stored_lines_and_owner_bonuses_in_one_query() {
+        use rusqlite::trace::{TraceEvent, TraceEventCodes};
+        use std::cell::Cell;
+        thread_local! { static READS: Cell<usize> = const { Cell::new(0) }; }
+        fn trace(event: TraceEvent<'_>) {
+            if matches!(event, TraceEvent::Stmt(_, _)) {
+                READS.set(READS.get() + 1);
+            }
+        }
+        let fixture = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+        let mut canonical = rusqlite::Connection::open_in_memory().unwrap();
+        crate::tree::build_from_data(&fixture.join("data"), &mut canonical).unwrap();
+        let groupings = crate::groupings::Groupings::from_database(&canonical).unwrap();
+        let mut db = rusqlite::Connection::open_in_memory().unwrap();
+        crate::build::build_database(
+            &groupings,
+            &fixture.join("DataFiles"),
+            &crate::wiki::WikiOverrides::default(),
+            &crate::corrections::Corrections::default(),
+            &mut db,
+            &ddo_model::DatasetVersion { upstream_sha: "test".into(), built_at: "2026-10-23T00:00:00Z".into() },
+        )
+        .unwrap();
+        db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
+        let transaction = db.transaction().unwrap();
+        for (kind, owner_kind) in [
+            (CorrectionKind::ItemBonus, "item"),
+            (CorrectionKind::AugmentBonus, "augment"),
+            (CorrectionKind::SetTierBonus, "set_bonus_tier"),
+        ] {
+            let table = BonusLinkTable::of(kind).unwrap();
+            let owners = transaction
+                .prepare(&format!("SELECT DISTINCT {} FROM {}", table.owner_column, table.table_name))
+                .unwrap()
+                .query_map([], |row| row.get::<_, i64>(0))
+                .unwrap()
+                .collect::<rusqlite::Result<Vec<_>>>()
+                .unwrap();
+            for owner in owners {
+                let pending = transaction.prepare(&format!("SELECT l.effect_id,b.name,l.value,l.value2 FROM {} l LEFT JOIN bonus_types b ON b.id=l.bonus_type_id WHERE l.{}=?1 ORDER BY l.sort_order", table.table_name, table.owner_column)).unwrap()
+                    .query_map([owner], |row| Ok(super::super::modifiers::DerivedEffectLink {
+                        effect_id: row.get(0)?, bonus_type: row.get::<_, Option<String>>(1)?.map(|name| ddo_model::enums::BonusType::parse(&name).unwrap()), value: row.get(2)?, value2: row.get(3)?, is_split_line: false,
+                    })).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+                READS.set(0);
+                let rows = line_bonus_rows(&transaction, kind, owner, Some(&pending)).unwrap();
+                assert_eq!(READS.get(), 1);
+                let stored = line_bonus_rows(&transaction, kind, owner, None).unwrap();
+                assert_eq!(rows, stored, "{} {owner}", owner_kind);
+                let granted = transaction.prepare("SELECT b.effect_link_order,s.name,t.name,b.amount FROM owner_bonuses b JOIN effects s ON s.id=b.stat_id LEFT JOIN bonus_types t ON t.id=b.bonus_type_id WHERE b.owner_kind=?1 AND b.owner_id=?2").unwrap()
+                    .query_map(params![owner_kind,owner], |row| Ok((row.get::<_, i64>(0)? as usize,row.get::<_, String>(1)?,row.get::<_, Option<String>>(2)?,row.get::<_, Option<i64>>(3)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+                let mut unmatched = granted.clone();
+                for row in &rows {
+                    let granted_row = (row.order, row.stat_name.clone(), row.bonus_type.clone(), row.amount);
+                    if row.amount.is_none_or(|amount| amount == 0) {
+                        assert!(!granted.contains(&granted_row));
+                    } else {
+                        let position = unmatched
+                            .iter()
+                            .position(|bonus| *bonus == granted_row)
+                            .expect("resolved line bonus is granted");
+                        unmatched.remove(position);
+                    }
+                }
+                assert!(unmatched.is_empty(), "{unmatched:?}");
+                for count in [1, 50] {
+                    let repeated = pending.iter().cycle().take(count).cloned().collect::<Vec<_>>();
+                    READS.set(0);
+                    line_bonus_rows(&transaction, kind, owner, Some(&repeated)).unwrap();
+                    assert_eq!(READS.get(), 1);
+                }
+            }
         }
     }
 

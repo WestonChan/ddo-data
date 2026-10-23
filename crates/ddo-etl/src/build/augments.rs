@@ -67,8 +67,9 @@ impl TableWriter<'_> {
                 BonusOwner { kind: BonusOwnerKind::Augment, name: &augment.name, family: Some(&family) };
             let links =
                 self.ensure_derived_effects(&augment_owner, ModifierSource::Augment, augment_id, &augment.effects)?;
+            let links = self.collapse_source_backed_augment_lines(&augment.name, links)?;
             for (sort_order, link) in
-                self.collapse_source_backed_augment_lines(&augment.name, links)?.into_iter().enumerate()
+                self.write_merged_lines(&augment_owner, augment_id, links)?.into_iter().enumerate()
             {
                 self.effects.insert_link(
                     EffectOwner::Augment,

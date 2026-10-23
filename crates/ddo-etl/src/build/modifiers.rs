@@ -9,6 +9,7 @@ use anyhow::Result;
 use ddo_model::enums::{ModifierSource, RequirementOwner};
 use rusqlite::params;
 
+#[derive(Clone)]
 pub(super) struct DerivedEffectLink {
     pub(super) effect_id: i64,
     pub(super) bonus_type: Option<ddo_model::enums::BonusType>,
@@ -676,7 +677,7 @@ impl TableWriter<'_> {
         if let [grouping] = matching {
             if grouping.accepts_value_at_type(bonus_type.name()) {
                 let split_corrections = self
-                    .line_split_corrections
+                    .line_corrections
                     .iter()
                     .copied()
                     .filter(|correction| {
@@ -694,7 +695,7 @@ impl TableWriter<'_> {
                     if !super::corrections::removal_owner_matches(self.transaction, correction, owner_id)? {
                         continue;
                     }
-                    let mut partitions = correction.line_split_stats(self.groupings)?;
+                    let mut partitions = correction.line_partition_stats(self.groupings)?;
                     self.effects.ensure_indexed_grouping(grouping, self.groupings)?;
                     partitions.sort_by_key(|(_, partition)| {
                         bonuses.iter().position(|(_, bonus)| partition.contains(bonus.stat.name))
@@ -723,19 +724,14 @@ impl TableWriter<'_> {
                                     correction.label()
                                 )
                             })?;
-                            anyhow::ensure!(
-                                line_grouping.accepts_value_at_type(bonus_type.name()),
-                                "{}: split line cannot take this value and type",
-                                correction.label()
-                            );
                             let effect_id = self.effects.ensure_indexed_grouping(line_grouping, self.groupings)?;
-                            self.write_grouping_line(owner, effect_id, bonus_type, value)?
+                            self.write_upstream_grouping_line(owner, effect_id, bonus_type, value)?
                         };
                         link.is_split_line = true;
                         split_links.push(link);
                     }
-                    if !self.applied_line_split_corrections.iter().any(|applied| std::ptr::eq(*applied, correction)) {
-                        self.applied_line_split_corrections.push(correction);
+                    if !self.applied_line_corrections.iter().any(|applied| std::ptr::eq(*applied, correction)) {
+                        self.applied_line_corrections.push(correction);
                     }
                     return Ok(GroupingOutcome::Split { links: split_links, correction: correction.label() });
                 }
@@ -822,10 +818,84 @@ impl TableWriter<'_> {
                 )));
             }
         };
-        Ok(GroupingOutcome::Grouped(vec![self.write_grouping_line(owner, effect_id, bonus_type, value)?]))
+        Ok(GroupingOutcome::Grouped(vec![self.write_upstream_grouping_line(owner, effect_id, bonus_type, value)?]))
     }
 
-    fn write_grouping_line(
+    pub(super) fn write_merged_lines(
+        &mut self,
+        owner: &BonusOwner,
+        owner_id: i64,
+        mut links: Vec<DerivedEffectLink>,
+    ) -> Result<Vec<DerivedEffectLink>> {
+        use ddo_model::enums::CorrectionKind;
+        let kind = match owner.kind {
+            BonusOwnerKind::Item => CorrectionKind::ItemBonus,
+            BonusOwnerKind::Augment => CorrectionKind::AugmentBonus,
+            BonusOwnerKind::SetBonusTier => CorrectionKind::SetTierBonus,
+            _ => return Ok(links),
+        };
+        let corrections = self
+            .line_corrections
+            .iter()
+            .copied()
+            .filter(|correction| {
+                correction.kind == kind
+                    && correction.name == owner.name
+                    && matches!(correction.from, crate::corrections::CorrectionValue::Texts(_))
+            })
+            .collect::<Vec<_>>();
+        if corrections.is_empty() {
+            return Ok(links);
+        }
+        let rows = super::corrections::line_bonus_rows(self.transaction, kind, owner_id, Some(&links))?;
+        let mut consumed = std::collections::BTreeSet::new();
+        let mut removed = std::collections::BTreeSet::new();
+        for correction in corrections {
+            if !super::corrections::removal_owner_matches(self.transaction, correction, owner_id)? {
+                continue;
+            }
+            correction.line_partition_stats(self.groupings)?;
+            let Some(selection) = super::corrections::line_merge_selection(correction, &rows)? else { continue };
+            anyhow::ensure!(
+                selection.orders.is_disjoint(&consumed),
+                "{}: overlapping merge corrections",
+                correction.label()
+            );
+            anyhow::ensure!(
+                selection.orders.iter().all(|order| !links[*order].is_split_line),
+                "{}: a merge and a split cannot apply to one line",
+                correction.label()
+            );
+            let grouping_name = correction.stat.as_deref().expect("validated grouping qualifier");
+            let grouping = self
+                .groupings
+                .grouping_named(grouping_name)
+                .ok_or_else(|| anyhow::anyhow!("{}: merge target is not a link-valued grouping", correction.label()))?;
+            let bonus_type = correction
+                .bonus_type
+                .as_deref()
+                .and_then(ddo_model::enums::BonusType::parse)
+                .ok_or_else(|| anyhow::anyhow!("{}: merged line needs a named type", correction.label()))?;
+            anyhow::ensure!(
+                selection.stats == self.groupings.expanded_stat_names(grouping_name)?,
+                "{}: merged line has different stats",
+                correction.label()
+            );
+            let effect_id = self.effects.ensure_indexed_grouping(grouping, self.groupings)?;
+            let first = *selection.orders.first().expect("merge has at least two lines");
+            links[first] = self.write_grouping_line(effect_id, bonus_type, selection.amount)?;
+            removed.extend(selection.orders.iter().copied().filter(|order| *order != first));
+            consumed.extend(selection.orders);
+            self.applied_line_corrections.push(correction);
+        }
+        Ok(links
+            .into_iter()
+            .enumerate()
+            .filter_map(|(order, link)| (!removed.contains(&order)).then_some(link))
+            .collect())
+    }
+
+    fn write_upstream_grouping_line(
         &mut self,
         owner: &BonusOwner,
         effect_id: i64,
@@ -845,6 +915,15 @@ impl TableWriter<'_> {
         } else {
             effect_id
         };
+        self.write_grouping_line(effect_id, bonus_type, value)
+    }
+
+    fn write_grouping_line(
+        &mut self,
+        effect_id: i64,
+        bonus_type: ddo_model::enums::BonusType,
+        value: i64,
+    ) -> Result<DerivedEffectLink> {
         self.grouping_answers.insert(effect_id);
         let family = self.effects.family(effect_id).expect("grouping cached");
         Ok(DerivedEffectLink {
