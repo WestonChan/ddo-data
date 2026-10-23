@@ -1,4 +1,4 @@
-pub fn line_template_states_percent(template: &str, amount_slot: i64) -> bool {
+pub fn template_slot_states_percent(template: &str, amount_slot: i64) -> bool {
     matches!(amount_slot, 1 | 2) && template.contains(&format!("{{{amount_slot}}}%"))
 }
 
@@ -14,7 +14,7 @@ pub fn rounded_amount_sql(amount: &str, scale: &str, rounding: &str) -> String {
 
 #[cfg(test)]
 mod tests {
-    use super::line_template_states_percent;
+    use super::template_slot_states_percent;
 
     #[test]
     fn percent_units_belong_to_their_amount_slots() {
@@ -29,7 +29,15 @@ mod tests {
             ("+{0}%", 0, false),
             ("", 1, false),
         ] {
-            assert_eq!(line_template_states_percent(template, slot), expected, "{template}, slot {slot}");
+            assert_eq!(template_slot_states_percent(template, slot), expected, "{template}, slot {slot}");
+        }
+    }
+
+    #[test]
+    fn template_slot_percent_detection_accepts_lines_and_descriptions() {
+        for template in ["Doublestrike +{1}%", "Gain +{1}% Doublestrike and +{2} Armor Class."] {
+            assert!(super::template_slot_states_percent(template, 1));
+            assert!(!super::template_slot_states_percent(template, 2));
         }
     }
 }

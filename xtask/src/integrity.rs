@@ -1019,7 +1019,7 @@ fn effect_descriptions_without_their_amounts(db: &Connection, _options: &Integri
         if is_stat
             && template
                 .as_deref()
-                .is_some_and(|template| ddo_model::effect_amount::line_template_states_percent(template, 1))
+                .is_some_and(|template| ddo_model::effect_amount::template_slot_states_percent(template, 1))
         {
             percent_stats.insert(name);
         }
@@ -1202,7 +1202,7 @@ fn template_causes(
             let percent = effects
                 .get(&target)
                 .and_then(|stat| stat.line.as_deref())
-                .is_some_and(|template| ddo_model::effect_amount::line_template_states_percent(template, 1));
+                .is_some_and(|template| ddo_model::effect_amount::template_slot_states_percent(template, 1));
             if percent && bonus.amount_from > 0 {
                 percent_slots.insert(bonus.amount_from);
             }
@@ -1225,12 +1225,12 @@ fn template_causes(
         for slot in [1, 2] {
             let placeholder = format!("{{{slot}}}");
             if description.contains(&placeholder)
-                && !ddo_model::effect_amount::line_template_states_percent(description, slot)
+                && !ddo_model::effect_amount::template_slot_states_percent(description, slot)
                 && (percent_slots.contains(&slot)
                     || effect
                         .line
                         .as_deref()
-                        .is_some_and(|line| ddo_model::effect_amount::line_template_states_percent(line, slot)))
+                        .is_some_and(|line| ddo_model::effect_amount::template_slot_states_percent(line, slot)))
             {
                 causes.insert("T5: unit only through the renderer's restore");
             }
@@ -1388,13 +1388,11 @@ fn effect_text_tokens(text: &str) -> Vec<EffectTextToken<'_>> {
             position += 1;
             continue;
         }
-        if signed {
-            position += 1;
-        }
-        if !bytes.get(position).is_some_and(u8::is_ascii_digit) {
+        if !bytes.get(value_start).is_some_and(u8::is_ascii_digit) {
             position += 1;
             continue;
         }
+        position = value_start;
         while bytes.get(position).is_some_and(|byte| {
             byte.is_ascii_digit() || (*byte == b'.' && bytes.get(position + 1).is_some_and(u8::is_ascii_digit))
         }) {
@@ -1470,7 +1468,10 @@ fn dice_terms(text: &str) -> Vec<(u32, u32)> {
             {
                 return None;
             }
-            Some((count.text.parse().ok()?, sides.text.parse().ok()?))
+            Some((
+                count.text.trim_start_matches(['+', '-']).parse().ok()?,
+                sides.text.trim_end_matches('%').parse().ok()?,
+            ))
         })
         .collect()
 }
@@ -2395,6 +2396,40 @@ mod served_amount_tests {
         }
         for template in ["Gain +20%bonus", "15d6", "DC +25", "for +10 seconds", "Dragon's Edge 7", "Spell Lore VI"] {
             assert!(!has_unfilled_effect_token(template), "{template}");
+        }
+    }
+
+    #[test]
+    fn punctuation_signs_preserve_the_following_token() {
+        for (text, expected) in [
+            ("two-handed", vec!["two", "handed"]),
+            ("-%b1", vec!["%b1"]),
+            ("+%v1", vec!["%v1"]),
+            ("+-6", vec!["-6"]),
+            ("--{2}%", vec!["-{2}%"]),
+            ("-éclair", vec!["clair"]),
+            ("+ -", vec![]),
+        ] {
+            let tokens = effect_text_tokens(text);
+            assert_eq!(tokens.iter().map(|token| token.text).collect::<Vec<_>>(), expected, "{text}");
+        }
+        assert!(matches!(effect_text_tokens("-%b1")[0].kind, EffectTextTokenKind::BonusType));
+        assert!(has_unfilled_effect_token("+%v1"));
+    }
+
+    #[test]
+    fn dice_terms_keep_counts_beside_signs_and_percent_units() {
+        for (text, expected) in [
+            ("-1d4", vec![(1, 4)]),
+            ("1d6%", vec![(1, 6)]),
+            ("+2d8 and -3d10%", vec![(2, 8), (3, 10)]),
+            ("1d4 and 2d6", vec![(1, 4), (2, 6)]),
+            ("1.5d6", vec![]),
+            ("1d6.5", vec![]),
+            ("word1d4", vec![]),
+            ("", vec![]),
+        ] {
+            assert_eq!(dice_terms(text), expected, "{text}");
         }
     }
 

@@ -782,7 +782,7 @@ impl TableWriter<'_> {
                                 .filter(|template| !template.is_empty())
                                 .or_else(|| EFFECT_MAP.line_templates.get(name.as_str()).map(String::as_str))
                                 .is_some_and(|template| {
-                                    ddo_model::effect_amount::line_template_states_percent(template, 1)
+                                    ddo_model::effect_amount::template_slot_states_percent(template, 1)
                                 })
                         })
                         .cloned()

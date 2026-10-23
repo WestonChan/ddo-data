@@ -602,8 +602,8 @@ fn render_description_template(template: &str, row: &Value) -> String {
     }
     let line_template = row["verbose_name_template"].as_str().unwrap_or("");
     for slot in [1, 2] {
-        if ddo_model::effect_amount::line_template_states_percent(line_template, slot)
-            && !ddo_model::effect_amount::line_template_states_percent(template, slot)
+        if ddo_model::effect_amount::template_slot_states_percent(line_template, slot)
+            && !ddo_model::effect_amount::template_slot_states_percent(template, slot)
         {
             signed_template = signed_template.replace(&format!("{{{slot}}}"), &format!("{{{slot}}}%"));
         }
@@ -662,7 +662,7 @@ fn render_set_bonus_line(row: &Value) -> String {
     let template = row["set_bonus_line_template"].as_str().map(str::to_string).unwrap_or_else(|| {
         let unit = if row["verbose_name_template"]
             .as_str()
-            .is_some_and(|template| ddo_model::effect_amount::line_template_states_percent(template, 1))
+            .is_some_and(|template| ddo_model::effect_amount::template_slot_states_percent(template, 1))
         {
             "%"
         } else {
