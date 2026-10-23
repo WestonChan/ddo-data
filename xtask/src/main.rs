@@ -326,6 +326,7 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             "digit_warnings_classify_unmodelled_numbers_without_duplicate_literal_findings",
         ),
         ("xtask", &["--test", "integrity"][..], "fixed_template_types_share_the_served_hidden_type_rule"),
+        ("ddo-etl", &["--test", "build"][..], "held_member_lines_keep_their_targeted_family_names"),
         ("ddo-etl", &["--lib"][..], "groupings::tests::index_uses_two_queries_for_one_and_fifty_effects"),
         ("ddo-etl", &["--lib"][..], "tree::build::file_name_tests::pseudo_pack_names_cannot_be_real_packs"),
         (

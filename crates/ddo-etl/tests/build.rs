@@ -632,77 +632,108 @@ fn a_skill_group_reduced_to_one_member_does_not_restore_removed_stats() {
 
 #[test]
 fn held_member_lines_keep_their_targeted_family_names() {
-    let source = create_untyped_shadow_source();
-    let path = source.path().join("Augments/WoefulShadow.Augments.xml");
-    let contents = std::fs::read_to_string(&path).unwrap();
-    std::fs::write(
-        path,
-        contents.replace(
-            "<Type>Doublestrike</Type>\n      <Type>Doubleshot</Type>",
-            "<Type>SpellPower</Type><Item>Fire</Item><Item>Cold</Item>",
+    for (effect_type, targets, title, stats, families) in [
+        (
+            "SpellPower",
+            "<Item>Fire</Item><Item>Cold</Item>",
+            "Spell Power",
+            ["Fire Spell Power", "Cold Spell Power"],
+            ["Spell Power Fire", "Spell Power Cold"],
         ),
-    )
-    .unwrap();
-    let path = source.path().join("ItemBuffs.xml");
-    let contents = std::fs::read_to_string(&path).unwrap();
-    std::fs::write(
-        path,
-        contents.replace(
-            "</Buffs>",
-            r#"<Buff>
-        <Type>SpellPower</Type><DisplayText>Spell Power %i1 %v1: %v1 %b1 bonus to %i1 Spell Power.</DisplayText>
-        <Effect><Type>SpellPower</Type><Bonus>Not Set</Bonus><AType>Simple</AType>
-        <Amount size="1">0</Amount><Item>Fire</Item><Item>Cold</Item></Effect>
-        </Buff></Buffs>"#,
+        (
+            "Weapon_Alacrity",
+            "<Item>All</Item>",
+            "Attack Speed",
+            ["Melee Attack Speed", "Ranged Attack Speed"],
+            ["Attack Speed Melee Attack Speed", "Attack Speed Ranged Attack Speed"],
         ),
-    )
-    .unwrap();
-    let corrections = fixture::new_qualified_correction(
-        "augment_bonus",
-        "Woeful Shadow (Legendary)",
-        "stat = 'Fire Spell Power'\nbonus_type = 'null'",
-        "bonus_type",
-        "\"null\"",
-        "\"Artifact\"",
-    ) + &fixture::new_qualified_correction(
-        "augment_bonus",
-        "Woeful Shadow (Legendary)",
-        "stat = 'Cold Spell Power'\nbonus_type = 'null'",
-        "bonus_type",
-        "\"null\"",
-        "\"Profane\"",
-    );
-    let mut db = Connection::open_in_memory().unwrap();
-    let report = build_database(
-        fixture::groupings(),
-        source.path(),
-        &WikiOverrides::default(),
-        &fixture::corrections_from(&[("targeted-types.toml", &corrections)]).unwrap(),
-        &mut db,
-        &fixture_dataset_version(),
-    )
-    .unwrap();
-    assert_every_multi_stat_effect_has_one_link_or_an_exception(&report);
-    let lines = db
-        .prepare(
-            "SELECT e.name, s.name, bt.name FROM owner_bonuses b JOIN effects e ON e.id=b.via_effect_id
-         JOIN effects s ON s.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id
-         JOIN augments a ON a.id=b.owner_id WHERE b.owner_kind='augment'
-         AND a.name='Woeful Shadow (Legendary)' AND s.name IN ('Fire Spell Power','Cold Spell Power')
-         ORDER BY e.name",
+    ] {
+        let source = create_untyped_shadow_source();
+        let path = source.path().join("Augments/WoefulShadow.Augments.xml");
+        let contents = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(
+            path,
+            contents.replace(
+                "<Type>Doublestrike</Type>\n      <Type>Doubleshot</Type>",
+                &format!("<Type>{effect_type}</Type>{targets}"),
+            ),
         )
-        .unwrap()
-        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))
-        .unwrap()
-        .collect::<rusqlite::Result<Vec<_>>>()
         .unwrap();
-    assert_eq!(
-        lines,
-        [
-            ("Spell Power Cold".into(), "Cold Spell Power".into(), "Profane".into()),
-            ("Spell Power Fire".into(), "Fire Spell Power".into(), "Artifact".into()),
-        ]
-    );
+        let path = source.path().join("ItemBuffs.xml");
+        let contents = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(
+            path,
+            contents.replace(
+                "</Buffs>",
+                &format!(
+                    r#"<Buff>
+                <Type>{effect_type}</Type><DisplayText>{title} %i1 %v1: %v1 %b1 bonus to %i1.</DisplayText>
+                <Effect><Type>{effect_type}</Type><Bonus>Not Set</Bonus><AType>Simple</AType>
+                <Amount size="1">0</Amount>{targets}</Effect>
+                </Buff></Buffs>"#
+                ),
+            ),
+        )
+        .unwrap();
+        let corrections = stats
+            .iter()
+            .zip(["Artifact", "Profane"])
+            .map(|(stat, bonus_type)| {
+                fixture::new_qualified_correction(
+                    "augment_bonus",
+                    "Woeful Shadow (Legendary)",
+                    &format!("stat = '{stat}'\nbonus_type = 'null'"),
+                    "bonus_type",
+                    "\"null\"",
+                    &format!("{bonus_type:?}"),
+                )
+            })
+            .reduce(|combined, correction| combined + &correction)
+            .unwrap();
+        let mut db = Connection::open_in_memory().unwrap();
+        let report = build_database(
+            fixture::groupings(),
+            source.path(),
+            &WikiOverrides::default(),
+            &fixture::corrections_from(&[("targeted-types.toml", &corrections)]).unwrap(),
+            &mut db,
+            &fixture_dataset_version(),
+        )
+        .unwrap();
+        assert_every_multi_stat_effect_has_one_link_or_an_exception(&report);
+        let lines = db
+            .prepare(
+                "SELECT e.name, s.name, bt.name, b.amount FROM owner_bonuses b JOIN effects e ON e.id=b.via_effect_id
+                 JOIN effects s ON s.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id
+                 JOIN augments a ON a.id=b.owner_id WHERE b.owner_kind='augment'
+                 AND a.name='Woeful Shadow (Legendary)'
+                 ORDER BY e.name",
+            )
+            .unwrap()
+            .query_map([], |row| {
+                Ok((
+                    row.get::<_, String>(0)?,
+                    row.get::<_, String>(1)?,
+                    row.get::<_, String>(2)?,
+                    row.get::<_, i64>(3)?,
+                ))
+            })
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        let mut expected = families
+            .into_iter()
+            .zip(stats)
+            .zip(["Artifact", "Profane"])
+            .map(|((family, stat), bonus_type)| (family.to_string(), stat.to_string(), bonus_type.to_string(), 3))
+            .collect::<Vec<_>>();
+        expected.extend([
+            ("Melee Alacrity".to_string(), "Melee Attack Speed".to_string(), "Enhancement".to_string(), 15),
+            ("Ranged Alacrity".to_string(), "Ranged Attack Speed".to_string(), "Enhancement".to_string(), 20),
+        ]);
+        expected.sort();
+        assert_eq!(lines, expected, "{effect_type}: {targets}");
+    }
 }
 
 #[test]

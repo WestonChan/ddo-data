@@ -397,9 +397,7 @@ impl TableWriter<'_> {
                                         .filter(|stat| stat.id == first_bonus.stat.id)
                                         .map(|_| target.as_str())
                                 })
-                                .or_else(|| {
-                                    effect.targets.get(group_order).or(effect.targets.first()).map(String::as_str)
-                                })
+                                .or(Some(first_bonus.stat.name))
                         }
                     } else if all_abilities {
                         Some("All")
