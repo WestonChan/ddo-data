@@ -306,6 +306,8 @@ fn digit_warnings_classify_unmodelled_numbers_without_duplicate_literal_findings
         ),
         ("Constant Amount", Some("Constant Amount +5"), Some("Grants +5 Damage."), Some(5), None, None),
         ("+2 Charges of Something 3", Some("+2 Charges of Something 3"), None, None, None, Some("T7")),
+        ("Negative Literal", Some("Rank 3 -2"), None, None, None, Some("T7")),
+        ("Unsigned Percent", Some("Rank 3 2%"), None, None, None, Some("T7")),
         ("Description Dice", Some("Description Dice"), Some("Deals 3d6 Fire damage."), None, None, None),
         ("Line Slot", Some("Line Slot {1} 3"), None, None, None, None),
         ("Description Slot", Some("Description Slot 3"), Some("Grants {1}."), None, None, None),
@@ -350,6 +352,37 @@ fn digit_warnings_classify_unmodelled_numbers_without_duplicate_literal_findings
             assert!(literal_causes[0].contains(cause), "{name}: {literal_causes:?}");
         }
     }
+}
+
+#[test]
+fn digit_warnings_exclude_either_amount_slot_in_either_template() {
+    let scratch = tempfile::tempdir().unwrap();
+    let tree = scratch.path().join("data");
+    copy_fixture_tree(&tree);
+    let mut names = Vec::new();
+    for slot in [1, 2] {
+        for slot_in_line in [false, true] {
+            let name = format!("Slot {slot} in {}", if slot_in_line { "line" } else { "description" });
+            let amount = format!("+{{{slot}}} %b1 Damage Bonus");
+            let line = if slot_in_line { format!("Rank 3 {amount}") } else { "Rank 3".to_string() };
+            let description = if slot_in_line { "Damage bonus." } else { &amount };
+            std::fs::write(
+                tree.join(format!("effects/{}.toml", ddo_model::identity::slug(&name))),
+                format!(
+                    "name = {name:?}\nverbose_name_template = {line:?}\ndescription_template = {description:?}\n\
+                     [[bonus]]\ntarget = \"Damage Bonus\"\namount_from = {slot}\nscale = 1.0\nrounding = \"down\"\n"
+                ),
+            )
+            .unwrap();
+            names.push(name);
+        }
+    }
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let digits = report.outcome("effect_templates_with_digits_without_amounts").unwrap();
+    let unexpected = digits.offenders.iter().filter(|finding| names.contains(&finding.name)).collect::<Vec<_>>();
+    assert!(unexpected.is_empty(), "{unexpected:?}");
 }
 
 #[test]

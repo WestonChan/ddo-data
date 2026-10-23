@@ -645,7 +645,7 @@ fn held_member_lines_keep_their_targeted_family_names() {
             "<Item>All</Item>",
             "Attack Speed",
             ["Melee Attack Speed", "Ranged Attack Speed"],
-            ["Attack Speed Melee Attack Speed", "Attack Speed Ranged Attack Speed"],
+            ["Melee Attack Speed", "Ranged Attack Speed"],
         ),
     ] {
         let source = create_untyped_shadow_source();
@@ -703,7 +703,7 @@ fn held_member_lines_keep_their_targeted_family_names() {
         assert_every_multi_stat_effect_has_one_link_or_an_exception(&report);
         let lines = db
             .prepare(
-                "SELECT e.name, s.name, bt.name, b.amount FROM owner_bonuses b JOIN effects e ON e.id=b.via_effect_id
+                "SELECT e.name, s.name, bt.name, b.amount FROM owner_bonuses b JOIN effects e ON e.id=COALESCE(b.via_effect_id,b.stat_id)
                  JOIN effects s ON s.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id
                  JOIN augments a ON a.id=b.owner_id WHERE b.owner_kind='augment'
                  AND a.name='Woeful Shadow (Legendary)'

@@ -1093,6 +1093,7 @@ fn effect_templates_with_digits_without_amounts(db: &Connection, _options: &Inte
         FROM effects e LEFT JOIN bonuses b ON b.effect_id = e.id
         WHERE e.is_stat = 0
           AND INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '{1}') = 0
+          AND INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '{2}') = 0
         ORDER BY e.name",
     )?;
     let mut offenders = Vec::new();
@@ -1109,7 +1110,7 @@ fn effect_templates_with_digits_without_amounts(db: &Connection, _options: &Inte
         let (id, name, line, bonus_count, constant_count) = row?;
         let numbers = amount_tokens(&line);
         if !numbers.iter().any(|number| !number.is_amount_literal())
-            || (bonus_count == 0 && numbers.iter().any(AmountToken::is_amount_literal))
+            || line_claims_unmodelled_amount(Some(&line), bonus_count > 0)
         {
             continue;
         }
@@ -1332,9 +1333,7 @@ fn template_causes(
             causes.insert("T2: line claims a literal for a slot or a slot its rows do not read");
         }
     }
-    if bonuses.is_empty()
-        && effect.line.as_deref().is_some_and(|line| amount_tokens(line).iter().any(AmountToken::is_amount_literal))
-    {
+    if line_claims_unmodelled_amount(effect.line.as_deref(), !bonuses.is_empty()) {
         causes.insert("T7: line claims an amount without a bonus definition");
     }
     if !constants.is_empty()
@@ -1348,6 +1347,10 @@ fn template_causes(
         causes.insert("T6: amount literal does not match a granted constant");
     }
     causes
+}
+
+fn line_claims_unmodelled_amount(line: Option<&str>, has_bonuses: bool) -> bool {
+    !has_bonuses && line.is_some_and(|line| amount_tokens(line).iter().any(AmountToken::is_amount_literal))
 }
 
 #[derive(Clone, Copy)]

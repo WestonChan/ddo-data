@@ -386,18 +386,14 @@ impl TableWriter<'_> {
                     let first_bonus = bonuses[0];
                     let target = if preserve_member_lines {
                         if all_abilities || effect_type == "SkillBonusAbility" {
-                            Some(first_bonus.stat.name)
+                            None
                         } else {
-                            effect
-                                .targets
-                                .iter()
-                                .find_map(|target| {
-                                    EFFECT_MAP
-                                        .effect_stat(effect_type, target)
-                                        .filter(|stat| stat.id == first_bonus.stat.id)
-                                        .map(|_| target.as_str())
-                                })
-                                .or(Some(first_bonus.stat.name))
+                            effect.targets.iter().find_map(|target| {
+                                EFFECT_MAP
+                                    .effect_stat(effect_type, target)
+                                    .filter(|stat| stat.id == first_bonus.stat.id)
+                                    .map(|_| target.as_str())
+                            })
                         }
                     } else if all_abilities {
                         Some("All")
@@ -415,7 +411,9 @@ impl TableWriter<'_> {
                     } else {
                         effect.targets.first().map(String::as_str)
                     };
-                    links.push(self.write_derived_line(owner, effect_type, target, &bonuses, shared_name)?);
+                    let line_name = shared_name
+                        .or_else(|| (preserve_member_lines && target.is_none()).then_some(first_bonus.stat.name));
+                    links.push(self.write_derived_line(owner, effect_type, target, &bonuses, line_name)?);
                 }
             }
             self.derived_effect_lines[source_index].link_count = links.len() - first_link;
@@ -463,7 +461,7 @@ impl TableWriter<'_> {
         effect_type: &str,
         target: Option<&str>,
         bonuses: &[crate::map::effect::DerivedBonus],
-        shared_name: Option<&str>,
+        line_name: Option<&str>,
     ) -> Result<DerivedEffectLink> {
         let first_bonus = bonuses[0];
         let all_abilities = bonuses.len() > 1 && effect_type == "AbilityBonus" && target == Some("All");
@@ -498,7 +496,7 @@ impl TableWriter<'_> {
                 });
             }
         }
-        let source_name = shared_name.map(str::to_string).unwrap_or_else(|| {
+        let source_name = line_name.map(str::to_string).unwrap_or_else(|| {
             if effect_type == "SkillBonusAbility" && bonuses.len() == 1 {
                 first_bonus.stat.name.to_string()
             } else {
