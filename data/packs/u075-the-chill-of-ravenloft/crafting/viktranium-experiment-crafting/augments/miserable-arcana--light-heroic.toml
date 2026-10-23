@@ -5,27 +5,7 @@ icon = "Lamordia"
 min_level = 8
 
 [[effect]]
-name = "Light Spell Power"
-bonus_type = "Equipment"
-value = 70
-
-[[effect]]
-name = "Chaos Spell Power"
-bonus_type = "Equipment"
-value = 70
-
-[[effect]]
-name = "Evil Spell Power"
-bonus_type = "Equipment"
-value = 70
-
-[[effect]]
-name = "Good Spell Power"
-bonus_type = "Equipment"
-value = 70
-
-[[effect]]
-name = "Law Spell Power"
+name = "Radiance"
 bonus_type = "Equipment"
 value = 70
 
@@ -33,6 +13,7 @@ value = 70
 amount_type = "Simple"
 amounts = [70]
 bonus_type = "Equipment"
+effect = "Radiance"
 effect_type = "SpellPower"
 targets = [
     "Light/Alignment",

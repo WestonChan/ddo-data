@@ -5,27 +5,7 @@ icon = "Lamordia"
 min_level = 34
 
 [[effect]]
-name = "Light Spell Power"
-bonus_type = "Insight"
-value = 79
-
-[[effect]]
-name = "Chaos Spell Power"
-bonus_type = "Insight"
-value = 79
-
-[[effect]]
-name = "Evil Spell Power"
-bonus_type = "Insight"
-value = 79
-
-[[effect]]
-name = "Good Spell Power"
-bonus_type = "Insight"
-value = 79
-
-[[effect]]
-name = "Law Spell Power"
+name = "Radiance"
 bonus_type = "Insight"
 value = 79
 
@@ -34,6 +14,7 @@ amount_type = "Simple"
 amounts = [79]
 bonus = "Insightful"
 bonus_type = "Insight"
+effect = "Radiance"
 effect_type = "SpellPower"
 targets = [
     "Light/Alignment",

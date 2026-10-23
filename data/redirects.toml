@@ -146,6 +146,12 @@ since = "2026-10-20"
 
 [[redirect]]
 kind = "effects"
+from = "light-and-alignment-spell-power"
+to = "radiance"
+since = "2026-10-23"
+
+[[redirect]]
+kind = "effects"
 from = "spell-powers"
 to = "potency"
 since = "2026-10-23"

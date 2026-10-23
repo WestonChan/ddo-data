@@ -1,7 +1,12 @@
-name = "Light and Alignment Spell Power"
+name = "Radiance"
 description_template = "{1} %b1 bonus to Light and Alignment spell power."
 home_bonus_type = "Equipment"
-verbose_name_template = "%b1 Light and Alignment Spell Power +{1}"
+set_bonus_line_template = "+{1} %b1 Bonus to Light and Alignment Spell Power"
+verbose_name_template = "%b1 Radiance +{1}"
+
+[[citation]]
+url = "https://ddowiki.com/page/Radiance_(spell_boost)"
+read = "2026-10-23"
 
 [[bonus]]
 amount_from = 1

@@ -1061,7 +1061,7 @@ fn natural_armor_set_line_names_natural_armor_as_the_wiki_does() {
 fn spell_power_and_lore_groups_carry_the_description_of_the_effect_that_grants_them() {
     for (group_name, description_template) in [
         ("Potency", "{1} %b1 bonus to each individual spell power. (Universal Spell Power is a different statistic)"),
-        ("Light and Alignment Spell Power", "{1} %b1 bonus to Light and Alignment spell power."),
+        ("Radiance", "{1} %b1 bonus to Light and Alignment spell power."),
         ("Negative and Poison Spell Power", "{1} %b1 bonus to Negative and Poison spell power."),
         (
             "Negative and Poison Spell Lore",

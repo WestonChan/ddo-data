@@ -1028,6 +1028,81 @@ fn ambiguous_set_lines_keep_the_declared_group_and_cited_tactics_removals_apply(
     assert_eq!(names, ["Combat Mastery"]);
 }
 
+fn build_wrapper_fixture(item_xml: &str, buff_definitions_xml: &str) -> Connection {
+    let source = fixture::xml_source();
+    let path = source.path().join("ItemBuffs.xml");
+    let definitions = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(path, definitions.replace("</Buffs>", &format!("{buff_definitions_xml}</Buffs>"))).unwrap();
+    std::fs::write(source.path().join("Items/Wrapper.item"), item_xml).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    db
+}
+
+fn assert_wrapper_group(db: &Connection, item_name: &str, group_name: &str, members: &[&str], grants: &[(&str, i64)]) {
+    let (group_id, is_group): (i64, bool) = db
+        .query_row("SELECT id,is_group FROM effects WHERE name=?1", [group_name], |row| Ok((row.get(0)?, row.get(1)?)))
+        .unwrap();
+    assert!(is_group, "{group_name} must be the group itself");
+    let link_count: i64 = db
+        .query_row(
+            "SELECT COUNT(*) FROM item_effects l JOIN items i ON i.id=l.item_id WHERE i.name=?1 AND l.effect_id=?2",
+            params![item_name, group_id],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(link_count as usize, grants.len());
+    let actual_members = db
+        .prepare("SELECT s.name FROM effect_bonuses b JOIN effects s ON s.id=b.target_effect_id WHERE b.effect_id=?1 AND s.is_stat=1 AND b.amount_from=1 AND b.bonus_type_id IS NULL ORDER BY s.name")
+        .unwrap()
+        .query_map([group_id], |row| row.get::<_, String>(0))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    let mut expected_members = members.iter().map(|member| (*member).to_string()).collect::<Vec<_>>();
+    expected_members.sort();
+    assert_eq!(actual_members, expected_members);
+    let actual = db
+        .prepare("SELECT s.name,bt.name,b.amount FROM owner_bonuses b JOIN effects s ON s.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id JOIN items i ON i.id=b.owner_id WHERE b.owner_kind='item' AND i.name=?1 AND b.via_effect_id=?2 ORDER BY s.name,bt.name,b.amount")
+        .unwrap()
+        .query_map(params![item_name, group_id], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?)))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    let mut expected = members
+        .iter()
+        .flat_map(|member| {
+            grants.iter().map(move |(bonus_type, amount)| ((*member).to_string(), (*bonus_type).to_string(), *amount))
+        })
+        .collect::<Vec<_>>();
+    expected.sort();
+    assert_eq!(actual, expected);
+}
+
+#[test]
+fn radiance_buffs_link_five_spell_powers_at_each_owners_type() {
+    let db = build_wrapper_fixture(
+        include_str!("fixtures/effect-groups/Radiance.item"),
+        include_str!("fixtures/effect-groups/Radiance.Buffs.xml"),
+    );
+    assert_wrapper_group(
+        &db,
+        "Epic Sceptre of Radiance",
+        "Radiance",
+        &["Light Spell Power", "Chaos Spell Power", "Evil Spell Power", "Good Spell Power", "Law Spell Power"],
+        &[("Equipment", 111), ("Insight", 55)],
+    );
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Light and Alignment Spell Power'"), 0);
+}
+
 #[test]
 fn potency_grants_each_named_spell_power_without_granting_universal_spell_power() {
     let (db, _) = built_fixture_db();

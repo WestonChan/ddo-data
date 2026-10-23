@@ -207,33 +207,14 @@ min_level = 23
 
 [[socket.option.effect]]
 bonus_type = "Equipment"
-effect = "Chaos Spell Power"
-value = 120
-
-[[socket.option.effect]]
-bonus_type = "Equipment"
-effect = "Evil Spell Power"
-value = 120
-
-[[socket.option.effect]]
-bonus_type = "Equipment"
-effect = "Good Spell Power"
-value = 120
-
-[[socket.option.effect]]
-bonus_type = "Equipment"
-effect = "Law Spell Power"
-value = 120
-
-[[socket.option.effect]]
-bonus_type = "Equipment"
-effect = "Light Spell Power"
+effect = "Radiance"
 value = 120
 
 [[socket.option.modifier]]
 amount_type = "Simple"
 amounts = [120]
 bonus_type = "Equipment"
+effect = "Radiance"
 effect_type = "SpellPower"
 targets = [
     "Chaos",

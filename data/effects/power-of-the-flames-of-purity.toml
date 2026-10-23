@@ -14,4 +14,4 @@ target = "Fire Spell Power"
 amount_from = 1
 rounding = "down"
 scale = 1.0
-target = "Light and Alignment Spell Power"
+target = "Radiance"

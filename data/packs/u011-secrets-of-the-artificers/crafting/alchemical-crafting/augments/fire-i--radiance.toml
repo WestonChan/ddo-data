@@ -10,27 +10,7 @@ icon = "Diamond"
 min_level = 29
 
 [[effect]]
-name = "Light Spell Power"
-bonus_type = "Equipment"
-value = 152
-
-[[effect]]
-name = "Chaos Spell Power"
-bonus_type = "Equipment"
-value = 152
-
-[[effect]]
-name = "Evil Spell Power"
-bonus_type = "Equipment"
-value = 152
-
-[[effect]]
-name = "Good Spell Power"
-bonus_type = "Equipment"
-value = 152
-
-[[effect]]
-name = "Law Spell Power"
+name = "Radiance"
 bonus_type = "Equipment"
 value = 152
 
@@ -43,6 +23,7 @@ value = 21
 amount_type = "Simple"
 amounts = [152]
 bonus_type = "Equipment"
+effect = "Radiance"
 effect_type = "SpellPower"
 targets = [
     "Light/Alignment",

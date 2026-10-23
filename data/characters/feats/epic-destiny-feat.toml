@@ -868,27 +868,7 @@ source_name = "Epic"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Light Spell Power"
-value = 20
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Chaos Spell Power"
-value = 20
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Evil Spell Power"
-value = 20
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Good Spell Power"
-value = 20
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Law Spell Power"
+effect = "Radiance"
 value = 20
 
 [[row.effect]]
@@ -903,6 +883,7 @@ group_name = "Epic Destiny Feat"
 amount_type = "Simple"
 amounts = [20]
 bonus_type = "Feat"
+effect = "Radiance"
 effect_type = "SpellPower"
 targets = [
     "Light/Alignment",

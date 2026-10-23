@@ -47,27 +47,7 @@ level_values = [
 ]
 
 [[effect]]
-name = "Light Spell Power"
-bonus_type = "Equipment"
-value = 159
-
-[[effect]]
-name = "Chaos Spell Power"
-bonus_type = "Equipment"
-value = 159
-
-[[effect]]
-name = "Evil Spell Power"
-bonus_type = "Equipment"
-value = 159
-
-[[effect]]
-name = "Good Spell Power"
-bonus_type = "Equipment"
-value = 159
-
-[[effect]]
-name = "Law Spell Power"
+name = "Radiance"
 bonus_type = "Equipment"
 value = 159
 
@@ -75,6 +55,7 @@ value = 159
 amount_type = "Simple"
 amounts = [159]
 bonus_type = "Equipment"
+effect = "Radiance"
 effect_type = "SpellPower"
 targets = [
     "Light/Alignment",

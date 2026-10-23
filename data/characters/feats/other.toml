@@ -9954,27 +9954,7 @@ value = 3
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Light Spell Power"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Chaos Spell Power"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Evil Spell Power"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Good Spell Power"
-value = 10
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Law Spell Power"
+effect = "Radiance"
 value = 10
 
 [[row.modifier]]
@@ -9989,6 +9969,7 @@ targets = ["Positive"]
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Feat"
+effect = "Radiance"
 effect_type = "SpellPower"
 targets = [
     "Light/Alignment",

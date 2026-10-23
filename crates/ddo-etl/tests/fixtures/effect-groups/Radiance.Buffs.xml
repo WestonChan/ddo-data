@@ -1,0 +1,16 @@
+<Buff>
+  <Type>Radiance</Type>
+  <DisplayText>%b1 Radiance %v1: %v1 %b1 bonus to Light and Alignment spell power.</DisplayText>
+  <Ignore>Equipment</Ignore>
+  <Effect>
+    <Type>SpellPower</Type>
+    <Bonus>Not Set</Bonus>
+    <AType>Simple</AType>
+    <Amount size="1">0</Amount>
+    <Item>Chaos</Item>
+    <Item>Evil</Item>
+    <Item>Good</Item>
+    <Item>Lawful</Item>
+    <Item>Light/Alignment</Item>
+  </Effect>
+</Buff>
