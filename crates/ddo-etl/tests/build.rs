@@ -67,6 +67,46 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 }
 
 #[test]
+fn note_lines_resolve_split_links_and_only_the_qualified_set_tier() {
+    let db = fixture::verification_note_database(|root| {
+        let path = root.join("packs/free-to-play/the-harpers/quests/search-and-rescue/gear/heartwood.toml");
+        let contents = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{contents}\n[[verification_request]]\nkind = 'item_bonus'\nfield = 'lines'\nqualifier = 'Sheltering / Insight'\nquestion = 'Are these two separate Insight lines?'\nassumed = 'Separate Physical and Magical Sheltering'\nraised = '2026-10-23'\n[[verification_request.source]]\nurl = 'https://ddowiki.com/page/Item:Heartwood'\nread = '2026-10-23'\nsays = 'Two Insight Sheltering lines'\n")).unwrap();
+        let path = root.join("packs/shared/sets/legendary-hruits-influence.toml");
+        let contents = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{contents}\n[[tier]]\nequipped_count = 4\n[[tier.effect]]\neffect = 'Wisdom'\nbonus_type = 'Artifact'\nvalue = 3\n[[verification_request]]\nkind = 'set_tier_bonus'\nfield = 'value'\nqualifier = 'equipped_count 3, Wisdom / Artifact'\nquestion = 'Is the recorded Wisdom value current?'\nassumed = 3\nraised = '2026-10-23'\n[[verification_request.source]]\nin_game = true\nread = '2026-10-23'\nsays = 'The displayed value is three.'\n")).unwrap();
+        let path = root.join("packs/shared/gear/alabaster-of-the-twelve.toml");
+        let contents = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{contents}\n[[game_bug_correction]]\nkind = 'item_bonus'\nfield = 'remove'\nqualifier = 'Intelligence / Penalty'\nintended = -2\nreason = 'The intended penalty is absent in game.'\nin_game = true\nread = '2026-10-23'\n")).unwrap();
+    });
+    let heartwood: Vec<i64> = db.prepare("SELECT line.link_sort_order FROM note_lines line JOIN items item ON item.id=line.owner_id WHERE line.owner_kind='item' AND item.name='Heartwood' ORDER BY line.link_sort_order").unwrap().query_map([], |row| row.get(0)).unwrap().collect::<rusqlite::Result<_>>().unwrap();
+    assert_eq!(heartwood, [0, 1]);
+    let tiers: Vec<(i64, String)> = db.prepare("SELECT tier.equipped_count,effect.name FROM note_lines note JOIN set_bonus_tiers tier ON tier.id=note.owner_id JOIN set_bonus_tier_effects line ON line.tier_id=tier.id AND line.sort_order=note.link_sort_order JOIN effects effect ON effect.id=line.effect_id WHERE note.owner_kind='set_bonus_tier'").unwrap().query_map([], |row| Ok((row.get(0)?,row.get(1)?))).unwrap().collect::<rusqlite::Result<_>>().unwrap();
+    assert_eq!(tiers, [(3, "Wisdom".into())]);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM note_lines WHERE note_kind='game_bug'"), 0);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM game_bug_corrections"), 1);
+    ddo_etl::tree::rederive_data_build_tables(&db).unwrap();
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM note_lines"), 3);
+}
+
+#[test]
+fn note_lines_include_zero_amounts_and_named_effect_targets() {
+    let db = fixture::verification_note_database(|root| {
+        let path = root.join("packs/free-to-play/the-harpers/quests/search-and-rescue/gear/heartwood.toml");
+        let contents = std::fs::read_to_string(&path).unwrap().replacen("value = 10", "value = 0", 1);
+        std::fs::write(path, format!("{contents}\n[[verification_request]]\nkind = 'item_bonus'\nfield = 'value'\nqualifier = 'Physical Sheltering / Insight'\nquestion = 'Does the zero bonus apply?'\nassumed = 0\nraised = '2026-10-23'\n[[verification_request.source]]\nin_game = true\nread = '2026-10-23'\nsays = 'Zero on the line.'\n[[verification_request]]\nkind = 'item_effect'\nfield = 'value'\nqualifier = 'effect \"Repair Amplification\"'\nquestion = 'Is this named line current?'\nassumed = 33\nraised = '2026-10-23'\n[[verification_request.source]]\nin_game = true\nread = '2026-10-23'\nsays = 'Thirty-three on the line.'\n")).unwrap();
+    });
+    let orders: Vec<i64> = db
+        .prepare("SELECT link_sort_order FROM note_lines ORDER BY link_sort_order")
+        .unwrap()
+        .query_map([], |row| row.get(0))
+        .unwrap()
+        .collect::<rusqlite::Result<_>>()
+        .unwrap();
+    assert_eq!(orders, [0, 2]);
+}
+
+#[test]
 fn plague_wolf_member_removal_precedes_grouping_and_value_correction() {
     let source = fixture::xml_source();
     fixture::write_plague_wolf_feat(source.path());

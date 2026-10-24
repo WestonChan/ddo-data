@@ -151,6 +151,8 @@ database_record! {
             ddobuilder_correction: Vec<DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             game_bug_correction: Vec<crate::tree::GameBugCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            verification_request: Vec<crate::tree::VerificationRequest>,
             #[serde(flatten)]
             requirements: Requirements,
         }

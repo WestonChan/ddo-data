@@ -129,6 +129,53 @@ fn a_merge_import_reports_a_missing_member_and_keeps_the_correction() {
 }
 
 #[test]
+fn verification_requests_remain_ours_through_import_and_export() {
+    let world = ImportWorld::new(Corrections::default());
+    let path = walkdir::WalkDir::new(&world.options.data_dir)
+        .into_iter()
+        .map(Result::unwrap)
+        .find(|entry| entry.file_name() == "tree.toml")
+        .unwrap()
+        .into_path();
+    let original = std::fs::read_to_string(&path).unwrap();
+    let request = "\n[[verification_request]]\nquestion = 'Is this tree current?'\nassumed = 'The recorded tree'\nraised = '2026-10-23'\n[[verification_request.source]]\nurl = 'https://ddowiki.com/page/Enhancements'\nread = '2026-10-23'\nsays = 'The typed tree'\n[[verification_request.source]]\nin_game = true\nread = '2026-10-23'\nsays = 'The observed tree'\n";
+    std::fs::write(&path, format!("{original}{request}")).unwrap();
+    let before = world.database();
+    for (source, previous, sha) in
+        [(&world.options.previous_dir, true, PREVIOUS_SHA), (&world.options.source_dir, false, NEW_SHA)]
+    {
+        let normalized = ddo_etl::import_ddobuilder::normalized_upstream_database(
+            source,
+            &before,
+            &DatasetVersion { upstream_sha: sha.into(), built_at: "2026-10-23T00:00:00Z".into() },
+            previous,
+            &world.scratch.path().join(if previous { "A" } else { "B" }),
+        )
+        .unwrap();
+        for table in ["verification_requests", "verification_request_sources", "note_lines"] {
+            assert_eq!(
+                normalized
+                    .db
+                    .query_row(&format!("SELECT COUNT(*) FROM {table}"), [], |row| row.get::<_, i64>(0))
+                    .unwrap(),
+                0
+            );
+        }
+    }
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert!(!report.to_string().contains("verification_request"), "{report}");
+    let restored: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+    let expected: toml::Value = toml::from_str(request).unwrap();
+    assert_eq!(restored["verification_request"], expected["verification_request"]);
+    let after = world.database();
+    assert_eq!(
+        after.query_row("SELECT COUNT(*) FROM verification_request_sources", [], |row| row.get::<_, i64>(0)).unwrap(),
+        2
+    );
+}
+
+#[test]
 fn plague_wolf_import_preserves_game_bug_evidence_when_upstream_adopts_the_value() {
     for adopted in [false, true] {
         let corrections =

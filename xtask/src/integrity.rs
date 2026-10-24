@@ -2210,7 +2210,7 @@ fn empty_tables(db: &Connection, options: &IntegrityOptions) -> Result<Findings>
     for table_name in table_names {
         if matches!(
             table_name.as_str(),
-            "game_bug_corrections" | "verification_requests" | "verification_request_sources"
+            "game_bug_corrections" | "verification_requests" | "verification_request_sources" | "note_lines"
         ) {
             notes.push(format!(
                 "allowed empty: {table_name}: optional annotation table; zero recorded bugs or open questions is valid"

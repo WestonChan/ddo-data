@@ -274,8 +274,14 @@ pub(super) fn report(
     entries.sort_by(|left, right| {
         (&left.category, &left.path, &left.detail).cmp(&(&right.category, &right.path, &right.detail))
     });
-    let game_bug_counts = tables.remove(crate::tree::GameBugCorrection::TABLE).unwrap_or_default();
-    anyhow::ensure!(game_bug_counts == ImportTableCounts::default(), "upstream import changed game-bug annotations");
+    for table in [
+        crate::tree::GameBugCorrection::TABLE,
+        crate::tree::VerificationRequest::TABLE,
+        crate::tree::VerificationRequestSource::TABLE,
+    ] {
+        let note_counts = tables.remove(table).unwrap_or_default();
+        anyhow::ensure!(note_counts == ImportTableCounts::default(), "upstream import changed {table} annotations");
+    }
     Ok(DdobuilderImportReport {
         previous_sha: revisions.0,
         new_sha: revisions.1,

@@ -16,7 +16,9 @@ database_record! {
             citation: Vec<crate::tree::Citation>, #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            game_bug_correction: Vec<crate::tree::GameBugCorrection>, }
+            game_bug_correction: Vec<crate::tree::GameBugCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            verification_request: Vec<crate::tree::VerificationRequest>, }
     }
 }
 

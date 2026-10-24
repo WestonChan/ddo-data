@@ -590,12 +590,25 @@ fn damage_row_is_present(transaction: &Transaction, effect_id: i64, damage: &Dam
 }
 
 #[derive(Debug, PartialEq, Eq)]
-pub(super) struct LineBonus {
-    pub(super) order: usize,
-    pub(super) effect_name: String,
-    pub(super) stat_name: String,
-    pub(super) bonus_type: Option<String>,
-    pub(super) amount: Option<i64>,
+pub(crate) struct LineBonus {
+    pub(crate) order: usize,
+    pub(crate) effect_name: String,
+    pub(crate) stat_name: String,
+    pub(crate) bonus_type: Option<String>,
+    pub(crate) amount: Option<i64>,
+}
+
+impl LineBonus {
+    fn from_row(row: &rusqlite::Row<'_>) -> rusqlite::Result<Self> {
+        let order = row.get::<_, i64>(0)?;
+        Ok(Self {
+            order: usize::try_from(order).map_err(|_| rusqlite::Error::IntegralValueOutOfRange(0, order))?,
+            effect_name: row.get(1)?,
+            stat_name: row.get(2)?,
+            bonus_type: row.get(3)?,
+            amount: row.get(4)?,
+        })
+    }
 }
 
 pub(super) struct LineMerge {
@@ -611,11 +624,7 @@ pub(super) fn line_bonus_rows(
     pending: Option<&[super::modifiers::DerivedEffectLink]>,
 ) -> Result<Vec<LineBonus>> {
     let table = BonusLinkTable::of(kind)?;
-    let selected = format!(
-        "{}.sort_order,e.name,resolved_stat.name,bonus_types.name,{}",
-        table.table_name,
-        table.effective_value_sql()
-    );
+    let selected = table.line_bonus_columns();
     let mut query = format!("{} AND (e.is_stat=1 OR es.effect_id IS NOT NULL)", table.bonus_rows_sql(&selected));
     let mut arguments = vec![SqlValue::Integer(owner_id), SqlValue::Null, SqlValue::Null, SqlValue::Null];
     if let Some(pending) = pending {
@@ -631,19 +640,26 @@ pub(super) fn line_bonus_rows(
         arguments.push(SqlValue::Text(serde_json::to_string(&links)?));
     }
     let mut statement = transaction.prepare(&query)?;
-    let rows = statement
-        .query_map(params_from_iter(arguments), |row| {
-            let order = row.get::<_, i64>(0)?;
-            Ok(LineBonus {
-                order: usize::try_from(order).map_err(|_| rusqlite::Error::IntegralValueOutOfRange(0, order))?,
-                effect_name: row.get(1)?,
-                stat_name: row.get(2)?,
-                bonus_type: row.get(3)?,
-                amount: row.get(4)?,
-            })
-        })?
-        .collect::<rusqlite::Result<_>>()?;
+    let rows =
+        statement.query_map(params_from_iter(arguments), LineBonus::from_row)?.collect::<rusqlite::Result<_>>()?;
     Ok(rows)
+}
+
+pub(crate) fn line_bonuses_by_owner(
+    db: &rusqlite::Connection,
+    kind: CorrectionKind,
+) -> Result<std::collections::BTreeMap<i64, Vec<LineBonus>>> {
+    let table = BonusLinkTable::of(kind)?;
+    let selected = format!("{},{}.{}", table.line_bonus_columns(), table.table_name, table.owner_column);
+    let mut statement = db.prepare(&table.bonus_rows_sql(&selected))?;
+    let mut owners = std::collections::BTreeMap::<i64, Vec<LineBonus>>::new();
+    for row in statement.query_map([SqlValue::Null, SqlValue::Null, SqlValue::Null, SqlValue::Null], |row| {
+        Ok((row.get::<_, i64>(5)?, LineBonus::from_row(row)?))
+    })? {
+        let (owner, bonus) = row?;
+        owners.entry(owner).or_default().push(bonus);
+    }
+    Ok(owners)
 }
 
 pub(super) fn line_merge_selection(correction: &Correction, rows: &[LineBonus]) -> Result<Option<LineMerge>> {
@@ -1046,6 +1062,13 @@ struct BonusLinkTable {
 }
 
 impl BonusLinkTable {
+    fn line_bonus_columns(&self) -> String {
+        format!(
+            "{}.sort_order,e.name,resolved_stat.name,bonus_types.name,{}",
+            self.table_name,
+            self.effective_value_sql()
+        )
+    }
     const AUGMENT: Self = Self { table_name: "augment_effects", owner_column: "augment_id" };
     const FEAT: Self = Self { table_name: "feat_effects", owner_column: "feat_id" };
     const ITEM: Self = Self { table_name: "item_effects", owner_column: "item_id" };
@@ -1070,7 +1093,7 @@ impl BonusLinkTable {
               LEFT JOIN effect_bonuses expanded ON expanded.effect_id = es.target_effect_id AND (?2 IS NULL OR (e.id != ?2 AND es.target_effect_id != ?2))
               LEFT JOIN bonus_types ON bonus_types.id = COALESCE(es.bonus_type_id, {table_name}.bonus_type_id)
               JOIN effects resolved_stat ON resolved_stat.id = COALESCE(expanded.target_effect_id, es.target_effect_id, e.id)
-              WHERE {table_name}.{owner_column} IN (SELECT value FROM json_each(?1)) AND (?2 IS NULL OR es.target_effect_id = ?2 OR expanded.target_effect_id = ?2 OR e.id = ?2)
+              WHERE (?1 IS NULL OR {table_name}.{owner_column} IN (SELECT value FROM json_each(?1))) AND (?2 IS NULL OR es.target_effect_id = ?2 OR expanded.target_effect_id = ?2 OR e.id = ?2)
                 AND (?4 IS NULL OR {effective_value} = ?4)"
         )
     }

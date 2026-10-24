@@ -177,6 +177,21 @@ pub(crate) fn database(edit: impl FnOnce(&std::path::Path)) -> rusqlite::Connect
     db
 }
 
+pub(crate) fn verification_note_database(edit: impl FnOnce(&std::path::Path)) -> rusqlite::Connection {
+    database(|root| {
+        let captured = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/verification-notes/data");
+        std::fs::remove_file(root.join("effects/sheltering.toml")).unwrap();
+        for entry in
+            walkdir::WalkDir::new(&captured).into_iter().map(Result::unwrap).filter(|entry| entry.file_type().is_file())
+        {
+            let destination = root.join(entry.path().strip_prefix(&captured).unwrap());
+            std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+            std::fs::copy(entry.path(), destination).unwrap();
+        }
+        edit(root);
+    })
+}
+
 pub(crate) fn fixture_icon_corrections() -> Corrections {
     let mut corrections = Corrections::from_database(&database(|_| {})).unwrap();
     corrections.entries.retain(|entry| entry.field == "icon");

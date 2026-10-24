@@ -1570,7 +1570,7 @@ fn tables_not_empty_prints_the_tables_allowed_to_be_empty() {
 fn optional_annotation_tables_may_be_empty_without_hiding_required_tables() {
     let scratch = tempfile::tempdir().unwrap();
     let db = Connection::open(fixture_db_copy_with(scratch.path(), "")).unwrap();
-    for table in ["game_bug_corrections", "verification_requests", "verification_request_sources"] {
+    for table in ["game_bug_corrections", "verification_requests", "verification_request_sources", "note_lines"] {
         db.execute_batch(&format!("CREATE TABLE IF NOT EXISTS {table} (id INTEGER PRIMARY KEY); DELETE FROM {table};"))
             .unwrap();
     }
@@ -1578,7 +1578,7 @@ fn optional_annotation_tables_may_be_empty_without_hiding_required_tables() {
     let report = integrity_report(&db, &fixture_options()).unwrap();
     let outcome = report.outcome("tables_not_empty").unwrap();
     assert_eq!(outcome.offenders.iter().map(|offender| offender.name.as_str()).collect::<Vec<_>>(), ["required_probe"]);
-    for table in ["game_bug_corrections", "verification_requests", "verification_request_sources"] {
+    for table in ["game_bug_corrections", "verification_requests", "verification_request_sources", "note_lines"] {
         assert!(
             outcome
                 .notes

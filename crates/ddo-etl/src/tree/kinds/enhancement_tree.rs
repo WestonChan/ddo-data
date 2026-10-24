@@ -38,6 +38,8 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             game_bug_correction: Vec<crate::tree::GameBugCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            verification_request: Vec<crate::tree::VerificationRequest>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             attack: Vec<Attack>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             dc: Vec<DifficultyClass>,
@@ -104,6 +106,8 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             game_bug_correction: Vec<crate::tree::GameBugCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            verification_request: Vec<crate::tree::VerificationRequest>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             modifier: Vec<Modifier>,
             #[serde(flatten)]
             requirements: Requirements,
@@ -138,6 +142,8 @@ database_record! {
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             game_bug_correction: Vec<crate::tree::GameBugCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            verification_request: Vec<crate::tree::VerificationRequest>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             enhancement: Vec<Enhancement>,
             #[serde(flatten)]

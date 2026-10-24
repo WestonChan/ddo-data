@@ -316,10 +316,7 @@ pub(super) fn validate_game_bug_corrections(
     for (owner_kind, owner_id, annotation, owner_name) in annotations {
         let path = layout.path(&owner_kind, owner_id)?;
         (|| -> Result<()> {
-            let target_owner_kind = match annotation.kind {
-                CorrectionKind::SetTier | CorrectionKind::SetTierBonus => "set_bonuses",
-                kind => kind.table_name(),
-            };
+            let target_owner_kind = annotation_owner_kind(annotation.kind);
             ensure!(owner_kind == target_owner_kind, "game-bug kind {} does not address {owner_kind}", annotation.kind);
             let owner_name = owner_name.context("game-bug target owner is absent")?;
             let note = DdobuilderCorrection {
@@ -352,6 +349,172 @@ pub(super) fn validate_game_bug_corrections(
             Ok(())
         })()
         .with_context(|| format!("{}: game-bug correction", path.display()))?;
+    }
+    Ok(())
+}
+
+fn annotation_owner_kind(kind: CorrectionKind) -> &'static str {
+    match kind {
+        CorrectionKind::SetTier | CorrectionKind::SetTierBonus => "set_bonuses",
+        kind => kind.table_name(),
+    }
+}
+
+pub(super) fn validate_verification_requests(
+    transaction: &Transaction,
+    groupings: &crate::groupings::Groupings,
+    layout: &super::ExportLayout,
+) -> Result<()> {
+    let mut statement = transaction.prepare(&format!(
+        "SELECT request.*, identity.name AS owner_name, source.url, source.in_game FROM
+         (SELECT id, {} FROM verification_requests) request
+         LEFT JOIN entity_identity identity ON identity.kind = request.owner_kind AND identity.entity_id = request.owner_id JOIN verification_request_sources source ON source.request_id = request.id AND source.sort_order = 0",
+        super::VerificationRequest::select_columns()
+    ))?;
+    let requests = statement
+        .query_map([], |row| {
+            Ok((
+                row.get::<_, String>("owner_kind")?,
+                row.get::<_, i64>("owner_id")?,
+                super::VerificationRequest::from_row(row)?,
+                row.get::<_, Option<String>>("owner_name")?,
+                crate::AnnotationSource::from_columns(row.get("url")?, row.get("in_game")?)?,
+            ))
+        })?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    for (owner_kind, owner_id, request, owner_name, source) in requests {
+        let path = layout.path(&owner_kind, owner_id)?;
+        (|| -> Result<()> {
+            let Some(kind) = request.kind else {
+                ensure!(request.assumed.is_string(), "a whole-entity request's assumed value must be free text");
+                return Ok(());
+            };
+            ensure!(
+                owner_kind == annotation_owner_kind(kind),
+                "verification kind {kind} does not address {owner_kind}"
+            );
+            let owner_name = owner_name.context("verification target owner is absent")?;
+            let note = DdobuilderCorrection {
+                kind,
+                field: request.field,
+                qualifier: request.qualifier,
+                original_name: None,
+                added_as_name: None,
+                upstream: Some(request.assumed.clone()),
+                reason: request.question,
+                source,
+                read: request.raised,
+            };
+            let mut correction = correction_for_note(&note, &owner_name)?;
+            let field = correction.correctable_field()?;
+            if field.shape == FieldShape::BonusLines {
+                ensure!(request.assumed.is_string(), "a line-structure request's assumed value must be free text");
+            } else {
+                correction.from = CorrectionValue::from_json(&request.assumed.to_string())?;
+                correction.to = data_correction_value(transaction, &correction, &owner_name, groupings)?;
+                ensure!(
+                    correction.to.as_text() != Some(NO_SUCH_BONUS),
+                    "verification target is absent: {}",
+                    correction.label()
+                );
+                correction.validate_values(field)?;
+                ensure!(
+                    correction.from == correction.to,
+                    "{}: assumed value differs from the file; resolve the request or update assumed",
+                    correction.label()
+                );
+            }
+            Ok(())
+        })()
+        .with_context(|| format!("{}: verification request", path.display()))?;
+    }
+    Ok(())
+}
+
+pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
+    let mut statement = db.prepare(
+        "SELECT 'game_bug' AS note_kind, id, owner_kind, owner_id, kind, field, qualifier, reason, url, in_game, read FROM game_bug_corrections
+         UNION ALL
+         SELECT 'unverified', request.id, request.owner_kind, request.owner_id, request.kind, request.field, request.qualifier, request.question, source.url, source.in_game, request.raised
+         FROM verification_requests request JOIN verification_request_sources source ON source.request_id=request.id AND source.sort_order=0 WHERE request.kind IS NOT NULL"
+    )?;
+    let notes = statement
+        .query_map([], |row| {
+            let kind: String = row.get("kind")?;
+            Ok((
+                row.get::<_, String>("note_kind")?,
+                row.get::<_, i64>("id")?,
+                row.get::<_, String>("owner_kind")?,
+                row.get::<_, i64>("owner_id")?,
+                DdobuilderCorrection {
+                    kind: CorrectionKind::parse(&kind).ok_or(rusqlite::Error::InvalidQuery)?,
+                    field: row.get("field")?,
+                    qualifier: row.get("qualifier")?,
+                    original_name: None,
+                    added_as_name: None,
+                    upstream: None,
+                    reason: row.get("reason")?,
+                    source: crate::AnnotationSource::from_columns(row.get("url")?, row.get("in_game")?)?,
+                    read: row.get("read")?,
+                },
+            ))
+        })?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    if notes.is_empty() {
+        return Ok(());
+    }
+    let groupings = crate::groupings::Groupings::from_database(db)?;
+    let mut bonuses = BTreeMap::new();
+    for kind in [
+        CorrectionKind::ItemBonus,
+        CorrectionKind::AugmentBonus,
+        CorrectionKind::FeatBonus,
+        CorrectionKind::SetTierBonus,
+    ] {
+        for (owner, rows) in crate::build::line_bonuses_by_owner(db, kind)? {
+            bonuses.insert((kind.as_str(), owner), rows);
+        }
+    }
+    let mut statement = db.prepare("SELECT set_id, equipped_count, id FROM set_bonus_tiers")?;
+    let tiers = statement
+        .query_map([], |row| Ok(((row.get::<_, i64>(0)?, row.get::<_, i64>(1)?), row.get::<_, i64>(2)?)))?
+        .collect::<rusqlite::Result<BTreeMap<_, _>>>()?;
+    let layout = super::ExportLayout::from_database(db)?;
+    for (note_kind, note_id, owner_kind, owner_id, note) in notes {
+        if note.field == "remove" || owner_kind != annotation_owner_kind(note.kind) {
+            continue;
+        }
+        let (bonus_kind, link_owner_kind) = match note.kind {
+            CorrectionKind::ItemBonus | CorrectionKind::ItemEffect => (CorrectionKind::ItemBonus, "item"),
+            CorrectionKind::AugmentBonus => (CorrectionKind::AugmentBonus, "augment"),
+            CorrectionKind::FeatBonus => (CorrectionKind::FeatBonus, "feat"),
+            CorrectionKind::SetTierBonus => (CorrectionKind::SetTierBonus, "set_bonus_tier"),
+            _ => continue,
+        };
+        (|| -> Result<()> {
+            let correction = correction_for_note(&note, "")?;
+            let link_owner = if note.kind == CorrectionKind::SetTierBonus {
+                let count = correction.equipped_count.context("set annotation needs a piece count")?;
+                *tiers.get(&(owner_id, count)).context("set annotation's tier is absent")?
+            } else { owner_id };
+            let target = correction.stat.as_deref().or(correction.effect.as_deref()).context("bonus annotation must name its target")?;
+            let expected = groupings.expanded_stat_names(target)?;
+            let matching = bonuses.get(&(bonus_kind.as_str(), link_owner)).into_iter().flatten().filter(|row| {
+                if note.kind == CorrectionKind::ItemEffect { return row.effect_name == target; }
+                (expected.contains(&row.stat_name) || row.effect_name == target)
+                    && row.bonus_type.as_deref() == correction.bonus_type.as_deref().filter(|name| *name != crate::corrections::NULL_SPELLING)
+                    && correction.bonus_value.is_none_or(|amount| row.amount == Some(amount))
+            }).collect::<Vec<_>>();
+            if note.field == "lines" {
+                let actual = matching.iter().map(|row| row.stat_name.clone()).collect::<std::collections::BTreeSet<_>>();
+                ensure!(!expected.is_empty() && actual == expected, "verification line target {target:?} is absent or incomplete");
+            }
+            let orders = matching.iter().map(|row| row.order).collect::<std::collections::BTreeSet<_>>();
+            for order in orders {
+                db.execute("INSERT INTO note_lines (note_kind,note_id,owner_kind,owner_id,link_sort_order) VALUES (?1,?2,?3,?4,?5)", params![note_kind, note_id, link_owner_kind, link_owner, order as i64])?;
+            }
+            Ok(())
+        })().with_context(|| format!("{}: note target", layout.path(&owner_kind, owner_id).map(|path| path.display().to_string()).unwrap_or(owner_kind)))?;
     }
     Ok(())
 }

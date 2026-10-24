@@ -133,6 +133,42 @@ CREATE TABLE IF NOT EXISTS game_bug_corrections (
     UNIQUE (owner_kind, owner_id, kind, qualifier, field)
 );
 
+CREATE TABLE IF NOT EXISTS verification_requests (
+    id INTEGER PRIMARY KEY,
+    owner_kind TEXT NOT NULL,
+    owner_id INTEGER NOT NULL,
+    kind TEXT CHECK (kind {correction_kind}),
+    field TEXT NOT NULL DEFAULT '',
+    qualifier TEXT NOT NULL DEFAULT '',
+    question TEXT NOT NULL CHECK (trim(question) <> ''),
+    assumed_value TEXT NOT NULL,
+    raised TEXT NOT NULL,
+    CHECK ((kind IS NULL AND field = '' AND qualifier = '') OR (kind IS NOT NULL AND field <> '')),
+    UNIQUE (owner_kind, owner_id, kind, field, qualifier)
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_verification_requests_whole_entity
+    ON verification_requests(owner_kind, owner_id) WHERE kind IS NULL;
+
+CREATE TABLE IF NOT EXISTS verification_request_sources (
+    request_id INTEGER NOT NULL REFERENCES verification_requests(id) ON DELETE CASCADE,
+    sort_order INTEGER NOT NULL,
+    says TEXT NOT NULL CHECK (trim(says) <> ''),
+    url TEXT,
+    in_game INTEGER NOT NULL DEFAULT 0 CHECK (in_game IN (0, 1)),
+    read TEXT NOT NULL,
+    CHECK ((url IS NOT NULL AND in_game = 0) OR (url IS NULL AND in_game = 1)),
+    PRIMARY KEY (request_id, sort_order)
+);
+
+CREATE TABLE IF NOT EXISTS note_lines (
+    note_kind TEXT NOT NULL CHECK (note_kind IN ('game_bug', 'unverified')),
+    note_id INTEGER NOT NULL,
+    owner_kind TEXT NOT NULL,
+    owner_id INTEGER NOT NULL,
+    link_sort_order INTEGER NOT NULL,
+    PRIMARY KEY (note_kind, note_id, owner_kind, owner_id, link_sort_order)
+);
+
 CREATE TABLE IF NOT EXISTS removed_entities (
     owner_kind TEXT NOT NULL,
     owner_id INTEGER NOT NULL,

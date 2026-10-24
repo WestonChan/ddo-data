@@ -99,6 +99,41 @@ fn game_bug_targets_and_intended_values_are_checked() {
 }
 
 #[test]
+fn verification_requests_require_valid_targets_assumptions_and_sources() {
+    let source = "\n[[verification_request.source]]\nin_game = true\nread = '2026-10-23'\nsays = 'The tooltip lists this amount.'\n";
+    let request = |target: &str, assumed: &str| {
+        format!("\n[[verification_request]]\n{target}\nquestion = 'Which value applies?'\nassumed = {assumed}\nraised = '2026-10-23'\n")
+    };
+    let valid = request("kind = 'item_bonus'\nfield = 'value'\nqualifier = 'Charisma / Penalty'", "-4");
+    let whole = request("", "'As recorded'");
+    let check = |notes: &str| {
+        fixture::data_build_error(|root| {
+            let path = root.join(SAGA_ITEM);
+            let contents = std::fs::read_to_string(&path).unwrap();
+            std::fs::write(
+                path,
+                format!("{contents}\n[[effect]]\nname = 'Charisma'\nbonus_type = 'Penalty'\nvalue = -4\n{notes}"),
+            )
+            .unwrap();
+        })
+    };
+    assert_eq!(check(&format!("{valid}{source}{whole}{source}")), "");
+    for (notes, expected) in [
+        (format!("{}{source}", valid.replace("assumed = -4", "assumed = -2")), "assumed"),
+        (format!("{}{source}", valid.replace("Charisma / Penalty", "Intelligence / Penalty")), "absent"),
+        (valid.clone(), "source"),
+        (format!("{valid}{source}{valid}{source}"), "UNIQUE"),
+        (format!("{whole}{source}{whole}{source}"), "UNIQUE"),
+        (format!("{}{source}", valid.replace("assumed = -4", "assumed = 'four'")), "does not fit"),
+        (format!("{}{source}", valid.replace("kind = 'item_bonus'", "kind = 'feat_bonus'")), "does not address"),
+        (format!("{}{source}", valid.replace("kind = 'item_bonus'\n", "")), "kind"),
+    ] {
+        let error = check(&notes);
+        assert!(error.contains("alabaster-of-the-twelve.toml") && error.contains(expected), "{expected}: {error}");
+    }
+}
+
+#[test]
 fn a_citation_field_must_be_empty_or_a_field_of_its_record() {
     const ITEM: &str = "packs/shared/gear/alabaster-of-the-twelve.toml";
     let cite = |field: &'static str| {

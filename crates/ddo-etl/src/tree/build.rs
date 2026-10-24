@@ -440,6 +440,7 @@ pub fn rederive_data_build_tables(db: &Connection) -> Result<()> {
     crate::delta::clear_rederived_tables(db)?;
     crate::build::effect_vocabulary::insert_data_effect_vocabulary(db)?;
     insert_entity_identities(db)?;
+    correction_notes::rederive_note_lines(db)?;
     let violations = super::redirects::redirect_violations(db)?;
     ensure!(violations.is_empty(), "redirects.toml: {}", violations.join("\n"));
     Ok(())
@@ -884,6 +885,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
     validate_data_icons(&transaction, &icon_index)?;
     let layout = ExportLayout::from_database(&transaction)?;
     correction_notes::validate_game_bug_corrections(&transaction, &groupings, &layout)?;
+    correction_notes::validate_verification_requests(&transaction, &groupings, &layout)?;
 
     for (path, kind, name, id) in entity_locations {
         let current = path.strip_prefix(root)?;

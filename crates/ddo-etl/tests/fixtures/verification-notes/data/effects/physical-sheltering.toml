@@ -1,0 +1,10 @@
+name = "Physical Sheltering"
+description_template = "{1} %b1 bonus to Physical Resistance Rating"
+home_bonus_type = "Enhancement"
+verbose_name_template = "Physical Sheltering +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Physical Resistance Rating"

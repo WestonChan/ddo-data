@@ -294,6 +294,9 @@ macro_rules! database_record {
     (@annotation_attachment [$table:expr] [$($parameters:tt)*] [$($annotations:ident,)*] [game_bug_correction, $($rest:ident,)*]) => {
         database_record!(@annotation_attachment [$table] [$($parameters)*] [$($annotations,)* game_bug_correction,] [$($rest,)*]);
     };
+    (@annotation_attachment [$table:expr] [$($parameters:tt)*] [$($annotations:ident,)*] [verification_request, $($rest:ident,)*]) => {
+        database_record!(@annotation_attachment [$table] [$($parameters)*] [$($annotations,)* verification_request,] [$($rest,)*]);
+    };
     (@annotation_attachment [$table:expr] [$($parameters:tt)*] [$($annotations:ident,)*] [$other:ident, $($rest:ident,)*]) => {
         database_record!(@annotation_attachment [$table] [$($parameters)*] [$($annotations,)*] [$($rest,)*]);
     };
@@ -314,11 +317,20 @@ macro_rules! database_record {
     (@insert_annotation $record:ident, $db:ident, $inserted_id:ident, $table:expr, [$($keys:ident,)*], game_bug_correction) => {
         database_record!(@annotation_owner $record, $db, $inserted_id, $table, game_bug_correction, [$(($keys $keys),)*]);
     };
+    (@insert_annotation $record:ident, $db:ident, $inserted_id:ident, $table:expr, [$($keys:ident,)*], verification_request) => {
+        database_record!(@annotation_owner $record, $db, $inserted_id, $table, verification_request, [$(($keys $keys),)*]);
+    };
     (@insert_annotation $record:ident, $db:ident, $inserted_id:ident, $table:expr, [$($keys:ident,)*], $other:ident) => {};
     (@annotation_owner $record:ident, $db:ident, $inserted_id:ident, $table:expr, $field:ident, [(id $id:ident), $($rest:tt)*]) => {
         for annotation in &$record.$field {
-            annotation.insert($db, $table, Option::<i64>::from($id).unwrap_or($inserted_id))?;
+            database_record!(@write_annotation annotation, $db, $table, Option::<i64>::from($id).unwrap_or($inserted_id), $field);
         }
+    };
+    (@write_annotation $annotation:ident, $db:ident, $table:expr, $id:expr, verification_request) => {
+        $annotation.insert_with_sources($db, $table, $id)?;
+    };
+    (@write_annotation $annotation:ident, $db:ident, $table:expr, $id:expr, $other:ident) => {
+        $annotation.insert($db, $table, $id)?;
     };
     (@annotation_owner $record:ident, $db:ident, $inserted_id:ident, $table:expr, $field:ident, [($key:ident $binding:ident), $($rest:tt)*]) => {
         database_record!(@annotation_owner $record, $db, $inserted_id, $table, $field, [$($rest)*]);
@@ -369,6 +381,12 @@ macro_rules! database_record {
     (@read $row:ident, $column:ident [enum_text]) => {
         $row.get::<_, String>(stringify!($column)).and_then(|text| serde_json::from_value(serde_json::Value::String(text)).map_err(|error| rusqlite::Error::FromSqlConversionFailure($row.as_ref().column_index(stringify!($column)).unwrap(), rusqlite::types::Type::Text, Box::new(error))))
     };
+    (@read $row:ident, $column:ident [optional_enum_text]) => {
+        $row.get::<_, Option<String>>(stringify!($column)).and_then(|text| text.map(|text| serde_json::from_value(serde_json::Value::String(text)).map_err(|error| rusqlite::Error::FromSqlConversionFailure($row.as_ref().column_index(stringify!($column)).unwrap(), rusqlite::types::Type::Text, Box::new(error)))).transpose())
+    };
+    (@write $db:ident, $record:ident, $field:ident [optional_enum_text]) => {
+        $record.$field.as_ref().map(|kind| serde_json::to_value(kind).and_then(|encoded| serde_json::from_value::<String>(encoded))).transpose()?
+    };
     (@write $db:ident, $record:ident, $field:ident [enum_text]) => {
         serde_json::to_value(&$record.$field)?.as_str().ok_or_else(|| anyhow::anyhow!("enum must serialize as text"))?.to_string()
     };
@@ -412,6 +430,7 @@ macro_rules! database_record {
     (@adapter [optional_reference $target:literal $($label:literal)?]) => {};
     (@adapter [resolved_reference $target:literal $identity:ident]) => {};
     (@adapter [enum_text ]) => {};
+    (@adapter [optional_enum_text ]) => {};
     (@adapter [wiki_only]) => {};
     (@adapter [wiki $kind:literal]) => {};
     (@adapter [integer_text ]) => {};
@@ -446,6 +465,8 @@ mod tests {
                 citation: Vec<crate::tree::Citation>,
                 #[serde(default, skip_serializing_if = "Vec::is_empty")]
                 game_bug_correction: Vec<crate::tree::GameBugCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            verification_request: Vec<crate::tree::VerificationRequest>,
             }
         }
     }
@@ -562,6 +583,35 @@ mod tests {
     }
 
     #[test]
+    fn declared_verification_requests_round_trip_with_ordered_sources() {
+        let db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        db.execute_batch(
+            "CREATE TABLE test_records (id INTEGER PRIMARY KEY, name TEXT, amount INTEGER, enabled INTEGER)",
+        )
+        .unwrap();
+        let text = "name = 'Reviewed'\nenabled = true\n[[verification_request]]\nquestion = 'Which version is current?'\nassumed = 'The recorded version'\nraised = '2026-10-23'\n[[verification_request.source]]\nurl = 'https://ddowiki.com/page/Reviewed'\nread = '2026-10-23'\nsays = 'The typed list'\n[[verification_request.source]]\nin_game = true\nread = '2026-10-23'\nsays = 'The screenshot'\n";
+        let record: TestRecord = toml::from_str(text).unwrap();
+        for id in [Some(7), None] {
+            let owner_id = record.insert(&db, id).unwrap().row_id;
+            let mut restored = db
+                .query_row(
+                    &format!("SELECT {} FROM test_records WHERE id = ?1", TestRecord::select_columns()),
+                    [owner_id],
+                    TestRecord::from_row,
+                )
+                .unwrap();
+            restored.attach_annotations(
+                &crate::tree::annotations::EntityAnnotations::from_database(&db).unwrap(),
+                owner_id,
+            );
+            assert_eq!(toml::to_string(&restored).unwrap(), toml::to_string(&record).unwrap());
+            let sources: Vec<String> = db.prepare("SELECT source.says FROM verification_request_sources source JOIN verification_requests request ON request.id = source.request_id WHERE request.owner_id = ?1 ORDER BY source.sort_order").unwrap().query_map([owner_id], |row| row.get(0)).unwrap().collect::<rusqlite::Result<_>>().unwrap();
+            assert_eq!(sources, ["The typed list", "The screenshot"]);
+        }
+    }
+
+    #[test]
     fn one_declaration_drives_column_order_in_both_directions() {
         let db = Connection::open_in_memory().unwrap();
         db.execute_batch("CREATE TABLE test_records (enabled INTEGER, amount INTEGER, name TEXT, id INTEGER)").unwrap();
@@ -572,6 +622,7 @@ mod tests {
                 enabled: id == 3,
                 citation: Vec::new(),
                 game_bug_correction: Vec::new(),
+                verification_request: Vec::new(),
             };
             record.insert(&db, Some(id)).unwrap();
             let restored = db
@@ -589,6 +640,7 @@ mod tests {
             enabled: true,
             citation: Vec::new(),
             game_bug_correction: Vec::new(),
+            verification_request: Vec::new(),
         };
         assert_eq!(toml::to_string(&record).unwrap(), "name = \"Full\"\namount = 5\nenabled = true\n");
     }

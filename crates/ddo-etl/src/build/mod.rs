@@ -3,7 +3,7 @@ mod bonus_types;
 mod buffs;
 mod characters;
 mod corrections;
-pub(crate) use corrections::data_correction_value;
+pub(crate) use corrections::{data_correction_value, line_bonuses_by_owner};
 mod drop_text;
 pub(crate) mod effect_vocabulary;
 mod effects;

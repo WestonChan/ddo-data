@@ -65,6 +65,54 @@ pub struct GameBugCorrection in "game_bug_corrections" as "game_bug_correction" 
 }
 
 database_record! {
+#[derive(Debug, Clone, Serialize, Deserialize, schemars::JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct VerificationRequest in "verification_requests" as "verification_request" {
+    keys { owner_kind: &str, owner_id: i64 }
+    fields {
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        kind: Option<ddo_model::enums::CorrectionKind> => kind [optional_enum_text],
+        #[serde(default, skip_serializing_if = "String::is_empty")]
+        field: String => field,
+        #[serde(default, skip_serializing_if = "String::is_empty")]
+        qualifier: String => qualifier,
+        question: String => question,
+        assumed: serde_json::Value => assumed_value [json_value],
+        raised: String => raised,
+    }
+    attached {
+        #[serde(default)]
+        source: Vec<VerificationRequestSource>,
+    }
+}
+}
+
+database_record! {
+#[derive(Debug, Clone, Serialize, Deserialize, schemars::JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct VerificationRequestSource in "verification_request_sources" as "source" {
+    keys { request_id: i64, sort_order: i64 }
+    fields {
+        says: String => says,
+        #[serde(flatten)]
+        source: crate::AnnotationSource => url [annotation_source],
+        read: String => read,
+    }
+}
+}
+
+impl VerificationRequest {
+    pub(in crate::tree) fn insert_with_sources(&self, db: &Connection, owner_kind: &str, owner_id: i64) -> Result<()> {
+        anyhow::ensure!(!self.source.is_empty(), "verification request needs at least one source");
+        let request_id = self.insert(db, owner_kind, owner_id)?.row_id;
+        for (position, source) in self.source.iter().enumerate() {
+            source.insert(db, request_id, position as i64)?;
+        }
+        Ok(())
+    }
+}
+
+database_record! {
     pub struct AppliedCorrection in "corrections" as "ddobuilder_correction" {
         keys {}
         fields {
@@ -90,7 +138,8 @@ database_record! {
 
 pub(crate) const VARIANT_COLUMN: &str = "variant";
 pub(crate) const ANNOTATION_COLUMNS: [&str; 1] = [VARIANT_COLUMN];
-pub(crate) const OWNER_ANNOTATION_TABLES: &[&str] = &[Citation::TABLE, GameBugCorrection::TABLE, RemovedEntry::TABLE];
+pub(crate) const OWNER_ANNOTATION_TABLES: &[&str] =
+    &[Citation::TABLE, GameBugCorrection::TABLE, VerificationRequest::TABLE, RemovedEntry::TABLE];
 
 pub(super) fn wiki_url_for_name(table: &str, name: &str) -> Option<String> {
     let page = name.replace(' ', "_").replace('+', "%2B");
@@ -116,6 +165,8 @@ pub(super) struct EntityAnnotation {
     pub(super) citation: Vec<Citation>,
     #[serde(default)]
     pub(super) game_bug_correction: Vec<GameBugCorrection>,
+    #[serde(default)]
+    pub(super) verification_request: Vec<VerificationRequest>,
     pub(super) removed: Vec<RemovedEntry>,
     pub(super) variant: Option<String>,
 }
@@ -124,6 +175,7 @@ impl EntityAnnotation {
     fn is_empty(&self) -> bool {
         self.citation.is_empty()
             && self.game_bug_correction.is_empty()
+            && self.verification_request.is_empty()
             && self.removed.is_empty()
             && self.variant.is_none()
     }
@@ -150,6 +202,7 @@ impl EntityAnnotations {
                 expected_description: identity.description.clone(),
                 citation: identity.citation.clone(),
                 game_bug_correction: Vec::new(),
+                verification_request: Vec::new(),
                 removed: identity.removed.clone(),
                 variant: identity.variant.clone(),
             };
@@ -221,6 +274,35 @@ impl EntityAnnotations {
             let (kind, id, annotation) = row?;
             metadata.entities.entry(entity_key(&kind, id)).or_default().game_bug_correction.push(annotation);
         }
+        let mut requests = BTreeMap::new();
+        let mut statement = db.prepare(&format!(
+            "SELECT id, {} FROM verification_requests ORDER BY id",
+            VerificationRequest::select_columns()
+        ))?;
+        for row in statement.query_map([], |row| {
+            Ok((
+                row.get::<_, i64>("id")?,
+                row.get::<_, String>("owner_kind")?,
+                row.get::<_, i64>("owner_id")?,
+                VerificationRequest::from_row(row)?,
+            ))
+        })? {
+            let (id, kind, owner, request) = row?;
+            requests.insert(id, (kind, owner, request));
+        }
+        let mut statement = db.prepare(&format!(
+            "SELECT {} FROM verification_request_sources ORDER BY request_id, sort_order",
+            VerificationRequestSource::select_columns()
+        ))?;
+        for row in statement
+            .query_map([], |row| Ok((row.get::<_, i64>("request_id")?, VerificationRequestSource::from_row(row)?)))?
+        {
+            let (id, source) = row?;
+            requests.get_mut(&id).context("verification source has no request")?.2.source.push(source);
+        }
+        for (kind, owner, request) in requests.into_values() {
+            metadata.entities.entry(entity_key(&kind, owner)).or_default().verification_request.push(request);
+        }
         let mut removed =
             db.prepare(&format!("SELECT {} FROM removed_entities ORDER BY rowid", RemovedEntry::select_columns()))?;
         for row in removed.query_map([], |row| {
@@ -243,6 +325,9 @@ impl EntityAnnotations {
             insert_citations(db, table, id, &annotation.citation)?;
             for game_bug in &annotation.game_bug_correction {
                 game_bug.insert(db, table, id)?;
+            }
+            for request in &annotation.verification_request {
+                request.insert_with_sources(db, table, id)?;
             }
             for removed in &annotation.removed {
                 removed.insert(db, table, id)?;

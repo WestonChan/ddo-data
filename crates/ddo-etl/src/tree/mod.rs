@@ -26,7 +26,9 @@ mod tables;
 mod xml_slugs;
 use annotations::wiki_url_for_name;
 pub(crate) use annotations::OWNER_ANNOTATION_TABLES;
-pub use annotations::{AppliedCorrection, Citation, EntityIdentity, GameBugCorrection};
+pub use annotations::{
+    AppliedCorrection, Citation, EntityIdentity, GameBugCorrection, VerificationRequest, VerificationRequestSource,
+};
 pub(crate) use build::referenced_data_icons;
 pub use build::{build_from_data, rederive_data_build_tables};
 pub(crate) use crafting::recipe_focus_path;

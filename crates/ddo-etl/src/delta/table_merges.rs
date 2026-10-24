@@ -1,4 +1,6 @@
-use crate::tree::{AppliedCorrection, Citation, GameBugCorrection, RemovedEntry};
+use crate::tree::{
+    AppliedCorrection, Citation, GameBugCorrection, RemovedEntry, VerificationRequest, VerificationRequestSource,
+};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum TableMerge {
@@ -21,6 +23,12 @@ pub const TABLE_MERGES: &[(&str, TableMerge)] = &[
     ("bonus_types", TableMerge::Entity { owner_column: None, position_column: None }),
     ("challenge_rewards", TableMerge::Array { owner_column: "owner_id", array: "source" }),
     (GameBugCorrection::TABLE, TableMerge::Array { owner_column: "owner_id", array: GameBugCorrection::ARRAY }),
+    (VerificationRequest::TABLE, TableMerge::Array { owner_column: "owner_id", array: VerificationRequest::ARRAY }),
+    (
+        VerificationRequestSource::TABLE,
+        TableMerge::Array { owner_column: "request_id", array: VerificationRequestSource::ARRAY },
+    ),
+    ("note_lines", TableMerge::Rederived),
     (Citation::TABLE, TableMerge::Array { owner_column: "owner_id", array: Citation::ARRAY }),
     ("class_auto_buy_skills", TableMerge::Array { owner_column: "class_id", array: "auto_buy_skill" }),
     ("class_auto_feats", TableMerge::Array { owner_column: "class_id", array: "auto_feat" }),
