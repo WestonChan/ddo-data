@@ -733,6 +733,45 @@ type WikiItemRow =
     (String, String, Option<String>, i64, Option<i64>, Option<String>, Option<String>, Option<String>, String);
 
 #[test]
+fn committed_dark_bargainer_grants_only_physical_sheltering() {
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db).unwrap();
+    let bonuses = db
+        .prepare(
+            "SELECT stat.name, bt.name, ob.amount FROM owner_bonuses ob
+             JOIN items i ON ob.owner_kind = 'item' AND ob.owner_id = i.id
+             JOIN effects stat ON stat.id = ob.stat_id JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+             WHERE i.name = ?1 ORDER BY stat.name",
+        )
+        .unwrap()
+        .query_map(["Dark Bargainer's Armor"], |row| {
+            Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?))
+        })
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(
+        bonuses,
+        [
+            ("Armor Class".into(), "Insight".into(), 2),
+            ("Physical Resistance Rating".into(), "Enhancement".into(), 15),
+            ("Saving Throws".into(), "Insight".into(), 2),
+        ]
+    );
+    let line: (String, String, i64) = db
+        .query_row(
+            "SELECT e.name, bt.name, link.value FROM item_effects link
+             JOIN items i ON i.id = link.item_id JOIN effects e ON e.id = link.effect_id
+             JOIN bonus_types bt ON bt.id = link.bonus_type_id
+             WHERE i.name = ?1 AND link.sort_order = 0",
+            ["Dark Bargainer's Armor"],
+            |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)),
+        )
+        .unwrap();
+    assert_eq!(line, ("Physical Sheltering".into(), "Enhancement".into(), 15));
+}
+
+#[test]
 fn writes_a_new_wiki_item_with_its_stats_bonuses_effects_sockets_set_and_quests() {
     let (db, report) = built_db_with_fixture_wiki();
     let item_row: WikiItemRow = db

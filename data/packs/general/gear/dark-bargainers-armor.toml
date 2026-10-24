@@ -21,8 +21,14 @@ max_dex_bonus = 11
 url = "https://ddowiki.com/page/Item:Dark_Bargainer%27s_Armor"
 read = "2026-09-30"
 
+[[citation]]
+field = "effect"
+url = "https://ddowiki.com/page/Item:Dark_Bargainer%27s_Armor"
+read = "2026-10-23"
+note = "The screenshot shows Physical Sheltering +15, granting only Physical Resistance Rating. The maintainer chose the screenshot over the undated typed list's Sheltering +15 pending an in-game check."
+
 [[effect]]
-name = "Sheltering"
+name = "Physical Sheltering"
 bonus_type = "Enhancement"
 value = 15
 
