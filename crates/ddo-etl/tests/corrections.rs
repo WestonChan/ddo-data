@@ -905,6 +905,64 @@ fn feat_lines_split_and_merge_follow_the_real_writer() {
 }
 
 #[test]
+fn blighted_wolf_uses_the_committed_attack_speed_correction() {
+    let source = fixture::xml_source();
+    let path = source.path().join("Feats.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let captured = include_str!("fixtures/effect-groups/BlightedWolf.Feat.xml");
+    std::fs::create_dir_all(source.path().join("FeatImages")).unwrap();
+    std::fs::write(
+        source.path().join("FeatImages/WildShapeBlightedWolf.png"),
+        include_bytes!("fixtures/effect-groups/icons/WildShapeBlightedWolf.png"),
+    )
+    .unwrap();
+    let corrections = Corrections {
+        entries: committed_corrections()
+            .entries
+            .iter()
+            .filter(|correction| correction.name == "Wild Shape: Blighted Wolf")
+            .cloned()
+            .collect(),
+    };
+    for upstream in [20, 10, 25] {
+        let changed =
+            captured.replace("<Amount size=\"1\">20</Amount>", &format!("<Amount size=\"1\">{upstream}</Amount>"));
+        std::fs::write(&path, original.replace("</Feats>", &format!("{changed}</Feats>"))).unwrap();
+        let mut db = Connection::open_in_memory().unwrap();
+        let report = build_database(
+            fixture::grouping_cases(),
+            source.path(),
+            &WikiOverrides::default(),
+            &corrections,
+            &mut db,
+            &fixture_dataset_version(),
+        )
+        .unwrap();
+        let expected = if upstream == 20 { 10 } else { upstream };
+        let bonuses = db.prepare("SELECT stat.name,bt.name,ob.amount FROM owner_bonuses ob JOIN feats f ON ob.owner_kind='feat' AND ob.owner_id=f.id JOIN effects stat ON stat.id=ob.stat_id JOIN bonus_types bt ON bt.id=ob.bonus_type_id WHERE f.name='Wild Shape: Blighted Wolf' AND bt.name='Combat Style' ORDER BY stat.name")
+            .unwrap().query_map([], |row| Ok((row.get::<_, String>(0)?,row.get::<_, String>(1)?,row.get::<_, i64>(2)?)))
+            .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(
+            bonuses,
+            [
+                ("Melee Attack Speed".into(), "Combat Style".into(), expected),
+                ("Ranged Attack Speed".into(), "Combat Style".into(), expected)
+            ]
+        );
+        assert_eq!(corrections.entries.len(), 1);
+        assert_eq!(
+            (report.correction_applied_count, report.correction_stale_count),
+            if upstream == 20 { (1, 0) } else { (0, 1) }
+        );
+        if upstream != 20 {
+            assert!(
+                matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == &upstream.to_string())
+            );
+        }
+    }
+}
+
+#[test]
 fn feat_bonus_removal_and_plain_stat_value_apply_independently() {
     let source = fixture::xml_source();
     fixture::write_plague_wolf_feat(source.path());

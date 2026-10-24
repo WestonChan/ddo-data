@@ -114,10 +114,16 @@ You cannot use wands or scrolls while in animal form."""
 icon = "WildShapeBlightedWolf"
 source_name = "Blight Caster"
 
+[[row.citation]]
+field = "effect"
+url = "https://ddowiki.com/page/Blightcaster"
+read = "2026-10-23"
+note = "The level 11 Blighted Wolf description corroborates the Wild Shape page's 10% Combat Style attack-speed bonus."
+
 [[row.effect]]
 bonus_type = "Combat Style"
 effect = "Melee and Ranged Attack Speed"
-value = 20
+value = 10
 
 [[row.effect]]
 bonus_type = "Penalty"
@@ -146,6 +152,15 @@ value = 100
 
 [[row.group]]
 group_name = "Wild Shape"
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "value"
+upstream = 20
+reason = "The Wild Shape and Blightcaster pages both give Blighted Wolf a 10% Combat Style attack-speed bonus; the maintainer chose that value pending an in-game check."
+url = "https://ddowiki.com/page/Wild_Shape"
+read = "2026-10-23"
+qualifier = "Melee and Ranged Attack Speed / Combat Style"
 
 [[row.modifier]]
 amount_type = "Simple"

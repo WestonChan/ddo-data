@@ -1,0 +1,127 @@
+    <Feat>
+      <Name>Wild Shape: Blighted Wolf</Name>
+      <Description>Animal Form: Transform into a Blighted Wolf. While in this form, you gain a +20%
+Combat Style bonus to attack speed, a 15% bonus to movement speed, and a 10%
+Profane bonus to Max Hit Points. You suffer a -2 penalty to Intelligence and
+Charisma and take 15% more damage from fire. While in Blighted Wolf form you
+gain access to a number of spells and enhancements that require Wold form, but
+the cooldowns of your non-animal form spells are increased to 2.5 times their
+normal length.
+
+You now attack with tooth and claw using the stats of whatever weapon held in
+your right hand. Shields work normally but you cannot shield bash.
+
+Filled with blight you are considered a plant, gaining 100% Fortification,
+immunity to stun, mind effects and drowning. If you are a Warforged, you are no
+longer considered a Living Construct, and can now be healed normally by Positive
+energy spells, and you become immune to repair spells.
+
+You cannot use wands or scrolls while in animal form.</Description>
+      <Group>Wild Shape</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Blight Caster</Item>
+          <Value>11</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WildShapeBlightedWolf</Icon>
+      <Stance>
+        <Name>Blighted Wolf</Name>
+        <Icon>WildShapeBlightedWolf</Icon>
+        <Description>You transform into a Blighted Wolf gaining animal specific abilities.</Description>
+        <Group>Major Form</Group>
+      </Stance>
+      <Effect>
+        <Type>Weapon_Alacrity</Type>
+        <Bonus>Combat Style</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+        <Item>All</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Blighted Wolf</Item>
+          </Requirement>
+        </Requirements>
+        <ApplyAsItemEffect/>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Penalty</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">-2</Amount>
+        <Item>Intelligence</Item>
+        <Item>Charisma</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Blighted Wolf</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Profane</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Blighted Wolf</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>MovementSpeed</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Blighted Wolf</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Stun</Item>
+        <Item>Mind Affecting Spells</Item>
+        <Item>Downing</Item>
+        <AType>NotNeeded</AType>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Blighted Wolf</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Racial</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">-15</Amount>
+        <Item>Fire</Item>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Blighted Wolf</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+      <Effect>
+        <Type>Fortification</Type>
+        <Bonus>Racial</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">100</Amount>
+        <Requirements>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Blighted Wolf</Item>
+          </Requirement>
+        </Requirements>
+      </Effect>
+    </Feat>
