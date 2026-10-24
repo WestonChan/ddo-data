@@ -150,6 +150,20 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "every required table has rows; optional annotation and redirect tables and those --allow-empty-table names may be empty",
         OffenderQuery::Built(empty_tables),
     ),
+    IntegrityCheck::warn(
+        "open_verification_requests",
+        "open verification requests are a to-check queue, never a build failure",
+        OffenderQuery::Sql(
+            "SELECT identity.name, request.owner_id,
+                    CASE WHEN request.kind IS NULL THEN 'whole entity'
+                         ELSE request.kind || ' ' || request.field ||
+                              CASE WHEN request.qualifier = '' THEN '' ELSE ' ' || request.qualifier END END ||
+                    ': ' || request.question || '; assumed: ' || request.assumed_value
+               FROM verification_requests request
+               JOIN entity_identity identity ON identity.kind = request.owner_kind AND identity.entity_id = request.owner_id
+              ORDER BY identity.name, request.kind, request.field, request.qualifier",
+        ),
+    ).showing_every_offender(),
     IntegrityCheck::hard(
         "adventure_pack_names_distinct",
         "adventure packs remain distinct after case folding, dropping a leading The and removing punctuation",

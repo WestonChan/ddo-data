@@ -72,6 +72,82 @@ fn fixture_options() -> IntegrityOptions {
     IntegrityOptions { allowed_empty_tables: TABLES_EMPTY_IN_FIXTURES.iter().map(|table| table.to_string()).collect() }
 }
 
+#[test]
+fn open_verification_requests_list_each_target_once_and_remain_warnings() {
+    let scratch = tempfile::tempdir().unwrap();
+    let tree = scratch.path().join("data");
+    copy_fixture_tree(&tree);
+    let path = tree.join("packs/shared/gear/alabaster-of-the-twelve.toml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        &path,
+        format!(
+            r#"{original}
+[[effect]]
+name = "Charisma"
+bonus_type = "Penalty"
+value = -4
+[[verification_request]]
+kind = "item_bonus"
+field = "value"
+qualifier = "Charisma / Penalty"
+question = "Does the recorded penalty apply?"
+assumed = -4
+raised = "2026-10-23"
+[[verification_request.source]]
+url = "https://ddowiki.com/page/Item:Alabaster_of_the_Twelve"
+read = "2026-10-23"
+says = "The typed list says minus four."
+[[verification_request.source]]
+in_game = true
+read = "2026-10-23"
+says = "The screenshot says minus four."
+[[verification_request]]
+question = "Is this the current item version?"
+assumed = "As recorded"
+raised = "2026-10-23"
+[[verification_request.source]]
+in_game = true
+read = "2026-10-23"
+says = "The item appears unchanged."
+"#
+        ),
+    )
+    .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("open_verification_requests").expect("verification queue is registered");
+    assert_eq!(outcome.status, CheckStatus::Warned);
+    assert!(report.failed_hard_check_names().is_empty(), "{report}");
+    assert_eq!(outcome.offenders.len(), 2);
+    let owner_id: i64 =
+        db.query_row("SELECT id FROM items WHERE name = 'Alabaster of the Twelve'", [], |row| row.get(0)).unwrap();
+    for offender in &outcome.offenders {
+        assert_eq!(offender.name, "Alabaster of the Twelve");
+        assert_eq!(offender.id, Some(owner_id));
+    }
+    assert!(outcome.offenders.iter().any(|offender| offender.detail
+        == "item_bonus value Charisma / Penalty: Does the recorded penalty apply?; assumed: -4"));
+    assert!(
+        outcome
+            .offenders
+            .iter()
+            .any(|offender| offender.detail
+                == "whole entity: Is this the current item version?; assumed: \"As recorded\"")
+    );
+    let check = INTEGRITY_CHECKS.iter().find(|check| check.name == "open_verification_requests").unwrap();
+    assert_eq!(check.severity, Severity::Warn);
+    assert!(check.description.contains("to-check queue"));
+    std::fs::write(path, original).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("open_verification_requests").unwrap();
+    assert_eq!(outcome.status, CheckStatus::Passed);
+    assert!(outcome.offenders.is_empty());
+}
+
 fn template_violations() -> Vec<(&'static str, &'static str, &'static str)> {
     vec![
         ("T1", "Doublestrike and Doubleshot", "UPDATE effects SET description_template = REPLACE(description_template, '{1}', '5') WHERE name = 'Doublestrike and Doubleshot'"),
@@ -957,6 +1033,15 @@ fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
 
 fn injected_violations() -> Vec<InjectedViolation> {
     let mut violations = vec![
+        violation(
+            "open_verification_requests",
+            "INSERT INTO verification_requests (owner_kind,owner_id,question,assumed_value,raised)
+             SELECT 'items',id,'Is this version current?','\"As recorded\"','2026-10-23'
+             FROM items WHERE name='Alabaster of the Twelve';
+             INSERT INTO verification_request_sources (request_id,sort_order,says,in_game,read)
+             VALUES (last_insert_rowid(),0,'The item appears unchanged.',1,'2026-10-23');",
+            "Alabaster of the Twelve",
+        ),
         violation(
             "effect_descriptions_without_their_amounts",
             "UPDATE effects SET description_template = REPLACE(description_template, '{1}%', '{1}'),
