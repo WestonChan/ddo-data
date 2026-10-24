@@ -647,8 +647,8 @@ value = 10
 
 [[row.effect]]
 bonus_type = "Penalty"
-effect = "Intelligence and Charisma"
-value = -2
+effect = "Charisma"
+value = -4
 
 [[row.effect]]
 bonus_type = "Enhancement"
@@ -662,6 +662,42 @@ value = 10
 
 [[row.group]]
 group_name = "Wild Shape"
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "remove"
+upstream = -2
+reason = "The maintainer observed -4 Charisma and no Intelligence penalty in game. The wiki notes (Bug: gives -4 Charisma)."
+in_game = true
+read = "2026-10-23"
+qualifier = "Intelligence / Penalty"
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "value"
+upstream = -2
+reason = "The maintainer observed -4 Charisma and no Intelligence penalty in game. The wiki notes (Bug: gives -4 Charisma)."
+in_game = true
+read = "2026-10-23"
+qualifier = "Charisma / Penalty"
+
+[[row.game_bug_correction]]
+kind = "feat_bonus"
+field = "value"
+qualifier = "Charisma / Penalty"
+intended = -2
+reason = "The maintainer observed -4 Charisma and no Intelligence penalty in game. The wiki notes (Bug: gives -4 Charisma)."
+in_game = true
+read = "2026-10-23"
+
+[[row.game_bug_correction]]
+kind = "feat_bonus"
+field = "remove"
+qualifier = "Intelligence / Penalty"
+intended = -2
+reason = "The maintainer observed -4 Charisma and no Intelligence penalty in game. The wiki notes (Bug: gives -4 Charisma)."
+in_game = true
+read = "2026-10-23"
 
 [[row.modifier]]
 amount_type = "Simple"
@@ -680,7 +716,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [-2]
 bonus_type = "Penalty"
-effect = "Intelligence and Charisma"
+effect = "Charisma"
 effect_type = "AbilityBonus"
 targets = [
     "Intelligence",
