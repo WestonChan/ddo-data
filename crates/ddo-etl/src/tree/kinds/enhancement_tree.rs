@@ -36,6 +36,8 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            game_bug_correction: Vec<crate::tree::GameBugCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             attack: Vec<Attack>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             dc: Vec<DifficultyClass>,
@@ -100,6 +102,8 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            game_bug_correction: Vec<crate::tree::GameBugCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             modifier: Vec<Modifier>,
             #[serde(flatten)]
             requirements: Requirements,
@@ -132,6 +136,8 @@ database_record! {
             citation: Vec<crate::tree::Citation>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            game_bug_correction: Vec<crate::tree::GameBugCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             enhancement: Vec<Enhancement>,
             #[serde(flatten)]
@@ -205,7 +211,7 @@ impl EnhancementTreeFile {
         ))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, EnhancementTreeFile::from_row(row)?)))? {
             let (id, mut file) = row?;
-            file.attach_citations(annotations, id);
+            file.attach_annotations(annotations, id);
             file.ddobuilder_correction = notes.for_entity("enhancement_trees", &file.name);
             file.requirements = requirements.remove(&("enhancement_tree".to_string(), id)).unwrap_or_default();
             files.insert(id, file);
@@ -228,7 +234,7 @@ impl EnhancementTreeFile {
                     file.modifier.push(modifier);
                 }
             }
-            file.attach_citations(annotations, id);
+            file.attach_annotations(annotations, id);
             file.ddobuilder_correction = notes.for_entity("enhancements", &file.name);
             let tree = files.get_mut(&parent_id).context("enhancement has no tree")?;
             enhancements.insert(id, (parent_id, tree.enhancement.len()));
@@ -243,7 +249,7 @@ impl EnhancementTreeFile {
             Ok((row.get::<_, i64>("id")?, row.get::<_, i64>("enhancement_id")?, EnhancementSelection::from_row(row)?))
         })? {
             let (id, parent_id, mut file) = row?;
-            file.attach_citations(annotations, id);
+            file.attach_annotations(annotations, id);
             file.requirements = requirements.remove(&("enhancement_selection".to_string(), id)).unwrap_or_default();
             for phase in [None, Some("follow_on"), Some("this_attack")] {
                 let kind = phase.map_or_else(

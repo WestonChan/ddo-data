@@ -41,7 +41,7 @@ impl GuildBuffsFile {
         let mut rows = Vec::new();
         for record in select.query_map([], |record| Ok((record.get::<_, i64>("id")?, GuildBuff::from_row(record)?)))? {
             let (id, mut row) = record?;
-            row.attach_citations(annotations, id);
+            row.attach_annotations(annotations, id);
             row.modifier = modifiers.remove(&("guild_buff".to_string(), id)).unwrap_or_default();
             rows.push(row);
         }

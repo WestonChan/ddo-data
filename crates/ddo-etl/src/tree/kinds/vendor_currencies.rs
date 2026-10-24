@@ -32,7 +32,7 @@ impl VendorCurrenciesFile {
         let mut currencies = Vec::new();
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, VendorCurrency::from_row(row)?)))? {
             let (id, mut currency) = row?;
-            currency.attach_citations(annotations, id);
+            currency.attach_annotations(annotations, id);
             currencies.push(currency);
         }
         Ok(Self { row: currencies })

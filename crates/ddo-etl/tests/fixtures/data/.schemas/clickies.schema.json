@@ -80,6 +80,12 @@
         "description": {
           "type": "string"
         },
+        "game_bug_correction": {
+          "items": {
+            "$ref": "#/$defs/GameBugCorrection"
+          },
+          "type": "array"
+        },
         "icon": {
           "type": "string",
           "x-image-kind": ""
@@ -137,6 +143,7 @@
         "set_tier_bonus",
         "spell",
         "augment_bonus",
+        "feat_bonus",
         "item_bonus",
         "item_effect",
         "effect_damage",
@@ -229,6 +236,79 @@
           "type": "number"
         }
       ]
+    },
+    "GameBugCorrection": {
+      "oneOf": [
+        {
+          "not": {
+            "required": [
+              "in_game"
+            ]
+          },
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "url"
+            ]
+          },
+          "required": [
+            "in_game"
+          ]
+        }
+      ],
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "in_game": {
+          "const": true,
+          "type": "boolean"
+        },
+        "intended": true,
+        "kind": {
+          "$ref": "#/$defs/CorrectionKind"
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "url": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "field",
+        "intended",
+        "reason",
+        "read"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "x-array": "game_bug_correction",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "kind",
+        "field",
+        "qualifier",
+        "intended_value",
+        "reason",
+        "url",
+        "in_game",
+        "read"
+      ],
+      "x-table": "game_bug_corrections"
     },
     "Modifier": {
       "additionalProperties": false,

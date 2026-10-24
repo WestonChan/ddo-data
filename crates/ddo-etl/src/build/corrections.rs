@@ -1186,7 +1186,9 @@ fn reject_group_member_correction(
         return Ok(());
     };
     let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
-    let mut statement = transaction.prepare(&corrected_bonus.matching_bonuses_sql("DISTINCT e.name"))?;
+    let mut statement = transaction.prepare(&corrected_bonus.matching_bonuses_sql(
+        "DISTINCT e.name, e.is_group AND (SELECT COUNT(DISTINCT target_effect_id) FROM effect_bonuses WHERE effect_id = e.id) > 1",
+    ))?;
     for row in statement.query_map(
         params![
             serde_json::to_string(owner_ids)?,
@@ -1194,9 +1196,15 @@ fn reject_group_member_correction(
             corrected_bonus.bonus_type_id,
             corrected_bonus.bonus_value
         ],
-        |row| row.get::<_, String>(0),
+        |row| Ok((row.get::<_, String>(0)?, row.get::<_, bool>(1)?)),
     )? {
-        let effect_name = row?;
+        let (effect_name, is_multi_stat_group) = row?;
+        ensure!(
+            !is_multi_stat_group,
+            "stat {:?} is behind grouping {:?}; name the grouping in the correction",
+            stat.name,
+            effect_name
+        );
         let Some(grouping) = groupings.grouping_named(&effect_name) else {
             continue;
         };

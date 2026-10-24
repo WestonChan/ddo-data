@@ -131,7 +131,7 @@ impl CraftingSystemFile {
         let mut select = db.prepare(&format!("SELECT {} FROM crafting_systems ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
-            file.attach_citations(annotations, id);
+            file.attach_annotations(annotations, id);
             if let Some(annotation) = annotations.entity("crafting_systems", id) {
                 file.removed = annotation.removed.clone();
             }
@@ -154,7 +154,7 @@ impl CraftingSystemFile {
         for row in select.query_map([], |row| {
             Ok((row.get::<_, i64>("system_id")?, {
                 let mut ingredient = CraftingSystemIngredient::from_row(row)?;
-                ingredient.attach_citations(annotations, row.get("id")?);
+                ingredient.attach_annotations(annotations, row.get("id")?);
                 ingredient
             }))
         })? {

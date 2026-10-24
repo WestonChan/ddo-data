@@ -485,6 +485,7 @@ impl TableWriter<'_> {
                             BonusOwnerKind::Augment => {
                                 correction.kind == ddo_model::enums::CorrectionKind::AugmentBonus
                             }
+                            BonusOwnerKind::Feat => correction.kind == ddo_model::enums::CorrectionKind::FeatBonus,
                             _ => false,
                         }
                 })

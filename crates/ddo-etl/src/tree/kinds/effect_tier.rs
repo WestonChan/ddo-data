@@ -30,7 +30,7 @@ impl EffectTierFile {
             db.prepare(&format!("SELECT {} FROM effect_tier_groups ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>(0)?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
-            file.attach_citations(annotations, id);
+            file.attach_annotations(annotations, id);
             files.insert(id, file);
         }
         Ok(files)

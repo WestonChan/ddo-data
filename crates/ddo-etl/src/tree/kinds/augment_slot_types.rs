@@ -21,6 +21,8 @@ database_record! {
             citation: Vec<crate::tree::Citation>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            game_bug_correction: Vec<crate::tree::GameBugCorrection>,
         }
     }
 }
@@ -57,7 +59,7 @@ impl AugmentSlotTypesFile {
         let mut row = select
             .query_map([], |row| {
                 let mut record = SocketType::from_row(row)?;
-                record.attach_citations(annotations, row.get("id")?);
+                record.attach_annotations(annotations, row.get("id")?);
                 Ok(record)
             })?
             .collect::<rusqlite::Result<Vec<_>>>()?;

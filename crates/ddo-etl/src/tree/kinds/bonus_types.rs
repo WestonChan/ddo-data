@@ -51,7 +51,7 @@ impl BonusTypesFile {
         let row = select
             .query_map([], |row| {
                 let mut record = BonusType::from_row(row)?;
-                record.attach_citations(annotations, row.get("id")?);
+                record.attach_annotations(annotations, row.get("id")?);
                 Ok(record)
             })?
             .collect::<rusqlite::Result<Vec<_>>>()?;

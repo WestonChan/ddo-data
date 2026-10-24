@@ -14,7 +14,9 @@ database_record! {
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             citation: Vec<crate::tree::Citation>, #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>, }
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            game_bug_correction: Vec<crate::tree::GameBugCorrection>, }
     }
 }
 
@@ -28,7 +30,7 @@ impl PatronFile {
         let mut select = db.prepare(&format!("SELECT {} FROM patrons ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
-            file.attach_citations(annotations, id);
+            file.attach_annotations(annotations, id);
             file.ddobuilder_correction = notes.for_entity("patrons", &file.name);
             files.insert(id, file);
         }

@@ -84,6 +84,8 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            game_bug_correction: Vec<crate::tree::GameBugCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             modifier: Vec<Modifier>,
             #[serde(flatten)]
             requirements: Requirements,
@@ -154,7 +156,7 @@ impl FeatCategoryFile {
                 }
             }
             feat.source_name = source_name;
-            feat.attach_citations(annotations, id);
+            feat.attach_annotations(annotations, id);
             feat.variant = annotation.and_then(|annotation| annotation.variant.clone()).or(feat.variant);
             feat.ddobuilder_correction = notes.for_entity("feats", &feat.name);
             feat.modifier = modifier_rows;

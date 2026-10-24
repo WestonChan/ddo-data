@@ -489,6 +489,7 @@ macro_rules! declared_records {
 
 declared_records! {
     super::annotations::Citation,
+    super::annotations::GameBugCorrection,
     super::annotations::AppliedCorrection,
     super::annotations::EntityIdentity,
     super::kinds::augment::AugmentEffect,

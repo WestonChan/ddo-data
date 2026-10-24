@@ -129,6 +129,101 @@ fn a_merge_import_reports_a_missing_member_and_keeps_the_correction() {
 }
 
 #[test]
+fn plague_wolf_import_preserves_game_bug_evidence_when_upstream_adopts_the_value() {
+    for adopted in [false, true] {
+        let corrections =
+            fixture::corrections_from(&[("plague-wolf.toml", &fixture::plague_wolf_corrections())]).unwrap();
+        let world = ImportWorld::with_sources(
+            fixture::groupings(),
+            corrections,
+            WikiOverrides::default(),
+            fixture::write_plague_wolf_feat,
+        );
+        let path = world.options.data_dir.join("characters/feats/wild-shape.toml");
+        let mut document: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+        let feat = document["row"]
+            .as_array_mut()
+            .unwrap()
+            .iter_mut()
+            .find(|row| row["name"].as_str() == Some("Wild Shape: Plague Wolf"))
+            .unwrap();
+        let bugs: toml::Value = toml::from_str("[[game_bug_correction]]\nkind = 'feat_bonus'\nfield = 'value'\nqualifier = 'Charisma / Penalty'\nintended = -2\nreason = '(Bug: gives -4 Charisma)'\nin_game = true\nread = '2026-10-23'\n[[game_bug_correction]]\nkind = 'feat_bonus'\nfield = 'remove'\nqualifier = 'Intelligence / Penalty'\nintended = -2\nreason = '(Bug: gives -4 Charisma); no Intelligence penalty in game.'\nin_game = true\nread = '2026-10-23'\n").unwrap();
+        feat.as_table_mut().unwrap().insert("game_bug_correction".into(), bugs["game_bug_correction"].clone());
+        std::fs::write(&path, toml::to_string(&document).unwrap()).unwrap();
+        let before = world.database();
+        let first = world.scratch.path().join("first-export");
+        let second = world.scratch.path().join("second-export");
+        tree::export_database(&before, &first).unwrap();
+        for entry in walkdir::WalkDir::new(&world.options.data_dir)
+            .into_iter()
+            .map(Result::unwrap)
+            .filter(|entry| entry.path().extension().is_some_and(|extension| extension == "png"))
+        {
+            let destination = first.join(entry.path().strip_prefix(&world.options.data_dir).unwrap());
+            std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+            std::fs::copy(entry.path(), destination).unwrap();
+        }
+        let mut rebuilt = Connection::open_in_memory().unwrap();
+        tree::build_from_data(&first, &mut rebuilt).unwrap();
+        tree::export_database(&rebuilt, &second).unwrap();
+        assert_eq!(tree::data_file_bytes(&first).unwrap(), tree::data_file_bytes(&second).unwrap());
+        if adopted {
+            let xml = world.options.source_dir.join("Feats.xml");
+            let original = std::fs::read_to_string(&xml).unwrap();
+            let target =
+                "<Amount size=\"1\">-2</Amount>\n        <Item>Intelligence</Item>\n        <Item>Charisma</Item>";
+            assert!(original.contains(target));
+            let split = "<Amount size=\"1\">-2</Amount>\n        <Item>Intelligence</Item></Effect><Effect><Type>AbilityBonus</Type><Bonus>Penalty</Bonus><AType>Simple</AType><Amount size=\"1\">-4</Amount><Item>Charisma</Item>";
+            std::fs::write(xml, original.replace(target, split)).unwrap();
+        }
+        for (source, is_previous, sha) in
+            [(&world.options.previous_dir, true, PREVIOUS_SHA), (&world.options.source_dir, false, NEW_SHA)]
+        {
+            let normalized = ddo_etl::import_ddobuilder::normalized_upstream_database(
+                source,
+                &before,
+                &DatasetVersion { upstream_sha: sha.into(), built_at: "2026-10-23T00:00:00Z".into() },
+                is_previous,
+                &world.scratch.path().join(if is_previous { "A" } else { "B" }),
+            )
+            .unwrap();
+            assert_eq!(
+                normalized
+                    .db
+                    .query_row("SELECT COUNT(*) FROM game_bug_corrections", [], |row| row.get::<_, i64>(0))
+                    .unwrap(),
+                0
+            );
+        }
+        let report = import_ddobuilder(&world.options).unwrap();
+        let text = report.to_string();
+        assert!(!report.has_conflicts(), "{text}");
+        assert_eq!(text.contains("RESOLVED CORRECTION"), adopted, "{text}");
+        assert!(
+            report
+                .entries
+                .iter()
+                .all(|entry| !entry.detail.contains("game_bug") && !entry.detail.contains("(Bug: gives")),
+            "{text}"
+        );
+        assert!(!text.contains("game_bug"), "{text}");
+        if !adopted {
+            assert!(!text.contains("Wild Shape: Plague Wolf"), "{text}");
+        }
+        let after = world.database();
+        assert_eq!(fixture::plague_wolf_penalties(&after), [("Charisma".into(), -4, "Penalty".into(), true)]);
+        let restored: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+        let feat = restored["row"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|row| row["name"].as_str() == Some("Wild Shape: Plague Wolf"))
+            .unwrap();
+        assert_eq!(feat["game_bug_correction"], bugs["game_bug_correction"]);
+    }
+}
+
+#[test]
 fn feat_lines_import_follows_amounts_and_reports_changed_stats() {
     for changed_stats in [false, true] {
         let corrections = fixture::corrections_from(&[("feat-split.toml", &fixture::scion_dodge_split())]).unwrap();

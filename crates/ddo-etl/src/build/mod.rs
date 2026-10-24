@@ -330,10 +330,7 @@ fn build_with_wiki_references(
         bonus_removal_corrections: corrections
             .entries
             .iter()
-            .filter(|correction| {
-                matches!(correction.kind, CorrectionKind::SetTierBonus | CorrectionKind::AugmentBonus)
-                    && correction.field == "remove"
-            })
+            .filter(|correction| correction.kind.corrects_a_bonus() && correction.field == "remove")
             .collect(),
         applied_bonus_removal_corrections: Vec::new(),
         removed_derived_bonus_count: 0,

@@ -45,7 +45,7 @@ impl SentientGemFile {
             .query_map([], |row| {
                 let id = row.get("id")?;
                 let mut file = Self::from_row(row)?;
-                file.attach_citations(annotations, id);
+                file.attach_annotations(annotations, id);
                 Ok((id, file))
             })?
             .collect::<rusqlite::Result<_>>()?;

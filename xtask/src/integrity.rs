@@ -147,7 +147,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::hard(
         "tables_not_empty",
-        "every table has rows, except those --allow-empty-table names",
+        "every required table has rows; optional annotation and redirect tables and those --allow-empty-table names may be empty",
         OffenderQuery::Built(empty_tables),
     ),
     IntegrityCheck::hard(
@@ -2206,7 +2206,17 @@ fn empty_tables(db: &Connection, options: &IntegrityOptions) -> Result<Findings>
         db.prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%' ORDER BY name")?;
     let table_names = statement.query_map([], |row| row.get::<_, String>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
     let mut offenders = Vec::new();
+    let mut notes = Vec::new();
     for table_name in table_names {
+        if matches!(
+            table_name.as_str(),
+            "game_bug_corrections" | "verification_requests" | "verification_request_sources"
+        ) {
+            notes.push(format!(
+                "allowed empty: {table_name}: optional annotation table; zero recorded bugs or open questions is valid"
+            ));
+            continue;
+        }
         if matches!(table_name.as_str(), "redirects" | "retired_slugs") {
             continue;
         }
@@ -2219,7 +2229,8 @@ fn empty_tables(db: &Connection, options: &IntegrityOptions) -> Result<Findings>
         [] => "none".to_string(),
         allowed_tables => allowed_tables.join(", "),
     };
-    Ok(Findings { offenders: Some(offenders), notes: vec![format!("allowed empty: {allowed_text}")] })
+    notes.push(format!("allowed empty: {allowed_text}"));
+    Ok(Findings { offenders: Some(offenders), notes })
 }
 
 fn redirect_findings(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {

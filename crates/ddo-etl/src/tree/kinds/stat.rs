@@ -46,7 +46,7 @@ impl StatFile {
             db.prepare(&format!("SELECT {} FROM effects WHERE is_stat = 1 ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
-            file.attach_citations(annotations, id);
+            file.attach_annotations(annotations, id);
             files.insert(id, file);
         }
         Ok(files)

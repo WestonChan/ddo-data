@@ -21,7 +21,9 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             citation: Vec<super::super::Citation>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>, }
+            ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            game_bug_correction: Vec<crate::tree::GameBugCorrection>, }
     }
 }
 
@@ -36,7 +38,7 @@ impl PackFile {
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
             file.ddobuilder_correction = notes.for_entity("adventure_packs", &file.name);
-            file.attach_citations(annotations, id);
+            file.attach_annotations(annotations, id);
             files.insert(id, file);
         }
         Ok(files)

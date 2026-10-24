@@ -101,6 +101,7 @@ The database's `dataset_version` records the upstream SHA from `upstream/commit.
   - A merge of several of his spellings into one name is one correction whose `upstream` lists them all.
   - Two separate corrections with one target fail the build.
 - **`[[removed]]`** entries on the surviving entity record removed upstream rows.
+- **`[[game_bug_correction]]`** records where the game differs from its intended behaviour: `kind`, `field` and `qualifier` address the target as a correction does, `intended` holds the intended value in the field's shape, with a `reason`, one source (`url` or `in_game = true`) and `read`. The file holds what the game does. It is independent of `[[ddobuilder_correction]]`, both may sit on one target, and the import never reads it. When the game is fixed, restore `intended` and delete the record.
 - **`[[citation]]`** records a check: someone compared the entity with a source and it agreed, apart from any correction beside it.
   - It sits on the whole entity by default (no `field`). `field` is for a partial check, and must name a field or nested array of the record it is on.
   - It carries an optional free-text `note`, for example what the page did not cover.

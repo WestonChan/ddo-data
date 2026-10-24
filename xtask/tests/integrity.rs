@@ -1567,6 +1567,29 @@ fn tables_not_empty_prints_the_tables_allowed_to_be_empty() {
 }
 
 #[test]
+fn optional_annotation_tables_may_be_empty_without_hiding_required_tables() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db = Connection::open(fixture_db_copy_with(scratch.path(), "")).unwrap();
+    for table in ["game_bug_corrections", "verification_requests", "verification_request_sources"] {
+        db.execute_batch(&format!("CREATE TABLE IF NOT EXISTS {table} (id INTEGER PRIMARY KEY); DELETE FROM {table};"))
+            .unwrap();
+    }
+    db.execute_batch("CREATE TABLE required_probe (id INTEGER PRIMARY KEY)").unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("tables_not_empty").unwrap();
+    assert_eq!(outcome.offenders.iter().map(|offender| offender.name.as_str()).collect::<Vec<_>>(), ["required_probe"]);
+    for table in ["game_bug_corrections", "verification_requests", "verification_request_sources"] {
+        assert!(
+            outcome
+                .notes
+                .iter()
+                .any(|note| note.contains(table) && note.contains("zero recorded bugs or open questions is valid")),
+            "{outcome}"
+        );
+    }
+}
+
+#[test]
 fn the_unknown_placeholder_class_needs_no_progression() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(

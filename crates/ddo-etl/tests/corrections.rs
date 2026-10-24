@@ -88,7 +88,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::Augment, "description:description:Text:false, effect_description:effect_description:Text:true, family:family:Text:false, min_level:min_level:Integer:true, name:name:RowName:false, remove:remove:Removal:false"),
         (CorrectionKind::Quest, "epic_level:epic_level:Integer:true, favor:favor:Integer:true, is_raid:is_raid:Flag:false, level:level:Integer:true, name:name:RowName:false, pack:pack_id:NamedReference { referenced_table: \"adventure_packs\" }:false, patron:patron_id:NamedReference { referenced_table: \"patrons\" }:true, remove:remove:Removal:false"),
         (CorrectionKind::Feat, "description:description:Text:true, icon:icon:Text:true"),
-        (CorrectionKind::FeatBonus, "lines:lines:BonusLines:false"),
+        (CorrectionKind::FeatBonus, "lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
         (CorrectionKind::Enhancement, "arrows:arrows:TextList:false, cooldown_seconds:cooldown_seconds:Integer:true, cost_per_rank:cost_per_rank:IntegerList:false, description:description:Text:false, duration_seconds:duration_seconds:Integer:true, icon:icon:Text:true, is_clickie:is_clickie:Flag:false, is_tier5:is_tier5:Flag:false, min_spent:min_spent:Integer:false, name:name:RowName:false, ranks:ranks:Integer:false, x:x:Integer:false, y:y:Integer:false"),
         (CorrectionKind::Spell, "description:description:Text:false, icon:icon:Text:true"),
         (CorrectionKind::EnhancementTree, "icon:icon:Text:false"),
@@ -905,6 +905,40 @@ fn feat_lines_split_and_merge_follow_the_real_writer() {
 }
 
 #[test]
+fn feat_bonus_removal_and_plain_stat_value_apply_independently() {
+    let source = fixture::xml_source();
+    fixture::write_plague_wolf_feat(source.path());
+    let corrections = fixture::plague_wolf_corrections();
+    let removal = CorrectionSet(vec![corrections.0[0].clone()]);
+    let (db, report) = built_db_from(source.path(), &[("removal.toml", &removal)]).unwrap();
+    assert_eq!(fixture::plague_wolf_penalties(&db), [("Charisma".into(), -2, "Penalty".into(), true)]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let path = source.path().join("Feats.xml");
+    let text = std::fs::read_to_string(&path).unwrap();
+    let target = "<Item>Intelligence</Item>\n        <Item>Charisma</Item>";
+    assert!(text.contains(target));
+    std::fs::write(path, text.replace(target, "<Item>Charisma</Item>")).unwrap();
+    let value = CorrectionSet(vec![corrections.0[1].clone()]);
+    let (db, report) = built_db_from(source.path(), &[("value.toml", &value)]).unwrap();
+    assert_eq!(fixture::plague_wolf_penalties(&db), [("Charisma".into(), -4, "Penalty".into(), true)]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let (_, report) = built_db_from(source.path(), &[("removed-upstream.toml", &removal)]).unwrap();
+    assert_eq!(report.correction_stale_count, 1);
+    assert!(
+        matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\"")
+    );
+}
+
+#[test]
+fn a_feat_member_value_cannot_change_a_surviving_group() {
+    let source = fixture::xml_source();
+    fixture::write_plague_wolf_feat(source.path());
+    let value = CorrectionSet(vec![fixture::plague_wolf_corrections().0[1].clone()]);
+    let error = built_db_from(source.path(), &[("member-value.toml", &value)]).unwrap_err();
+    assert!(error.contains("behind grouping") && error.contains("Intelligence and Charisma"), "{error}");
+}
+
+#[test]
 fn a_lines_split_preserves_the_default_and_follows_value_changes() {
     let source = fixture::xml_source();
     let augment = source.path().join("Augments/WoefulShadow.Augments.xml");
@@ -1076,6 +1110,30 @@ fn an_added_grouping_can_come_only_from_the_canonical_index() {
     for stat in ["Acid Spell Power", "Cold Spell Power", "Electric Spell Power", "Fire Spell Power"] {
         assert!(bonuses.contains(&(stat.into(), "Artifact".into(), 3)), "{bonuses:?}");
     }
+}
+
+#[test]
+fn member_value_correction_accepts_a_group_with_only_one_stat() {
+    let source = fixture::xml_source();
+    let path = source.path().join("Augments/Named.Augments.xml");
+    let contents = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(path, contents.replace("<Item>Charisma</Item>", "<Item>Constitution</Item>")).unwrap();
+    let correction = new_qualified_correction(
+        "augment_bonus",
+        "Storm's Bulwark",
+        "stat = \"Concentration\"\nbonus_type = \"Insight\"",
+        "value",
+        "5",
+        "6",
+    );
+    let (db, report) = built_db_from(source.path(), &[("one-member.toml", &correction)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let amount: i64 = db.query_row(
+        "SELECT ob.amount FROM owner_bonuses ob JOIN augments a ON a.id=ob.owner_id JOIN effects s ON s.id=ob.stat_id
+         WHERE ob.owner_kind='augment' AND a.name='Storm''s Bulwark' AND s.name='Concentration'",
+        [], |row| row.get(0),
+    ).unwrap();
+    assert_eq!(amount, 6);
 }
 
 #[test]

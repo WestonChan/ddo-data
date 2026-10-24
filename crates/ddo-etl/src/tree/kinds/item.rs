@@ -258,6 +258,8 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            game_bug_correction: Vec<crate::tree::GameBugCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             socket: Vec<Socket>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             source: Vec<ItemSource>,
@@ -315,7 +317,7 @@ impl ItemFile {
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
             if let Some(annotation) = annotations.entity("items", id) {
-                file.attach_citations(annotations, id);
+                file.attach_annotations(annotations, id);
                 file.removed.clone_from(&annotation.removed);
             }
             file.ddobuilder_correction.extend(notes.for_entity("items", &file.name));

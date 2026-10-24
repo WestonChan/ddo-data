@@ -67,6 +67,26 @@ fn item_id(db: &Connection, name: &str) -> i64 {
 }
 
 #[test]
+fn plague_wolf_member_removal_precedes_grouping_and_value_correction() {
+    let source = fixture::xml_source();
+    fixture::write_plague_wolf_feat(source.path());
+    let corrections = fixture::corrections_from(&[("plague-wolf.toml", &fixture::plague_wolf_corrections())]).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!(fixture::plague_wolf_penalties(&db), [("Charisma".into(), -4, "Penalty".into(), true)]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Intelligence and Charisma'"), 0);
+}
+
+#[test]
 fn a_structured_set_effect_takes_precedence_over_its_prose_vocabulary() {
     let source = fixture::xml_source();
     let path = source.path().join("SetBonuses.xml");

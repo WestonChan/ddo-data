@@ -58,6 +58,8 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            game_bug_correction: Vec<crate::tree::GameBugCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             run: Vec<QuestRun>,
         }
         derived_corrections { RUN_CORRECTIONS { level => level [Integer true], epic_level => epic_level [Integer true] } }
@@ -87,7 +89,7 @@ impl QuestFile {
                     file.run.push(QuestRun { tier: tier.to_string(), level });
                 }
             }
-            file.attach_citations(annotations, id);
+            file.attach_annotations(annotations, id);
             file.ddobuilder_correction = notes.for_entity("quests", &file.name);
             files.insert(id, file);
         }

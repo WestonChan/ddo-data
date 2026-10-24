@@ -23,6 +23,8 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            game_bug_correction: Vec<crate::tree::GameBugCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             modifier: Vec<Modifier>,
         }
     }
@@ -46,7 +48,7 @@ impl ClickiesFile {
         let mut rows = Vec::new();
         for record in select.query_map([], |record| Ok((record.get::<_, i64>("id")?, Clickie::from_row(record)?)))? {
             let (id, mut row) = record?;
-            row.attach_citations(annotations, id);
+            row.attach_annotations(annotations, id);
             row.ddobuilder_correction = notes.for_entity("clickies", &row.name);
             row.modifier = modifiers.remove(&("clickie".to_string(), id)).unwrap_or_default();
             rows.push(row);

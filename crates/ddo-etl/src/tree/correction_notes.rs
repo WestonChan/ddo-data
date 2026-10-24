@@ -1,6 +1,6 @@
 use super::DdobuilderCorrection;
 use crate::build::data_correction_value;
-use crate::corrections::{Correction, CorrectionValue};
+use crate::corrections::{Correction, CorrectionValue, FieldShape, NO_SUCH_BONUS};
 use anyhow::{bail, ensure, Context, Result};
 use ddo_model::enums::CorrectionKind;
 use rusqlite::{params, Transaction};
@@ -280,7 +280,7 @@ pub(super) fn correction_values(
         (CorrectionKind::ItemBonus | CorrectionKind::AugmentBonus | CorrectionKind::SetTierBonus, "add") => {
             added_bonus_value(transaction, correction.kind, current_name, &correction)?
         }
-        (CorrectionKind::SetTierBonus, "remove") => Value::Null,
+        (CorrectionKind::SetTierBonus | CorrectionKind::FeatBonus, "remove") => Value::Null,
         (_, "remove") => json!(1),
         _ => serde_json::from_str::<Value>(
             &data_correction_value(transaction, &correction, current_name, groupings)?.to_json(),
@@ -290,4 +290,68 @@ pub(super) fn correction_values(
     correction.to = CorrectionValue::from_json(&applied.to_string())?;
     correction.validate_values(correction.correctable_field()?)?;
     Ok((correction.from.to_json(), correction.to.to_json()))
+}
+
+pub(super) fn validate_game_bug_corrections(
+    transaction: &Transaction,
+    groupings: &crate::groupings::Groupings,
+    layout: &super::ExportLayout,
+) -> Result<()> {
+    let mut statement = transaction.prepare(&format!(
+        "SELECT annotation.*, identity.name AS owner_name FROM
+         (SELECT {} FROM game_bug_corrections ORDER BY id) annotation
+         LEFT JOIN entity_identity identity ON identity.kind = annotation.owner_kind AND identity.entity_id = annotation.owner_id",
+        super::GameBugCorrection::select_columns()
+    ))?;
+    let annotations = statement
+        .query_map([], |row| {
+            Ok((
+                row.get::<_, String>("owner_kind")?,
+                row.get::<_, i64>("owner_id")?,
+                super::GameBugCorrection::from_row(row)?,
+                row.get::<_, Option<String>>("owner_name")?,
+            ))
+        })?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    for (owner_kind, owner_id, annotation, owner_name) in annotations {
+        let path = layout.path(&owner_kind, owner_id)?;
+        (|| -> Result<()> {
+            let target_owner_kind = match annotation.kind {
+                CorrectionKind::SetTier | CorrectionKind::SetTierBonus => "set_bonuses",
+                kind => kind.table_name(),
+            };
+            ensure!(owner_kind == target_owner_kind, "game-bug kind {} does not address {owner_kind}", annotation.kind);
+            let owner_name = owner_name.context("game-bug target owner is absent")?;
+            let note = DdobuilderCorrection {
+                kind: annotation.kind,
+                original_name: None,
+                field: annotation.field.clone(),
+                added_as_name: None,
+                upstream: Some(annotation.intended),
+                reason: annotation.reason,
+                source: annotation.source,
+                read: annotation.read,
+                qualifier: annotation.qualifier,
+            };
+            let mut correction = correction_for_note(&note, &owner_name)?;
+            correction.from = CorrectionValue::from_json(&note.upstream.unwrap().to_string())?;
+            let field = correction.correctable_field()?;
+            let current = data_correction_value(transaction, &correction, &owner_name, groupings)?;
+            if field.shape == FieldShape::BonusRemoval {
+                ensure!(
+                    current.as_text() == Some(NO_SUCH_BONUS),
+                    "game-bug remove target is present: {}",
+                    correction.label()
+                );
+                correction.to = CorrectionValue::Null;
+            } else {
+                ensure!(current.as_text() != Some(NO_SUCH_BONUS), "game-bug target is absent: {}", correction.label());
+                correction.to = current;
+            }
+            correction.validate_values(field)?;
+            Ok(())
+        })()
+        .with_context(|| format!("{}: game-bug correction", path.display()))?;
+    }
+    Ok(())
 }

@@ -104,6 +104,8 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            game_bug_correction: Vec<crate::tree::GameBugCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             slot: Vec<AugmentSlot>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             source: Vec<AugmentSource>,
@@ -136,7 +138,7 @@ impl AugmentFile {
         let mut select = db.prepare(&format!("SELECT {} FROM augments ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
-            file.attach_citations(annotations, id);
+            file.attach_annotations(annotations, id);
             file.ddobuilder_correction.extend(notes.for_entity("augments", &file.name));
             files.insert(id, file);
         }

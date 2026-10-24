@@ -149,6 +149,8 @@ database_record! {
             citation: Vec<crate::tree::Citation>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<DdobuilderCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            game_bug_correction: Vec<crate::tree::GameBugCorrection>,
             #[serde(flatten)]
             requirements: Requirements,
         }
@@ -191,7 +193,7 @@ pub(super) fn stances_by_owner(
         ))
     })? {
         let (id, kind, owner_id, mut stance) = row?;
-        stance.attach_citations(annotations, id);
+        stance.attach_annotations(annotations, id);
         stance.requirements = requirements.remove(&("stance".to_string(), id)).unwrap_or_default();
         stances.entry((kind, owner_id)).or_default().push(stance);
     }

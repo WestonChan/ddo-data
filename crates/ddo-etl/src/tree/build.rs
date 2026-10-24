@@ -883,6 +883,8 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
     }
     validate_data_icons(&transaction, &icon_index)?;
     let layout = ExportLayout::from_database(&transaction)?;
+    correction_notes::validate_game_bug_corrections(&transaction, &groupings, &layout)?;
+
     for (path, kind, name, id) in entity_locations {
         let current = path.strip_prefix(root)?;
         let expected = layout.path(kind, id)?;

@@ -67,6 +67,38 @@ fn structural_rejections_fail_the_data_build_naming_their_file_once() {
 }
 
 #[test]
+fn game_bug_targets_and_intended_values_are_checked() {
+    let annotation = |field: &str, qualifier: &str, intended: &str| {
+        format!(
+        "\n[[game_bug_correction]]\nkind = 'item_bonus'\nfield = {field:?}\nqualifier = {qualifier:?}\nintended = {intended}\nreason = 'Observed in game.'\nin_game = true\nread = '2026-10-23'\n"
+    )
+    };
+    let present = annotation("value", "Charisma / Penalty", "-2");
+    let absent = annotation("remove", "Intelligence / Penalty", "-2");
+    let check = |notes: &str| {
+        fixture::data_build_error(|root| {
+            let path = root.join(SAGA_ITEM);
+            let contents = std::fs::read_to_string(&path).unwrap();
+            std::fs::write(
+                path,
+                format!("{contents}\n[[effect]]\nname = 'Charisma'\nbonus_type = 'Penalty'\nvalue = -4\n{notes}"),
+            )
+            .unwrap();
+        })
+    };
+    assert_eq!(check(&format!("{present}{absent}")), "");
+    for (notes, expected) in [
+        (annotation("value", "Charisma / Penalty", "'two'"), "does not fit"),
+        (annotation("value", "Intelligence / Penalty", "-2"), "target is absent"),
+        (annotation("remove", "Charisma / Penalty", "-2"), "target is present"),
+        (format!("{present}{present}"), "UNIQUE"),
+    ] {
+        let error = check(&notes);
+        assert!(error.contains("alabaster-of-the-twelve.toml") && error.contains(expected), "{error}");
+    }
+}
+
+#[test]
 fn a_citation_field_must_be_empty_or_a_field_of_its_record() {
     const ITEM: &str = "packs/shared/gear/alabaster-of-the-twelve.toml";
     let cite = |field: &'static str| {

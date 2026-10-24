@@ -46,6 +46,25 @@ pub struct Citation in "citations" as "citation" {
 }
 
 database_record! {
+#[derive(Debug, Clone, Serialize, Deserialize, schemars::JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct GameBugCorrection in "game_bug_corrections" as "game_bug_correction" {
+    keys { owner_kind: &str, owner_id: i64 }
+    fields {
+        kind: ddo_model::enums::CorrectionKind => kind [enum_text],
+        field: String => field,
+        #[serde(default, skip_serializing_if = "String::is_empty")]
+        qualifier: String => qualifier,
+        intended: serde_json::Value => intended_value [json_value],
+        reason: String => reason,
+        #[serde(flatten)]
+        source: crate::AnnotationSource => url [annotation_source],
+        read: String => read,
+    }
+}
+}
+
+database_record! {
     pub struct AppliedCorrection in "corrections" as "ddobuilder_correction" {
         keys {}
         fields {
@@ -71,6 +90,7 @@ database_record! {
 
 pub(crate) const VARIANT_COLUMN: &str = "variant";
 pub(crate) const ANNOTATION_COLUMNS: [&str; 1] = [VARIANT_COLUMN];
+pub(crate) const OWNER_ANNOTATION_TABLES: &[&str] = &[Citation::TABLE, GameBugCorrection::TABLE, RemovedEntry::TABLE];
 
 pub(super) fn wiki_url_for_name(table: &str, name: &str) -> Option<String> {
     let page = name.replace(' ', "_").replace('+', "%2B");
@@ -94,13 +114,18 @@ pub(super) struct EntityAnnotation {
     #[serde(default)]
     pub(super) expected_description: Option<String>,
     pub(super) citation: Vec<Citation>,
+    #[serde(default)]
+    pub(super) game_bug_correction: Vec<GameBugCorrection>,
     pub(super) removed: Vec<RemovedEntry>,
     pub(super) variant: Option<String>,
 }
 
 impl EntityAnnotation {
     fn is_empty(&self) -> bool {
-        self.citation.is_empty() && self.removed.is_empty() && self.variant.is_none()
+        self.citation.is_empty()
+            && self.game_bug_correction.is_empty()
+            && self.removed.is_empty()
+            && self.variant.is_none()
     }
 }
 
@@ -124,6 +149,7 @@ impl EntityAnnotations {
                 expected_name: Some(expected_name.clone()),
                 expected_description: identity.description.clone(),
                 citation: identity.citation.clone(),
+                game_bug_correction: Vec::new(),
                 removed: identity.removed.clone(),
                 variant: identity.variant.clone(),
             };
@@ -185,6 +211,16 @@ impl EntityAnnotations {
             let (kind, id, citation) = row?;
             metadata.entities.entry(entity_key(&kind, id)).or_default().citation.push(citation);
         }
+        let mut game_bugs = db.prepare(&format!(
+            "SELECT {} FROM game_bug_corrections ORDER BY id",
+            GameBugCorrection::select_columns()
+        ))?;
+        for row in game_bugs.query_map([], |row| {
+            Ok((row.get::<_, String>("owner_kind")?, row.get::<_, i64>("owner_id")?, GameBugCorrection::from_row(row)?))
+        })? {
+            let (kind, id, annotation) = row?;
+            metadata.entities.entry(entity_key(&kind, id)).or_default().game_bug_correction.push(annotation);
+        }
         let mut removed =
             db.prepare(&format!("SELECT {} FROM removed_entities ORDER BY rowid", RemovedEntry::select_columns()))?;
         for row in removed.query_map([], |row| {
@@ -205,6 +241,9 @@ impl EntityAnnotations {
                 db.execute(&format!("UPDATE {table} SET {VARIANT_COLUMN} = ?1 WHERE id = ?2"), params![variant, id])?;
             }
             insert_citations(db, table, id, &annotation.citation)?;
+            for game_bug in &annotation.game_bug_correction {
+                game_bug.insert(db, table, id)?;
+            }
             for removed in &annotation.removed {
                 removed.insert(db, table, id)?;
             }

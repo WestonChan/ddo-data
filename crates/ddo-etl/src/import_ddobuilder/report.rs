@@ -8,7 +8,7 @@ use std::collections::BTreeMap;
 use std::fmt::{self, Display};
 use std::path::PathBuf;
 
-#[derive(Debug, Default)]
+#[derive(Debug, Default, PartialEq, Eq)]
 pub struct ImportTableCounts {
     pub added: usize,
     pub removed: usize,
@@ -274,6 +274,8 @@ pub(super) fn report(
     entries.sort_by(|left, right| {
         (&left.category, &left.path, &left.detail).cmp(&(&right.category, &right.path, &right.detail))
     });
+    let game_bug_counts = tables.remove(crate::tree::GameBugCorrection::TABLE).unwrap_or_default();
+    anyhow::ensure!(game_bug_counts == ImportTableCounts::default(), "upstream import changed game-bug annotations");
     Ok(DdobuilderImportReport {
         previous_sha: revisions.0,
         new_sha: revisions.1,

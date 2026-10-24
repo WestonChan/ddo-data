@@ -40,7 +40,7 @@ macro_rules! declare_vocabulary_file {
                 let row = select
                     .query_map([], |row| {
                         let mut term = super::VocabularyTerm::from_row(row)?;
-                        term.attach_citations(annotations, $table, row.get("id")?);
+                        term.attach_annotations(annotations, $table, row.get("id")?);
                         Ok(term)
                     })?
                     .collect::<rusqlite::Result<Vec<_>>>()?;

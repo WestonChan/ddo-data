@@ -189,7 +189,7 @@ impl CorrectionNoteIndex {
 
 pub fn annotated_entities(db: &Connection) -> Result<BTreeSet<(String, i64)>> {
     let mut owners = BTreeSet::new();
-    for table in [Citation::TABLE, RemovedEntry::TABLE] {
+    for &table in super::OWNER_ANNOTATION_TABLES {
         let mut select = db.prepare(&format!("SELECT DISTINCT owner_kind, owner_id FROM {table}"))?;
         for owner in select.query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?)))? {
             owners.insert(owner?);

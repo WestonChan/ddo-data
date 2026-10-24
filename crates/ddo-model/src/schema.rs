@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 42;
+pub const SCHEMA_VERSION: i64 = 43;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -116,6 +116,22 @@ CREATE TABLE IF NOT EXISTS citations (
     PRIMARY KEY (owner_kind, owner_id, field, url)
 );
 CREATE UNIQUE INDEX IF NOT EXISTS idx_citations_in_game ON citations(owner_kind, owner_id, field) WHERE in_game = 1;
+
+CREATE TABLE IF NOT EXISTS game_bug_corrections (
+    id INTEGER PRIMARY KEY,
+    owner_kind TEXT NOT NULL,
+    owner_id INTEGER NOT NULL,
+    kind TEXT NOT NULL CHECK (kind {correction_kind}),
+    field TEXT NOT NULL,
+    qualifier TEXT NOT NULL DEFAULT '',
+    intended_value TEXT NOT NULL,
+    reason TEXT NOT NULL,
+    url TEXT,
+    in_game INTEGER NOT NULL DEFAULT 0 CHECK (in_game IN (0, 1)),
+    read TEXT NOT NULL,
+    CHECK ((url IS NOT NULL AND in_game = 0) OR (url IS NULL AND in_game = 1)),
+    UNIQUE (owner_kind, owner_id, kind, qualifier, field)
+);
 
 CREATE TABLE IF NOT EXISTS removed_entities (
     owner_kind TEXT NOT NULL,

@@ -25,6 +25,8 @@ database_record! {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             ddobuilder_correction: Vec<super::super::DdobuilderCorrection>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            game_bug_correction: Vec<crate::tree::GameBugCorrection>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             modifier: Vec<Modifier>,
         }
     }
@@ -63,7 +65,7 @@ impl FiligreeSetFile {
         let mut select = db.prepare(&format!("SELECT {} FROM filigrees ORDER BY id", Filigree::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Filigree::from_row(row)?)))? {
             let (id, mut filigree) = row?;
-            filigree.attach_citations(annotations, id);
+            filigree.attach_annotations(annotations, id);
             filigree.modifier = modifiers.remove(&("filigree".to_string(), id)).unwrap_or_default();
             filigree.ddobuilder_correction = notes.for_entity("filigrees", &filigree.name);
             filigrees.insert(id, filigree);

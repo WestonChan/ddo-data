@@ -57,6 +57,44 @@ pub(crate) fn write_scion_feat(source: &std::path::Path) {
     .unwrap();
 }
 
+pub(crate) fn write_plague_wolf_feat(source: &std::path::Path) {
+    let path = source.join("Feats.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let feat = include_str!("../fixtures/effect-groups/PlagueWolf.Feat.xml");
+    std::fs::write(path, original.replace("</Feats>", &format!("{feat}</Feats>"))).unwrap();
+    std::fs::create_dir_all(source.join("FeatImages")).unwrap();
+    std::fs::write(
+        source.join("FeatImages/WildShapePlagueWolf.png"),
+        include_bytes!("../fixtures/effect-groups/icons/WildShapePlagueWolf.png"),
+    )
+    .unwrap();
+}
+
+pub(crate) fn plague_wolf_corrections() -> CorrectionSet {
+    let removal = new_qualified_correction(
+        "feat_bonus",
+        "Wild Shape: Plague Wolf",
+        "stat = 'Intelligence'\nbonus_type = 'Penalty'",
+        "remove",
+        "-2",
+        "\"null\"",
+    );
+    let value = new_qualified_correction(
+        "feat_bonus",
+        "Wild Shape: Plague Wolf",
+        "stat = 'Charisma'\nbonus_type = 'Penalty'",
+        "value",
+        "-2",
+        "-4",
+    );
+    removal + &value
+}
+
+pub(crate) fn plague_wolf_penalties(db: &rusqlite::Connection) -> Vec<(String, i64, String, bool)> {
+    db.prepare("SELECT e.name, l.value, bt.name, e.is_stat FROM feat_effects l JOIN feats f ON f.id=l.feat_id JOIN effects e ON e.id=l.effect_id JOIN bonus_types bt ON bt.id=l.bonus_type_id WHERE f.name='Wild Shape: Plague Wolf' AND bt.name='Penalty' ORDER BY e.name").unwrap()
+        .query_map([], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?))).unwrap().collect::<rusqlite::Result<_>>().unwrap()
+}
+
 pub(crate) fn scion_dodge_split() -> CorrectionSet {
     new_qualified_correction(
         "feat_bonus",
