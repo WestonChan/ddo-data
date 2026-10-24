@@ -1,6 +1,7 @@
 use crate::db::paged_rows;
 use crate::db::{
-    convert_to_booleans, effects_via, json_row, json_rows, modifiers_for, paged_table_json, TableListSource,
+    convert_to_booleans, effects_via, json_row, json_rows, modifiers_for, notes_for_owners, paged_table_json,
+    TableListSource,
 };
 use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
@@ -79,6 +80,7 @@ async fn set_detail(State(state): State<AppState>, EntityPath(id): EntityPath) -
     state
         .read_db(move |db| {
             let mut set = json_row(db, "SELECT id, name, icon, is_filigree_set FROM set_bonuses WHERE id = ?1", [id])?;
+            set["notes"] = Value::Array(notes_for_owners(db, "set_bonuses", &[id])?.remove(&id).unwrap_or_default());
             convert_to_booleans(&mut set, &["is_filigree_set"]);
             let mut tiers = json_rows(
                 db,

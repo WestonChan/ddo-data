@@ -1,7 +1,8 @@
 use super::crafting::crafting_recipes_yielding;
 use super::quests::{adventure_packs_dropping_via, quests_dropping_via, sources_via};
 use crate::db::{
-    convert_to_booleans, effects_for_owner, effects_via, json_row, json_rows, modifiers_for, paged_query, WhereClause,
+    convert_to_booleans, effects_for_owner, effects_via, json_row, json_rows, modifiers_for, notes_for_owners,
+    paged_query, WhereClause,
 };
 use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
@@ -157,6 +158,7 @@ async fn augment_detail(State(state): State<AppState>, EntityPath(id): EntityPat
             convert_to_booleans(&mut augment, AUGMENT_FLAG_COLUMNS);
             let effects = effects_for_owner(db, "augment_effects", "augment_id", id)?;
             attach_child_collections(db, &mut augment, effects)?;
+            augment["notes"] = Value::Array(notes_for_owners(db, "augments", &[id])?.remove(&id).unwrap_or_default());
             augment["quests"] = Value::Array(quests_dropping_via(db, "augment_id", id)?);
             augment["adventure_packs"] = Value::Array(adventure_packs_dropping_via(db, "augment_id", id)?);
             augment["sources"] = Value::Array(sources_via(db, "augment_id", id)?);

@@ -21,6 +21,7 @@
     }
   ],
   "name": "Devoted Heart",
+  "notes": [],
   "slug": "devoted-heart",
   "tiers": [
     {
@@ -43,6 +44,7 @@
           "effect_id": 2605299391052012,
           "effect_slug": "positive-spell-power",
           "name": "Positive Spell Power",
+          "notes": [],
           "tier": null,
           "value": 36,
           "value2": null,

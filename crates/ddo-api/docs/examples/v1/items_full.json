@@ -61,6 +61,7 @@
           "effect_id": 4051823190149989,
           "effect_slug": "strength",
           "name": "Strength",
+          "notes": [],
           "tier": null,
           "value": 6,
           "value2": null,
@@ -84,6 +85,7 @@
           "effect_id": 8499011149722438,
           "effect_slug": "physical-sheltering",
           "name": "Physical Sheltering",
+          "notes": [],
           "tier": null,
           "value": 15,
           "value2": null,
@@ -107,6 +109,7 @@
           "effect_id": 6046083909513009,
           "effect_slug": "alignment-absorption",
           "name": "Alignment Absorption",
+          "notes": [],
           "tier": null,
           "value": 15,
           "value2": null,
@@ -156,6 +159,7 @@
         }
       ],
       "name": "Ring of Baphomet",
+      "notes": [],
       "quest_chains": [],
       "quests": [
         {
@@ -292,6 +296,7 @@
           "effect_id": 4051823190149989,
           "effect_slug": "strength",
           "name": "Strength",
+          "notes": [],
           "tier": null,
           "value": 10,
           "value2": null,
@@ -315,6 +320,7 @@
           "effect_id": 4347764377480888,
           "effect_slug": "fortitude-save",
           "name": "Fortitude Save",
+          "notes": [],
           "tier": null,
           "value": 9,
           "value2": null,
@@ -338,6 +344,7 @@
           "effect_id": 2841455014554526,
           "effect_slug": "profane-well-rounded",
           "name": "Profane Well Rounded",
+          "notes": [],
           "tier": null,
           "value": 1,
           "value2": null,
@@ -355,6 +362,7 @@
       "minimum_level": 21,
       "modifiers": [],
       "name": "Ring of Brutal Force",
+      "notes": [],
       "quest_chains": [],
       "quests": [
         {

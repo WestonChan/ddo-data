@@ -1,0 +1,10 @@
+[[row]]
+name = "Nightshield"
+description = """
+Target: Self
+School: Abjuration
+Spell Resistance: No
+Grants a +1 resistance bonus to saves (+2 at 6th level, +3 at 9th) and protection
+from magic missiles."""
+icon = "Nightshield"
+school = "Abjuration"

@@ -16,6 +16,12 @@ fn validate_response(
     schemas: &serde_json::Map<String, Value>,
     path: &mut String,
 ) -> Result<(), String> {
+    if let Some(allowed) = schema.as_bool() {
+        return if allowed { Ok(()) } else { Err(format!("{path}: schema forbids this value")) };
+    }
+    if !schema.is_object() {
+        return Err(format!("{path}: missing or invalid schema"));
+    }
     if let Some(reference) = schema["$ref"].as_str() {
         let name =
             reference.strip_prefix("#/components/schemas/").ok_or_else(|| format!("{path}: invalid {reference}"))?;
@@ -48,13 +54,16 @@ fn validate_response(
         Value::Array(_) => "array",
         Value::Object(_) => "object",
     };
-    if !allowed_types.contains(&actual_type) && !(actual_type == "integer" && allowed_types.contains(&"number")) {
+    if !allowed_types.is_empty()
+        && !allowed_types.contains(&actual_type)
+        && !(actual_type == "integer" && allowed_types.contains(&"number"))
+    {
         return Err(format!("{path}: expected {allowed_types:?}, got {actual_type}"));
     }
     if let Some(object) = value.as_object() {
         let properties = schema["properties"].as_object();
         let additional = schema.get("additionalProperties");
-        if properties.is_none() && additional.is_none() {
+        if properties.is_none() && additional.is_none() && !allowed_types.is_empty() {
             return Err(format!("{path}: untyped object"));
         }
         for required in schema["required"].as_array().into_iter().flatten() {
@@ -62,6 +71,9 @@ fn validate_response(
             if !object.contains_key(name) {
                 return Err(format!("{path}: missing {name}"));
             }
+        }
+        if properties.is_none() && additional.is_none() {
+            return Ok(());
         }
         for (name, field) in object {
             let field_schema = properties
@@ -77,7 +89,9 @@ fn validate_response(
         }
     }
     if let Some(items) = value.as_array() {
-        let item_schema = schema.get("items").ok_or_else(|| format!("{path}: untyped array"))?;
+        let Some(item_schema) = schema.get("items") else {
+            return if allowed_types.is_empty() { Ok(()) } else { Err(format!("{path}: untyped array")) };
+        };
         for (index, item) in items.iter().enumerate() {
             let parent_length = path.len();
             write!(path, "[{index}]").expect("writing to a String cannot fail");

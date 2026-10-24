@@ -1,5 +1,11 @@
 # V9 data files served changes
 
+## Game-bug and verification notes (schema 43, 2026-10-23)
+
+Effect lines and item, augment, set, feat and effect details add `notes`, one shape for game-bug records and open verification requests. Each note carries `kind`, `field`, `qualifier`, `text`, `intended`, `assumed`, `in_game` and `recorded`. Game-bug notes precede unverified notes, then sort by field and qualifier.
+
+A note appears on every affected line. Whole-entity questions, field notes without a line, and removed bonuses appear at the detail's top level. Plague Wolf's Charisma line explains its observed -4 penalty; its top-level note explains the absent Intelligence penalty. Source evidence remains internal. Existing values and response fields retain their meanings.
+
 ## Slug addressing (schema 38, 2026-10-18)
 
 The first of three steps that make slugs the only public identifier (chunk 3 is [ddo-data#20](https://github.com/WestonChan/ddo-data/issues/20)). This step only adds; every existing field and numeric path still works.

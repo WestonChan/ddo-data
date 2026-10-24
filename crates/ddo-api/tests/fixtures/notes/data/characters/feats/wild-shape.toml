@@ -1,0 +1,147 @@
+[[row]]
+name = "Wild Shape: Plague Wolf"
+acquire = "Train"
+description = """
+Animal Form: Transform into a Plague Wolf. While in this form, you gain a +10%
+Combat Style bonus to attack speed, a +3 bonus to attack while flanking, 10%
+bonus to movement speed and you can use either the Biting Acid or Biting Poison
+Imbue. You gain a -2 penalty to Intelligence and Charisma. While in Wolf form you
+gain access to a number of spells and enhancements that require Wold form, but
+the cooldowns of your non-animal form spells are increased to 2.5 times their
+normal length.
+
+You now attack with tooth and claw using the stats of whatever weapon held in
+your right hand. Shields work normally but you cannot shield bash.
+
+You are considered an animal. If you are a Warforged, you are no longer considered
+a Living Construct, and can now be healed normally by Positive energy spells, and
+you become immune to repair spells.
+
+You cannot use wands or scrolls while in animal form."""
+icon = "WildShapePlagueWolf"
+source_name = "Blight Caster"
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Melee and Ranged Attack Speed"
+value = 10
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Charisma"
+value = -4
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Attack Bonus"
+value = 3
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+value = 10
+
+[[row.group]]
+group_name = "Wild Shape"
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "remove"
+upstream = -2
+reason = "The maintainer observed -4 Charisma and no Intelligence penalty in game. The wiki notes (Bug: gives -4 Charisma)."
+in_game = true
+read = "2026-10-23"
+qualifier = "Intelligence / Penalty"
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "value"
+upstream = -2
+reason = "The maintainer observed -4 Charisma and no Intelligence penalty in game. The wiki notes (Bug: gives -4 Charisma)."
+in_game = true
+read = "2026-10-23"
+qualifier = "Charisma / Penalty"
+
+[[row.game_bug_correction]]
+kind = "feat_bonus"
+field = "value"
+qualifier = "Charisma / Penalty"
+intended = -2
+reason = "The maintainer observed -4 Charisma and no Intelligence penalty in game. The wiki notes (Bug: gives -4 Charisma)."
+in_game = true
+read = "2026-10-23"
+
+[[row.game_bug_correction]]
+kind = "feat_bonus"
+field = "remove"
+qualifier = "Intelligence / Penalty"
+intended = -2
+reason = "The maintainer observed -4 Charisma and no Intelligence penalty in game. The wiki notes (Bug: gives -4 Charisma)."
+in_game = true
+read = "2026-10-23"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect = "Melee and Ranged Attack Speed"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Charisma",
+]
+
+[[row.modifier.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.modifier.requirement]]
+items = ["Flanking"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"
+
+[[row.modifier.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 2
+
+[[row.stance]]
+name = "Plague Wolf"
+description = "You transform into a Plague Wolf gaining animal specific abilities"
+group_name = "Major Form"
+icon = "WildShapePlagueWolf"

@@ -1,6 +1,6 @@
 use crate::db::{
-    clamped_page, effects_via_with_link_order, json_row, json_rows, paged_query, paged_table_json, ListPage,
-    TableListSource, WhereClause,
+    clamped_page, effects_via_with_link_order, json_row, json_rows, notes_for_owners, paged_query, paged_table_json,
+    ListPage, TableListSource, WhereClause,
 };
 use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
@@ -421,6 +421,7 @@ async fn effect_detail(
                     default_value, default_value2, tier_group_id, tier FROM effects WHERE id = ?1",
                 [id],
             )?;
+            family["notes"] = Value::Array(notes_for_owners(db, "effects", &[id])?.remove(&id).unwrap_or_default());
             family["kind"] = Value::String(
                 if family["is_stat"] == 1 {
                     "stat"

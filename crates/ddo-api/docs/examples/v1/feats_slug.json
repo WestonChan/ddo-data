@@ -23,6 +23,7 @@
   "max_times_acquire": null,
   "modifiers": [],
   "name": "Cleave",
+  "notes": [],
   "requirements": [
     {
       "group_index": 0,

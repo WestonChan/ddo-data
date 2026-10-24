@@ -1,7 +1,9 @@
 use super::super::quests::{
     adventure_packs_dropping_via_many, quests_dropping_via_many, sources_via_many, wiki_page_url,
 };
-use crate::db::{convert_to_booleans, effects_via, grouped_rows, json_rows, modifiers_for_owners, sql_integer_list};
+use crate::db::{
+    convert_to_booleans, effects_via, grouped_rows, json_rows, modifiers_for_owners, notes_for_owners, sql_integer_list,
+};
 use crate::error::ApiError;
 use rusqlite::Connection;
 use serde_json::Value;
@@ -79,6 +81,7 @@ pub(super) fn item_records(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64,
     for (item_id, item) in &mut items {
         item["effects"] = Value::Array(effects.remove(item_id).unwrap_or_default());
     }
+    attach_rows(&mut items, "notes", notes_for_owners(db, "items", ids)?);
 
     let mut slots = grouped_rows(
         db,

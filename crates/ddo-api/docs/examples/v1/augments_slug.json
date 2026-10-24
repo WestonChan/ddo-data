@@ -25,6 +25,7 @@
       "effect_id": 2476223613212715,
       "effect_slug": "physical-resistance-rating",
       "name": "Physical Resistance Rating",
+      "notes": [],
       "tier": null,
       "value": 10,
       "value2": null,
@@ -70,6 +71,7 @@
     }
   ],
   "name": "Solar Gem of Physical Resistance Rating (Heroic)",
+  "notes": [],
   "quests": [
     {
       "chest": "end chest",

@@ -1,6 +1,6 @@
 use crate::db::{
-    attack_for, bonuses_via, convert_to_booleans, dcs_for, json_row, json_rows, modifiers_for, paged_query,
-    requirements_for, stances_for, WhereClause,
+    attack_for, bonuses_via, convert_to_booleans, dcs_for, json_row, json_rows, modifiers_for, notes_for_owners,
+    paged_query, requirements_for, stances_for, WhereClause,
 };
 use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
@@ -131,6 +131,7 @@ async fn feat_detail(State(state): State<AppState>, EntityPath(id): EntityPath) 
     state
         .read_db(move |db| {
             let mut feat = json_row(db, &format!("SELECT {FEAT_COLUMNS} FROM {FEAT_TABLES} WHERE f.id = ?1"), [id])?;
+            feat["notes"] = Value::Array(notes_for_owners(db, "feats", &[id])?.remove(&id).unwrap_or_default());
             convert_to_booleans(&mut feat, &["auto_acquire_ignores_requirements"]);
             feat["groups"] = Value::Array(feat_group_names(db, id)?);
             feat["requirements"] = Value::Array(requirements_for(db, "feat", id)?);

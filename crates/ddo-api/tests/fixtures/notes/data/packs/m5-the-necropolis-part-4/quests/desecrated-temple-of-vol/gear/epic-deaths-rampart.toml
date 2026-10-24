@@ -1,0 +1,98 @@
+name = "Epic Death's Rampart"
+description = """
+The Death Knights that Vol brought to the Orchard wear this heavy armor, a sign
+of their devotion as well as their ability to shrug off the mightiest of attacks."""
+drop_location = "Desecrated Temple of Vol (epic), End chest"
+enhancement_bonus = 11
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 27
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 25
+armor_check_penalty = -3
+armor_type = "Heavy"
+max_dex_bonus = 2
+
+[[clickie]]
+name = "Nightshield"
+clickie = "Nightshield"
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Insight"
+value = 2
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    25,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Nightshield"]
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Desecrated Temple of Vol"

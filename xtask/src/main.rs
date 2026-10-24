@@ -348,6 +348,7 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         ("ddo-api", &["--test", "api"][..], "list_parameter_docs_share_descriptions_and_match_runtime_sort_fields"),
         ("ddo-api", &["--test", "api"][..], "item_pack_query_count_does_not_grow_with_rows_or_sources"),
         ("ddo-api", &["--test", "api"][..], "item_full_page_query_count_does_not_grow_with_rows"),
+        ("ddo-api", &["--test", "api"][..], "note_queries_do_not_grow_from_one_to_fifty_owners"),
         ("ddo-api", &["--test", "api"][..], "loot_source_references_match_entity_routes"),
         ("ddo-api", &["--test", "api"][..], "loot_source_schemas_share_required_nullable_references"),
         ("ddo-api", &["--test", "api"][..], "feat_bonus_references_match_the_granting_effect"),

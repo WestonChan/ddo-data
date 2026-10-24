@@ -22,3 +22,17 @@ pub(crate) fn copy_fixture_data(fixtures: &Path, root: &Path) -> Connection {
     ddo_etl::tree::build_from_data(root, &mut db).unwrap();
     db
 }
+
+pub(crate) fn add_note_fixtures(root: &Path) {
+    let workspace = Path::new(env!("CARGO_MANIFEST_DIR"));
+    std::fs::remove_file(root.join("effects/sheltering.toml")).unwrap();
+    copy_files(&workspace.join("../ddo-etl/tests/fixtures/verification-notes/data"), root);
+    let captured = workspace.join("tests/fixtures/notes");
+    copy_files(&captured.join("data"), root);
+    for name in ["clickies", "augment-slot-types"] {
+        let path = root.join(format!("effects/{name}.toml"));
+        let original = std::fs::read_to_string(&path).unwrap();
+        let additional = std::fs::read_to_string(captured.join(format!("append/effects/{name}.toml"))).unwrap();
+        std::fs::write(path, format!("{original}\n{additional}")).unwrap();
+    }
+}

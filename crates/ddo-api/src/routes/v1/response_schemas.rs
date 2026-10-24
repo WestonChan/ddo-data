@@ -68,7 +68,60 @@ pub(crate) struct EffectDamage {
 }
 
 #[derive(utoipa::ToSchema)]
+#[schema(rename_all = "snake_case")]
+pub(crate) enum NoteKind {
+    GameBug,
+    Unverified,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct Note {
+    pub(crate) kind: NoteKind,
+    #[schema(required = true, schema_with = schema_note_field)]
+    pub(crate) field: Option<String>,
+    #[schema(required = true, schema_with = schema_note_qualifier)]
+    pub(crate) qualifier: Option<String>,
+    #[schema(schema_with = schema_note_text)]
+    pub(crate) text: String,
+    #[schema(schema_with = schema_note_intended)]
+    pub(crate) intended: serde_json::Value,
+    #[schema(schema_with = schema_note_assumed)]
+    pub(crate) assumed: serde_json::Value,
+    #[schema(schema_with = schema_note_in_game)]
+    pub(crate) in_game: bool,
+    #[schema(schema_with = schema_note_recorded)]
+    pub(crate) recorded: String,
+}
+
+fn schema_note_field() -> RefOr<Schema> {
+    described_schema::<Option<String>>("Correction field addressed by the note; null for a whole-entity question.")
+}
+fn schema_note_qualifier() -> RefOr<Schema> {
+    described_schema::<Option<String>>("Bonus or nested target within the entity; null when unqualified.")
+}
+fn schema_note_text() -> RefOr<Schema> {
+    described_schema::<String>("Observed game bug or open verification question.")
+}
+fn schema_note_intended() -> RefOr<Schema> {
+    described_schema::<serde_json::Value>("Intended value for a game bug; null for an unverified note.")
+}
+fn schema_note_assumed() -> RefOr<Schema> {
+    described_schema::<serde_json::Value>("Current assumption for an unverified note; null for a game bug.")
+}
+fn schema_note_in_game() -> RefOr<Schema> {
+    described_schema::<bool>("Whether the game bug was observed in game; false for unverified notes.")
+}
+fn schema_note_recorded() -> RefOr<Schema> {
+    described_schema::<String>("Game-bug observation or verification-request date, in YYYY-MM-DD form.")
+}
+fn schema_notes() -> RefOr<Schema> {
+    described_schema::<Vec<Note>>("Game-bug and unverified notes for this target, with game bugs first.")
+}
+
+#[derive(utoipa::ToSchema)]
 pub(crate) struct EffectLine {
+    #[schema(schema_with = schema_notes)]
+    pub(crate) notes: Vec<Note>,
     #[schema(schema_with = schema_line_id)]
     pub(crate) effect_id: i64,
     pub(crate) effect_slug: String,
@@ -345,6 +398,8 @@ pub(crate) struct AugmentsDetailResponseQuestsEntry {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct AugmentsDetailResponse {
+    #[schema(schema_with = schema_notes)]
+    pub(crate) notes: Vec<Note>,
     pub(crate) adds_augment: Option<String>,
     pub(crate) adventure_packs: Vec<AugmentsDetailResponseAdventurePacksEntry>,
     pub(crate) choose_level: bool,
@@ -830,6 +885,8 @@ pub(crate) struct EffectTierDetail {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct EffectsDetailResponse {
+    #[schema(schema_with = schema_notes)]
+    pub(crate) notes: Vec<Note>,
     pub(crate) augments: EffectsDetailResponseAugments,
     #[schema(schema_with = schema_family_default_value)]
     pub(crate) default_value: Option<i64>,
@@ -1091,6 +1148,8 @@ pub(crate) struct FeatsDetailResponseAutoAcquireRequirementsEntry {
 #[derive(utoipa::ToSchema)]
 #[schema(description = "A resolved feat bonus; id and slug identify the granting effect, not the bonus row.")]
 pub(crate) struct FeatsDetailResponseBonusesEntry {
+    #[schema(schema_with = schema_notes)]
+    pub(crate) notes: Vec<Note>,
     pub(crate) bonus_type: String,
     pub(crate) description: Option<String>,
     pub(crate) id: i64,
@@ -1253,6 +1312,8 @@ pub(crate) struct FeatsDetailResponseThisAttackModifiersEntry {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct FeatsDetailResponse {
+    #[schema(schema_with = schema_notes)]
+    pub(crate) notes: Vec<Note>,
     pub(crate) acquire: String,
     pub(crate) attack: Option<FeatsDetailResponseAttack>,
     pub(crate) auto_acquire_ignores_requirements: bool,
@@ -1656,6 +1717,8 @@ pub(crate) struct ItemsDetailResponseWeapon {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemsDetailResponse {
+    #[schema(schema_with = schema_notes)]
+    pub(crate) notes: Vec<Note>,
     pub(crate) accepts_sentience: bool,
     pub(crate) adventure_packs: Vec<ItemsDetailResponseAdventurePacksEntry>,
     pub(crate) armor: Option<ItemsDetailResponseArmor>,
@@ -2140,6 +2203,8 @@ pub(crate) struct SetsDetailResponseTiersEntry {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct SetsDetailResponse {
+    #[schema(schema_with = schema_notes)]
+    pub(crate) notes: Vec<Note>,
     pub(crate) augments: Vec<SetsDetailResponseAugmentsEntry>,
     pub(crate) filigrees: Vec<SetsDetailResponseFiligreesEntry>,
     pub(crate) icon: Option<String>,

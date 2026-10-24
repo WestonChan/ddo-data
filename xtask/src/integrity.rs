@@ -2629,7 +2629,7 @@ mod served_amount_tests {
                 effect_descriptions_without_their_amounts(&db, &IntegrityOptions { allowed_empty_tables: Vec::new() })
                     .unwrap();
             db.trace_v2(TraceEventCodes::empty(), None);
-            assert_eq!(STATEMENTS.load(Ordering::SeqCst), 11, "{owner_count} owners");
+            assert_eq!(STATEMENTS.load(Ordering::SeqCst), 16, "{owner_count} owners");
             assert!(findings.offenders.unwrap().is_empty());
             db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
             STATEMENTS.store(0, Ordering::SeqCst);

@@ -352,6 +352,76 @@ pub(crate) fn dcs_for(db: &Connection, owner_kind: &str, owner_id: i64) -> Resul
     )
 }
 
+const NOTES_SQL: &str = "SELECT 'game_bug' AS kind, id AS note_id, owner_kind AS annotation_owner_kind,
+    owner_id AS annotation_owner_id, NULLIF(field, '') AS field, NULLIF(qualifier, '') AS qualifier,
+    reason AS text, intended_value AS intended, NULL AS assumed, in_game, read AS recorded
+    FROM game_bug_corrections UNION ALL
+    SELECT 'unverified', id, owner_kind, owner_id, NULLIF(field, ''), NULLIF(qualifier, ''),
+    question, NULL, assumed_value, 0, raised FROM verification_requests";
+
+const NOTE_FIELDS: &str = "notes.kind, notes.field, notes.qualifier, notes.text, notes.intended,
+    notes.assumed, notes.in_game, notes.recorded";
+
+fn decode_note_values(note: &mut Value) -> Result<(), ApiError> {
+    for field in ["intended", "assumed"] {
+        if let Some(encoded) = note[field].as_str() {
+            note[field] = serde_json::from_str(encoded).map_err(|error| ApiError::Internal(error.into()))?;
+        }
+    }
+    convert_to_booleans(note, &["in_game"]);
+    Ok(())
+}
+
+pub(crate) fn notes_for_owners(
+    db: &Connection,
+    owner_kind: &str,
+    owner_ids: &[i64],
+) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
+    let rows = json_rows(db, &format!(
+        "WITH notes AS ({NOTES_SQL})
+         SELECT notes.annotation_owner_id AS owner_id, {NOTE_FIELDS} FROM notes
+         WHERE notes.annotation_owner_kind = ?1 AND notes.annotation_owner_id IN ({})
+           AND NOT EXISTS (SELECT 1 FROM note_lines line WHERE line.note_kind = notes.kind AND line.note_id = notes.note_id)
+         ORDER BY notes.annotation_owner_id, notes.kind, notes.field, notes.qualifier",
+        sql_integer_list(owner_ids)
+    ), [owner_kind])?;
+    let mut by_owner = BTreeMap::<i64, Vec<Value>>::new();
+    for mut note in rows {
+        decode_note_values(&mut note)?;
+        let owner = note.as_object_mut().expect("note row").remove("owner_id").unwrap().as_i64().unwrap();
+        by_owner.entry(owner).or_default().push(note);
+    }
+    Ok(by_owner)
+}
+
+fn line_notes_for_owners(
+    db: &Connection,
+    owner_kind: &str,
+    owner_ids: &[i64],
+) -> Result<BTreeMap<(i64, i64), Vec<Value>>, ApiError> {
+    let rows = json_rows(
+        db,
+        &format!(
+            "WITH notes AS ({NOTES_SQL})
+         SELECT line.owner_id, line.link_sort_order, {NOTE_FIELDS} FROM note_lines line
+         JOIN notes ON notes.kind = line.note_kind AND notes.note_id = line.note_id
+         WHERE line.owner_kind = ?1 AND line.owner_id IN ({})
+         ORDER BY line.owner_id, line.link_sort_order, notes.kind, notes.field, notes.qualifier",
+            sql_integer_list(owner_ids)
+        ),
+        [owner_kind],
+    )?;
+    let mut by_line = BTreeMap::<(i64, i64), Vec<Value>>::new();
+    for mut note in rows {
+        decode_note_values(&mut note)?;
+        let fields = note.as_object_mut().expect("note row");
+        let owner = fields.remove("owner_id").unwrap().as_i64().unwrap();
+        let order = fields.remove("link_sort_order").unwrap().as_i64().unwrap();
+        by_line.entry((owner, order)).or_default().push(note);
+    }
+    Ok(by_line)
+}
+
 pub(crate) fn bonuses_via(
     db: &Connection,
     junction_table: &str,
@@ -363,7 +433,7 @@ pub(crate) fn bonuses_via(
         _ => unreachable!("bonus rendering is only used for feats"),
     };
     let sql = format!(
-        "SELECT e.id, e.slug, e.verbose_name_template, e.description_template, s.name AS stat, s.category AS stat_category,
+        "SELECT e.id, e.slug, j.sort_order AS link_sort_order, e.verbose_name_template, e.description_template, s.name AS stat, s.category AS stat_category,
                 bt.name AS bonus_type,
                 ob.amount AS value,
                 CASE WHEN es.amount_from = 2 THEN ob.amount END AS value2,
@@ -380,6 +450,7 @@ pub(crate) fn bonuses_via(
           ORDER BY j.sort_order, ob.effect_bonus_order, ob.group_member_order"
     );
     let mut bonuses = json_rows(db, &sql, [owner_id])?;
+    let notes = line_notes_for_owners(db, owner_kind, &[owner_id])?;
     for bonus in &mut bonuses {
         let stat_name = bonus["stat"].as_str().unwrap_or("");
         let value = bonus["value"].as_i64();
@@ -393,6 +464,8 @@ pub(crate) fn bonuses_via(
             format!("{rendered_title}: {}", render_description_template(template, bonus))
         });
         let object = bonus.as_object_mut().expect("query returns objects");
+        let order = object.remove("link_sort_order").unwrap().as_i64().unwrap();
+        object.insert("notes".into(), Value::Array(notes.get(&(owner_id, order)).cloned().unwrap_or_default()));
         object.remove("verbose_name_template");
         object.remove("description_template");
         object.remove("template_value");
@@ -474,6 +547,8 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
           ORDER BY j.{owner_column}, j.sort_order, ob.effect_bonus_order, ob.group_member_order"
     );
     let rows = json_rows(db, &sql, selector_params)?;
+    let owner_ids = rows.iter().filter_map(|row| row["owner_id"].as_i64()).collect::<std::collections::BTreeSet<_>>();
+    let notes = line_notes_for_owners(db, owner_kind, &owner_ids.into_iter().collect::<Vec<_>>())?;
     let damage_rows = json_rows(
         db,
         "SELECT ed.effect_id, t.name AS trigger, dt.name AS damage_type, ed.dice_number,
@@ -520,6 +595,7 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
                     "verbose_name": verbose_name, "description": description,
                     "value": row["template_value"], "value2": row["template_value2"],
                     "bonus_type": row["bonus_type"], "bonuses": [],
+                    "notes": notes.get(&(owner_id, sort_order)).cloned().unwrap_or_default(),
                     "damage": damage_by_effect.get(&row["effect_id"].as_i64().unwrap_or_default()).cloned().unwrap_or_default()
                 })));
                 position_by_link.insert((owner_id, sort_order), position);

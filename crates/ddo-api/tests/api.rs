@@ -51,6 +51,99 @@ fn fixture_state_with_data_edits(test_name: &str, edit: impl FnOnce(&Path)) -> A
     AppState::open(&fixture_db_path_with_data_edits(test_name, edit)).unwrap()
 }
 
+fn note_fixture_path() -> &'static PathBuf {
+    static PATH: OnceLock<PathBuf> = OnceLock::new();
+    PATH.get_or_init(|| {
+        fixture_db_path_with_data_edits("notes", |root| {
+            common::add_note_fixtures(root);
+            let append = |relative: &str, notes: &str| {
+                let path = root.join(relative);
+                let original = std::fs::read_to_string(&path).unwrap();
+                std::fs::write(path, format!("{original}\n{notes}")).unwrap();
+            };
+            append(
+                "packs/free-to-play/the-harpers/quests/search-and-rescue/gear/heartwood.toml",
+                r#"
+[[verification_request]]
+kind = "item_bonus"
+field = "lines"
+qualifier = "Sheltering / Insight"
+question = "Are these separate Insight lines?"
+assumed = "Separate Physical and Magical Sheltering"
+raised = "2026-10-23"
+[[verification_request.source]]
+url = "https://ddowiki.com/page/Item:Heartwood"
+read = "2026-10-23"
+says = "The tooltip lists two Insight lines."
+[[game_bug_correction]]
+kind = "item_bonus"
+field = "value"
+qualifier = "Physical Sheltering / Insight"
+intended = 9
+reason = "The observed amount is ten instead of nine."
+in_game = true
+read = "2026-10-23"
+"#,
+            );
+            append(
+                "packs/m5-the-necropolis-part-4/quests/desecrated-temple-of-vol/gear/epic-deaths-rampart.toml",
+                r#"
+[[verification_request]]
+kind = "item_bonus"
+field = "bonus_type"
+qualifier = "Elemental Resistance / Competence"
+question = "Which type applies in game?"
+assumed = "Competence"
+raised = "2026-10-23"
+[[verification_request.source]]
+url = "https://ddowiki.com/page/Item:Epic_Death%27s_Rampart"
+read = "2026-10-23"
+says = "The title says Competence; the text says Insight."
+"#,
+            );
+            append(
+                "packs/shared/sets/the-inevitable-grave.toml",
+                r#"
+[[verification_request]]
+kind = "set_tier_bonus"
+field = "value"
+qualifier = "equipped_count 3, Will Save / Stacking"
+question = "Is the tier's Will Save amount current?"
+assumed = 2
+raised = "2026-10-23"
+[[verification_request.source]]
+in_game = true
+read = "2026-10-23"
+says = "Two on the Will Save line."
+"#,
+            );
+            for relative in [
+                "packs/shared/events/treasure-of-crystal-cove/gear/cutthroats-smallblade-level-4.toml",
+                "packs/shared/augments/dinosaurbone/silverscale.toml",
+                "effects/striding.toml",
+            ] {
+                append(
+                    relative,
+                    r#"
+[[verification_request]]
+question = "Is this the current version?"
+assumed = "As recorded"
+raised = "2026-10-23"
+[[verification_request.source]]
+in_game = true
+read = "2026-10-23"
+says = "The recorded version is awaiting confirmation."
+"#,
+                );
+            }
+        })
+    })
+}
+
+fn note_fixture_state() -> AppState {
+    AppState::open(note_fixture_path()).unwrap()
+}
+
 async fn get(path: &str) -> (StatusCode, axum::http::HeaderMap, Value) {
     get_from(fixture_state(), path).await
 }
@@ -73,6 +166,189 @@ async fn get_list_rows(path: &str) -> (StatusCode, axum::http::HeaderMap, Value)
     let (status, headers, page) = get(&format!("{path}{separator}limit=10000")).await;
     let rows_key = path.split('?').next().unwrap().trim_start_matches("/v1/").replace('-', "_");
     (status, headers, page[&rows_key].clone())
+}
+
+#[tokio::test]
+async fn line_notes_follow_every_derived_target_and_preserve_kind_order() {
+    let (status, _, heartwood) = get_from(note_fixture_state(), "/v1/items/heartwood").await;
+    assert_eq!(status, StatusCode::OK, "{heartwood}");
+    assert_eq!(heartwood["notes"], serde_json::json!([]));
+    let lines = heartwood["effects"].as_array().unwrap();
+    assert_eq!(
+        lines[0]["notes"],
+        serde_json::json!([
+            {"kind":"game_bug","field":"value","qualifier":"Physical Sheltering / Insight","text":"The observed amount is ten instead of nine.","intended":9,"assumed":null,"in_game":true,"recorded":"2026-10-23"},
+            {"kind":"unverified","field":"lines","qualifier":"Sheltering / Insight","text":"Are these separate Insight lines?","intended":null,"assumed":"Separate Physical and Magical Sheltering","in_game":false,"recorded":"2026-10-23"}
+        ])
+    );
+    assert_eq!(lines[1]["notes"], serde_json::json!([lines[0]["notes"][1]]));
+    for line in &lines[2..] {
+        assert_eq!(line["notes"], serde_json::json!([]));
+    }
+    let (_, _, rampart) = get_from(note_fixture_state(), "/v1/items/epic-deaths-rampart").await;
+    let lines = rampart["effects"].as_array().unwrap();
+    assert_eq!(
+        lines
+            .iter()
+            .filter(|line| line["name"] == "Elemental Resistance" && line["bonus_type"] == "Competence")
+            .count(),
+        1
+    );
+    for line in lines {
+        if line["name"] == "Elemental Resistance" && line["bonus_type"] == "Competence" {
+            assert_eq!(line["notes"][0]["kind"], "unverified");
+            assert_eq!(line["notes"][0]["assumed"], "Competence");
+        } else {
+            assert_eq!(line["notes"], serde_json::json!([]));
+        }
+    }
+    assert_eq!(rampart["notes"], serde_json::json!([]));
+}
+
+#[tokio::test]
+async fn removed_bonus_notes_stay_on_the_feat_detail() {
+    let (status, _, feat) = get_from(note_fixture_state(), "/v1/feats/wild-shape-plague-wolf").await;
+    assert_eq!(status, StatusCode::OK, "{feat}");
+    let bonuses = feat["bonuses"].as_array().unwrap();
+    assert!(!bonuses.iter().any(|bonus| bonus["stat"] == "Intelligence"));
+    let charisma = bonuses.iter().find(|bonus| bonus["stat"] == "Charisma").unwrap();
+    assert_eq!(charisma["value"], -4);
+    assert_eq!(charisma["notes"].as_array().unwrap().len(), 1);
+    assert_eq!(charisma["notes"][0]["kind"], "game_bug");
+    assert_eq!(charisma["notes"][0]["intended"], -2);
+    assert_eq!(charisma["notes"][0]["assumed"], Value::Null);
+    assert_eq!(charisma["notes"][0]["in_game"], true);
+    assert_eq!(feat["notes"].as_array().unwrap().len(), 1);
+    assert_eq!(feat["notes"][0]["field"], "remove");
+    assert_eq!(feat["notes"][0]["qualifier"], "Intelligence / Penalty");
+    for bonus in bonuses.iter().filter(|bonus| bonus["stat"] != "Charisma") {
+        assert_eq!(bonus["notes"], serde_json::json!([]));
+    }
+}
+
+#[tokio::test]
+async fn entity_notes_and_set_tier_notes_match_their_response_schemas() {
+    let state = note_fixture_state();
+    let (_, _, spec) = get_from(state.clone(), "/v1/openapi.json").await;
+    let schemas = spec["components"]["schemas"].as_object().unwrap();
+    for (path, schema) in [
+        ("/v1/items/cutthroats-smallblade-level-4", "ItemsDetailResponse"),
+        ("/v1/augments/silverscale", "AugmentsDetailResponse"),
+        ("/v1/effects/striding", "EffectsDetailResponse"),
+    ] {
+        let (status, _, detail) = get_from(state.clone(), path).await;
+        assert_eq!(status, StatusCode::OK, "{path}: {detail}");
+        assert_eq!(
+            detail["notes"],
+            serde_json::json!([{"kind":"unverified","field":null,"qualifier":null,"text":"Is this the current version?","intended":null,"assumed":"As recorded","in_game":false,"recorded":"2026-10-23"}])
+        );
+        response_matches_schema(&detail, &schemas[schema], schemas, path).unwrap();
+    }
+    for (path, schema) in [
+        ("/v1/items/heartwood", "ItemsDetailResponse"),
+        ("/v1/items/epic-deaths-rampart", "ItemsDetailResponse"),
+        ("/v1/feats/wild-shape-plague-wolf", "FeatsDetailResponse"),
+        ("/v1/sets/the-inevitable-grave", "SetsDetailResponse"),
+    ] {
+        let (status, _, detail) = get_from(state.clone(), path).await;
+        assert_eq!(status, StatusCode::OK, "{path}: {detail}");
+        response_matches_schema(&detail, &schemas[schema], schemas, path).unwrap();
+        if path.starts_with("/v1/sets/") {
+            assert_eq!(detail["notes"], serde_json::json!([]));
+            let tiers = detail["tiers"].as_array().unwrap();
+            assert_eq!(tiers.len(), 3);
+            for tier in tiers {
+                let lines = tier["effects"].as_array().unwrap();
+                if tier["equipped_count"] == 3 {
+                    let save = lines.iter().find(|line| line["name"] == "Will Save").unwrap();
+                    assert_eq!(save["notes"][0]["assumed"], 2);
+                    assert_eq!(lines.iter().filter(|line| !line["notes"].as_array().unwrap().is_empty()).count(), 1);
+                } else {
+                    assert!(lines.iter().all(|line| line["notes"] == serde_json::json!([])));
+                }
+            }
+        }
+    }
+}
+
+#[test]
+fn note_json_values_accept_the_declared_schema_without_weakening_record_fields() {
+    let json_schema = serde_json::to_value(<Value as utoipa::PartialSchema>::schema()).unwrap();
+    let schemas = serde_json::Map::new();
+    let record_schema =
+        serde_json::json!({"type":"object","properties":{"assumed":json_schema},"required":["assumed"]});
+    for assumed in [
+        Value::Null,
+        serde_json::json!(-2),
+        serde_json::json!(true),
+        serde_json::json!("As recorded"),
+        serde_json::json!([1, "two", null]),
+        serde_json::json!({"line":{"value":-4},"members":["Charisma"]}),
+    ] {
+        response_matches_schema(&serde_json::json!({"assumed":assumed}), &record_schema, &schemas, "note").unwrap();
+    }
+    for invalid in [serde_json::json!({}), serde_json::json!({"assumed":3,"undocumented":true})] {
+        assert!(response_matches_schema(&invalid, &record_schema, &schemas, "note").is_err());
+    }
+    assert!(response_matches_schema(
+        &serde_json::json!({"untyped":3}),
+        &serde_json::json!({"type":"object"}),
+        &schemas,
+        "record"
+    )
+    .is_err());
+    assert!(response_matches_schema(&Value::Null, &Value::Null, &schemas, "missing schema").is_err());
+    assert!(response_matches_schema(&Value::Null, &serde_json::json!(false), &schemas, "forbidden").is_err());
+}
+
+#[tokio::test]
+async fn note_queries_do_not_grow_from_one_to_fifty_owners() {
+    static QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
+    let state = fixture_state_with_data_edits("note-query-count", |root| {
+        common::add_note_fixtures(root);
+        let relative = "packs/free-to-play/the-harpers/quests/search-and-rescue/gear/heartwood.toml";
+        let original =
+            std::fs::read_to_string(note_fixture_path().parent().unwrap().join("data").join(relative)).unwrap();
+        std::fs::write(root.join(relative), &original).unwrap();
+        let folder = root.join(relative).parent().unwrap().to_owned();
+        for index in 1..50 {
+            std::fs::write(
+                folder.join(format!("heartwood-review-{index}.toml")),
+                original.replacen("name = \"Heartwood\"", &format!("name = \"Heartwood Review {index}\""), 1),
+            )
+            .unwrap();
+        }
+    });
+    state
+        .read_db(|db| {
+            db.trace_v2(
+                TraceEventCodes::SQLITE_TRACE_STMT,
+                Some(|event| {
+                    if let TraceEvent::Stmt(_, _) = event {
+                        QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+                    }
+                }),
+            );
+            Ok(())
+        })
+        .await
+        .unwrap();
+    let mut counts = Vec::new();
+    for limit in [1, 50] {
+        QUERY_COUNT.store(0, Ordering::SeqCst);
+        let (status, _, page) =
+            get_from(state.clone(), &format!("/v1/items?q=Heartwood&view=full&limit={limit}")).await;
+        assert_eq!(status, StatusCode::OK, "{page}");
+        let items = page["items"].as_array().unwrap();
+        assert_eq!(items.len(), limit);
+        for item in items {
+            assert_eq!(item["effects"][0]["notes"].as_array().unwrap().len(), 2);
+            assert_eq!(item["effects"][1]["notes"].as_array().unwrap().len(), 1);
+            assert_eq!(item["notes"], serde_json::json!([]));
+        }
+        counts.push(QUERY_COUNT.load(Ordering::SeqCst));
+    }
+    assert_eq!(counts[0], counts[1], "notes must be batched across owners");
 }
 
 #[tokio::test]
@@ -2229,6 +2505,7 @@ async fn owner_response_schemas_share_one_typed_effect_line() {
         "bonus_type",
         "bonuses",
         "damage",
+        "notes",
     ]
     .into_iter()
     .collect();

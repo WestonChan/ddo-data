@@ -1,0 +1,26 @@
+[[row]]
+family = "crafting"
+label = "crafting: upgradeable tier 2"
+variant = "upgradeable tier 2"
+
+[[row.ddobuilder_correction]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: upgradeable - tier 2"
+reason = "One upgrade tier spelled two ways in his files; the wiki names it Tier 2, and his other items use Upgradeable Tier 2."
+url = "https://ddowiki.com/page/Cavalry_Plate"
+read = "2026-09-30"
+
+
+[[row]]
+family = "crafting"
+label = "crafting: upgradeable tier 3"
+variant = "upgradeable tier 3"
+
+[[row.ddobuilder_correction]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: upgradeable - tier 3"
+reason = "One upgrade tier spelled two ways in his files; the wiki names it Tier 3, and his other items use Upgradeable Tier 3."
+url = "https://ddowiki.com/page/Cavalry_Plate"
+read = "2026-09-30"

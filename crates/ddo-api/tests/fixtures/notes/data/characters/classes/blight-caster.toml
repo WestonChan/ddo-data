@@ -1,0 +1,66 @@
+name = "Blight Caster"
+alignments = [
+    "True Neutral",
+    "Chaotic Neutral",
+    "Lawful Neutral",
+    "Neutral Good",
+]
+bab = [
+    0,
+    0.75,
+    1.5,
+    2.25,
+    3,
+    3.75,
+    4.5,
+    5.25,
+    6,
+    6.75,
+    7.5,
+    8.25,
+    9,
+    9.75,
+    10.5,
+    11.25,
+    12,
+    12.75,
+    13.5,
+    14.25,
+    15,
+]
+base_class = "Druid"
+casting_stats = ["Wisdom"]
+class_specific_feat_types = ["Wild Shape"]
+description = """
+Blight Caster is a variant Druid archetype that embraces death as a necessary part of
+life. Introduced in Update 58."""
+fortitude = "good"
+hit_points = 8
+large_icon = "Druid"
+reflex = "poor"
+skill_points = 4
+small_icon = "Druid_Small"
+spell_points_per_level = [
+    0,
+    50,
+    75,
+    100,
+    125,
+    150,
+    180,
+    215,
+    255,
+    300,
+    350,
+    405,
+    465,
+    530,
+    600,
+    675,
+    755,
+    840,
+    930,
+    1025,
+    1125,
+]
+will = "good"
