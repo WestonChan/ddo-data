@@ -162,6 +162,29 @@ url = "https://ddowiki.com/page/Wild_Shape"
 read = "2026-10-23"
 qualifier = "Melee and Ranged Attack Speed / Combat Style"
 
+[[row.verification_request]]
+kind = "feat_bonus"
+field = "value"
+qualifier = "Melee and Ranged Attack Speed / Combat Style"
+question = "Does Blighted Wolf grant a 10% or 20% Combat Style bonus to attack speed? The wiki pages and Maetrim disagree."
+assumed = 10
+raised = "2026-10-23"
+
+[[row.verification_request.source]]
+says = "The Blighted Wolf section states a +10% Combat Style bonus to melee attack speed."
+url = "https://ddowiki.com/page/Wild_Shape"
+read = "2026-10-23"
+
+[[row.verification_request.source]]
+says = "The level 11 Blighted Wolf description gives a 10% Combat Style bonus."
+url = "https://ddowiki.com/page/Blightcaster"
+read = "2026-10-23"
+
+[[row.verification_request.source]]
+says = "The Blighted Wolf description and Weapon_Alacrity Effect both give 20."
+url = "https://github.com/Maetrim/DDOBuilderV2/blob/d1350a0c/Output/DataFiles/Classes/Blightcaster.class.xml"
+read = "2026-10-23"
+
 [[row.modifier]]
 amount_type = "Simple"
 amounts = [20]

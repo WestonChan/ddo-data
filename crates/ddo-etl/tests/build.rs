@@ -107,6 +107,69 @@ fn note_lines_include_zero_amounts_and_named_effect_targets() {
 }
 
 #[test]
+fn committed_verification_requests_cover_the_initial_review_cases() {
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db)
+        .unwrap();
+    for (owner, field, qualifier, expected_assumed, line_count) in [
+        (
+            "Epic Death's Rampart",
+            "bonus_type",
+            "Elemental Resistance / Competence",
+            Some(serde_json::json!("Competence")),
+            1,
+        ),
+        (
+            "Epic Chain of Conviction",
+            "bonus_type",
+            "Elemental Resistance / Competence",
+            Some(serde_json::json!("Competence")),
+            1,
+        ),
+        ("Dark Bargainer's Armor", "lines", "Physical Sheltering / Enhancement", None, 1),
+        ("Hammer of Life", "value", "Natural Armor / Natural Armor", Some(serde_json::json!(2)), 1),
+        (
+            "Wild Shape: Blighted Wolf",
+            "value",
+            "Melee and Ranged Attack Speed / Combat Style",
+            Some(serde_json::json!(10)),
+            1,
+        ),
+        ("Heartwood", "lines", "Sheltering / Insight", None, 2),
+        ("Legendary Heartwood", "lines", "Sheltering / Insight", None, 2),
+        ("Legendary Raven's Talons", "value", "Sneak Attack Damage / Enhancement", Some(serde_json::json!(17)), 1),
+        ("Cutthroat's Smallblade (level 8)", "", "", None, 0),
+        ("Cutthroat's Smallblade (level 12)", "", "", None, 0),
+        ("Cutthroat's Smallblade (level 16)", "", "", None, 0),
+        ("Epic Cutthroat's Smallblade (level 24)", "", "", None, 0),
+    ] {
+        let requests = db
+            .prepare(
+                "SELECT request.assumed_value,
+                    (SELECT COUNT(*) FROM note_lines note WHERE note.note_kind = 'unverified' AND note.note_id = request.id)
+                 FROM verification_requests request
+                 JOIN entity_identity identity ON identity.kind = request.owner_kind AND identity.entity_id = request.owner_id
+                 WHERE identity.name = ?1 AND request.field = ?2 AND request.qualifier = ?3",
+            )
+            .unwrap()
+            .query_map(rusqlite::params![owner, field, qualifier], |row| {
+                Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?))
+            })
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert_eq!(requests.len(), 1, "{owner}: the requested review target must be recorded once");
+        let assumed: serde_json::Value = serde_json::from_str(&requests[0].0).unwrap();
+        if let Some(expected) = expected_assumed {
+            assert_eq!(assumed, expected, "{owner}");
+        } else {
+            assert!(assumed.as_str().is_some_and(|text| !text.is_empty()), "{owner}");
+        }
+        assert_eq!(requests[0].1, line_count, "{owner}");
+    }
+}
+
+#[test]
 fn plague_wolf_member_removal_precedes_grouping_and_value_correction() {
     let source = fixture::xml_source();
     fixture::write_plague_wolf_feat(source.path());

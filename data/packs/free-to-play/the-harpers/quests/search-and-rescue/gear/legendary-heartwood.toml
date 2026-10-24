@@ -39,6 +39,24 @@ name = "Sheltering"
 bonus_type = "Enhancement"
 value = 33
 
+[[verification_request]]
+kind = "item_bonus"
+field = "lines"
+qualifier = "Sheltering / Insight"
+question = "Does the game intentionally show Insightful Physical and Magical Sheltering as separate lines while Enhancement Sheltering is one line?"
+assumed = "Separate Insightful Physical Sheltering +16 and Insightful Magical Sheltering +16; Enhancement Sheltering +33 stays one line."
+raised = "2026-10-23"
+
+[[verification_request.source]]
+says = "The screenshot shows separate Insightful Physical and Magical Sheltering lines at +16, beside one Sheltering +33 line."
+url = "https://ddowiki.com/page/Item:Legendary_Heartwood"
+read = "2026-10-23"
+
+[[verification_request.source]]
+says = "The same item tooltip shows both line structures together."
+url = "https://images.ddowiki.com/Legendary_Heartwood.png"
+read = "2026-10-23"
+
 [[socket]]
 slot = "green"
 

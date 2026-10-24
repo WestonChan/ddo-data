@@ -47,6 +47,19 @@ bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Restoration"]
 
+[[verification_request]]
+kind = "item_bonus"
+field = "value"
+qualifier = "Natural Armor / Natural Armor"
+question = "Does the heroic Hammer of Life grant Natural Armor +2? Neither the screenshot nor the typed list includes it."
+assumed = 2
+raised = "2026-10-23"
+
+[[verification_request.source]]
+says = "The typed list and screenshot show Enhancement Bonus, Disruption, Greater Disruption Guard, Heal, Repair and Restoration, but no Natural Armor."
+url = "https://ddowiki.com/page/Item:Hammer_of_Life"
+read = "2026-10-23"
+
 [[source]]
 chest = "raid warded chest"
 kind = "quest"

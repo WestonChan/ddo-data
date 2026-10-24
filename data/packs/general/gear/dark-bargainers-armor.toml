@@ -42,6 +42,24 @@ name = "Saving Throws"
 bonus_type = "Insight"
 value = 2
 
+[[verification_request]]
+kind = "item_bonus"
+field = "lines"
+qualifier = "Physical Sheltering / Enhancement"
+question = "Does the current item grant only Physical Resistance Rating, or both Physical and Magical Resistance Rating? The screenshot and typed list disagree."
+assumed = "Physical Sheltering +15 only"
+raised = "2026-10-23"
+
+[[verification_request.source]]
+says = "The typed list says Sheltering +15, granting both Physical and Magical Resistance Rating."
+url = "https://ddowiki.com/page/Item:Dark_Bargainer%27s_Armor"
+read = "2026-10-23"
+
+[[verification_request.source]]
+says = "The screenshot says Physical Sheltering +15, granting only Physical Resistance Rating."
+url = "https://images.ddowiki.com/Dark_Bargainer%27s_Armor.png"
+read = "2026-10-23"
+
 [[source]]
 kind = "starter"
 name = "Advance to level 15"

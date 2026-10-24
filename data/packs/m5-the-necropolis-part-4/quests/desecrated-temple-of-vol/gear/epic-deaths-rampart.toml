@@ -58,6 +58,19 @@ bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Nightshield"]
 
+[[verification_request]]
+kind = "item_bonus"
+field = "bonus_type"
+qualifier = "Elemental Resistance / Competence"
+question = "Does Elemental Resistance grant a Competence or Insight bonus? The game's line title and description disagree."
+assumed = "Competence"
+raised = "2026-10-23"
+
+[[verification_request.source]]
+says = "The screenshot's title says Competence Elemental Resistance - 10; its description says +10 Insight to Acid, Cold, Fire and Electrical resistances."
+url = "https://ddowiki.com/page/Item:Epic_Death%27s_Rampart"
+read = "2026-10-23"
+
 [[socket]]
 slot = "crafting: upgradeable - primary augment"
 

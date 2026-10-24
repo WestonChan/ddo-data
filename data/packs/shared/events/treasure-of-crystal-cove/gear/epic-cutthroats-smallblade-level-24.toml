@@ -40,6 +40,21 @@ name = "Move Silently"
 bonus_type = "Competence"
 value = 17
 
+[[verification_request]]
+question = "Which enchantments, values and augment slots belong to the current level 24 version? This record still contains legacy-version data and needs a whole-item rewrite."
+assumed = "The file holds the legacy version's data."
+raised = "2026-10-23"
+
+[[verification_request.source]]
+says = "The current-version page differs from this record in multiple enchantments, values or sockets; a whole-item rewrite is required."
+url = "https://ddowiki.com/page/Item:Epic_Cutthroat%27s_Smallblade_(level_24)"
+read = "2026-10-23"
+
+[[verification_request.source]]
+says = "The current-version screenshot confirms the updated enchantments and Red augment slot."
+url = "https://images.ddowiki.com/Epic_Cutthroat%27s_Smallblade_%28level_24%29.png"
+read = "2026-10-23"
+
 [[socket]]
 slot = "upgrade: tier 2"
 

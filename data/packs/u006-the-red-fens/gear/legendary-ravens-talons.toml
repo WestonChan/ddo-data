@@ -30,6 +30,24 @@ bonus_type = "Enhancement"
 value = 11
 value2 = 17
 
+[[verification_request]]
+kind = "item_bonus"
+field = "value"
+qualifier = "Sneak Attack Damage / Enhancement"
+question = "Does Legendary Raven's Talons grant +17 or +16 Sneak Attack Damage? The typed tooltip says 17, while the screenshot says 16."
+assumed = 17
+raised = "2026-10-23"
+
+[[verification_request.source]]
+says = "The typed Deception +11 tooltip grants +11 to hit and +17 to damage on qualifying sneak attacks."
+url = "https://ddowiki.com/page/Item:Legendary_Raven%27s_Talons"
+read = "2026-10-23"
+
+[[verification_request.source]]
+says = "The screenshot grants +11 to hit and +16 to damage; it may predate a later change."
+url = "https://images.ddowiki.com/Legendary_Raven%27s_Talons.png"
+read = "2026-10-23"
+
 [[socket]]
 slot = "yellow"
 
