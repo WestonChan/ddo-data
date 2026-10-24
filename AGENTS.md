@@ -156,6 +156,8 @@ Write the failing test first, confirm it fails for the right reason, then the mi
 
 ## Commits
 
-Plain imperative subjects, no prefixes. One logical change per commit, passing `cargo lint` and tests, with `Closes #N` in the message of the commit that finishes an issue. Push to `main` directly; CI runs on every push, and the deploy workflow runs on every push that changes more than Markdown and on dispatch.
+Plain imperative subjects, no prefixes. One logical change per commit, passing `cargo lint` and tests, with `Closes #N` in the message of the commit that finishes an issue.
+
+**Never ignore lint or build output.** Before every commit, fix every error **and every warning** from `cargo lint`, `cargo build`, `cargo test` and `cargo fmt --all --check`, including ones that were already there before your change. The one exception is a warning a board issue already plans to fix: `check-db`'s WARN work lists are tracked by #17, and some are tied to #56. Name that issue in your report. If no issue covers a warning, fix it now, or file one and place it on the board (see Planning) before you commit. Push to `main` directly; CI runs on every push, and the deploy workflow runs on every push that changes more than Markdown and on dispatch.
 
 `.github/dependabot.yml` opens weekly PRs (Mondays, after a 7-day cooldown) for Cargo and GitHub Actions, minor and patch bumps grouped into one PR per ecosystem, majors separate, `unicode-ident` with `unicode-properties` always together (see the pin above), and `utoipa` with `utoipa-axum` and `utoipa-scalar` always together because they share one `utoipa` type. The `utoipa` and `unicode` groups come before `cargo-minor-and-patch` in the file because a dependency joins the first group it matches. Merging one deploys, so merge only once CI passes, then pull `main`.
