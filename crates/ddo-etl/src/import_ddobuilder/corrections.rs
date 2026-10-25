@@ -196,6 +196,8 @@ mod tests {
                 from: crate::corrections::CorrectionValue::Text("Previous text".into()),
                 to: crate::corrections::CorrectionValue::Text("Reviewed text".into()),
                 family: None,
+                socket: None,
+                option: None,
                 selection: None,
                 stance: None,
                 dc: None,

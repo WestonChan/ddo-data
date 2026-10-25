@@ -42,12 +42,6 @@ pub(super) fn nested_notes(
         .collect()
 }
 
-fn quoted_name(text: &str, prefix: &str) -> Result<Option<String>> {
-    text.strip_prefix(prefix)
-        .map(|quoted| serde_json::from_str::<String>(quoted).with_context(|| format!("invalid quoted name {quoted:?}")))
-        .transpose()
-}
-
 pub fn correction_for_note(note: &DdobuilderCorrection, current_name: &str) -> Result<Correction> {
     let kind = note.kind;
     let mut correction = Correction {
@@ -57,6 +51,8 @@ pub fn correction_for_note(note: &DdobuilderCorrection, current_name: &str) -> R
         from: CorrectionValue::Null,
         to: CorrectionValue::Null,
         family: None,
+        socket: None,
+        option: None,
         selection: None,
         stance: None,
         dc: None,
@@ -70,31 +66,7 @@ pub fn correction_for_note(note: &DdobuilderCorrection, current_name: &str) -> R
         read: note.read.clone(),
         file_name: String::new(),
     };
-    for part in crate::corrections::correction_qualifier_parts(&note.qualifier) {
-        if let Some(selection) = quoted_name(part, "selection ")? {
-            correction.selection = Some(selection);
-        } else if let Some(dc) = quoted_name(part, "dc ")? {
-            correction.dc = Some(dc);
-        } else if let Some(stance) = quoted_name(part, "stance ")? {
-            correction.stance = Some(stance);
-        } else if let Some(family) = quoted_name(part, "family ")? {
-            correction.family = Some(family);
-        } else if let Some(effect) = quoted_name(part, "effect ")? {
-            correction.effect = Some(effect);
-        } else if let Some(stat) = quoted_name(part, "stat ")? {
-            correction.stat = Some(stat);
-        } else if let Some(equipped_count) = part.strip_prefix("equipped_count ") {
-            correction.equipped_count = Some(equipped_count.parse()?);
-        } else if let Some((stat, bonus)) = part.split_once(" / ") {
-            let (bonus_type, bonus_value) = match bonus.rsplit_once(" / ") {
-                Some((bonus_type, value)) => (bonus_type, Some(value.parse::<i64>()?)),
-                None => (bonus, None),
-            };
-            correction.stat = Some(stat.to_string());
-            correction.bonus_type = Some(bonus_type.to_string());
-            correction.bonus_value = bonus_value;
-        }
-    }
+    crate::corrections::set_correction_qualifiers(&mut correction, &note.qualifier)?;
     Ok(correction)
 }
 
@@ -218,6 +190,7 @@ pub(super) fn correction_values(
     note: &DdobuilderCorrection,
     tier_descriptions: &BTreeMap<(String, i64), String>,
     groupings: &crate::groupings::Groupings,
+    socket_options: &crate::build::SocketOptionTargets,
 ) -> Result<(String, String)> {
     let mut correction = correction_for_note(note, current_name)?;
     let mut upstream = note.upstream.clone().unwrap_or(Value::Null);
@@ -262,7 +235,8 @@ pub(super) fn correction_values(
                 json!(value)
             } else {
                 serde_json::from_str::<Value>(
-                    &data_correction_value(transaction, &correction, current_name, groupings)?.to_json(),
+                    &data_correction_value(transaction, &correction, current_name, groupings, socket_options)?
+                        .to_json(),
                 )?
             }
         }
@@ -280,10 +254,12 @@ pub(super) fn correction_values(
         (CorrectionKind::ItemBonus | CorrectionKind::AugmentBonus | CorrectionKind::SetTierBonus, "add") => {
             added_bonus_value(transaction, correction.kind, current_name, &correction)?
         }
-        (CorrectionKind::SetTierBonus | CorrectionKind::FeatBonus, "remove") => Value::Null,
+        (CorrectionKind::SetTierBonus | CorrectionKind::FeatBonus | CorrectionKind::SocketOptionBonus, "remove") => {
+            Value::Null
+        }
         (_, "remove") => json!(1),
         _ => serde_json::from_str::<Value>(
-            &data_correction_value(transaction, &correction, current_name, groupings)?.to_json(),
+            &data_correction_value(transaction, &correction, current_name, groupings, socket_options)?.to_json(),
         )?,
     };
     correction.from = CorrectionValue::from_json(&upstream.to_string())?;
@@ -295,6 +271,7 @@ pub(super) fn correction_values(
 pub(super) fn validate_game_bug_corrections(
     transaction: &Transaction,
     groupings: &crate::groupings::Groupings,
+    socket_options: &crate::build::SocketOptionTargets,
     layout: &super::ExportLayout,
 ) -> Result<()> {
     let mut statement = transaction.prepare(&format!(
@@ -338,7 +315,7 @@ pub(super) fn validate_game_bug_corrections(
             let mut correction = correction_for_note(&note, &owner_name)?;
             correction.from = CorrectionValue::from_json(&note.upstream.unwrap().to_string())?;
             let field = correction.correctable_field()?;
-            let current = data_correction_value(transaction, &correction, &owner_name, groupings)?;
+            let current = data_correction_value(transaction, &correction, &owner_name, groupings, socket_options)?;
             if field.shape == FieldShape::BonusRemoval {
                 ensure!(
                     current.as_text() == Some(NO_SUCH_BONUS),
@@ -368,6 +345,7 @@ fn annotation_owner_kind(kind: CorrectionKind) -> &'static str {
 pub(super) fn validate_verification_requests(
     transaction: &Transaction,
     groupings: &crate::groupings::Groupings,
+    socket_options: &crate::build::SocketOptionTargets,
     layout: &super::ExportLayout,
 ) -> Result<()> {
     let mut statement = transaction.prepare(&format!(
@@ -416,7 +394,8 @@ pub(super) fn validate_verification_requests(
                 ensure!(request.assumed.is_string(), "a line-structure request's assumed value must be free text");
             } else {
                 correction.from = CorrectionValue::from_json(&request.assumed.to_string())?;
-                correction.to = data_correction_value(transaction, &correction, &owner_name, groupings)?;
+                correction.to =
+                    data_correction_value(transaction, &correction, &owner_name, groupings, socket_options)?;
                 ensure!(
                     correction.to.as_text() != Some(NO_SUCH_BONUS),
                     "verification target is absent: {}",
@@ -475,6 +454,7 @@ pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
         CorrectionKind::AugmentBonus,
         CorrectionKind::FeatBonus,
         CorrectionKind::SetTierBonus,
+        CorrectionKind::SocketOptionBonus,
     ] {
         for (owner, rows) in crate::build::line_bonuses_by_owner(db, kind)? {
             bonuses.insert((kind.as_str(), owner), rows);
@@ -485,6 +465,7 @@ pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
         .query_map([], |row| Ok(((row.get::<_, i64>(0)?, row.get::<_, i64>(1)?), row.get::<_, i64>(2)?)))?
         .collect::<rusqlite::Result<BTreeMap<_, _>>>()?;
     let layout = super::ExportLayout::from_database(db)?;
+    let socket_options = crate::build::SocketOptionTargets::from_database(db)?;
     for (note_kind, note_id, owner_kind, owner_id, note) in notes {
         if note.field == "remove" || owner_kind != annotation_owner_kind(note.kind) {
             continue;
@@ -494,6 +475,7 @@ pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
             CorrectionKind::AugmentBonus => (CorrectionKind::AugmentBonus, "augment"),
             CorrectionKind::FeatBonus => (CorrectionKind::FeatBonus, "feat"),
             CorrectionKind::SetTierBonus => (CorrectionKind::SetTierBonus, "set_bonus_tier"),
+            CorrectionKind::SocketOptionBonus => (CorrectionKind::SocketOptionBonus, "item_augment_slot_option"),
             _ => continue,
         };
         (|| -> Result<()> {
@@ -501,6 +483,9 @@ pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
             let link_owner = if note.kind == CorrectionKind::SetTierBonus {
                 let count = correction.equipped_count.context("set annotation needs a piece count")?;
                 *tiers.get(&(owner_id, count)).context("set annotation's tier is absent")?
+            } else if note.kind == CorrectionKind::SocketOptionBonus {
+                socket_options.option_id(&correction, socket_options.item_name(owner_id)?)?
+                    .context("socket-option annotation's option is absent")?
             } else { owner_id };
             let target = correction.stat.as_deref().or(correction.effect.as_deref()).context("bonus annotation must name its target")?;
             let expected = groupings.expanded_stat_names(target)?;

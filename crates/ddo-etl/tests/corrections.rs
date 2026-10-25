@@ -140,6 +140,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::Quest, "epic_level:epic_level:Integer:true, favor:favor:Integer:true, is_raid:is_raid:Flag:false, level:level:Integer:true, name:name:RowName:false, pack:pack_id:NamedReference { referenced_table: \"adventure_packs\" }:false, patron:patron_id:NamedReference { referenced_table: \"patrons\" }:true, remove:remove:Removal:false"),
         (CorrectionKind::Feat, "description:description:Text:true, icon:icon:Text:true"),
         (CorrectionKind::FeatBonus, "alias:alias:BonusAlias:true, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
+        (CorrectionKind::SocketOptionBonus, "alias:alias:BonusAlias:true, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
         (CorrectionKind::Enhancement, "arrows:arrows:TextList:false, cooldown_seconds:cooldown_seconds:Integer:true, cost_per_rank:cost_per_rank:IntegerList:false, description:description:Text:false, duration_seconds:duration_seconds:Integer:true, icon:icon:Text:true, is_clickie:is_clickie:Flag:false, is_tier5:is_tier5:Flag:false, min_spent:min_spent:Integer:false, name:name:RowName:false, ranks:ranks:Integer:false, x:x:Integer:false, y:y:Integer:false"),
         (CorrectionKind::Spell, "description:description:Text:false, icon:icon:Text:true"),
         (CorrectionKind::EnhancementTree, "icon:icon:Text:false"),
@@ -922,6 +923,277 @@ fn fixed_type_grouping_splits_into_stat_lines_at_its_resolved_type() {
         lines,
         [("Electric Spell Power".into(), "Equipment".into(), 3), ("Fire Spell Power".into(), "Equipment".into(), 3)]
     );
+}
+
+#[test]
+fn socket_option_targets_are_loaded_once_for_one_and_fifty_owners() {
+    use rusqlite::trace::{TraceEvent, TraceEventCodes};
+    use std::sync::atomic::{AtomicUsize, Ordering};
+    static SELECTS: AtomicUsize = AtomicUsize::new(0);
+    fn trace(event: TraceEvent<'_>) {
+        if let TraceEvent::Stmt(statement, _) = event {
+            if statement.sql().contains("slot_type.label, option.name") {
+                SELECTS.fetch_add(1, Ordering::SeqCst);
+            }
+        }
+    }
+    for (field, count) in [("lines", 1), ("lines", 50), ("value", 1), ("value", 50)] {
+        let source = fixture::xml_source();
+        fixture::write_spyglass_options(source.path());
+        let captured = std::fs::read_to_string(source.path().join("Items/SpyglassOptions.item")).unwrap();
+        let mut corrections = Corrections::default();
+        for index in 0..count {
+            let mut correction = fixture::spyglass_option_correction(
+                field,
+                if field == "lines" { serde_json::json!("Search and Spot") } else { serde_json::json!(20) },
+                if field == "lines" {
+                    CorrectionValue::Texts(vec!["Search".into(), "Spot".into()])
+                } else {
+                    CorrectionValue::Integer(25)
+                },
+            )
+            .0
+            .remove(0);
+            let renamed = format!("{} {index}", correction.name);
+            std::fs::write(
+                source.path().join(format!("Items/SpyglassOptions{index}.item")),
+                captured.replace(&format!("<Name>{}</Name>", correction.name), &format!("<Name>{renamed}</Name>")),
+            )
+            .unwrap();
+            correction.name = renamed;
+            corrections.entries.push(correction);
+        }
+        std::fs::remove_file(source.path().join("Items/SpyglassOptions.item")).unwrap();
+        let mut db = Connection::open_in_memory().unwrap();
+        db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
+        SELECTS.store(0, Ordering::SeqCst);
+        let report = build_database(
+            fixture::grouping_cases(),
+            source.path(),
+            &WikiOverrides::default(),
+            &corrections,
+            &mut db,
+            &fixture_dataset_version(),
+        )
+        .unwrap();
+        db.trace_v2(TraceEventCodes::empty(), None);
+        assert_eq!(report.correction_applied_count, count);
+        assert_eq!(SELECTS.load(Ordering::SeqCst), 1, "{field}: {count} owners");
+    }
+}
+
+#[test]
+fn socket_option_member_removal_precedes_grouping_and_value_correction() {
+    let source = fixture::xml_source();
+    fixture::write_spyglass_options(source.path());
+    let mut removal = fixture::spyglass_option_correction("remove", serde_json::json!(20), CorrectionValue::Null);
+    removal.0[0].stat = Some("Spot".into());
+    let mut value = fixture::spyglass_option_correction("value", serde_json::json!(20), CorrectionValue::Integer(25));
+    value.0[0].stat = Some("Search".into());
+    let error =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("option-value.toml", &value)]).err().unwrap();
+    assert!(error.contains("behind grouping") && error.contains("Search and Spot"), "{error}");
+    let (db, report) = built_db_from_index(
+        fixture::grouping_cases(),
+        source.path(),
+        &[("option-remove.toml", &removal), ("option-value.toml", &value)],
+    )
+    .unwrap();
+    assert_eq!(fixture::spyglass_option_lines(&db), [("Search".into(), 25)]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
+}
+
+#[test]
+fn socket_option_lines_split_and_merge_through_the_qualified_writer() {
+    let source = fixture::xml_source();
+    fixture::write_spyglass_options(source.path());
+    let split = fixture::spyglass_option_correction(
+        "lines",
+        serde_json::json!("Search and Spot"),
+        CorrectionValue::Texts(vec!["Search".into(), "Spot".into()]),
+    );
+    let (db, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("option-split.toml", &split)]).unwrap();
+    assert_eq!(fixture::spyglass_option_lines(&db), [("Search".into(), 20), ("Spot".into(), 20)]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let path = source.path().join("Items/SpyglassOptions.item");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let separate = original.replace("<Item>Search</Item>\n          <Item>Spot</Item>",
+        "<Item>Search</Item><AType>Simple</AType><Amount size=\"1\">20</Amount></Effect><Effect><Type>SkillBonus</Type><Bonus>Competence</Bonus><Item>Spot</Item>");
+    assert_ne!(separate, original);
+    std::fs::write(path, separate).unwrap();
+    let merge = fixture::spyglass_option_correction(
+        "lines",
+        serde_json::json!(["Search", "Spot"]),
+        CorrectionValue::Text("Search and Spot".into()),
+    );
+    let (db, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("option-merge.toml", &merge)]).unwrap();
+    assert_eq!(fixture::spyglass_option_lines(&db), [("Search and Spot".into(), 20)]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+}
+
+#[test]
+fn socket_option_corrections_reject_every_ambiguous_match() {
+    let source = fixture::xml_source();
+    fixture::write_spyglass_options(source.path());
+    let path = source.path().join("Items/SpyglassOptions.item");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let socket = original.split_once("    <ItemAugment>").unwrap().1.split_once("    </ItemAugment>").unwrap().0;
+    std::fs::write(
+        path,
+        original.replace("  </Item>", &format!("    <ItemAugment>{socket}    </ItemAugment>\n  </Item>")),
+    )
+    .unwrap();
+    let split = fixture::spyglass_option_correction(
+        "lines",
+        serde_json::json!("Search and Spot"),
+        CorrectionValue::Texts(vec!["Search".into(), "Spot".into()]),
+    );
+    let error = built_db_from_index(fixture::grouping_cases(), source.path(), &[("ambiguous-option.toml", &split)])
+        .err()
+        .unwrap();
+    for expected in
+        ["ambiguous-option.toml", "ambiguous", "socket order 0, option order 0", "socket order 2, option order 0"]
+    {
+        assert!(error.contains(expected), "{error}");
+    }
+}
+
+#[test]
+fn socket_option_alias_round_trips_and_a_removed_option_is_stale() {
+    let canonical = fixture::grouping_case_database(|root| {
+        let path = root.join("effects/stat-groups/search-and-spot.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(
+            path,
+            format!("{original}\n[[alias]]\nname = 'Perception'\nverbose_name_template = '%b1 Perception +{{1}}'\n"),
+        )
+        .unwrap();
+    });
+    let index = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let alias = fixture::spyglass_option_correction(
+        "alias",
+        serde_json::Value::Null,
+        CorrectionValue::Text("Perception".into()),
+    );
+    let mut corrections = validated_corrections(&[("option-alias.toml", &alias)]).unwrap();
+    corrections.entries.extend(fixture::fixture_icon_corrections().entries);
+    for removed in [false, true] {
+        let source = fixture::xml_source();
+        fixture::write_spyglass_options(source.path());
+        if removed {
+            let path = source.path().join("Items/SpyglassOptions.item");
+            let original = std::fs::read_to_string(&path).unwrap();
+            let start = original.find("    <ItemAugment>").unwrap();
+            let end = start + original[start..].find("    </ItemAugment>").unwrap() + "    </ItemAugment>".len();
+            std::fs::write(path, format!("{}{}", &original[..start], &original[end..])).unwrap();
+        }
+        let mut db = Connection::open_in_memory().unwrap();
+        let report = build_database(
+            &index,
+            source.path(),
+            &WikiOverrides::default(),
+            &corrections,
+            &mut db,
+            &fixture_dataset_version(),
+        )
+        .unwrap();
+        if removed {
+            assert_eq!(report.stale_corrections.len(), 1);
+            assert!(
+                matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\"")
+            );
+        } else {
+            assert_eq!(
+                (report.correction_applied_count, report.correction_stale_count),
+                (corrections.entries.len(), 0)
+            );
+            let chosen: String = db
+                .query_row("SELECT alias FROM item_augment_slot_option_effects WHERE alias IS NOT NULL", [], |row| {
+                    row.get(0)
+                })
+                .unwrap();
+            assert_eq!(chosen, "Perception");
+            let exported = tempfile::tempdir().unwrap();
+            ddo_etl::tree::export_database(&db, exported.path()).unwrap();
+            let icons = fixtures_dir().join("data");
+            for entry in walkdir::WalkDir::new(&icons).into_iter().map(Result::unwrap).filter(|entry| {
+                entry.file_type().is_file() && entry.path().extension().is_some_and(|extension| extension == "png")
+            }) {
+                let destination = exported.path().join(entry.path().strip_prefix(&icons).unwrap());
+                std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+                std::fs::copy(entry.path(), destination).unwrap();
+            }
+            std::fs::write(
+                exported.path().join("icons/items/Trinket_17.png"),
+                include_bytes!("fixtures/effect-groups/icons/Trinket_17.png"),
+            )
+            .unwrap();
+            let mut rebuilt = Connection::open_in_memory().unwrap();
+            ddo_etl::tree::build_from_data(exported.path(), &mut rebuilt).unwrap();
+            let restored = Corrections::from_database(&rebuilt).unwrap();
+            let restored_alias = restored.entries.iter().find(|correction| correction.field == "alias").unwrap();
+            assert!(
+                restored_alias.file_name.ends_with("epic-treasure-hunters-spyglass-legacy-level-20.toml"),
+                "{}",
+                restored_alias.file_name
+            );
+            assert_eq!(restored_alias.qualifier(), corrections.entries[0].qualifier());
+            assert_eq!(restored_alias.to, CorrectionValue::Text("Perception".into()));
+            let second = tempfile::tempdir().unwrap();
+            ddo_etl::tree::export_database(&rebuilt, second.path()).unwrap();
+            assert_eq!(
+                ddo_etl::tree::data_file_bytes(exported.path()).unwrap(),
+                ddo_etl::tree::data_file_bytes(second.path()).unwrap()
+            );
+            let name = "epic-treasure-hunters-spyglass-legacy-level-20.toml";
+            let path = walkdir::WalkDir::new(exported.path())
+                .into_iter()
+                .map(Result::unwrap)
+                .find(|entry| entry.file_name() == name)
+                .unwrap()
+                .into_path();
+            let mut item: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+            let sockets = item["socket"].as_array_mut().unwrap();
+            sockets.push(sockets[0].clone());
+            std::fs::write(&path, toml::to_string(&item).unwrap()).unwrap();
+            let error = format!(
+                "{:#}",
+                ddo_etl::tree::build_from_data(exported.path(), &mut Connection::open_in_memory().unwrap())
+                    .unwrap_err()
+            );
+            for expected in [name, "ambiguous", "socket order 0, option order 0", "socket order 2, option order 0"] {
+                assert!(error.contains(expected), "{error}");
+            }
+        }
+    }
+}
+
+#[test]
+fn socket_option_qualifiers_require_both_nonblank_selectors() {
+    let valid = fixture::spyglass_option_correction(
+        "alias",
+        serde_json::Value::Null,
+        CorrectionValue::Text("Perception".into()),
+    )
+    .0
+    .remove(0);
+    assert!(valid.validate().is_ok());
+    for selectors in [
+        (None, valid.option.clone()),
+        (valid.socket.clone(), None),
+        (Some(" ".into()), valid.option.clone()),
+        (valid.socket.clone(), Some("".into())),
+    ] {
+        let mut invalid = valid.clone();
+        invalid.socket = selectors.0;
+        invalid.option = selectors.1;
+        assert!(invalid.validate().is_err());
+    }
+    let mut wrong_kind = valid;
+    wrong_kind.kind = ddo_model::enums::CorrectionKind::ItemBonus;
+    assert!(wrong_kind.validate().is_err());
 }
 
 #[test]

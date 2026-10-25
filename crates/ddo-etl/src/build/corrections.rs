@@ -18,6 +18,7 @@ pub(super) struct CorrectionContext<'a> {
     pub buff_resolver: &'a BuffResolver,
     pub groupings: &'a crate::groupings::Groupings,
     pub grouping_answers: &'a HashSet<i64>,
+    pub socket_options: Option<&'a SocketOptionTargets>,
 }
 
 pub(super) fn apply_quest_corrections(
@@ -88,11 +89,32 @@ fn apply_correction(
     let field = correction.correctable_field()?;
     let mut row_ids = Vec::new();
     for spelling in correction.upstream_names() {
-        row_ids.extend(maetrim_row_ids_named(transaction, correction, spelling)?);
+        row_ids.extend(maetrim_row_ids_named(
+            transaction,
+            correction,
+            spelling,
+            context.and_then(|context| context.socket_options),
+        )?);
     }
     row_ids.sort_unstable();
     row_ids.dedup();
     if row_ids.is_empty() {
+        if correction.kind == CorrectionKind::SocketOptionBonus
+            && id_named(transaction, "items", &correction.name)?.is_some()
+        {
+            if correction.from.as_text() == Some(NO_SUCH_BONUS) {
+                return record_applied_correction(transaction, correction, report);
+            }
+            record_stale_correction(
+                report,
+                correction,
+                StaleCorrectionCause::ValueChanged {
+                    expected_value: correction.from.to_json(),
+                    maetrim_value: CorrectionValue::Text(NO_SUCH_BONUS.to_string()).to_json(),
+                },
+            );
+            return Ok(());
+        }
         if matches!(correction.kind, CorrectionKind::SetTier | CorrectionKind::SetTierBonus) {
             if id_named(transaction, "set_bonuses", &correction.name)?.is_none() {
                 bail!(
@@ -111,9 +133,9 @@ fn apply_correction(
             let renamed_ids = if correction.selection.is_some() {
                 let mut renamed = correction.clone();
                 renamed.selection = Some(new_name.to_string());
-                maetrim_row_ids_named(transaction, &renamed, &correction.name)?
+                maetrim_row_ids_named(transaction, &renamed, &correction.name, None)?
             } else {
-                maetrim_row_ids_named(transaction, correction, new_name)?
+                maetrim_row_ids_named(transaction, correction, new_name, None)?
             };
             if !renamed_ids.is_empty() {
                 record_stale_correction(
@@ -513,8 +535,84 @@ fn write_correction(
     Ok(())
 }
 
-fn maetrim_row_ids_named(transaction: &Transaction, correction: &Correction, row_name: &str) -> Result<Vec<i64>> {
+struct SocketOptionLocation {
+    id: i64,
+    socket_order: i64,
+    option_order: i64,
+}
+
+pub(crate) struct SocketOptionTargets {
+    options_by_names: HashMap<(String, String, String), Vec<SocketOptionLocation>>,
+    item_names: HashMap<i64, String>,
+}
+
+impl SocketOptionTargets {
+    pub(crate) fn from_database(db: &rusqlite::Connection) -> Result<Self> {
+        let mut targets = Self { options_by_names: HashMap::new(), item_names: HashMap::new() };
+        let mut statement = db.prepare(
+            "SELECT item.id, item.name, slot_type.label, option.name, option.id, option.slot_order, option.option_order
+             FROM item_augment_slot_options option JOIN items item ON item.id = option.item_id
+             JOIN item_augment_slots socket ON socket.item_id = option.item_id AND socket.sort_order = option.slot_order
+             JOIN augment_slot_types slot_type ON slot_type.id = socket.slot_id
+             ORDER BY item.id, option.slot_order, option.option_order",
+        )?;
+        let mut rows = statement.query([])?;
+        while let Some(row) = rows.next()? {
+            let name: String = row.get(1)?;
+            targets.item_names.insert(row.get(0)?, name.clone());
+            targets.options_by_names.entry((name, row.get(2)?, row.get(3)?)).or_default().push(SocketOptionLocation {
+                id: row.get(4)?,
+                socket_order: row.get(5)?,
+                option_order: row.get(6)?,
+            });
+        }
+        Ok(targets)
+    }
+
+    pub(crate) fn option_id(&self, correction: &Correction, item_name: &str) -> Result<Option<i64>> {
+        let socket = correction.socket.as_deref().context("socket-option correction needs a socket label")?;
+        let option = correction.option.as_deref().context("socket-option correction needs an option name")?;
+        let matches = self
+            .options_by_names
+            .get(&(item_name.to_string(), socket.to_string(), option.to_string()))
+            .map(Vec::as_slice)
+            .unwrap_or_default();
+        ensure!(
+            matches.len() <= 1,
+            "{}: {} has an ambiguous socket-option target on {item_name:?}: {}",
+            correction.file_name,
+            correction.label(),
+            matches
+                .iter()
+                .map(|SocketOptionLocation { id, socket_order, option_order }| format!(
+                    "socket order {socket_order}, option order {option_order} (option id {id})"
+                ))
+                .collect::<Vec<_>>()
+                .join("; ")
+        );
+        Ok(matches.first().map(|location| location.id))
+    }
+
+    pub(crate) fn item_name(&self, item_id: i64) -> Result<&str> {
+        self.item_names.get(&item_id).map(String::as_str).context("socket-option annotation's item is absent")
+    }
+}
+
+fn maetrim_row_ids_named(
+    transaction: &Transaction,
+    correction: &Correction,
+    row_name: &str,
+    socket_options: Option<&SocketOptionTargets>,
+) -> Result<Vec<i64>> {
     let kind = correction.kind;
+
+    if kind == CorrectionKind::SocketOptionBonus {
+        return Ok(socket_options
+            .context("socket-option targets must be loaded before resolving corrections")?
+            .option_id(correction, row_name)?
+            .into_iter()
+            .collect());
+    }
 
     if correction.selection.is_some() || correction.stance.is_some() || correction.dc.is_some() {
         let owner_table = kind.table_name();
@@ -1044,9 +1142,17 @@ pub(crate) fn data_correction_value(
     correction: &Correction,
     current_name: &str,
     groupings: &crate::groupings::Groupings,
+    socket_options: &SocketOptionTargets,
 ) -> Result<CorrectionValue> {
     let field = correction.correctable_field()?;
-    let row_ids = maetrim_row_ids_named(transaction, correction, current_name)?;
+    let row_ids = maetrim_row_ids_named(transaction, correction, current_name, Some(socket_options))?;
+    if row_ids.is_empty()
+        && correction.kind == CorrectionKind::SocketOptionBonus
+        && correction.from.as_text() == Some(NO_SUCH_BONUS)
+        && id_named(transaction, "items", current_name)?.is_some()
+    {
+        return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
+    }
     ensure!(!row_ids.is_empty(), "no {} named {current_name:?} for data correction", correction.kind.as_str());
     let mut values = Vec::new();
     for row_id in row_ids {
@@ -1100,6 +1206,7 @@ impl BonusLinkTable {
     const FEAT: Self = Self { table_name: "feat_effects", owner_column: "feat_id" };
     const ITEM: Self = Self { table_name: "item_effects", owner_column: "item_id" };
     const SET_TIER: Self = Self { table_name: "set_bonus_tier_effects", owner_column: "tier_id" };
+    const SOCKET_OPTION: Self = Self { table_name: "item_augment_slot_option_effects", owner_column: "option_id" };
 
     fn of(kind: CorrectionKind) -> Result<Self> {
         match kind {
@@ -1107,7 +1214,8 @@ impl BonusLinkTable {
             CorrectionKind::FeatBonus => Ok(Self::FEAT),
             CorrectionKind::ItemBonus => Ok(Self::ITEM),
             CorrectionKind::SetTierBonus => Ok(Self::SET_TIER),
-            _ => bail!("only an augment_bonus, feat_bonus, item_bonus or set_tier_bonus correction names a bonus"),
+            CorrectionKind::SocketOptionBonus => Ok(Self::SOCKET_OPTION),
+            _ => bail!("{} is not a bonus correction kind", kind.as_str()),
         }
     }
     fn bonus_rows_sql(&self, selected_columns: &str) -> String {
@@ -1188,8 +1296,12 @@ fn reject_answer_definition_correction(
     Ok(())
 }
 
-pub(super) fn removal_owner_matches(transaction: &Transaction, correction: &Correction, owner_id: i64) -> Result<bool> {
-    Ok(maetrim_row_ids_named(transaction, correction, &correction.name)?.contains(&owner_id))
+pub(super) fn correction_owner_matches(
+    transaction: &Transaction,
+    correction: &Correction,
+    owner_id: i64,
+) -> Result<bool> {
+    Ok(maetrim_row_ids_named(transaction, correction, &correction.name, None)?.contains(&owner_id))
 }
 
 pub(super) fn removed_derived_bonus_indices(
@@ -2062,6 +2174,8 @@ mod tests {
             from: CorrectionValue::Text(stat.into()),
             to: CorrectionValue::Texts(vec![]),
             family: None,
+            socket: None,
+            option: None,
             selection: None,
             stance: None,
             dc: None,

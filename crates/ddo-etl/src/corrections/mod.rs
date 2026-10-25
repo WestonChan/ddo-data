@@ -230,6 +230,8 @@ pub struct Correction {
     pub from: CorrectionValue,
     pub to: CorrectionValue,
     pub family: Option<String>,
+    pub socket: Option<String>,
+    pub option: Option<String>,
     pub selection: Option<String>,
     pub stance: Option<String>,
     pub dc: Option<String>,
@@ -339,6 +341,12 @@ impl Correction {
 
     pub fn qualifier(&self) -> String {
         let mut qualifier_parts: Vec<String> = Vec::new();
+        if let Some(socket) = &self.socket {
+            qualifier_parts.push(format!("socket {socket:?}"));
+        }
+        if let Some(option) = &self.option {
+            qualifier_parts.push(format!("option {option:?}"));
+        }
         if let Some(selection) = &self.selection {
             qualifier_parts.push(format!("selection {selection:?}"));
         }
@@ -403,6 +411,16 @@ impl Correction {
     }
 
     fn validate_qualifier_keys(&self, field: &CorrectableField) -> Result<()> {
+        let names_option = self.kind == CorrectionKind::SocketOptionBonus;
+        ensure!(
+            self.socket.is_some() == names_option && self.option.is_some() == names_option,
+            "a socket_option_bonus correction requires socket and option, and other kinds forbid them"
+        );
+        ensure!(
+            self.socket.as_ref().is_none_or(|name| !name.trim().is_empty())
+                && self.option.as_ref().is_none_or(|name| !name.trim().is_empty()),
+            "socket-option corrections need a nonblank socket label and option name"
+        );
         ensure!(
             self.selection.is_none() || self.kind == CorrectionKind::Enhancement,
             "selection names an enhancement selection row"
@@ -701,7 +719,7 @@ impl Corrections {
 
     pub fn from_database(db: &Connection) -> Result<Self> {
         let mut statement = db.prepare(
-            "SELECT kind, name, field, from_value, to_value, qualifier, reason, source, read, in_game
+            "SELECT kind, name, field, from_value, to_value, qualifier, reason, source, read, in_game, id
              FROM corrections ORDER BY id",
         )?;
         let rows = statement.query_map([], |row| {
@@ -715,11 +733,13 @@ impl Corrections {
                 row.get::<_, String>(6)?,
                 crate::AnnotationSource::from_columns(row.get(7)?, row.get(9)?)?,
                 row.get::<_, String>(8)?,
+                row.get::<_, i64>(10)?,
             ))
         })?;
         let mut entries = Vec::new();
+        let mut file_paths = None;
         for row in rows {
-            let (kind, name, field, from_value, to_value, qualifier, reason, source, read) = row?;
+            let (kind, name, field, from_value, to_value, qualifier, reason, source, read, id) = row?;
             let mut correction = Correction {
                 kind: CorrectionKind::parse(&kind).with_context(|| format!("unknown correction kind {kind:?}"))?,
                 name,
@@ -727,6 +747,8 @@ impl Corrections {
                 from: CorrectionValue::from_json(&from_value)?,
                 to: CorrectionValue::from_json(&to_value)?,
                 family: None,
+                socket: None,
+                option: None,
                 selection: None,
                 stance: None,
                 dc: None,
@@ -740,6 +762,17 @@ impl Corrections {
                 read,
                 file_name: "data".to_string(),
             };
+            if correction.kind == CorrectionKind::SocketOptionBonus {
+                if file_paths.is_none() {
+                    file_paths = Some(crate::tree::DataFilePaths::from_database(db)?);
+                }
+                correction.file_name = file_paths
+                    .as_ref()
+                    .expect("socket-option file paths loaded")
+                    .path(crate::tree::AppliedCorrection::TABLE, id)?
+                    .display()
+                    .to_string();
+            }
             set_correction_qualifiers(&mut correction, &qualifier)?;
             ensure!(correction.qualifier() == qualifier, "{} has unparsed qualifier {qualifier:?}", correction.label());
             correction.validate()?;
@@ -766,7 +799,7 @@ impl Corrections {
 pub(crate) fn correction_qualifier_parts(mut qualifier: &str) -> Vec<&str> {
     let mut parts = Vec::new();
     while !qualifier.is_empty() {
-        if !["selection ", "dc ", "stance ", "family ", "effect ", "equipped_count ", "stat "]
+        if !["socket ", "option ", "selection ", "dc ", "stance ", "family ", "effect ", "equipped_count ", "stat "]
             .iter()
             .any(|prefix| qualifier.starts_with(prefix))
         {
@@ -801,9 +834,13 @@ pub(crate) fn correction_qualifier_parts(mut qualifier: &str) -> Vec<&str> {
     parts
 }
 
-fn set_correction_qualifiers(correction: &mut Correction, qualifier: &str) -> Result<()> {
+pub(crate) fn set_correction_qualifiers(correction: &mut Correction, qualifier: &str) -> Result<()> {
     for part in correction_qualifier_parts(qualifier) {
-        if let Some(selection) = part.strip_prefix("selection ") {
+        if let Some(socket) = part.strip_prefix("socket ") {
+            correction.socket = Some(serde_json::from_str(socket)?);
+        } else if let Some(option) = part.strip_prefix("option ") {
+            correction.option = Some(serde_json::from_str(option)?);
+        } else if let Some(selection) = part.strip_prefix("selection ") {
             correction.selection = Some(serde_json::from_str(selection)?);
         } else if let Some(dc) = part.strip_prefix("dc ") {
             correction.dc = Some(serde_json::from_str(dc)?);

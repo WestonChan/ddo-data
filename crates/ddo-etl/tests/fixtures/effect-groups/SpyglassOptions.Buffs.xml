@@ -1,0 +1,35 @@
+  <Buff>
+    <Type>AbilityBonus</Type>
+    <DisplayText>%b1 %i1 %v1: Passive: %v1 %b1 bonus to %i1.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>AbilityBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Unknown</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>SkillBonus</Type>
+    <DisplayText>%b1 %i1 %v1: Passive: %v1 %b1 bonus to the %i1 skill.</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>TrueSeeing</Type>
+    <DisplayText>True Seeing: Passive: You gain the benefit of the spell True Seeing.</DisplayText>
+    <Effect>
+      <Type>TrueSeeing</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>

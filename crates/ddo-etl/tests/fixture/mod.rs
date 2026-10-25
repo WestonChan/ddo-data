@@ -138,6 +138,67 @@ pub(crate) fn write_search_and_spot_item(source: &std::path::Path, amount: i64, 
     }
 }
 
+pub(crate) fn write_spyglass_options(source: &std::path::Path) {
+    std::fs::create_dir_all(source.join("Items")).unwrap();
+    std::fs::create_dir_all(source.join("ItemImages/Trinkets")).unwrap();
+    std::fs::write(
+        source.join("ItemImages/Trinkets/Trinket_17.png"),
+        include_bytes!("../fixtures/effect-groups/icons/Trinket_17.png"),
+    )
+    .unwrap();
+    std::fs::create_dir_all(source.join("AugmentImages")).unwrap();
+    std::fs::write(
+        source.join("AugmentImages/Upgrade.png"),
+        include_bytes!("../fixtures/data/icons/augments/Upgrade.png"),
+    )
+    .unwrap();
+    std::fs::write(
+        source.join("Items/SpyglassOptions.item"),
+        include_str!("../fixtures/effect-groups/SpyglassOptions.item"),
+    )
+    .unwrap();
+    let path = source.join("ItemBuffs.xml");
+    let mut buffs = std::fs::read_to_string(&path).unwrap();
+    let existing = ddo_etl::xml::item_buffs::parse(&path).unwrap();
+    for definition in include_str!("../fixtures/effect-groups/SpyglassOptions.Buffs.xml").split("  <Buff>").skip(1) {
+        let kind = definition.split_once("<Type>").unwrap().1.split_once("</Type>").unwrap().0;
+        if !existing.contains_key(kind) {
+            buffs = buffs.replace("</Buffs>", &format!("  <Buff>{definition}</Buffs>"));
+        }
+    }
+    std::fs::write(path, buffs).unwrap();
+}
+
+pub(crate) fn spyglass_option_correction(
+    field: &str,
+    upstream: serde_json::Value,
+    applied: CorrectionValue,
+) -> CorrectionSet {
+    let note = serde_json::from_value::<ddo_etl::tree::DdobuilderCorrection>(serde_json::json!({
+        "kind": "socket_option_bonus",
+        "field": field,
+        "qualifier": "socket \"upgrade: tier 2\", option \"Spot +20, Search +20, Insightful Intelligence +2\", Search and Spot / Competence",
+        "upstream": upstream,
+        "reason": "Test correction on a captured socket option.",
+        "url": "https://ddowiki.com/page/Item:Epic_Treasure_Hunter%27s_Spyglass_(Level_20)",
+        "read": "2026-10-23"
+    })).unwrap();
+    let mut correction =
+        ddo_etl::tree::correction_for_note(&note, "Epic Treasure Hunter's Spyglass (legacy) (level 20)").unwrap();
+    correction.from =
+        CorrectionValue::from_json(&note.upstream.unwrap_or(serde_json::Value::Null).to_string()).unwrap();
+    correction.to = applied;
+    CorrectionSet(vec![correction])
+}
+
+pub(crate) fn spyglass_option_lines(db: &rusqlite::Connection) -> Vec<(String, i64)> {
+    db.prepare("SELECT e.name,l.value FROM item_augment_slot_option_effects l JOIN effects e ON e.id=l.effect_id
+        JOIN item_augment_slot_options o ON o.id=l.option_id JOIN items i ON i.id=o.item_id
+        WHERE i.name='Epic Treasure Hunter''s Spyglass (legacy) (level 20)' AND o.slot_order=0 AND e.name != 'Intelligence'
+        ORDER BY e.name").unwrap().query_map([], |row| Ok((row.get(0)?,row.get(1)?))).unwrap()
+        .collect::<rusqlite::Result<_>>().unwrap()
+}
+
 pub(crate) fn search_and_spot_merge() -> CorrectionSet {
     new_qualified_correction(
         "item_bonus",
@@ -271,6 +332,8 @@ pub(crate) fn correction_between(
         from,
         to,
         family: None,
+        socket: None,
+        option: None,
         selection: None,
         stance: None,
         dc: None,

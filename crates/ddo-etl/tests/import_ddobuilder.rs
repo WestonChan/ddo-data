@@ -399,6 +399,53 @@ fn plague_wolf_import_preserves_game_bug_evidence_when_upstream_adopts_the_value
 }
 
 #[test]
+fn socket_option_lines_import_follows_amounts_and_reports_changed_stats() {
+    for change in ["amount", "stats", "option"] {
+        let split = fixture::spyglass_option_correction(
+            "lines",
+            serde_json::json!("Search and Spot"),
+            ddo_etl::corrections::CorrectionValue::Texts(vec!["Search".into(), "Spot".into()]),
+        );
+        let corrections = fixture::corrections_from(&[("option-split.toml", &split)]).unwrap();
+        let world = ImportWorld::with_sources(
+            fixture::grouping_cases(),
+            corrections,
+            WikiOverrides::default(),
+            fixture::write_spyglass_options,
+        );
+        let path = world.options.source_dir.join("Items/SpyglassOptions.item");
+        let original = std::fs::read_to_string(&path).unwrap();
+        let edited = if change == "stats" {
+            original
+                .replace("<Item>Search</Item>\n          <Item>Spot</Item>", "<Item>Search</Item><Item>Listen</Item>")
+        } else if change == "option" {
+            let start = original.find("    <ItemAugment>").unwrap();
+            let end = start + original[start..].find("    </ItemAugment>").unwrap() + "    </ItemAugment>".len();
+            format!("{}{}", &original[..start], &original[end..])
+        } else {
+            original.replace(">20</Amount>", ">25</Amount>")
+        };
+        assert_ne!(edited, original);
+        std::fs::write(path, edited).unwrap();
+        let report = import_ddobuilder(&world.options).unwrap();
+        assert_eq!(report.has_conflicts(), change != "amount", "{report}");
+        let db = world.database();
+        if change != "amount" {
+            let from: String = db
+                .query_row(
+                    "SELECT from_value FROM corrections WHERE kind='socket_option_bonus' AND field='lines'",
+                    [],
+                    |row| row.get(0),
+                )
+                .unwrap();
+            assert_eq!(from, "\"no such bonus\"");
+        } else {
+            assert_eq!(fixture::spyglass_option_lines(&db), [("Search".into(), 25), ("Spot".into(), 25)]);
+        }
+    }
+}
+
+#[test]
 fn feat_lines_import_follows_amounts_and_reports_changed_stats() {
     for changed_stats in [false, true] {
         let corrections = fixture::corrections_from(&[("feat-split.toml", &fixture::scion_dodge_split())]).unwrap();

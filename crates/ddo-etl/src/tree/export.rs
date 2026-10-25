@@ -21,7 +21,7 @@ pub fn data_file_bytes(root: &Path) -> Result<BTreeMap<PathBuf, Vec<u8>>> {
 }
 
 pub(super) const NOTE_KINDS_BY_TABLE: &[(&str, &[&str])] = &[
-    ("items", &["item", "item_bonus", "item_effect", "item_socket"]),
+    ("items", &["item", "item_bonus", "item_effect", "item_socket", "socket_option_bonus"]),
     ("augments", &["augment", "augment_bonus"]),
     ("quests", &["quest"]),
     ("set_bonuses", &["set_bonus", "set_tier", "set_tier_bonus"]),

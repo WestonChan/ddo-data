@@ -84,6 +84,7 @@
         "spell",
         "augment_bonus",
         "feat_bonus",
+        "socket_option_bonus",
         "item_bonus",
         "item_effect",
         "effect_damage",

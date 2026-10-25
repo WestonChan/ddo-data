@@ -490,12 +490,15 @@ impl TableWriter<'_> {
                                 correction.kind == ddo_model::enums::CorrectionKind::AugmentBonus
                             }
                             BonusOwnerKind::Feat => correction.kind == ddo_model::enums::CorrectionKind::FeatBonus,
+                            BonusOwnerKind::ItemAugmentSlotOption => {
+                                correction.kind == ddo_model::enums::CorrectionKind::SocketOptionBonus
+                            }
                             _ => false,
                         }
                 })
                 .collect::<Vec<_>>();
             for correction in removals {
-                if !super::corrections::removal_owner_matches(self.transaction, correction, owner_id)? {
+                if !self.correction_owner_matches(correction, owner_id)? {
                     continue;
                 }
                 let mut resolved_bonuses = Vec::new();
@@ -579,12 +582,16 @@ impl TableWriter<'_> {
                                 (owner.kind, correction.kind),
                                 (BonusOwnerKind::Augment, ddo_model::enums::CorrectionKind::AugmentBonus)
                                     | (BonusOwnerKind::Feat, ddo_model::enums::CorrectionKind::FeatBonus)
+                                    | (
+                                        BonusOwnerKind::ItemAugmentSlotOption,
+                                        ddo_model::enums::CorrectionKind::SocketOptionBonus
+                                    )
                                     | (BonusOwnerKind::SetBonusTier, ddo_model::enums::CorrectionKind::SetTierBonus)
                             )
                     })
                     .collect::<Vec<_>>();
                 for correction in split_corrections {
-                    if !super::corrections::removal_owner_matches(self.transaction, correction, owner_id)? {
+                    if !self.correction_owner_matches(correction, owner_id)? {
                         continue;
                     }
                     let mut partitions = correction.line_partition_stats(self.groupings)?;
@@ -713,6 +720,15 @@ impl TableWriter<'_> {
         Ok(GroupingOutcome::Grouped(vec![self.write_upstream_grouping_line(owner, effect_id, bonus_type, value)?]))
     }
 
+    fn correction_owner_matches(&self, correction: &crate::corrections::Correction, owner_id: i64) -> Result<bool> {
+        if correction.kind == ddo_model::enums::CorrectionKind::SocketOptionBonus {
+            let targets =
+                self.socket_option_targets.as_ref().expect("socket-option targets loaded before writing links");
+            return Ok(targets.option_id(correction, &correction.name)? == Some(owner_id));
+        }
+        super::corrections::correction_owner_matches(self.transaction, correction, owner_id)
+    }
+
     pub(super) fn write_merged_lines(
         &mut self,
         owner: &BonusOwner,
@@ -725,7 +741,7 @@ impl TableWriter<'_> {
             BonusOwnerKind::Augment => CorrectionKind::AugmentBonus,
             BonusOwnerKind::Feat => CorrectionKind::FeatBonus,
             BonusOwnerKind::SetBonusTier => CorrectionKind::SetTierBonus,
-            _ => return Ok(links),
+            BonusOwnerKind::ItemAugmentSlotOption => CorrectionKind::SocketOptionBonus,
         };
         let corrections = self
             .line_corrections
@@ -744,7 +760,7 @@ impl TableWriter<'_> {
         let mut consumed = std::collections::BTreeSet::new();
         let mut removed = std::collections::BTreeSet::new();
         for correction in corrections {
-            if !super::corrections::removal_owner_matches(self.transaction, correction, owner_id)? {
+            if !self.correction_owner_matches(correction, owner_id)? {
                 continue;
             }
             correction.line_partition_stats(self.groupings)?;

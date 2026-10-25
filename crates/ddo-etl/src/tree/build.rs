@@ -797,6 +797,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         })
         .collect::<BTreeMap<_, _>>();
     let groupings = crate::groupings::Groupings::from_database(&transaction)?;
+    let socket_options = crate::build::SocketOptionTargets::from_database(&transaction)?;
     kinds::effect::EffectAlias::write_validated_slugs(&transaction, &groupings)?;
     kinds::effect::EffectAlias::validate_links(
         &transaction,
@@ -820,9 +821,15 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
             } else {
                 entity_name.clone()
             };
-            let (from_value, to_value) =
-                correction_notes::correction_values(&transaction, &entity_name, &note, &tier_descriptions, &groupings)
-                    .with_context(|| format!("{} {:?}.{}", note.kind, correction_name, note.field))?;
+            let (from_value, to_value) = correction_notes::correction_values(
+                &transaction,
+                &entity_name,
+                &note,
+                &tier_descriptions,
+                &groupings,
+                &socket_options,
+            )
+            .with_context(|| format!("{} {:?}.{}", note.kind, correction_name, note.field))?;
             let recorded_qualifier = correction_notes::renamed_qualifier(
                 &note.qualifier,
                 selection_renames
@@ -921,8 +928,8 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
     }
     validate_data_icons(&transaction, &icon_index)?;
     let layout = ExportLayout::from_database(&transaction)?;
-    correction_notes::validate_game_bug_corrections(&transaction, &groupings, &layout)?;
-    correction_notes::validate_verification_requests(&transaction, &groupings, &layout)?;
+    correction_notes::validate_game_bug_corrections(&transaction, &groupings, &socket_options, &layout)?;
+    correction_notes::validate_verification_requests(&transaction, &groupings, &socket_options, &layout)?;
 
     for (path, kind, name, id) in entity_locations {
         let current = path.strip_prefix(root)?;

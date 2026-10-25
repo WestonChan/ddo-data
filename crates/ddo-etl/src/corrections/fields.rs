@@ -116,7 +116,7 @@ const fn kind_operations(kind: CorrectionKind) -> &'static [CorrectableField] {
         CorrectionKind::Augment | CorrectionKind::Quest => const { &[field("remove", FieldShape::Removal, false)] },
         CorrectionKind::Effect => const { &[field("constant", FieldShape::EffectBonusConstant, false)] },
         CorrectionKind::AugmentBonus => AUGMENT_BONUS_OPERATIONS,
-        CorrectionKind::FeatBonus => {
+        CorrectionKind::FeatBonus | CorrectionKind::SocketOptionBonus => {
             const {
                 &[
                     field("alias", FieldShape::BonusAlias, true),

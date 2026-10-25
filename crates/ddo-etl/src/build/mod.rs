@@ -3,7 +3,7 @@ mod bonus_types;
 mod buffs;
 mod characters;
 mod corrections;
-pub(crate) use corrections::{data_correction_value, line_bonuses_by_owner};
+pub(crate) use corrections::{data_correction_value, line_bonuses_by_owner, SocketOptionTargets};
 mod drop_text;
 pub(crate) mod effect_vocabulary;
 mod effects;
@@ -318,6 +318,7 @@ fn build_with_wiki_references(
         line_splits: Vec::new(),
         line_corrections: corrections.entries.iter().filter(|correction| correction.field == "lines").collect(),
         applied_line_corrections: Vec::new(),
+        socket_option_targets: None,
         held_back_effects: Vec::new(),
         matched_set_tier_prose: BTreeSet::new(),
         written: WrittenRows::default(),
@@ -391,6 +392,9 @@ fn build_with_wiki_references(
             writer.write_item(item, drop_location, &mut report).with_context(|| format!("{}", path.display()))?;
         }
     }
+    if corrections.entries.iter().any(|correction| correction.kind == CorrectionKind::SocketOptionBonus) {
+        writer.socket_option_targets = Some(SocketOptionTargets::from_database(&transaction)?);
+    }
     writer.link_pending_derived_effects()?;
 
     for path in files_with_extension(&data_files_dir.join("Augments"), "xml")? {
@@ -441,6 +445,7 @@ fn build_with_wiki_references(
             buff_resolver: &buff_resolver,
             groupings,
             grouping_answers: &writer.grouping_answers,
+            socket_options: writer.socket_option_targets.as_ref(),
         },
         &mut report,
     )?;
@@ -810,6 +815,7 @@ pub(crate) struct TableWriter<'a> {
     line_splits: Vec<DerivedEffectSplit>,
     line_corrections: Vec<&'a Correction>,
     applied_line_corrections: Vec<&'a Correction>,
+    socket_option_targets: Option<SocketOptionTargets>,
     held_back_effects: Vec<DerivedEffectSplit>,
     matched_set_tier_prose: BTreeSet<SetTierProseMatch>,
     written: WrittenRows,
