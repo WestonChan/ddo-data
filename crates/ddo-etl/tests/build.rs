@@ -1091,6 +1091,48 @@ fn declared_ladder_steps_stay_addressable_without_blocking_their_group() {
 }
 
 #[test]
+fn declared_speed_rank_preserves_its_label_and_two_amounts() {
+    let (db, _) = built_fixture_db();
+    let line: (String, i64, i64, Option<String>) = db
+        .query_row(
+            "SELECT e.name,l.value,l.value2,e.stat_set_verdict FROM item_effects l
+             JOIN effects e ON e.id=l.effect_id JOIN items i ON i.id=l.item_id
+             WHERE i.name='Epic Ethereal Bracers' AND e.name='Speed XIV'",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)),
+        )
+        .unwrap();
+    assert_eq!(line, ("Speed XIV".into(), 30, 14, Some("distinct".into())));
+    let bonuses: Vec<(String, String, i64)> = db
+        .prepare(
+            "SELECT s.name,t.name,b.amount FROM owner_bonuses b
+             JOIN effects s ON s.id=b.stat_id JOIN effects e ON e.id=b.via_effect_id
+             JOIN bonus_types t ON t.id=b.bonus_type_id JOIN items i ON i.id=b.owner_id
+             WHERE b.owner_kind='item' AND i.name='Epic Ethereal Bracers' AND e.name='Speed XIV'
+             ORDER BY s.name",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)))
+        .unwrap()
+        .collect::<rusqlite::Result<_>>()
+        .unwrap();
+    assert_eq!(
+        bonuses,
+        [
+            ("Melee Attack Speed".into(), "Enhancement".into(), 14),
+            ("Movement Speed".into(), "Enhancement".into(), 30),
+            ("Ranged Attack Speed".into(), "Enhancement".into(), 14),
+        ]
+    );
+    let groupings = ddo_etl::groupings::Groupings::from_database(&db).unwrap();
+    assert!(groupings.by_id.values().any(|effect| effect.name == "Speed XIV"));
+    assert!(!groupings
+        .pairs(ddo_etl::groupings::GroupingPairDomain::LinkValued)
+        .iter()
+        .any(|pair| pair.first.name == "Speed XIV" || pair.second.name == "Speed XIV"));
+}
+
+#[test]
 fn two_slot_deception_cannot_replace_a_single_value_sneak_attack_line() {
     let (db, report) = built_ambiguous_fixture_db();
     let names = db.prepare(
