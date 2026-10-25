@@ -1,6 +1,7 @@
 {
   "effects": [
     {
+      "aliases": [],
       "augment_count": 9,
       "bonus_types": [
         {
@@ -25,6 +26,7 @@
       "slug": "acid-absorption"
     },
     {
+      "aliases": [],
       "augment_count": 0,
       "bonus_types": [
         {
@@ -41,6 +43,7 @@
       "slug": "alignment-absorption"
     },
     {
+      "aliases": [],
       "augment_count": 3,
       "bonus_types": [
         {

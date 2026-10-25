@@ -80,6 +80,57 @@ fn rebuilt_correction_notes(db: &Connection) -> Corrections {
 }
 
 #[test]
+fn alias_correction_uses_the_link_alias_and_reports_a_missing_member() {
+    let canonical = fixture::database(|root| {
+        let path = root.join("effects/stats/spot.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(
+            path,
+            format!("{original}\n[[alias]]\nname = 'Awareness'\nverbose_name_template = '%b1 Awareness +{{1}}'\n"),
+        )
+        .unwrap();
+    });
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let alias = new_qualified_correction(
+        "item_bonus",
+        "Legendary Keylock Ring",
+        "stat = 'Spot'\nbonus_type = 'Competence'",
+        "alias",
+        "\"null\"",
+        "\"Awareness\"",
+    );
+    let corrections = validated_corrections(&[("alias.toml", &alias)]).unwrap();
+    for include_spot in [true, false] {
+        let source = fixture::xml_source();
+        fixture::write_search_and_spot_item(source.path(), 20, include_spot);
+        let mut db = Connection::open_in_memory().unwrap();
+        let report = build_database(
+            &groupings,
+            source.path(),
+            &WikiOverrides::default(),
+            &corrections,
+            &mut db,
+            &fixture_dataset_version(),
+        )
+        .unwrap();
+        if include_spot {
+            let chosen: String = db.query_row("SELECT a.name FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effect_aliases a ON a.effect_id=l.effect_id AND a.name=l.alias WHERE i.name='Legendary Keylock Ring'", [], |row| row.get(0)).unwrap();
+            assert_eq!(chosen, "Awareness");
+            assert!(report.stale_corrections.is_empty());
+            assert!(recorded_corrections(&db).iter().any(|row| row.2 == "alias" && row.4 == "\"Awareness\""));
+        } else {
+            assert_eq!(report.stale_corrections.len(), 1);
+            assert!(
+                matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. }
+                if maetrim_value == "\"no such bonus\""),
+                "{:?}",
+                report.stale_corrections
+            );
+        }
+    }
+}
+
+#[test]
 fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
     use ddo_model::enums::CorrectionKind;
     let expected = [
@@ -88,7 +139,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::Augment, "description:description:Text:false, effect_description:effect_description:Text:true, family:family:Text:false, min_level:min_level:Integer:true, name:name:RowName:false, remove:remove:Removal:false"),
         (CorrectionKind::Quest, "epic_level:epic_level:Integer:true, favor:favor:Integer:true, is_raid:is_raid:Flag:false, level:level:Integer:true, name:name:RowName:false, pack:pack_id:NamedReference { referenced_table: \"adventure_packs\" }:false, patron:patron_id:NamedReference { referenced_table: \"patrons\" }:true, remove:remove:Removal:false"),
         (CorrectionKind::Feat, "description:description:Text:true, icon:icon:Text:true"),
-        (CorrectionKind::FeatBonus, "lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
+        (CorrectionKind::FeatBonus, "alias:alias:BonusAlias:true, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
         (CorrectionKind::Enhancement, "arrows:arrows:TextList:false, cooldown_seconds:cooldown_seconds:Integer:true, cost_per_rank:cost_per_rank:IntegerList:false, description:description:Text:false, duration_seconds:duration_seconds:Integer:true, icon:icon:Text:true, is_clickie:is_clickie:Flag:false, is_tier5:is_tier5:Flag:false, min_spent:min_spent:Integer:false, name:name:RowName:false, ranks:ranks:Integer:false, x:x:Integer:false, y:y:Integer:false"),
         (CorrectionKind::Spell, "description:description:Text:false, icon:icon:Text:true"),
         (CorrectionKind::EnhancementTree, "icon:icon:Text:false"),
@@ -101,10 +152,10 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::Patron, "name:name:RowName:false"),
         (CorrectionKind::SocketLabel, "name:label:RowName:false"),
         (CorrectionKind::SetBonus, "icon:icon:Text:true, name:name:RowName:false"),
-        (CorrectionKind::AugmentBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, dedupe:dedupe:BonusDedupe:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
-        (CorrectionKind::ItemBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
+        (CorrectionKind::AugmentBonus, "add:add:BonusAddition:false, alias:alias:BonusAlias:true, bonus_type:bonus_type:BonusTypeName:false, dedupe:dedupe:BonusDedupe:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
+        (CorrectionKind::ItemBonus, "add:add:BonusAddition:false, alias:alias:BonusAlias:true, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
         (CorrectionKind::SetTier, "add:add:TierAddition:false, description:description:Text:true, remove:remove:Removal:false"),
-        (CorrectionKind::SetTierBonus, "add:add:BonusAddition:false, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
+        (CorrectionKind::SetTierBonus, "add:add:BonusAddition:false, alias:alias:BonusAlias:true, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
         (CorrectionKind::ItemEffect, "add:add:EffectAddition:false, bonus_type:bonus_type:BonusTypeName:false, remove:remove:Removal:false, value:value:Integer:true"),
         (CorrectionKind::EffectDamage, "add:add:DamageAddition:false, remove:remove:DamageRemoval:false"),
         (CorrectionKind::ItemSocket, "add:add:SocketAddition:false"),

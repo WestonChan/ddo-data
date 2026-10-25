@@ -88,7 +88,7 @@ declare_list_parameters!(
     EffectsParameters,
     EFFECTS_SORT_FIELDS,
     "",
-    Some("Case-insensitive own-name or granted-stat substring; without sort, exact, prefix and substring own names rank before stat-only matches.")
+    Some("Case-insensitive own-name, alias or granted-stat substring; without sort, own-name matches rank before alias and stat matches.")
 );
 
 #[utoipa::path(
@@ -121,6 +121,7 @@ async fn effects(
             if let Some(search_text) = query.q.as_deref().map(str::trim).filter(|text| !text.is_empty()) {
                 let search_placeholder = where_clause.add_bound_condition(
                     "(instr(lower(listed.name), lower(?)) > 0 OR
+                      EXISTS (SELECT 1 FROM effect_aliases a WHERE a.effect_id = listed.id AND a.slug IS NOT NULL AND instr(lower(a.name), lower(?)) > 0) OR
                       (listed.kind IN ('effect', 'group') AND EXISTS (
                           SELECT 1 FROM effect_bonuses eb JOIN effects s ON s.id = eb.target_effect_id
                            WHERE eb.effect_id = listed.id AND (instr(lower(s.name), lower(?)) > 0 OR
@@ -146,6 +147,10 @@ async fn effects(
             )?;
             let types = json_rows(db, EFFECT_TYPES_SQL, [])?;
             let mut types_by_row: HashMap<(String, i64), Vec<Value>> = HashMap::new();
+            let mut aliases_by_effect: HashMap<i64, Vec<Value>> = HashMap::new();
+            for alias in json_rows(db, "SELECT effect_id, name FROM effect_aliases ORDER BY effect_id, sort_order", [])? {
+                aliases_by_effect.entry(alias["effect_id"].as_i64().unwrap_or_default()).or_default().push(alias["name"].clone());
+            }
             for row in types {
                 let key = (row["kind"].as_str().unwrap_or("").to_string(), row["id"].as_i64().unwrap_or(0));
                 types_by_row
@@ -156,6 +161,7 @@ async fn effects(
             for row in &mut page.rows {
                 let key = (row["kind"].as_str().unwrap_or("").to_string(), row["id"].as_i64().unwrap_or(0));
                 row["bonus_types"] = Value::Array(types_by_row.remove(&key).unwrap_or_default());
+                row["aliases"] = Value::Array(aliases_by_effect.remove(&key.1).unwrap_or_default());
             }
             Ok(Json(page.into_json("effects")))
         })
@@ -396,8 +402,8 @@ fn carrier_pages(
 
 #[utoipa::path(
     get, path = "/v1/effects/{slug}", tag = "bonuses", summary = "Get an effect",
-    description = "Returns an effect, group or stat with its bonus and damage rules, tier group and paged carriers, one row per owner with its lines.",
-    params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list."),
+    description = "Returns an effect, group or stat with its aliases, bonus and damage rules, tier group and paged carriers, one row per owner with its lines.",
+    params(("slug" = String, Path, description = "Current or alias slug, or numeric id; aliases redirect to the current slug."),
         ("items_limit" = Option<i64>, Query, description = "Maximum items in this page."),
         ("items_offset" = Option<i64>, Query, description = "Items to skip before this page."),
         ("augments_limit" = Option<i64>, Query, description = "Maximum augments in this page."),
@@ -422,6 +428,11 @@ async fn effect_detail(
                 [id],
             )?;
             family["notes"] = Value::Array(notes_for_owners(db, "effects", &[id])?.remove(&id).unwrap_or_default());
+            family["aliases"] = Value::Array(json_rows(
+                db,
+                "SELECT name, slug, verbose_name_template FROM effect_aliases WHERE effect_id = ?1 ORDER BY sort_order",
+                [id],
+            )?);
             family["kind"] = Value::String(
                 if family["is_stat"] == 1 {
                     "stat"

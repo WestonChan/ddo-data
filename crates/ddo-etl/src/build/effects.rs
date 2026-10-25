@@ -724,11 +724,33 @@ impl<'a> EffectCache<'a> {
         Ok(())
     }
 
+    pub(super) fn write_aliases(&self) -> Result<()> {
+        for family in self.families_by_id.values() {
+            let Some(effect) = self.groupings.effect_named(&family.name) else { continue };
+            for (position, alias) in effect.aliases.iter().enumerate() {
+                self.transaction.execute(
+                    "INSERT INTO effect_aliases (effect_id, name, slug, verbose_name_template, sort_order) VALUES (?1, ?2, ?3, ?4, ?5)",
+                    params![family.id, alias.name, alias.slug, alias.verbose_name_template, position as i64],
+                )?;
+            }
+        }
+        Ok(())
+    }
+
+    pub(super) fn alias_named(&self, family_id: i64, name: &str) -> Option<&str> {
+        self.groupings
+            .effect_named(&self.family(family_id)?.name)?
+            .aliases
+            .iter()
+            .find(|alias| alias.name == name)
+            .map(|alias| alias.name.as_str())
+    }
+
     pub(super) fn insert_link(
         &mut self,
-        owner: EffectOwner,
-        owner_id: i64,
+        (owner, owner_id): (EffectOwner, i64),
         family_id: i64,
+        alias: Option<&str>,
         bonus_type: Option<BonusType>,
         amounts: (Option<i64>, Option<i64>),
         sort_order: usize,
@@ -740,7 +762,7 @@ impl<'a> EffectCache<'a> {
         } else {
             validate_link(&family.name, family.amount_count, family.uses_link_type, bonus_type, amounts)?;
         }
-        write_link(self.transaction, owner, owner_id, family_id, bonus_type, amounts, sort_order)?;
+        write_link(self.transaction, (owner, owner_id), family_id, alias, bonus_type, amounts, sort_order)?;
         if let Some(bonus_type) = bonus_type {
             self.link_types_by_family
                 .entry(family_id)
@@ -776,7 +798,7 @@ impl EffectOwner {
     }
 }
 
-pub(super) fn amount_count(verbose_name_template: &str, description_template: Option<&str>) -> i64 {
+pub(crate) fn amount_count(verbose_name_template: &str, description_template: Option<&str>) -> i64 {
     let templates = [verbose_name_template, description_template.unwrap_or("")];
     if templates.iter().any(|template| template.contains("{2}")) {
         2
@@ -787,7 +809,7 @@ pub(super) fn amount_count(verbose_name_template: &str, description_template: Op
     }
 }
 
-pub(super) fn validate_templates(
+pub(crate) fn validate_templates(
     name: &str,
     verbose_name_template: &str,
     description_template: Option<&str>,
@@ -825,9 +847,9 @@ fn validate_link(
 
 fn write_link(
     transaction: &Transaction,
-    owner: EffectOwner,
-    owner_id: i64,
+    (owner, owner_id): (EffectOwner, i64),
     effect_id: i64,
+    alias: Option<&str>,
     bonus_type: Option<BonusType>,
     amounts: (Option<i64>, Option<i64>),
     sort_order: usize,
@@ -836,9 +858,9 @@ fn write_link(
     let (table_name, owner_column) = owner.table();
     transaction.prepare_cached(
         &format!(
-            "INSERT INTO {table_name} ({owner_column}, effect_id, bonus_type_id, value, value2, sort_order) VALUES (?1, ?2, ?3, ?4, ?5, ?6)"
+            "INSERT INTO {table_name} ({owner_column}, effect_id, alias, bonus_type_id, value, value2, sort_order) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)"
         ),
-    )?.execute(params![owner_id, effect_id, bonus_type.map(BonusType::id), value, value2, sort_order as i64])?;
+    )?.execute(params![owner_id, effect_id, alias, bonus_type.map(BonusType::id), value, value2, sort_order as i64])?;
     Ok(())
 }
 
@@ -1111,7 +1133,7 @@ mod tests {
                 )
                 .unwrap();
         }
-        effects.insert_link(EffectOwner::Item, item_id, effect_id, None, (Some(19), None), 0).unwrap();
+        effects.insert_link((EffectOwner::Item, item_id), effect_id, None, None, (Some(19), None), 0).unwrap();
         let amounts: Vec<Option<i64>> = transaction
             .prepare(
                 "SELECT CASE es.amount_from WHEN 1 THEN ie.value ELSE ie.value2 END
@@ -1124,7 +1146,7 @@ mod tests {
             .map(Result::unwrap)
             .collect();
         assert_eq!(amounts, [Some(19), None]);
-        effects.insert_link(EffectOwner::Item, item_id, effect_id, None, (None, None), 1).unwrap();
+        effects.insert_link((EffectOwner::Item, item_id), effect_id, None, None, (None, None), 1).unwrap();
     }
 
     #[test]
@@ -1146,7 +1168,7 @@ mod tests {
             effects.ensure_family("Earthen Guard", "Earthen Guard", Some("A Stone Skin may trigger."), 0).unwrap();
         let source =
             effects.ensure_family("Echoes of 2006", "Earthen Guard", Some("A Stone Skin may trigger."), 0).unwrap();
-        effects.insert_link(EffectOwner::Item, item_id, source, None, (None, None), 0).unwrap();
+        effects.insert_link((EffectOwner::Item, item_id), source, None, None, (None, None), 0).unwrap();
         effects.merge_identical_text_family(source, "Earthen Guard").unwrap();
         let linked_effect: i64 = transaction
             .query_row("SELECT effect_id FROM item_effects WHERE item_id = ?1", [item_id], |row| row.get(0))
@@ -1174,7 +1196,14 @@ mod tests {
         assert!(effects.ensure_family("Movement Speed", "Movement Speed {1} {2}", None, 2).is_err());
         effects.ensure_family("Movement Speed", "Movement Speed {1}", None, 1).unwrap();
         let error = effects
-            .insert_link(EffectOwner::Item, item_id, stat_id, Some(BonusType::Enhancement), (Some(10), Some(20)), 0)
+            .insert_link(
+                (EffectOwner::Item, item_id),
+                stat_id,
+                None,
+                Some(BonusType::Enhancement),
+                (Some(10), Some(20)),
+                0,
+            )
             .unwrap_err();
         assert!(error.to_string().contains("cannot carry a second value"));
     }

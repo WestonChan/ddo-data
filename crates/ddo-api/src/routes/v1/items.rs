@@ -124,7 +124,7 @@ declare_list_parameters!(
     ITEMS_SORT_FIELDS,
     "",
     Some(
-        "Case-insensitive item-name substring or exact slot, category or pack name; exact and prefix names rank first without sort."
+        "Case-insensitive item or effect-alias substring, or exact slot, category or pack name; own names rank first without sort."
     )
 );
 
@@ -154,7 +154,7 @@ declare_list_parameters!(
         ("quest_chain_match" = Option<String>, Query, description = "Use `all` to require every quest chain, or `any` by default."),
         ("saga" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat saga slugs or numeric ids to match end rewards."),
         ("saga_match" = Option<String>, Query, description = "Use `all` to require every saga, or `any` by default."),
-        ("bonus" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat effect, ladder or stat names; `Constitution:Insight` narrows by type, and `Constitution:Insightful` also works."),
+        ("bonus" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat effect, ladder or stat names, or alias names or slugs; `Constitution:Insight` narrows by type."),
         ("bonus_match" = Option<String>, Query, description = "Use `all` to require every bonus, or `any` by default."),
         ("include_set_bonuses" = Option<bool>, Query, description = "Use true to match effects through the item's set tiers too."),
         ("include_legacy" = Option<bool>, Query, description = "Use true to include legacy item versions in the list."),
@@ -290,6 +290,8 @@ async fn items(
 
 const ITEMS_MATCHING_SEARCH_TEXT_SQL: &str = "(i.name LIKE '%' || ? || '%' ESCAPE '\\' \
      OR es.name LIKE ? ESCAPE '\\' OR i.item_category LIKE ? ESCAPE '\\' \
+     OR EXISTS (SELECT 1 FROM item_effects linked JOIN effect_aliases a ON a.effect_id = linked.effect_id \
+                WHERE linked.item_id = i.id AND a.slug IS NOT NULL AND a.name LIKE '%' || ? || '%' ESCAPE '\\') \
      OR i.id IN (SELECT packs.item_id FROM loot_adventure_packs packs \
                  JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE ap.name LIKE ? ESCAPE '\\'))";
 
@@ -298,7 +300,7 @@ fn bonus_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Re
 
     let (stat_name, type_name) = name.split_once(':').map_or((name, None), |(stat, kind)| (stat, Some(kind)));
     let stat_id = db
-        .query_row("SELECT id FROM effects WHERE name = ?1 AND is_stat = 1", [stat_name], |row| row.get::<_, i64>(0))
+        .query_row("SELECT e.id FROM effects e WHERE e.is_stat = 1 AND (e.name = ?1 OR EXISTS (SELECT 1 FROM effect_aliases a WHERE a.effect_id = e.id AND a.slug IS NOT NULL AND (a.name = ?1 OR a.slug = ?1)))", [stat_name], |row| row.get::<_, i64>(0))
         .optional()?;
     let type_id = match type_name {
         Some(type_name) => {
@@ -314,14 +316,14 @@ fn bonus_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Re
         None => None,
     };
     let family_ids = if type_name.is_none() {
-        let mut statement = db.prepare_cached("SELECT e.id FROM effects e LEFT JOIN effect_tier_groups tg ON tg.id = e.tier_group_id WHERE e.name = ?1 OR tg.name = ?1")?;
+        let mut statement = db.prepare_cached("SELECT e.id FROM effects e LEFT JOIN effect_tier_groups tg ON tg.id = e.tier_group_id WHERE e.name = ?1 OR tg.name = ?1 OR EXISTS (SELECT 1 FROM effect_aliases a WHERE a.effect_id = e.id AND a.slug IS NOT NULL AND (a.name = ?1 OR a.slug = ?1))")?;
         let ids = statement.query_map([name], |row| row.get::<_, i64>(0))?.collect::<Result<Vec<_>, _>>()?;
         ids
     } else {
         Vec::new()
     };
     let group_id = if type_name.is_none() {
-        db.query_row("SELECT id FROM effects WHERE name = ?1 AND is_group = 1", [name], |row| row.get::<_, i64>(0))
+        db.query_row("SELECT e.id FROM effects e WHERE e.is_group = 1 AND (e.name = ?1 OR EXISTS (SELECT 1 FROM effect_aliases a WHERE a.effect_id = e.id AND a.slug IS NOT NULL AND (a.name = ?1 OR a.slug = ?1)))", [name], |row| row.get::<_, i64>(0))
             .optional()?
     } else {
         None

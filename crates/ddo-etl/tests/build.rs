@@ -1379,6 +1379,28 @@ fn explicit_zero_overrides_a_grouped_buffs_definition_default() {
 }
 
 #[test]
+fn routed_buff_chooses_its_source_family_alias() {
+    let canonical = fixture::database(|root| {
+        let path = root.join("effects/stat-groups/charisma-skills.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{original}\n[[alias]]\nname = 'Charisma Skills - Exceptional Bonus'\nverbose_name_template = 'Charisma Skills - %b1 Bonus +{{1}}'\n")).unwrap();
+    });
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let db = build_wrapper_fixture(
+        &groupings,
+        include_str!("fixtures/effect-groups/CharismaSkills.item"),
+        include_str!("fixtures/effect-groups/CharismaSkills.Buffs.xml"),
+    );
+    let choice: (String, Option<String>, i64) = db.query_row(
+        "SELECT e.name, a.name, l.value FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id LEFT JOIN effect_aliases a ON a.effect_id=l.effect_id AND a.name=l.alias WHERE i.name='Pink and Green Ioun Stone (unsuppressed)' AND e.name='Charisma Skills'",
+        [], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?))).unwrap();
+    assert_eq!(choice, ("Charisma Skills".into(), Some("Charisma Skills - Exceptional Bonus".into()), 2));
+    let stored: (String, String) = db.query_row("SELECT l.alias, typeof(l.alias) FROM item_effects l JOIN items i ON i.id=l.item_id WHERE i.name='Pink and Green Ioun Stone (unsuppressed)' AND l.alias IS NOT NULL", [], |row| Ok((row.get(0)?, row.get(1)?))).unwrap();
+    assert_eq!(stored, ("Charisma Skills - Exceptional Bonus".into(), "text".into()));
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM pragma_table_info('item_effects') WHERE name='alias_id'"), 0);
+}
+
+#[test]
 fn grouped_definition_defaults_survive_export_and_rebuild_on_owner_links() {
     let source = fixture::xml_source();
     let path = source.path().join("ItemBuffs.xml");

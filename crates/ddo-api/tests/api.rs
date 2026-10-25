@@ -169,6 +169,58 @@ async fn get_list_rows(path: &str) -> (StatusCode, axum::http::HeaderMap, Value)
 }
 
 #[tokio::test]
+async fn effect_aliases_choose_line_wording_and_expand_search() {
+    let state = fixture_state_with_data_edits("effect-aliases", |root| {
+        let append = |relative: &str, suffix: &str| {
+            let path = root.join(relative);
+            let original = std::fs::read_to_string(&path).unwrap();
+            std::fs::write(path, format!("{original}\n{suffix}")).unwrap();
+        };
+        append("effects/stat-groups/doublestrike-and-doubleshot.toml", "[[alias]]\nname = 'Combat Grace'\nverbose_name_template = '%b1 Combat Grace +{1}%'\n[[alias]]\nname = 'Doublestrike'\nverbose_name_template = '%b1 Doublestrike +{1}%'\n");
+        append("packs/shared/gear/alabaster-of-the-twelve.toml", "[[effect]]\nname = 'Doublestrike and Doubleshot'\nalias = 'Combat Grace'\nbonus_type = 'Insight'\nvalue = 3\n");
+        append("packs/free-to-play/gear/acrobats-ring.toml", "[[effect]]\nname = 'Doublestrike and Doubleshot'\nalias = 'Doublestrike'\nbonus_type = 'Quality'\nvalue = 2\n");
+    });
+    let (status, headers, _) = get_from(state.clone(), "/v1/effects/combat-grace").await;
+    assert_eq!(status, StatusCode::PERMANENT_REDIRECT);
+    assert_eq!(headers[header::LOCATION], "/v1/effects/doublestrike-and-doubleshot");
+    let (status, _, stat) = get_from(state.clone(), "/v1/effects/doublestrike").await;
+    assert_eq!(status, StatusCode::OK);
+    assert_eq!(stat["kind"], "stat");
+    let (_, _, group) = get_from(state.clone(), "/v1/effects/doublestrike-and-doubleshot").await;
+    assert_eq!(
+        group["aliases"],
+        serde_json::json!([
+            {"name":"Combat Grace","slug":"combat-grace","verbose_name_template":"%b1 Combat Grace +{1}%"},
+            {"name":"Doublestrike","slug":null,"verbose_name_template":"%b1 Doublestrike +{1}%"}
+        ])
+    );
+    let (_, _, effects) = get_from(state.clone(), "/v1/effects?q=Combat%20Grace").await;
+    assert_eq!(effects["total"], 1);
+    assert_eq!(effects["effects"][0]["name"], "Doublestrike and Doubleshot");
+    assert_eq!(effects["effects"][0]["aliases"], serde_json::json!(["Combat Grace", "Doublestrike"]));
+    for query in ["q=Combat%20Grace", "bonus=Combat%20Grace", "bonus=combat-grace"] {
+        let (status, _, items) = get_from(state.clone(), &format!("/v1/items?{query}&limit=200")).await;
+        assert_eq!(status, StatusCode::OK, "{query}: {items}");
+        for name in ["Alabaster of the Twelve", "Acrobat's Ring"] {
+            assert!(item_names(&items).contains(&name), "{query}: {items}");
+        }
+    }
+    for (slug, alias, verbose, amount) in [
+        ("alabaster-of-the-twelve", "Combat Grace", "Insightful Combat Grace +3%", 3),
+        ("acrobats-ring", "Doublestrike", "Quality Doublestrike +2%", 2),
+    ] {
+        let (_, _, item) = get_from(state.clone(), &format!("/v1/items/{slug}")).await;
+        let line = item["effects"].as_array().unwrap().iter().find(|line| line["name"] == alias).unwrap();
+        assert_eq!(line["verbose_name"], verbose);
+        assert_eq!(line["effect_slug"], "doublestrike-and-doubleshot");
+        assert!(line["description"].as_str().unwrap().contains("Doublestrike"));
+        let bonuses = line["bonuses"].as_array().unwrap();
+        assert_eq!(bonuses.len(), 2);
+        assert!(bonuses.iter().all(|bonus| bonus["value"] == amount));
+    }
+}
+
+#[tokio::test]
 async fn line_notes_follow_every_derived_target_and_preserve_kind_order() {
     let (status, _, heartwood) = get_from(note_fixture_state(), "/v1/items/heartwood").await;
     assert_eq!(status, StatusCode::OK, "{heartwood}");
@@ -2723,10 +2775,10 @@ async fn list_parameter_docs_share_descriptions_and_match_runtime_sort_fields() 
             params.iter().find(|param| param["name"] == "q").unwrap()["description"].as_str().unwrap();
         let expected_search_description = match path {
             "/v1/items" => {
-                "Case-insensitive item-name substring or exact slot, category or pack name; exact and prefix names rank first without sort."
+                "Case-insensitive item or effect-alias substring, or exact slot, category or pack name; own names rank first without sort."
             }
             "/v1/effects" => {
-                "Case-insensitive own-name or granted-stat substring; without sort, exact, prefix and substring own names rank before stat-only matches."
+                "Case-insensitive own-name, alias or granted-stat substring; without sort, own-name matches rank before alias and stat matches."
             }
             "/v1/augment-slot-types" => {
                 "Case-insensitive substring of the socket's display `label`; \

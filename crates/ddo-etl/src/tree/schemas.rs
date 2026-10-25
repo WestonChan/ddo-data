@@ -512,6 +512,7 @@ declared_records! {
     super::kinds::crafting_system::CraftingSystemRecipe,
     super::kinds::crafting_system::CraftingSystemFile,
     super::kinds::damage_types::DamageType,
+    super::kinds::effect::EffectAlias,
     super::kinds::effect::EffectBonus,
     super::kinds::effect::EffectDamage,
     super::kinds::effect::EffectFile,

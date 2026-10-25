@@ -175,6 +175,7 @@ impl TableWriter<'_> {
         let mut links = Vec::new();
         let item_owner = BonusOwner { kind: BonusOwnerKind::Item, name: item_name, family: None };
         for (buff, resolved_buff) in resolved_buffs {
+            let first_link = links.len();
             match resolved_buff {
                 ResolvedBuff::Bonuses { source: _, stats } => {
                     let mut typed_stats = Vec::with_capacity(stats.len());
@@ -202,100 +203,107 @@ impl TableWriter<'_> {
                             buff.target.as_deref().expect("resolved skill group has an ability target").trim();
                         let group_id = self.effects.ensure_group(&format!("{ability} Skills"))?;
                         links.push(DerivedEffectLink {
+                            alias: None,
                             effect_id: group_id,
                             bonus_type: first_type,
                             value: buff.value,
                             value2: None,
                             is_split_line: false,
                         });
-                        continue;
-                    }
-                    let family_name = self.buff_resolver.family_name(buff, stats.first().map(|stat| stat.stat.name));
-                    let family_text = self.buff_resolver.family_template(buff);
-                    let (mut verbose_name_template, description_template) =
-                        if family_text.is_empty() { (family_name.clone(), None) } else { split_template(&family_text) };
-                    let constant_amounts: std::collections::BTreeSet<i64> = stats
-                        .iter()
-                        .filter_map(|stat| match stat.amount_from {
-                            crate::map::buff::AmountFrom::Constant(amount) => Some(amount),
-                            _ => None,
-                        })
-                        .collect();
-                    if constant_amounts.len() == 1
-                        && !verbose_name_template.chars().any(|character| character.is_ascii_digit())
-                        && !verbose_name_template.contains("{1}")
-                        && !verbose_name_template.contains("{2}")
-                    {
-                        verbose_name_template
-                            .push_str(&format!(" {:+}", constant_amounts.first().expect("one constant")));
-                    }
-                    let required_count = stats
-                        .iter()
-                        .map(|stat| match stat.amount_from {
-                            crate::map::buff::AmountFrom::ItemValue1 => 1,
-                            crate::map::buff::AmountFrom::ItemValue2 => 2,
-                            crate::map::buff::AmountFrom::Constant(_) => 0,
-                        })
-                        .max()
-                        .unwrap_or(0);
-                    for slot in 1..=required_count {
-                        let placeholder = format!("{{{slot}}}");
-                        if !verbose_name_template.contains(&placeholder)
-                            && !description_template.as_deref().is_some_and(|text| text.contains(&placeholder))
+                    } else {
+                        let family_name =
+                            self.buff_resolver.family_name(buff, stats.first().map(|stat| stat.stat.name));
+                        let family_text = self.buff_resolver.family_template(buff);
+                        let (mut verbose_name_template, description_template) = if family_text.is_empty() {
+                            (family_name.clone(), None)
+                        } else {
+                            split_template(&family_text)
+                        };
+                        let constant_amounts: std::collections::BTreeSet<i64> = stats
+                            .iter()
+                            .filter_map(|stat| match stat.amount_from {
+                                crate::map::buff::AmountFrom::Constant(amount) => Some(amount),
+                                _ => None,
+                            })
+                            .collect();
+                        if constant_amounts.len() == 1
+                            && !verbose_name_template.chars().any(|character| character.is_ascii_digit())
+                            && !verbose_name_template.contains("{1}")
+                            && !verbose_name_template.contains("{2}")
                         {
-                            verbose_name_template.push_str(&format!(" {placeholder}"));
+                            verbose_name_template
+                                .push_str(&format!(" {:+}", constant_amounts.first().expect("one constant")));
                         }
-                    }
-                    let count = amount_count(&verbose_name_template, description_template.as_deref());
-                    let effect_id = self.effects.ensure_family(
-                        &family_name,
-                        &verbose_name_template,
-                        description_template.as_deref(),
-                        count,
-                    )?;
-                    let link_typed =
-                        self.effects.family(effect_id).expect("effect cached").uses_link_type || typed_stats.len() == 1;
-                    if link_typed {
-                        ensure!(typed_stats.iter().all(|(_, bonus_type)| Some(*bonus_type) == first_type),
-                            "item {item_name:?} family {family_name:?} resolves to multiple bonus types for one %b1 slot");
-                    }
-                    let rules: Vec<BonusRule> = typed_stats
-                        .into_iter()
-                        .map(|(resolved_stat, bonus_type)| {
-                            let (amount_from, constant) = match resolved_stat.amount_from {
-                                crate::map::buff::AmountFrom::ItemValue1 => (1, None),
-                                crate::map::buff::AmountFrom::ItemValue2 => (2, None),
-                                crate::map::buff::AmountFrom::Constant(amount) => (0, Some(amount)),
-                            };
-                            BonusRule {
-                                stat: resolved_stat.stat,
-                                bonus_type: (!link_typed).then_some(bonus_type),
-                                amount_from,
-                                constant,
+                        let required_count = stats
+                            .iter()
+                            .map(|stat| match stat.amount_from {
+                                crate::map::buff::AmountFrom::ItemValue1 => 1,
+                                crate::map::buff::AmountFrom::ItemValue2 => 2,
+                                crate::map::buff::AmountFrom::Constant(_) => 0,
+                            })
+                            .max()
+                            .unwrap_or(0);
+                        for slot in 1..=required_count {
+                            let placeholder = format!("{{{slot}}}");
+                            if !verbose_name_template.contains(&placeholder)
+                                && !description_template.as_deref().is_some_and(|text| text.contains(&placeholder))
+                            {
+                                verbose_name_template.push_str(&format!(" {placeholder}"));
                             }
-                        })
-                        .collect();
-                    self.effects.ensure_bonus_rules(effect_id, &rules)?;
-                    let family = self.effects.family(effect_id).expect("effect cached");
-                    let defaults = self.buff_resolver.definition_defaults(buff.kind.trim(), family.amount_count);
-                    let (mut value, mut value2) = self.buff_resolver.link_amounts(buff, family.amount_count);
-                    if family.is_group {
-                        value = value.or(defaults.0);
-                        value2 = value2.or(defaults.1);
-                    } else if defaults != (None, None)
-                        && self.written.written_effect_defaults.insert((effect_id, defaults.0, defaults.1))
-                    {
-                        self.effects.set_defaults(effect_id, defaults)?;
-                    }
-                    links.push(DerivedEffectLink {
-                        effect_id,
-                        bonus_type: (link_typed || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
+                        }
+                        let count = amount_count(&verbose_name_template, description_template.as_deref());
+                        let effect_id = self.effects.ensure_family(
+                            &family_name,
+                            &verbose_name_template,
+                            description_template.as_deref(),
+                            count,
+                        )?;
+                        let link_typed = self.effects.family(effect_id).expect("effect cached").uses_link_type
+                            || typed_stats.len() == 1;
+                        if link_typed {
+                            ensure!(typed_stats.iter().all(|(_, bonus_type)| Some(*bonus_type) == first_type),
+                            "item {item_name:?} family {family_name:?} resolves to multiple bonus types for one %b1 slot");
+                        }
+                        let rules: Vec<BonusRule> = typed_stats
+                            .into_iter()
+                            .map(|(resolved_stat, bonus_type)| {
+                                let (amount_from, constant) = match resolved_stat.amount_from {
+                                    crate::map::buff::AmountFrom::ItemValue1 => (1, None),
+                                    crate::map::buff::AmountFrom::ItemValue2 => (2, None),
+                                    crate::map::buff::AmountFrom::Constant(amount) => (0, Some(amount)),
+                                };
+                                BonusRule {
+                                    stat: resolved_stat.stat,
+                                    bonus_type: (!link_typed).then_some(bonus_type),
+                                    amount_from,
+                                    constant,
+                                }
+                            })
+                            .collect();
+                        self.effects.ensure_bonus_rules(effect_id, &rules)?;
+                        let family = self.effects.family(effect_id).expect("effect cached");
+                        let defaults = self.buff_resolver.definition_defaults(buff.kind.trim(), family.amount_count);
+                        let (mut value, mut value2) = self.buff_resolver.link_amounts(buff, family.amount_count);
+                        if family.is_group {
+                            value = value.or(defaults.0);
+                            value2 = value2.or(defaults.1);
+                        } else if defaults != (None, None)
+                            && self.written.written_effect_defaults.insert((effect_id, defaults.0, defaults.1))
+                        {
+                            self.effects.set_defaults(effect_id, defaults)?;
+                        }
+                        links.push(DerivedEffectLink {
+                            alias: None,
+                            effect_id,
+                            bonus_type: (link_typed
+                                || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
                             .then_some(first_type)
                             .flatten(),
-                        value,
-                        value2,
-                        is_split_line: false,
-                    });
+                            value,
+                            value2,
+                            is_split_line: false,
+                        });
+                    }
                 }
                 ResolvedBuff::Effect { .. } => {
                     let family_name = self.buff_resolver.family_name(buff, None);
@@ -319,17 +327,28 @@ impl TableWriter<'_> {
                     let bonus_type = if uses_link_type { self.buff_resolver.link_bonus_type(buff)? } else { None };
                     let family_amount_count = self.effects.family(effect_id).expect("effect cached").amount_count;
                     let (value, value2) = self.buff_resolver.link_amounts(buff, family_amount_count);
-                    links.push(DerivedEffectLink { effect_id, bonus_type, value, value2, is_split_line: false });
+                    links.push(DerivedEffectLink {
+                        alias: None,
+                        effect_id,
+                        bonus_type,
+                        value,
+                        value2,
+                        is_split_line: false,
+                    });
                 }
                 ResolvedBuff::EnhancementBonus(_) => unreachable!("filtered above"),
+            }
+            let source_family = self.buff_resolver.source_family_name(buff);
+            for link in &mut links[first_link..] {
+                link.alias = self.effects.alias_named(link.effect_id, &source_family).map(str::to_string);
             }
         }
 
         for (sort_order, link) in self.write_merged_lines(&item_owner, item_id, links)?.into_iter().enumerate() {
             self.effects.insert_link(
-                EffectOwner::Item,
-                item_id,
+                (EffectOwner::Item, item_id),
                 link.effect_id,
+                link.alias.as_deref(),
                 link.bonus_type,
                 (link.value, link.value2),
                 sort_order,

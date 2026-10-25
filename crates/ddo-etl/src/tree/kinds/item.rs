@@ -16,6 +16,8 @@ database_record! {
             #[serde(default, skip_serializing_if = "Option::is_none")]
             bonus_type: Option<String> => bonus_type_id [optional_reference "bonus_types"],
             effect: String => effect_id [reference "effects"],
+            #[serde(default, skip_serializing_if = "Option::is_none")]
+            alias: Option<String> => alias,
             value: i64 => value,
             #[serde(default, skip_serializing_if = "Option::is_none")]
             value2: Option<i64> => value2,
@@ -107,6 +109,8 @@ database_record! {
         keys { item_id: i64, sort_order: i64 }
         fields {
             name: String => effect_id [reference "effects"],
+            #[serde(default, skip_serializing_if = "Option::is_none")]
+            alias: Option<String> => alias,
             #[serde(default, skip_serializing_if = "Option::is_none")]
             bonus_type: Option<String> => bonus_type_id [optional_reference "bonus_types"],
             #[serde(default, skip_serializing_if = "Option::is_none")]

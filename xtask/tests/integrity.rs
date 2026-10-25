@@ -163,6 +163,37 @@ fn template_violations() -> Vec<(&'static str, &'static str, &'static str)> {
 }
 
 #[test]
+fn alias_templates_share_line_amount_and_type_checks() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+    for (owner, name, template, cause) in [
+        ("Doublestrike and Doubleshot", "Alias Slot", "%b1 Alias Slot +8%", "T2"),
+        ("Doublestrike and Doubleshot", "Alias Type", "Alias Type +{1}%", "T3"),
+        ("Command", "Alias Fixed Type", "Alias Fixed Type", "T4"),
+        ("Shadow Striker", "Alias Constant", "Alias Constant +99%", "T6"),
+        ("True Seeing", "Alias Unmodelled", "Alias Unmodelled +5", "T7"),
+        ("Spot", "Alias Stat", "Alias Stat +{1}", "T3"),
+    ] {
+        let changed = db.execute("INSERT INTO effect_aliases (effect_id, name, slug, verbose_name_template, sort_order) SELECT id, ?2, ?3, ?4, (SELECT COUNT(*) FROM effect_aliases WHERE effect_id=effects.id) FROM effects WHERE name=?1",
+            rusqlite::params![owner, name, ddo_model::identity::slug(name), template]).unwrap();
+        assert_eq!(changed, 1, "{owner}");
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("effect_templates_without_their_placeholders").unwrap();
+        assert!(
+            outcome.offenders.iter().any(|finding| finding.name == name && finding.detail.contains(cause)),
+            "{name}: {outcome}"
+        );
+    }
+    db.execute_batch("UPDATE effect_aliases SET verbose_name_template = '%b1 Alias Type +{1}%' WHERE name = 'Alias Type'; UPDATE effect_aliases SET verbose_name_template = '%b1 Alias Stat +{1}' WHERE name = 'Alias Stat'").unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("effect_templates_without_their_placeholders").unwrap();
+    assert!(
+        !outcome.offenders.iter().any(|finding| matches!(finding.name.as_str(), "Alias Type" | "Alias Stat")),
+        "{outcome}"
+    );
+}
+
+#[test]
 fn template_check_reports_each_injected_cause() {
     let mut missing = Vec::new();
     for (cause, effect_name, injected_sql) in template_violations() {

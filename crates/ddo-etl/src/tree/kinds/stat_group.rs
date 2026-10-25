@@ -25,6 +25,8 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            alias: Vec<super::effect::EffectAlias>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             citation: Vec<crate::tree::Citation>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             bonus: Vec<super::effect::EffectBonus>,
@@ -38,10 +40,12 @@ impl StatGroupFile {
         annotations: &crate::tree::annotations::EntityAnnotations,
     ) -> Result<BTreeMap<i64, Self>> {
         let mut files = BTreeMap::new();
+        let mut aliases = super::effect::EffectAlias::by_effect(db)?;
         let mut select =
             db.prepare(&format!("SELECT {} FROM effects WHERE is_group = 1 ORDER BY id", Self::select_columns()))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
+            file.alias = aliases.remove(&id).unwrap_or_default();
             file.attach_annotations(annotations, id);
             files.insert(id, file);
         }

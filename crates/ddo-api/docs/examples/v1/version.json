@@ -50,8 +50,8 @@
     "wiki_quests": 4
   },
   "dataset": {
-    "built_at": "2026-10-24T03:40:33Z",
+    "built_at": "2026-10-25T01:52:02Z",
     "upstream_sha": "d1350a0c6ec396a65dc02680fa9801a14a79ebf3"
   },
-  "schema_version": 44
+  "schema_version": 45
 }

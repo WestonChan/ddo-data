@@ -1233,6 +1233,7 @@ fn effect_templates_with_digits_without_amounts(db: &Connection, _options: &Inte
     })
 }
 
+#[derive(Clone)]
 struct EffectTemplates {
     name: String,
     is_stat: bool,
@@ -1309,7 +1310,8 @@ fn effect_templates_without_their_placeholders(db: &Connection, _options: &Integ
     let mut counts = BTreeMap::<&str, (usize, i64)>::new();
     for (id, effect) in effects.iter().filter(|(_, effect)| !effect.is_stat) {
         let bonuses = bonuses_by_effect.get(id).map(Vec::as_slice).unwrap_or_default();
-        let causes = template_causes(effect, bonuses, &effects, &bonuses_by_effect, &bonus_types);
+        let causes =
+            template_causes(TemplateSurface::Effect, effect, bonuses, &effects, &bonuses_by_effect, &bonus_types);
         if causes.is_empty() {
             continue;
         }
@@ -1324,6 +1326,56 @@ fn effect_templates_without_their_placeholders(db: &Connection, _options: &Integ
             detail: format!("{} links: {}", effect.link_count, causes.into_iter().collect::<Vec<_>>().join("; ")),
         });
     }
+    let alias_links = EFFECT_OWNER_LINKS
+        .iter()
+        .map(|(table, _)| format!("SELECT effect_id, alias FROM {table} WHERE alias IS NOT NULL"))
+        .collect::<Vec<_>>()
+        .join(" UNION ALL ");
+    let mut statement = db.prepare(&format!(
+        "WITH links AS ({alias_links}), counts AS (SELECT effect_id, alias, COUNT(*) AS link_count FROM links GROUP BY effect_id, alias)
+         SELECT a.effect_id, a.name, a.verbose_name_template, COALESCE(c.link_count, 0)
+           FROM effect_aliases a LEFT JOIN counts c ON c.effect_id = a.effect_id AND c.alias = a.name ORDER BY a.name"
+    ))?;
+    for row in statement.query_map([], |row| {
+        Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?, row.get::<_, i64>(3)?))
+    })? {
+        let (id, name, template, link_count) = row?;
+        let canonical = &effects[&id];
+        let alias = EffectTemplates {
+            name,
+            line: Some(template),
+            description: None,
+            set_line: None,
+            link_count,
+            ..canonical.clone()
+        };
+        let stat_bonus = [TemplateBonus { target_id: id, amount_from: 1, constant: None, bonus_type_id: None }];
+        let bonuses = if canonical.is_stat {
+            &stat_bonus[..]
+        } else {
+            bonuses_by_effect.get(&id).map(Vec::as_slice).unwrap_or_default()
+        };
+        let causes =
+            template_causes(TemplateSurface::Alias, &alias, bonuses, &effects, &bonuses_by_effect, &bonus_types);
+        if causes.is_empty() {
+            continue;
+        }
+        for cause in &causes {
+            let count = counts.entry(cause).or_default();
+            count.0 += 1;
+            count.1 += link_count;
+        }
+        offenders.push(Offender {
+            name: alias.name,
+            id: Some(id),
+            detail: format!(
+                "alias of {:?}, {} links: {}",
+                canonical.name,
+                link_count,
+                causes.into_iter().collect::<Vec<_>>().join("; ")
+            ),
+        });
+    }
     offenders.sort_by(|left, right| left.name.cmp(&right.name));
     Ok(Findings {
         offenders: Some(offenders),
@@ -1334,7 +1386,14 @@ fn effect_templates_without_their_placeholders(db: &Connection, _options: &Integ
     })
 }
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum TemplateSurface {
+    Effect,
+    Alias,
+}
+
 fn template_causes(
+    surface: TemplateSurface,
     effect: &EffectTemplates,
     bonuses: &[TemplateBonus],
     effects: &BTreeMap<i64, EffectTemplates>,
@@ -1395,23 +1454,30 @@ fn template_causes(
                 causes.insert("T5: unit only through the renderer's restore");
             }
         }
-        if bonuses.iter().any(|bonus| bonus.bonus_type_id.is_none())
-            && !tokens.iter().any(|token| matches!(token.kind, EffectTextTokenKind::BonusType))
-        {
-            causes.insert("T3: link-typed rows lack %b1 in description or set line");
-        }
-        if bonuses.iter().filter_map(|bonus| bonus.bonus_type_id).filter_map(|id| bonus_types.get(&id)).any(
-            |bonus_type| !served_bonus_type_is_stated(description, bonus_type, home_type, EffectTextKind::Description),
-        ) {
-            causes.insert("T4: fixed type word missing from description");
-        }
     }
-    if bonuses.iter().any(|bonus| bonus.bonus_type_id.is_none())
-        && effect.set_line.as_deref().is_some_and(|line| {
-            !effect_text_tokens(line).iter().any(|token| matches!(token.kind, EffectTextTokenKind::BonusType))
-        })
-    {
-        causes.insert("T3: link-typed rows lack %b1 in description or set line");
+    let typed_templates = match surface {
+        TemplateSurface::Effect => vec![
+            (effect.description.as_deref(), EffectTextKind::Description),
+            (effect.set_line.as_deref(), EffectTextKind::SetLine),
+        ],
+        TemplateSurface::Alias => vec![(effect.line.as_deref(), EffectTextKind::EnchantmentLine)],
+    };
+    for (text, kind) in typed_templates {
+        let Some(text) = text else { continue };
+        if bonuses.iter().any(|bonus| bonus.bonus_type_id.is_none())
+            && !effect_text_tokens(text).iter().any(|token| matches!(token.kind, EffectTextTokenKind::BonusType))
+        {
+            causes.insert("T3: link-typed template lacks %b1");
+        }
+        if kind != EffectTextKind::SetLine
+            && bonuses
+                .iter()
+                .filter_map(|bonus| bonus.bonus_type_id)
+                .filter_map(|id| bonus_types.get(&id))
+                .any(|bonus_type| !served_bonus_type_is_stated(text, bonus_type, home_type, kind))
+        {
+            causes.insert("T4: fixed type word missing from template");
+        }
     }
     for line in [effect.line.as_deref(), effect.set_line.as_deref()].into_iter().flatten() {
         let tokens = effect_text_tokens(line);
@@ -2321,6 +2387,10 @@ fn empty_tables(db: &Connection, options: &IntegrityOptions) -> Result<Findings>
             ));
             continue;
         }
+        if table_name == "effect_aliases" {
+            notes.push("allowed empty: effect_aliases: aliases are optional; zero aliases is valid".to_string());
+            continue;
+        }
         if matches!(table_name.as_str(), "redirects" | "retired_slugs") {
             continue;
         }
@@ -2707,7 +2777,7 @@ mod served_amount_tests {
             for index in 0..owner_count {
                 std::fs::write(
                     groups.join(format!("amount-group-{index}.toml")),
-                    group.replace("Doublestrike and Doubleshot", &format!("Amount Group {index}")),
+                    format!("{}\n[[alias]]\nname = 'Amount Alias {index}'\nverbose_name_template = '%b1 Amount Alias {index} +{{1}}%'\n", group.replace("Doublestrike and Doubleshot", &format!("Amount Group {index}"))),
                 )
                 .unwrap();
                 std::fs::write(sets.join(format!("amount-probe-{index}.toml")), format!(
@@ -2743,7 +2813,7 @@ mod served_amount_tests {
             )
             .unwrap();
             db.trace_v2(TraceEventCodes::empty(), None);
-            assert_eq!(STATEMENTS.load(Ordering::SeqCst), 3, "{owner_count} effects");
+            assert_eq!(STATEMENTS.load(Ordering::SeqCst), 4, "{owner_count} effects");
             assert!(findings.offenders.unwrap().is_empty());
             for (name, statement_count) in [
                 ("effect_templates_with_digits_without_amounts", 1),

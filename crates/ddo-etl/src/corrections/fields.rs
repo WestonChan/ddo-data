@@ -12,6 +12,7 @@ pub enum FieldShape {
     RowName,
     Removal,
     BonusTypeName,
+    BonusAlias,
     StatScale,
     StatRounding,
     BonusAddition,
@@ -63,6 +64,7 @@ impl<T: CorrectionFieldType> CorrectionFieldType for Option<T> {
 }
 
 const AUGMENT_BONUS_OPERATIONS: &[CorrectableField] = &[
+    field("alias", FieldShape::BonusAlias, true),
     field("add", FieldShape::BonusAddition, false),
     field("remove", FieldShape::BonusRemoval, false),
     field("dedupe", FieldShape::BonusDedupe, false),
@@ -70,11 +72,13 @@ const AUGMENT_BONUS_OPERATIONS: &[CorrectableField] = &[
 ];
 
 const ITEM_BONUS_OPERATIONS: &[CorrectableField] = &[
+    field("alias", FieldShape::BonusAlias, true),
     field("add", FieldShape::BonusAddition, false),
     field("remove", FieldShape::BonusRemoval, false),
     field("lines", FieldShape::BonusLines, false),
 ];
 const SET_TIER_BONUS_OPERATIONS: &[CorrectableField] = &[
+    field("alias", FieldShape::BonusAlias, true),
     field("add", FieldShape::BonusAddition, false),
     field("remove", FieldShape::BonusRemoval, false),
     field("lines", FieldShape::BonusLines, false),
@@ -115,6 +119,7 @@ const fn kind_operations(kind: CorrectionKind) -> &'static [CorrectableField] {
         CorrectionKind::FeatBonus => {
             const {
                 &[
+                    field("alias", FieldShape::BonusAlias, true),
                     field("value", FieldShape::Integer, true),
                     field("remove", FieldShape::BonusRemoval, false),
                     field("lines", FieldShape::BonusLines, false),

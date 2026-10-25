@@ -11,6 +11,7 @@ use rusqlite::params;
 
 #[derive(Clone)]
 pub(super) struct DerivedEffectLink {
+    pub(super) alias: Option<String>,
     pub(super) effect_id: i64,
     pub(super) bonus_type: Option<ddo_model::enums::BonusType>,
     pub(super) value: Option<i64>,
@@ -93,9 +94,9 @@ impl TableWriter<'_> {
             let links = self.write_merged_lines(&owner, owner_id, links)?;
             for (sort_order, link) in links.into_iter().enumerate() {
                 self.effects.insert_link(
-                    owner_kind,
-                    owner_id,
+                    (owner_kind, owner_id),
                     link.effect_id,
+                    link.alias.as_deref(),
                     link.bonus_type,
                     (link.value, link.value2),
                     sort_order,
@@ -276,6 +277,7 @@ impl TableWriter<'_> {
                             })?
                             .id;
                         links.push(DerivedEffectLink {
+                            alias: None,
                             is_split_line: false,
                             effect_id,
                             bonus_type: Some(bonus_type),
@@ -391,6 +393,7 @@ impl TableWriter<'_> {
             if complete_skill_group {
                 let effect_id = self.effects.ensure_group(&format!("{ability} Skills"))?;
                 return Ok(DerivedEffectLink {
+                    alias: None,
                     is_split_line: false,
                     effect_id,
                     bonus_type: Some(bonus_type),
@@ -446,6 +449,7 @@ impl TableWriter<'_> {
             _ => unreachable!(),
         };
         Ok(DerivedEffectLink {
+            alias: None,
             is_split_line: false,
             effect_id,
             bonus_type: (uses_link_type || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
@@ -816,6 +820,7 @@ impl TableWriter<'_> {
         self.grouping_answers.insert(effect_id);
         let family = self.effects.family(effect_id).expect("grouping cached");
         Ok(DerivedEffectLink {
+            alias: None,
             is_split_line: false,
             effect_id,
             bonus_type: family.uses_link_type.then_some(bonus_type),
@@ -835,7 +840,14 @@ impl TableWriter<'_> {
             };
             let effect_id =
                 self.effects.ensure_family(&family_name, &verbose_name_template, None, i64::from(value.is_some()))?;
-            links.push(DerivedEffectLink { is_split_line: false, effect_id, bonus_type: None, value, value2: None });
+            links.push(DerivedEffectLink {
+                alias: None,
+                is_split_line: false,
+                effect_id,
+                bonus_type: None,
+                value,
+                value2: None,
+            });
             return Ok(());
         }
         let Some(stat_name) = EFFECT_MAP.effect.fixed.get(&effect.types[0]) else {
@@ -848,6 +860,7 @@ impl TableWriter<'_> {
         if effect.types[0] == "Weapon_CriticalRange" && effect.amount_type.as_deref() == Some("Stacks") {
             let effect_id = self.effects.ensure_family(&family_name, &family_name, None, 0)?;
             links.push(DerivedEffectLink {
+                alias: None,
                 is_split_line: false,
                 effect_id,
                 bonus_type: None,
@@ -859,7 +872,14 @@ impl TableWriter<'_> {
         let value = effect.simple_integer_amount();
         let verbose_name_template = format!("{stat_name} +{{1}} ({target})");
         let effect_id = self.effects.ensure_family(&family_name, &verbose_name_template, None, 1)?;
-        links.push(DerivedEffectLink { is_split_line: false, effect_id, bonus_type: None, value, value2: None });
+        links.push(DerivedEffectLink {
+            alias: None,
+            is_split_line: false,
+            effect_id,
+            bonus_type: None,
+            value,
+            value2: None,
+        });
         Ok(())
     }
 }

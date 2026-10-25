@@ -7,6 +7,125 @@ use std::collections::BTreeMap;
 use std::path::Path;
 
 database_record! {
+    #[derive(Debug, Clone, Serialize, Deserialize, JsonSchema)]
+    #[serde(deny_unknown_fields)]
+    pub(crate) struct EffectAlias in "effect_aliases" {
+        keys { effect_id: i64, sort_order: i64, slug: Option<&str> }
+        fields {
+            name: String => name,
+            verbose_name_template: String => verbose_name_template,
+        }
+    }
+}
+
+impl EffectAlias {
+    pub(in crate::tree) fn validate_links(db: &Connection, locations: &BTreeMap<(&str, i64), &Path>) -> Result<()> {
+        let mut statement = db.prepare(
+            "WITH links AS (
+                 SELECT 'items' AS owner_kind, item_id AS owner_id, effect_id, alias FROM item_effects
+                 UNION ALL SELECT 'augments', augment_id, effect_id, alias FROM augment_effects
+                 UNION ALL SELECT 'feats', feat_id, effect_id, alias FROM feat_effects
+                 UNION ALL SELECT 'set_bonuses', t.set_id, l.effect_id, l.alias
+                   FROM set_bonus_tier_effects l JOIN set_bonus_tiers t ON t.id = l.tier_id
+                 UNION ALL SELECT 'items', o.item_id, l.effect_id, l.alias
+                   FROM item_augment_slot_option_effects l
+                   JOIN item_augment_slot_options o ON o.id = l.option_id
+             )
+             SELECT l.owner_kind, l.owner_id, e.name, l.alias
+               FROM links l JOIN effects e ON e.id = l.effect_id
+               LEFT JOIN effect_aliases a ON a.effect_id = l.effect_id AND a.name = l.alias
+              WHERE l.alias IS NOT NULL AND a.name IS NULL
+              ORDER BY l.owner_kind, l.owner_id, e.name, l.alias",
+        )?;
+        let mut errors = Vec::new();
+        for row in statement.query_map([], |row| {
+            Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?, row.get::<_, String>(2)?, row.get::<_, String>(3)?))
+        })? {
+            let (kind, id, effect, alias) = row?;
+            let path = locations.get(&(kind.as_str(), id)).context("alias link owner has no file location")?;
+            errors.push(format!("{}: effect {effect:?} has no alias {alias:?}", path.display()));
+        }
+        ensure!(errors.is_empty(), "data validation failed:\n{}", errors.join("\n"));
+        Ok(())
+    }
+
+    pub(in crate::tree) fn write_validated_slugs(
+        db: &Connection,
+        groupings: &crate::groupings::Groupings,
+    ) -> Result<()> {
+        let mut statement = db.prepare(&format!(
+            "WITH redirect_rows AS (SELECT {} FROM redirects), retired_rows AS (SELECT {} FROM retired_slugs)
+             SELECT a.effect_id, a.name, a.slug, a.verbose_name_template, e.name,
+                    named.name, named.is_stat, routed.name,
+                    EXISTS (SELECT 1 FROM redirect_rows r WHERE r.kind = 'effects' AND r.from_slug = a.slug),
+                    EXISTS (SELECT 1 FROM retired_rows r WHERE r.kind = 'effects' AND r.slug = a.slug)
+               FROM effect_aliases a JOIN effects e ON e.id = a.effect_id
+               LEFT JOIN effects named ON named.name = a.name
+               LEFT JOIN effects routed ON routed.slug = a.slug
+              ORDER BY e.name, a.sort_order",
+            super::redirects::Redirect::select_columns(),
+            super::redirects::RetiredSlug::select_columns(),
+        ))?;
+        let aliases = statement
+            .query_map([], |row| {
+                Ok((
+                    row.get::<_, i64>(0)?,
+                    row.get::<_, String>(1)?,
+                    row.get::<_, Option<String>>(2)?,
+                    row.get::<_, String>(3)?,
+                    row.get::<_, String>(4)?,
+                    row.get::<_, Option<String>>(5)?,
+                    row.get::<_, Option<bool>>(6)?,
+                    row.get::<_, Option<String>>(7)?,
+                    row.get::<_, bool>(8)?,
+                    row.get::<_, bool>(9)?,
+                ))
+            })?
+            .collect::<rusqlite::Result<Vec<_>>>()?;
+        for (effect_id, name, alias_slug, template, owner, named, is_stat, routed, redirected, retired) in aliases {
+            let effect = groupings.effect_named(&owner).context("alias owner is missing")?;
+            let member_name = is_stat == Some(true)
+                && effect.stat_ids.iter().any(|id| groupings.by_id.get(id).is_some_and(|member| member.name == name));
+            ensure!(named.is_none() || member_name, "effect {owner:?} alias {name:?} collides with effect {named:?}");
+            if member_name {
+                db.execute(
+                    "UPDATE effect_aliases SET slug = NULL WHERE effect_id = ?1 AND name = ?2",
+                    rusqlite::params![effect_id, name],
+                )?;
+            } else {
+                ensure!(
+                    routed.is_none(),
+                    "effect {owner:?} alias {name:?} slug {alias_slug:?} collides with effect {routed:?}"
+                );
+                ensure!(!redirected, "effect {owner:?} alias {name:?} slug {alias_slug:?} collides with a redirect");
+                ensure!(!retired, "effect {owner:?} alias {name:?} slug {alias_slug:?} collides with a retired slug");
+            }
+            crate::build::validate_templates(
+                &name,
+                &template,
+                effect.description_template.as_deref(),
+                crate::build::amount_count(&effect.verbose_name_template, effect.description_template.as_deref()),
+            )
+            .with_context(|| format!("effect {owner:?} alias {name:?}"))?;
+        }
+        Ok(())
+    }
+
+    pub(in crate::tree) fn by_effect(db: &Connection) -> Result<BTreeMap<i64, Vec<Self>>> {
+        let mut statement = db.prepare(&format!(
+            "SELECT {} FROM effect_aliases ORDER BY effect_id, sort_order",
+            Self::select_columns()
+        ))?;
+        let mut by_effect = BTreeMap::<i64, Vec<Self>>::new();
+        for row in statement.query_map([], |row| Ok((row.get::<_, i64>("effect_id")?, Self::from_row(row)?)))? {
+            let (id, alias) = row?;
+            by_effect.entry(id).or_default().push(alias);
+        }
+        Ok(by_effect)
+    }
+}
+
+database_record! {
     #[derive(Debug, Serialize, Deserialize, JsonSchema)]
     #[serde(deny_unknown_fields)]
     pub(crate) struct EffectBonus in "effect_bonuses" {
@@ -74,6 +193,8 @@ database_record! {
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            alias: Vec<EffectAlias>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
             bonus: Vec<EffectBonus>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             damage: Vec<EffectDamage>,
@@ -96,12 +217,14 @@ impl EffectFile {
         notes: &super::super::export::CorrectionNoteIndex,
     ) -> Result<BTreeMap<i64, Self>> {
         let mut files = BTreeMap::new();
+        let mut aliases = EffectAlias::by_effect(db)?;
         let mut select = db.prepare(&format!(
             "SELECT {} FROM effects WHERE is_stat = 0 AND is_group = 0 ORDER BY id",
             Self::select_columns()
         ))?;
         for row in select.query_map([], |row| Ok((row.get::<_, i64>("id")?, Self::from_row(row)?)))? {
             let (id, mut file) = row?;
+            file.alias = aliases.remove(&id).unwrap_or_default();
             file.attach_annotations(annotations, id);
             file.ddobuilder_correction = notes.for_entity("effects", &file.name);
             files.insert(id, file);
@@ -198,16 +321,27 @@ mod tests {
             }),
         );
         let mut counts = Vec::new();
-        for name in ["First Effect", "Second Effect"] {
+        for index in 0..50 {
+            let name = format!("Example Effect {index}");
             let file: EffectFile =
                 toml::from_str(&format!("name = {name:?}\nverbose_name_template = {name:?}\n")).unwrap();
-            let identity = super::super::super::slug(name);
+            let identity = super::super::super::slug(&name);
             let id = super::super::super::ids::stable_hash(&["effects", &identity]);
             file.write_effect(&db, Path::new("effects/test.toml"), id, &identity).unwrap();
+            let alias = EffectAlias {
+                name: format!("Example Alias {index}"),
+                verbose_name_template: format!("Example Alias {index}"),
+            };
+            alias.insert(&db, id, 0, Some(&super::super::super::slug(&alias.name))).unwrap();
+            if index != 0 && index != 49 {
+                continue;
+            }
             QUERY_COUNT.store(0, Ordering::SeqCst);
-            assert_eq!(EffectFile::all_from_rows(&db, &annotations, &notes).unwrap().len(), counts.len() + 1);
+            let exported = EffectFile::all_from_rows(&db, &annotations, &notes).unwrap();
+            assert_eq!(exported.len(), index + 1);
+            assert!(exported.values().all(|file| file.alias.len() == 1));
             counts.push(QUERY_COUNT.load(Ordering::SeqCst));
         }
-        assert_eq!(counts, vec![3, 3]);
+        assert_eq!(counts, vec![4, 4]);
     }
 }

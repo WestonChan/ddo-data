@@ -7,6 +7,7 @@ pub(crate) use corrections::{data_correction_value, line_bonuses_by_owner};
 mod drop_text;
 pub(crate) mod effect_vocabulary;
 mod effects;
+pub(crate) use effects::{amount_count, validate_templates};
 mod items;
 pub(crate) use items::weapon_damage_text;
 mod modifiers;
@@ -429,6 +430,7 @@ fn build_with_wiki_references(
         &corrections_applied_while_writing,
         &mut report,
     )?;
+    writer.effects.write_aliases()?;
     corrections::apply_non_quest_corrections(
         &transaction,
         &mut writer.effects,

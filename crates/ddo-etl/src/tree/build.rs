@@ -539,10 +539,42 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                 ));
             }
         }
+        if let SourceFile::FeatCategory(file) = file {
+            for row in &file.row {
+                entity_locations.push((
+                    path,
+                    "feats",
+                    row.name.as_str(),
+                    ids::stable_hash(&["feats", &qualified_slug(&row.name, row.variant.as_deref())]),
+                ));
+            }
+        }
         if let Err(error) = annotations.add_data_file(root, path, file) {
             validation_errors.push(format!("{}: annotations: {error:#}", path.display()));
         }
         inserted_files.push((path, file, id));
+    }
+    let mut alias_owners = BTreeMap::new();
+    for (path, file, id) in &inserted_files {
+        let (owner, aliases) = match file {
+            SourceFile::Effect(file) => (&file.name, &file.alias),
+            SourceFile::StatGroup(file) => (&file.name, &file.alias),
+            SourceFile::Stat(file) => (&file.name, &file.alias),
+            _ => continue,
+        };
+        for (position, alias) in aliases.iter().enumerate() {
+            if let Some(previous_owner) = alias_owners.insert(&alias.name, owner) {
+                bail!("{}: alias {:?} belongs to both {previous_owner:?} and {owner:?}", path.display(), alias.name);
+            }
+            alias
+                .insert(
+                    &transaction,
+                    id.context("alias owner has no identity")?,
+                    position as i64,
+                    Some(&slug(&alias.name)),
+                )
+                .with_context(|| format!("{}: alias {:?}", path.display(), alias.name))?;
+        }
     }
     let mut notes_by_file = Vec::new();
     let mut removals_by_file = Vec::new();
@@ -765,6 +797,11 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         })
         .collect::<BTreeMap<_, _>>();
     let groupings = crate::groupings::Groupings::from_database(&transaction)?;
+    kinds::effect::EffectAlias::write_validated_slugs(&transaction, &groupings)?;
+    kinds::effect::EffectAlias::validate_links(
+        &transaction,
+        &entity_locations.iter().map(|(path, kind, _, id)| ((*kind, *id), path.as_path())).collect(),
+    )?;
     let mut recorded_notes = BTreeMap::new();
     for (path, entity_name, note) in notes_by_file
         .into_iter()

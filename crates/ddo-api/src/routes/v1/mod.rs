@@ -60,11 +60,13 @@ use utoipa_axum::router::OpenApiRouter;
                        `name`, a displayed `verbose_name`, and a separate prose `description`; effect detail carriers \
                        include the same line under `line`. `/v1/effects` lists \
                        effects, groups and stats in one id space; each row's `kind` and `detail_path` identify the detail route. \
-                       Its `q` also finds effects through granted stat names, never stats through effect names, and \
-                       returns each effect once. Item `bonus` filters accept an effect, group, tier group or stat name, and \
+                       Its `q` also finds effects through aliases and granted stat names, never stats through effect names, and \
+                       returns each effect once. Item `bonus` filters accept an effect, group, tier group or stat name, or an alias name or slug, and \
                        `stat:bonus type` narrows a stat to that type. Family and stat detail page items, augments and \
                        set tiers independently with their own limit and offset parameters; each owner is one row \
                        holding every one of its lines, so a `total` matches the vocabulary row's count. \
+                       Effect lists and details include `aliases`. A line may choose alias wording while keeping its canonical effect slug and description. \
+                       Alias slugs redirect to the canonical effect; member-stat aliases only change display wording. \
                        Effect lines and item, augment, set, feat and effect details add `notes` for game bugs and \
                        open verification questions. Notes appear on every affected line, or at the top level when \
                        no line is affected; game-bug notes come first.\n\n\

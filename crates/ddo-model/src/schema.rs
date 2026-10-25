@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 44;
+pub const SCHEMA_VERSION: i64 = 45;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -464,6 +464,16 @@ CREATE TABLE IF NOT EXISTS effects (
     UNIQUE (tier_group_id, tier)
 );
 
+CREATE TABLE IF NOT EXISTS effect_aliases (
+    effect_id INTEGER NOT NULL REFERENCES effects(id) ON DELETE CASCADE,
+    name TEXT NOT NULL UNIQUE CHECK (TRIM(name) <> ''),
+    slug TEXT UNIQUE CHECK (slug IS NULL OR TRIM(slug) <> ''),
+    verbose_name_template TEXT NOT NULL CHECK (TRIM(verbose_name_template) <> ''),
+    sort_order INTEGER NOT NULL,
+    UNIQUE (effect_id, sort_order),
+    UNIQUE (effect_id, name)
+);
+
 CREATE TABLE IF NOT EXISTS effect_bonuses (
     effect_id     INTEGER NOT NULL REFERENCES effects(id) ON DELETE CASCADE,
     target_effect_id INTEGER NOT NULL REFERENCES effects(id) CHECK (target_effect_id > 0),
@@ -556,6 +566,7 @@ CREATE TABLE IF NOT EXISTS effect_vocabulary_bonus_types (
 
 CREATE TABLE IF NOT EXISTS item_effects (
     item_id        INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
+    alias TEXT,
     effect_id     INTEGER NOT NULL REFERENCES effects(id),
     bonus_type_id  INTEGER REFERENCES bonus_types(id),
     value          INTEGER,
@@ -607,6 +618,7 @@ CREATE INDEX IF NOT EXISTS idx_item_augment_slot_option_sets_set ON item_augment
 
 CREATE TABLE IF NOT EXISTS item_augment_slot_option_effects (
     option_id      INTEGER NOT NULL REFERENCES item_augment_slot_options(id) ON DELETE CASCADE,
+    alias TEXT,
     effect_id     INTEGER NOT NULL REFERENCES effects(id),
     bonus_type_id  INTEGER REFERENCES bonus_types(id),
     value          INTEGER,
@@ -1109,6 +1121,7 @@ CREATE TABLE IF NOT EXISTS feat_sub_items (
 
 CREATE TABLE IF NOT EXISTS feat_effects (
     feat_id        INTEGER NOT NULL REFERENCES feats(id) ON DELETE CASCADE,
+    alias TEXT,
     effect_id     INTEGER NOT NULL REFERENCES effects(id),
     bonus_type_id  INTEGER REFERENCES bonus_types(id),
     value          INTEGER,
@@ -1438,6 +1451,7 @@ CREATE INDEX IF NOT EXISTS idx_augment_slots_slot ON augment_slots(slot_id);
 
 CREATE TABLE IF NOT EXISTS augment_effects (
     augment_id     INTEGER NOT NULL REFERENCES augments(id) ON DELETE CASCADE,
+    alias TEXT,
     effect_id     INTEGER NOT NULL REFERENCES effects(id),
     bonus_type_id  INTEGER REFERENCES bonus_types(id),
     value          INTEGER,
@@ -1549,6 +1563,7 @@ CREATE TABLE IF NOT EXISTS set_bonus_tiers (
 
 CREATE TABLE IF NOT EXISTS set_bonus_tier_effects (
     tier_id        INTEGER NOT NULL REFERENCES set_bonus_tiers(id) ON DELETE CASCADE,
+    alias TEXT,
     effect_id     INTEGER NOT NULL REFERENCES effects(id),
     bonus_type_id  INTEGER REFERENCES bonus_types(id),
     value          INTEGER,

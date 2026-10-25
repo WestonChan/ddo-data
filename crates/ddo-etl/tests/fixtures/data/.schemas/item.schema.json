@@ -399,6 +399,12 @@
     "ItemEffect": {
       "additionalProperties": false,
       "properties": {
+        "alias": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "bonus_type": {
           "type": [
             "string",
@@ -433,6 +439,7 @@
         "item_id",
         "sort_order",
         "effect_id",
+        "alias",
         "bonus_type_id",
         "value",
         "value2"
@@ -875,6 +882,12 @@
     "SocketOptionEffect": {
       "additionalProperties": false,
       "properties": {
+        "alias": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "bonus_type": {
           "type": [
             "string",
@@ -908,6 +921,7 @@
         "sort_order",
         "bonus_type_id",
         "effect_id",
+        "alias",
         "value",
         "value2"
       ],

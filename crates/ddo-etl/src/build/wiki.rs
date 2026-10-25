@@ -618,9 +618,9 @@ impl TableWriter<'_> {
         for (sort_order, bonus) in wiki_item.bonuses.iter().enumerate() {
             let (effect_id, link_bonus_type) = self.ensure_wiki_effect(bonus)?;
             self.effects.insert_link(
-                EffectOwner::Item,
-                item_id,
+                (EffectOwner::Item, item_id),
                 effect_id,
+                None,
                 link_bonus_type,
                 (Some(bonus.value), bonus.value2),
                 sort_order,
@@ -638,9 +638,9 @@ impl TableWriter<'_> {
                 }
             });
             self.effects.insert_link(
-                EffectOwner::Item,
-                item_id,
+                (EffectOwner::Item, item_id),
                 effect_id,
+                None,
                 bonus_type,
                 (if count > 0 { effect.value } else { None }, None),
                 wiki_item.bonuses.len() + sort_order,
@@ -807,9 +807,9 @@ impl TableWriter<'_> {
         for (sort_order, bonus) in wiki_augment.bonuses.iter().enumerate() {
             let (effect_id, link_bonus_type) = self.ensure_wiki_effect(bonus)?;
             self.effects.insert_link(
-                EffectOwner::Augment,
-                augment_id,
+                (EffectOwner::Augment, augment_id),
                 effect_id,
+                None,
                 link_bonus_type,
                 (Some(bonus.value), bonus.value2),
                 sort_order,

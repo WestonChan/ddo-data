@@ -26,6 +26,18 @@ pub fn resolve_entity_slug(
     if current.is_some() {
         return Ok(current);
     }
+    if kind == EntityKind::Effect {
+        let aliased = db
+            .query_row(
+                "SELECT e.id, e.slug FROM effect_aliases a JOIN effects e ON e.id = a.effect_id WHERE a.slug = ?1",
+                [text],
+                |row| Ok(ResolvedEntitySlug { id: row.get(0)?, slug: row.get(1)?, is_redirect: true }),
+            )
+            .optional()?;
+        if aliased.is_some() {
+            return Ok(aliased);
+        }
+    }
     let redirected = db.query_row(
         "SELECT e.entity_id, e.slug FROM served_redirects r JOIN entity_identity e ON e.kind = ?1 AND e.slug = r.to_slug WHERE r.kind = ?2 AND r.from_slug = ?3",
         [kind.table_name(), kind.as_str(), text],

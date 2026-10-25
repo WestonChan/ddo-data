@@ -87,6 +87,134 @@ fn woeful_lines(db: &Connection) -> Vec<(String, i64)> {
 }
 
 #[test]
+fn an_upstream_alias_change_rebases_the_existing_alias_correction() {
+    let canonical = fixture::database(|root| {
+        let path = root.join("effects/stat-groups/charisma-skills.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{original}\n[[alias]]\nname = 'Charisma Skills - Exceptional Bonus'\nverbose_name_template = 'Charisma Skills - %b1 Bonus +{{1}}'\n[[alias]]\nname = 'Charisma Observance'\nverbose_name_template = '%b1 Charisma Observance +{{1}}'\n")).unwrap();
+    });
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let item = include_str!("fixtures/effect-groups/CharismaSkills.item");
+    let alias = fixture::new_qualified_correction(
+        "item_bonus",
+        "Pink and Green Ioun Stone (unsuppressed)",
+        "stat = 'Charisma Skills'\nbonus_type = 'Exceptional'",
+        "alias",
+        "\"null\"",
+        "\"Charisma Observance\"",
+    );
+    let corrections = fixture::corrections_from(&[("alias.toml", &alias)]).unwrap();
+    let world = ImportWorld::with_sources(&groupings, corrections, WikiOverrides::default(), |source| {
+        let path = source.join("ItemBuffs.xml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(
+            path,
+            original.replace(
+                "</Buffs>",
+                &format!("{}\n</Buffs>", include_str!("fixtures/effect-groups/CharismaSkills.Buffs.xml")),
+            ),
+        )
+        .unwrap();
+        std::fs::create_dir_all(source.join("Items")).unwrap();
+        std::fs::write(
+            source.join("Items/CharismaSkills.item"),
+            item.replace(
+                "<Type>Charisma Skills - Exceptional</Type>",
+                "<Type>SkillBonusAbility</Type><Item>Charisma</Item>",
+            ),
+        )
+        .unwrap();
+    });
+    std::fs::write(world.options.source_dir.join("Items/CharismaSkills.item"), item).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(report.has_conflicts(), "{report}");
+    let db = world.database();
+    let chosen: String = db.query_row("SELECT l.alias FROM item_effects l JOIN items i ON i.id=l.item_id WHERE i.name='Pink and Green Ioun Stone (unsuppressed)'", [], |row| row.get(0)).unwrap();
+    assert_eq!(chosen, "Charisma Observance");
+    let upstream: String =
+        db.query_row("SELECT from_value FROM corrections WHERE field='alias'", [], |row| row.get(0)).unwrap();
+    assert_eq!(upstream, "\"Charisma Skills - Exceptional Bonus\"");
+}
+
+#[test]
+fn changing_the_upstream_buff_route_clears_its_alias_without_a_conflict() {
+    let canonical = fixture::database(|root| {
+        let path = root.join("effects/stat-groups/charisma-skills.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{original}\n[[alias]]\nname = 'Charisma Skills - Exceptional Bonus'\nverbose_name_template = 'Charisma Skills - %b1 Bonus +{{1}}'\n")).unwrap();
+    });
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let item = include_str!("fixtures/effect-groups/CharismaSkills.item");
+    let world = ImportWorld::with_sources(&groupings, Corrections::default(), WikiOverrides::default(), |source| {
+        let path = source.join("ItemBuffs.xml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(
+            path,
+            original.replace(
+                "</Buffs>",
+                &format!("{}\n</Buffs>", include_str!("fixtures/effect-groups/CharismaSkills.Buffs.xml")),
+            ),
+        )
+        .unwrap();
+        std::fs::create_dir_all(source.join("Items")).unwrap();
+        std::fs::write(source.join("Items/CharismaSkills.item"), item).unwrap();
+    });
+    let link = |db: &Connection| -> (String, Option<String>, i64) {
+        db.query_row("SELECT e.name,l.alias,l.value FROM item_effects l JOIN effects e ON e.id=l.effect_id JOIN items i ON i.id=l.item_id WHERE i.name='Pink and Green Ioun Stone (unsuppressed)'", [], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap()
+    };
+    assert_eq!(
+        link(&world.database()),
+        ("Charisma Skills".into(), Some("Charisma Skills - Exceptional Bonus".into()), 2)
+    );
+    std::fs::write(
+        world.options.source_dir.join("Items/CharismaSkills.item"),
+        item.replace(
+            "<Type>Charisma Skills - Exceptional</Type>",
+            "<Type>SkillBonusAbility</Type><Item>Charisma</Item>",
+        ),
+    )
+    .unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert_eq!(link(&world.database()), ("Charisma Skills".into(), None, 2));
+}
+
+#[test]
+fn alias_choices_and_declarations_survive_import_and_round_trip() {
+    let canonical = fixture::database(|root| {
+        let path = root.join("effects/stats/spot.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(
+            path,
+            format!("{original}\n[[alias]]\nname = 'Awareness'\nverbose_name_template = '%b1 Awareness +{{1}}'\n"),
+        )
+        .unwrap();
+    });
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let alias = fixture::new_qualified_correction(
+        "item_bonus",
+        "Legendary Keylock Ring",
+        "stat = 'Spot'\nbonus_type = 'Competence'",
+        "alias",
+        "\"null\"",
+        "\"Awareness\"",
+    );
+    let corrections = fixture::corrections_from(&[("alias.toml", &alias)]).unwrap();
+    let world = ImportWorld::with_sources(&groupings, corrections, WikiOverrides::default(), |source| {
+        fixture::write_search_and_spot_item(source, 20, true);
+    });
+    fixture::write_search_and_spot_item(&world.options.source_dir, 21, true);
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    let db = world.database();
+    let chosen: (String, i64) = db.query_row("SELECT a.name,l.value FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effect_aliases a ON a.effect_id=l.effect_id AND a.name=l.alias WHERE i.name='Legendary Keylock Ring'", [], |row| Ok((row.get(0)?,row.get(1)?))).unwrap();
+    assert_eq!(chosen, ("Awareness".into(), 21));
+    let before = tree::data_file_bytes(&world.options.data_dir).unwrap();
+    tree::export_database(&db, &world.options.data_dir).unwrap();
+    assert_eq!(before, tree::data_file_bytes(&world.options.data_dir).unwrap());
+}
+
+#[test]
 fn a_merge_import_accepts_a_changed_amount_without_conflict() {
     let corrections = fixture::corrections_from(&[("keylock-merge.toml", &fixture::search_and_spot_merge())]).unwrap();
     let world = ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {

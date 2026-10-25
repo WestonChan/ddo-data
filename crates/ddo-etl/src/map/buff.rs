@@ -375,15 +375,28 @@ impl BuffResolver {
                 })
                 .unwrap_or_else(|| words_from_buff_kind(buff_kind));
         }
-        let title = self.vocabulary.names.get(buff_kind).cloned().unwrap_or_else(|| {
-            self.definitions_by_buff_kind
-                .get(buff_kind)
-                .and_then(|definition| split_display_title(&definition.display_text).map(|(title, _)| title))
-                .map(title_without_display_tokens)
-                .filter(|title| !title.is_empty())
-                .filter(|title| !self.colliding_titles.contains(title))
-                .unwrap_or_else(|| words_from_buff_kind(buff_kind))
-        });
+        self.vocabulary
+            .names
+            .get(buff_kind)
+            .map(|title| self.family_name_with_target(buff, title))
+            .unwrap_or_else(|| self.source_family_name(buff))
+    }
+
+    pub fn source_family_name(&self, buff: &Buff) -> String {
+        let buff_kind = buff.kind.trim();
+        let title = self
+            .definitions_by_buff_kind
+            .get(buff_kind)
+            .and_then(|definition| split_display_title(&definition.display_text).map(|(title, _)| title))
+            .map(title_without_display_tokens)
+            .filter(|title| !title.is_empty())
+            .filter(|title| !self.colliding_titles.contains(title))
+            .unwrap_or_else(|| words_from_buff_kind(buff_kind));
+        self.family_name_with_target(buff, &title)
+    }
+
+    fn family_name_with_target(&self, buff: &Buff, title: &str) -> String {
+        let buff_kind = buff.kind.trim();
         let target_name = self
             .definitions_by_buff_kind
             .get(buff_kind)
@@ -394,7 +407,7 @@ impl BuffResolver {
         if let Some(target_name) = target_name {
             format!("{title} {target_name}")
         } else {
-            title
+            title.to_string()
         }
     }
 

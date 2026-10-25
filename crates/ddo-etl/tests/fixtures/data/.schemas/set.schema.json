@@ -168,6 +168,12 @@
     "EffectGrant": {
       "additionalProperties": false,
       "properties": {
+        "alias": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "bonus_type": {
           "type": [
             "string",
@@ -202,6 +208,7 @@
         "sort_order",
         "bonus_type_id",
         "effect_id",
+        "alias",
         "value",
         "value2"
       ],

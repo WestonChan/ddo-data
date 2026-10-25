@@ -516,8 +516,9 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
         .replace(&format!("j.{owner_column}"), "filtered_bonus.owner_id")
         .replace("j.sort_order", "filtered_bonus.effect_link_order");
     let sql = format!(
-        "SELECT j.{owner_column} AS owner_id, j.sort_order, e.id AS effect_id, e.slug AS effect_slug, e.name,
-                COALESCE(e.verbose_name_template, '%b1 ' || e.name || ' +{{1}}') AS verbose_name_template,
+        "SELECT j.{owner_column} AS owner_id, j.sort_order, e.id AS effect_id, e.slug AS effect_slug, COALESCE(a.name, e.name) AS name,
+                COALESCE(a.verbose_name_template, e.verbose_name_template, '%b1 ' || e.name || ' +{{1}}') AS verbose_name_template,
+                j.alias,
                 e.set_bonus_line_template, e.description_template, j.value, j.value2,
                 COALESCE(j.value, e.default_value,
                     (SELECT MIN(eb.constant) FROM effect_bonuses eb
@@ -533,6 +534,7 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
                 stat_type.name AS stat_bonus_type, ob.amount AS stat_value,
                 ob.amount_source, ob.scale, g.id AS group_id, g.name AS group_name, g.slug AS group_slug
            FROM {junction_table} j JOIN effects e ON e.id = j.effect_id
+           LEFT JOIN effect_aliases a ON a.effect_id = j.effect_id AND a.name = j.alias
            LEFT JOIN effect_tier_groups tg ON tg.id = e.tier_group_id
            LEFT JOIN bonus_types link_type ON link_type.id = j.bonus_type_id
            LEFT JOIN bonus_types home_type ON home_type.id = e.home_bonus_type_id
@@ -580,11 +582,12 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
                         "group": row["tier_group"], "rank": row["tier_rank"]
                     })
                 };
-                let verbose_name = if owner_kind == "set_bonus_tier" && !row["stat_value"].is_null() {
-                    render_set_bonus_line(&row)
-                } else {
-                    render_verbose_name(&row)
-                };
+                let verbose_name =
+                    if owner_kind == "set_bonus_tier" && !row["stat_value"].is_null() && row["alias"].is_null() {
+                        render_set_bonus_line(&row)
+                    } else {
+                        render_verbose_name(&row)
+                    };
                 let description = row["description_template"]
                     .as_str()
                     .map(|template| Value::String(render_description_template(template, &row)))

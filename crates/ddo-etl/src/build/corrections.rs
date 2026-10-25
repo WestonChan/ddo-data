@@ -237,6 +237,18 @@ fn write_correction(
     let buff_resolver = context.map(|context| context.buff_resolver);
     let table_name = correction.target_table_name();
     match field.shape {
+        FieldShape::BonusAlias => {
+            let alias_name = correction.to.as_text().context("alias correction names an alias")?;
+            let bonus = CorrectedBonus::of(transaction, correction)?;
+            let table_name = bonus.link_table.table_name;
+            let matched_links = bonus.matching_bonuses_sql(&format!("{table_name}.rowid"));
+            for owner_id in row_ids {
+                transaction.execute(
+                    &format!("UPDATE {table_name} SET alias = ?5 WHERE rowid IN ({matched_links})"),
+                    params![owner_id, bonus.stat_id, bonus.bonus_type_id, bonus.bonus_value, alias_name],
+                )?;
+            }
+        }
         FieldShape::EffectBonusConstant => {
             let stat_name = correction.stat.as_deref().context("effect constant names a stat")?;
             let effects = effects.context("effect corrections need the family cache")?;
@@ -755,6 +767,21 @@ fn current_value(
 ) -> Result<CorrectionValue> {
     let table_name = correction.target_table_name();
     let value_sql = match field.shape {
+        FieldShape::BonusAlias => {
+            let Some(bonus) = CorrectedBonus::from_correction_if_effect_exists(transaction, correction)? else {
+                return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
+            };
+            let table_name = bonus.link_table.table_name;
+            let values = transaction.prepare(&bonus.matching_bonuses_sql(&format!("DISTINCT {table_name}.alias")))?
+                .query_map(params![row_id, bonus.stat_id, bonus.bonus_type_id, bonus.bonus_value], |row| row.get::<_, Option<String>>(0))?
+                .collect::<rusqlite::Result<Vec<_>>>()?;
+            ensure!(values.len() <= 1, "alias correction matches links with different aliases");
+            return Ok(match values.into_iter().next() {
+                None => CorrectionValue::Text(NO_SUCH_BONUS.to_string()),
+                Some(None) => CorrectionValue::Null,
+                Some(Some(name)) => CorrectionValue::Text(name),
+            });
+        }
         FieldShape::BonusLines => {
             if matches!(correction.from, CorrectionValue::Texts(_)) {
                 let rows = line_bonus_rows(transaction, correction.kind, row_id, None)?;
@@ -1494,9 +1521,9 @@ fn add_bonus(
             _ => unreachable!(),
         };
         effects.insert_link(
-            owner,
-            *owner_id,
+            (owner, *owner_id),
             effect_id,
+            None,
             effects
                 .family(effect_id)
                 .is_some_and(|family| family.is_stat || family.uses_link_type)
@@ -1647,7 +1674,7 @@ fn add_set_tier(
         let tier_id = transaction.last_insert_rowid();
         let family_name = buff_resolver.set_tier_prose_name(&set_name, tier.equipped_count, &tier.description)?;
         let effect_id = effects.ensure_family(&family_name, &tier.description, None, 0)?;
-        effects.insert_link(EffectOwner::SetBonusTier, tier_id, effect_id, None, (None, None), 0)?;
+        effects.insert_link((EffectOwner::SetBonusTier, tier_id), effect_id, None, None, (None, None), 0)?;
     }
     Ok(())
 }
@@ -1726,9 +1753,9 @@ fn write_set_tier_descriptions(
                 )?,
             };
             effects.insert_link(
-                EffectOwner::SetBonusTier,
-                *tier_id,
+                (EffectOwner::SetBonusTier, *tier_id),
                 effect_id,
+                None,
                 None,
                 (None, None),
                 next_order as usize,
@@ -1768,7 +1795,14 @@ fn add_item_effect(
             [item_id],
             |row| row.get(0),
         )?;
-        effects.insert_link(EffectOwner::Item, *item_id, effect_id, None, (amount, None), sort_order as usize)?;
+        effects.insert_link(
+            (EffectOwner::Item, *item_id),
+            effect_id,
+            None,
+            None,
+            (amount, None),
+            sort_order as usize,
+        )?;
     }
     Ok(())
 }
@@ -2156,7 +2190,7 @@ mod tests {
                 .unwrap();
             for owner in owners {
                 let pending = transaction.prepare(&format!("SELECT l.effect_id,b.name,l.value,l.value2 FROM {} l LEFT JOIN bonus_types b ON b.id=l.bonus_type_id WHERE l.{}=?1 ORDER BY l.sort_order", table.table_name, table.owner_column)).unwrap()
-                    .query_map([owner], |row| Ok(super::super::modifiers::DerivedEffectLink {
+                    .query_map([owner], |row| Ok(super::super::modifiers::DerivedEffectLink { alias: None,
                         effect_id: row.get(0)?, bonus_type: row.get::<_, Option<String>>(1)?.map(|name| ddo_model::enums::BonusType::parse(&name).unwrap()), value: row.get(2)?, value2: row.get(3)?, is_split_line: false,
                     })).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
                 READS.set(0);

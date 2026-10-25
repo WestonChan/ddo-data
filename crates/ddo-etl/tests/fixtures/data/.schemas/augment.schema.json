@@ -3,6 +3,12 @@
     "AugmentEffect": {
       "additionalProperties": false,
       "properties": {
+        "alias": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "bonus_type": {
           "type": [
             "string",
@@ -35,6 +41,7 @@
         "augment_id",
         "sort_order",
         "effect_id",
+        "alias",
         "bonus_type_id",
         "value",
         "value2"

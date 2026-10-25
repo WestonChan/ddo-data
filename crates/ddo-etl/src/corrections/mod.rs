@@ -468,6 +468,17 @@ impl Correction {
 
     pub(crate) fn validate_values(&self, field: &CorrectableField) -> Result<()> {
         match field.shape {
+            FieldShape::BonusAlias => {
+                ensure!(
+                    self.from == CorrectionValue::Null
+                        || self.from.as_text().is_some_and(|name| !name.trim().is_empty()),
+                    "an alias correction starts from null, an alias name, or a missing bonus"
+                );
+                ensure!(
+                    self.to.as_text().is_some_and(|name| !name.trim().is_empty()),
+                    "an alias correction names the chosen alias"
+                );
+            }
             FieldShape::BonusLines if self.from.as_text() == Some(NO_SUCH_BONUS) => {
                 ensure!(
                     self.to.as_text() == Some(NO_SUCH_BONUS)
@@ -663,6 +674,7 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::BonusRemoval => "the current integer value for from and \"null\" for to",
         FieldShape::BonusDedupe => "2 for from and 1 for to",
         FieldShape::BonusLines => "a grouping name and a list of separate lines in either direction",
+        FieldShape::BonusAlias => "an alias name",
         FieldShape::TierAddition => "a { equipped_count, description } table",
         FieldShape::EffectAddition => "an effect name or a { name, description } table",
         FieldShape::DamageAddition | FieldShape::DamageRemoval => "a damage row",

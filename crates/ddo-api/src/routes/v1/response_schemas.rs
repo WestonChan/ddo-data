@@ -665,6 +665,7 @@ pub(crate) struct EffectsPageResponseEffectsEntryBonusTypesEntry {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct EffectsPageResponseEffectsEntry {
+    pub(crate) aliases: Vec<String>,
     pub(crate) augment_count: i64,
     pub(crate) bonus_types: Vec<EffectsPageResponseEffectsEntryBonusTypesEntry>,
     pub(crate) detail_path: String,
@@ -884,7 +885,15 @@ pub(crate) struct EffectTierDetail {
 }
 
 #[derive(utoipa::ToSchema)]
+pub(crate) struct EffectAlias {
+    pub(crate) name: String,
+    pub(crate) slug: Option<String>,
+    pub(crate) verbose_name_template: String,
+}
+
+#[derive(utoipa::ToSchema)]
 pub(crate) struct EffectsDetailResponse {
+    pub(crate) aliases: Vec<EffectAlias>,
     #[schema(schema_with = schema_notes)]
     pub(crate) notes: Vec<Note>,
     pub(crate) augments: EffectsDetailResponseAugments,

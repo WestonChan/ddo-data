@@ -18,14 +18,14 @@ fn table_names(db: &Connection) -> HashSet<String> {
 }
 
 #[test]
-fn every_named_table_requires_a_slug() {
+fn only_effect_aliases_allow_a_missing_slug() {
     let db = fresh_db();
     for table in table_names(&db) {
         let mut columns = db.prepare(&format!("PRAGMA table_info({table})")).unwrap();
         for row in columns.query_map([], |row| Ok((row.get::<_, String>(1)?, row.get::<_, bool>(3)?))).unwrap() {
             let (column, required) = row.unwrap();
             if column == "slug" {
-                assert!(required, "{table}.slug permits null");
+                assert_eq!(required, table != "effect_aliases", "{table}.slug nullability");
             }
         }
     }

@@ -67,6 +67,113 @@ fn structural_rejections_fail_the_data_build_naming_their_file_once() {
 }
 
 #[test]
+fn repeated_alias_names_identify_both_effects() {
+    let error = fixture::data_build_error(|root| {
+        for stat in ["search", "spot"] {
+            let path = root.join(format!("effects/stats/{stat}.toml"));
+            let original = std::fs::read_to_string(&path).unwrap();
+            std::fs::write(
+                path,
+                format!("{original}\n[[alias]]\nname = 'Awareness'\nverbose_name_template = '%b1 Awareness +{{1}}'\n"),
+            )
+            .unwrap();
+        }
+    });
+    assert!(error.contains("Search") && error.contains("Spot") && error.contains("Awareness"), "{error}");
+}
+
+#[test]
+fn missing_aliases_name_the_file_for_every_link_owner() {
+    for (file, array) in [
+        (CHAIN_ITEM, "effect"),
+        ("packs/shared/augments/dinosaurbone/silverscale.toml", "effect"),
+        ("characters/feats/other.toml", "row.effect"),
+        ("packs/shared/sets/perfect-silence.toml", "tier.effect"),
+        ("packs/unsourced/gear/epic-ring-of-master-artifice.toml", "socket.option.effect"),
+    ] {
+        let error = fixture::data_build_error(|root| {
+            let path = root.join(file);
+            let original = std::fs::read_to_string(&path).unwrap();
+            let header = format!("[[{array}]]");
+            assert!(original.contains(&header), "{file}");
+            std::fs::write(path, original.replacen(&header, &format!("{header}\nalias = 'Missing Alias'"), 1)).unwrap();
+        });
+        assert!(error.contains(file) && error.contains("has no alias \"Missing Alias\""), "{file}: {error}");
+    }
+}
+
+#[test]
+fn removing_or_renaming_an_alias_requires_updating_its_links() {
+    for replacement in ["", "[[alias]]\nname = 'New Awareness'\nverbose_name_template = '%b1 New Awareness +{1}'\n"] {
+        let error = fixture::data_build_error(|root| {
+            let stat_path = root.join("effects/stats/spot.toml");
+            let original = std::fs::read_to_string(&stat_path).unwrap();
+            std::fs::write(
+                &stat_path,
+                format!("{original}\n[[alias]]\nname = 'Awareness'\nverbose_name_template = '%b1 Awareness +{{1}}'\n"),
+            )
+            .unwrap();
+            let item_path = root.join(SAGA_ITEM);
+            let item = std::fs::read_to_string(&item_path).unwrap();
+            std::fs::write(
+                item_path,
+                format!(
+                    "{item}\n[[effect]]\nname = 'Spot'\nalias = 'Awareness'\nbonus_type = 'Competence'\nvalue = 3\n"
+                ),
+            )
+            .unwrap();
+            let mut db = rusqlite::Connection::open_in_memory().unwrap();
+            ddo_etl::tree::build_from_data(root, &mut db).unwrap();
+            std::fs::write(stat_path, format!("{original}\n{replacement}")).unwrap();
+        });
+        assert!(error.contains(SAGA_ITEM) && error.contains("has no alias \"Awareness\""), "{error}");
+    }
+}
+
+#[test]
+fn effect_aliases_validate_names_slugs_templates_and_link_ownership() {
+    let group = "effects/stat-groups/doublestrike-and-doubleshot.toml";
+    let check = |name: &str, template: &str, linked: &str, chosen: &str, extra: &str| {
+        fixture::data_build_error(|root| {
+            let path = root.join(group);
+            let original = std::fs::read_to_string(&path).unwrap();
+            std::fs::write(
+                path,
+                format!("{original}\n[[alias]]\nname = {name:?}\nverbose_name_template = {template:?}\n"),
+            )
+            .unwrap();
+            let path = root.join(SAGA_ITEM);
+            let original = std::fs::read_to_string(&path).unwrap();
+            std::fs::write(path, format!("{original}\n[[effect]]\nname = {linked:?}\nalias = {chosen:?}\nbonus_type = 'Enhancement'\nvalue = 3\n")).unwrap();
+            if !extra.is_empty() {
+                let path = root.join("redirects.toml");
+                let original = std::fs::read_to_string(&path).unwrap_or_default();
+                std::fs::write(path, format!("{original}\n{extra}")).unwrap();
+            }
+        })
+    };
+    let target = "Doublestrike and Doubleshot";
+    assert_eq!(check("Combat Grace", "%b1 Combat Grace +{1}", target, "Combat Grace", ""), "");
+    assert_eq!(check("Doublestrike", "%b1 Doublestrike +{1}%", target, "Doublestrike", ""), "");
+    let mut failures = Vec::new();
+    for (name, template, linked, chosen, extra, expected) in [
+        ("Strength", "%b1 Strength +{1}", target, "Strength", "", "collides with effect"),
+        ("Doublestrike!", "%b1 Doublestrike! +{1}", target, "Doublestrike!", "", "slug"),
+        ("Combat Grace", "%b1 Combat Grace +{1}", target, "Absent Alias", "", "Absent Alias"),
+        ("Combat Grace", "%b1 Combat Grace +{1}", "Sheltering", "Combat Grace", "", "has no alias"),
+        ("Combat Grace", "%b1 Combat Grace {1} %v1", target, "Combat Grace", "", "unconverted amount placeholder"),
+        ("Combat Grace", "%b1 Combat Grace +{1}", target, "Combat Grace", "[[redirect]]\nkind = 'effects'\nfrom = 'combat-grace'\nto = 'doublestrike-and-doubleshot'\nsince = '2026-10-23'\n", "redirect"),
+        ("Combat Grace", "%b1 Combat Grace +{1}", target, "Combat Grace", "[[retired]]\nkind = 'effects'\nslug = 'combat-grace'\nreason = 'Reserved old route'\nsince = '2026-10-23'\n", "retired"),
+    ] {
+        let error = check(name, template, linked, chosen, extra);
+        if !error.contains(expected) {
+            failures.push(format!("{name} / {linked} / {expected}: {error}"));
+        }
+    }
+    assert!(failures.is_empty(), "{}", failures.join("\n"));
+}
+
+#[test]
 fn game_bug_targets_and_intended_values_are_checked() {
     let annotation = |field: &str, qualifier: &str, intended: &str| {
         format!(

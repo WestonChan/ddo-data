@@ -52,6 +52,7 @@ pub const TABLE_MERGES: &[(&str, TableMerge)] = &[
     ("damage_types", TableMerge::Entity { owner_column: None, position_column: None }),
     ("dataset_version", TableMerge::DatasetVersion),
     ("dcs", TableMerge::Array { owner_column: "owner_id", array: "dc" }),
+    ("effect_aliases", TableMerge::Array { owner_column: "effect_id", array: "alias" }),
     ("effect_bonuses", TableMerge::Array { owner_column: "effect_id", array: "bonus" }),
     ("effect_damage", TableMerge::Array { owner_column: "effect_id", array: "damage" }),
     ("effect_tier_groups", TableMerge::Entity { owner_column: None, position_column: None }),

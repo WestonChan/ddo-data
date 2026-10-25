@@ -72,9 +72,9 @@ impl TableWriter<'_> {
                 self.write_merged_lines(&augment_owner, augment_id, links)?.into_iter().enumerate()
             {
                 self.effects.insert_link(
-                    EffectOwner::Augment,
-                    augment_id,
+                    (EffectOwner::Augment, augment_id),
                     link.effect_id,
+                    link.alias.as_deref(),
                     link.bonus_type,
                     (link.value, link.value2),
                     sort_order,
@@ -149,6 +149,7 @@ impl TableWriter<'_> {
                 .ok_or_else(|| anyhow::anyhow!("augment {augment_name:?} needs effect {:?}", rule.effect_name))?
                 .id;
             links[first_index] = DerivedEffectLink {
+                alias: None,
                 is_split_line: false,
                 effect_id,
                 bonus_type: None,

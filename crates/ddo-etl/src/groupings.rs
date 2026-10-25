@@ -14,6 +14,13 @@ pub struct GroupingBonus {
 }
 
 #[derive(Debug, Clone)]
+pub struct GroupingAlias {
+    pub name: String,
+    pub slug: Option<String>,
+    pub verbose_name_template: String,
+}
+
+#[derive(Debug, Clone)]
 pub struct Grouping {
     pub id: i64,
     pub name: String,
@@ -26,6 +33,7 @@ pub struct Grouping {
     pub default_value: Option<i64>,
     pub stat_set_verdict: Option<String>,
     pub stat_set_reason: Option<String>,
+    pub aliases: Vec<GroupingAlias>,
     pub bonuses: Vec<GroupingBonus>,
     pub stat_ids: BTreeSet<i64>,
     pub is_wrapper: bool,
@@ -202,8 +210,10 @@ impl Groupings {
     pub fn from_database(db: &Connection) -> Result<Self> {
         let mut statement = db.prepare(
             "SELECT e.id, e.name, e.slug, e.is_stat, e.is_group, e.verbose_name_template, e.description_template,
-                    e.set_bonus_line_template, bt.name, e.default_value, e.stat_set_verdict, e.stat_set_reason FROM effects e
-               LEFT JOIN bonus_types bt ON bt.id = e.home_bonus_type_id ORDER BY e.name",
+                    e.set_bonus_line_template, bt.name, e.default_value, e.stat_set_verdict, e.stat_set_reason,
+                    a.name, a.slug, a.verbose_name_template FROM effects e
+               LEFT JOIN bonus_types bt ON bt.id = e.home_bonus_type_id
+               LEFT JOIN effect_aliases a ON a.effect_id = e.id ORDER BY e.name, a.sort_order",
         )?;
         let effects = statement
             .query_map([], |row| {
@@ -221,6 +231,11 @@ impl Groupings {
                         default_value: row.get(9)?,
                         stat_set_verdict: row.get(10)?,
                         stat_set_reason: row.get(11)?,
+                        aliases: if let Some(name) = row.get::<_, Option<String>>(12)? {
+                            vec![GroupingAlias { name, slug: row.get(13)?, verbose_name_template: row.get(14)? }]
+                        } else {
+                            Vec::new()
+                        },
                         bonuses: Vec::new(),
                         stat_ids: BTreeSet::new(),
                         is_wrapper: false,
@@ -230,7 +245,14 @@ impl Groupings {
             .collect::<rusqlite::Result<Vec<_>>>()?;
         let stat_ids =
             effects.iter().filter(|(is_stat, _)| *is_stat).map(|(_, effect)| effect.id).collect::<BTreeSet<_>>();
-        let mut effects_by_id = effects.into_iter().map(|(_, effect)| (effect.id, effect)).collect::<BTreeMap<_, _>>();
+        let mut effects_by_id = BTreeMap::<i64, Grouping>::new();
+        for (_, mut effect) in effects {
+            if let Some(existing) = effects_by_id.get_mut(&effect.id) {
+                existing.aliases.append(&mut effect.aliases);
+            } else {
+                effects_by_id.insert(effect.id, effect);
+            }
+        }
         let mut statement = db.prepare(
             "SELECT b.effect_id, b.target_effect_id, bt.name, b.amount_from, b.constant, b.scale, b.rounding, b.trigger_id
                FROM effect_bonuses b LEFT JOIN bonus_types bt ON bt.id = b.bonus_type_id
@@ -507,7 +529,7 @@ mod tests {
                 .unwrap();
             }
             for index in 0..effect_count {
-                let contents = original.replace("Power of the Frozen Thunderstorm", &format!("Example Group {index}"));
+                let contents = format!("{}\n[[alias]]\nname = 'Example Alias {index}'\nverbose_name_template = '%b1 Example Alias {index} +{{1}}'\n", original.replace("Power of the Frozen Thunderstorm", &format!("Example Group {index}")));
                 std::fs::write(root.join(format!("effects/example-group-{index}.toml")), contents).unwrap();
             }
             let mut db = Connection::open_in_memory().unwrap();

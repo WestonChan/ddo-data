@@ -65,9 +65,9 @@ impl TableWriter<'_> {
             for (tier_id, links) in tiers {
                 for (sort_order, link) in self.write_merged_lines(&owner, tier_id, links)?.into_iter().enumerate() {
                     self.effects.insert_link(
-                        EffectOwner::SetBonusTier,
-                        tier_id,
+                        (EffectOwner::SetBonusTier, tier_id),
                         link.effect_id,
+                        link.alias.as_deref(),
                         link.bonus_type,
                         (link.value, link.value2),
                         sort_order,
@@ -142,6 +142,7 @@ impl TableWriter<'_> {
                         description: description.to_string(),
                     });
                     return Ok(vec![DerivedEffectLink {
+                        alias: None,
                         effect_id,
                         bonus_type: linked_type,
                         value: Some(rule.value),
@@ -163,6 +164,7 @@ impl TableWriter<'_> {
                     None => self.effects.ensure_family( &family_name, description, None, 0)?,
                 };
                 return Ok(vec![DerivedEffectLink {
+                    alias: None,
                     effect_id,
                     bonus_type: None,
                     value: None,
