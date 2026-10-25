@@ -9,12 +9,9 @@ bonus_type = "Competence"
 constant = 20
 rounding = "down"
 scale = 1.0
-target = "Heal"
+target = "Heal and Repair"
 
-[[bonus]]
-amount_from = 0
-bonus_type = "Competence"
-constant = 20
-rounding = "down"
-scale = 1.0
-target = "Repair"
+[[citation]]
+url = "https://ddowiki.com/page/Item:Gauntlets_of_Immortality"
+read = "2026-10-23"
+note = "The named effect grants Heal and Repair at 20 Competence; its additional prose is retained."

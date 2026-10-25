@@ -1,0 +1,55 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Gauntlets of Immortality</Name>
+    <Icon>Gloves_13</Icon>
+    <Description>After their forging, each plate in these complex gauntlets was quenched in a
+fountain of life-giving elixir. Perhaps this helped preserve the gauntlets
+themselves, long after most of the Lost Empire's handiwork crumbled to dust.</Description>
+    <DropLocation>The Fall of Truth, Raid warded chest (Epic Normal)</DropLocation>
+    <MinLevel>25</MinLevel>
+    <EquipmentSlot>
+      <Gloves/>
+    </EquipmentSlot>
+    <Material>Adamantine</Material>
+    <Buff>
+      <Type>Touch of Immortality</Type>
+    </Buff>
+    <Buff>
+      <Type>Devotion</Type>
+      <Value1>120</Value1>
+      <BonusType>Equipment</BonusType>
+      <Description1>Positive</Description1>
+      <Item>Positive</Item>
+    </Buff>
+    <Buff>
+      <Type>HealingLore</Type>
+      <Value1>16</Value1>
+      <BonusType>Equipment</BonusType>
+      <Description1>VI</Description1>
+    </Buff>
+    <Buff>
+      <Type>Eternal Faith</Type>
+    </Buff>
+    <ItemAugment>
+      <Type>Attuned to Heroism 1</Type>
+      <Augment>
+        <Name>Adds a Yellow Augment Slot</Name>
+        <Description>Adds a Yellow augment slot.</Description>
+        <MinLevel>25</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Yellow</GrantAugment>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Attuned to Heroism 2</Type>
+      <Augment>
+        <Name>Adds a Colorless Augment Slot</Name>
+        <Description>Adds a Colorless augment slot.</Description>
+        <MinLevel>25</MinLevel>
+        <Icon>Heroism</Icon>
+        <GrantAugment>Colorless</GrantAugment>
+      </Augment>
+    </ItemAugment>
+  </Item>
+</Items>

@@ -1,0 +1,52 @@
+<Buff>
+    <Type>Touch of Immortality</Type>
+    <DisplayText>Touch of Immortality: Passive: While this item is equipped, you gain a +20 Competence Bonus to the Heal and Repair skills, and you regenerate 2-4 Hit Points every 15 seconds.</DisplayText>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+      <Item>Heal</Item>
+      <Item>Repair</Item>
+    </Effect>
+  </Buff>
+<Buff>
+    <Type>Devotion</Type>
+    <DisplayText>%b1 Devotion %v1: %v1 %b1 bonus to Positive (Healing) spell power.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Positive</Item>
+    </Effect>
+  </Buff>
+<Buff>
+    <Type>HealingLore</Type>
+    <DisplayText>%b1 Healing Lore %v1%: Passive: Your Positive Energy spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Positive</Item>
+    </Effect>
+  </Buff>
+<Buff>
+    <Type>Eternal Faith</Type>
+    <DisplayText>Eternal Faith: An item with this quality assists only wearers who have the ability to turn undead. Eternal Faith increase the owner's effective level for the turning check by +2, his maximum Hit Dice turned by +2, and his total Hit Dice turned by +4.</DisplayText>
+    <Effect>
+      <Type>TurnLevelBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+    <Effect>
+      <Type>TurnDiceBonus</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">4</Amount>
+    </Effect>
+  </Buff>
