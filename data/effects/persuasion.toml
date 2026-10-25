@@ -10,3 +10,8 @@ constant = 3
 rounding = "down"
 scale = 1.0
 target = "Charisma Skills"
+
+[[citation]]
+url = "https://ddowiki.com/page/Persuasion"
+read = "2026-10-23"
+note = "Persuasion grants +3 Competence to all six Charisma-based skills, including Use Magic Device. Its fixed type remains on the composed effect."

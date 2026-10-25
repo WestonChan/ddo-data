@@ -10,3 +10,8 @@ constant = 30
 rounding = "down"
 scale = 1.0
 target = "Nullification"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Deathwyrm_Cloak"
+read = "2026-10-23"
+note = "Permanent Nihil grants a passive +30 Alchemical bonus to Negative and Poison Spell Power. Its own name and fixed Alchemical type remain on the composed effect."
