@@ -9,6 +9,7 @@ slot = "Ring"
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Competence"
 value = 3
 
@@ -16,6 +17,14 @@ value = 3
 name = "Concentration"
 bonus_type = "Competence"
 value = 3
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = "Use the line name shown in the item screenshot."
+url = "https://ddowiki.com/page/Item:Ring_of_Spellcasting"
+read = "2026-10-23"
+qualifier = "Spellcraft / Competence"
 
 [[socket]]
 slot = "green"

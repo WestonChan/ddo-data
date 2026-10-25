@@ -27,8 +27,17 @@ value = 17
 
 [[effect]]
 name = "Reflex Save"
+alias = "Reflex"
 bonus_type = "Resistance"
 value = 9
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = "Use the line name shown in the item screenshot."
+url = "https://ddowiki.com/page/Item:Epic_Amethyst_Loupe"
+read = "2026-10-23"
+qualifier = "Reflex Save / Resistance"
 
 [[socket]]
 slot = "green"

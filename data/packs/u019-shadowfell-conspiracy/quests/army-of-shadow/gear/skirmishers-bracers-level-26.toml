@@ -13,14 +13,30 @@ bonus_type = "Enhancement"
 value = 9
 
 [[effect]]
-name = "Doublestrike"
+name = "Doublestrike and Doubleshot"
+alias = "Doublestrike"
 bonus_type = "Enhancement"
 value = 8
 
-[[effect]]
-name = "Doubleshot"
-bonus_type = "Enhancement"
-value = 8
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "lines"
+upstream = [
+    "Doubleshot",
+    "Doublestrike",
+]
+reason = "The screenshot shows one Doublestrike line granting both Doublestrike and Doubleshot."
+url = "https://ddowiki.com/page/Item:Skirmisher%27s_Bracers_(level_26)"
+read = "2026-10-23"
+qualifier = "Doublestrike and Doubleshot / Enhancement"
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = "Use the line name shown in the item screenshot."
+url = "https://ddowiki.com/page/Item:Skirmisher%27s_Bracers_(level_26)"
+read = "2026-10-23"
+qualifier = "Doublestrike and Doubleshot / Enhancement"
 
 [[source]]
 kind = "quest"

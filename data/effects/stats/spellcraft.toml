@@ -3,3 +3,7 @@ category = "skill"
 description_template = "Passive: {1} %b1 bonus to the Spellcraft skill."
 home_bonus_type = "Competence"
 verbose_name_template = "%b1 Spellcraft +{1}"
+
+[[alias]]
+name = "Spellsight"
+verbose_name_template = "%b1 Spellsight +{1}"

@@ -19,6 +19,7 @@ value = 22
 
 [[effect]]
 name = "Electric Absorption"
+alias = "Electricity Absorption"
 bonus_type = "Enhancement"
 value = 22
 
@@ -26,6 +27,14 @@ value = 22
 name = "Acid Absorption"
 bonus_type = "Enhancement"
 value = 22
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = "Use the line name shown in the item screenshot."
+url = "https://ddowiki.com/page/Item:Greaves_of_Seasons%27_Warding"
+read = "2026-10-23"
+qualifier = "Electric Absorption / Enhancement"
 
 [[socket]]
 slot = "blue"

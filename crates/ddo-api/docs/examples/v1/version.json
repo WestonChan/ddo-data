@@ -21,7 +21,7 @@
     "filigrees": 445,
     "guild_buffs": 37,
     "item_augment_slot_option_effects": 2370,
-    "item_effects": 28583,
+    "item_effects": 28582,
     "items": 8729,
     "legacy_items": 656,
     "modifiers": 17600,
@@ -50,7 +50,7 @@
     "wiki_quests": 4
   },
   "dataset": {
-    "built_at": "2026-10-25T13:04:58Z",
+    "built_at": "2026-10-25T13:45:35Z",
     "upstream_sha": "d1350a0c6ec396a65dc02680fa9801a14a79ebf3"
   },
   "schema_version": 47
