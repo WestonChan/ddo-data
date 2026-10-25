@@ -1401,6 +1401,57 @@ fn routed_buff_chooses_its_source_family_alias() {
 }
 
 #[test]
+fn strength_skill_wrappers_share_a_group_without_sharing_defaults() {
+    let item_xml = format!(
+        "{}{}",
+        include_str!("fixtures/effect-groups/StrengthSkills.item").replace("</Items>", ""),
+        include_str!("fixtures/effect-groups/MightySkills.item").replace("<Items>", "")
+    );
+    let definitions = format!(
+        "{}{}",
+        include_str!("fixtures/effect-groups/StrengthSkills.Buffs.xml"),
+        include_str!("fixtures/effect-groups/MightySkills.Buffs.xml")
+    );
+    for (item_xml, exceptional, insight, quality) in [
+        (item_xml.clone(), 2, 10, 5),
+        (
+            item_xml
+                .replace("<Value1>2</Value1>", "")
+                .replace("<Value1>10</Value1>", "")
+                .replace("<Value1>5</Value1>", ""),
+            3,
+            5,
+            5,
+        ),
+    ] {
+        let db = build_wrapper_fixture(fixture::grouping_cases(), &item_xml, &definitions);
+        assert_wrapper_group(
+            &db,
+            "Pale Blue Ioun Stone (unsuppressed)",
+            "Strength Skills",
+            &["Jump", "Swim"],
+            &[("Exceptional", exceptional)],
+        );
+        assert_wrapper_group(
+            &db,
+            "The Repulsor Boots",
+            "Strength Skills",
+            &["Jump", "Swim"],
+            &[("Insight", insight), ("Quality", quality)],
+        );
+        let aliases = db.prepare("SELECT l.alias FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE e.name='Strength Skills' AND i.name IN ('Pale Blue Ioun Stone (unsuppressed)','The Repulsor Boots') ORDER BY i.name,l.sort_order").unwrap().query_map([], |row| row.get::<_,String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(aliases, ["Strength Skills - Exceptional Bonus", "Mighty Skills Bonus", "Mighty Skills Bonus"]);
+        assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name IN ('Strength Skills - Exceptional Bonus','Mighty Skills Bonus')"), 0);
+        let defaults: (Option<i64>, Option<i64>) = db
+            .query_row("SELECT default_value,default_value2 FROM effects WHERE name='Strength Skills'", [], |row| {
+                Ok((row.get(0)?, row.get(1)?))
+            })
+            .unwrap();
+        assert_eq!(defaults, (None, None));
+    }
+}
+
+#[test]
 fn grouped_definition_defaults_survive_export_and_rebuild_on_owner_links() {
     let source = fixture::xml_source();
     let path = source.path().join("ItemBuffs.xml");

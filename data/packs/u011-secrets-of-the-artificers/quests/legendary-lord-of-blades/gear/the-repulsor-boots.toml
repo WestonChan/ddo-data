@@ -17,12 +17,14 @@ value = 30
 value2 = 15
 
 [[effect]]
-name = "Mighty Skills Bonus"
+name = "Strength Skills"
+alias = "Mighty Skills Bonus"
 bonus_type = "Insight"
 value = 10
 
 [[effect]]
-name = "Mighty Skills Bonus"
+name = "Strength Skills"
+alias = "Mighty Skills Bonus"
 bonus_type = "Quality"
 value = 5
 

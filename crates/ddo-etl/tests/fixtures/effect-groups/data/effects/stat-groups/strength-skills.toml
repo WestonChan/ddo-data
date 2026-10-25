@@ -1,0 +1,31 @@
+name = "Strength Skills"
+description_template = "{1} %b1 bonus to all Strength based skills."
+verbose_name_template = "%b1 Strength Skills +{1}"
+
+[[alias]]
+name = "Strength Skills - Exceptional Bonus"
+verbose_name_template = "Strength Skills - %b1 Bonus +{1}"
+
+[[alias]]
+name = "Mighty Skills Bonus"
+verbose_name_template = "%b1 Mighty Skills Bonus +{1}"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Pale_Blue_Ioun_Stone_(unsuppressed)"
+read = "2026-10-23"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:The_Repulsor_Boots"
+read = "2026-10-23"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Jump"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Swim"

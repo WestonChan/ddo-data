@@ -1,0 +1,12 @@
+<Buff>
+  <Type>Mighty Skills Bonus</Type>
+  <DisplayText>%b1 Mighty Skills Bonus %v1: %v1 %b1 bonus to Jump and Swim.</DisplayText>
+  <Effect>
+    <Type>SkillBonus</Type>
+    <Bonus>Not Set</Bonus>
+    <AType>Simple</AType>
+    <Amount size="1">5</Amount>
+    <Item>Jump</Item>
+    <Item>Swim</Item>
+  </Effect>
+</Buff>

@@ -7893,7 +7893,7 @@
             "description": {
               "code": "value_disagreement",
               "reason": "This item's wiki lists only Jump while the shared Strength Skills group also grants Swim; the conflict requires an owner-specific source decision.",
-              "served": "Passive +2 Exceptional bonus to the Strength based skills of: Jump and Swim"
+              "served": "+2 Exceptional bonus to all Strength based skills."
             }
           }
         }

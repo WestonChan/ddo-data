@@ -221,6 +221,76 @@ async fn effect_aliases_choose_line_wording_and_expand_search() {
 }
 
 #[tokio::test]
+async fn strength_aliases_preserve_tooltip_names_and_share_search() {
+    let root = std::env::temp_dir().join(format!("ddo-api-strength-aliases-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&root);
+    let source = root.join("xml");
+    let fixtures = fixture_data_dir().parent().unwrap().to_path_buf();
+    common::copy_files(&fixtures.join("DataFiles"), &source);
+    let cases = fixtures.join("effect-groups");
+    let mut definitions = std::fs::read_to_string(source.join("ItemBuffs.xml")).unwrap();
+    for file in ["StrengthSkills.Buffs.xml", "MightySkills.Buffs.xml"] {
+        let additional = std::fs::read_to_string(cases.join(file)).unwrap();
+        definitions = definitions.replace("</Buffs>", &format!("{additional}</Buffs>"));
+    }
+    std::fs::write(source.join("ItemBuffs.xml"), definitions).unwrap();
+    for file in ["StrengthSkills.item", "MightySkills.item"] {
+        std::fs::copy(cases.join(file), source.join("Items").join(file)).unwrap();
+    }
+    let canonical_path = fixture_db_path_with_data_edits("strength-alias-canonical", |root| {
+        let relative = "effects/stat-groups/strength-skills.toml";
+        std::fs::copy(cases.join("data").join(relative), root.join(relative)).unwrap();
+    });
+    let canonical = rusqlite::Connection::open(canonical_path).unwrap();
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let database_path = root.join("aliases.db");
+    let mut db = rusqlite::Connection::open(&database_path).unwrap();
+    ddo_etl::build::build_database(
+        &groupings,
+        &source,
+        &ddo_etl::wiki::WikiOverrides::default(),
+        &ddo_etl::corrections::Corrections::default(),
+        &mut db,
+        &ddo_model::DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-10-23T00:00:00Z".into() },
+    )
+    .unwrap();
+    let state = AppState::open(&database_path).unwrap();
+    for query in ["q=mighty", "q=strength", "bonus=Mighty%20Skills%20Bonus"] {
+        let (status, _, response) = get_from(state.clone(), &format!("/v1/items?{query}&limit=200")).await;
+        assert_eq!(status, StatusCode::OK, "{response}");
+        for name in ["Pale Blue Ioun Stone (unsuppressed)", "The Repulsor Boots"] {
+            assert!(item_names(&response).contains(&name), "{query}: {response}");
+        }
+    }
+    let (_, _, effects) = get_from(state.clone(), "/v1/effects?q=mighty").await;
+    assert_eq!(effects["total"], 1);
+    assert_eq!(effects["effects"][0]["name"], "Strength Skills");
+    let (status, headers, _) = get_from(state.clone(), "/v1/effects/mighty-skills-bonus").await;
+    assert_eq!(status, StatusCode::PERMANENT_REDIRECT);
+    assert_eq!(headers[header::LOCATION], "/v1/effects/strength-skills");
+    for (slug, expected) in [
+        ("pale-blue-ioun-stone-unsuppressed", vec![("Strength Skills - Exceptional Bonus +2", 2)]),
+        ("the-repulsor-boots", vec![("Insightful Mighty Skills Bonus +10", 10), ("Quality Mighty Skills Bonus +5", 5)]),
+    ] {
+        let (status, _, response) = get_from(state.clone(), &format!("/v1/items/{slug}")).await;
+        assert_eq!(status, StatusCode::OK, "{response}");
+        let lines = response["effects"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .filter(|line| line["effect_slug"] == "strength-skills")
+            .collect::<Vec<_>>();
+        assert_eq!(lines.len(), expected.len(), "{response}");
+        for (line, (name, amount)) in lines.into_iter().zip(expected) {
+            assert_eq!(line["verbose_name"], name);
+            assert_eq!(line["bonuses"].as_array().unwrap().len(), 2);
+            assert!(line["bonuses"].as_array().unwrap().iter().all(|bonus| bonus["value"] == amount));
+            assert!(line["description"].as_str().unwrap().contains("all Strength based skills"));
+        }
+    }
+}
+
+#[tokio::test]
 async fn line_notes_follow_every_derived_target_and_preserve_kind_order() {
     let (status, _, heartwood) = get_from(note_fixture_state(), "/v1/items/heartwood").await;
     assert_eq!(status, StatusCode::OK, "{heartwood}");

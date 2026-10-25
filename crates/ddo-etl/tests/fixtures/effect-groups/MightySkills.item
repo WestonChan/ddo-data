@@ -1,0 +1,35 @@
+<Items>
+  <Item>
+    <NoAutoUpdate />
+    <Name>The Repulsor Boots</Name>
+    <Description>These carry a subtle heat, as if they were still warm from the forge.</Description>
+    <MinLevel>29</MinLevel>
+    <EquipmentSlot>
+      <Boots />
+    </EquipmentSlot>
+    <Material>Copper</Material>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Enhanced Jet Propulsion</Item>
+      <AType>SLA</AType>
+      <Amount size="3">0 1 0</Amount>
+    </Effect>
+    <Buff>
+      <Type>Mighty Skills Bonus</Type>
+      <Value1>10</Value1>
+      <BonusType>Insightful</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Mighty Skills Bonus</Type>
+      <Value1>5</Value1>
+      <BonusType>Quality</BonusType>
+    </Buff>
+    <ItemAugment>
+      <Type>Yellow</Type>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Green</Type>
+    </ItemAugment>
+  </Item>
+</Items>

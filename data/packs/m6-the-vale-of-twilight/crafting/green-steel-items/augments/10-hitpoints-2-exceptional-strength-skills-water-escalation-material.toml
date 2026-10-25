@@ -16,6 +16,7 @@ value = 10
 
 [[effect]]
 name = "Strength Skills"
+alias = "Strength Skills - Exceptional Bonus"
 bonus_type = "Exceptional"
 value = 2
 
@@ -33,6 +34,14 @@ bonus_type = "Exceptional"
 effect = "Strength Skills"
 effect_type = "SkillBonusAbility"
 targets = ["Strength"]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "alias"
+reason = "Use the Exceptional skill line name confirmed by the wiki reading."
+url = "https://ddowiki.com/page/Altar_of_Invasion_-_Manufactured_Ingredient_Recipes"
+read = "2026-10-23"
+qualifier = "Strength Skills / Exceptional"
 
 [[slot]]
 slot = "crafting: accessory invasion"

@@ -14,6 +14,8 @@ Nullification = "Nullification"
 Radiance = "Radiance"
 VoidLore = "Void Lore"
 "Charisma Skills - Exceptional" = "Charisma Skills"
+"Strength Skills - Exceptional" = "Strength Skills"
+"Mighty Skills Bonus" = "Strength Skills"
 
 [[set_tier_prose_bonuses]]
 description = "+1 Profane bonus to Attack and Damage"
@@ -161,6 +163,8 @@ value = 5
 
 [names]
 "Charisma Skills - Exceptional" = "Charisma Skills"
+"Strength Skills - Exceptional" = "Strength Skills"
+"Mighty Skills Bonus" = "Strength Skills"
 "DR 1/-" = "DR 1/-"
 "DR 1/Chaotic" = "DR 1/Chaotic"
 "DR 10/Evil" = "DR 10/Evil"
@@ -295,7 +299,6 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Elemental Resistance" = "Enhancement"
 "Void Intensity" = "Equipment"
 "Spell Penetration I" = "Equipment"
-"Mighty Skills Bonus" = "none"
 "Alluring Skills Bonus" = "none"
 "Astute Skills Bonus" = "none"
 "Strength Skills" = "none"
@@ -307,6 +310,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 
 [line_templates]
 "Charisma Skills" = "%b1 Charisma Skills +{1}"
+"Strength Skills" = "%b1 Strength Skills +{1}"
 "Doublestrike and Doubleshot" = "%b1 Doublestrike and Doubleshot +{1}%"
 "Acid Spell Lore" = "%b1 Acid Spell Lore +{1}%"
 "Blighted Lore" = "%b1 Blighted Lore +{1}%"
@@ -362,6 +366,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 
 [description_templates]
 "Charisma Skills" = "{1} %b1 bonus to all Charisma based skills."
+"Strength Skills" = "{1} %b1 bonus to all Strength based skills."
 "Silver Flame Lore" = "Passive: Your Positive, Light, and Alignment spells gain a {1} %b1 bonus to their chance to critical hit."
 "Power of the Dark Restoration" = "Passive: {1} %b1 bonus to Negative, Poison and Positive Spell Power."
 "Acid Intensity" = "+{1}% %b1 bonus to critical damage with Acid spells."

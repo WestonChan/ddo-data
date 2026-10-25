@@ -13,7 +13,9 @@ bonus_type = "Enhancement"
 value = 6
 
 [[effect]]
-name = "Strength Skills - Exceptional Bonus"
+name = "Strength Skills"
+alias = "Strength Skills - Exceptional Bonus"
+bonus_type = "Exceptional"
 value = 2
 
 [[source]]

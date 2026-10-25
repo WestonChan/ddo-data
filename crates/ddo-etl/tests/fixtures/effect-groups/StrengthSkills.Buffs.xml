@@ -1,0 +1,13 @@
+<Buff>
+  <Type>Strength Skills - Exceptional</Type>
+  <DisplayText>Strength Skills - Exceptional Bonus %v1: Passive %v1 Exceptional bonus to the Strength based skills of: Jump and Swim</DisplayText>
+  <Ignore>Competence</Ignore>
+  <Effect>
+    <Type>SkillBonus</Type>
+    <Bonus>Competence</Bonus>
+    <AType>Simple</AType>
+    <Amount size="1">3</Amount>
+    <Item>Jump</Item>
+    <Item>Swim</Item>
+  </Effect>
+</Buff>
