@@ -1,0 +1,16 @@
+<Buff>
+    <Type>Protection from Evil</Type>
+    <DisplayText>Protection from Evil: Passive: You gain the benefit of the spell Protection from Evil.</DisplayText>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Deflection</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+    <Effect>
+      <Type>Immunity</Type>
+      <Bonus>Stacking</Bonus>
+      <Item>Magical Controls and Compulsion</Item>
+      <AType>NotNeeded</AType>
+    </Effect>
+  </Buff>

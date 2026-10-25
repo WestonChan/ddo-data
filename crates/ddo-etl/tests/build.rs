@@ -860,6 +860,38 @@ fn overfocus_composes_search_and_spot_with_its_constant_penalty() {
     assert_eq!(home_type, None);
 }
 
+#[test]
+fn protection_from_evil_keeps_the_spell_name_without_a_rank() {
+    let db = build_item_buff_fixture(
+        include_str!("fixtures/effect-groups/ProtectionFromEvil.Buffs.xml"),
+        &[("FragmentOfTheSilverFlame.item", include_str!("fixtures/effect-groups/FragmentOfTheSilverFlame.item"))],
+        &[("ItemImages/Trinkets/Trinket_2.png", include_bytes!("fixtures/effect-groups/icons/Trinket_2.png"))],
+    );
+    let (title, description): (String, String) = db
+        .query_row(
+            "SELECT verbose_name_template,description_template FROM effects WHERE name='Protection from Evil'",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?)),
+        )
+        .unwrap();
+    assert_eq!(title, "Protection from Evil");
+    assert_eq!(description, "Passive: You gain the benefit of the spell Protection from Evil.");
+    let bonuses = db
+        .prepare(
+            "SELECT stat.name,bt.name,b.amount FROM owner_bonuses b
+             JOIN items i ON i.id=b.owner_id JOIN effects stat ON stat.id=b.stat_id
+             JOIN effects e ON e.id=b.via_effect_id JOIN bonus_types bt ON bt.id=b.bonus_type_id
+             WHERE b.owner_kind='item' AND i.name='Fragment of the Silver Flame'
+             AND e.name='Protection from Evil' ORDER BY stat.name",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?)))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(bonuses, [("Armor Class".into(), "Deflection".into(), 2)]);
+}
+
 fn assert_every_multi_stat_effect_has_one_link_or_an_exception(report: &BuildReport) {
     let exceptions = report
         .line_splits

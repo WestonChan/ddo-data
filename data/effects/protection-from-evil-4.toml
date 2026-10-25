@@ -1,5 +1,7 @@
 name = "Protection from Evil +4"
 description_template = "You have a +4 Deflection bonus to AC, and a +4 Resistance bonus to Saves vs Evil Monsters."
+stat_set_verdict = "distinct"
+stat_set_reason = "The saves bonus applies only against evil creatures, unlike Parrying's unconditional bonuses."
 verbose_name_template = "Protection from Evil +4"
 
 [[bonus]]
@@ -17,3 +19,9 @@ constant = 4
 rounding = "down"
 scale = 1.0
 target = "Saving Throws"
+
+[[citation]]
+field = "stat_set_reason"
+url = "https://ddowiki.com/page/Protection_from_Evil"
+read = "2026-10-23"
+note = "The ward grants Deflection Armor Class and Resistance saves against evil creatures; Parrying grants unconditional Insight bonuses."

@@ -1,7 +1,7 @@
 name = "Protection from Evil"
 description_template = "Passive: You gain the benefit of the spell Protection from Evil."
 home_bonus_type = "Deflection"
-verbose_name_template = "Protection from Evil +2"
+verbose_name_template = "Protection from Evil"
 
 [[bonus]]
 amount_from = 0
@@ -9,3 +9,9 @@ constant = 2
 rounding = "down"
 scale = 1.0
 target = "Armor Class"
+
+[[citation]]
+field = "verbose_name_template"
+url = "https://ddowiki.com/page/Protection_from_Evil"
+read = "2026-10-23"
+note = "The plain enchantment grants the spell's benefit and is named Protection from Evil, without a numeric rank. Its conditional saves remain prose."
