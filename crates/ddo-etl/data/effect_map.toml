@@ -411,7 +411,7 @@ WindFrenzy50 = 50
 WindFrenzy122 = 122
 
 [tier_groups]
-Deception = ["Deception", "Improved Deception"]
+Deception = ["Deception +3", "Improved Deception"]
 "Spell Lore" = ["Spell Lore", "Spell Lore I", "Spell Lore II", "Spell Lore III", "Spell Lore V", "Spell Lore VI", "Spell Lore VII", "Spell Lore VIII", "Spell Lore IX", "Spell Lore X"]
 Wizardry = ["Wizardry I", "Wizardry II", "Wizardry III", "Wizardry V", "Wizardry VI", "Wizardry VII", "Wizardry IX", "Wizardry X", "Wizardry XI"]
 

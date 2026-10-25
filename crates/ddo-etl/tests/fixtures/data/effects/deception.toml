@@ -1,8 +1,6 @@
 name = "Deception"
 description_template = "{1} %b1 bonus to hit and {2} Damage for Sneak Attacks."
 home_bonus_type = "Insight"
-tier = 1
-tier_group = "Deception"
 verbose_name_template = "%b1 Deception +{1}"
 
 [[bonus]]

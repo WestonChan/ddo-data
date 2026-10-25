@@ -1,6 +1,8 @@
 name = "Deception +3"
 description_template = "This weapon is hard to focus upon and thus provides a +3 Enhancement bonus to Bluff checks. In addition, Deception weapons have a small chance to envelop the target in darkness, making them vulnerable to sneak attacks for a short time."
 home_bonus_type = "Enhancement"
+tier = 1
+tier_group = "Deception"
 verbose_name_template = "Deception +3"
 
 [[bonus]]
@@ -9,3 +11,8 @@ constant = 3
 rounding = "down"
 scale = 1.0
 target = "Bluff"
+
+[[citation]]
+url = "https://ddowiki.com/page/Deception"
+read = "2026-10-23"
+note = "Improved Deception upgrades the historic Bluff +3 enchantment to Bluff +5; the sneak-attack Deception is a separate enchantment."

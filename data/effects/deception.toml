@@ -1,8 +1,6 @@
 name = "Deception"
 description_template = "{1} %b1 bonus to hit and {2} Damage for Sneak Attacks."
 home_bonus_type = "Enhancement"
-tier = 1
-tier_group = "Deception"
 verbose_name_template = "%b1 Deception +{1}"
 
 [[bonus]]
@@ -16,3 +14,8 @@ amount_from = 2
 rounding = "down"
 scale = 1.0
 target = "Sneak Attack Damage"
+
+[[citation]]
+url = "https://ddowiki.com/page/Deception"
+read = "2026-10-23"
+note = "Improved Deception upgrades the historic Bluff +3 enchantment to Bluff +5; the sneak-attack Deception is a separate enchantment."

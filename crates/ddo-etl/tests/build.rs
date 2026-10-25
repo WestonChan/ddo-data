@@ -1820,20 +1820,29 @@ fn writes_improved_deception_from_its_definition_as_a_typed_bluff_bonus() {
 }
 
 #[test]
-fn written_deception_steps_share_the_named_ladder_in_order() {
-    let (db, _) = built_fixture_db();
-    let steps: Vec<(String, i64)> = db
-        .prepare(
-            "SELECT e.name, e.tier FROM effects e
+fn historic_deception_steps_share_the_bluff_ladder() {
+    let (upstream, _) = built_fixture_db();
+    let canonical = fixture::database(|_| {});
+    for db in [&upstream, &canonical] {
+        let steps: Vec<(String, i64)> = db
+            .prepare(
+                "SELECT e.name, e.tier FROM effects e
                   JOIN effect_tier_groups l ON l.id = e.tier_group_id
                   WHERE l.name = 'Deception' ORDER BY e.tier",
-        )
-        .unwrap()
-        .query_map([], |row| Ok((row.get(0)?, row.get(1)?)))
-        .unwrap()
-        .map(Result::unwrap)
-        .collect();
-    assert_eq!(steps, [("Deception".into(), 1), ("Improved Deception".into(), 2)]);
+            )
+            .unwrap()
+            .query_map([], |row| Ok((row.get(0)?, row.get(1)?)))
+            .unwrap()
+            .map(Result::unwrap)
+            .collect();
+        assert_eq!(steps, [("Deception +3".into(), 1), ("Improved Deception".into(), 2)]);
+        let sneak_attack_tier: (Option<i64>, Option<i64>) = db
+            .query_row("SELECT tier, tier_group_id FROM effects WHERE name = 'Deception'", [], |row| {
+                Ok((row.get(0)?, row.get(1)?))
+            })
+            .unwrap();
+        assert_eq!(sneak_attack_tier, (None, None));
+    }
 }
 
 #[test]

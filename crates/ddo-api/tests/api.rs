@@ -1057,10 +1057,16 @@ async fn family_and_stat_detail_page_their_real_carriers() {
     let (status, _, _) = get("/v1/effects/999999").await;
     assert_eq!(status, StatusCode::NOT_FOUND);
 
-    let deception = effect_named(&vocabulary, "Deception", "effect").unwrap();
+    let sneak_attack = effect_named(&vocabulary, "Deception", "effect").unwrap();
+    let (_, _, sneak_attack_detail) = get(sneak_attack["detail_path"].as_str().unwrap()).await;
+    assert!(sneak_attack_detail["tier"].is_null());
+    let deception = effect_named(&vocabulary, "Deception +3", "effect").unwrap();
     let (_, _, step) = get(deception["detail_path"].as_str().unwrap()).await;
     assert_eq!(step["tier"]["group"], "Deception");
-    assert_eq!(step["tier"]["steps"].as_array().unwrap().len(), 2);
+    assert_eq!(
+        step["tier"]["steps"].as_array().unwrap().iter().map(|row| row["name"].as_str().unwrap()).collect::<Vec<_>>(),
+        ["Deception +3", "Improved Deception"]
+    );
     let carrier_id = step["items"]["items"][0]["id"].as_i64().unwrap();
     let (_, _, carrier) = get(&format!("/v1/items/{carrier_id}")).await;
     assert!(carrier["effects"]
