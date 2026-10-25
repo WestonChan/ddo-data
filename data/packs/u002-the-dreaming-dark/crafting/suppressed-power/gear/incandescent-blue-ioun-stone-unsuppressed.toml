@@ -13,7 +13,9 @@ bonus_type = "Enhancement"
 value = 6
 
 [[effect]]
-name = "Wisdom Skills - Exceptional Bonus"
+name = "Wisdom Skills"
+alias = "Wisdom Skills - Exceptional Bonus"
+bonus_type = "Exceptional"
 value = 2
 
 [[source]]

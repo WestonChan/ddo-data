@@ -2,6 +2,14 @@ name = "Wisdom Skills"
 description_template = "{1} %b1 bonus to all Wisdom based skills."
 verbose_name_template = "%b1 Wisdom Skills +{1}"
 
+[[alias]]
+name = "Wisdom Skills - Exceptional Bonus"
+verbose_name_template = "Wisdom Skills - %b1 Bonus +{1}"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Incandescent_Blue_Ioun_Stone_(unsuppressed)"
+read = "2026-10-23"
+
 [[bonus]]
 amount_from = 1
 rounding = "down"

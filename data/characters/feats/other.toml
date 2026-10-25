@@ -137,17 +137,7 @@ source_name = "Aasimar"
 
 [[row.effect]]
 bonus_type = "Racial"
-effect = "Heal"
-value = 2
-
-[[row.effect]]
-bonus_type = "Racial"
-effect = "Listen"
-value = 2
-
-[[row.effect]]
-bonus_type = "Racial"
-effect = "Spot"
+effect = "Wisdom Skills"
 value = 2
 
 [[row.effect]]
@@ -174,6 +164,7 @@ targets = [
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Racial"
+effect = "Wisdom Skills"
 effect_type = "SkillBonus"
 targets = [
     "Heal",

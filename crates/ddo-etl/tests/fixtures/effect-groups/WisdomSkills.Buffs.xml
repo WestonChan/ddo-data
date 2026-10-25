@@ -1,0 +1,14 @@
+<Buff>
+  <Type>Wisdom Skills - Exceptional</Type>
+  <DisplayText>Wisdom Skills - Exceptional Bonus %v1: Passive %v1 Exceptional bonus to the Wisdom based skills of: Heal, Listen and Spot</DisplayText>
+  <Ignore>Competence</Ignore>
+  <Effect>
+    <Type>SkillBonus</Type>
+    <Bonus>Competence</Bonus>
+    <AType>Simple</AType>
+    <Amount size="1">3</Amount>
+    <Item>Heal</Item>
+    <Item>Listen</Item>
+    <Item>Spot</Item>
+  </Effect>
+</Buff>

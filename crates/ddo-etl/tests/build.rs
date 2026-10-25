@@ -1249,6 +1249,13 @@ fn assert_wrapper_group(db: &Connection, item_name: &str, group_name: &str, memb
     assert_eq!(actual, expected);
 }
 
+fn assert_group_amount_on_item_link(db: &Connection, item_name: &str, group_name: &str, expected_amount: i64) {
+    let amounts: (Option<i64>, Option<i64>, Option<i64>) = db.query_row(
+        "SELECT l.value,e.default_value,e.default_value2 FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name=?1 AND e.name=?2",
+        params![item_name, group_name], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?))).unwrap();
+    assert_eq!(amounts, (Some(expected_amount), None, None));
+}
+
 fn item_effect_alias(db: &Connection, item_name: &str, effect_name: &str) -> Option<String> {
     db.query_row("SELECT l.alias FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name=?1 AND e.name=?2", params![item_name,effect_name], |row| row.get(0)).unwrap()
 }
@@ -1357,14 +1364,7 @@ fn exceptional_charisma_buffs_link_the_six_skills() {
             &[("Exceptional", expected)],
         );
         assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Charisma Skills - Exceptional Bonus'"), 0);
-        let defaults: (Option<i64>, Option<i64>) = db
-            .query_row("SELECT default_value,default_value2 FROM effects WHERE name='Charisma Skills'", [], |row| {
-                Ok((row.get(0)?, row.get(1)?))
-            })
-            .unwrap();
-        assert_eq!(defaults, (None, None), "a group never carries a definition default");
-        let linked_amount: Option<i64> = db.query_row("SELECT l.value FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name='Pink and Green Ioun Stone (unsuppressed)' AND e.name='Charisma Skills'", [], |row| row.get(0)).unwrap();
-        assert_eq!(linked_amount, Some(expected));
+        assert_group_amount_on_item_link(&db, "Pink and Green Ioun Stone (unsuppressed)", "Charisma Skills", expected);
         let alias = item_effect_alias(&db, "Pink and Green Ioun Stone (unsuppressed)", "Charisma Skills");
         assert_eq!(alias.as_deref(), Some("Charisma Skills - Exceptional Bonus"));
     }
@@ -1463,6 +1463,32 @@ fn exceptional_intelligence_buff_links_four_skills_with_its_alias() {
         Some("Intelligence Skills - Exceptional Bonus")
     );
     assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Intelligence Skills - Exceptional Bonus'"), 0);
+}
+
+#[test]
+fn exceptional_wisdom_buff_keeps_its_alias_and_definition_default() {
+    for (amount, expected) in [(None, 3), (Some(2), 2)] {
+        let item_xml = include_str!("fixtures/effect-groups/WisdomSkills.item").replace(
+            "<Value1>2</Value1>",
+            &amount.map(|amount| format!("<Value1>{amount}</Value1>")).unwrap_or_default(),
+        );
+        let db = build_wrapper_fixture(
+            fixture::grouping_cases(),
+            &item_xml,
+            include_str!("fixtures/effect-groups/WisdomSkills.Buffs.xml"),
+        );
+        assert_wrapper_group(
+            &db,
+            "Incandescent Blue Ioun Stone (unsuppressed)",
+            "Wisdom Skills",
+            &["Heal", "Listen", "Spot"],
+            &[("Exceptional", expected)],
+        );
+        assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Wisdom Skills - Exceptional Bonus'"), 0);
+        assert_group_amount_on_item_link(&db, "Incandescent Blue Ioun Stone (unsuppressed)", "Wisdom Skills", expected);
+        let alias = item_effect_alias(&db, "Incandescent Blue Ioun Stone (unsuppressed)", "Wisdom Skills");
+        assert_eq!(alias.as_deref(), Some("Wisdom Skills - Exceptional Bonus"));
+    }
 }
 
 #[test]

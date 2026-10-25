@@ -1,0 +1,17 @@
+<Items>
+  <Item>
+    <NoAutoUpdate />
+    <Name>Incandescent Blue Ioun Stone (unsuppressed)</Name>
+    <Description>An incandescent blue gem about 1 inch in diameter</Description>
+    <MinLevel>5</MinLevel>
+    <EquipmentSlot>
+      <Trinket />
+    </EquipmentSlot>
+    <Material>Gem (material)</Material>
+    <Buff>
+      <Type>Wisdom Skills - Exceptional</Type>
+      <Value1>2</Value1>
+      <BonusType>Exceptional</BonusType>
+    </Buff>
+  </Item>
+</Items>

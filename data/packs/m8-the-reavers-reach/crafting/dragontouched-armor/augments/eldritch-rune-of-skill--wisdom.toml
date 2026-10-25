@@ -25,5 +25,15 @@ reason = "The wiki spells it Eldritch Rune of Skill:Wisdom, with no space."
 url = "https://ddowiki.com/page/Dragontouched_Armor"
 read = "2026-09-30"
 
+[[verification_request]]
+question = 'Does the in-game line read "Wisdom Skills - Exceptional Bonus +6"?'
+assumed = "Exceptional Wisdom Skills +6"
+raised = "2026-10-23"
+
+[[verification_request.source]]
+says = 'The typed rune list says "Exceptional Wisdom Skills +6*". No screenshot shows armor with this rune applied.'
+url = "https://ddowiki.com/page/Item:Dragontouched_Armor"
+read = "2026-10-23"
+
 [[slot]]
 slot = "crafting: eldritch rune"
