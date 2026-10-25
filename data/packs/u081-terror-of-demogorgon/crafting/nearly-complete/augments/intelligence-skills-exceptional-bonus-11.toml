@@ -8,6 +8,7 @@ min_level = 30
 
 [[effect]]
 name = "Intelligence Skills"
+alias = "Intelligence Skills - Exceptional Bonus"
 bonus_type = "Exceptional"
 value = 11
 
@@ -18,6 +19,14 @@ bonus_type = "Exceptional"
 effect = "Intelligence Skills"
 effect_type = "SkillBonusAbility"
 targets = ["Intelligence"]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "alias"
+reason = "Use the Exceptional skill line name in the Nearly Complete typed list."
+url = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-10-23"
+qualifier = "Intelligence Skills / Exceptional"
 
 [[slot]]
 slot = "crafting: nearly complete: exceptional skills (legendary)"

@@ -1445,6 +1445,27 @@ fn exceptional_dexterity_buff_links_five_skills_with_its_alias() {
 }
 
 #[test]
+fn exceptional_intelligence_buff_links_four_skills_with_its_alias() {
+    let db = build_wrapper_fixture(
+        fixture::grouping_cases(),
+        include_str!("fixtures/effect-groups/IntelligenceSkills.item"),
+        include_str!("fixtures/effect-groups/IntelligenceSkills.Buffs.xml"),
+    );
+    assert_wrapper_group(
+        &db,
+        "Legendary Tiny Brain in a Tiny Jar",
+        "Intelligence Skills",
+        &["Disable Device", "Repair", "Search", "Spellcraft"],
+        &[("Exceptional", 6)],
+    );
+    assert_eq!(
+        item_effect_alias(&db, "Legendary Tiny Brain in a Tiny Jar", "Intelligence Skills").as_deref(),
+        Some("Intelligence Skills - Exceptional Bonus")
+    );
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Intelligence Skills - Exceptional Bonus'"), 0);
+}
+
+#[test]
 fn strength_skill_wrappers_share_a_group_without_sharing_defaults() {
     let item_xml = format!(
         "{}{}",

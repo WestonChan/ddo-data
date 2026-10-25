@@ -1,0 +1,14 @@
+<Buff>
+  <Type>Intelligence Skills - Exceptional Bonus</Type>
+  <DisplayText>Intelligence Skills - Exceptional Bonus %v1: Passive %v1 Exceptional bonus to the Intelligence based skills of: Disable Device, Repair, Search, and Spellcraft</DisplayText>
+  <Effect>
+    <Type>SkillBonus</Type>
+    <Bonus>Exceptional</Bonus>
+    <AType>Simple</AType>
+    <Amount size="1">0</Amount>
+    <Item>Disable Device</Item>
+    <Item>Repair</Item>
+    <Item>Search</Item>
+    <Item>Spellcraft</Item>
+  </Effect>
+</Buff>

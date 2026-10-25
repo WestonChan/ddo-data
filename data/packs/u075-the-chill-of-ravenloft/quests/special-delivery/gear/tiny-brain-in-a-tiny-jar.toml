@@ -15,7 +15,9 @@ bonus_type = "Enhancement"
 value = 5
 
 [[effect]]
-name = "Intelligence Skills - Exceptional Bonus"
+name = "Intelligence Skills"
+alias = "Intelligence Skills - Exceptional Bonus"
+bonus_type = "Exceptional"
 value = 2
 
 [[socket]]

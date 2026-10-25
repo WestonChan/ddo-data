@@ -19,7 +19,9 @@ bonus_type = "Exceptional"
 value = 4
 
 [[effect]]
-name = "Intelligence Skills - Exceptional Bonus"
+name = "Intelligence Skills"
+alias = "Intelligence Skills - Exceptional Bonus"
+bonus_type = "Exceptional"
 value = 4
 
 [[effect]]
@@ -68,22 +70,7 @@ value = 6
 
 [[socket.option.effect]]
 bonus_type = "Exceptional"
-effect = "Disable Device"
-value = 6
-
-[[socket.option.effect]]
-bonus_type = "Exceptional"
-effect = "Repair"
-value = 6
-
-[[socket.option.effect]]
-bonus_type = "Exceptional"
-effect = "Search"
-value = 6
-
-[[socket.option.effect]]
-bonus_type = "Exceptional"
-effect = "Spellcraft"
+effect = "Intelligence Skills"
 value = 6
 
 [[socket.option.effect]]
@@ -121,6 +108,7 @@ targets = [
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Exceptional"
+effect = "Intelligence Skills"
 effect_type = "SkillBonus"
 targets = [
     "Disable Device",

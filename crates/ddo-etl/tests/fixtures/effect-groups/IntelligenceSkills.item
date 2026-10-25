@@ -1,0 +1,18 @@
+<Items>
+  <Item>
+    <NoAutoUpdate />
+    <Name>Legendary Tiny Brain in a Tiny Jar</Name>
+    <Description>Is this a real brain, or simply a bauble that looks like one? You're sure not
+opening the jar to find out.</Description>
+    <MinLevel>34</MinLevel>
+    <EquipmentSlot>
+      <Trinket />
+    </EquipmentSlot>
+    <Material>Leather</Material>
+    <Buff>
+      <Type>Intelligence Skills - Exceptional Bonus</Type>
+      <Value1>6</Value1>
+      <BonusType>Exceptional</BonusType>
+    </Buff>
+  </Item>
+</Items>

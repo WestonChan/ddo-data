@@ -2,6 +2,14 @@ name = "Intelligence Skills"
 description_template = "{1} %b1 bonus to all Intelligence based skills."
 verbose_name_template = "%b1 Intelligence Skills +{1}"
 
+[[alias]]
+name = "Intelligence Skills - Exceptional Bonus"
+verbose_name_template = "Intelligence Skills - %b1 Bonus +{1}"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Legendary_Tiny_Brain_in_a_Tiny_Jar"
+read = "2026-10-23"
+
 [[bonus]]
 amount_from = 1
 rounding = "down"
