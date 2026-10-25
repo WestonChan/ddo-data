@@ -1492,6 +1492,22 @@ fn exceptional_wisdom_buff_keeps_its_alias_and_definition_default() {
 }
 
 #[test]
+fn rune_arm_focus_buff_links_its_stat_with_its_alias() {
+    let db = build_wrapper_fixture(
+        fixture::grouping_cases(),
+        include_str!("fixtures/effect-groups/RuneArmFocus.item"),
+        include_str!("fixtures/effect-groups/RuneArmFocus.Buffs.xml"),
+    );
+    let links = db.prepare("SELECT e.name,e.is_stat,l.alias,l.value,bt.name FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id JOIN bonus_types bt ON bt.id=l.bonus_type_id WHERE i.name='Prototype IV: Discharge System' ORDER BY l.sort_order").unwrap()
+        .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,bool>(1)?,row.get::<_,Option<String>>(2)?,row.get::<_,i64>(3)?,row.get::<_,String>(4)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(links, [("Rune Arm Spell Focus".into(), true, Some("Rune Arm Focus".into()), 4, "Equipment".into())]);
+    let bonuses = db.prepare("SELECT s.name,bt.name,b.amount FROM owner_bonuses b JOIN items i ON i.id=b.owner_id JOIN effects s ON s.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id WHERE b.owner_kind='item' AND i.name='Prototype IV: Discharge System'").unwrap()
+        .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(bonuses, [("Rune Arm Spell Focus".into(), "Equipment".into(), 4)]);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Rune Arm Focus'"), 0);
+}
+
+#[test]
 fn strength_skill_wrappers_share_a_group_without_sharing_defaults() {
     let item_xml = format!(
         "{}{}",

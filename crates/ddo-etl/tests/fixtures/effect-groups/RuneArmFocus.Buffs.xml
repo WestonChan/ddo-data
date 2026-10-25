@@ -1,0 +1,12 @@
+<Buff>
+  <Type>Rune Arm Focus</Type>
+  <DisplayText>%b1 Rune Arm Focus %v1: %v1 %b1 bonus to the DC of Rune Arm spells.</DisplayText>
+  <Ignore>Enhancement</Ignore>
+  <Effect>
+    <Type>SpellDC</Type>
+    <Bonus>Not Set</Bonus>
+    <AType>Simple</AType>
+    <Amount size="1">0</Amount>
+    <Item>Rune Arm</Item>
+  </Effect>
+</Buff>

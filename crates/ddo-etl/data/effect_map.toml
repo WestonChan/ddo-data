@@ -165,6 +165,7 @@ bonus_type = "Stacking"
 value = 5
 
 [names]
+"Rune Arm Focus" = "Rune Arm Spell Focus"
 "Charisma Skills - Exceptional" = "Charisma Skills"
 "Strength Skills - Exceptional" = "Strength Skills"
 "Mighty Skills Bonus" = "Strength Skills"
@@ -315,6 +316,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Charisma Skills" = "none"
 
 [line_templates]
+"Rune Arm Spell Focus" = "%b1 Rune Arm Focus +{1}"
 "Charisma Skills" = "%b1 Charisma Skills +{1}"
 "Strength Skills" = "%b1 Strength Skills +{1}"
 "Dexterity Skills" = "%b1 Dexterity Skills +{1}"
@@ -374,6 +376,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Universal Spell Lore" = "+{1}% %b1 Bonus to Spell Critical Chance"
 
 [description_templates]
+"Rune Arm Spell Focus" = "{1} %b1 bonus to the DC of Rune Arm spells."
 "Charisma Skills" = "{1} %b1 bonus to all Charisma based skills."
 "Strength Skills" = "{1} %b1 bonus to all Strength based skills."
 "Dexterity Skills" = "{1} %b1 bonus to all Dexterity based skills."

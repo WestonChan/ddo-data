@@ -10,8 +10,8 @@
     "crafting_recipes": 2956,
     "crafting_system_sources": 1074,
     "crafting_systems": 43,
-    "effect_bonuses": 729,
-    "effects": 2198,
+    "effect_bonuses": 728,
+    "effects": 2197,
     "enhancement_trees": 114,
     "enhancements": 3232,
     "event_items": 642,
@@ -50,7 +50,7 @@
     "wiki_quests": 4
   },
   "dataset": {
-    "built_at": "2026-10-25T11:29:22Z",
+    "built_at": "2026-10-25T13:04:58Z",
     "upstream_sha": "d1350a0c6ec396a65dc02680fa9801a14a79ebf3"
   },
   "schema_version": 47

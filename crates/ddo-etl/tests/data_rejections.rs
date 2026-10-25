@@ -198,6 +198,24 @@ fn effect_aliases_validate_names_slugs_templates_and_link_ownership() {
 }
 
 #[test]
+fn stat_aliases_read_one_amount_without_a_canonical_template() {
+    for (template, expected_error) in [("%b1 Rune Arm Focus +{1}", false), ("%b1 Rune Arm Focus +{1}/{2}", true)] {
+        let error = fixture::data_build_error(|root| {
+            std::fs::write(
+                root.join("effects/stats/rune-arm-spell-focus.toml"),
+                format!("name = 'Rune Arm Spell Focus'\ncategory = 'magical'\n[[alias]]\nname = 'Rune Arm Focus'\nverbose_name_template = {template:?}\n"),
+            )
+            .unwrap();
+        });
+        if expected_error {
+            assert!(error.contains("Rune Arm Focus") && error.contains("amount_count 1"), "{error}");
+        } else {
+            assert!(error.is_empty(), "{error}");
+        }
+    }
+}
+
+#[test]
 fn game_bug_targets_and_intended_values_are_checked() {
     let annotation = |field: &str, qualifier: &str, intended: &str| {
         format!(

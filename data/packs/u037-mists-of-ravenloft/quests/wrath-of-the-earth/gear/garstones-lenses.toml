@@ -8,7 +8,8 @@ minimum_level = 10
 slot = "Goggles"
 
 [[effect]]
-name = "Rune Arm Focus"
+name = "Rune Arm Spell Focus"
+alias = "Rune Arm Focus"
 bonus_type = "Insight"
 value = 52
 

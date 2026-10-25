@@ -24,7 +24,8 @@ bonus_type = "Equipment"
 value = 15
 
 [[effect]]
-name = "Rune Arm Focus"
+name = "Rune Arm Spell Focus"
+alias = "Rune Arm Focus"
 bonus_type = "Equipment"
 value = 4
 

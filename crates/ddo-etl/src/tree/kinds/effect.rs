@@ -68,7 +68,7 @@ impl EffectAlias {
              SELECT a.effect_id, a.name, a.slug, a.verbose_name_template, e.name,
                     named.name, named.is_stat, routed.name,
                     EXISTS (SELECT 1 FROM redirect_rows r WHERE r.kind = 'effects' AND r.from_slug = a.slug),
-                    EXISTS (SELECT 1 FROM retired_rows r WHERE r.kind = 'effects' AND r.slug = a.slug)
+                    EXISTS (SELECT 1 FROM retired_rows r WHERE r.kind = 'effects' AND r.slug = a.slug), e.is_stat
                FROM effect_aliases a JOIN effects e ON e.id = a.effect_id
                LEFT JOIN effects named ON named.name = a.name
                LEFT JOIN effects routed ON routed.slug = a.slug
@@ -89,12 +89,26 @@ impl EffectAlias {
                     row.get::<_, Option<String>>(7)?,
                     row.get::<_, bool>(8)?,
                     row.get::<_, bool>(9)?,
+                    row.get::<_, bool>(10)?,
                 ))
             })?
             .collect::<rusqlite::Result<Vec<_>>>()?;
-        for (effect_id, name, alias_slug, template, owner, named, is_stat, routed, redirected, retired) in aliases {
+        for (
+            effect_id,
+            name,
+            alias_slug,
+            template,
+            owner,
+            named,
+            named_is_stat,
+            routed,
+            redirected,
+            retired,
+            owner_is_stat,
+        ) in aliases
+        {
             let effect = groupings.effect_named(&owner).context("alias owner is missing")?;
-            let member_name = is_stat == Some(true)
+            let member_name = named_is_stat == Some(true)
                 && effect.stat_ids.iter().any(|id| groupings.by_id.get(id).is_some_and(|member| member.name == name));
             ensure!(named.is_none() || member_name, "effect {owner:?} alias {name:?} collides with effect {named:?}");
             if member_name {
@@ -115,7 +129,14 @@ impl EffectAlias {
                     &name,
                     &template,
                     effect.description_template.as_deref(),
-                    crate::build::amount_count(&effect.verbose_name_template, effect.description_template.as_deref()),
+                    if owner_is_stat {
+                        1
+                    } else {
+                        crate::build::amount_count(
+                            &effect.verbose_name_template,
+                            effect.description_template.as_deref(),
+                        )
+                    },
                 )
                 .with_context(|| format!("effect {owner:?} alias {name:?}"))?;
             }

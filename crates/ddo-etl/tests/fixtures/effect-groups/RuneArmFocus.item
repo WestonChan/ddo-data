@@ -1,0 +1,20 @@
+<Items>
+  <Item>
+    <NoAutoUpdate />
+    <Name>Prototype IV: Discharge System</Name>
+    <Description>Prototype Notes IV: Well, at least we managed to output the excess lightning
+SOMEWHERE. I'm not sure this solution is optimal, however. Back to the drawing
+board.</Description>
+    <MinLevel>18</MinLevel>
+    <EquipmentSlot>
+      <Weapon2 />
+    </EquipmentSlot>
+    <Weapon>Rune Arm</Weapon>
+    <Material>Gem (material)</Material>
+    <Buff>
+      <Type>Rune Arm Focus</Type>
+      <Value1>4</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+  </Item>
+</Items>
