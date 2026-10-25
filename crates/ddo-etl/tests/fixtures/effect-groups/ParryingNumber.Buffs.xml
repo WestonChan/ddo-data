@@ -1,0 +1,20 @@
+<Buffs>
+<Buff>
+    <Type>ParryingNumber</Type>
+    <DisplayText>%b1 Parrying %v1: %v1 %b1 bonus to Armor Class, %v1 %b1 bonus to Fortitude, Reflex, and Will Saving throws.</DisplayText>
+    <Ignore>Insightful</Ignore>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+</Buffs>

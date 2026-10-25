@@ -1175,18 +1175,14 @@ source_name = "Paladin"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Armor Class"
-value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Saving Throws"
+effect = "Parrying"
 value = 1
 
 [[row.modifier]]
 amount_type = "Simple"
 amounts = [1]
 bonus_type = "Feat"
+effect = "Parrying"
 effect_type = "ACBonus"
 extra_types = ["SaveBonus"]
 targets = ["All"]

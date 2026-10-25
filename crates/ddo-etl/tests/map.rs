@@ -373,6 +373,25 @@ fn effect_fallback_uses_definition_amounts_and_item_bonus_types() {
 }
 
 #[test]
+fn numeric_parrying_grants_the_armor_class_and_saves_in_its_definition() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/effect-groups");
+    let definitions = item_buffs::parse(&fixtures.join("ParryingNumber.Buffs.xml")).unwrap();
+    let resolver = BuffResolver::from_definitions(&definitions);
+    let items = parse_item_file(&fixtures.join("BlackfeatherCloak.item")).unwrap().items;
+    let cloak = items.iter().find(|item| item.name == "Blackfeather Cloak").unwrap();
+    let parrying = cloak.buffs.iter().find(|buff| buff.kind == "ParryingNumber").unwrap();
+    let ResolvedBuff::Bonuses { stats, .. } = resolver.resolved(parrying).unwrap() else {
+        panic!("Numeric Parrying must grant its definition's bonuses");
+    };
+    let bonuses: Vec<_> =
+        stats.iter().map(|bonus| (bonus.stat.name, bonus.amount(parrying), bonus.bonus_type)).collect();
+    assert_eq!(
+        bonuses,
+        [("Armor Class", Some(4), Some(BonusType::Insight)), ("Saving Throws", Some(4), Some(BonusType::Insight))]
+    );
+}
+
+#[test]
 fn speed_deception_and_command_grant_the_stats_their_definitions_describe() {
     let resolver = BuffResolver::from_definitions(&fixture_item_buff_definitions());
     let cases = [

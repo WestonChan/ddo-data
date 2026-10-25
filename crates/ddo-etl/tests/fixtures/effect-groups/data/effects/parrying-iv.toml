@@ -1,0 +1,23 @@
+name = "Parrying IV"
+description_template = "Passive: {1} %b1 bonus to Armor Class, {1} %b1 bonus to Fortitude, Reflex, and Will Saving throws."
+home_bonus_type = "Insight"
+stat_set_verdict = "distinct"
+stat_set_reason = "steps of one ladder differ in amount; one-enchantment ladders are ddo-data#57"
+verbose_name_template = "%b1 Parrying IV"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Armor Class"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Saving Throws"
+
+[[citation]]
+url = "https://ddowiki.com/page/Parrying"
+read = "2026-10-23"
+note = "Roman ranks remain separate ladder steps; one-enchantment ladders are ddo-data#57."

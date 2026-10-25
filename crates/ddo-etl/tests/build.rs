@@ -1133,6 +1133,50 @@ fn declared_speed_rank_preserves_its_label_and_two_amounts() {
 }
 
 #[test]
+fn declared_parrying_ranks_release_aura_of_good_as_one_line() {
+    let mut canonical = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut canonical)
+        .unwrap();
+    let mut upstream = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::grouping_cases(),
+        &data_files_fixture_dir(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut upstream,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    for db in [&canonical, &upstream] {
+        let links = db
+            .prepare(
+                "SELECT e.name,bt.name,l.value FROM feat_effects l JOIN feats f ON f.id=l.feat_id
+             JOIN effects e ON e.id=l.effect_id JOIN bonus_types bt ON bt.id=l.bonus_type_id
+             WHERE f.name='Aura of Good' ORDER BY l.sort_order",
+            )
+            .unwrap()
+            .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert_eq!(links, [("Parrying".into(), "Feat".into(), 1)]);
+        let bonuses = db
+            .prepare(
+                "SELECT s.name,bt.name,b.amount FROM owner_bonuses b JOIN feats f ON f.id=b.owner_id
+             JOIN effects s ON s.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id
+             WHERE b.owner_kind='feat' AND f.name='Aura of Good' ORDER BY s.name",
+            )
+            .unwrap()
+            .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert_eq!(bonuses, [("Armor Class".into(), "Feat".into(), 1), ("Saving Throws".into(), "Feat".into(), 1)]);
+    }
+    assert!(!report.held_back_effects.iter().any(|effect| effect.owner_name == "Aura of Good"));
+}
+
+#[test]
 fn two_slot_deception_cannot_replace_a_single_value_sneak_attack_line() {
     let (db, report) = built_ambiguous_fixture_db();
     let names = db.prepare(
