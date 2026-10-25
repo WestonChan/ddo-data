@@ -1341,7 +1341,7 @@ fn exceptional_charisma_buffs_link_the_six_skills() {
             &amount.map(|amount| format!("<Value1>{amount}</Value1>")).unwrap_or_default(),
         );
         let db = build_wrapper_fixture(
-            fixture::groupings(),
+            fixture::grouping_cases(),
             &item_xml,
             include_str!("fixtures/effect-groups/CharismaSkills.Buffs.xml"),
         );
@@ -1361,6 +1361,8 @@ fn exceptional_charisma_buffs_link_the_six_skills() {
         assert_eq!(defaults, (None, None), "a group never carries a definition default");
         let linked_amount: Option<i64> = db.query_row("SELECT l.value FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name='Pink and Green Ioun Stone (unsuppressed)' AND e.name='Charisma Skills'", [], |row| row.get(0)).unwrap();
         assert_eq!(linked_amount, Some(expected));
+        let alias: Option<String> = db.query_row("SELECT l.alias FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name='Pink and Green Ioun Stone (unsuppressed)' AND e.name='Charisma Skills'", [], |row| row.get(0)).unwrap();
+        assert_eq!(alias.as_deref(), Some("Charisma Skills - Exceptional Bonus"));
     }
 }
 

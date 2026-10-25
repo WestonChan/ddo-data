@@ -14,6 +14,7 @@ value = 6
 
 [[effect]]
 name = "Charisma Skills"
+alias = "Charisma Skills - Exceptional Bonus"
 bonus_type = "Exceptional"
 value = 2
 

@@ -18,6 +18,7 @@ value = 50
 
 [[effect]]
 name = "Charisma Skills"
+alias = "Charisma Skills - Exceptional Bonus"
 bonus_type = "Exceptional"
 value = 4
 
@@ -35,6 +36,14 @@ bonus_type = "Exceptional"
 effect = "Charisma Skills"
 effect_type = "SkillBonusAbility"
 targets = ["Charisma"]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "alias"
+reason = "Use the Exceptional skill name from the Charisma goggles screenshot and the approved crafting-table reading; higher-tier wording follows that name pattern."
+url = "https://ddowiki.com/page/Altar_of_Subjugation_-_Manufactured_Ingredient_Recipes"
+read = "2026-10-23"
+qualifier = "Charisma Skills / Exceptional"
 
 [[slot]]
 slot = "crafting: accessory subjugation"

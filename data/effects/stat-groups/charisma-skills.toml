@@ -2,6 +2,10 @@ name = "Charisma Skills"
 description_template = "{1} %b1 bonus to all Charisma based skills."
 verbose_name_template = "%b1 Charisma Skills +{1}"
 
+[[alias]]
+name = "Charisma Skills - Exceptional Bonus"
+verbose_name_template = "Charisma Skills - %b1 Bonus +{1}"
+
 [[citation]]
 url = "https://ddowiki.com/page/Item:Fancy_Flayer's_Cape"
 read = "2026-10-23"

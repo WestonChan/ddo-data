@@ -43,6 +43,14 @@ bonus_type = "Enhancement"
 [[effect]]
 name = "Hidden Effect All Threat"
 
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "alias"
+reason = 'The upgraded-ring screenshot names the line "Charisma Skills - Exceptional Bonus +2".'
+url = "https://ddowiki.com/page/Item:Ring_of_Lies"
+read = "2026-10-23"
+qualifier = 'socket "crafting: upgradeable item (stormreaver)", option "Adds +2 Exceptional Charisma Skills and Improved Deception", Charisma Skills / Exceptional'
+
 [[socket]]
 slot = "crafting: upgradeable item (stormreaver)"
 
@@ -61,6 +69,7 @@ min_level = 13
 [[socket.option.effect]]
 bonus_type = "Exceptional"
 effect = "Charisma Skills"
+alias = "Charisma Skills - Exceptional Bonus"
 value = 2
 
 [[socket.option.effect]]
