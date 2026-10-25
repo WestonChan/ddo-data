@@ -25,7 +25,9 @@ bonus_type = "Enhancement"
 value = 5
 
 [[effect]]
-name = "Dexterity Skills - Exceptional Bonus"
+name = "Dexterity Skills"
+alias = "Dexterity Skills - Exceptional Bonus"
+bonus_type = "Exceptional"
 value = 6
 
 [[socket]]

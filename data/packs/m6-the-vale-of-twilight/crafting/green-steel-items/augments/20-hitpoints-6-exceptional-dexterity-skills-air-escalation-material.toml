@@ -16,6 +16,7 @@ value = 20
 
 [[effect]]
 name = "Dexterity Skills"
+alias = "Dexterity Skills - Exceptional Bonus"
 bonus_type = "Exceptional"
 value = 6
 
@@ -33,6 +34,14 @@ bonus_type = "Exceptional"
 effect = "Dexterity Skills"
 effect_type = "SkillBonusAbility"
 targets = ["Dexterity"]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "alias"
+reason = "Use the approved Exceptional skill name pattern from the Charisma goggles screenshot and the crafting-table reading; this ability and higher-tier wording follow that pattern."
+url = "https://ddowiki.com/page/Altar_of_Devastation_-_Manufactured_Ingredient_Recipes"
+read = "2026-10-23"
+qualifier = "Dexterity Skills / Exceptional"
 
 [[slot]]
 slot = "crafting: accessory devastation"

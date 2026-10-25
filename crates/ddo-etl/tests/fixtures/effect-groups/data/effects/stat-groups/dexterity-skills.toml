@@ -1,0 +1,41 @@
+name = "Dexterity Skills"
+description_template = "{1} %b1 bonus to all Dexterity based skills."
+verbose_name_template = "%b1 Dexterity Skills +{1}"
+
+[[alias]]
+name = "Dexterity Skills - Exceptional Bonus"
+verbose_name_template = "Dexterity Skills - %b1 Bonus +{1}"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Masterwork_Gauntlet"
+read = "2026-10-23"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Balance"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Hide"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Move Silently"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Open Lock"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Tumble"

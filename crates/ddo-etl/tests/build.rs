@@ -1249,6 +1249,10 @@ fn assert_wrapper_group(db: &Connection, item_name: &str, group_name: &str, memb
     assert_eq!(actual, expected);
 }
 
+fn item_effect_alias(db: &Connection, item_name: &str, effect_name: &str) -> Option<String> {
+    db.query_row("SELECT l.alias FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name=?1 AND e.name=?2", params![item_name,effect_name], |row| row.get(0)).unwrap()
+}
+
 #[test]
 fn radiance_buffs_link_five_spell_powers_at_each_owners_type() {
     let db = build_wrapper_fixture(
@@ -1361,7 +1365,7 @@ fn exceptional_charisma_buffs_link_the_six_skills() {
         assert_eq!(defaults, (None, None), "a group never carries a definition default");
         let linked_amount: Option<i64> = db.query_row("SELECT l.value FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name='Pink and Green Ioun Stone (unsuppressed)' AND e.name='Charisma Skills'", [], |row| row.get(0)).unwrap();
         assert_eq!(linked_amount, Some(expected));
-        let alias: Option<String> = db.query_row("SELECT l.alias FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name='Pink and Green Ioun Stone (unsuppressed)' AND e.name='Charisma Skills'", [], |row| row.get(0)).unwrap();
+        let alias = item_effect_alias(&db, "Pink and Green Ioun Stone (unsuppressed)", "Charisma Skills");
         assert_eq!(alias.as_deref(), Some("Charisma Skills - Exceptional Bonus"));
     }
 }
@@ -1417,6 +1421,27 @@ fn search_only_aliases_do_not_choose_a_buff_line() {
     );
     let choice: Option<String> = db.query_row("SELECT l.alias FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name='Pink and Green Ioun Stone (unsuppressed)' AND e.name='Charisma Skills'", [], |row| row.get(0)).unwrap();
     assert_eq!(choice, None);
+}
+
+#[test]
+fn exceptional_dexterity_buff_links_five_skills_with_its_alias() {
+    let db = build_wrapper_fixture(
+        fixture::grouping_cases(),
+        include_str!("fixtures/effect-groups/DexteritySkills.item"),
+        include_str!("fixtures/effect-groups/DexteritySkills.Buffs.xml"),
+    );
+    assert_wrapper_group(
+        &db,
+        "Masterwork Gauntlet",
+        "Dexterity Skills",
+        &["Balance", "Hide", "Move Silently", "Open Lock", "Tumble"],
+        &[("Exceptional", 6)],
+    );
+    assert_eq!(
+        item_effect_alias(&db, "Masterwork Gauntlet", "Dexterity Skills").as_deref(),
+        Some("Dexterity Skills - Exceptional Bonus")
+    );
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Dexterity Skills - Exceptional Bonus'"), 0);
 }
 
 #[test]

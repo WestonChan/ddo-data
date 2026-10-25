@@ -12,7 +12,9 @@ name = "Intelligence Skills - Exceptional Bonus"
 value = 4
 
 [[effect]]
-name = "Dexterity Skills - Exceptional Bonus"
+name = "Dexterity Skills"
+alias = "Dexterity Skills - Exceptional Bonus"
+bonus_type = "Exceptional"
 value = 4
 
 [[socket]]

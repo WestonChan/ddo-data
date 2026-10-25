@@ -1,0 +1,15 @@
+<Buff>
+  <Type>Dexterity Skills - Exceptional Bonus</Type>
+  <DisplayText>Dexterity Skills - Exceptional Bonus %v1: Passive %v1 Exceptional bonus to the Dexterity based skills of: Balance, Hide, Move Silently, Open Lock, and Tumble</DisplayText>
+  <Effect>
+    <Type>SkillBonus</Type>
+    <Bonus>Exceptional</Bonus>
+    <AType>Simple</AType>
+    <Amount size="1">0</Amount>
+    <Item>Balance</Item>
+    <Item>Hide</Item>
+    <Item>Move Silently</Item>
+    <Item>Open Lock</Item>
+    <Item>Tumble</Item>
+  </Effect>
+</Buff>
