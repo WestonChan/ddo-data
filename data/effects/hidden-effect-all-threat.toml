@@ -9,20 +9,9 @@ bonus_type = "Penalty"
 constant = 15
 rounding = "down"
 scale = 1.0
-target = "Melee Threat Generation"
+target = "Melee, Spell and Ranged Threat Generation"
 
-[[bonus]]
-amount_from = 0
-bonus_type = "Penalty"
-constant = 15
-rounding = "down"
-scale = 1.0
-target = "Ranged Threat Generation"
-
-[[bonus]]
-amount_from = 0
-bonus_type = "Penalty"
-constant = 15
-rounding = "down"
-scale = 1.0
-target = "Spell Threat Generation"
+[[citation]]
+url = "https://ddowiki.com/page/Item:Ring_of_Lies"
+read = "2026-10-23"
+note = "The page confirms a 15% increase to spellcasting, melee and ranged threat. It states no bonus type; Maetrim's Penalty type is retained."

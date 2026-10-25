@@ -626,28 +626,15 @@ fn combat_mastery_composition_and_cited_dolorous_splits_follow_the_xml_writer() 
     assert_eq!(bonuses, [("Combat Mastery".into(), "Enhancement".into(), 13)]);
 }
 
-#[test]
-fn touch_of_immortality_composes_heal_and_repair_without_losing_regeneration() {
+fn build_item_buff_fixture(definitions: &str, items: &[(&str, &str)], icons: &[(&str, &[u8])]) -> Connection {
     let source = fixture::xml_source();
     let buffs = source.path().join("ItemBuffs.xml");
     let original = std::fs::read_to_string(&buffs).unwrap();
-    std::fs::write(
-        buffs,
-        original.replace(
-            "</Buffs>",
-            &format!("{}</Buffs>", include_str!("fixtures/effect-groups/GauntletsOfImmortality.Buffs.xml")),
-        ),
-    )
-    .unwrap();
-    std::fs::write(
-        source.path().join("Items/GauntletsOfImmortality.item"),
-        include_str!("fixtures/effect-groups/GauntletsOfImmortality.item"),
-    )
-    .unwrap();
-    for (path, icon) in [
-        ("ItemImages/Gloves/Gloves_13.png", include_bytes!("fixtures/effect-groups/icons/Gloves_13.png").as_slice()),
-        ("AugmentImages/Heroism.png", include_bytes!("fixtures/effect-groups/icons/Heroism.png").as_slice()),
-    ] {
+    std::fs::write(buffs, original.replace("</Buffs>", &format!("{definitions}</Buffs>"))).unwrap();
+    for (name, contents) in items {
+        std::fs::write(source.path().join("Items").join(name), contents).unwrap();
+    }
+    for (path, icon) in icons {
         let destination = source.path().join(path);
         std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
         std::fs::write(destination, icon).unwrap();
@@ -662,6 +649,19 @@ fn touch_of_immortality_composes_heal_and_repair_without_losing_regeneration() {
         &fixture_dataset_version(),
     )
     .unwrap();
+    db
+}
+
+#[test]
+fn touch_of_immortality_composes_heal_and_repair_without_losing_regeneration() {
+    let db = build_item_buff_fixture(
+        include_str!("fixtures/effect-groups/GauntletsOfImmortality.Buffs.xml"),
+        &[("GauntletsOfImmortality.item", include_str!("fixtures/effect-groups/GauntletsOfImmortality.item"))],
+        &[
+            ("ItemImages/Gloves/Gloves_13.png", include_bytes!("fixtures/effect-groups/icons/Gloves_13.png")),
+            ("AugmentImages/Heroism.png", include_bytes!("fixtures/effect-groups/icons/Heroism.png")),
+        ],
+    );
     let rows = db
         .prepare(
             "SELECT target.name,bt.name,b.amount_from,b.constant FROM effect_bonuses b
@@ -706,6 +706,102 @@ fn touch_of_immortality_composes_heal_and_repair_without_losing_regeneration() {
     assert_eq!(amounts, (None, None));
     let home_type: Option<i64> = db
         .query_row("SELECT home_bonus_type_id FROM effects WHERE name='Heal and Repair'", [], |row| row.get(0))
+        .unwrap();
+    assert_eq!(home_type, None);
+}
+
+#[test]
+fn threat_composes_preserve_their_opposite_constants_and_fixed_types() {
+    let db = build_item_buff_fixture(
+        include_str!("fixtures/effect-groups/ThreatComposes.Buffs.xml"),
+        &[
+            ("DarkDiversion.item", include_str!("fixtures/effect-groups/DarkDiversion.item")),
+            ("RingOfLies.item", include_str!("fixtures/effect-groups/RingOfLies.item")),
+        ],
+        &[
+            ("ItemImages/Necklace/Necklace_17.png", include_bytes!("fixtures/effect-groups/icons/Necklace_17.png")),
+            ("ItemImages/Rings/Ring_11b.png", include_bytes!("fixtures/effect-groups/icons/Ring_11b.png")),
+            ("AugmentImages/Stormreaver.png", include_bytes!("fixtures/effect-groups/icons/Stormreaver.png")),
+        ],
+    );
+    for (effect, owner, bonus_type, amount, prose) in [
+        (
+            "Hidden Effect All Threat",
+            "Ring of Lies",
+            "Penalty",
+            15,
+            "Increases spellcasting, melee, and ranged threat by 15%",
+        ),
+        (
+            "Occultation",
+            "Dark Diversion",
+            "Enhancement",
+            -20,
+            "20% Enhancement bonus to Decreased threat generated from all damage.",
+        ),
+    ] {
+        let rows = db
+            .prepare(
+                "SELECT target.name,bt.name,b.amount_from,b.constant FROM effect_bonuses b
+                 JOIN effects e ON e.id=b.effect_id JOIN effects target ON target.id=b.target_effect_id
+                 JOIN bonus_types bt ON bt.id=b.bonus_type_id WHERE e.name=?1",
+            )
+            .unwrap()
+            .query_map([effect], |row| {
+                Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?, row.get::<_, i64>(3)?))
+            })
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert_eq!(
+            rows,
+            [("Melee, Spell and Ranged Threat Generation".into(), bonus_type.into(), 0, amount)],
+            "{effect}"
+        );
+        let granted = db
+            .prepare(
+                "SELECT stat.name,bt.name,b.amount FROM owner_bonuses b
+                 JOIN items i ON i.id=b.owner_id JOIN effects stat ON stat.id=b.stat_id
+                 JOIN effects e ON e.id=b.via_effect_id JOIN effects g ON g.id=b.group_effect_id
+                 JOIN bonus_types bt ON bt.id=b.bonus_type_id
+                 WHERE b.owner_kind='item' AND i.name=?1 AND e.name=?2
+                 AND g.name='Melee, Spell and Ranged Threat Generation' ORDER BY stat.name",
+            )
+            .unwrap()
+            .query_map([owner, effect], |row| {
+                Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?))
+            })
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert_eq!(
+            granted,
+            ["Melee Threat Generation", "Ranged Threat Generation", "Spell Threat Generation"].map(|stat| (
+                stat.to_string(),
+                bonus_type.to_string(),
+                amount
+            )),
+            "{effect}"
+        );
+        let description: String =
+            db.query_row("SELECT description_template FROM effects WHERE name=?1", [effect], |row| row.get(0)).unwrap();
+        assert_eq!(description, prose);
+        let amounts: (Option<i64>, Option<i64>) = db
+            .query_row(
+                "SELECT l.value,l.value2 FROM item_effects l JOIN items i ON i.id=l.item_id
+                 JOIN effects e ON e.id=l.effect_id WHERE i.name=?1 AND e.name=?2",
+                [owner, effect],
+                |row| Ok((row.get(0)?, row.get(1)?)),
+            )
+            .unwrap();
+        assert_eq!(amounts, (None, None));
+    }
+    let home_type: Option<i64> = db
+        .query_row(
+            "SELECT home_bonus_type_id FROM effects WHERE name='Melee, Spell and Ranged Threat Generation'",
+            [],
+            |row| row.get(0),
+        )
         .unwrap();
     assert_eq!(home_type, None);
 }

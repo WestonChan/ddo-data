@@ -1,0 +1,96 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Ring of Lies</Name>
+    <Icon>Ring_11b</Icon>
+    <Description>This ring is a potent facilitator of deceptions and falsehoods, but it is risky
+to use. Not only may the weak-minded be seduced by their own inventions, but
+the ring constantly suggests new and profitable lies to its wearer, often leading
+to addiction and ruin.</Description>
+    <DropLocation>The Reaver's Fate, Raid Warded chest</DropLocation>
+    <MinLevel>13</MinLevel>
+    <EquipmentSlot>
+      <Ring/>
+    </EquipmentSlot>
+    <Material>Gold</Material>
+    <Buff>
+      <Type>AbilityBonus</Type>
+      <Value1>6</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Charisma</Description1>
+      <Item>Charisma</Item>
+    </Buff>
+    <Buff>
+      <Type>SkillBonus</Type>
+      <Value1>10</Value1>
+      <BonusType>Competence</BonusType>
+      <Description1>Diplomacy</Description1>
+      <Item>Diplomacy</Item>
+    </Buff>
+    <Buff>
+      <Type>SkillBonus</Type>
+      <Value1>10</Value1>
+      <BonusType>Competence</BonusType>
+      <Description1>Bluff</Description1>
+      <Item>Bluff</Item>
+    </Buff>
+    <Buff>
+      <Type>SkillBonus</Type>
+      <Value1>10</Value1>
+      <BonusType>Competence</BonusType>
+      <Description1>Haggle</Description1>
+      <Item>Haggle</Item>
+    </Buff>
+    <Buff>
+      <Type>SkillBonus</Type>
+      <Value1>10</Value1>
+      <BonusType>Competence</BonusType>
+      <Description1>Perform</Description1>
+      <Item>Perform</Item>
+    </Buff>
+    <Buff>
+      <Type>DeceptionFixed</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Hidden Effect All Threat</Type>
+    </Buff>
+    <Buff>
+      <Type>DeceptionFixed</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <ItemAugment>
+      <Type>Upgradeable Item (Stormreaver)</Type>
+      <Augment>
+        <Name>Adds +2 Exceptional Charisma Skills and Improved Deception</Name>
+        <Description>Charisma Skills - Exceptional Bonus +2: Passive +2 Exceptional bonus to the Charisma
+based skills of: Bluff, Diplomacy, Haggle, Intimidate, Perform and Use Magic Device (UMD)
+Improved Deception: This item makes your weapons hard to focus upon and thus provides
+a +5 enhancement bonus to Bluff checks. In addition, while using this item your
+weapons have a chance to envelop the target in darkness, making them vulnerable
+to sneak attacks for a short time.</Description>
+        <MinLevel>13</MinLevel>
+        <Icon>Stormreaver</Icon>
+        <Effect>
+          <Type>SkillBonus</Type>
+          <Bonus>Exceptional</Bonus>
+          <Item>Bluff</Item>
+          <Item>Diplomacy</Item>
+          <Item>Haggle</Item>
+          <Item>Intimidate</Item>
+          <Item>Perform</Item>
+          <Item>Use Magic Device</Item>
+          <AType>Simple</AType>
+          <Amount size="1">2</Amount>
+        </Effect>
+        <Effect>
+          <Type>SkillBonus</Type>
+          <Bonus>Enhancement</Bonus>
+          <Item>Bluff</Item>
+          <AType>Simple</AType>
+          <Amount size="1">5</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+  </Item>
+</Items>

@@ -1,0 +1,32 @@
+<Buff>
+    <Type>Hidden Effect All Threat</Type>
+    <DisplayText>Hidden Effect: Increases spellcasting, melee, and ranged threat by 15%</DisplayText>
+    <Effect>
+      <Type>ThreatBonusMelee</Type>
+      <Type>ThreatBonusRanged</Type>
+      <Type>ThreatBonusSpell</Type>
+      <Bonus>Penalty</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+    </Effect>
+  </Buff>
+<Buff>
+    <Type>Occultation</Type>
+    <DisplayText>Occultation: 20% Enhancement bonus to Decreased threat generated from all damage.</DisplayText>
+    <Effect>
+      <Type>ThreatBonusMelee</Type>
+      <Type>ThreatBonusRanged</Type>
+      <Type>ThreatBonusSpell</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">-20</Amount>
+    </Effect>
+  </Buff>
+<Buff>
+    <Type>Hidden Effect Demonic Drain</Type>
+    <DisplayText>Hidden Effect: Demonic Drain (1% chance)</DisplayText>
+  </Buff>
+<Buff>
+    <Type>Hidden Effect Sap</Type>
+    <DisplayText>Hidden Effect: On critical hits, this weapon saps the target</DisplayText>
+  </Buff>

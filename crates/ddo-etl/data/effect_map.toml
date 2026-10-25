@@ -315,6 +315,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Wisdom Skills" = "none"
 "Charisma Skills" = "none"
 "Heal and Repair" = "none"
+"Melee, Spell and Ranged Threat Generation" = "none"
 
 [line_templates]
 "Rune Arm Spell Focus" = "%b1 Rune Arm Focus +{1}"
@@ -419,6 +420,7 @@ Wizardry = ["Wizardry I", "Wizardry II", "Wizardry III", "Wizardry V", "Wizardry
 [groups]
 "Combat Mastery" = ["Trip DC", "Sunder DC", "Stun DC"]
 "Heal and Repair" = ["Heal", "Repair"]
+"Melee, Spell and Ranged Threat Generation" = ["Melee Threat Generation", "Spell Threat Generation", "Ranged Threat Generation"]
 "Nullification" = ["Negative Spell Power", "Poison Spell Power"]
 Radiance = ["Light Spell Power", "Chaos Spell Power", "Evil Spell Power", "Good Spell Power", "Law Spell Power"]
 "Void Lore" = ["Negative Spell Lore", "Poison Spell Lore"]
