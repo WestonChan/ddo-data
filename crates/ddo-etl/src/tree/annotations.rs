@@ -56,6 +56,8 @@ pub struct GameBugCorrection in "game_bug_corrections" as "game_bug_correction" 
         #[serde(default, skip_serializing_if = "String::is_empty")]
         qualifier: String => qualifier,
         intended: serde_json::Value => intended_value [json_value],
+        #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
+        skip_description_check: bool => skip_description_check,
         reason: String => reason,
         #[serde(flatten)]
         source: crate::AnnotationSource => url [annotation_source],

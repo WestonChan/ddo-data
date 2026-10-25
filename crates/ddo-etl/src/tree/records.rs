@@ -553,6 +553,47 @@ mod tests {
     }
 
     #[test]
+    fn game_bug_description_skip_round_trips_and_omits_false() {
+        let db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        for skip in [false, true] {
+            let text = format!(
+                "kind = 'item_bonus'\nfield = 'value'\nqualifier = 'Strength / Enhancement'\nintended = 2\nreason = 'The tooltip states the intended amount.'\nin_game = true\nread = '2026-10-23'\nskip_description_check = {skip}\n"
+            );
+            let annotation: crate::tree::GameBugCorrection = toml::from_str(&text).unwrap();
+            let owner_id = i64::from(skip);
+            annotation.insert(&db, "items", owner_id).unwrap();
+            let stored: bool = db
+                .query_row(
+                    "SELECT skip_description_check FROM game_bug_corrections WHERE owner_id = ?1",
+                    [owner_id],
+                    |row| row.get(0),
+                )
+                .unwrap();
+            assert_eq!(stored, skip);
+            let restored = db
+                .query_row(
+                    &format!(
+                        "SELECT {} FROM game_bug_corrections WHERE owner_id = ?1",
+                        crate::tree::GameBugCorrection::select_columns()
+                    ),
+                    [owner_id],
+                    crate::tree::GameBugCorrection::from_row,
+                )
+                .unwrap();
+            let exported = toml::to_string(&restored).unwrap();
+            assert_eq!(exported.contains("skip_description_check = true"), skip);
+            assert!(!exported.contains("skip_description_check = false"));
+            assert_eq!(exported, toml::to_string(&annotation).unwrap());
+        }
+        for invalid in ["2", "NULL"] {
+            assert!(db
+                .execute(&format!("UPDATE game_bug_corrections SET skip_description_check = {invalid}"), [])
+                .is_err());
+        }
+    }
+
+    #[test]
     fn declared_game_bug_corrections_are_inserted_with_the_record() {
         let db = Connection::open_in_memory().unwrap();
         db.execute_batch(ddo_model::ddl()).unwrap();

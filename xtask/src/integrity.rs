@@ -1020,7 +1020,73 @@ fn effects_named_like_identifiers(db: &Connection, _options: &IntegrityOptions) 
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
+#[derive(Default)]
+struct DescriptionCheckSkips {
+    by_line: BTreeMap<(String, i64, i64), BTreeMap<String, BTreeSet<i64>>>,
+    unused: BTreeMap<i64, Offender>,
+}
+
+fn description_check_skips(db: &Connection) -> Result<DescriptionCheckSkips> {
+    let mut statement = db.prepare(
+        "SELECT bug.id, bug.owner_id AS annotation_owner_id, identity.name, bug.kind, bug.field,
+            bug.qualifier, bug.reason, bug.url, bug.read, note.owner_kind, note.owner_id, note.link_sort_order
+         FROM game_bug_corrections bug
+         JOIN entity_identity identity ON identity.kind = bug.owner_kind AND identity.entity_id = bug.owner_id
+         LEFT JOIN note_lines note ON note.note_kind = 'game_bug' AND note.note_id = bug.id
+         WHERE bug.skip_description_check = 1 ORDER BY bug.id",
+    )?;
+    let records = statement
+        .query_map([], |row| {
+            let kind: String = row.get("kind")?;
+            let url: Option<String> = row.get("url")?;
+            Ok((
+                row.get::<_, i64>("id")?,
+                row.get::<_, i64>("annotation_owner_id")?,
+                row.get::<_, String>("name")?,
+                ddo_etl::tree::DdobuilderCorrection {
+                    kind: ddo_model::enums::CorrectionKind::parse(&kind).ok_or(rusqlite::Error::InvalidQuery)?,
+                    field: row.get("field")?,
+                    qualifier: row.get("qualifier")?,
+                    original_name: None,
+                    added_as_name: None,
+                    upstream: None,
+                    reason: row.get("reason")?,
+                    source: url.map_or(ddo_etl::AnnotationSource::InGame, ddo_etl::AnnotationSource::Page),
+                    read: row.get("read")?,
+                },
+                row.get::<_, Option<String>>("owner_kind")?,
+                row.get::<_, Option<i64>>("owner_id")?,
+                row.get::<_, Option<i64>>("link_sort_order")?,
+            ))
+        })?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    let mut skips = DescriptionCheckSkips::default();
+    if records.is_empty() {
+        return Ok(skips);
+    }
+    let groupings = ddo_etl::groupings::Groupings::from_database(db)?;
+    for (note_id, annotation_owner_id, name, note, owner_kind, owner_id, sort_order) in records {
+        let correction = ddo_etl::tree::correction_for_note(&note, &name)?;
+        let target =
+            correction.stat.as_deref().or(correction.effect.as_deref()).context("skip flag has no stat target")?;
+        let stats = groupings.expanded_stat_names(target)?;
+        skips.unused.entry(note_id).or_insert_with(|| Offender {
+            name,
+            id: Some(annotation_owner_id),
+            detail: format!("skip flag with nothing to skip: {} {}", note.field, note.qualifier),
+        });
+        if let (Some(kind), Some(owner), Some(order)) = (owner_kind, owner_id, sort_order) {
+            let line = skips.by_line.entry((kind, owner, order)).or_default();
+            for stat in stats {
+                line.entry(stat).or_default().insert(note_id);
+            }
+        }
+    }
+    Ok(skips)
+}
+
 fn effect_descriptions_without_their_amounts(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let mut skips = description_check_skips(db)?;
     let mut statement = db.prepare(
         "SELECT e.id, e.name, e.is_stat, e.verbose_name_template, bt.name
         FROM effects e LEFT JOIN bonus_types bt ON bt.id = e.home_bonus_type_id",
@@ -1053,7 +1119,7 @@ fn effect_descriptions_without_their_amounts(db: &Connection, _options: &Integri
             .map_err(|error| anyhow::anyhow!("rendering {table}: {error:?}"))?
         {
             for (sort_order, line) in lines {
-                let mut causes = served_amount_causes(&line, &percent_stats);
+                let mut amount_findings = served_amount_findings(&line, &percent_stats);
                 let home_type =
                     line["effect_id"].as_i64().and_then(|id| home_types.get(&id)).and_then(Option::as_deref);
                 let description = line["description"].as_str();
@@ -1065,12 +1131,25 @@ fn effect_descriptions_without_their_amounts(db: &Connection, _options: &Integri
                 } else {
                     EffectTextKind::EnchantmentLine
                 };
-                if line["bonuses"].as_array().into_iter().flatten().any(|bonus| {
-                    bonus["bonus_type"]
+                for bonus in line["bonuses"].as_array().into_iter().flatten() {
+                    if bonus["bonus_type"]
                         .as_str()
                         .is_some_and(|bonus_type| !served_bonus_type_is_stated(text, bonus_type, home_type, text_kind))
-                }) {
-                    causes.insert("type missing");
+                    {
+                        amount_findings.insert((bonus["stat"].as_str().map(str::to_string), "type missing"));
+                    }
+                }
+                let owner_kind = owner_column.strip_suffix("_id").context("effect owner column needs an _id suffix")?;
+                let line_skips = skips.by_line.get(&(owner_kind.to_string(), owner_id, sort_order));
+                let mut causes = BTreeSet::new();
+                for (stat, cause) in amount_findings {
+                    if let Some(notes) = stat.as_deref().and_then(|stat| line_skips.and_then(|skips| skips.get(stat))) {
+                        for note_id in notes {
+                            skips.unused.remove(note_id);
+                        }
+                    } else {
+                        causes.insert(cause);
+                    }
                 }
                 if causes.is_empty() {
                     continue;
@@ -1091,10 +1170,13 @@ fn effect_descriptions_without_their_amounts(db: &Connection, _options: &Integri
             }
         }
     }
-    Ok(Findings {
-        offenders: Some(offenders),
-        notes: cause_counts.into_iter().map(|(cause, count)| format!("{cause}: {count} links")).collect(),
-    })
+    let mut notes =
+        cause_counts.into_iter().map(|(cause, count)| format!("{cause}: {count} links")).collect::<Vec<_>>();
+    if !skips.unused.is_empty() {
+        notes.push(format!("skip flag with nothing to skip: {} records", skips.unused.len()));
+        offenders.extend(skips.unused.into_values());
+    }
+    Ok(Findings { offenders: Some(offenders), notes })
 }
 
 fn effect_templates_with_digits_without_amounts(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
@@ -1646,9 +1728,12 @@ fn explicit_bonus_type_is_stated(
     (accepts_type_name && contains_type(bonus_type)) || line_word.is_some_and(contains_type)
 }
 
-fn served_amount_causes(line: &serde_json::Value, percent_stats: &BTreeSet<String>) -> BTreeSet<&'static str> {
-    let mut causes = BTreeSet::new();
-    let Some(bonuses) = line["bonuses"].as_array().filter(|bonuses| !bonuses.is_empty()) else { return causes };
+fn served_amount_findings(
+    line: &serde_json::Value,
+    percent_stats: &BTreeSet<String>,
+) -> BTreeSet<(Option<String>, &'static str)> {
+    let mut findings = BTreeSet::new();
+    let Some(bonuses) = line["bonuses"].as_array().filter(|bonuses| !bonuses.is_empty()) else { return findings };
     let description = line["description"].as_str();
     let verbose_name = line["verbose_name"].as_str().unwrap_or_default();
     let text_tokens = amount_tokens(description.unwrap_or(verbose_name));
@@ -1656,13 +1741,14 @@ fn served_amount_causes(line: &serde_json::Value, percent_stats: &BTreeSet<Strin
         .iter()
         .filter_map(|bonus| {
             Some((
+                bonus["stat"].as_str().map(str::to_string),
                 bonus["value"].as_i64()?,
                 bonus["stat"].as_str().is_some_and(|stat| percent_stats.contains(stat)),
                 bonus["scale"].as_f64().is_some_and(|scale| scale != 1.0),
             ))
         })
         .collect::<Vec<_>>();
-    for (amount, percent, scaled) in &granted_amounts {
+    for (stat, amount, percent, scaled) in &granted_amounts {
         if text_tokens.iter().any(|token| token.matches_amount(*amount) && (!percent || token.percent)) {
             continue;
         }
@@ -1675,22 +1761,26 @@ fn served_amount_causes(line: &serde_json::Value, percent_stats: &BTreeSet<Strin
         } else {
             "description omits an amount or states a different one"
         };
-        causes.insert(cause);
+        findings.insert((stat.clone(), cause));
     }
     for token in amount_tokens(verbose_name).iter().filter(|token| token.is_amount_literal()) {
         if granted_amounts
             .iter()
-            .any(|(amount, percent, _)| token.matches_amount(*amount) && (!percent || token.percent))
+            .any(|(_, amount, percent, _)| token.matches_amount(*amount) && (!percent || token.percent))
         {
             continue;
         }
-        if granted_amounts.iter().any(|(amount, _, _)| token.matches_amount(*amount)) {
-            causes.insert("unit missing");
+        let matching =
+            granted_amounts.iter().filter(|(_, amount, _, _)| token.matches_amount(*amount)).collect::<Vec<_>>();
+        if matching.is_empty() {
+            findings.insert((None, "line claim that is not a granted amount"));
         } else {
-            causes.insert("line claim that is not a granted amount");
+            for (stat, _, _, _) in matching {
+                findings.insert((stat.clone(), "unit missing"));
+            }
         }
     }
-    causes
+    findings
 }
 
 fn effect_link_amount_counts(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
@@ -2571,16 +2661,19 @@ mod served_amount_tests {
         ];
         for (description, line, amounts, percent, passes) in examples {
             let percent_stats = if percent { BTreeSet::from(["Doublestrike".to_string()]) } else { BTreeSet::new() };
-            let causes = served_amount_causes(&line_with_bonuses(description, line, &amounts, 1.0), &percent_stats);
+            let causes = served_amount_findings(&line_with_bonuses(description, line, &amounts, 1.0), &percent_stats);
             assert_eq!(causes.is_empty(), passes, "{description:?}, {line}: {causes:?}");
         }
         let riposte = line_with_bonuses(Some("+10 bonus to AC and to Saves"), "Riposte +10", &[5], 0.5);
-        assert!(served_amount_causes(&riposte, &BTreeSet::new()).contains("scaled or rounded amount"));
+        assert!(served_amount_findings(&riposte, &BTreeSet::new())
+            .iter()
+            .any(|(_, cause)| *cause == "scaled or rounded amount"));
         let missing = line_with_bonuses(None, "Doublestrike", &[3], 1.0);
-        assert!(served_amount_causes(&missing, &BTreeSet::new())
-            .contains("description missing, and the line short as well"));
+        assert!(served_amount_findings(&missing, &BTreeSet::new())
+            .iter()
+            .any(|(_, cause)| *cause == "description missing, and the line short as well"));
         let empty = line_with_bonuses(None, "Flavor +99", &[], 1.0);
-        assert!(served_amount_causes(&empty, &BTreeSet::new()).is_empty());
+        assert!(served_amount_findings(&empty, &BTreeSet::new()).is_empty());
     }
 
     #[test]
@@ -2618,7 +2711,7 @@ mod served_amount_tests {
                 )
                 .unwrap();
                 std::fs::write(sets.join(format!("amount-probe-{index}.toml")), format!(
-                    "name = \"Amount Probe {index}\"\n[[tier]]\nequipped_count = 2\n[[tier.effect]]\neffect = \"Amount Group {index}\"\nvalue = 3\nbonus_type = \"Artifact\"\n"
+                    "name = \"Amount Probe {index}\"\n[[tier]]\nequipped_count = 2\n[[tier.effect]]\neffect = \"Amount Group {index}\"\nvalue = 3\nbonus_type = \"Artifact\"\n[[game_bug_correction]]\nkind = \"set_tier_bonus\"\nfield = \"value\"\nqualifier = \"equipped_count 2, Doublestrike / Artifact\"\nintended = 3\nreason = \"The tooltip states the intended amount.\"\nin_game = true\nread = \"2026-10-23\"\n"
                 )).unwrap();
             }
             let mut db = Connection::open_in_memory().unwrap();
@@ -2629,8 +2722,19 @@ mod served_amount_tests {
                 effect_descriptions_without_their_amounts(&db, &IntegrityOptions { allowed_empty_tables: Vec::new() })
                     .unwrap();
             db.trace_v2(TraceEventCodes::empty(), None);
-            assert_eq!(STATEMENTS.load(Ordering::SeqCst), 16, "{owner_count} owners");
+            assert_eq!(STATEMENTS.load(Ordering::SeqCst), 17, "{owner_count} owners");
             assert!(findings.offenders.unwrap().is_empty());
+            db.execute("UPDATE game_bug_corrections SET skip_description_check = 1", []).unwrap();
+            db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
+            STATEMENTS.store(0, Ordering::SeqCst);
+            let findings =
+                effect_descriptions_without_their_amounts(&db, &IntegrityOptions { allowed_empty_tables: Vec::new() })
+                    .unwrap();
+            db.trace_v2(TraceEventCodes::empty(), None);
+            assert_eq!(STATEMENTS.load(Ordering::SeqCst), 19, "{owner_count} flagged owners");
+            let stale = findings.offenders.unwrap();
+            assert_eq!(stale.len(), owner_count);
+            assert!(stale.iter().all(|finding| finding.detail.contains("skip flag with nothing to skip")));
             db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
             STATEMENTS.store(0, Ordering::SeqCst);
             let findings = effect_templates_without_their_placeholders(

@@ -565,6 +565,151 @@ fn served_type_check_requires_the_granted_type() {
 }
 
 #[test]
+fn description_skip_flags_only_suppress_their_target_stat() {
+    let mut failures = Vec::new();
+    for (flagged, target, description, missing_amount, stale_flag) in [
+        (true, "Strength", "+3 Strength and +4 Dexterity.", false, false),
+        (false, "Strength", "+3 Strength and +4 Dexterity.", true, false),
+        (true, "Strength", "+2 Strength and +4 Dexterity.", false, true),
+        (true, "Dexterity", "+3 Strength and +4 Dexterity.", true, true),
+    ] {
+        let scratch = tempfile::tempdir().unwrap();
+        let tree = scratch.path().join("data");
+        copy_fixture_tree(&tree);
+        std::fs::write(
+            tree.join("effects/reviewed-bonuses.toml"),
+            format!(
+                r#"name = "Reviewed Bonuses"
+verbose_name_template = "Reviewed Bonuses"
+description_template = {description:?}
+[[bonus]]
+target = "Strength"
+amount_from = 0
+constant = 2
+bonus_type = "Enhancement"
+scale = 1.0
+rounding = "down"
+[[bonus]]
+target = "Dexterity"
+amount_from = 0
+constant = 4
+bonus_type = "Enhancement"
+scale = 1.0
+rounding = "down"
+"#
+            ),
+        )
+        .unwrap();
+        let owner = tree.join("packs/shared/gear/alabaster-of-the-twelve.toml");
+        let original = std::fs::read_to_string(&owner).unwrap();
+        let flag = if flagged { "skip_description_check = true\n" } else { "" };
+        std::fs::write(
+            &owner,
+            format!(
+                r#"{original}
+[[effect]]
+name = "Reviewed Bonuses"
+[[game_bug_correction]]
+kind = "item_bonus"
+field = "value"
+qualifier = "{target} / Enhancement"
+intended = 3
+reason = "The tooltip states the intended bonus."
+in_game = true
+read = "2026-10-23"
+{flag}"#
+            ),
+        )
+        .unwrap();
+        let mut db = Connection::open_in_memory().unwrap();
+        ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("effect_descriptions_without_their_amounts").unwrap();
+        let missing = outcome.offenders.iter().any(|finding| {
+            finding.name == "Reviewed Bonuses"
+                && finding.detail.contains("description omits an amount or states a different one")
+        });
+        let stale = outcome.offenders.iter().any(|finding| {
+            finding.detail.contains("skip flag with nothing to skip") && finding.detail.contains(target)
+        });
+        if (missing, stale) != (missing_amount, stale_flag) {
+            failures.push(format!("{flagged} {target} {description}: expected ({missing_amount}, {stale_flag}), got ({missing}, {stale}): {outcome}"));
+        }
+        let template_finding = report
+            .outcome("effect_templates_without_their_placeholders")
+            .unwrap()
+            .offenders
+            .iter()
+            .any(|finding| finding.name == "Reviewed Bonuses" && finding.detail.contains("T6"));
+        assert_eq!(template_finding, description.contains("+3"), "8c is unaffected");
+    }
+    assert!(failures.is_empty(), "{}", failures.join("\n"));
+}
+
+#[test]
+fn a_group_description_skip_covers_both_lines_and_becomes_stale_once() {
+    let scratch = tempfile::tempdir().unwrap();
+    let tree = scratch.path().join("data");
+    copy_fixture_tree(&tree);
+    let owner = tree.join("packs/shared/augments/named/storms-bulwark.toml");
+    let original = std::fs::read_to_string(&owner).unwrap();
+    std::fs::write(
+        &owner,
+        format!(
+            r#"{original}
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 3
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 3
+[[game_bug_correction]]
+kind = "augment_bonus"
+field = "lines"
+qualifier = "Doublestrike and Doubleshot / Enhancement"
+intended = "Doublestrike and Doubleshot"
+reason = "The tooltip combines these bonuses."
+in_game = true
+read = "2026-10-23"
+skip_description_check = true
+"#
+        ),
+    )
+    .unwrap();
+    let stat = tree.join("effects/stats/doublestrike.toml");
+    let original_stat = std::fs::read_to_string(&stat).unwrap();
+    for (description, expected_stale) in [("Grants a combat bonus.", 0), ("Grants +{1}% Doublestrike.", 1)] {
+        std::fs::write(&stat, format!("{original_stat}\ndescription_template = {description:?}\n")).unwrap();
+        let mut db = Connection::open_in_memory().unwrap();
+        ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
+        let line_count: i64 =
+            db.query_row("SELECT COUNT(*) FROM note_lines WHERE note_kind = 'game_bug'", [], |row| row.get(0)).unwrap();
+        assert_eq!(line_count, 2);
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("effect_descriptions_without_their_amounts").unwrap();
+        let owner_id: i64 =
+            db.query_row("SELECT id FROM augments WHERE name = 'Storm''s Bulwark'", [], |row| row.get(0)).unwrap();
+        assert!(
+            !outcome
+                .offenders
+                .iter()
+                .any(|finding| finding.detail.contains(&format!("augment_effects owner {owner_id},"))),
+            "{outcome}"
+        );
+        let stale = outcome
+            .offenders
+            .iter()
+            .filter(|finding| {
+                finding.name == "Storm's Bulwark" && finding.detail.contains("skip flag with nothing to skip")
+            })
+            .count();
+        assert_eq!(stale, expected_stale, "{outcome}");
+    }
+}
+
+#[test]
 fn served_amount_check_distinguishes_restored_units_from_missing_units() {
     for (injected_sql, expected_cause) in [
         (

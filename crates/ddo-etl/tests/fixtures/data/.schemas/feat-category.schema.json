@@ -513,6 +513,12 @@
             "string",
             "null"
           ]
+        },
+        "verification_request": {
+          "items": {
+            "$ref": "#/$defs/VerificationRequest"
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -638,6 +644,9 @@
         "reason": {
           "type": "string"
         },
+        "skip_description_check": {
+          "type": "boolean"
+        },
         "url": {
           "minLength": 1,
           "type": "string"
@@ -660,6 +669,7 @@
         "field",
         "qualifier",
         "intended_value",
+        "skip_description_check",
         "reason",
         "url",
         "in_game",
@@ -963,6 +973,12 @@
             "$ref": "#/$defs/RequirementGroup"
           },
           "type": "array"
+        },
+        "verification_request": {
+          "items": {
+            "$ref": "#/$defs/VerificationRequest"
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -985,6 +1001,115 @@
         "incompatible"
       ],
       "x-table": "stances"
+    },
+    "VerificationRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "assumed": true,
+        "field": {
+          "type": "string"
+        },
+        "kind": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CorrectionKind"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "raised": {
+          "type": "string"
+        },
+        "source": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/VerificationRequestSource"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "question",
+        "assumed",
+        "raised"
+      ],
+      "type": "object",
+      "x-array": "verification_request",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "kind",
+        "field",
+        "qualifier",
+        "question",
+        "assumed_value",
+        "raised"
+      ],
+      "x-table": "verification_requests"
+    },
+    "VerificationRequestSource": {
+      "oneOf": [
+        {
+          "not": {
+            "required": [
+              "in_game"
+            ]
+          },
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "url"
+            ]
+          },
+          "required": [
+            "in_game"
+          ]
+        }
+      ],
+      "properties": {
+        "in_game": {
+          "const": true,
+          "type": "boolean"
+        },
+        "read": {
+          "type": "string"
+        },
+        "says": {
+          "type": "string"
+        },
+        "url": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "says",
+        "read"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "x-array": "source",
+      "x-columns": [
+        "request_id",
+        "sort_order",
+        "says",
+        "url",
+        "in_game",
+        "read"
+      ],
+      "x-table": "verification_request_sources"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",

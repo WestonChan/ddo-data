@@ -156,7 +156,7 @@ impl Groupings {
         self.effect_named(name).filter(|effect| effect.stat_ids.len() >= 2 && effect.is_link_valued())
     }
 
-    pub(crate) fn expanded_stat_names(&self, name: &str) -> Result<BTreeSet<String>> {
+    pub fn expanded_stat_names(&self, name: &str) -> Result<BTreeSet<String>> {
         let effect = self.effect_named(name).with_context(|| format!("unknown effect {name:?}"))?;
         if ddo_model::stats::Stat::by_name(name).is_some() {
             return Ok(BTreeSet::from([name.to_string()]));

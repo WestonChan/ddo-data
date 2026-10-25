@@ -302,6 +302,9 @@
         "reason": {
           "type": "string"
         },
+        "skip_description_check": {
+          "type": "boolean"
+        },
         "url": {
           "minLength": 1,
           "type": "string"
@@ -324,6 +327,7 @@
         "field",
         "qualifier",
         "intended_value",
+        "skip_description_check",
         "reason",
         "url",
         "in_game",

@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 43;
+pub const SCHEMA_VERSION: i64 = 44;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -125,6 +125,7 @@ CREATE TABLE IF NOT EXISTS game_bug_corrections (
     field TEXT NOT NULL,
     qualifier TEXT NOT NULL DEFAULT '',
     intended_value TEXT NOT NULL,
+    skip_description_check INTEGER NOT NULL DEFAULT 0 CHECK (skip_description_check IN (0, 1)),
     reason TEXT NOT NULL,
     url TEXT,
     in_game INTEGER NOT NULL DEFAULT 0 CHECK (in_game IN (0, 1)),

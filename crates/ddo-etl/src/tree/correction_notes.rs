@@ -48,7 +48,7 @@ fn quoted_name(text: &str, prefix: &str) -> Result<Option<String>> {
         .transpose()
 }
 
-fn correction_for_note(note: &DdobuilderCorrection, current_name: &str) -> Result<Correction> {
+pub fn correction_for_note(note: &DdobuilderCorrection, current_name: &str) -> Result<Correction> {
     let kind = note.kind;
     let mut correction = Correction {
         kind,
@@ -316,6 +316,11 @@ pub(super) fn validate_game_bug_corrections(
     for (owner_kind, owner_id, annotation, owner_name) in annotations {
         let path = layout.path(&owner_kind, owner_id)?;
         (|| -> Result<()> {
+            ensure!(
+                !annotation.skip_description_check
+                    || matches!(annotation.field.as_str(), "value" | "bonus_type" | "lines"),
+                "skip_description_check requires a served line (value, bonus_type or lines)"
+            );
             let target_owner_kind = annotation_owner_kind(annotation.kind);
             ensure!(owner_kind == target_owner_kind, "game-bug kind {} does not address {owner_kind}", annotation.kind);
             let owner_name = owner_name.context("game-bug target owner is absent")?;

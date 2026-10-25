@@ -13,6 +13,7 @@ mod records;
 mod annotations;
 mod build;
 mod correction_notes;
+pub use correction_notes::correction_for_note;
 mod crafting;
 mod export;
 mod file_types;

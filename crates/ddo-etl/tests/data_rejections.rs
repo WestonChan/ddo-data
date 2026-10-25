@@ -87,10 +87,14 @@ fn game_bug_targets_and_intended_values_are_checked() {
         })
     };
     assert_eq!(check(&format!("{present}{absent}")), "");
+    assert_eq!(check(&format!("{present}skip_description_check = true\n")), "");
+    let typed = annotation("bonus_type", "Charisma / Penalty", "'Enhancement'");
+    assert_eq!(check(&format!("{typed}skip_description_check = true\n")), "");
     for (notes, expected) in [
         (annotation("value", "Charisma / Penalty", "'two'"), "does not fit"),
         (annotation("value", "Intelligence / Penalty", "-2"), "target is absent"),
         (annotation("remove", "Charisma / Penalty", "-2"), "target is present"),
+        (format!("{absent}skip_description_check = true\n"), "skip_description_check requires a served line"),
         (format!("{present}{present}"), "UNIQUE"),
     ] {
         let error = check(&notes);
