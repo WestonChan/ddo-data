@@ -806,6 +806,60 @@ fn threat_composes_preserve_their_opposite_constants_and_fixed_types() {
     assert_eq!(home_type, None);
 }
 
+#[test]
+fn overfocus_composes_search_and_spot_with_its_constant_penalty() {
+    let db = build_item_buff_fixture(
+        include_str!("fixtures/effect-groups/Overfocus.Buffs.xml"),
+        &[("LegendaryDemonsArc.item", include_str!("fixtures/effect-groups/LegendaryDemonsArc.item"))],
+        &[("ItemImages/Weapon_Longbow/Longbow_9.png", include_bytes!("fixtures/effect-groups/icons/Longbow_9.png"))],
+    );
+    let definitions = db
+        .prepare(
+            "SELECT target.name,bt.name,b.amount_from,b.constant FROM effect_bonuses b
+             JOIN effects e ON e.id=b.effect_id JOIN effects target ON target.id=b.target_effect_id
+             JOIN bonus_types bt ON bt.id=b.bonus_type_id WHERE e.name='Overfocus'",
+        )
+        .unwrap()
+        .query_map([], |row| {
+            Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?, row.get::<_, i64>(3)?))
+        })
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(definitions, [("Search and Spot".into(), "Penalty".into(), 0, -10)]);
+    let bonuses = db
+        .prepare(
+            "SELECT stat.name,bt.name,b.amount FROM owner_bonuses b
+             JOIN items i ON i.id=b.owner_id JOIN effects stat ON stat.id=b.stat_id
+             JOIN effects e ON e.id=b.via_effect_id JOIN effects g ON g.id=b.group_effect_id
+             JOIN bonus_types bt ON bt.id=b.bonus_type_id
+             WHERE b.owner_kind='item' AND i.name='Legendary Demon''s Arc' AND e.name='Overfocus'
+             AND g.name='Search and Spot' ORDER BY stat.name",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?)))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(bonuses, [("Search".into(), "Penalty".into(), -10), ("Spot".into(), "Penalty".into(), -10)]);
+    let amounts: (Option<i64>, Option<i64>) = db
+        .query_row(
+            "SELECT l.value,l.value2 FROM item_effects l JOIN items i ON i.id=l.item_id
+             JOIN effects e ON e.id=l.effect_id WHERE i.name='Legendary Demon''s Arc' AND e.name='Overfocus'",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?)),
+        )
+        .unwrap();
+    assert_eq!(amounts, (None, None));
+    let description: String =
+        db.query_row("SELECT description_template FROM effects WHERE name='Overfocus'", [], |row| row.get(0)).unwrap();
+    assert_eq!(description, "This item helps you focus your attention, but it makes you somewhat oblivious to your surroundings, causing a -10 penalty to Search and Spot.");
+    let home_type: Option<i64> = db
+        .query_row("SELECT home_bonus_type_id FROM effects WHERE name='Search and Spot'", [], |row| row.get(0))
+        .unwrap();
+    assert_eq!(home_type, None);
+}
+
 fn assert_every_multi_stat_effect_has_one_link_or_an_exception(report: &BuildReport) {
     let exceptions = report
         .line_splits

@@ -9,12 +9,9 @@ bonus_type = "Penalty"
 constant = -10
 rounding = "down"
 scale = 1.0
-target = "Search"
+target = "Search and Spot"
 
-[[bonus]]
-amount_from = 0
-bonus_type = "Penalty"
-constant = -10
-rounding = "down"
-scale = 1.0
-target = "Spot"
+[[citation]]
+url = "https://ddowiki.com/page/Item:Legendary_Demon's_Arc"
+read = "2026-10-23"
+note = "The named effect grants Search and Spot at -10 Penalty; its additional prose is retained."
