@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 45;
+pub const SCHEMA_VERSION: i64 = 46;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -468,11 +468,16 @@ CREATE TABLE IF NOT EXISTS effect_aliases (
     effect_id INTEGER NOT NULL REFERENCES effects(id) ON DELETE CASCADE,
     name TEXT NOT NULL UNIQUE CHECK (TRIM(name) <> ''),
     slug TEXT UNIQUE CHECK (slug IS NULL OR TRIM(slug) <> ''),
-    verbose_name_template TEXT NOT NULL CHECK (TRIM(verbose_name_template) <> ''),
+    verbose_name_template TEXT CHECK (verbose_name_template IS NULL OR TRIM(verbose_name_template) <> ''),
     sort_order INTEGER NOT NULL,
     UNIQUE (effect_id, sort_order),
     UNIQUE (effect_id, name)
 );
+
+CREATE VIEW IF NOT EXISTS effect_names AS
+    SELECT e.id AS effect_id, e.name, e.slug, NULL AS alias_name, 0 AS alias_order FROM effects e
+    UNION ALL
+    SELECT a.effect_id, a.name, a.slug, a.name, a.sort_order + 1 FROM effect_aliases a;
 
 CREATE TABLE IF NOT EXISTS effect_bonuses (
     effect_id     INTEGER NOT NULL REFERENCES effects(id) ON DELETE CASCADE,

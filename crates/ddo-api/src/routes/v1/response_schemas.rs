@@ -666,6 +666,8 @@ pub(crate) struct EffectsPageResponseEffectsEntryBonusTypesEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct EffectsPageResponseEffectsEntry {
     pub(crate) aliases: Vec<String>,
+    #[schema(required = true, schema_with = schema_matched_alias)]
+    pub(crate) matched_alias: Option<String>,
     pub(crate) augment_count: i64,
     pub(crate) bonus_types: Vec<EffectsPageResponseEffectsEntryBonusTypesEntry>,
     pub(crate) detail_path: String,
@@ -675,6 +677,12 @@ pub(crate) struct EffectsPageResponseEffectsEntry {
     pub(crate) kind: String,
     pub(crate) name: String,
     pub(crate) set_count: i64,
+}
+
+fn schema_matched_alias() -> RefOr<Schema> {
+    described_schema::<Option<String>>(
+        "The alias whose name matched `q`, when the effect's own name did not; null otherwise.",
+    )
 }
 
 #[derive(utoipa::ToSchema)]
@@ -888,7 +896,7 @@ pub(crate) struct EffectTierDetail {
 pub(crate) struct EffectAlias {
     pub(crate) name: String,
     pub(crate) slug: Option<String>,
-    pub(crate) verbose_name_template: String,
+    pub(crate) verbose_name_template: Option<String>,
 }
 
 #[derive(utoipa::ToSchema)]

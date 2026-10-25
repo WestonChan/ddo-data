@@ -27,10 +27,87 @@ macro_rules! declare_query_parameters {
             const REPEATABLE_KEYS: &'static [&'static str] = &[$($($repeatable_key),*)?];
             const MATCHABLE_KEYS: &'static [&'static str] = &[$($($matchable_key),*)?];
             const SINGLE_VALUE_MATCH_KEYS: &'static [&'static str] = &[$($($single_value_match_key),*)?];
+            const EFFECT_NAME_FIELDS: &'static [(&'static str, bool)] = &[$((stringify!($field), <$field_type as crate::query::QueryParameterType>::IS_EFFECT_NAME)),*];
+        }
+
+        impl utoipa::IntoParams for $name {
+            fn into_params(_parameter_in_provider: impl Fn() -> Option<utoipa::openapi::path::ParameterIn>) -> Vec<utoipa::openapi::path::Parameter> {
+                crate::query::declared_name_parameters::<Self>()
+            }
         }
     };
 }
 pub(crate) use declare_query_parameters;
+
+#[derive(Default, Deserialize)]
+#[serde(transparent)]
+pub(crate) struct EffectName(pub(crate) String);
+
+impl From<String> for EffectName {
+    fn from(name: String) -> Self {
+        Self(name)
+    }
+}
+
+pub(crate) trait QueryParameterType {
+    const IS_EFFECT_NAME: bool = false;
+}
+
+impl QueryParameterType for String {}
+impl QueryParameterType for i64 {}
+impl QueryParameterType for bool {}
+impl QueryParameterType for EffectName {
+    const IS_EFFECT_NAME: bool = true;
+}
+impl<T: QueryParameterType> QueryParameterType for Option<T> {
+    const IS_EFFECT_NAME: bool = T::IS_EFFECT_NAME;
+}
+impl<T: QueryParameterType> QueryParameterType for Vec<T> {
+    const IS_EFFECT_NAME: bool = T::IS_EFFECT_NAME;
+}
+
+pub(crate) fn declared_name_parameters<T: QueryParameters>() -> Vec<Parameter> {
+    let mut parameters = Vec::new();
+    for &(name, is_effect_name) in T::EFFECT_NAME_FIELDS {
+        if is_effect_name {
+            let parameter = query_parameter::<Vec<String>>(
+                name,
+                "Repeat effect, ladder, stat or alias names, or effect and alias slugs; `Constitution:Insight` narrows by type.",
+            );
+            parameters.push(
+                ParameterBuilder::from(parameter)
+                    .style(Some(ParameterStyle::Form))
+                    .explode(Some(true))
+                    .extensions(Some([("x-effect-name", true)].into_iter().collect()))
+                    .build(),
+            );
+        }
+    }
+    for key in T::MATCHABLE_KEYS {
+        let mut parameter = query_parameter::<String>(
+            &format!("{key}_match"),
+            &format!("Use `all` to require every {}, or `any` by default.", key.replace('_', " ")),
+        );
+        parameter.extensions = Some([("x-match-key", *key)].into_iter().collect());
+        parameters.push(parameter);
+    }
+    parameters
+}
+
+pub(crate) struct EffectSlugParameters;
+
+impl IntoParams for EffectSlugParameters {
+    fn into_params(_parameter_in_provider: impl Fn() -> Option<ParameterIn>) -> Vec<Parameter> {
+        vec![ParameterBuilder::from(query_parameter::<String>(
+            "slug",
+            "Current effect slug or numeric id; alias slugs redirect to their canonical effect.",
+        ))
+        .parameter_in(ParameterIn::Path)
+        .required(Required::True)
+        .extensions(Some([("x-effect-name", true)].into_iter().collect()))
+        .build()]
+    }
+}
 
 declare_query_parameters! {
     pub(crate) struct ListQuery {
@@ -55,6 +132,7 @@ pub(crate) trait QueryParameters: DeserializeOwned {
     const REPEATABLE_KEYS: &'static [&'static str] = &[];
     const MATCHABLE_KEYS: &'static [&'static str] = &[];
     const SINGLE_VALUE_MATCH_KEYS: &'static [&'static str] = &[];
+    const EFFECT_NAME_FIELDS: &'static [(&'static str, bool)] = &[];
 }
 
 const REPEATED_VALUE_SEPARATOR: char = '\u{1F}';
@@ -129,18 +207,16 @@ fn query_from_pairs<T: QueryParameters>(pairs: Vec<(String, String)>) -> Result<
     Ok(query)
 }
 
-impl IntoParams for ListQuery {
-    fn into_params(_parameter_in_provider: impl Fn() -> Option<ParameterIn>) -> Vec<Parameter> {
-        vec![
-            query_parameter::<String>("q", "Case-insensitive name substring after trimming; blank applies no search."),
-            query_parameter::<i64>("limit", "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped"),
-            query_parameter::<i64>("offset", "Rows to skip; defaults to 0; negative values are clamped to 0"),
-            ParameterBuilder::from(query_parameter::<Vec<String>>("sort", SORT_DESCRIPTION))
-                .style(Some(ParameterStyle::Form))
-                .explode(Some(true))
-                .build(),
-        ]
-    }
+fn common_list_parameters() -> Vec<Parameter> {
+    vec![
+        query_parameter::<String>("q", "Case-insensitive name substring after trimming; blank applies no search."),
+        query_parameter::<i64>("limit", "Page size, 1 to 10000; defaults to 100; out-of-range values are clamped"),
+        query_parameter::<i64>("offset", "Rows to skip; defaults to 0; negative values are clamped to 0"),
+        ParameterBuilder::from(query_parameter::<Vec<String>>("sort", SORT_DESCRIPTION))
+            .style(Some(ParameterStyle::Form))
+            .explode(Some(true))
+            .build(),
+    ]
 }
 
 fn query_parameter<T: PartialSchema>(name: &str, description: &str) -> Parameter {
@@ -156,16 +232,41 @@ fn query_parameter<T: PartialSchema>(name: &str, description: &str) -> Parameter
 const SORT_DESCRIPTION: &str =
     "Repeat `sort` in priority order; prefix `-` for descending; nulls sort last; an invalid field returns 400";
 
+pub(crate) struct SearchParameters {
+    description: Option<&'static str>,
+    matches_effect_names: bool,
+}
+
+pub(crate) const EFFECT_NAME_SEARCH: SearchParameters =
+    SearchParameters { description: None, matches_effect_names: true };
+
+impl SearchParameters {
+    pub(crate) fn with_description(mut self, description: &'static str) -> Self {
+        self.description = Some(description);
+        self
+    }
+}
+
+impl From<Option<&'static str>> for SearchParameters {
+    fn from(description: Option<&'static str>) -> Self {
+        Self { description, matches_effect_names: false }
+    }
+}
+
 pub(crate) fn list_parameters(
     sortable_fields: &[(&str, &str)],
     sort_note: &str,
-    search_description: Option<&str>,
+    search: impl Into<SearchParameters>,
 ) -> Vec<Parameter> {
-    let mut parameters = ListQuery::into_params(|| Some(ParameterIn::Query));
+    let search = search.into();
+    let mut parameters = common_list_parameters();
     for parameter in &mut parameters {
         if parameter.name == "q" {
-            if let Some(description) = search_description {
+            if let Some(description) = search.description {
                 parameter.description = Some(description.to_string());
+            }
+            if search.matches_effect_names {
+                parameter.extensions = Some([("x-effect-name", true)].into_iter().collect());
             }
         } else if parameter.name == "sort" {
             parameter.description = Some(
@@ -214,13 +315,15 @@ fn pairs_with_repeated_keys_joined(pairs: Vec<(String, String)>, repeatable_keys
     joined_pairs
 }
 
-pub(crate) fn repeated_key_values<'de, D: Deserializer<'de>>(deserializer: D) -> Result<Vec<String>, D::Error> {
+pub(crate) fn repeated_key_values<'de, D: Deserializer<'de>, T: From<String>>(
+    deserializer: D,
+) -> Result<Vec<T>, D::Error> {
     let joined_values = String::deserialize(deserializer)?;
     Ok(joined_values
         .split(REPEATED_VALUE_SEPARATOR)
         .map(str::trim)
         .filter(|value| !value.is_empty())
-        .map(str::to_string)
+        .map(|text| T::from(text.to_string()))
         .collect())
 }
 

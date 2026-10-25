@@ -1,7 +1,7 @@
 {
   "api_commit": "9dd551f2c0b1e8c4a7d6f5e4b3a2c1d0e9f8a7b6",
   "counts": {
-    "augment_effects": 1912,
+    "augment_effects": 1908,
     "augments": 2250,
     "challenge_rewards": 160,
     "classes": 28,
@@ -10,8 +10,8 @@
     "crafting_recipes": 2956,
     "crafting_system_sources": 1074,
     "crafting_systems": 43,
-    "effect_bonuses": 734,
-    "effects": 2203,
+    "effect_bonuses": 732,
+    "effects": 2201,
     "enhancement_trees": 114,
     "enhancements": 3232,
     "event_items": 642,
@@ -50,8 +50,8 @@
     "wiki_quests": 4
   },
   "dataset": {
-    "built_at": "2026-10-25T01:52:02Z",
+    "built_at": "2026-10-25T08:49:24Z",
     "upstream_sha": "d1350a0c6ec396a65dc02680fa9801a14a79ebf3"
   },
-  "schema_version": 45
+  "schema_version": 46
 }

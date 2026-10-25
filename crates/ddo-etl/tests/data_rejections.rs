@@ -67,6 +67,30 @@ fn structural_rejections_fail_the_data_build_naming_their_file_once() {
 }
 
 #[test]
+fn search_only_aliases_build_but_cannot_be_chosen_by_links() {
+    for chosen in [false, true] {
+        let error = fixture::data_build_error(|root| {
+            let path = root.join("effects/stats/spot.toml");
+            let original = std::fs::read_to_string(&path).unwrap();
+            std::fs::write(path, format!("{original}\n[[alias]]\nname = 'Awareness'\n")).unwrap();
+            if chosen {
+                let path = root.join(SAGA_ITEM);
+                let original = std::fs::read_to_string(&path).unwrap();
+                std::fs::write(path, format!("{original}\n[[effect]]\nname = 'Spot'\nalias = 'Awareness'\nbonus_type = 'Competence'\nvalue = 3\n")).unwrap();
+            }
+        });
+        if chosen {
+            assert!(
+                error.contains(SAGA_ITEM) && error.contains("Awareness") && error.contains("has no line template"),
+                "{error}"
+            );
+        } else {
+            assert_eq!(error, "");
+        }
+    }
+}
+
+#[test]
 fn repeated_alias_names_identify_both_effects() {
     let error = fixture::data_build_error(|root| {
         for stat in ["search", "spot"] {

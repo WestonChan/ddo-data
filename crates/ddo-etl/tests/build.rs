@@ -1401,6 +1401,23 @@ fn routed_buff_chooses_its_source_family_alias() {
 }
 
 #[test]
+fn search_only_aliases_do_not_choose_a_buff_line() {
+    let canonical = fixture::database(|root| {
+        let path = root.join("effects/stat-groups/charisma-skills.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{original}\n[[alias]]\nname = 'Charisma Skills - Exceptional Bonus'\n")).unwrap();
+    });
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let db = build_wrapper_fixture(
+        &groupings,
+        include_str!("fixtures/effect-groups/CharismaSkills.item"),
+        include_str!("fixtures/effect-groups/CharismaSkills.Buffs.xml"),
+    );
+    let choice: Option<String> = db.query_row("SELECT l.alias FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name='Pink and Green Ioun Stone (unsuppressed)' AND e.name='Charisma Skills'", [], |row| row.get(0)).unwrap();
+    assert_eq!(choice, None);
+}
+
+#[test]
 fn strength_skill_wrappers_share_a_group_without_sharing_defaults() {
     let item_xml = format!(
         "{}{}",

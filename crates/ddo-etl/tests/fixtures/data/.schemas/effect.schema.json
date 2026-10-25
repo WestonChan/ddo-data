@@ -172,12 +172,14 @@
           "type": "string"
         },
         "verbose_name_template": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         }
       },
       "required": [
-        "name",
-        "verbose_name_template"
+        "name"
       ],
       "type": "object",
       "x-columns": [

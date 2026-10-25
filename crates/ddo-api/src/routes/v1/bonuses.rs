@@ -1,10 +1,14 @@
 use crate::db::{
-    clamped_page, effects_via_with_link_order, json_row, json_rows, notes_for_owners, paged_query, paged_table_json,
-    ListPage, TableListSource, WhereClause,
+    clamped_page, effects_via_with_link_order, json_row, json_rows, like_escaped_text, notes_for_owners, paged_query,
+    paged_table_json, ListPage, TableListSource, WhereClause,
 };
+use crate::effect_names::{effect_name_search_sql, matched_alias_sql};
 use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
-use crate::query::{declare_list_parameters, declare_query_parameters, ApiFilterQuery, ApiQuery};
+use crate::query::{
+    declare_list_parameters, declare_query_parameters, ApiFilterQuery, ApiQuery, EffectSlugParameters,
+    EFFECT_NAME_SEARCH,
+};
 use crate::state::AppState;
 use axum::extract::State;
 use axum::Json;
@@ -75,6 +79,7 @@ const EFFECT_TYPES_SQL: &str = "
 
 const EFFECTS_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
+    ("matched_alias", "matched_alias"),
     ("slug", "listed.name"),
     ("id", "listed.id"),
     ("kind", "listed.kind"),
@@ -88,7 +93,7 @@ declare_list_parameters!(
     EffectsParameters,
     EFFECTS_SORT_FIELDS,
     "",
-    Some("Case-insensitive own-name, alias or granted-stat substring; without sort, own-name matches rank before alias and stat matches.")
+    EFFECT_NAME_SEARCH.with_description("Case-insensitive own-name, alias or granted-stat substring; without sort, own-name matches rank before alias and stat matches.")
 );
 
 #[utoipa::path(
@@ -118,27 +123,31 @@ async fn effects(
                 where_clause.add_bound_condition("kind = ?", kind.clone());
             }
             let mut default_order = "listed.name, listed.kind".to_string();
+            let mut matched_alias = matched_alias_sql("listed.id", None);
             if let Some(search_text) = query.q.as_deref().map(str::trim).filter(|text| !text.is_empty()) {
+                let own_name = effect_name_search_sql("listed.id", "?");
+                let target_name = effect_name_search_sql("s.id", "?");
+                let member_name = effect_name_search_sql("ms.id", "?");
                 let search_placeholder = where_clause.add_bound_condition(
-                    "(instr(lower(listed.name), lower(?)) > 0 OR
-                      EXISTS (SELECT 1 FROM effect_aliases a WHERE a.effect_id = listed.id AND a.slug IS NOT NULL AND instr(lower(a.name), lower(?)) > 0) OR
+                    &format!("({own_name} OR
                       (listed.kind IN ('effect', 'group') AND EXISTS (
                           SELECT 1 FROM effect_bonuses eb JOIN effects s ON s.id = eb.target_effect_id
-                           WHERE eb.effect_id = listed.id AND (instr(lower(s.name), lower(?)) > 0 OR
+                           WHERE eb.effect_id = listed.id AND ({target_name} OR
                              EXISTS (SELECT 1 FROM effect_bonuses member JOIN effects ms ON ms.id = member.target_effect_id
-                                      WHERE member.effect_id = s.id AND instr(lower(ms.name), lower(?)) > 0)))))",
-                    search_text.to_string(),
+                                      WHERE member.effect_id = s.id AND {member_name})))))"),
+                    like_escaped_text(search_text),
                 );
+                matched_alias = matched_alias_sql("listed.id", Some(&search_placeholder));
                 default_order = format!(
-                    "CASE WHEN lower(listed.name) = lower({search_placeholder}) THEN 0
-                          WHEN instr(lower(listed.name), lower({search_placeholder})) = 1 THEN 1
-                          WHEN instr(lower(listed.name), lower({search_placeholder})) > 0 THEN 2
+                    "CASE WHEN listed.name LIKE {search_placeholder} ESCAPE '\\' THEN 0
+                          WHEN listed.name LIKE {search_placeholder} || '%' ESCAPE '\\' THEN 1
+                          WHEN listed.name LIKE '%' || {search_placeholder} || '%' ESCAPE '\\' THEN 2
                           ELSE 3 END, listed.name, listed.kind"
                 );
             }
             let mut page = paged_query(
                 db,
-                "*",
+                &format!("listed.*, {matched_alias} AS matched_alias"),
                 &format!("({EFFECT_VOCABULARY_SQL}) listed"),
                 &query,
                 &default_order,
@@ -403,7 +412,7 @@ fn carrier_pages(
 #[utoipa::path(
     get, path = "/v1/effects/{slug}", tag = "bonuses", summary = "Get an effect",
     description = "Returns an effect, group or stat with its aliases, bonus and damage rules, tier group and paged carriers, one row per owner with its lines.",
-    params(("slug" = String, Path, description = "Current or alias slug, or numeric id; aliases redirect to the current slug."),
+    params(EffectSlugParameters,
         ("items_limit" = Option<i64>, Query, description = "Maximum items in this page."),
         ("items_offset" = Option<i64>, Query, description = "Items to skip before this page."),
         ("augments_limit" = Option<i64>, Query, description = "Maximum augments in this page."),

@@ -1334,7 +1334,8 @@ fn effect_templates_without_their_placeholders(db: &Connection, _options: &Integ
     let mut statement = db.prepare(&format!(
         "WITH links AS ({alias_links}), counts AS (SELECT effect_id, alias, COUNT(*) AS link_count FROM links GROUP BY effect_id, alias)
          SELECT a.effect_id, a.name, a.verbose_name_template, COALESCE(c.link_count, 0)
-           FROM effect_aliases a LEFT JOIN counts c ON c.effect_id = a.effect_id AND c.alias = a.name ORDER BY a.name"
+           FROM effect_aliases a LEFT JOIN counts c ON c.effect_id = a.effect_id AND c.alias = a.name
+          WHERE a.verbose_name_template IS NOT NULL ORDER BY a.name"
     ))?;
     for row in statement.query_map([], |row| {
         Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?, row.get::<_, i64>(3)?))

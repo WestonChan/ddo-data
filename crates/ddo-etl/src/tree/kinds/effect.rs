@@ -13,7 +13,7 @@ database_record! {
         keys { effect_id: i64, sort_order: i64, slug: Option<&str> }
         fields {
             name: String => name,
-            verbose_name_template: String => verbose_name_template,
+            verbose_name_template: Option<String> => verbose_name_template,
         }
     }
 }
@@ -31,19 +31,29 @@ impl EffectAlias {
                    FROM item_augment_slot_option_effects l
                    JOIN item_augment_slot_options o ON o.id = l.option_id
              )
-             SELECT l.owner_kind, l.owner_id, e.name, l.alias
+             SELECT l.owner_kind, l.owner_id, e.name, l.alias, a.name IS NOT NULL
                FROM links l JOIN effects e ON e.id = l.effect_id
                LEFT JOIN effect_aliases a ON a.effect_id = l.effect_id AND a.name = l.alias
-              WHERE l.alias IS NOT NULL AND a.name IS NULL
+              WHERE l.alias IS NOT NULL AND (a.name IS NULL OR a.verbose_name_template IS NULL)
               ORDER BY l.owner_kind, l.owner_id, e.name, l.alias",
         )?;
         let mut errors = Vec::new();
         for row in statement.query_map([], |row| {
-            Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?, row.get::<_, String>(2)?, row.get::<_, String>(3)?))
+            Ok((
+                row.get::<_, String>(0)?,
+                row.get::<_, i64>(1)?,
+                row.get::<_, String>(2)?,
+                row.get::<_, String>(3)?,
+                row.get::<_, bool>(4)?,
+            ))
         })? {
-            let (kind, id, effect, alias) = row?;
+            let (kind, id, effect, alias, exists) = row?;
             let path = locations.get(&(kind.as_str(), id)).context("alias link owner has no file location")?;
-            errors.push(format!("{}: effect {effect:?} has no alias {alias:?}", path.display()));
+            errors.push(if exists {
+                format!("{}: effect {effect:?} alias {alias:?} has no line template", path.display())
+            } else {
+                format!("{}: effect {effect:?} has no alias {alias:?}", path.display())
+            });
         }
         ensure!(errors.is_empty(), "data validation failed:\n{}", errors.join("\n"));
         Ok(())
@@ -72,7 +82,7 @@ impl EffectAlias {
                     row.get::<_, i64>(0)?,
                     row.get::<_, String>(1)?,
                     row.get::<_, Option<String>>(2)?,
-                    row.get::<_, String>(3)?,
+                    row.get::<_, Option<String>>(3)?,
                     row.get::<_, String>(4)?,
                     row.get::<_, Option<String>>(5)?,
                     row.get::<_, Option<bool>>(6)?,
@@ -100,13 +110,15 @@ impl EffectAlias {
                 ensure!(!redirected, "effect {owner:?} alias {name:?} slug {alias_slug:?} collides with a redirect");
                 ensure!(!retired, "effect {owner:?} alias {name:?} slug {alias_slug:?} collides with a retired slug");
             }
-            crate::build::validate_templates(
-                &name,
-                &template,
-                effect.description_template.as_deref(),
-                crate::build::amount_count(&effect.verbose_name_template, effect.description_template.as_deref()),
-            )
-            .with_context(|| format!("effect {owner:?} alias {name:?}"))?;
+            if let Some(template) = template {
+                crate::build::validate_templates(
+                    &name,
+                    &template,
+                    effect.description_template.as_deref(),
+                    crate::build::amount_count(&effect.verbose_name_template, effect.description_template.as_deref()),
+                )
+                .with_context(|| format!("effect {owner:?} alias {name:?}"))?;
+            }
         }
         Ok(())
     }
@@ -330,7 +342,7 @@ mod tests {
             file.write_effect(&db, Path::new("effects/test.toml"), id, &identity).unwrap();
             let alias = EffectAlias {
                 name: format!("Example Alias {index}"),
-                verbose_name_template: format!("Example Alias {index}"),
+                verbose_name_template: Some(format!("Example Alias {index}")),
             };
             alias.insert(&db, id, 0, Some(&super::super::super::slug(&alias.name))).unwrap();
             if index != 0 && index != 49 {

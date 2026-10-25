@@ -742,7 +742,7 @@ impl<'a> EffectCache<'a> {
             .effect_named(&self.family(family_id)?.name)?
             .aliases
             .iter()
-            .find(|alias| alias.name == name)
+            .find(|alias| alias.name == name && alias.verbose_name_template.is_some())
             .map(|alias| alias.name.as_str())
     }
 

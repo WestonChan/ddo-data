@@ -1,9 +1,12 @@
 mod records;
 
 use crate::db::{convert_to_booleans, like_escaped_text, paged_query, paged_table_json, TableListSource, WhereClause};
+use crate::effect_names::{effect_name_search_sql, resolve_effect_name};
 use crate::entity_slugs::{resolve_entity_slug, EntityPath};
 use crate::error::ApiError;
-use crate::query::{declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery};
+use crate::query::{
+    declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery, EffectName, EFFECT_NAME_SEARCH,
+};
 use crate::state::AppState;
 use axum::extract::State;
 use axum::Json;
@@ -49,7 +52,7 @@ declare_query_parameters! {
         pub saga: Vec<String>,
         pub saga_match: Option<String>,
         #[serde(default, deserialize_with = "repeated_key_values")]
-        pub bonus: Vec<String>,
+        pub bonus: Vec<EffectName>,
         pub bonus_match: Option<String>,
         pub include_set_bonuses: Option<bool>,
         pub include_legacy: Option<bool>,
@@ -123,8 +126,8 @@ declare_list_parameters!(
     ItemsParameters,
     ITEMS_SORT_FIELDS,
     "",
-    Some(
-        "Case-insensitive item or effect-alias substring, or exact slot, category or pack name; own names rank first without sort."
+    EFFECT_NAME_SEARCH.with_description(
+        "Case-insensitive item or effect-name substring, including aliases, or exact slot, category or pack name; own names rank first without sort."
     )
 );
 
@@ -136,6 +139,7 @@ declare_list_parameters!(
     description = "Lists equipment matching the declared filters; `view=full` returns complete item details.",
     params(
         ItemsParameters,
+        ItemFilters,
         ("slot" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat equipment slot names from /v1/equipment-slots to match any."),
         ("slot_match" = Option<String>, Query, description = "Unsupported for a single-slot item; this parameter returns 400."),
         ("category" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat Armor, Shield, Weapon, Jewelry or Clothing to match any."),
@@ -143,19 +147,12 @@ declare_list_parameters!(
         ("min_level" = Option<i64>, Query, description = "Minimum item level to include."),
         ("max_level" = Option<i64>, Query, description = "Maximum item level to include."),
         ("pack" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat adventure pack names reached through item sources."),
-        ("pack_match" = Option<String>, Query, description = "Use `all` to require every named pack, or `any` by default."),
         ("set" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat set names from /v1/sets to match member items."),
-        ("set_match" = Option<String>, Query, description = "Use `all` to require every named set, or `any` by default."),
         ("raid" = Option<bool>, Query, description = "Use true to keep items from raid quests."),
         ("rare" = Option<bool>, Query, description = "Use true to keep rare loot from quests or packs."),
         ("quest" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat quest slugs or numeric ids from /v1/quests to match their item drops."),
-        ("quest_match" = Option<String>, Query, description = "Use `all` to require every quest, or `any` by default."),
         ("quest_chain" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat quest chain slugs or numeric ids to match end rewards."),
-        ("quest_chain_match" = Option<String>, Query, description = "Use `all` to require every quest chain, or `any` by default."),
         ("saga" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat saga slugs or numeric ids to match end rewards."),
-        ("saga_match" = Option<String>, Query, description = "Use `all` to require every saga, or `any` by default."),
-        ("bonus" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat effect, ladder or stat names, or alias names or slugs; `Constitution:Insight` narrows by type."),
-        ("bonus_match" = Option<String>, Query, description = "Use `all` to require every bonus, or `any` by default."),
         ("include_set_bonuses" = Option<bool>, Query, description = "Use true to match effects through the item's set tiers too."),
         ("include_legacy" = Option<bool>, Query, description = "Use true to include legacy item versions in the list."),
         ("view" = Option<String>, Query, description = "Use `summary` (default) for compact rows or `full` for detail records; full pages cap at 50 rows.", example = "full"),
@@ -197,7 +194,7 @@ async fn items(
             let mut default_order = "i.name".to_string();
             if let Some(search_text) = query.q.as_deref().map(str::trim).filter(|q| !q.is_empty()) {
                 let search_placeholder =
-                    where_clause.add_bound_condition(ITEMS_MATCHING_SEARCH_TEXT_SQL, like_escaped_text(search_text));
+                    where_clause.add_bound_condition(&items_matching_search_text_sql(), like_escaped_text(search_text));
                 default_order = format!(
                     "CASE WHEN i.name LIKE {search_placeholder} ESCAPE '\\' THEN 0 \
                           WHEN i.name LIKE {search_placeholder} || '%' ESCAPE '\\' THEN 1 ELSE 2 END, i.name"
@@ -253,7 +250,7 @@ async fn items(
                 &entity_filter_ids(db, EntityKind::Saga, "saga", &filters.saga)?, filters.saga_match.as_deref(),
             );
             let bonus_conditions = filters.bonus.iter().map(|name| {
-                bonus_match_sql(db, name, filters.include_set_bonuses == Some(true))
+                bonus_match_sql(db, &name.0, filters.include_set_bonuses == Some(true))
             }).collect::<Result<Vec<_>, _>>()?;
             if !bonus_conditions.is_empty() {
                 let separator = if filters.bonus_match.as_deref() == Some("all") { " AND " } else { " OR " };
@@ -288,20 +285,31 @@ async fn items(
         .await
 }
 
-const ITEMS_MATCHING_SEARCH_TEXT_SQL: &str = "(i.name LIKE '%' || ? || '%' ESCAPE '\\' \
+fn items_matching_search_text_sql() -> String {
+    let effect_names = effect_name_search_sql("linked.effect_id", "?");
+    format!(
+        "(i.name LIKE '%' || ? || '%' ESCAPE '\\' \
      OR es.name LIKE ? ESCAPE '\\' OR i.item_category LIKE ? ESCAPE '\\' \
-     OR EXISTS (SELECT 1 FROM item_effects linked JOIN effect_aliases a ON a.effect_id = linked.effect_id \
-                WHERE linked.item_id = i.id AND a.slug IS NOT NULL AND a.name LIKE '%' || ? || '%' ESCAPE '\\') \
+     OR EXISTS (SELECT 1 FROM item_effects linked \
+                WHERE linked.item_id = i.id AND {effect_names}) \
      OR i.id IN (SELECT packs.item_id FROM loot_adventure_packs packs \
-                 JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE ap.name LIKE ? ESCAPE '\\'))";
+                 JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE ap.name LIKE ? ESCAPE '\\'))"
+    )
+}
 
 fn bonus_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Result<String, ApiError> {
     use rusqlite::OptionalExtension;
 
     let (stat_name, type_name) = name.split_once(':').map_or((name, None), |(stat, kind)| (stat, Some(kind)));
-    let stat_id = db
-        .query_row("SELECT e.id FROM effects e WHERE e.is_stat = 1 AND (e.name = ?1 OR EXISTS (SELECT 1 FROM effect_aliases a WHERE a.effect_id = e.id AND a.slug IS NOT NULL AND (a.name = ?1 OR a.slug = ?1)))", [stat_name], |row| row.get::<_, i64>(0))
-        .optional()?;
+    let resolved = resolve_effect_name(db, stat_name)?;
+    let (stat_id, group_id) = match &resolved {
+        Some(effect) => db.query_row(
+            "SELECT CASE WHEN is_stat THEN id END, CASE WHEN is_group THEN id END FROM effects WHERE id = ?1",
+            [effect.effect_id],
+            |row| Ok((row.get::<_, Option<i64>>(0)?, row.get::<_, Option<i64>>(1)?)),
+        )?,
+        None => (None, None),
+    };
     let type_id = match type_name {
         Some(type_name) => {
             if stat_id.is_none() {
@@ -316,17 +324,18 @@ fn bonus_match_sql(db: &Connection, name: &str, include_set_bonuses: bool) -> Re
         None => None,
     };
     let family_ids = if type_name.is_none() {
-        let mut statement = db.prepare_cached("SELECT e.id FROM effects e LEFT JOIN effect_tier_groups tg ON tg.id = e.tier_group_id WHERE e.name = ?1 OR tg.name = ?1 OR EXISTS (SELECT 1 FROM effect_aliases a WHERE a.effect_id = e.id AND a.slug IS NOT NULL AND (a.name = ?1 OR a.slug = ?1))")?;
-        let ids = statement.query_map([name], |row| row.get::<_, i64>(0))?.collect::<Result<Vec<_>, _>>()?;
+        let mut statement = db.prepare_cached(
+            "SELECT e.id FROM effects e JOIN effect_tier_groups tg ON tg.id = e.tier_group_id WHERE tg.name = ?1",
+        )?;
+        let mut ids = statement.query_map([name], |row| row.get::<_, i64>(0))?.collect::<Result<Vec<_>, _>>()?;
+        if let Some(effect) = resolved {
+            ids.push(effect.effect_id);
+        }
+        ids.sort_unstable();
+        ids.dedup();
         ids
     } else {
         Vec::new()
-    };
-    let group_id = if type_name.is_none() {
-        db.query_row("SELECT e.id FROM effects e WHERE e.is_group = 1 AND (e.name = ?1 OR EXISTS (SELECT 1 FROM effect_aliases a WHERE a.effect_id = e.id AND a.slug IS NOT NULL AND (a.name = ?1 OR a.slug = ?1)))", [name], |row| row.get::<_, i64>(0))
-            .optional()?
-    } else {
-        None
     };
     if stat_id.is_none() && family_ids.is_empty() {
         return Err(ApiError::BadRequest(format!("unknown bonus {name:?}")));

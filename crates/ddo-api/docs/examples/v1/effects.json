@@ -21,6 +21,7 @@
       "id": 7052017135819808,
       "item_count": 50,
       "kind": "stat",
+      "matched_alias": null,
       "name": "Acid Absorption",
       "set_count": 2,
       "slug": "acid-absorption"
@@ -38,6 +39,7 @@
       "id": 6046083909513009,
       "item_count": 6,
       "kind": "stat",
+      "matched_alias": null,
       "name": "Alignment Absorption",
       "set_count": 0,
       "slug": "alignment-absorption"
@@ -59,6 +61,7 @@
       "id": 8523208263183366,
       "item_count": 24,
       "kind": "stat",
+      "matched_alias": null,
       "name": "Chaos Absorption",
       "set_count": 0,
       "slug": "chaos-absorption"

@@ -17,7 +17,7 @@ pub struct GroupingBonus {
 pub struct GroupingAlias {
     pub name: String,
     pub slug: Option<String>,
-    pub verbose_name_template: String,
+    pub verbose_name_template: Option<String>,
 }
 
 #[derive(Debug, Clone)]

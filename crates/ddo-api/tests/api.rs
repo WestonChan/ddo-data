@@ -169,6 +169,153 @@ async fn get_list_rows(path: &str) -> (StatusCode, axum::http::HeaderMap, Value)
 }
 
 #[tokio::test]
+async fn effect_name_flags_cover_filters_and_exempt_declared_match_controls() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    assert!(unflagged_effect_name_parameters(&spec).is_empty(), "{:?}", unflagged_effect_name_parameters(&spec));
+    let parameters = spec["paths"]["/v1/items"]["get"]["parameters"].as_array().unwrap();
+    let control = parameters.iter().find(|parameter| parameter["name"] == "bonus_match").unwrap();
+    assert_eq!(control["x-match-key"], "bonus");
+    assert_ne!(control["x-effect-name"], true);
+    let mut injected = spec.clone();
+    let mut parameter = parameters.iter().find(|parameter| parameter["name"] == "bonus").unwrap().clone();
+    parameter["name"] = Value::String("bonus_extra".into());
+    parameter.as_object_mut().unwrap().remove("x-effect-name");
+    injected["paths"]["/v1/items"]["get"]["parameters"].as_array_mut().unwrap().push(parameter);
+    assert_eq!(unflagged_effect_name_parameters(&injected), ["/v1/items: bonus_extra"]);
+}
+
+fn unflagged_effect_name_parameters(spec: &Value) -> Vec<String> {
+    let mut missing = Vec::new();
+    for (path, route) in spec["paths"].as_object().unwrap() {
+        for parameter in route["get"]["parameters"].as_array().into_iter().flatten() {
+            let name = parameter["name"].as_str().unwrap();
+            let is_match_control = parameter["x-match-key"].as_str().is_some_and(|key| name == format!("{key}_match"));
+            if (name == "bonus" || name.starts_with("bonus_"))
+                && !is_match_control
+                && parameter["x-effect-name"] != true
+            {
+                missing.push(format!("{path}: {name}"));
+            }
+        }
+    }
+    missing
+}
+
+fn effect_name_fixture_state() -> AppState {
+    static PATH: OnceLock<PathBuf> = OnceLock::new();
+    AppState::open(PATH.get_or_init(|| {
+        fixture_db_path_with_data_edits("effect-name-contract", |root| {
+            let group = include_str!(
+                "../../ddo-etl/tests/fixtures/effect-groups/data/effects/stat-groups/strength-skills.toml"
+            );
+            std::fs::write(
+                root.join("effects/stat-groups/strength-skills.toml"),
+                format!("{group}\n[[alias]]\nname = 'Mighty Athletics'\n"),
+            )
+            .unwrap();
+            for relative in
+                ["packs/shared/gear/alabaster-of-the-twelve.toml", "packs/free-to-play/gear/acrobats-ring.toml"]
+            {
+                let path = root.join(relative);
+                let original = std::fs::read_to_string(&path).unwrap();
+                std::fs::write(
+                    path,
+                    format!(
+                        "{original}\n[[effect]]\nname = 'Strength Skills'\nbonus_type = 'Exceptional'\nvalue = 3\n"
+                    ),
+                )
+                .unwrap();
+            }
+        })
+    }))
+    .unwrap()
+}
+
+fn remove_matched_alias(value: &mut Value) {
+    match value {
+        Value::Object(fields) => {
+            fields.remove("matched_alias");
+            for field in fields.values_mut() {
+                remove_matched_alias(field);
+            }
+        }
+        Value::Array(rows) => {
+            for row in rows {
+                remove_matched_alias(row);
+            }
+        }
+        _ => {}
+    }
+}
+
+#[tokio::test]
+async fn every_declared_effect_name_parameter_resolves_aliases() {
+    let state = effect_name_fixture_state();
+    let (_, _, spec) = get_from(state.clone(), "/v1/openapi.json").await;
+    assert!(unflagged_effect_name_parameters(&spec).is_empty());
+    let mut checked = Vec::new();
+    for (path, route) in spec["paths"].as_object().unwrap() {
+        for parameter in route["get"]["parameters"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .filter(|parameter| parameter["x-effect-name"] == true)
+        {
+            let name = parameter["name"].as_str().unwrap();
+            checked.push(format!("{path}: {name}"));
+            if parameter["in"] == "path" {
+                let alias_path = path.replace(&format!("{{{name}}}"), "mighty-skills-bonus");
+                let (status, headers, _) = get_from(state.clone(), &alias_path).await;
+                assert_eq!(status, StatusCode::PERMANENT_REDIRECT, "{alias_path}");
+                assert_eq!(headers[header::LOCATION], path.replace(&format!("{{{name}}}"), "strength-skills"));
+            } else {
+                let mut responses = Vec::new();
+                for text in ["Strength Skills", "Mighty Skills Bonus", "Mighty Athletics"] {
+                    let query = serde_urlencoded::to_string([(name, text), ("limit", "10000")]).unwrap();
+                    let (status, _, mut response) = get_from(state.clone(), &format!("{path}?{query}")).await;
+                    assert_eq!(status, StatusCode::OK, "{path}: {response}");
+                    assert!(response["total"].as_u64().unwrap() > 0, "{path}: {response}");
+                    remove_matched_alias(&mut response);
+                    responses.push(response);
+                }
+                for response in &responses[1..] {
+                    assert_eq!(&responses[0], response, "{path}: {name}");
+                }
+            }
+        }
+    }
+    assert!(!checked.is_empty());
+}
+
+#[tokio::test]
+async fn effect_search_reports_only_the_first_matching_alias() {
+    let state = effect_name_fixture_state();
+    for (search, expected) in [
+        (Some("mighty"), Some("Mighty Skills Bonus")),
+        (Some("athletics"), Some("Mighty Athletics")),
+        (Some("strength"), None),
+        (Some("jump"), None),
+        (Some(""), None),
+        (Some("%"), None),
+        (None, None),
+    ] {
+        let query = serde_urlencoded::to_string(
+            search.map(|text| ("q", text)).into_iter().chain([("limit", "10000")]).collect::<Vec<_>>(),
+        )
+        .unwrap();
+        let (status, _, response) = get_from(state.clone(), &format!("/v1/effects?{query}")).await;
+        assert_eq!(status, StatusCode::OK);
+        if search == Some("%") {
+            assert_eq!(response["total"], 0);
+            continue;
+        }
+        let row = response["effects"].as_array().unwrap().iter().find(|row| row["name"] == "Strength Skills").unwrap();
+        assert!(row.get("matched_alias").is_some());
+        assert_eq!(row["matched_alias"], serde_json::json!(expected));
+    }
+}
+
+#[tokio::test]
 async fn effect_aliases_choose_line_wording_and_expand_search() {
     let state = fixture_state_with_data_edits("effect-aliases", |root| {
         let append = |relative: &str, suffix: &str| {
@@ -1498,8 +1645,11 @@ async fn items_filter_by_effect_effects_alone_or_beside_stats() {
         "other filters still narrow the match"
     );
 
-    let (status, _, lower_case) = get("/v1/items?bonus=vorpal").await;
-    assert_eq!(status, StatusCode::BAD_REQUEST, "names match case-sensitively, as `stat` did: {lower_case}");
+    let (status, _, slug) = get("/v1/items?bonus=vorpal").await;
+    assert_eq!(status, StatusCode::OK);
+    assert_eq!(slug, vorpal, "the resolver accepts canonical slugs as well as names");
+    let (status, _, mixed_case) = get("/v1/items?bonus=vOrPaL").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST, "exact names and slugs remain case-sensitive: {mixed_case}");
 }
 
 #[tokio::test]
@@ -1790,11 +1940,12 @@ async fn item_search_text_also_matches_a_slot_category_or_pack_name_and_ranks_ex
             "Epic Ring of the Stalker",
             "Five Rings",
             "Lantern of the Abyss",
-            "Legendary Ring of Unbridled Might"
+            "Legendary Ring of Unbridled Might",
+            "Sightless"
         ],
         "a name starting with the text comes before names merely containing it"
     );
-    assert_eq!(ring["total"], 9);
+    assert_eq!(ring["total"], 10, "Sightless carries Sheltering, whose canonical effect name contains ring");
     let (_, _, boots) = get("/v1/items?q=Kundarak%20Delving%20Boots").await;
     assert_eq!(item_names(&boots), ["Kundarak Delving Boots", "Epic Kundarak Delving Boots"], "the exact name first");
 
@@ -2845,7 +2996,7 @@ async fn list_parameter_docs_share_descriptions_and_match_runtime_sort_fields() 
             params.iter().find(|param| param["name"] == "q").unwrap()["description"].as_str().unwrap();
         let expected_search_description = match path {
             "/v1/items" => {
-                "Case-insensitive item or effect-alias substring, or exact slot, category or pack name; own names rank first without sort."
+                "Case-insensitive item or effect-name substring, including aliases, or exact slot, category or pack name; own names rank first without sort."
             }
             "/v1/effects" => {
                 "Case-insensitive own-name, alias or granted-stat substring; without sort, own-name matches rank before alias and stat matches."

@@ -166,6 +166,7 @@ fn template_violations() -> Vec<(&'static str, &'static str, &'static str)> {
 fn alias_templates_share_line_amount_and_type_checks() {
     let scratch = tempfile::tempdir().unwrap();
     let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+    db.execute("INSERT INTO effect_aliases (effect_id, name, slug, sort_order) SELECT id, 'Search Only', 'search-only', 0 FROM effects WHERE name='Spot'", []).unwrap();
     for (owner, name, template, cause) in [
         ("Doublestrike and Doubleshot", "Alias Slot", "%b1 Alias Slot +8%", "T2"),
         ("Doublestrike and Doubleshot", "Alias Type", "Alias Type +{1}%", "T3"),

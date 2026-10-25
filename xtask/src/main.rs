@@ -346,6 +346,8 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         ),
         ("ddo-etl", &["--lib"][..], "tree::layout::tests::source_records_and_rewards_share_their_resolved_folders"),
         ("ddo-api", &["--test", "api"][..], "list_parameter_docs_share_descriptions_and_match_runtime_sort_fields"),
+        ("ddo-api", &["--test", "api"][..], "effect_name_flags_cover_filters_and_exempt_declared_match_controls"),
+        ("ddo-api", &["--test", "api"][..], "every_declared_effect_name_parameter_resolves_aliases"),
         ("ddo-api", &["--test", "api"][..], "item_pack_query_count_does_not_grow_with_rows_or_sources"),
         ("ddo-api", &["--test", "api"][..], "item_full_page_query_count_does_not_grow_with_rows"),
         ("ddo-api", &["--test", "api"][..], "note_queries_do_not_grow_from_one_to_fifty_owners"),

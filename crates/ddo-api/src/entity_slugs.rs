@@ -1,3 +1,4 @@
+use crate::effect_names::resolve_effect_name;
 use crate::{error::ApiError, AppState};
 use axum::extract::{FromRequestParts, MatchedPath, Path};
 use axum::http::request::Parts;
@@ -27,15 +28,14 @@ pub fn resolve_entity_slug(
         return Ok(current);
     }
     if kind == EntityKind::Effect {
-        let aliased = db
-            .query_row(
-                "SELECT e.id, e.slug FROM effect_aliases a JOIN effects e ON e.id = a.effect_id WHERE a.slug = ?1",
-                [text],
-                |row| Ok(ResolvedEntitySlug { id: row.get(0)?, slug: row.get(1)?, is_redirect: true }),
-            )
-            .optional()?;
-        if aliased.is_some() {
-            return Ok(aliased);
+        if let Some(effect) = resolve_effect_name(db, text)? {
+            if effect.alias_name.is_some() {
+                return db
+                    .query_row("SELECT id, slug FROM effects WHERE id = ?1", [effect.effect_id], |row| {
+                        Ok(ResolvedEntitySlug { id: row.get(0)?, slug: row.get(1)?, is_redirect: true })
+                    })
+                    .optional();
+            }
         }
     }
     let redirected = db.query_row(
