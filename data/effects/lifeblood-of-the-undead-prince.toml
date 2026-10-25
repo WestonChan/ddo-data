@@ -1,6 +1,6 @@
 name = "Lifeblood of the Undead Prince"
 default_value = 58
-description_template = "This artifact displays incredible regenerative abilities. You gain a {1} Competence Bonus to Positive and Repair Healing Amplification and {1} Profane Bonus to Negative Healing Amplification."
+description_template = "This artifact displays incredible regenerative abilities. You gain a {1} Competence Bonus to Positive Healing Amplification, a {1} Enhancement Bonus to Repair Healing Amplification and a {1} Profane Bonus to Negative Healing Amplification."
 verbose_name_template = "Lifeblood of the Undead Prince"
 
 [[bonus]]
@@ -12,7 +12,7 @@ target = "Healing Amplification"
 
 [[bonus]]
 amount_from = 1
-bonus_type = "Competence"
+bonus_type = "Enhancement"
 rounding = "down"
 scale = 1.0
 target = "Repair Amplification"
@@ -23,3 +23,20 @@ bonus_type = "Profane"
 rounding = "down"
 scale = 1.0
 target = "Negative Healing Amplification"
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "bonus_type"
+upstream = "Competence"
+reason = "The wiki explicitly states that the tooltip's Competence bonus to Repair Amplification is wrong; the actual bonus is Enhancement."
+url = "https://ddowiki.com/page/Item:The_Prince%27s_Gauntlet"
+read = "2026-10-23"
+qualifier = 'stat "Repair Amplification"'
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "description_template"
+upstream = "This artifact displays incredible regenerative abilities. You gain a {1} Competence Bonus to Positive and Repair Healing Amplification and {1} Profane Bonus to Negative Healing Amplification."
+reason = "The wiki explicitly corrects the tooltip: Positive Amplification is Competence, Repair Amplification is Enhancement and Negative Amplification is Profane."
+url = "https://ddowiki.com/page/Item:The_Prince%27s_Gauntlet"
+read = "2026-10-23"

@@ -70,6 +70,24 @@ pub(crate) fn write_plague_wolf_feat(source: &std::path::Path) {
     .unwrap();
 }
 
+pub(crate) fn write_diadem_item(source: &std::path::Path) {
+    let path = source.join("ItemBuffs.xml");
+    let buffs = std::fs::read_to_string(&path).unwrap();
+    let definitions = include_str!("../fixtures/effect-groups/TheDiademOfRot.Buffs.xml");
+    std::fs::write(path, buffs.replace("</Buffs>", &format!("{definitions}</Buffs>"))).unwrap();
+    std::fs::write(
+        source.join("Items/TheDiademOfRot.item"),
+        include_str!("../fixtures/effect-groups/TheDiademOfRot.item"),
+    )
+    .unwrap();
+    std::fs::create_dir_all(source.join("ItemImages/Helmets")).unwrap();
+    std::fs::write(
+        source.join("ItemImages/Helmets/Helmet_71a.png"),
+        include_bytes!("../fixtures/effect-groups/icons/Helmet_71a.png"),
+    )
+    .unwrap();
+}
+
 pub(crate) fn plague_wolf_corrections() -> CorrectionSet {
     let removal = new_qualified_correction(
         "feat_bonus",

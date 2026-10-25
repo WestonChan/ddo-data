@@ -135,7 +135,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
     use ddo_model::enums::CorrectionKind;
     let expected = [
         (CorrectionKind::Item, "accepts_sentience:accepts_sentience:Flag:false, description:description:Text:true, drop_location:drop_location:Text:true, enhancement_bonus:enhancement_bonus:Integer:true, icon:icon:Text:true, is_legacy:is_legacy:Flag:false, is_minor_artifact:is_minor_artifact:Flag:false, item_category:item_category:Text:false, item_type:item_type:Text:true, material:material_id:NamedReference { referenced_table: \"item_materials\" }:true, minimum_level:minimum_level:Integer:false, name:name:RowName:false, race_required:race_required:Text:true, remove:remove:Removal:false, set_bonus:set_bonus:SetName:true, slot:slot_id:NamedReference { referenced_table: \"equipment_slots\" }:false"),
-        (CorrectionKind::Effect, "constant:constant:EffectBonusConstant:false, default_value:default_value:Integer:true, description_template:description_template:Text:true, name:name:RowName:false, verbose_name_template:verbose_name_template:Text:false"),
+        (CorrectionKind::Effect, "bonus_type:bonus_type_id:EffectBonusType:false, constant:constant:EffectBonusConstant:false, default_value:default_value:Integer:true, description_template:description_template:Text:true, name:name:RowName:false, verbose_name_template:verbose_name_template:Text:false"),
         (CorrectionKind::Augment, "description:description:Text:false, effect_description:effect_description:Text:true, family:family:Text:false, min_level:min_level:Integer:true, name:name:RowName:false, remove:remove:Removal:false"),
         (CorrectionKind::Quest, "epic_level:epic_level:Integer:true, favor:favor:Integer:true, is_raid:is_raid:Flag:false, level:level:Integer:true, name:name:RowName:false, pack:pack_id:NamedReference { referenced_table: \"adventure_packs\" }:false, patron:patron_id:NamedReference { referenced_table: \"patrons\" }:true, remove:remove:Removal:false"),
         (CorrectionKind::Feat, "description:description:Text:true, icon:icon:Text:true"),
@@ -3369,7 +3369,7 @@ fn built_db_from_index(
 
 #[test]
 fn a_definition_correction_cannot_change_a_grouping_answer() {
-    let correction = new_qualified_correction(
+    let scale = new_qualified_correction(
         "set_tier_bonus",
         "Anger of the Avalanche",
         "equipped_count = 2\nstat = \"Power of the Frozen Thunderstorm\"\nbonus_type = \"Artifact\"",
@@ -3377,8 +3377,92 @@ fn a_definition_correction_cannot_change_a_grouping_answer() {
         "1.0",
         "0.5",
     );
-    let error = built_db_with(&[("grouping-scale.toml", &correction)]).unwrap_err();
-    assert!(error.contains("Power of the Frozen Thunderstorm") && error.contains("lookup answer"), "{error}");
+    let bonus_type = new_qualified_correction(
+        "effect",
+        "Power of the Frozen Thunderstorm",
+        "stat = 'Cold Spell Power'",
+        "bonus_type",
+        "\"null\"",
+        "\"Equipment\"",
+    );
+    for correction in [scale, bonus_type] {
+        let error = built_db_with(&[("grouping-definition.toml", &correction)]).unwrap_err();
+        assert!(error.contains("Power of the Frozen Thunderstorm") && error.contains("lookup answer"), "{error}");
+    }
+}
+
+#[test]
+fn effect_bonus_type_correction_changes_one_fixed_row_and_tracks_his_type() {
+    let correction = new_qualified_correction(
+        "effect",
+        "Lifeblood of the Undead Prince",
+        "stat = 'Repair Amplification'",
+        "bonus_type",
+        "\"Competence\"",
+        "\"Enhancement\"",
+    );
+    for upstream_type in ["Competence", "Insight", "Enhancement"] {
+        let source = fixture::xml_source();
+        fixture::write_diadem_item(source.path());
+        let path = source.path().join("ItemBuffs.xml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        let lifeblood = include_str!("fixtures/effect-groups/TheDiademOfRot.Buffs.xml");
+        std::fs::write(
+            path,
+            original.replace(
+                lifeblood,
+                &lifeblood.replace("<Bonus>Competence</Bonus>", &format!("<Bonus>{upstream_type}</Bonus>")),
+            ),
+        )
+        .unwrap();
+        let (db, report) = built_db_from(source.path(), &[("lifeblood.toml", &correction)]).unwrap();
+        let bonuses = db
+            .prepare("SELECT target.name, bt.name, b.amount_from FROM effect_bonuses b JOIN effects e ON e.id=b.effect_id JOIN effects target ON target.id=b.target_effect_id JOIN bonus_types bt ON bt.id=b.bonus_type_id WHERE e.name='Lifeblood of the Undead Prince' ORDER BY target.name")
+            .unwrap().query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?)))
+            .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        let repair_type = if upstream_type == "Competence" { "Enhancement" } else { upstream_type };
+        assert_eq!(
+            bonuses,
+            [
+                ("Healing Amplification".into(), upstream_type.into(), 1),
+                ("Negative Healing Amplification".into(), "Profane".into(), 1),
+                ("Repair Amplification".into(), repair_type.into(), 1),
+            ]
+        );
+        if upstream_type == "Competence" {
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+            let restored = Corrections::from_database(&db).unwrap();
+            assert_eq!(restored.entries[0].qualifier(), "stat \"Repair Amplification\"");
+            assert_eq!(restored.entries[0].to, CorrectionValue::Text("Enhancement".into()));
+        } else {
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+            assert!(
+                matches!(&report.stale_corrections[0].cause,
+                StaleCorrectionCause::ValueChanged { expected_value, maetrim_value }
+                if expected_value == "\"Competence\"" && maetrim_value == &format!("\"{upstream_type}\"")),
+                "{:?}",
+                report.stale_corrections
+            );
+        }
+    }
+}
+
+#[test]
+fn effect_bonus_type_correction_rejects_an_absent_stat_and_names_its_file() {
+    let source = fixture::xml_source();
+    fixture::write_diadem_item(source.path());
+    let correction = new_qualified_correction(
+        "effect",
+        "Lifeblood of the Undead Prince",
+        "stat = 'Strength'",
+        "bonus_type",
+        "\"Competence\"",
+        "\"Enhancement\"",
+    );
+    let error = built_db_from(source.path(), &[("lifeblood-missing-stat.toml", &correction)]).unwrap_err();
+    for expected in ["lifeblood-missing-stat.toml", "Lifeblood of the Undead Prince", "Strength", "exactly once"] {
+        assert!(error.contains(expected), "{error}");
+    }
 }
 
 #[test]

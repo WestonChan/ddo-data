@@ -271,14 +271,20 @@ fn write_correction(
                 )?;
             }
         }
-        FieldShape::EffectBonusConstant => {
-            let stat_name = correction.stat.as_deref().context("effect constant names a stat")?;
+        FieldShape::EffectBonusConstant | FieldShape::EffectBonusType => {
+            let stat_name = correction.stat.as_deref().context("effect bonus correction names a stat")?;
             let effects = effects.context("effect corrections need the family cache")?;
+            let corrected_value = if field.shape == FieldShape::EffectBonusType {
+                let name = correction.to.as_text().context("a bonus type cannot be null")?;
+                SqlValue::Integer(bonus_type_id_named(transaction, name)?)
+            } else {
+                correction.to.to_sql()
+            };
             for effect_id in row_ids {
                 let bonus_row_id = effect_bonus_row_id(transaction, *effect_id, stat_name)?;
                 transaction.execute(
-                    "UPDATE effect_bonuses SET constant = ?2 WHERE rowid = ?1",
-                    params![bonus_row_id, correction.to.to_sql()],
+                    &format!("UPDATE effect_bonuses SET {} = ?2 WHERE rowid = ?1", field.column),
+                    params![bonus_row_id, corrected_value],
                 )?;
                 effects.refresh_family(*effect_id)?;
             }
@@ -902,15 +908,20 @@ fn current_value(
                 NO_SUCH_BONUS.to_string()
             }));
         }
-        FieldShape::EffectBonusConstant => {
-            let stat_name = correction.stat.as_deref().context("effect constant names a stat")?;
+        FieldShape::EffectBonusConstant | FieldShape::EffectBonusType => {
+            let stat_name = correction.stat.as_deref().context("effect bonus correction names a stat")?;
             let bonus_row_id = effect_bonus_row_id(transaction, row_id, stat_name)?;
-            let constant: Option<i64> = transaction.query_row(
-                "SELECT constant FROM effect_bonuses WHERE rowid = ?1",
+            let expression = if field.shape == FieldShape::EffectBonusType {
+                "(SELECT name FROM bonus_types WHERE id = effect_bonuses.bonus_type_id)"
+            } else {
+                field.column
+            };
+            let value: SqlValue = transaction.query_row(
+                &format!("SELECT {expression} FROM effect_bonuses WHERE rowid = ?1"),
                 [bonus_row_id],
                 |row| row.get(0),
             )?;
-            return Ok(constant.map_or(CorrectionValue::Null, CorrectionValue::Integer));
+            return Ok(CorrectionValue::from_sql(value));
         }
         FieldShape::BonusDedupe => {
             let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
@@ -1260,7 +1271,7 @@ fn reject_answer_definition_correction(
     owner_ids: &[i64],
 ) -> Result<()> {
     let affected_effects = match field.shape {
-        FieldShape::EffectBonusConstant => {
+        FieldShape::EffectBonusConstant | FieldShape::EffectBonusType => {
             let mut statement =
                 transaction.prepare("SELECT id, name FROM effects WHERE id IN (SELECT value FROM json_each(?1))")?;
             let affected_effects = statement

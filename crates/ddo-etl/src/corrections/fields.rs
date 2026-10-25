@@ -20,6 +20,7 @@ pub enum FieldShape {
     BonusDedupe,
     BonusLines,
     EffectBonusConstant,
+    EffectBonusType,
     TierAddition,
     EffectAddition,
     DamageAddition,
@@ -114,7 +115,19 @@ const fn kind_operations(kind: CorrectionKind) -> &'static [CorrectableField] {
     match kind {
         CorrectionKind::Item => const { &[field("remove", FieldShape::Removal, false)] },
         CorrectionKind::Augment | CorrectionKind::Quest => const { &[field("remove", FieldShape::Removal, false)] },
-        CorrectionKind::Effect => const { &[field("constant", FieldShape::EffectBonusConstant, false)] },
+        CorrectionKind::Effect => {
+            const {
+                &[
+                    field("constant", FieldShape::EffectBonusConstant, false),
+                    CorrectableField {
+                        name: "bonus_type",
+                        column: "bonus_type_id",
+                        shape: FieldShape::EffectBonusType,
+                        is_nullable: false,
+                    },
+                ]
+            }
+        }
         CorrectionKind::AugmentBonus => AUGMENT_BONUS_OPERATIONS,
         CorrectionKind::FeatBonus | CorrectionKind::SocketOptionBonus => {
             const {

@@ -1,0 +1,32 @@
+  <Buff>
+    <Type>Legendary Demonic Curse</Type>
+    <DisplayText>Legendary Demonic Curse: Each time you are hit in melee combat there is a chance that your attacker will be Cursed.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Lifeblood of the Undead Prince</Type>
+    <DisplayText>Lifeblood of the Undead Prince: This artifact displays incredible regenerative abilities. You gain a %v1 Competence Bonus to Positive and Repair Healing Amplification and %v1 Profane Bonus to Negative Healing Amplification.</DisplayText>
+    <Effect>
+      <Type>HealingAmplification</Type>
+      <Type>RepairAmplification</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">58</Amount>
+    </Effect>
+    <Effect>
+      <Type>NegativeHealingAmplification</Type>
+      <Bonus>Profane</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">58</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>NaturalArmor</Type>
+    <DisplayText>%b1 Natural Armor %v1: Passive: %v1 Natural Armor Bonus to Armor Class.</DisplayText>
+    <Ignore>Natural Armor</Ignore>
+    <Effect>
+      <Type>NaturalArmor</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>

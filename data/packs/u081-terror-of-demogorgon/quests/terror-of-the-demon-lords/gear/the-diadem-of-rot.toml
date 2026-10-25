@@ -9,6 +9,7 @@ slot = "Head"
 
 [[effect]]
 name = "Lifeblood of the Undead Prince"
+value = 65
 
 [[effect]]
 name = "False Life"
@@ -22,6 +23,14 @@ value = 16
 
 [[effect]]
 name = "Legendary Demonic Curse"
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "value"
+reason = "The wiki gives all three Lifeblood amplification bonuses as 65; the missing upstream amount falls back to the definition's 58."
+url = "https://ddowiki.com/page/Item:The_Diadem_of_Rot"
+read = "2026-10-23"
+qualifier = 'effect "Lifeblood of the Undead Prince"'
 
 [[socket]]
 slot = "crafting: nearly complete: ability score (legendary)"

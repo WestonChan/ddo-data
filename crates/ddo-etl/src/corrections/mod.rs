@@ -215,7 +215,8 @@ impl CorrectionValue {
                 | FieldShape::NamedReference { .. }
                 | FieldShape::SetName
                 | FieldShape::RowName
-                | FieldShape::BonusTypeName,
+                | FieldShape::BonusTypeName
+                | FieldShape::EffectBonusType,
             ) => true,
             _ => false,
         }
@@ -339,6 +340,11 @@ impl Correction {
         }
     }
 
+    fn targets_effect_bonus(&self) -> bool {
+        self.correctable_field()
+            .is_ok_and(|field| matches!(field.shape, FieldShape::EffectBonusConstant | FieldShape::EffectBonusType))
+    }
+
     pub fn qualifier(&self) -> String {
         let mut qualifier_parts: Vec<String> = Vec::new();
         if let Some(socket) = &self.socket {
@@ -365,7 +371,7 @@ impl Correction {
         if let Some(equipped_count) = self.equipped_count {
             qualifier_parts.push(format!("equipped_count {equipped_count}"));
         }
-        if self.kind == CorrectionKind::Effect && self.field == "constant" {
+        if self.targets_effect_bonus() {
             if let Some(stat) = &self.stat {
                 qualifier_parts.push(format!("stat {stat:?}"));
             }
@@ -468,9 +474,12 @@ impl Correction {
         if field.shape == FieldShape::BonusLines && self.bonus_value.is_some() {
             bail!("a lines correction names a grouping and type without a value");
         }
-        if self.kind == CorrectionKind::Effect && field.name == "constant" {
-            if self.stat.is_none() || self.bonus_type.is_some() || self.bonus_value.is_some() {
-                bail!("an effect constant correction names exactly one stat");
+        if self.targets_effect_bonus() {
+            if self.stat.as_ref().is_none_or(|name| name.trim().is_empty())
+                || self.bonus_type.is_some()
+                || self.bonus_value.is_some()
+            {
+                bail!("an effect {} correction names exactly one stat", field.name);
             }
         } else if names_a_bonus && !needs_a_bonus {
             bail!("stat, bonus_type and bonus_value require a bonus correction; an add names them in to");
@@ -559,7 +568,7 @@ impl Correction {
                     bail!("a tier add must use its equipped_count qualifier and a nonempty description");
                 }
             }
-            FieldShape::BonusTypeName => {
+            FieldShape::BonusTypeName | FieldShape::EffectBonusType => {
                 if !matches!(
                     (&self.from, &self.to),
                     (CorrectionValue::Null | CorrectionValue::Text(_), CorrectionValue::Text(_))
@@ -683,9 +692,10 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::StatRounding => "down, up or nearest",
         FieldShape::Flag => "0 or 1",
         FieldShape::Text => "a string",
-        FieldShape::NamedReference { .. } | FieldShape::SetName | FieldShape::BonusTypeName => {
-            "the name of the row it refers to"
-        }
+        FieldShape::NamedReference { .. }
+        | FieldShape::SetName
+        | FieldShape::BonusTypeName
+        | FieldShape::EffectBonusType => "the name of the row it refers to",
         FieldShape::RowName => "the row's name",
         FieldShape::Removal => "0 for from and 1 for to",
         FieldShape::BonusAddition => "a { stat, bonus_type, value } table",
