@@ -35,12 +35,29 @@ bonus_type = "Equipment"
 value = 84
 
 [[effect]]
-name = "Void Lore VI"
+name = "Taint of Evil"
+
+[[effect]]
+name = "Void Lore IV"
 bonus_type = "Equipment"
 value = 14
 
-[[effect]]
-name = "Taint of Evil"
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "add"
+reason = "The wiki names this item's 14% Equipment critical chance for Negative Energy and Poison Void Lore IV."
+url = "https://ddowiki.com/page/Item:Death%27s_Touch"
+read = "2026-10-23"
+qualifier = "Void Lore IV / Equipment"
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "remove"
+upstream = 0
+reason = "The wiki names this item's 14% Equipment lore Void Lore IV, not Maetrim's Void Lore VI."
+url = "https://ddowiki.com/page/Item:Death%27s_Touch"
+read = "2026-10-23"
+qualifier = 'effect "Void Lore VI"'
 
 [[socket]]
 slot = "crafting: suppressed power"

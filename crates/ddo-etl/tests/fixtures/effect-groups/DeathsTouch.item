@@ -1,0 +1,140 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Death's Touch</Name>
+    <Icon>Sickle_4</Icon>
+    <Description>A palpable aura of evil radiates from this malevolent weapon.</Description>
+    <DropLocation>The Mindsunder, Disc locked optional end chest</DropLocation>
+    <MinLevel>18</MinLevel>
+    <EquipmentSlot>
+      <Weapon1/>
+      <Weapon2/>
+    </EquipmentSlot>
+    <Weapon>Sickle</Weapon>
+    <AttackModifier>Strength</AttackModifier>
+    <DamageModifier>Strength</DamageModifier>
+    <DRBypass>Evil</DRBypass>
+    <DRBypass>Magic</DRBypass>
+    <DRBypass>Slash</DRBypass>
+    <WeaponDamage>2.6</WeaponDamage>
+    <BaseDice>
+      <Number>1</Number>
+      <Sides>7</Sides>
+    </BaseDice>
+    <CriticalMultiplier>2</CriticalMultiplier>
+    <CriticalThreatRange>3</CriticalThreatRange>
+    <Material>Steel</Material>
+    <Buff>
+      <Type>SpellcastingImplement</Type>
+      <Value1>15</Value1>
+      <BonusType>Implement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>5</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Negative Energy Spike</Type>
+    </Buff>
+    <Buff>
+      <Type>Lesser Vampirism</Type>
+    </Buff>
+    <Buff>
+      <Type>Nullification</Type>
+      <Value1>84</Value1>
+      <BonusType>Equipment</BonusType>
+      <Description1>Nullification</Description1>
+    </Buff>
+    <Buff>
+      <Type>VoidLoreNumeral</Type>
+      <Value1>14</Value1>
+      <BonusType>Equipment</BonusType>
+      <Description1>VI</Description1>
+    </Buff>
+    <Buff>
+      <Type>TaintOfEvil</Type>
+    </Buff>
+    <ItemAugment>
+      <Type>Suppressed Power</Type>
+      <Augment>
+        <Name>Adds Unholy Burst and Necromancy Focus II</Name>
+        <Description>Unholy Burst: An unholy weapon is imbued with unholy power. This power makes the
+weapon evil-aligned and thus bypasses the corresponding damage reduction.
+It deals an extra 2 to 12 points of damage against all of good alignment and an
+extra 3 to 18 on a critical for weapons with a x2 critical multiplier, 4 to 24
+for a x3 multiplier, and 5 to 30 for a x4 multiplier.
+Necromancy Focus II: +2 Equipment bonus to the DC of Necromancy spells.</Description>
+        <MinLevel>18</MinLevel>
+        <Effect>
+          <Type>WeaponOtherDamageBonus</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Good</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">6</Sides>
+            <Damage>Evil</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>WeaponOtherDamageBonusCritical</Type>
+          <Bonus>Not Set</Bonus>
+          <Item>All</Item>
+          <AType>CriticalDice</AType>
+          <Requirements>
+            <Requirement>
+              <Type>EnemyType</Type>
+              <Item>Good</Item>
+            </Requirement>
+          </Requirements>
+          <Dice>
+            <Number size="6">0 2 3 4 5 6</Number>
+            <Sides size="6">0 6 6 6 6 6</Sides>
+            <Damage>Evil</Damage>
+          </Dice>
+        </Effect>
+        <Effect>
+          <Type>NegativeLevel</Type>
+          <Bonus>Stacking</Bonus>
+          <AType>Simple</AType>
+          <Amount size="1">1</Amount>
+          <Requirements>
+            <RequiresOneOf>
+              <Requirement>
+                <Type>Alignment</Type>
+                <Item>Lawful Good</Item>
+              </Requirement>
+              <Requirement>
+                <Type>Alignment</Type>
+                <Item>Neutral Good</Item>
+              </Requirement>
+              <Requirement>
+                <Type>Alignment</Type>
+                <Item>Chaotic Good</Item>
+              </Requirement>
+            </RequiresOneOf>
+          </Requirements>
+        </Effect>
+        <Effect>
+          <Type>DRBypass</Type>
+          <Bonus>Stacking</Bonus>
+          <AType>NotNeeded</AType>
+          <Value>Evil</Value>
+        </Effect>
+        <Effect>
+          <Type>SpellDC</Type>
+          <Bonus>Equipment</Bonus>
+          <Item>Necromancy</Item>
+          <AType>Simple</AType>
+          <Amount size="1">2</Amount>
+        </Effect>
+      </Augment>
+    </ItemAugment>
+  </Item>
+</Items>

@@ -3580,6 +3580,67 @@ fn effect_bonus_removal_rejects_unknown_stats_and_malformed_qualifiers() {
 }
 
 #[test]
+fn deaths_touch_uses_its_cited_void_lore_rank_without_changing_the_bonus() {
+    let canonical = fixture::grouping_case_database(|root| {
+        let original = std::fs::read_to_string(root.join("effects/void-lore-vi.toml")).unwrap();
+        std::fs::write(root.join("effects/void-lore-iv.toml"), original.replace("Void Lore VI", "Void Lore IV"))
+            .unwrap();
+    });
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let mut corrections = committed_corrections().clone();
+    corrections.entries.retain(|correction| correction.name == "Death's Touch");
+    for rank in ["VI", "IV"] {
+        let source = fixture::xml_source();
+        let definitions = source.path().join("ItemBuffs.xml");
+        let original = std::fs::read_to_string(&definitions).unwrap();
+        std::fs::write(
+            definitions,
+            original.replace(
+                "</Buffs>",
+                &format!("{}</Buffs>", include_str!("fixtures/effect-groups/DeathsTouch.Buffs.xml")),
+            ),
+        )
+        .unwrap();
+        std::fs::write(
+            source.path().join("Items/DeathsTouch.item"),
+            include_str!("fixtures/effect-groups/DeathsTouch.item")
+                .replace("<Description1>VI</Description1>", &format!("<Description1>{rank}</Description1>")),
+        )
+        .unwrap();
+        let icon = source.path().join("ItemImages/Weapon_Sickle/Sickle_4.png");
+        std::fs::create_dir_all(icon.parent().unwrap()).unwrap();
+        std::fs::write(icon, include_bytes!("fixtures/effect-groups/icons/Sickle_4.png")).unwrap();
+        let (before, _) = built_db_from_index(&groupings, source.path(), &[]).unwrap();
+        let mut after = Connection::open_in_memory().unwrap();
+        let report = build_database(
+            &groupings,
+            source.path(),
+            &WikiOverrides::default(),
+            &corrections,
+            &mut after,
+            &fixture_dataset_version(),
+        )
+        .unwrap();
+        let links = after.prepare("SELECT e.name, l.value, b.name FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id JOIN bonus_types b ON b.id=l.bonus_type_id WHERE i.name='Death''s Touch' AND e.name LIKE 'Void Lore%' ORDER BY l.sort_order").unwrap()
+            .query_map([], |row| Ok((row.get::<_, String>(0)?,row.get::<_, i64>(1)?,row.get::<_, String>(2)?)))
+            .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(links, [("Void Lore IV".into(), 14, "Equipment".into())]);
+        let bonuses = |db: &Connection| {
+            db.prepare("SELECT owner_kind,owner_id,stat_id,bonus_type_id,amount FROM owner_bonuses ORDER BY owner_kind,owner_id,stat_id,bonus_type_id,amount").unwrap()
+                .query_map([], |row| Ok((row.get::<_, String>(0)?,row.get::<_, i64>(1)?,row.get::<_, i64>(2)?,row.get::<_, i64>(3)?,row.get::<_, i64>(4)?)))
+                .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
+        };
+        assert_eq!(bonuses(&before), bonuses(&after));
+        if rank == "VI" {
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
+        } else {
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 2));
+            assert!(report.stale_corrections.iter().any(|stale| matches!(&stale.cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\"")));
+        }
+    }
+}
+
+#[test]
 fn lore_definition_corrections_keep_only_the_wiki_stats() {
     let source = fixture::xml_source();
     fixture::write_lore_items(source.path());
