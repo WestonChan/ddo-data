@@ -17,6 +17,12 @@ armor_type = "Cloth"
 url = "https://ddowiki.com/page/Item:Epic_Robe_of_Shadow_%28level_24%29"
 read = "2026-09-29"
 
+[[citation]]
+field = "effect"
+url = "https://ddowiki.com/page/Item:Epic_Robe_of_Shadow_(level_24)"
+read = "2026-10-23"
+note = "The screenshot shows one Void Lore VI line granting 16% Equipment critical chance to Negative Energy and Poison spells."
+
 [[effect]]
 name = "Negative Spell Power"
 bonus_type = "Equipment"
@@ -28,12 +34,7 @@ bonus_type = "Equipment"
 value = 114
 
 [[effect]]
-name = "Negative Spell Lore"
-bonus_type = "Equipment"
-value = 16
-
-[[effect]]
-name = "Poison Spell Lore"
+name = "Void Lore VI"
 bonus_type = "Equipment"
 value = 16
 

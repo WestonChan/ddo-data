@@ -733,6 +733,41 @@ type WikiItemRow =
     (String, String, Option<String>, i64, Option<i64>, Option<String>, Option<String>, Option<String>, String);
 
 #[test]
+fn committed_shadow_robes_keep_their_ranked_lore_through_wiki_overrides() {
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db).unwrap();
+    let wiki = WikiOverrides::from_database(&db).unwrap();
+    for level in [20, 24] {
+        let name = format!("Epic Robe of Shadow (Level {level})");
+        let item = wiki.items.iter().find(|item| item.name == name).unwrap();
+        let lore: Vec<_> = item.bonuses.iter().filter(|bonus| bonus.name().contains("Lore")).collect();
+        assert_eq!(lore.len(), 1, "{name}");
+        assert_eq!(lore[0].effect.as_deref(), Some("Void Lore VI"));
+        assert_eq!((lore[0].value, lore[0].bonus_type.as_str()), (16, "Equipment"));
+        let bonuses = db
+            .prepare(
+                "SELECT stat.name, bt.name, ob.amount FROM owner_bonuses ob
+                 JOIN items i ON ob.owner_kind = 'item' AND ob.owner_id = i.id
+                 JOIN effects stat ON stat.id = ob.stat_id JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+                 WHERE i.name = ?1 AND stat.name LIKE '% Spell Lore' ORDER BY stat.name",
+            )
+            .unwrap()
+            .query_map([&name], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert_eq!(
+            bonuses,
+            [
+                ("Negative Spell Lore".into(), "Equipment".into(), 16),
+                ("Poison Spell Lore".into(), "Equipment".into(), 16)
+            ],
+            "{name}"
+        );
+    }
+}
+
+#[test]
 fn committed_dark_bargainer_grants_only_physical_sheltering() {
     let mut db = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db).unwrap();
