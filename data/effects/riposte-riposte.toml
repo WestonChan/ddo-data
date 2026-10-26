@@ -1,3 +1,9 @@
 name = "Riposte Riposte"
 description_template = "When its wearer is successfully attacked in melee, this shield occasionally allows him or her to make an immediate counterattack, dealing bludgeoning damage to the offending enemy."
-verbose_name_template = "Riposte"
+verbose_name_template = "Riposte (legacy)"
+
+[[citation]]
+field = "verbose_name_template"
+url = "https://ddowiki.com/page/Riposte"
+read = "2026-10-23"
+note = "The page distinguishes Riposte (pre U19 / legacy), the shield's when-hit counterattack, from the later Armor Class and saves enchantment."

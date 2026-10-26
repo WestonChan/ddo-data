@@ -892,6 +892,37 @@ fn protection_from_evil_keeps_the_spell_name_without_a_rank() {
     assert_eq!(bonuses, [("Armor Class".into(), "Deflection".into(), 2)]);
 }
 
+#[test]
+fn legacy_riposte_has_a_distinct_line_without_passive_bonuses() {
+    let db = build_item_buff_fixture(
+        include_str!("fixtures/effect-groups/LegacyRiposte.Buffs.xml"),
+        &[("EpicSwashbucklerLegacy24.item", include_str!("fixtures/effect-groups/EpicSwashbucklerLegacy24.item"))],
+        &[("ItemImages/Shields/Shield_18d.png", include_bytes!("fixtures/effect-groups/icons/Shield_18d.png"))],
+    );
+    let (title, description, value, bonus_count): (String, String, Option<i64>, i64) = db
+        .query_row(
+            "SELECT e.verbose_name_template,e.description_template,l.value,
+                    (SELECT COUNT(*) FROM effect_bonuses WHERE effect_id=e.id)
+             FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id
+             WHERE i.name='Epic Swashbuckler (legacy) (level 24)' AND e.name='Riposte Riposte'",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)),
+        )
+        .unwrap();
+    assert_eq!(title, "Riposte (legacy)");
+    assert_eq!(description, "When its wearer is successfully attacked in melee, this shield occasionally allows him or her to make an immediate counterattack, dealing bludgeoning damage to the offending enemy.");
+    assert_eq!((value, bonus_count), (None, 0));
+    let passive_link_count: i64 = db
+        .query_row(
+            "SELECT COUNT(*) FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id
+             WHERE i.name='Epic Swashbuckler (legacy) (level 24)' AND e.name='Riposte'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(passive_link_count, 1);
+}
+
 fn assert_every_multi_stat_effect_has_one_link_or_an_exception(report: &BuildReport) {
     let exceptions = report
         .line_splits

@@ -1,0 +1,34 @@
+  <Buff>
+    <Type>Doublestrike</Type>
+    <DisplayText>%b1 Doublestrike %v1%: Passive: %v1% %b1 bonus to Doublestrike. Doublestrike is a chance to score an additional hit with a melee attack.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>Doublestrike</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Guardbreaking</Type>
+    <DisplayText>Guardbreaking: This item enables you to break an enemy's guard in between your melee attacks. On critical hits with your melee weapons, enemies will become dazed as a result.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>RiposteRiposte</Type>
+    <DisplayText>Riposte: When its wearer is successfully attacked in melee, this shield occasionally allows him or her to make an immediate counterattack, dealing bludgeoning damage to the offending enemy.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>ShieldEnchantment</Type>
+    <DisplayText>%v1 Enhancement Bonus: Weapons and Shields: %v1 Enhancement bonus to Attack and Damage rolls. Armor and Shields: %v1 Enhancement bonus to Armor Class.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>ShieldEnchantment</Type>
+      <Bonus>Shield</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Buckler</Item>
+      <Item>Small Shield</Item>
+      <Item>Large Shield</Item>
+      <Item>Tower Shield</Item>
+    </Effect>
+  </Buff>

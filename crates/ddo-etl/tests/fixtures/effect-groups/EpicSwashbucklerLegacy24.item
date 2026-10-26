@@ -1,0 +1,55 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Epic Swashbuckler (legacy) (level 24)</Name>
+    <Icon>Shield_18d</Icon>
+    <Description>An indispensable tool for many a pirate when dueling with a single blade. It
+can parry an enemy's blows effectively and even leave them open to counterattack.</Description>
+    <DropLocation>Treasure of Crystal Cove, Turn in 1000 Silver Doubloon 500 Golden Doubloon 40 Stolen Malachite at Dusty Old Treasure of Crystal Cove</DropLocation>
+    <MinLevel>24</MinLevel>
+    <EquipmentSlot>
+      <Weapon2/>
+    </EquipmentSlot>
+    <Weapon>Buckler</Weapon>
+    <AttackModifier>Strength</AttackModifier>
+    <DamageModifier>Strength</DamageModifier>
+    <DRBypass>Bludgeon</DRBypass>
+    <DRBypass>Magic</DRBypass>
+    <WeaponDamage>3</WeaponDamage>
+    <BaseDice>
+      <Number>2</Number>
+      <Sides>6</Sides>
+    </BaseDice>
+    <CriticalMultiplier>2</CriticalMultiplier>
+    <CriticalThreatRange>1</CriticalThreatRange>
+    <MaximumDexterityBonus>0</MaximumDexterityBonus>
+    <ArmorCheckPenalty>0</ArmorCheckPenalty>
+    <ArcaneSpellFailure>0</ArcaneSpellFailure>
+    <ShieldBonus>8</ShieldBonus>
+    <DamageReduction>10</DamageReduction>
+    <Material>Dwarven Iron</Material>
+    <Buff>
+      <Type>ShieldEnchantment</Type>
+      <Value1>7</Value1>
+      <BonusType>Shield Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Riposte</Type>
+      <Value1>4</Value1>
+      <Value2>4</Value2>
+      <BonusType>Insightful</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Doublestrike</Type>
+      <Value1>7</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Guardbreaking</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>RiposteRiposte</Type>
+    </Buff>
+  </Item>
+</Items>
