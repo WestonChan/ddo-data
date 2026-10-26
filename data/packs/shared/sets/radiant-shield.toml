@@ -2,6 +2,11 @@ name = "Radiant Shield"
 icon = "RadiantShield"
 is_filigree_set = true
 
+[[citation]]
+url = "https://ddowiki.com/page/Sentient_Weapon/Filigrees"
+read = "2026-10-23"
+note = "The 4-piece line grants Intercession Ward; its upstream prose spelling is 'You have Intercession Ward, and are immune to being Quelled'."
+
 [[tier]]
 equipped_count = 2
 
@@ -36,7 +41,7 @@ effect_type = "MRR"
 equipped_count = 4
 
 [[tier.effect]]
-effect = "You have Intercession Ward, and are immune to being Quelled"
+effect = "Intercession Ward"
 
 [[tier.modifier]]
 amount_type = "NotNeeded"

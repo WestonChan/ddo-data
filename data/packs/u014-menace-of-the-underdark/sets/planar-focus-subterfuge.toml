@@ -1,6 +1,11 @@
 name = "Planar Focus: Subterfuge"
 icon = "SubterfugePlanarConfluxSetBonus"
 
+[[citation]]
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-23"
+note = "The 2-piece line grants True Seeing; its upstream prose spelling is 'You gain True seeing'."
+
 [[item]]
 name = "Planar Focus of Subterfuge"
 
@@ -48,7 +53,7 @@ effect = "Sneak Attack Damage"
 value = 8
 
 [[tier.effect]]
-effect = "You gain True seeing"
+effect = "True Seeing"
 
 [[tier.effect]]
 bonus_type = "Enhancement"

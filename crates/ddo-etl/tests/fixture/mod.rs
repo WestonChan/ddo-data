@@ -57,6 +57,46 @@ pub(crate) fn write_scion_feat(source: &std::path::Path) {
     .unwrap();
 }
 
+pub(crate) fn write_prose_sets(source: &std::path::Path) {
+    std::fs::create_dir_all(source.join("FiligreeSets")).unwrap();
+    for (name, closing_tag, additions) in [
+        ("SetBonuses.xml", "</SetBonuses>", include_str!("../fixtures/effect-groups/TextOnlySets.xml")),
+        ("ItemBuffs.xml", "</Buffs>", include_str!("../fixtures/effect-groups/TextOnlyEffects.Buffs.xml")),
+    ] {
+        let path = source.join(name);
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, original.replace(closing_tag, &format!("{additions}{closing_tag}"))).unwrap();
+    }
+    for (name, contents) in [
+        ("ThroughTheMists.Filigree.xml", include_str!("../fixtures/effect-groups/ThroughTheMists.Filigree.xml")),
+        ("RadiantShield.Filigree.xml", include_str!("../fixtures/effect-groups/RadiantShield.Filigree.xml")),
+    ] {
+        std::fs::write(source.join("FiligreeSets").join(name), contents).unwrap();
+    }
+    for (path, bytes) in [
+        (
+            "SetBonusImages/CorsairsCunning.png",
+            include_bytes!("../fixtures/effect-groups/icons/CorsairsCunning.png").as_slice(),
+        ),
+        (
+            "SetBonusImages/SubterfugePlanarConfluxSetBonus.png",
+            include_bytes!("../fixtures/effect-groups/icons/SubterfugePlanarConfluxSetBonus.png").as_slice(),
+        ),
+        (
+            "FiligreeImages/ThroughTheMists.png",
+            include_bytes!("../fixtures/effect-groups/icons/ThroughTheMists.png").as_slice(),
+        ),
+        (
+            "FiligreeImages/RadiantShield.png",
+            include_bytes!("../fixtures/effect-groups/icons/RadiantShield.png").as_slice(),
+        ),
+    ] {
+        let destination = source.join(path);
+        std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+        std::fs::write(destination, bytes).unwrap();
+    }
+}
+
 pub(crate) fn write_plague_wolf_feat(source: &std::path::Path) {
     let path = source.join("Feats.xml");
     let original = std::fs::read_to_string(&path).unwrap();

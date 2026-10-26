@@ -1,6 +1,11 @@
 name = "Corsair's Cunning"
 icon = "CorsairsCunning"
 
+[[citation]]
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-23"
+note = "The 2-piece line grants Underwater Action; its upstream prose spelling is 'Underwater action'."
+
 [[item]]
 name = "Corsair's Bandana"
 
@@ -14,7 +19,7 @@ name = "Corsair's Galoshes"
 equipped_count = 2
 
 [[tier.effect]]
-effect = "Underwater action"
+effect = "Underwater Action"
 
 [[tier.modifier]]
 amount_type = "NotNeeded"

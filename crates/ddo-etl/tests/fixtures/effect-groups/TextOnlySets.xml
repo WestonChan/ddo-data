@@ -1,0 +1,59 @@
+  <SetBonus>
+    <Type>Corsair's Cunning</Type>
+    <Icon>CorsairsCunning</Icon>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>Underwater action</Description>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Stacking</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>Drowning</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>Feather Falling</Description>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Stacking</Bonus>
+        <AType>NotNeeded</AType>
+        <Item>Falling Damage</Item>
+      </Effect>
+    </Buff>
+  </SetBonus>
+  <SetBonus>
+    <Type>Planar Focus: Subterfuge</Type>
+    <Icon>SubterfugePlanarConfluxSetBonus</Icon>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+5 Exceptional bonus to sneak attack damage</Description>
+      <Effect>
+        <Type>SneakAttackDamage</Type>
+        <Bonus>Exceptional</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>You gain True seeing</Description>
+      <Effect>
+        <Type>TrueSeeing</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>+3 Exceptional Dodge bonus</Description>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Exceptional</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Buff>
+  </SetBonus>

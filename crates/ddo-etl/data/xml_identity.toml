@@ -623,17 +623,6 @@ read = "2026-10-07"
 note = "The two effects have different descriptions and owner links, so both rows remain for review."
 
 [[entity]]
-table = "effects"
-upstream_id = 2093
-name = "Underwater action"
-variant = "2"
-[[entity.citation]]
-field = "name"
-url = "upstream/Output/DataFiles/ItemBuffs.xml"
-read = "2026-10-07"
-note = "The capitalized effect has a water-breathing description; this row has no description."
-
-[[entity]]
 table = "feats"
 upstream_id = 31
 name = "Eschew Materials"

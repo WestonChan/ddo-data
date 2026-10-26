@@ -1,0 +1,60 @@
+  <Buff>
+    <Type>Feat: Elusive Target</Type>
+    <DisplayText>Feat - Elusive Target: While equipped, this item grants the feat Elusive Target.</DisplayText>
+    <Effect>
+      <Type>GrantFeat</Type>
+      <Bonus>Enhancement</Bonus>
+      <Item>Elusive Target</Item>
+      <AType>NotNeeded</AType>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Impulse</Type>
+    <DisplayText>%b1 Impulse %v1: %v1 %b1 bonus to Force/Untyped spell power.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Force</Item>
+      <Item>Physical</Item>
+      <Item>Untyped</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>KineticLore</Type>
+    <DisplayText>%b1 Kinetic Lore %v1%: Passive: Your Force, Physical and Untyped spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Force</Item>
+      <Item>Physical</Item>
+      <Item>Untyped</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>SchoolFocusNumber</Type>
+    <DisplayText>%b1 %i1 Focus %v1: %v1 %b1 bonus to the DC of %i1 spells.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Abjuration</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>FeatElusiveTarget</Type>
+    <DisplayText>Feat - Elusive Target: Passive: You gain the feat Elusive Target.</DisplayText>
+    <Effect>
+      <Type>GrantFeat</Type>
+      <Bonus>Enhancement</Bonus>
+      <Item>Elusive Target</Item>
+      <AType>NotNeeded</AType>
+    </Effect>
+  </Buff>

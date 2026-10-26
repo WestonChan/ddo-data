@@ -152,6 +152,12 @@ since = "2026-10-26"
 
 [[redirect]]
 kind = "effects"
+from = "gain-the-effects-of-true-seeing"
+to = "true-seeing"
+since = "2026-10-26"
+
+[[redirect]]
+kind = "effects"
 from = "light-and-alignment-spell-power"
 to = "radiance"
 since = "2026-10-23"
@@ -185,3 +191,21 @@ kind = "effects"
 from = "tactics"
 to = "combat-mastery"
 since = "2026-10-23"
+
+[[redirect]]
+kind = "effects"
+from = "underwater-action-2"
+to = "underwater-action"
+since = "2026-10-26"
+
+[[redirect]]
+kind = "effects"
+from = "you-gain-true-seeing"
+to = "true-seeing"
+since = "2026-10-26"
+
+[[redirect]]
+kind = "effects"
+from = "you-have-intercession-ward-and-are-immune-to-being-quelled"
+to = "intercession-ward"
+since = "2026-10-26"

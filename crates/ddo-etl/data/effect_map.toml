@@ -21,6 +21,22 @@ VoidLore = "Void Lore"
 "Wisdom Skills - Exceptional" = "Wisdom Skills"
 
 [[set_tier_prose_bonuses]]
+description = "Underwater action"
+effect = "Underwater Action"
+
+[[set_tier_prose_bonuses]]
+description = "Gain the effects of True Seeing"
+effect = "True Seeing"
+
+[[set_tier_prose_bonuses]]
+description = "You gain True seeing"
+effect = "True Seeing"
+
+[[set_tier_prose_bonuses]]
+description = "You have Intercession Ward, and are immune to being Quelled."
+effect = "Intercession Ward"
+
+[[set_tier_prose_bonuses]]
 description = "Gain a +5 Luck bonus to PRR and MRR."
 effect = "Sheltering"
 bonus_type = "Luck"

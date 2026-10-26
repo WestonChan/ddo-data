@@ -341,14 +341,17 @@ mod overlay_identity_tests {
             )]),
             Some(1)
         );
-        let identity = xml_identities().entity.iter().find(|identity| identity.name == "Underwater action").unwrap();
+        let identity = xml_identities().entity.iter().find(|identity| identity.name == "Feat: Elusive Target").unwrap();
         assert!(matching_xml_identity([(
             1,
             identity,
-            XmlEntityName { upstream_id: Some(identity.upstream_id), name: "Underwater Action", description: None }
+            XmlEntityName { upstream_id: Some(identity.upstream_id), name: "Feat: Elusive target", description: None }
         )])
         .is_none());
-        assert_eq!(super::xml_entity_slug("effects", Some(90001), "Underwater action", None), "underwater-action-2");
+        assert_eq!(
+            super::xml_entity_slug("effects", Some(90001), "Feat: Elusive Target", None),
+            "feat-elusive-target-2"
+        );
     }
 
     #[test]

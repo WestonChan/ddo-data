@@ -2,11 +2,16 @@ name = "Through the Mists"
 icon = "ThroughTheMists"
 is_filigree_set = true
 
+[[citation]]
+url = "https://ddowiki.com/page/Sentient_Weapon/Filigrees"
+read = "2026-10-23"
+note = "The 2-piece line grants True Seeing; its upstream prose spelling is 'Gain the effects of True Seeing'."
+
 [[tier]]
 equipped_count = 2
 
 [[tier.effect]]
-effect = "Gain the effects of True Seeing"
+effect = "True Seeing"
 
 [[tier.modifier]]
 amount_type = "Simple"

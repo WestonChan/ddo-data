@@ -108,10 +108,29 @@ impl TableWriter<'_> {
         let links = self.collapse_set_tier_stat_groups(derived_links)?;
         if links.is_empty() && self.removed_derived_bonus_count == removed_before {
             if let Some(description) = trimmed_non_empty(tier.description.as_deref()) {
-                if let Some(rule) = EFFECT_MAP.set_tier_prose_bonus(description, self.groupings)? {
-                    let bonus_type =
-                        ddo_model::enums::BonusType::parse(&rule.bonus_type).expect("validated prose type");
-                    let effect_id = if let Some(stat) = Stat::by_name(&rule.effect) {
+                if let Some(rule) = EFFECT_MAP.set_tier_prose_link(description, self.groupings)? {
+                    let bonus_type = rule
+                        .bonus_type
+                        .as_deref()
+                        .map(|name| ddo_model::enums::BonusType::parse(name).expect("validated prose type"));
+                    let effect_id = if bonus_type.is_none() {
+                        if let Some(family) = self.effects.family_named(&rule.effect) {
+                            anyhow::ensure!(
+                                family.amount_count == 0 && !family.is_stat && !self.effects.has_stats(family.id),
+                                "prose line {description:?} names {:?}, which is no longer text-only",
+                                rule.effect
+                            );
+                            family.id
+                        } else {
+                            let effect = self.groupings.effect_named(&rule.effect).expect("validated prose target");
+                            self.effects.ensure_family(
+                                &effect.name,
+                                &effect.verbose_name_template,
+                                effect.description_template.as_deref(),
+                                0,
+                            )?
+                        }
+                    } else if let Some(stat) = Stat::by_name(&rule.effect) {
                         let existing = self
                             .effects
                             .family_named(&rule.effect)
@@ -126,7 +145,7 @@ impl TableWriter<'_> {
                                 1,
                             )?,
                         };
-                        self.effects.ensure_stat(effect_id, stat, Some(bonus_type), 1, None, 0)?;
+                        self.effects.ensure_stat(effect_id, stat, bonus_type, 1, None, 0)?;
                         effect_id
                     } else if let Some(grouping) = self.groupings.grouping_named(&rule.effect) {
                         self.effects.ensure_indexed_grouping(grouping)?
@@ -134,8 +153,10 @@ impl TableWriter<'_> {
                         self.effects.ensure_group(&rule.effect)?
                     };
                     let family = self.effects.family(effect_id).expect("prose effect cached");
-                    let linked_type = (family.is_stat || family.uses_link_type).then_some(bonus_type);
-                    self.grouping_answers.insert(effect_id);
+                    let linked_type = bonus_type.filter(|_| family.is_stat || family.uses_link_type);
+                    if bonus_type.is_some() {
+                        self.grouping_answers.insert(effect_id);
+                    }
                     self.matched_set_tier_prose.insert(super::SetTierProseMatch {
                         set_name: set_name.to_string(),
                         equipped_count: tier.equipped_count,
@@ -145,7 +166,7 @@ impl TableWriter<'_> {
                         alias: None,
                         effect_id,
                         bonus_type: linked_type,
-                        value: Some(rule.value),
+                        value: rule.value,
                         value2: None,
                         is_split_line: false,
                     }]);

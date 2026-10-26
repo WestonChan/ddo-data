@@ -341,37 +341,101 @@ fn unbreakable_adamancy_prose_links_sheltering_once() {
 }
 
 #[test]
+fn text_only_set_prose_links_the_named_effect_without_an_amount() {
+    for has_item_carriers in [true, false] {
+        let source = fixture::xml_source();
+        fixture::write_prose_sets(source.path());
+        if !has_item_carriers {
+            for name in ["Sightless.item", "Epic Glimpse of the Soul.item", "The Stablestone.item"] {
+                std::fs::remove_file(source.path().join("Items").join(name)).unwrap();
+            }
+        }
+        let mut db = Connection::open_in_memory().unwrap();
+        let report = build_database(
+            fixture::grouping_cases(),
+            source.path(),
+            &WikiOverrides::default(),
+            &Corrections::default(),
+            &mut db,
+            &fixture_dataset_version(),
+        )
+        .unwrap();
+        for (owner, pieces, expected) in [
+            ("Corsair's Cunning", 2, vec![("Underwater Action", None, None)]),
+            ("Through the Mists", 2, vec![("True Seeing", None, None)]),
+            (
+                "Planar Focus: Subterfuge",
+                2,
+                vec![
+                    ("Dodge", Some("Exceptional"), Some(3)),
+                    ("Sneak Attack Damage", Some("Exceptional"), Some(5)),
+                    ("True Seeing", None, None),
+                ],
+            ),
+            ("Radiant Shield", 4, vec![("Intercession Ward", None, None)]),
+        ] {
+            let links = db.prepare("SELECT e.name, bt.name, l.value FROM set_bonus_tier_effects l JOIN set_bonus_tiers t ON t.id=l.tier_id JOIN set_bonuses s ON s.id=t.set_id JOIN effects e ON e.id=l.effect_id LEFT JOIN bonus_types bt ON bt.id=l.bonus_type_id WHERE s.name=?1 AND t.equipped_count=?2 ORDER BY e.name").unwrap()
+            .query_map(params![owner,pieces], |row| Ok((row.get::<_,String>(0)?,row.get::<_,Option<String>>(1)?,row.get::<_,Option<i64>>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+            assert_eq!(
+                links,
+                expected
+                    .into_iter()
+                    .map(|(effect, bonus_type, value)| (effect.to_string(), bonus_type.map(str::to_string), value))
+                    .collect::<Vec<_>>(),
+                "{owner}"
+            );
+            assert!(
+                report
+                    .matched_set_tier_prose
+                    .iter()
+                    .any(|matched| matched.set_name == owner && matched.equipped_count == pieces),
+                "{owner}"
+            );
+        }
+        for name in [
+            "Underwater action",
+            "Gain the effects of True Seeing",
+            "You gain True seeing",
+            "You have Intercession Ward, and are immune to being Quelled",
+        ] {
+            assert_eq!(
+                db.query_row("SELECT COUNT(*) FROM effects WHERE name=?1", [name], |row| row.get::<_, i64>(0)).unwrap(),
+                0,
+                "{name}"
+            );
+        }
+        for (name, description) in [
+            ("Underwater Action", "This item grants the wearer the ability to breathe water as if it were air."),
+            ("True Seeing", "Passive: You gain the benefit of the spell True Seeing."),
+            ("Intercession Ward", concat!(
+                "Protects the user's connection to a source of Divine power and wards that connection from such things as a ",
+                "Quell's intercession ability. This effect only protects from incoming attacks and will not restore a lost connection."
+            )),
+        ] {
+            let actual: String = db.query_row(
+                "SELECT description_template FROM effects WHERE name=?1", [name], |row| row.get(0)
+            ).unwrap();
+            assert_eq!(actual, description, "{name}");
+        }
+    }
+}
+
+#[test]
 fn shifted_effect_ids_keep_catalog_variants_and_citations() {
-    let source = fixture::xml_source();
-    let sets = source.path().join("SetBonuses.xml");
-    let original = std::fs::read_to_string(&sets).unwrap();
-    std::fs::write(
-        sets,
-        original.replace(
-            "</SetBonuses>",
-            &format!("{}</SetBonuses>", include_str!("fixtures/effect-groups/IdentitySets.xml")),
-        ),
-    )
-    .unwrap();
-    let mut db = Connection::open_in_memory().unwrap();
-    build_database(
-        fixture::groupings(),
-        source.path(),
-        &WikiOverrides::default(),
-        &Corrections::default(),
-        &mut db,
-        &fixture_dataset_version(),
-    )
-    .unwrap();
+    let db = build_item_buff_fixture(
+        include_str!("fixtures/effect-groups/GorthsMageHand.Buffs.xml"),
+        &[("GorthsMageHand.item", include_str!("fixtures/effect-groups/GorthsMageHand.item"))],
+        &[("ItemImages/Gloves/Gloves_7e.png", include_bytes!("fixtures/effect-groups/icons/Gloves_7e.png"))],
+    );
     let (id, slug, variant): (i64, String, Option<String>) = db
-        .query_row("SELECT id, slug, variant FROM effects WHERE name = 'Underwater action'", [], |row| {
+        .query_row("SELECT id, slug, variant FROM effects WHERE name = 'Feat: Elusive Target'", [], |row| {
             Ok((row.get(0)?, row.get(1)?, row.get(2)?))
         })
         .unwrap();
-    assert_ne!(id, 2093);
-    assert_eq!(slug, "underwater-action-2");
+    assert_ne!(id, 1380);
+    assert_eq!(slug, "feat-elusive-target-2");
     assert_eq!(variant.as_deref(), Some("2"));
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM citations c JOIN effects e ON e.id = c.owner_id WHERE c.owner_kind = 'effects' AND e.name = 'Underwater action'"), 1);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM citations c JOIN effects e ON e.id = c.owner_id WHERE c.owner_kind = 'effects' AND e.name = 'Feat: Elusive Target'"), 1);
 }
 
 #[test]

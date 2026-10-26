@@ -608,6 +608,49 @@ fn canonical_wiki_rows_do_not_appear_in_an_unrelated_import_delta() {
 }
 
 #[test]
+fn import_reports_a_text_only_prose_entry_that_stopped_matching() {
+    for changed in [false, true] {
+        let world = ImportWorld::with_sources(
+            fixture::grouping_cases(),
+            Corrections::default(),
+            WikiOverrides::default(),
+            fixture::write_prose_sets,
+        );
+        fixture::write_prose_sets(&world.options.source_dir);
+        if changed {
+            let path = world.options.source_dir.join("SetBonuses.xml");
+            let original = std::fs::read_to_string(&path).unwrap();
+            assert!(original.contains("<Description>Underwater action</Description>"));
+            std::fs::write(
+                path,
+                original.replace(
+                    "<Description>Underwater action</Description>",
+                    "<Description>Underwater breathing</Description>",
+                ),
+            )
+            .unwrap();
+        }
+        let report = import_ddobuilder(&world.options).unwrap();
+        assert!(!report.has_conflicts(), "{report}");
+        let audits = report
+            .entries
+            .iter()
+            .filter(|entry| {
+                entry.category == "UNMATCHED SET TIER PROSE BONUS" && entry.detail.contains("Corsair's Cunning")
+            })
+            .collect::<Vec<_>>();
+        assert_eq!(audits.len(), usize::from(changed), "{report}");
+        if changed {
+            assert!(
+                audits[0].detail.contains("2 pieces") && audits[0].detail.contains("Underwater action"),
+                "{:?}",
+                audits[0]
+            );
+        }
+    }
+}
+
+#[test]
 fn import_reports_a_valued_prose_entry_that_stopped_matching() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let scratch = tempfile::tempdir().unwrap();

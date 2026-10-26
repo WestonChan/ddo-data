@@ -20,7 +20,7 @@ pub struct EffectMap {
     #[serde(default)]
     pub augment_line_names: Vec<AugmentLineName>,
     #[serde(default)]
-    pub set_tier_prose_bonuses: Vec<SetTierProseBonus>,
+    pub set_tier_prose_bonuses: Vec<SetTierProseLink>,
     #[serde(default)]
     pub augment_combined_lines: Vec<AugmentCombinedLine>,
     #[serde(default)]
@@ -68,11 +68,11 @@ pub struct SkillAbilityGroups {
 
 #[derive(Debug, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct SetTierProseBonus {
+pub struct SetTierProseLink {
     pub description: String,
     pub effect: String,
-    pub bonus_type: String,
-    pub value: i64,
+    pub bonus_type: Option<String>,
+    pub value: Option<i64>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -194,7 +194,11 @@ impl EffectMap {
         for rule in &vocabulary.set_tier_prose_bonuses {
             if rule.description.trim().is_empty()
                 || rule.effect.trim().is_empty()
-                || BonusType::parse(&rule.bonus_type).is_none()
+                || match (&rule.bonus_type, rule.value) {
+                    (Some(bonus_type), Some(_)) => BonusType::parse(bonus_type).is_none(),
+                    (None, None) => false,
+                    _ => true,
+                }
                 || !prose_descriptions.insert(&rule.description)
             {
                 bail!(
@@ -596,21 +600,37 @@ impl EffectMap {
         self.named_effect_ids.contains_key(effect_name) || self.family.groups.contains_key(effect_name)
     }
 
-    pub fn set_tier_prose_bonus(
+    pub fn set_tier_prose_link(
         &self,
         description: &str,
         groupings: &crate::groupings::Groupings,
-    ) -> Result<Option<&SetTierProseBonus>> {
+    ) -> Result<Option<&SetTierProseLink>> {
         let Some(rule) = self.set_tier_prose_bonuses.iter().find(|rule| rule.description == description) else {
             return Ok(None);
+        };
+        let Some(bonus_type) = rule.bonus_type.as_deref() else {
+            let target = groupings.effect_named(&rule.effect).filter(|effect| {
+                Stat::by_name(&rule.effect).is_none()
+                    && !effect.is_group
+                    && effect.bonuses.is_empty()
+                    && effect.default_value.is_none()
+                    && crate::build::amount_count(&effect.verbose_name_template, effect.description_template.as_deref())
+                        == 0
+            });
+            anyhow::ensure!(
+                target.is_some(),
+                "prose line {description:?} names {:?}, which is not a text-only effect without amounts in C",
+                rule.effect
+            );
+            return Ok(Some(rule));
         };
         if Stat::by_name(&rule.effect).is_none() {
             if let Some(grouping) = groupings.grouping_named(&rule.effect) {
                 anyhow::ensure!(
-                    grouping.accepts_value_at_type(&rule.bonus_type),
+                    grouping.accepts_value_at_type(bonus_type),
                     "prose bonus {:?} cannot take one value at {}",
                     rule.effect,
-                    rule.bonus_type
+                    bonus_type
                 );
             } else if self.group_members(&rule.effect).is_none() {
                 bail!("prose bonus {description:?} names {:?}, which is not a stat or grouping in C", rule.effect);

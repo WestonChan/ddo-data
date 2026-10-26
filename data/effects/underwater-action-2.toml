@@ -1,9 +1,0 @@
-name = "Underwater action"
-variant = "2"
-verbose_name_template = "Underwater action"
-
-[[citation]]
-field = "name"
-url = "upstream/Output/DataFiles/ItemBuffs.xml"
-read = "2026-10-07"
-note = "The capitalized effect has a water-breathing description; this row has no description."

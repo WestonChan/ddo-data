@@ -793,9 +793,9 @@ fn a_missing_placeholder_value_affects_only_its_item() {
 fn valued_set_prose_rules_validate_types_targets_and_unique_descriptions() {
     let source = include_str!("../data/effect_map.toml");
     let vocabulary = EffectMap::from_toml(source).unwrap();
-    assert_eq!(vocabulary.set_tier_prose_bonuses.len(), 25);
+    assert_eq!(vocabulary.set_tier_prose_bonuses.len(), 29);
     for rule in &vocabulary.set_tier_prose_bonuses {
-        assert!(vocabulary.set_tier_prose_bonus(&rule.description, fixture::groupings()).unwrap().is_some());
+        assert!(vocabulary.set_tier_prose_link(&rule.description, fixture::grouping_cases()).unwrap().is_some());
     }
     let duplicate = "\n[[set_tier_prose_bonuses]]\ndescription = \"+1 Profane bonus to Attack and Damage\"\neffect = \"Attack Bonus\"\nbonus_type = \"Profane\"\nvalue = 1\n";
     for invalid in [
@@ -810,7 +810,7 @@ fn valued_set_prose_rules_validate_types_targets_and_unique_descriptions() {
         let invalid = source.replacen("effect = \"Attack and Damage\"", &format!("effect = {target:?}"), 1);
         let vocabulary = EffectMap::from_toml(&invalid).unwrap();
         let error =
-            vocabulary.set_tier_prose_bonus("+1 Profane bonus to Attack and Damage", fixture::groupings()).unwrap_err();
+            vocabulary.set_tier_prose_link("+1 Profane bonus to Attack and Damage", fixture::groupings()).unwrap_err();
         assert!(error.to_string().contains(target), "{error}");
     }
     for description in [
@@ -822,7 +822,31 @@ fn valued_set_prose_rules_validate_types_targets_and_unique_descriptions() {
         "3rd Degree Burns",
         "+10 Positive, Negative and Repair Amplification",
     ] {
-        assert!(vocabulary.set_tier_prose_bonus(description, fixture::groupings()).unwrap().is_none(), "{description}");
+        assert!(vocabulary.set_tier_prose_link(description, fixture::groupings()).unwrap().is_none(), "{description}");
+    }
+}
+
+#[test]
+fn text_only_set_prose_rules_require_a_target_without_amounts_or_bonuses() {
+    let source = include_str!("../data/effect_map.toml");
+    let rule =
+        "\n[[set_tier_prose_bonuses]]\ndescription = 'A different True Seeing description'\neffect = 'True Seeing'\n";
+    let canonical = fixture::grouping_case_database(|root| {
+        std::fs::write(root.join("effects/bewildering.toml"), include_str!("../../../data/effects/bewildering.toml"))
+            .unwrap();
+    });
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let vocabulary = EffectMap::from_toml(&format!("{source}{rule}")).unwrap();
+    assert!(vocabulary.set_tier_prose_link("A different True Seeing description", &groupings).unwrap().is_some());
+    for suffix in ["value = 1\n", "bonus_type = 'Equipment'\n", "value = 1\nbonus_type = 'Unknown Type'\n"] {
+        let error = EffectMap::from_toml(&format!("{source}{rule}{suffix}")).unwrap_err();
+        assert!(error.to_string().contains("set_tier_prose_bonuses"), "{error}");
+    }
+    for effect in ["Strength", "Spell DCs", "Hallowed", "Major Anger", "Bewildering", "Unknown Effect"] {
+        let rule = rule.replace("effect = 'True Seeing'", &format!("effect = {effect:?}"));
+        let vocabulary = EffectMap::from_toml(&format!("{source}{rule}")).unwrap();
+        let error = vocabulary.set_tier_prose_link("A different True Seeing description", &groupings).unwrap_err();
+        assert!(error.to_string().contains(effect), "{error}");
     }
 }
 
