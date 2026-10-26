@@ -17,7 +17,7 @@ value = 39
 name = "Freedom of Movement"
 
 [[effect]]
-name = "Feat Elusive Target"
+name = "Feat: Elusive Target"
 
 [[socket]]
 slot = "crafting: sealed in undeath"

@@ -421,6 +421,46 @@ fn text_only_set_prose_links_the_named_effect_without_an_amount() {
 }
 
 #[test]
+fn elusive_target_buff_spellings_share_one_effect() {
+    let definitions = format!(
+        "{}{}",
+        include_str!("fixtures/effect-groups/GorthsMageHand.Buffs.xml"),
+        include_str!("fixtures/effect-groups/AzureRotella.Buffs.xml")
+    );
+    let db = build_item_buff_fixture(
+        &definitions,
+        &[
+            ("AzureRotella.item", include_str!("fixtures/effect-groups/AzureRotella.item")),
+            ("GorthsMageHand.item", include_str!("fixtures/effect-groups/GorthsMageHand.item")),
+        ],
+        &[
+            ("ItemImages/Shields/Shield_4l.png", include_bytes!("fixtures/effect-groups/icons/Shield_4l.png")),
+            ("ItemImages/Gloves/Gloves_7e.png", include_bytes!("fixtures/effect-groups/icons/Gloves_7e.png")),
+        ],
+    );
+    for owner in ["Azure Rotella", "Gorth's Mage Hand"] {
+        let lines = db.prepare("SELECT e.name,e.description_template,l.value,l.value2,l.bonus_type_id FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name=?1 AND e.name LIKE '%Elusive Target%' ORDER BY l.sort_order").unwrap()
+            .query_map([owner], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,Option<i64>>(2)?,row.get::<_,Option<i64>>(3)?,row.get::<_,Option<i64>>(4)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(
+            lines,
+            [(
+                "Feat: Elusive Target".into(),
+                "While equipped, this item grants the feat Elusive Target.".into(),
+                None,
+                None,
+                None
+            )],
+            "{owner}"
+        );
+    }
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Feat Elusive Target'"), 0);
+    assert_eq!(
+        count(&db, "SELECT COUNT(*) FROM effects WHERE name='Feat: Elusive Target' AND slug='feat-elusive-target-2'"),
+        1
+    );
+}
+
+#[test]
 fn shifted_effect_ids_keep_catalog_variants_and_citations() {
     let db = build_item_buff_fixture(
         include_str!("fixtures/effect-groups/GorthsMageHand.Buffs.xml"),

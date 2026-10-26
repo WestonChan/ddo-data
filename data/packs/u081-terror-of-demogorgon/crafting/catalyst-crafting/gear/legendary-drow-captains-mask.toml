@@ -20,7 +20,7 @@ value = 40
 name = "Feat - Wind through the Trees"
 
 [[effect]]
-name = "Feat Elusive Target"
+name = "Feat: Elusive Target"
 
 [[effect]]
 name = "Physical Sheltering"

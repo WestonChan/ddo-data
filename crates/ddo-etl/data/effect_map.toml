@@ -187,6 +187,8 @@ bonus_type = "Stacking"
 value = 5
 
 [names]
+FeatElusiveTarget = "Feat: Elusive Target"
+"Feat: Elusive Target" = "Feat: Elusive Target"
 "Rune Arm Focus" = "Rune Arm Spell Focus"
 "Charisma Skills - Exceptional" = "Charisma Skills"
 "Strength Skills - Exceptional" = "Strength Skills"
@@ -403,6 +405,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Universal Spell Lore" = "+{1}% %b1 Bonus to Spell Critical Chance"
 
 [description_templates]
+"Feat: Elusive Target" = "While equipped, this item grants the feat Elusive Target."
 "Rune Arm Spell Focus" = "{1} %b1 bonus to the DC of Rune Arm spells."
 "Charisma Skills" = "{1} %b1 bonus to all Charisma based skills."
 "Strength Skills" = "{1} %b1 bonus to all Strength based skills."

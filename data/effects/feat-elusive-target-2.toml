@@ -4,7 +4,6 @@ description_template = "While equipped, this item grants the feat Elusive Target
 verbose_name_template = "Feat - Elusive Target"
 
 [[citation]]
-field = "name"
-url = "upstream/Output/DataFiles/ItemBuffs.xml"
-read = "2026-10-07"
-note = "The two effects have different descriptions and owner links, so both rows remain for review."
+url = "https://ddowiki.com/page/Item:Gorth%27s_Mage_Hand"
+read = "2026-10-23"
+note = "R7 confirmed that the two upstream spellings grant the same Elusive Target feat."

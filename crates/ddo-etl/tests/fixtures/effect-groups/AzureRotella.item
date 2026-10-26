@@ -1,0 +1,59 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Azure Rotella</Name>
+    <Icon>Shield_4l</Icon>
+    <Description>The blue shine of this shield resembles that of the clear blue skies over Sharn.</Description>
+    <DropLocation>Paper Trail, End chest</DropLocation>
+    <MinLevel>18</MinLevel>
+    <EquipmentSlot>
+      <Weapon2/>
+    </EquipmentSlot>
+    <Weapon>Large Shield</Weapon>
+    <AttackModifier>Strength</AttackModifier>
+    <DamageModifier>Strength</DamageModifier>
+    <DRBypass>Bludgeon</DRBypass>
+    <DRBypass>Magic</DRBypass>
+    <WeaponDamage>2.6</WeaponDamage>
+    <BaseDice>
+      <Number>1</Number>
+      <Sides>10</Sides>
+    </BaseDice>
+    <CriticalMultiplier>3</CriticalMultiplier>
+    <CriticalThreatRange>2</CriticalThreatRange>
+    <MaximumDexterityBonus>0</MaximumDexterityBonus>
+    <ArmorCheckPenalty>-1</ArmorCheckPenalty>
+    <ArcaneSpellFailure>15</ArcaneSpellFailure>
+    <ShieldBonus>12</ShieldBonus>
+    <DamageReduction>9</DamageReduction>
+    <Material>Steel</Material>
+    <Buff>
+      <Type>ShieldEnchantment</Type>
+      <Value1>5</Value1>
+      <BonusType>Shield Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>MagicalSheltering</Type>
+      <Value1>5</Value1>
+      <BonusType>Quality</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Shield Bashing</Type>
+      <Value1>14</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>FeatElusiveTarget</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Incite</Type>
+      <Value1>35</Value1>
+      <BonusType>Insightful</BonusType>
+    </Buff>
+    <SetBonus>Forbidden Knowledge</SetBonus>
+    <ItemAugment>
+      <Type>Red</Type>
+    </ItemAugment>
+  </Item>
+</Items>

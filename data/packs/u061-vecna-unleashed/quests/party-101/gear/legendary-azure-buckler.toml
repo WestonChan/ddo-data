@@ -34,7 +34,7 @@ bonus_type = "Enhancement"
 value = 22
 
 [[effect]]
-name = "Feat Elusive Target"
+name = "Feat: Elusive Target"
 
 [[effect]]
 name = "Diversion"

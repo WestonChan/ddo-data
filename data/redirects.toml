@@ -146,6 +146,12 @@ since = "2026-10-20"
 
 [[redirect]]
 kind = "effects"
+from = "feat-elusive-target"
+to = "feat-elusive-target-2"
+since = "2026-10-26"
+
+[[redirect]]
+kind = "effects"
 from = "gain-a-5-luck-bonus-to-prr-and-mrr"
 to = "sheltering"
 since = "2026-10-26"

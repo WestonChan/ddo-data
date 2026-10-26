@@ -1,0 +1,48 @@
+  <Buff>
+    <Type>Incite</Type>
+    <DisplayText>%b1 Incite %v1%: %v1% %b1 bonus to increased threat generation from melee damage</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>ThreatBonusMelee</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>MagicalSheltering</Type>
+    <DisplayText>%b1 Magical Sheltering %v1: %v1 %b1 bonus to Magical Resistance Rating.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>MRR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Shield Bashing</Type>
+    <DisplayText>%b1 Shield Bashing %v1%: %v1% %b1 bonus to your chance of a Secondary Shield Bash. This stacks with bonuses granted by any relevant feats.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>SecondaryShieldBash</Type>
+      <Bonus>Shield</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>ShieldEnchantment</Type>
+    <DisplayText>%v1 Enhancement Bonus: Weapons and Shields: %v1 Enhancement bonus to Attack and Damage rolls. Armor and Shields: %v1 Enhancement bonus to Armor Class.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>ShieldEnchantment</Type>
+      <Bonus>Shield</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Buckler</Item>
+      <Item>Small Shield</Item>
+      <Item>Large Shield</Item>
+      <Item>Tower Shield</Item>
+    </Effect>
+  </Buff>
