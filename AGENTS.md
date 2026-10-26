@@ -113,6 +113,19 @@ git worktree add -b <branch> /tmp/ddo-data-<branch> main
 
 The worktree compiles from scratch into its own `target/` (a few minutes the first time). When done: commit on the branch, fast-forward `main` from the main checkout, push, `git worktree remove` the directory and delete the branch. Never run a bare `git stash`; the stash is shared across worktrees.
 
+## Changing data: the pipeline for groups, the file for one
+
+**A change to one entity is a hand edit to its file**: a value, a correction, a citation, a source. **A change that touches a group of files goes through the pipeline, never through hand edits or scripts that write TOML:**
+- **If the change is upstream-shaped** (how Maetrim's data maps onto ours), change the import: `crates/ddo-etl/data/effect_map.toml` or the XML writer. Then re-derive the files through `ddo-etl import-ddobuilder` (`docs/update-from-maetrim.md`) or a fresh build and export.
+- **Otherwise** (a rename, a merge, a membership or type fix across many entities), build the database (`ddo-etl build --data data --out <db>`), apply the change to it in SQL or Rust, and write it back with `ddo-etl export --db <db> --out data`. The export does the placing, formatting and file moves, so every touched file comes out in one consistent shape.
+
+**Then look at the diff and confirm it is what you expected:**
+- `git diff --stat -- data/`: every changed file is one the change should touch, and nothing else moved;
+- `cargo xtask diff-db --by-slug before.db after.db`: every served difference is listed and classified as intended;
+- a sample of the file diffs, read by eye.
+
+Unexpected files or served differences are a bug in the change, not noise. Report the counts and the classification. Only then commit.
+
 ## Code Quality
 
 - **No comments, no doc comments.** Code carries its meaning in names, types, and tests. Do not write `//`, `/* */`, `///`, or `//!`. If something needs a comment to be understood, rename, split, or restructure it until it doesn't. Reasoning that cannot live in code goes in `ddo-tools/docs/architecture.md`, a `docs/` file here, or the issue. `cargo lint` fails on any comment; `cargo xtask no-comments --fix` strips them.
