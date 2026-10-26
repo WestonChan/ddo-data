@@ -36,7 +36,7 @@ bonus_type = "Equipment"
 value = 111
 
 [[effect]]
-name = "Flaming Blast IV"
+name = "Flaming Blast 4"
 
 [[effect]]
 name = "Coruscating 4"

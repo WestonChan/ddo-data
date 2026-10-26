@@ -1,3 +1,8 @@
 name = "Flaming Blast 2"
 description_template = "This weapon burns with deadly magical fire, dealing 2d6 Fire damage on a successful hit, and an additional 2d6 Fire damage on a critical hit."
 verbose_name_template = "Flaming Blast 2"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Hellfire_Crossbow"
+read = "2026-10-23"
+note = "The wiki uses Flaming Blast 2; the Roman spelling grants the same 2d6 on hit and 2d6 on a critical hit."

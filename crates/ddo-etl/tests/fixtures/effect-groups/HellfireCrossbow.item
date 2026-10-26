@@ -1,0 +1,50 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Hellfire Crossbow</Name>
+    <Icon>RepeatingLightCrossbow_7</Icon>
+    <Description>This crossbow has much in common with an orthon warrior's ranged weaponry. It
+invests the ammunition it launches with powerful, fiery energy.</Description>
+    <DropLocation>The Chronoscope, and The Chronoscope (Legendary), Razor Arm 's chest</DropLocation>
+    <MinLevel>4</MinLevel>
+    <EquipmentSlot>
+      <Weapon1/>
+    </EquipmentSlot>
+    <Weapon>Repeating Light Crossbow</Weapon>
+    <AttackModifier>Dexterity</AttackModifier>
+    <DRBypass>Magic</DRBypass>
+    <DRBypass>Pierce</DRBypass>
+    <WeaponDamage>1</WeaponDamage>
+    <BaseDice>
+      <Number>1</Number>
+      <Sides>8</Sides>
+    </BaseDice>
+    <CriticalMultiplier>2</CriticalMultiplier>
+    <CriticalThreatRange>2</CriticalThreatRange>
+    <Material>Wood</Material>
+    <Effect>
+      <Type>ItemClickie</Type>
+      <Bonus>Equipment</Bonus>
+      <Item>Scorching Ray</Item>
+      <AType>SLA</AType>
+      <Amount size="3">5 3 3</Amount>
+    </Effect>
+    <Buff>
+      <Type>WeaponEnchantment</Type>
+      <Value1>2</Value1>
+      <BonusType>Weapon Enchantment</BonusType>
+    </Buff>
+    <Buff>
+      <Type>FlamingBlastII</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Incineration</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>FeatPreciseShot</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+  </Item>
+</Items>

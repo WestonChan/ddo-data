@@ -152,6 +152,24 @@ since = "2026-10-26"
 
 [[redirect]]
 kind = "effects"
+from = "flaming-blast-ii"
+to = "flaming-blast-2"
+since = "2026-10-26"
+
+[[redirect]]
+kind = "effects"
+from = "flaming-blast-iii"
+to = "flaming-blast-3"
+since = "2026-10-26"
+
+[[redirect]]
+kind = "effects"
+from = "flaming-blast-iv"
+to = "flaming-blast-4"
+since = "2026-10-26"
+
+[[redirect]]
+kind = "effects"
 from = "gain-a-5-luck-bonus-to-prr-and-mrr"
 to = "sheltering"
 since = "2026-10-26"

@@ -1,3 +1,8 @@
 name = "Flaming Blast 4"
 description_template = "This weapon burns with deadly magical fire, dealing 4d6 Fire damage on a successful hit, and an additional 4d6 Fire damage on a critical hit."
 verbose_name_template = "Flaming Blast 4"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Epic_Hellfire_Crossbow"
+read = "2026-10-23"
+note = "The wiki uses Flaming Blast 4; the Roman spelling grants the same 4d6 on hit and 4d6 on a critical hit."

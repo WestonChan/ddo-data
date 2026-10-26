@@ -1,0 +1,86 @@
+  <Buff>
+    <Type>FeatPreciseShot</Type>
+    <DisplayText>Feat - Precise Shot: While equipped this item grants the feat Precise Shot, allowing your ranged attacks to pass through other characters and monsters to strike your target.</DisplayText>
+    <Effect>
+      <Type>GrantFeat</Type>
+      <Bonus>Enhancement</Bonus>
+      <Item>Precise Shot</Item>
+      <AType>NotNeeded</AType>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>FireLore</Type>
+    <DisplayText>%b1 Fire Lore %v1%: Passive: Your Fire spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Fire</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Flamebitten</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Flamebitten: On Hit: Applies a stack of Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration.). This effect may only occur on-hit once every two seconds. On Vorpal: Applies a stack of Ashscarred (-1 to all Saving Throws. Non-bosses also move and attack 5% slower. This effect stacks up to 5 times.)</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>FlamingBlastII</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Flaming Blast II: This weapon burns with deadly magical fire. The weapon deals an extra 2d6 Fire damage each hit. In addition, critical hits deal an additional 2d6 Fire damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">2</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>FlamingBlastIII</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Flaming Blast III: This weapon burns with deadly magical fire. The weapon deals an extra 3d6 Fire damage each hit. In addition, critical hits deal an additional 3d6 Fire damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">3</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>FlamingBlastIV</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Flaming Blast IV: This weapon burns with deadly magical fire. The weapon deals an extra 4d6 Fire damage each hit. In addition, critical hits deal an additional 4d6 Fire damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Incineration</Type>
+    <DisplayText>Incineration: This weapon stores the power of a raging inferno deep within. Occasionally, this destructive power comes to the surface, devastating enemies with massive fire damage.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>MagmaSurge</Type>
+    <DisplayText>Magma Surge: This weapon stores the immeasurable heat of the planet's molten mantle. When this weapon is used, superheated magma occasionally surges to the surface, slowing an enemy down and inflicting massive fire damage over time.</DisplayText>
+  </Buff>

@@ -421,6 +421,46 @@ fn text_only_set_prose_links_the_named_effect_without_an_amount() {
 }
 
 #[test]
+fn flaming_blast_roman_buff_types_use_the_numeric_enchantment_names() {
+    let db = build_item_buff_fixture(
+        include_str!("fixtures/effect-groups/FlamingBlast.Buffs.xml"),
+        &[
+            ("HellfireCrossbow.item", include_str!("fixtures/effect-groups/HellfireCrossbow.item")),
+            ("Tinder.item", include_str!("fixtures/effect-groups/Tinder.item")),
+            ("EpicHellfireCrossbow.item", include_str!("fixtures/effect-groups/EpicHellfireCrossbow.item")),
+        ],
+        &[
+            (
+                "ItemImages/Weapon_RepeatingLightCrossbow/RepeatingLightCrossbow_7.png",
+                include_bytes!("fixtures/effect-groups/icons/RepeatingLightCrossbow_7.png"),
+            ),
+            (
+                "ItemImages/Weapon_Quarterstaff/Quarterstaff_5g.png",
+                include_bytes!("fixtures/effect-groups/icons/Quarterstaff_5g.png"),
+            ),
+            (
+                "ItemImages/Weapon_RepeatingHeavyCrossbow/RepeatingHeavyCrossbow_2.png",
+                include_bytes!("fixtures/effect-groups/icons/RepeatingHeavyCrossbow_2.png"),
+            ),
+        ],
+    );
+    for (owner, rank) in [("Hellfire Crossbow", 2), ("Tinder", 3), ("Epic Hellfire Crossbow", 4)] {
+        let lines = db.prepare("SELECT e.name,e.verbose_name_template,e.description_template,l.value,l.value2 FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name=?1 AND e.name LIKE 'Flaming Blast %' ORDER BY l.sort_order").unwrap()
+            .query_map([owner], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,String>(2)?,row.get::<_,Option<i64>>(3)?,row.get::<_,Option<i64>>(4)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        let name = format!("Flaming Blast {rank}");
+        let description = format!("This weapon burns with deadly magical fire, dealing {rank}d6 Fire damage on a successful hit, and an additional {rank}d6 Fire damage on a critical hit.");
+        assert_eq!(lines, [(name.clone(), name, description, None, None)], "{owner}");
+    }
+    assert_eq!(
+        count(
+            &db,
+            "SELECT COUNT(*) FROM effects WHERE name IN ('Flaming Blast II','Flaming Blast III','Flaming Blast IV')"
+        ),
+        0
+    );
+}
+
+#[test]
 fn elusive_target_buff_spellings_share_one_effect() {
     let definitions = format!(
         "{}{}",

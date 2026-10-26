@@ -187,6 +187,9 @@ bonus_type = "Stacking"
 value = 5
 
 [names]
+FlamingBlastII = "Flaming Blast 2"
+FlamingBlastIII = "Flaming Blast 3"
+FlamingBlastIV = "Flaming Blast 4"
 FeatElusiveTarget = "Feat: Elusive Target"
 "Feat: Elusive Target" = "Feat: Elusive Target"
 "Rune Arm Focus" = "Rune Arm Spell Focus"
@@ -343,6 +346,9 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Search and Spot" = "none"
 
 [line_templates]
+"Flaming Blast 2" = "Flaming Blast 2"
+"Flaming Blast 3" = "Flaming Blast 3"
+"Flaming Blast 4" = "Flaming Blast 4"
 "Rune Arm Spell Focus" = "%b1 Rune Arm Focus +{1}"
 "Charisma Skills" = "%b1 Charisma Skills +{1}"
 "Strength Skills" = "%b1 Strength Skills +{1}"
@@ -405,6 +411,9 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Universal Spell Lore" = "+{1}% %b1 Bonus to Spell Critical Chance"
 
 [description_templates]
+"Flaming Blast 2" = "This weapon burns with deadly magical fire, dealing 2d6 Fire damage on a successful hit, and an additional 2d6 Fire damage on a critical hit."
+"Flaming Blast 3" = "This weapon burns with deadly magical fire, dealing 3d6 Fire damage on a successful hit, and an additional 3d6 Fire damage on a critical hit."
+"Flaming Blast 4" = "This weapon burns with deadly magical fire, dealing 4d6 Fire damage on a successful hit, and an additional 4d6 Fire damage on a critical hit."
 "Feat: Elusive Target" = "While equipped, this item grants the feat Elusive Target."
 "Rune Arm Spell Focus" = "{1} %b1 bonus to the DC of Rune Arm spells."
 "Charisma Skills" = "{1} %b1 bonus to all Charisma based skills."
