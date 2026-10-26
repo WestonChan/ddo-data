@@ -152,6 +152,12 @@ since = "2026-10-23"
 
 [[redirect]]
 kind = "effects"
+from = "light-chaos-good-evil-and-law-spell-lore"
+to = "radiance-lore"
+since = "2026-10-23"
+
+[[redirect]]
+kind = "effects"
 from = "negative-and-poison-spell-lore"
 to = "void-lore"
 since = "2026-10-23"

@@ -257,6 +257,9 @@ pub(super) fn correction_values(
         (CorrectionKind::SetTierBonus | CorrectionKind::FeatBonus | CorrectionKind::SocketOptionBonus, "remove") => {
             Value::Null
         }
+        (CorrectionKind::Effect, "remove") => serde_json::from_str::<Value>(
+            &data_correction_value(transaction, &correction, current_name, groupings, socket_options)?.to_json(),
+        )?,
         (_, "remove") => json!(1),
         _ => serde_json::from_str::<Value>(
             &data_correction_value(transaction, &correction, current_name, groupings, socket_options)?.to_json(),

@@ -5,7 +5,7 @@ icon = "SlavelordsSuffix"
 min_level = 28
 
 [[effect]]
-name = "Light, Chaos, Good, Evil and Law Spell Lore"
+name = "Radiance Lore"
 bonus_type = "Equipment"
 value = 21
 
@@ -13,7 +13,7 @@ value = 21
 amount_type = "Simple"
 amounts = [21]
 bonus_type = "Equipment"
-effect = "Light, Chaos, Good, Evil and Law Spell Lore"
+effect = "Radiance Lore"
 effect_type = "SpellLore"
 targets = [
     "Light/Alignment",

@@ -7,4 +7,38 @@ verbose_name_template = "%b1 Radiance Lore +{1}%"
 amount_from = 1
 rounding = "down"
 scale = 1.0
+target = "Chaos Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Evil Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Good Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Law Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
 target = "Light Spell Lore"
+
+[[citation]]
+url = "https://ddowiki.com/page/Radiance_Lore"
+read = "2026-10-23"
+note = "The lore enchantment grants critical chance to Light and Aligned spells: Light, Chaos, Evil, Good and Law."
+
+[[citation]]
+url = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-10-23"
+note = "Fire I: Radiance names its five-stat spell lore line Radiance Lore."

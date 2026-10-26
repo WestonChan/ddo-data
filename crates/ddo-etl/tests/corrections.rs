@@ -135,7 +135,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
     use ddo_model::enums::CorrectionKind;
     let expected = [
         (CorrectionKind::Item, "accepts_sentience:accepts_sentience:Flag:false, description:description:Text:true, drop_location:drop_location:Text:true, enhancement_bonus:enhancement_bonus:Integer:true, icon:icon:Text:true, is_legacy:is_legacy:Flag:false, is_minor_artifact:is_minor_artifact:Flag:false, item_category:item_category:Text:false, item_type:item_type:Text:true, material:material_id:NamedReference { referenced_table: \"item_materials\" }:true, minimum_level:minimum_level:Integer:false, name:name:RowName:false, race_required:race_required:Text:true, remove:remove:Removal:false, set_bonus:set_bonus:SetName:true, slot:slot_id:NamedReference { referenced_table: \"equipment_slots\" }:false"),
-        (CorrectionKind::Effect, "bonus_type:bonus_type_id:EffectBonusType:false, constant:constant:EffectBonusConstant:false, default_value:default_value:Integer:true, description_template:description_template:Text:true, name:name:RowName:false, verbose_name_template:verbose_name_template:Text:false"),
+        (CorrectionKind::Effect, "bonus_type:bonus_type_id:EffectBonusType:false, constant:constant:EffectBonusConstant:false, default_value:default_value:Integer:true, description_template:description_template:Text:true, name:name:RowName:false, remove:remove:EffectBonusRemoval:false, verbose_name_template:verbose_name_template:Text:false"),
         (CorrectionKind::Augment, "description:description:Text:false, effect_description:effect_description:Text:true, family:family:Text:false, min_level:min_level:Integer:true, name:name:RowName:false, remove:remove:Removal:false"),
         (CorrectionKind::Quest, "epic_level:epic_level:Integer:true, favor:favor:Integer:true, is_raid:is_raid:Flag:false, level:level:Integer:true, name:name:RowName:false, pack:pack_id:NamedReference { referenced_table: \"adventure_packs\" }:false, patron:patron_id:NamedReference { referenced_table: \"patrons\" }:true, remove:remove:Removal:false"),
         (CorrectionKind::Feat, "description:description:Text:true, icon:icon:Text:true"),
@@ -3385,7 +3385,15 @@ fn a_definition_correction_cannot_change_a_grouping_answer() {
         "\"null\"",
         "\"Equipment\"",
     );
-    for correction in [scale, bonus_type] {
+    let removal = new_qualified_correction(
+        "effect",
+        "Power of the Frozen Thunderstorm",
+        "stat = 'Cold Spell Power'",
+        "remove",
+        "{ target = 'Cold Spell Power', amount_from = 1, scale = 1.0, rounding = 'down' }",
+        "'null'",
+    );
+    for correction in [scale, bonus_type, removal] {
         let error = built_db_with(&[("grouping-definition.toml", &correction)]).unwrap_err();
         assert!(error.contains("Power of the Frozen Thunderstorm") && error.contains("lookup answer"), "{error}");
     }
@@ -3462,6 +3470,152 @@ fn effect_bonus_type_correction_rejects_an_absent_stat_and_names_its_file() {
     let error = built_db_from(source.path(), &[("lifeblood-missing-stat.toml", &correction)]).unwrap_err();
     for expected in ["lifeblood-missing-stat.toml", "Lifeblood of the Undead Prince", "Strength", "exactly once"] {
         assert!(error.contains(expected), "{error}");
+    }
+}
+
+#[test]
+fn effect_bonus_removal_deletes_only_its_row_and_reports_a_missing_member() {
+    let upstream = "{ target = 'Repair Amplification', bonus_type = 'Competence', amount_from = 1, scale = 1.0, rounding = 'down' }";
+    let correction = new_qualified_correction(
+        "effect",
+        "Lifeblood of the Undead Prince",
+        "stat = 'Repair Amplification'",
+        "remove",
+        upstream,
+        "'null'",
+    );
+    for has_repair in [true, false] {
+        let source = fixture::xml_source();
+        fixture::write_diadem_item(source.path());
+        if !has_repair {
+            let path = source.path().join("ItemBuffs.xml");
+            let original = std::fs::read_to_string(&path).unwrap();
+            std::fs::write(path, original.replace("      <Type>RepairAmplification</Type>\n", "")).unwrap();
+        }
+        let (db, report) = built_db_from(source.path(), &[("effect-removal.toml", &correction)]).unwrap();
+        let bonuses = db.prepare("SELECT target.name, bt.name, b.amount_from, b.constant, b.scale, b.rounding FROM effect_bonuses b JOIN effects e ON e.id=b.effect_id JOIN effects target ON target.id=b.target_effect_id JOIN bonus_types bt ON bt.id=b.bonus_type_id WHERE e.name='Lifeblood of the Undead Prince' ORDER BY target.name")
+            .unwrap().query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?, row.get::<_, Option<i64>>(3)?, row.get::<_, f64>(4)?, row.get::<_, String>(5)?)))
+            .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(
+            bonuses,
+            [
+                ("Healing Amplification".into(), "Competence".into(), 1, None, 1.0, "down".into()),
+                ("Negative Healing Amplification".into(), "Profane".into(), 1, None, 1.0, "down".into()),
+            ]
+        );
+        if has_repair {
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+            let restored = Corrections::from_database(&db).unwrap();
+            assert_eq!(restored.entries[0].from, fixture::correction_value(upstream));
+            assert_eq!(restored.entries[0].to, CorrectionValue::Null);
+        } else {
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+            assert!(
+                matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\"")
+            );
+        }
+    }
+}
+
+#[test]
+fn effect_bonus_removal_tracks_changes_to_constant_amounts() {
+    let correction = new_qualified_correction(
+        "effect",
+        "Lifeblood of the Undead Prince",
+        "stat = 'Repair Amplification'",
+        "remove",
+        "58",
+        "'null'",
+    );
+    for amount in [58, 59] {
+        let source = fixture::xml_source();
+        fixture::write_diadem_item(source.path());
+        let path = source.path().join("ItemBuffs.xml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        let definitions = include_str!("fixtures/effect-groups/TheDiademOfRot.Buffs.xml");
+        let updated = definitions.replace("%v1", "58").replace(">58</Amount>", &format!(">{amount}</Amount>"));
+        std::fs::write(path, original.replace(definitions, &updated)).unwrap();
+        let (db, report) = built_db_from(source.path(), &[("constant-removal.toml", &correction)]).unwrap();
+        let remaining = db.query_row("SELECT b.constant FROM effect_bonuses b JOIN effects e ON e.id=b.effect_id JOIN effects target ON target.id=b.target_effect_id WHERE e.name='Lifeblood of the Undead Prince' AND target.name='Repair Amplification'", [], |row| row.get::<_, i64>(0)).optional().unwrap();
+        if amount == 58 {
+            assert_eq!(remaining, None);
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+        } else {
+            assert_eq!(remaining, Some(59));
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+            assert!(
+                matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "59")
+            );
+        }
+    }
+}
+
+#[test]
+fn effect_bonus_removal_rejects_unknown_stats_and_malformed_qualifiers() {
+    let source = fixture::xml_source();
+    fixture::write_diadem_item(source.path());
+    for (qualifier, expected) in [
+        ("stat = 'Imaginary Amplification'", "unknown stat"),
+        ("", "exactly one stat"),
+        ("stat = 'Repair Amplification'\nbonus_type = 'Competence'", "exactly one stat"),
+    ] {
+        let correction =
+            new_qualified_correction("effect", "Lifeblood of the Undead Prince", qualifier, "remove", "58", "'null'");
+        let error = built_db_from(source.path(), &[("invalid-effect-removal.toml", &correction)]).unwrap_err();
+        assert!(error.contains("invalid-effect-removal.toml") && error.contains(expected), "{error}");
+    }
+    let correction = new_qualified_correction(
+        "effect",
+        "Lifeblood of the Undead Prince",
+        "stat = 'Strength'",
+        "remove",
+        "58",
+        "'null'",
+    );
+    let (_, report) = built_db_from(source.path(), &[("absent-effect-member.toml", &correction)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+    assert!(
+        matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\"")
+    );
+}
+
+#[test]
+fn lore_definition_corrections_keep_only_the_wiki_stats() {
+    let source = fixture::xml_source();
+    fixture::write_lore_items(source.path());
+    let corrections = ["Chaos", "Evil", "Good", "Law"]
+        .into_iter()
+        .map(|alignment| {
+            let stat = format!("{alignment} Spell Lore");
+            new_qualified_correction(
+                "effect",
+                "Purifying Flame Lore",
+                &format!("stat = {stat:?}"),
+                "remove",
+                &format!("{{ target = {stat:?}, amount_from = 1, scale = 1.0, rounding = 'down' }}"),
+                "'null'",
+            )
+        })
+        .reduce(|corrections, correction| corrections + &correction)
+        .unwrap();
+    let (db, report) = built_db_from(source.path(), &[("purifying-flame-lore.toml", &corrections)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (4, 0));
+    for (effect, expected, amount) in [
+        ("Purifying Flame Lore", vec!["Fire Spell Lore", "Light Spell Lore"], 14),
+        (
+            "Radiance Lore",
+            vec!["Chaos Spell Lore", "Evil Spell Lore", "Good Spell Lore", "Law Spell Lore", "Light Spell Lore"],
+            15,
+        ),
+    ] {
+        let rows = db.prepare("SELECT stat.name, ob.amount, bt.name FROM owner_bonuses ob JOIN effects e ON e.id=ob.via_effect_id JOIN effects stat ON stat.id=ob.stat_id JOIN bonus_types bt ON bt.id=ob.bonus_type_id WHERE ob.owner_kind='item' AND e.name=?1 ORDER BY stat.name")
+            .unwrap().query_map([effect], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?, row.get::<_, String>(2)?)))
+            .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(
+            rows,
+            expected.into_iter().map(|stat| (stat.to_string(), amount, "Equipment".to_string())).collect::<Vec<_>>(),
+            "{effect}"
+        );
     }
 }
 

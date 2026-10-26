@@ -1,0 +1,44 @@
+<Items>
+  <Item>
+    <Name>Gleaming Plate</Name>
+    <Icon>HeavyArmor_18</Icon>
+    <Description>The armor of a Morninglord represents a commitment to the principles of Amaunator's
+faith.</Description>
+    <DropLocation>Advance to level 15, End reward</DropLocation>
+    <MinLevel>15</MinLevel>
+    <EquipmentSlot>
+      <Armor/>
+    </EquipmentSlot>
+    <Requirements>
+      <Requirement>
+        <Type>NotConstruct</Type>
+      </Requirement>
+      <Requirement>
+        <Type>Race</Type>
+        <Item>Sun Elf</Item>
+        <Value>1</Value>
+      </Requirement>
+    </Requirements>
+    <Armor>Heavy</Armor>
+    <ArmorBonus>14</ArmorBonus>
+    <MaximumDexterityBonus>4</MaximumDexterityBonus>
+    <ArmorCheckPenalty>-4</ArmorCheckPenalty>
+    <ArcaneSpellFailure>30</ArcaneSpellFailure>
+    <Material>Dwarven Iron</Material>
+    <Buff>
+      <Type>ArmorEnchantment</Type>
+      <Value1>4</Value1>
+      <BonusType>Armor Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>FireLore</Type>
+      <BonusType>Equipment</BonusType>
+      <Value1>15</Value1>
+    </Buff>
+    <Buff>
+      <Type>RadianceLore</Type>
+      <BonusType>Equipment</BonusType>
+      <Value1>15</Value1>
+    </Buff>
+  </Item>
+</Items>

@@ -88,6 +88,33 @@ pub(crate) fn write_diadem_item(source: &std::path::Path) {
     .unwrap();
 }
 
+pub(crate) fn write_lore_items(source: &std::path::Path) {
+    let path = source.join("ItemBuffs.xml");
+    let buffs = std::fs::read_to_string(&path).unwrap();
+    let definitions = include_str!("../fixtures/effect-groups/Lore.Buffs.xml");
+    std::fs::write(path, buffs.replace("</Buffs>", &format!("{definitions}</Buffs>"))).unwrap();
+    for (name, item) in [
+        ("LuminousTruth.item", include_str!("../fixtures/effect-groups/LuminousTruth.item")),
+        ("GleamingPlate.item", include_str!("../fixtures/effect-groups/GleamingPlate.item")),
+    ] {
+        std::fs::write(source.join("Items").join(name), item).unwrap();
+    }
+    for (path, bytes) in [
+        (
+            "ItemImages/Weapon_Quarterstaff/Quarterstaff_5g.png",
+            include_bytes!("../fixtures/effect-groups/icons/Quarterstaff_5g.png").as_slice(),
+        ),
+        (
+            "ItemImages/Armor_Heavy/HeavyArmor_18.png",
+            include_bytes!("../fixtures/effect-groups/icons/HeavyArmor_18.png").as_slice(),
+        ),
+    ] {
+        let destination = source.join(path);
+        std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+        std::fs::write(destination, bytes).unwrap();
+    }
+}
+
 pub(crate) fn plague_wolf_corrections() -> CorrectionSet {
     let removal = new_qualified_correction(
         "feat_bonus",

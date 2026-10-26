@@ -5,7 +5,7 @@ icon = "Lamordia"
 min_level = 34
 
 [[effect]]
-name = "Light, Chaos, Good, Evil and Law Spell Lore"
+name = "Radiance Lore"
 bonus_type = "Equipment"
 value = 23
 
@@ -13,7 +13,7 @@ value = 23
 amount_type = "Simple"
 amounts = [23]
 bonus_type = "Equipment"
-effect = "Light, Chaos, Good, Evil and Law Spell Lore"
+effect = "Radiance Lore"
 effect_type = "SpellLore"
 targets = [
     "Light/Alignment",

@@ -1,0 +1,100 @@
+  <Buff>
+    <Type>Coruscating4</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Coruscating 4: This effect causes the edges of this weapon to coruscate, dealing 4d6 Light damage on each hit.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Light</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>FireLore</Type>
+    <DisplayText>%b1 Fire Lore %v1%: Passive: Your Fire spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Fire</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>FlamingBlastIV</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>Flaming Blast IV: This weapon burns with deadly magical fire. The weapon deals an extra 4d6 Fire damage each hit. In addition, critical hits deal an additional 4d6 Fire damage.</DisplayText>
+    <Effect>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>NotNeeded</AType>
+      <Dice>
+        <Number size="1">4</Number>
+        <Sides size="1">6</Sides>
+        <Damage>Fire</Damage>
+      </Dice>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Incineration</Type>
+    <DisplayText>Incineration: This weapon stores the power of a raging inferno deep within. Occasionally, this destructive power comes to the surface, devastating enemies with massive fire damage.</DisplayText>
+  </Buff>
+  <Buff>
+    <Type>Power of the Flames of Purity</Type>
+    <DisplayText>%b1 Power of the Flames of Purity %v1: Passive: %v1 %b1 bonus to Fire and Light Spell Power.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Fire</Item>
+      <Item>Light/Alignment</Item>
+      <Item>Chaos</Item>
+      <Item>Evil</Item>
+      <Item>Good</Item>
+      <Item>Lawful</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Purifying Flame Lore</Type>
+    <DisplayText>%b1 Purifying Flame Lore %v1: Passive: Your Fire and Light spells gain a %v1 %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Fire</Item>
+      <Item>Light/Alignment</Item>
+      <Item>Chaos</Item>
+      <Item>Evil</Item>
+      <Item>Good</Item>
+      <Item>Lawful</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>RadianceLore</Type>
+    <DisplayText>%b1 Radiance Lore %v1%: Passive: Your Light and Aligned spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Chaos</Item>
+      <Item>Evil</Item>
+      <Item>Good</Item>
+      <Item>Lawful</Item>
+      <Item>Light/Alignment</Item>
+    </Effect>
+  </Buff>

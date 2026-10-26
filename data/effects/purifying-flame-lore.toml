@@ -15,25 +15,57 @@ rounding = "down"
 scale = 1.0
 target = "Light Spell Lore"
 
-[[bonus]]
+[[ddobuilder_correction]]
+kind = "effect"
+field = "remove"
+reason = "The wiki limits Purifying Flame Lore to Fire and Light spells; it grants no alignment spell lore."
+url = "https://ddowiki.com/page/Purifying_Flame_Lore"
+read = "2026-10-23"
+qualifier = 'stat "Chaos Spell Lore"'
+
+[ddobuilder_correction.upstream]
 amount_from = 1
 rounding = "down"
 scale = 1.0
 target = "Chaos Spell Lore"
 
-[[bonus]]
+[[ddobuilder_correction]]
+kind = "effect"
+field = "remove"
+reason = "The wiki limits Purifying Flame Lore to Fire and Light spells; it grants no alignment spell lore."
+url = "https://ddowiki.com/page/Purifying_Flame_Lore"
+read = "2026-10-23"
+qualifier = 'stat "Evil Spell Lore"'
+
+[ddobuilder_correction.upstream]
 amount_from = 1
 rounding = "down"
 scale = 1.0
 target = "Evil Spell Lore"
 
-[[bonus]]
+[[ddobuilder_correction]]
+kind = "effect"
+field = "remove"
+reason = "The wiki limits Purifying Flame Lore to Fire and Light spells; it grants no alignment spell lore."
+url = "https://ddowiki.com/page/Purifying_Flame_Lore"
+read = "2026-10-23"
+qualifier = 'stat "Good Spell Lore"'
+
+[ddobuilder_correction.upstream]
 amount_from = 1
 rounding = "down"
 scale = 1.0
 target = "Good Spell Lore"
 
-[[bonus]]
+[[ddobuilder_correction]]
+kind = "effect"
+field = "remove"
+reason = "The wiki limits Purifying Flame Lore to Fire and Light spells; it grants no alignment spell lore."
+url = "https://ddowiki.com/page/Purifying_Flame_Lore"
+read = "2026-10-23"
+qualifier = 'stat "Law Spell Lore"'
+
+[ddobuilder_correction.upstream]
 amount_from = 1
 rounding = "down"
 scale = 1.0

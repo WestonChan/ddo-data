@@ -159,9 +159,9 @@ impl EffectAlias {
 }
 
 database_record! {
-    #[derive(Debug, Serialize, Deserialize, JsonSchema)]
+    #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, JsonSchema)]
     #[serde(deny_unknown_fields)]
-    pub(crate) struct EffectBonus in "effect_bonuses" {
+    pub struct EffectBonus in "effect_bonuses" {
         keys { effect_id: i64, sort_order: i64 }
         fields {
             amount_from: i64 => amount_from,
@@ -178,6 +178,16 @@ database_record! {
         }
     }
 
+}
+
+impl EffectBonus {
+    pub(crate) fn from_database(db: &Connection, row_id: i64) -> rusqlite::Result<Self> {
+        db.query_row(
+            &format!("SELECT {} FROM effect_bonuses WHERE rowid = ?1", Self::select_columns()),
+            [row_id],
+            Self::from_row,
+        )
+    }
 }
 
 database_record! {

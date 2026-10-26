@@ -26,6 +26,7 @@ pub enum CorrectionValue {
     Tier(TierAddition),
     Effect(EffectAddition),
     Damage(DamageRow),
+    EffectBonus(crate::tree::EffectBonus),
     Null,
 }
 
@@ -78,7 +79,9 @@ impl CorrectionValue {
             serde_json::Value::String(text) => CorrectionValue::Text(text),
             serde_json::Value::Object(fields) => {
                 let object = serde_json::Value::Object(fields);
-                if object.get("stat").is_some() {
+                if object.get("target").is_some() {
+                    CorrectionValue::EffectBonus(serde_json::from_value(object)?)
+                } else if object.get("stat").is_some() {
                     CorrectionValue::Bonus(serde_json::from_value(object)?)
                 } else if object.get("equipped_count").is_some() {
                     CorrectionValue::Tier(serde_json::from_value(object)?)
@@ -127,6 +130,7 @@ impl CorrectionValue {
                 fields.to_string()
             }
             Self::Damage(damage) => serde_json::to_value(damage).expect("damage row serializes").to_string(),
+            Self::EffectBonus(bonus) => serde_json::to_value(bonus).expect("effect bonus serializes").to_string(),
             Self::Null => NULL_SPELLING.to_string(),
         }
     }
@@ -136,9 +140,13 @@ impl CorrectionValue {
             Self::Integer(number) => SqlValue::Integer(*number),
             Self::Float(number) => SqlValue::Real(*number),
             Self::Text(text) => SqlValue::Text(text.clone()),
-            Self::Bonus(_) | Self::Tier(_) | Self::Effect(_) | Self::Damage(_) | Self::Integers(_) | Self::Texts(_) => {
-                SqlValue::Text(self.to_json())
-            }
+            Self::Bonus(_)
+            | Self::Tier(_)
+            | Self::Effect(_)
+            | Self::Damage(_)
+            | Self::EffectBonus(_)
+            | Self::Integers(_)
+            | Self::Texts(_) => SqlValue::Text(self.to_json()),
             Self::Null => SqlValue::Null,
         }
     }
@@ -341,8 +349,12 @@ impl Correction {
     }
 
     fn targets_effect_bonus(&self) -> bool {
-        self.correctable_field()
-            .is_ok_and(|field| matches!(field.shape, FieldShape::EffectBonusConstant | FieldShape::EffectBonusType))
+        self.correctable_field().is_ok_and(|field| {
+            matches!(
+                field.shape,
+                FieldShape::EffectBonusConstant | FieldShape::EffectBonusType | FieldShape::EffectBonusRemoval
+            )
+        })
     }
 
     pub fn qualifier(&self) -> String {
@@ -555,6 +567,33 @@ impl Correction {
                     bail!("a bonus remove takes its current integer value to \"null\", or a missing value from \"null\" to 1");
                 }
             }
+            FieldShape::EffectBonusRemoval => {
+                ensure!(self.to == CorrectionValue::Null, "an effect member removal takes to = \"null\"");
+                match &self.from {
+                    CorrectionValue::Integer(_) => {}
+                    CorrectionValue::Text(text) if text == NO_SUCH_BONUS => {}
+                    CorrectionValue::EffectBonus(bonus) => {
+                        ensure!(
+                            Some(&bonus.target) == self.stat.as_ref(),
+                            "the removed bonus row must name the qualifier's stat"
+                        );
+                        ensure!(
+                            (0..=2).contains(&bonus.amount_from)
+                                && (bonus.amount_from == 0) == bonus.constant.is_some()
+                                && bonus.scale.is_finite()
+                                && bonus.scale > 0.0
+                                && matches!(bonus.rounding.as_str(), "down" | "up" | "nearest")
+                                && (bonus.amount_from != 0 || (bonus.scale == 1.0 && bonus.rounding == "down"))
+                                && bonus
+                                    .bonus_type
+                                    .as_deref()
+                                    .is_none_or(|name| ddo_model::enums::BonusType::parse(name).is_some()),
+                            "an effect member removal needs a valid bonus row"
+                        );
+                    }
+                    _ => bail!("an effect member removal takes his constant amount or bonus row"),
+                }
+            }
             FieldShape::BonusDedupe => {
                 if (&self.from, &self.to) != (&CorrectionValue::Integer(2), &CorrectionValue::Integer(1)) {
                     bail!("a duplicate bonus correction reduces exactly two matching links to one");
@@ -700,6 +739,7 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::Removal => "0 for from and 1 for to",
         FieldShape::BonusAddition => "a { stat, bonus_type, value } table",
         FieldShape::BonusRemoval => "the current integer value for from and \"null\" for to",
+        FieldShape::EffectBonusRemoval => "his constant amount or bonus row for from and \"null\" for to",
         FieldShape::BonusDedupe => "2 for from and 1 for to",
         FieldShape::BonusLines => "a grouping name and a list of separate lines in either direction",
         FieldShape::BonusAlias => "an alias name",

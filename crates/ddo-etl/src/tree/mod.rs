@@ -40,7 +40,7 @@ pub use export::{
 };
 pub(crate) use kinds::insert_xml_vendor_currencies;
 use kinds::UpstreamCommitFile;
-pub use kinds::{ExceptionsFile, PackException, QuestPackException, Redirect, RetiredSlug};
+pub use kinds::{EffectBonus, ExceptionsFile, PackException, QuestPackException, Redirect, RetiredSlug};
 pub(crate) use layout::qualified_slug;
 use layout::*;
 pub use layout::{pack_exceptions, DataFilePaths};

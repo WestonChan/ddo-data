@@ -47,7 +47,7 @@ level_values = [
 ]
 
 [[effect]]
-name = "Light, Chaos, Good, Evil and Law Spell Lore"
+name = "Radiance Lore"
 bonus_type = "Enhancement"
 value = 27
 
@@ -55,7 +55,7 @@ value = 27
 amount_type = "Simple"
 amounts = [27]
 bonus_type = "Enhancement"
-effect = "Light, Chaos, Good, Evil and Law Spell Lore"
+effect = "Radiance Lore"
 effect_type = "SpellLore"
 targets = [
     "Light/Alignment",

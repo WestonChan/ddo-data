@@ -67,6 +67,27 @@ fn structural_rejections_fail_the_data_build_naming_their_file_once() {
 }
 
 #[test]
+fn an_effect_member_removal_requires_the_member_absent_from_the_file() {
+    let file = "effects/power-of-the-frozen-thunderstorm.toml";
+    let removed = "\n[[bonus]]\namount_from = 1\nrounding = \"down\"\nscale = 1.0\ntarget = \"Cold Spell Power\"\n";
+    let note = "\n[[ddobuilder_correction]]\nkind = 'effect'\nfield = 'remove'\nqualifier = 'stat \"Cold Spell Power\"'\nupstream = { target = 'Cold Spell Power', amount_from = 1, scale = 1.0, rounding = 'down' }\nreason = 'Fixture member removal.'\nurl = 'https://ddowiki.com/page/Test'\nread = '2026-10-23'\n";
+    for keep_member in [true, false] {
+        let error = fixture::data_build_error(|root| {
+            let path = root.join(file);
+            let original = std::fs::read_to_string(&path).unwrap();
+            assert!(original.contains(removed));
+            let effect = if keep_member { original } else { original.replace(removed, "") };
+            std::fs::write(path, effect + note).unwrap();
+        });
+        if keep_member {
+            assert!(error.contains(file) && error.contains("removed effect member is still present"), "{error}");
+        } else {
+            assert!(error.is_empty(), "{error}");
+        }
+    }
+}
+
+#[test]
 fn search_only_aliases_build_but_cannot_be_chosen_by_links() {
     for chosen in [false, true] {
         let error = fixture::data_build_error(|root| {

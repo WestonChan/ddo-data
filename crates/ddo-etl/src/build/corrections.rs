@@ -259,6 +259,16 @@ fn write_correction(
     let buff_resolver = context.map(|context| context.buff_resolver);
     let table_name = correction.target_table_name();
     match field.shape {
+        FieldShape::EffectBonusRemoval => {
+            let stat_name = correction.stat.as_deref().context("effect bonus correction names a stat")?;
+            let effects = effects.context("effect corrections need the family cache")?;
+            for effect_id in row_ids {
+                if let Some(row_id) = optional_effect_bonus_row_id(transaction, *effect_id, stat_name)? {
+                    transaction.execute("DELETE FROM effect_bonuses WHERE rowid = ?1", [row_id])?;
+                    effects.refresh_family(*effect_id)?;
+                }
+            }
+        }
         FieldShape::BonusAlias => {
             let alias_name = correction.to.as_text().context("alias correction names an alias")?;
             let bonus = CorrectedBonus::of(transaction, correction)?;
@@ -871,6 +881,23 @@ fn current_value(
 ) -> Result<CorrectionValue> {
     let table_name = correction.target_table_name();
     let value_sql = match field.shape {
+        FieldShape::EffectBonusRemoval => {
+            let stat_name = correction.stat.as_deref().context("effect bonus correction names a stat")?;
+            ensure!(
+                transaction.query_row("SELECT EXISTS(SELECT 1 FROM effects WHERE name = ?1 AND is_stat = 1)", [stat_name], |row| row.get::<_, bool>(0))?,
+                "unknown stat {stat_name:?} in effect member removal"
+            );
+            let Some(bonus_row_id) = optional_effect_bonus_row_id(transaction, row_id, stat_name)? else {
+                return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
+            };
+            let bonus = crate::tree::EffectBonus::from_database(transaction, bonus_row_id)?;
+            if matches!(correction.from, CorrectionValue::Integer(_)) {
+                if let Some(constant) = bonus.constant {
+                    return Ok(CorrectionValue::Integer(constant));
+                }
+            }
+            return Ok(CorrectionValue::EffectBonus(bonus));
+        }
         FieldShape::BonusAlias => {
             let Some(bonus) = CorrectedBonus::from_correction_if_effect_exists(transaction, correction)? else {
                 return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
@@ -1172,6 +1199,14 @@ pub(crate) fn data_correction_value(
         } else {
             current_value(transaction, correction, field, row_id, None)?
         };
+        if field.shape == FieldShape::EffectBonusRemoval {
+            ensure!(
+                value.as_text() == Some(NO_SUCH_BONUS),
+                "removed effect member is still present: {}",
+                correction.label()
+            );
+            value = CorrectionValue::Null;
+        }
         if value == CorrectionValue::Null && matches!(field.shape, FieldShape::IntegerList | FieldShape::TextList) {
             value = CorrectionValue::Integers(Vec::new());
         }
@@ -1184,14 +1219,19 @@ pub(crate) fn data_correction_value(
 }
 
 fn effect_bonus_row_id(transaction: &Transaction, effect_id: i64, stat_name: &str) -> Result<i64> {
+    optional_effect_bonus_row_id(transaction, effect_id, stat_name)?
+        .with_context(|| format!("effect {effect_id} must grant {stat_name:?} exactly once"))
+}
+
+fn optional_effect_bonus_row_id(transaction: &Transaction, effect_id: i64, stat_name: &str) -> Result<Option<i64>> {
     let mut statement = transaction.prepare(
         "SELECT eb.rowid FROM effect_bonuses eb JOIN effects target ON target.id = eb.target_effect_id
           WHERE eb.effect_id = ?1 AND target.name = ?2",
     )?;
     let rows: Vec<i64> =
         statement.query_map(params![effect_id, stat_name], |row| row.get(0))?.collect::<rusqlite::Result<_>>()?;
-    ensure!(rows.len() == 1, "effect {effect_id} must grant {stat_name:?} exactly once");
-    Ok(rows[0])
+    ensure!(rows.len() <= 1, "effect {effect_id} must grant {stat_name:?} at most once");
+    Ok(rows.first().copied())
 }
 
 fn bonus_type_id_named(transaction: &Transaction, bonus_type_name: &str) -> Result<i64> {
@@ -1271,7 +1311,7 @@ fn reject_answer_definition_correction(
     owner_ids: &[i64],
 ) -> Result<()> {
     let affected_effects = match field.shape {
-        FieldShape::EffectBonusConstant | FieldShape::EffectBonusType => {
+        FieldShape::EffectBonusConstant | FieldShape::EffectBonusType | FieldShape::EffectBonusRemoval => {
             let mut statement =
                 transaction.prepare("SELECT id, name FROM effects WHERE id IN (SELECT value FROM json_each(?1))")?;
             let affected_effects = statement

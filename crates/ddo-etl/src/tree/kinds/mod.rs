@@ -65,6 +65,7 @@ pub(crate) use crafting_system::CraftingSystemFile;
 pub(super) mod damage_types;
 pub(crate) use damage_types::DamageTypesFile;
 pub(super) mod effect;
+pub use effect::EffectBonus;
 pub(crate) use effect::EffectFile;
 pub(super) mod effect_tier;
 pub(crate) use effect_tier::EffectTierFile;

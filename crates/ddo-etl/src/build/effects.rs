@@ -85,6 +85,7 @@ impl<'a> EffectCache<'a> {
             || family.description_template.as_deref().is_some_and(|template| template.contains("%b1"));
         family.default_value = default_value;
         family.default_value2 = default_value2;
+        family.has_stats = false;
         self.stats.retain(|(effect_id, _, _), _| *effect_id != family_id);
         let mut statement = self.transaction.prepare(
             "SELECT target_effect_id, bonus_type_id, amount_from, constant
@@ -100,6 +101,7 @@ impl<'a> EffectCache<'a> {
         })? {
             let (target_id, bonus_type_id, amount_from, constant) = row?;
             self.stats.insert((family_id, target_id, bonus_type_id), (amount_from, constant));
+            family.has_stats = true;
         }
         Ok(())
     }
@@ -940,6 +942,22 @@ mod tests {
     use ddo_model::enums::BonusType;
     use ddo_model::stats::Stat;
     use rusqlite::Connection;
+
+    #[test]
+    fn refreshing_an_effect_after_its_last_bonus_is_removed_clears_has_stats() {
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        ddo_model::seeds::insert_all(&db).unwrap();
+        let transaction = db.transaction().unwrap();
+        let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
+        let effect = effects.ensure_family("Fixed Strength", "Fixed Strength: Grants Strength", None, 0).unwrap();
+        let strength = ddo_model::stats::STATS.iter().find(|stat| stat.name == "Strength").unwrap();
+        effects.ensure_stat(effect, strength, Some(BonusType::Enhancement), 0, Some(2), 0).unwrap();
+        assert!(effects.has_stats(effect));
+        transaction.execute("DELETE FROM effect_bonuses WHERE effect_id = ?1", [effect]).unwrap();
+        effects.refresh_family(effect).unwrap();
+        assert!(!effects.has_stats(effect));
+    }
 
     #[test]
     fn indexed_grouping_is_the_same_with_an_empty_or_populated_cache() {
