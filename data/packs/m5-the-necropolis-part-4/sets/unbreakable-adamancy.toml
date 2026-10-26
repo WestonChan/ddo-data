@@ -1,6 +1,11 @@
 name = "Unbreakable Adamancy"
 icon = "UnbreakableAdamancy"
 
+[[citation]]
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-23"
+note = "The 2-piece tier shows one line: +5 Luck bonus to PRR and MRR."
+
 [[item]]
 name = "Epic Chain of Conviction"
 
@@ -31,36 +36,12 @@ name = "Mythic Minos Legens"
 [[item]]
 name = "Mythic Seraphim"
 
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Physical Resistance Rating +5 Luck at 2 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 2, Physical Resistance Rating / Luck"
-
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Magical Resistance Rating +5 Luck at 2 pieces; his tier lacks it."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 2, Magical Resistance Rating / Luck"
-
 [[tier]]
 equipped_count = 2
 
 [[tier.effect]]
-effect = "Gain a +5 Luck bonus to PRR and MRR"
-
-[[tier.effect]]
 bonus_type = "Luck"
-effect = "Physical Resistance Rating"
-value = 5
-
-[[tier.effect]]
-bonus_type = "Luck"
-effect = "Magical Resistance Rating"
+effect = "Sheltering"
 value = 5
 
 [[tier.modifier]]

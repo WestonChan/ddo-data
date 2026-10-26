@@ -1,0 +1,15 @@
+  <SetBonus>
+    <Type>Unbreakable Adamancy</Type>
+    <Icon>UnbreakableAdamancy</Icon>
+    <Buff>
+      <EquippedCount>2</EquippedCount>
+      <Description>Gain a +5 Luck bonus to PRR and MRR.</Description>
+      <Effect>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Luck</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="1">5</Amount>
+      </Effect>
+    </Buff>
+  </SetBonus>

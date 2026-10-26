@@ -2831,6 +2831,7 @@ fn committed_data_set_corrections_keep_only_fact_changes() {
         .filter(|correction| correction.kind.as_str() == "set_tier_bonus" && correction.field == "add");
     let original_additions = 50;
     let superseded_prose_additions = 28;
+    let superseded_adamancy_additions = 2;
     let dread_isle_additions = 2;
     let consolidated_conduit_additions = 3 - 1;
     let consolidated_shaman_lore_additions = 4 - 1;
@@ -2838,6 +2839,7 @@ fn committed_data_set_corrections_keep_only_fact_changes() {
         set_bonus_additions.count(),
         original_additions
             - superseded_prose_additions
+            - superseded_adamancy_additions
             - dread_isle_additions
             - consolidated_conduit_additions
             - consolidated_shaman_lore_additions

@@ -280,6 +280,67 @@ fn fabricators_valued_prose_links_attack_and_damage_once() {
 }
 
 #[test]
+fn unbreakable_adamancy_prose_links_sheltering_once() {
+    let canonical = fixture::database(|root| {
+        std::fs::remove_file(root.join("effects/sheltering.toml")).unwrap();
+        std::fs::write(
+            root.join("effects/stat-groups/sheltering.toml"),
+            include_str!("../../../data/effects/stat-groups/sheltering.toml"),
+        )
+        .unwrap();
+    });
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let source = fixture::xml_source();
+    let definitions = source.path().join("ItemBuffs.xml");
+    let original = std::fs::read_to_string(&definitions).unwrap();
+    std::fs::write(
+        definitions,
+        original
+            .replace("</Buffs>", &format!("{}</Buffs>", include_str!("fixtures/effect-groups/Sheltering.Buff.xml"))),
+    )
+    .unwrap();
+    let path = source.path().join("SetBonuses.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        path,
+        original.replace(
+            "</SetBonuses>",
+            &format!("{}</SetBonuses>", include_str!("fixtures/effect-groups/UnbreakableAdamancy.SetBonus.xml")),
+        ),
+    )
+    .unwrap();
+    std::fs::create_dir_all(source.path().join("SetBonusImages")).unwrap();
+    std::fs::write(
+        source.path().join("SetBonusImages/UnbreakableAdamancy.png"),
+        include_bytes!("fixtures/effect-groups/icons/UnbreakableAdamancy.png"),
+    )
+    .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        &groupings,
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let links = db.prepare("SELECT e.name, bt.name, l.value FROM set_bonus_tier_effects l JOIN set_bonus_tiers t ON t.id=l.tier_id JOIN set_bonuses s ON s.id=t.set_id JOIN effects e ON e.id=l.effect_id LEFT JOIN bonus_types bt ON bt.id=l.bonus_type_id WHERE s.name='Unbreakable Adamancy' AND t.equipped_count=2 ORDER BY l.sort_order").unwrap()
+        .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,Option<String>>(1)?,row.get::<_,Option<i64>>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(links, [("Sheltering".into(), Some("Luck".into()), Some(5))]);
+    let bonuses = db.prepare("SELECT stat.name, bt.name, b.amount FROM owner_bonuses b JOIN set_bonus_tiers t ON b.owner_kind='set_bonus_tier' AND t.id=b.owner_id JOIN set_bonuses s ON s.id=t.set_id JOIN effects stat ON stat.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id WHERE s.name='Unbreakable Adamancy' AND t.equipped_count=2 ORDER BY stat.name").unwrap()
+        .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        bonuses,
+        [
+            ("Magical Resistance Rating".into(), "Luck".into(), 5),
+            ("Physical Resistance Rating".into(), "Luck".into(), 5)
+        ]
+    );
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Gain a +5 Luck bonus to PRR and MRR'"), 0);
+}
+
+#[test]
 fn shifted_effect_ids_keep_catalog_variants_and_citations() {
     let source = fixture::xml_source();
     let sets = source.path().join("SetBonuses.xml");

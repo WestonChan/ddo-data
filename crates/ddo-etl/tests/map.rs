@@ -793,7 +793,7 @@ fn a_missing_placeholder_value_affects_only_its_item() {
 fn valued_set_prose_rules_validate_types_targets_and_unique_descriptions() {
     let source = include_str!("../data/effect_map.toml");
     let vocabulary = EffectMap::from_toml(source).unwrap();
-    assert_eq!(vocabulary.set_tier_prose_bonuses.len(), 24);
+    assert_eq!(vocabulary.set_tier_prose_bonuses.len(), 25);
     for rule in &vocabulary.set_tier_prose_bonuses {
         assert!(vocabulary.set_tier_prose_bonus(&rule.description, fixture::groupings()).unwrap().is_some());
     }
