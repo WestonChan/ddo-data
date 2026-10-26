@@ -346,6 +346,8 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Search and Spot" = "none"
 
 [line_templates]
+"Cold Spell Critical Damage" = "%b1 Cold Spell Critical Damage +{1}%"
+"Missile Deflection" = "%b1 Missile Deflection +{1}%"
 "Flaming Blast 2" = "Flaming Blast 2"
 "Flaming Blast 3" = "Flaming Blast 3"
 "Flaming Blast 4" = "Flaming Blast 4"

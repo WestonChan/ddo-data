@@ -1,3 +1,8 @@
 name = "Missile Deflection"
 category = "defensive"
-verbose_name_template = "%b1 Missile Deflection +{1}"
+verbose_name_template = "%b1 Missile Deflection +{1}%"
+
+[[citation]]
+url = "https://ddowiki.com/page/Sentient_Weapon/Filigrees"
+read = "2026-10-23"
+note = "Dance of the Wind's two-piece line grants +5% Missile Deflection."

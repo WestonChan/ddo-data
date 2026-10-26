@@ -1,4 +1,9 @@
 name = "Cold Spell Critical Damage"
 category = "magical"
 home_bonus_type = "Equipment"
-verbose_name_template = "%b1 Cold Spell Critical Damage +{1}"
+verbose_name_template = "%b1 Cold Spell Critical Damage +{1}%"
+
+[[citation]]
+url = "https://ddowiki.com/page/Sentient_Weapon/Filigrees"
+read = "2026-10-23"
+note = "Frozen Wanderer's two-piece line grants +5% Cold Spell Crit Damage."

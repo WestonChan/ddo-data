@@ -2,6 +2,11 @@ name = "Celerity"
 icon = "Celerity"
 is_filigree_set = true
 
+[[citation]]
+url = "https://ddowiki.com/page/Sentient_Weapon/Filigrees"
+read = "2026-10-23"
+note = "The two-piece line gives +2 Doublestrike and Doubleshot. The page omits the percent sign here, but states +2% for the same stats on Splendid Cacophony and Sanctified Fervor; the maintainer confirmed percent."
+
 [[ddobuilder_correction]]
 kind = "set_tier"
 field = "description"

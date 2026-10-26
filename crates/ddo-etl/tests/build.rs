@@ -3347,6 +3347,48 @@ fn writes_augments_with_slots_bonuses_and_modifiers() {
 }
 
 #[test]
+fn imported_cold_critical_damage_and_missile_deflection_keep_percent_units() {
+    let source = fixture::xml_source();
+    std::fs::create_dir_all(source.path().join("FiligreeSets")).unwrap();
+    std::fs::create_dir_all(source.path().join("FiligreeImages")).unwrap();
+    for (name, contents, icon) in [
+        (
+            "FrozenWanderer",
+            include_str!("fixtures/effect-groups/FrozenWanderer.Filigree.xml"),
+            include_bytes!("fixtures/effect-groups/icons/FrozenWanderer.png").as_slice(),
+        ),
+        (
+            "DanceOfTheWind",
+            include_str!("fixtures/effect-groups/DanceOfTheWind.Filigree.xml"),
+            include_bytes!("fixtures/effect-groups/icons/DanceOfTheWind.png").as_slice(),
+        ),
+    ] {
+        std::fs::write(source.path().join(format!("FiligreeSets/{name}.Filigree.xml")), contents).unwrap();
+        std::fs::write(source.path().join(format!("FiligreeImages/{name}.png")), icon).unwrap();
+    }
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::grouping_cases(),
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let templates = db.prepare(
+        "SELECT e.name,e.verbose_name_template,l.value FROM set_bonus_tier_effects l JOIN set_bonus_tiers t ON t.id=l.tier_id JOIN set_bonuses s ON s.id=t.set_id JOIN effects e ON e.id=l.effect_id WHERE s.name IN ('Frozen Wanderer','Dance of the Wind') AND t.equipped_count=2 ORDER BY e.name"
+    ).unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        templates,
+        [
+            ("Cold Spell Critical Damage".into(), "%b1 Cold Spell Critical Damage +{1}%".into(), 5),
+            ("Missile Deflection".into(), "%b1 Missile Deflection +{1}%".into(), 5),
+        ]
+    );
+}
+
+#[test]
 fn writes_sets_filigrees_and_their_items() {
     let (db, report) = built_fixture_db();
     assert_eq!(report.set_bonus_count, 10, "nine gear sets and one filigree set");

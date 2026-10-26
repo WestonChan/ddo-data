@@ -742,6 +742,55 @@ skip_description_check = true
 }
 
 #[test]
+fn confirmed_percent_stats_render_units_on_their_real_set_lines() {
+    let scratch = tempfile::tempdir().unwrap();
+    let tree = scratch.path().join("data");
+    copy_fixture_tree(&tree);
+    let production = fixtures_dir().join("../../../../data");
+    for path in [
+        "effects/stats/cold-spell-critical-damage.toml",
+        "effects/stats/missile-deflection.toml",
+        "effects/stat-groups/doublestrike-and-doubleshot.toml",
+        "effects/stat-groups/melee-and-ranged-attack-speed.toml",
+        "effects/movement-speed-on-tumble.toml",
+        "packs/shared/sets/frozen-wanderer.toml",
+        "packs/shared/sets/dance-of-the-wind.toml",
+        "packs/shared/sets/celerity.toml",
+        "icons/sets/FrozenWanderer.png",
+        "icons/sets/DanceOfTheWind.png",
+        "icons/sets/Celerity.png",
+    ] {
+        let destination = tree.join(path);
+        std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+        std::fs::copy(production.join(path), destination).unwrap();
+    }
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
+    let lines = ddo_api::served_effect_lines(&db, "set_bonus_tier_effects", "tier_id").unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    let outcome = report.outcome("effect_descriptions_without_their_amounts").unwrap();
+    for (owner, stat, amount) in [
+        ("Frozen Wanderer", "Cold Spell Critical Damage", 5),
+        ("Dance of the Wind", "Missile Deflection", 5),
+        ("Celerity", "Doublestrike and Doubleshot", 2),
+    ] {
+        let tier: i64 = db.query_row(
+            "SELECT t.id FROM set_bonus_tiers t JOIN set_bonuses s ON s.id=t.set_id WHERE s.name=?1 AND t.equipped_count=2",
+            [owner], |row| row.get(0)
+        ).unwrap();
+        assert_eq!(lines[&tier].len(), 1, "{owner}");
+        assert_eq!(lines[&tier][0].1["verbose_name"], format!("+{amount}% Stacking Bonus to {stat}"), "{owner}");
+        assert!(
+            !outcome
+                .offenders
+                .iter()
+                .any(|finding| finding.detail.contains(&format!("set_bonus_tier_effects owner {tier},"))),
+            "{owner}: {outcome}"
+        );
+    }
+}
+
+#[test]
 fn served_amount_check_distinguishes_restored_units_from_missing_units() {
     for (injected_sql, expected_cause) in [
         (
