@@ -2672,6 +2672,33 @@ fn removes_only_the_qualified_bonus_link_for_each_owner_kind() {
 }
 
 #[test]
+fn bonus_removal_amounts_survive_the_data_file_round_trip() {
+    for (kind, name, qualifier, amount) in [
+        ("item_bonus", "Docent of Defiance", "stat = 'Fire Resistance'\nbonus_type = 'Enhancement'", "20"),
+        (
+            "augment_bonus",
+            "Silverscale",
+            "family = 'DinosaurBone'\nstat = 'Healing Amplification'\nbonus_type = 'Competence'",
+            "56",
+        ),
+        (
+            "set_tier_bonus",
+            "Eminence of Winter",
+            "equipped_count = 2\nstat = 'Physical Resistance Rating'\nbonus_type = 'Artifact'",
+            "30",
+        ),
+    ] {
+        let removal = new_qualified_correction(kind, name, qualifier, "remove", amount, "'null'");
+        let (db, report) = built_db_with(&[("removal.toml", &removal)]).unwrap();
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0), "{kind}");
+        let rebuilt = rebuilt_correction_notes(&db);
+        let note = rebuilt.entries.iter().find(|entry| entry.name == name && entry.field == "remove").unwrap();
+        assert_eq!(note.from, CorrectionValue::Integer(amount.parse().unwrap()), "{kind}");
+        assert_eq!(note.to, CorrectionValue::Null, "{kind}");
+    }
+}
+
+#[test]
 fn bonus_removal_requires_qualifiers_a_current_integer_and_a_null_destination() {
     for (kind, owner_qualifier) in [("item_bonus", ""), ("augment_bonus", ""), ("set_tier_bonus", "equipped_count = 2")]
     {
@@ -3577,6 +3604,96 @@ fn effect_bonus_removal_rejects_unknown_stats_and_malformed_qualifiers() {
     assert!(
         matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\"")
     );
+}
+
+#[test]
+fn periapt_of_dexterity_replaces_the_skill_group_with_insightful_seeker() {
+    let mut corrections = committed_corrections().clone();
+    corrections.entries.retain(|correction| correction.name == "Periapt of Dexterity");
+    for upstream_corrected in [false, true] {
+        let source = fixture::xml_source();
+        let definitions = source.path().join("ItemBuffs.xml");
+        let original = std::fs::read_to_string(&definitions).unwrap();
+        std::fs::write(
+            definitions,
+            original.replace(
+                "</Buffs>",
+                &format!("{}</Buffs>", include_str!("fixtures/effect-groups/PeriaptOfDexterity.Buffs.xml")),
+            ),
+        )
+        .unwrap();
+        let mut item = include_str!("fixtures/effect-groups/PeriaptOfDexterity.item").to_string();
+        if upstream_corrected {
+            item = item.replace("<Type>Dexterity Skills - Exceptional Bonus</Type>\n      <Value1>2</Value1>\n      <BonusType>Exceptional</BonusType>", "<Type>Seeker</Type>\n      <Value1>3</Value1>\n      <BonusType>Insight</BonusType>");
+        }
+        std::fs::write(source.path().join("Items/PeriaptOfDexterity.item"), item).unwrap();
+        let icon = source.path().join("ItemImages/Trinkets/Trinket_101.png");
+        std::fs::create_dir_all(icon.parent().unwrap()).unwrap();
+        std::fs::write(icon, include_bytes!("fixtures/effect-groups/icons/Trinket_101.png")).unwrap();
+        let mut db = Connection::open_in_memory().unwrap();
+        let report = build_database(
+            fixture::grouping_cases(),
+            source.path(),
+            &WikiOverrides::default(),
+            &corrections,
+            &mut db,
+            &fixture_dataset_version(),
+        )
+        .unwrap();
+        let bonuses = db.prepare("SELECT stat.name, bt.name, ob.amount FROM owner_bonuses ob JOIN items i ON ob.owner_kind='item' AND ob.owner_id=i.id JOIN effects stat ON stat.id=ob.stat_id JOIN bonus_types bt ON bt.id=ob.bonus_type_id WHERE i.name='Periapt of Dexterity' ORDER BY stat.name").unwrap()
+            .query_map([], |row| Ok((row.get::<_,String>(0)?, row.get::<_,String>(1)?, row.get::<_,i64>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(
+            bonuses,
+            [
+                ("Dexterity".into(), "Enhancement".into(), 7),
+                ("Dodge".into(), "Quality".into(), 1),
+                ("Reflex Save".into(), "Resistance".into(), 7),
+                ("Seeker".into(), "Insight".into(), 3)
+            ]
+        );
+        let lines: Vec<(String, Option<String>)> = db.prepare("SELECT e.name,l.alias FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name='Periapt of Dexterity' ORDER BY e.name").unwrap()
+            .query_map([], |row| Ok((row.get(0)?,row.get(1)?))).unwrap().collect::<rusqlite::Result<_>>().unwrap();
+        assert_eq!(
+            lines,
+            [("Dexterity".into(), None), ("Dodge".into(), None), ("Reflex Save".into(), None), ("Seeker".into(), None)]
+        );
+        if upstream_corrected {
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 2));
+            assert!(report.stale_corrections.iter().any(|stale| matches!(&stale.cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\"")));
+        } else {
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
+        }
+    }
+    let unknown = new_qualified_correction(
+        "item_bonus",
+        "Docent of Defiance",
+        "stat = 'Imaginary Skills'\nbonus_type = 'Exceptional'",
+        "remove",
+        "2",
+        "'null'",
+    );
+    let error = built_db_with(&[("misspelled-removal.toml", &unknown)]).unwrap_err();
+    assert!(
+        error.contains("misspelled-removal.toml")
+            && error.contains("Imaginary Skills")
+            && error.contains("not an effect"),
+        "{error}"
+    );
+    let unknown_type = new_qualified_correction(
+        "item_bonus",
+        "Docent of Defiance",
+        "stat = 'Dexterity Skills'\nbonus_type = 'Imaginary Type'",
+        "remove",
+        "2",
+        "'null'",
+    );
+    let error = built_db_from_index(
+        fixture::grouping_cases(),
+        &fixtures_dir().join("DataFiles"),
+        &[("misspelled-type.toml", &unknown_type)],
+    )
+    .unwrap_err();
+    assert!(error.contains("misspelled-type.toml") && error.contains("Imaginary Type"), "{error}");
 }
 
 #[test]

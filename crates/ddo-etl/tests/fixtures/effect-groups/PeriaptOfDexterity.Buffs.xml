@@ -1,0 +1,38 @@
+  <Buff>
+    <Type>Dexterity Skills - Exceptional Bonus</Type>
+    <DisplayText>Dexterity Skills - Exceptional Bonus %v1: Passive %v1 Exceptional bonus to the Dexterity based skills of: Balance, Hide, Move Silently, Open Lock, and Tumble</DisplayText>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Exceptional</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Balance</Item>
+      <Item>Hide</Item>
+      <Item>Move Silently</Item>
+      <Item>Open Lock</Item>
+      <Item>Tumble</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Dodge</Type>
+    <DisplayText>%b1 Dodge %v1%: %v1 %b1 bonus to Dodge.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>DodgeBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>ReflexSave</Type>
+    <DisplayText>%b1 Reflex Save %v1: This item gives a %v1 %b1 bonus to your Reflex save.</DisplayText>
+    <Ignore>Resistance</Ignore>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Reflex</Item>
+    </Effect>
+  </Buff>

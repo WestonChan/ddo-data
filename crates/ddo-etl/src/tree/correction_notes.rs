@@ -254,8 +254,12 @@ pub(super) fn correction_values(
         (CorrectionKind::ItemBonus | CorrectionKind::AugmentBonus | CorrectionKind::SetTierBonus, "add") => {
             added_bonus_value(transaction, correction.kind, current_name, &correction)?
         }
-        (CorrectionKind::SetTierBonus | CorrectionKind::FeatBonus | CorrectionKind::SocketOptionBonus, "remove") => {
-            Value::Null
+        (_, "remove") if correction.correctable_field()?.shape == FieldShape::BonusRemoval => {
+            if correction.from == CorrectionValue::Null {
+                json!(1)
+            } else {
+                Value::Null
+            }
         }
         (CorrectionKind::Effect, "remove") => serde_json::from_str::<Value>(
             &data_correction_value(transaction, &correction, current_name, groupings, socket_options)?.to_json(),

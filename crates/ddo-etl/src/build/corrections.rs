@@ -177,7 +177,14 @@ fn apply_correction(
     }
     let mut maetrim_values: Vec<CorrectionValue> = Vec::new();
     for row_id in &row_ids {
-        let maetrim_value = current_value(transaction, correction, field, *row_id, set_tier_descriptions_by_id)?;
+        let maetrim_value = current_value(
+            transaction,
+            correction,
+            field,
+            *row_id,
+            set_tier_descriptions_by_id,
+            context.map(|context| context.groupings),
+        )?;
         if !maetrim_values.contains(&maetrim_value) {
             maetrim_values.push(maetrim_value);
         }
@@ -878,6 +885,7 @@ fn current_value(
     field: &CorrectableField,
     row_id: i64,
     set_tier_descriptions_by_id: Option<&HashMap<i64, String>>,
+    groupings: Option<&crate::groupings::Groupings>,
 ) -> Result<CorrectionValue> {
     let table_name = correction.target_table_name();
     let value_sql = match field.shape {
@@ -1006,7 +1014,11 @@ fn current_value(
         }
         FieldShape::Removal => return Ok(CorrectionValue::Integer(0)),
         FieldShape::Integer | FieldShape::BonusRemoval if correction.kind.corrects_a_bonus() => {
-            let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
+            let Some(corrected_bonus) = CorrectedBonus::from_correction_if_effect_exists(transaction, correction)? else {
+                let stat_name = correction.bonus_key().context("a bonus correction names its bonus")?.0;
+                ensure!(groupings.is_some_and(|index| index.effect_named(stat_name).is_some()), "stat {stat_name:?} is not an effect; use its exact name");
+                return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
+            };
             let matching_values = corrected_bonus.values_on(transaction, row_id)?;
             if matching_values.is_empty() {
                 return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
@@ -1197,7 +1209,7 @@ pub(crate) fn data_correction_value(
         let mut value = if field.shape == FieldShape::BonusLines {
             corrected_lines_value(transaction, groupings, correction, row_id)?
         } else {
-            current_value(transaction, correction, field, row_id, None)?
+            current_value(transaction, correction, field, row_id, None, Some(groupings))?
         };
         if field.shape == FieldShape::EffectBonusRemoval {
             ensure!(
@@ -1455,12 +1467,12 @@ impl CorrectedBonus {
 
     fn from_correction_if_effect_exists(transaction: &Transaction, correction: &Correction) -> Result<Option<Self>> {
         let (stat_name, bonus_type_name) = correction.bonus_key().context("a bonus correction names its bonus")?;
-        let Some(stat_id) = id_named(transaction, "effects", stat_name)? else {
-            return Ok(None);
-        };
         let bonus_type_id = match bonus_type_name {
             NULL_SPELLING => None,
             _ => Some(bonus_type_id_named(transaction, bonus_type_name)?),
+        };
+        let Some(stat_id) = id_named(transaction, "effects", stat_name)? else {
+            return Ok(None);
         };
         Ok(Some(Self {
             link_table: BonusLinkTable::of(correction.kind)?,
@@ -2419,7 +2431,8 @@ mod tests {
         let correction = bonus_correction(CorrectionKind::SetTierBonus, "Power of the Firestorm", "Equipment", "lines");
         let transaction = db.transaction().unwrap();
         assert_eq!(
-            current_value(&transaction, &correction, correction.correctable_field().unwrap(), owner, None).unwrap(),
+            current_value(&transaction, &correction, correction.correctable_field().unwrap(), owner, None, None)
+                .unwrap(),
             CorrectionValue::Text("Power of the Firestorm".into())
         );
     }

@@ -15,12 +15,6 @@ bonus_type = "Enhancement"
 value = 7
 
 [[effect]]
-name = "Dexterity Skills"
-alias = "Dexterity Skills - Exceptional Bonus"
-bonus_type = "Exceptional"
-value = 2
-
-[[effect]]
 name = "Dodge"
 bonus_type = "Quality"
 value = 1
@@ -29,6 +23,28 @@ value = 1
 name = "Reflex Save"
 bonus_type = "Resistance"
 value = 7
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 3
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "remove"
+upstream = 2
+reason = "The wiki lists Insightful Seeker +3 in this slot and no Exceptional Dexterity Skills bonus."
+url = "https://ddowiki.com/page/Item:Periapt_of_Dexterity"
+read = "2026-10-23"
+qualifier = "Dexterity Skills / Exceptional"
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "add"
+reason = "The wiki gives +3 Insight to critical confirmation and critical hit damage through Insightful Seeker."
+url = "https://ddowiki.com/page/Item:Periapt_of_Dexterity"
+read = "2026-10-23"
+qualifier = "Seeker / Insight"
 
 [[socket]]
 slot = "blue"
