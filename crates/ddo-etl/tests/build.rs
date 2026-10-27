@@ -1183,6 +1183,64 @@ fn riposte_item_rank_routes_to_the_canonical_constant_effect() {
 }
 
 #[test]
+fn numeric_riposte_keeps_full_owner_and_default_amounts() {
+    let canonical = fixture::riposte_rank_database();
+    let bonuses = |db: &Connection| {
+        db.prepare(
+            "SELECT stat.name,b.amount,b.amount_source,b.scale FROM owner_bonuses b
+             JOIN items item ON item.id=b.owner_id JOIN effects stat ON stat.id=b.stat_id
+             JOIN effects effect ON effect.id=b.via_effect_id
+             WHERE b.owner_kind='item' AND item.name='Ship Kickers' AND effect.name='Riposte'
+             ORDER BY stat.name",
+        )
+        .unwrap()
+        .query_map([], |row| {
+            Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?, row.get::<_, String>(2)?, row.get::<_, f64>(3)?))
+        })
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap()
+    };
+    assert_eq!(
+        bonuses(&canonical),
+        [("Armor Class".into(), 3, "owner".into(), 1.0), ("Saving Throws".into(), 3, "owner".into(), 1.0)]
+    );
+    let verdict: String =
+        canonical.query_row("SELECT stat_set_verdict FROM effects WHERE name='Riposte'", [], |row| row.get(0)).unwrap();
+    assert_eq!(verdict, "distinct");
+    let index = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let corrections = Corrections::from_database(&canonical).unwrap();
+    for (amount, expected, amount_source) in
+        [(Some(3), 3, "owner"), (Some(1), 1, "owner"), (None, 2, "default"), (Some(0), 0, "owner")]
+    {
+        let source = fixture::xml_source();
+        let item = source.path().join("Items/ShipKickers.item");
+        let original = std::fs::read_to_string(&item).unwrap();
+        let replacement = amount.map_or_else(String::new, |amount| format!("<Value1>{amount}</Value1>"));
+        assert_eq!(original.matches("<Value1>3</Value1>").count(), 1);
+        std::fs::write(item, original.replace("<Value1>3</Value1>", &replacement)).unwrap();
+        let mut upstream = Connection::open_in_memory().unwrap();
+        build_database(
+            &index,
+            source.path(),
+            &WikiOverrides::default(),
+            &corrections,
+            &mut upstream,
+            &fixture_dataset_version(),
+        )
+        .unwrap();
+        let expected_bonuses = if expected == 0 {
+            Vec::new()
+        } else {
+            ["Armor Class", "Saving Throws"]
+                .map(|stat| (stat.to_string(), expected, amount_source.to_string(), 1.0))
+                .to_vec()
+        };
+        assert_eq!(bonuses(&upstream), expected_bonuses, "amount {amount:?}");
+    }
+}
+
+#[test]
 fn riposte_item_rank_missing_from_the_index_names_the_buff_and_owner() {
     let source = fixture::xml_source();
     let canonical = fixture::riposte_rank_database();

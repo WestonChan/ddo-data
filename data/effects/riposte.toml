@@ -2,43 +2,28 @@ name = "Riposte"
 default_value = 2
 description_template = "This item enchants its user with incredible awareness and speed, granting a {1} %b1 bonus to AC and to Saves."
 home_bonus_type = "Insight"
+stat_set_verdict = "distinct"
+stat_set_reason = "Numeric Riposte and Parrying remain distinct enchantments despite granting the same Armor Class and saves; R11 and R12 show their separate item lines."
 verbose_name_template = "Riposte +{1}"
 
 [[bonus]]
 amount_from = 1
-rounding = "up"
-scale = 0.5
+rounding = "down"
+scale = 1.0
 target = "Armor Class"
 
 [[bonus]]
 amount_from = 1
 rounding = "down"
-scale = 0.5
+scale = 1.0
 target = "Saving Throws"
 
-[[ddobuilder_correction]]
-kind = "effect"
-field = "scale"
-upstream = 1.0
-reason = "Riposte grants one Armor Class per two listed ranks, rounding up."
-url = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
-read = "2026-10-04"
-qualifier = 'stat "Armor Class"'
+[[citation]]
+url = "https://ddowiki.com/page/Category_talk:Riposte_items"
+read = "2026-10-26"
+note = "R12 confirms that numeric Riposte +N grants the full N Insight bonus to Armor Class and all saves, with no proc. The half-rank formula applies only to Roman ranks."
 
-[[ddobuilder_correction]]
-kind = "effect"
-field = "rounding"
-upstream = "down"
-reason = "Riposte rounds its half-rank Armor Class bonus up."
-url = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
-read = "2026-10-04"
-qualifier = 'stat "Armor Class"'
-
-[[ddobuilder_correction]]
-kind = "effect"
-field = "scale"
-upstream = 1.0
-reason = "Riposte grants one Saving Throws per two listed ranks, rounding down."
-url = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
-read = "2026-10-04"
-qualifier = 'stat "Saving Throws"'
+[[citation]]
+url = "https://ddowiki.com/page/Template:Riposte"
+read = "2026-10-26"
+note = "The numeric example Riposte +8 grants +8 Armor Class and saves; the Roman XI example grants +6/+5 with a when-missed proc. Numeric Riposte and Parrying remain distinct enchantments."

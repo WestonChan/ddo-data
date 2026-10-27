@@ -850,6 +850,10 @@ fn item_line_splits_are_rejected_until_the_item_writer_applies_them() {
 fn grouping_value_corrections_use_the_corrected_canonical_definition() {
     let source = fixture::xml_source();
     fixture::write_ship_kickers(source.path());
+    let scale = new_qualified_correction("effect", "Riposte", "stat = 'Armor Class'", "scale", "1.0", "0.5");
+    let (canonical, report) = built_db_from(source.path(), &[("riposte-scale.toml", &scale)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
     let correction = new_qualified_correction(
         "item_bonus",
         "Ship Kickers",
@@ -858,7 +862,7 @@ fn grouping_value_corrections_use_the_corrected_canonical_definition() {
         "3",
         "6",
     );
-    let error = built_db_from(source.path(), &[("riposte-value.toml", &correction)]).unwrap_err();
+    let error = built_db_from_index(&groupings, source.path(), &[("riposte-value.toml", &correction)]).unwrap_err();
     assert!(error.contains("Riposte") && error.contains("cannot take one value"), "{error}");
 }
 
@@ -3912,21 +3916,7 @@ fn owner_bonuses_resolve_owner_default_and_constant_amounts() {
         cloak_source.replace("<Type>FalseLife</Type>\n      <Value1>50</Value1>", "<Type>FalseLife</Type>"),
     )
     .unwrap();
-    let riposte_page = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers";
-    let correction_file =
-        new_qualified_correction("effect", "Riposte", "stat = \"Armor Class\"", "scale", "1.0", "0.5").cited(
-            "Riposte grants half the listed rank to Armor Class.",
-            riposte_page,
-            "2026-10-04",
-        ) + &new_qualified_correction("effect", "Riposte", "stat = \"Armor Class\"", "rounding", "\"down\"", "\"up\"")
-            .cited("Riposte rounds Armor Class upward.", riposte_page, "2026-10-04")
-            + &new_qualified_correction("effect", "Riposte", "stat = \"Saving Throws\"", "scale", "1.0", "0.5").cited(
-                "Riposte grants half the listed rank to Saving Throws.",
-                riposte_page,
-                "2026-10-04",
-            );
-    let (db, report) = built_db_from(&data_files_dir, &[("riposte.toml", &correction_file)]).unwrap();
-    assert_eq!(report.correction_applied_count, 3);
+    let (db, _) = built_db_from(&data_files_dir, &[]).unwrap();
     let resolved: Vec<(String, i64, String, f64)> = db
         .prepare(
             "SELECT s.name, ob.amount, ob.amount_source, ob.scale FROM owner_bonuses ob
@@ -3940,8 +3930,8 @@ fn owner_bonuses_resolve_owner_default_and_constant_amounts() {
         .unwrap()
         .map(Result::unwrap)
         .collect();
-    assert!(resolved.contains(&("Armor Class".into(), 2, "owner".into(), 0.5)));
-    assert!(resolved.contains(&("Saving Throws".into(), 1, "owner".into(), 0.5)));
+    assert!(resolved.contains(&("Armor Class".into(), 3, "owner".into(), 1.0)));
+    assert!(resolved.contains(&("Saving Throws".into(), 3, "owner".into(), 1.0)));
     assert!(resolved.contains(&("Hide".into(), 5, "constant".into(), 1.0)));
     assert!(resolved.contains(&("Hit Points".into(), 10, "default".into(), 1.0)));
 }
