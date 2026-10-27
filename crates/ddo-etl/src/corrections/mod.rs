@@ -276,7 +276,11 @@ impl Correction {
             );
             Ok(())
         };
-        value_line(grouping)?;
+        if !(matches!(self.from, CorrectionValue::Texts(_))
+            && groupings.effect_named(grouping).is_some_and(|effect| effect.has_constants_at_type(bonus_type)))
+        {
+            value_line(grouping)?;
+        }
         let expected = groupings.expanded_stat_names(grouping)?;
         let mut combined = std::collections::BTreeSet::new();
         let mut partitions = Vec::new();
@@ -422,7 +426,9 @@ impl Correction {
     }
 
     pub(crate) fn target_table_name(&self) -> &'static str {
-        if self.dc.is_some() {
+        if self.kind == CorrectionKind::Item && self.targets_socket_option() {
+            "item_augment_slot_options"
+        } else if self.dc.is_some() {
             "dcs"
         } else if self.stance.is_some() {
             "stances"
@@ -433,11 +439,21 @@ impl Correction {
         }
     }
 
+    pub(crate) fn targets_socket_option(&self) -> bool {
+        self.kind == CorrectionKind::SocketOptionBonus || self.socket.is_some() || self.option.is_some()
+    }
+
     fn validate_qualifier_keys(&self, field: &CorrectableField) -> Result<()> {
-        let names_option = self.kind == CorrectionKind::SocketOptionBonus;
+        let names_option = self.targets_socket_option();
+        ensure!(
+            !names_option
+                || self.kind == CorrectionKind::SocketOptionBonus
+                || (self.kind == CorrectionKind::Item && field.name == "description"),
+            "socket and option qualify only socket_option_bonus or item description corrections"
+        );
         ensure!(
             self.socket.is_some() == names_option && self.option.is_some() == names_option,
-            "a socket_option_bonus correction requires socket and option, and other kinds forbid them"
+            "a socket-option correction requires both socket and option"
         );
         ensure!(
             self.socket.as_ref().is_none_or(|name| !name.trim().is_empty())
@@ -830,7 +846,8 @@ impl Corrections {
                 read,
                 file_name: "data".to_string(),
             };
-            if correction.kind == CorrectionKind::SocketOptionBonus {
+            set_correction_qualifiers(&mut correction, &qualifier)?;
+            if correction.targets_socket_option() {
                 if file_paths.is_none() {
                     file_paths = Some(crate::tree::DataFilePaths::from_database(db)?);
                 }
@@ -841,7 +858,6 @@ impl Corrections {
                     .display()
                     .to_string();
             }
-            set_correction_qualifiers(&mut correction, &qualifier)?;
             ensure!(correction.qualifier() == qualifier, "{} has unparsed qualifier {qualifier:?}", correction.label());
             correction.validate()?;
             entries.push(correction);

@@ -292,6 +292,66 @@ pub(crate) fn spyglass_option_correction(
     CorrectionSet(vec![correction])
 }
 
+pub(crate) fn write_rank_options(source: &std::path::Path) {
+    write_spyglass_options(source);
+    std::fs::write(
+        source.join("AugmentImages/Variant.png"),
+        include_bytes!("../fixtures/effect-groups/icons/Variant.png"),
+    )
+    .unwrap();
+    let path = source.join("Items/SpyglassOptions.item");
+    let item = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        path,
+        item.replace("  </Item>", &format!("{}  </Item>", include_str!("../fixtures/effect-groups/RankOptions.xml"))),
+    )
+    .unwrap();
+}
+
+pub(crate) fn rank_option_merge(rank: &str) -> CorrectionSet {
+    let mut correction = spyglass_option_correction(
+        "lines",
+        serde_json::json!(["Armor Class", "Saving Throws"]),
+        CorrectionValue::Text(rank.into()),
+    );
+    correction.0[0].socket = Some("crafting: variant".into());
+    correction.0[0].option = Some(rank.into());
+    correction.0[0].stat = Some(rank.into());
+    correction.0[0].bonus_type = Some("Insight".into());
+    correction
+}
+
+pub(crate) fn rank_option_description_correction(source: &std::path::Path) -> CorrectionSet {
+    let item = ddo_etl::xml::items::parse_item_file(&source.join("Items/SpyglassOptions.item")).unwrap();
+    let description = &item.items[0]
+        .augment_slots
+        .iter()
+        .flat_map(|slot| &slot.options)
+        .find(|option| option.name == "Riposte VI")
+        .unwrap()
+        .description;
+    let note = serde_json::from_value::<ddo_etl::tree::DdobuilderCorrection>(serde_json::json!({
+        "kind": "item", "field": "description",
+        "qualifier": "socket \"crafting: variant\", option \"Riposte VI\"",
+        "upstream": description, "reason": "Correct the captured option's saves text.",
+        "url": "https://ddowiki.com/page/Item:Fell_Shiv_(Level_25)", "read": "2026-10-26"
+    }))
+    .unwrap();
+    let mut correction = ddo_etl::tree::correction_for_note(&note, &item.items[0].name).unwrap();
+    correction.from = CorrectionValue::Text(description.clone());
+    correction.to = CorrectionValue::Text(description.replace("+2 Insight", "+3 Insight"));
+    CorrectionSet(vec![correction])
+}
+
+pub(crate) fn rank_option_value_correction() -> CorrectionSet {
+    let mut correction = rank_option_merge("Riposte VI");
+    correction.0[0].stat = Some("Saving Throws".into());
+    correction.0[0].field = "value".into();
+    correction.0[0].from = CorrectionValue::Integer(2);
+    correction.0[0].to = CorrectionValue::Integer(3);
+    correction
+}
+
 pub(crate) fn spyglass_option_lines(db: &rusqlite::Connection) -> Vec<(String, i64)> {
     db.prepare("SELECT e.name,l.value FROM item_augment_slot_option_effects l JOIN effects e ON e.id=l.effect_id
         JOIN item_augment_slot_options o ON o.id=l.option_id JOIN items i ON i.id=o.item_id

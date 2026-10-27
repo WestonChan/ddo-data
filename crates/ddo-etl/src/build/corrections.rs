@@ -99,9 +99,7 @@ fn apply_correction(
     row_ids.sort_unstable();
     row_ids.dedup();
     if row_ids.is_empty() {
-        if correction.kind == CorrectionKind::SocketOptionBonus
-            && id_named(transaction, "items", &correction.name)?.is_some()
-        {
+        if correction.targets_socket_option() && id_named(transaction, "items", &correction.name)?.is_some() {
             if correction.from.as_text() == Some(NO_SUCH_BONUS) {
                 return record_applied_correction(transaction, correction, report);
             }
@@ -648,7 +646,7 @@ fn maetrim_row_ids_named(
 ) -> Result<Vec<i64>> {
     let kind = correction.kind;
 
-    if kind == CorrectionKind::SocketOptionBonus {
+    if correction.targets_socket_option() {
         return Ok(socket_options
             .context("socket-option targets must be loaded before resolving corrections")?
             .option_id(correction, row_name)?
@@ -741,7 +739,7 @@ fn damage_row_is_present(transaction: &Transaction, effect_id: i64, damage: &Dam
     Ok(present)
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub(crate) struct LineBonus {
     pub(crate) order: usize,
     pub(crate) effect_name: String,
@@ -766,7 +764,6 @@ impl LineBonus {
 pub(super) struct LineMerge {
     pub(super) orders: std::collections::BTreeSet<usize>,
     pub(super) stats: std::collections::BTreeSet<String>,
-    pub(super) amount: i64,
 }
 
 pub(super) fn line_bonus_rows(
@@ -830,18 +827,51 @@ pub(super) fn line_merge_selection(correction: &Correction, rows: &[LineBonus]) 
         orders.extend(matches);
     }
     let selected = rows.iter().filter(|row| orders.contains(&row.order)).collect::<Vec<_>>();
-    let amount = selected
-        .first()
-        .and_then(|row| row.amount)
-        .with_context(|| format!("{}: merged lines have no amount", correction.label()))?;
     let stats = selected.iter().map(|row| row.stat_name.clone()).collect::<std::collections::BTreeSet<_>>();
     ensure!(
         selected.len() == stats.len()
-            && selected.iter().all(|row| row.amount == Some(amount) && row.bonus_type == correction.bonus_type),
+            && selected.iter().all(|row| row.amount.is_some() && row.bonus_type == correction.bonus_type),
         "{}: merged lines have overlapping stats or different types or values",
         correction.label()
     );
-    Ok(Some(LineMerge { orders, stats, amount }))
+    Ok(Some(LineMerge { orders, stats }))
+}
+
+pub(super) fn merged_line_value(
+    groupings: &crate::groupings::Groupings,
+    correction: &Correction,
+    rows: &[&LineBonus],
+) -> Result<Option<i64>> {
+    let target = groupings
+        .effect_named(correction.stat.as_deref().context("merge target missing")?)
+        .context("merge target is not indexed")?;
+    if target.has_constants_at_type(correction.bonus_type.as_deref().context("merge type missing")?) {
+        let mut constants = std::collections::BTreeMap::new();
+        for bonus in &target.bonuses {
+            let member = &groupings.by_id[&bonus.target_id];
+            for stat in groupings.expanded_stat_names(&member.name)? {
+                ensure!(
+                    constants.insert(stat, bonus.constant).is_none(),
+                    "{}: merge target repeats a stat",
+                    correction.label()
+                );
+            }
+        }
+        ensure!(
+            rows.len() == constants.len() && rows.iter().all(|row| constants.get(&row.stat_name) == Some(&row.amount)),
+            "{}: merged values disagree with the target constants",
+            correction.label()
+        );
+        Ok(None)
+    } else {
+        let amount = rows.first().and_then(|row| row.amount).context("merged lines have no amount")?;
+        ensure!(
+            rows.iter().all(|row| row.amount == Some(amount)),
+            "{}: merged lines have different values",
+            correction.label()
+        );
+        Ok(Some(amount))
+    }
 }
 
 fn corrected_lines_value(
@@ -860,19 +890,18 @@ fn corrected_lines_value(
         resolved.to = CorrectionValue::Text(grouping.to_string());
         resolved.line_partition_stats(groupings)?;
         let target = groupings
-            .grouping_named(grouping)
-            .with_context(|| format!("{}: merge target is not a link-valued grouping", correction.label()))?;
+            .effect_named(grouping)
+            .with_context(|| format!("{}: merge target is not indexed", correction.label()))?;
         let selected = rows.iter().filter(|row| row.effect_name == grouping).collect::<Vec<_>>();
-        let amount = selected.first().and_then(|row| row.amount);
         ensure!(
             selected.iter().map(|row| row.stat_name.clone()).collect::<std::collections::BTreeSet<_>>()
                 == groupings.expanded_stat_names(&target.name)?
                 && selected.iter().map(|row| row.order).collect::<std::collections::BTreeSet<_>>().len() == 1
-                && amount.is_some()
-                && selected.iter().all(|row| row.amount == amount && row.bonus_type == correction.bonus_type),
+                && selected.iter().all(|row| row.amount.is_some() && row.bonus_type == correction.bonus_type),
             "{}: a merge must leave one grouping link at one type and value",
             correction.label()
         );
+        merged_line_value(groupings, correction, &selected)?;
         return Ok(resolved.to);
     }
     let upstream = correction.from.as_text().context("a lines split needs an upstream grouping name")?;
@@ -1226,7 +1255,7 @@ pub(crate) fn data_correction_value(
     let field = correction.correctable_field()?;
     let row_ids = maetrim_row_ids_named(transaction, correction, current_name, Some(socket_options))?;
     if row_ids.is_empty()
-        && correction.kind == CorrectionKind::SocketOptionBonus
+        && correction.targets_socket_option()
         && correction.from.as_text() == Some(NO_SUCH_BONUS)
         && id_named(transaction, "items", current_name)?.is_some()
     {

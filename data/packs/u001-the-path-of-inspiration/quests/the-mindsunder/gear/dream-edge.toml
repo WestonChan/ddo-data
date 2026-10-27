@@ -11,6 +11,16 @@ material = "Steel"
 minimum_level = 18
 slot = "Main Hand"
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Dream_Edge"
+read = "2026-10-26"
+note = "R13 confirms that this choice is the named Parrying I enchantment, including its existing passive bonuses and proc where present."
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Ethereal_Bracers"
+read = "2026-10-26"
+note = "R13 screenshot confirms Parrying I grants +1 Insight Armor Class and +1 Insight saves. Its existing slot-valued definition is retained; rank representation is ddo-data#57."
+
 [[dr_bypass]]
 bypass = "Chaotic"
 
@@ -37,6 +47,18 @@ name = "Aligned"
 
 [[effect]]
 name = "Bodyfeeder"
+
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [
+    "Armor Class",
+    "Saving Throws",
+]
+reason = "R13 confirms that this choice is the named Parrying I enchantment, including its existing passive bonuses and proc where present."
+url = "https://ddowiki.com/page/Item:Dream_Edge"
+read = "2026-10-26"
+qualifier = 'socket "crafting: variant", option "Parrying I", Parrying I / Insight'
 
 [[socket]]
 slot = "crafting: variant"
@@ -706,12 +728,7 @@ min_level = 18
 
 [[socket.option.effect]]
 bonus_type = "Insight"
-effect = "Armor Class"
-value = 1
-
-[[socket.option.effect]]
-bonus_type = "Insight"
-effect = "Saving Throws"
+effect = "Parrying I"
 value = 1
 
 [[socket.option.modifier]]

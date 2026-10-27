@@ -629,8 +629,8 @@ impl TableWriter<'_> {
                         link.is_split_line = true;
                         split_links.push(link);
                     }
-                    if !self.applied_line_corrections.iter().any(|applied| std::ptr::eq(*applied, correction)) {
-                        self.applied_line_corrections.push(correction);
+                    if !self.applied_link_corrections.iter().any(|applied| std::ptr::eq(*applied, correction)) {
+                        self.applied_link_corrections.push(correction);
                     }
                     return Ok(GroupingOutcome::Split { links: split_links, correction: correction.label() });
                 }
@@ -778,8 +778,8 @@ impl TableWriter<'_> {
             let grouping_name = correction.stat.as_deref().expect("validated grouping qualifier");
             let grouping = self
                 .groupings
-                .grouping_named(grouping_name)
-                .ok_or_else(|| anyhow::anyhow!("{}: merge target is not a link-valued grouping", correction.label()))?;
+                .effect_named(grouping_name)
+                .ok_or_else(|| anyhow::anyhow!("{}: merge target is not indexed", correction.label()))?;
             let bonus_type = correction
                 .bonus_type
                 .as_deref()
@@ -790,18 +790,62 @@ impl TableWriter<'_> {
                 "{}: merged line has different stats",
                 correction.label()
             );
+            let mut selected =
+                rows.iter().filter(|row| selection.orders.contains(&row.order)).cloned().collect::<Vec<_>>();
+            self.write_merge_source_values(correction, owner_id, &mut selected)?;
+            let value = super::corrections::merged_line_value(
+                self.groupings,
+                correction,
+                &selected.iter().collect::<Vec<_>>(),
+            )?;
             let effect_id = self.effects.ensure_indexed_effect(grouping)?;
             let first = *selection.orders.first().expect("merge has at least two lines");
-            links[first] = self.write_grouping_line(effect_id, bonus_type, selection.amount)?;
+            links[first] = self.write_grouping_line(effect_id, bonus_type, value.unwrap_or_default())?;
+            links[first].value = value;
             removed.extend(selection.orders.iter().copied().filter(|order| *order != first));
             consumed.extend(selection.orders);
-            self.applied_line_corrections.push(correction);
+            self.applied_link_corrections.push(correction);
         }
         Ok(links
             .into_iter()
             .enumerate()
             .filter_map(|(order, link)| (!removed.contains(&order)).then_some(link))
             .collect())
+    }
+
+    fn write_merge_source_values(
+        &mut self,
+        merge: &crate::corrections::Correction,
+        owner_id: i64,
+        rows: &mut [super::corrections::LineBonus],
+    ) -> Result<()> {
+        for correction in self.bonus_value_corrections.iter().copied().filter(|correction| {
+            correction.kind == merge.kind && correction.name == merge.name && correction.bonus_type == merge.bonus_type
+        }) {
+            if !self.correction_owner_matches(correction, owner_id)? {
+                continue;
+            }
+            for row in rows.iter_mut().filter(|row| correction.stat.as_deref() == Some(&row.stat_name)) {
+                anyhow::ensure!(
+                    row.effect_name == row.stat_name,
+                    "{}: stat {:?} is behind grouping {:?}; name the grouping in the correction",
+                    correction.label(),
+                    row.stat_name,
+                    row.effect_name
+                );
+                if row.amount.map(crate::corrections::CorrectionValue::Integer).as_ref() == Some(&correction.from)
+                    && correction.bonus_value.is_none_or(|amount| row.amount == Some(amount))
+                {
+                    row.amount = match correction.to {
+                        crate::corrections::CorrectionValue::Integer(amount) => Some(amount),
+                        crate::corrections::CorrectionValue::Null => None,
+                        _ => unreachable!("validated bonus value"),
+                    };
+                    self.applied_link_corrections.push(correction);
+                }
+            }
+        }
+        Ok(())
     }
 
     fn write_upstream_grouping_line(

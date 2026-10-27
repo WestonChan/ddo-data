@@ -17,6 +17,11 @@ damage_reduction = 8
 max_dex_bonus = 0
 shield_bonus = 9
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Shield_of_Morning_(level_18)"
+read = "2026-10-26"
+note = "R13 confirms that this choice is the named Riposte IV enchantment, including its existing passive bonuses and proc where present."
+
 [[dr_bypass]]
 bypass = "Bludgeon"
 
@@ -28,6 +33,18 @@ name = "Shield of Lesser Sunburst"
 
 [[effect]]
 name = "Solar Guard III"
+
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [
+    "Armor Class",
+    "Saving Throws",
+]
+reason = "R13 confirms that this choice is the named Riposte IV enchantment, including its existing passive bonuses and proc where present."
+url = "https://ddowiki.com/page/Item:Shield_of_Morning_(level_18)"
+read = "2026-10-26"
+qualifier = 'socket "crafting: variant", option "Riposte IV", Riposte IV / Insight'
 
 [[socket]]
 slot = "crafting: variant"
@@ -112,14 +129,7 @@ icon = "Variant"
 min_level = 17
 
 [[socket.option.effect]]
-bonus_type = "Insight"
-effect = "Armor Class"
-value = 2
-
-[[socket.option.effect]]
-bonus_type = "Insight"
-effect = "Saving Throws"
-value = 2
+effect = "Riposte IV"
 
 [[socket.option.modifier]]
 amount_type = "Simple"

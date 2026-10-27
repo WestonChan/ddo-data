@@ -902,7 +902,10 @@
         },
         "value": {
           "format": "int64",
-          "type": "integer"
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "value2": {
           "format": "int64",
@@ -913,8 +916,7 @@
         }
       },
       "required": [
-        "effect",
-        "value"
+        "effect"
       ],
       "type": "object",
       "x-columns": [

@@ -321,7 +321,12 @@ fn build_with_wiki_references(
         derived_effect_lines: Vec::new(),
         line_splits: Vec::new(),
         line_corrections: corrections.entries.iter().filter(|correction| correction.field == "lines").collect(),
-        applied_line_corrections: Vec::new(),
+        applied_link_corrections: Vec::new(),
+        bonus_value_corrections: corrections
+            .entries
+            .iter()
+            .filter(|correction| correction.kind.corrects_a_bonus() && correction.field == "value")
+            .collect(),
         socket_option_targets: None,
         held_back_effects: Vec::new(),
         matched_set_tier_prose: BTreeSet::new(),
@@ -396,7 +401,7 @@ fn build_with_wiki_references(
             writer.write_item(item, drop_location, &mut report).with_context(|| format!("{}", path.display()))?;
         }
     }
-    if corrections.entries.iter().any(|correction| correction.kind == CorrectionKind::SocketOptionBonus) {
+    if corrections.entries.iter().any(Correction::targets_socket_option) {
         writer.socket_option_targets = Some(SocketOptionTargets::from_database(&transaction)?);
     }
     writer.link_pending_derived_effects()?;
@@ -432,7 +437,7 @@ fn build_with_wiki_references(
     corrections_applied_while_writing.extend(applied_drop_location_corrections);
     corrections_applied_while_writing.extend(&writer.applied_socket_label_corrections);
     corrections_applied_while_writing.extend(&writer.applied_bonus_removal_corrections);
-    corrections_applied_while_writing.extend(&writer.applied_line_corrections);
+    corrections_applied_while_writing.extend(&writer.applied_link_corrections);
     corrections::record_corrections_applied_while_writing(
         &transaction,
         &corrections_applied_while_writing,
@@ -818,7 +823,8 @@ pub(crate) struct TableWriter<'a> {
     derived_effect_lines: Vec<DerivedEffectLines>,
     line_splits: Vec<DerivedEffectSplit>,
     line_corrections: Vec<&'a Correction>,
-    applied_line_corrections: Vec<&'a Correction>,
+    applied_link_corrections: Vec<&'a Correction>,
+    bonus_value_corrections: Vec<&'a Correction>,
     socket_option_targets: Option<SocketOptionTargets>,
     held_back_effects: Vec<DerivedEffectSplit>,
     matched_set_tier_prose: BTreeSet<SetTierProseMatch>,

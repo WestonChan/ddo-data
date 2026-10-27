@@ -9,6 +9,11 @@ material = "Steel"
 minimum_level = 18
 slot = "Main Hand"
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Magistrate's_Scepter_(level_18)"
+read = "2026-10-26"
+note = "R13 confirms that this choice is the named Riposte V enchantment, including its existing passive bonuses and proc where present."
+
 [[dr_bypass]]
 bypass = "Bludgeon"
 
@@ -20,6 +25,18 @@ bypass = "Magic"
 
 [[effect]]
 name = "Axiomatic II"
+
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [
+    "Armor Class",
+    "Saving Throws",
+]
+reason = "R13 confirms that this choice is the named Riposte V enchantment, including its existing passive bonuses and proc where present."
+url = "https://ddowiki.com/page/Item:Magistrate's_Scepter_(level_18)"
+read = "2026-10-26"
+qualifier = 'socket "crafting: variant", option "Riposte V", Riposte V / Insight'
 
 [[socket]]
 slot = "crafting: variant"
@@ -215,14 +232,7 @@ icon = "Variant"
 min_level = 17
 
 [[socket.option.effect]]
-bonus_type = "Insight"
-effect = "Armor Class"
-value = 3
-
-[[socket.option.effect]]
-bonus_type = "Insight"
-effect = "Saving Throws"
-value = 2
+effect = "Riposte V"
 
 [[socket.option.modifier]]
 amount_type = "Simple"

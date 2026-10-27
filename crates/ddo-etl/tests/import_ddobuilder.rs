@@ -354,6 +354,34 @@ fn a_merge_import_accepts_a_changed_amount_without_conflict() {
 }
 
 #[test]
+fn a_rank_option_import_preserves_the_merge_and_resolves_corrected_prose() {
+    let source = fixture::xml_source();
+    fixture::write_rank_options(source.path());
+    let description = fixture::rank_option_description_correction(source.path());
+    let notes = fixture::rank_option_merge("Riposte VI") + &fixture::rank_option_value_correction() + &description;
+    let corrections = fixture::corrections_from(&[("rank-option.toml", &notes)]).unwrap();
+    let world = ImportWorld::with_sources(
+        fixture::grouping_cases(),
+        corrections,
+        WikiOverrides::default(),
+        fixture::write_rank_options,
+    );
+    let path = world.options.source_dir.join("Items/SpyglassOptions.item");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let corrected = original.replace(description.0[0].from.as_text().unwrap(), description.0[0].to.as_text().unwrap());
+    assert_ne!(corrected, original);
+    std::fs::write(path, corrected).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts() && report.to_string().contains("RESOLVED CORRECTION"), "{report}");
+    let db = world.database();
+    let served: (String, Option<i64>, Option<i64>, String) = db.query_row("SELECT e.name,l.value,l.value2,o.description FROM item_augment_slot_option_effects l JOIN effects e ON e.id=l.effect_id JOIN item_augment_slot_options o ON o.id=l.option_id WHERE o.name='Riposte VI'", [], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?,row.get(3)?))).unwrap();
+    assert_eq!(served, ("Riposte VI".into(), None, None, description.0[0].to.as_text().unwrap().into()));
+    let before = tree::data_file_bytes(&world.options.data_dir).unwrap();
+    tree::export_database(&db, &world.options.data_dir).unwrap();
+    assert_eq!(before, tree::data_file_bytes(&world.options.data_dir).unwrap());
+}
+
+#[test]
 fn a_merge_import_reports_a_missing_member_and_keeps_the_correction() {
     let corrections = fixture::corrections_from(&[("keylock-merge.toml", &fixture::search_and_spot_merge())]).unwrap();
     let world = ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {

@@ -655,7 +655,7 @@ fn a_lines_merge_combines_item_buffs_and_reports_missing_members() {
     std::fs::write(&item_path, original.replacen("<Value1>20</Value1>", "<Value1>21</Value1>", 1)).unwrap();
     let error = built_db_from_index(fixture::grouping_cases(), source.path(), &[("merged-lines.toml", &correction)])
         .unwrap_err();
-    assert!(error.contains("different types or values"), "{error}");
+    assert!(error.contains("merged lines have different values"), "{error}");
     let search_buff = original.split_once("<Buff>").unwrap().1.split_once("</Buff>").unwrap().0;
     std::fs::write(
         &item_path,
@@ -1145,6 +1145,149 @@ fn socket_option_corrections_reject_every_ambiguous_match() {
     {
         assert!(error.contains(expected), "{error}");
     }
+}
+
+#[test]
+fn rank_option_merges_preserve_constant_and_slot_amounts() {
+    let source = fixture::xml_source();
+    fixture::write_rank_options(source.path());
+    let corrections = fixture::rank_option_merge("Riposte V") + &fixture::rank_option_merge("Parrying I");
+    let (db, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("rank-options.toml", &corrections)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
+    let lines = db.prepare("SELECT o.name,e.name,l.value,l.value2 FROM item_augment_slot_option_effects l JOIN effects e ON e.id=l.effect_id JOIN item_augment_slot_options o ON o.id=l.option_id WHERE o.name IN ('Riposte V','Parrying I') ORDER BY o.name").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,Option<i64>>(2)?,row.get::<_,Option<i64>>(3)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        lines,
+        [
+            ("Parrying I".into(), "Parrying I".into(), Some(1), None),
+            ("Riposte V".into(), "Riposte V".into(), None, None)
+        ]
+    );
+    let bonuses = db.prepare("SELECT o.name,e.name,b.amount FROM owner_bonuses b JOIN item_augment_slot_options o ON b.owner_kind='item_augment_slot_option' AND b.owner_id=o.id JOIN effects e ON e.id=b.stat_id WHERE o.name IN ('Riposte V','Parrying I') ORDER BY o.name,e.name").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        bonuses,
+        [
+            ("Parrying I".into(), "Armor Class".into(), 1),
+            ("Parrying I".into(), "Saving Throws".into(), 1),
+            ("Riposte V".into(), "Armor Class".into(), 3),
+            ("Riposte V".into(), "Saving Throws".into(), 2)
+        ]
+    );
+    let path = source.path().join("Items/SpyglassOptions.item");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let start = original.find("        <Name>Riposte V</Name>").unwrap();
+    let end = start + original[start..].find("      </Augment>").unwrap();
+    let option = &original[start..end];
+    let saves_start = option.find("        <Effect>\n          <Type>SaveBonus</Type>").unwrap();
+    for missing in [false, true] {
+        let changed = if missing {
+            option[..saves_start].to_string()
+        } else {
+            option.replace("<Amount size=\"1\">2</Amount>", "<Amount size=\"1\">4</Amount>")
+        };
+        std::fs::write(&path, format!("{}{}{}", &original[..start], changed, &original[end..])).unwrap();
+        let merge = fixture::rank_option_merge("Riposte V");
+        let result = built_db_from_index(fixture::grouping_cases(), source.path(), &[("rank-options.toml", &merge)]);
+        if missing {
+            let (_, report) = result.unwrap();
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+            assert!(
+                matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\""),
+                "{:?}",
+                report.stale_corrections
+            );
+        } else {
+            let error = result.err().unwrap();
+            assert!(error.contains("merged values disagree with the target constants"), "{error}");
+        }
+    }
+}
+
+#[test]
+fn socket_option_description_changes_only_the_qualified_option() {
+    let source = fixture::xml_source();
+    fixture::write_rank_options(source.path());
+    let correction = fixture::rank_option_description_correction(source.path());
+    let descriptions = |db: &Connection| {
+        db.prepare("SELECT i.name,o.name,o.description FROM item_augment_slot_options o JOIN items i ON i.id=o.item_id ORDER BY i.name,o.slot_order,o.option_order").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,Option<String>>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
+    };
+    let (before, _) = built_db_from_index(fixture::grouping_cases(), source.path(), &[]).unwrap();
+    let mut expected = descriptions(&before);
+    let selected = expected
+        .iter_mut()
+        .find(|(owner, option, _)| owner == &correction.0[0].name && option == "Riposte VI")
+        .unwrap();
+    selected.2 = correction.0[0].to.as_text().map(str::to_string);
+    let (after, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("option-description.toml", &correction)])
+            .unwrap();
+    assert_eq!(descriptions(&after), expected);
+    let item_descriptions = |db: &Connection| {
+        db.prepare("SELECT name,description FROM items ORDER BY name")
+            .unwrap()
+            .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, Option<String>>(1)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap()
+    };
+    assert_eq!(item_descriptions(&before), item_descriptions(&after));
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+}
+
+#[test]
+fn socket_option_description_rejects_ambiguous_pairs_with_the_file() {
+    let source = fixture::xml_source();
+    fixture::write_rank_options(source.path());
+    let correction = fixture::rank_option_description_correction(source.path());
+    let path = source.path().join("Items/SpyglassOptions.item");
+    let item = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        path,
+        item.replace("  </Item>", &format!("{}  </Item>", include_str!("fixtures/effect-groups/RankOptions.xml"))),
+    )
+    .unwrap();
+    let error =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("option-description.toml", &correction)])
+            .err()
+            .unwrap();
+    for expected in [
+        "option-description.toml",
+        "ambiguous socket-option target",
+        "socket order 2, option order 1",
+        "socket order 3, option order 1",
+    ] {
+        assert!(error.contains(expected), "{error}");
+    }
+}
+
+#[test]
+fn socket_option_description_is_stale_when_the_option_is_gone() {
+    let source = fixture::xml_source();
+    fixture::write_rank_options(source.path());
+    let correction = fixture::rank_option_description_correction(source.path());
+    fixture::write_spyglass_options(source.path());
+    let (_, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("option-description.toml", &correction)])
+            .unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+    assert!(
+        matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\""),
+        "{:?}",
+        report.stale_corrections
+    );
+}
+
+#[test]
+fn rank_option_merge_applies_a_source_value_correction_first() {
+    let source = fixture::xml_source();
+    fixture::write_rank_options(source.path());
+    let corrections = fixture::rank_option_merge("Riposte VI") + &fixture::rank_option_value_correction();
+    let (db, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("rank-options.toml", &corrections)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
+    let bonuses = db.prepare("SELECT e.name,b.amount FROM owner_bonuses b JOIN item_augment_slot_options o ON b.owner_kind='item_augment_slot_option' AND b.owner_id=o.id JOIN effects e ON e.id=b.stat_id WHERE o.name='Riposte VI' ORDER BY e.name").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(bonuses, [("Armor Class".into(), 3), ("Saving Throws".into(), 3)]);
+    assert_eq!(db.query_row("SELECT COUNT(*) FROM item_augment_slot_option_effects l JOIN item_augment_slot_options o ON o.id=l.option_id JOIN effects e ON e.id=l.effect_id WHERE o.name='Riposte VI' AND e.name='Riposte VI' AND l.value IS NULL AND l.value2 IS NULL", [], |row| row.get::<_,i64>(0)).unwrap(), 1);
 }
 
 #[test]

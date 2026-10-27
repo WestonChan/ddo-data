@@ -18,7 +18,8 @@ database_record! {
             effect: String => effect_id [reference "effects"],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             alias: Option<String> => alias,
-            value: i64 => value,
+            #[serde(default, skip_serializing_if = "Option::is_none")]
+            value: Option<i64> => value,
             #[serde(default, skip_serializing_if = "Option::is_none")]
             value2: Option<i64> => value2,
         }

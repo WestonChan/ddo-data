@@ -70,6 +70,19 @@ impl Grouping {
             })
             && self.bonuses.iter().map(|bonus| bonus.bonus_type.as_deref()).collect::<BTreeSet<_>>().len() == 1
     }
+
+    pub(crate) fn has_constants_at_type(&self, bonus_type: &str) -> bool {
+        !self.bonuses.is_empty()
+            && crate::build::amount_count(&self.verbose_name_template, self.description_template.as_deref()) == 0
+            && self.bonuses.iter().all(|bonus| {
+                bonus.amount_from == 0
+                    && bonus.constant.is_some()
+                    && bonus.scale == 1.0
+                    && bonus.rounding == "down"
+                    && bonus.trigger_id.is_none()
+                    && bonus.bonus_type.as_deref().is_none_or(|fixed| fixed == bonus_type)
+            })
+    }
 }
 
 pub fn name_from_stats(stats: &BTreeSet<String>) -> Result<String> {

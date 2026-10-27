@@ -9,6 +9,16 @@ material = "Steel"
 minimum_level = 25
 slot = "Main Hand"
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Fell_Shiv_(level_25)"
+read = "2026-10-26"
+note = "R13 confirms that this choice is the named Riposte VI enchantment, including its existing passive bonuses and proc where present."
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Master's_Riposte_(level_17)"
+read = "2026-10-26"
+note = "R13 viewed the screenshot: Riposte VI grants +3 Insight Armor Class and +3 Insight saves, with a 6 to 24 when-missed proc. This confirms the same rank on Fell Shiv."
+
 [[dr_bypass]]
 bypass = "Magic"
 
@@ -17,6 +27,39 @@ bypass = "Pierce"
 
 [[effect]]
 name = "Greater Vorpal"
+
+[[ddobuilder_correction]]
+kind = "item"
+field = "description"
+upstream = """
+Riposte VI: When Missed by an attack: Deals 6 to 24 damage to your attacker.
+Passive: +3 Insight bonus to Armor Class, +2 Insight bonus to Fortitude, Reflex,
+and Will Saving Throws."""
+reason = "R13's typed Fell Shiv tooltip and the Master's Riposte (level 17) screenshot both give Riposte VI +3 Insight saves; the option's +2 is wrong."
+url = "https://ddowiki.com/page/Item:Fell_Shiv_(level_25)"
+read = "2026-10-26"
+qualifier = 'socket "crafting: variant", option "Riposte VI"'
+
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [
+    "Armor Class",
+    "Saving Throws",
+]
+reason = "R13 confirms that this choice is the named Riposte VI enchantment, including its existing passive bonuses and proc where present."
+url = "https://ddowiki.com/page/Item:Fell_Shiv_(level_25)"
+read = "2026-10-26"
+qualifier = 'socket "crafting: variant", option "Riposte VI", Riposte VI / Insight'
+
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "value"
+upstream = 2
+reason = "R13's typed Fell Shiv tooltip and the Master's Riposte (level 17) screenshot both give Riposte VI +3 Insight saves; the option's +2 is wrong."
+url = "https://ddowiki.com/page/Item:Fell_Shiv_(level_25)"
+read = "2026-10-26"
+qualifier = 'socket "crafting: variant", option "Riposte VI", Saving Throws / Insight'
 
 [[socket]]
 slot = "crafting: variant"
@@ -254,20 +297,13 @@ req_type = "EnemyType"
 name = "Riposte VI"
 description = """
 Riposte VI: When Missed by an attack: Deals 6 to 24 damage to your attacker.
-Passive: +3 Insight bonus to Armor Class, +2 Insight bonus to Fortitude, Reflex,
+Passive: +3 Insight bonus to Armor Class, +3 Insight bonus to Fortitude, Reflex,
 and Will Saving Throws."""
 icon = "Variant"
 min_level = 25
 
 [[socket.option.effect]]
-bonus_type = "Insight"
-effect = "Armor Class"
-value = 3
-
-[[socket.option.effect]]
-bonus_type = "Insight"
-effect = "Saving Throws"
-value = 2
+effect = "Riposte VI"
 
 [[socket.option.modifier]]
 amount_type = "Simple"
