@@ -27,9 +27,7 @@ bypass = "Bludgeon"
 bypass = "Magic"
 
 [[effect]]
-name = "Riposte"
-bonus_type = "Insight"
-value = 4
+name = "Riposte VIII"
 
 [[effect]]
 name = "Doublestrike"
@@ -41,6 +39,15 @@ name = "Guardbreaking"
 
 [[effect]]
 name = "Riposte Riposte"
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "effect"
+upstream = "Riposte"
+reason = "R4 confirms Riposte VIII; retain its proc and the rank constants."
+url = "https://ddowiki.com/page/Item:Epic_Swashbuckler_(legacy)_(level_24)"
+read = "2026-10-23"
+qualifier = "Riposte VIII"
 
 [[source]]
 kind = "event"

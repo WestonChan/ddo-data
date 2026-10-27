@@ -611,6 +611,9 @@ Striding = "Movement Speed"
 "Profane Well Rounded" = "Well Rounded"
 "Major Anger" = "Rage Uses"
 
+[family.item_named_effects]
+Riposte = "Riposte {item}"
+
 [family.by_item]
 AbilityBonus = "{item}"
 SkillBonus = "{item}"

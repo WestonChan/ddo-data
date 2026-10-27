@@ -1036,7 +1036,7 @@ fn a_link_granting_only_zero_bonuses_is_warned() {
     let db_path = fixture_db_copy_with(
         work_dir.path(),
         "UPDATE item_effects SET value = 0 WHERE item_id =
-           (SELECT id FROM items WHERE name = 'Epic Ethereal Bracers')
+           (SELECT id FROM items WHERE name = 'Ship Kickers')
            AND effect_id = (SELECT id FROM effects WHERE name = 'Riposte');",
     );
     let db = Connection::open(&db_path).unwrap();
@@ -1046,7 +1046,7 @@ fn a_link_granting_only_zero_bonuses_is_warned() {
     let bonus_count: i64 = db
         .query_row(
             "SELECT COUNT(*) FROM owner_bonuses WHERE owner_kind = 'item'
-             AND owner_id = (SELECT id FROM items WHERE name = 'Epic Ethereal Bracers')
+             AND owner_id = (SELECT id FROM items WHERE name = 'Ship Kickers')
              AND via_effect_id = (SELECT id FROM effects WHERE name = 'Riposte')",
             [],
             |row| row.get(0),

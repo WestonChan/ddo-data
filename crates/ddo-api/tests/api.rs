@@ -874,9 +874,9 @@ async fn effect_lines_separate_labels_from_rendered_names() {
     let dexterity = lines.iter().find(|line| line["name"] == "Dexterity").unwrap();
     assert_eq!(dexterity["verbose_name"], "Dexterity +11");
     assert_eq!(dexterity["bonus_type"], "Enhancement");
-    let riposte = lines.iter().find(|line| line["name"] == "Riposte").unwrap();
-    assert_eq!(riposte["verbose_name"], "Riposte +5");
-    assert_eq!(riposte["value"], 5);
+    let riposte = lines.iter().find(|line| line["name"] == "Riposte IX").unwrap();
+    assert_eq!(riposte["verbose_name"], "Riposte IX");
+    assert!(riposte["value"].is_null());
     let speed = lines.iter().find(|line| line["name"] == "Speed XIV").unwrap();
     assert_eq!(speed["value"], 30);
     assert_eq!(speed["value2"], 14);
@@ -892,7 +892,7 @@ async fn effect_lines_separate_labels_from_rendered_names() {
 async fn fixture_tooltip_templates_render_signed_units_types_groups_and_tiers() {
     let cases = [
         ("Epic%20Ethereal%20Bracers", "Dexterity", "Dexterity +11"),
-        ("Epic%20Ethereal%20Bracers", "Riposte", "Riposte +5"),
+        ("Epic%20Ethereal%20Bracers", "Riposte IX", "Riposte IX"),
         ("Epic%20Ethereal%20Bracers", "Speed XIV", "Speed XIV"),
         ("Echoes%20of%20Night", "Sonic Lore", "Sonic Lore +8%"),
         ("Alaric%27s%20Grim%20Gauntlets", "Wisdom", "Wisdom +14"),
@@ -1123,7 +1123,7 @@ async fn family_and_stat_detail_page_their_real_carriers() {
 #[tokio::test]
 async fn named_effect_carriers_page_links_and_nest_each_resolved_bonus() {
     let (_, _, vocabulary) = get_list_rows("/v1/effects").await;
-    let riposte_id = effect_named(&vocabulary, "Riposte", "effect").unwrap()["id"].as_i64().unwrap();
+    let riposte_id = effect_named(&vocabulary, "Riposte IX", "effect").unwrap()["id"].as_i64().unwrap();
     let (_, _, riposte) = get(&format!("/v1/effects/{riposte_id}?items_limit=100")).await;
     let bracers: Vec<_> = riposte["items"]["items"]
         .as_array()
@@ -1132,22 +1132,22 @@ async fn named_effect_carriers_page_links_and_nest_each_resolved_bonus() {
         .filter(|row| row["name"] == "Epic Ethereal Bracers")
         .collect();
     assert_eq!(bracers.len(), 1);
-    assert_eq!(bracers[0]["value"], 5);
+    assert!(bracers[0]["value"].is_null());
     assert_eq!(bracers[0]["bonus_type"], "Insight");
-    assert_eq!(bracers[0]["line"]["name"], "Riposte");
-    assert_eq!(bracers[0]["line"]["verbose_name"], "Riposte +5");
+    assert_eq!(bracers[0]["line"]["name"], "Riposte IX");
+    assert_eq!(bracers[0]["line"]["verbose_name"], "Riposte IX");
     assert!(bracers[0]["line"].get("text").is_none());
     assert_eq!(bracers[0]["bonuses"].as_array().unwrap().len(), 2);
     assert!(bracers[0]["bonuses"]
         .as_array()
         .unwrap()
         .iter()
-        .any(|row| row["stat"] == "Armor Class" && row["value"] == 3));
+        .any(|row| row["stat"] == "Armor Class" && row["value"] == 5));
     assert!(bracers[0]["bonuses"]
         .as_array()
         .unwrap()
         .iter()
-        .any(|row| row["stat"] == "Saving Throws" && row["value"] == 2));
+        .any(|row| row["stat"] == "Saving Throws" && row["value"] == 4));
     assert_eq!(riposte["items"]["total"], riposte["items"]["items"].as_array().unwrap().len());
 
     let deception_id = effect_named(&vocabulary, "Improved Deception", "effect").unwrap()["id"].as_i64().unwrap();
@@ -1390,7 +1390,7 @@ async fn version_reports_dataset_and_schema() {
     }
     assert!(json["counts"].get("bonuses").is_none());
     assert!(json.get("api_commit").is_some(), "version must report the API build commit, null when unknown");
-    assert_eq!(json["counts"]["items"], 59, "58 of Maetrim's and the wiki fixture's axe");
+    assert_eq!(json["counts"]["items"], 60, "59 of Maetrim's and the wiki fixture's axe");
     assert_eq!(
         json["counts"]["legacy_items"], 3,
         "a legacy and a historic version, and an axe that drops only in a retired Temple of Elemental Evil part"
@@ -1423,7 +1423,7 @@ async fn items_list_filters_and_pages() {
 
     let (_, _, first_page) = get("/v1/items?limit=5&offset=0").await;
     assert_eq!(first_page["items"].as_array().unwrap().len(), 5);
-    assert_eq!(first_page["total"], 56, "the three legacy items are left out by default");
+    assert_eq!(first_page["total"], 57, "the three legacy items are left out by default");
     let (_, _, armor) = get("/v1/items?category=Armor").await;
     assert!(armor["items"].as_array().unwrap().iter().all(|i| i["category"] == "Armor"));
     let (_, _, level_range) = get("/v1/items?min_level=20&max_level=25").await;
@@ -1443,7 +1443,7 @@ async fn items_list_filters_and_pages() {
     );
     assert!(rare.iter().all(|item| item["is_rare"] == true));
     let (_, _, unfiltered) = get("/v1/items?rare=false").await;
-    assert_eq!(unfiltered["total"], 56);
+    assert_eq!(unfiltered["total"], 57);
     let (status, _, _) = get("/v1/items?category=Hat").await;
     assert_eq!(status, StatusCode::BAD_REQUEST, "unknown category is a client error");
 }
@@ -1567,13 +1567,13 @@ async fn items_list_leaves_out_legacy_items_unless_asked_to_include_them() {
     for path in ["/v1/items?limit=10000", "/v1/items?limit=10000&include_legacy=false"] {
         let (status, _, current) = get(path).await;
         assert_eq!(status, StatusCode::OK);
-        assert_eq!(current["total"], 56, "{path}");
+        assert_eq!(current["total"], 57, "{path}");
         let rows = current["items"].as_array().unwrap();
         assert!(rows.iter().all(|row| row["is_legacy"] == false), "{path}");
         assert!(legacy_names.iter().all(|name| rows.iter().all(|row| row["name"] != *name)), "{path}");
     }
     let (_, _, with_legacy) = get("/v1/items?limit=10000&include_legacy=true").await;
-    assert_eq!(with_legacy["total"], 59);
+    assert_eq!(with_legacy["total"], 60);
     let legacy_rows: Vec<&Value> =
         with_legacy["items"].as_array().unwrap().iter().filter(|row| row["is_legacy"] == true).collect();
     assert_eq!(legacy_rows.iter().map(|row| row["name"].as_str().unwrap()).collect::<Vec<_>>(), legacy_names);
@@ -1958,7 +1958,7 @@ async fn item_search_text_also_matches_a_slot_category_or_pack_name_and_ranks_ex
     let (_, _, feet) = get("/v1/items?q=FEET").await;
     assert_eq!(
         item_names(&feet),
-        ["Epic Kundarak Delving Boots", "Green Steel Weave Boots", "Kundarak Delving Boots"],
+        ["Epic Kundarak Delving Boots", "Green Steel Weave Boots", "Kundarak Delving Boots", "Ship Kickers"],
         "the Feet slot"
     );
     let (_, _, jewelry) = get("/v1/items?q=jewelry").await;

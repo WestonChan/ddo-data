@@ -128,6 +128,22 @@ pub(crate) fn write_diadem_item(source: &std::path::Path) {
     .unwrap();
 }
 
+pub(crate) fn write_ship_kickers(source: &std::path::Path) {
+    std::fs::create_dir_all(source.join("Items")).unwrap();
+    std::fs::write(source.join("Items/ShipKickers.item"), include_str!("../fixtures/DataFiles/Items/ShipKickers.item"))
+        .unwrap();
+    std::fs::create_dir_all(source.join("ItemImages/Boots")).unwrap();
+    std::fs::write(
+        source.join("ItemImages/Boots/Boots_1.png"),
+        include_bytes!("../fixtures/DataFiles/ItemImages/Boots/Boots_1.png"),
+    )
+    .unwrap();
+}
+
+pub(crate) fn riposte_rank_database() -> rusqlite::Connection {
+    grouping_case_database(|_| {})
+}
+
 pub(crate) fn write_lore_items(source: &std::path::Path) {
     let path = source.join("ItemBuffs.xml");
     let buffs = std::fs::read_to_string(&path).unwrap();

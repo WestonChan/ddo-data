@@ -86,6 +86,8 @@ pub struct FamilyVocabulary {
     pub fixed: BTreeMap<String, String>,
     pub by_item: BTreeMap<String, String>,
     #[serde(default)]
+    pub item_named_effects: BTreeMap<String, String>,
+    #[serde(default)]
     pub text_only: BTreeMap<String, String>,
 }
 
@@ -315,6 +317,11 @@ impl EffectMap {
         for (kind, group_name) in &vocabulary.family.groups {
             if kind.trim().is_empty() || vocabulary.group_members(group_name).is_none() {
                 bail!("effect_map.toml [family.groups] {kind:?} names unknown group {group_name:?}");
+            }
+        }
+        for (kind, template) in &vocabulary.family.item_named_effects {
+            if kind.trim().is_empty() || template.matches("{item}").count() != 1 {
+                bail!("effect_map.toml [family.item_named_effects] {kind:?} needs one {{item}} in {template:?}");
             }
         }
         for (section, templates) in
@@ -646,6 +653,34 @@ impl EffectMap {
                 group_name.strip_suffix(" Skills").and_then(|ability| self.skill_ability_groups.skills.get(ability))
             })
             .map(Vec::as_slice)
+    }
+
+    pub(crate) fn item_named_definitions<'a>(
+        &self,
+        index: &'a crate::groupings::Groupings,
+    ) -> Result<Vec<&'a crate::groupings::Grouping>> {
+        let mut definitions = BTreeMap::new();
+        for (buff, pattern) in &self.family.item_named_effects {
+            let (prefix, suffix) = pattern.split_once("{item}").expect("route pattern is validated");
+            let matches = index
+                .by_id
+                .values()
+                .filter(|effect| {
+                    effect
+                        .name
+                        .strip_prefix(prefix)
+                        .and_then(|tail| tail.strip_suffix(suffix))
+                        .is_some_and(|item| !item.is_empty() && !item.chars().any(char::is_whitespace))
+                })
+                .collect::<Vec<_>>();
+            if matches.is_empty() {
+                bail!("effect_map.toml [family.item_named_effects] {buff:?} = {pattern:?} matches no canonical effect");
+            }
+            for effect in matches {
+                definitions.insert(&effect.name, effect);
+            }
+        }
+        Ok(definitions.into_values().collect())
     }
 
     pub fn group_names(&self) -> Vec<String> {

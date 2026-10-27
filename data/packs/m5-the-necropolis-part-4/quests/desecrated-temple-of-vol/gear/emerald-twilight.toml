@@ -23,9 +23,7 @@ bypass = "Bludgeon"
 bypass = "Magic"
 
 [[effect]]
-name = "Riposte"
-bonus_type = "Insight"
-value = 4
+name = "Riposte VII"
 
 [[effect]]
 name = "Guardbreaking"

@@ -11,6 +11,7 @@ pub struct GroupingBonus {
     pub scale: f64,
     pub rounding: String,
     pub trigger_id: Option<i64>,
+    pub trigger_name: Option<String>,
 }
 
 #[derive(Debug, Clone)]
@@ -31,6 +32,7 @@ pub struct Grouping {
     pub set_bonus_line_template: Option<String>,
     pub home_bonus_type: Option<String>,
     pub default_value: Option<i64>,
+    pub default_value2: Option<i64>,
     pub stat_set_verdict: Option<String>,
     pub stat_set_reason: Option<String>,
     pub aliases: Vec<GroupingAlias>,
@@ -211,7 +213,7 @@ impl Groupings {
         let mut statement = db.prepare(
             "SELECT e.id, e.name, e.slug, e.is_stat, e.is_group, e.verbose_name_template, e.description_template,
                     e.set_bonus_line_template, bt.name, e.default_value, e.stat_set_verdict, e.stat_set_reason,
-                    a.name, a.slug, a.verbose_name_template FROM effects e
+                    a.name, a.slug, a.verbose_name_template, e.default_value2 FROM effects e
                LEFT JOIN bonus_types bt ON bt.id = e.home_bonus_type_id
                LEFT JOIN effect_aliases a ON a.effect_id = e.id ORDER BY e.name, a.sort_order",
         )?;
@@ -229,6 +231,7 @@ impl Groupings {
                         set_bonus_line_template: row.get(7)?,
                         home_bonus_type: row.get(8)?,
                         default_value: row.get(9)?,
+                        default_value2: row.get(15)?,
                         stat_set_verdict: row.get(10)?,
                         stat_set_reason: row.get(11)?,
                         aliases: if let Some(name) = row.get::<_, Option<String>>(12)? {
@@ -254,8 +257,9 @@ impl Groupings {
             }
         }
         let mut statement = db.prepare(
-            "SELECT b.effect_id, b.target_effect_id, bt.name, b.amount_from, b.constant, b.scale, b.rounding, b.trigger_id
+            "SELECT b.effect_id, b.target_effect_id, bt.name, b.amount_from, b.constant, b.scale, b.rounding, b.trigger_id, t.name
                FROM effect_bonuses b LEFT JOIN bonus_types bt ON bt.id = b.bonus_type_id
+               LEFT JOIN triggers t ON t.id = b.trigger_id
                ORDER BY b.effect_id, b.sort_order",
         )?;
         for row in statement.query_map([], |row| {
@@ -269,6 +273,7 @@ impl Groupings {
                     scale: row.get(5)?,
                     rounding: row.get(6)?,
                     trigger_id: row.get(7)?,
+                    trigger_name: row.get(8)?,
                 },
             ))
         })? {

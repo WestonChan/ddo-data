@@ -13,14 +13,21 @@ bonus_type = "Insight"
 value = 2
 
 [[effect]]
-name = "Riposte"
-bonus_type = "Insight"
-value = 3
+name = "Riposte V"
 
 [[effect]]
 name = "Balance"
 bonus_type = "Competence"
 value = 15
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "effect"
+upstream = "Riposte"
+reason = "R4 confirms Riposte V; retain its proc and the rank constants."
+url = "https://ddowiki.com/page/Item:Ship_Kickers"
+read = "2026-10-23"
+qualifier = "Riposte V"
 
 [[socket]]
 slot = "yellow"

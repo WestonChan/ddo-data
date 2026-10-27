@@ -67,6 +67,33 @@ fn structural_rejections_fail_the_data_build_naming_their_file_once() {
 }
 
 #[test]
+fn effect_replacement_requires_the_owner_to_link_the_qualified_destination() {
+    let file = "packs/m5-the-necropolis-part-4/gear/epic-ethereal-bracers.toml";
+    for destination in ["Riposte IX", "Strength"] {
+        let error = fixture::data_build_error(|root| {
+            let path = walkdir::WalkDir::new(root)
+                .into_iter()
+                .map(Result::unwrap)
+                .find(|entry| entry.file_name() == "epic-ethereal-bracers.toml")
+                .unwrap()
+                .into_path();
+            let original = std::fs::read_to_string(&path).unwrap();
+            std::fs::write(path, format!("{original}\n[[ddobuilder_correction]]\nkind = 'item_effect'\nfield = 'effect'\nqualifier = '{destination}'\nupstream = 'Riposte V'\nreason = 'Fixture effect replacement.'\nurl = 'https://ddowiki.com/page/Riposte'\nread = '2026-10-23'\n")).unwrap();
+        });
+        if destination == "Riposte IX" {
+            assert!(error.is_empty(), "{error}");
+        } else {
+            assert!(
+                error.contains(file.rsplit('/').next().unwrap())
+                    && error.contains("destination effect")
+                    && error.contains(destination),
+                "{error}"
+            );
+        }
+    }
+}
+
+#[test]
 fn an_effect_member_removal_requires_the_member_absent_from_the_file() {
     let file = "effects/power-of-the-frozen-thunderstorm.toml";
     let removed = "\n[[bonus]]\namount_from = 1\nrounding = \"down\"\nscale = 1.0\ntarget = \"Cold Spell Power\"\n";

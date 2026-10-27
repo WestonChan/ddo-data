@@ -7,11 +7,12 @@ fn flattens_item_images_and_copies_the_rest() {
     let icons_dir = std::env::temp_dir().join(format!("ddo-icons-test-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&icons_dir);
     let report = export_icons(&data_files_dir, &icons_dir).unwrap();
-    assert_eq!(report.copied_count_by_kind.get("items"), Some(&2), "{report:?}");
+    assert_eq!(report.copied_count_by_kind.get("items"), Some(&3), "{report:?}");
     assert_eq!(report.copied_count_by_kind.get("feats"), Some(&1));
     assert_eq!(report.copied_count_by_kind.get("augments"), Some(&1));
     assert!(icons_dir.join("items/Quarterstaff_6a.png").is_file(), "nested item images are flattened to their stem");
     assert!(icons_dir.join("items/Docent_1a.png").is_file());
+    assert!(icons_dir.join("items/Boots_1.png").is_file());
     assert!(icons_dir.join("feats/PowerAttack.png").is_file());
     assert!(!icons_dir.join("enhancements").exists(), "kinds absent from the source are skipped");
     let second_report = export_icons(&data_files_dir, &icons_dir).unwrap();

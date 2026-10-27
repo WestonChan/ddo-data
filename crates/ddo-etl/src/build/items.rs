@@ -9,7 +9,7 @@ use crate::map::item_version::names_legacy_version;
 use crate::map::material;
 use crate::map::placement::placement_of;
 use crate::xml::items::{AugmentSlotOption, Item};
-use anyhow::{bail, ensure, Result};
+use anyhow::{bail, ensure, Context, Result};
 use ddo_model::enums::{ArmorType, EquipmentSlot, Handedness, ItemCategory, ModifierSource, Provenance};
 use rusqlite::params;
 
@@ -110,7 +110,7 @@ impl TableWriter<'_> {
                         ResolvedBuff::Bonuses { source: BuffResolutionSource::EffectFallback, .. } => {
                             report.effect_fallback_buff_count += 1;
                         }
-                        ResolvedBuff::Effect { .. } => report.effect_buff_count += 1,
+                        ResolvedBuff::Effect { .. } | ResolvedBuff::NamedEffect { .. } => report.effect_buff_count += 1,
                         ResolvedBuff::EnhancementBonus(_) => unreachable!("matched above"),
                     }
                     resolved_buffs.push((buff, resolved_buff));
@@ -177,6 +177,23 @@ impl TableWriter<'_> {
         for (buff, resolved_buff) in resolved_buffs {
             let first_link = links.len();
             match resolved_buff {
+                ResolvedBuff::NamedEffect { name } => {
+                    let family = self.effects.family_named(&name).with_context(|| {
+                        format!("item {item_name:?} buff {:?} routes to missing effect {name:?}", buff.kind)
+                    })?;
+                    let effect_id = family.id;
+                    let (value, value2) = self.buff_resolver.link_amounts(buff, family.amount_count);
+                    let bonus_type =
+                        if family.uses_link_type { self.buff_resolver.link_bonus_type(buff)? } else { None };
+                    links.push(DerivedEffectLink {
+                        alias: None,
+                        effect_id,
+                        bonus_type,
+                        value,
+                        value2,
+                        is_split_line: false,
+                    });
+                }
                 ResolvedBuff::Bonuses { source: _, stats } => {
                     let mut typed_stats = Vec::with_capacity(stats.len());
                     for resolved_stat in &stats {

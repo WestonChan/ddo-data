@@ -1,6 +1,8 @@
 name = "Riposte VIII"
 description_template = "When Missed by an attack: Deals 8 to 32 damage to your attacker. Passive: +4 Insight bonus to Armor Class, +4 Insight bonus to Fortitude, Reflex, and Will Saving Throws."
 home_bonus_type = "Insight"
+stat_set_verdict = "composes"
+stat_set_reason = "Riposte VIII is Parrying VIII plus a when-missed proc; factored in #57 because odd ranks grant unequal AC and saves"
 verbose_name_template = "Riposte VIII +4"
 
 [[bonus]]
@@ -18,3 +20,8 @@ constant = 4
 rounding = "down"
 scale = 1.0
 target = "Saving Throws"
+
+[[citation]]
+url = "https://ddowiki.com/page/Riposte"
+read = "2026-10-23"
+note = "R4 confirms Roman Riposte VIII: AC rounds half the rank up; saves round down. The when-missed proc remains prose."

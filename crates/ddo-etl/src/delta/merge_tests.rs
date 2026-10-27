@@ -247,7 +247,7 @@ fn owned_entities_and_their_arrays_follow_a_declined_owner_removal() {
 #[test]
 fn unreferenced_removal_clears_derived_rows_before_foreign_key_check() {
     let previous = fixture_database();
-    let new = edited_database("DELETE FROM bonus_type_aliases WHERE bonus_type_id IN (SELECT id FROM bonus_types WHERE name = 'Insight'); DELETE FROM bonus_types WHERE name = 'Insight'");
+    let new = edited_database("DELETE FROM bonus_type_aliases WHERE bonus_type_id IN (SELECT id FROM bonus_types WHERE name = 'Quality'); DELETE FROM bonus_types WHERE name = 'Quality'");
     let mut ours = fixture_database();
     let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
     assert!(outcome.declined_removals.is_empty());

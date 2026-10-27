@@ -595,7 +595,7 @@ impl TableWriter<'_> {
                         continue;
                     }
                     let mut partitions = correction.line_partition_stats(self.groupings)?;
-                    self.effects.ensure_indexed_grouping(grouping)?;
+                    self.effects.ensure_indexed_effect(grouping)?;
                     partitions.sort_by_key(|(_, partition)| {
                         bonuses.iter().position(|(_, bonus)| partition.contains(bonus.stat.name))
                     });
@@ -623,7 +623,7 @@ impl TableWriter<'_> {
                                     correction.label()
                                 )
                             })?;
-                            let effect_id = self.effects.ensure_indexed_grouping(line_grouping)?;
+                            let effect_id = self.effects.ensure_indexed_effect(line_grouping)?;
                             self.write_upstream_grouping_line(owner, effect_id, bonus_type, value)?
                         };
                         link.is_split_line = true;
@@ -638,7 +638,7 @@ impl TableWriter<'_> {
         }
         let effect_id = match matching {
             [grouping] if grouping.accepts_value_at_type(bonus_type.name()) => {
-                self.effects.ensure_indexed_grouping(grouping)?
+                self.effects.ensure_indexed_effect(grouping)?
             }
             [] => {
                 let declared = EFFECT_MAP
@@ -790,7 +790,7 @@ impl TableWriter<'_> {
                 "{}: merged line has different stats",
                 correction.label()
             );
-            let effect_id = self.effects.ensure_indexed_grouping(grouping)?;
+            let effect_id = self.effects.ensure_indexed_effect(grouping)?;
             let first = *selection.orders.first().expect("merge has at least two lines");
             links[first] = self.write_grouping_line(effect_id, bonus_type, selection.amount)?;
             removed.extend(selection.orders.iter().copied().filter(|order| *order != first));

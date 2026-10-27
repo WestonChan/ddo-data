@@ -557,15 +557,21 @@ fn mapped_effects_survive_engine_only_siblings_and_keep_definition_defaults() {
 fn effect_amount_sources_follow_definition_text_and_item_values() {
     let definitions = effect_item_buff_definitions();
     let resolver = BuffResolver::from_definitions(&definitions);
-    let items = parse_item_file(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/effect_real_items.item"))
-        .unwrap()
-        .items;
+    let mut items =
+        parse_item_file(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/effect_real_items.item"))
+            .unwrap()
+            .items;
+    items.extend(
+        parse_item_file(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles/Items/ShipKickers.item"))
+            .unwrap()
+            .items,
+    );
     let cases = [
         ("Legendary Amethyst Loupe", "Improved Deception", vec![("Bluff", AmountFrom::ItemValue1, Some(20))]),
         (
-            "Epic Ethereal Bracers",
+            "Ship Kickers",
             "Riposte",
-            vec![("Armor Class", AmountFrom::ItemValue1, Some(5)), ("Saving Throws", AmountFrom::ItemValue1, Some(5))],
+            vec![("Armor Class", AmountFrom::ItemValue1, Some(3)), ("Saving Throws", AmountFrom::ItemValue1, Some(3))],
         ),
         ("Blooming Gauntlets", "Undying", vec![("Unconsciousness Range", AmountFrom::ItemValue1, Some(50))]),
         (
@@ -648,10 +654,7 @@ fn definition_bonus_type_is_fixed_unless_display_text_has_an_item_type_slot() {
     let bracers = items.iter().find(|item| item.name == "Epic Ethereal Bracers").unwrap();
     let riposte = bracers.buffs.iter().find(|buff| buff.kind == "Riposte").unwrap();
     assert!(definitions["Riposte"].display_text.contains("%b1"));
-    let ResolvedBuff::Bonuses { stats, .. } = resolver.resolved(riposte).unwrap() else {
-        panic!("Riposte did not resolve to bonuses");
-    };
-    assert!(stats.iter().all(|stat| stat.bonus_type == Some(BonusType::Insight)));
+    assert_eq!(resolver.resolved(riposte).unwrap(), ResolvedBuff::NamedEffect { name: "Riposte IX".into() });
     let crest = items.iter().find(|item| item.name == "Shining Crest of St. Markus").unwrap();
     let silver_flame = crest.buffs.iter().find(|buff| buff.kind == "Power of the Silver Flame").unwrap();
     assert!(definitions["Power of the Silver Flame"].display_text.contains("%b1"));

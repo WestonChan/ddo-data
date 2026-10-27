@@ -1098,6 +1098,157 @@ fn protection_from_evil_keeps_the_spell_name_without_a_rank() {
 }
 
 #[test]
+fn item_named_routes_load_unowned_canonical_definitions_before_writing_owners() {
+    let canonical = fixture::riposte_rank_database();
+    let index = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let source = fixture::xml_source();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        &index,
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let definitions = |db: &Connection| {
+        db.prepare("SELECT e.name,e.description_template,e.stat_set_verdict,e.stat_set_reason,s.name,b.constant,b.amount_from,bt.name FROM effects e JOIN effect_bonuses b ON b.effect_id=e.id JOIN effects s ON s.id=b.target_effect_id JOIN bonus_types bt ON bt.id=b.bonus_type_id WHERE e.name='Riposte IV' ORDER BY b.sort_order").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,String>(2)?,row.get::<_,String>(3)?,row.get::<_,String>(4)?,row.get::<_,i64>(5)?,row.get::<_,i64>(6)?,row.get::<_,String>(7)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
+    };
+    assert_eq!(definitions(&canonical).len(), 2);
+    assert_eq!(definitions(&db), definitions(&canonical));
+    let links: i64 = db
+        .query_row(
+            "SELECT COUNT(*) FROM item_effects WHERE effect_id=(SELECT id FROM effects WHERE name='Riposte IV')",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(links, 0);
+}
+
+#[test]
+fn an_item_named_route_without_canonical_definitions_fails_before_owners() {
+    let canonical = fixture::riposte_rank_database();
+    canonical
+        .execute("DELETE FROM item_effects WHERE effect_id IN (SELECT id FROM effects WHERE name LIKE 'Riposte %')", [])
+        .unwrap();
+    canonical
+        .execute(
+            "DELETE FROM effect_bonuses WHERE effect_id IN (SELECT id FROM effects WHERE name LIKE 'Riposte %')",
+            [],
+        )
+        .unwrap();
+    canonical.execute("DELETE FROM effects WHERE name LIKE 'Riposte %'", []).unwrap();
+    let index = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let source = fixture::xml_source();
+    let mut db = Connection::open_in_memory().unwrap();
+    let error = build_database(
+        &index,
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap_err();
+    let message = format!("{error:#}");
+    assert!(message.contains("family.item_named_effects") && message.contains("Riposte {item}"), "{message}");
+    let owners: i64 = db.query_row("SELECT COUNT(*) FROM items", [], |row| row.get(0)).unwrap();
+    assert_eq!(owners, 0);
+}
+
+#[test]
+fn riposte_item_rank_routes_to_the_canonical_constant_effect() {
+    let index = ddo_etl::groupings::Groupings::from_database(&fixture::riposte_rank_database()).unwrap();
+    let source = fixture::xml_source();
+    fixture::write_ship_kickers(source.path());
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        &index,
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert!(report.stale_corrections.is_empty());
+    let link: (String,Option<i64>,Option<i64>) = db.query_row("SELECT e.name,l.value,l.value2 FROM item_effects l JOIN effects e ON e.id=l.effect_id JOIN items i ON i.id=l.item_id WHERE i.name='Epic Ethereal Bracers' AND e.name LIKE 'Riposte%'", [], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap();
+    assert_eq!(link, ("Riposte IX".into(), None, None));
+    let bonuses = db.prepare("SELECT stat.name,b.amount FROM owner_bonuses b JOIN effects stat ON stat.id=b.stat_id JOIN effects e ON e.id=b.via_effect_id JOIN items i ON i.id=b.owner_id WHERE b.owner_kind='item' AND i.name='Epic Ethereal Bracers' AND e.name='Riposte IX' ORDER BY stat.name").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(bonuses, [("Armor Class".into(), 5), ("Saving Throws".into(), 4)]);
+    let generic: (String,Option<i64>) = db.query_row("SELECT e.name,l.value FROM item_effects l JOIN effects e ON e.id=l.effect_id JOIN items i ON i.id=l.item_id WHERE i.name='Ship Kickers' AND e.name LIKE 'Riposte%'", [], |row| Ok((row.get(0)?,row.get(1)?))).unwrap();
+    assert_eq!(generic, ("Riposte".into(), Some(3)));
+}
+
+#[test]
+fn riposte_item_rank_missing_from_the_index_names_the_buff_and_owner() {
+    let source = fixture::xml_source();
+    let canonical = fixture::riposte_rank_database();
+    canonical
+        .execute("DELETE FROM item_effects WHERE effect_id=(SELECT id FROM effects WHERE name='Riposte IX')", [])
+        .unwrap();
+    canonical
+        .execute("DELETE FROM effect_bonuses WHERE effect_id=(SELECT id FROM effects WHERE name='Riposte IX')", [])
+        .unwrap();
+    canonical.execute("DELETE FROM effects WHERE name='Riposte IX'", []).unwrap();
+    let index = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    let error = build_database(
+        &index,
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap_err();
+    let message = format!("{error:#}");
+    for expected in ["Riposte IX", "Riposte", "Epic Ethereal Bracers"] {
+        assert!(message.contains(expected), "{message}");
+    }
+}
+
+#[test]
+fn roman_riposte_ranks_keep_direct_constants_and_cited_composition_declarations() {
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db)
+        .unwrap();
+    for (rank, armor_class, saves) in [
+        ("V", 3, 2),
+        ("VI", 3, 3),
+        ("VII", 4, 3),
+        ("VIII", 4, 4),
+        ("IX", 5, 4),
+        ("X", 5, 5),
+        ("XI", 6, 5),
+        ("XII", 6, 6),
+    ] {
+        let name = format!("Riposte {rank}");
+        let rows = db.prepare("SELECT target.name,b.constant,b.amount_from,target.is_stat,bt.name FROM effect_bonuses b JOIN effects effect ON effect.id=b.effect_id JOIN effects target ON target.id=b.target_effect_id JOIN bonus_types bt ON bt.id=b.bonus_type_id WHERE effect.name=?1 ORDER BY target.name")
+            .unwrap().query_map([&name], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?,row.get::<_,i64>(2)?,row.get::<_,bool>(3)?,row.get::<_,String>(4)?)))
+            .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(
+            rows,
+            [
+                ("Armor Class".into(), armor_class, 0, true, "Insight".into()),
+                ("Saving Throws".into(), saves, 0, true, "Insight".into())
+            ],
+            "{name}"
+        );
+        let (verdict, reason, citations, description): (Option<String>, Option<String>, i64, String) = db.query_row(
+            "SELECT stat_set_verdict,stat_set_reason,(SELECT COUNT(*) FROM citations WHERE owner_kind='effects' AND owner_id=effects.id AND url='https://ddowiki.com/page/Riposte'),description_template FROM effects WHERE name=?1",
+            [&name], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?,row.get(3)?)),
+        ).unwrap();
+        assert_eq!(verdict.as_deref(), Some("composes"), "{name}");
+        assert_eq!(reason.as_deref(), Some(format!("Riposte {rank} is Parrying {rank} plus a when-missed proc; factored in #57 because odd ranks grant unequal AC and saves").as_str()));
+        assert_eq!(citations, 1, "{name}");
+        assert!(description.contains("When Missed by an attack:"), "{name}: {description}");
+    }
+}
+
+#[test]
 fn legacy_riposte_has_a_distinct_line_without_passive_bonuses() {
     let db = build_item_buff_fixture(
         include_str!("fixtures/effect-groups/LegacyRiposte.Buffs.xml"),
@@ -2406,7 +2557,7 @@ fn excludes_cosmetic_shields_from_items() {
 #[test]
 fn builds_items_and_skips_cosmetics() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.written_item_count, 58);
+    assert_eq!(report.written_item_count, 59);
     assert_eq!(report.effect_count as i64, count(&db, "SELECT COUNT(*) FROM effects"));
     assert_eq!(report.bonus_count as i64, count(&db, "SELECT COUNT(*) FROM effect_bonuses"));
     assert_eq!(
@@ -2417,7 +2568,7 @@ fn builds_items_and_skips_cosmetics() {
         )
     );
     assert_eq!(report.skipped_cosmetic_item_count, 2, "the cosmetic helm and the cosmetic shield");
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 58);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE provenance = 'maetrim'"), 59);
     assert_eq!(count(&db, "SELECT COUNT(*) FROM items WHERE name = '17th Anniversary Dark Helm'"), 0);
     let reason: String = db
         .query_row("SELECT reason FROM excluded_items WHERE name = '17th Anniversary Dark Helm'", [], |r| r.get(0))
@@ -3242,8 +3393,8 @@ fn diff_reports_coverage_against_a_legacy_database() {
     );
     assert_eq!(
         coverage.names_only_in_built.len(),
-        56,
-        "the wiki fixture item, Lindal's Mighty Belt and the legacy fixture items are only in the build"
+        57,
+        "the wiki fixture item, Lindal's Mighty Belt, Ship Kickers and the legacy fixture items are only in the build"
     );
     assert!((coverage.coverage_ratio() - 0.75).abs() < 1e-9);
 }

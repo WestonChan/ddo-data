@@ -15,3 +15,30 @@ amount_from = 1
 rounding = "down"
 scale = 0.5
 target = "Saving Throws"
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "scale"
+upstream = 1.0
+reason = "Riposte grants half the listed rank to Armor Class."
+url = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+qualifier = 'stat "Armor Class"'
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "rounding"
+upstream = "down"
+reason = "Riposte rounds Armor Class upward."
+url = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+qualifier = 'stat "Armor Class"'
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "scale"
+upstream = 1.0
+reason = "Riposte grants half the listed rank to Saving Throws."
+url = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+qualifier = 'stat "Saving Throws"'

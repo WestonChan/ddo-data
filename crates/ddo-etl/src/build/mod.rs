@@ -247,6 +247,10 @@ fn build_with_wiki_references(
     let transaction = db.transaction()?;
     let mut report = BuildReport::default();
     effects::insert_triggers(&transaction, &item_buff_definitions)?;
+    let mut effects = effects::EffectCache::new(&transaction, groupings);
+    for definition in crate::map::effect_map::EFFECT_MAP.item_named_definitions(groupings)? {
+        effects.ensure_indexed_effect(definition)?;
+    }
 
     transaction.execute("DELETE FROM schema_version", [])?;
     transaction.execute("INSERT INTO schema_version (version) VALUES (?1)", params![SCHEMA_VERSION])?;
@@ -311,7 +315,7 @@ fn build_with_wiki_references(
         effect_resolver: &effect_resolver,
         drop_text_linker: &drop_text_linker,
         untyped_bonus_corrections: UntypedBonusCorrections::from_corrections(corrections)?,
-        effects: effects::EffectCache::new(&transaction, groupings),
+        effects,
         groupings,
         grouping_answers: HashSet::new(),
         derived_effect_lines: Vec::new(),

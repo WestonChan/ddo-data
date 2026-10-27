@@ -1,6 +1,8 @@
 name = "Riposte XII"
 description_template = "When Missed by an attack: Deals 12 to 48 damage to your attacker. Passive: +6 Insight bonus to Armor Class, +6 Insight bonus to Fortitude, Reflex, and Will Saving Throws."
 home_bonus_type = "Insight"
+stat_set_verdict = "composes"
+stat_set_reason = "Riposte XII is Parrying XII plus a when-missed proc; factored in #57 because odd ranks grant unequal AC and saves"
 verbose_name_template = "Riposte XII +6"
 
 [[bonus]]
@@ -18,3 +20,8 @@ constant = 6
 rounding = "down"
 scale = 1.0
 target = "Saving Throws"
+
+[[citation]]
+url = "https://ddowiki.com/page/Riposte"
+read = "2026-10-23"
+note = "R4 confirms Roman Riposte XII: AC rounds half the rank up; saves round down. The when-missed proc remains prose."

@@ -248,6 +248,16 @@ pub(super) fn correction_values(
             json!(description)
         }
         (CorrectionKind::ItemSocket, "add") => json!(note.qualifier),
+        (CorrectionKind::ItemEffect, "effect") => {
+            let owner = owner_id(transaction, CorrectionKind::ItemEffect, current_name, &correction)?;
+            let count: i64 = transaction.query_row("SELECT COUNT(*) FROM item_effects l JOIN effects e ON e.id=l.effect_id WHERE l.item_id=?1 AND e.name=?2", params![owner,note.qualifier], |row| row.get(0))?;
+            ensure!(
+                count == 1 || (count == 0 && correction.from.as_text() == Some(NO_SUCH_BONUS)),
+                "item {current_name:?} must link destination effect {:?} exactly once, found {count}",
+                note.qualifier
+            );
+            json!(note.qualifier)
+        }
         (CorrectionKind::ItemEffect, "add") if note.added_as_name == Some(true) => json!(note.qualifier),
         (CorrectionKind::ItemEffect, "add") => added_item_effect_value(transaction, current_name, note, &correction)?,
         (CorrectionKind::EffectDamage, "add") => added_damage_value(transaction, current_name, &correction)?,

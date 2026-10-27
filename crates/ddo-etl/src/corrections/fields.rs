@@ -24,6 +24,7 @@ pub enum FieldShape {
     EffectBonusRemoval,
     TierAddition,
     EffectAddition,
+    EffectReplacement,
     DamageAddition,
     DamageRemoval,
     SocketAddition,
@@ -89,8 +90,11 @@ const SET_TIER_BONUS_OPERATIONS: &[CorrectableField] = &[
 const SET_TIER_OPERATIONS: &[CorrectableField] =
     &[field("add", FieldShape::TierAddition, false), field("remove", FieldShape::Removal, false)];
 
-const ITEM_EFFECT_OPERATIONS: &[CorrectableField] =
-    &[field("add", FieldShape::EffectAddition, false), field("remove", FieldShape::Removal, false)];
+const ITEM_EFFECT_OPERATIONS: &[CorrectableField] = &[
+    field("add", FieldShape::EffectAddition, false),
+    field("remove", FieldShape::Removal, false),
+    field("effect", FieldShape::EffectReplacement, false),
+];
 
 const EFFECT_DAMAGE_OPERATIONS: &[CorrectableField] =
     &[field("add", FieldShape::DamageAddition, false), field("remove", FieldShape::DamageRemoval, false)];
@@ -120,6 +124,8 @@ const fn kind_operations(kind: CorrectionKind) -> &'static [CorrectableField] {
             const {
                 &[
                     field("constant", FieldShape::EffectBonusConstant, false),
+                    field("scale", FieldShape::StatScale, false),
+                    field("rounding", FieldShape::StatRounding, false),
                     field("remove", FieldShape::EffectBonusRemoval, false),
                     CorrectableField {
                         name: "bonus_type",

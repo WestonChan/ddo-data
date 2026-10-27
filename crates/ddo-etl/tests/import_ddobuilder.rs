@@ -215,6 +215,124 @@ fn alias_choices_and_declarations_survive_import_and_round_trip() {
 }
 
 #[test]
+fn a_riposte_rank_change_updates_the_link_without_conflict() {
+    let canonical = fixture::riposte_rank_database();
+    let index = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let world = ImportWorld::with_sources(&index, Corrections::default(), WikiOverrides::default(), |source| {
+        let captured = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles");
+        std::fs::create_dir_all(source.join("Items")).unwrap();
+        std::fs::copy(
+            captured.join("Items/Epic Ethereal Bracers.item"),
+            source.join("Items/Epic Ethereal Bracers.item"),
+        )
+        .unwrap();
+        std::fs::copy(captured.join("ItemBuffs.xml"), source.join("ItemBuffs.xml")).unwrap();
+        copy_tree(&captured.join("ItemImages"), &source.join("ItemImages"));
+        copy_tree(&captured.join("AugmentImages"), &source.join("AugmentImages"));
+        std::fs::create_dir_all(source.join("ItemImages/Bracers")).unwrap();
+        std::fs::create_dir_all(source.join("AugmentImages")).unwrap();
+        std::fs::write(
+            source.join("ItemImages/Bracers/Bracers_1.png"),
+            include_bytes!("fixtures/data/icons/items/Bracers_1.png"),
+        )
+        .unwrap();
+        std::fs::write(
+            source.join("AugmentImages/Heroism.png"),
+            include_bytes!("fixtures/effect-groups/icons/Heroism.png"),
+        )
+        .unwrap();
+    });
+    for (directory, rank) in [("data", "ix"), ("effect-groups/data", "vii")] {
+        let name = format!("riposte-{rank}.toml");
+        std::fs::copy(
+            Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures").join(directory).join("effects").join(&name),
+            world.options.data_dir.join("effects").join(name),
+        )
+        .unwrap();
+    }
+    let path = world.options.source_dir.join("Items/Epic Ethereal Bracers.item");
+    let previous = std::fs::read_to_string(&path).unwrap();
+    assert!(previous.contains("<Item>IX</Item>"));
+    std::fs::write(path, previous.replace("<Item>IX</Item>", "<Item>VII</Item>")).unwrap();
+    let rank_paths = ["riposte-iv.toml", "riposte-v.toml", "riposte-vii.toml", "riposte-ix.toml"];
+    let before = rank_paths.map(|name| std::fs::read(world.options.data_dir.join("effects").join(name)).unwrap());
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert!(!report.to_string().lines().any(|line| line.contains("riposte-") && line.contains("citation")), "{report}");
+    let after = rank_paths.map(|name| std::fs::read(world.options.data_dir.join("effects").join(name)).unwrap());
+    assert_eq!(before, after);
+    let db = world.database();
+    let link: (String, Option<i64>, Option<i64>,i64) = db.query_row("SELECT e.name,l.value,l.value2,l.sort_order FROM item_effects l JOIN effects e ON e.id=l.effect_id JOIN items i ON i.id=l.item_id WHERE i.name='Epic Ethereal Bracers' AND e.name LIKE 'Riposte%'", [], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?,row.get(3)?))).unwrap();
+    assert_eq!(link, ("Riposte VII".into(), None, None, 1));
+    let bonuses = db.prepare("SELECT stat.name,b.amount FROM owner_bonuses b JOIN effects stat ON stat.id=b.stat_id JOIN items i ON i.id=b.owner_id JOIN effects e ON e.id=b.via_effect_id WHERE b.owner_kind='item' AND i.name='Epic Ethereal Bracers' AND e.name='Riposte VII' ORDER BY stat.name").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(bonuses, [("Armor Class".into(), 4), ("Saving Throws".into(), 3)]);
+}
+
+fn ship_kickers_replacement_world() -> ImportWorld {
+    let index = ddo_etl::groupings::Groupings::from_database(&fixture::riposte_rank_database()).unwrap();
+    let correction = fixture::new_qualified_correction(
+        "item_effect",
+        "Ship Kickers",
+        "effect = 'Riposte V'",
+        "effect",
+        "\"Riposte\"",
+        "\"Riposte V\"",
+    );
+    let corrections = fixture::corrections_from(&[("ship-kickers.toml", &correction)]).unwrap();
+    ImportWorld::with_sources(&index, corrections, WikiOverrides::default(), |source| {
+        fixture::write_ship_kickers(source);
+        std::fs::copy(
+            Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles/ItemBuffs.xml"),
+            source.join("ItemBuffs.xml"),
+        )
+        .unwrap();
+    })
+}
+
+#[test]
+fn an_effect_replacement_import_reports_a_removed_link_and_keeps_the_correction() {
+    let world = ship_kickers_replacement_world();
+    let path = world.options.source_dir.join("Items/ShipKickers.item");
+    let previous = std::fs::read_to_string(&path).unwrap();
+    let start = previous.find("    <Buff>\n      <Type>Riposte</Type>").unwrap();
+    let end = start + previous[start..].find("    </Buff>").unwrap() + "    </Buff>".len();
+    std::fs::write(path, format!("{}{}", &previous[..start], &previous[end..])).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(report.has_conflicts() && report.to_string().contains("no such bonus"), "{report}");
+    let db = world.database();
+    let retained: String = db
+        .query_row("SELECT from_value FROM corrections WHERE name='Ship Kickers' AND field='effect'", [], |row| {
+            row.get(0)
+        })
+        .unwrap();
+    assert_eq!(retained, "\"no such bonus\"");
+    let links: i64 = db.query_row("SELECT COUNT(*) FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name='Ship Kickers' AND e.name LIKE 'Riposte%'", [], |row| row.get(0)).unwrap();
+    assert_eq!(links, 0);
+}
+
+#[test]
+fn an_effect_replacement_resolves_when_upstream_names_the_destination() {
+    let world = ship_kickers_replacement_world();
+    let path = world.options.source_dir.join("Items/ShipKickers.item");
+    let previous = std::fs::read_to_string(&path).unwrap();
+    assert!(previous.contains("<Type>Riposte</Type>"));
+    std::fs::write(path, previous.replace("<Type>Riposte</Type>", "<Type>Riposte</Type><Item>V</Item>")).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts() && report.to_string().contains("RESOLVED CORRECTION"), "{report}");
+    let db = world.database();
+    let correction: (String, String) = db
+        .query_row(
+            "SELECT from_value,to_value FROM corrections WHERE name=?1 AND field=?2",
+            ["Ship Kickers", "effect"],
+            |row| Ok((row.get(0)?, row.get(1)?)),
+        )
+        .unwrap();
+    assert_eq!(correction, ("\"Riposte\"".into(), "\"Riposte V\"".into()));
+    let link: (String, Option<i64>, Option<i64>) = db.query_row("SELECT e.name,l.value,l.value2 FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name=?1 AND e.name=?2", ["Ship Kickers","Riposte V"], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap();
+    assert_eq!(link, ("Riposte V".into(), None, None));
+}
+
+#[test]
 fn a_merge_import_accepts_a_changed_amount_without_conflict() {
     let corrections = fixture::corrections_from(&[("keylock-merge.toml", &fixture::search_and_spot_merge())]).unwrap();
     let world = ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {

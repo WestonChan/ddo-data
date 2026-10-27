@@ -224,7 +224,8 @@ impl CorrectionValue {
                 | FieldShape::SetName
                 | FieldShape::RowName
                 | FieldShape::BonusTypeName
-                | FieldShape::EffectBonusType,
+                | FieldShape::EffectBonusType
+                | FieldShape::EffectReplacement,
             ) => true,
             _ => false,
         }
@@ -348,16 +349,20 @@ impl Correction {
         }
     }
 
-    fn targets_effect_bonus(&self) -> bool {
+    pub(crate) fn targets_effect_bonus(&self) -> bool {
         self.correctable_field().is_ok_and(|field| {
             matches!(
                 field.shape,
                 FieldShape::EffectBonusConstant | FieldShape::EffectBonusType | FieldShape::EffectBonusRemoval
-            )
+            ) || (self.kind == CorrectionKind::Effect
+                && matches!(field.shape, FieldShape::StatScale | FieldShape::StatRounding))
         })
     }
 
     pub fn qualifier(&self) -> String {
+        if self.kind == CorrectionKind::ItemEffect && self.field == "effect" {
+            return self.effect.clone().unwrap_or_default();
+        }
         let mut qualifier_parts: Vec<String> = Vec::new();
         if let Some(socket) = &self.socket {
             qualifier_parts.push(format!("socket {socket:?}"));
@@ -461,9 +466,10 @@ impl Correction {
             "dc names an enhancement or selection icon row"
         );
         if self.effect.is_some()
-            != (self.kind == CorrectionKind::ItemEffect && matches!(field.name, "value" | "bonus_type" | "remove"))
+            != (self.kind == CorrectionKind::ItemEffect
+                && matches!(field.name, "value" | "bonus_type" | "remove" | "effect"))
         {
-            bail!("effect names only an item_effect value, bonus_type or remove correction, which requires effect");
+            bail!("effect names only an item_effect value, bonus_type, remove or effect correction, which requires effect");
         }
         if self.family.is_some() && !matches!(self.kind, CorrectionKind::Augment | CorrectionKind::AugmentBonus) {
             bail!("family narrows only an augment or augment_bonus correction, not a {}", self.kind.as_str());
@@ -507,6 +513,17 @@ impl Correction {
 
     pub(crate) fn validate_values(&self, field: &CorrectableField) -> Result<()> {
         match field.shape {
+            FieldShape::EffectReplacement => {
+                ensure!(
+                    self.from.as_text().is_some_and(|name| !name.trim().is_empty()),
+                    "an effect replacement names his effect"
+                );
+                ensure!(
+                    self.to.as_text() == self.effect.as_deref()
+                        && self.effect.as_ref().is_some_and(|name| !name.trim().is_empty()),
+                    "an effect replacement qualifier names the destination effect"
+                );
+            }
             FieldShape::BonusAlias => {
                 ensure!(
                     self.from == CorrectionValue::Null
@@ -734,7 +751,8 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::NamedReference { .. }
         | FieldShape::SetName
         | FieldShape::BonusTypeName
-        | FieldShape::EffectBonusType => "the name of the row it refers to",
+        | FieldShape::EffectBonusType
+        | FieldShape::EffectReplacement => "the name of the row it refers to",
         FieldShape::RowName => "the row's name",
         FieldShape::Removal => "0 for from and 1 for to",
         FieldShape::BonusAddition => "a { stat, bonus_type, value } table",
@@ -885,6 +903,11 @@ pub(crate) fn correction_qualifier_parts(mut qualifier: &str) -> Vec<&str> {
 }
 
 pub(crate) fn set_correction_qualifiers(correction: &mut Correction, qualifier: &str) -> Result<()> {
+    if correction.kind == CorrectionKind::ItemEffect && correction.field == "effect" {
+        ensure!(!qualifier.trim().is_empty(), "an effect replacement requires its destination name");
+        correction.effect = Some(qualifier.to_string());
+        return Ok(());
+    }
     for part in correction_qualifier_parts(qualifier) {
         if let Some(socket) = part.strip_prefix("socket ") {
             correction.socket = Some(serde_json::from_str(socket)?);

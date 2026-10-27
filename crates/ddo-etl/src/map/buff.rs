@@ -65,6 +65,7 @@ pub enum BuffResolutionSource {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ResolvedBuff {
     EnhancementBonus(i64),
+    NamedEffect { name: String },
     Bonuses { source: BuffResolutionSource, stats: Vec<ResolvedStat> },
     Effect { name: String, value: Option<i64>, target: Option<String> },
 }
@@ -208,6 +209,9 @@ impl BuffResolver {
     }
 
     pub fn resolved(&self, buff: &Buff) -> Result<ResolvedBuff> {
+        if let Some(name) = self.item_named_effect(buff) {
+            return Ok(ResolvedBuff::NamedEffect { name });
+        }
         let buff_kind = buff.kind.trim();
         let target = buff.target.as_deref().map(str::trim).filter(|target| !target.is_empty());
         match self.family_resolution(buff_kind)? {
@@ -396,6 +400,9 @@ impl BuffResolver {
     }
 
     fn family_name_with_target(&self, buff: &Buff, title: &str) -> String {
+        if let Some(name) = self.item_named_effect(buff) {
+            return name;
+        }
         let buff_kind = buff.kind.trim();
         let target_name = self
             .definitions_by_buff_kind
@@ -409,6 +416,12 @@ impl BuffResolver {
         } else {
             title.to_string()
         }
+    }
+
+    fn item_named_effect(&self, buff: &Buff) -> Option<String> {
+        let template = self.vocabulary.family.item_named_effects.get(buff.kind.trim())?;
+        let target = buff.target.as_deref()?.trim();
+        (!target.is_empty()).then(|| template.replace("{item}", target))
     }
 
     pub fn effect_tier_name(&self, effect_type: &str, target: Option<&str>, stat_name: &str) -> String {

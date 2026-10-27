@@ -450,24 +450,24 @@ impl<'a> EffectCache<'a> {
         Ok(id)
     }
 
-    pub(super) fn ensure_indexed_grouping(&mut self, grouping: &crate::groupings::Grouping) -> Result<i64> {
+    pub(super) fn ensure_indexed_effect(&mut self, definition: &crate::groupings::Grouping) -> Result<i64> {
         let index = self.groupings;
-        if let Some(family) = self.family_named(&grouping.name) {
+        if let Some(family) = self.family_named(&definition.name) {
             return Ok(family.id);
         }
         let id = self.ensure_family(
-            &grouping.name,
-            &grouping.verbose_name_template,
-            grouping.description_template.as_deref(),
-            1,
+            &definition.name,
+            &definition.verbose_name_template,
+            definition.description_template.as_deref(),
+            amount_count(&definition.verbose_name_template, definition.description_template.as_deref()),
         )?;
         self.transaction.execute(
-            "UPDATE effects SET is_group = ?2, set_bonus_line_template = ?3, home_bonus_type_id = ?4, default_value = ?5 WHERE id = ?1",
-            params![id, grouping.is_group, grouping.set_bonus_line_template,
-                grouping.home_bonus_type.as_deref().and_then(BonusType::parse).map(BonusType::id), grouping.default_value],
+            "UPDATE effects SET is_group = ?2, set_bonus_line_template = ?3, home_bonus_type_id = ?4, default_value = ?5, default_value2 = ?6 WHERE id = ?1",
+            params![id, definition.is_group, definition.set_bonus_line_template,
+                definition.home_bonus_type.as_deref().and_then(BonusType::parse).map(BonusType::id), definition.default_value, definition.default_value2],
         )?;
-        self.families_by_id.get_mut(&id).unwrap().is_group = grouping.is_group;
-        for (sort_order, bonus) in grouping.bonuses.iter().enumerate() {
+        self.families_by_id.get_mut(&id).unwrap().is_group = definition.is_group;
+        for (sort_order, bonus) in definition.bonuses.iter().enumerate() {
             let target = &index.by_id[&bonus.target_id];
             let bonus_type = bonus
                 .bonus_type
@@ -475,25 +475,29 @@ impl<'a> EffectCache<'a> {
                 .map(|name| BonusType::parse(name).context("indexed bonus type is known"))
                 .transpose()?;
             if target.is_group {
-                let target_id = self.ensure_indexed_grouping(target)?;
+                let target_id = self.ensure_indexed_effect(target)?;
                 let stat = Stat::by_name(&index.by_id[&target.bonuses[0].target_id].name)
                     .context("group member is a known stat")?;
                 self.ensure_group_target(
                     id,
                     target_id,
-                    BonusRule { stat, bonus_type, amount_from: 1, constant: None },
+                    BonusRule { stat, bonus_type, amount_from: bonus.amount_from, constant: bonus.constant },
                     sort_order,
                 )?;
             } else {
                 self.ensure_stat(
                     id,
-                    Stat::by_name(&target.name).context("grouping target is a known stat")?,
+                    Stat::by_name(&target.name).context("definition target is a known stat")?,
                     bonus_type,
-                    1,
-                    None,
+                    bonus.amount_from,
+                    bonus.constant,
                     sort_order,
                 )?;
             }
+            if let Some(name) = &bonus.trigger_name {
+                self.transaction.execute("INSERT OR IGNORE INTO triggers (name) VALUES (?1)", [name])?;
+            }
+            self.transaction.execute("UPDATE effect_bonuses SET scale=?3, rounding=?4, trigger_id=(SELECT id FROM triggers WHERE name=?5) WHERE effect_id=?1 AND sort_order=?2", params![id,sort_order as i64,bonus.scale,bonus.rounding,bonus.trigger_name])?;
         }
         self.refresh_family(id)?;
         Ok(id)
@@ -973,8 +977,8 @@ mod tests {
         ddo_model::seeds::insert_all(&db).unwrap();
         let transaction = db.transaction().unwrap();
         let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
-        let first = effects.ensure_indexed_grouping(grouping).unwrap();
-        let second = effects.ensure_indexed_grouping(grouping).unwrap();
+        let first = effects.ensure_indexed_effect(grouping).unwrap();
+        let second = effects.ensure_indexed_effect(grouping).unwrap();
         assert_eq!(first, second);
         assert_eq!(
             transaction

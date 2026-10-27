@@ -80,6 +80,85 @@ fn rebuilt_correction_notes(db: &Connection) -> Corrections {
 }
 
 #[test]
+fn item_effect_replacement_preserves_position_and_reports_a_missing_upstream_link() {
+    let index = ddo_etl::groupings::Groupings::from_database(&fixture::riposte_rank_database()).unwrap();
+    let replacement = new_qualified_correction(
+        "item_effect",
+        "Ship Kickers",
+        "effect = 'Riposte V'",
+        "effect",
+        "\"Riposte\"",
+        "\"Riposte V\"",
+    );
+    let corrections = validated_corrections(&[("ship-kickers.toml", &replacement)]).unwrap();
+    assert_eq!(corrections.entries[0].qualifier(), "Riposte V");
+    for present in [true, false] {
+        let source = fixture::xml_source();
+        fixture::write_ship_kickers(source.path());
+        if !present {
+            let path = source.path().join("Items/ShipKickers.item");
+            let text = std::fs::read_to_string(&path).unwrap();
+            let start = text.find("    <Buff>\n      <Type>Riposte</Type>").unwrap();
+            let end = start + text[start..].find("    </Buff>").unwrap() + "    </Buff>".len();
+            std::fs::write(path, format!("{}{}", &text[..start], &text[end..])).unwrap();
+        }
+        let mut db = Connection::open_in_memory().unwrap();
+        let report = build_database(
+            &index,
+            source.path(),
+            &WikiOverrides::default(),
+            &corrections,
+            &mut db,
+            &fixture_dataset_version(),
+        )
+        .unwrap();
+        if present {
+            assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
+            let links = db.prepare("SELECT e.name,l.sort_order,l.value,l.value2 FROM item_effects l JOIN effects e ON e.id=l.effect_id JOIN items i ON i.id=l.item_id WHERE i.name='Ship Kickers' ORDER BY l.sort_order").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?,row.get::<_,Option<i64>>(2)?,row.get::<_,Option<i64>>(3)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+            assert_eq!(
+                links,
+                [
+                    ("Dexterity".into(), 0, Some(2), None),
+                    ("Riposte V".into(), 1, None, None),
+                    ("Balance".into(), 2, Some(15), None)
+                ]
+            );
+        } else {
+            assert_eq!(report.stale_corrections.len(), 1);
+            assert!(
+                matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\""),
+                "{:?}",
+                report.stale_corrections
+            );
+        }
+    }
+}
+
+#[test]
+fn effect_scale_and_rounding_corrections_target_the_definition() {
+    let index = ddo_etl::groupings::Groupings::from_database(&fixture::riposte_rank_database()).unwrap();
+    let rules = new_qualified_correction("effect", "Riposte", "stat = 'Armor Class'", "scale", "1.0", "0.5")
+        + &new_qualified_correction("effect", "Riposte", "stat = 'Armor Class'", "rounding", "\"down\"", "\"up\"")
+        + &new_qualified_correction("effect", "Riposte", "stat = 'Saving Throws'", "scale", "1.0", "0.5");
+    let corrections = validated_corrections(&[("riposte.toml", &rules)]).unwrap();
+    let source = fixture::xml_source();
+    fixture::write_ship_kickers(source.path());
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        &index,
+        source.path(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
+    let bonuses = db.prepare("SELECT stat.name,b.amount FROM owner_bonuses b JOIN effects stat ON stat.id=b.stat_id JOIN effects e ON e.id=b.via_effect_id JOIN items i ON i.id=b.owner_id WHERE b.owner_kind='item' AND i.name='Ship Kickers' AND e.name='Riposte' ORDER BY stat.name").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(bonuses, [("Armor Class".into(), 2), ("Saving Throws".into(), 1)]);
+}
+
+#[test]
 fn alias_correction_uses_the_link_alias_and_reports_a_missing_member() {
     let canonical = fixture::database(|root| {
         let path = root.join("effects/stats/spot.toml");
@@ -135,7 +214,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
     use ddo_model::enums::CorrectionKind;
     let expected = [
         (CorrectionKind::Item, "accepts_sentience:accepts_sentience:Flag:false, description:description:Text:true, drop_location:drop_location:Text:true, enhancement_bonus:enhancement_bonus:Integer:true, icon:icon:Text:true, is_legacy:is_legacy:Flag:false, is_minor_artifact:is_minor_artifact:Flag:false, item_category:item_category:Text:false, item_type:item_type:Text:true, material:material_id:NamedReference { referenced_table: \"item_materials\" }:true, minimum_level:minimum_level:Integer:false, name:name:RowName:false, race_required:race_required:Text:true, remove:remove:Removal:false, set_bonus:set_bonus:SetName:true, slot:slot_id:NamedReference { referenced_table: \"equipment_slots\" }:false"),
-        (CorrectionKind::Effect, "bonus_type:bonus_type_id:EffectBonusType:false, constant:constant:EffectBonusConstant:false, default_value:default_value:Integer:true, description_template:description_template:Text:true, name:name:RowName:false, remove:remove:EffectBonusRemoval:false, verbose_name_template:verbose_name_template:Text:false"),
+        (CorrectionKind::Effect, "bonus_type:bonus_type_id:EffectBonusType:false, constant:constant:EffectBonusConstant:false, default_value:default_value:Integer:true, description_template:description_template:Text:true, name:name:RowName:false, remove:remove:EffectBonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, verbose_name_template:verbose_name_template:Text:false"),
         (CorrectionKind::Augment, "description:description:Text:false, effect_description:effect_description:Text:true, family:family:Text:false, min_level:min_level:Integer:true, name:name:RowName:false, remove:remove:Removal:false"),
         (CorrectionKind::Quest, "epic_level:epic_level:Integer:true, favor:favor:Integer:true, is_raid:is_raid:Flag:false, level:level:Integer:true, name:name:RowName:false, pack:pack_id:NamedReference { referenced_table: \"adventure_packs\" }:false, patron:patron_id:NamedReference { referenced_table: \"patrons\" }:true, remove:remove:Removal:false"),
         (CorrectionKind::Feat, "description:description:Text:true, icon:icon:Text:true"),
@@ -157,7 +236,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::ItemBonus, "add:add:BonusAddition:false, alias:alias:BonusAlias:true, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
         (CorrectionKind::SetTier, "add:add:TierAddition:false, description:description:Text:true, remove:remove:Removal:false"),
         (CorrectionKind::SetTierBonus, "add:add:BonusAddition:false, alias:alias:BonusAlias:true, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
-        (CorrectionKind::ItemEffect, "add:add:EffectAddition:false, bonus_type:bonus_type:BonusTypeName:false, remove:remove:Removal:false, value:value:Integer:true"),
+        (CorrectionKind::ItemEffect, "add:add:EffectAddition:false, bonus_type:bonus_type:BonusTypeName:false, effect:effect:EffectReplacement:false, remove:remove:Removal:false, value:value:Integer:true"),
         (CorrectionKind::EffectDamage, "add:add:DamageAddition:false, remove:remove:DamageRemoval:false"),
         (CorrectionKind::ItemSocket, "add:add:SocketAddition:false"),
     ];
@@ -392,26 +471,27 @@ fn prerequisite_quest_words_do_not_create_sources() {
 
 #[test]
 fn item_effect_corrections_change_a_text_line_type_or_remove_its_link() {
-    let type_correction =
-        new_correction("item_effect", "Epic Ethereal Bracers", "bonus_type", "\"Insight\"", "\"Quality\"")
-            + "effect = \"Riposte\"\n";
-    let (typed_db, typed_report) = built_db_with(&[("type.toml", &type_correction)]).unwrap();
+    let source = fixture::xml_source();
+    fixture::write_ship_kickers(source.path());
+    let type_correction = new_correction("item_effect", "Ship Kickers", "bonus_type", "\"Insight\"", "\"Quality\"")
+        + "effect = \"Riposte\"\n";
+    let (typed_db, typed_report) = built_db_from(source.path(), &[("type.toml", &type_correction)]).unwrap();
     assert_eq!(typed_report.correction_stale_count, 0);
     let typed: String = typed_db
         .query_row(
             "SELECT b.name FROM item_effects l JOIN items i ON i.id = l.item_id
              JOIN effects e ON e.id = l.effect_id JOIN bonus_types b ON b.id = l.bonus_type_id
-             WHERE i.name = 'Epic Ethereal Bracers' AND e.name = 'Riposte'",
+             WHERE i.name = 'Ship Kickers' AND e.name = 'Riposte'",
             [],
             |row| row.get(0),
         )
         .unwrap();
     assert_eq!(typed, "Quality");
 
-    let removal = new_correction("item_effect", "Epic Ethereal Bracers", "remove", "0", "1") + "effect = \"Riposte\"\n";
-    let (removed_db, removed_report) = built_db_with(&[("remove.toml", &removal)]).unwrap();
+    let removal = new_correction("item_effect", "Ship Kickers", "remove", "0", "1") + "effect = \"Riposte\"\n";
+    let (removed_db, removed_report) = built_db_from(source.path(), &[("remove.toml", &removal)]).unwrap();
     assert_eq!(removed_report.correction_stale_count, 0);
-    assert!(!item_effect_names(&removed_db, "Epic Ethereal Bracers").contains(&"Riposte".to_string()));
+    assert!(!item_effect_names(&removed_db, "Ship Kickers").contains(&"Riposte".to_string()));
 }
 
 #[test]
@@ -523,16 +603,17 @@ fn applies_a_correction_whose_from_matches_and_records_it() {
 
 #[test]
 fn effect_template_and_owner_link_value_corrections_keep_one_effect() {
+    let source = fixture::xml_source();
+    fixture::write_ship_kickers(source.path());
     let effect_template =
         new_correction("effect", "Riposte", "verbose_name_template", "\"Riposte +{1}\"", "\"Riposte {1}\"");
-    let owner_value =
-        new_correction("item_effect", "Epic Ethereal Bracers", "value", "5", "6") + "effect = \"Riposte\"\n";
-    let (db, report) = built_db_with(&[("effect.toml", &(effect_template + &owner_value))]).unwrap();
+    let owner_value = new_correction("item_effect", "Ship Kickers", "value", "3", "6") + "effect = \"Riposte\"\n";
+    let (db, report) = built_db_from(source.path(), &[("effect.toml", &(effect_template + &owner_value))]).unwrap();
     assert_eq!(report.correction_applied_count, 2);
     let rows: Vec<(String, Option<i64>)> = db
         .prepare(
             "SELECT e.name, ie.value FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
-               JOIN items i ON i.id = ie.item_id WHERE i.name = 'Epic Ethereal Bracers' AND e.name = 'Riposte'",
+               JOIN items i ON i.id = ie.item_id WHERE i.name = 'Ship Kickers' AND e.name = 'Riposte'",
         )
         .unwrap()
         .query_map([], |row| Ok((row.get(0)?, row.get(1)?)))
@@ -767,15 +848,17 @@ fn item_line_splits_are_rejected_until_the_item_writer_applies_them() {
 
 #[test]
 fn grouping_value_corrections_use_the_corrected_canonical_definition() {
+    let source = fixture::xml_source();
+    fixture::write_ship_kickers(source.path());
     let correction = new_qualified_correction(
         "item_bonus",
-        "Epic Ethereal Bracers",
+        "Ship Kickers",
         "stat = 'Riposte'\nbonus_type = 'Insight'",
         "value",
-        "5",
+        "3",
         "6",
     );
-    let error = built_db_with(&[("riposte-value.toml", &correction)]).unwrap_err();
+    let error = built_db_from(source.path(), &[("riposte-value.toml", &correction)]).unwrap_err();
     assert!(error.contains("Riposte") && error.contains("cannot take one value"), "{error}");
 }
 
@@ -3802,6 +3885,7 @@ fn lore_definition_corrections_keep_only_the_wiki_stats() {
 #[test]
 fn owner_bonuses_resolve_owner_default_and_constant_amounts() {
     let data_files_dir = data_files_with_untyped("owner-bonus-sources", &[]);
+    fixture::write_ship_kickers(&data_files_dir);
     let buffs_file = data_files_dir.join("ItemBuffs.xml");
     let buffs_source = std::fs::read_to_string(&buffs_file).unwrap();
     let real_effect_sources = r#"  <Buff>
@@ -3829,40 +3913,25 @@ fn owner_bonuses_resolve_owner_default_and_constant_amounts() {
     )
     .unwrap();
     let riposte_page = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers";
-    let correction_file = new_qualified_correction(
-        "item_bonus",
-        "Epic Ethereal Bracers",
-        "stat = \"Armor Class\"\nbonus_type = \"Insight\"",
-        "scale",
-        "1.0",
-        "0.5",
-    )
-    .cited("Riposte grants half the listed rank to Armor Class.", riposte_page, "2026-10-04")
-        + &new_qualified_correction(
-            "item_bonus",
-            "Epic Ethereal Bracers",
-            "stat = \"Armor Class\"\nbonus_type = \"Insight\"",
-            "rounding",
-            "\"down\"",
-            "\"up\"",
-        )
-        .cited("Riposte rounds Armor Class upward.", riposte_page, "2026-10-04")
-        + &new_qualified_correction(
-            "item_bonus",
-            "Epic Ethereal Bracers",
-            "stat = \"Saving Throws\"\nbonus_type = \"Insight\"",
-            "scale",
-            "1.0",
-            "0.5",
-        )
-        .cited("Riposte grants half the listed rank to Saving Throws.", riposte_page, "2026-10-04");
+    let correction_file =
+        new_qualified_correction("effect", "Riposte", "stat = \"Armor Class\"", "scale", "1.0", "0.5").cited(
+            "Riposte grants half the listed rank to Armor Class.",
+            riposte_page,
+            "2026-10-04",
+        ) + &new_qualified_correction("effect", "Riposte", "stat = \"Armor Class\"", "rounding", "\"down\"", "\"up\"")
+            .cited("Riposte rounds Armor Class upward.", riposte_page, "2026-10-04")
+            + &new_qualified_correction("effect", "Riposte", "stat = \"Saving Throws\"", "scale", "1.0", "0.5").cited(
+                "Riposte grants half the listed rank to Saving Throws.",
+                riposte_page,
+                "2026-10-04",
+            );
     let (db, report) = built_db_from(&data_files_dir, &[("riposte.toml", &correction_file)]).unwrap();
     assert_eq!(report.correction_applied_count, 3);
     let resolved: Vec<(String, i64, String, f64)> = db
         .prepare(
             "SELECT s.name, ob.amount, ob.amount_source, ob.scale FROM owner_bonuses ob
              JOIN effects s ON s.id = ob.stat_id JOIN items i ON i.id = ob.owner_id
-             WHERE ob.owner_kind = 'item' AND ((i.name = 'Epic Ethereal Bracers' AND s.name IN
+             WHERE ob.owner_kind = 'item' AND ((i.name IN ('Ship Kickers','Epic Ethereal Bracers') AND s.name IN
              ('Armor Class', 'Saving Throws', 'Hide')) OR (i.name = 'Legendary Cloak of Winter'
              AND s.name = 'Hit Points')) ORDER BY i.name, s.name",
         )
@@ -3871,8 +3940,8 @@ fn owner_bonuses_resolve_owner_default_and_constant_amounts() {
         .unwrap()
         .map(Result::unwrap)
         .collect();
-    assert!(resolved.contains(&("Armor Class".into(), 3, "owner".into(), 0.5)));
-    assert!(resolved.contains(&("Saving Throws".into(), 2, "owner".into(), 0.5)));
+    assert!(resolved.contains(&("Armor Class".into(), 2, "owner".into(), 0.5)));
+    assert!(resolved.contains(&("Saving Throws".into(), 1, "owner".into(), 0.5)));
     assert!(resolved.contains(&("Hide".into(), 5, "constant".into(), 1.0)));
     assert!(resolved.contains(&("Hit Points".into(), 10, "default".into(), 1.0)));
 }
