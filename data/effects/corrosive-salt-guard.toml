@@ -1,0 +1,8 @@
+name = "Corrosive Salt Guard"
+description_template = "This item stores a caustic, insatiable power deep within. When the wearer of this item is successfully attacked in melee, this power can come to the surface in the form of a noxious, corrosive salt that dissolves all substances."
+verbose_name_template = "Corrosive Salt Guard"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Barnacled_Buckler"
+read = "2026-10-26"
+note = "The screenshot names Corrosive Salt Guard and describes a defensive when-attacked proc; it is distinct from the weapon on-hit Corrosive Salt."

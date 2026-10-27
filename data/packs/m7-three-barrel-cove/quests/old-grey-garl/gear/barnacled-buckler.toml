@@ -39,7 +39,7 @@ bonus_type = "Competence"
 value = 10
 
 [[effect]]
-name = "Corrosive Salt"
+name = "Corrosive Salt Guard"
 
 [[effect]]
 name = "Vulnerability Guard"
@@ -57,6 +57,28 @@ reason = "The screenshot names Riposte VIII, granting +4 Insight Armor Class and
 url = "https://ddowiki.com/page/Item:Barnacled_Buckler"
 read = "2026-10-26"
 qualifier = "Riposte VIII"
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "effect"
+upstream = "Corrosive Salt"
+reason = "The screenshot names Corrosive Salt Guard, triggered when the wearer is successfully attacked in melee, rather than the weapon on-hit Corrosive Salt."
+url = "https://ddowiki.com/page/Item:Barnacled_Buckler"
+read = "2026-10-26"
+qualifier = "Corrosive Salt Guard"
+
+[[verification_request]]
+kind = "item_bonus"
+field = "bonus_type"
+qualifier = "Elemental Resistance / Competence"
+question = "Does Elemental Resistance grant a Competence or Insight bonus? The game's line title and description disagree."
+assumed = "Competence"
+raised = "2026-10-26"
+
+[[verification_request.source]]
+says = "The screenshot's title says Competence Elemental Resistance - 10; its description says +10 Insight to Acid, Cold, Fire and Electrical resistances."
+url = "https://ddowiki.com/page/Item:Barnacled_Buckler"
+read = "2026-10-26"
 
 [[socket]]
 slot = "purple"
