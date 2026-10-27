@@ -1216,6 +1216,7 @@ fn roman_riposte_ranks_keep_direct_constants_and_cited_composition_declarations(
     ddo_etl::tree::build_from_data(&std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db)
         .unwrap();
     for (rank, armor_class, saves) in [
+        ("IV", 2, 2),
         ("V", 3, 2),
         ("VI", 3, 3),
         ("VII", 4, 3),

@@ -1,0 +1,27 @@
+name = "Riposte IV"
+description_template = "When Missed by an attack: Deals 4 to 16 damage to your attacker. Passive: +2 Insight bonus to Armor Class, +2 Insight bonus to Fortitude, Reflex, and Will Saving Throws."
+home_bonus_type = "Insight"
+stat_set_verdict = "composes"
+stat_set_reason = "Riposte IV is Parrying IV plus a when-missed proc; factored in #57 because odd ranks grant unequal AC and saves"
+verbose_name_template = "Riposte IV"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Insight"
+constant = 2
+rounding = "down"
+scale = 1.0
+target = "Armor Class"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Insight"
+constant = 2
+rounding = "down"
+scale = 1.0
+target = "Saving Throws"
+
+[[citation]]
+url = "https://ddowiki.com/page/Riposte"
+read = "2026-10-23"
+note = "R4 confirms Roman Riposte IV: AC rounds half the rank up; saves round down. The when-missed proc remains prose."

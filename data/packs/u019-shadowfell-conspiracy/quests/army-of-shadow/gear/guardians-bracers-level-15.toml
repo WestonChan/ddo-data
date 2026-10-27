@@ -7,10 +7,22 @@ material = "Steel"
 minimum_level = 15
 slot = "Wrists"
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Guardian%27s_Bracers_(Level_15)"
+read = "2026-10-26"
+note = "The screenshot names Riposte VIII, granting +4 Insight Armor Class and +4 Insight saves, with its when-missed proc."
+
 [[effect]]
-name = "Riposte"
-bonus_type = "Insight"
-value = 4
+name = "Riposte VIII"
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "effect"
+upstream = "Riposte"
+reason = "The screenshot names Riposte VIII, granting +4 Insight Armor Class and +4 Insight saves, with its when-missed proc."
+url = "https://ddowiki.com/page/Item:Guardian%27s_Bracers_(Level_15)"
+read = "2026-10-26"
+qualifier = "Riposte VIII"
 
 [[source]]
 kind = "quest"

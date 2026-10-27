@@ -19,6 +19,11 @@ damage_reduction = 11
 max_dex_bonus = 0
 shield_bonus = 9
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Barnacled_Buckler"
+read = "2026-10-26"
+note = "The screenshot names Riposte VIII, granting +4 Insight Armor Class and +4 Insight saves, with its when-missed proc."
+
 [[dr_bypass]]
 bypass = "Bludgeon"
 
@@ -26,9 +31,7 @@ bypass = "Bludgeon"
 bypass = "Magic"
 
 [[effect]]
-name = "Riposte"
-bonus_type = "Insight"
-value = 4
+name = "Riposte VIII"
 
 [[effect]]
 name = "Elemental Resistance"
@@ -45,6 +48,15 @@ name = "Vulnerability Guard"
 name = "Sheltering"
 bonus_type = "Enhancement"
 value = 12
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "effect"
+upstream = "Riposte"
+reason = "The screenshot names Riposte VIII, granting +4 Insight Armor Class and +4 Insight saves, with its when-missed proc."
+url = "https://ddowiki.com/page/Item:Barnacled_Buckler"
+read = "2026-10-26"
+qualifier = "Riposte VIII"
 
 [[socket]]
 slot = "purple"

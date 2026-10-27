@@ -16,6 +16,11 @@ damage_reduction = 12
 max_dex_bonus = 0
 shield_bonus = 13
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Emerald_Twilight"
+read = "2026-10-26"
+note = "R10 screenshot confirms Riposte VII: +4 Insight Armor Class, +3 Insight saves and a 7d4 when-missed proc."
+
 [[dr_bypass]]
 bypass = "Bludgeon"
 
