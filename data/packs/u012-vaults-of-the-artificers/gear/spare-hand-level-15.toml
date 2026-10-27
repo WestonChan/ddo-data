@@ -32,6 +32,24 @@ name = "Open Lock"
 bonus_type = "Competence"
 value = 16
 
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "value"
+upstream = 3
+reason = "The tier-3 screenshot gives Riposte +4 as +4 Insight to Armor Class and saves; the upstream upgrade encodes 3."
+url = "https://ddowiki.com/page/Item:Spare_Hand_(Level_15)"
+read = "2026-10-26"
+qualifier = 'socket "upgrade: tier 3", option "Riposte +4, Disable Device +17, Open Lock +17 and a Green Augment Slot", Armor Class / Insight'
+
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "value"
+upstream = 3
+reason = "The tier-3 screenshot gives Riposte +4 as +4 Insight to Armor Class and saves; the upstream upgrade encodes 3."
+url = "https://ddowiki.com/page/Item:Spare_Hand_(Level_15)"
+read = "2026-10-26"
+qualifier = 'socket "upgrade: tier 3", option "Riposte +4, Disable Device +17, Open Lock +17 and a Green Augment Slot", Saving Throws / Insight'
+
 [[socket]]
 slot = "upgrade: tier 2"
 
@@ -78,12 +96,12 @@ min_level = 15
 [[socket.option.effect]]
 bonus_type = "Insight"
 effect = "Armor Class"
-value = 3
+value = 4
 
 [[socket.option.effect]]
 bonus_type = "Insight"
 effect = "Saving Throws"
-value = 3
+value = 4
 
 [[socket.option.effect]]
 bonus_type = "Competence"
