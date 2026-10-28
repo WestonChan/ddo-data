@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Augments>
+<Augment>
+      <Name>Topaz of Swiftness</Name>
+      <Description>Enhancement bonus to your base movement speed and an Enhancement bonus to your attack speed</Description>
+      <Type>Yellow</Type>
+      <Type>Green</Type>
+      <Type>Orange</Type>
+      <Icon>Topaz</Icon>
+      <DualValues/>
+      <ChooseLevel/>
+      <Levels size="3">12 16 20</Levels>
+      <LevelValue size="3">30 30 30</LevelValue>
+      <LevelValue2 size="3">5 10 15</LevelValue2>
+      <Effect>
+         <Type>MovementSpeed</Type>
+         <Bonus>Enhancement</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">30</Amount>
+         <ApplyAsItemEffect/>
+      </Effect>
+      <Effect>
+         <Type>Weapon_Alacrity</Type>
+         <Bonus>Enhancement</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">15</Amount>
+         <Item>All</Item>
+         <ApplyAsItemEffect/>
+      </Effect>
+   </Augment>
+</Augments>

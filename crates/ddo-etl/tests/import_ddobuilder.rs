@@ -354,6 +354,31 @@ fn a_merge_import_accepts_a_changed_amount_without_conflict() {
 }
 
 #[test]
+fn a_two_slot_merge_import_updates_only_the_changed_slot() {
+    let corrections = fixture::corrections_from(&[("swiftness.toml", &fixture::swiftness_merge())]).unwrap();
+    let world = ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {
+        fixture::write_swiftness_augment(source, 30)
+    });
+    assert_eq!(fixture::swiftness_links(&world.database()), [("Speed".into(), Some(30), Some(15))]);
+    fixture::write_swiftness_augment(&world.options.source_dir, 25);
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert_eq!(fixture::swiftness_links(&world.database()), [("Speed".into(), Some(25), Some(15))]);
+    let path = walkdir::WalkDir::new(&world.options.data_dir)
+        .into_iter()
+        .map(Result::unwrap)
+        .find(|entry| entry.file_name() == "topaz-of-swiftness.toml")
+        .unwrap()
+        .into_path();
+    let original = std::fs::read_to_string(&path).unwrap();
+    assert!(original.contains("value2 = 15"));
+    std::fs::write(&path, original.replace("value2 = 15\n", "")).unwrap();
+    let error = tree::build_from_data(&world.options.data_dir, &mut Connection::open_in_memory().unwrap()).unwrap_err();
+    let message = format!("{error:#}");
+    assert!(message.contains("topaz-of-swiftness.toml") && message.contains(".lines"), "{message}");
+}
+
+#[test]
 fn a_rank_option_import_preserves_the_merge_and_resolves_corrected_prose() {
     let source = fixture::xml_source();
     fixture::write_rank_options(source.path());

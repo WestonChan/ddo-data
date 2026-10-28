@@ -793,7 +793,7 @@ impl TableWriter<'_> {
             let mut selected =
                 rows.iter().filter(|row| selection.orders.contains(&row.order)).cloned().collect::<Vec<_>>();
             self.write_merge_source_values(correction, owner_id, &mut selected)?;
-            let value = super::corrections::merged_line_value(
+            let (value, value2) = super::corrections::merged_line_amounts(
                 self.groupings,
                 correction,
                 &selected.iter().collect::<Vec<_>>(),
@@ -802,6 +802,7 @@ impl TableWriter<'_> {
             let first = *selection.orders.first().expect("merge has at least two lines");
             links[first] = self.write_grouping_line(effect_id, bonus_type, value.unwrap_or_default())?;
             links[first].value = value;
+            links[first].value2 = value2;
             removed.extend(selection.orders.iter().copied().filter(|order| *order != first));
             consumed.extend(selection.orders);
             self.applied_link_corrections.push(correction);

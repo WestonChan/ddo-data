@@ -762,6 +762,70 @@ fn a_lines_merge_combines_item_buffs_and_reports_missing_members() {
 }
 
 #[test]
+fn a_two_slot_lines_merge_preserves_each_slots_stat_amounts() {
+    let source = fixture::xml_source();
+    let correction = fixture::swiftness_merge();
+    for movement in [30, 25, 0] {
+        fixture::write_swiftness_augment(source.path(), movement);
+        let (separate, _) = built_db_from_index(fixture::grouping_cases(), source.path(), &[]).unwrap();
+        let (merged, report) =
+            built_db_from_index(fixture::grouping_cases(), source.path(), &[("swiftness.toml", &correction)]).unwrap();
+        assert_eq!(fixture::swiftness_links(&merged), [("Speed".into(), Some(movement), Some(15))]);
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+        let bonuses = |db: &Connection| {
+            db.prepare("SELECT s.name,bt.name,b.amount FROM owner_bonuses b JOIN effects s ON s.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id JOIN augments a ON a.id=b.owner_id WHERE b.owner_kind='augment' AND a.name='Topaz of Swiftness' ORDER BY s.name")
+                .unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?)))
+                .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
+        };
+        assert_eq!(bonuses(&merged), bonuses(&separate));
+        let expected = [
+            ("Melee Attack Speed".into(), "Enhancement".into(), 15),
+            ("Movement Speed".into(), "Enhancement".into(), movement),
+            ("Ranged Attack Speed".into(), "Enhancement".into(), 15),
+        ]
+        .into_iter()
+        .filter(|(_, _, amount)| *amount != 0)
+        .collect::<Vec<_>>();
+        assert_eq!(bonuses(&merged), expected);
+    }
+    fixture::write_swiftness_augment(source.path(), 30);
+    let path = source.path().join("Augments/Topaz.Augments.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let attack = original
+        .split("<Effect>")
+        .find(|effect| effect.contains("<Type>Weapon_Alacrity</Type>"))
+        .unwrap()
+        .split_once("</Effect>")
+        .unwrap()
+        .0;
+    let unequal = format!(
+        "<Effect>{}</Effect><Effect>{}</Effect>",
+        attack.replace("<Item>All</Item>", "<Item>Melee</Item>"),
+        attack
+            .replace("<Item>All</Item>", "<Item>Ranged</Item>")
+            .replace("<Amount size=\"1\">15</Amount>", "<Amount size=\"1\">10</Amount>")
+    );
+    std::fs::write(&path, original.replace(&format!("<Effect>{attack}</Effect>"), &unequal)).unwrap();
+    let mut separate_sources = correction.clone();
+    separate_sources.0[0].from = CorrectionValue::Texts(vec![
+        "Movement Speed".into(),
+        "Melee Attack Speed".into(),
+        "Ranged Attack Speed".into(),
+    ]);
+    let error = built_db_from_index(fixture::grouping_cases(), source.path(), &[("swiftness.toml", &separate_sources)])
+        .unwrap_err();
+    assert!(error.contains("slot 2") && error.contains("different values"), "{error}");
+    std::fs::write(&path, original.replace(&format!("<Effect>{attack}</Effect>"), "")).unwrap();
+    let (missing, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("swiftness.toml", &correction)]).unwrap();
+    assert_eq!(fixture::swiftness_links(&missing), [("Movement Speed".into(), Some(30), None)]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+    assert!(
+        matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value=="\"no such bonus\"")
+    );
+}
+
+#[test]
 fn a_lines_merge_and_split_cannot_both_apply_to_one_line() {
     let qualifier = "equipped_count = 3\nstat = 'Doublestrike and Doubleshot'\nbonus_type = 'Artifact'";
     let merge = new_qualified_correction(

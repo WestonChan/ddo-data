@@ -58,16 +58,15 @@ impl Grouping {
     }
 
     pub fn accepts_value_at_type(&self, bonus_type: &str) -> bool {
-        !self.verbose_name_template.contains("{2}")
+        self.accepts_link_values_at_type(bonus_type)
+            && !self.verbose_name_template.contains("{2}")
             && !self.description_template.as_deref().is_some_and(|template| template.contains("{2}"))
-            && self.bonuses.iter().all(|bonus| {
-                bonus.amount_from == 1
-                    && bonus.constant.is_none()
-                    && bonus.scale == 1.0
-                    && bonus.rounding == "down"
-                    && bonus.trigger_id.is_none()
-                    && bonus.bonus_type.as_deref().is_none_or(|fixed| fixed == bonus_type)
-            })
+            && self.bonuses.iter().all(|bonus| bonus.amount_from == 1)
+    }
+
+    pub(crate) fn accepts_link_values_at_type(&self, bonus_type: &str) -> bool {
+        self.is_link_valued()
+            && self.bonuses.iter().all(|bonus| bonus.bonus_type.as_deref().is_none_or(|fixed| fixed == bonus_type))
             && self.bonuses.iter().map(|bonus| bonus.bonus_type.as_deref()).collect::<BTreeSet<_>>().len() == 1
     }
 

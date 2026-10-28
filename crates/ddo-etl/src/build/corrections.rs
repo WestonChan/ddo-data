@@ -837,11 +837,11 @@ pub(super) fn line_merge_selection(correction: &Correction, rows: &[LineBonus]) 
     Ok(Some(LineMerge { orders, stats }))
 }
 
-pub(super) fn merged_line_value(
+pub(super) fn merged_line_amounts(
     groupings: &crate::groupings::Groupings,
     correction: &Correction,
     rows: &[&LineBonus],
-) -> Result<Option<i64>> {
+) -> Result<(Option<i64>, Option<i64>)> {
     let target = groupings
         .effect_named(correction.stat.as_deref().context("merge target missing")?)
         .context("merge target is not indexed")?;
@@ -862,15 +862,38 @@ pub(super) fn merged_line_value(
             "{}: merged values disagree with the target constants",
             correction.label()
         );
-        Ok(None)
+        Ok((None, None))
     } else {
-        let amount = rows.first().and_then(|row| row.amount).context("merged lines have no amount")?;
+        let mut amounts = [None, None];
+        for bonus in &target.bonuses {
+            let slot = usize::try_from(bonus.amount_from - 1).context("merge target has no amount slot")?;
+            let slot_amount = amounts.get_mut(slot).context("merge target has an unknown amount slot")?;
+            let member = &groupings.by_id[&bonus.target_id];
+            for stat in groupings.expanded_stat_names(&member.name)? {
+                let amount =
+                    rows.iter().find(|row| row.stat_name == stat).and_then(|row| row.amount).with_context(|| {
+                        format!("{}: merged lines lack {stat:?} for slot {}", correction.label(), slot + 1)
+                    })?;
+                ensure!(
+                    slot_amount.is_none_or(|previous| previous == amount),
+                    "{}: merged lines have different values for slot {}",
+                    correction.label(),
+                    slot + 1
+                );
+                *slot_amount = Some(amount);
+            }
+        }
+        let required_slot_count = usize::try_from(super::amount_count(
+            &target.verbose_name_template,
+            target.description_template.as_deref(),
+        ))?;
         ensure!(
-            rows.iter().all(|row| row.amount == Some(amount)),
-            "{}: merged lines have different values",
+            amounts.iter().take(required_slot_count).all(Option::is_some)
+                && (amounts[1].is_none() || amounts[0].is_some()),
+            "{}: merged lines lack a value for every target slot",
             correction.label()
         );
-        Ok(Some(amount))
+        Ok((amounts[0], amounts[1]))
     }
 }
 
@@ -898,10 +921,10 @@ fn corrected_lines_value(
                 == groupings.expanded_stat_names(&target.name)?
                 && selected.iter().map(|row| row.order).collect::<std::collections::BTreeSet<_>>().len() == 1
                 && selected.iter().all(|row| row.amount.is_some() && row.bonus_type == correction.bonus_type),
-            "{}: a merge must leave one grouping link at one type and value",
+            "{}: a merge must leave one grouping link with all its stats at one type",
             correction.label()
         );
-        merged_line_value(groupings, correction, &selected)?;
+        merged_line_amounts(groupings, correction, &selected)?;
         return Ok(resolved.to);
     }
     let upstream = correction.from.as_text().context("a lines split needs an upstream grouping name")?;

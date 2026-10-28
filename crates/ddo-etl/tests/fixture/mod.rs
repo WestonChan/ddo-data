@@ -407,6 +407,36 @@ pub(crate) fn spyglass_option_lines(db: &rusqlite::Connection) -> Vec<(String, i
         .collect::<rusqlite::Result<_>>().unwrap()
 }
 
+pub(crate) fn write_swiftness_augment(source: &std::path::Path, movement: i64) {
+    let original = include_str!("../fixtures/effect-groups/TopazOfSwiftness.Augments.xml");
+    std::fs::create_dir_all(source.join("Augments")).unwrap();
+    std::fs::write(
+        source.join("Augments/Topaz.Augments.xml"),
+        original.replace("<Amount size=\"1\">30</Amount>", &format!("<Amount size=\"1\">{movement}</Amount>")),
+    )
+    .unwrap();
+    std::fs::create_dir_all(source.join("AugmentImages")).unwrap();
+    std::fs::write(source.join("AugmentImages/Topaz.png"), include_bytes!("../fixtures/data/icons/augments/Topaz.png"))
+        .unwrap();
+}
+
+pub(crate) fn swiftness_merge() -> CorrectionSet {
+    new_qualified_correction(
+        "augment_bonus",
+        "Topaz of Swiftness",
+        "stat = 'Speed'\nbonus_type = 'Enhancement'",
+        "lines",
+        "['Movement Speed', 'Melee and Ranged Attack Speed']",
+        "'Speed'",
+    )
+}
+
+pub(crate) fn swiftness_links(db: &rusqlite::Connection) -> Vec<(String, Option<i64>, Option<i64>)> {
+    db.prepare("SELECT e.name,l.value,l.value2 FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name='Topaz of Swiftness' ORDER BY l.sort_order")
+        .unwrap().query_map([], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?)))
+        .unwrap().collect::<rusqlite::Result<_>>().unwrap()
+}
+
 pub(crate) fn search_and_spot_merge() -> CorrectionSet {
     new_qualified_correction(
         "item_bonus",

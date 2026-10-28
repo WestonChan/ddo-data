@@ -276,9 +276,15 @@ impl Correction {
             );
             Ok(())
         };
-        if !(matches!(self.from, CorrectionValue::Texts(_))
-            && groupings.effect_named(grouping).is_some_and(|effect| effect.has_constants_at_type(bonus_type)))
-        {
+        if matches!(self.from, CorrectionValue::Texts(_)) {
+            ensure!(
+                groupings.effect_named(grouping).is_some_and(|effect| {
+                    effect.has_constants_at_type(bonus_type) || effect.accepts_link_values_at_type(bonus_type)
+                }),
+                "{}: merge target {grouping:?} cannot take link values or constants at {bonus_type}",
+                self.label()
+            );
+        } else {
             value_line(grouping)?;
         }
         let expected = groupings.expanded_stat_names(grouping)?;
