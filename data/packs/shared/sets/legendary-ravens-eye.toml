@@ -7,6 +7,16 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
 note = "The tier lines were checked; this replaces the add corrections the prose mapping superseded."
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Legendary_Raven%27s_Sight"
+read = "2026-10-23"
+note = "The 2-piece screenshot shows four lines: +3 Artifact Attack and Damage; +3 Artifact Critical Confirmation and Critical Damage; +3 Artifact Sneak Attack and Sneak Attack Damage; +7 Artifact Search and Spot."
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Legendary_Raven%27s_Talons"
+read = "2026-10-23"
+note = "The 2-piece screenshot shows four lines: +3 Artifact Attack and Damage; +3 Artifact Critical Confirmation and Critical Damage; +3 Artifact Sneak Attack and Sneak Attack Damage; +7 Artifact Search and Spot."
+
 [[item]]
 name = "Legendary Raven's Sight"
 
@@ -15,11 +25,23 @@ name = "Legendary Raven's Talons"
 
 [[ddobuilder_correction]]
 kind = "set_tier_bonus"
-field = "add"
-reason = "The wiki gives Sneak Attack +3 Artifact at 2 pieces; his tier lacks it."
+field = "lines"
+upstream = [
+    "Sneak Attack Hit",
+    "Sneak Attack Damage",
+]
+reason = "Both piece screenshots show one +3 Artifact line to Sneak Attack and Sneak Attack Damage. The former added Sneak Attack row duplicated its hit bonus."
 url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-qualifier = "equipped_count 2, Sneak Attack / Artifact"
+read = "2026-10-23"
+qualifier = "equipped_count 2, Deception / Artifact"
+
+[[ddobuilder_correction]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "Both piece screenshots show the missing +3 Artifact line to Critical Confirmation and Critical Damage, represented by Seeker."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-23"
+qualifier = "equipped_count 2, Seeker / Artifact"
 
 [[tier]]
 equipped_count = 2
@@ -31,13 +53,9 @@ value = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Sneak Attack Hit"
+effect = "Deception"
 value = 3
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Sneak Attack Damage"
-value = 3
+value2 = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
@@ -46,7 +64,7 @@ value = 7
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Sneak Attack"
+effect = "Seeker"
 value = 3
 
 [[tier.modifier]]
