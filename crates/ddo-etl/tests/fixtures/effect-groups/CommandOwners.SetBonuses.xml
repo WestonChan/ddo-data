@@ -1,0 +1,202 @@
+  <SetBonus>
+    <Type>Slavelords Might</Type>
+    <Icon>SlavelordsMight</Icon>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+1 Artifact bonus to Melee Power/Ranged Power</Description>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+1 Artifact bonus to Deadly</Description>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+1 Artifact bonus to Strength and Dexterity</Description>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Strength</Item>
+        <Item>Dexterity</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+2 Artifact bonus to Melee Power/Ranged Power</Description>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Type>RangedPower</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+2 Artifact bonus to Deadly</Description>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+  </SetBonus>
+  <SetBonus>
+    <Type>Slavelords Sorcery</Type>
+    <Icon>SlavelordsSorcery</Icon>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+2 Artifact bonus to Spell Power</Description>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+1 Artifact bonus to Spell Focus Mastery</Description>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+1 Artifact bonus to Int/Wis/Cha</Description>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Intelligence</Item>
+        <Item>Wisdom</Item>
+        <Item>Charisma</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+5 Artifact bonus to Spell Power</Description>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">5</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+2 Artifact bonus to Spell Focus Mastery</Description>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+  </SetBonus>
+  <SetBonus>
+    <Type>Slavelords Endurance</Type>
+    <Icon>SlavelordsEndurance</Icon>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+1 Artifact bonus to MRR/PRR</Description>
+      <Effect>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+1 Artifact bonus to Resistance</Description>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+1 Artifact bonus to Spell Saves</Description>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Spell</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+1 Artifact bonus to Constitution</Description>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Constitution</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+2 Artifact bonus to MRR/PRR</Description>
+      <Effect>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+2 Artifact bonus to Resistance</Description>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+2 Artifact bonus to Spell Saves</Description>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Spell</Item>
+      </Effect>
+    </Buff>
+  </SetBonus>

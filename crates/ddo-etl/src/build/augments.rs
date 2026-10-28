@@ -152,7 +152,12 @@ impl TableWriter<'_> {
                 alias: None,
                 is_split_line: false,
                 effect_id,
-                bonus_type: None,
+                bonus_type: self
+                    .effects
+                    .family(effect_id)
+                    .expect("combined effect cached")
+                    .uses_link_type
+                    .then_some(first_type),
                 value: Some(rule.first_value_from),
                 value2: Some(rule.second_value),
             };

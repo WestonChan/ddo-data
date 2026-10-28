@@ -172,6 +172,9 @@
         "name": {
           "type": "string"
         },
+        "omits_bonus_type": {
+          "type": "boolean"
+        },
         "verbose_name_template": {
           "type": [
             "string",
@@ -188,6 +191,7 @@
         "sort_order",
         "slug",
         "name",
+        "omits_bonus_type",
         "verbose_name_template"
       ],
       "x-table": "effect_aliases"
@@ -548,6 +552,9 @@
     "name": {
       "type": "string"
     },
+    "omits_bonus_type": {
+      "type": "boolean"
+    },
     "set_bonus_line_template": {
       "type": [
         "string",
@@ -612,6 +619,7 @@
     "default_value",
     "description_template",
     "home_bonus_type_id",
+    "omits_bonus_type",
     "set_bonus_line_template",
     "stat_set_verdict",
     "stat_set_reason",

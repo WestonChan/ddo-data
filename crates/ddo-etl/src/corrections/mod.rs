@@ -407,7 +407,7 @@ impl Correction {
             CorrectionValue::Text(added_socket_label) if self.kind == CorrectionKind::ItemSocket => {
                 qualifier_parts.push(added_socket_label.clone())
             }
-            added_effect if self.kind == CorrectionKind::ItemEffect => {
+            added_effect if self.kind == CorrectionKind::ItemEffect && self.field == "add" => {
                 if let Some(added_effect_name) = added_effect.added_effect_name() {
                     qualifier_parts.push(added_effect_name.to_string())
                 }
@@ -483,9 +483,9 @@ impl Correction {
         );
         if self.effect.is_some()
             != (self.kind == CorrectionKind::ItemEffect
-                && matches!(field.name, "value" | "bonus_type" | "remove" | "effect"))
+                && matches!(field.name, "value" | "value2" | "bonus_type" | "remove" | "effect"))
         {
-            bail!("effect names only an item_effect value, bonus_type, remove or effect correction, which requires effect");
+            bail!("effect names only an item_effect value, value2, bonus_type, remove or effect correction, which requires effect");
         }
         if self.family.is_some() && !matches!(self.kind, CorrectionKind::Augment | CorrectionKind::AugmentBonus) {
             bail!("family narrows only an augment or augment_bonus correction, not a {}", self.kind.as_str());

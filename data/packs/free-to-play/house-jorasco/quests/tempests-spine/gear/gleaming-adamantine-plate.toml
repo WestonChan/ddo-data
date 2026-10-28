@@ -18,6 +18,7 @@ max_dex_bonus = 1
 
 [[effect]]
 name = "Command"
+bonus_type = "Insight"
 value = 2
 value2 = -6
 

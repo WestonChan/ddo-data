@@ -856,6 +856,26 @@ fn seeded_stats_share_effect_identity_and_direct_links_yield_owner_bonuses() {
 }
 
 #[test]
+fn omitted_bonus_type_is_a_boolean_restricted_to_named_effects() {
+    let db = fresh_db();
+    ddo_model::seeds::insert_all(&db).unwrap();
+    db.execute("INSERT INTO effects (name,slug,verbose_name_template,omits_bonus_type) VALUES ('Command','command','Command +{1}',1)", []).unwrap();
+    for sql in [
+        "UPDATE effects SET omits_bonus_type=1 WHERE name='Strength'",
+        "UPDATE effects SET is_group=1 WHERE name='Command'",
+        "UPDATE effects SET omits_bonus_type=2 WHERE name='Command'",
+        "UPDATE effects SET omits_bonus_type=-1 WHERE name='Command'",
+        "UPDATE effects SET omits_bonus_type=NULL WHERE name='Command'",
+    ] {
+        assert!(db.execute(sql, []).is_err(), "{sql}");
+    }
+    db.execute("INSERT INTO effect_aliases (effect_id,name,verbose_name_template,omits_bonus_type,sort_order) SELECT id,'Quiet Command','Quiet Command +{1}',1,0 FROM effects WHERE name='Command'", []).unwrap();
+    for literal in ["2", "-1", "NULL"] {
+        assert!(db.execute(&format!("UPDATE effect_aliases SET omits_bonus_type={literal}"), []).is_err());
+    }
+}
+
+#[test]
 fn group_bonus_targets_expand_once_and_reject_nested_groups() {
     let db = fresh_db();
     ddo_model::seeds::insert_all(&db).unwrap();

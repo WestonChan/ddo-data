@@ -1,10 +1,10 @@
 name = "Command"
-description_template = "Passive: {1} Insightful bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a {2} penalty on Hide checks."
-verbose_name_template = "Insightful Command +{1}"
+description_template = "Passive: {1} %b1 bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a {2} penalty on Hide checks."
+omits_bonus_type = true
+verbose_name_template = "Command +{1}"
 
 [[bonus]]
 amount_from = 1
-bonus_type = "Insight"
 rounding = "down"
 scale = 1.0
 target = "Charisma Skills"
@@ -16,10 +16,7 @@ rounding = "down"
 scale = 1.0
 target = "Hide"
 
-[[ddobuilder_correction]]
-kind = "effect"
-field = "verbose_name_template"
-upstream = "Command +{1}"
-reason = "The wiki writes the fixed Insight type as Insightful in Command's line title."
+[[citation]]
 url = "https://ddowiki.com/page/Item:Brightbane_Emerald"
-read = "2026-10-05"
+read = "2026-10-23"
+note = "R8: the screenshot titles the line Command +4. Its Charisma skills take the owner type; Hide remains a fixed Penalty in slot 2."

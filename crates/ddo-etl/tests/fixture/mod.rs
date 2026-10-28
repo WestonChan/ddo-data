@@ -308,6 +308,53 @@ pub(crate) fn write_rank_options(source: &std::path::Path) {
     .unwrap();
 }
 
+pub(crate) fn write_command_owners(source: &std::path::Path) {
+    for (name, contents) in [
+        ("Items/RingOfPower.item", include_str!("../fixtures/effect-groups/RingOfPower.item")),
+        ("Items/GrandRingmastersPlate4.item", include_str!("../fixtures/effect-groups/GrandRingmastersPlate4.item")),
+        (
+            "Augments/BrightbaneEmerald.Augments.xml",
+            include_str!("../fixtures/effect-groups/BrightbaneEmerald.Augments.xml"),
+        ),
+    ] {
+        std::fs::write(source.join(name), contents).unwrap();
+    }
+    let sets = source.join("SetBonuses.xml");
+    let original = std::fs::read_to_string(&sets).unwrap();
+    std::fs::write(
+        sets,
+        original.replace(
+            "</SetBonuses>",
+            &format!("{}</SetBonuses>", include_str!("../fixtures/effect-groups/CommandOwners.SetBonuses.xml")),
+        ),
+    )
+    .unwrap();
+    for (name, bytes) in [
+        ("ItemImages/Rings/Ring_31.png", include_bytes!("../fixtures/effect-groups/icons/Ring_31.png").as_slice()),
+        (
+            "ItemImages/Armor_Heavy/HeavyArmor_1a.png",
+            include_bytes!("../fixtures/effect-groups/icons/HeavyArmor_1a.png").as_slice(),
+        ),
+        (
+            "SetBonusImages/SlavelordsMight.png",
+            include_bytes!("../fixtures/effect-groups/icons/SlavelordsMight.png").as_slice(),
+        ),
+        (
+            "SetBonusImages/SlavelordsSorcery.png",
+            include_bytes!("../fixtures/effect-groups/icons/SlavelordsSorcery.png").as_slice(),
+        ),
+        (
+            "SetBonusImages/SlavelordsEndurance.png",
+            include_bytes!("../fixtures/effect-groups/icons/SlavelordsEndurance.png").as_slice(),
+        ),
+        ("AugmentImages/Emerald.png", include_bytes!("../fixtures/effect-groups/icons/Emerald.png").as_slice()),
+    ] {
+        let path = source.join(name);
+        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+        std::fs::write(path, bytes).unwrap();
+    }
+}
+
 pub(crate) fn rank_option_merge(rank: &str) -> CorrectionSet {
     let mut correction = spyglass_option_correction(
         "lines",

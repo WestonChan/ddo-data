@@ -19,6 +19,7 @@ bypass = "Magic"
 
 [[effect]]
 name = "Command"
+bonus_type = "Insight"
 value = 2
 value2 = -6
 

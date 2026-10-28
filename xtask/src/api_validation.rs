@@ -24,26 +24,63 @@ async fn json_response(router: &axum::Router, path: &str) -> Result<Value> {
     serde_json::from_slice(&body).with_context(|| format!("GET {path} returned invalid JSON"))
 }
 
-fn effect_home_types(db: &rusqlite::Connection) -> Result<BTreeMap<i64, Option<String>>> {
-    let mut statement = db.prepare(
-        "SELECT e.id, b.name
-           FROM effects e LEFT JOIN bonus_types b ON b.id = e.home_bonus_type_id",
-    )?;
-    let home_types = statement
-        .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, Option<String>>(1)?)))?
-        .collect::<rusqlite::Result<_>>()?;
-    Ok(home_types)
+struct EffectTitleTypeRules {
+    canonical_name: String,
+    home_type: Option<String>,
+    type_omitting_names: BTreeSet<String>,
 }
 
-fn response_effect_lines_show_non_home_types(
+fn effect_title_type_rules(db: &rusqlite::Connection) -> Result<BTreeMap<i64, EffectTitleTypeRules>> {
+    let mut statement = db.prepare(
+        "SELECT e.id, b.name, e.name, e.omits_bonus_type, a.name, a.omits_bonus_type
+           FROM effects e LEFT JOIN bonus_types b ON b.id = e.home_bonus_type_id
+           LEFT JOIN effect_aliases a ON a.effect_id = e.id",
+    )?;
+    let mut rules = BTreeMap::new();
+    for row in statement.query_map([], |row| {
+        Ok((
+            row.get::<_, i64>(0)?,
+            row.get::<_, Option<String>>(1)?,
+            row.get::<_, String>(2)?,
+            row.get::<_, bool>(3)?,
+            row.get::<_, Option<String>>(4)?,
+            row.get::<_, Option<bool>>(5)?,
+        ))
+    })? {
+        let (id, home_type, name, omits_type, alias, alias_omits_type) = row?;
+        let rule = rules.entry(id).or_insert_with(|| EffectTitleTypeRules {
+            canonical_name: name.clone(),
+            home_type,
+            type_omitting_names: BTreeSet::new(),
+        });
+        if omits_type {
+            rule.type_omitting_names.insert(name);
+        }
+        if let Some(alias) = alias.filter(|_| alias_omits_type == Some(true)) {
+            rule.type_omitting_names.insert(alias);
+        }
+    }
+    Ok(rules)
+}
+
+fn response_effect_lines_follow_type_rules(
     response: &Value,
     path: &str,
-    effect_home_types: &BTreeMap<i64, Option<String>>,
+    effect_title_type_rules: &BTreeMap<i64, EffectTitleTypeRules>,
+) -> Result<()> {
+    effect_line_type_validation(response, path, effect_title_type_rules, false)
+}
+
+fn effect_line_type_validation(
+    response: &Value,
+    path: &str,
+    effect_title_type_rules: &BTreeMap<i64, EffectTitleTypeRules>,
+    is_set_tier: bool,
 ) -> Result<()> {
     match response {
         Value::Array(rows) => {
             for row in rows {
-                response_effect_lines_show_non_home_types(row, path, effect_home_types)?;
+                effect_line_type_validation(row, path, effect_title_type_rules, is_set_tier)?;
             }
         }
         Value::Object(fields) => {
@@ -52,9 +89,22 @@ fn response_effect_lines_show_non_home_types(
                 fields.get("bonus_type").and_then(Value::as_str),
                 fields.get("verbose_name").and_then(Value::as_str),
             ) {
-                if let Some(home_type) = effect_home_types.get(&effect_id) {
-                    if !matches!(bonus_type, "Enhancement" | "Equipment") && home_type.as_deref() != Some(bonus_type) {
-                        let visible_type = if bonus_type == "Insight" { "Insightful" } else { bonus_type };
+                if let Some(rule) = effect_title_type_rules.get(&effect_id) {
+                    let is_set_line = is_set_tier
+                        && fields.get("name").and_then(Value::as_str) == Some(&rule.canonical_name)
+                        && fields.get("bonuses").and_then(Value::as_array).is_some_and(|bonuses| !bonuses.is_empty());
+                    let omits_type = !is_set_line
+                        && fields
+                            .get("name")
+                            .and_then(Value::as_str)
+                            .is_some_and(|name| rule.type_omitting_names.contains(name));
+                    let wording = if is_set_line {
+                        ddo_api::BonusTypeWording::SetBonus
+                    } else {
+                        ddo_api::BonusTypeWording::Enchantment
+                    };
+                    let visible_type = ddo_api::bonus_type_line_word(bonus_type, rule.home_type.as_deref(), wording);
+                    if let Some(visible_type) = visible_type.filter(|_| !omits_type) {
                         ensure!(
                             verbose_name.contains(visible_type)
                                 || verbose_name.contains(&format!("{bonus_type} Bonus")),
@@ -64,7 +114,12 @@ fn response_effect_lines_show_non_home_types(
                 }
             }
             for field in fields.values() {
-                response_effect_lines_show_non_home_types(field, path, effect_home_types)?;
+                effect_line_type_validation(
+                    field,
+                    path,
+                    effect_title_type_rules,
+                    is_set_tier || fields.contains_key("equipped_count"),
+                )?;
             }
         }
         _ => {}
@@ -139,7 +194,7 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
     let state = AppState::open(db_path)?;
     let db = rusqlite::Connection::open(db_path)?;
     let source_packs = Arc::new(source_pack_names(&db)?);
-    let effect_home_types = Arc::new(effect_home_types(&db)?);
+    let effect_title_type_rules = Arc::new(effect_title_type_rules(&db)?);
     let effects_that_need_a_description = Arc::new(effects_that_need_a_description(&db)?);
     let vocabulary_counts = Arc::new(effect_vocabulary_counts(&db)?);
     let router = app(state);
@@ -226,7 +281,7 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
             for result in [
                 response_matches_schema(row, item_detail_schema, schemas, &row_path),
                 detail_has_unique_drop_locations(row, &row_path, &source_packs),
-                response_effect_lines_show_non_home_types(row, &row_path, &effect_home_types)
+                response_effect_lines_follow_type_rules(row, &row_path, &effect_title_type_rules)
                     .map_err(|error| error.to_string()),
                 response_effect_lines_have_descriptions(row, &row_path, &effects_that_need_a_description)
                     .map_err(|error| error.to_string()),
@@ -282,7 +337,7 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
                     let detail_schema = detail_schema.clone();
                     let shared_schemas = shared_schemas.clone();
                     let source_packs = source_packs.clone();
-                    let effect_home_types = effect_home_types.clone();
+                    let effect_title_type_rules = effect_title_type_rules.clone();
                     let effects_that_need_a_description = effects_that_need_a_description.clone();
                     let vocabulary_counts = vocabulary_counts.clone();
                     let is_effect_detail = list_path == "/v1/effects";
@@ -297,10 +352,10 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
                                     if check_drop_locations {
                                         detail_has_unique_drop_locations(&response, &request_path, &source_packs)?;
                                     }
-                                    response_effect_lines_show_non_home_types(
+                                    response_effect_lines_follow_type_rules(
                                         &response,
                                         &request_path,
-                                        &effect_home_types,
+                                        &effect_title_type_rules,
                                     )
                                     .map_err(|error| error.to_string())?;
                                     response_effect_lines_have_descriptions(
@@ -363,8 +418,8 @@ pub fn validate_api(db_path: &Path, all_details: bool) -> Result<(usize, usize)>
 #[cfg(test)]
 mod tests {
     use super::{
-        effect_detail_totals_match_vocabulary, response_effect_lines_have_descriptions,
-        response_effect_lines_show_non_home_types,
+        effect_detail_totals_match_vocabulary, response_effect_lines_follow_type_rules,
+        response_effect_lines_have_descriptions,
     };
     use serde_json::json;
     use std::collections::{BTreeMap, BTreeSet};
@@ -394,11 +449,53 @@ mod tests {
 
     #[test]
     fn non_home_type_must_remain_visible_on_a_slotless_line() {
-        let home_types = BTreeMap::from([(454, Some("Equipment".to_string()))]);
+        let home_types = BTreeMap::from([(
+            454,
+            super::EffectTitleTypeRules {
+                canonical_name: "Spell Penetration I".to_string(),
+                home_type: Some("Equipment".to_string()),
+                type_omitting_names: BTreeSet::new(),
+            },
+        )]);
         let line =
             json!({"effects": [{"effect_id": 454, "bonus_type": "Insight", "verbose_name": "Spell Penetration I"}]});
-        assert!(response_effect_lines_show_non_home_types(&line, "/v1/items/1", &home_types).is_err());
+        assert!(response_effect_lines_follow_type_rules(&line, "/v1/items/1", &home_types).is_err());
         let corrected = json!({"effects": [{"effect_id": 454, "bonus_type": "Insight", "verbose_name": "Insightful Spell Penetration I"}]});
-        response_effect_lines_show_non_home_types(&corrected, "/v1/items/1", &home_types).unwrap();
+        response_effect_lines_follow_type_rules(&corrected, "/v1/items/1", &home_types).unwrap();
+    }
+
+    #[test]
+    fn declared_title_omissions_follow_the_selected_alias() {
+        let scratch = tempfile::tempdir().unwrap();
+        let source = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures/data");
+        let tree = scratch.path().join("data");
+        for entry in walkdir::WalkDir::new(&source) {
+            let entry = entry.unwrap();
+            if entry.file_type().is_file() {
+                let target = tree.join(entry.path().strip_prefix(&source).unwrap());
+                std::fs::create_dir_all(target.parent().unwrap()).unwrap();
+                std::fs::copy(entry.path(), target).unwrap();
+            }
+        }
+        let path = tree.join("effects/command.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{original}\n[[alias]]\nname = 'Quiet Command'\nverbose_name_template = 'Quiet Command +{{1}}'\nomits_bonus_type = true\n[[alias]]\nname = 'Typed Command'\nverbose_name_template = '%b1 Typed Command +{{1}}'\n")).unwrap();
+        let mut db = rusqlite::Connection::open_in_memory().unwrap();
+        ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
+        let effect_id: i64 = db.query_row("SELECT id FROM effects WHERE name='Command'", [], |row| row.get(0)).unwrap();
+        let home_types = super::effect_title_type_rules(&db).unwrap();
+        for (name, accepted) in [("Command", true), ("Quiet Command", true), ("Typed Command", false)] {
+            let line = json!({"effects": [{"effect_id": effect_id, "name": name, "bonus_type": "Insight", "verbose_name": format!("{name} +4")}]});
+            assert_eq!(
+                response_effect_lines_follow_type_rules(&line, "/v1/items/1", &home_types).is_ok(),
+                accepted,
+                "{name}"
+            );
+        }
+        let mut tier = json!({"tiers": [{"equipped_count": 2, "effects": [{"effect_id": effect_id, "name": "Command", "bonus_type": "Artifact", "verbose_name": "+4 Bonus to Command", "bonuses": [{"stat": "Bluff", "value": 4, "bonus_type": "Artifact"}]}]}]});
+        assert!(response_effect_lines_follow_type_rules(&tier, "/v1/sets/1", &home_types).is_err());
+        tier["tiers"][0]["effects"][0]["name"] = json!("Quiet Command");
+        tier["tiers"][0]["effects"][0]["verbose_name"] = json!("Quiet Command +4");
+        response_effect_lines_follow_type_rules(&tier, "/v1/sets/1", &home_types).unwrap();
     }
 }

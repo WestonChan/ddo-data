@@ -15,6 +15,7 @@ value = 24
 
 [[effect]]
 name = "Command"
+bonus_type = "Insight"
 value = 8
 
 [[effect]]

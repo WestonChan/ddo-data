@@ -19,6 +19,7 @@ mithral_body = 4
 
 [[effect]]
 name = "Command"
+bonus_type = "Insight"
 value = 6
 
 [[effect]]

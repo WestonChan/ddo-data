@@ -91,6 +91,7 @@ const SET_TIER_OPERATIONS: &[CorrectableField] =
     &[field("add", FieldShape::TierAddition, false), field("remove", FieldShape::Removal, false)];
 
 const ITEM_EFFECT_OPERATIONS: &[CorrectableField] = &[
+    field("value2", FieldShape::Integer, true),
     field("add", FieldShape::EffectAddition, false),
     field("remove", FieldShape::Removal, false),
     field("effect", FieldShape::EffectReplacement, false),

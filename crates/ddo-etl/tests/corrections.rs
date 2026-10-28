@@ -236,7 +236,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::ItemBonus, "add:add:BonusAddition:false, alias:alias:BonusAlias:true, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
         (CorrectionKind::SetTier, "add:add:TierAddition:false, description:description:Text:true, remove:remove:Removal:false"),
         (CorrectionKind::SetTierBonus, "add:add:BonusAddition:false, alias:alias:BonusAlias:true, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
-        (CorrectionKind::ItemEffect, "add:add:EffectAddition:false, bonus_type:bonus_type:BonusTypeName:false, effect:effect:EffectReplacement:false, remove:remove:Removal:false, value:value:Integer:true"),
+        (CorrectionKind::ItemEffect, "add:add:EffectAddition:false, bonus_type:bonus_type:BonusTypeName:false, effect:effect:EffectReplacement:false, remove:remove:Removal:false, value2:value2:Integer:true, value:value:Integer:true"),
         (CorrectionKind::EffectDamage, "add:add:DamageAddition:false, remove:remove:DamageRemoval:false"),
         (CorrectionKind::ItemSocket, "add:add:SocketAddition:false"),
     ];
@@ -467,6 +467,84 @@ fn prerequisite_quest_words_do_not_create_sources() {
         .map(Result::unwrap)
         .collect();
     assert_eq!(linked, ["Caught in the Web", "Redemption"]);
+}
+
+#[test]
+fn item_effect_second_value_corrections_preserve_the_first_slot_and_track_staleness() {
+    let correction = new_qualified_correction(
+        "item_effect",
+        "Grand Ringmaster's Plate (level 4)",
+        "effect = 'Command'",
+        "value2",
+        "\"null\"",
+        "-6",
+    );
+    let mut corrections = validated_corrections(&[("grand-ringmasters-plate-level-4.toml", &correction)]).unwrap();
+    let ring_type = new_qualified_correction(
+        "item_effect",
+        "Ring of Power",
+        "effect = 'Command'",
+        "bonus_type",
+        "\"Insight\"",
+        "\"Competence\"",
+    );
+    corrections.entries.extend(validated_corrections(&[("ring-of-power.toml", &ring_type)]).unwrap().entries);
+    corrections.entries.extend(fixture::fixture_icon_corrections().entries);
+    for upstream in [None, Some(-4)] {
+        let source = fixture::xml_source();
+        fixture::write_command_owners(source.path());
+        if let Some(amount) = upstream {
+            let path = source.path().join("Items/GrandRingmastersPlate4.item");
+            let text = std::fs::read_to_string(&path).unwrap();
+            let original = "<Type>Command</Type>\n      <Value1>3</Value1>";
+            assert!(text.contains(original));
+            std::fs::write(path, text.replace(original, &format!("{original}\n      <Value2>{amount}</Value2>")))
+                .unwrap();
+        }
+        let mut db = Connection::open_in_memory().unwrap();
+        let report = build_database(
+            fixture::groupings(),
+            source.path(),
+            &WikiOverrides::default(),
+            &corrections,
+            &mut db,
+            &fixture_dataset_version(),
+        )
+        .unwrap();
+        let amounts = db.query_row("SELECT l.value,l.value2 FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name=?1 AND e.name='Command'", [&corrections.entries[0].name], |row| Ok((row.get::<_,i64>(0)?,row.get::<_,i64>(1)?))).unwrap();
+        assert_eq!(amounts, (3, upstream.unwrap_or(-6)));
+        if upstream.is_none() {
+            assert!(report.stale_corrections.is_empty());
+            assert!(recorded_corrections(&db).iter().any(|row| row.2 == "value2" && row.4 == "-6"));
+            let exported = tempfile::tempdir().unwrap();
+            ddo_etl::tree::export_database(&db, exported.path()).unwrap();
+            let icons = fixtures_dir().join("data");
+            for entry in walkdir::WalkDir::new(&icons).into_iter().map(Result::unwrap).filter(|entry| {
+                entry.file_type().is_file() && entry.path().extension().is_some_and(|extension| extension == "png")
+            }) {
+                let destination = exported.path().join(entry.path().strip_prefix(&icons).unwrap());
+                std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+                std::fs::copy(entry.path(), destination).unwrap();
+            }
+            ddo_etl::icons::export_icons(source.path(), &exported.path().join("icons")).unwrap();
+            assert!(ddo_etl::icons::complete_referenced_icons(exported.path()).unwrap().missing_icons.is_empty());
+            let mut rebuilt = Connection::open_in_memory().unwrap();
+            ddo_etl::tree::build_from_data(exported.path(), &mut rebuilt).unwrap();
+            let restored = Corrections::from_database(&rebuilt).unwrap();
+            let ring_type = restored.entries.iter().find(|entry| entry.name == "Ring of Power").unwrap();
+            assert_eq!(ring_type.qualifier(), "effect \"Command\"");
+            assert_eq!(ring_type.from, CorrectionValue::Text("Insight".into()));
+            assert_eq!(ring_type.to, CorrectionValue::Text("Competence".into()));
+            let restored = restored.entries.iter().find(|entry| entry.field == "value2").unwrap();
+            assert_eq!(restored.from, CorrectionValue::Null);
+            assert_eq!(restored.to, CorrectionValue::Integer(-6));
+        } else {
+            assert_eq!(report.stale_corrections.len(), 1);
+            assert!(
+                matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "-4")
+            );
+        }
+    }
 }
 
 #[test]

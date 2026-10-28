@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 47;
+pub const SCHEMA_VERSION: i64 = 48;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -453,6 +453,8 @@ CREATE TABLE IF NOT EXISTS effects (
     tier                 INTEGER CHECK (tier IS NULL OR tier > 0),
     stat_set_verdict      TEXT CHECK (stat_set_verdict IN ('distinct', 'composes')),
     stat_set_reason       TEXT CHECK (stat_set_reason IS NULL OR TRIM(stat_set_reason) <> ''),
+    omits_bonus_type      INTEGER NOT NULL DEFAULT 0 CHECK (omits_bonus_type IN (0, 1)),
+    CHECK (omits_bonus_type = 0 OR (is_stat = 0 AND is_group = 0)),
     CHECK ((is_stat = 1) = (category IS NOT NULL)),
     CHECK (is_stat = 0 OR is_group = 0),
     CHECK (is_stat = 1 OR verbose_name_template IS NOT NULL),
@@ -470,6 +472,7 @@ CREATE TABLE IF NOT EXISTS effect_aliases (
     slug TEXT UNIQUE CHECK (slug IS NULL OR TRIM(slug) <> ''),
     verbose_name_template TEXT CHECK (verbose_name_template IS NULL OR TRIM(verbose_name_template) <> ''),
     sort_order INTEGER NOT NULL,
+    omits_bonus_type INTEGER NOT NULL DEFAULT 0 CHECK (omits_bonus_type IN (0, 1)),
     UNIQUE (effect_id, sort_order),
     UNIQUE (effect_id, name)
 );

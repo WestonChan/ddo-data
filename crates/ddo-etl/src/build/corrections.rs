@@ -340,7 +340,7 @@ fn write_correction(
                 .with_context(|| format!("unknown effect {effect_name:?}"))?;
             for item_id in row_ids {
                 let changed = transaction.execute(
-                    "UPDATE item_effects SET value = ?3 WHERE item_id = ?1 AND effect_id = ?2",
+                    &format!("UPDATE item_effects SET {} = ?3 WHERE item_id = ?1 AND effect_id = ?2", field.column),
                     params![item_id, effect_id, correction.to.to_sql()],
                 )?;
                 ensure!(changed == 1, "item {item_id} has no unique effect {effect_name:?}");
@@ -1034,8 +1034,8 @@ fn current_value(
         FieldShape::Integer if correction.kind == CorrectionKind::ItemEffect => {
             let effect_name = correction.effect.as_deref().context("item_effect value names an effect")?;
             let mut statement = transaction.prepare(
-                "SELECT ie.value FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
-                  WHERE ie.item_id = ?1 AND e.name = ?2",
+                &format!("SELECT ie.{} FROM item_effects ie JOIN effects e ON e.id = ie.effect_id
+                  WHERE ie.item_id = ?1 AND e.name = ?2", field.column),
             )?;
             let values: Vec<Option<i64>> = statement
                 .query_map(params![row_id, effect_name], |row| row.get(0))?

@@ -115,6 +115,41 @@ fn an_effect_member_removal_requires_the_member_absent_from_the_file() {
 }
 
 #[test]
+fn omitted_bonus_type_is_restricted_to_complete_named_effect_titles() {
+    for (file, name, is_alias, template, valid) in [
+        ("effects/command.toml", "Command", false, "Command +{1}", true),
+        ("effects/command.toml", "Command", true, "Quiet Command +{1}", true),
+        ("effects/command.toml", "Command", false, "%b1 Command +{1}", false),
+        ("effects/command.toml", "Command", true, "%b1 Quiet Command +{1}", false),
+        ("effects/stats/strength.toml", "Strength", false, "Strength +{1}", false),
+        ("effects/stats/strength.toml", "Strength", true, "Quiet Strength +{1}", false),
+        ("effects/stat-groups/charisma-skills.toml", "Charisma Skills", false, "Charisma Skills +{1}", false),
+        ("effects/stat-groups/charisma-skills.toml", "Charisma Skills", true, "Quiet Skills +{1}", false),
+    ] {
+        let error = fixture::data_build_error(|root| {
+            let path = root.join(file);
+            let original = std::fs::read_to_string(&path).unwrap().replace("omits_bonus_type = true\n", "");
+            let modified = if is_alias {
+                format!("{original}\n[[alias]]\nname = 'Quiet Title'\nverbose_name_template = {template:?}\nomits_bonus_type = true\n")
+            } else {
+                let original = original
+                    .lines()
+                    .filter(|line| !line.starts_with("verbose_name_template ="))
+                    .collect::<Vec<_>>()
+                    .join("\n");
+                format!("omits_bonus_type = true\nverbose_name_template = {template:?}\n{original}\n")
+            };
+            std::fs::write(path, modified).unwrap();
+        });
+        if valid {
+            assert!(error.is_empty(), "{file}: {error}");
+        } else {
+            assert!(error.contains(file) && error.contains(name) && error.contains("omits_bonus_type"), "{error}");
+        }
+    }
+}
+
+#[test]
 fn search_only_aliases_build_but_cannot_be_chosen_by_links() {
     for chosen in [false, true] {
         let error = fixture::data_build_error(|root| {

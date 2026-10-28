@@ -14,6 +14,7 @@ value = 1
 
 [[effect]]
 name = "Command"
+bonus_type = "Competence"
 value = 2
 value2 = -6
 
@@ -26,6 +27,15 @@ value = 10
 name = "Armor-Piercing"
 bonus_type = "Insight"
 value = 3
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "bonus_type"
+upstream = "Insight"
+reason = "The in-game screenshot gives Command a +2 Competence bonus to Charisma skills and a -6 Hide penalty; his definition fixes the skill bonus at Insight."
+url = "https://ddowiki.com/page/Item:Ring_of_Power"
+read = "2026-10-23"
+qualifier = 'effect "Command"'
 
 [[socket]]
 slot = "crafting: against the slave lords set bonus"

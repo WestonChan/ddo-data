@@ -144,6 +144,21 @@ impl<'a> EffectCache<'a> {
         self.families_by_id.get(&id)
     }
 
+    pub(super) fn stat_uses_link_type(&self, family_id: i64, stat: &Stat) -> bool {
+        let family = self.family(family_id).expect("family cached before its rules");
+        let stat_id = self.groupings.effect_named(stat.name).map(|effect| effect.id);
+        family.uses_link_type
+            && !self.groupings.effect_named(&family.name).is_some_and(|definition| {
+                definition.bonuses.iter().any(|bonus| bonus.bonus_type.is_none())
+                    && definition.bonuses.iter().any(|bonus| {
+                        bonus.bonus_type.is_some()
+                            && stat_id.is_some_and(|id| {
+                                bonus.target_id == id || self.groupings.by_id[&bonus.target_id].stat_ids.contains(&id)
+                            })
+                    })
+            })
+    }
+
     pub(super) fn families(&self) -> impl Iterator<Item = &CachedEffect> {
         self.families_by_id.values()
     }
@@ -382,7 +397,7 @@ impl<'a> EffectCache<'a> {
             return Ok(());
         }
         ensure!(
-            !family.uses_link_type || bonus_type.is_none(),
+            !self.stat_uses_link_type(family_id, stat) || bonus_type.is_none(),
             "effect {family_id} stat {:?} has its bonus type at the wrong level",
             stat.name
         );

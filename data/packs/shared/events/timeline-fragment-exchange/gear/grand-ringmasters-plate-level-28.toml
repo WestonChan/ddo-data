@@ -16,9 +16,16 @@ armor_check_penalty = -5
 armor_type = "Heavy"
 max_dex_bonus = 4
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Grand_Ringmaster%27s_Plate_(level_28)"
+read = "2026-10-23"
+note = "R8: the screenshot shows Command +7 with Insight skills and -6 Hide."
+
 [[effect]]
 name = "Command"
+bonus_type = "Insight"
 value = 7
+value2 = -6
 
 [[effect]]
 name = "Blindness Immunity"
@@ -32,6 +39,14 @@ value = 12
 name = "Magical Sheltering"
 bonus_type = "Enhancement"
 value = 32
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "value2"
+reason = "The level-4 and level-28 screenshots show the -6 Hide penalty on Command. The approved correction applies that missing second slot to all nine tiers; their unread bonus types remain as Maetrim supplies them."
+url = "https://ddowiki.com/page/Item:Grand_Ringmaster%27s_Plate_(level_4)"
+read = "2026-10-23"
+qualifier = 'effect "Command"'
 
 [[socket]]
 slot = "green"

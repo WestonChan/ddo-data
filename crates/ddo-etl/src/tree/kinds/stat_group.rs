@@ -15,6 +15,8 @@ database_record! {
             description_template: String => description_template,
             #[serde(default, skip_serializing_if = "Option::is_none")]
             home_bonus_type: Option<String> => home_bonus_type_id [optional_reference "bonus_types"],
+            #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
+            omits_bonus_type: bool => omits_bonus_type,
             #[serde(default, skip_serializing_if = "Option::is_none")]
             set_bonus_line_template: Option<String> => set_bonus_line_template,
             #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -74,6 +76,13 @@ impl StatGroupFile {
         path: &Path,
         ids: &mut super::super::ids::StableIds,
     ) -> Result<i64> {
+        super::effect::validate_name_type_omission(
+            &self.name,
+            Some(&self.verbose_name_template),
+            self.omits_bonus_type,
+            false,
+            path,
+        )?;
         let identity = super::super::slug(&self.name);
         let id = ids.issue("effects", &identity, path)?;
         self.insert(db, id, &identity, false, true)

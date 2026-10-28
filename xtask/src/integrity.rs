@@ -1236,6 +1236,7 @@ fn effect_templates_with_digits_without_amounts(db: &Connection, _options: &Inte
 #[derive(Clone)]
 struct EffectTemplates {
     name: String,
+    omits_bonus_type: bool,
     is_stat: bool,
     is_group: bool,
     description: Option<String>,
@@ -1262,7 +1263,7 @@ fn effect_templates_without_their_placeholders(db: &Connection, _options: &Integ
         "WITH links AS ({links}), counts AS (
         SELECT effect_id, COUNT(*) AS link_count FROM links GROUP BY effect_id)
         SELECT e.id, e.name, e.is_stat, e.is_group, e.description_template, e.verbose_name_template,
-            e.set_bonus_line_template, COALESCE(c.link_count, 0), e.home_bonus_type_id
+            e.set_bonus_line_template, COALESCE(c.link_count, 0), e.home_bonus_type_id, e.omits_bonus_type
         FROM effects e LEFT JOIN counts c ON c.effect_id = e.id ORDER BY e.name"
     ))?;
     let effects = statement
@@ -1278,6 +1279,7 @@ fn effect_templates_without_their_placeholders(db: &Connection, _options: &Integ
                     set_line: row.get(6)?,
                     link_count: row.get(7)?,
                     home_bonus_type_id: row.get(8)?,
+                    omits_bonus_type: row.get(9)?,
                 },
             ))
         })?
@@ -1333,17 +1335,24 @@ fn effect_templates_without_their_placeholders(db: &Connection, _options: &Integ
         .join(" UNION ALL ");
     let mut statement = db.prepare(&format!(
         "WITH links AS ({alias_links}), counts AS (SELECT effect_id, alias, COUNT(*) AS link_count FROM links GROUP BY effect_id, alias)
-         SELECT a.effect_id, a.name, a.verbose_name_template, COALESCE(c.link_count, 0)
+         SELECT a.effect_id, a.name, a.verbose_name_template, COALESCE(c.link_count, 0), a.omits_bonus_type
            FROM effect_aliases a LEFT JOIN counts c ON c.effect_id = a.effect_id AND c.alias = a.name
           WHERE a.verbose_name_template IS NOT NULL ORDER BY a.name"
     ))?;
     for row in statement.query_map([], |row| {
-        Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?, row.get::<_, i64>(3)?))
+        Ok((
+            row.get::<_, i64>(0)?,
+            row.get::<_, String>(1)?,
+            row.get::<_, String>(2)?,
+            row.get::<_, i64>(3)?,
+            row.get::<_, bool>(4)?,
+        ))
     })? {
-        let (id, name, template, link_count) = row?;
+        let (id, name, template, link_count, omits_bonus_type) = row?;
         let canonical = &effects[&id];
         let alias = EffectTemplates {
             name,
+            omits_bonus_type,
             line: Some(template),
             description: None,
             set_line: None,
@@ -1458,6 +1467,7 @@ fn template_causes(
     }
     let typed_templates = match surface {
         TemplateSurface::Effect => vec![
+            (effect.line.as_deref(), EffectTextKind::EnchantmentLine),
             (effect.description.as_deref(), EffectTextKind::Description),
             (effect.set_line.as_deref(), EffectTextKind::SetLine),
         ],
@@ -1465,6 +1475,9 @@ fn template_causes(
     };
     for (text, kind) in typed_templates {
         let Some(text) = text else { continue };
+        if kind == EffectTextKind::EnchantmentLine && effect.omits_bonus_type {
+            continue;
+        }
         if bonuses.iter().any(|bonus| bonus.bonus_type_id.is_none())
             && !effect_text_tokens(text).iter().any(|token| matches!(token.kind, EffectTextTokenKind::BonusType))
         {
@@ -2226,6 +2239,7 @@ fn effect_bonus_type_sources(db: &Connection, _options: &IntegrityOptions) -> Re
     let mut queries = vec!["SELECT e.name, e.id, 'fixed stat type conflicts with %b1 template' FROM effects e
          JOIN effect_bonuses s ON s.effect_id = e.id
          WHERE s.bonus_type_id IS NOT NULL
+           AND NOT EXISTS (SELECT 1 FROM effect_bonuses linked WHERE linked.effect_id = e.id AND linked.bonus_type_id IS NULL)
            AND INSTR(COALESCE(e.verbose_name_template, '') || COALESCE(e.description_template, ''), '%b1') > 0"
         .to_string()];
     queries.extend(EFFECT_OWNER_LINKS.iter().map(|(table, owner_column)| {

@@ -799,6 +799,10 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
     let groupings = crate::groupings::Groupings::from_database(&transaction)?;
     let socket_options = crate::build::SocketOptionTargets::from_database(&transaction)?;
     kinds::effect::EffectAlias::write_validated_slugs(&transaction, &groupings)?;
+    kinds::effect::EffectAlias::validate_type_omissions(
+        &transaction,
+        &entity_locations.iter().map(|(path, kind, _, id)| ((*kind, *id), path.as_path())).collect(),
+    )?;
     kinds::effect::EffectAlias::validate_links(
         &transaction,
         &entity_locations.iter().map(|(path, kind, _, id)| ((*kind, *id), path.as_path())).collect(),

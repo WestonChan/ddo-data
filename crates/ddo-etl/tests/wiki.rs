@@ -916,8 +916,8 @@ fn a_wiki_item_effect_with_a_value_reuses_the_written_buff_family() {
     let wiki = axe_effects_edited(|effects| {
         let oozing = effects.iter_mut().find(|effect| effect.name == "Test Oozing Hunger").unwrap();
         *oozing = WikiItemEffect {
-            name: "Command".into(),
-            description: Some("The wiki describes this command bonus.".into()),
+            name: "Firestorm Lore".into(),
+            description: Some("The wiki describes this spell lore bonus.".into()),
             value: Some(3),
             target: None,
         };
@@ -928,17 +928,17 @@ fn a_wiki_item_effect_with_a_value_reuses_the_written_buff_family() {
             "SELECT e.id, link.value, link.value2 FROM items i
              JOIN item_effects link ON link.item_id = i.id
              JOIN effects e ON e.id = link.effect_id
-             WHERE i.name = ?1 AND e.name = 'Command'",
+             WHERE i.name = ?1 AND e.name = 'Firestorm Lore'",
             [item_name],
             |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)),
         )
         .unwrap()
     };
-    let maetrim_family = identity_for("Grudgebearer's Plate").0;
+    let maetrim_family = identity_for("Lantern of the Abyss").0;
     assert_eq!(identity_for(WIKI_AXE), (maetrim_family, Some(3), None));
-    let command_is_stat: i64 =
+    let family_is_stat: i64 =
         db.query_row("SELECT is_stat FROM effects WHERE id = ?1", [maetrim_family], |row| row.get(0)).unwrap();
-    assert_eq!(command_is_stat, 0);
+    assert_eq!(family_is_stat, 0);
 }
 
 #[test]

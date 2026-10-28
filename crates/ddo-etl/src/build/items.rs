@@ -275,10 +275,17 @@ impl TableWriter<'_> {
                             description_template.as_deref(),
                             count,
                         )?;
-                        let link_typed = self.effects.family(effect_id).expect("effect cached").uses_link_type
-                            || typed_stats.len() == 1;
-                        if link_typed {
-                            ensure!(typed_stats.iter().all(|(_, bonus_type)| Some(*bonus_type) == first_type),
+                        let single_stat = typed_stats.len() == 1;
+                        let link_types = typed_stats
+                            .iter()
+                            .filter_map(|(resolved, bonus_type)| {
+                                (single_stat || self.effects.stat_uses_link_type(effect_id, resolved.stat))
+                                    .then_some(*bonus_type)
+                            })
+                            .collect::<Vec<_>>();
+                        let link_type = link_types.first().copied();
+                        if link_type.is_some() {
+                            ensure!(link_types.iter().all(|bonus_type| Some(*bonus_type) == link_type),
                             "item {item_name:?} family {family_name:?} resolves to multiple bonus types for one %b1 slot");
                         }
                         let rules: Vec<BonusRule> = typed_stats
@@ -291,7 +298,9 @@ impl TableWriter<'_> {
                                 };
                                 BonusRule {
                                     stat: resolved_stat.stat,
-                                    bonus_type: (!link_typed).then_some(bonus_type),
+                                    bonus_type: (!(single_stat
+                                        || self.effects.stat_uses_link_type(effect_id, resolved_stat.stat)))
+                                    .then_some(bonus_type),
                                     amount_from,
                                     constant,
                                 }
@@ -312,10 +321,7 @@ impl TableWriter<'_> {
                         links.push(DerivedEffectLink {
                             alias: None,
                             effect_id,
-                            bonus_type: (link_typed
-                                || self.effects.family(effect_id).is_some_and(|family| family.is_stat))
-                            .then_some(first_type)
-                            .flatten(),
+                            bonus_type: link_type,
                             value,
                             value2,
                             is_split_line: false,

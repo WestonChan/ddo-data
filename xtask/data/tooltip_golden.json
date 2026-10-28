@@ -8114,19 +8114,19 @@
     {
       "augment": "Brightbane Emerald",
       "page": "https://ddowiki.com/page/Item:Brightbane_Emerald",
-      "read": "2026-10-05",
+      "read": "2026-10-28",
       "lines": [
         {
           "kind": "enchantment",
           "depth": 0,
-          "wiki_text": "Insightful Command +4",
-          "wiki_tooltip": "Insightful Command: Passive: +4 insight bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a -6 penalty on Hide checks.",
+          "wiki_text": "Command +4",
+          "wiki_tooltip": "Command: This armor or shield always appears brilliant and gleaming, no matter what the conditions and despite all attempts to paint over or obscure it. Coveted by military leaders of all sorts, it carries a powerful aura that grants a +4 Insight bonus on Charisma-based skill checks. Command armor and command shields make their owners very noticeable, imposing a -6 penalty on Hide checks.",
           "tooltip_is_standard": true,
           "ours": "Command",
           "ours_line": {
             "index": 0,
-            "template": "Insightful Command +{1}",
-            "type": null,
+            "template": "Command +{1}",
+            "type": "Insight",
             "value": 4,
             "value2": -6
           },
@@ -8134,8 +8134,8 @@
           "known_differences": {
             "description": {
               "code": "source_line_style",
-              "reason": "The wiki says insight while Maetrim spells the fixed type Insightful.",
-              "served": "Passive: +4 Insightful bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a -6 penalty on Hide checks."
+              "reason": "Our consistent description summarizes the screenshot prose while retaining its Insight amount and Hide penalty.",
+              "served": "Passive: +4 Insight bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a -6 penalty on Hide checks."
             }
           }
         }
@@ -8144,19 +8144,19 @@
     {
       "augment": "Legendary Brightbane Emerald",
       "page": "https://ddowiki.com/page/Item:Legendary_Brightbane_Emerald",
-      "read": "2026-10-05",
+      "read": "2026-10-28",
       "lines": [
         {
           "kind": "enchantment",
           "depth": 0,
-          "wiki_text": "Insightful Command +7",
-          "wiki_tooltip": "Insightful Command: Passive: +7 insight bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a -6 penalty on Hide checks.",
+          "wiki_text": "Command +7",
+          "wiki_tooltip": "Command: This armor or shield always appears brilliant and gleaming, no matter what the conditions and despite all attempts to paint over or obscure it. Coveted by military leaders of all sorts, it carries a powerful aura that grants a +7 Insight bonus on Charisma-based skill checks. Command armor and command shields make their owners very noticeable, imposing a -6 penalty on Hide checks.",
           "tooltip_is_standard": true,
           "ours": "Command",
           "ours_line": {
             "index": 0,
-            "template": "Insightful Command +{1}",
-            "type": null,
+            "template": "Command +{1}",
+            "type": "Insight",
             "value": 7,
             "value2": -6
           },
@@ -8164,8 +8164,8 @@
           "known_differences": {
             "description": {
               "code": "source_line_style",
-              "reason": "The wiki says insight while Maetrim spells the fixed type Insightful.",
-              "served": "Passive: +7 Insightful bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a -6 penalty on Hide checks."
+              "reason": "Our consistent description summarizes the screenshot prose while retaining its Insight amount and Hide penalty.",
+              "served": "Passive: +7 Insight bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a -6 penalty on Hide checks."
             }
           }
         }

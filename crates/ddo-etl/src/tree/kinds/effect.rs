@@ -13,12 +13,65 @@ database_record! {
         keys { effect_id: i64, sort_order: i64, slug: Option<&str> }
         fields {
             name: String => name,
+            #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
+            omits_bonus_type: bool => omits_bonus_type,
             verbose_name_template: Option<String> => verbose_name_template,
         }
     }
 }
 
+pub(in crate::tree) fn validate_name_type_omission(
+    name: &str,
+    template: Option<&str>,
+    omits_bonus_type: bool,
+    is_named_effect: bool,
+    path: &Path,
+) -> Result<()> {
+    if omits_bonus_type {
+        ensure!(
+            is_named_effect,
+            "{}: {name:?}: omits_bonus_type is only valid on a named effect or its alias",
+            path.display()
+        );
+        let template = template
+            .with_context(|| format!("{}: {name:?}: omits_bonus_type requires a name template", path.display()))?;
+        ensure!(
+            !template.contains("%b1"),
+            "{}: {name:?}: omits_bonus_type forbids %b1 in its name template",
+            path.display()
+        );
+    }
+    Ok(())
+}
+
 impl EffectAlias {
+    pub(in crate::tree) fn validate_type_omissions(
+        db: &Connection,
+        locations: &BTreeMap<(&str, i64), &Path>,
+    ) -> Result<()> {
+        let mut statement = db.prepare("SELECT e.id,e.name,a.name,a.verbose_name_template,e.is_stat=0 AND e.is_group=0 FROM effect_aliases a JOIN effects e ON e.id=a.effect_id WHERE a.omits_bonus_type=1 ORDER BY e.name,a.sort_order")?;
+        for row in statement.query_map([], |row| {
+            Ok((
+                row.get::<_, i64>(0)?,
+                row.get::<_, String>(1)?,
+                row.get::<_, String>(2)?,
+                row.get::<_, Option<String>>(3)?,
+                row.get::<_, bool>(4)?,
+            ))
+        })? {
+            let (id, owner, alias, template, is_named_effect) = row?;
+            let path = locations.get(&("effects", id)).context("alias owner has no file location")?;
+            validate_name_type_omission(
+                &format!("{owner} alias {alias}"),
+                template.as_deref(),
+                true,
+                is_named_effect,
+                path,
+            )?;
+        }
+        Ok(())
+    }
+
     pub(in crate::tree) fn validate_links(db: &Connection, locations: &BTreeMap<(&str, i64), &Path>) -> Result<()> {
         let mut statement = db.prepare(
             "WITH links AS (
@@ -222,6 +275,8 @@ database_record! {
             description_template: Option<String> => description_template [correctable],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             home_bonus_type: Option<String> => home_bonus_type_id [optional_reference "bonus_types"],
+            #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
+            omits_bonus_type: bool => omits_bonus_type,
             #[serde(default, skip_serializing_if = "Option::is_none")]
             set_bonus_line_template: Option<String> => set_bonus_line_template,
             #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -300,6 +355,7 @@ impl EffectFile {
     }
 
     pub(in crate::tree) fn write_effect(&self, db: &Connection, path: &Path, id: i64, identity: &str) -> Result<()> {
+        validate_name_type_omission(&self.name, Some(&self.verbose_name_template), self.omits_bonus_type, true, path)?;
         ensure!(
             id == super::super::ids::stable_hash(&["effects", identity]),
             "{}: effect id does not match its slug",
@@ -373,6 +429,7 @@ mod tests {
             file.write_effect(&db, Path::new("effects/test.toml"), id, &identity).unwrap();
             let alias = EffectAlias {
                 name: format!("Example Alias {index}"),
+                omits_bonus_type: false,
                 verbose_name_template: Some(format!("Example Alias {index}")),
             };
             alias.insert(&db, id, 0, Some(&super::super::super::slug(&alias.name))).unwrap();

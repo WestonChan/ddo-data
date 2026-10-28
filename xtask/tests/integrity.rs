@@ -73,6 +73,35 @@ fn fixture_options() -> IntegrityOptions {
 }
 
 #[test]
+fn mixed_fixed_and_link_bonus_types_require_an_owner_type() {
+    let scratch = tempfile::tempdir().unwrap();
+    let path = fixture_db_copy_in(scratch.path());
+    let db = Connection::open(&path).unwrap();
+    let command_id: i64 = db.query_row("SELECT id FROM effects WHERE name='Command'", [], |row| row.get(0)).unwrap();
+    let command_findings = || {
+        integrity_report(&db, &fixture_options())
+            .unwrap()
+            .outcome("effect_bonus_type_sources")
+            .unwrap()
+            .offenders
+            .iter()
+            .filter(|offender| offender.id == Some(command_id))
+            .map(|offender| offender.detail.clone())
+            .collect::<Vec<_>>()
+    };
+    assert!(command_findings().is_empty(), "a fixed Hide penalty may accompany link-typed Charisma skills");
+    db.execute("UPDATE item_effects SET bonus_type_id=NULL WHERE effect_id=?1", [command_id]).unwrap();
+    assert!(command_findings().iter().any(|finding| finding.contains("wrong type source")));
+    db.execute(
+        "UPDATE item_effects SET bonus_type_id=(SELECT id FROM bonus_types WHERE name='Insight') WHERE effect_id=?1",
+        [command_id],
+    )
+    .unwrap();
+    db.execute("UPDATE effect_bonuses SET bonus_type_id=(SELECT id FROM bonus_types WHERE name='Insight') WHERE effect_id=?1 AND bonus_type_id IS NULL", [command_id]).unwrap();
+    assert!(command_findings().iter().any(|finding| finding.contains("fixed stat type conflicts")));
+}
+
+#[test]
 fn open_verification_requests_list_each_target_once_and_remain_warnings() {
     let scratch = tempfile::tempdir().unwrap();
     let tree = scratch.path().join("data");
@@ -155,11 +184,83 @@ fn template_violations() -> Vec<(&'static str, &'static str, &'static str)> {
         ("T2", "Doublestrike and Doubleshot", "UPDATE effects SET verbose_name_template = REPLACE(verbose_name_template, '{1}', '{2}') WHERE name = 'Doublestrike and Doubleshot'"),
         ("T3", "Doublestrike and Doubleshot", "UPDATE effects SET description_template = REPLACE(description_template, '%b1', 'Enhancement') WHERE name = 'Doublestrike and Doubleshot'"),
         ("T3", "Doublestrike and Doubleshot", "UPDATE effects SET set_bonus_line_template = REPLACE(set_bonus_line_template, '%b1', 'Enhancement') WHERE name = 'Doublestrike and Doubleshot'"),
-        ("T4", "Command", "UPDATE effects SET description_template = REPLACE(description_template, 'Insightful', '') WHERE name = 'Command'"),
+        ("T4", "Command", "UPDATE effects SET description_template = REPLACE(description_template, 'penalty', '') WHERE name = 'Command'"),
         ("T5", "Doublestrike and Doubleshot", "UPDATE effects SET description_template = REPLACE(description_template, '{1}%', '{1}') WHERE name = 'Doublestrike and Doubleshot'"),
         ("T6", "Shadow Striker", "UPDATE effects SET description_template = REPLACE(description_template, '+15% Enhancement Bonus to Ranged', '+20% Enhancement Bonus to Ranged') WHERE name = 'Shadow Striker'"),
         ("T7", "Unmodelled Amount", "INSERT INTO effects (name, slug, verbose_name_template) VALUES ('Unmodelled Amount', 'unmodelled-amount', 'Unmodelled Amount +7%'); INSERT INTO item_effects (item_id, effect_id, sort_order) SELECT (SELECT MIN(id) FROM items), id, 9999 FROM effects WHERE name = 'Unmodelled Amount'"),
     ]
+}
+
+#[test]
+fn omitted_bonus_type_exempts_only_title_type_checks() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+    let templates = "effect_templates_without_their_placeholders";
+    for marked in [false, true] {
+        db.execute("UPDATE effects SET omits_bonus_type=?1 WHERE name='Command'", [marked]).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let findings = &report.outcome(templates).unwrap().offenders;
+        let command = findings.iter().find(|finding| finding.name == "Command");
+        if marked {
+            assert!(
+                command.is_none_or(|finding| !finding.detail.contains("T3:") && !finding.detail.contains("T4:")),
+                "{command:?}"
+            );
+        } else {
+            assert!(command.is_some_and(|finding| finding.detail.contains("T3:")), "{command:?}");
+        }
+    }
+    for (owner, template, expected) in
+        [("Shadow Striker", "Shadow Striker +99%", "T6:"), ("True Seeing", "True Seeing +5", "T7:")]
+    {
+        db.execute(
+            "UPDATE effects SET omits_bonus_type=1,verbose_name_template=?2 WHERE name=?1",
+            rusqlite::params![owner, template],
+        )
+        .unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        assert!(
+            report
+                .outcome(templates)
+                .unwrap()
+                .offenders
+                .iter()
+                .any(|finding| finding.name == owner && finding.detail.contains(expected)),
+            "{owner}: {report}"
+        );
+    }
+    db.execute("INSERT INTO effect_aliases (effect_id,name,verbose_name_template,sort_order) SELECT id,'Quiet Command','Quiet Command +{1}',0 FROM effects WHERE name='Command'", []).unwrap();
+    for marked in [false, true] {
+        db.execute("UPDATE effect_aliases SET omits_bonus_type=?1 WHERE name='Quiet Command'", [marked]).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let finding =
+            report.outcome(templates).unwrap().offenders.iter().find(|finding| finding.name == "Quiet Command");
+        assert_eq!(
+            finding.is_some_and(|finding| finding.detail.contains("T3:") || finding.detail.contains("T4:")),
+            !marked,
+            "{finding:?}"
+        );
+    }
+    db.execute("UPDATE effects SET verbose_name_template='Command +2' WHERE name='Command'", []).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    assert!(report
+        .outcome(templates)
+        .unwrap()
+        .offenders
+        .iter()
+        .any(|finding| finding.name == "Command" && finding.detail.contains("T2:")));
+    db.execute("UPDATE effects SET verbose_name_template='Command +{1}',description_template=REPLACE(description_template,'%b1','Insightful') WHERE name='Command'", []).unwrap();
+    db.execute("UPDATE item_effects SET bonus_type_id=(SELECT id FROM bonus_types WHERE name='Competence') WHERE effect_id=(SELECT id FROM effects WHERE name='Command')", []).unwrap();
+    let report = integrity_report(&db, &fixture_options()).unwrap();
+    assert!(
+        report
+            .outcome("effect_descriptions_without_their_amounts")
+            .unwrap()
+            .offenders
+            .iter()
+            .any(|finding| finding.detail.contains("type missing") && finding.detail.contains("Command")),
+        "{report}"
+    );
 }
 
 #[test]
@@ -586,7 +687,7 @@ rounding = "down"
 fn served_type_check_requires_the_granted_type() {
     let scratch = tempfile::tempdir().unwrap();
     let db = Connection::open(fixture_db_copy_with(scratch.path(),
-        "UPDATE effects SET description_template = REPLACE(description_template, 'Insightful', 'Profane') WHERE name = 'Command'"
+        "UPDATE effects SET description_template = REPLACE(description_template, '%b1', 'Profane') WHERE name = 'Command'"
     )).unwrap();
     let report = integrity_report(&db, &fixture_options()).unwrap();
     let outcome = report.outcome("effect_descriptions_without_their_amounts").unwrap();
@@ -1701,7 +1802,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
         "Unmodelled Charges",
     ));
     violations.push(violation("effect_descriptions_without_their_amounts",
-        "UPDATE effects SET description_template = REPLACE(description_template, 'Insightful', 'Profane') WHERE name = 'Command'", "Command"));
+        "UPDATE effects SET description_template = REPLACE(description_template, '%b1', 'Profane') WHERE name = 'Command'", "Command"));
     violations
 }
 

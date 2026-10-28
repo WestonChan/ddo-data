@@ -2890,6 +2890,51 @@ fn writes_a_buff_without_a_value_at_the_amount_its_definition_fixes() {
 }
 
 #[test]
+fn command_keeps_the_hide_penalty_when_its_skill_type_comes_from_the_owner() {
+    let source = fixture::xml_source();
+    fixture::write_command_owners(source.path());
+    let index = fixture::groupings();
+    let correction = fixture::new_qualified_correction(
+        "item_effect",
+        "Ring of Power",
+        "effect = 'Command'",
+        "bonus_type",
+        "\"Insight\"",
+        "\"Competence\"",
+    );
+    let corrections = fixture::corrections_from(&[("ring-of-power.toml", &correction)]).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        index,
+        source.path(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
+    for (owner, expected_type) in [("Grudgebearer's Plate", "Insight"), ("Ring of Power", "Competence")] {
+        let link = db.query_row("SELECT l.value,l.value2,bt.name FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id JOIN bonus_types bt ON bt.id=l.bonus_type_id WHERE i.name=?1 AND e.name='Command'", [owner], |row| Ok((row.get::<_,i64>(0)?,row.get::<_,i64>(1)?,row.get::<_,String>(2)?))).unwrap();
+        assert_eq!(link, (2, -6, expected_type.into()));
+        let bonuses = db.prepare("SELECT s.name,bt.name,b.amount FROM owner_bonuses b JOIN items i ON i.id=b.owner_id JOIN effects e ON e.id=b.via_effect_id JOIN effects s ON s.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id WHERE b.owner_kind='item' AND i.name=?1 AND e.name='Command' ORDER BY s.name").unwrap().query_map([owner], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        let expected =
+            ["Bluff", "Diplomacy", "Haggle", "Hide", "Intimidate", "Perform", "Use Magic Device"].map(|stat| {
+                if stat == "Hide" {
+                    (stat.into(), "Penalty".into(), -6)
+                } else {
+                    (stat.into(), expected_type.into(), 2)
+                }
+            });
+        assert_eq!(bonuses, expected, "{owner}");
+    }
+    for (owner, amount) in [("Brightbane Emerald", 5), ("Legendary Brightbane Emerald", 7)] {
+        let link = db.query_row("SELECT e.name,l.value,l.value2,bt.name FROM augment_effects l JOIN augments a ON a.id=l.augment_id JOIN effects e ON e.id=l.effect_id JOIN bonus_types bt ON bt.id=l.bonus_type_id WHERE a.name=?1", [owner], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?,row.get::<_,i64>(2)?,row.get::<_,String>(3)?))).unwrap();
+        assert_eq!(link, ("Command".into(), amount, -6, "Insight".into()));
+    }
+}
+
+#[test]
 fn writes_buffs_named_after_a_stat_as_bonuses() {
     let (db, _) = built_fixture_db();
     let stat_bonuses_by_item = |item_name: &str, stat_name: &str| -> Vec<(Option<String>, Option<i64>, Option<i64>)> {

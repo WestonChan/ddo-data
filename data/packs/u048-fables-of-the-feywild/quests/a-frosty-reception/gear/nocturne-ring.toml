@@ -7,8 +7,14 @@ material = "Steel"
 minimum_level = 5
 slot = "Ring"
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Nocturne_Ring"
+read = "2026-10-23"
+note = "R8: the screenshot shows Command +3, a +3 Insight bonus to Charisma skills and -6 Hide."
+
 [[effect]]
 name = "Command"
+bonus_type = "Insight"
 value = 3
 value2 = -6
 

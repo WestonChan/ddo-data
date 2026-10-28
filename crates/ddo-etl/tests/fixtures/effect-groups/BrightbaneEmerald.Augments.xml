@@ -1,0 +1,54 @@
+<Augments>
+  <Augment>
+      <Name>Brightbane Emerald</Name>
+      <Description>Command. This armor or shield always appears brilliant and gleaming, no matter
+what he conditions and despite all attempts to paint over or obscure it.
+Coveted by military leaders of all sorts, it carries a powerful aura that
+grants a +5 Insight bonus on Charisma-based skill checks. Command armor and
+command shields make their owners very noticeable, imposing a -6 penalty on
+Hide checks.</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Green</Type>
+      <Icon>Emerald</Icon>
+      <Effect>
+         <Type>SkillBonusAbility</Type>
+         <Bonus>Insightful</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">5</Amount>
+         <Item>Charisma</Item>
+      </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">-6</Amount>
+         <Item>Hide</Item>
+      </Effect>
+   </Augment>
+  <Augment>
+      <Name>Legendary Brightbane Emerald</Name>
+      <Description>Command +7. This armor or shield always appears brilliant and gleaming, no matter
+what he conditions and despite all attempts to paint over or obscure it.
+Coveted by military leaders of all sorts, it carries a powerful aura that
+grants a +7 Insight bonus on Charisma-based skill checks. Command armor and
+command shields make their owners very noticeable, imposing a -6 penalty on
+Hide checks.</Description>
+      <MinLevel>30</MinLevel>
+      <Type>Green</Type>
+      <Icon>Emerald</Icon>
+      <Effect>
+         <Type>SkillBonusAbility</Type>
+         <Bonus>Insightful</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">7</Amount>
+         <Item>Charisma</Item>
+      </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">-6</Amount>
+         <Item>Hide</Item>
+      </Effect>
+   </Augment>
+</Augments>

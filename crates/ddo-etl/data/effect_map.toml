@@ -325,6 +325,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "With 2–6 augments, gain a 5%–9% Legendary bonus to Spell Points." = "Spell Point Augment Scaling"
 
 [home_bonus_types]
+"Command" = "none"
 "Silver Flame Lore" = "Equipment"
 "Power of the Dark Restoration" = "Equipment"
 "Negative Amplification" = "none"
@@ -413,6 +414,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Universal Spell Lore" = "+{1}% %b1 Bonus to Spell Critical Chance"
 
 [description_templates]
+"Command" = "Passive: {1} %b1 bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a {2} penalty on Hide checks."
 "Flaming Blast 2" = "This weapon burns with deadly magical fire, dealing 2d6 Fire damage on a successful hit, and an additional 2d6 Fire damage on a critical hit."
 "Flaming Blast 3" = "This weapon burns with deadly magical fire, dealing 3d6 Fire damage on a successful hit, and an additional 3d6 Fire damage on a critical hit."
 "Flaming Blast 4" = "This weapon burns with deadly magical fire, dealing 4d6 Fire damage on a successful hit, and an additional 4d6 Fire damage on a critical hit."

@@ -518,6 +518,7 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
     let sql = format!(
         "SELECT j.{owner_column} AS owner_id, j.sort_order, e.id AS effect_id, e.slug AS effect_slug, COALESCE(a.name, e.name) AS name,
                 COALESCE(a.verbose_name_template, e.verbose_name_template, '%b1 ' || e.name || ' +{{1}}') AS verbose_name_template,
+                COALESCE(a.omits_bonus_type, e.omits_bonus_type) AS omits_bonus_type,
                 j.alias,
                 e.set_bonus_line_template, e.description_template, j.value, j.value2,
                 COALESCE(j.value, e.default_value,
@@ -730,7 +731,11 @@ fn render_verbose_name(row: &Value) -> String {
         template
     };
     let rendered = render_effect_template(template, &rendered_row).split_whitespace().collect::<Vec<_>>().join(" ");
-    if !visible_type.is_empty() && !template.contains("%b1") && !rendered.starts_with(visible_type) {
+    if row["omits_bonus_type"] != 1
+        && !visible_type.is_empty()
+        && !template.contains("%b1")
+        && !rendered.starts_with(visible_type)
+    {
         format!("{visible_type} {rendered}")
     } else {
         rendered

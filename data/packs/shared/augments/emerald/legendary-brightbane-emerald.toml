@@ -10,8 +10,14 @@ family = "Emerald"
 icon = "Emerald"
 min_level = 30
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Legendary_Brightbane_Emerald"
+read = "2026-10-28"
+note = "The examine screenshot shows Command +7, an Insight bonus to Charisma-based skills and a -6 Hide penalty; the title has no type prefix. Screenshot: https://images.ddowiki.com/Legendary_Brightbane_Emerald.png"
+
 [[effect]]
 name = "Command"
+bonus_type = "Insight"
 value = 7
 value2 = -6
 

@@ -2475,6 +2475,48 @@ fn a_quest_he_adds_that_we_already_hold_keeps_the_facts_only_we_carry() {
 }
 
 #[test]
+fn title_omission_declarations_remain_ours_through_import() {
+    let world =
+        ImportWorld::with_sources(fixture::groupings(), Corrections::default(), WikiOverrides::default(), |source| {
+            let captured = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles");
+            std::fs::copy(captured.join("ItemBuffs.xml"), source.join("ItemBuffs.xml")).unwrap();
+            std::fs::create_dir_all(source.join("Items")).unwrap();
+            std::fs::copy(
+                captured.join("Items/Grudgebearer's Plate.item"),
+                source.join("Items/GrudgebearersPlate.item"),
+            )
+            .unwrap();
+            std::fs::create_dir_all(source.join("ItemImages/Armor_Heavy")).unwrap();
+            std::fs::write(
+                source.join("ItemImages/Armor_Heavy/HeavyArmor_1a.png"),
+                include_bytes!("fixtures/effect-groups/icons/HeavyArmor_1a.png"),
+            )
+            .unwrap();
+        });
+    world.edit("UPDATE effects SET omits_bonus_type=1 WHERE name='Command'; INSERT INTO effect_aliases (effect_id,name,slug,verbose_name_template,omits_bonus_type,sort_order) SELECT id,'Quiet Command','quiet-command','Quiet Command +{1}',1,0 FROM effects WHERE name='Command';");
+    let normalized = ddo_etl::import_ddobuilder::normalized_upstream_database(
+        &world.options.source_dir,
+        &world.database(),
+        &DatasetVersion { upstream_sha: NEW_SHA.into(), built_at: "2026-10-28T00:00:00Z".into() },
+        false,
+        &world.scratch.path().join("marker-normalized"),
+    )
+    .unwrap();
+    assert!(normalized
+        .db
+        .query_row("SELECT omits_bonus_type FROM effects WHERE name='Command'", [], |row| row.get::<_, bool>(0))
+        .unwrap());
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    let db = world.database();
+    let markers: (bool,bool) = db.query_row("SELECT e.omits_bonus_type,a.omits_bonus_type FROM effects e JOIN effect_aliases a ON a.effect_id=e.id WHERE e.name='Command'", [], |row| Ok((row.get(0)?,row.get(1)?))).unwrap();
+    assert_eq!(markers, (true, true));
+    let before = tree::data_file_bytes(&world.options.data_dir).unwrap();
+    tree::export_database(&db, &world.options.data_dir).unwrap();
+    assert_eq!(before, tree::data_file_bytes(&world.options.data_dir).unwrap());
+}
+
+#[test]
 fn his_xml_never_carries_a_column_declared_ours_only() {
     let mut his = Connection::open_in_memory().unwrap();
     build::build_database(

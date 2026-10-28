@@ -827,6 +827,50 @@ async fn detail_effects_render_family_stats_and_text_only_lines() {
 }
 
 #[tokio::test]
+async fn complete_named_effect_titles_omit_types_without_changing_descriptions_or_other_templates() {
+    let state = fixture_state_with_data_edits("omitted-bonus-type", |root| {
+        let path = root.join("effects/command.toml");
+        let original = std::fs::read_to_string(&path).unwrap().replace("omits_bonus_type = true\n", "");
+        std::fs::write(path, format!("omits_bonus_type = true\n{original}\n[[alias]]\nname = 'Quiet Command'\nverbose_name_template = 'Quiet Command +{{1}}'\nomits_bonus_type = true\n[[alias]]\nname = 'Typed Command'\nverbose_name_template = '%b1 Typed Command +{{1}}'\n")).unwrap();
+        for (name, bonus_type, amount, alias) in [
+            ("Nocturne Ring", "Insight", 3, None),
+            ("Ring of Power", "Competence", 2, None),
+            ("Quiet Command Ring", "Insight", 3, Some("Quiet Command")),
+            ("Typed Command Ring", "Insight", 3, Some("Typed Command")),
+        ] {
+            let alias = alias.map_or(String::new(), |name| format!("alias = {name:?}\n"));
+            std::fs::write(root.join(format!("packs/unsourced/gear/{}.toml", ddo_model::identity::slug(name))), format!("name = {name:?}\nslot = 'Ring'\nminimum_level = 8\nitem_category = 'Jewelry'\n[[effect]]\nname = 'Command'\n{alias}bonus_type = {bonus_type:?}\nvalue = {amount}\nvalue2 = -6\n")).unwrap();
+        }
+        let path = root.join("packs/shared/gear/alabaster-of-the-twelve.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        let source =
+            fixture_data_dir().parent().unwrap().join("effect-groups/data/effects/stat-groups/strength-skills.toml");
+        std::fs::copy(source, root.join("effects/stat-groups/strength-skills.toml")).unwrap();
+        std::fs::write(
+            path,
+            format!("{original}\n[[effect]]\nname = 'Strength Skills'\nbonus_type = 'Insight'\nvalue = 5\n"),
+        )
+        .unwrap();
+    });
+    for (owner, title, description) in [
+        ("nocturne-ring", "Command +3", "+3 Insight bonus"),
+        ("ring-of-power", "Command +2", "+2 Competence bonus"),
+        ("quiet-command-ring", "Quiet Command +3", "+3 Insight bonus"),
+        ("typed-command-ring", "Insightful Typed Command +3", "+3 Insight bonus"),
+    ] {
+        let (status, _, response) = get_from(state.clone(), &format!("/v1/items/{owner}")).await;
+        assert_eq!(status, StatusCode::OK, "{response}");
+        let line = &response["effects"][0];
+        assert_eq!(line["verbose_name"], title);
+        assert!(line["description"].as_str().unwrap().contains(description));
+        assert!(line["description"].as_str().unwrap().contains("-6 penalty on Hide"));
+    }
+    let (_, _, item) = get_from(state, "/v1/items/alabaster-of-the-twelve").await;
+    let line = item["effects"].as_array().unwrap().iter().find(|line| line["name"] == "Strength Skills").unwrap();
+    assert_eq!(line["verbose_name"], "Insightful Strength Skills +5");
+}
+
+#[tokio::test]
 async fn command_expands_charisma_skills_and_group_filters_find_its_item() {
     let plate = item_detail_named("grudgebearer").await;
     let command = plate["effects"].as_array().unwrap().iter().find(|line| line["name"] == "Command").unwrap();
