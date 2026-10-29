@@ -409,12 +409,12 @@ pub(crate) fn write_command_owners(source: &std::path::Path) {
 pub(crate) fn rank_option_merge(rank: &str) -> CorrectionSet {
     let mut correction = spyglass_option_correction(
         "lines",
-        serde_json::json!(["Armor Class", "Saving Throws"]),
+        serde_json::json!([["Armor Class"], ["Saving Throws"]]),
         CorrectionValue::Text(rank.into()),
     );
     correction.0[0].socket = Some("crafting: variant".into());
     correction.0[0].option = Some(rank.into());
-    correction.0[0].stat = Some(rank.into());
+    correction.0[0].stat = Some("Armor Class, Saving Throws".into());
     correction.0[0].bonus_type = Some("Insight".into());
     correction
 }
@@ -475,9 +475,9 @@ pub(crate) fn swiftness_merge() -> CorrectionSet {
     new_qualified_correction(
         "augment_bonus",
         "Topaz of Swiftness",
-        "stat = 'Speed'\nbonus_type = 'Enhancement'",
+        "stat = \"Movement Speed, Melee Attack Speed, Ranged Attack Speed\"\nbonus_type = 'Enhancement'",
         "lines",
-        "['Movement Speed', 'Melee and Ranged Attack Speed']",
+        "[[\"Movement Speed\"], [\"Melee Attack Speed\", \"Ranged Attack Speed\"]]",
         "'Speed'",
     )
 }
@@ -492,9 +492,9 @@ pub(crate) fn search_and_spot_merge() -> CorrectionSet {
     new_qualified_correction(
         "item_bonus",
         "Legendary Keylock Ring",
-        "stat = 'Search and Spot'\nbonus_type = 'Competence'",
+        "stat = \"Search, Spot\"\nbonus_type = 'Competence'",
         "lines",
-        "[\"Search\", \"Spot\"]",
+        "[[\"Search\"], [\"Spot\"]]",
         "\"Search and Spot\"",
     )
 }

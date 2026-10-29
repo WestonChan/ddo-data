@@ -592,7 +592,7 @@ impl TableWriter<'_> {
         let mut split_correction = None;
         for correction in split_corrections {
             if !self.correction_owner_matches(correction, owner_id)?
-                || correction.upstream_line_stats(self.groupings)? != [stats.clone()]
+                || correction.upstream_line_stats()? != [stats.clone()]
             {
                 continue;
             }
@@ -762,7 +762,7 @@ impl TableWriter<'_> {
                 continue;
             }
             correction.line_partition_stats(self.groupings)?;
-            let Some(selection) = super::corrections::line_merge_selection(correction, self.groupings, &rows)? else {
+            let Some(selection) = super::corrections::line_merge_selection(correction, &rows)? else {
                 continue;
             };
             anyhow::ensure!(

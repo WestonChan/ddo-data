@@ -350,7 +350,10 @@ fn a_merge_import_accepts_a_changed_amount_without_conflict() {
             |row| row.get(0),
         )
         .unwrap();
-    assert_eq!(serde_json::from_str::<serde_json::Value>(&upstream).unwrap(), serde_json::json!(["Search", "Spot"]));
+    assert_eq!(
+        serde_json::from_str::<serde_json::Value>(&upstream).unwrap(),
+        serde_json::json!([["Search"], ["Spot"]])
+    );
 }
 
 #[test]

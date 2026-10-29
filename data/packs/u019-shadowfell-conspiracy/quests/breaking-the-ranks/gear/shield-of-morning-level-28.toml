@@ -38,13 +38,13 @@ name = "Solar Guard VII"
 kind = "socket_option_bonus"
 field = "lines"
 upstream = [
-    "Armor Class",
-    "Saving Throws",
+    ["Armor Class"],
+    ["Saving Throws"],
 ]
 reason = "R13 confirms that this choice is the named Riposte VII enchantment, including its existing passive bonuses and proc where present."
 url = "https://ddowiki.com/page/Item:Shield_of_Morning_(level_28)"
 read = "2026-10-26"
-qualifier = 'socket "crafting: variant", option "Riposte VII", Riposte VII / Insight'
+qualifier = 'socket "crafting: variant", option "Riposte VII", Armor Class, Saving Throws / Insight'
 
 [[socket]]
 slot = "crafting: variant"

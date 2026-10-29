@@ -1029,7 +1029,7 @@ struct DescriptionCheckSkips {
 fn description_check_skips(db: &Connection) -> Result<DescriptionCheckSkips> {
     let mut statement = db.prepare(
         "SELECT bug.id, bug.owner_id AS annotation_owner_id, identity.name, bug.kind, bug.field,
-            bug.qualifier, bug.reason, bug.url, bug.read, note.owner_kind, note.owner_id, note.link_sort_order
+            bug.qualifier, bug.reason, bug.url, bug.read, bug.intended_value, note.owner_kind, note.owner_id, note.link_sort_order
          FROM game_bug_corrections bug
          JOIN entity_identity identity ON identity.kind = bug.owner_kind AND identity.entity_id = bug.owner_id
          LEFT JOIN note_lines note ON note.note_kind = 'game_bug' AND note.note_id = bug.id
@@ -1057,6 +1057,7 @@ fn description_check_skips(db: &Connection) -> Result<DescriptionCheckSkips> {
                 row.get::<_, Option<String>>("owner_kind")?,
                 row.get::<_, Option<i64>>("owner_id")?,
                 row.get::<_, Option<i64>>("link_sort_order")?,
+                row.get::<_, String>("intended_value")?,
             ))
         })?
         .collect::<rusqlite::Result<Vec<_>>>()?;
@@ -1065,11 +1066,16 @@ fn description_check_skips(db: &Connection) -> Result<DescriptionCheckSkips> {
         return Ok(skips);
     }
     let groupings = ddo_etl::groupings::Groupings::from_database(db)?;
-    for (note_id, annotation_owner_id, name, note, owner_kind, owner_id, sort_order) in records {
-        let correction = ddo_etl::tree::correction_for_note(&note, &name)?;
+    for (note_id, annotation_owner_id, name, note, owner_kind, owner_id, sort_order, intended) in records {
+        let mut correction = ddo_etl::tree::correction_for_note(&note, &name)?;
         let target =
             correction.stat.as_deref().or(correction.effect.as_deref()).context("skip flag has no stat target")?;
-        let stats = groupings.expanded_stat_names(target)?;
+        let stats = if note.field == "lines" {
+            correction.from = ddo_etl::corrections::CorrectionValue::from_json(&intended)?;
+            correction.upstream_line_stats()?.into_iter().flatten().collect()
+        } else {
+            groupings.expanded_stat_names(target)?
+        };
         skips.unused.entry(note_id).or_insert_with(|| Offender {
             name,
             id: Some(annotation_owner_id),

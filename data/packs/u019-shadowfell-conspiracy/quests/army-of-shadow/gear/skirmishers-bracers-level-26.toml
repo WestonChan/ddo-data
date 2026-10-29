@@ -22,13 +22,13 @@ value = 8
 kind = "item_bonus"
 field = "lines"
 upstream = [
-    "Doubleshot",
-    "Doublestrike",
+    ["Doubleshot"],
+    ["Doublestrike"],
 ]
 reason = "The screenshot shows one Doublestrike line granting both Doublestrike and Doubleshot."
 url = "https://ddowiki.com/page/Item:Skirmisher%27s_Bracers_(level_26)"
 read = "2026-10-23"
-qualifier = "Doublestrike and Doubleshot / Enhancement"
+qualifier = "Doublestrike, Doubleshot / Enhancement"
 
 [[ddobuilder_correction]]
 kind = "item_bonus"

@@ -38,13 +38,13 @@ name = "Solar Guard IV"
 kind = "socket_option_bonus"
 field = "lines"
 upstream = [
-    "Armor Class",
-    "Saving Throws",
+    ["Armor Class"],
+    ["Saving Throws"],
 ]
 reason = "R13 confirms that this choice is the named Riposte IV enchantment, including its existing passive bonuses and proc where present."
 url = "https://ddowiki.com/page/Item:Shield_of_Morning_(level_19)"
 read = "2026-10-26"
-qualifier = 'socket "crafting: variant", option "Riposte IV", Riposte IV / Insight'
+qualifier = 'socket "crafting: variant", option "Riposte IV", Armor Class, Saving Throws / Insight'
 
 [[socket]]
 slot = "crafting: variant"

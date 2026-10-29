@@ -737,6 +737,32 @@ fn effect_template_and_owner_link_value_corrections_keep_one_effect() {
 }
 
 #[test]
+fn lines_corrections_reject_legacy_effect_name_upstreams() {
+    let rejected = [
+        ("'Doublestrike and Doubleshot'", "['Doublestrike', 'Doubleshot']"),
+        ("['Doublestrike', 'Doubleshot']", "'Doublestrike and Doubleshot'"),
+    ]
+    .map(|(upstream, corrected)| {
+        let correction = new_qualified_correction(
+            "augment_bonus",
+            "Woeful Shadow (Legendary)",
+            "stat = 'Doublestrike and Doubleshot'\nbonus_type = 'Profane'",
+            "lines",
+            upstream,
+            corrected,
+        );
+        match validated_corrections(&[("legacy-lines.toml", &correction)]) {
+            Ok(_) => false,
+            Err(error) => {
+                assert!(error.contains("legacy-lines.toml") && error.contains("upstream stat sets"), "{error}");
+                true
+            }
+        }
+    });
+    assert_eq!(rejected, [true, true], "both legacy directions must be rejected");
+}
+
+#[test]
 fn stat_set_splits_need_no_upstream_effect_definition() {
     let source = fixture::xml_source();
     fixture::write_stat_set_split_augments(source.path());
@@ -991,10 +1017,10 @@ fn a_two_slot_lines_merge_preserves_each_slots_stat_amounts() {
     );
     std::fs::write(&path, original.replace(&format!("<Effect>{attack}</Effect>"), &unequal)).unwrap();
     let mut separate_sources = correction.clone();
-    separate_sources.0[0].from = CorrectionValue::Texts(vec![
-        "Movement Speed".into(),
-        "Melee Attack Speed".into(),
-        "Ranged Attack Speed".into(),
+    separate_sources.0[0].from = CorrectionValue::StatSets(vec![
+        vec!["Movement Speed".into()],
+        vec!["Melee Attack Speed".into()],
+        vec!["Ranged Attack Speed".into()],
     ]);
     let error = built_db_from_index(fixture::grouping_cases(), source.path(), &[("swiftness.toml", &separate_sources)])
         .unwrap_err();
@@ -1011,13 +1037,13 @@ fn a_two_slot_lines_merge_preserves_each_slots_stat_amounts() {
 
 #[test]
 fn a_lines_merge_and_split_cannot_both_apply_to_one_line() {
-    let qualifier = "equipped_count = 3\nstat = 'Doublestrike and Doubleshot'\nbonus_type = 'Artifact'";
+    let qualifier = "equipped_count = 3\nstat = 'Doublestrike, Doubleshot'\nbonus_type = 'Artifact'";
     let merge = new_qualified_correction(
         "set_tier_bonus",
         "Kundarak Delving Equipment",
         qualifier,
         "lines",
-        "[\"Doublestrike\", \"Doubleshot\"]",
+        "[[\"Doublestrike\"], [\"Doubleshot\"]]",
         "\"Doublestrike and Doubleshot\"",
     );
     let split = new_qualified_correction(
@@ -1025,7 +1051,7 @@ fn a_lines_merge_and_split_cannot_both_apply_to_one_line() {
         "Kundarak Delving Equipment",
         qualifier,
         "lines",
-        "\"Doublestrike and Doubleshot\"",
+        "[[\"Doublestrike\", \"Doubleshot\"]]",
         "[\"Doublestrike\", \"Doubleshot\"]",
     );
     let error = built_db_with(&[("both-directions.toml", &(merge + &split))]).unwrap_err();
@@ -1094,9 +1120,9 @@ fn an_augment_lines_merge_accepts_a_fixed_type_grouping() {
     let correction = new_qualified_correction(
         "augment_bonus",
         "Woeful Shadow (Legendary)",
-        "stat = 'Power of the Firestorm'\nbonus_type = 'Equipment'",
+        "stat = \"Fire Spell Power, Electric Spell Power\"\nbonus_type = 'Equipment'",
         "lines",
-        "['Fire Spell Power', 'Electric Spell Power']",
+        "[[\"Fire Spell Power\"], [\"Electric Spell Power\"]]",
         "'Power of the Firestorm'",
     );
     let (merged, report) = built_db_from(source.path(), &[("fixed-merge.toml", &correction)]).unwrap();
@@ -1138,9 +1164,9 @@ fn a_lines_merge_uses_the_grouping_named_by_its_correction() {
     let correction = new_qualified_correction(
         "augment_bonus",
         "Dolorous Invigorator (Legendary)",
-        "stat = 'Combat Mastery'\nbonus_type = 'Profane'",
+        "stat = \"Trip DC, Sunder DC, Stun DC\"\nbonus_type = 'Profane'",
         "lines",
-        "['Trip DC', 'Sunder DC', 'Stun DC']",
+        "[[\"Trip DC\"], [\"Sunder DC\"], [\"Stun DC\"]]",
         "'Combat Mastery'",
     );
     let mut db = Connection::open_in_memory().unwrap();
@@ -1163,9 +1189,9 @@ fn item_line_splits_are_rejected_until_the_item_writer_applies_them() {
     let correction = new_qualified_correction(
         "item_bonus",
         "Lantern of the Abyss",
-        "stat = 'Power of the Firestorm'\nbonus_type = 'Equipment'",
+        "stat = \"Fire Spell Power, Electric Spell Power\"\nbonus_type = 'Equipment'",
         "lines",
-        "\"Power of the Firestorm\"",
+        "[[\"Fire Spell Power\", \"Electric Spell Power\"]]",
         "[\"Fire Spell Power\", \"Electric Spell Power\"]",
     );
     let error = validated_corrections(&[("item-lines.toml", &correction)]).unwrap_err();
@@ -1280,9 +1306,9 @@ fn a_split_uses_its_named_partition_even_when_other_effects_share_the_stats() {
     let correction = new_qualified_correction(
         "augment_bonus",
         "Woeful Shadow (Legendary)",
-        "stat = 'Cold, Negative and Poison Spell Power'\nbonus_type = 'Profane'",
+        "stat = 'Cold Spell Power, Negative Spell Power, Poison Spell Power'\nbonus_type = 'Profane'",
         "lines",
-        "\"Cold, Negative and Poison Spell Power\"",
+        "[[\"Cold Spell Power\", \"Negative Spell Power\", \"Poison Spell Power\"]]",
         "[\"Cold Spell Power\", \"Negative and Poison Spell Power\"]",
     );
     let mut db = Connection::open_in_memory().unwrap();
@@ -1322,9 +1348,9 @@ fn fixed_type_grouping_splits_into_stat_lines_at_its_resolved_type() {
     let correction = new_qualified_correction(
         "augment_bonus",
         "Woeful Shadow (Legendary)",
-        "stat = 'Power of the Firestorm'\nbonus_type = 'Equipment'",
+        "stat = \"Fire Spell Power, Electric Spell Power\"\nbonus_type = 'Equipment'",
         "lines",
-        "\"Power of the Firestorm\"",
+        "[[\"Fire Spell Power\", \"Electric Spell Power\"]]",
         "[\"Fire Spell Power\", \"Electric Spell Power\"]",
     );
     let (db, report) = built_db_from(source.path(), &[("fixed-type-split.toml", &correction)]).unwrap();
@@ -1772,9 +1798,9 @@ fn feat_lines_split_and_merge_follow_the_real_writer() {
     let merge = new_qualified_correction(
         "feat_bonus",
         "Scion of the Astral Plane",
-        "stat = 'Dodge and Dodge Cap'\nbonus_type = 'Feat'",
+        "stat = \"Dodge, Dodge Cap\"\nbonus_type = 'Feat'",
         "lines",
-        "[\"Dodge\", \"Dodge Cap\"]",
+        "[[\"Dodge\"], [\"Dodge Cap\"]]",
         "\"Dodge and Dodge Cap\"",
     );
     let (merged, report) =
@@ -1888,9 +1914,9 @@ fn a_lines_split_preserves_the_default_and_follows_value_changes() {
     let correction = new_qualified_correction(
         "augment_bonus",
         "Woeful Shadow (Legendary)",
-        "stat = 'Doublestrike and Doubleshot'\nbonus_type = 'Profane'\n",
+        "stat = \"Doublestrike, Doubleshot\"\nbonus_type = 'Profane'\n",
         "lines",
-        "\"Doublestrike and Doubleshot\"",
+        "[[\"Doublestrike\", \"Doubleshot\"]]",
         "[\"Doubleshot\", \"Doublestrike\"]",
     );
     let line_names = |db: &Connection| {
@@ -1965,9 +1991,9 @@ fn a_lines_split_survives_the_set_tier_group_fallback() {
     let correction = new_qualified_correction(
         "set_tier_bonus",
         "Kundarak Delving Equipment",
-        "equipped_count = 3\nstat = 'Doublestrike and Doubleshot'\nbonus_type = 'Artifact'\n",
+        "equipped_count = 3\nstat = \"Doublestrike, Doubleshot\"\nbonus_type = 'Artifact'\n",
         "lines",
-        "\"Doublestrike and Doubleshot\"",
+        "[[\"Doublestrike\", \"Doubleshot\"]]",
         "[\"Doubleshot\", \"Doublestrike\"]",
     );
     let (db, report) = built_db_with(&[("kundarak-split.toml", &correction)]).unwrap();

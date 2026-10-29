@@ -801,8 +801,8 @@ value = 3
 [[game_bug_correction]]
 kind = "augment_bonus"
 field = "lines"
-qualifier = "Doublestrike and Doubleshot / Enhancement"
-intended = "Doublestrike and Doubleshot"
+qualifier = "Doublestrike, Doubleshot / Enhancement"
+intended = [["Doublestrike", "Doubleshot"]]
 reason = "The tooltip combines these bonuses."
 in_game = true
 read = "2026-10-23"

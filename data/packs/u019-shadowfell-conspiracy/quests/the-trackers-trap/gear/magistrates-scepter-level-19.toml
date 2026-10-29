@@ -30,13 +30,13 @@ name = "Axiomatic III"
 kind = "socket_option_bonus"
 field = "lines"
 upstream = [
-    "Armor Class",
-    "Saving Throws",
+    ["Armor Class"],
+    ["Saving Throws"],
 ]
 reason = "R13 confirms that this choice is the named Riposte V enchantment, including its existing passive bonuses and proc where present."
 url = "https://ddowiki.com/page/Item:Magistrate's_Scepter_(level_19)"
 read = "2026-10-26"
-qualifier = 'socket "crafting: variant", option "Riposte V", Riposte V / Insight'
+qualifier = 'socket "crafting: variant", option "Riposte V", Armor Class, Saving Throws / Insight'
 
 [[socket]]
 slot = "crafting: variant"

@@ -52,11 +52,14 @@ targets = ["Ranged"]
 [[ddobuilder_correction]]
 kind = "augment_bonus"
 field = "lines"
-upstream = "Doublestrike and Doubleshot"
+upstream = [[
+    "Doublestrike",
+    "Doubleshot",
+]]
 reason = "The wiki lists Profane Doublestrike 3% and Profane Doubleshot 3% as separate enchantments."
 url = "https://ddowiki.com/page/Item:Woeful_Shadow"
 read = "2026-10-05"
-qualifier = "Doublestrike and Doubleshot / Profane"
+qualifier = "Doublestrike, Doubleshot / Profane"
 
 [[slot]]
 slot = "lamordia: woeful (weapon)"

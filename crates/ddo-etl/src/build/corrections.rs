@@ -817,13 +817,9 @@ pub(crate) fn line_bonuses_by_owner(
     Ok(owners)
 }
 
-pub(super) fn line_merge_selection(
-    correction: &Correction,
-    groupings: &crate::groupings::Groupings,
-    rows: &[LineBonus],
-) -> Result<Option<LineMerge>> {
+pub(super) fn line_merge_selection(correction: &Correction, rows: &[LineBonus]) -> Result<Option<LineMerge>> {
     let mut orders = std::collections::BTreeSet::new();
-    for stats in correction.upstream_line_stats(groupings)? {
+    for stats in correction.upstream_line_stats()? {
         let possible = rows
             .iter()
             .filter(|row| stats.contains(&row.stat_name))
@@ -928,7 +924,7 @@ fn corrected_lines_value(
     }
     let rows = line_bonus_rows(transaction, correction.kind, owner_id, None)?;
     let expected_stats =
-        correction.upstream_line_stats(groupings)?.into_iter().flatten().collect::<std::collections::BTreeSet<_>>();
+        correction.upstream_line_stats()?.into_iter().flatten().collect::<std::collections::BTreeSet<_>>();
     let selected_orders = rows
         .iter()
         .filter(|row| {
@@ -1034,7 +1030,7 @@ fn current_value(
                 return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
             }
             let rows = line_bonus_rows(transaction, correction.kind, row_id, None)?;
-            return Ok(if line_merge_selection(correction, groupings.context("lines need the canonical stat index")?, &rows)?.is_some() {
+            return Ok(if line_merge_selection(correction, &rows)?.is_some() {
                 correction.from.clone()
             } else {
                 CorrectionValue::Text(NO_SUCH_BONUS.to_string())
@@ -2525,20 +2521,19 @@ mod tests {
             "SELECT t.id FROM set_bonus_tiers t JOIN set_bonuses s ON s.id=t.set_id WHERE s.name='Anger of the Avalanche'",
             [], |row| row.get::<_, i64>(0),
         ).unwrap();
-        let correction = bonus_correction(CorrectionKind::SetTierBonus, "Power of the Firestorm", "Equipment", "lines");
-        let groupings = crate::groupings::Groupings::from_database(&db).unwrap();
+        let mut correction = bonus_correction(
+            CorrectionKind::SetTierBonus,
+            "Fire Spell Power, Electric Spell Power",
+            "Equipment",
+            "lines",
+        );
+        correction.from =
+            CorrectionValue::StatSets(vec![vec!["Fire Spell Power".into(), "Electric Spell Power".into()]]);
         let transaction = db.transaction().unwrap();
         assert_eq!(
-            current_value(
-                &transaction,
-                &correction,
-                correction.correctable_field().unwrap(),
-                owner,
-                None,
-                Some(&groupings)
-            )
-            .unwrap(),
-            CorrectionValue::Text("Power of the Firestorm".into())
+            current_value(&transaction, &correction, correction.correctable_field().unwrap(), owner, None, None)
+                .unwrap(),
+            correction.from
         );
     }
 }

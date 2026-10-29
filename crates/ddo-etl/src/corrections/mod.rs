@@ -267,10 +267,12 @@ pub struct Correction {
 impl Correction {
     pub(crate) fn is_line_merge(&self) -> bool {
         matches!(&self.from, CorrectionValue::StatSets(lines) if lines.len() > 1)
-            || matches!(self.from, CorrectionValue::Texts(_))
     }
 
-    fn validated_upstream_stat_sets(&self, lines: &[Vec<String>]) -> Result<Vec<std::collections::BTreeSet<String>>> {
+    pub fn upstream_line_stats(&self) -> Result<Vec<std::collections::BTreeSet<String>>> {
+        let CorrectionValue::StatSets(lines) = &self.from else {
+            bail!("a lines correction needs a list of upstream stat sets");
+        };
         let mut combined = std::collections::BTreeSet::new();
         let mut partitions = Vec::new();
         ensure!(!lines.is_empty(), "a lines correction needs nonempty upstream stat sets");
@@ -296,30 +298,6 @@ impl Correction {
             self.stat.as_deref() == Some(qualifier.as_str()),
             "a lines qualifier must name its upstream stat union in canonical order: {qualifier:?}"
         );
-        Ok(partitions)
-    }
-
-    pub(crate) fn upstream_line_stats(
-        &self,
-        groupings: &crate::groupings::Groupings,
-    ) -> Result<Vec<std::collections::BTreeSet<String>>> {
-        let partitions = match &self.from {
-            CorrectionValue::StatSets(lines) => self.validated_upstream_stat_sets(lines)?,
-            CorrectionValue::Text(name) => vec![groupings.expanded_stat_names(name)?],
-            CorrectionValue::Texts(names) => {
-                names.iter().map(|name| groupings.expanded_stat_names(name)).collect::<Result<Vec<_>>>()?
-            }
-            _ => bail!("a lines correction needs a list of upstream stat sets"),
-        };
-        let mut combined = std::collections::BTreeSet::new();
-        for partition in &partitions {
-            ensure!(
-                !partition.is_empty() && partition.is_disjoint(&combined),
-                "{}: upstream lines have empty or overlapping stats",
-                self.label()
-            );
-            combined.extend(partition.iter().cloned());
-        }
         Ok(partitions)
     }
 
@@ -352,8 +330,7 @@ impl Correction {
                 self.label()
             );
         }
-        let expected =
-            self.upstream_line_stats(groupings)?.into_iter().flatten().collect::<std::collections::BTreeSet<_>>();
+        let expected = self.upstream_line_stats()?.into_iter().flatten().collect::<std::collections::BTreeSet<_>>();
         let mut combined = std::collections::BTreeSet::new();
         let mut partitions = Vec::new();
         for line in lines {
@@ -578,12 +555,6 @@ impl Correction {
         if field.shape == FieldShape::BonusDedupe && self.bonus_value.is_none() {
             bail!("an augment_bonus dedupe correction needs bonus_value to identify the duplicate amount");
         }
-        if field.shape == FieldShape::BonusLines
-            && self.bonus_value.is_some()
-            && !matches!(self.from, CorrectionValue::StatSets(_))
-        {
-            bail!("a lines correction names a grouping and type without a value");
-        }
         if self.targets_effect_bonus() {
             if self.stat.as_ref().is_none_or(|name| name.trim().is_empty())
                 || self.bonus_type.is_some()
@@ -635,30 +606,12 @@ impl Correction {
                 );
             }
             FieldShape::BonusLines => {
-                if let CorrectionValue::StatSets(upstream) = &self.from {
-                    self.validated_upstream_stat_sets(upstream)?;
-                    ensure!(match &self.to {
-                        CorrectionValue::Texts(lines) => upstream.len() == 1 && lines.len() >= 2 && lines.iter().all(|name| !name.trim().is_empty()) && lines.iter().collect::<std::collections::BTreeSet<_>>().len() == lines.len(),
-                        CorrectionValue::Text(name) => upstream.len() >= 2 && !name.trim().is_empty(),
-                        _ => false,
-                    }, "one upstream line splits into at least two named lines; multiple upstream lines merge into one named line");
-                    return Ok(());
-                }
-                let (grouping, lines) = match (&self.from, &self.to) {
-                    (CorrectionValue::Text(grouping), CorrectionValue::Texts(lines))
-                    | (CorrectionValue::Texts(lines), CorrectionValue::Text(grouping)) => (grouping, lines),
-                    _ => bail!(
-                        "a lines correction takes a grouping name and a list of separate lines in either direction"
-                    ),
-                };
-                ensure!(self.stat.as_ref() == Some(grouping), "a lines qualifier must name its grouping");
-                ensure!(
-                    !grouping.trim().is_empty()
-                        && lines.len() >= 2
-                        && lines.iter().all(|name| !name.trim().is_empty())
-                        && lines.iter().collect::<std::collections::BTreeSet<_>>().len() == lines.len(),
-                    "a lines correction requires a grouping and at least two distinct named lines"
-                );
+                let upstream = self.upstream_line_stats()?;
+                ensure!(match &self.to {
+                    CorrectionValue::Texts(lines) => upstream.len() == 1 && lines.len() >= 2 && lines.iter().all(|name| !name.trim().is_empty()) && lines.iter().collect::<std::collections::BTreeSet<_>>().len() == lines.len(),
+                    CorrectionValue::Text(name) => upstream.len() >= 2 && !name.trim().is_empty(),
+                    _ => false,
+                }, "one upstream line splits into at least two named lines; multiple upstream lines merge into one named line");
             }
             FieldShape::Removal => {
                 if (&self.from, &self.to) != (&CorrectionValue::Integer(0), &CorrectionValue::Integer(1)) {
@@ -859,7 +812,7 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::BonusRemoval => "the current integer value for from and \"null\" for to",
         FieldShape::EffectBonusRemoval => "his constant amount or bonus row for from and \"null\" for to",
         FieldShape::BonusDedupe => "2 for from and 1 for to",
-        FieldShape::BonusLines => "a grouping name and a list of separate lines in either direction",
+        FieldShape::BonusLines => "upstream stat sets and the corrected line names",
         FieldShape::BonusAlias => "an alias name",
         FieldShape::TierAddition => "a { equipped_count, description } table",
         FieldShape::EffectAddition => "an effect name or a { name, description } table",

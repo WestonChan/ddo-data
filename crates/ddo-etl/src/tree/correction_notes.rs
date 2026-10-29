@@ -508,7 +508,7 @@ pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
             let target = correction.stat.as_deref().or(correction.effect.as_deref()).context("bonus annotation must name its target")?;
             let expected = if note_kind == "game_bug" && note.field == "lines" {
                 correction.from = CorrectionValue::from_json(intended.as_deref().context("game bug has no intended value")?)?;
-                correction.upstream_line_stats(&groupings)?.into_iter().flatten().collect()
+                correction.upstream_line_stats()?.into_iter().flatten().collect()
             } else {
                 groupings.expanded_stat_names(target)?
             };
