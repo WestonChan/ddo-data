@@ -4,6 +4,11 @@ family = "Lamordia_Heroic"
 icon = "Lamordia"
 min_level = 8
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Melancholic_Device_(heroic)"
+read = "2026-10-23"
+note = 'Line structure checked: typed: "Deathblock: The wearer of this item is immune to all death spells and magical death effects." / "Ghostly: Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 10% chance to miss you due to incorporeality. You receive a +5 enhancement bonus to your Hide and Move Silently skills." / screenshot: "Slotted Effect: You have Deathblock and are Ghostly."'
+
 [[effect]]
 name = "Incorporeality"
 bonus_type = "Equipment"

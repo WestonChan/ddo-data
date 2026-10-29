@@ -33,6 +33,18 @@ value = 15
 [[effect]]
 name = "Eternal Faith"
 
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [[
+    "Heal",
+    "Repair",
+]]
+reason = "R5-2: the upgraded screenshot names Heal +15 and Repair +15 as separate Competence lines."
+url = "https://ddowiki.com/page/Item:Gauntlets_of_Eternity"
+read = "2026-10-23"
+qualifier = 'socket "crafting: upgradeable item (stormreaver)", option "Heal +15, Repair +15, Devotion +72", Heal, Repair / Competence'
+
 [[socket]]
 slot = "crafting: upgradeable item (stormreaver)"
 
@@ -47,7 +59,12 @@ min_level = 13
 
 [[socket.option.effect]]
 bonus_type = "Competence"
-effect = "Heal and Repair"
+effect = "Heal"
+value = 15
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Repair"
 value = 15
 
 [[socket.option.effect]]
@@ -59,7 +76,6 @@ value = 72
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Competence"
-effect = "Heal and Repair"
 effect_type = "SkillBonus"
 targets = [
     "Heal",

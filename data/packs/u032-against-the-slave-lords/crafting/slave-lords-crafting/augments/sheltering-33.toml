@@ -4,6 +4,11 @@ family = "Slavelords_Legendary"
 icon = "SlavelordsPrefix"
 min_level = 28
 
+[[citation]]
+url = "https://ddowiki.com/page/Slave_Lords_Crafting"
+read = "2026-10-23"
+note = 'Line structure checked: "Sheltering || +12 || +33"'
+
 [[effect]]
 name = "Sheltering"
 bonus_type = "Enhancement"

@@ -13,7 +13,12 @@ bonus_type = "Fortune"
 value = 5
 
 [[effect]]
-name = "Doublestrike, Doubleshot and Offhand Strike Chance"
+name = "Offhand Strike Chance"
+bonus_type = "Fortune"
+value = 2
+
+[[effect]]
+name = "Doublestrike and Doubleshot"
 bonus_type = "Fortune"
 value = 2
 
@@ -28,12 +33,24 @@ effect_type = "Strikethrough"
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Fortune"
-effect = "Doublestrike, Doubleshot and Offhand Strike Chance"
 effect_type = "OffHandAttackBonus"
 extra_types = [
     "Doublestrike",
     "Doubleshot",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Doublestrike",
+    "Doubleshot",
+    "Offhand Strike Chance",
+]]
+reason = "R5-1: Offhand Strike Chance is its own clause; Doublestrike and Doubleshot share one clause."
+url = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-10-23"
+qualifier = "Doublestrike, Doubleshot, Offhand Strike Chance / Fortune"
 
 [[slot]]
 slot = "crafting: deck curse"

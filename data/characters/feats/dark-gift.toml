@@ -127,6 +127,11 @@ being removed every 5 seconds."""
 icon = "FormOfPain"
 source_name = "Dhampir Dark Bargainer"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Form_of_Pain"
+read = "2026-10-23"
+note = 'Line structure checked: "Your body is cursed to be prone to all manner of damage, but with the ability to withstand it. +5 PRR/MRR"'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Sheltering"

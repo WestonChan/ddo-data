@@ -10,7 +10,12 @@ bonus_type = "Profane"
 value = 2
 
 [[effect]]
-name = "Trip, Sunder, Stun and Assassinate DC"
+name = "Combat Mastery"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Assassinate"
 bonus_type = "Profane"
 value = 2
 
@@ -26,7 +31,6 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Profane"
-effect = "Trip, Sunder, Stun and Assassinate DC"
 effect_type = "TacticalDC"
 targets = [
     "Trip",
@@ -34,6 +38,20 @@ targets = [
     "Stun",
     "Assassinate",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Trip DC",
+    "Sunder DC",
+    "Stun DC",
+    "Assassinate DC",
+]]
+reason = "R5-2: Profane Combat Mastery +2 and Profane Assassinate +2 are separate enchantment lines; Spell Focus Mastery is a third line."
+url = "https://ddowiki.com/page/Item:Silverfang"
+read = "2026-10-23"
+qualifier = "Trip DC, Sunder DC, Stun DC, Assassinate DC / Profane"
 
 [[slot]]
 slot = "isle of dread: fang (armor)"

@@ -46,6 +46,11 @@ level_values = [
     24,
 ]
 
+[[citation]]
+url = "https://ddowiki.com/page/Essence_Crafting_enchantments"
+read = "2026-10-23"
+note = 'Line structure checked: "Spell critical || Light Lore || ... || Rings, Trinkets, Runearms || Weapons"'
+
 [[effect]]
 name = "Radiance Lore"
 bonus_type = "Equipment"

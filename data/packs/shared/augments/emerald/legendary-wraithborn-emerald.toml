@@ -8,6 +8,11 @@ family = "Emerald"
 icon = "Emerald"
 min_level = 30
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Legendary_Wraithborn_Emerald"
+read = "2026-10-23"
+note = 'Line structure checked: typed: "Ghostly: Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 10% chance to miss you due to incorporeality. You receive a +5 enhancement bonus to your Hide and Move Silently skills." / screenshot: "Slotted Effect: Ghostly. Equipping this item causes you to become partially incorporeal. Your melee and missile attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 10% chance to miss you due to incorporeality. Hide and Move Silently skills receive a +5 enhancement bonus."'
+
 [[effect]]
 name = "Hide and Move Silently"
 bonus_type = "Enhancement"

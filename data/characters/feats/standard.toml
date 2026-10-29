@@ -165,6 +165,11 @@ acquire = "Train"
 description = "Provides a +2 bonus to your Jump and Tumble skills."
 icon = "Acrobatic"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Acrobatic"
+read = "2026-10-23"
+note = """The page is prose; the default grouped line is retained. Line structure checked: "This feat provides a +2 bonus to the character's Jump and Tumble skills.""""
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Jump and Tumble"
@@ -681,6 +686,11 @@ acquire = "Train"
 description = "Provides a +2 bonus to your Listen and Spot skills."
 icon = "Alertness"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Alertness"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "This feat provides a +2 bonus to the characters Listen and Spot skills."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Listen and Spot"
@@ -708,6 +718,11 @@ name = "Athletic"
 acquire = "Train"
 description = "Provides a +2 bonus to your Balance and Swim skills."
 icon = "Athletic"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Athletic"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "This feat provides a +2 bonus to the characters Balance and Swim skills."'
 
 [[row.effect]]
 bonus_type = "Feat"
@@ -4805,6 +4820,11 @@ description = "While wearing heavy armor: +12 Physical Resistance, +12 Magical R
 icon = "HeavyArmorTraining"
 source_name = "Fighter"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Heavy_Armor_Champion"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "While in heavy armor, get +12 PRR and MRR." Table: "Heavy Armor Champion Fighter 14 12". Note: "All feats stack with each other, meaning that taking all four feats grants a total of 30 PRR/MRR."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Sheltering"
@@ -4843,6 +4863,11 @@ description = "While wearing heavy armor: +6 Physical Resistance, +6 Magical Res
 icon = "HeavyArmorTraining"
 source_name = "Fighter"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Heavy_Armor_Combatant"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "While in heavy armor, get +6 PRR and MRR."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Sheltering"
@@ -4880,6 +4905,11 @@ acquire = "Train"
 description = "While wearing heavy armor: +9 Physical Resistance, +9 Magical Resistance"
 icon = "HeavyArmorTraining"
 source_name = "Fighter"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Heavy_Armor_Master"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "While in heavy armor, get +9 PRR and MRR."'
 
 [[row.effect]]
 bonus_type = "Feat"
@@ -4937,6 +4967,11 @@ acquire = "Train"
 description = "While wearing heavy armor: +3 Physical Resistance, +3 Magical Resistance"
 icon = "HeavyArmorTraining"
 source_name = "Fighter"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Heavy_Armor_Training"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "While in heavy armor, get +3 PRR and MRR."'
 
 [[row.effect]]
 bonus_type = "Feat"
@@ -9207,6 +9242,11 @@ acquire = "Train"
 description = "Provides a +2 bonus to the character's Diplomacy and Haggle skills."
 icon = "Negotiator"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Negotiator"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "This feat grants a +2 bonus to Diplomacy and Haggle skills."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Diplomacy and Haggle"
@@ -9234,6 +9274,11 @@ name = "Nimble Fingers"
 acquire = "Train"
 description = "Provides a +2 bonus to the character's Disable Device and Open Lock skills."
 icon = "NimbleFingers"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Nimble_Fingers"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "This feat grants a +2 bonus to the Disable Device and Open Lock skills."'
 
 [[row.effect]]
 bonus_type = "Feat"

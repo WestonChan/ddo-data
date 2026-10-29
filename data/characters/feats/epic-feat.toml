@@ -762,6 +762,11 @@ You also gain +5 Physical and Magical Resistance Rating."""
 icon = "EpicBarbarianDamageReduction"
 source_name = "Epic"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Epic_Barbarian_Damage_Reduction"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "Your Barbarian Damage Reduction is increased by 1%. You also gain +5 Physical and Magical Resistance Rating"'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Sheltering"
@@ -1178,6 +1183,11 @@ description = "+5 Bluff, Diplomacy, Haggle, Intimidate and Perform."
 icon = "EpicReputation"
 source_name = "Epic"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Epic_Reputation"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "+5 Bluff, Diplomacy, Haggle, Intimidate, and Perform."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Bluff, Diplomacy, Haggle, Intimidate and Perform"
@@ -1212,6 +1222,11 @@ While in your Resilience Defensive Combat Stance, you gain an additional
 +4 Saving throws, as well as +10 MRR and +10 MRR cap. In addition, you no
 longer fail any saves automatically by rolling a Natural 1."""
 icon = "EpicResilience"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Epic_Resilience"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "While in Resilience, you gain an additional +4 Saving throws, as well as +10 MRR and +10 MRR cap. In addition, you no longer fail any saves automatically by rolling a Natural 1."'
 
 [[row.effect]]
 bonus_type = "Feat"
@@ -2005,6 +2020,11 @@ Passive: Your Hirelings, Pets, and Summons gain +25 Physical Resistance Rating
 and Magical Resistance Rating."""
 icon = "InspiringBond"
 source_name = "Epic"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Inspiring_Bond"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "In addition, your Hirelings, Pets, and Summons gain +25 Physical Resistance Rating and Magical Resistance Rating."'
 
 [[row.effect]]
 bonus_type = "Feat"

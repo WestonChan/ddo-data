@@ -135,6 +135,11 @@ You gain a racial lay on hands SLA which heals for 10 + Character Level * Wisdom
 icon = "AasimarRacialTraits"
 source_name = "Aasimar"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Aasimar"
+read = "2026-10-23"
+note = 'Line structure checked: "+5 Resistance to Cold, Acid, and Electricity."'
+
 [[row.effect]]
 bonus_type = "Racial"
 effect = "Wisdom Skills"
@@ -807,6 +812,11 @@ This is the standard attack for all characters. It can be toggled on to
 attack repeatedly until your target is defeated, or activated once by right-clicking the mouse."""
 icon = "Attack"
 max_times_acquire = 1
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Shields"
+read = "2026-10-23"
+note = 'Line structure checked: Table "MRR and PRR bonus by shield type", header "Shield type || PRR and MRR": "Bucklers/Orbs 0", "Small shields 5", "Large shields 10", "Tower shields 15". Prose: "Unique, non-scaling bonus to PRR and MRR (stacking with all other sources)"'
 
 [[row.attack]]
 name = "Basic Attack"
@@ -2294,6 +2304,11 @@ acquire = "Automatic"
 description = "Elves have keen senses and gain a +2 bonus to Listen, Search and Spot checks."
 icon = "ElvenFeats"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Elven_Keen_Senses"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "Elves have keen senses and gain a +2 bonus to Listen, Search and Spot checks."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Listen, Search and Spot"
@@ -3546,14 +3561,30 @@ icon = "GnomishProficiences"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Haggle and Use Magic Device"
+effect = "Haggle"
 value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Use Magic Device"
+value = 2
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "lines"
+upstream = [[
+    "Haggle",
+    "Use Magic Device",
+]]
+reason = "R5-2: the feat's entry in the Racial Feats table lists +2 Haggle and +2 Use Magic Device as separate bullets. Its bonus type remains upstream pending the recorded type question."
+url = "https://ddowiki.com/page/Gnome"
+read = "2026-10-23"
+qualifier = "Haggle, Use Magic Device / Feat"
 
 [[row.modifier]]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
-effect = "Haggle and Use Magic Device"
 effect_type = "SkillBonus"
 targets = [
     "Haggle",
@@ -3767,6 +3798,11 @@ a +1 racial bonus to Listen, Search and Spot checks."""
 icon = "Half-ElvenFeat"
 source_name = "Half-Elf"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Half-Elf"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "Half-Elf Keen Senses | Passive | +1 racial bonus to Listen, Search, and Spot checks."'
+
 [[row.effect]]
 bonus_type = "Racial"
 effect = "Listen, Search and Spot"
@@ -3866,6 +3902,11 @@ acquire = "Automatic"
 description = "Halflings are agile and gain a +2 bonus to Jump and Move Silently checks."
 icon = "Halfling"
 source_name = "Halfling"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Halfling"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "Halfling Agility | Passive | Halflings are agile and gain a +2 bonus to Jump and Move Silently checks."'
 
 [[row.effect]]
 bonus_type = "Feat"
@@ -6188,6 +6229,11 @@ icon = "EpicPastLifeAncientKnowledge"
 max_times_acquire = 3
 sphere = "Arcane"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Epic_Past_Life_Feats"
+read = "2026-10-23"
+note = 'Line structure checked: "Passive Bonus: +1% Absorption of Acid, Cold, Electric, and Fire damage."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Magical Resistance Rating"
@@ -6364,6 +6410,11 @@ icon = "EpicPastLifeArcaneAlacrity"
 max_times_acquire = 3
 sphere = "Arcane"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Epic_Past_Life_Feats"
+read = "2026-10-23"
+note = 'Line structure checked: "Passive Bonus: +1% Absorption of Acid, Cold, Electric, and Fire damage."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Fire, Cold, Electric and Acid Absorption"
@@ -6524,6 +6575,11 @@ Passive Bonus: +1% Absorption of Acid, Cold, Electric and Fire damage."""
 icon = "EpicPastLifeMagusOfTheEclipse"
 max_times_acquire = 3
 sphere = "Arcane"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Epic_Past_Life_Feats"
+read = "2026-10-23"
+note = 'Line structure checked: "Passive Bonus: +1% Absorption of Acid, Cold, Electric, and Fire damage."'
 
 [[row.effect]]
 bonus_type = "Feat"
@@ -6700,6 +6756,11 @@ Passive Bonus: +1% Absorption of Acid, Cold, Electric and Fire damage."""
 icon = "EpicPastLifeEnchantWeapon"
 max_times_acquire = 3
 sphere = "Arcane"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Epic_Past_Life_Feats"
+read = "2026-10-23"
+note = 'Line structure checked: "Passive Bonus: +1% Absorption of Acid, Cold, Electric, and Fire damage."'
 
 [[row.effect]]
 bonus_type = "Feat"
@@ -7173,6 +7234,11 @@ This feat can be stacked up to three times."""
 icon = "PastLifeBard"
 max_times_acquire = 3
 source_name = "Stormsinger"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Past_Life:_Stormsinger"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "Each time you acquire this feat you gain +5 Lightning Spell Power and +5 Sonic Spell Power. This feat can be stacked up to three times."'
 
 [[row.effect]]
 bonus_type = "Feat"
@@ -8062,6 +8128,11 @@ Passive Bonus: +3 PRR per stack of this Past Life."""
 icon = "EpicPastLifePowerOverLifeAndDeath"
 max_times_acquire = 3
 sphere = "Divine"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Power_Over_Life_and_Death"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "Divine Past Life Stance: +10 Positive and +10 Negative Energy Spell Power per stack of this Past Life. Passive Bonus: +3 PRR per stack of this Past Life." Table: "Spellpower Increase One Stack Two Stacks Three Stacks 10 20 30"'
 
 [[row.effect]]
 bonus_type = "Feat"

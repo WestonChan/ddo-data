@@ -346,8 +346,7 @@ fn mixed_unit_templates_state_each_unit_without_renderer_restoration() {
     let tree = scratch.path().join("data");
     copy_fixture_tree(&tree);
     let production = fixtures_dir().join("../../../../data/effects/stat-groups");
-    let names =
-        ["dodge-and-dodge-cap", "melee-power-and-doublestrike", "doublestrike-doubleshot-and-offhand-strike-chance"];
+    let names = ["dodge-and-dodge-cap", "melee-power-and-doublestrike", "fire-cold-electric-acid-and-sonic-spell-lore"];
     let mut group_names = Vec::new();
     for slug in names {
         let path = production.join(format!("{slug}.toml"));

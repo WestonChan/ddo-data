@@ -8,6 +8,11 @@ family = "Lamordia_Legendary"
 icon = "Lamordia"
 min_level = 34
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Woeful_Enhanced_Ghostly_(legendary)"
+read = "2026-10-23"
+note = 'Line structure checked: typed: "Enhanced Ghostly: … You receive a +5 enhancement bonus to your Hide and Move Silently skills." / screenshot: same slotted-effect text as the heroic'
+
 [[effect]]
 name = "Hide and Move Silently"
 bonus_type = "Enhancement"

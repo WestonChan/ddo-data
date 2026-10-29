@@ -7,6 +7,11 @@ family = "DeckOfManyCurses"
 icon = "DeckOfCurses"
 min_level = 1
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-10-23"
+note = 'Line structure checked: "If the item is a weapon, it is always considered a Favored Weapon. Additionally, +4 Fortune Bonus to PRR, +1% Fortune Bonus to Acid, Cold, and Electricity Absorption, and +1 Fortune Bonus to Saves vs. Spells"'
+
 [[effect]]
 name = "Physical Resistance Rating"
 bonus_type = "Fortune"

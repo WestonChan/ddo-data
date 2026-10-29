@@ -8,6 +8,11 @@ set_bonus = """
 Ethereal
 Escalation"""
 
+[[citation]]
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_2"
+read = "2026-10-23"
+note = 'Line structure checked: "Insightful Wizardry +151, Insightful Charisma Skills +11, Insightful UMD +3"'
+
 [[effect]]
 name = "Bluff, Diplomacy, Haggle, Intimidate and Perform"
 bonus_type = "Insight"

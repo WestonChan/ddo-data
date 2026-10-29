@@ -9,6 +9,11 @@ family = "Alchemical"
 icon = "Diamond"
 min_level = 29
 
+[[citation]]
+url = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-10-23"
+note = 'Line structure checked: "Radiance +148, Radiance Lore +22%" Line structure checked: "Radiance +148"; tooltip "Radiance +90: Passive: +90 Equipment bonus to Light and Alignment Spell Power."'
+
 [[effect]]
 name = "Radiance"
 bonus_type = "Equipment"

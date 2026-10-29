@@ -46,6 +46,11 @@ level_values = [
     14,
 ]
 
+[[citation]]
+url = "https://ddowiki.com/page/Orb"
+read = "2026-10-23"
+note = 'Line structure checked: "Equipping an orb is like using a shield, however when you block with it, a magical barrier of force provides an Orb Bonus to your saving throws and energy resistances."'
+
 [[effect]]
 name = "Saving Throws"
 bonus_type = "Orb"

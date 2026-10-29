@@ -29,6 +29,18 @@ name = "Dexterity"
 bonus_type = "Insight"
 value = 3
 
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [[
+    "Dexterity",
+    "Constitution",
+]]
+reason = "R5-2: the upgraded screenshot names Insightful Dexterity +4 and Insightful Constitution +4 separately."
+url = "https://ddowiki.com/page/Item:Necklace_of_Mystic_Eidolons"
+read = "2026-10-23"
+qualifier = 'socket "crafting: zhentarim attuned", option "Faster Eidolon Summons, Insightful Dex/Con +4 and Augment Summoning", Dexterity, Constitution / Insight'
+
 [[socket]]
 slot = "crafting: zhentarim attuned"
 
@@ -48,7 +60,12 @@ min_level = 26
 
 [[socket.option.effect]]
 bonus_type = "Insight"
-effect = "Dexterity and Constitution"
+effect = "Constitution"
+value = 4
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Dexterity"
 value = 4
 
 [[socket.option.modifier]]
@@ -56,7 +73,6 @@ amount_type = "Simple"
 amounts = [4]
 bonus = "Insightful"
 bonus_type = "Insight"
-effect = "Dexterity and Constitution"
 effect_type = "AbilityBonus"
 targets = [
     "Constitution",

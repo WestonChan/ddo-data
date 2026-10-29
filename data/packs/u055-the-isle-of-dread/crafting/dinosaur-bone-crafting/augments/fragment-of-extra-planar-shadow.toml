@@ -7,7 +7,12 @@ icon = "ScaleLightOrange"
 min_level = 31
 
 [[effect]]
-name = "Doublestrike and Doubleshot"
+name = "Doublestrike"
+bonus_type = "Profane"
+value = 3
+
+[[effect]]
+name = "Doubleshot"
 bonus_type = "Profane"
 value = 3
 
@@ -25,7 +30,6 @@ value = 20
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Profane"
-effect = "Doublestrike and Doubleshot"
 effect_type = "Doublestrike"
 extra_types = ["Doubleshot"]
 
@@ -46,6 +50,18 @@ bonus_type = "Enhancement"
 effect = "Ranged Alacrity"
 effect_type = "WeaponAlacrityClass"
 targets = ["Ranged"]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Doublestrike",
+    "Doubleshot",
+]]
+reason = "R5-1: the enchantment list names Profane Doublestrike 3% and Profane Doubleshot 3% separately; the augment's combined Slotted Effect sentence does not determine line count."
+url = "https://ddowiki.com/page/Item:Fragment_of_Extraplanar_Shadow"
+read = "2026-10-23"
+qualifier = "Doublestrike, Doubleshot / Profane"
 
 [[slot]]
 slot = "isle of dread: scale (armor)"

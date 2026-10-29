@@ -453,6 +453,11 @@ Activate this ability to draw upon the vigilance of Helm for 24 seconds plus
 equal to the number of Religious Lore feats you have."""
 icon = "Helm"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Ever_Watchful"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "In this state, you gain True Seeing, +5 Sacred bonus to Spot and Search, +4 Wisdom, +5 to Fortitude saves, and PRR equal to the number of Religious Lore feats you have."'
+
 [[row.effect]]
 bonus_type = "Sacred"
 effect = "Search and Spot"

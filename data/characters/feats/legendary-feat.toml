@@ -103,6 +103,11 @@ description = """
 icon = "ScionOfCelestia"
 source_name = "Epic"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Scion_of_Celestia"
+read = "2026-10-23"
+note = 'Line structure checked: "+10 Positive, Light, & Alignment Spell Power, +30 Universal Spell Power"'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Spell DCs"
@@ -998,6 +1003,11 @@ description = """
 +3 Imbue Dice"""
 icon = "ScionOfThePlaneOfFire"
 source_name = "Epic"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Scion_of_the_Plane_of_Fire"
+read = "2026-10-23"
+note = 'Line structure checked: "+10 PRR, +10 MRR"'
 
 [[row.effect]]
 bonus_type = "Feat"

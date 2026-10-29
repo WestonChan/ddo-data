@@ -8,7 +8,17 @@ icon = "DeckOfCurses"
 min_level = 1
 
 [[effect]]
-name = "Magical Resistance Rating Cap, Dodge Cap and Max Dex Bonus (Armor)"
+name = "Magical Resistance Rating Cap"
+bonus_type = "Fortune"
+value = 2
+
+[[effect]]
+name = "Dodge Cap"
+bonus_type = "Fortune"
+value = 2
+
+[[effect]]
+name = "Max Dex Bonus (Armor)"
 bonus_type = "Fortune"
 value = 2
 
@@ -16,12 +26,24 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Fortune"
-effect = "Magical Resistance Rating Cap, Dodge Cap and Max Dex Bonus (Armor)"
 effect_type = "MRRCap"
 extra_types = [
     "DodgeCapBonus",
     "MaxDexBonus",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Magical Resistance Rating Cap",
+    "Dodge Cap",
+    "Max Dex Bonus (Armor)",
+]]
+reason = "R5-1: Dodge Cap and Maximum Dexterity Bonus are separate clauses with different units. Keep the upstream MRR Cap as a separate line pending the recorded omission question."
+url = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-10-23"
+qualifier = "Magical Resistance Rating Cap, Dodge Cap, Max Dex Bonus (Armor) / Fortune"
 
 [[slot]]
 slot = "crafting: deck curse"

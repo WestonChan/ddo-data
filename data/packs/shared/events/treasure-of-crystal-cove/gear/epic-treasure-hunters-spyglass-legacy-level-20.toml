@@ -34,6 +34,18 @@ name = "Intelligence"
 bonus_type = "Exceptional"
 value = 1
 
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [[
+    "Search",
+    "Spot",
+]]
+reason = "R5-2: the tier-2 screenshot names Search +20 and Spot +20 as separate Competence lines."
+url = "https://ddowiki.com/page/Item:Epic_Treasure_Hunter's_Spyglass_(legacy)_(level_20)"
+read = "2026-10-23"
+qualifier = 'socket "upgrade: tier 2", option "Spot +20, Search +20, Insightful Intelligence +2", Search, Spot / Competence'
+
 [[socket]]
 slot = "upgrade: tier 2"
 
@@ -49,7 +61,12 @@ min_level = 20
 
 [[socket.option.effect]]
 bonus_type = "Competence"
-effect = "Search and Spot"
+effect = "Search"
+value = 20
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Spot"
 value = 20
 
 [[socket.option.effect]]
@@ -61,7 +78,6 @@ value = 2
 amount_type = "Simple"
 amounts = [20]
 bonus_type = "Competence"
-effect = "Search and Spot"
 effect_type = "SkillBonus"
 targets = [
     "Search",

@@ -391,6 +391,11 @@ description = "+3 PRR and MRR, If you are Lawful you also gain +2 Imbue dice"
 icon = "EmbodimentOfLaw"
 source_name = "Epic"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Embodiment_of_Law_(feat)"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "+3 Physical and Magical Resistance Rating. If you are lawful, gain +2 Imbue Dice."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Sheltering"
@@ -1200,6 +1205,11 @@ description = "Whenever you use an Action Boost, your threat generation is incre
 icon = "FaceMe"
 source_name = "Epic"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Face_Me"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "Whenever you use an Action Boost, your threat generation is increased by 200% for 6 seconds."'
+
 [[row.effect]]
 bonus_type = "Stacking"
 effect = "Melee, Spell and Ranged Threat Generation"
@@ -1360,6 +1370,11 @@ acquire = "Train"
 description = "+2% Doublestrike and Doubleshot. If you are Chaotic, you gain +2 Imbue dice."
 icon = "HarbingerOfChaos"
 source_name = "Epic"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Harbinger_of_Chaos"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "+2% Doublestrike and Doubleshot. If you are Chaotic, gain +2 Imbue Dice."'
 
 [[row.effect]]
 bonus_type = "Feat"

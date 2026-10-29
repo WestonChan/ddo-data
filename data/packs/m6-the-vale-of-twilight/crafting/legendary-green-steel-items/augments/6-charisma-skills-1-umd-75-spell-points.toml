@@ -6,6 +6,11 @@ set_bonus = """
 Ethereal
 Escalation"""
 
+[[citation]]
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_3"
+read = "2026-10-23"
+note = 'Line structure checked: "Quality Wizardry +75, Quality Charisma Skills +6, Quality UMD +1"'
+
 [[effect]]
 name = "Bluff, Diplomacy, Haggle, Intimidate and Perform"
 bonus_type = "Quality"

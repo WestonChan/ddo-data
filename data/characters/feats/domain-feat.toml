@@ -1715,6 +1715,11 @@ You gain Holy Sword as an SLA. 10 SP, 6 second cooldown."""
 icon = "WarDomainTier4"
 source_name = "Cleric"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/War_Domain"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: War Domain: "Level 14: You gain Holy Sword as an SLA. +10 Melee and Ranged Power. 10 SP, 6 second cooldown." / search snippet: "Master of the Domain of War now gains +10 to Melee and Ranged Power in addition to its other effects"'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Melee and Ranged Power"

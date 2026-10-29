@@ -25,6 +25,11 @@ description = "You passively gain another 10 Physical and Magical Resistance Rat
 icon = "FormOfPain"
 source_name = "Dhampir Dark Bargainer"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Enhanced_Form_of_Pain"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "You passively gain another 10 Physical and Magical Resistance Rating."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Sheltering"

@@ -6,6 +6,11 @@ family = "Named"
 icon = "DraconicSoulGem"
 min_level = 25
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Draconic_Soul_Gem"
+read = "2026-10-23"
+note = 'Line structure checked: typed: "Elemental Resistance +30: Passive: +30 Enhancement bonus to your Acid, Cold, Electricity, and Fire Resistances." / screenshot: "Drag this augment into a slot to upgrade an item with a +30 Enhancement bonus to Acid, Cold, Electric, and Fire Resistances. This augment can go in a Yellow, Green, or Orange Augment Slot."'
+
 [[effect]]
 name = "Fire, Cold, Electric and Acid Resistance"
 bonus_type = "Enhancement"

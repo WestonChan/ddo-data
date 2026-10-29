@@ -32,6 +32,18 @@ name = "Open Lock"
 bonus_type = "Competence"
 value = 17
 
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [[
+    "Disable Device",
+    "Open Lock",
+]]
+reason = "R5-2: the tier-2 screenshot names Disable Device +18 and Open Lock +18 as separate Competence lines."
+url = "https://ddowiki.com/page/Item:Epic_Spare_Hand"
+read = "2026-10-23"
+qualifier = 'socket "upgrade: tier 2", option "Disable Device +18, Open Lock +18, Use Magic Device +3 and a Colorless Augment Slot", Disable Device, Open Lock / Competence'
+
 [[socket]]
 slot = "upgrade: tier 2"
 
@@ -47,7 +59,12 @@ min_level = 20
 
 [[socket.option.effect]]
 bonus_type = "Competence"
-effect = "Disable Device and Open Lock"
+effect = "Disable Device"
+value = 18
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Open Lock"
 value = 18
 
 [[socket.option.effect]]
@@ -62,7 +79,6 @@ slot = "colorless"
 amount_type = "Simple"
 amounts = [18]
 bonus_type = "Competence"
-effect = "Disable Device and Open Lock"
 effect_type = "SkillBonus"
 targets = [
     "Disable Device",
