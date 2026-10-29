@@ -1,0 +1,20 @@
+name = "Reaper Necklace Enchantment"
+description_template = "+{1} %b1 bonus to Melee, Ranged and Universal Spell Power, Physical and Magical Resistance Rating."
+verbose_name_template = "%b1 Reaper Necklace Enchantment +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Melee, Ranged and Universal Spell Power"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Sheltering"
+
+[[citation]]
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-10-23"
+note = "R5-3 and R6-9: Reaper Necklace Enchantment: +2 Reaper Bonus to melee/ranged/spell power and +2 PRR/MRR. Typed list; the page has no screenshot of this line."

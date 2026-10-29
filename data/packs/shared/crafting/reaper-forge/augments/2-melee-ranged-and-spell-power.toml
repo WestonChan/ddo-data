@@ -9,22 +9,7 @@ read = "2026-10-23"
 note = 'Line structure checked: "Reaper Necklace Enchantment: +2 Reaper Bonus to melee/ranged/spell power and +2 PRR/MRR"'
 
 [[effect]]
-name = "Melee and Ranged Power"
-bonus_type = "Reaper"
-value = 2
-
-[[effect]]
-name = "Universal Spell Power"
-bonus_type = "Reaper"
-value = 2
-
-[[effect]]
-name = "Physical Resistance Rating"
-bonus_type = "Reaper"
-value = 2
-
-[[effect]]
-name = "Magical Resistance Rating"
+name = "Reaper Necklace Enchantment"
 bonus_type = "Reaper"
 value = 2
 
@@ -59,6 +44,23 @@ reason = "The wiki's Reaper necklace enchantment also gives +2 Reaper Magical Re
 url = "https://ddowiki.com/page/Reaper_Forge"
 read = "2026-09-30"
 qualifier = "Magical Resistance Rating / Reaper"
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [
+    [
+    "Melee Power",
+    "Ranged Power",
+],
+    ["Universal Spell Power"],
+    ["Physical Resistance Rating"],
+    ["Magical Resistance Rating"],
+]
+reason = "R5-3 and R6-9 show one Reaper Necklace Enchantment line granting power and both resistance ratings. The input includes the two cited rating additions."
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-10-23"
+qualifier = "Melee Power, Ranged Power, Physical Resistance Rating, Magical Resistance Rating, Universal Spell Power / Reaper"
 
 [[slot]]
 slot = "crafting: reaper necklace"
