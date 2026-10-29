@@ -6935,6 +6935,11 @@ icon = "EpicPastLifeEnergyCriticals"
 max_times_acquire = 3
 sphere = "Arcane"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Epic_Past_Life_Feats"
+read = "2026-10-23"
+note = 'The page is prose; the default grouped line is retained. Line structure checked: "Arcane Past Life Stance: 3% Critical Chance with Acid, Cold, Electric, Fire, and Sonic Spells per stack of this past life." Line structure checked: "Passive Bonus: +1% Absorption of Acid, Cold, Electric, and Fire damage."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Fire, Cold, Electric, Acid and Sonic Spell Lore"
@@ -7781,6 +7786,11 @@ icon = "EpicPastLifeBlockEnergy"
 max_times_acquire = 3
 sphere = "Divine"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Epic_Past_Life_Feats"
+read = "2026-10-23"
+note = 'Line structure checked: "Divine Past Life Stance: While blocking, +10% damage absorption against Acid, Cold, Electric and Fire damage, per stack of this Past Life."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Fire, Cold, Electric, Acid and Sonic Absorption"
@@ -8421,6 +8431,11 @@ This feat can be stacked up to three times."""
 icon = "PastLifeDruid"
 max_times_acquire = 3
 source_name = "Blight Caster"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Past_Life_Feats"
+read = "2026-10-23"
+note = 'Line structure checked: "Each time you acquire this feat you gain +5 Acid and Poison spell power. This feat can be stacked up to three times."'
 
 [[row.effect]]
 bonus_type = "Feat"
@@ -11032,6 +11047,11 @@ This feat can be stacked up to three times."""
 icon = "PastLifeRanger"
 max_times_acquire = 3
 source_name = "Ranger"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Past_Life_Feats"
+read = "2026-10-23"
+note = 'Line structure checked: "Each time you acquire this feat you gain +2 damage with ranged weapons and a +2 to elemental resistances. This feat can be stacked up to three times."'
 
 [[row.effect]]
 bonus_type = "Feat"

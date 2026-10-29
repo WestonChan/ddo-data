@@ -7,7 +7,22 @@ icon = "HistoryBookWhite"
 min_level = 30
 
 [[effect]]
-name = "Fire, Cold, Electric and Acid Absorption"
+name = "Acid Absorption"
+bonus_type = "Artifact"
+value = 10
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Artifact"
+value = 10
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Artifact"
+value = 10
+
+[[effect]]
+name = "Fire Absorption"
 bonus_type = "Artifact"
 value = 10
 
@@ -15,7 +30,6 @@ value = 10
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Artifact"
-effect = "Fire, Cold, Electric and Acid Absorption"
 effect_type = "EnergyAbsorbance"
 targets = [
     "Acid",
@@ -23,6 +37,20 @@ targets = [
     "Electric",
     "Fire",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Fire Absorption",
+    "Cold Absorption",
+    "Electric Absorption",
+    "Acid Absorption",
+]]
+reason = 'The page lists these enchantments as separate lines. "Artifact Fire Absorption +10%"; "Artifact Cold Absorption +10%"; "Artifact Electric Absorption +10%"; "Artifact Acid Absorption +10%" (each tooltip "Artifact <Element> Absorption +10%: Passive: 10% Artifact Bonus to <Element> Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)"). Screenshot: "Slotted Effect: +10% Artifact Bonus to Fire, Cold, Electric, and Acid Absorption."'
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Elemental_Absorption_(Legendary)"
+read = "2026-10-23"
+qualifier = "Fire Absorption, Cold Absorption, Electric Absorption, Acid Absorption / Artifact"
 
 [[slot]]
 slot = "sun"

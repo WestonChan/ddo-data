@@ -314,7 +314,7 @@ impl Correction {
         let bonus_type = self.bonus_type.as_deref().context("a lines correction needs a named type")?;
         let value_line = |name: &str| {
             ensure!(
-                groupings.grouping_named(name).is_some_and(|grouping| grouping.accepts_value_at_type(bonus_type)),
+                groupings.effect_named(name).is_some_and(|effect| effect.accepts_value_at_type(bonus_type)),
                 "{}: line {name:?} cannot take one value at {bonus_type}",
                 self.label()
             );
@@ -335,7 +335,7 @@ impl Correction {
         let mut partitions = Vec::new();
         for line in lines {
             let stats = groupings.expanded_stat_names(line)?;
-            if matches!(self.to, CorrectionValue::Texts(_)) && stats.len() >= 2 {
+            if matches!(self.to, CorrectionValue::Texts(_)) && ddo_model::stats::Stat::by_name(line).is_none() {
                 value_line(line)?;
             }
             ensure!(

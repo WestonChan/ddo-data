@@ -7,7 +7,12 @@ icon = "HistoryBookWhite"
 min_level = 1
 
 [[effect]]
-name = "Disable Device and Open Lock"
+name = "Disable Device"
+bonus_type = "Artifact"
+value = 2
+
+[[effect]]
+name = "Open Lock"
 bonus_type = "Artifact"
 value = 2
 
@@ -15,12 +20,23 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Artifact"
-effect = "Disable Device and Open Lock"
 effect_type = "SkillBonus"
 targets = [
     "Disable Device",
     "Open Lock",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Disable Device",
+    "Open Lock",
+]]
+reason = 'The page lists these enchantments as separate lines. "Artifact Disable Device +2" (tooltip "Artifact Disable Device +2: Passive: +2 Artifact bonus to the Disable Device skill."); "Artifact Open Lock +2" (tooltip "Artifact Open Lock +2: Passive: +2 Artifact bonus to the Open Lock skill."). Screenshot: "Slotted Effect: +2 Artifact Bonus to Disable Device and Open Lock."'
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Disable_Device_and_Open_Lock_(Heroic)"
+read = "2026-10-23"
+qualifier = "Disable Device, Open Lock / Artifact"
 
 [[slot]]
 slot = "sun"

@@ -1,0 +1,29 @@
+<Augments>
+   <Augment>
+      <Name>The Eye of Lamannia</Name>
+      <Description>This weapon becomes an Implement. +146 Equipment bonus to Positive and Force
+Spellpower.</Description>
+      <MinLevel>30</MinLevel>
+      <Icon>RubyEye</Icon>
+      <Type>Red</Type>
+      <Type>Purple</Type>
+      <Type>Orange</Type>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">146</Amount>
+         <Item>Positive</Item>
+      <Item>Force</Item>
+      <Item>Physical</Item>
+      <Item>Untyped</Item>
+      </Effect>
+      <Effect>
+         <Type>ImplementInYourHands</Type>
+         <Bonus>Enhancement</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+         <Item>All</Item>
+      </Effect>
+   </Augment>
+</Augments>

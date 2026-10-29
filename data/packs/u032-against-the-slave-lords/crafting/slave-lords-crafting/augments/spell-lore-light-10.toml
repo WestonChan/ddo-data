@@ -4,6 +4,11 @@ family = "Slavelords_Heroic"
 icon = "SlavelordsSuffix"
 min_level = 8
 
+[[citation]]
+url = "https://ddowiki.com/page/Slave_Lords_Crafting"
+read = "2026-10-23"
+note = 'Line structure checked: "Spell Lore (single type) (Equipment Bonus) | +10 | +21"'
+
 [[effect]]
 name = "Radiance Lore"
 bonus_type = "Equipment"

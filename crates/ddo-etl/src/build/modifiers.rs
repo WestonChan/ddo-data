@@ -606,7 +606,7 @@ impl TableWriter<'_> {
             });
             let mut split_links = Vec::new();
             for (line_name, partition) in partitions {
-                let mut link = if partition.len() == 1 {
+                let mut link = if ddo_model::stats::Stat::by_name(&line_name).is_some() {
                     let (effect_type, bonus) = bonuses
                         .iter()
                         .find(|(_, bonus)| partition.contains(bonus.stat.name))
@@ -620,13 +620,13 @@ impl TableWriter<'_> {
                         .map(String::as_str);
                     self.write_derived_line(owner, effect_type, target, &[*bonus], None)?
                 } else {
-                    let line_grouping = self.groupings.grouping_named(&line_name).ok_or_else(|| {
+                    let line_effect = self.groupings.effect_named(&line_name).ok_or_else(|| {
                         anyhow::anyhow!(
-                            "{}: split line {line_name:?} is not a link-valued grouping",
+                            "{}: split line {line_name:?} has no indexed effect definition",
                             correction.label()
                         )
                     })?;
-                    let effect_id = self.effects.ensure_indexed_effect(line_grouping)?;
+                    let effect_id = self.effects.ensure_indexed_effect(line_effect)?;
                     self.write_upstream_grouping_line(owner, effect_id, bonus_type, value)?
                 };
                 link.is_split_line = true;

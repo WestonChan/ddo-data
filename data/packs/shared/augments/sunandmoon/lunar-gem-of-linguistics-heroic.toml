@@ -7,7 +7,17 @@ icon = "HistoryBookWhite"
 min_level = 1
 
 [[effect]]
-name = "Bluff, Diplomacy and Intimidate"
+name = "Diplomacy"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Bluff"
 bonus_type = "Profane"
 value = 2
 
@@ -15,13 +25,25 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Profane"
-effect = "Bluff, Diplomacy and Intimidate"
 effect_type = "SkillBonus"
 targets = [
     "Diplomacy",
     "Intimidate",
     "Bluff",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Bluff",
+    "Diplomacy",
+    "Intimidate",
+]]
+reason = 'The page lists these enchantments as separate lines. "Profane Diplomacy +2: Passive: +2 Profane bonus to the Diplomacy skill." / "Profane Intimidate +2: …" / "Profane Bluff +2: Passive: +2 Profane bonus to the Bluff skill." / screenshot: "Slotted Effect: +2 Profane Bonus to Diplomacy, Intimidate, and Bluff."'
+url = "https://ddowiki.com/page/Item:Lunar_Gem_of_Linguistics_(Heroic)"
+read = "2026-10-23"
+qualifier = "Bluff, Diplomacy, Intimidate / Profane"
 
 [[slot]]
 slot = "moon"

@@ -7,7 +7,12 @@ icon = "HistoryBookWhite"
 min_level = 1
 
 [[effect]]
-name = "Haggle and Perform"
+name = "Haggle"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Perform"
 bonus_type = "Profane"
 value = 2
 
@@ -15,12 +20,23 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Profane"
-effect = "Haggle and Perform"
 effect_type = "SkillBonus"
 targets = [
     "Haggle",
     "Perform",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Haggle",
+    "Perform",
+]]
+reason = 'The page lists these enchantments as separate lines. "Profane Haggle +2: Passive: +2 Profane bonus to the Haggle skill." / "Profane Perform +2: Passive: +2 Profane bonus to the Perform skill." / screenshot: "Slotted Effect: +2 Profane Bonus to Haggle and Perform."'
+url = "https://ddowiki.com/page/Item:Lunar_Gem_of_Haggle_and_Perform_(Heroic)"
+read = "2026-10-23"
+qualifier = "Haggle, Perform / Profane"
 
 [[slot]]
 slot = "moon"

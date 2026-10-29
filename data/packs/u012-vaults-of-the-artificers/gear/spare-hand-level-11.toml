@@ -32,6 +32,30 @@ name = "Open Lock"
 bonus_type = "Competence"
 value = 14
 
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [[
+    "Disable Device",
+    "Open Lock",
+]]
+reason = 'The page lists these enchantments as separate lines. screenshot: "Disable Device +16: +16 Competence bonus to Disable Device." / "Open Lock +16: +16 Competence bonus to Open Lock." / typed: "Disable Device +16: Passive: +16 Competence bonus to the Disable Device skill." / "Open Lock +16: Passive: +16 Competence bonus to the Open Lock skill."'
+url = "https://ddowiki.com/page/Item:Spare_Hand"
+read = "2026-10-23"
+qualifier = 'socket "upgrade: tier 3", option "Disable Device +16, Open Lock +16 and a Green Augment Slot", Disable Device, Open Lock / Competence'
+
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [[
+    "Disable Device",
+    "Open Lock",
+]]
+reason = 'The page lists these enchantments as separate lines. screenshot: "Disable Device +15: +15 Competence bonus to Disable Device." / "Open Lock +15: +15 Competence bonus to Open Lock." / typed: "Disable Device +15: Passive: +15 Competence bonus to the Disable Device skill." / "Open Lock +15: …"'
+url = "https://ddowiki.com/page/Item:Spare_Hand"
+read = "2026-10-23"
+qualifier = 'socket "upgrade: tier 2", option "Riposte +3, Disable Device +15 and Open Lock +15", Disable Device, Open Lock / Competence'
+
 [[socket]]
 slot = "upgrade: tier 2"
 
@@ -55,7 +79,12 @@ value = 3
 
 [[socket.option.effect]]
 bonus_type = "Competence"
-effect = "Disable Device and Open Lock"
+effect = "Disable Device"
+value = 15
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Open Lock"
 value = 15
 
 [[socket.option.modifier]]
@@ -79,7 +108,6 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Competence"
-effect = "Disable Device and Open Lock"
 effect_type = "SkillBonus"
 targets = [
     "Disable Device",
@@ -100,7 +128,12 @@ min_level = 11
 
 [[socket.option.effect]]
 bonus_type = "Competence"
-effect = "Disable Device and Open Lock"
+effect = "Disable Device"
+value = 16
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Open Lock"
 value = 16
 
 [[socket.option.grant]]
@@ -110,7 +143,6 @@ slot = "green"
 amount_type = "Simple"
 amounts = [16]
 bonus_type = "Competence"
-effect = "Disable Device and Open Lock"
 effect_type = "SkillBonus"
 targets = [
     "Disable Device",

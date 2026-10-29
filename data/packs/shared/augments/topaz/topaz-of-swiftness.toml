@@ -20,6 +20,11 @@ levels = [
     20,
 ]
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Topaz_of_Swiftness_15%25"
+read = "2026-10-23"
+note = 'Line structure checked: Typed: "Speed +30%" (tooltip "Speed +30%: +30% enhancement bonus to movement speed, 15% bonus to attack speed."). Screenshot: "Drag this augment into a slot to upgrade an item to provide a +30% Enhancement bonus to your movement speed and a 15% Enhancement bonus to your attack speed. This augment can go in a Yellow, Green, or Orange Augment Slot."'
+
 [[effect]]
 name = "Movement Speed"
 bonus_type = "Enhancement"

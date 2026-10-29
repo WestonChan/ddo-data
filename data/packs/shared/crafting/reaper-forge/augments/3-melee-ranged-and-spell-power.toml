@@ -4,6 +4,11 @@ family = "Reaper"
 icon = "Reaper"
 min_level = 1
 
+[[citation]]
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-10-23"
+note = 'Line structure checked: "Reaper Enchantment: Power: +3 Reaper Bonus to Melee, Ranged and Spell Power" / "These bonuses cannot be crafted using the Reaper Forge, and must be found naturally"'
+
 [[effect]]
 name = "Melee and Ranged Power"
 bonus_type = "Reaper"

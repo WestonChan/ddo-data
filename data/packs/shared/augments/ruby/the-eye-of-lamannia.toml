@@ -7,7 +7,12 @@ icon = "RubyEye"
 min_level = 30
 
 [[effect]]
-name = "Force and Positive Spell Power"
+name = "Devotion"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Impulse"
 bonus_type = "Equipment"
 value = 146
 
@@ -15,7 +20,6 @@ value = 146
 amount_type = "Simple"
 amounts = [146]
 bonus_type = "Equipment"
-effect = "Force and Positive Spell Power"
 effect_type = "SpellPower"
 targets = [
     "Positive",
@@ -30,6 +34,18 @@ amounts = [1]
 bonus_type = "Enhancement"
 effect_type = "ImplementInYourHands"
 targets = ["All"]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Force Spell Power",
+    "Positive Spell Power",
+]]
+reason = 'The page lists these enchantments as separate lines. typed: "Devotion +146: Passive: +146 Equipment bonus to Positive (Healing) Spell Power." / "Impulse +146: Passive: +146 Equipment bonus to Force, Untyped, Slashing, Piercing, and Bludgeoning Spell Power." / screenshot: "Slotted Effect: This weapon becomes an Implement. +146 Equipment bonus to Positive and Force Spellpower."'
+url = "https://ddowiki.com/page/Item:The_Eye_of_Lamannia"
+read = "2026-10-23"
+qualifier = "Force Spell Power, Positive Spell Power / Equipment"
 
 [[slot]]
 slot = "red"

@@ -7,7 +7,17 @@ icon = "HistoryBookWhite"
 min_level = 30
 
 [[effect]]
-name = "Bluff, Diplomacy and Intimidate"
+name = "Diplomacy"
+bonus_type = "Artifact"
+value = 6
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Artifact"
+value = 6
+
+[[effect]]
+name = "Bluff"
 bonus_type = "Artifact"
 value = 6
 
@@ -15,13 +25,25 @@ value = 6
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Artifact"
-effect = "Bluff, Diplomacy and Intimidate"
 effect_type = "SkillBonus"
 targets = [
     "Diplomacy",
     "Intimidate",
     "Bluff",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Bluff",
+    "Diplomacy",
+    "Intimidate",
+]]
+reason = 'The page lists these enchantments as separate lines. "Artifact Diplomacy +6" (tooltip "Artifact Diplomacy +6: Passive: +6 Artifact bonus to the Diplomacy skill."); "Artifact Intimidate +6" (tooltip "Artifact Intimidate +6: Passive: +6 Artifact bonus to the Intimidate skill."); "Artifact Bluff +6" (tooltip "Artifact Bluff +6: Passive: +6 Artifact bonus to the Bluff skill."). Screenshot: "Slotted Effect: +6 Artifact Bonus to Diplomacy, Bluff, and Intimidate."'
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Linguistics_(Legendary)"
+read = "2026-10-23"
+qualifier = "Bluff, Diplomacy, Intimidate / Artifact"
 
 [[slot]]
 slot = "sun"

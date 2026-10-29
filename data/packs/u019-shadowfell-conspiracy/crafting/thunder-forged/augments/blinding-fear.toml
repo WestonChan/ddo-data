@@ -4,6 +4,11 @@ description = "Blinding Fear: On Hit: Blinds and Shakens foe for 6 sec, 12 sec c
 family = "Thunderforged"
 min_level = 24
 
+[[citation]]
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-10-23"
+note = 'Line structure checked: "+10 Orb Bonus" (tooltip "+10 Orb Bonus: While this orb is equipped and you are actively blocking, you gain a +10 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and Sonic resistances.")'
+
 [[effect]]
 name = "Saving Throws"
 bonus_type = "Orb"

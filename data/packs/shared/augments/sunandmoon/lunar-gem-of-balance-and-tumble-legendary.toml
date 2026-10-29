@@ -7,7 +7,12 @@ icon = "HistoryBookWhite"
 min_level = 30
 
 [[effect]]
-name = "Balance and Tumble"
+name = "Balance"
+bonus_type = "Profane"
+value = 6
+
+[[effect]]
+name = "Tumble"
 bonus_type = "Profane"
 value = 6
 
@@ -15,12 +20,23 @@ value = 6
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Profane"
-effect = "Balance and Tumble"
 effect_type = "SkillBonus"
 targets = [
     "Balance",
     "Tumble",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Balance",
+    "Tumble",
+]]
+reason = 'The page lists these enchantments as separate lines. "Profane Balance +6: Passive: +6 Profane bonus to the Balance skill." / "Profane Tumble +6: Passive: +6 Profane bonus to the Tumble skill." / screenshot: "Slotted Effect: +6 Profane Bonus to Balance and Tumble."'
+url = "https://ddowiki.com/page/Item:Lunar_Gem_of_Balance_and_Tumble_(Legendary)"
+read = "2026-10-23"
+qualifier = "Balance, Tumble / Profane"
 
 [[slot]]
 slot = "moon"

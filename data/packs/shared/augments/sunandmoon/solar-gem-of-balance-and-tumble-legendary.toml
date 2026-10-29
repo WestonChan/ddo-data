@@ -7,7 +7,12 @@ icon = "HistoryBookWhite"
 min_level = 30
 
 [[effect]]
-name = "Balance and Tumble"
+name = "Balance"
+bonus_type = "Artifact"
+value = 6
+
+[[effect]]
+name = "Tumble"
 bonus_type = "Artifact"
 value = 6
 
@@ -15,12 +20,23 @@ value = 6
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Artifact"
-effect = "Balance and Tumble"
 effect_type = "SkillBonus"
 targets = [
     "Balance",
     "Tumble",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Balance",
+    "Tumble",
+]]
+reason = 'The page lists these enchantments as separate lines. "Artifact Balance +6" (tooltip "Artifact Balance +6: Passive: +6 Artifact bonus to the Balance skill."); "Artifact Tumble +6" (tooltip "Artifact Tumble +6: Passive: +6 Artifact bonus to the Tumble skill."). Screenshot: "Slotted Effect: +6 Artifact Bonus to Balance and Tumble."'
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Balance_and_Tumble_(Legendary)"
+read = "2026-10-23"
+qualifier = "Balance, Tumble / Artifact"
 
 [[slot]]
 slot = "sun"

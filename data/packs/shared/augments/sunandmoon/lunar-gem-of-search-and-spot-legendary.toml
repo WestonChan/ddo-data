@@ -7,7 +7,12 @@ icon = "HistoryBookWhite"
 min_level = 30
 
 [[effect]]
-name = "Search and Spot"
+name = "Search"
+bonus_type = "Profane"
+value = 6
+
+[[effect]]
+name = "Spot"
 bonus_type = "Profane"
 value = 6
 
@@ -15,12 +20,23 @@ value = 6
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Profane"
-effect = "Search and Spot"
 effect_type = "SkillBonus"
 targets = [
     "Search",
     "Spot",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Search",
+    "Spot",
+]]
+reason = 'The page lists these enchantments as separate lines. "Profane Search +6" (tooltip "Profane Search +6: Passive: +6 Profane bonus to the Search skill."); "Profane Spot +6" (tooltip "Profane Spot +6: Passive: +6 Profane bonus to the Spot skill."). Screenshot: "Slotted Effect: +6 Profane Bonus to Search and Spot."'
+url = "https://ddowiki.com/page/Item:Lunar_Gem_of_Search_and_Spot_(Legendary)"
+read = "2026-10-23"
+qualifier = "Search, Spot / Profane"
 
 [[slot]]
 slot = "moon"

@@ -14,6 +14,11 @@ levels = [
     20,
 ]
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Sapphire_of_Spell_Agility_%2B10%25"
+read = "2026-10-23"
+note = """Line structure checked: +10%: "Arcane Casting Dexterity: This ability reduces the arcane spell failure chance by -10%." / +5%: "Lesser Arcane Casting Dexterity: …by -5%." / +15%: "Greater Arcane Casting Dexterity: …by -15%." / ASF page: "A Sapphire of Spell Agility +5/+10/+15 in a Blue Augment Slot reduces ASF by 5%/10%/15% (Minimum Level 12/16/20). This reduces total ASF, and as such can be on any item rather than needing to be on the armor or shield that's causing ASF.""""
+
 [[effect]]
 name = "Arcane Spell Failure and Arcane Spell Failure (Shield)"
 bonus_type = "Enhancement"

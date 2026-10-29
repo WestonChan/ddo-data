@@ -7,7 +7,12 @@ icon = "HistoryBookWhite"
 min_level = 1
 
 [[effect]]
-name = "Repair and Use Magic Device"
+name = "Repair"
+bonus_type = "Artifact"
+value = 2
+
+[[effect]]
+name = "Use Magic Device"
 bonus_type = "Artifact"
 value = 2
 
@@ -15,12 +20,23 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Artifact"
-effect = "Repair and Use Magic Device"
 effect_type = "SkillBonus"
 targets = [
     "Repair",
     "Use Magic Device",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Repair",
+    "Use Magic Device",
+]]
+reason = 'The page lists these enchantments as separate lines. "Artifact Repair +2" (tooltip "Artifact Repair +2: Passive: +2 Artifact bonus to the Repair skill."); "Artifact Use Magic Device +2" (tooltip "Artifact Use Magic Device +2: Passive: +2 Artifact bonus to the Use Magic Device skill."). Screenshot: "Slotted Effect: +2 Artifact Bonus to Repair and Use Magic Device." Typed Description (wrong): "Slotted Effect: +2 Profane Bonus to Repair and Use Magic Device."'
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Repair_and_Use_Magic_Device_(Heroic)"
+read = "2026-10-23"
+qualifier = "Repair, Use Magic Device / Artifact"
 
 [[slot]]
 slot = "sun"

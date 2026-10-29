@@ -2704,6 +2704,11 @@ Also reduces Crossbow Reload Speed by 10%."""
 icon = "Patience"
 source_name = "Epic"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Patience"
+read = "2026-10-23"
+note = 'Line structure checked: "Your attack speed is reduced by 10%, but you gain +1 critical multiplier with all weapons. Also reduces Crossbow Reload Speed by 10%."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Melee and Ranged Attack Speed"

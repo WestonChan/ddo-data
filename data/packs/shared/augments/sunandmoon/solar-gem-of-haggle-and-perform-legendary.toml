@@ -7,7 +7,12 @@ icon = "HistoryBookWhite"
 min_level = 30
 
 [[effect]]
-name = "Haggle and Perform"
+name = "Haggle"
+bonus_type = "Artifact"
+value = 6
+
+[[effect]]
+name = "Perform"
 bonus_type = "Artifact"
 value = 6
 
@@ -15,12 +20,23 @@ value = 6
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Artifact"
-effect = "Haggle and Perform"
 effect_type = "SkillBonus"
 targets = [
     "Haggle",
     "Perform",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Haggle",
+    "Perform",
+]]
+reason = 'The page lists these enchantments as separate lines. "Artifact Haggle +6" (tooltip "Artifact Haggle +6: Passive: +6 Artifact bonus to the Haggle skill."); "Artifact Perform +6" (tooltip "Artifact Perform +6: Passive: +6 Artifact bonus to the Perform skill."). Screenshot: "Slotted Effect: +6 Artifact Bonus to Haggle and Perform."'
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Haggle_and_Perform_(Legendary)"
+read = "2026-10-23"
+qualifier = "Haggle, Perform / Artifact"
 
 [[slot]]
 slot = "sun"

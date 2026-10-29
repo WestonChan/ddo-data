@@ -6,6 +6,11 @@ family = "PlanarSearing"
 icon = "Deconstructor"
 min_level = 32
 
+[[citation]]
+url = "https://ddowiki.com/page/Esoteric_Table"
+read = "2026-10-23"
+note = 'Line structure checked: "Unleash the Resistance | Removed: Unleashed Inferno & Unleashed Storm Added: Unleashed Resistance (20 competence resistance & +5% profane absorption on fire & electric)"'
+
 [[effect]]
 name = "Fire and Electric Resistance"
 bonus_type = "Competence"

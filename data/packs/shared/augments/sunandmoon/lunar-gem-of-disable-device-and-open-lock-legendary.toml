@@ -7,7 +7,12 @@ icon = "HistoryBookWhite"
 min_level = 30
 
 [[effect]]
-name = "Disable Device and Open Lock"
+name = "Disable Device"
+bonus_type = "Profane"
+value = 6
+
+[[effect]]
+name = "Open Lock"
 bonus_type = "Profane"
 value = 6
 
@@ -15,12 +20,23 @@ value = 6
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Profane"
-effect = "Disable Device and Open Lock"
 effect_type = "SkillBonus"
 targets = [
     "Disable Device",
     "Open Lock",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Disable Device",
+    "Open Lock",
+]]
+reason = 'The page lists these enchantments as separate lines. "Profane Disable Device +6: …" / "Profane Open Lock +6: Passive: +6 Profane bonus to the Open Lock skill." / screenshot: "Slotted Effect: +6 Profane Bonus to Disable Device and Open Lock."'
+url = "https://ddowiki.com/page/Item:Lunar_Gem_of_Disable_Device_and_Open_Lock_(Legendary)"
+read = "2026-10-23"
+qualifier = "Disable Device, Open Lock / Profane"
 
 [[slot]]
 slot = "moon"

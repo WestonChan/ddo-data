@@ -20,6 +20,11 @@ damage_reduction = 16
 max_dex_bonus = 2
 shield_bonus = 20
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Purple_Dragon_Shield"
+read = "2026-10-23"
+note = 'Line structure checked: screenshot: "+8 Orb Bonus: While this orb is equipped and you are actively blocking, you gain a +8 Orb bonus to all saving throws, as well as Acid, Cold, Electric, Fire, and Sonic resistances." / typed: "+8 Orb Bonus: While this orb is equipped and you are actively blocking, you gain a +8 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and Sonic resistances."'
+
 [[dr_bypass]]
 bypass = "Bludgeon"
 

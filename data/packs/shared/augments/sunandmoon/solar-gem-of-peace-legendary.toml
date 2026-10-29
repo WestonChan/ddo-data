@@ -7,7 +7,17 @@ icon = "HistoryBookWhite"
 min_level = 30
 
 [[effect]]
-name = "Concentration, Heal and Listen"
+name = "Heal"
+bonus_type = "Artifact"
+value = 6
+
+[[effect]]
+name = "Listen"
+bonus_type = "Artifact"
+value = 6
+
+[[effect]]
+name = "Concentration"
 bonus_type = "Artifact"
 value = 6
 
@@ -15,13 +25,25 @@ value = 6
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Artifact"
-effect = "Concentration, Heal and Listen"
 effect_type = "SkillBonus"
 targets = [
     "Heal",
     "Listen",
     "Concentration",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Concentration",
+    "Heal",
+    "Listen",
+]]
+reason = 'The page lists these enchantments as separate lines. "Artifact Heal +6" (tooltip "Artifact Heal +6: Passive: +6 Artifact bonus to the Heal skill."); "Artifact Listen +6" (tooltip "Artifact Listen +6: Passive: +6 Artifact bonus to the Listen skill."); "Artifact Concentration +6" (tooltip "Artifact Concentration +6: Passive: +6 Artifact bonus to the Concentration skill."). Screenshot: "Slotted Effect: +6 Artifact Bonus to Heal, Listen, and Concentration."'
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Heal_and_Listen_(Legendary)"
+read = "2026-10-23"
+qualifier = "Concentration, Heal, Listen / Artifact"
 
 [[slot]]
 slot = "sun"

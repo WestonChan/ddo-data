@@ -10080,6 +10080,11 @@ for every four levels."""
 icon = "PastLifeRogue"
 source_name = "Rogue"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Past_Life_Feats"
+read = "2026-10-23"
+note = 'Line structure checked: "three times per rest you can skulk with the skill of your past life, gaining bonuses equal to your level to your hide and move silently skills, a +1 bonus to sneak attack damage for every two character levels, and a +1 bonus to hit with sneak attacks for every four levels. Note: 1 Minute per use."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Sneak Attack Hit"
@@ -11341,6 +11346,11 @@ acquire = "Train"
 description = "Provides a +2 bonus to the character's Heal and Repair skills."
 icon = "SelfSufficient"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Self_Sufficient"
+read = "2026-10-23"
+note = 'Line structure checked: "Self sufficient grants a +2 bonus to the Heal and Repair skills."'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Heal and Repair"
@@ -11368,6 +11378,11 @@ name = "Shield Deflection"
 acquire = "Train"
 description = "When actively blocking with any type of Shield you are proficient with,\nyou gain a Competence bonus based on the type of shield to completely ignore\nAcid, Cold, Electric and Fire damage. \nBuckler: 20%\nSmall Shield: 25%\nLarge Shield 30%\nTower Shield: 40%"
 icon = "ShieldDeflection"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Shield_Deflection"
+read = "2026-10-23"
+note = 'Line structure checked: "When actively blocking with any type of shield you are proficient with, you have a (competence bonus) chance to completely ignore Acid, Cold, Electric, and Fire damage. The chance is based on the type of shield being used:" / "Buckler: 20%" / "Small Shield: 25%" / "Large Shield: 30%" / "Tower Shield: 40%"'
 
 [[row.effect]]
 bonus_type = "Enhancement"
@@ -13508,6 +13523,11 @@ name = "Stealthy"
 acquire = "Train"
 description = "Provides a +2 bonus to the character's Hide and Move Silently skills."
 icon = "Stealthy"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Stealthy"
+read = "2026-10-23"
+note = 'Line structure checked: "This feat grants a +2 bonus to the Hide and Move Silently skills."'
 
 [[row.effect]]
 bonus_type = "Feat"

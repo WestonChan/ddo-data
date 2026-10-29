@@ -10,6 +10,11 @@ description = """
 icon = "ScionOfArborea"
 source_name = "Epic"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Scion_of_Arborea"
+read = "2026-10-23"
+note = 'Line structure checked: "+20 Melee and Ranged Power"'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Melee and Ranged Power"
@@ -471,7 +476,7 @@ source_name = "Epic"
 [[row.citation]]
 url = "https://ddowiki.com/page/Scion_of_the_Astral_Plane"
 read = "2026-10-23"
-note = "One line: +4 to Tactical Feat and Assassinate DCs."
+note = 'One line: +4 to Tactical Feat and Assassinate DCs. Line structure checked: "+4% Doublestrike & Doubleshot. An additional +4 if you are centered." Line structure checked: "+4% Dodge; +4 Dodge cap"'
 
 [[row.effect]]
 bonus_type = "Feat"
@@ -561,6 +566,11 @@ as per the effect."""
 icon = "ScionOfTheEtherealPlane"
 source_name = "Epic"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Scion_of_the_Ethereal_Plane"
+read = "2026-10-23"
+note = 'Line structure checked: "+5 Melee and Ranged Power"'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Sneak Attack Dice"
@@ -631,6 +641,11 @@ Critical Damage, +10% Universal spell critical damage
 +3 Imbue Dice"""
 icon = "ScionOfTheFeywild"
 source_name = "Epic"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Scion_of_the_Feywild"
+read = "2026-10-23"
+note = 'Line structure checked: "+10 Sonic and Force Spell Power, +30 Universal Spell Power, +15% Sonic and Force Spell Critical Damage, +10% all other spell critical damage" Line structure checked: "+4 to the DCs of Enchantment and Illusion spells, +2 to DCs of other spells"'
 
 [[row.effect]]
 bonus_type = "Feat"
@@ -760,6 +775,11 @@ description = """
 icon = "ScionOfThePlaneOfAir"
 source_name = "Epic"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Scion_of_the_Plane_of_Air"
+read = "2026-10-23"
+note = 'Line structure checked: "+4% Dodge, +4 to Dodge Cap"'
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Evocation Focus"
@@ -880,6 +900,11 @@ description = """
 Gain +3 Imbue Dice"""
 icon = "ScionOfThePlaneOfEarth"
 source_name = "Epic"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Scion_of_the_Plane_of_Earth"
+read = "2026-10-23"
+note = 'Line structure checked: "+4 to the DCs of Conjuration and Transmutation spells, +2 to the DCs of other spells" Line structure checked: "+10 Acid and Poison Spell Power, +30 Universal Spell Power, +15% Acid and Poison Spell Critical Damage, +10% all other spell critical damage"'
 
 [[row.effect]]
 bonus_type = "Feat"

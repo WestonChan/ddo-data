@@ -9,6 +9,11 @@ You gain +2 racial bonus to constitution, +10% exceptional bonus to AC"""
 icon = "WildShapeBear"
 source_name = "Druid"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Wild_Shape"
+read = "2026-10-23"
+note = 'Line structure checked: "You gain a -2 penalty to Intelligence and Charisma."'
+
 [[row.effect]]
 bonus_type = "Penalty"
 effect = "Intelligence"
@@ -119,6 +124,11 @@ field = "effect"
 url = "https://ddowiki.com/page/Blightcaster"
 read = "2026-10-23"
 note = "The level 11 Blighted Wolf description corroborates the Wild Shape page's 10% Combat Style attack-speed bonus."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Wild_Shape"
+read = "2026-10-23"
+note = 'Line structure checked: Wild Shape: "You gain a +10% combat style bonus to melee attack speed, +15% movement speed." Blightcaster: "You gain a 10% Combat Style bonus and 15% bonus to movement speed." Line structure checked: "You gain a penalty of -2 Charisma and Intelligence"'
 
 [[row.effect]]
 bonus_type = "Combat Style"
@@ -293,6 +303,11 @@ Fighting stance. You gain +4 racial bonus to constitution, and +15% exceptional
 bonus to AC. Gain 20% Strikethrough chance."""
 icon = "WildShapeDireBear"
 source_name = "Druid"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Wild_Shape"
+read = "2026-10-23"
+note = 'Line structure checked: Druid: "Magical Beast forms grant a -2 penalty to Intelligence and Charisma." Wild Shape (Animal Forms): "You gain a -2 penalty to Intelligence and Charisma."'
 
 [[row.effect]]
 bonus_type = "Penalty"
@@ -677,6 +692,11 @@ you become immune to repair spells.
 You cannot use wands or scrolls while in animal form."""
 icon = "WildShapePlagueWolf"
 source_name = "Blight Caster"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Wild_Shape"
+read = "2026-10-23"
+note = 'Line structure checked: Wild Shape: "You gain a +10% combat style bonus to melee attack speed, +3 to attack while flanking, +10% movement speed." Blightcaster: "Transform into a magically diseased wolf: 10% Combat Style bonus to attack speed, a +3 bonus to attack while flanking." Line structure checked: Wild Shape: "You gain a penalty of -2 Charisma and Intelligence. (Bug: gives -4 Charisma)" Blightcaster: "Plague Wolf grants a -2 penalty to Intelligence and Charisma. (Bug: -4 Charisma)"'
 
 [[row.effect]]
 bonus_type = "Combat Style"
@@ -1105,6 +1125,16 @@ You gain a +20% combat style bonus to melee attack speed, +5 to attack while fla
 icon = "WildShapeWinterWolf"
 source_name = "Druid"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Wild_Shape"
+read = "2026-10-23"
+note = 'Line structure checked: Wild Shape: "You gain a +20% combat style bonus to melee attack speed, +5 to attack while flanking, +2d6 sneak attack damage, and +[10+druid level]% to movement speed." Druid: "While in Winter Wolf form, you gain a 20% Combat Style bonus to attack speed, a +5 bonus to attack while flanking, +2d6 sneak attack damage, and a 10% +1 per druid level (max 30%) bonus to movement speed."'
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Druid"
+read = "2026-10-23"
+note = 'Line structure checked: "Magical Beast forms grant a -2 penalty to Intelligence and Charisma."'
+
 [[row.effect]]
 bonus_type = "Combat Style"
 effect = "Melee and Ranged Attack Speed"
@@ -1236,6 +1266,11 @@ You gain a +10% Combat Style bonus to attack speed, +3 to attack while flanking,
 +1d6 sneak attack damage, and +10% to movement speed."""
 icon = "WildShapeWolf"
 source_name = "Druid"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Wild_Shape"
+read = "2026-10-23"
+note = 'Line structure checked: Wild Shape: "While in this form, you gain a +10% Combat Style bonus to attack speed, +3 to attack while flanking, +1d6 sneak attack damage, and +10% to movement speed." Druid: "While in Wolf form, you gain a 10% Combat Style bonus to attack speed, a +3 bonus to attack while flanking, +1d6 sneak attack damage, and a +10% enhancement bonus to movement speed." Line structure checked: Wild Shape: "You gain a -2 penalty to Intelligence and Charisma." Druid: "Animal forms grant a -2 penalty to Intelligence and Charisma."'
 
 [[row.effect]]
 bonus_type = "Combat Style"

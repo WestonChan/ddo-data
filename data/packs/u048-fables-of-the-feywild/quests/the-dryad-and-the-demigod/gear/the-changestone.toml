@@ -7,6 +7,11 @@ material = "Gem"
 minimum_level = 29
 slot = "Trinket"
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:The_Changestone"
+read = "2026-10-23"
+note = 'Line structure checked: Screenshot: "Speed +30%: This item increases your speed, giving you a +30% Enhancement bonus to Movement Speed and a +15% bonus to Attack speed." Typed: "Speed +30%" (tooltip "Speed +30%: +30% enhancement bonus to movement speed, 15% bonus to attack speed.")'
+
 [[socket]]
 slot = "crafting: changestone ability"
 

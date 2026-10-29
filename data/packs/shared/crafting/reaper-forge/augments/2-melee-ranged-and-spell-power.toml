@@ -3,6 +3,11 @@ description = "+2 Reaper bonus to Melee, Ranged and Spell Power"
 family = "Reaper"
 min_level = 1
 
+[[citation]]
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-10-23"
+note = 'Line structure checked: "Reaper Necklace Enchantment: +2 Reaper Bonus to melee/ranged/spell power and +2 PRR/MRR"'
+
 [[effect]]
 name = "Melee and Ranged Power"
 bonus_type = "Reaper"

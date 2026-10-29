@@ -19,7 +19,8 @@ max_dex_bonus = 11
 
 [[citation]]
 url = "https://ddowiki.com/page/Item:Dark_Bargainer%27s_Armor"
-read = "2026-09-30"
+read = "2026-10-23"
+note = 'Line structure checked: "Parrying +2: This item enchants its user with incredible awareness and speed, granting a 2 Insight bonus to AC and to Saves." (typed list: "Parrying +2: +2 Insight bonus to Armor Class, +2 Insight bonus to Saves.")'
 
 [[citation]]
 field = "effect"

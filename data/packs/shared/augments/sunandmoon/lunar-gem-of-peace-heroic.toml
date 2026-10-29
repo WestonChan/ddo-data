@@ -7,7 +7,17 @@ icon = "HistoryBookWhite"
 min_level = 1
 
 [[effect]]
-name = "Concentration, Heal and Listen"
+name = "Heal"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Listen"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Concentration"
 bonus_type = "Profane"
 value = 2
 
@@ -15,13 +25,25 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Profane"
-effect = "Concentration, Heal and Listen"
 effect_type = "SkillBonus"
 targets = [
     "Heal",
     "Listen",
     "Concentration",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Concentration",
+    "Heal",
+    "Listen",
+]]
+reason = 'The page lists these enchantments as separate lines. "Profane Heal +2: Passive: +2 Profane bonus to the Heal skill." / "Profane Listen +2: …" / "Profane Concentration +2: Passive: +2 Profane bonus to the Concentration skill." / screenshot: "Slotted Effect: +2 Profane Bonus to Heal, Listen, and Concentration."'
+url = "https://ddowiki.com/page/Item:Lunar_Gem_of_Peace_(Heroic)"
+read = "2026-10-23"
+qualifier = "Concentration, Heal, Listen / Profane"
 
 [[slot]]
 slot = "moon"

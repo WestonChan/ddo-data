@@ -7,7 +7,17 @@ icon = "HistoryBookWhite"
 min_level = 1
 
 [[effect]]
-name = "Concentration, Heal and Listen"
+name = "Heal"
+bonus_type = "Artifact"
+value = 2
+
+[[effect]]
+name = "Listen"
+bonus_type = "Artifact"
+value = 2
+
+[[effect]]
+name = "Concentration"
 bonus_type = "Artifact"
 value = 2
 
@@ -15,13 +25,25 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Artifact"
-effect = "Concentration, Heal and Listen"
 effect_type = "SkillBonus"
 targets = [
     "Heal",
     "Listen",
     "Concentration",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Concentration",
+    "Heal",
+    "Listen",
+]]
+reason = 'The page lists these enchantments as separate lines. "Artifact Heal +2" (tooltip "Artifact Heal +2: Passive: +2 Artifact bonus to the Heal skill."); "Artifact Listen +2" (tooltip "Artifact Listen +2: Passive: +2 Artifact bonus to the Listen skill."); "Artifact Concentration +2" (tooltip "Artifact Concentration +2: Passive: +2 Artifact bonus to the Concentration skill."). Screenshot: "Slotted Effect: +2 Artifact Bonus to Heal, Listen, and Concentration."'
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Heal_and_Listen_(Heroic)"
+read = "2026-10-23"
+qualifier = "Concentration, Heal, Listen / Artifact"
 
 [[slot]]
 slot = "sun"

@@ -207,6 +207,19 @@ pub(crate) fn scion_dodge_split() -> CorrectionSet {
     )
 }
 
+pub(crate) fn write_eye_of_lamannia(source: &std::path::Path) {
+    std::fs::write(
+        source.join("Augments/EyeOfLamannia.Augments.xml"),
+        include_str!("../fixtures/effect-groups/EyeOfLamannia.Augments.xml"),
+    )
+    .unwrap();
+    std::fs::write(
+        source.join("AugmentImages/RubyEye.png"),
+        include_bytes!("../fixtures/effect-groups/icons/RubyEye.png"),
+    )
+    .unwrap();
+}
+
 pub(crate) fn write_stat_set_split_augments(source: &std::path::Path) {
     for (name, text) in [
         (

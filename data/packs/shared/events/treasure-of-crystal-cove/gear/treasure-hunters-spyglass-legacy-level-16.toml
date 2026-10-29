@@ -29,6 +29,18 @@ name = "Use Magic Device"
 bonus_type = "Competence"
 value = 3
 
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [[
+    "Search",
+    "Spot",
+]]
+reason = 'The page lists these enchantments as separate lines. "Spot +13 → Spot +15" (tooltip "Spot +15: Passive: +15 Competence bonus to the Spot skill."); "Search +13 → Search +15" (tooltip "Search +15: Passive: +15 Competence bonus to the Search skill.")'
+url = "https://ddowiki.com/page/Item:Treasure_Hunter%27s_Spyglass"
+read = "2026-10-23"
+qualifier = 'socket "crafting: upgradeable tier 2", option "Spot +15 and Search +15", Search, Spot / Competence'
+
 [[socket]]
 slot = "crafting: upgradeable tier 2"
 
@@ -41,14 +53,18 @@ min_level = 16
 
 [[socket.option.effect]]
 bonus_type = "Competence"
-effect = "Search and Spot"
+effect = "Spot"
+value = 15
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Search"
 value = 15
 
 [[socket.option.modifier]]
 amount_type = "Simple"
 amounts = [15]
 bonus_type = "Competence"
-effect = "Search and Spot"
 effect_type = "SkillBonus"
 targets = [
     "Spot",

@@ -7,7 +7,12 @@ icon = "HistoryBookWhite"
 min_level = 30
 
 [[effect]]
-name = "Hide and Move Silently"
+name = "Hide"
+bonus_type = "Profane"
+value = 6
+
+[[effect]]
+name = "Move Silently"
 bonus_type = "Profane"
 value = 6
 
@@ -15,12 +20,23 @@ value = 6
 amount_type = "Simple"
 amounts = [6]
 bonus_type = "Profane"
-effect = "Hide and Move Silently"
 effect_type = "SkillBonus"
 targets = [
     "Hide",
     "Move Silently",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Hide",
+    "Move Silently",
+]]
+reason = 'The page lists these enchantments as separate lines. "Profane Hide +6: …" / "Profane Move Silently +6: Passive: +6 Profane bonus to the Move Silently skill." / screenshot: "Slotted Effect: +6 Profane Bonus to Hide and Move Silently."'
+url = "https://ddowiki.com/page/Item:Lunar_Gem_of_Hide_and_Move_Silently_(Legendary)"
+read = "2026-10-23"
+qualifier = "Hide, Move Silently / Profane"
 
 [[slot]]
 slot = "moon"

@@ -7,7 +7,12 @@ icon = "HistoryBookWhite"
 min_level = 1
 
 [[effect]]
-name = "Search and Spot"
+name = "Search"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Spot"
 bonus_type = "Profane"
 value = 2
 
@@ -15,12 +20,23 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Profane"
-effect = "Search and Spot"
 effect_type = "SkillBonus"
 targets = [
     "Search",
     "Spot",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Search",
+    "Spot",
+]]
+reason = 'The page lists these enchantments as separate lines. "Profane Search +2" (tooltip "Profane Search +2: Passive: +2 Profane bonus to the Search skill."); "Profane Spot +2" (tooltip "Profane Spot +2: Passive: +2 Profane bonus to the Spot skill."). Screenshot: "Slotted Effect: +2 Profane Bonus to Search and Spot."'
+url = "https://ddowiki.com/page/Item:Lunar_Gem_of_Search_and_Spot_(Heroic)"
+read = "2026-10-23"
+qualifier = "Search, Spot / Profane"
 
 [[slot]]
 slot = "moon"

@@ -36,6 +36,18 @@ bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Detect Secret Doors"]
 
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [[
+    "Search",
+    "Spot",
+]]
+reason = 'The page lists these enchantments as separate lines. "Spot +5 → Spot +7" (tooltip "Spot +7: Passive: +7 Competence bonus to the Spot skill."); "Search +5 → Search +7" (tooltip "Search +7: Passive: +7 Competence bonus to the Search skill.")'
+url = "https://ddowiki.com/page/Item:Treasure_Hunter%27s_Spyglass"
+read = "2026-10-23"
+qualifier = 'socket "crafting: upgradeable tier 2", option "Spot +7 and Search +7", Search, Spot / Competence'
+
 [[socket]]
 slot = "crafting: upgradeable tier 2"
 
@@ -48,14 +60,18 @@ min_level = 4
 
 [[socket.option.effect]]
 bonus_type = "Competence"
-effect = "Search and Spot"
+effect = "Spot"
+value = 7
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Search"
 value = 7
 
 [[socket.option.modifier]]
 amount_type = "Simple"
 amounts = [7]
 bonus_type = "Competence"
-effect = "Search and Spot"
 effect_type = "SkillBonus"
 targets = [
     "Spot",

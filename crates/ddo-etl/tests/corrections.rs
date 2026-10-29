@@ -1279,6 +1279,63 @@ fn grouping_definition_queries_do_not_grow_with_corrections() {
 }
 
 #[test]
+fn a_split_preserves_named_single_stat_partitions() {
+    let index = fixture::grouping_cases();
+    let source = fixture::xml_source();
+    fixture::write_eye_of_lamannia(source.path());
+    let correction = new_qualified_correction(
+        "augment_bonus",
+        "The Eye of Lamannia",
+        "stat = 'Force Spell Power, Positive Spell Power'\nbonus_type = 'Equipment'",
+        "lines",
+        "[['Force Spell Power', 'Positive Spell Power']]",
+        "['Devotion', 'Impulse']",
+    );
+    let (before, _) = built_db_from_index(index, source.path(), &[]).unwrap();
+    let (after, report) =
+        built_db_from_index(index, source.path(), &[("the-eye-of-lamannia.toml", &correction)]).unwrap();
+    let lines = after.prepare("SELECT e.name,l.value,bt.name FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN bonus_types bt ON bt.id=l.bonus_type_id JOIN augments a ON a.id=l.augment_id WHERE a.name='The Eye of Lamannia' AND l.value=146 ORDER BY l.sort_order").unwrap()
+        .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?,row.get::<_,String>(2)?)))
+        .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(lines, [("Devotion".into(), 146, "Equipment".into()), ("Impulse".into(), 146, "Equipment".into())]);
+    let mut previous_bonuses = augment_bonus_rows(&before, "The Eye of Lamannia");
+    let mut split_bonuses = augment_bonus_rows(&after, "The Eye of Lamannia");
+    previous_bonuses.sort();
+    split_bonuses.sort();
+    assert_eq!(previous_bonuses, split_bonuses);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+}
+
+#[test]
+fn a_named_single_stat_partition_must_accept_the_upstream_value_and_type() {
+    let rejected = [
+        ("amount_from = 0\nconstant = 146\n", "Devotion +146", "constant"),
+        ("amount_from = 2\n", "Devotion +{2}", "second slot"),
+        ("amount_from = 1\nbonus_type = 'Insight'\n", "Devotion +{1}", "fixed type"),
+    ].map(|(definition, template, expected)| {
+        let canonical = fixture::grouping_case_database(|root| {
+            std::fs::write(root.join("effects/devotion.toml"),
+                format!("name = 'Devotion'\nverbose_name_template = {template:?}\n[[bonus]]\n{definition}rounding = 'down'\nscale = 1.0\ntarget = 'Positive Spell Power'\n")
+            ).unwrap();
+        });
+        let index = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+        let source = fixture::xml_source();
+        fixture::write_eye_of_lamannia(source.path());
+        let correction = new_qualified_correction(
+            "augment_bonus", "The Eye of Lamannia",
+            "stat = 'Force Spell Power, Positive Spell Power'\nbonus_type = 'Equipment'", "lines",
+            "[['Force Spell Power', 'Positive Spell Power']]", "['Devotion', 'Force Spell Power']",
+        );
+        let result = built_db_from_index(&index, source.path(), &[("the-eye-of-lamannia.toml", &correction)]);
+        if let Err(error) = &result {
+            assert!(error.contains("Devotion") && error.contains("cannot take one value at Equipment"), "{expected}: {error}");
+        }
+        result.is_err()
+    });
+    assert_eq!(rejected, [true, true, true], "constant, second slot and incompatible fixed type");
+}
+
+#[test]
 fn a_split_uses_its_named_partition_even_when_other_effects_share_the_stats() {
     let canonical = fixture::grouping_case_database(|root| {
         std::fs::write(root.join("effects/stat-groups/cold-negative-and-poison-spell-power.toml"),

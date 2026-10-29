@@ -7,7 +7,12 @@ icon = "HistoryBookWhite"
 min_level = 1
 
 [[effect]]
-name = "Repair and Use Magic Device"
+name = "Repair"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Use Magic Device"
 bonus_type = "Profane"
 value = 2
 
@@ -15,12 +20,23 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Profane"
-effect = "Repair and Use Magic Device"
 effect_type = "SkillBonus"
 targets = [
     "Repair",
     "Use Magic Device",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [[
+    "Repair",
+    "Use Magic Device",
+]]
+reason = 'The page lists these enchantments as separate lines. "Profane Repair +2" (tooltip "Profane Repair +2: Passive: +2 Profane bonus to the Repair skill."); "Profane Use Magic Device +2" (tooltip "Profane Use Magic Device +2: Passive: +2 Profane bonus to the Use Magic Device skill."). Screenshot: "Slotted Effect: +2 Profane Bonus to Repair and Use Magic Device."'
+url = "https://ddowiki.com/page/Item:Lunar_Gem_of_Repair_and_Use_Magic_Device_(Heroic)"
+read = "2026-10-23"
+qualifier = "Repair, Use Magic Device / Profane"
 
 [[slot]]
 slot = "moon"

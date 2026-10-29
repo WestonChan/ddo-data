@@ -7,6 +7,11 @@ family = "SunAndMoon"
 icon = "HistoryBookWhite"
 min_level = 1
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Alignment_Absorption_(Heroic)"
+read = "2026-10-23"
+note = 'Line structure checked: "Artifact Alignment Absorption +3%" (tooltip "Artifact Alignment Absorption +3%: Passive: 3% Artifact Bonus to Alignment Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)"). Screenshot: "Slotted Effect: +3% Artifact Bonus to Alignment Absorption."'
+
 [[effect]]
 name = "Law, Chaos, Good and Evil Absorption"
 bonus_type = "Artifact"
