@@ -74,13 +74,7 @@ const AUGMENT_BONUS_OPERATIONS: &[CorrectableField] = &[
     field("lines", FieldShape::BonusLines, false),
 ];
 
-const ITEM_BONUS_OPERATIONS: &[CorrectableField] = &[
-    field("alias", FieldShape::BonusAlias, true),
-    field("add", FieldShape::BonusAddition, false),
-    field("remove", FieldShape::BonusRemoval, false),
-    field("lines", FieldShape::BonusLines, false),
-];
-const SET_TIER_BONUS_OPERATIONS: &[CorrectableField] = &[
+const BONUS_LINK_OPERATIONS: &[CorrectableField] = &[
     field("alias", FieldShape::BonusAlias, true),
     field("add", FieldShape::BonusAddition, false),
     field("remove", FieldShape::BonusRemoval, false),
@@ -138,15 +132,7 @@ const fn kind_operations(kind: CorrectionKind) -> &'static [CorrectableField] {
             }
         }
         CorrectionKind::AugmentBonus => AUGMENT_BONUS_OPERATIONS,
-        CorrectionKind::FeatBonus => {
-            const {
-                &[
-                    field("alias", FieldShape::BonusAlias, true),
-                    field("remove", FieldShape::BonusRemoval, false),
-                    field("lines", FieldShape::BonusLines, false),
-                ]
-            }
-        }
+        CorrectionKind::FeatBonus => BONUS_LINK_OPERATIONS,
         CorrectionKind::SocketOptionBonus => {
             const {
                 &[
@@ -157,9 +143,9 @@ const fn kind_operations(kind: CorrectionKind) -> &'static [CorrectableField] {
                 ]
             }
         }
-        CorrectionKind::ItemBonus => ITEM_BONUS_OPERATIONS,
+        CorrectionKind::ItemBonus => BONUS_LINK_OPERATIONS,
         CorrectionKind::SetTier => SET_TIER_OPERATIONS,
-        CorrectionKind::SetTierBonus => SET_TIER_BONUS_OPERATIONS,
+        CorrectionKind::SetTierBonus => BONUS_LINK_OPERATIONS,
         CorrectionKind::ItemEffect => ITEM_EFFECT_OPERATIONS,
         CorrectionKind::EffectDamage => EFFECT_DAMAGE_OPERATIONS,
         CorrectionKind::ItemSocket => ITEM_SOCKET_OPERATIONS,

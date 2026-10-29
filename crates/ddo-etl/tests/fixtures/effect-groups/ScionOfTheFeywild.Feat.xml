@@ -1,0 +1,74 @@
+    <Feat>
+      <Name>Scion of the Feywild</Name>
+      <Description>+4 to the DCs of Enchantment and Illusion spells, +2 to DCs of other spells
++10 Sonic Spell Power, +30 Universal Spell Power, +15% Sonic and Force Spell
+Critical Damage, +10% Universal spell critical damage
++20 Healing Amp
++3 Imbue Dice</Description>
+      <Group>Legendary Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>30</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ScionOfTheFeywild</Icon>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Sonic</Item>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellPower</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">30</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">15</Amount>
+        <Item>Sonic</Item>
+        <Item>Force</Item>
+        <Item>Physical</Item>
+        <Item>Untyped</Item>
+      </Effect>
+      <Effect>
+        <Type>UniversalSpellCriticalDamage</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">10</Amount>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Enchantment</Item>
+        <Item>Illusion</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Feat</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">20</Amount>
+      </Effect>
+      <Effect>
+        <Type>ImbueDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">3</Amount>
+      </Effect>
+    </Feat>

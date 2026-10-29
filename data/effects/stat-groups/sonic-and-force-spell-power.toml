@@ -1,0 +1,20 @@
+name = "Sonic and Force Spell Power"
+description_template = "+{1} %b1 bonus to Sonic and Force Spell Power."
+verbose_name_template = "%b1 Sonic and Force Spell Power +{1}"
+
+[[citation]]
+url = "https://ddowiki.com/page/Scion_of_the_Feywild"
+read = "2026-10-23"
+note = "R5-3: one bullet grants +10 Sonic and Force Spell Power."
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Sonic Spell Power"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Force Spell Power"

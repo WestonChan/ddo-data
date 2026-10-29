@@ -250,7 +250,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::Augment, "description:description:Text:false, effect_description:effect_description:Text:true, family:family:Text:false, min_level:min_level:Integer:true, name:name:RowName:false, remove:remove:Removal:false"),
         (CorrectionKind::Quest, "epic_level:epic_level:Integer:true, favor:favor:Integer:true, is_raid:is_raid:Flag:false, level:level:Integer:true, name:name:RowName:false, pack:pack_id:NamedReference { referenced_table: \"adventure_packs\" }:false, patron:patron_id:NamedReference { referenced_table: \"patrons\" }:true, remove:remove:Removal:false"),
         (CorrectionKind::Feat, "description:description:Text:true, icon:icon:Text:true"),
-        (CorrectionKind::FeatBonus, "alias:alias:BonusAlias:true, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
+        (CorrectionKind::FeatBonus, "add:add:BonusAddition:false, alias:alias:BonusAlias:true, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
         (CorrectionKind::SocketOptionBonus, "alias:alias:BonusAlias:true, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
         (CorrectionKind::Enhancement, "arrows:arrows:TextList:false, cooldown_seconds:cooldown_seconds:Integer:true, cost_per_rank:cost_per_rank:IntegerList:false, description:description:Text:false, duration_seconds:duration_seconds:Integer:true, icon:icon:Text:true, is_clickie:is_clickie:Flag:false, is_tier5:is_tier5:Flag:false, min_spent:min_spent:Integer:false, name:name:RowName:false, ranks:ranks:Integer:false, x:x:Integer:false, y:y:Integer:false"),
         (CorrectionKind::Spell, "description:description:Text:false, icon:icon:Text:true"),
@@ -1935,6 +1935,110 @@ fn feat_lines_split_and_merge_follow_the_real_writer() {
         built_db_from_index(fixture::grouping_cases(), source.path(), &[("feat-merge.toml", &merge)]).unwrap();
     assert_eq!(fixture::scion_dodge_lines(&merged), [("Dodge and Dodge Cap".into(), 4)]);
     assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+}
+
+#[test]
+fn a_feat_addition_feeds_a_merge_and_reports_upstream_values() {
+    let source = fixture::xml_source();
+    let path = source.path().join("Feats.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let captured = include_str!("fixtures/effect-groups/ScionOfTheFeywild.Feat.xml");
+    std::fs::create_dir_all(source.path().join("FeatImages")).unwrap();
+    std::fs::write(
+        source.path().join("FeatImages/ScionOfTheFeywild.png"),
+        include_bytes!("fixtures/effect-groups/icons/ScionOfTheFeywild.png"),
+    )
+    .unwrap();
+    let addition = new_correction(
+        "feat_bonus",
+        "Scion of the Feywild",
+        "add",
+        "\"null\"",
+        "{ stat = 'Force Spell Power', bonus_type = 'Feat', value = 10 }",
+    );
+    let merge = new_qualified_correction(
+        "feat_bonus",
+        "Scion of the Feywild",
+        "stat = 'Sonic Spell Power, Force Spell Power'\nbonus_type = 'Feat'",
+        "lines",
+        "[[\"Sonic Spell Power\"], [\"Force Spell Power\"]]",
+        "\"Sonic and Force Spell Power\"",
+    );
+    let corrections = addition + &merge;
+    let bonuses = |db: &Connection| {
+        db.prepare("SELECT s.name,bt.name,ob.amount FROM owner_bonuses ob JOIN feats f ON ob.owner_kind='feat' AND ob.owner_id=f.id JOIN effects s ON s.id=ob.stat_id JOIN bonus_types bt ON bt.id=ob.bonus_type_id WHERE f.name='Scion of the Feywild' ORDER BY s.name,bt.name,ob.amount").unwrap()
+            .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?)))
+            .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
+    };
+    let effect_start = captured.find("      <Effect>").unwrap();
+    let effect_end = effect_start + captured[effect_start..].find("      </Effect>").unwrap() + "      </Effect>".len();
+    for upstream_amount in [None, Some(10), Some(20)] {
+        let extra = upstream_amount
+            .map(|amount| {
+                captured[effect_start..effect_end]
+                    .replace("<Item>Sonic</Item>", "<Item>Force</Item>")
+                    .replace("<Amount size=\"1\">10</Amount>", &format!("<Amount size=\"1\">{amount}</Amount>"))
+            })
+            .unwrap_or_default();
+        let changed = captured.replace("    </Feat>", &format!("{extra}\n    </Feat>"));
+        std::fs::write(&path, original.replace("</Feats>", &format!("{changed}</Feats>"))).unwrap();
+        let (before, _) = built_db_from_index(fixture::grouping_cases(), source.path(), &[]).unwrap();
+        let (after, report) =
+            built_db_from_index(fixture::grouping_cases(), source.path(), &[("feywild.toml", &corrections)]).unwrap();
+        let mut expected = bonuses(&before);
+        if upstream_amount.is_none() {
+            expected.push(("Force Spell Power".into(), "Feat".into(), 10));
+            expected.sort();
+        }
+        assert_eq!(bonuses(&after), expected);
+        if upstream_amount.is_none() {
+            let mut export_corrections = Corrections::from_database(&after).unwrap();
+            export_corrections.entries.extend(fixture::fixture_icon_corrections().entries);
+            let mut normalized = Connection::open_in_memory().unwrap();
+            build_database(
+                fixture::grouping_cases(),
+                source.path(),
+                &WikiOverrides::default(),
+                &export_corrections,
+                &mut normalized,
+                &fixture_dataset_version(),
+            )
+            .unwrap();
+            let exported = tempfile::tempdir().unwrap();
+            ddo_etl::tree::export_database(&normalized, exported.path()).unwrap();
+            copy_fixture_icons(exported.path());
+            std::fs::write(
+                exported.path().join("icons/feats/ScionOfTheFeywild.png"),
+                include_bytes!("fixtures/effect-groups/icons/ScionOfTheFeywild.png"),
+            )
+            .unwrap();
+            let mut rebuilt = Connection::open_in_memory().unwrap();
+            ddo_etl::tree::build_from_data(exported.path(), &mut rebuilt).unwrap();
+            assert_eq!(bonuses(&rebuilt), expected);
+            assert_eq!(recorded_corrections(&normalized), recorded_corrections(&rebuilt));
+            let second = tempfile::tempdir().unwrap();
+            ddo_etl::tree::export_database(&rebuilt, second.path()).unwrap();
+            assert_eq!(
+                ddo_etl::tree::data_file_bytes(exported.path()).unwrap(),
+                ddo_etl::tree::data_file_bytes(second.path()).unwrap()
+            );
+        }
+        let lines = after.prepare("SELECT e.name,l.value FROM feat_effects l JOIN effects e ON e.id=l.effect_id JOIN feats f ON f.id=l.feat_id WHERE f.name='Scion of the Feywild' AND e.name IN ('Sonic Spell Power','Force Spell Power','Sonic and Force Spell Power') ORDER BY l.sort_order").unwrap()
+            .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?)))
+            .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        if upstream_amount == Some(20) {
+            assert_eq!(lines, [("Sonic Spell Power".into(), 10), ("Force Spell Power".into(), 20)]);
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 2));
+            assert!(report.stale_corrections.iter().any(|correction| matches!(&correction.cause,
+                StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\"")));
+        } else {
+            assert_eq!(lines, [("Sonic and Force Spell Power".into(), 10)]);
+            assert_eq!(
+                (report.correction_applied_count, report.correction_stale_count),
+                if upstream_amount.is_none() { (2, 0) } else { (1, 1) }
+            );
+        }
+    }
 }
 
 #[test]

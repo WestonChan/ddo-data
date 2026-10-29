@@ -635,7 +635,7 @@ name = "Scion of the Feywild"
 acquire = "Train"
 description = """
 +4 to the DCs of Enchantment and Illusion spells, +2 to DCs of other spells
-+10 Sonic Spell Power, +30 Universal Spell Power, +15% Sonic and Force Spell
++10 Sonic and Force Spell Power, +30 Universal Spell Power, +15% Sonic and Force Spell
 Critical Damage, +10% Universal spell critical damage
 +20 Healing Amp
 +3 Imbue Dice"""
@@ -649,7 +649,7 @@ note = 'Line structure checked: "+10 Sonic and Force Spell Power, +30 Universal 
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Sonic Spell Power"
+effect = "Sonic and Force Spell Power"
 value = 10
 
 [[row.effect]]
@@ -689,6 +689,39 @@ value = 3
 
 [[row.group]]
 group_name = "Legendary Feat"
+
+[[row.ddobuilder_correction]]
+kind = "feat"
+field = "description"
+upstream = """
++4 to the DCs of Enchantment and Illusion spells, +2 to DCs of other spells
++10 Sonic Spell Power, +30 Universal Spell Power, +15% Sonic and Force Spell
+Critical Damage, +10% Universal spell critical damage
++20 Healing Amp
++3 Imbue Dice"""
+reason = "R5-3: the feat description names both Sonic and Force Spell Power; the other bonuses are unchanged."
+url = "https://ddowiki.com/page/Scion_of_the_Feywild"
+read = "2026-10-23"
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "add"
+reason = "R5-3: the feat grants +10 Sonic and Force Spell Power; Maetrim omits Force."
+url = "https://ddowiki.com/page/Scion_of_the_Feywild"
+read = "2026-10-23"
+qualifier = "Force Spell Power / Feat"
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "lines"
+upstream = [
+    ["Sonic Spell Power"],
+    ["Force Spell Power"],
+]
+reason = "R5-3: Sonic and Force Spell Power are one line, including the missing Force bonus added by the cited correction."
+url = "https://ddowiki.com/page/Scion_of_the_Feywild"
+read = "2026-10-23"
+qualifier = "Sonic Spell Power, Force Spell Power / Feat"
 
 [[row.modifier]]
 amount_type = "Simple"

@@ -111,6 +111,7 @@ fn added_bonus_value(
     let owner_kind = match kind {
         CorrectionKind::ItemBonus => "item",
         CorrectionKind::AugmentBonus => "augment",
+        CorrectionKind::FeatBonus => "feat",
         CorrectionKind::SetTierBonus => "set_bonus_tier",
         _ => bail!("{} cannot add a bonus", kind.as_str()),
     };
@@ -306,7 +307,7 @@ pub(super) fn correction_values(
         (CorrectionKind::ItemEffect, "add") if note.added_as_name == Some(true) => json!(note.qualifier),
         (CorrectionKind::ItemEffect, "add") => added_item_effect_value(transaction, current_name, note, &correction)?,
         (CorrectionKind::EffectDamage, "add") => added_damage_value(transaction, current_name, &correction)?,
-        (CorrectionKind::ItemBonus | CorrectionKind::AugmentBonus | CorrectionKind::SetTierBonus, "add") => {
+        (_, "add") if correction.correctable_field()?.shape == FieldShape::BonusAddition => {
             added_bonus_value(transaction, correction.kind, current_name, &correction)?
         }
         (_, "remove") if correction.correctable_field()?.shape == FieldShape::BonusRemoval => {
