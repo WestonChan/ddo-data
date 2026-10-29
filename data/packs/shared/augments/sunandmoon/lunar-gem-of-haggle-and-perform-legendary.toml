@@ -1,6 +1,6 @@
 name = "Lunar Gem of Haggle and Perform (Legendary)"
 description = """
-+4 Profane Bonus to Haggle and Perform
++6 Profane Bonus to Haggle and Perform
 Drops in: Land of Lamordia, Fangs of Winter's chest"""
 family = "SunAndMoon"
 icon = "HistoryBookWhite"
@@ -9,12 +9,12 @@ min_level = 30
 [[effect]]
 name = "Haggle"
 bonus_type = "Profane"
-value = 4
+value = 6
 
 [[effect]]
 name = "Perform"
 bonus_type = "Profane"
-value = 4
+value = 6
 
 [[modifier]]
 amount_type = "Simple"
@@ -27,6 +27,16 @@ targets = [
 ]
 
 [[ddobuilder_correction]]
+kind = "augment"
+field = "description"
+upstream = """
++4 Profane Bonus to Haggle and Perform
+Drops in: Land of Lamordia, Fangs of Winter's chest"""
+reason = "R5-3: the screenshot states +6 Profane Bonus to Haggle and Perform; the drop text is unchanged."
+url = "https://images.ddowiki.com/Lunar_Gem_of_Haggle_and_Perform_%28Legendary%29.png"
+read = "2026-10-23"
+
+[[ddobuilder_correction]]
 kind = "augment_bonus"
 field = "lines"
 upstream = [[
@@ -37,6 +47,24 @@ reason = 'The page lists these enchantments as separate lines. "Profane Haggle +
 url = "https://ddowiki.com/page/Item:Lunar_Gem_of_Haggle_and_Perform_(Legendary)"
 read = "2026-10-23"
 qualifier = "Haggle, Perform / Profane"
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "value"
+upstream = 4
+reason = "R5-3: the screenshot and typed enchantment list grant +6 Profane to Haggle and Perform."
+url = "https://images.ddowiki.com/Lunar_Gem_of_Haggle_and_Perform_%28Legendary%29.png"
+read = "2026-10-23"
+qualifier = "Haggle / Profane"
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "value"
+upstream = 4
+reason = "R5-3: the screenshot and typed enchantment list grant +6 Profane to Haggle and Perform."
+url = "https://images.ddowiki.com/Lunar_Gem_of_Haggle_and_Perform_%28Legendary%29.png"
+read = "2026-10-23"
+qualifier = "Perform / Profane"
 
 [[slot]]
 slot = "moon"
