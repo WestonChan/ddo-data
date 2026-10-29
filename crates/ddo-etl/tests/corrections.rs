@@ -60,20 +60,24 @@ fn recorded_corrections(db: &Connection) -> Vec<(String, String, String, String,
         .collect()
 }
 
+fn copy_fixture_icons(root: &std::path::Path) {
+    let source = fixtures_dir().join("data");
+    for entry in walkdir::WalkDir::new(&source).into_iter().map(Result::unwrap).filter(|entry| {
+        entry.file_type().is_file() && entry.path().extension().is_some_and(|extension| extension == "png")
+    }) {
+        let destination = root.join(entry.path().strip_prefix(&source).unwrap());
+        std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+        std::fs::copy(entry.path(), destination).unwrap();
+    }
+}
+
 fn rebuilt_correction_notes(db: &Connection) -> Corrections {
     let mut corrections = Corrections::from_database(db).unwrap();
     corrections.entries.extend(fixture::fixture_icon_corrections().entries);
     let (normalized, _) = built_db_with_wiki(&WikiOverrides::default(), &corrections).unwrap();
     let scratch = tempfile::tempdir().unwrap();
     ddo_etl::tree::export_database(&normalized, scratch.path()).unwrap();
-    let source = fixtures_dir().join("data");
-    for entry in walkdir::WalkDir::new(&source).into_iter().map(Result::unwrap).filter(|entry| {
-        entry.file_type().is_file() && entry.path().extension().is_some_and(|extension| extension == "png")
-    }) {
-        let destination = scratch.path().join(entry.path().strip_prefix(&source).unwrap());
-        std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
-        std::fs::copy(entry.path(), destination).unwrap();
-    }
+    copy_fixture_icons(scratch.path());
     let mut rebuilt = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(scratch.path(), &mut rebuilt).unwrap();
     Corrections::from_database(&rebuilt).unwrap()
@@ -132,6 +136,34 @@ fn item_effect_replacement_preserves_position_and_reports_a_missing_upstream_lin
             );
         }
     }
+}
+
+#[test]
+fn item_effect_replacement_needs_no_upstream_definition_in_the_data_tree() {
+    let source = fixture::xml_source();
+    fixture::write_ship_kickers(source.path());
+    let replacement = new_qualified_correction(
+        "item_effect",
+        "Ship Kickers",
+        "effect = 'Riposte V'",
+        "effect",
+        "'Riposte'",
+        "'Riposte V'",
+    ) + &CorrectionSet(fixture::fixture_icon_corrections().entries);
+    let (db, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("ship-kickers.toml", &replacement)]).unwrap();
+    assert!(report.stale_corrections.is_empty());
+    let exported = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&db, exported.path()).unwrap();
+    copy_fixture_icons(exported.path());
+    std::fs::remove_file(exported.path().join("effects/riposte.toml")).unwrap();
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(exported.path(), &mut rebuilt).unwrap();
+    assert_eq!(recorded_corrections(&db), recorded_corrections(&rebuilt));
+    assert_eq!(
+        rebuilt.query_row("SELECT COUNT(*) FROM effects WHERE name='Riposte'", [], |row| row.get::<_, i64>(0)).unwrap(),
+        0
+    );
 }
 
 #[test]
@@ -705,6 +737,158 @@ fn effect_template_and_owner_link_value_corrections_keep_one_effect() {
 }
 
 #[test]
+fn stat_set_splits_need_no_upstream_effect_definition() {
+    let source = fixture::xml_source();
+    fixture::write_stat_set_split_augments(source.path());
+    let group_name = "Magical Resistance Rating Cap, Dodge Cap and Max Dex Bonus (Armor)";
+    let canonical = fixture::grouping_case_database(|_| {});
+    assert_eq!(
+        canonical
+            .query_row("SELECT COUNT(*) FROM effects WHERE name=?1", [group_name], |row| row.get::<_, i64>(0))
+            .unwrap(),
+        0
+    );
+    let index = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let curse = new_qualified_correction(
+        "augment_bonus",
+        "Curse of Intangibility",
+        "stat = 'Magical Resistance Rating Cap, Dodge Cap, Max Dex Bonus (Armor)'\nbonus_type = 'Fortune'",
+        "lines",
+        "[['Magical Resistance Rating Cap', 'Dodge Cap', 'Max Dex Bonus (Armor)']]",
+        "['Magical Resistance Rating Cap', 'Dodge Cap', 'Max Dex Bonus (Armor)']",
+    );
+    let corrections =
+        curse + &fixture::dolorous_stat_set_corrections() + &CorrectionSet(fixture::fixture_icon_corrections().entries);
+    let (db, report) = built_db_from_index(&index, source.path(), &[("stat-set-splits.toml", &corrections)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (corrections.0.len(), 0));
+    assert_eq!(
+        db.query_row("SELECT COUNT(*) FROM effects WHERE name=?1", [group_name], |row| row.get::<_, i64>(0)).unwrap(),
+        0
+    );
+    let links = |owner: &str| {
+        db.prepare("SELECT e.name,l.value FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name=?1 ORDER BY l.sort_order").unwrap().query_map([owner], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
+    };
+    assert_eq!(
+        links("Curse of Intangibility"),
+        [("Magical Resistance Rating Cap".into(), 2), ("Dodge Cap".into(), 2), ("Max Dex Bonus (Armor)".into(), 2)]
+    );
+    assert_eq!(
+        links("Dolorous Invigorator (Legendary)"),
+        [("Spell Focus Mastery".into(), 2), ("Combat Mastery".into(), 2), ("Assassinate".into(), 2)]
+    );
+    let exported = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&db, exported.path()).unwrap();
+    copy_fixture_icons(exported.path());
+    for name in ["DeckOfCurses.png", "Lamordia.png"] {
+        std::fs::copy(
+            source.path().join("AugmentImages").join(name),
+            exported.path().join("icons/augments").join(name),
+        )
+        .unwrap();
+    }
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(exported.path(), &mut rebuilt).unwrap();
+    assert_eq!(recorded_corrections(&db), recorded_corrections(&rebuilt));
+    let mut overlapping = corrections.clone();
+    let mut exact_amount = overlapping.0[0].clone();
+    exact_amount.bonus_value = Some(2);
+    overlapping.0.push(exact_amount);
+    let result = built_db_from_index(&index, source.path(), &[("overlapping-lines.toml", &overlapping)]);
+    assert!(result.is_err(), "overlapping split corrections must fail");
+    let message = result.err().unwrap();
+    assert!(message.contains("overlapping split corrections"), "{message}");
+    let path = walkdir::WalkDir::new(exported.path())
+        .into_iter()
+        .map(Result::unwrap)
+        .find(|entry| entry.file_name() == "curse-of-intangibility.toml")
+        .unwrap()
+        .into_path();
+    let original = std::fs::read_to_string(&path).unwrap();
+    let parsed: toml::Value = toml::from_str(&original).unwrap();
+    let mut annotated = parsed.clone();
+    let annotation: toml::Value = toml::from_str(
+        "kind = 'augment_bonus'\nfield = 'lines'\nqualifier = 'Magical Resistance Rating Cap, Dodge Cap, Max Dex Bonus (Armor) / Fortune'\nintended = [['Magical Resistance Rating Cap', 'Dodge Cap', 'Max Dex Bonus (Armor)']]\nreason = 'The game shows these as separate lines.'\nin_game = true\nread = '2026-10-28'"
+    ).unwrap();
+    annotated.as_table_mut().unwrap().insert("game_bug_correction".into(), toml::Value::Array(vec![annotation]));
+    std::fs::write(&path, toml::to_string(&annotated).unwrap()).unwrap();
+    let mut annotated_db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(exported.path(), &mut annotated_db).unwrap();
+    assert_eq!(
+        annotated_db
+            .query_row("SELECT COUNT(*) FROM note_lines WHERE note_kind='game_bug'", [], |row| row.get::<_, i64>(0))
+            .unwrap(),
+        3
+    );
+    for (upstream, expected) in [
+        (vec![vec!["Unknown Stat", "Dodge Cap", "Max Dex Bonus (Armor)"]], "unknown upstream stat"),
+        (vec![vec!["Dodge Cap", "Max Dex Bonus (Armor)"]], "qualifier"),
+        (vec![vec!["Magical Resistance Rating Cap", "Dodge Cap", "Dodge Cap"]], "duplicate"),
+        (vec![Vec::new()], "empty"),
+    ] {
+        let mut edited = parsed.clone();
+        edited["ddobuilder_correction"][0]["upstream"] = toml::Value::try_from(upstream).unwrap();
+        std::fs::write(&path, toml::to_string(&edited).unwrap()).unwrap();
+        let error =
+            ddo_etl::tree::build_from_data(exported.path(), &mut Connection::open_in_memory().unwrap()).unwrap_err();
+        let message = format!("{error:#}");
+        assert!(message.contains("curse-of-intangibility.toml") && message.contains(expected), "{message}");
+    }
+    let mut duplicated = parsed.clone();
+    let duplicate = duplicated["effect"][1].clone();
+    duplicated["effect"].as_array_mut().unwrap().push(duplicate);
+    std::fs::write(&path, toml::to_string(&duplicated).unwrap()).unwrap();
+    let error =
+        ddo_etl::tree::build_from_data(exported.path(), &mut Connection::open_in_memory().unwrap()).unwrap_err();
+    assert!(format!("{error:#}").contains("curse-of-intangibility.toml"), "{error:#}");
+    let mut wrong_partition = parsed;
+    wrong_partition["effect"][1]["name"] = toml::Value::String("Dodge".into());
+    std::fs::write(&path, toml::to_string(&wrong_partition).unwrap()).unwrap();
+    let error =
+        ddo_etl::tree::build_from_data(exported.path(), &mut Connection::open_in_memory().unwrap()).unwrap_err();
+    assert!(format!("{error:#}").contains("curse-of-intangibility.toml"), "{error:#}");
+}
+
+#[test]
+fn stat_set_merges_match_the_expanded_buff_stats() {
+    let source = fixture::xml_source();
+    std::fs::write(
+        source.path().join("Items/SkirmishersBracers.item"),
+        include_str!("fixtures/effect-groups/SkirmishersBracers.item"),
+    )
+    .unwrap();
+    std::fs::create_dir_all(source.path().join("ItemImages/Bracers")).unwrap();
+    std::fs::write(
+        source.path().join("ItemImages/Bracers/Bracers_13.png"),
+        include_bytes!("fixtures/effect-groups/icons/Bracers_13.png"),
+    )
+    .unwrap();
+    for amount in [None, Some(8), Some(9)] {
+        let qualifier = format!(
+            "stat = 'Doublestrike, Doubleshot'\nbonus_type = 'Enhancement'{}",
+            amount.map(|value| format!("\nbonus_value = {value}")).unwrap_or_default()
+        );
+        let correction = new_qualified_correction(
+            "item_bonus",
+            "Skirmisher's Bracers (Level 26)",
+            &qualifier,
+            "lines",
+            "[['Doublestrike'], ['Doubleshot']]",
+            "'Doublestrike and Doubleshot'",
+        );
+        let (db, report) =
+            built_db_from_index(fixture::grouping_cases(), source.path(), &[("skirmisher.toml", &correction)]).unwrap();
+        let links = db.prepare("SELECT e.name,l.value FROM item_effects l JOIN effects e ON e.id=l.effect_id JOIN items i ON i.id=l.item_id WHERE i.name=?1 ORDER BY l.sort_order").unwrap().query_map(["Skirmisher's Bracers (Level 26)"], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        if amount == Some(9) {
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+            assert_eq!(links, [("Dexterity".into(), 9), ("Doublestrike".into(), 8), ("Doubleshot".into(), 8)]);
+        } else {
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+            assert_eq!(links, [("Dexterity".into(), 9), ("Doublestrike and Doubleshot".into(), 8)]);
+        }
+    }
+}
+
+#[test]
 fn a_lines_merge_combines_item_buffs_and_reports_missing_members() {
     let source = fixture::xml_source();
     let correction = fixture::search_and_spot_merge();
@@ -1174,7 +1358,7 @@ fn socket_option_targets_are_loaded_once_for_one_and_fifty_owners() {
         for index in 0..count {
             let mut correction = fixture::spyglass_option_correction(
                 field,
-                if field == "lines" { serde_json::json!("Search and Spot") } else { serde_json::json!(20) },
+                if field == "lines" { serde_json::json!([["Search", "Spot"]]) } else { serde_json::json!(20) },
                 if field == "lines" {
                     CorrectionValue::Texts(vec!["Search".into(), "Spot".into()])
                 } else {
@@ -1238,7 +1422,7 @@ fn socket_option_lines_split_and_merge_through_the_qualified_writer() {
     fixture::write_spyglass_options(source.path());
     let split = fixture::spyglass_option_correction(
         "lines",
-        serde_json::json!("Search and Spot"),
+        serde_json::json!([["Search", "Spot"]]),
         CorrectionValue::Texts(vec!["Search".into(), "Spot".into()]),
     );
     let (db, report) =
@@ -1253,7 +1437,7 @@ fn socket_option_lines_split_and_merge_through_the_qualified_writer() {
     std::fs::write(path, separate).unwrap();
     let merge = fixture::spyglass_option_correction(
         "lines",
-        serde_json::json!(["Search", "Spot"]),
+        serde_json::json!([["Search"], ["Spot"]]),
         CorrectionValue::Text("Search and Spot".into()),
     );
     let (db, report) =
@@ -1276,7 +1460,7 @@ fn socket_option_corrections_reject_every_ambiguous_match() {
     .unwrap();
     let split = fixture::spyglass_option_correction(
         "lines",
-        serde_json::json!("Search and Spot"),
+        serde_json::json!([["Search", "Spot"]]),
         CorrectionValue::Texts(vec!["Search".into(), "Spot".into()]),
     );
     let error = built_db_from_index(fixture::grouping_cases(), source.path(), &[("ambiguous-option.toml", &split)])

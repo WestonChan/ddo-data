@@ -221,6 +221,12 @@ fn record_applied_correction(
     correction: &Correction,
     report: &mut BuildReport,
 ) -> Result<()> {
+    let mut corrected = correction.to.clone();
+    if correction.field == "lines" {
+        if let CorrectionValue::Texts(lines) = &mut corrected {
+            lines.sort();
+        }
+    }
     transaction.execute(
         "INSERT INTO corrections (kind, name, qualifier, field, from_value, to_value, reason, source, read, in_game)
          VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)",
@@ -230,7 +236,7 @@ fn record_applied_correction(
             correction.qualifier(),
             correction.field,
             correction.from.to_json(),
-            correction.to.to_json(),
+            corrected.to_json(),
             correction.reason,
             correction.source.page_url(),
             correction.read,
@@ -811,19 +817,33 @@ pub(crate) fn line_bonuses_by_owner(
     Ok(owners)
 }
 
-pub(super) fn line_merge_selection(correction: &Correction, rows: &[LineBonus]) -> Result<Option<LineMerge>> {
-    let CorrectionValue::Texts(names) = &correction.from else { unreachable!() };
+pub(super) fn line_merge_selection(
+    correction: &Correction,
+    groupings: &crate::groupings::Groupings,
+    rows: &[LineBonus],
+) -> Result<Option<LineMerge>> {
     let mut orders = std::collections::BTreeSet::new();
-    for name in names {
-        let matches = rows
+    for stats in correction.upstream_line_stats(groupings)? {
+        let possible = rows
             .iter()
-            .filter(|row| row.effect_name == *name && row.bonus_type == correction.bonus_type)
+            .filter(|row| stats.contains(&row.stat_name))
             .map(|row| row.order)
+            .collect::<std::collections::BTreeSet<_>>();
+        let matches = possible
+            .into_iter()
+            .filter(|order| {
+                let members = rows.iter().filter(|row| row.order == *order).collect::<Vec<_>>();
+                members.iter().map(|row| row.stat_name.clone()).collect::<std::collections::BTreeSet<_>>() == stats
+                    && members.iter().all(|row| {
+                        row.bonus_type == correction.bonus_type
+                            && correction.bonus_value.is_none_or(|value| row.amount == Some(value))
+                    })
+            })
             .collect::<std::collections::BTreeSet<_>>();
         if matches.is_empty() {
             return Ok(None);
         }
-        ensure!(matches.len() == 1, "{}: merge source {name:?} matches several links", correction.label());
+        ensure!(matches.len() == 1, "{}: merge source {stats:?} matches several links", correction.label());
         orders.extend(matches);
     }
     let selected = rows.iter().filter(|row| orders.contains(&row.order)).collect::<Vec<_>>();
@@ -843,7 +863,7 @@ pub(super) fn merged_line_amounts(
     rows: &[&LineBonus],
 ) -> Result<(Option<i64>, Option<i64>)> {
     let target = groupings
-        .effect_named(correction.stat.as_deref().context("merge target missing")?)
+        .effect_named(correction.to.as_text().context("merge target missing")?)
         .context("merge target is not indexed")?;
     if target.has_constants_at_type(correction.bonus_type.as_deref().context("merge type missing")?) {
         let mut constants = std::collections::BTreeMap::new();
@@ -907,15 +927,27 @@ fn corrected_lines_value(
         return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
     }
     let rows = line_bonus_rows(transaction, correction.kind, owner_id, None)?;
-    if matches!(correction.from, CorrectionValue::Texts(_)) {
-        let grouping = correction.stat.as_deref().context("a lines merge names its grouping")?;
+    let expected_stats =
+        correction.upstream_line_stats(groupings)?.into_iter().flatten().collect::<std::collections::BTreeSet<_>>();
+    let selected_orders = rows
+        .iter()
+        .filter(|row| {
+            expected_stats.contains(&row.stat_name)
+                && row.bonus_type == correction.bonus_type
+                && correction.bonus_value.is_none_or(|value| row.amount == Some(value))
+        })
+        .map(|row| row.order)
+        .collect::<std::collections::BTreeSet<_>>();
+    let selected = rows.iter().filter(|row| selected_orders.contains(&row.order)).collect::<Vec<_>>();
+    if correction.is_line_merge() {
+        let grouping =
+            selected.first().map(|row| row.effect_name.as_str()).context("a merge must leave one grouping link")?;
         let mut resolved = correction.clone();
         resolved.to = CorrectionValue::Text(grouping.to_string());
         resolved.line_partition_stats(groupings)?;
         let target = groupings
             .effect_named(grouping)
             .with_context(|| format!("{}: merge target is not indexed", correction.label()))?;
-        let selected = rows.iter().filter(|row| row.effect_name == grouping).collect::<Vec<_>>();
         ensure!(
             selected.iter().map(|row| row.stat_name.clone()).collect::<std::collections::BTreeSet<_>>()
                 == groupings.expanded_stat_names(&target.name)?
@@ -924,23 +956,18 @@ fn corrected_lines_value(
             "{}: a merge must leave one grouping link with all its stats at one type",
             correction.label()
         );
-        merged_line_amounts(groupings, correction, &selected)?;
+        merged_line_amounts(groupings, &resolved, &selected)?;
         return Ok(resolved.to);
     }
-    let upstream = correction.from.as_text().context("a lines split needs an upstream grouping name")?;
-    let expected_stats = groupings.expanded_stat_names(upstream)?;
-    let names = rows
-        .iter()
-        .filter(|row| expected_stats.contains(&row.stat_name) && row.bonus_type == correction.bonus_type)
-        .map(|row| row.effect_name.clone())
-        .collect::<std::collections::BTreeSet<_>>();
-    let split_value = rows.iter().find(|row| names.contains(&row.effect_name)).and_then(|row| row.amount);
+    let names = selected.iter().map(|row| row.effect_name.clone()).collect::<std::collections::BTreeSet<_>>();
+    let split_value = selected.first().and_then(|row| row.amount);
     ensure!(
-        rows.iter().filter(|row| names.contains(&row.effect_name)).all(|row| {
-            expected_stats.contains(&row.stat_name)
-                && row.bonus_type == correction.bonus_type
-                && row.amount == split_value
-        }),
+        selected.len() == expected_stats.len()
+            && selected.iter().all(|row| {
+                expected_stats.contains(&row.stat_name)
+                    && row.bonus_type == correction.bonus_type
+                    && row.amount == split_value
+            }),
         "{}: split lines have different stats, types or values",
         correction.label()
     );
@@ -1003,26 +1030,15 @@ fn current_value(
             });
         }
         FieldShape::BonusLines => {
-            if matches!(correction.from, CorrectionValue::Texts(_)) {
-                let rows = line_bonus_rows(transaction, correction.kind, row_id, None)?;
-                return Ok(if line_merge_selection(correction, &rows)?.is_some() {
-                    correction.from.clone()
-                } else {
-                    CorrectionValue::Text(NO_SUCH_BONUS.to_string())
-                });
-            }
-            let Some(bonus) = CorrectedBonus::from_correction_if_effect_exists(transaction, correction)? else {
+            if correction.from.as_text() == Some(NO_SUCH_BONUS) {
                 return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
-            };
-            let mut statement = transaction.prepare(&bonus.matching_bonuses_sql("e.id"))?;
-            let ids = statement.query_map(params![row_id, bonus.stat_id, bonus.bonus_type_id, bonus.bonus_value], |row| row.get::<_, i64>(0))?
-                .collect::<rusqlite::Result<Vec<_>>>()?;
-            let present = ids.contains(&bonus.stat_id);
-            return Ok(CorrectionValue::Text(if present {
-                correction.stat.clone().context("lines correction names a grouping")?
+            }
+            let rows = line_bonus_rows(transaction, correction.kind, row_id, None)?;
+            return Ok(if line_merge_selection(correction, groupings.context("lines need the canonical stat index")?, &rows)?.is_some() {
+                correction.from.clone()
             } else {
-                NO_SUCH_BONUS.to_string()
-            }));
+                CorrectionValue::Text(NO_SUCH_BONUS.to_string())
+            });
         }
         _ if correction.targets_effect_bonus() => {
             let stat_name = correction.stat.as_deref().context("effect bonus correction names a stat")?;
@@ -2510,10 +2526,18 @@ mod tests {
             [], |row| row.get::<_, i64>(0),
         ).unwrap();
         let correction = bonus_correction(CorrectionKind::SetTierBonus, "Power of the Firestorm", "Equipment", "lines");
+        let groupings = crate::groupings::Groupings::from_database(&db).unwrap();
         let transaction = db.transaction().unwrap();
         assert_eq!(
-            current_value(&transaction, &correction, correction.correctable_field().unwrap(), owner, None, None)
-                .unwrap(),
+            current_value(
+                &transaction,
+                &correction,
+                correction.correctable_field().unwrap(),
+                owner,
+                None,
+                Some(&groupings)
+            )
+            .unwrap(),
             CorrectionValue::Text("Power of the Firestorm".into())
         );
     }

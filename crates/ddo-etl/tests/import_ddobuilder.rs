@@ -55,9 +55,9 @@ fn woeful_split_import() -> ImportWorld {
     let correction = fixture::new_qualified_correction(
         "augment_bonus",
         "Woeful Shadow (Legendary)",
-        "stat = 'Doublestrike and Doubleshot'\nbonus_type = 'Profane'\n",
+        "stat = 'Doublestrike, Doubleshot'\nbonus_type = 'Profane'\n",
         "lines",
-        "\"Doublestrike and Doubleshot\"",
+        "[['Doublestrike', 'Doubleshot']]",
         "[\"Doubleshot\", \"Doublestrike\"]",
     );
     ImportWorld::with_sources(
@@ -574,7 +574,7 @@ fn socket_option_lines_import_follows_amounts_and_reports_changed_stats() {
     for change in ["amount", "stats", "option"] {
         let split = fixture::spyglass_option_correction(
             "lines",
-            serde_json::json!("Search and Spot"),
+            serde_json::json!([["Search", "Spot"]]),
             ddo_etl::corrections::CorrectionValue::Texts(vec!["Search".into(), "Spot".into()]),
         );
         let corrections = fixture::corrections_from(&[("option-split.toml", &split)]).unwrap();
@@ -653,6 +653,80 @@ fn feat_lines_import_follows_amounts_and_reports_changed_stats() {
 }
 
 #[test]
+fn a_stat_set_split_import_reports_a_removed_assassinate_stat() {
+    let corrections =
+        fixture::corrections_from(&[("dolorous.toml", &fixture::dolorous_stat_set_corrections())]).unwrap();
+    let world = ImportWorld::with_sources(
+        fixture::grouping_cases(),
+        corrections,
+        WikiOverrides::default(),
+        fixture::write_stat_set_split_augments,
+    );
+    let path = world.options.source_dir.join("Augments/DolorousInvigorator.Augments.xml");
+    let xml = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(path, xml.replace("      <Item>Assassinate</Item>\n", "")).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(
+        report
+            .to_string()
+            .lines()
+            .any(|line| line.contains("CONFLICT") && line.contains("no such bonus") && line.contains("lines")),
+        "{report}"
+    );
+    let db = world.database();
+    let upstream: String = db
+        .query_row(
+            "SELECT from_value FROM corrections WHERE name='Dolorous Invigorator (Legendary)' AND field='lines'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(upstream, "\"no such bonus\"");
+}
+
+#[test]
+fn a_stat_set_split_import_reports_a_changed_qualified_amount() {
+    let split = fixture::new_qualified_correction(
+        "augment_bonus",
+        "Curse of Intangibility",
+        "stat = 'Magical Resistance Rating Cap, Dodge Cap, Max Dex Bonus (Armor)'\nbonus_type = 'Fortune'\nbonus_value = 2",
+        "lines",
+        "[['Magical Resistance Rating Cap', 'Dodge Cap', 'Max Dex Bonus (Armor)']]",
+        "['Magical Resistance Rating Cap', 'Dodge Cap', 'Max Dex Bonus (Armor)']",
+    );
+    let corrections = fixture::corrections_from(&[(
+        "curse-of-intangibility.toml",
+        &(split + &fixture::dolorous_stat_set_corrections()),
+    )])
+    .unwrap();
+    let world = ImportWorld::with_sources(
+        fixture::grouping_cases(),
+        corrections,
+        WikiOverrides::default(),
+        fixture::write_stat_set_split_augments,
+    );
+    let path = world.options.source_dir.join("Augments/CurseOfIntangibility.Augments.xml");
+    let xml = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(path, xml.replace("<Amount size=\"1\">2</Amount>", "<Amount size=\"1\">3</Amount>")).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(
+        report.to_string().lines().any(|line| {
+            line.contains("CONFLICT") && line.contains("no such bonus") && line.contains("Curse of Intangibility")
+        }),
+        "{report}"
+    );
+    let db = world.database();
+    let upstream: String = db
+        .query_row(
+            "SELECT from_value FROM corrections WHERE name='Curse of Intangibility' AND field='lines'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(upstream, "\"no such bonus\"");
+}
+
+#[test]
 fn a_split_import_accepts_a_changed_amount_without_conflict() {
     let world = woeful_split_import();
     let path = world.options.source_dir.join("Augments/WoefulShadow.Augments.xml");
@@ -664,7 +738,7 @@ fn a_split_import_accepts_a_changed_amount_without_conflict() {
 }
 
 #[test]
-fn a_split_import_reports_a_missing_grouping_and_takes_the_new_lines() {
+fn a_split_import_reports_changed_stats_and_takes_the_new_lines() {
     let world = woeful_split_import();
     let path = world.options.source_dir.join("Augments/WoefulShadow.Augments.xml");
     let xml = std::fs::read_to_string(&path).unwrap();

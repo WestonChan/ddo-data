@@ -1,0 +1,19 @@
+<Augments>
+<Augment>
+      <Name>Curse of Intangibility</Name>
+      <Description>+2 Fortune Bonus to MRR Cap
++2% Fortune Bonus to Dodge Cap
++2 Fortune Bonus to Maximum Dexterity Bonus of equipped armor</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Deck Curse</Type>
+      <Icon>DeckOfCurses</Icon>
+      <Effect>
+         <Type>MRRCap</Type>
+         <Type>DodgeCapBonus</Type>
+         <Type>MaxDexBonus</Type>
+         <Bonus>Fortune</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">2</Amount>
+      </Effect>
+   </Augment>
+</Augments>

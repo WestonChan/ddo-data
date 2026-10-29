@@ -434,9 +434,9 @@ pub(super) fn validate_verification_requests(
 
 pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
     let mut statement = db.prepare(
-        "SELECT 'game_bug' AS note_kind, id, owner_kind, owner_id, kind, field, qualifier, reason, url, in_game, read FROM game_bug_corrections
+        "SELECT 'game_bug' AS note_kind, id, owner_kind, owner_id, kind, field, qualifier, reason, url, in_game, read, intended_value FROM game_bug_corrections
          UNION ALL
-         SELECT 'unverified', request.id, request.owner_kind, request.owner_id, request.kind, request.field, request.qualifier, request.question, source.url, source.in_game, request.raised
+         SELECT 'unverified', request.id, request.owner_kind, request.owner_id, request.kind, request.field, request.qualifier, request.question, source.url, source.in_game, request.raised, NULL
          FROM verification_requests request JOIN verification_request_sources source ON source.request_id=request.id AND source.sort_order=0 WHERE request.kind IS NOT NULL"
     )?;
     let notes = statement
@@ -458,6 +458,7 @@ pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
                     source: crate::AnnotationSource::from_columns(row.get("url")?, row.get("in_game")?)?,
                     read: row.get("read")?,
                 },
+                row.get::<_, Option<String>>("intended_value")?,
             ))
         })?
         .collect::<rusqlite::Result<Vec<_>>>()?;
@@ -483,7 +484,7 @@ pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
         .collect::<rusqlite::Result<BTreeMap<_, _>>>()?;
     let layout = super::ExportLayout::from_database(db)?;
     let socket_options = crate::build::SocketOptionTargets::from_database(db)?;
-    for (note_kind, note_id, owner_kind, owner_id, note) in notes {
+    for (note_kind, note_id, owner_kind, owner_id, note, intended) in notes {
         if note.field == "remove" || owner_kind != annotation_owner_kind(note.kind) {
             continue;
         }
@@ -496,7 +497,7 @@ pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
             _ => continue,
         };
         (|| -> Result<()> {
-            let correction = correction_for_note(&note, "")?;
+            let mut correction = correction_for_note(&note, "")?;
             let link_owner = if note.kind == CorrectionKind::SetTierBonus {
                 let count = correction.equipped_count.context("set annotation needs a piece count")?;
                 *tiers.get(&(owner_id, count)).context("set annotation's tier is absent")?
@@ -505,7 +506,12 @@ pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
                     .context("socket-option annotation's option is absent")?
             } else { owner_id };
             let target = correction.stat.as_deref().or(correction.effect.as_deref()).context("bonus annotation must name its target")?;
-            let expected = groupings.expanded_stat_names(target)?;
+            let expected = if note_kind == "game_bug" && note.field == "lines" {
+                correction.from = CorrectionValue::from_json(intended.as_deref().context("game bug has no intended value")?)?;
+                correction.upstream_line_stats(&groupings)?.into_iter().flatten().collect()
+            } else {
+                groupings.expanded_stat_names(target)?
+            };
             let matching = bonuses.get(&(bonus_kind.as_str(), link_owner)).into_iter().flatten().filter(|row| {
                 if note.kind == CorrectionKind::ItemEffect { return row.effect_name == target; }
                 (expected.contains(&row.stat_name) || row.effect_name == target)

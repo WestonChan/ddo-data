@@ -200,11 +200,59 @@ pub(crate) fn scion_dodge_split() -> CorrectionSet {
     new_qualified_correction(
         "feat_bonus",
         "Scion of the Astral Plane",
-        "stat = 'Dodge and Dodge Cap'\nbonus_type = 'Feat'",
+        "stat = 'Dodge, Dodge Cap'\nbonus_type = 'Feat'",
         "lines",
-        "\"Dodge and Dodge Cap\"",
+        "[['Dodge', 'Dodge Cap']]",
         "[\"Dodge\", \"Dodge Cap\"]",
     )
+}
+
+pub(crate) fn write_stat_set_split_augments(source: &std::path::Path) {
+    for (name, text) in [
+        (
+            "CurseOfIntangibility.Augments.xml",
+            include_str!("../fixtures/effect-groups/CurseOfIntangibility.Augments.xml"),
+        ),
+        (
+            "DolorousInvigorator.Augments.xml",
+            include_str!("../fixtures/effect-groups/DolorousInvigorator.Augments.xml"),
+        ),
+    ] {
+        std::fs::create_dir_all(source.join("Augments")).unwrap();
+        std::fs::write(source.join("Augments").join(name), text).unwrap();
+    }
+    for (name, bytes) in [
+        ("DeckOfCurses.png", include_bytes!("../fixtures/effect-groups/icons/DeckOfCurses.png").as_slice()),
+        ("Lamordia.png", include_bytes!("../fixtures/effect-groups/icons/Lamordia.png").as_slice()),
+    ] {
+        std::fs::create_dir_all(source.join("AugmentImages")).unwrap();
+        std::fs::write(source.join("AugmentImages").join(name), bytes).unwrap();
+    }
+}
+
+pub(crate) fn dolorous_stat_set_corrections() -> CorrectionSet {
+    let mut corrections = new_qualified_correction(
+        "augment_bonus",
+        "Dolorous Invigorator (Legendary)",
+        "stat = 'Trip DC, Sunder DC, Stun DC, Assassinate DC'\nbonus_type = 'Profane'",
+        "lines",
+        "[['Trip DC', 'Sunder DC', 'Stun DC', 'Assassinate DC']]",
+        "['Combat Mastery', 'Assassinate']",
+    );
+    for tier in ["Heroic", "Legendary"] {
+        for stat in ["Trip DC", "Sunder DC", "Stun DC", "Assassinate DC"] {
+            corrections = corrections
+                + &new_qualified_correction(
+                    "augment_bonus",
+                    &format!("Dolorous Invigorator ({tier})"),
+                    &format!("stat = {stat:?}\nbonus_type = 'null'"),
+                    "bonus_type",
+                    "'null'",
+                    "'Profane'",
+                );
+        }
+    }
+    corrections
 }
 
 pub(crate) fn scion_dodge_lines(db: &rusqlite::Connection) -> Vec<(String, i64)> {
@@ -288,6 +336,9 @@ pub(crate) fn spyglass_option_correction(
         ddo_etl::tree::correction_for_note(&note, "Epic Treasure Hunter's Spyglass (legacy) (level 20)").unwrap();
     correction.from =
         CorrectionValue::from_json(&note.upstream.unwrap_or(serde_json::Value::Null).to_string()).unwrap();
+    if field == "lines" {
+        correction.stat = Some("Search, Spot".into());
+    }
     correction.to = applied;
     CorrectionSet(vec![correction])
 }

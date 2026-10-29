@@ -1,0 +1,30 @@
+<Items>
+  <Item>
+    <Name>Skirmisher's Bracers (Level 26)</Name>
+    <Icon>Bracers_13</Icon>
+    <Description>This item cannot be fed to sentient jewels .</Description>
+    <DropLocation>Army of Shadow, End reward</DropLocation>
+    <MinLevel>26</MinLevel>
+    <EquipmentSlot>
+      <Bracers/>
+    </EquipmentSlot>
+    <Material>Steel</Material>
+    <Buff>
+      <Type>AbilityBonus</Type>
+      <Value1>9</Value1>
+      <BonusType>Enhancement</BonusType>
+      <Description1>Dexterity</Description1>
+      <Item>Dexterity</Item>
+    </Buff>
+    <Buff>
+      <Type>Doublestrike</Type>
+      <Value1>8</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Doubleshot</Type>
+      <Value1>8</Value1>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+  </Item>
+</Items>

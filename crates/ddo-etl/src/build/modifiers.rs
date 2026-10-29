@@ -567,75 +567,77 @@ impl TableWriter<'_> {
             bonus_type = Some(resolved);
         }
         let bonus_type = bonus_type.expect("multi-stat effect has a bonus type");
-        let matching = self.groupings.by_stat_set.get(&stats).map(Vec::as_slice).unwrap_or_default();
-        if let [grouping] = matching {
-            if grouping.accepts_value_at_type(bonus_type.name()) {
-                let split_corrections = self
-                    .line_corrections
-                    .iter()
-                    .copied()
-                    .filter(|correction| {
-                        correction.name == owner.name
-                            && correction.from.as_text() == Some(grouping.name.as_str())
-                            && correction.bonus_type.as_deref() == Some(bonus_type.name())
-                            && matches!(
-                                (owner.kind, correction.kind),
-                                (BonusOwnerKind::Augment, ddo_model::enums::CorrectionKind::AugmentBonus)
-                                    | (BonusOwnerKind::Feat, ddo_model::enums::CorrectionKind::FeatBonus)
-                                    | (
-                                        BonusOwnerKind::ItemAugmentSlotOption,
-                                        ddo_model::enums::CorrectionKind::SocketOptionBonus
-                                    )
-                                    | (BonusOwnerKind::SetBonusTier, ddo_model::enums::CorrectionKind::SetTierBonus)
+        let split_corrections = self
+            .line_corrections
+            .iter()
+            .copied()
+            .filter(|correction| {
+                correction.name == owner.name
+                    && !correction.is_line_merge()
+                    && correction.from.as_text() != Some(crate::corrections::NO_SUCH_BONUS)
+                    && correction.bonus_type.as_deref() == Some(bonus_type.name())
+                    && correction.bonus_value.is_none_or(|amount| amount == value)
+                    && matches!(
+                        (owner.kind, correction.kind),
+                        (BonusOwnerKind::Augment, ddo_model::enums::CorrectionKind::AugmentBonus)
+                            | (BonusOwnerKind::Feat, ddo_model::enums::CorrectionKind::FeatBonus)
+                            | (
+                                BonusOwnerKind::ItemAugmentSlotOption,
+                                ddo_model::enums::CorrectionKind::SocketOptionBonus
                             )
-                    })
-                    .collect::<Vec<_>>();
-                for correction in split_corrections {
-                    if !self.correction_owner_matches(correction, owner_id)? {
-                        continue;
-                    }
-                    let mut partitions = correction.line_partition_stats(self.groupings)?;
-                    self.effects.ensure_indexed_effect(grouping)?;
-                    partitions.sort_by_key(|(_, partition)| {
-                        bonuses.iter().position(|(_, bonus)| partition.contains(bonus.stat.name))
-                    });
-                    let mut split_links = Vec::new();
-                    for (line_name, partition) in partitions {
-                        let mut link = if partition.len() == 1 {
-                            let (effect_type, bonus) = bonuses
-                                .iter()
-                                .find(|(_, bonus)| partition.contains(bonus.stat.name))
-                                .expect("validated split member");
-                            let target = effect
-                                .targets
-                                .iter()
-                                .find(|target| {
-                                    EFFECT_MAP
-                                        .effect_stat(effect_type, target)
-                                        .is_some_and(|stat| stat.id == bonus.stat.id)
-                                })
-                                .map(String::as_str);
-                            self.write_derived_line(owner, effect_type, target, &[*bonus], None)?
-                        } else {
-                            let line_grouping = self.groupings.grouping_named(&line_name).ok_or_else(|| {
-                                anyhow::anyhow!(
-                                    "{}: split line {line_name:?} is not a link-valued grouping",
-                                    correction.label()
-                                )
-                            })?;
-                            let effect_id = self.effects.ensure_indexed_effect(line_grouping)?;
-                            self.write_upstream_grouping_line(owner, effect_id, bonus_type, value)?
-                        };
-                        link.is_split_line = true;
-                        split_links.push(link);
-                    }
-                    if !self.applied_link_corrections.iter().any(|applied| std::ptr::eq(*applied, correction)) {
-                        self.applied_link_corrections.push(correction);
-                    }
-                    return Ok(GroupingOutcome::Split { links: split_links, correction: correction.label() });
-                }
+                            | (BonusOwnerKind::SetBonusTier, ddo_model::enums::CorrectionKind::SetTierBonus)
+                    )
+            })
+            .collect::<Vec<_>>();
+        let mut split_correction = None;
+        for correction in split_corrections {
+            if !self.correction_owner_matches(correction, owner_id)?
+                || correction.upstream_line_stats(self.groupings)? != [stats.clone()]
+            {
+                continue;
             }
+            anyhow::ensure!(split_correction.is_none(), "{}: overlapping split corrections", correction.label());
+            split_correction = Some(correction);
         }
+        if let Some(correction) = split_correction {
+            let mut partitions = correction.line_partition_stats(self.groupings)?;
+            partitions.sort_by_key(|(_, partition)| {
+                bonuses.iter().position(|(_, bonus)| partition.contains(bonus.stat.name))
+            });
+            let mut split_links = Vec::new();
+            for (line_name, partition) in partitions {
+                let mut link = if partition.len() == 1 {
+                    let (effect_type, bonus) = bonuses
+                        .iter()
+                        .find(|(_, bonus)| partition.contains(bonus.stat.name))
+                        .expect("validated split member");
+                    let target = effect
+                        .targets
+                        .iter()
+                        .find(|target| {
+                            EFFECT_MAP.effect_stat(effect_type, target).is_some_and(|stat| stat.id == bonus.stat.id)
+                        })
+                        .map(String::as_str);
+                    self.write_derived_line(owner, effect_type, target, &[*bonus], None)?
+                } else {
+                    let line_grouping = self.groupings.grouping_named(&line_name).ok_or_else(|| {
+                        anyhow::anyhow!(
+                            "{}: split line {line_name:?} is not a link-valued grouping",
+                            correction.label()
+                        )
+                    })?;
+                    let effect_id = self.effects.ensure_indexed_effect(line_grouping)?;
+                    self.write_upstream_grouping_line(owner, effect_id, bonus_type, value)?
+                };
+                link.is_split_line = true;
+                split_links.push(link);
+            }
+            if !self.applied_link_corrections.iter().any(|applied| std::ptr::eq(*applied, correction)) {
+                self.applied_link_corrections.push(correction);
+            }
+            return Ok(GroupingOutcome::Split { links: split_links, correction: correction.label() });
+        }
+        let matching = self.groupings.by_stat_set.get(&stats).map(Vec::as_slice).unwrap_or_default();
         let effect_id = match matching {
             [grouping] if grouping.accepts_value_at_type(bonus_type.name()) => {
                 self.effects.ensure_indexed_effect(grouping)?
@@ -747,11 +749,7 @@ impl TableWriter<'_> {
             .line_corrections
             .iter()
             .copied()
-            .filter(|correction| {
-                correction.kind == kind
-                    && correction.name == owner.name
-                    && matches!(correction.from, crate::corrections::CorrectionValue::Texts(_))
-            })
+            .filter(|correction| correction.kind == kind && correction.name == owner.name && correction.is_line_merge())
             .collect::<Vec<_>>();
         if corrections.is_empty() {
             return Ok(links);
@@ -764,7 +762,9 @@ impl TableWriter<'_> {
                 continue;
             }
             correction.line_partition_stats(self.groupings)?;
-            let Some(selection) = super::corrections::line_merge_selection(correction, &rows)? else { continue };
+            let Some(selection) = super::corrections::line_merge_selection(correction, self.groupings, &rows)? else {
+                continue;
+            };
             anyhow::ensure!(
                 selection.orders.is_disjoint(&consumed),
                 "{}: overlapping merge corrections",
@@ -775,7 +775,7 @@ impl TableWriter<'_> {
                 "{}: a merge and a split cannot apply to one line",
                 correction.label()
             );
-            let grouping_name = correction.stat.as_deref().expect("validated grouping qualifier");
+            let grouping_name = correction.to.as_text().expect("validated merge target");
             let grouping = self
                 .groupings
                 .effect_named(grouping_name)

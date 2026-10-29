@@ -20,6 +20,7 @@ pub enum CorrectionValue {
     Integer(i64),
     Integers(Vec<i64>),
     Texts(Vec<String>),
+    StatSets(Vec<Vec<String>>),
     Float(f64),
     Text(String),
     Bonus(BonusAddition),
@@ -92,7 +93,12 @@ impl CorrectionValue {
                 }
             }
             serde_json::Value::Array(values) => {
-                if values.iter().all(serde_json::Value::is_string) && !values.is_empty() {
+                if values.iter().all(serde_json::Value::is_array) && !values.is_empty() {
+                    Self::StatSets(
+                        serde_json::from_value(serde_json::Value::Array(values))
+                            .context("correction stat sets must contain only stat names")?,
+                    )
+                } else if values.iter().all(serde_json::Value::is_string) && !values.is_empty() {
                     Self::Texts(serde_json::from_value(serde_json::Value::Array(values))?)
                 } else {
                     Self::Integers(
@@ -109,6 +115,7 @@ impl CorrectionValue {
             Self::Integer(number) => number.to_string(),
             Self::Integers(numbers) => serde_json::to_string(numbers).expect("integer list serializes"),
             Self::Texts(strings) => serde_json::to_string(strings).expect("text list serializes"),
+            Self::StatSets(lines) => serde_json::to_string(lines).expect("stat sets serialize"),
             Self::Float(number) => serde_json::Value::from(*number).to_string(),
             Self::Text(text) => serde_json::Value::from(text.as_str()).to_string(),
             Self::Bonus(bonus) => format!(
@@ -146,6 +153,7 @@ impl CorrectionValue {
             | Self::Damage(_)
             | Self::EffectBonus(_)
             | Self::Integers(_)
+            | Self::StatSets(_)
             | Self::Texts(_) => SqlValue::Text(self.to_json()),
             Self::Null => SqlValue::Null,
         }
@@ -257,15 +265,73 @@ pub struct Correction {
 }
 
 impl Correction {
+    pub(crate) fn is_line_merge(&self) -> bool {
+        matches!(&self.from, CorrectionValue::StatSets(lines) if lines.len() > 1)
+            || matches!(self.from, CorrectionValue::Texts(_))
+    }
+
+    fn validated_upstream_stat_sets(&self, lines: &[Vec<String>]) -> Result<Vec<std::collections::BTreeSet<String>>> {
+        let mut combined = std::collections::BTreeSet::new();
+        let mut partitions = Vec::new();
+        ensure!(!lines.is_empty(), "a lines correction needs nonempty upstream stat sets");
+        for line in lines {
+            ensure!(!line.is_empty(), "an upstream line has an empty stat set");
+            let mut partition = std::collections::BTreeSet::new();
+            for name in line {
+                ensure!(ddo_model::stats::Stat::by_name(name).is_some(), "unknown upstream stat {name:?}");
+                ensure!(
+                    partition.insert(name.clone()) && combined.insert(name.clone()),
+                    "duplicate upstream stat {name:?}"
+                );
+            }
+            partitions.push(partition);
+        }
+        let qualifier = ddo_model::stats::STATS
+            .iter()
+            .filter(|stat| combined.contains(stat.name))
+            .map(|stat| stat.name)
+            .collect::<Vec<_>>()
+            .join(", ");
+        ensure!(
+            self.stat.as_deref() == Some(qualifier.as_str()),
+            "a lines qualifier must name its upstream stat union in canonical order: {qualifier:?}"
+        );
+        Ok(partitions)
+    }
+
+    pub(crate) fn upstream_line_stats(
+        &self,
+        groupings: &crate::groupings::Groupings,
+    ) -> Result<Vec<std::collections::BTreeSet<String>>> {
+        let partitions = match &self.from {
+            CorrectionValue::StatSets(lines) => self.validated_upstream_stat_sets(lines)?,
+            CorrectionValue::Text(name) => vec![groupings.expanded_stat_names(name)?],
+            CorrectionValue::Texts(names) => {
+                names.iter().map(|name| groupings.expanded_stat_names(name)).collect::<Result<Vec<_>>>()?
+            }
+            _ => bail!("a lines correction needs a list of upstream stat sets"),
+        };
+        let mut combined = std::collections::BTreeSet::new();
+        for partition in &partitions {
+            ensure!(
+                !partition.is_empty() && partition.is_disjoint(&combined),
+                "{}: upstream lines have empty or overlapping stats",
+                self.label()
+            );
+            combined.extend(partition.iter().cloned());
+        }
+        Ok(partitions)
+    }
+
     pub(crate) fn line_partition_stats(
         &self,
         groupings: &crate::groupings::Groupings,
     ) -> Result<Vec<(String, std::collections::BTreeSet<String>)>> {
         self.validate_values(self.correctable_field()?)?;
-        let (grouping, lines) = match (&self.from, &self.to) {
-            (CorrectionValue::Text(grouping), CorrectionValue::Texts(lines))
-            | (CorrectionValue::Texts(lines), CorrectionValue::Text(grouping)) => (grouping, lines),
-            _ => unreachable!(),
+        let lines = match &self.to {
+            CorrectionValue::Texts(lines) => lines.as_slice(),
+            CorrectionValue::Text(line) => std::slice::from_ref(line),
+            _ => bail!("a lines correction needs its corrected line names"),
         };
         let bonus_type = self.bonus_type.as_deref().context("a lines correction needs a named type")?;
         let value_line = |name: &str| {
@@ -276,7 +342,8 @@ impl Correction {
             );
             Ok(())
         };
-        if matches!(self.from, CorrectionValue::Texts(_)) {
+        if self.is_line_merge() {
+            let grouping = self.to.as_text().context("a merge needs one target line")?;
             ensure!(
                 groupings.effect_named(grouping).is_some_and(|effect| {
                     effect.has_constants_at_type(bonus_type) || effect.accepts_link_values_at_type(bonus_type)
@@ -284,10 +351,9 @@ impl Correction {
                 "{}: merge target {grouping:?} cannot take link values or constants at {bonus_type}",
                 self.label()
             );
-        } else {
-            value_line(grouping)?;
         }
-        let expected = groupings.expanded_stat_names(grouping)?;
+        let expected =
+            self.upstream_line_stats(groupings)?.into_iter().flatten().collect::<std::collections::BTreeSet<_>>();
         let mut combined = std::collections::BTreeSet::new();
         let mut partitions = Vec::new();
         for line in lines {
@@ -305,7 +371,7 @@ impl Correction {
         }
         ensure!(
             expected.len() >= 2 && combined == expected,
-            "{}: split or merged lines have different stats from {grouping:?}",
+            "{}: split or merged lines have different stats from the upstream union",
             self.label()
         );
         Ok(partitions)
@@ -315,7 +381,8 @@ impl Correction {
         ensure!(
             self.kind != CorrectionKind::ItemBonus
                 || self.field != "lines"
-                || !matches!(self.to, CorrectionValue::Texts(_)),
+                || !(matches!(self.to, CorrectionValue::Texts(_))
+                    || matches!(&self.from, CorrectionValue::StatSets(lines) if lines.len() == 1)),
             "item_bonus lines are unsupported because item buffs do not apply split corrections before inserting links"
         );
 
@@ -511,7 +578,10 @@ impl Correction {
         if field.shape == FieldShape::BonusDedupe && self.bonus_value.is_none() {
             bail!("an augment_bonus dedupe correction needs bonus_value to identify the duplicate amount");
         }
-        if field.shape == FieldShape::BonusLines && self.bonus_value.is_some() {
+        if field.shape == FieldShape::BonusLines
+            && self.bonus_value.is_some()
+            && !matches!(self.from, CorrectionValue::StatSets(_))
+        {
             bail!("a lines correction names a grouping and type without a value");
         }
         if self.targets_effect_bonus() {
@@ -559,13 +629,21 @@ impl Correction {
             }
             FieldShape::BonusLines if self.from.as_text() == Some(NO_SUCH_BONUS) => {
                 ensure!(
-                    self.to.as_text() == Some(NO_SUCH_BONUS)
-                        || (self.to.as_text() == self.stat.as_deref() && self.stat.is_some())
+                    self.to.as_text().is_some_and(|name| !name.trim().is_empty())
                         || matches!(&self.to, CorrectionValue::Texts(lines) if lines.len() >= 2),
                     "a missing lines target records its missing bonus or its previous corrected lines"
                 );
             }
             FieldShape::BonusLines => {
+                if let CorrectionValue::StatSets(upstream) = &self.from {
+                    self.validated_upstream_stat_sets(upstream)?;
+                    ensure!(match &self.to {
+                        CorrectionValue::Texts(lines) => upstream.len() == 1 && lines.len() >= 2 && lines.iter().all(|name| !name.trim().is_empty()) && lines.iter().collect::<std::collections::BTreeSet<_>>().len() == lines.len(),
+                        CorrectionValue::Text(name) => upstream.len() >= 2 && !name.trim().is_empty(),
+                        _ => false,
+                    }, "one upstream line splits into at least two named lines; multiple upstream lines merge into one named line");
+                    return Ok(());
+                }
                 let (grouping, lines) = match (&self.from, &self.to) {
                     (CorrectionValue::Text(grouping), CorrectionValue::Texts(lines))
                     | (CorrectionValue::Texts(lines), CorrectionValue::Text(grouping)) => (grouping, lines),
