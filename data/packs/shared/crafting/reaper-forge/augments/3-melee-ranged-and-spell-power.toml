@@ -10,12 +10,7 @@ read = "2026-10-23"
 note = 'Line structure checked: "Reaper Enchantment: Power: +3 Reaper Bonus to Melee, Ranged and Spell Power" / "These bonuses cannot be crafted using the Reaper Forge, and must be found naturally"'
 
 [[effect]]
-name = "Melee and Ranged Power"
-bonus_type = "Reaper"
-value = 3
-
-[[effect]]
-name = "Universal Spell Power"
+name = "Melee, Ranged and Universal Spell Power"
 bonus_type = "Reaper"
 value = 3
 
@@ -34,6 +29,21 @@ bonus_type = "Reaper"
 effect = "Universal Spell Power"
 effect_type = "SpellPower"
 targets = ["All"]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [
+    [
+    "Melee Power",
+    "Ranged Power",
+],
+    ["Universal Spell Power"],
+]
+reason = "R5-3 and R6-9: Reaper Enchantment: Power is one line granting +3 Reaper Melee, Ranged and Spell Power. The page has no screenshot of this line."
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-10-23"
+qualifier = "Melee Power, Ranged Power, Universal Spell Power / Reaper"
 
 [[slot]]
 slot = "crafting: reaper armor"
