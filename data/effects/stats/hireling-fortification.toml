@@ -1,3 +1,4 @@
 name = "Hireling Fortification"
 category = "other"
+home_bonus_type = "none"
 verbose_name_template = "%b1 Hireling Fortification +{1}"

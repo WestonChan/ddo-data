@@ -1,2 +1,3 @@
 name = "Dodge"
 category = "defensive"
+home_bonus_type = "none"

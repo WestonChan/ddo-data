@@ -269,6 +269,9 @@ impl EffectMap {
             }
         }
         for (effect_name, bonus_type_name) in &vocabulary.home_bonus_types {
+            if Stat::by_name(effect_name).is_some() {
+                bail!("effect_map.toml [home_bonus_types] {effect_name:?} belongs in its stat file");
+            }
             if effect_name.trim().is_empty()
                 || (bonus_type_name != "none" && BonusType::parse(bonus_type_name).is_none())
             {

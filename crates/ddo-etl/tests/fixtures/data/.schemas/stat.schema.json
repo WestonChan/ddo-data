@@ -136,10 +136,8 @@
       ]
     },
     "home_bonus_type": {
-      "type": [
-        "string",
-        "null"
-      ],
+      "type": "string",
+      "x-null-reference": "none",
       "x-reference-kind": "bonus_types"
     },
     "name": {
@@ -177,7 +175,8 @@
   },
   "required": [
     "name",
-    "category"
+    "category",
+    "home_bonus_type"
   ],
   "title": "StatFile",
   "type": "object",

@@ -1,3 +1,4 @@
 name = "Critical Multiplier"
 category = "martial"
+home_bonus_type = "none"
 verbose_name_template = "%b1 Critical Multiplier +{1}"

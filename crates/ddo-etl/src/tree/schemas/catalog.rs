@@ -95,7 +95,7 @@ impl Catalog {
         let DocumentContext { path, schema, fallback } = *context;
         let node = definition(schema, node);
         if let Some(table) = node["x-reference-kind"].as_str() {
-            if let Some(name) = value.as_str() {
+            if let Some(name) = value.as_str().filter(|name| Some(*name) != node["x-null-reference"].as_str()) {
                 self.references.push(Reference {
                     table: table.into(),
                     name: name.into(),

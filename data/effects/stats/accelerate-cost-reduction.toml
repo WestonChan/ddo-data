@@ -1,3 +1,4 @@
 name = "Accelerate Cost Reduction"
 category = "magical"
+home_bonus_type = "none"
 verbose_name_template = "%b1 Accelerate Cost Reduction +{1}"

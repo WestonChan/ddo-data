@@ -14,6 +14,19 @@ const PACK_QUEST_OVERLAP_SQL: &str =
                        AND p.pack_id = q.pack_id AND p.item_id IS s.item_id AND p.augment_id IS s.augment_id)
      LIMIT 1";
 
+#[test]
+fn declared_stat_homes_do_not_need_a_tiebreaker() {
+    let directory = tempfile::tempdir().unwrap();
+    let db = Connection::open(fixture_db_copy_in(directory.path())).unwrap();
+    db.execute_batch("UPDATE effects SET home_bonus_type_id=NULL WHERE name='Abjuration Focus'; DELETE FROM effect_vocabulary_bonus_types WHERE kind='stat' AND id=(SELECT id FROM effects WHERE name='Abjuration Focus'); INSERT INTO effect_vocabulary_bonus_types(kind,id,bonus_type_id,item_count) SELECT 'stat', (SELECT id FROM effects WHERE name='Abjuration Focus'), id, 1 FROM bonus_types WHERE name IN ('Equipment','Insight');").unwrap();
+    let report = integrity_report(&db, &IntegrityOptions { allowed_empty_tables: Vec::new() }).unwrap();
+    let check = report.outcome("effects_with_tied_home_bonus_types").unwrap();
+    assert!(
+        !check.offenders.iter().any(|offender| offender.name == "Abjuration Focus"),
+        "Abjuration Focus was listed despite its declared home"
+    );
+}
+
 fn fixtures_dir() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("../crates/ddo-etl/tests/fixtures")
 }

@@ -1,3 +1,4 @@
 name = "Hireling Magical Resistance Rating"
 category = "other"
+home_bonus_type = "none"
 verbose_name_template = "%b1 Hireling Magical Resistance Rating +{1}"

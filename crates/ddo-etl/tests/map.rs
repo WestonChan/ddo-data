@@ -1078,6 +1078,14 @@ fn character_wide_effect_types_resolve_to_their_stats() {
 }
 
 #[test]
+fn stat_home_declarations_belong_to_stat_files_only() {
+    let mut vocabulary: toml::Value = toml::from_str(include_str!("../data/effect_map.toml")).unwrap();
+    vocabulary["home_bonus_types"].as_table_mut().unwrap().insert("Abjuration Focus".into(), "Insight".into());
+    let error = EffectMap::from_toml(&toml::to_string(&vocabulary).unwrap()).unwrap_err();
+    assert!(error.to_string().contains("Abjuration Focus") && error.to_string().contains("stat file"), "{error}");
+}
+
+#[test]
 fn every_stat_named_in_the_effect_map_exists() {
     let missing: Vec<_> = EFFECT_MAP
         .effect

@@ -112,6 +112,13 @@ macro_rules! database_record {
             [$($tail)*] [$($corrections)*] $($($rest)*)?);
     };
     (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*] [$($corrections:tt)*]
+        $(#[$attribute:meta])* $field:ident: $field_type:ty => $column:ident [nullable_reference $target:literal $none:literal] $(, $($rest:tt)*)?
+    ) => {
+        database_record!(@fields [$($header)*] [$($prefix)*]
+            [$($fields)* $(#[$attribute])* #[schemars(extend("x-reference-kind" = $target, "x-null-reference" = $none))] $field: $field_type => $column [nullable_reference $target $none],]
+            [$($tail)*] [$($corrections)*] $($($rest)*)?);
+    };
+    (@fields [$($header:tt)*] [$($prefix:tt)*] [$($fields:tt)*] [$($tail:tt)*] [$($corrections:tt)*]
         $(#[$attribute:meta])* $field:ident: $field_type:ty => $column:ident [resolved_reference $target:literal $identity:ident] $(, $($rest:tt)*)?
     ) => {
         database_record!(@fields [$($header)*] [$($prefix)*]
@@ -370,6 +377,9 @@ macro_rules! database_record {
     (@select $table:expr, $column:ident [optional_reference $target:literal]) => {
         database_record!(@select $table, $column [reference $target])
     };
+    (@select $table:expr, $column:ident [nullable_reference $target:literal $none:literal]) => {
+        format!("COALESCE((SELECT name FROM {} WHERE id = {}.{}), '{}') AS {}", $target, $table, stringify!($column), $none.replace('\'', "''"), stringify!($column))
+    };
     (@select $table:expr, $column:ident [resolved_reference $target:literal $identity:ident]) => { database_record!(@select $table, $column [reference $target]) };
     (@select $table:expr, $column:ident $([$($adapter:tt)*])?) => {{ database_record!(@adapter $([$($adapter)*])?); format!("[{}]", stringify!($column)) }};
     (@read $row:ident, $column:ident [wiki_only]) => {
@@ -422,12 +432,14 @@ macro_rules! database_record {
     (@read $row:ident, $column:ident $([$($adapter:tt)*])?) => {{ database_record!(@adapter $([$($adapter)*])?); $row.get(stringify!($column)) }};
     (@write $db:ident, $record:ident, $field:ident [reference $target:literal]) => { crate::tree::id_for_name($db, $target, &$record.$field)? };
     (@write $db:ident, $record:ident, $field:ident [optional_reference $target:literal]) => { $record.$field.as_deref().map(|name| crate::tree::id_for_name($db, $target, name)).transpose()? };
+    (@write $db:ident, $record:ident, $field:ident [nullable_reference $target:literal $none:literal]) => { if $record.$field == $none { None } else { Some(crate::tree::id_for_name($db, $target, &$record.$field)?) } };
     (@write $db:ident, $record:ident, $field:ident [json]) => { crate::tree::optional_json(&$record.$field)? };
     (@write $db:ident, $record:ident, $field:ident $([$($adapter:tt)*])?) => {{ database_record!(@adapter $([$($adapter)*])?); &$record.$field }};
 
     (@adapter) => {};
     (@adapter [reference $target:literal $($label:literal)?]) => {};
     (@adapter [optional_reference $target:literal $($label:literal)?]) => {};
+    (@adapter [nullable_reference $target:literal $none:literal]) => {};
     (@adapter [resolved_reference $target:literal $identity:ident]) => {};
     (@adapter [enum_text ]) => {};
     (@adapter [optional_enum_text ]) => {};

@@ -1,5 +1,6 @@
 name = "Missile Deflection"
 category = "defensive"
+home_bonus_type = "none"
 verbose_name_template = "%b1 Missile Deflection +{1}%"
 
 [[citation]]

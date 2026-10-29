@@ -1,3 +1,4 @@
 name = "Attack Bonus"
 category = "martial"
+home_bonus_type = "none"
 verbose_name_template = "%b1 Attack Bonus +{1}"

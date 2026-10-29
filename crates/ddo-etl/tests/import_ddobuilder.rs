@@ -51,6 +51,120 @@ use std::path::PathBuf;
 const PREVIOUS_SHA: &str = "ba7e18eecafb1bb5fd6b6cf52cc0b6395bbeb20c";
 const NEW_SHA: &str = "d1350a0c6ec396a65dc02680fa9801a14a79ebf3";
 
+fn abjuration_home_import() -> ImportWorld {
+    ImportWorld::with_sources(fixture::groupings(), Corrections::default(), WikiOverrides::default(), |source| {
+        let path = source.join("ItemBuffs.xml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(
+            path,
+            original.replace(
+                "</Buffs>",
+                &format!("{}\n</Buffs>", include_str!("fixtures/effect-groups/AbjurationFocus.Buffs.xml")),
+            ),
+        )
+        .unwrap();
+        for (bonus_type, count) in [("Insight", 4), ("Equipment", 3)] {
+            for index in 0..count {
+                write_abjuration_carrier(source, bonus_type, index);
+            }
+        }
+    })
+}
+
+fn write_abjuration_carrier(source: &Path, bonus_type: &str, index: usize) {
+    std::fs::create_dir_all(source.join("Items")).unwrap();
+    let item = include_str!("fixtures/effect-groups/AbjurationFocus.item")
+        .replace("Abjuration Focus Carrier", &format!("Home {bonus_type} {index}"))
+        .replace("<BonusType>Insight</BonusType>", &format!("<BonusType>{bonus_type}</BonusType>"));
+    std::fs::write(source.join(format!("Items/Home{bonus_type}{index}.item")), item).unwrap();
+}
+
+#[test]
+fn import_preserves_declared_stat_homes_and_reports_a_different_majority() {
+    for home in [Some("Insight"), None] {
+        let world = abjuration_home_import();
+        world.edit(&format!("UPDATE effects SET home_bonus_type_id = (SELECT id FROM bonus_types WHERE name = '{}') WHERE name = 'Abjuration Focus'", home.unwrap_or("none")));
+        for index in 3..5 {
+            write_abjuration_carrier(&world.options.source_dir, "Equipment", index);
+        }
+        let report = import_ddobuilder(&world.options).unwrap();
+        assert!(!report.has_conflicts(), "{report}");
+        let actual: Option<String> = world.database().query_row("SELECT bt.name FROM effects e LEFT JOIN bonus_types bt ON bt.id=e.home_bonus_type_id WHERE e.name='Abjuration Focus'", [], |row| row.get(0)).unwrap();
+        assert_eq!(actual.as_deref(), home);
+        let entry = report
+            .entries
+            .iter()
+            .find(|entry| entry.category == "STAT HOME MAJORITY" && entry.detail.contains("Abjuration Focus"))
+            .unwrap_or_else(|| panic!("{report}"));
+        assert!(entry.detail.contains("Equipment") && entry.detail.contains(home.unwrap_or("none")), "{entry:?}");
+        assert!(report.to_string().contains("Stat home types\n"));
+    }
+}
+
+#[test]
+fn missing_seeded_stat_gets_a_reported_upstream_home_without_recreating_its_deleted_file() {
+    for (stat, slug, expected) in
+        [("Abjuration Focus", "abjuration-focus", "Equipment"), ("Divination Focus", "divination-focus", "none")]
+    {
+        let world = abjuration_home_import();
+        world.edit(&format!("DELETE FROM items WHERE name LIKE 'Home %'; DELETE FROM effects WHERE name={stat:?}"));
+        let carrier_path = world.options.source_dir.join("Items/HomeInsight3.item");
+        let carrier = std::fs::read_to_string(&carrier_path).unwrap();
+        std::fs::write(
+            carrier_path,
+            carrier.replace("<BonusType>Insight</BonusType>", "<BonusType>Equipment</BonusType>"),
+        )
+        .unwrap();
+        let relative = format!("effects/stats/{slug}.toml");
+        let path = world.options.data_dir.join(&relative);
+        assert!(!path.exists());
+        let upstream = world.scratch.path().join("upstream-home");
+        let normalized = ddo_etl::import_ddobuilder::normalized_upstream_database(
+            &world.options.source_dir,
+            &world.database(),
+            &DatasetVersion { upstream_sha: NEW_SHA.into(), built_at: "2026-10-28T00:00:00Z".into() },
+            false,
+            &upstream,
+        )
+        .unwrap();
+        let home: Option<String> = normalized
+            .db
+            .query_row(
+                "SELECT bt.name FROM effects e LEFT JOIN bonus_types bt ON bt.id=e.home_bonus_type_id WHERE e.name=?1",
+                [stat],
+                |row| row.get(0),
+            )
+            .unwrap();
+        assert_eq!(home.as_deref().unwrap_or("none"), expected);
+        let declared = std::fs::read_to_string(upstream.join(&relative)).unwrap();
+        assert!(declared.contains(&format!("home_bonus_type = {expected:?}")), "{declared}");
+        let report = import_ddobuilder(&world.options).unwrap();
+        assert!(!report.has_conflicts(), "{report}");
+        assert!(
+            report.entries.iter().any(|entry| entry.category == "NEW STAT HOME"
+                && entry.detail.contains(stat)
+                && entry.detail.contains(expected)),
+            "{report}"
+        );
+        if expected == "Equipment" {
+            assert!(
+                report.entries.iter().any(|entry| entry.category == "CHANGED UPSTREAM, ABSENT IN OURS"
+                    && entry.path == Path::new(&relative)
+                    && entry.detail.contains("home_bonus_type_id")),
+                "{report}"
+            );
+        }
+        assert!(!path.exists());
+        assert_eq!(
+            world
+                .database()
+                .query_row("SELECT COUNT(*) FROM effects WHERE name=?1", [stat], |row| row.get::<_, i64>(0))
+                .unwrap(),
+            0
+        );
+    }
+}
+
 fn woeful_split_import() -> ImportWorld {
     let correction = fixture::new_qualified_correction(
         "augment_bonus",

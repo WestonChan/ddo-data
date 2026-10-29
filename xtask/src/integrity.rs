@@ -2027,7 +2027,7 @@ fn effects_with_tied_home_bonus_types(db: &Connection, _options: &IntegrityOptio
     let sql = "SELECT e.name, e.id, 'multiple bonus types each occur on ' || MAX(v.item_count) || ' items'
           FROM effects e JOIN effect_vocabulary_bonus_types v ON v.id = e.id
            AND v.kind = CASE WHEN e.is_stat THEN 'stat' WHEN e.is_group THEN 'group' ELSE 'effect' END
-         WHERE e.home_bonus_type_id IS NULL AND v.item_count > 0
+         WHERE NOT e.is_stat AND e.home_bonus_type_id IS NULL AND v.item_count > 0
          GROUP BY e.id
         HAVING SUM(v.item_count = (SELECT MAX(candidate.item_count) FROM effect_vocabulary_bonus_types candidate
                                     WHERE candidate.id = e.id AND candidate.kind = v.kind)) > 1";

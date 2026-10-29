@@ -1,3 +1,4 @@
 name = "Offhand Strike Chance"
 category = "martial"
+home_bonus_type = "none"
 verbose_name_template = "%b1 Offhand Strike Chance +{1}"

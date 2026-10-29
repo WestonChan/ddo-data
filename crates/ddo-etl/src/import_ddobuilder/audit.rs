@@ -9,6 +9,41 @@ use std::path::Path;
 
 const MAPPING_PATH: &str = "crates/ddo-etl/data/effect_map.toml";
 
+pub(super) fn is_stat_home(entry: &ImportReportEntry) -> bool {
+    matches!(entry.category, "NEW STAT HOME" | "STAT HOME MAJORITY")
+}
+
+pub(super) fn stat_homes(
+    ours: &rusqlite::Connection,
+    upstream: &rusqlite::Connection,
+) -> Result<Vec<ImportReportEntry>> {
+    let known_stats = crate::groupings::Groupings::from_database(ours)?;
+    let majority_types = crate::build::effect_vocabulary::item_home_bonus_types(upstream)?;
+    let bonus_types = upstream
+        .prepare("SELECT id, name FROM bonus_types")?
+        .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)))?
+        .collect::<rusqlite::Result<BTreeMap<_, _>>>()?;
+    let paths = crate::tree::DataFilePaths::from_database(upstream)?;
+    let mut statement =
+        upstream.prepare("SELECT id, name, home_bonus_type_id FROM effects WHERE is_stat ORDER BY name")?;
+    let mut entries = Vec::new();
+    for row in statement
+        .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, Option<i64>>(2)?)))?
+    {
+        let (id, name, home) = row?;
+        let declared = home.and_then(|id| bonus_types.get(&id)).map_or("none", String::as_str);
+        let (category, detail) = if known_stats.effect_named(&name).is_none() {
+            ("NEW STAT HOME", format!("{name}: inferred {declared} in upstream; existing deleted files stay deleted"))
+        } else if let Some(majority) = majority_types.get(&id).filter(|majority| Some(**majority) != home) {
+            ("STAT HOME MAJORITY", format!("{name}: item majority {}; declared {declared} kept", bonus_types[majority]))
+        } else {
+            continue;
+        };
+        entries.push(ImportReportEntry { path: paths.path("effects", id)?, category, detail });
+    }
+    Ok(entries)
+}
+
 pub(super) fn unmapped_damage_targets(db: &rusqlite::Connection) -> Result<Vec<ImportReportEntry>> {
     let mut statement = db.prepare(
         "SELECT effect_type, damage, COUNT(*) FROM (

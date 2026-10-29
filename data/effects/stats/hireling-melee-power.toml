@@ -1,3 +1,4 @@
 name = "Hireling Melee Power"
 category = "other"
+home_bonus_type = "none"
 verbose_name_template = "%b1 Hireling Melee Power +{1}"

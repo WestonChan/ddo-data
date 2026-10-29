@@ -368,6 +368,65 @@ async fn effect_aliases_choose_line_wording_and_expand_search() {
 }
 
 #[tokio::test]
+async fn declared_stat_home_keeps_wording_when_a_carrier_changes_the_majority() {
+    let root = std::env::temp_dir().join(format!("ddo-api-stat-home-{}", std::process::id()));
+    let source = root.join("xml");
+    let fixtures = fixture_data_dir().parent().unwrap().to_path_buf();
+    common::copy_files(&fixtures.join("DataFiles"), &source);
+    let cases = fixtures.join("effect-groups");
+    let definitions = std::fs::read_to_string(source.join("ItemBuffs.xml")).unwrap();
+    let additional = std::fs::read_to_string(cases.join("AbjurationFocus.Buffs.xml")).unwrap();
+    std::fs::write(source.join("ItemBuffs.xml"), definitions.replace("</Buffs>", &format!("{additional}</Buffs>")))
+        .unwrap();
+    let item = std::fs::read_to_string(cases.join("AbjurationFocus.item")).unwrap();
+    for (bonus_type, count) in [("Insight", 4), ("Equipment", 3)] {
+        for index in 0..count {
+            std::fs::write(
+                source.join(format!("Items/Home{bonus_type}{index}.item")),
+                item.replace("Abjuration Focus Carrier", &format!("Home {bonus_type} {index}"))
+                    .replace("<BonusType>Insight</BonusType>", &format!("<BonusType>{bonus_type}</BonusType>")),
+            )
+            .unwrap();
+        }
+    }
+    let canonical_path = fixture_db_path_with_data_edits("stat-home-canonical", |root| {
+        let path = root.join("effects/stats/abjuration-focus.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(&path, original.replace("home_bonus_type = \"none\"", "home_bonus_type = \"Insight\"")).unwrap();
+    });
+    let canonical = rusqlite::Connection::open(canonical_path).unwrap();
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let mut wording = Vec::new();
+    for added in [false, true] {
+        if added {
+            std::fs::write(
+                source.join("Items/HomeEquipment3.item"),
+                item.replace("Abjuration Focus Carrier", "Home Equipment 3")
+                    .replace("<BonusType>Insight</BonusType>", "<BonusType>Equipment</BonusType>"),
+            )
+            .unwrap();
+        }
+        let database_path = root.join(format!("home-{added}.db"));
+        let _ = std::fs::remove_file(&database_path);
+        let mut db = rusqlite::Connection::open(&database_path).unwrap();
+        ddo_etl::build::build_database(
+            &groupings,
+            &source,
+            &ddo_etl::wiki::WikiOverrides::default(),
+            &ddo_etl::corrections::Corrections::default(),
+            &mut db,
+            &ddo_model::DatasetVersion { upstream_sha: "home-fixture".into(), built_at: "2026-10-28T00:00:00Z".into() },
+        )
+        .unwrap();
+        let (_, _, response) = get_from(AppState::open(&database_path).unwrap(), "/v1/items/home-insight-0").await;
+        let line = &response["effects"][0];
+        wording.push((line["verbose_name"].clone(), line["description"].clone()));
+    }
+    assert_eq!(wording[0].0, "Abjuration Focus +2");
+    assert_eq!(wording[0], wording[1]);
+}
+
+#[tokio::test]
 async fn strength_aliases_preserve_tooltip_names_and_share_search() {
     let root = std::env::temp_dir().join(format!("ddo-api-strength-aliases-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&root);

@@ -1,3 +1,4 @@
 name = "Hireling Hit Points"
 category = "other"
+home_bonus_type = "none"
 verbose_name_template = "%b1 Hireling Hit Points +{1}"

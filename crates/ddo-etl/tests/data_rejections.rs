@@ -16,6 +16,13 @@ fn edited(file: &'static str, from: &'static str, to: &'static str) -> impl Fn(&
 }
 
 #[test]
+fn every_stat_requires_an_explicit_home_declaration() {
+    let file = "effects/stats/strength.toml";
+    let error = fixture::data_build_error(edited(file, "home_bonus_type = \"Enhancement\"\n", ""));
+    assert!(error.contains("strength.toml") && error.contains("home_bonus_type"), "{error}");
+}
+
+#[test]
 fn structural_rejections_fail_the_data_build_naming_their_file_once() {
     type Injection = (&'static str, &'static str, Box<dyn Fn(&std::path::Path)>);
     let injections: Vec<Injection> = vec![
@@ -286,7 +293,7 @@ fn stat_aliases_read_one_amount_without_a_canonical_template() {
         let error = fixture::data_build_error(|root| {
             std::fs::write(
                 root.join("effects/stats/rune-arm-spell-focus.toml"),
-                format!("name = 'Rune Arm Spell Focus'\ncategory = 'magical'\n[[alias]]\nname = 'Rune Arm Focus'\nverbose_name_template = {template:?}\n"),
+                format!("name = 'Rune Arm Spell Focus'\ncategory = 'magical'\nhome_bonus_type = 'none'\n[[alias]]\nname = 'Rune Arm Focus'\nverbose_name_template = {template:?}\n"),
             )
             .unwrap();
         });

@@ -1,3 +1,4 @@
 name = "Will Save"
 category = "defensive"
+home_bonus_type = "none"
 verbose_name_template = "%b1 Will Save +{1}"

@@ -1,0 +1,12 @@
+  <Buff>
+    <Type>SchoolFocusNumber</Type>
+    <DisplayText>%b1 %i1 Focus %v1: %v1 %b1 bonus to the DC of %i1 spells.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Abjuration</Item>
+    </Effect>
+  </Buff>

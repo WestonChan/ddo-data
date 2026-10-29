@@ -308,8 +308,14 @@ impl Display for DdobuilderImportReport {
                 counts.resolved_corrections
             )?;
         }
-        for entry in &self.entries {
+        for entry in self.entries.iter().filter(|entry| !super::audit::is_stat_home(entry)) {
             writeln!(output, "{}: {} {}", entry.path.display(), entry.category, entry.detail)?;
+        }
+        if self.entries.iter().any(super::audit::is_stat_home) {
+            writeln!(output, "Stat home types")?;
+            for entry in self.entries.iter().filter(|entry| super::audit::is_stat_home(entry)) {
+                writeln!(output, "{}: {} {}", entry.path.display(), entry.category, entry.detail)?;
+            }
         }
         writeln!(output, "files: {} written, {} removed", self.files.written, self.files.removed)?;
         writeln!(output, "{} conflicts", self.conflict_count())

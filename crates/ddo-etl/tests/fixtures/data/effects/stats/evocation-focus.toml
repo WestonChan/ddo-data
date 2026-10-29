@@ -1,3 +1,4 @@
 name = "Evocation Focus"
 category = "magical"
+home_bonus_type = "none"
 verbose_name_template = "%b1 Evocation Focus +{1}"

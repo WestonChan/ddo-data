@@ -1,0 +1,18 @@
+<Items>
+  <Item>
+    <NoAutoUpdate />
+    <Name>Abjuration Focus Carrier</Name>
+    <Description>A pink and green gem about 1 inch in diameter</Description>
+    <MinLevel>5</MinLevel>
+    <EquipmentSlot>
+      <Trinket />
+    </EquipmentSlot>
+    <Material>Gem (material)</Material>
+    <Buff>
+      <Type>SchoolFocusNumber</Type>
+      <Item>Abjuration</Item>
+      <Value1>2</Value1>
+      <BonusType>Insight</BonusType>
+    </Buff>
+  </Item>
+</Items>

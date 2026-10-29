@@ -2,6 +2,7 @@ use crate::map::effect_map::EFFECT_MAP;
 use anyhow::Result;
 use ddo_model::enums::BonusType;
 use rusqlite::{params, Connection, OptionalExtension};
+use std::collections::BTreeMap;
 
 pub(super) fn insert_effect_vocabulary(db: &Connection) -> Result<()> {
     for (alias, canonical_name) in &EFFECT_MAP.bonus_type_aliases {
@@ -25,6 +26,59 @@ pub(crate) fn insert_data_effect_vocabulary(db: &Connection) -> Result<()> {
         }
     }
     insert_effect_vocabulary_counts(db)
+}
+
+pub(crate) fn item_home_bonus_types(db: &Connection) -> Result<BTreeMap<i64, i64>> {
+    let mut statement = db.prepare(
+        "SELECT candidate.id, candidate.bonus_type_id FROM effect_vocabulary_bonus_types candidate
+          WHERE candidate.item_count > 0
+            AND candidate.item_count = (
+                SELECT MAX(other.item_count) FROM effect_vocabulary_bonus_types other
+                 WHERE other.id = candidate.id AND other.kind = candidate.kind)
+            AND (SELECT COUNT(*) FROM effect_vocabulary_bonus_types tied
+                  WHERE tied.id = candidate.id AND tied.kind = candidate.kind
+                    AND tied.item_count = candidate.item_count) = 1",
+    )?;
+    let homes = statement.query_map([], |row| Ok((row.get(0)?, row.get(1)?)))?.collect::<rusqlite::Result<_>>()?;
+    Ok(homes)
+}
+
+pub(super) fn write_effect_home_types(db: &Connection, groupings: &crate::groupings::Groupings) -> Result<()> {
+    let inferred_homes = item_home_bonus_types(db)?;
+    let mut statement = db.prepare(
+        "SELECT e.id, e.name, e.is_stat, e.home_bonus_type_id,
+                (SELECT MIN(eb.bonus_type_id) FROM effect_bonuses eb WHERE eb.effect_id = e.id
+                  HAVING COUNT(*) > 0 AND COUNT(eb.bonus_type_id) = COUNT(*)
+                     AND COUNT(DISTINCT eb.bonus_type_id) = 1)
+           FROM effects e",
+    )?;
+    let mut update = db.prepare("UPDATE effects SET home_bonus_type_id = ?2 WHERE id = ?1")?;
+    for row in statement.query_map([], |row| {
+        Ok((
+            row.get::<_, i64>(0)?,
+            row.get::<_, String>(1)?,
+            row.get::<_, bool>(2)?,
+            row.get::<_, Option<i64>>(3)?,
+            row.get::<_, Option<i64>>(4)?,
+        ))
+    })? {
+        let (id, name, is_stat, current_home, fixed_type) = row?;
+        let inferred_home = current_home.or(fixed_type).or_else(|| inferred_homes.get(&id).copied());
+        let home = if is_stat {
+            groupings
+                .effect_named(&name)
+                .map(|stat| stat.home_bonus_type.as_deref().and_then(BonusType::parse).map(BonusType::id))
+                .unwrap_or(inferred_home)
+        } else {
+            EFFECT_MAP
+                .home_bonus_types
+                .get(&name)
+                .map(|name| BonusType::parse(name).map(BonusType::id))
+                .unwrap_or(inferred_home)
+        };
+        update.execute(params![id, home])?;
+    }
+    Ok(())
 }
 
 fn insert_effect_vocabulary_counts(db: &Connection) -> Result<()> {

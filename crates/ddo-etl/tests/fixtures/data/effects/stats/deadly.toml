@@ -1,3 +1,4 @@
 name = "Deadly"
 category = "martial"
+home_bonus_type = "none"
 verbose_name_template = "Deadly +{1}"

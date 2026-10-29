@@ -1,3 +1,4 @@
 name = "Listen"
 category = "skill"
+home_bonus_type = "none"
 verbose_name_template = "%b1 Listen +{1}"
