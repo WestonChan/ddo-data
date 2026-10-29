@@ -1,0 +1,110 @@
+  <Feat>
+    <Name>Shield Deflection</Name>
+    <Description>When actively blocking with any type of Shield you are proficient with,
+you gain a Competence bonus based on the type of shield to completely ignore
+Acid, Cold, Electric and Fire damage.
+Buckler: 20%
+Small Shield: 25%
+Large Shield 30%
+Tower Shield: 40%</Description>
+    <Group>Standard</Group>
+    <Group>Epic Feat</Group>
+    <Requirements>
+      <Requirement>
+        <Type>BAB</Type>
+        <Value>8</Value>
+      </Requirement>
+      <RequiresOneOf>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Shield Proficiency (General)</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Tower Shield Proficiency</Item>
+        </Requirement>
+      </RequiresOneOf>
+    </Requirements>
+    <Acquire>Train</Acquire>
+    <Icon>ShieldDeflection</Icon>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+      <Item>Acid</Item>
+      <Item>Cold</Item>
+      <Item>Electric</Item>
+      <Item>Fire</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Buckler</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Blocking</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">25</Amount>
+      <Item>Acid</Item>
+      <Item>Cold</Item>
+      <Item>Electric</Item>
+      <Item>Fire</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Small Shield</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Blocking</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">30</Amount>
+      <Item>Acid</Item>
+      <Item>Cold</Item>
+      <Item>Electric</Item>
+      <Item>Fire</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Large Shield</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Blocking</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>EnergyAbsorbance</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">40</Amount>
+      <Item>Acid</Item>
+      <Item>Cold</Item>
+      <Item>Electric</Item>
+      <Item>Fire</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Tower Shield</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Blocking</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Feat>

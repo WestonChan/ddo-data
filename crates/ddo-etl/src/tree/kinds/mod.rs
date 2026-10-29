@@ -164,6 +164,7 @@ pub(crate) fn declared_correctable_fields(
         CorrectionKind::ItemBonus
         | CorrectionKind::SetTierBonus
         | CorrectionKind::AugmentBonus
+        | CorrectionKind::FeatBonus
         | CorrectionKind::ItemEffect => crate::tree::tables::EffectGrant::GRANT_CORRECTIONS,
         _ => &[],
     };

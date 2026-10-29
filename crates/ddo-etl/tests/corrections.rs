@@ -250,7 +250,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::Augment, "description:description:Text:false, effect_description:effect_description:Text:true, family:family:Text:false, min_level:min_level:Integer:true, name:name:RowName:false, remove:remove:Removal:false"),
         (CorrectionKind::Quest, "epic_level:epic_level:Integer:true, favor:favor:Integer:true, is_raid:is_raid:Flag:false, level:level:Integer:true, name:name:RowName:false, pack:pack_id:NamedReference { referenced_table: \"adventure_packs\" }:false, patron:patron_id:NamedReference { referenced_table: \"patrons\" }:true, remove:remove:Removal:false"),
         (CorrectionKind::Feat, "description:description:Text:true, icon:icon:Text:true"),
-        (CorrectionKind::FeatBonus, "alias:alias:BonusAlias:true, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
+        (CorrectionKind::FeatBonus, "alias:alias:BonusAlias:true, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
         (CorrectionKind::SocketOptionBonus, "alias:alias:BonusAlias:true, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
         (CorrectionKind::Enhancement, "arrows:arrows:TextList:false, cooldown_seconds:cooldown_seconds:Integer:true, cost_per_rank:cost_per_rank:IntegerList:false, description:description:Text:false, duration_seconds:duration_seconds:Integer:true, icon:icon:Text:true, is_clickie:is_clickie:Flag:false, is_tier5:is_tier5:Flag:false, min_spent:min_spent:Integer:false, name:name:RowName:false, ranks:ranks:Integer:false, x:x:Integer:false, y:y:Integer:false"),
         (CorrectionKind::Spell, "description:description:Text:false, icon:icon:Text:true"),
@@ -1935,6 +1935,83 @@ fn feat_lines_split_and_merge_follow_the_real_writer() {
         built_db_from_index(fixture::grouping_cases(), source.path(), &[("feat-merge.toml", &merge)]).unwrap();
     assert_eq!(fixture::scion_dodge_lines(&merged), [("Dodge and Dodge Cap".into(), 4)]);
     assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+}
+
+#[test]
+fn a_feat_bonus_type_correction_preserves_amounts_and_tracks_upstream_types() {
+    let source = fixture::xml_source();
+    let path = source.path().join("Feats.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let captured = include_str!("fixtures/effect-groups/ShieldDeflection.Feat.xml");
+    std::fs::create_dir_all(source.path().join("FeatImages")).unwrap();
+    std::fs::write(
+        source.path().join("FeatImages/ShieldDeflection.png"),
+        include_bytes!("fixtures/effect-groups/icons/ShieldDeflection.png"),
+    )
+    .unwrap();
+    let correction = new_qualified_correction(
+        "feat_bonus",
+        "Shield Deflection",
+        "stat = 'Fire, Cold, Electric and Acid Absorption'\nbonus_type = 'Enhancement'",
+        "bonus_type",
+        "\"Enhancement\"",
+        "\"Competence\"",
+    );
+    let shield_lines = |db: &Connection| {
+        db.prepare("SELECT b.name,l.value FROM feat_effects l JOIN feats f ON f.id=l.feat_id JOIN bonus_types b ON b.id=l.bonus_type_id WHERE f.name='Shield Deflection' ORDER BY l.sort_order").unwrap()
+            .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?)))
+            .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
+    };
+    for upstream_type in ["Enhancement", "Competence", "Quality"] {
+        let changed = captured.replace("<Bonus>Enhancement</Bonus>", &format!("<Bonus>{upstream_type}</Bonus>"));
+        std::fs::write(&path, original.replace("</Feats>", &format!("{changed}</Feats>"))).unwrap();
+        let (before, _) = built_db_from(source.path(), &[]).unwrap();
+        assert_eq!(shield_lines(&before), [20, 25, 30, 40].map(|amount| (upstream_type.into(), amount)));
+        let (after, report) = built_db_from(source.path(), &[("shield-deflection.toml", &correction)]).unwrap();
+        let expected_type = if upstream_type == "Enhancement" { "Competence" } else { upstream_type };
+        assert_eq!(shield_lines(&after), [20, 25, 30, 40].map(|amount| (expected_type.into(), amount)));
+        let bonuses = after.prepare("SELECT s.name,b.name,ob.amount FROM owner_bonuses ob JOIN feats f ON ob.owner_kind='feat' AND f.id=ob.owner_id JOIN effects s ON s.id=ob.stat_id JOIN bonus_types b ON b.id=ob.bonus_type_id WHERE f.name='Shield Deflection' ORDER BY s.name,ob.amount").unwrap()
+            .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?)))
+            .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        let expected = ["Acid Absorption", "Cold Absorption", "Electric Absorption", "Fire Absorption"]
+            .into_iter()
+            .flat_map(|stat| [20, 25, 30, 40].map(|amount| (stat.to_string(), expected_type.to_string(), amount)))
+            .collect::<Vec<_>>();
+        assert_eq!(bonuses, expected);
+        if upstream_type == "Enhancement" {
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+        } else {
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+            assert!(
+                matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == &format!("\"{upstream_type}\"")),
+                "{:?}",
+                report.stale_corrections
+            );
+        }
+    }
+    std::fs::write(&path, original.replace("</Feats>", &format!("{captured}</Feats>"))).unwrap();
+    let member = new_qualified_correction(
+        "feat_bonus",
+        "Shield Deflection",
+        "stat = 'Fire Absorption'\nbonus_type = 'Enhancement'",
+        "bonus_type",
+        "\"Enhancement\"",
+        "\"Competence\"",
+    );
+    let error = built_db_from(source.path(), &[("shield-member.toml", &member)]).unwrap_err();
+    assert!(error.contains("behind grouping") && error.contains("Fire, Cold, Electric and Acid Absorption"), "{error}");
+    let effects_start = captured.find("    <Effect>").unwrap();
+    let effects_end = captured.rfind("    </Effect>").unwrap() + "    </Effect>".len();
+    let removed = format!("{}{}", &captured[..effects_start], &captured[effects_end..]);
+    std::fs::write(&path, original.replace("</Feats>", &format!("{removed}</Feats>"))).unwrap();
+    let (without_bonuses, report) = built_db_from(source.path(), &[("shield-deflection.toml", &correction)]).unwrap();
+    assert!(shield_lines(&without_bonuses).is_empty());
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+    assert!(
+        matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\""),
+        "{:?}",
+        report.stale_corrections
+    );
 }
 
 #[test]

@@ -11385,22 +11385,22 @@ read = "2026-10-23"
 note = 'Line structure checked: "When actively blocking with any type of shield you are proficient with, you have a (competence bonus) chance to completely ignore Acid, Cold, Electric, and Fire damage. The chance is based on the type of shield being used:" / "Buckler: 20%" / "Small Shield: 25%" / "Large Shield: 30%" / "Tower Shield: 40%"'
 
 [[row.effect]]
-bonus_type = "Enhancement"
+bonus_type = "Competence"
 effect = "Fire, Cold, Electric and Acid Absorption"
 value = 20
 
 [[row.effect]]
-bonus_type = "Enhancement"
+bonus_type = "Competence"
 effect = "Fire, Cold, Electric and Acid Absorption"
 value = 25
 
 [[row.effect]]
-bonus_type = "Enhancement"
+bonus_type = "Competence"
 effect = "Fire, Cold, Electric and Acid Absorption"
 value = 30
 
 [[row.effect]]
-bonus_type = "Enhancement"
+bonus_type = "Competence"
 effect = "Fire, Cold, Electric and Acid Absorption"
 value = 40
 
@@ -11409,6 +11409,15 @@ group_name = "Standard"
 
 [[row.group]]
 group_name = "Epic Feat"
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "bonus_type"
+upstream = "Enhancement"
+reason = "R5-3: the wiki and the feat description explicitly call the blocking absorption chance a Competence bonus; the shield-specific amounts are unchanged."
+url = "https://ddowiki.com/page/Shield_Deflection"
+read = "2026-10-23"
+qualifier = "Fire, Cold, Electric and Acid Absorption / Enhancement"
 
 [[row.modifier]]
 amount_type = "Simple"
