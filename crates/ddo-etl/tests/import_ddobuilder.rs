@@ -939,6 +939,40 @@ fn import_reports_a_valued_prose_entry_that_stopped_matching() {
 }
 
 #[test]
+fn import_reports_unmapped_damage_targets_without_losing_existing_targets() {
+    let world = ImportWorld::with_sources(
+        fixture::grouping_cases(),
+        Corrections::default(),
+        WikiOverrides::default(),
+        |source| {
+            std::fs::create_dir_all(source.join("Augments")).unwrap();
+            std::fs::write(
+                source.join("Augments/ThunderforgedDamageTargets.Augments.xml"),
+                include_str!("fixtures/effect-groups/ThunderforgedDamageTargets.Augments.xml")
+                    .replace("<Damage>Acid</Damage>", "<Damage>Unknown</Damage>"),
+            )
+            .unwrap();
+        },
+    );
+    let report = ddo_etl::import_ddobuilder::import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    let audits: Vec<_> = report.entries.iter().filter(|entry| entry.category == "UNMAPPED DAMAGE TARGET").collect();
+    assert_eq!(audits.len(), 2, "{report}");
+    for effect_type in ["EnergyResistance", "SpellLore"] {
+        assert!(
+            audits.iter().any(|entry| entry.detail.contains(effect_type) && entry.detail.contains("Unknown")),
+            "{report}"
+        );
+    }
+    let db = world.database();
+    let stats: Vec<String> = db.prepare("SELECT e.name FROM owner_bonuses b JOIN effects e ON e.id=b.stat_id JOIN augments a ON a.id=b.owner_id WHERE b.owner_kind='augment' AND a.name='Blinding Fear' ORDER BY e.name").unwrap().query_map([], |row| row.get(0)).unwrap().collect::<rusqlite::Result<_>>().unwrap();
+    assert_eq!(
+        stats,
+        ["Cold Resistance", "Electric Resistance", "Fire Resistance", "Saving Throws", "Sonic Resistance"]
+    );
+}
+
+#[test]
 fn import_reports_mapping_audits_without_changing_success_status() {
     let world = ImportWorld::new(Corrections::default());
     let path = world.options.source_dir.join("ItemBuffs.xml");

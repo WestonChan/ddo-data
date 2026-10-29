@@ -4,7 +4,7 @@ family = "Thunderforged"
 min_level = 28
 
 [[effect]]
-name = "Universal Spell Lore"
+name = "Acid Spell Lore"
 bonus_type = "Equipment"
 value = 22
 
@@ -13,7 +13,7 @@ amount_type = "Simple"
 amounts = [22]
 bonus_type = "Equipment"
 damage = "Acid"
-effect = "Universal Spell Lore"
+effect = "Acid Spell Lore"
 effect_type = "SpellLore"
 
 [[modifier]]

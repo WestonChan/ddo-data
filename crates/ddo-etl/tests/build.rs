@@ -832,6 +832,78 @@ fn combat_mastery_composition_and_cited_dolorous_splits_follow_the_xml_writer() 
 }
 
 #[test]
+fn declared_damage_targets_preserve_thunderforged_stats_and_requirements() {
+    let source = fixture::xml_source();
+    std::fs::write(
+        source.path().join("Augments/ThunderforgedDamageTargets.Augments.xml"),
+        include_str!("fixtures/effect-groups/ThunderforgedDamageTargets.Augments.xml"),
+    )
+    .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::grouping_cases(),
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let bonuses: Vec<(String, String, String, i64)> = db
+        .prepare(
+            "SELECT a.name,s.name,bt.name,b.amount FROM owner_bonuses b
+         JOIN augments a ON a.id=b.owner_id JOIN effects s ON s.id=b.stat_id
+         JOIN bonus_types bt ON bt.id=b.bonus_type_id WHERE b.owner_kind='augment'
+         AND a.name IN ('Blinding Fear','Dwarvencraft Acid Lore') ORDER BY a.name,s.name",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)))
+        .unwrap()
+        .collect::<rusqlite::Result<_>>()
+        .unwrap();
+    let mut expected: Vec<_> = [
+        "Acid Resistance",
+        "Cold Resistance",
+        "Electric Resistance",
+        "Fire Resistance",
+        "Saving Throws",
+        "Sonic Resistance",
+    ]
+    .map(|stat| ("Blinding Fear".to_string(), stat.to_string(), "Orb".to_string(), 10))
+    .into();
+    expected.push(("Dwarvencraft Acid Lore".into(), "Acid Spell Lore".into(), "Equipment".into(), 22));
+    assert_eq!(bonuses, expected);
+    assert_eq!(count(&db, "SELECT COUNT(DISTINCT b.via_effect_id) FROM owner_bonuses b JOIN augments a ON a.id=b.owner_id JOIN effects s ON s.id=b.stat_id WHERE b.owner_kind='augment' AND a.name='Blinding Fear' AND s.name LIKE '% Resistance'"), 1);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM requirements r JOIN modifiers m ON r.owner_kind='modifier' AND r.owner_id=m.id JOIN augments a ON m.source_kind='augment' AND m.source_id=a.id WHERE a.name='Blinding Fear' AND m.effect_type IN ('SaveBonus','EnergyResistance') AND r.req_type='Stance' AND r.items='[\"Blocking\"]'"), 2);
+}
+
+#[test]
+fn weapon_damage_is_preserved_outside_declared_damage_targets() {
+    let source = fixture::xml_source();
+    std::fs::write(
+        source.path().join("Augments/WeaponFireDamage.Augments.xml"),
+        include_str!("fixtures/effect-groups/ThunderforgedDamageTargets.Augments.xml")
+            .replace("<Type>EnergyResistance</Type>", "<Type>WeaponOtherDamageBonus</Type>")
+            .replace("<Damage>Acid</Damage>", "<Damage>Fire</Damage>"),
+    )
+    .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::grouping_cases(),
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let stats: Vec<String> = db.prepare("SELECT s.name FROM owner_bonuses b JOIN augments a ON a.id=b.owner_id JOIN effects s ON s.id=b.stat_id WHERE b.owner_kind='augment' AND a.name='Blinding Fear'").unwrap()
+        .query_map([], |row| row.get(0)).unwrap().collect::<rusqlite::Result<_>>().unwrap();
+    assert_eq!(stats, ["Saving Throws"]);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM modifiers m JOIN augments a ON a.id=m.source_id WHERE m.source_kind='augment' AND a.name='Blinding Fear' AND m.effect_type='WeaponOtherDamageBonus' AND m.damage='Fire'"), 1);
+}
+
+#[test]
 fn orb_bonus_grants_saves_and_five_resistances_from_its_definition() {
     let db = build_item_buff_fixture(
         include_str!("fixtures/effect-groups/OrbOfAcid.Buffs.xml"),

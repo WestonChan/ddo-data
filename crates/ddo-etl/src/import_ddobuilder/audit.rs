@@ -1,6 +1,6 @@
 use super::ImportReportEntry;
 use crate::map::buff::{BuffResolver, FamilyResolution};
-use crate::map::effect_map::EFFECT_MAP;
+use crate::map::effect_map::{EffectTargetQualifiers, EFFECT_MAP};
 use crate::xml::item_buffs::{self, ItemBuffDefinition};
 use crate::xml::items::parse_item_file;
 use anyhow::Result;
@@ -8,6 +8,35 @@ use std::collections::{BTreeMap, BTreeSet, HashMap};
 use std::path::Path;
 
 const MAPPING_PATH: &str = "crates/ddo-etl/data/effect_map.toml";
+
+pub(super) fn unmapped_damage_targets(db: &rusqlite::Connection) -> Result<Vec<ImportReportEntry>> {
+    let mut statement = db.prepare(
+        "SELECT effect_type, damage, COUNT(*) FROM (
+            SELECT effect_type, damage FROM modifiers WHERE damage IS NOT NULL
+            UNION ALL
+            SELECT extra.value, m.damage FROM modifiers m, json_each(m.extra_types) extra WHERE m.damage IS NOT NULL
+         ) GROUP BY effect_type, damage ORDER BY effect_type, damage",
+    )?;
+    let rows = statement
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?)))?;
+    let qualifiers = EffectTargetQualifiers::default();
+    let mut entries = Vec::new();
+    for row in rows {
+        let (effect_type, damage, count) = row?;
+        if EFFECT_MAP.damage_as_target.contains(&effect_type)
+            && EFFECT_MAP.damage_target_stats(&effect_type, &damage, &qualifiers).is_none()
+        {
+            entries.push(ImportReportEntry {
+                path: MAPPING_PATH.into(),
+                category: "UNMAPPED DAMAGE TARGET",
+                detail: format!(
+                    "{effect_type}: Damage {damage:?} maps to no stat on {count} modifiers; original targets kept"
+                ),
+            });
+        }
+    }
+    Ok(entries)
+}
 
 pub(super) fn unmatched_set_tier_prose(
     previous: &BTreeSet<crate::build::SetTierProseMatch>,

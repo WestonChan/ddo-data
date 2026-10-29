@@ -1,4 +1,5 @@
 description_trim_period = ["Sheltering"]
+damage_as_target = ["EnergyResistance", "SpellLore"]
 
 [named_effect_ids]
 "Spell Focus Mastery" = 100

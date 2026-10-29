@@ -13,6 +13,8 @@ use std::sync::LazyLock;
 pub struct EffectMap {
     #[serde(default)]
     pub description_trim_period: BTreeSet<String>,
+    #[serde(default)]
+    pub damage_as_target: BTreeSet<String>,
     pub family: FamilyVocabulary,
     pub effect: EffectVocabulary,
     #[serde(default)]
@@ -410,8 +412,14 @@ impl EffectMap {
             .chain(vocabulary.effect.targeted.keys())
             .chain(vocabulary.effect.by_item.keys())
             .chain(vocabulary.effect.by_item_default.keys());
+        let mapped_effect_types: BTreeSet<_> = mapped_effect_types.collect();
+        for effect_type in &vocabulary.damage_as_target {
+            if !mapped_effect_types.contains(effect_type) {
+                bail!("effect_map.toml damage_as_target names {effect_type:?}, which is not mapped to a stat bonus");
+            }
+        }
         let overlapping_types: BTreeSet<_> =
-            mapped_effect_types.filter(|kind| vocabulary.effect.engine_only.contains_key(*kind)).collect();
+            mapped_effect_types.into_iter().filter(|kind| vocabulary.effect.engine_only.contains_key(*kind)).collect();
         if !overlapping_types.is_empty() {
             bail!(
                 "effect_map.toml: {overlapping_types:?} are both mapped to a stat and listed in [effect.engine_only]"
@@ -552,6 +560,44 @@ impl EffectMap {
     }
 
     pub fn stats_for_effect(&self, effect: &Effect, qualifiers: &EffectTargetQualifiers) -> Option<Vec<&'static Stat>> {
+        if let Some(damage) = effect.damage.as_deref().filter(|damage| {
+            effect.types.first().is_some_and(|kind| {
+                self.damage_as_target.contains(kind) && self.damage_target_stats(kind, damage, qualifiers).is_some()
+            })
+        }) {
+            let mut targeted = effect.clone();
+            if !targeted.targets.iter().any(|target| target == damage) {
+                targeted.targets.push(damage.to_string());
+            }
+            return self.stats_for_effect_targets(&targeted, qualifiers);
+        }
+        self.stats_for_effect_targets(effect, qualifiers)
+    }
+
+    pub(crate) fn damage_target_stats(
+        &self,
+        effect_type: &str,
+        damage: &str,
+        qualifiers: &EffectTargetQualifiers,
+    ) -> Option<Vec<&'static Stat>> {
+        if damage.trim().is_empty() {
+            return None;
+        }
+        let target = Effect {
+            types: vec![effect_type.to_string()],
+            amount_type: Some("Simple".to_string()),
+            amounts: vec![1.0],
+            targets: vec![damage.to_string()],
+            ..Effect::default()
+        };
+        self.stats_for_effect_targets(&target, qualifiers)
+    }
+
+    fn stats_for_effect_targets(
+        &self,
+        effect: &Effect,
+        qualifiers: &EffectTargetQualifiers,
+    ) -> Option<Vec<&'static Stat>> {
         effect.simple_integer_amount()?;
         let effect_type = effect.types.first()?;
         if self.effect.engine_only.contains_key(effect_type) {

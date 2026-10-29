@@ -1,0 +1,98 @@
+<Augments>
+<Augment>
+    <Name>Blinding Fear</Name>
+    <Description>Blinding Fear: On Hit: Blinds and Shakens foe for 6 sec, 12 sec cool down.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    <Effect>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Stacking</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Orb</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Blocking</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>EnergyResistance</Type>
+      <Bonus>Orb</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Damage>Acid</Damage>
+      <Item>Cold</Item>
+      <Item>Electric</Item>
+      <Item>Fire</Item>
+      <Item>Sonic</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Blocking</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Augment>
+<Augment>
+    <Name>Dwarvencraft Acid Lore</Name>
+    <Description>Dwarvencraft Acid Lore: Passive: Your Acid spells gain a +22% Equipment Bonus to their chance to Critical Hit.</Description>
+    <MinLevel>28</MinLevel>
+    <Type>Thunderforged Tier 3</Type>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">22</Amount>
+      <Damage>Acid</Damage>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+  </Augment>
+</Augments>

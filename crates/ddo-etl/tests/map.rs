@@ -793,6 +793,42 @@ fn a_missing_placeholder_value_affects_only_its_item() {
 }
 
 #[test]
+fn damage_target_declarations_require_stat_bonus_types() {
+    let source = include_str!("../data/effect_map.toml");
+    let mut vocabulary: toml::Value = toml::from_str(source).unwrap();
+    vocabulary
+        .as_table_mut()
+        .unwrap()
+        .insert("damage_as_target".into(), toml::Value::try_from(vec!["EnergyResistance", "SpellLore"]).unwrap());
+    assert!(EffectMap::from_toml(&toml::to_string(&vocabulary).unwrap()).is_ok());
+    vocabulary["damage_as_target"] = toml::Value::try_from(vec!["Guard"]).unwrap();
+    let error = EffectMap::from_toml(&toml::to_string(&vocabulary).unwrap()).unwrap_err();
+    assert!(error.to_string().contains("damage_as_target") && error.to_string().contains("Guard"), "{error}");
+}
+
+#[test]
+fn damage_targets_ignore_unresolved_targets_and_leave_weapon_damage_alone() {
+    for (effect_type, target, damage, expected) in [
+        ("EnergyResistance", "Cold", "Acid", vec!["Cold Resistance", "Acid Resistance"]),
+        ("EnergyResistance", "Acid", "Acid", vec!["Acid Resistance"]),
+        ("EnergyResistance", "Cold", "Unknown", vec!["Cold Resistance"]),
+        ("SpellLore", "", "Unknown", vec!["Universal Spell Lore"]),
+        ("WeaponOtherDamageBonus", "All", "Fire", vec![]),
+        ("Guard", "All", "Fire", vec![]),
+    ] {
+        let effect = ddo_etl::xml::effect::parse_effect(&format!("<Effect><Type>{effect_type}</Type><AType>Simple</AType><Amount>22</Amount><Damage>{damage}</Damage>{}</Effect>", if target.is_empty() { String::new() } else {format!("<Item>{target}</Item>")})).unwrap();
+        let stats: Vec<_> = EFFECT_MAP
+            .stats_for_effect(&effect, &EffectTargetQualifiers::default())
+            .unwrap_or_default()
+            .iter()
+            .map(|stat| stat.name)
+            .collect();
+        assert_eq!(stats, expected, "{effect_type}: {target}/{damage}");
+        assert_eq!(effect.damage.as_deref(), Some(damage));
+    }
+}
+
+#[test]
 fn valued_set_prose_rules_validate_types_targets_and_unique_descriptions() {
     let source = include_str!("../data/effect_map.toml");
     let vocabulary = EffectMap::from_toml(source).unwrap();
