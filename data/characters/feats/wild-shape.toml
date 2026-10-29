@@ -409,6 +409,11 @@ spell power per attack. +3 Imbue Dice"""
 icon = "WildShapeFireElemental"
 source_name = "Druid"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Druid"
+read = "2026-10-23"
+note = "R5-4: no Intelligence or Charisma penalty is listed for Elemental forms; the maintainer confirmed removing both penalties."
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Fire Absorption"
@@ -420,17 +425,30 @@ effect = "Cold Absorption"
 value = -15
 
 [[row.effect]]
-bonus_type = "Penalty"
-effect = "Intelligence and Charisma"
-value = -2
-
-[[row.effect]]
 bonus_type = "Enhancement"
 effect = "Imbue Dice"
 value = 3
 
 [[row.group]]
 group_name = "Wild Shape"
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "remove"
+upstream = -2
+reason = "R5-4 and the maintainer: Elemental forms have no Intelligence or Charisma penalty. The Wild Shape and Druid pages list these penalties for animal forms only."
+url = "https://ddowiki.com/page/Wild_Shape"
+read = "2026-10-23"
+qualifier = "Intelligence / Penalty"
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "remove"
+upstream = -2
+reason = "R5-4 and the maintainer: Elemental forms have no Intelligence or Charisma penalty. The Wild Shape and Druid pages list these penalties for animal forms only."
+url = "https://ddowiki.com/page/Wild_Shape"
+read = "2026-10-23"
+qualifier = "Charisma / Penalty"
 
 [[row.modifier]]
 amount_type = "Simple"
@@ -1030,6 +1048,11 @@ spell power per attack. +3 imbue Dice"""
 icon = "WildShapeWaterElemental"
 source_name = "Druid"
 
+[[row.citation]]
+url = "https://ddowiki.com/page/Druid"
+read = "2026-10-23"
+note = "R5-4: no Intelligence or Charisma penalty is listed for Elemental forms; the maintainer confirmed removing both penalties."
+
 [[row.effect]]
 bonus_type = "Feat"
 effect = "Cold Absorption"
@@ -1041,17 +1064,30 @@ effect = "Fire Absorption"
 value = -15
 
 [[row.effect]]
-bonus_type = "Penalty"
-effect = "Intelligence and Charisma"
-value = -2
-
-[[row.effect]]
 bonus_type = "Enhancement"
 effect = "Imbue Dice"
 value = 3
 
 [[row.group]]
 group_name = "Wild Shape"
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "remove"
+upstream = -2
+reason = "R5-4 and the maintainer: Elemental forms have no Intelligence or Charisma penalty. The Wild Shape and Druid pages list these penalties for animal forms only."
+url = "https://ddowiki.com/page/Wild_Shape"
+read = "2026-10-23"
+qualifier = "Intelligence / Penalty"
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "remove"
+upstream = -2
+reason = "R5-4 and the maintainer: Elemental forms have no Intelligence or Charisma penalty. The Wild Shape and Druid pages list these penalties for animal forms only."
+url = "https://ddowiki.com/page/Wild_Shape"
+read = "2026-10-23"
+qualifier = "Charisma / Penalty"
 
 [[row.modifier]]
 amount_type = "Simple"
