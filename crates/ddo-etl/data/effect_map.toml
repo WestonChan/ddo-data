@@ -9,6 +9,7 @@ enhancement = ["WeaponEnchantment", "ArmorEnchantment", "ShieldEnchantment"]
 owner_type_precedence = ["ExtraLayOnHands", "Constitution Skills - Exceptional", "Charisma Skills - Exceptional", "Strength Skills - Exceptional", "Wisdom Skills - Exceptional"]
 
 [family.groups]
+OrbBonus = "Orb Bonus"
 Potency = "Potency"
 Nullification = "Nullification"
 Radiance = "Radiance"
@@ -325,6 +326,13 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "With 2–6 augments, gain a 5%–9% Legendary bonus to Spell Points." = "Spell Point Augment Scaling"
 
 [home_bonus_types]
+"Orb Bonus" = "Orb"
+"Acid Resistance" = "Enhancement"
+"Cold Resistance" = "Enhancement"
+"Electric Resistance" = "Enhancement"
+"Fire Resistance" = "Enhancement"
+"Sonic Resistance" = "Enhancement"
+"Spell DCs" = "none"
 "Command" = "none"
 "Silver Flame Lore" = "Equipment"
 "Power of the Dark Restoration" = "Equipment"
@@ -347,6 +355,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Search and Spot" = "none"
 
 [line_templates]
+"Orb Bonus" = "+{1} %b1 Orb Bonus"
 "Cold Spell Critical Damage" = "%b1 Cold Spell Critical Damage +{1}%"
 "Missile Deflection" = "%b1 Missile Deflection +{1}%"
 "Flaming Blast 2" = "Flaming Blast 2"
@@ -459,6 +468,7 @@ Deception = ["Deception +3", "Improved Deception"]
 Wizardry = ["Wizardry I", "Wizardry II", "Wizardry III", "Wizardry V", "Wizardry VI", "Wizardry VII", "Wizardry IX", "Wizardry X", "Wizardry XI"]
 
 [groups]
+"Orb Bonus" = ["Saving Throws", "Fire Resistance", "Cold Resistance", "Electric Resistance", "Acid Resistance", "Sonic Resistance"]
 "Combat Mastery" = ["Trip DC", "Sunder DC", "Stun DC"]
 "Heal and Repair" = ["Heal", "Repair"]
 "Melee, Spell and Ranged Threat Generation" = ["Melee Threat Generation", "Spell Threat Generation", "Ranged Threat Generation"]
@@ -553,7 +563,6 @@ SpellPenetrationNumeral = "Spell Penetration"
 WizardryNumber = "Spell Points"
 Wizardry = "Spell Points"
 MagicalEfficiency = "Spell Point Cost Reduction"
-OrbBonus = "Spell DCs"
 "Breath Weapon Focus" = "Breath Weapon Spell Focus"
 Fortification = "Fortification"
 PhysicalSheltering = "Physical Resistance Rating"

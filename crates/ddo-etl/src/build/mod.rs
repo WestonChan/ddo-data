@@ -500,9 +500,11 @@ fn build_with_wiki_references(
                        AND tied.item_count = candidate.item_count) = 1));",
     )?;
     for (effect_name, home_type_name) in &crate::map::effect_map::EFFECT_MAP.home_bonus_types {
-        if home_type_name == "none" {
-            transaction.execute("UPDATE effects SET home_bonus_type_id = NULL WHERE name = ?1", [effect_name])?;
-        }
+        let home_type = BonusType::parse(home_type_name).map(BonusType::id);
+        transaction.execute(
+            "UPDATE effects SET home_bonus_type_id = ?2 WHERE name = ?1",
+            rusqlite::params![effect_name, home_type],
+        )?;
     }
     report.legacy_item_count =
         transaction.query_row("SELECT COUNT(*) FROM items WHERE is_legacy", [], |r| r.get::<_, i64>(0))? as usize;

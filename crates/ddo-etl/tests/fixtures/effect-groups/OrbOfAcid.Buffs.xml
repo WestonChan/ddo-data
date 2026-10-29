@@ -1,0 +1,69 @@
+  <Buff>
+    <Type>AcidLore</Type>
+    <DisplayText>%b1 Acid Lore %v1%: Passive: Your Acid spells gain a %v1% %b1 bonus to their chance to critical hit.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellLore</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Acid</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>Corrosion</Type>
+    <DisplayText>%b1 Corrosion %v1: %v1 %b1 bonus to Acid spell power.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Acid</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>MagicalSheltering</Type>
+    <DisplayText>%b1 Magical Sheltering %v1: %v1 %b1 bonus to Magical Resistance Rating.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>MRR</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>OrbBonus</Type>
+    <DisplayText>%v1 Orb Bonus: While this orb is equipped and you are actively blocking, you gain a %v1 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and Sonic resistances.</DisplayText>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Orb</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Blocking</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>EnergyResistance</Type>
+      <Bonus>Orb</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Acid</Item>
+      <Item>Cold</Item>
+      <Item>Fire</Item>
+      <Item>Electric</Item>
+      <Item>Sonic</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Blocking</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>

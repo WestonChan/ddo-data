@@ -831,6 +831,43 @@ fn combat_mastery_composition_and_cited_dolorous_splits_follow_the_xml_writer() 
     assert_eq!(bonuses, [("Combat Mastery".into(), "Enhancement".into(), 13)]);
 }
 
+#[test]
+fn orb_bonus_grants_saves_and_five_resistances_from_its_definition() {
+    let db = build_item_buff_fixture(
+        include_str!("fixtures/effect-groups/OrbOfAcid.Buffs.xml"),
+        &[("OrbOfAcid.item", include_str!("fixtures/effect-groups/OrbOfAcid.item"))],
+        &[("ItemImages/Orbs/Orb_1b.png", include_bytes!("fixtures/effect-groups/icons/Orb_1b.png"))],
+    );
+    let bonuses = db.prepare("SELECT s.name,bt.name,b.amount FROM owner_bonuses b JOIN effects s ON s.id=b.stat_id JOIN effects e ON e.id=b.via_effect_id JOIN bonus_types bt ON bt.id=b.bonus_type_id JOIN items i ON i.id=b.owner_id WHERE b.owner_kind='item' AND i.name='Orb of Acid' AND e.name='Orb Bonus' ORDER BY s.name").unwrap()
+        .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?)))
+        .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    let expected = [
+        "Acid Resistance",
+        "Cold Resistance",
+        "Electric Resistance",
+        "Fire Resistance",
+        "Saving Throws",
+        "Sonic Resistance",
+    ]
+    .map(|stat| (stat.to_string(), "Orb".to_string(), 6));
+    assert_eq!(bonuses, expected);
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name='Orb of Acid' AND e.name='Orb Bonus' AND l.value=6"), 1);
+    let home_types = db.prepare("SELECT e.name,bt.name FROM effects e LEFT JOIN bonus_types bt ON bt.id=e.home_bonus_type_id WHERE e.name IN ('Acid Resistance','Cold Resistance','Electric Resistance','Fire Resistance','Sonic Resistance','Spell DCs') ORDER BY e.name").unwrap()
+        .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,Option<String>>(1)?)))
+        .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        home_types,
+        [
+            ("Acid Resistance".into(), Some("Enhancement".into())),
+            ("Cold Resistance".into(), Some("Enhancement".into())),
+            ("Electric Resistance".into(), Some("Enhancement".into())),
+            ("Fire Resistance".into(), Some("Enhancement".into())),
+            ("Sonic Resistance".into(), Some("Enhancement".into())),
+            ("Spell DCs".into(), None),
+        ]
+    );
+}
+
 fn build_item_buff_fixture(definitions: &str, items: &[(&str, &str)], icons: &[(&str, &[u8])]) -> Connection {
     let source = fixture::xml_source();
     let buffs = source.path().join("ItemBuffs.xml");

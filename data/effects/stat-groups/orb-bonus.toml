@@ -1,0 +1,45 @@
+name = "Orb Bonus"
+description_template = "While this orb is equipped and you are actively blocking, you gain a {1} orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and Sonic resistances."
+home_bonus_type = "Orb"
+verbose_name_template = "+{1} %b1 Orb Bonus"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Orb_of_Acid"
+read = "2026-10-23"
+note = "R5-3 and R5-4 checked the Orb of Acid screenshot: +6 Orb Bonus grants all saving throws and Acid, Cold, Fire, Electric and Sonic resistances while actively blocking. The Purple Dragon Shield upgraded screenshot confirms the same six bonuses at +8."
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Saving Throws"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Fire Resistance"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Cold Resistance"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Electric Resistance"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Acid Resistance"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Sonic Resistance"
