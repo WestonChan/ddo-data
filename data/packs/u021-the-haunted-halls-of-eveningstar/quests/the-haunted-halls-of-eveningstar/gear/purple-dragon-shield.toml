@@ -50,6 +50,24 @@ name = "Sovereign Vorpal"
 [[effect]]
 name = "Block Elements"
 
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [
+    ["Saving Throws"],
+    [
+    "Fire Resistance",
+    "Cold Resistance",
+    "Electric Resistance",
+    "Acid Resistance",
+    "Sonic Resistance",
+],
+]
+reason = "R5-3: the upgraded screenshot gives one +8 Orb Bonus line for saving throws and all five elemental resistances."
+url = "https://ddowiki.com/page/Item:Purple_Dragon_Shield"
+read = "2026-10-23"
+qualifier = 'socket "crafting: zhentarim attuned", option "Adds +8 Orb Bonus and a Purple Augment slot", Fire Resistance, Cold Resistance, Electric Resistance, Acid Resistance, Sonic Resistance, Saving Throws / Orb'
+
 [[socket]]
 slot = "crafting: zhentarim attuned"
 
@@ -65,12 +83,7 @@ min_level = 26
 
 [[socket.option.effect]]
 bonus_type = "Orb"
-effect = "Saving Throws"
-value = 8
-
-[[socket.option.effect]]
-bonus_type = "Orb"
-effect = "Fire, Cold, Electric, Acid and Sonic Resistance"
+effect = "Orb Bonus"
 value = 8
 
 [[socket.option.grant]]
