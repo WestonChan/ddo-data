@@ -15,6 +15,41 @@ const PACK_QUEST_OVERLAP_SQL: &str =
      LIMIT 1";
 
 #[test]
+fn repeated_words_are_rejected_on_every_rendered_owner_kind() {
+    for (table, owner_column) in [
+        ("item_effects", "item_id"),
+        ("augment_effects", "augment_id"),
+        ("set_bonus_tier_effects", "tier_id"),
+        ("feat_effects", "feat_id"),
+        ("item_augment_slot_option_effects", "option_id"),
+    ] {
+        let scratch = tempfile::tempdir().unwrap();
+        let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+        let (owner_id, effect_id): (i64, i64) = db
+            .query_row(&format!("SELECT {owner_column}, effect_id FROM {table} LIMIT 1"), [], |row| {
+                Ok((row.get(0)?, row.get(1)?))
+            })
+            .unwrap();
+        db.execute("UPDATE effects SET verbose_name_template='Echo eCHO: +{1}', set_bonus_line_template='Echo eCHO: +{1}' WHERE id=?1", [effect_id]).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("served_effect_lines_repeat_words").expect("rendered-line HARD check");
+        assert_eq!(outcome.status, CheckStatus::Failed, "{table}: {outcome}");
+        assert!(
+            outcome.offenders.iter().any(|offender| offender.detail.contains(&format!("{table} owner {owner_id},"))
+                && offender.detail.contains("Echo eCHO")),
+            "{table}: {outcome}"
+        );
+        db.execute("UPDATE effects SET verbose_name_template='Empower, Empower Heal +{1}', set_bonus_line_template='Empower, Empower Heal +{1}' WHERE id=?1", [effect_id]).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("served_effect_lines_repeat_words").unwrap();
+        assert!(
+            !outcome.offenders.iter().any(|offender| offender.id == Some(effect_id)),
+            "list punctuation separates the words: {outcome}"
+        );
+    }
+}
+
+#[test]
 fn declared_stat_homes_do_not_need_a_tiebreaker() {
     let directory = tempfile::tempdir().unwrap();
     let db = Connection::open(fixture_db_copy_in(directory.path())).unwrap();
@@ -1815,6 +1850,11 @@ fn injected_violations() -> Vec<InjectedViolation> {
     ));
     violations.push(violation("effect_descriptions_without_their_amounts",
         "UPDATE effects SET description_template = REPLACE(description_template, '%b1', 'Profane') WHERE name = 'Command'", "Command"));
+    violations.push(violation(
+        "served_effect_lines_repeat_words",
+        "UPDATE effects SET verbose_name_template = '%b1 Echo echo +{1}' WHERE name = 'Command'",
+        "Command",
+    ));
     violations
 }
 

@@ -730,15 +730,28 @@ fn render_verbose_name(row: &Value) -> String {
     } else {
         template
     };
+    let explicit_prefix = template
+        .trim_start()
+        .strip_prefix("%b1")
+        .filter(|suffix| suffix.is_empty() || suffix.starts_with(char::is_whitespace));
+    let template = explicit_prefix.map_or(template, str::trim_start);
     let rendered = render_effect_template(template, &rendered_row).split_whitespace().collect::<Vec<_>>().join(" ");
-    if row["omits_bonus_type"] != 1
-        && !visible_type.is_empty()
-        && !template.contains("%b1")
-        && !rendered.starts_with(visible_type)
-    {
-        format!("{visible_type} {rendered}")
+    if explicit_prefix.is_some() || (row["omits_bonus_type"] != 1 && !template.contains("%b1")) {
+        type_prefixed_line(rendered, visible_type)
     } else {
         rendered
+    }
+}
+
+fn type_prefixed_line(line: String, bonus_type: &str) -> String {
+    let starts_with_type = line.get(..bonus_type.len()).is_some_and(|prefix| prefix.eq_ignore_ascii_case(bonus_type))
+        && line[bonus_type.len()..].chars().next().is_none_or(|next| !next.is_alphanumeric() && next != '_');
+    if bonus_type.is_empty() || starts_with_type {
+        line
+    } else if line.is_empty() {
+        bonus_type.to_string()
+    } else {
+        format!("{bonus_type} {line}")
     }
 }
 
@@ -803,6 +816,35 @@ mod effect_template_tests {
             "bonus_type": "Insight", "home_bonus_type": "Equipment"
         });
         assert_eq!(render_verbose_name(&sheltering), "Insightful Physical Sheltering +18");
+    }
+
+    #[test]
+    fn type_prefixes_are_added_once_at_word_boundaries() {
+        let mut differences = Vec::new();
+        for (name, bonus_type, expected) in [
+            ("Armor Class", "Armor", "Armor Class +15"),
+            ("Armor Check Penalty", "Armor", "Armor Check Penalty +15"),
+            ("False Life", "False Life", "False Life +15"),
+            ("armor Class", "Armor", "armor Class +15"),
+            ("Armor: Class", "Armor", "Armor: Class +15"),
+            ("Armored", "Armor", "Armor Armored +15"),
+            ("False Lifespan", "False Life", "False Life False Lifespan +15"),
+            ("Armor Class", "Quality", "Quality Armor Class +15"),
+            ("Armor Class", "Insight", "Insightful Armor Class +15"),
+            ("Armor Class", "Equipment", "Armor Class +15"),
+        ] {
+            for prefix in ["%b1 ", ""] {
+                let row = json!({
+                    "name": name, "verbose_name_template": format!("{prefix}{name} +{{1}}"),
+                    "template_value": 15, "template_value2": null, "bonus_type": bonus_type
+                });
+                let actual = render_verbose_name(&row);
+                if actual != expected {
+                    differences.push((row["verbose_name_template"].clone(), actual, expected));
+                }
+            }
+        }
+        assert!(differences.is_empty(), "{differences:#?}");
     }
 
     #[test]

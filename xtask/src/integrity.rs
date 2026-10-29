@@ -64,6 +64,8 @@ const EFFECT_OWNER_LINKS: [(&str, &str); 5] = [
     ("item_augment_slot_option_effects", "option_id"),
 ];
 
+const REPEATED_LINE_WORD_ALLOWANCES: &[&str] = &[];
+
 impl IntegrityCheck {
     const fn hard(name: &'static str, description: &'static str, offender_query: OffenderQuery) -> Self {
         Self {
@@ -90,6 +92,11 @@ impl IntegrityCheck {
 }
 
 pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
+    IntegrityCheck::hard(
+        "served_effect_lines_repeat_words",
+        "rendered owner lines have no adjacent repeated words, ignoring case, except explicitly allowed titles",
+        OffenderQuery::Built(served_effect_lines_repeat_words),
+    ),
     IntegrityCheck::warn(
         "effect_templates_without_their_placeholders",
         "templates use the granted slots, types and units, and amount literals match granted constants",
@@ -1089,6 +1096,42 @@ fn description_check_skips(db: &Connection) -> Result<DescriptionCheckSkips> {
         }
     }
     Ok(skips)
+}
+
+fn served_effect_lines_repeat_words(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let mut offenders = Vec::new();
+    for (table, owner_column) in EFFECT_OWNER_LINKS {
+        for (owner_id, lines) in ddo_api::served_effect_lines(db, table, owner_column)
+            .map_err(|error| anyhow::anyhow!("rendering {table}: {error:?}"))?
+        {
+            for (sort_order, line) in lines {
+                let title = line["verbose_name"].as_str().unwrap_or_default();
+                if REPEATED_LINE_WORD_ALLOWANCES.contains(&title) {
+                    continue;
+                }
+                let words = title.split_whitespace().map(str::to_lowercase).collect::<Vec<_>>();
+                let repeats = words
+                    .windows(2)
+                    .filter_map(|pair| {
+                        let previous = pair[0].trim_start_matches(|letter: char| !letter.is_alphanumeric());
+                        let next = pair[1].trim_end_matches(|letter: char| !letter.is_alphanumeric());
+                        (previous == next && previous.chars().any(char::is_alphabetic)).then_some(previous)
+                    })
+                    .collect::<BTreeSet<_>>();
+                if !repeats.is_empty() {
+                    offenders.push(Offender {
+                        name: line["name"].as_str().unwrap_or_default().to_string(),
+                        id: line["effect_id"].as_i64(),
+                        detail: format!(
+                            "{table} owner {owner_id}, line {sort_order}: repeated {}; {title}",
+                            repeats.into_iter().collect::<Vec<_>>().join(", ")
+                        ),
+                    });
+                }
+            }
+        }
+    }
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
 fn effect_descriptions_without_their_amounts(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
@@ -2837,6 +2880,7 @@ mod served_amount_tests {
             assert_eq!(STATEMENTS.load(Ordering::SeqCst), 4, "{owner_count} effects");
             assert!(findings.offenders.unwrap().is_empty());
             for (name, statement_count) in [
+                ("served_effect_lines_repeat_words", 15),
                 ("effect_templates_with_digits_without_amounts", 1),
                 ("effect_line_rendering_tokens", 2),
                 ("effect_templates_disagree_with_names", 1),
