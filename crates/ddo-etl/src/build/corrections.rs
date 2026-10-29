@@ -58,6 +58,28 @@ pub(super) fn record_corrections_applied_while_writing(
     Ok(())
 }
 
+pub(super) fn record_observed_bonus_corrections(
+    transaction: &Transaction,
+    observations: &[(&Correction, CorrectionValue)],
+    report: &mut BuildReport,
+) -> Result<()> {
+    for (correction, upstream) in observations {
+        if correction.from == *upstream {
+            record_applied_correction(transaction, correction, report)?;
+        } else {
+            record_stale_correction(
+                report,
+                correction,
+                StaleCorrectionCause::ValueChanged {
+                    expected_value: correction.from.to_json(),
+                    maetrim_value: upstream.to_json(),
+                },
+            );
+        }
+    }
+    Ok(())
+}
+
 fn apply_corrections_where(
     transaction: &Transaction,
     mut effects: Option<&mut EffectCache<'_>>,
@@ -170,7 +192,7 @@ fn apply_correction(
     if correction.kind.corrects_a_bonus() && !matches!(field.shape, FieldShape::BonusAddition | FieldShape::BonusLines)
     {
         if let Some(context) = context {
-            reject_group_member_correction(transaction, context.groupings, correction, &row_ids)?;
+            reject_group_member_correction(transaction, context.groupings, correction, &row_ids, None)?;
         }
     }
     let mut maetrim_values: Vec<CorrectionValue> = Vec::new();
@@ -783,21 +805,31 @@ pub(super) fn line_bonus_rows(
     let mut query = format!("{} AND (e.is_stat=1 OR es.effect_id IS NOT NULL)", table.bonus_rows_sql(&selected));
     let mut arguments = vec![SqlValue::Integer(owner_id), SqlValue::Null, SqlValue::Null, SqlValue::Null];
     if let Some(pending) = pending {
-        let links = pending
-            .iter()
-            .map(|link| (link.effect_id, link.bonus_type.map(ddo_model::enums::BonusType::id), link.value, link.value2))
-            .collect::<Vec<_>>();
-        query = format!(
-            "WITH {} ({},effect_id,bonus_type_id,value,value2,sort_order) AS
-             (SELECT ?1,json_extract(value,'$[0]'),json_extract(value,'$[1]'),json_extract(value,'$[2]'),json_extract(value,'$[3]'),key FROM json_each(?5)) {query}",
-            table.table_name, table.owner_column
-        );
-        arguments.push(SqlValue::Text(serde_json::to_string(&links)?));
+        prepend_pending_links(&mut query, &mut arguments, table, pending)?;
     }
     let mut statement = transaction.prepare(&query)?;
     let rows =
         statement.query_map(params_from_iter(arguments), LineBonus::from_row)?.collect::<rusqlite::Result<_>>()?;
     Ok(rows)
+}
+
+fn prepend_pending_links(
+    query: &mut String,
+    arguments: &mut Vec<SqlValue>,
+    table: BonusLinkTable,
+    pending: &[super::modifiers::DerivedEffectLink],
+) -> Result<()> {
+    let links = pending
+        .iter()
+        .map(|link| (link.effect_id, link.bonus_type.map(ddo_model::enums::BonusType::id), link.value, link.value2))
+        .collect::<Vec<_>>();
+    *query = format!(
+            "WITH {} ({},effect_id,bonus_type_id,value,value2,sort_order) AS
+             (SELECT ?1,json_extract(value,'$[0]'),json_extract(value,'$[1]'),json_extract(value,'$[2]'),json_extract(value,'$[3]'),key FROM json_each(?5)) {query}",
+            table.table_name, table.owner_column
+        );
+    arguments.push(SqlValue::Text(serde_json::to_string(&links)?));
+    Ok(())
 }
 
 pub(crate) fn line_bonuses_by_owner(
@@ -1140,13 +1172,7 @@ fn current_value(
             )?;
             return Ok(CorrectionValue::from_sql(current));
         }
-        FieldShape::BonusAddition => {
-            return Ok(if CorrectedBonus::of(transaction, correction)?.is_present_on(transaction, row_id)? {
-                correction.to.clone()
-            } else {
-                CorrectionValue::Null
-            });
-        }
+        FieldShape::BonusAddition => return added_bonus_upstream(correction, &added_bonus_rows(transaction, correction, row_id, None)?),
         FieldShape::TierAddition => {
             let existing_tier_count: i64 = transaction.query_row(
                 "SELECT COUNT(*) FROM set_bonus_tiers WHERE set_id = ?1 AND equipped_count = ?2",
@@ -1499,23 +1525,30 @@ fn reject_group_member_correction(
     groupings: &crate::groupings::Groupings,
     correction: &Correction,
     owner_ids: &[i64],
+    pending: Option<&[super::modifiers::DerivedEffectLink]>,
 ) -> Result<()> {
     let Some(stat) = correction.stat.as_deref().and_then(ddo_model::stats::Stat::by_name) else {
         return Ok(());
     };
     let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
-    let mut statement = transaction.prepare(&corrected_bonus.matching_bonuses_sql(
+    let mut query = corrected_bonus.matching_bonuses_sql(
         "DISTINCT e.name, e.is_group AND (SELECT COUNT(DISTINCT target_effect_id) FROM effect_bonuses WHERE effect_id = e.id) > 1",
-    ))?;
-    for row in statement.query_map(
-        params![
-            serde_json::to_string(owner_ids)?,
-            corrected_bonus.stat_id,
-            corrected_bonus.bonus_type_id,
-            corrected_bonus.bonus_value
-        ],
-        |row| Ok((row.get::<_, String>(0)?, row.get::<_, bool>(1)?)),
-    )? {
+    );
+    let mut arguments = vec![
+        SqlValue::Text(serde_json::to_string(owner_ids)?),
+        SqlValue::Integer(corrected_bonus.stat_id),
+        corrected_bonus.bonus_type_id.map_or(SqlValue::Null, SqlValue::Integer),
+        corrected_bonus.bonus_value.map_or(SqlValue::Null, SqlValue::Integer),
+    ];
+    if let Some(pending) = pending {
+        ensure!(owner_ids.len() == 1, "pending links have one owner");
+        arguments[0] = SqlValue::Integer(owner_ids[0]);
+        prepend_pending_links(&mut query, &mut arguments, corrected_bonus.link_table, pending)?;
+    }
+    let mut statement = transaction.prepare(&query)?;
+    for row in statement
+        .query_map(params_from_iter(arguments), |row| Ok((row.get::<_, String>(0)?, row.get::<_, bool>(1)?)))?
+    {
         let (effect_name, is_multi_stat_group) = row?;
         ensure!(
             !is_multi_stat_group,
@@ -1549,6 +1582,30 @@ struct BonusToRepoint {
 }
 
 impl CorrectedBonus {
+    fn rows_on(
+        &self,
+        transaction: &Transaction,
+        owner_id: i64,
+        pending: Option<&[super::modifiers::DerivedEffectLink]>,
+    ) -> Result<Vec<LineBonus>> {
+        let table = self.link_table;
+        let mut query =
+            format!("{} ORDER BY {}.sort_order", table.bonus_rows_sql(&table.line_bonus_columns()), table.table_name);
+        let mut arguments = vec![
+            SqlValue::Integer(owner_id),
+            SqlValue::Integer(self.stat_id),
+            self.bonus_type_id.map_or(SqlValue::Null, SqlValue::Integer),
+            self.bonus_value.map_or(SqlValue::Null, SqlValue::Integer),
+        ];
+        if let Some(pending) = pending {
+            prepend_pending_links(&mut query, &mut arguments, table, pending)?;
+        }
+        Ok(transaction
+            .prepare(&query)?
+            .query_map(params_from_iter(arguments), LineBonus::from_row)?
+            .collect::<rusqlite::Result<Vec<_>>>()?)
+    }
+
     fn of(transaction: &Transaction, correction: &Correction) -> Result<Self> {
         Self::from_correction_if_effect_exists(transaction, correction)?.with_context(|| {
             format!(
@@ -1589,17 +1646,6 @@ impl CorrectedBonus {
             .query_map(params![owner_id, self.stat_id, self.bonus_type_id, self.bonus_value], |row| row.get(0))?
             .collect::<rusqlite::Result<_>>()?;
         Ok(stat_row_ids)
-    }
-
-    fn is_present_on(&self, transaction: &Transaction, owner_id: i64) -> Result<bool> {
-        Ok(transaction
-            .query_row(
-                &format!("{} LIMIT 1", self.matching_bonuses_sql("1")),
-                params![owner_id, self.stat_id, self.bonus_type_id, self.bonus_value],
-                |row| row.get::<_, i64>(0),
-            )
-            .optional()?
-            .is_some())
     }
 
     fn values_on(&self, transaction: &Transaction, owner_id: i64) -> Result<Vec<CorrectionValue>> {
@@ -1653,16 +1699,7 @@ fn repoint_bonuses(
     new_value: Option<i64>,
 ) -> Result<()> {
     let BonusLinkTable { table_name, owner_column, .. } = corrected_bonus.link_table;
-    if let Some(family) = effects.family(corrected_bonus.stat_id).filter(|family| !family.is_stat) {
-        let requested_type = new_bonus_type_id.or(corrected_bonus.bonus_type_id);
-        ensure!(
-            groupings.grouping_named(&family.name).is_some_and(|grouping| requested_type
-                .and_then(|id| ddo_model::enums::BonusType::ALL.iter().find(|bonus_type| bonus_type.id() == id))
-                .is_some_and(|bonus_type| grouping.accepts_value_at_type(bonus_type.name()))),
-            "effect {:?} cannot take one value at the corrected bonus type",
-            effects.family(corrected_bonus.stat_id).map(|family| &family.name)
-        );
-    }
+    validate_repointed_type(effects, groupings, corrected_bonus, new_bonus_type_id)?;
     for owner_id in owner_ids {
         let mut statement = transaction.prepare(&corrected_bonus.matching_bonuses_sql(&format!(
             "{table_name}.sort_order, {table_name}.effect_id, {table_name}.bonus_type_id, {table_name}.value, {table_name}.value2, COALESCE(es.amount_from, 1)"
@@ -1682,51 +1719,85 @@ fn repoint_bonuses(
                 },
             )?
             .collect::<rusqlite::Result<_>>()?;
-        for BonusToRepoint { sort_order, effect_id, link_bonus_type_id, value, second_value, amount_from } in
-            matching_bonuses
-        {
-            if effect_id == corrected_bonus.stat_id
-                || effects.family(effect_id).is_some_and(|family| family.is_stat || family.is_group)
-            {
-                let link_type = effects
-                    .family(effect_id)
-                    .filter(|family| family.is_stat || family.uses_link_type)
-                    .and(new_bonus_type_id);
-                transaction.execute(
-                    &format!("UPDATE {table_name} SET bonus_type_id = COALESCE(?3, bonus_type_id), value = COALESCE(?4, value) WHERE {owner_column} = ?1 AND sort_order = ?2"),
-                    params![owner_id, sort_order, link_type, new_value],
-                )?;
-                continue;
-            }
-            let amount_slot_count: i64 = transaction.query_row(
-                "SELECT COUNT(*) FROM effect_bonuses WHERE effect_id = ?1 AND amount_from = ?2",
-                params![effect_id, amount_from],
-                |row| row.get(0),
+        for bonus in matching_bonuses {
+            let sort_order = bonus.sort_order;
+            let link =
+                write_repointed_bonus(transaction, effects, corrected_bonus, bonus, new_bonus_type_id, new_value)?;
+            transaction.execute(
+                &format!("UPDATE {table_name} SET effect_id=?3,bonus_type_id=?4,value=?5,value2=?6 WHERE {owner_column}=?1 AND sort_order=?2"),
+                params![owner_id,sort_order,link.effect_id,link.bonus_type.map(ddo_model::enums::BonusType::id),link.value,link.value2],
             )?;
-            if link_bonus_type_id.is_some() && new_bonus_type_id != corrected_bonus.bonus_type_id {
-                transaction.execute(
-                    &format!(
-                        "UPDATE {table_name} SET bonus_type_id = ?3 WHERE {owner_column} = ?1 AND sort_order = ?2"
-                    ),
-                    params![owner_id, sort_order, new_bonus_type_id],
-                )?;
-                continue;
+        }
+    }
+    Ok(())
+}
+
+fn validate_repointed_type(
+    effects: &EffectCache<'_>,
+    groupings: &crate::groupings::Groupings,
+    corrected_bonus: &CorrectedBonus,
+    new_bonus_type_id: Option<i64>,
+) -> Result<()> {
+    if let Some(family) = effects.family(corrected_bonus.stat_id).filter(|family| !family.is_stat) {
+        let requested_type = new_bonus_type_id.or(corrected_bonus.bonus_type_id);
+        ensure!(
+            groupings.grouping_named(&family.name).is_some_and(|grouping| requested_type
+                .and_then(|id| ddo_model::enums::BonusType::ALL.iter().find(|bonus_type| bonus_type.id() == id))
+                .is_some_and(|bonus_type| grouping.accepts_value_at_type(bonus_type.name()))),
+            "effect {:?} cannot take one value at the corrected bonus type",
+            family.name
+        );
+    }
+    Ok(())
+}
+
+fn write_repointed_bonus(
+    transaction: &Transaction,
+    effects: &mut EffectCache<'_>,
+    corrected_bonus: &CorrectedBonus,
+    bonus: BonusToRepoint,
+    new_bonus_type_id: Option<i64>,
+    new_value: Option<i64>,
+) -> Result<super::modifiers::DerivedEffectLink> {
+    let BonusToRepoint { effect_id, link_bonus_type_id, value, second_value, amount_from, .. } = bonus;
+    let mut link = super::modifiers::DerivedEffectLink {
+        effect_id,
+        alias: None,
+        value,
+        value2: second_value,
+        is_split_line: false,
+        bonus_type: link_bonus_type_id
+            .and_then(|id| ddo_model::enums::BonusType::ALL.iter().copied().find(|kind| kind.id() == id)),
+    };
+    let new_type =
+        new_bonus_type_id.and_then(|id| ddo_model::enums::BonusType::ALL.iter().copied().find(|kind| kind.id() == id));
+    if effect_id == corrected_bonus.stat_id
+        || effects.family(effect_id).is_some_and(|family| family.is_stat || family.is_group)
+    {
+        if effects.family(effect_id).is_some_and(|family| family.is_stat || family.uses_link_type) {
+            link.bonus_type = new_type.or(link.bonus_type);
+        }
+        link.value = new_value.or(link.value);
+    } else if link_bonus_type_id.is_some() && new_bonus_type_id != corrected_bonus.bonus_type_id {
+        link.bonus_type = new_type;
+    } else {
+        let amount_slot_count: i64 = transaction.query_row(
+            "SELECT COUNT(*) FROM effect_bonuses WHERE effect_id=?1 AND amount_from=?2",
+            params![effect_id, amount_from],
+            |row| row.get(0),
+        )?;
+        if new_bonus_type_id == corrected_bonus.bonus_type_id
+            && new_value.is_some()
+            && amount_from > 0
+            && amount_slot_count == 1
+        {
+            if amount_from == 1 {
+                link.value = new_value;
+            } else {
+                link.value2 = new_value;
             }
-            if new_bonus_type_id == corrected_bonus.bonus_type_id
-                && new_value.is_some()
-                && amount_from > 0
-                && amount_slot_count == 1
-            {
-                let changed_column = if amount_from == 1 { "value" } else { "value2" };
-                transaction.execute(
-                    &format!(
-                        "UPDATE {table_name} SET {changed_column} = ?3 WHERE {owner_column} = ?1 AND sort_order = ?2"
-                    ),
-                    params![owner_id, sort_order, new_value],
-                )?;
-                continue;
-            }
-            let new_effect_id = corrected_effect(
+        } else {
+            link.effect_id = corrected_effect(
                 transaction,
                 effects,
                 effect_id,
@@ -1734,29 +1805,137 @@ fn repoint_bonuses(
                 new_bonus_type_id,
                 new_value,
             )?;
-            transaction.execute(
-                &format!("UPDATE {table_name} SET effect_id = ?3, value = ?4, value2 = ?5 WHERE {owner_column} = ?1 AND sort_order = ?2"),
-                params![owner_id, sort_order, new_effect_id, value, second_value],
-            )?;
         }
     }
-    Ok(())
+    Ok(link)
 }
 
-fn add_bonus(
+pub(super) fn added_bonus_rows(
+    transaction: &Transaction,
+    correction: &Correction,
+    owner_id: i64,
+    pending: Option<&[super::modifiers::DerivedEffectLink]>,
+) -> Result<Vec<LineBonus>> {
+    match CorrectedBonus::from_correction_if_effect_exists(transaction, correction)? {
+        Some(corrected) => Ok(corrected
+            .rows_on(transaction, owner_id, pending)?
+            .into_iter()
+            .filter(|row| row.bonus_type.as_deref() == correction.bonus_key().map(|(_, bonus_type)| bonus_type))
+            .collect()),
+        None => Ok(Vec::new()),
+    }
+}
+
+pub(super) fn added_bonus_upstream(correction: &Correction, rows: &[LineBonus]) -> Result<CorrectionValue> {
+    let CorrectionValue::Bonus(bonus) = &correction.to else { bail!("an add names the bonus in to") };
+    let values = rows.iter().map(|row| row.amount).collect::<std::collections::BTreeSet<_>>();
+    ensure!(values.len() <= 1, "{}: added bonus already has multiple values", correction.label());
+    match values.first() {
+        None => Ok(CorrectionValue::Null),
+        Some(amount) => Ok(CorrectionValue::Bonus(BonusAddition {
+            value: amount.context("existing added bonus has no amount")?,
+            ..bonus.clone()
+        })),
+    }
+}
+
+pub(super) fn write_pending_bonus_correction(
     transaction: &Transaction,
     effects: &mut EffectCache<'_>,
     groupings: &crate::groupings::Groupings,
-    link_table: BonusLinkTable,
-    owner_ids: &[i64],
+    correction: &Correction,
+    owner_id: i64,
+    links: &mut [super::modifiers::DerivedEffectLink],
+) -> Result<CorrectionValue> {
+    let Some(corrected) = CorrectedBonus::from_correction_if_effect_exists(transaction, correction)? else {
+        let stat = correction.bonus_key().context("bonus correction names its bonus")?.0;
+        ensure!(groupings.effect_named(stat).is_some(), "stat {stat:?} is not an effect; use its exact name");
+        return Ok(CorrectionValue::Text(NO_SUCH_BONUS.into()));
+    };
+    reject_group_member_correction(transaction, groupings, correction, &[owner_id], Some(links))?;
+    let matching = corrected.rows_on(transaction, owner_id, Some(links))?;
+    let typed = matching.iter().filter(|row| row.bonus_type == correction.bonus_type).collect::<Vec<_>>();
+    let upstream = if correction.field == "bonus_type" {
+        typed.first().copied().or_else(|| matching.first()).map_or_else(
+            || CorrectionValue::Text(NO_SUCH_BONUS.into()),
+            |row| row.bonus_type.clone().map_or(CorrectionValue::Null, CorrectionValue::Text),
+        )
+    } else {
+        let amounts = typed.iter().map(|row| row.amount).collect::<std::collections::BTreeSet<_>>();
+        ensure!(amounts.len() <= 1, "{}: bonus correction matches multiple values", correction.label());
+        amounts.first().map_or_else(
+            || CorrectionValue::Text(NO_SUCH_BONUS.into()),
+            |amount| amount.map_or(CorrectionValue::Null, CorrectionValue::Integer),
+        )
+    };
+    if upstream != correction.from || typed.is_empty() {
+        return Ok(upstream);
+    }
+    let new_type_id = if correction.field == "bonus_type" {
+        Some(bonus_type_id_named(transaction, correction.to.as_text().context("bonus type is text")?)?)
+    } else {
+        corrected.bonus_type_id
+    };
+    let new_value = if correction.field == "value" {
+        match correction.to {
+            CorrectionValue::Integer(amount) => Some(amount),
+            _ => bail!("a bonus value is an integer"),
+        }
+    } else {
+        None
+    };
+    validate_repointed_type(effects, groupings, &corrected, new_type_id)?;
+    let table = corrected.link_table;
+    let mut query = corrected.matching_bonuses_sql(&format!(
+        "{0}.sort_order,{0}.effect_id,{0}.bonus_type_id,{0}.value,{0}.value2,COALESCE(es.amount_from,1)",
+        table.table_name
+    ));
+    let mut arguments = vec![
+        SqlValue::Integer(owner_id),
+        SqlValue::Integer(corrected.stat_id),
+        corrected.bonus_type_id.map_or(SqlValue::Null, SqlValue::Integer),
+        corrected.bonus_value.map_or(SqlValue::Null, SqlValue::Integer),
+    ];
+    prepend_pending_links(&mut query, &mut arguments, table, links)?;
+    let matches = transaction
+        .prepare(&query)?
+        .query_map(params_from_iter(arguments), |row| {
+            Ok(BonusToRepoint {
+                sort_order: row.get(0)?,
+                effect_id: row.get(1)?,
+                link_bonus_type_id: row.get(2)?,
+                value: row.get(3)?,
+                second_value: row.get(4)?,
+                amount_from: row.get(5)?,
+            })
+        })?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    for bonus in matches {
+        let order = usize::try_from(bonus.sort_order)?;
+        let mut corrected_link =
+            write_repointed_bonus(transaction, effects, &corrected, bonus, new_type_id, new_value)?;
+        corrected_link.alias = links[order].alias.clone();
+        corrected_link.is_split_line = links[order].is_split_line;
+        links[order] = corrected_link;
+    }
+    Ok(upstream)
+}
+
+pub(super) fn write_added_bonus_link(
+    transaction: &Transaction,
+    effects: &mut EffectCache<'_>,
+    groupings: &crate::groupings::Groupings,
     bonus: &BonusAddition,
-) -> Result<()> {
+) -> Result<super::modifiers::DerivedEffectLink> {
+    if let Some(grouping) = groupings.grouping_named(&bonus.stat) {
+        effects.ensure_indexed_effect(grouping)?;
+    }
     let _stat_id = id_named(transaction, "effects", &bonus.stat)?
         .with_context(|| format!("stat {:?} is not an effect; use its exact name", bonus.stat))?;
     let _bonus_type_id = bonus_type_id_named(transaction, &bonus.bonus_type)?;
     let bonus_type_name = &bonus.bonus_type;
     let effect_id = match effects.family_named(&bonus.stat) {
-        Some(family) if !family.verbose_name_template.is_empty() => family.id,
+        Some(family) if family.is_stat || !family.verbose_name_template.is_empty() => family.id,
         _ => {
             let template = format!("%b1 {} +{{1}}", bonus.stat);
             effects.ensure_family(&bonus.stat, &template, None, 1)?
@@ -1775,6 +1954,28 @@ fn add_bonus(
             bonus_type.name()
         );
     }
+    Ok(super::modifiers::DerivedEffectLink {
+        effect_id,
+        alias: None,
+        bonus_type: effects
+            .family(effect_id)
+            .is_some_and(|family| family.is_stat || family.uses_link_type)
+            .then_some(bonus_type),
+        value: Some(bonus.value),
+        value2: None,
+        is_split_line: false,
+    })
+}
+
+fn add_bonus(
+    transaction: &Transaction,
+    effects: &mut EffectCache<'_>,
+    groupings: &crate::groupings::Groupings,
+    link_table: BonusLinkTable,
+    owner_ids: &[i64],
+    bonus: &BonusAddition,
+) -> Result<()> {
+    let link = write_added_bonus_link(transaction, effects, groupings, bonus)?;
     let BonusLinkTable { table_name, owner_column, .. } = link_table;
     for owner_id in owner_ids {
         let next_order: i64 = transaction.query_row(
@@ -1790,13 +1991,10 @@ fn add_bonus(
         };
         effects.insert_link(
             (owner, *owner_id),
-            effect_id,
+            link.effect_id,
             None,
-            effects
-                .family(effect_id)
-                .is_some_and(|family| family.is_stat || family.uses_link_type)
-                .then_some(bonus_type),
-            (Some(bonus.value), None),
+            link.bonus_type,
+            (link.value, link.value2),
             next_order as usize,
         )?;
     }
@@ -2382,7 +2580,7 @@ mod tests {
         ).unwrap();
         let transaction = upstream.transaction().unwrap();
         let correction = bonus_correction(CorrectionKind::SetTierBonus, "Cold Spell Power", "Artifact", "value");
-        let error = reject_group_member_correction(&transaction, &groupings, &correction, &[owner]).unwrap_err();
+        let error = reject_group_member_correction(&transaction, &groupings, &correction, &[owner], None).unwrap_err();
         let message = error.to_string();
         assert!(message.contains("Cold Spell Power") && message.contains("canonical"), "{message}");
     }
@@ -2410,7 +2608,7 @@ mod tests {
         for (owner, stat, bonus_type) in rows {
             let correction = bonus_correction(CorrectionKind::ItemBonus, &stat, &bonus_type, "bonus_type");
             let bonus = CorrectedBonus::of(&transaction, &correction).unwrap();
-            assert!(bonus.is_present_on(&transaction, owner).unwrap(), "{owner}: {stat} / {bonus_type}");
+            assert!(!bonus.values_on(&transaction, owner).unwrap().is_empty(), "{owner}: {stat} / {bonus_type}");
             assert_eq!(
                 bonus.bonus_type_on(&transaction, owner).unwrap(),
                 CorrectionValue::Text(bonus_type),

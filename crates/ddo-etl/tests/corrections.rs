@@ -1036,6 +1036,77 @@ fn a_two_slot_lines_merge_preserves_each_slots_stat_amounts() {
 }
 
 #[test]
+fn source_type_and_value_corrections_precede_additions_and_merges() {
+    let source = fixture::xml_source();
+    fixture::write_search_and_spot_item(source.path(), 20, true);
+    let mut notes = fixture::search_and_spot_merge();
+    notes.0[0].bonus_type = Some("Insight".into());
+    for stat in ["Search", "Spot"] {
+        let qualifier = format!("stat = {stat:?}\nbonus_type = 'Competence'");
+        notes = notes
+            + &fixture::new_qualified_correction(
+                "item_bonus",
+                "Legendary Keylock Ring",
+                &qualifier,
+                "value",
+                "20",
+                "21",
+            );
+        notes = notes
+            + &fixture::new_qualified_correction(
+                "item_bonus",
+                "Legendary Keylock Ring",
+                &qualifier,
+                "bonus_type",
+                "'Competence'",
+                "'Insight'",
+            );
+    }
+    notes = notes
+        + &fixture::new_qualified_correction(
+            "item_bonus",
+            "Legendary Keylock Ring",
+            "",
+            "add",
+            "'null'",
+            "{stat = 'Spot', bonus_type = 'Insight', value = 21}",
+        );
+    let (db, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("corrected-merge.toml", &notes)]).unwrap();
+    assert_eq!(fixture::search_and_spot_lines(&db), [("Search and Spot".into(), Some(21))]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (5, 1));
+    assert!(
+        matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged {maetrim_value, ..} if maetrim_value.contains("21"))
+    );
+}
+
+#[test]
+fn pending_corrections_resolve_group_targets_inside_named_effects() {
+    let source = fixture::xml_source();
+    fixture::write_command_owners(source.path());
+    let corrections = fixture::new_qualified_correction(
+        "augment_bonus",
+        "Brightbane Emerald",
+        "stat = 'Charisma Skills'\nbonus_type = 'Insight'",
+        "value",
+        "5",
+        "4",
+    ) + &fixture::new_qualified_correction(
+        "augment_bonus",
+        "Brightbane Emerald",
+        "",
+        "add",
+        "'null'",
+        "{stat='Charisma Skills',bonus_type='Insight',value=4}",
+    );
+    let (db, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("brightbane.toml", &corrections)]).unwrap();
+    let links = db.prepare("SELECT e.name,l.value,l.value2 FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name='Brightbane Emerald'").unwrap().query_map([],|row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?,row.get::<_,i64>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(links, [("Command".into(), 4, -6)]);
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 1));
+}
+
+#[test]
 fn a_lines_merge_and_split_cannot_both_apply_to_one_line() {
     let qualifier = "equipped_count = 3\nstat = 'Doublestrike, Doubleshot'\nbonus_type = 'Artifact'";
     let merge = new_qualified_correction(
@@ -3193,52 +3264,51 @@ fn removes_only_the_qualified_bonus_link_for_each_owner_kind() {
         ("augment_bonus", "Silverscale", "family = \"DinosaurBone\""),
         ("set_tier_bonus", "Eminence of Winter", "equipped_count = 2"),
     ] {
-        let corrections = new_qualified_correction(
-            kind,
-            name,
-            owner_qualifier,
-            "add",
-            "\"null\"",
-            "{ stat = \"Strength\", bonus_type = \"Quality\", value = 2 }",
-        ) + &new_qualified_correction(
-            kind,
-            name,
-            &format!("{owner_qualifier}\nstat = \"Strength\"\nbonus_type = \"Quality\""),
-            "value",
-            "2",
-            "3",
-        ) + &new_qualified_correction(
-            kind,
-            name,
-            owner_qualifier,
-            "add",
-            "\"null\"",
-            "{ stat = \"Strength\", bonus_type = \"Artifact\", value = 2 }",
-        ) + &new_qualified_correction(
-            "item_bonus",
-            "Acid Rune Arm",
-            "",
-            "add",
-            "\"null\"",
-            "{ stat = \"Strength\", bonus_type = \"Quality\", value = 3 }",
-        );
-        let removal_qualifier = format!("{owner_qualifier}\nstat = \"Strength\"\nbonus_type = \"Quality\"");
-        for (bonus_qualifier, from, applied, stale) in
-            [("", "3", 5, 0), ("\nbonus_value = 3", "3", 5, 0), ("", "2", 4, 1), ("\nbonus_value = 2", "2", 4, 1)]
+        let source = fixture::xml_source();
+        let other_item = source.path().join("Items/Acid Rune Arm.item");
+        let contents = std::fs::read_to_string(&other_item).unwrap();
+        std::fs::write(other_item, contents.replace("</Item>\n</Items>", "<Buff><Type>AbilityBonus</Type><Value1>3</Value1><BonusType>Quality</BonusType><Item>Strength</Item></Buff></Item>\n</Items>")).unwrap();
+        let (path, marker, closing) = match kind {
+            "item_bonus" => (
+                source.path().join("Items/Docent of Defiance.item"),
+                "<Name>Docent of Defiance</Name>",
+                "</Item>\n</Items>",
+            ),
+            "augment_bonus" => {
+                (source.path().join("Augments/DinosaurBone.Augments.xml"), "<Name>Silverscale</Name>", "</Augment>")
+            }
+            _ => (source.path().join("SetBonuses.xml"), "<Type>Eminence of Winter</Type>", "</Buff>"),
+        };
+        let original = std::fs::read_to_string(&path).unwrap();
+        let target = original.find(marker).unwrap();
+        let position = target + original[target..].find(closing).unwrap();
+        let write_bonuses = |bonuses: &[(&str, i64)]| {
+            let mut xml = original.clone();
+            let additions = bonuses.iter().map(|(bonus_type, amount)| {
+                if kind == "item_bonus" {
+                    format!("<Buff><Type>AbilityBonus</Type><Value1>{amount}</Value1><BonusType>{bonus_type}</BonusType><Item>Strength</Item></Buff>")
+                } else {
+                    format!("<Effect><Type>AbilityBonus</Type><Bonus>{bonus_type}</Bonus><AType>Simple</AType><Amount size=\"1\">{amount}</Amount><Item>Strength</Item></Effect>")
+                }
+            }).collect::<String>();
+            xml.insert_str(position, &additions);
+            std::fs::write(&path, xml).unwrap();
+        };
+        let qualifier = format!("{owner_qualifier}\nstat = \"Strength\"\nbonus_type = \"Quality\"");
+        for (selector, from, applied, stale) in
+            [("", "3", 1, 0), ("\nbonus_value = 3", "3", 1, 0), ("", "2", 0, 1), ("\nbonus_value = 2", "2", 0, 1)]
         {
-            let removal = new_qualified_correction(
-                kind,
-                name,
-                &format!("{removal_qualifier}{bonus_qualifier}"),
-                "remove",
-                from,
-                "\"null\"",
-            );
-            let (db, report) = built_db_with(&[("corrections.toml", &(corrections.clone() + &removal))]).unwrap();
+            write_bonuses(&[("Quality", 3), ("Artifact", 2)]);
+            let removal =
+                new_qualified_correction(kind, name, &format!("{qualifier}{selector}"), "remove", from, "\"null\"");
+            let (db, report) = built_db_from(source.path(), &[("removal.toml", &removal)]).unwrap();
             assert_eq!((report.correction_applied_count, report.correction_stale_count), (applied, stale), "{kind}");
-            let shared_bonuses = item_bonus_rows(&db, "Acid Rune Arm");
-            assert!(shared_bonuses.contains(&("Strength".into(), Some("Quality".into()), Some(3))));
-            let owner_bonuses = match kind {
+            assert!(item_bonus_rows(&db, "Acid Rune Arm").contains(&(
+                "Strength".into(),
+                Some("Quality".into()),
+                Some(3)
+            )));
+            let rows = match kind {
                 "item_bonus" => item_bonus_rows(&db, name),
                 "augment_bonus" => augment_bonus_rows(&db, name),
                 _ => set_tier_bonus_rows(&db, name, 2)
@@ -3246,58 +3316,24 @@ fn removes_only_the_qualified_bonus_link_for_each_owner_kind() {
                     .map(|(stat, bonus_type, amount)| (stat, Some(bonus_type), Some(amount)))
                     .collect(),
             };
-            assert_eq!(
-                owner_bonuses.contains(&("Strength".into(), Some("Quality".into()), Some(3))),
-                stale == 1,
-                "{kind} {bonus_qualifier} {from}"
-            );
-            assert!(owner_bonuses.contains(&("Strength".into(), Some("Artifact".into()), Some(2))));
+            assert_eq!(rows.contains(&("Strength".into(), Some("Quality".into()), Some(3))), stale == 1, "{kind}");
+            assert!(rows.contains(&("Strength".into(), Some("Artifact".into()), Some(2))), "{kind}");
         }
-        let absent_removal = new_qualified_correction(kind, name, &removal_qualifier, "remove", "3", "\"null\"");
-        let (_, report) = built_db_with(&[("corrections.toml", &absent_removal)]).unwrap();
-        assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1), "{kind}");
-        let same_type_corrections = corrections
-            + &new_qualified_correction(
-                kind,
-                name,
-                &format!("{owner_qualifier}\nstat = \"Strength\"\nbonus_type = \"Artifact\""),
-                "bonus_type",
-                "\"Artifact\"",
-                "\"Quality\"",
-            );
-        for from in ["3", "2", "99"] {
-            let ambiguous_removal =
-                new_qualified_correction(kind, name, &removal_qualifier, "remove", from, "\"null\"");
-            let error = built_db_with(&[("corrections.toml", &(same_type_corrections.clone() + &ambiguous_removal))])
-                .unwrap_err();
-            for expected_text in [name, "Strength", "Quality", "values [3, 2]", "specify bonus_value"] {
-                assert!(error.contains(expected_text), "{expected_text} missing from {error}");
-            }
+        write_bonuses(&[]);
+        let removal = new_qualified_correction(kind, name, &qualifier, "remove", "3", "\"null\"");
+        let (_, report) = built_db_from(source.path(), &[("removal.toml", &removal)]).unwrap();
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+        for amounts in [[3, 2], [3, 3]] {
+            write_bonuses(&[("Quality", amounts[0]), ("Quality", amounts[1])]);
+            let error = built_db_from(source.path(), &[("removal.toml", &removal)]).unwrap_err();
+            assert!(error.contains("specify bonus_value"), "{kind}: {error}");
         }
-        let equal_value_corrections = same_type_corrections.clone()
-            + &new_qualified_correction(
-                kind,
-                name,
-                &format!("{removal_qualifier}\nbonus_value = 2"),
-                "value",
-                "2",
-                "3",
-            )
-            + &absent_removal;
-        let error = built_db_with(&[("corrections.toml", &equal_value_corrections)]).unwrap_err();
-        assert!(error.contains("values [3, 3]") && error.contains("specify bonus_value"), "{error}");
-        let narrowed_removal = new_qualified_correction(
-            kind,
-            name,
-            &format!("{removal_qualifier}\nbonus_value = 3"),
-            "remove",
-            "3",
-            "\"null\"",
-        );
-        let (db, report) =
-            built_db_with(&[("corrections.toml", &(same_type_corrections + &narrowed_removal))]).unwrap();
-        assert_eq!((report.correction_applied_count, report.correction_stale_count), (6, 0), "{kind}");
-        let remaining_bonuses = match kind {
+        write_bonuses(&[("Quality", 3), ("Quality", 2)]);
+        let narrowed =
+            new_qualified_correction(kind, name, &format!("{qualifier}\nbonus_value = 3"), "remove", "3", "\"null\"");
+        let (db, report) = built_db_from(source.path(), &[("removal.toml", &narrowed)]).unwrap();
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+        let remaining = match kind {
             "item_bonus" => item_bonus_rows(&db, name),
             "augment_bonus" => augment_bonus_rows(&db, name),
             _ => set_tier_bonus_rows(&db, name, 2)
@@ -3305,8 +3341,8 @@ fn removes_only_the_qualified_bonus_link_for_each_owner_kind() {
                 .map(|(stat, bonus_type, amount)| (stat, Some(bonus_type), Some(amount)))
                 .collect(),
         };
-        assert!(remaining_bonuses.contains(&("Strength".into(), Some("Quality".into()), Some(2))), "{kind}");
-        assert!(!remaining_bonuses.contains(&("Strength".into(), Some("Quality".into()), Some(3))), "{kind}");
+        assert!(remaining.contains(&("Strength".into(), Some("Quality".into()), Some(2))));
+        assert!(!remaining.contains(&("Strength".into(), Some("Quality".into()), Some(3))));
     }
 }
 

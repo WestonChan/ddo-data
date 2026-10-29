@@ -322,10 +322,18 @@ fn build_with_wiki_references(
         line_splits: Vec::new(),
         line_corrections: corrections.entries.iter().filter(|correction| correction.field == "lines").collect(),
         applied_link_corrections: Vec::new(),
-        bonus_value_corrections: corrections
+        observed_bonus_corrections: Vec::new(),
+        bonus_additions: corrections
             .entries
             .iter()
-            .filter(|correction| correction.kind.corrects_a_bonus() && correction.field == "value")
+            .filter(|correction| correction.kind.corrects_a_bonus() && correction.field == "add")
+            .collect(),
+        bonus_link_corrections: corrections
+            .entries
+            .iter()
+            .filter(|correction| {
+                correction.kind.corrects_a_bonus() && matches!(correction.field.as_str(), "value" | "bonus_type")
+            })
             .collect(),
         socket_option_targets: None,
         held_back_effects: Vec::new(),
@@ -443,6 +451,9 @@ fn build_with_wiki_references(
         &corrections_applied_while_writing,
         &mut report,
     )?;
+    corrections::record_observed_bonus_corrections(&transaction, &writer.observed_bonus_corrections, &mut report)?;
+    corrections_applied_while_writing
+        .extend(writer.observed_bonus_corrections.iter().map(|(correction, _)| *correction));
     writer.effects.write_aliases()?;
     corrections::apply_non_quest_corrections(
         &transaction,
@@ -459,6 +470,7 @@ fn build_with_wiki_references(
         &mut report,
     )?;
     corrections::record_final_set_names(&transaction)?;
+    writer.effects.write_missing_linked_stat_templates()?;
     wiki::apply_wiki_overrides(&transaction, &overlay_references, wiki_overrides, &mut report)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, &overlay_references, wiki_overrides, &mut report)?;
     vendors_and_events::write_wiki_vendor_and_event_items(
@@ -803,7 +815,9 @@ pub(crate) struct TableWriter<'a> {
     line_splits: Vec<DerivedEffectSplit>,
     line_corrections: Vec<&'a Correction>,
     applied_link_corrections: Vec<&'a Correction>,
-    bonus_value_corrections: Vec<&'a Correction>,
+    observed_bonus_corrections: Vec<(&'a Correction, crate::corrections::CorrectionValue)>,
+    bonus_additions: Vec<&'a Correction>,
+    bonus_link_corrections: Vec<&'a Correction>,
     socket_option_targets: Option<SocketOptionTargets>,
     held_back_effects: Vec<DerivedEffectSplit>,
     matched_set_tier_prose: BTreeSet<SetTierProseMatch>,

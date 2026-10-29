@@ -129,6 +129,51 @@ fn added_bonus_value(
     Ok(json!({"stat": stat, "bonus_type": bonus_type, "value": amounts[0]}))
 }
 
+pub(super) fn validate_adds_against_splits<'a>(
+    groupings: &crate::groupings::Groupings,
+    notes: impl Iterator<Item = (&'a std::path::Path, &'a str, &'a DdobuilderCorrection)>,
+) -> Result<()> {
+    let corrections = notes
+        .filter(|(_, _, note)| note.kind.corrects_a_bonus() && matches!(note.field.as_str(), "add" | "lines"))
+        .map(|(path, name, note)| {
+            let mut correction = correction_for_note(note, name).with_context(|| path.display().to_string())?;
+            correction.from = CorrectionValue::from_json(&note.upstream.as_ref().unwrap_or(&Value::Null).to_string())?;
+            Ok((path, correction))
+        })
+        .collect::<Result<Vec<_>>>()?;
+    for (path, addition) in corrections.iter().filter(|(_, correction)| correction.field == "add") {
+        (|| -> Result<()> {
+            let stat = addition.stat.as_deref().context("added bonus has no stat")?;
+            let added_stats = groupings.expanded_stat_names(stat)?;
+            for (_, split) in corrections.iter().filter(|(_, correction)| {
+                correction.kind == addition.kind
+                    && correction.name == addition.name
+                    && correction.equipped_count == addition.equipped_count
+                    && correction.socket == addition.socket
+                    && correction.option == addition.option
+                    && (correction.family.is_none()
+                        || addition.family.is_none()
+                        || correction.family == addition.family)
+                    && correction.field == "lines"
+                    && !correction.is_line_merge()
+                    && correction.bonus_type == addition.bonus_type
+                    && matches!(correction.from, CorrectionValue::StatSets(_))
+            }) {
+                let split_stats = split.upstream_line_stats()?.into_iter().flatten().collect();
+                ensure!(
+                    added_stats.is_disjoint(&split_stats),
+                    "{}: add overlaps the same owner's split {}",
+                    addition.label(),
+                    split.label()
+                );
+            }
+            Ok(())
+        })()
+        .with_context(|| path.display().to_string())?;
+    }
+    Ok(())
+}
+
 fn added_item_effect_value(
     transaction: &Transaction,
     current_name: &str,
@@ -530,4 +575,45 @@ pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
         })().with_context(|| format!("{}: note target", layout.path(&owner_kind, owner_id).map(|path| path.display().to_string()).unwrap_or(owner_kind)))?;
     }
     Ok(())
+}
+
+#[cfg(test)]
+mod add_split_tests {
+    use super::*;
+    use rusqlite::trace::{TraceEvent, TraceEventCodes};
+    use std::sync::atomic::{AtomicUsize, Ordering};
+
+    #[test]
+    fn add_split_validation_uses_no_queries_for_one_or_fifty_corrections() {
+        static SELECTS: AtomicUsize = AtomicUsize::new(0);
+        fn trace(event: TraceEvent<'_>) {
+            if let TraceEvent::Stmt(statement, _) = event {
+                if statement.sql().trim_start().to_uppercase().starts_with("SELECT") {
+                    SELECTS.fetch_add(1, Ordering::SeqCst);
+                }
+            }
+        }
+        let mut db = rusqlite::Connection::open_in_memory().unwrap();
+        crate::tree::build_from_data(
+            &std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data"),
+            &mut db,
+        )
+        .unwrap();
+        let groupings = crate::groupings::Groupings::from_database(&db).unwrap();
+        let owner: String = db
+            .query_row("SELECT name FROM augments GROUP BY name HAVING COUNT(*)=1 LIMIT 1", [], |row| row.get(0))
+            .unwrap();
+        let note: DdobuilderCorrection = toml::from_str("kind = 'augment_bonus'\nfield = 'add'\nqualifier = 'Strength / Quality'\nreason = 'The source supplies this bonus.'\nurl = 'https://ddowiki.com/page/Augment_Slot'\nread = '2026-10-29'\n").unwrap();
+        db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
+        for count in [0, 1, 50] {
+            SELECTS.store(0, Ordering::SeqCst);
+            validate_adds_against_splits(
+                &groupings,
+                (0..count).map(|_| (std::path::Path::new("augment.toml"), owner.as_str(), &note)),
+            )
+            .unwrap();
+            assert_eq!(SELECTS.load(Ordering::SeqCst), 0, "{count} corrections");
+        }
+        db.trace_v2(TraceEventCodes::empty(), None);
+    }
 }

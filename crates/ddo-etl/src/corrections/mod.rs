@@ -619,11 +619,14 @@ impl Correction {
                 }
             }
             FieldShape::BonusAddition => {
-                let (CorrectionValue::Null, CorrectionValue::Bonus(bonus)) = (&self.from, &self.to) else {
-                    bail!(
-                        "an add takes from = \"null\" and to = {{ stat = \"...\", bonus_type = \"...\", value = N }}"
-                    );
+                let CorrectionValue::Bonus(bonus) = &self.to else {
+                    bail!("an add takes to = {{ stat = \"...\", bonus_type = \"...\", value = N }}");
                 };
+                ensure!(
+                    self.from == CorrectionValue::Null
+                        || matches!(&self.from, CorrectionValue::Bonus(upstream) if upstream.stat == bonus.stat && upstream.bonus_type == bonus.bonus_type),
+                    "an add starts from null or an existing bonus with the same stat and type"
+                );
                 if bonus.bonus_type == NULL_SPELLING || bonus.bonus_type.trim().is_empty() {
                     bail!("an added bonus must have a named bonus type; bonus_type cannot be null or empty");
                 }

@@ -1,0 +1,16 @@
+name = "Melee and Ranged Power"
+description_template = "+{1} %b1 bonus to Melee and Ranged Power."
+set_bonus_line_template = "+{1} %b1 Bonus to Melee and Ranged Power"
+verbose_name_template = "%b1 Melee and Ranged Power +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Melee Power"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Ranged Power"

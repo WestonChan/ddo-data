@@ -797,6 +797,12 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         })
         .collect::<BTreeMap<_, _>>();
     let groupings = crate::groupings::Groupings::from_database(&transaction)?;
+    correction_notes::validate_adds_against_splits(
+        &groupings,
+        notes_by_file
+            .iter()
+            .flat_map(|(path, notes)| notes.iter().map(move |(name, note)| (path.as_path(), name.as_str(), note))),
+    )?;
     let socket_options = crate::build::SocketOptionTargets::from_database(&transaction)?;
     kinds::effect::EffectAlias::write_validated_slugs(&transaction, &groupings)?;
     kinds::effect::EffectAlias::validate_type_omissions(

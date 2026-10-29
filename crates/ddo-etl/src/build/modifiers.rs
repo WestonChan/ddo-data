@@ -5,7 +5,7 @@ use super::{json_number_array, json_string_array, trimmed_non_empty, TableWriter
 use crate::map::effect_map::EFFECT_MAP;
 use crate::xml::effect::Effect;
 use crate::xml::requirements::Requirements;
-use anyhow::Result;
+use anyhow::{Context, Result};
 use ddo_model::enums::{ModifierSource, RequirementOwner};
 use rusqlite::params;
 
@@ -745,6 +745,58 @@ impl TableWriter<'_> {
             BonusOwnerKind::SetBonusTier => CorrectionKind::SetTierBonus,
             BonusOwnerKind::ItemAugmentSlotOption => CorrectionKind::SocketOptionBonus,
         };
+        let source_corrections = self
+            .bonus_link_corrections
+            .iter()
+            .copied()
+            .filter(|correction| {
+                correction.kind == kind
+                    && correction.name == owner.name
+                    && !(correction.field == "bonus_type"
+                        && correction.from == crate::corrections::CorrectionValue::Null)
+            })
+            .collect::<Vec<_>>();
+        for correction in source_corrections {
+            if self.correction_owner_matches(correction, owner_id)? {
+                let upstream = super::corrections::write_pending_bonus_correction(
+                    self.transaction,
+                    &mut self.effects,
+                    self.groupings,
+                    correction,
+                    owner_id,
+                    &mut links,
+                )
+                .with_context(|| format!("correction file {}: {}", correction.file_name, correction.label()))?;
+                self.observed_bonus_corrections.push((correction, upstream));
+            }
+        }
+        let mut conflicting_additions = std::collections::BTreeSet::new();
+        for correction in self
+            .bonus_additions
+            .iter()
+            .copied()
+            .filter(|correction| correction.kind == kind && correction.name == owner.name)
+        {
+            if !self.correction_owner_matches(correction, owner_id)? {
+                continue;
+            }
+            let rows = super::corrections::added_bonus_rows(self.transaction, correction, owner_id, Some(&links))?;
+            let upstream = super::corrections::added_bonus_upstream(correction, &rows)?;
+            let crate::corrections::CorrectionValue::Bonus(bonus) = &correction.to else {
+                unreachable!("validated bonus addition")
+            };
+            if upstream == crate::corrections::CorrectionValue::Null && correction.from == upstream {
+                links.push(super::corrections::write_added_bonus_link(
+                    self.transaction,
+                    &mut self.effects,
+                    self.groupings,
+                    bonus,
+                )?);
+            } else if upstream != correction.to {
+                conflicting_additions.extend(rows.iter().map(|row| row.order));
+            }
+            self.observed_bonus_corrections.push((correction, upstream));
+        }
         let corrections = self
             .line_corrections
             .iter()
@@ -763,8 +815,19 @@ impl TableWriter<'_> {
             }
             correction.line_partition_stats(self.groupings)?;
             let Some(selection) = super::corrections::line_merge_selection(correction, &rows)? else {
+                self.observed_bonus_corrections.push((
+                    correction,
+                    crate::corrections::CorrectionValue::Text(crate::corrections::NO_SUCH_BONUS.into()),
+                ));
                 continue;
             };
+            if !selection.orders.is_disjoint(&conflicting_additions) {
+                self.observed_bonus_corrections.push((
+                    correction,
+                    crate::corrections::CorrectionValue::Text(crate::corrections::NO_SUCH_BONUS.into()),
+                ));
+                continue;
+            }
             anyhow::ensure!(
                 selection.orders.is_disjoint(&consumed),
                 "{}: overlapping merge corrections",
@@ -790,9 +853,7 @@ impl TableWriter<'_> {
                 "{}: merged line has different stats",
                 correction.label()
             );
-            let mut selected =
-                rows.iter().filter(|row| selection.orders.contains(&row.order)).cloned().collect::<Vec<_>>();
-            self.write_merge_source_values(correction, owner_id, &mut selected)?;
+            let selected = rows.iter().filter(|row| selection.orders.contains(&row.order)).cloned().collect::<Vec<_>>();
             let (value, value2) = super::corrections::merged_line_amounts(
                 self.groupings,
                 correction,
@@ -812,41 +873,6 @@ impl TableWriter<'_> {
             .enumerate()
             .filter_map(|(order, link)| (!removed.contains(&order)).then_some(link))
             .collect())
-    }
-
-    fn write_merge_source_values(
-        &mut self,
-        merge: &crate::corrections::Correction,
-        owner_id: i64,
-        rows: &mut [super::corrections::LineBonus],
-    ) -> Result<()> {
-        for correction in self.bonus_value_corrections.iter().copied().filter(|correction| {
-            correction.kind == merge.kind && correction.name == merge.name && correction.bonus_type == merge.bonus_type
-        }) {
-            if !self.correction_owner_matches(correction, owner_id)? {
-                continue;
-            }
-            for row in rows.iter_mut().filter(|row| correction.stat.as_deref() == Some(&row.stat_name)) {
-                anyhow::ensure!(
-                    row.effect_name == row.stat_name,
-                    "{}: stat {:?} is behind grouping {:?}; name the grouping in the correction",
-                    correction.label(),
-                    row.stat_name,
-                    row.effect_name
-                );
-                if row.amount.map(crate::corrections::CorrectionValue::Integer).as_ref() == Some(&correction.from)
-                    && correction.bonus_value.is_none_or(|amount| row.amount == Some(amount))
-                {
-                    row.amount = match correction.to {
-                        crate::corrections::CorrectionValue::Integer(amount) => Some(amount),
-                        crate::corrections::CorrectionValue::Null => None,
-                        _ => unreachable!("validated bonus value"),
-                    };
-                    self.applied_link_corrections.push(correction);
-                }
-            }
-        }
-        Ok(())
     }
 
     fn write_upstream_grouping_line(

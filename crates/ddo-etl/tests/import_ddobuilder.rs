@@ -471,6 +471,105 @@ fn a_merge_import_accepts_a_changed_amount_without_conflict() {
 }
 
 #[test]
+fn a_data_build_rejects_an_add_governed_by_the_same_owners_split() {
+    let notes = fixture::new_qualified_correction(
+        "augment_bonus",
+        "+2 Melee/Ranged and Spell Power",
+        "stat = 'Melee Power, Ranged Power'\nbonus_type = 'Reaper'",
+        "lines",
+        "[['Melee Power', 'Ranged Power']]",
+        "['Melee Power', 'Ranged Power']",
+    );
+    let corrections = fixture::corrections_from(&[("reaper-necklace.toml", &notes)]).unwrap();
+    let world = ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {
+        fixture::write_reaper_augment(source, None)
+    });
+    let file = walkdir::WalkDir::new(&world.options.data_dir)
+        .into_iter()
+        .map(Result::unwrap)
+        .find(|entry| entry.file_name() == "2-melee-ranged-and-spell-power.toml")
+        .unwrap()
+        .into_path();
+    let original = std::fs::read_to_string(&file).unwrap();
+    let note = "\n[[ddobuilder_correction]]\nkind = 'augment_bonus'\nfield = 'add'\nqualifier = 'Melee Power / Reaper'\nreason = 'The cited bonus is absent upstream.'\nurl = 'https://ddowiki.com/page/Reaper_Forge'\nread = '2026-10-29'\n";
+    std::fs::write(&file, format!("{original}{note}")).unwrap();
+    let error = ddo_etl::tree::build_from_data(&world.options.data_dir, &mut Connection::open_in_memory().unwrap())
+        .unwrap_err();
+    let message = format!("{error:#}");
+    assert!(
+        message.contains("2-melee-ranged-and-spell-power.toml") && message.contains("add") && message.contains("split"),
+        "{message}"
+    );
+    std::fs::write(
+        &file,
+        format!("{original}{}", note.replace("Melee Power / Reaper", "Universal Spell Power / Reaper")),
+    )
+    .unwrap();
+    ddo_etl::tree::build_from_data(&world.options.data_dir, &mut Connection::open_in_memory().unwrap()).unwrap();
+}
+
+#[test]
+fn added_merge_members_resolve_when_upstream_supplies_them() {
+    let notes = fixture::reaper_additions() + &fixture::reaper_merge();
+    let corrections = fixture::corrections_from(&[("reaper-necklace.toml", &notes)]).unwrap();
+    let world = ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {
+        fixture::write_reaper_augment(source, None);
+    });
+    let before = fixture::reaper_bonuses(&world.database());
+    fixture::write_reaper_augment(&world.options.source_dir, Some((2, 2)));
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert_eq!(
+        report.to_string().matches("RESOLVED CORRECTION augment_bonus \"+2 Melee/Ranged and Spell Power\"").count(),
+        2,
+        "{report}"
+    );
+    let db = world.database();
+    assert_eq!(fixture::reaper_lines(&db), [("Reaper Necklace Enchantment".into(), Some(2))]);
+    assert_eq!(fixture::reaper_bonuses(&db), before);
+}
+
+#[test]
+fn an_added_merge_members_changed_value_conflicts_without_duplicating_it() {
+    let notes = fixture::reaper_additions() + &fixture::reaper_merge();
+    let corrections = fixture::corrections_from(&[("reaper-necklace.toml", &notes)]).unwrap();
+    let world = ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {
+        fixture::write_reaper_augment(source, None);
+    });
+    fixture::write_reaper_augment(&world.options.source_dir, Some((3, 2)));
+    let report = import_ddobuilder(&world.options).unwrap();
+    let text = report.to_string();
+    assert!(
+        report.has_conflicts() && text.contains("Physical Resistance Rating") && text.contains("no such bonus"),
+        "{text}"
+    );
+    let bonuses = fixture::reaper_bonuses(&world.database());
+    assert_eq!(bonuses.len(), 5, "{bonuses:?}");
+    assert_eq!(bonuses.iter().find(|(name, _, _)| name == "Physical Resistance Rating").unwrap().2, 3);
+}
+
+#[test]
+fn an_unaccounted_merge_partition_reports_its_file_and_missing_bonus() {
+    let notes = fixture::reaper_additions() + &fixture::reaper_merge();
+    let corrections = fixture::corrections_from(&[("reaper-necklace.toml", &notes)]).unwrap();
+    let world = ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {
+        fixture::write_reaper_augment(source, None)
+    });
+    let path = world.options.source_dir.join("Augments/Reaper.Augments.xml");
+    let xml = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(path, xml.replace("<Type>SpellPower</Type>", "<Type>PRR</Type>")).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    let text = report.to_string();
+    assert!(
+        report.has_conflicts()
+            && text.contains("2-melee-ranged-and-spell-power.toml")
+            && text.contains("no such bonus"),
+        "{text}"
+    );
+    assert_eq!(fixture::reaper_bonuses(&world.database()).len(), 4);
+}
+
+#[test]
 fn a_two_slot_merge_import_updates_only_the_changed_slot() {
     let corrections = fixture::corrections_from(&[("swiftness.toml", &fixture::swiftness_merge())]).unwrap();
     let world = ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {

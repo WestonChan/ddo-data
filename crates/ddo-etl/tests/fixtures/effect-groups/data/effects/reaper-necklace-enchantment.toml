@@ -1,0 +1,27 @@
+name = "Reaper Necklace Enchantment"
+description_template = "+{1} %b1 bonus to Melee, Ranged and Universal Spell Power, Physical and Magical Resistance Rating."
+verbose_name_template = "%b1 Necklace Enchantment +{1}"
+
+[[bonus]]
+amount_from = 1
+scale = 1.0
+rounding = "down"
+target = "Melee and Ranged Power"
+
+[[bonus]]
+amount_from = 1
+scale = 1.0
+rounding = "down"
+target = "Universal Spell Power"
+
+[[bonus]]
+amount_from = 1
+scale = 1.0
+rounding = "down"
+target = "Physical Resistance Rating"
+
+[[bonus]]
+amount_from = 1
+scale = 1.0
+rounding = "down"
+target = "Magical Resistance Rating"

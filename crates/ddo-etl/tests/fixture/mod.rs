@@ -281,6 +281,57 @@ pub(crate) fn scion_dodge_lines(db: &rusqlite::Connection) -> Vec<(String, i64)>
     .unwrap()
 }
 
+pub(crate) fn write_reaper_augment(source: &std::path::Path, resistances: Option<(i64, i64)>) {
+    std::fs::create_dir_all(source.join("Augments")).unwrap();
+    let mut xml = include_str!("../fixtures/effect-groups/Reaper.Augments.xml").to_string();
+    if let Some((physical, magical)) = resistances {
+        for (kind, amount) in [("PRR", physical), ("MRR", magical)] {
+            let effect = format!("<Effect><Type>{kind}</Type><Bonus>Reaper</Bonus><AType>Simple</AType><Amount size=\"1\">{amount}</Amount></Effect>");
+            xml = xml.replace("</Augment>", &format!("{effect}</Augment>"));
+        }
+    }
+    std::fs::write(source.join("Augments/Reaper.Augments.xml"), xml).unwrap();
+}
+
+pub(crate) fn reaper_additions() -> CorrectionSet {
+    let mut notes = CorrectionSet::default();
+    for stat in ["Physical Resistance Rating", "Magical Resistance Rating"] {
+        notes = notes
+            + &new_qualified_correction(
+                "augment_bonus",
+                "+2 Melee/Ranged and Spell Power",
+                "",
+                "add",
+                "'null'",
+                &format!("{{stat = {stat:?}, bonus_type = 'Reaper', value = 2}}"),
+            );
+    }
+    notes
+}
+
+pub(crate) fn reaper_merge() -> CorrectionSet {
+    new_qualified_correction(
+        "augment_bonus",
+        "+2 Melee/Ranged and Spell Power",
+        "stat = 'Melee Power, Ranged Power, Physical Resistance Rating, Magical Resistance Rating, Universal Spell Power'\nbonus_type = 'Reaper'",
+        "lines",
+        "[['Melee Power', 'Ranged Power'], ['Universal Spell Power'], ['Physical Resistance Rating'], ['Magical Resistance Rating']]",
+        "'Reaper Necklace Enchantment'",
+    )
+}
+
+pub(crate) fn reaper_lines(db: &rusqlite::Connection) -> Vec<(String, Option<i64>)> {
+    db.prepare("SELECT e.name,l.value FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name='+2 Melee/Ranged and Spell Power' ORDER BY l.sort_order")
+        .unwrap().query_map([], |row| Ok((row.get(0)?,row.get(1)?)))
+        .unwrap().collect::<rusqlite::Result<_>>().unwrap()
+}
+
+pub(crate) fn reaper_bonuses(db: &rusqlite::Connection) -> Vec<(String, String, i64)> {
+    db.prepare("SELECT s.name,t.name,b.amount FROM owner_bonuses b JOIN effects s ON s.id=b.stat_id JOIN bonus_types t ON t.id=b.bonus_type_id JOIN augments a ON a.id=b.owner_id WHERE b.owner_kind='augment' AND a.name='+2 Melee/Ranged and Spell Power' ORDER BY s.name")
+        .unwrap().query_map([], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?)))
+        .unwrap().collect::<rusqlite::Result<_>>().unwrap()
+}
+
 pub(crate) fn write_search_and_spot_item(source: &std::path::Path, amount: i64, include_spot: bool) {
     std::fs::create_dir_all(source.join("Items")).unwrap();
     let mut item = include_str!("../fixtures/effect-groups/SearchAndSpot.item")

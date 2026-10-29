@@ -3660,6 +3660,37 @@ fn diff_reports_coverage_against_a_legacy_database() {
 }
 
 #[test]
+fn bonus_additions_feed_the_finished_lines_merge() {
+    let source = fixture::xml_source();
+    fixture::write_reaper_augment(source.path(), None);
+    let notes = fixture::reaper_additions() + &fixture::reaper_merge();
+    let corrections = fixture::corrections_from(&[("reaper-necklace.toml", &notes)]).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::grouping_cases(),
+        source.path(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut db,
+        &DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-10-29T00:00:00Z".into() },
+    )
+    .unwrap();
+    assert_eq!(fixture::reaper_lines(&db), [("Reaper Necklace Enchantment".into(), Some(2))]);
+    assert_eq!(
+        fixture::reaper_bonuses(&db),
+        [
+            "Magical Resistance Rating",
+            "Melee Power",
+            "Physical Resistance Rating",
+            "Ranged Power",
+            "Universal Spell Power"
+        ]
+        .map(|name| (name.into(), "Reaper".into(), 2))
+    );
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (3, 0));
+}
+
+#[test]
 fn writes_augments_with_slots_bonuses_and_modifiers() {
     let (db, report) = built_fixture_db();
     assert_eq!(report.augment_count, 18);

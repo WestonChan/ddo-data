@@ -745,6 +745,20 @@ impl<'a> EffectCache<'a> {
         Ok(())
     }
 
+    pub(super) fn write_missing_linked_stat_templates(&mut self) -> Result<()> {
+        let names = self
+            .link_types_by_family
+            .keys()
+            .filter_map(|id| self.family(*id))
+            .filter(|family| family.is_stat && family.verbose_name_template.is_empty())
+            .map(|family| family.name.clone())
+            .collect::<Vec<_>>();
+        for name in names {
+            self.ensure_family(&name, &format!("%b1 {name} +{{1}}"), None, 1)?;
+        }
+        Ok(())
+    }
+
     pub(super) fn write_aliases(&self) -> Result<()> {
         for family in self.families_by_id.values() {
             let Some(effect) = self.groupings.effect_named(&family.name) else { continue };
