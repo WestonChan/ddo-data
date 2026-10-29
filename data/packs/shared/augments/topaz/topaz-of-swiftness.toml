@@ -26,14 +26,9 @@ read = "2026-10-23"
 note = 'Line structure checked: Typed: "Speed +30%" (tooltip "Speed +30%: +30% enhancement bonus to movement speed, 15% bonus to attack speed."). Screenshot: "Drag this augment into a slot to upgrade an item to provide a +30% Enhancement bonus to your movement speed and a 15% Enhancement bonus to your attack speed. This augment can go in a Yellow, Green, or Orange Augment Slot."'
 
 [[effect]]
-name = "Movement Speed"
-bonus_type = "Enhancement"
+name = "Speed"
 value = 30
-
-[[effect]]
-name = "Melee and Ranged Attack Speed"
-bonus_type = "Enhancement"
-value = 15
+value2 = 15
 
 [[modifier]]
 amount_type = "Simple"
@@ -51,6 +46,21 @@ bonus_type = "Enhancement"
 effect = "Melee and Ranged Attack Speed"
 effect_type = "Weapon_Alacrity"
 targets = ["All"]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [
+    ["Movement Speed"],
+    [
+    "Melee Attack Speed",
+    "Ranged Attack Speed",
+],
+]
+reason = "R5-4: one Speed +30% line grants 30% Enhancement movement speed and 15% Enhancement attack speed."
+url = "https://ddowiki.com/page/Item:Topaz_of_Swiftness_15%25"
+read = "2026-10-23"
+qualifier = "Movement Speed, Melee Attack Speed, Ranged Attack Speed / Enhancement"
 
 [[slot]]
 slot = "yellow"

@@ -12,6 +12,21 @@ url = "https://ddowiki.com/page/Item:The_Changestone"
 read = "2026-10-23"
 note = 'Line structure checked: Screenshot: "Speed +30%: This item increases your speed, giving you a +30% Enhancement bonus to Movement Speed and a +15% bonus to Attack speed." Typed: "Speed +30%" (tooltip "Speed +30%: +30% enhancement bonus to movement speed, 15% bonus to attack speed.")'
 
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [
+    ["Movement Speed"],
+    [
+    "Melee Attack Speed",
+    "Ranged Attack Speed",
+],
+]
+reason = "R5-4: one Speed +30% line grants 30% Enhancement movement speed and 15% Enhancement attack speed."
+url = "https://ddowiki.com/page/Item:The_Changestone"
+read = "2026-10-23"
+qualifier = 'socket "crafting: changestone other", option "Speed +30%", Movement Speed, Melee Attack Speed, Ranged Attack Speed / Enhancement'
+
 [[socket]]
 slot = "crafting: changestone ability"
 
@@ -262,14 +277,9 @@ icon = "Diamond"
 min_level = 1
 
 [[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Movement Speed"
+effect = "Speed"
 value = 30
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Melee and Ranged Attack Speed"
-value = 15
+value2 = 15
 
 [[socket.option.modifier]]
 amount_type = "Simple"

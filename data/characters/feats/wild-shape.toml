@@ -16,12 +16,7 @@ note = 'Line structure checked: "You gain a -2 penalty to Intelligence and Chari
 
 [[row.effect]]
 bonus_type = "Penalty"
-effect = "Intelligence"
-value = -2
-
-[[row.effect]]
-bonus_type = "Penalty"
-effect = "Charisma"
+effect = "Intelligence and Charisma"
 value = -2
 
 [[row.effect]]
@@ -36,6 +31,18 @@ value = 10
 
 [[row.group]]
 group_name = "Wild Shape"
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "lines"
+upstream = [
+    ["Intelligence"],
+    ["Charisma"],
+]
+reason = 'R5-4: the animal-form penalty is one line, "You gain a -2 penalty to Intelligence and Charisma."'
+url = "https://ddowiki.com/page/Wild_Shape"
+read = "2026-10-23"
+qualifier = "Intelligence, Charisma / Penalty"
 
 [[row.modifier]]
 amount_type = "Simple"

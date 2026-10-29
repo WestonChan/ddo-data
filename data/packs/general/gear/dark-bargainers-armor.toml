@@ -34,12 +34,7 @@ bonus_type = "Enhancement"
 value = 15
 
 [[effect]]
-name = "Armor Class"
-bonus_type = "Insight"
-value = 2
-
-[[effect]]
-name = "Saving Throws"
+name = "Parrying"
 bonus_type = "Insight"
 value = 2
 

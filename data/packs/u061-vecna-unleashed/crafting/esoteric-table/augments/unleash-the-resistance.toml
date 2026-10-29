@@ -43,5 +43,15 @@ targets = [
     "Fire",
 ]
 
+[[verification_request]]
+question = 'Does the game show one line "Unleashed Resistance +20" covering +20 Competence Fire and Electric Resistance and +5% Profane Fire and Electric Absorption?'
+assumed = "Two lines: Fire and Electric Resistance +20 Competence, and Fire and Electric Absorption +5% Profane."
+raised = "2026-10-29"
+
+[[verification_request.source]]
+says = "R5-3's typed Esoteric Table row names Unleashed Resistance: 20 Competence resistance and +5% Profane absorption for Fire and Electric. The table has no tooltip or screenshot; the one-line reading remains unverified."
+url = "https://ddowiki.com/page/Esoteric_Table"
+read = "2026-10-23"
+
 [[slot]]
 slot = "crafting: leashed power"
