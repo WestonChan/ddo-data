@@ -424,6 +424,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Universal Spell Lore" = "+{1}% %b1 Bonus to Spell Critical Chance"
 
 [description_templates]
+"Blinding Fear" = "On Hit: Blinds and Shakens foe for 6 seconds, 12 second cool down."
 "Command" = "Passive: {1} %b1 bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a {2} penalty on Hide checks."
 "Flaming Blast 2" = "This weapon burns with deadly magical fire, dealing 2d6 Fire damage on a successful hit, and an additional 2d6 Fire damage on a critical hit."
 "Flaming Blast 3" = "This weapon burns with deadly magical fire, dealing 3d6 Fire damage on a successful hit, and an additional 3d6 Fire damage on a critical hit."

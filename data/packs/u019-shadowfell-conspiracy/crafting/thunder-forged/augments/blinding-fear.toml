@@ -9,13 +9,13 @@ url = "https://ddowiki.com/page/Thunder-Forged"
 read = "2026-10-23"
 note = 'Line structure checked: "+10 Orb Bonus" (tooltip "+10 Orb Bonus: While this orb is equipped and you are actively blocking, you gain a +10 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and Sonic resistances.")'
 
-[[effect]]
-name = "Saving Throws"
-bonus_type = "Orb"
-value = 10
+[[citation]]
+url = "https://images.ddowiki.com/Thunder-Forged_Alloy_Orb.png"
+read = "2026-10-28"
+note = "R14: the U67 Tier 0 screenshot shows one +9 Orb Bonus line covering saves and five resistances while blocking; the Tier 1 table gives +10."
 
 [[effect]]
-name = "Fire, Cold, Electric, Acid and Sonic Resistance"
+name = "Orb Bonus"
 bonus_type = "Orb"
 value = 10
 
@@ -78,6 +78,24 @@ targets = [
 [[modifier.requirement]]
 items = ["Blocking"]
 req_type = "Stance"
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [
+    ["Saving Throws"],
+    [
+    "Fire Resistance",
+    "Cold Resistance",
+    "Electric Resistance",
+    "Acid Resistance",
+    "Sonic Resistance",
+],
+]
+reason = "R14: the Tier 1 table gives one +10 Orb Bonus line for all saving throws and five resistances while actively blocking. The Tier 0 screenshot confirms the same line structure: https://images.ddowiki.com/Thunder-Forged_Alloy_Orb.png (U67, uploaded 2024-06-07). Placement remains as Maetrim records it."
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-10-28"
+qualifier = "Fire Resistance, Cold Resistance, Electric Resistance, Acid Resistance, Sonic Resistance, Saving Throws / Orb"
 
 [[slot]]
 slot = "crafting: thunderforged tier 1"

@@ -1,3 +1,9 @@
 name = "Blinding Fear"
-description_template = "On Hit: Blinds and Shaken's foe for 6 seconds, 12 second cool down."
+description_template = "On Hit: Blinds and Shakens foe for 6 seconds, 12 second cool down."
 verbose_name_template = "Blinding Fear"
+
+[[citation]]
+field = "description_template"
+url = "https://ddowiki.com/page/Blinding_Fear"
+read = "2026-10-28"
+note = "R14: both the enchantment page and Thunder-Forged crafting page use Shakens."

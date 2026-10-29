@@ -878,6 +878,53 @@ fn declared_damage_targets_preserve_thunderforged_stats_and_requirements() {
 }
 
 #[test]
+fn blinding_fear_uses_its_cited_orb_line_in_data_and_the_xml_writer() {
+    let mut canonical = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(
+        &std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data"),
+        &mut canonical,
+    )
+    .unwrap();
+    let grouping_cases = fixture::grouping_case_database(|root| {
+        std::fs::write(
+            root.join("effects/stat-groups/orb-bonus.toml"),
+            include_str!("../../../data/effects/stat-groups/orb-bonus.toml"),
+        )
+        .unwrap();
+    });
+    let groupings = ddo_etl::groupings::Groupings::from_database(&grouping_cases).unwrap();
+    let mut corrections = Corrections::from_database(&canonical).unwrap();
+    corrections.entries.retain(|correction| correction.name == "Blinding Fear");
+    let source = fixture::xml_source();
+    std::fs::write(
+        source.path().join("Augments/ThunderforgedDamageTargets.Augments.xml"),
+        include_str!("fixtures/effect-groups/ThunderforgedDamageTargets.Augments.xml"),
+    )
+    .unwrap();
+    let mut upstream = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        &groupings,
+        source.path(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut upstream,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    for db in [&canonical, &upstream] {
+        let lines: Vec<(String,String,i64)> = db.prepare("SELECT e.name,bt.name,l.value FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id JOIN bonus_types bt ON bt.id=l.bonus_type_id WHERE a.name='Blinding Fear' ORDER BY l.sort_order").unwrap()
+            .query_map([], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap().collect::<rusqlite::Result<_>>().unwrap();
+        assert_eq!(lines, [("Orb Bonus".into(), "Orb".into(), 10)]);
+        assert_eq!(count(db,"SELECT COUNT(*) FROM requirements r JOIN modifiers m ON r.owner_kind='modifier' AND r.owner_id=m.id JOIN augments a ON m.source_kind='augment' AND m.source_id=a.id WHERE a.name='Blinding Fear' AND r.items='[\"Blocking\"]'"),2);
+    }
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let description: String = canonical
+        .query_row("SELECT description_template FROM effects WHERE name='Blinding Fear'", [], |row| row.get(0))
+        .unwrap();
+    assert_eq!(description, "On Hit: Blinds and Shakens foe for 6 seconds, 12 second cool down.");
+}
+
+#[test]
 fn weapon_damage_is_preserved_outside_declared_damage_targets() {
     let source = fixture::xml_source();
     std::fs::write(
