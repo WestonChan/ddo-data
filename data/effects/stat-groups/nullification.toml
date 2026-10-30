@@ -4,9 +4,19 @@ home_bonus_type = "Equipment"
 set_bonus_line_template = "+{1} %b1 Bonus to Negative and Poison Spell Power"
 verbose_name_template = "%b1 Nullification +{1}"
 
+[[alias]]
+name = "Dwarvencraft Nullification"
+verbose_name_template = "%b1 Dwarvencraft Nullification +{1}"
+
 [[citation]]
 url = "https://ddowiki.com/page/Nullification"
 read = "2026-10-23"
+
+[[citation]]
+field = "alias"
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-10-23"
+note = "R6-9: the typed crafting line and Maetrim display name use Dwarvencraft Nullification."
 
 [[bonus]]
 amount_from = 1

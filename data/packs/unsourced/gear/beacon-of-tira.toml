@@ -9,6 +9,11 @@ material = "Steel"
 minimum_level = 15
 slot = "Head"
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Beacon_of_Tira"
+read = "2026-10-23"
+note = "R6-8: the separate enchantment lines and existing drop location were checked. Silver Flame Nugget, End reward."
+
 [[effect]]
 name = "Radiance"
 bonus_type = "Equipment"

@@ -53,6 +53,7 @@ note = "R6-8 row 49: line structure checked. as above"
 
 [[effect]]
 name = "Void Lore"
+alias = "Negative Lore"
 bonus_type = "Enhancement"
 value = 27
 
@@ -66,6 +67,14 @@ targets = [
     "Negative",
     "Poison",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "alias"
+reason = "R6-8 row 72: the negative and poison lore shard is named Negative Lore."
+url = "https://ddowiki.com/page/Essence_Crafting_enchantments"
+read = "2026-10-23"
+qualifier = "Void Lore / Enhancement"
 
 [[verification_request]]
 question = "What value and bonus type does the current Spell Lore Negative augment grant?"

@@ -10,6 +10,7 @@ note = 'R6-9 row 32: line structure checked. "Dwarvencraft Void Lore: Passive: Y
 
 [[effect]]
 name = "Void Lore"
+alias = "Dwarvencraft Void Lore"
 bonus_type = "Equipment"
 value = 22
 
@@ -51,6 +52,14 @@ display_name = "Thunderforged Weapon Enchantment"
 effect_type = "Weapon_Enchantment"
 is_item_specific = true
 targets = ["All"]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "alias"
+reason = "R6-9: the typed crafting line is Dwarvencraft Void Lore."
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-10-23"
+qualifier = "Void Lore / Equipment"
 
 [[slot]]
 slot = "crafting: thunderforged tier 3"

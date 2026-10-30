@@ -6,6 +6,11 @@ item_category = "Jewelry"
 minimum_level = 1
 slot = "Trinket"
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Power_Evidence"
+read = "2026-10-23"
+note = "R6-8: the separate enchantment lines and existing drop location were checked. Special event items, Steam DDO: Half-Orc Pack."
+
 [[effect]]
 name = "Strength"
 bonus_type = "Enhancement"

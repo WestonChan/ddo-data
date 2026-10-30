@@ -11,6 +11,7 @@ note = 'Line structure checked: "Reaper Enchantment: Power: +3 Reaper Bonus to M
 
 [[effect]]
 name = "Melee, Ranged and Universal Spell Power"
+alias = "Reaper Enchantment: Power"
 bonus_type = "Reaper"
 value = 3
 
@@ -44,6 +45,14 @@ reason = "R5-3 and R6-9: Reaper Enchantment: Power is one line granting +3 Reape
 url = "https://ddowiki.com/page/Reaper_Forge"
 read = "2026-10-23"
 qualifier = "Melee Power, Ranged Power, Universal Spell Power / Reaper"
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "alias"
+reason = "R6-9: the found-only power line is named Reaper Enchantment: Power. Its crafting availability stays an open verification request."
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-10-23"
+qualifier = "Melee, Ranged and Universal Spell Power / Reaper"
 
 [[verification_request]]
 question = "Can Reaper Enchantment: Power be crafted, or is it found only?"

@@ -2,6 +2,16 @@ name = "Melee, Ranged and Universal Spell Power"
 description_template = "+{1} %b1 bonus to Melee, Ranged and Universal Spell Power."
 verbose_name_template = "%b1 Melee, Ranged and Universal Spell Power +{1}"
 
+[[alias]]
+name = "Reaper Enchantment: Power"
+verbose_name_template = "%b1 Reaper Enchantment: Power +{1}"
+
+[[citation]]
+field = "alias"
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-10-23"
+note = "R6-9: the found-only power line is named Reaper Enchantment: Power. Its crafting availability stays an open verification request."
+
 [[bonus]]
 amount_from = 1
 rounding = "down"
