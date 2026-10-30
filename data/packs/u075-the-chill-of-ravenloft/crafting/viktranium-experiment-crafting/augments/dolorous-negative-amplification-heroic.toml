@@ -1,12 +1,12 @@
 name = "Dolorous Negative Amplification (Heroic)"
-description = "+19 Competence bonus to Negative Healing Amplification."
+description = "+19 Profane bonus to Negative Healing Amplification."
 family = "Lamordia_Heroic"
 icon = "Lamordia"
 min_level = 8
 
 [[effect]]
 name = "Negative Healing Amplification"
-bonus_type = "Competence"
+bonus_type = "Profane"
 value = 19
 
 [[modifier]]
@@ -15,6 +15,23 @@ amounts = [19]
 bonus_type = "Competence"
 effect = "Negative Healing Amplification"
 effect_type = "NegativeHealingAmplification"
+
+[[ddobuilder_correction]]
+kind = "augment"
+field = "description"
+upstream = "+19 Competence bonus to Negative Healing Amplification."
+reason = "R15b screenshot states +19 Profane bonus to Negative Healing Amplification. Screenshot: https://images.ddowiki.com/Dolorous_Negative_Amplification_%28Heroic%29.png"
+url = "https://ddowiki.com/page/Item:Dolorous_Negative_Amplification_(heroic)"
+read = "2026-10-29"
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "bonus_type"
+upstream = "Competence"
+reason = "R15b screenshot states +19 Profane bonus to Negative Healing Amplification. Screenshot: https://images.ddowiki.com/Dolorous_Negative_Amplification_%28Heroic%29.png"
+url = "https://ddowiki.com/page/Item:Dolorous_Negative_Amplification_(heroic)"
+read = "2026-10-29"
+qualifier = "Negative Healing Amplification / Competence"
 
 [[slot]]
 slot = "lamordia: dolorous (accessory)"

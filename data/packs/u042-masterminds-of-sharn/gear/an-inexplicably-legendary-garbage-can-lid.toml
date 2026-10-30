@@ -20,6 +20,12 @@ shield_bonus = 21
 url = "https://ddowiki.com/page/Item:An_Inexplicably_Legendary_Garbage_Can_Lid%3F"
 read = "2026-09-30"
 
+[[citation]]
+field = "effect"
+url = "https://ddowiki.com/page/Item:An_Inexplicably_Legendary_Garbage_Can_Lid%3F"
+read = "2026-10-29"
+note = "R15b screenshot shows Exceptional Healing Amplification +14, the Healing Amplification stat rather than a separate Positive Healing Amplification stat. Screenshot: https://images.ddowiki.com/An_Inexplicably_Legendary_Garbage_Can_Lid%3F.png"
+
 [[dr_bypass]]
 bypass = "Bludgeon"
 
@@ -27,9 +33,9 @@ bypass = "Bludgeon"
 bypass = "Magic"
 
 [[effect]]
-name = "Positive Healing Amplification"
+name = "Healing Amplification"
 bonus_type = "Exceptional"
-value = 15
+value = 14
 
 [[effect]]
 name = "Impact"

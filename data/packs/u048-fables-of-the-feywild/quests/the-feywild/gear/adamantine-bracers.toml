@@ -9,7 +9,7 @@ slot = "Wrists"
 
 [[effect]]
 name = "Repair Amplification"
-bonus_type = "Competence"
+bonus_type = "Enhancement"
 value = 53
 
 [[effect]]
@@ -20,6 +20,15 @@ name = "DR 30/Adamantine"
 
 [[effect]]
 name = "Maker's Touch"
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "bonus_type"
+upstream = "Competence"
+reason = "R15b screenshot: Repair Amplification +53 explicitly grants an Enhancement bonus. Screenshot: https://images.ddowiki.com/Adamantine_Bracers.png"
+url = "https://ddowiki.com/page/Item:Adamantine_Bracers"
+read = "2026-10-29"
+qualifier = "Repair Amplification / Competence"
 
 [[socket]]
 slot = "green"

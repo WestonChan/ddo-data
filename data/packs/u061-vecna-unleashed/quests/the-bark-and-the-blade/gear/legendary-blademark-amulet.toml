@@ -26,8 +26,17 @@ value = 17
 
 [[effect]]
 name = "Repair Amplification"
-bonus_type = "Competence"
+bonus_type = "Enhancement"
 value = 57
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "bonus_type"
+upstream = "Competence"
+reason = "R15b screenshot: Repair Amplification +57 explicitly grants an Enhancement bonus. Screenshot: https://images.ddowiki.com/Legendary_Blademark_Amulet.png"
+url = "https://ddowiki.com/page/Item:Legendary_Blademark_Amulet"
+read = "2026-10-28"
+qualifier = "Repair Amplification / Competence"
 
 [[socket]]
 slot = "green"

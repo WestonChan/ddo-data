@@ -11,7 +11,7 @@ slot = "Feet"
 
 [[effect]]
 name = "Repair Amplification"
-bonus_type = "Competence"
+bonus_type = "Enhancement"
 value = 59
 
 [[effect]]
@@ -28,6 +28,15 @@ value = 21
 name = "Reconstruction"
 bonus_type = "Quality"
 value = 38
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "bonus_type"
+upstream = "Competence"
+reason = "R15b screenshot: Repair Amplification +59 explicitly grants an Enhancement bonus. Screenshot: https://images.ddowiki.com/Legendary_Boots_of_Uncanny_Mending.png"
+url = "https://ddowiki.com/page/Item:Legendary_Boots_of_Uncanny_Mending"
+read = "2026-10-28"
+qualifier = "Repair Amplification / Competence"
 
 [[socket]]
 slot = "green"

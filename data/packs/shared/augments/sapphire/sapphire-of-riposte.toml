@@ -9,12 +9,7 @@ icon = "SapphireBlueBorder"
 min_level = 8
 
 [[effect]]
-name = "Armor Class"
-bonus_type = "Insight"
-value = 2
-
-[[effect]]
-name = "Saving Throws"
+name = "Riposte"
 bonus_type = "Insight"
 value = 2
 
@@ -34,6 +29,18 @@ bonus_type = "Insight"
 effect = "Saving Throws"
 effect_type = "SaveBonus"
 targets = ["All"]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [
+    ["Armor Class"],
+    ["Saving Throws"],
+]
+reason = "R15c: one Riposte +2 line grants +2 Insight to both AC and saves. The screenshot confirms the shared bonus. Screenshot: https://images.ddowiki.com/Sapphire_of_Riposte.png"
+url = "https://ddowiki.com/page/Item:Sapphire_of_Riposte"
+read = "2026-10-28"
+qualifier = "Armor Class, Saving Throws / Insight"
 
 [[slot]]
 slot = "blue"

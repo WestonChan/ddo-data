@@ -19,5 +19,15 @@ bonus_type = "Exceptional"
 effect = "Song Physical Resistance Rating"
 effect_type = "SongPRR"
 
+[[verification_request]]
+question = "Does this use the named Melody: Bulwark line, and what bonus type does its Inspire Greatness PRR use?"
+assumed = "Exceptional Song Physical Resistance Rating +3"
+raised = "2026-10-30"
+
+[[verification_request.source]]
+says = "R15b: the augment screenshot states Inspire Greatness grants allies +3 Physical Resistance Rating, without a type. The typed line says Melody: Bulwark; Legendary Glittering Waistwrap shows that name in its screenshot."
+url = "https://ddowiki.com/page/Item:Weaverwisp_Melody"
+read = "2026-10-29"
+
 [[slot]]
 slot = "green"

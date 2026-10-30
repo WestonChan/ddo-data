@@ -31,13 +31,22 @@ value = 33
 
 [[effect]]
 name = "Repair Amplification"
-bonus_type = "Competence"
+bonus_type = "Enhancement"
 value = 53
 
 [[effect]]
 name = "False Life"
 bonus_type = "Enhancement"
 value = 50
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "bonus_type"
+upstream = "Competence"
+reason = "R15b screenshot: Repair Amplification +53 explicitly grants an Enhancement bonus. Screenshot: https://images.ddowiki.com/Legendary_Plasma_Core.png"
+url = "https://ddowiki.com/page/Item:Legendary_Plasma_Core"
+read = "2026-10-28"
+qualifier = "Repair Amplification / Competence"
 
 [[socket]]
 slot = "green"

@@ -40,6 +40,16 @@ name = "Attack Bonus"
 bonus_type = "Competence"
 value = 2
 
+[[verification_request]]
+question = "Does this record mix the current item with upgrade options belonging to the legacy level-20 item?"
+assumed = "The current item retains its existing effects and two upgrade options: Epic Nimbleness, and Dodge 8% and Adds a Blue augment slot."
+raised = "2026-10-30"
+
+[[verification_request.source]]
+says = "R15c: the current item page lists no upgrade tiers or Nimbleness. The legacy tier-2 screenshot shows Epic Nimbleness, while our current item carries that option. Screenshot: https://images.ddowiki.com/Epic_Duelist%27s_Leathers_%28level_20%29%28tier_2%29.png"
+url = "https://ddowiki.com/page/Item:Epic_Duelist%27s_Leathers_(level_20)"
+read = "2026-10-28"
+
 [[socket]]
 slot = "upgrade: tier 2"
 

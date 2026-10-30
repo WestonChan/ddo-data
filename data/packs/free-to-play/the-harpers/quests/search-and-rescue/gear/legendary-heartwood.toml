@@ -31,13 +31,22 @@ value = 16
 
 [[effect]]
 name = "Repair Amplification"
-bonus_type = "Competence"
+bonus_type = "Enhancement"
 value = 53
 
 [[effect]]
 name = "Sheltering"
 bonus_type = "Enhancement"
 value = 33
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "bonus_type"
+upstream = "Competence"
+reason = "R15b screenshot: Repair Amplification +53 explicitly grants an Enhancement bonus. Screenshot: https://images.ddowiki.com/Legendary_Heartwood.png"
+url = "https://ddowiki.com/page/Item:Legendary_Heartwood"
+read = "2026-10-29"
+qualifier = "Repair Amplification / Competence"
 
 [[verification_request]]
 kind = "item_bonus"

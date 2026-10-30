@@ -206,6 +206,12 @@ since = "2026-10-23"
 
 [[redirect]]
 kind = "effects"
+from = "positive-healing-amplification"
+to = "healing-amplification"
+since = "2026-10-30"
+
+[[redirect]]
+kind = "effects"
 from = "spell-powers"
 to = "potency"
 since = "2026-10-23"

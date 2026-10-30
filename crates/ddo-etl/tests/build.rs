@@ -107,6 +107,64 @@ fn note_lines_include_zero_amounts_and_named_effect_targets() {
 }
 
 #[test]
+fn verified_amplification_and_riposte_lines_follow_the_r15_screenshots() {
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db).unwrap();
+    Corrections::from_database(&db).unwrap();
+    let mut mismatches = Vec::new();
+    for (name, stat, bonus_type, amount) in [
+        ("Legendary Boots of Uncanny Mending", "Repair Amplification", "Enhancement", 59),
+        ("Legendary Tangle of Wires", "Repair Amplification", "Enhancement", 61),
+        ("Legendary Blademark Amulet", "Repair Amplification", "Enhancement", 57),
+        ("Legendary Plasma Core", "Repair Amplification", "Enhancement", 53),
+        ("Legendary Heartwood", "Repair Amplification", "Enhancement", 53),
+        ("Adamantine Bracers", "Repair Amplification", "Enhancement", 53),
+        ("A Garbage Can Lid?", "Healing Amplification", "Exceptional", 8),
+        ("An Inexplicably Legendary Garbage Can Lid?", "Healing Amplification", "Exceptional", 14),
+    ] {
+        let matches: i64 = db.query_row("SELECT COUNT(*) FROM owner_bonuses b JOIN items i ON b.owner_kind='item' AND b.owner_id=i.id JOIN effects s ON s.id=b.stat_id JOIN bonus_types t ON t.id=b.bonus_type_id WHERE i.name=?1 AND s.name=?2 AND t.name=?3 AND b.amount=?4",params![name,stat,bonus_type,amount],|row|row.get(0)).unwrap();
+        if matches != 1 {
+            mismatches.push(format!("{name}: expected {stat} {amount} {bonus_type}"));
+        }
+    }
+    let dolorous: (String, i64) = db.query_row("SELECT t.name,b.amount FROM owner_bonuses b JOIN augments a ON b.owner_kind='augment' AND b.owner_id=a.id JOIN bonus_types t ON t.id=b.bonus_type_id WHERE a.name='Dolorous Negative Amplification (Heroic)'",[],|row|Ok((row.get(0)?,row.get(1)?))).unwrap();
+    if dolorous != ("Profane".into(), 19) {
+        mismatches.push(format!("Dolorous Negative Amplification: {dolorous:?}, expected Profane 19"));
+    }
+    let sapphire: Vec<(String, i64)> = db.prepare("SELECT e.name,l.value FROM augment_effects l JOIN augments a ON a.id=l.augment_id JOIN effects e ON e.id=l.effect_id WHERE a.name='Sapphire of Riposte' ORDER BY l.sort_order").unwrap().query_map([],|row|Ok((row.get(0)?,row.get(1)?))).unwrap().collect::<rusqlite::Result<_>>().unwrap();
+    if sapphire != [("Riposte".into(), 2)] {
+        mismatches.push(format!("Sapphire of Riposte: {sapphire:?}, expected one Riposte +2 link"));
+    }
+    let sapphire_bonuses: Vec<(String, String, i64)> = db.prepare("SELECT s.name,t.name,b.amount FROM owner_bonuses b JOIN augments a ON b.owner_kind='augment' AND b.owner_id=a.id JOIN effects s ON s.id=b.stat_id JOIN bonus_types t ON t.id=b.bonus_type_id WHERE a.name='Sapphire of Riposte' ORDER BY s.name").unwrap().query_map([],|row|Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap().collect::<rusqlite::Result<_>>().unwrap();
+    assert_eq!(
+        sapphire_bonuses,
+        [("Armor Class".into(), "Insight".into(), 2), ("Saving Throws".into(), "Insight".into(), 2)]
+    );
+    assert!(mismatches.is_empty(), "{}", mismatches.join("\n"));
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Positive Healing Amplification'"), 0);
+    let redirect: String = db
+        .query_row(
+            "SELECT to_slug FROM redirects WHERE kind='effects' AND from_slug='positive-healing-amplification'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(redirect, "healing-amplification");
+}
+
+#[test]
+fn r15_unsettled_names_and_legacy_options_keep_verification_requests() {
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db).unwrap();
+    for (kind, name) in [("augments", "Weaverwisp Melody"), ("items", "Epic Duelist's Leathers (level 20)")] {
+        let requests: i64 = db.query_row("SELECT COUNT(*) FROM verification_requests v JOIN entity_identity e ON e.kind=v.owner_kind AND e.entity_id=v.owner_id WHERE v.owner_kind=?1 AND e.name=?2",params![kind,name],|row|row.get(0)).unwrap();
+        assert!(requests > 0, "{name} needs the unresolved R15 reading recorded");
+    }
+    let melody: (String, i64) = db.query_row("SELECT e.name,l.value FROM augment_effects l JOIN augments a ON a.id=l.augment_id JOIN effects e ON e.id=l.effect_id WHERE a.name='Weaverwisp Melody'",[],|row|Ok((row.get(0)?,row.get(1)?))).unwrap();
+    assert_eq!(melody, ("Song Physical Resistance Rating".into(), 3));
+}
+
+#[test]
 fn committed_verification_requests_cover_the_initial_review_cases() {
     let mut db = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(&std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db)

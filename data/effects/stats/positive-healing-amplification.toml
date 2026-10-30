@@ -1,3 +1,0 @@
-name = "Positive Healing Amplification"
-category = "other"
-verbose_name_template = "%b1 Positive Healing Amplification +{1}"
