@@ -1,7 +1,7 @@
 name = "Epic Robe of Shadow (Level 24)"
 is_wiki_only = true
 description = "This robe is as dark as the night sky and almost seems to crawl visibly with moving shadows. It boosts the power of the wearer's negative energy magic, and grants a measure of necromantic protection against enemy attacks."
-drop_location = "The Night Revels, Turn in Upgrade of Robe of Shadow (level 20)"
+drop_location = "The Night Revels, Turn in Upgrade of Epic Robe of Shadow (level 20)"
 item_category = "Armor"
 item_type = "Cloth"
 material = "Cloth"
@@ -21,15 +21,16 @@ read = "2026-09-29"
 field = "effect"
 url = "https://ddowiki.com/page/Item:Epic_Robe_of_Shadow_(level_24)"
 read = "2026-10-23"
-note = "The screenshot shows one Void Lore VI line granting 16% Equipment critical chance to Negative Energy and Poison spells."
+note = "The screenshot shows one Void Lore VI line granting 16% Equipment critical chance to Negative Energy and Poison spells. R6-3/R6-4 screenshot: one Nullification line grants 114 Equipment Negative and Poison Spell Power. The separately verified Void Lore VI line remains unchanged."
+
+[[citation]]
+field = "drop_location"
+url = "https://ddowiki.com/page/Item:Epic_Robe_of_Shadow_(level_24)"
+read = "2026-10-23"
+note = "R6-4: the upgrade ingredient is Epic Robe of Shadow (level 20), not a heroic Robe of Shadow."
 
 [[effect]]
-name = "Negative Spell Power"
-bonus_type = "Equipment"
-value = 114
-
-[[effect]]
-name = "Poison Spell Power"
+name = "Nullification"
 bonus_type = "Equipment"
 value = 114
 

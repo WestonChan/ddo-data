@@ -17,23 +17,19 @@ armor_type = "Cloth"
 url = "https://ddowiki.com/page/Item:Legendary_Robe_of_Shadow_%28level_32%29"
 read = "2026-09-29"
 
+[[citation]]
+field = "effect"
+url = "https://ddowiki.com/page/Item:Legendary_Robe_of_Shadow_(level_32)"
+read = "2026-10-23"
+note = "R6-3/R6-4 screenshot: one Nullification line grants 153 Equipment Negative and Poison Spell Power. One numeric Void Lore line grants 22% Equipment Negative and Poison Spell Lore."
+
 [[effect]]
-name = "Negative Spell Power"
+name = "Nullification"
 bonus_type = "Equipment"
 value = 153
 
 [[effect]]
-name = "Poison Spell Power"
-bonus_type = "Equipment"
-value = 153
-
-[[effect]]
-name = "Negative Spell Lore"
-bonus_type = "Equipment"
-value = 22
-
-[[effect]]
-name = "Poison Spell Lore"
+name = "Void Lore"
 bonus_type = "Equipment"
 value = 22
 

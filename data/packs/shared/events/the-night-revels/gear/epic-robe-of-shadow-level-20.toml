@@ -21,15 +21,10 @@ read = "2026-09-29"
 field = "effect"
 url = "https://ddowiki.com/page/Item:Epic_Robe_of_Shadow_(level_20)"
 read = "2026-10-23"
-note = "The screenshot shows one Void Lore VI line granting 16% Equipment critical chance to Negative Energy and Poison spells."
+note = "The screenshot shows one Void Lore VI line granting 16% Equipment critical chance to Negative Energy and Poison spells. R6-3/R6-4 screenshot: one Nullification line grants 90 Equipment Negative and Poison Spell Power. The separately verified Void Lore VI line remains unchanged."
 
 [[effect]]
-name = "Negative Spell Power"
-bonus_type = "Equipment"
-value = 90
-
-[[effect]]
-name = "Poison Spell Power"
+name = "Nullification"
 bonus_type = "Equipment"
 value = 90
 
