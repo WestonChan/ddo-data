@@ -9,6 +9,11 @@ material = "Gold"
 minimum_level = 20
 slot = "Ring"
 
+[[citation]]
+url = "https://images.ddowiki.com/Epic_Ring_of_Baphomet.png"
+read = "2026-10-23"
+note = "R6-2: Alignment Absorption +18%: Passive: 18% Enhancement Bonus to Alignment Absorption. The two curses remain separate lines."
+
 [[clickie]]
 name = "Bestow Curse"
 clickie = "Bestow Curse"
@@ -34,6 +39,11 @@ bonus_type = "Penalty"
 name = "Curse of Repulsiveness"
 bonus_type = "Penalty"
 
+[[effect]]
+name = "Alignment Absorption"
+bonus_type = "Enhancement"
+value = 18
+
 [[modifier]]
 amount_type = "SLA"
 amounts = [
@@ -44,6 +54,14 @@ amounts = [
 bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Bestow Curse"]
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "add"
+reason = "R6-2: the epic item screenshot and typed list show Alignment Absorption +18%, an Enhancement bonus missing from Maetrim."
+url = "https://ddowiki.com/page/Item:Epic_Ring_of_Baphomet"
+read = "2026-10-23"
+qualifier = "Alignment Absorption / Enhancement"
 
 [[socket]]
 slot = "colorless"
