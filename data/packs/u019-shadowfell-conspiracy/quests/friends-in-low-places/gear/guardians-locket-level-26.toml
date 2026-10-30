@@ -7,7 +7,7 @@ minimum_level = 26
 slot = "Neck"
 
 [[effect]]
-name = "Natural Armor"
+name = "Natural Armor Bonus"
 bonus_type = "Natural Armor"
 value = 9
 

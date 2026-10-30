@@ -1,0 +1,30 @@
+name = "Quality Shield Bonus"
+description_template = "{1} quality bonus to Armor Class."
+home_bonus_type = "Quality"
+verbose_name_template = "Quality Shield Bonus +{1}"
+
+[[alias]]
+name = "Quality Shield"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Armor Class"
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "name"
+upstream = "Quality Shield"
+reason = "R15 screenshot names the enchantment Quality Shield Bonus. Screenshot: https://images.ddowiki.com/Legendary_Planar_Lariat.png"
+url = "https://ddowiki.com/page/Item:Legendary_Planar_Lariat"
+read = "2026-10-28"
+
+[[ddobuilder_correction]]
+kind = "effect"
+original_name = "Quality Shield"
+field = "verbose_name_template"
+upstream = "Quality Shield +{1}"
+reason = "R15 screenshot names the enchantment Quality Shield Bonus. Screenshot: https://images.ddowiki.com/Legendary_Planar_Lariat.png"
+url = "https://ddowiki.com/page/Item:Legendary_Planar_Lariat"
+read = "2026-10-28"

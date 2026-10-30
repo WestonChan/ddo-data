@@ -21,7 +21,7 @@ bonus_type = "Armor"
 value = 13
 
 [[effect]]
-name = "Shield"
+name = "Shield Bonus"
 bonus_type = "Shield"
 value = 13
 

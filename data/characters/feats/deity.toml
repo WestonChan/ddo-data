@@ -227,7 +227,7 @@ value = 4
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 value = 4
 
 [[row.effect]]
@@ -260,7 +260,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [4]
 bonus_type = "Feat"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 effect_type = "NaturalArmor"
 
 [[row.modifier.requirement]]
@@ -370,7 +370,7 @@ icon = "Silvanus"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 value = 4
 
 [[row.effect]]
@@ -390,7 +390,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [4]
 bonus_type = "Feat"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 effect_type = "NaturalArmor"
 
 [[row.modifier.requirement]]

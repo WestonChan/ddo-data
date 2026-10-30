@@ -20,12 +20,12 @@ bonus_type = "Insight"
 value = 52
 
 [[effect]]
-name = "Shield"
+name = "Shield Bonus"
 bonus_type = "Shield"
 value = 9
 
 [[effect]]
-name = "Natural Armor"
+name = "Natural Armor Bonus"
 bonus_type = "Natural Armor"
 value = 9
 

@@ -11,7 +11,7 @@ minimum_level = 29
 slot = "Ring"
 
 [[effect]]
-name = "Shield"
+name = "Shield Bonus"
 bonus_type = "Shield"
 value = 13
 

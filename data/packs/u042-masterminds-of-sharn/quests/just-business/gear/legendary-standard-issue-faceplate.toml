@@ -23,7 +23,7 @@ bonus_type = "Insight"
 value = 16
 
 [[effect]]
-name = "Natural Armor"
+name = "Natural Armor Bonus"
 bonus_type = "Natural Armor"
 value = 13
 

@@ -21,7 +21,7 @@ bonus_type = "Insight"
 value = 6
 
 [[effect]]
-name = "Shield"
+name = "Shield Bonus"
 bonus_type = "Shield"
 value = 14
 

@@ -8,7 +8,7 @@ minimum_level = 11
 slot = "Head"
 
 [[effect]]
-name = "Shield"
+name = "Shield Bonus"
 bonus_type = "Shield"
 value = 6
 

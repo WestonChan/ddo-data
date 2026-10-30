@@ -27,7 +27,7 @@ bypass = "Bludgeon"
 bypass = "Magic"
 
 [[effect]]
-name = "Natural Armor"
+name = "Natural Armor Bonus"
 bonus_type = "Natural Armor"
 value = 2
 
@@ -73,7 +73,7 @@ qualifier = "Repair / Competence"
 [[verification_request]]
 kind = "item_bonus"
 field = "value"
-qualifier = "Natural Armor / Natural Armor"
+qualifier = "Natural Armor Bonus / Natural Armor"
 question = "Does the heroic Hammer of Life grant Natural Armor +2? Neither the screenshot nor the typed list includes it."
 assumed = 2
 raised = "2026-10-23"

@@ -5,7 +5,7 @@ icon = "DraconicRune"
 min_level = 16
 
 [[effect]]
-name = "Natural Armor"
+name = "Natural Armor Bonus"
 bonus_type = "Enhancement"
 value = 4
 
@@ -13,7 +13,7 @@ value = 4
 amount_type = "Simple"
 amounts = [4]
 bonus_type = "Enhancement"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 effect_type = "NaturalArmor"
 
 [[slot]]

@@ -32,7 +32,7 @@ value = 14
 name = "Legendary Stone Guard"
 
 [[effect]]
-name = "Natural Armor"
+name = "Natural Armor Bonus"
 bonus_type = "Natural Armor"
 value = 14
 

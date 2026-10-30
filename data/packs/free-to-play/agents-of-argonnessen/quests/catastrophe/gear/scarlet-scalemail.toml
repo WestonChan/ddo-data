@@ -24,7 +24,7 @@ bonus_type = "Enhancement"
 value = 3
 
 [[effect]]
-name = "Natural Armor"
+name = "Natural Armor Bonus"
 bonus_type = "Natural Armor"
 value = 3
 

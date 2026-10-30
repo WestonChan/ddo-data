@@ -29,7 +29,7 @@ bonus_type = "Deflection"
 value = 4
 
 [[effect]]
-name = "Shield"
+name = "Shield Bonus"
 bonus_type = "Shield"
 value = 4
 

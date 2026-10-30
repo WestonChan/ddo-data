@@ -29,7 +29,7 @@ levels = [
 ]
 
 [[effect]]
-name = "Natural Armor"
+name = "Natural Armor Bonus"
 bonus_type = "Natural Armor"
 value = 8
 
@@ -37,7 +37,7 @@ value = 8
 amount_type = "Simple"
 amounts = [8]
 bonus_type = "Natural Armor"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 effect_type = "NaturalArmor"
 
 [[slot]]

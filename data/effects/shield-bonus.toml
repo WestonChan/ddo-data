@@ -1,0 +1,30 @@
+name = "Shield Bonus"
+description_template = "While this item is equipped, you are partially protected by a field of magical force which can deflect enemy attacks. This item provides a {1} Shield bonus to Armor Class. It does not stack with an equipped shield."
+home_bonus_type = "Shield"
+verbose_name_template = "Shield Bonus +{1}"
+
+[[alias]]
+name = "Shield"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Armor Class"
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "name"
+upstream = "Shield"
+reason = "R15 screenshot names the enchantment Shield Bonus. Screenshot: https://images.ddowiki.com/Epic_Headman%27s_Hood.png"
+url = "https://ddowiki.com/page/Item:Epic_Headman's_Hood"
+read = "2026-10-28"
+
+[[ddobuilder_correction]]
+kind = "effect"
+original_name = "Shield"
+field = "verbose_name_template"
+upstream = "Shield +{1}"
+reason = "R15 screenshot names the enchantment Shield Bonus. Screenshot: https://images.ddowiki.com/Epic_Headman%27s_Hood.png"
+url = "https://ddowiki.com/page/Item:Epic_Headman's_Hood"
+read = "2026-10-28"

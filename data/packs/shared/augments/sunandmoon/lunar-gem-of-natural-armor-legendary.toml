@@ -9,7 +9,7 @@ icon = "HistoryBookWhite"
 min_level = 30
 
 [[effect]]
-name = "Natural Armor"
+name = "Natural Armor Bonus"
 bonus_type = "Profane"
 value = 10
 
@@ -17,7 +17,7 @@ value = 10
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Profane"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 effect_type = "NaturalArmor"
 
 [[slot]]

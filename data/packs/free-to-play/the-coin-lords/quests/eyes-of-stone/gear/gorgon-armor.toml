@@ -32,7 +32,7 @@ value = 5
 name = "Earthen Guard"
 
 [[effect]]
-name = "Natural Armor"
+name = "Natural Armor Bonus"
 bonus_type = "Natural Armor"
 value = 5
 

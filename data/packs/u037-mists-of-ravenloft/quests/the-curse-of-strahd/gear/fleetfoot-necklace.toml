@@ -14,7 +14,7 @@ name = "Superior Reinforced Fists"
 name = "Feat - Wind through the Trees"
 
 [[effect]]
-name = "Natural Armor"
+name = "Natural Armor Bonus"
 bonus_type = "Natural Armor"
 value = 13
 

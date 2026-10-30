@@ -26,14 +26,14 @@ value = 3
 
 [[tier.effect]]
 bonus_type = "Insight"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 value = 3
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Artifact"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 effect_type = "Weapon_AttackAndDamage"
 targets = ["All"]
 
@@ -42,5 +42,5 @@ amount_type = "Simple"
 amounts = [3]
 bonus = "Insightful"
 bonus_type = "Insight"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 effect_type = "NaturalArmor"

@@ -107,6 +107,29 @@ fn note_lines_include_zero_amounts_and_named_effect_targets() {
 }
 
 #[test]
+fn armor_effect_names_follow_tooltips_and_keep_old_search_names() {
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db).unwrap();
+    Corrections::from_database(&db).unwrap();
+    for (old_name, name, template) in [
+        ("Natural Armor", "Natural Armor Bonus", "%b1 Natural Armor Bonus +{1}"),
+        ("Shield", "Shield Bonus", "Shield Bonus +{1}"),
+        ("Quality Shield", "Quality Shield Bonus", "Quality Shield Bonus +{1}"),
+    ] {
+        let matches: i64 = db
+            .query_row(
+                "SELECT COUNT(*) FROM effects e JOIN effect_aliases a ON a.effect_id = e.id
+              WHERE e.name = ?1 AND e.verbose_name_template = ?2 AND a.name = ?3
+                AND a.verbose_name_template IS NULL AND e.is_stat = 0 AND e.is_group = 0",
+                params![name, template, old_name],
+                |row| row.get(0),
+            )
+            .unwrap();
+        assert_eq!(matches, 1, "{name} needs the tooltip title and search-only old name");
+    }
+}
+
+#[test]
 fn verified_amplification_and_riposte_lines_follow_the_r15_screenshots() {
     let mut db = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db).unwrap();
@@ -185,7 +208,7 @@ fn committed_verification_requests_cover_the_initial_review_cases() {
             1,
         ),
         ("Dark Bargainer's Armor", "lines", "Physical Sheltering / Enhancement", None, 1),
-        ("Hammer of Life", "value", "Natural Armor / Natural Armor", Some(serde_json::json!(2)), 1),
+        ("Hammer of Life", "value", "Natural Armor Bonus / Natural Armor", Some(serde_json::json!(2)), 1),
         (
             "Wild Shape: Blighted Wolf",
             "value",

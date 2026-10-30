@@ -8,7 +8,7 @@ minimum_level = 5
 slot = "Head"
 
 [[effect]]
-name = "Natural Armor"
+name = "Natural Armor Bonus"
 bonus_type = "Natural Armor"
 value = 1
 

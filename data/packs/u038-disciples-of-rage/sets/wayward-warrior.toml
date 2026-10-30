@@ -19,7 +19,7 @@ equipped_count = 2
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 value = 2
 
 [[tier.effect]]

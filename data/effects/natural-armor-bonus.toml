@@ -1,0 +1,31 @@
+name = "Natural Armor Bonus"
+description_template = "Passive: {1} Natural Armor Bonus to Armor Class."
+home_bonus_type = "Natural Armor"
+set_bonus_line_template = "+{1} %b1 Bonus to Natural Armor"
+verbose_name_template = "%b1 Natural Armor Bonus +{1}"
+
+[[alias]]
+name = "Natural Armor"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Armor Class"
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "name"
+upstream = "Natural Armor"
+reason = "R15 screenshot names the enchantment Natural Armor Bonus. Screenshot: https://images.ddowiki.com/Legendary_Flightfoot_Greaves.png"
+url = "https://ddowiki.com/page/Item:Legendary_Flightfoot_Greaves"
+read = "2026-10-28"
+
+[[ddobuilder_correction]]
+kind = "effect"
+original_name = "Natural Armor"
+field = "verbose_name_template"
+upstream = "%b1 Natural Armor +{1}"
+reason = "R15 screenshot names the enchantment Natural Armor Bonus. Screenshot: https://images.ddowiki.com/Legendary_Flightfoot_Greaves.png"
+url = "https://ddowiki.com/page/Item:Legendary_Flightfoot_Greaves"
+read = "2026-10-28"

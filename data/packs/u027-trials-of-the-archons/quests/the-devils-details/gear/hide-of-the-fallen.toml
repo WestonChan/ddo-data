@@ -14,7 +14,7 @@ slot = "Back"
 name = "Druidic Survival Mastery"
 
 [[effect]]
-name = "Shield"
+name = "Shield Bonus"
 bonus_type = "Shield"
 value = 2
 

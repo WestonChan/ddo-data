@@ -699,14 +699,14 @@ min_level = 18
 
 [[socket.option.effect]]
 bonus_type = "Natural Armor"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 value = 4
 
 [[socket.option.modifier]]
 amount_type = "Simple"
 amounts = [4]
 bonus_type = "Natural Armor"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 effect_type = "NaturalArmor"
 
 [[socket.option]]

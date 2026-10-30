@@ -71,7 +71,7 @@ value = 10
 
 [[tier.effect]]
 bonus_type = "Profane"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 value = 5
 
 [[tier.effect]]
@@ -125,7 +125,7 @@ value = 15
 
 [[tier.effect]]
 bonus_type = "Profane"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 value = 8
 
 [[tier.effect]]

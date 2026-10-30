@@ -10,7 +10,7 @@ minimum_level = 35
 slot = "Trinket"
 
 [[effect]]
-name = "Shield"
+name = "Shield Bonus"
 bonus_type = "Shield"
 
 [[effect]]

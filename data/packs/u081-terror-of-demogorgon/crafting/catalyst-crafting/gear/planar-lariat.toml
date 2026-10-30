@@ -19,7 +19,7 @@ bonus_type = "Enhancement"
 value = 16
 
 [[effect]]
-name = "Quality Shield"
+name = "Quality Shield Bonus"
 bonus_type = "Quality"
 value = 1
 

@@ -16,7 +16,7 @@ armor_type = "Light"
 max_dex_bonus = 6
 
 [[effect]]
-name = "Natural Armor"
+name = "Natural Armor Bonus"
 bonus_type = "Natural Armor"
 value = 5
 

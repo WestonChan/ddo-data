@@ -7,14 +7,14 @@ equipped_count = 2
 
 [[tier.effect]]
 bonus_type = "Stacking"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 value = 10
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Stacking"
-effect = "Natural Armor"
+effect = "Natural Armor Bonus"
 effect_type = "NaturalArmor"
 
 [[tier]]
