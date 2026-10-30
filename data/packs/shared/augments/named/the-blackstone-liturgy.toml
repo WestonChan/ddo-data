@@ -7,6 +7,11 @@ family = "Named"
 icon = "HistoryBookPurple"
 min_level = 32
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:The_Blackstone_Liturgy"
+read = "2026-10-23"
+note = 'R6-8 row 56: line structure checked. typed: "item becomes a Spellcasting Implement" ; "Nullification +153: Passive: +153 Equipment bonus to Negative (Necrotic) and Poison Spell Power." ; screenshot: "Slotted Effect: This weapon is considered an Implement. +153 Equipment bonus to Negative and Poison Spell Power."'
+
 [[effect]]
 name = "Nullification"
 bonus_type = "Equipment"

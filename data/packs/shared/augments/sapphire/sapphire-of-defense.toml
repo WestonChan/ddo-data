@@ -28,13 +28,13 @@ levels = [
     36,
 ]
 
-[[effect]]
-name = "Physical Resistance Rating"
-bonus_type = "Enhancement"
-value = 16
+[[citation]]
+url = "https://ddowiki.com/page/Item:Sapphire_of_Defense"
+read = "2026-10-23"
+note = 'R6-8 row 60: line structure checked. typed: "Sheltering +16: +16 Enhancement bonus to Physical and Magical Resistance Ratings" ; screenshot: "Drag this augment into a slot to upgrade an item to provide a +16 Enhancement bonus to your Physical Resistance Rating and Magical Resistance Rating."'
 
 [[effect]]
-name = "Magical Resistance Rating"
+name = "Sheltering"
 bonus_type = "Enhancement"
 value = 16
 
@@ -51,6 +51,18 @@ amounts = [16]
 bonus_type = "Enhancement"
 effect = "Magical Resistance Rating"
 effect_type = "MRR"
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [
+    ["Physical Resistance Rating"],
+    ["Magical Resistance Rating"],
+]
+reason = 'R6-8 row 60: typed: "Sheltering +16: +16 Enhancement bonus to Physical and Magical Resistance Ratings" ; screenshot: "Drag this augment into a slot to upgrade an item to provide a +16 Enhancement bonus to your Physical Resistance Rating and Magical Resistance Rating."'
+url = "https://ddowiki.com/page/Item:Sapphire_of_Defense"
+read = "2026-10-23"
+qualifier = "Physical Resistance Rating, Magical Resistance Rating / Enhancement"
 
 [[slot]]
 slot = "blue"

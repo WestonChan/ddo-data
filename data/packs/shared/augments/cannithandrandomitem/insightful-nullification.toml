@@ -46,6 +46,11 @@ level_values = [
     83,
 ]
 
+[[citation]]
+url = "https://ddowiki.com/page/Essence_Crafting_enchantments"
+read = "2026-10-23"
+note = 'R6-8 row 41: line structure checked. shard: "Spellpower | Insightful Nullification" ; Nullification: "Effect: Passive: +N Equipment bonus to Negative and Poison Spell Power."'
+
 [[effect]]
 name = "Nullification"
 bonus_type = "Insight"

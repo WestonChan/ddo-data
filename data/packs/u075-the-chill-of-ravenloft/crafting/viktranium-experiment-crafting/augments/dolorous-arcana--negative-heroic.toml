@@ -4,6 +4,11 @@ family = "Lamordia_Heroic"
 icon = "Lamordia"
 min_level = 8
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Dolorous_Arcana:_Negative_(heroic)"
+read = "2026-10-23"
+note = 'R6-9 row 44: line structure checked. "Insightful Nullification +35"; tooltip: "Passive: +35 Insight bonus to Negative (Necrotic) and Poison Spell Power."; screenshot: "Slotted Effect: +35 Insight bonus to Negative and Poison Spell Power."'
+
 [[effect]]
 name = "Nullification"
 bonus_type = "Insight"

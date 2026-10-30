@@ -3,6 +3,11 @@ description = "Dominion/Negative: +139 Equipment bonus increase to Negative/Pois
 family = "Greensteel_Legendary"
 min_level = 26
 
+[[citation]]
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-10-23"
+note = 'R6-8 row 38: line structure checked. screenshot: "Negative and Poison Spell Power (139 Equipment)" ; typed: "Nullification +139: Passive: +139 Equipment bonus to Negative (Necrotic) and Poison Spell Power." ; tier table: "Nullification 139"'
+
 [[effect]]
 name = "Nullification"
 bonus_type = "Equipment"

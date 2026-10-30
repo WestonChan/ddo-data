@@ -46,6 +46,11 @@ level_values = [
     24,
 ]
 
+[[citation]]
+url = "https://ddowiki.com/page/Essence_Crafting_enchantments"
+read = "2026-10-23"
+note = 'R6-8 row 48: line structure checked. shard: "Spell critical | Negative Lore" ; "Void Lore - negative energy and poison spells"'
+
 [[effect]]
 name = "Void Lore"
 bonus_type = "Equipment"

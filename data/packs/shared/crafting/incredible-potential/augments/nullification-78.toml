@@ -4,6 +4,11 @@ family = "IncrediblePotential"
 icon = "Upgrade"
 min_level = 18
 
+[[citation]]
+url = "https://ddowiki.com/page/Incredible_Potential"
+read = "2026-10-23"
+note = 'R6-9 row 20: line structure checked. "Nullification 78" (row: "Nullification 78 | Negative | Dominion | Ethereal"); Nullification page: "Effect: Passive: +N Equipment bonus to Negative and Poison Spell Power."'
+
 [[effect]]
 name = "Nullification"
 bonus_type = "Equipment"

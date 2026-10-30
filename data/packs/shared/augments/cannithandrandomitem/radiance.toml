@@ -46,6 +46,11 @@ level_values = [
     16,
 ]
 
+[[citation]]
+url = "https://ddowiki.com/page/Radiance_(spell_boost)"
+read = "2026-10-23"
+note = 'R6-8 row 46: line structure checked. "Effect: Passive: +N Equipment bonus to Light and Alignment Spell Power."'
+
 [[effect]]
 name = "Radiance"
 bonus_type = "Equipment"

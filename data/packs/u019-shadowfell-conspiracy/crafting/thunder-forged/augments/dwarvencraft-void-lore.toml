@@ -3,6 +3,11 @@ description = "Dwarvencraft Void Lore: Passive: Your Negative/Poison Energy spel
 family = "Thunderforged"
 min_level = 28
 
+[[citation]]
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-10-23"
+note = 'R6-9 row 32: line structure checked. "Dwarvencraft Void Lore: Passive: Your Negative Energy spells gain a +22% Equipment Bonus to their chance to Critical Hit."'
+
 [[effect]]
 name = "Void Lore"
 bonus_type = "Equipment"

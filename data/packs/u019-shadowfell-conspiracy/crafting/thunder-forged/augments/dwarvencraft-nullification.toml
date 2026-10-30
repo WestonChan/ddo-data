@@ -4,6 +4,11 @@ description = "Passive: +150 Equipment Bonus to Negative/Poison Spell Power."
 family = "Thunderforged"
 min_level = 24
 
+[[citation]]
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-10-23"
+note = 'R6-9 row 30: line structure checked. "Dwarvencraft <Spell-Power Type>:1 Passive: +144 Equipment Bonus to <Type> Spell Power." (footnote 1: "Combustion/Corrosion/Devotion/Glaciation/Impulse/Magnetism/Nullification/Radiance/Reconstruction/Resonance")'
+
 [[effect]]
 name = "Nullification"
 bonus_type = "Equipment"
@@ -108,6 +113,16 @@ display_name = "Thunderforged Weapon Enchantment"
 effect_type = "Weapon_Enchantment"
 is_item_specific = true
 targets = ["All"]
+
+[[verification_request]]
+question = "Does Dwarvencraft Nullification grant 150 or 144 spell power?"
+assumed = "Nullification +150 Equipment."
+raised = "2026-10-29"
+
+[[verification_request.source]]
+says = "R6-9 row 31: the typed crafting text gives 144; the current file and Maetrim give 150. No screenshot settles the discrepancy."
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-10-23"
 
 [[slot]]
 slot = "crafting: thunderforged tier 1"

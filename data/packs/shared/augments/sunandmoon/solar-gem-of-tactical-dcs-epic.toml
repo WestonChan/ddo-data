@@ -6,6 +6,11 @@ family = "SunAndMoon"
 icon = "HistoryBookWhite"
 min_level = 20
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Tactical_DCs_(Epic)"
+read = "2026-10-23"
+note = """R6-9 row 17: line structure checked. "Artifact Combat Mastery +2"; tooltip "+2 Artifact bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts."; screenshot: "Slotted Effect: +2 Artifact Bonus to Tactical DCs.""""
+
 [[effect]]
 name = "Combat Mastery"
 bonus_type = "Artifact"

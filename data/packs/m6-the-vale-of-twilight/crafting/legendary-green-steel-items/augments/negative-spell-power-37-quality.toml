@@ -3,6 +3,11 @@ description = "Dominion/Negative: +37 Quality bonus increase to Negative/Poison 
 family = "Greensteel_Legendary"
 min_level = 26
 
+[[citation]]
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_2"
+read = "2026-10-23"
+note = 'R6-8 row 40: line structure checked. screenshot: "Negative and Poison Spell Power (37 Quality)" ; typed: "Quality Nullification +37: Passive: +37 Quality bonus to Negative (Necrotic) and Poison Spell Power." ; tier table: "Quality Nullification 37"'
+
 [[effect]]
 name = "Nullification"
 bonus_type = "Quality"

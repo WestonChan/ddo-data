@@ -4,6 +4,11 @@ family = "Lamordia_Heroic"
 icon = "Lamordia"
 min_level = 8
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Miserable_Arcana:_Negative_(heroic)"
+read = "2026-10-23"
+note = 'R6-9 row 55: line structure checked. "Nullification +70"; tooltip "Passive: +70 Equipment bonus to Negative (Necrotic) and Poison Spell Power."; screenshot: "Slotted Effect: +70 Equipment bonus to Negative and Poison Spellpower."'
+
 [[effect]]
 name = "Nullification"
 bonus_type = "Equipment"

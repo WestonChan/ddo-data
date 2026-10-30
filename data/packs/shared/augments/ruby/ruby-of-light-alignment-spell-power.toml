@@ -28,6 +28,11 @@ levels = [
     36,
 ]
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Ruby_of_Radiance_139"
+read = "2026-10-23"
+note = 'R6-8 row 57: line structure checked. typed: "Radiance +139: Passive: +139 Equipment bonus to Light and Alignment Spell Power." ; screenshot: "Drag this augment into a slot to upgrade a weapon with a +139 Equipment bonus to Light and Alignment Spell Power."'
+
 [[effect]]
 name = "Radiance"
 bonus_type = "Equipment"

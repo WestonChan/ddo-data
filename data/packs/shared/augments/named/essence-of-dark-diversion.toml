@@ -9,17 +9,17 @@ min_level = 30
 
 [[effect]]
 name = "Melee Threat Generation"
-bonus_type = "Equipment"
+bonus_type = "Enhancement"
 value = -20
 
 [[effect]]
 name = "Ranged Threat Generation"
-bonus_type = "Equipment"
+bonus_type = "Enhancement"
 value = -20
 
 [[effect]]
 name = "Spell Threat Generation"
-bonus_type = "Equipment"
+bonus_type = "Enhancement"
 value = -20
 
 [[modifier]]
@@ -42,6 +42,33 @@ amounts = [-20]
 bonus_type = "Equipment"
 effect = "Spell Threat Generation"
 effect_type = "ThreatBonusSpell"
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "bonus_type"
+upstream = "Equipment"
+reason = "R6-8 row 77: the typed Occultation tooltip gives Enhancement on all three threat bonuses."
+url = "https://ddowiki.com/page/Item:Essence_of_Dark_Diversion"
+read = "2026-10-23"
+qualifier = "Melee Threat Generation / Equipment"
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "bonus_type"
+upstream = "Equipment"
+reason = "R6-8 row 77: the typed Occultation tooltip gives Enhancement on all three threat bonuses."
+url = "https://ddowiki.com/page/Item:Essence_of_Dark_Diversion"
+read = "2026-10-23"
+qualifier = "Spell Threat Generation / Equipment"
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "bonus_type"
+upstream = "Equipment"
+reason = "R6-8 row 77: the typed Occultation tooltip gives Enhancement on all three threat bonuses."
+url = "https://ddowiki.com/page/Item:Essence_of_Dark_Diversion"
+read = "2026-10-23"
+qualifier = "Ranged Threat Generation / Equipment"
 
 [[slot]]
 slot = "yellow"

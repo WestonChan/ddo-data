@@ -10,6 +10,11 @@ family = "Greensteel_Heroic"
 icon = "ShardOfGreatPower"
 min_level = 11
 
+[[citation]]
+url = "https://ddowiki.com/page/Altar_of_Subjugation_-_Manufactured_Ingredient_Recipes"
+read = "2026-10-23"
+note = 'R6-8 row 36: line structure checked. "Nullification (72) | Void Lore IV | Negative | Dominion | Ethereal"'
+
 [[effect]]
 name = "Void Lore"
 bonus_type = "Equipment"
@@ -35,6 +40,16 @@ targets = [
     "Negative",
     "Poison",
 ]
+
+[[verification_request]]
+question = "What lore percentage does the Green Steel Void Lore IV accessory effect grant?"
+assumed = "Void Lore +9% Equipment."
+raised = "2026-10-29"
+
+[[verification_request.source]]
+says = "R6-8 row 82: the generic table suggests 13–15% for ranks III–V, but no Green Steel screenshot or crafting page states the amount; the table may predate a lore rescale."
+url = "https://ddowiki.com/page/Spell_Lore"
+read = "2026-10-23"
 
 [[slot]]
 slot = "crafting: accessory subjugation"

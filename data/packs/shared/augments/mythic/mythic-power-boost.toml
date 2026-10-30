@@ -5,18 +5,13 @@ family = "Mythic"
 icon = "Mythic"
 min_level = 1
 
-[[effect]]
-name = "Melee Power"
-bonus_type = "Mythic"
-value = 1
+[[citation]]
+url = "https://ddowiki.com/page/Item:Legendary_Tunneler's_Toolkit"
+read = "2026-10-23"
+note = 'R6-8 row 50: line structure checked. "Mythic Belt Boost +1 or +3: +1 or +3 Mythic bonus to Melee, Ranged, and Universal Spell Power." (Ring, Goggle and Belt variants read the same)'
 
 [[effect]]
-name = "Ranged Power"
-bonus_type = "Mythic"
-value = 1
-
-[[effect]]
-name = "Universal Spell Power"
+name = "Melee, Ranged and Universal Spell Power"
 bonus_type = "Mythic"
 value = 1
 
@@ -40,6 +35,19 @@ amounts = [1]
 bonus_type = "Mythic"
 effect = "Universal Spell Power"
 effect_type = "UniversalSpellPower"
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [
+    ["Melee Power"],
+    ["Ranged Power"],
+    ["Universal Spell Power"],
+]
+reason = 'R6-8 row 50: "Mythic Belt Boost +1 or +3: +1 or +3 Mythic bonus to Melee, Ranged, and Universal Spell Power." (Ring, Goggle and Belt variants read the same)'
+url = "https://ddowiki.com/page/Item:Legendary_Tunneler's_Toolkit"
+read = "2026-10-23"
+qualifier = "Melee Power, Ranged Power, Universal Spell Power / Mythic"
 
 [[slot]]
 slot = "crafting: mythic"

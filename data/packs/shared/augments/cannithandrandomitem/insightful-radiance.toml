@@ -46,6 +46,11 @@ level_values = [
     83,
 ]
 
+[[citation]]
+url = "https://ddowiki.com/page/Essence_Crafting_enchantments"
+read = "2026-10-23"
+note = 'R6-8 row 42: line structure checked. shard: "Spellpower | Insightful Radiance" ; Radiance: "Effect: Passive: +N Equipment bonus to Light and Alignment Spell Power." ; table: "Radiance | Brilliance | Light and Alignment (Chaotic, Evil, Good, Lawful) Spells"'
+
 [[effect]]
 name = "Radiance"
 bonus_type = "Insight"

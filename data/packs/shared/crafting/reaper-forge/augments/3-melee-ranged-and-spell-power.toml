@@ -45,6 +45,16 @@ url = "https://ddowiki.com/page/Reaper_Forge"
 read = "2026-10-23"
 qualifier = "Melee Power, Ranged Power, Universal Spell Power / Reaper"
 
+[[verification_request]]
+question = "Can Reaper Enchantment: Power be crafted, or is it found only?"
+assumed = "The current Reaper Forge crafting slots are present."
+raised = "2026-10-29"
+
+[[verification_request.source]]
+says = "R6-9 row 24: the page says this bonus cannot be crafted using the Reaper Forge and must be found naturally, while the file provides crafting slots."
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-10-23"
+
 [[slot]]
 slot = "crafting: reaper armor"
 

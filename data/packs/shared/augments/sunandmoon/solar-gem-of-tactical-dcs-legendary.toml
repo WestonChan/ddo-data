@@ -8,6 +8,11 @@ family = "SunAndMoon"
 icon = "HistoryBookWhite"
 min_level = 30
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Tactical_DCs_(Legendary)"
+read = "2026-10-23"
+note = 'R6-9 row 18: line structure checked. "Artifact Combat Mastery +3"; tooltip same wording at +3; screenshot: "Slotted Effect: +3 Artifact Bonus to Tactical DCs."'
+
 [[effect]]
 name = "Combat Mastery"
 bonus_type = "Artifact"

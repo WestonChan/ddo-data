@@ -4,6 +4,11 @@ family = "Lamordia_Heroic"
 icon = "Lamordia"
 min_level = 8
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Miserable_Arcana:_Light_(heroic)"
+read = "2026-10-23"
+note = 'R6-9 row 53: line structure checked. "Radiance +70"; tooltip "Passive: +70 Equipment bonus to Light and Alignment Spell Power."; screenshot: "Slotted Effect: +70 Equipment bonus to Light and Alignment Spellpower."'
+
 [[effect]]
 name = "Radiance"
 bonus_type = "Equipment"

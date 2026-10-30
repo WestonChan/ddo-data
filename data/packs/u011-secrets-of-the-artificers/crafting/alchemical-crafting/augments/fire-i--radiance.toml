@@ -52,5 +52,15 @@ targets = [
     "Lawful",
 ]
 
+[[verification_request]]
+question = "Does Alchemical Fire I grant 152 spell power and 21% lore, or 148 and 22%?"
+assumed = "Radiance +152 and Radiance Lore +21%, Equipment."
+raised = "2026-10-29"
+
+[[verification_request.source]]
+says = "R6-9 row 28: the typed table gives 148 spell power and 22% lore; the current file and Maetrim give 152 and 21."
+url = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-10-23"
+
 [[slot]]
 slot = "crafting: legendary alchemical tier 1"

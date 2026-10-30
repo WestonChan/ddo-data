@@ -46,6 +46,11 @@ level_values = [
     24,
 ]
 
+[[citation]]
+url = "https://ddowiki.com/page/Essence_Crafting_enchantments"
+read = "2026-10-23"
+note = "R6-8 row 49: line structure checked. as above"
+
 [[effect]]
 name = "Void Lore"
 bonus_type = "Enhancement"
@@ -61,6 +66,16 @@ targets = [
     "Negative",
     "Poison",
 ]
+
+[[verification_request]]
+question = "What value and bonus type does the current Spell Lore Negative augment grant?"
+assumed = "Void Lore +27 Enhancement; the authored level_values stop at 24."
+raised = "2026-10-29"
+
+[[verification_request.source]]
+says = "R6-8 row 81: the generic lore table stops at 24. No read page establishes the type of this random-loot version; its sibling uses Equipment."
+url = "https://ddowiki.com/page/Essence_Crafting_enchantments"
+read = "2026-10-23"
 
 [[slot]]
 slot = "crafting: cannith orb suffix"

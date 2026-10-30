@@ -8,6 +8,11 @@ family = "Alchemical"
 icon = "Diamond"
 min_level = 29
 
+[[citation]]
+url = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-10-23"
+note = 'R6-9 row 25: line structure checked. "Nullification +148, Void Lore +22%"'
+
 [[effect]]
 name = "Nullification"
 bonus_type = "Equipment"
@@ -39,6 +44,16 @@ targets = [
     "Negative",
     "Poison",
 ]
+
+[[verification_request]]
+question = "Does Alchemical Earth I grant 152 spell power and 21% lore, or 148 and 22%?"
+assumed = "Nullification +152 and Void Lore +21%, Equipment."
+raised = "2026-10-29"
+
+[[verification_request.source]]
+says = "R6-9 row 26: the typed table gives 148 spell power and 22% lore; the current file and Maetrim give 152 and 21."
+url = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-10-23"
 
 [[slot]]
 slot = "crafting: legendary alchemical tier 1"

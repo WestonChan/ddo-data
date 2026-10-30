@@ -4,6 +4,11 @@ family = "DinosaurBone"
 icon = "Claw"
 min_level = 31
 
+[[citation]]
+url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-10-23"
+note = 'R6-9 row 40: line structure checked. "Iridiscent Claw: Negative | +149 Equipment bonus to Negative and Poison Spellpower."'
+
 [[effect]]
 name = "Nullification"
 bonus_type = "Equipment"
