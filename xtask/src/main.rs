@@ -246,6 +246,8 @@ fn deny_invalid_data_files() -> Result<()> {
     }
     let mut db = rusqlite::Connection::open_in_memory()?;
     ddo_etl::tree::build_from_data(&data_root, &mut db)?;
+    let violations = xtask::home_types::stat_home_violations(&db, ddo_model::bonus_type_wording::STAT_HOME_TYPES)?;
+    ensure!(violations.is_empty(), "{}", violations.join("\n"));
     let violations = xtask::redirect_checks::redirect_check_violations(&db, None, None)?;
     ensure!(violations.is_empty(), "{}", violations.join("\n"));
     ddo_etl::tree::schemas::validate_unpopulated_columns(&db)

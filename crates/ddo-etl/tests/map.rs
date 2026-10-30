@@ -1078,11 +1078,11 @@ fn character_wide_effect_types_resolve_to_their_stats() {
 }
 
 #[test]
-fn stat_home_declarations_belong_to_stat_files_only() {
+fn home_declarations_are_not_a_mapping_vocabulary() {
     let mut vocabulary: toml::Value = toml::from_str(include_str!("../data/effect_map.toml")).unwrap();
-    vocabulary["home_bonus_types"].as_table_mut().unwrap().insert("Abjuration Focus".into(), "Insight".into());
+    vocabulary.as_table_mut().unwrap().insert("home_bonus_types".into(), toml::Value::Table(toml::map::Map::new()));
     let error = EffectMap::from_toml(&toml::to_string(&vocabulary).unwrap()).unwrap_err();
-    assert!(error.to_string().contains("Abjuration Focus") && error.to_string().contains("stat file"), "{error}");
+    assert!(error.to_string().contains("home_bonus_types"), "{error}");
 }
 
 #[test]

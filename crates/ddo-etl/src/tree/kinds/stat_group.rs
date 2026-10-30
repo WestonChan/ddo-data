@@ -76,6 +76,7 @@ impl StatGroupFile {
         path: &Path,
         ids: &mut super::super::ids::StableIds,
     ) -> Result<i64> {
+        super::effect::validate_home_type(self.home_bonus_type.as_deref(), path)?;
         super::effect::validate_name_type_omission(
             &self.name,
             Some(&self.verbose_name_template),

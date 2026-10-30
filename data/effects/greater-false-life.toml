@@ -1,6 +1,5 @@
 name = "Greater False Life"
 description_template = "This item grants the wearer +30 maximum health."
-home_bonus_type = "Enhancement"
 verbose_name_template = "Greater False Life +30"
 
 [[bonus]]

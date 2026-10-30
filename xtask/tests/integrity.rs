@@ -470,10 +470,14 @@ value = 4
 }
 
 #[test]
-fn a_fixed_home_type_fills_the_rendering_token_without_a_link_type() {
+fn fixed_bonus_types_fill_rendering_tokens_without_a_home_or_link_type() {
     let scratch = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_in(scratch.path());
     let db = Connection::open(db_path).unwrap();
+    let home: Option<i64> = db
+        .query_row("SELECT home_bonus_type_id FROM effects WHERE name='Firestorm Lore'", [], |row| row.get(0))
+        .unwrap();
+    assert_eq!(home, None);
     db.execute("UPDATE effects SET description_template='{1}% %b1 bonus to Fire and Electric Spell Lore.' WHERE name='Firestorm Lore'", []).unwrap();
     db.execute(
         "INSERT INTO item_effects (item_id, effect_id, sort_order, value)

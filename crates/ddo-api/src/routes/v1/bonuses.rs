@@ -263,13 +263,13 @@ fn carrier_pages(
         }
     }
     let carrier_columns = if kind != "stat" {
-        "NULL AS effect_id, NULL AS effect_slug, NULL AS effect,
-         COALESCE(bt.name, (SELECT MIN(fixed_type.name) FROM effect_bonuses fixed_bonus
-              JOIN bonus_types fixed_type ON fixed_type.id = fixed_bonus.bonus_type_id
-             WHERE fixed_bonus.effect_id = j.effect_id
-            HAVING COUNT(DISTINCT fixed_bonus.bonus_type_id) = 1)) AS bonus_type,
-         j.value, j.value2, NULL AS amount_source, NULL AS scale"
-            .to_string()
+        format!(
+            "NULL AS effect_id, NULL AS effect_slug, NULL AS effect,
+             COALESCE(bt.name, (SELECT fixed_type.name FROM ({fixed_types}) fixed_type
+                  WHERE fixed_type.effect_id = j.effect_id)) AS bonus_type,
+             j.value, j.value2, NULL AS amount_source, NULL AS scale",
+            fixed_types = ddo_model::bonus_type_wording::FIXED_EFFECT_BONUS_TYPES_SQL,
+        )
     } else {
         "e.id AS effect_id, e.slug AS effect_slug, e.name AS effect, bt.name AS bonus_type, ob.amount AS value,
          NULL AS value2, ob.amount_source, ob.scale"

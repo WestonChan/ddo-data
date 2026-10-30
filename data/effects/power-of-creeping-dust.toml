@@ -1,6 +1,5 @@
 name = "Power of Creeping Dust"
 description_template = "Passive: {1} Equipment bonus to Cold and Acid Power."
-home_bonus_type = "Equipment"
 set_bonus_line_template = "+{1} Equipment Bonus to Cold and Acid Spell Power"
 verbose_name_template = "Power of Creeping Dust +{1}"
 

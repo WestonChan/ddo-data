@@ -1,6 +1,5 @@
 name = "Enhanced Ki"
 description_template = "Increases the rate at which the user gains Ki with each successful attack."
-home_bonus_type = "Enhancement"
 verbose_name_template = "Enhanced Ki +{1}"
 
 [[bonus]]

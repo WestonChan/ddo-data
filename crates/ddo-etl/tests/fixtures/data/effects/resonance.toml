@@ -1,5 +1,4 @@
 name = "Resonance"
-home_bonus_type = "Equipment"
 verbose_name_template = "Resonance +{1}"
 
 [[bonus]]

@@ -1,6 +1,5 @@
 name = "Silver Flame"
 description_template = "An item with this quality assists only wearers who have the ability to turn undead. The cleansing power of the Silver Flame increase the total Hit Dice of undead turned by +6."
-home_bonus_type = "Equipment"
 verbose_name_template = "Silver Flame +6"
 
 [[bonus]]

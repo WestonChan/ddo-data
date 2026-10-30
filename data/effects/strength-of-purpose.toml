@@ -1,6 +1,5 @@
 name = "Strength of Purpose"
 description_template = "You gain a {1} %b1 Bonus to Unconsciousness Range, and regenerate 16 Hit Points using Positive Healing every 10 seconds."
-home_bonus_type = "Enhancement"
 verbose_name_template = "%b1 Strength of Purpose"
 
 [[bonus]]

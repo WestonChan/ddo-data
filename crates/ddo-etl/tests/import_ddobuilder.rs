@@ -81,28 +81,25 @@ fn write_abjuration_carrier(source: &Path, bonus_type: &str, index: usize) {
 
 #[test]
 fn import_preserves_declared_stat_homes_and_reports_a_different_majority() {
-    for home in [Some("Insight"), None] {
-        let world = abjuration_home_import();
-        world.edit(&format!("UPDATE effects SET home_bonus_type_id = (SELECT id FROM bonus_types WHERE name = '{}') WHERE name = 'Abjuration Focus'", home.unwrap_or("none")));
-        for index in 3..5 {
-            write_abjuration_carrier(&world.options.source_dir, "Equipment", index);
-        }
-        let report = import_ddobuilder(&world.options).unwrap();
-        assert!(!report.has_conflicts(), "{report}");
-        let actual: Option<String> = world.database().query_row("SELECT bt.name FROM effects e LEFT JOIN bonus_types bt ON bt.id=e.home_bonus_type_id WHERE e.name='Abjuration Focus'", [], |row| row.get(0)).unwrap();
-        assert_eq!(actual.as_deref(), home);
-        let entry = report
-            .entries
-            .iter()
-            .find(|entry| entry.category == "STAT HOME MAJORITY" && entry.detail.contains("Abjuration Focus"))
-            .unwrap_or_else(|| panic!("{report}"));
-        assert!(entry.detail.contains("Equipment") && entry.detail.contains(home.unwrap_or("none")), "{entry:?}");
-        assert!(report.to_string().contains("Stat home types\n"));
+    let world = abjuration_home_import();
+    for index in 3..5 {
+        write_abjuration_carrier(&world.options.source_dir, "Equipment", index);
     }
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    let actual: Option<String> = world.database().query_row("SELECT bt.name FROM effects e LEFT JOIN bonus_types bt ON bt.id=e.home_bonus_type_id WHERE e.name='Abjuration Focus'", [], |row| row.get(0)).unwrap();
+    assert_eq!(actual, None);
+    let entry = report
+        .entries
+        .iter()
+        .find(|entry| entry.category == "STAT HOME MAJORITY" && entry.detail.contains("Abjuration Focus"))
+        .unwrap_or_else(|| panic!("{report}"));
+    assert!(entry.detail.contains("Equipment") && entry.detail.contains("none"), "{entry:?}");
+    assert!(report.to_string().contains("Stat home types\n"));
 }
 
 #[test]
-fn missing_seeded_stat_gets_a_reported_upstream_home_without_recreating_its_deleted_file() {
+fn missing_seeded_stat_reports_its_majority_without_a_home_or_recreating_its_deleted_file() {
     for (stat, slug, expected) in
         [("Abjuration Focus", "abjuration-focus", "Equipment"), ("Divination Focus", "divination-focus", "none")]
     {
@@ -135,9 +132,9 @@ fn missing_seeded_stat_gets_a_reported_upstream_home_without_recreating_its_dele
                 |row| row.get(0),
             )
             .unwrap();
-        assert_eq!(home.as_deref().unwrap_or("none"), expected);
+        assert_eq!(home, None);
         let declared = std::fs::read_to_string(upstream.join(&relative)).unwrap();
-        assert!(declared.contains(&format!("home_bonus_type = {expected:?}")), "{declared}");
+        assert!(!declared.contains("home_bonus_type"), "{declared}");
         let report = import_ddobuilder(&world.options).unwrap();
         assert!(!report.has_conflicts(), "{report}");
         assert!(
@@ -146,14 +143,6 @@ fn missing_seeded_stat_gets_a_reported_upstream_home_without_recreating_its_dele
                 && entry.detail.contains(expected)),
             "{report}"
         );
-        if expected == "Equipment" {
-            assert!(
-                report.entries.iter().any(|entry| entry.category == "CHANGED UPSTREAM, ABSENT IN OURS"
-                    && entry.path == Path::new(&relative)
-                    && entry.detail.contains("home_bonus_type_id")),
-                "{report}"
-            );
-        }
         assert!(!path.exists());
         assert_eq!(
             world

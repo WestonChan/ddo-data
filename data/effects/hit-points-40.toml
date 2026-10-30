@@ -1,6 +1,5 @@
 name = "Hit Points +40"
 description_template = "Passive: +40 Enhancement Bonus to Hit Points"
-home_bonus_type = "Enhancement"
 verbose_name_template = "Hit Points +40"
 
 [[bonus]]

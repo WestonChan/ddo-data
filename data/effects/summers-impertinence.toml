@@ -1,6 +1,5 @@
 name = "Summer's Impertinence"
 description_template = "The heat of Summer surrounds you. +20% Enhancement bonus to critical damage with fire and light spells."
-home_bonus_type = "Enhancement"
 verbose_name_template = "Summer's Impertinence +20"
 
 [[bonus]]

@@ -45,13 +45,11 @@ pub(crate) fn item_home_bonus_types(db: &Connection) -> Result<BTreeMap<i64, i64
 
 pub(super) fn write_effect_home_types(db: &Connection, groupings: &crate::groupings::Groupings) -> Result<()> {
     let inferred_homes = item_home_bonus_types(db)?;
-    let mut statement = db.prepare(
-        "SELECT e.id, e.name, e.is_stat, e.home_bonus_type_id,
-                (SELECT MIN(eb.bonus_type_id) FROM effect_bonuses eb WHERE eb.effect_id = e.id
-                  HAVING COUNT(*) > 0 AND COUNT(eb.bonus_type_id) = COUNT(*)
-                     AND COUNT(DISTINCT eb.bonus_type_id) = 1)
-           FROM effects e",
-    )?;
+    let mut statement = db.prepare(&format!(
+        "SELECT e.id, e.name, e.is_stat, e.home_bonus_type_id, fixed_type.bonus_type_id
+           FROM effects e LEFT JOIN ({fixed_types}) fixed_type ON fixed_type.effect_id=e.id",
+        fixed_types = ddo_model::bonus_type_wording::FIXED_EFFECT_BONUS_TYPES_SQL,
+    ))?;
     let mut update = db.prepare("UPDATE effects SET home_bonus_type_id = ?2 WHERE id = ?1")?;
     for row in statement.query_map([], |row| {
         Ok((
@@ -65,18 +63,26 @@ pub(super) fn write_effect_home_types(db: &Connection, groupings: &crate::groupi
         let (id, name, is_stat, current_home, fixed_type) = row?;
         let inferred_home = current_home.or(fixed_type).or_else(|| inferred_homes.get(&id).copied());
         let home = if is_stat {
+            ddo_model::bonus_type_wording::stat_home_type(&name).map(BonusType::id)
+        } else {
             groupings
                 .effect_named(&name)
-                .map(|stat| stat.home_bonus_type.as_deref().and_then(BonusType::parse).map(BonusType::id))
+                .map(|effect| effect.home_bonus_type.as_deref().and_then(BonusType::parse).map(BonusType::id))
                 .unwrap_or(inferred_home)
-        } else {
-            EFFECT_MAP
-                .home_bonus_types
-                .get(&name)
-                .map(|name| BonusType::parse(name).map(BonusType::id))
-                .unwrap_or(inferred_home)
+                .filter(|id| !ddo_model::bonus_type_wording::ALWAYS_UNNAMED_TYPES.iter().any(|kind| kind.id() == *id))
         };
         update.execute(params![id, home])?;
+    }
+    Ok(())
+}
+
+pub(crate) fn write_stat_home_types(db: &Connection) -> Result<()> {
+    db.execute("UPDATE effects SET home_bonus_type_id = NULL WHERE is_stat", [])?;
+    let mut write_home = db.prepare(
+        "UPDATE effects SET home_bonus_type_id = (SELECT id FROM bonus_types WHERE name = ?2) WHERE is_stat AND name = ?1",
+    )?;
+    for &(name, home) in ddo_model::bonus_type_wording::STAT_HOME_TYPES {
+        write_home.execute(params![name, home.bonus_type().name()])?;
     }
     Ok(())
 }

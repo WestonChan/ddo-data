@@ -1,7 +1,6 @@
 name = "Devil's Bones"
 default_value = 1
 description_template = "You are strengthened by the bones of a powerful Devil. {1}% %b1 bonus to Fire and Evil Absorption."
-home_bonus_type = "Enhancement"
 verbose_name_template = "%b1 Devil's Bones +{1}%"
 
 [[bonus]]

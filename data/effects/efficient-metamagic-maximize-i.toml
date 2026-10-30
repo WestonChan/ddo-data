@@ -1,6 +1,5 @@
 name = "Efficient Metamagic - Maximize I"
 description_template = "The additional spell point cost for using the Maximize Metamagic feat is reduced by 2 SP."
-home_bonus_type = "Equipment"
 verbose_name_template = "Efficient Metamagic - Maximize I"
 
 [[bonus]]

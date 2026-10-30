@@ -1,6 +1,5 @@
 name = "Deathblock IX"
 description_template = "Passive: 27% Enhancement Bonus to Negative Energy Absorption. In addition, you are immune to magical effects that can cause instant death."
-home_bonus_type = "Enhancement"
 verbose_name_template = "Deathblock IX +27"
 
 [[bonus]]

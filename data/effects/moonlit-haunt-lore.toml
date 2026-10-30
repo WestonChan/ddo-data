@@ -1,6 +1,5 @@
 name = "Moonlit Haunt Lore"
 description_template = "Passive: Your Negative, Force, and Poison spells gain a {1}% %b1 bonus to their chance to critical hit."
-home_bonus_type = "Equipment"
 set_bonus_line_template = "+{1}% %b1 Bonus to Negative, Poison and Force Spell Lore"
 verbose_name_template = "%b1 Moonlit Haunt Lore +{1}%"
 

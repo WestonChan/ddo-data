@@ -152,13 +152,7 @@ exemplar!(
         whole_entity_citation!("row.")
     )
 );
-exemplar!(
-    StatFile,
-    concat!(
-        "name = \"Template Stat\"\ncategory = \"magical\"\nhome_bonus_type = \"none\"\n",
-        whole_entity_citation!("")
-    )
-);
+exemplar!(StatFile, concat!("name = \"Template Stat\"\ncategory = \"magical\"\n", whole_entity_citation!("")));
 exemplar!(TriggersFile, concat!("[[row]]\nname = \"Template Trigger\"\n", whole_entity_citation!("row.")));
 exemplar!(
     VendorFile,

@@ -1,6 +1,5 @@
 name = "Greater Fire Resistance"
 description_template = "This property absorbs the first 30 points of fire damage per attack that the wearer would normally take."
-home_bonus_type = "Enhancement"
 verbose_name_template = "Greater Fire Resistance +30"
 
 [[bonus]]

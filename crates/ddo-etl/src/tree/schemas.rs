@@ -1272,9 +1272,7 @@ mod tests {
     fn stat_category_rejects_unknown_vocabulary_value() {
         let root = Path::new("data");
         let path = root.join("effects/stats/armor-class.toml");
-        let error = read_file(root, &path, "name = 'Armor Class'\ncategory = 'magicall'\nhome_bonus_type = 'none'\n")
-            .unwrap_err()
-            .to_string();
+        let error = read_file(root, &path, "name = 'Armor Class'\ncategory = 'magicall'\n").unwrap_err().to_string();
         assert!(error.contains("category") || error.contains("magicall"), "{error}");
     }
 }

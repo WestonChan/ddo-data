@@ -1,6 +1,5 @@
 name = "Weighty Asset"
 description_template = "This item is so heavy you find it hard to be dragged anywhere - even to your grave. You benefit from a +100 Enhancement bonus to increased unconsciousness range."
-home_bonus_type = "Enhancement"
 verbose_name_template = "Weighty Asset -100"
 
 [[bonus]]

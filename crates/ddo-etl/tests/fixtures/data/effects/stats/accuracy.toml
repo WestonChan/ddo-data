@@ -1,4 +1,3 @@
 name = "Accuracy"
 category = "martial"
-home_bonus_type = "Insight"
 verbose_name_template = "Accuracy +{1}"

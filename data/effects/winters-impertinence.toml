@@ -1,6 +1,5 @@
 name = "Winter's Impertinence"
 description_template = "The chill of Winter surrounds you. +20% Enhancement bonus to critical damage with force and negative spells."
-home_bonus_type = "Enhancement"
 verbose_name_template = "Winter's Impertinence +20"
 
 [[bonus]]

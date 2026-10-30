@@ -1,3 +1,4 @@
+pub mod bonus_type_wording;
 pub mod effect_amount;
 pub mod enums;
 pub mod identity;

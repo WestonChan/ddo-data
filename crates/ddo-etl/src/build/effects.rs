@@ -242,11 +242,7 @@ impl<'a> EffectCache<'a> {
                         stat_id,
                         verbose_name_template,
                         description_template,
-                        EFFECT_MAP
-                            .home_bonus_types
-                            .get(name)
-                            .and_then(|name| BonusType::parse(name))
-                            .map(BonusType::id),
+                        ddo_model::bonus_type_wording::stat_home_type(name).map(BonusType::id),
                         EFFECT_MAP.set_bonus_line_templates.get(name),
                     ],
                 )?;
@@ -293,11 +289,7 @@ impl<'a> EffectCache<'a> {
                         stat_id,
                         verbose_name_template,
                         description_template,
-                        EFFECT_MAP
-                            .home_bonus_types
-                            .get(name)
-                            .and_then(|name| BonusType::parse(name))
-                            .map(BonusType::id),
+                        ddo_model::bonus_type_wording::stat_home_type(name).map(BonusType::id),
                         EFFECT_MAP.set_bonus_line_templates.get(name)
                     ],
                 )?;
@@ -330,7 +322,10 @@ impl<'a> EffectCache<'a> {
                     name,
                     verbose_name_template,
                     description_template,
-                    EFFECT_MAP.home_bonus_types.get(name).and_then(|name| BonusType::parse(name)).map(BonusType::id),
+                    indexed
+                        .and_then(|effect| effect.home_bonus_type.as_deref())
+                        .and_then(BonusType::parse)
+                        .map(BonusType::id),
                     EFFECT_MAP.set_bonus_line_templates.get(name),
                     identity,
                     indexed.and_then(|effect| effect.stat_set_verdict.as_deref()),
@@ -1145,6 +1140,7 @@ mod tests {
     fn a_text_line_cannot_reuse_a_stat_family_name() {
         let mut db = Connection::open_in_memory().unwrap();
         db.execute_batch(ddo_model::ddl()).unwrap();
+        ddo_model::seeds::insert_all(&db).unwrap();
         let transaction = db.transaction().unwrap();
         let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
         let stat_id = effects.ensure_family("Riposte", "Riposte {1}", None, 1).unwrap();

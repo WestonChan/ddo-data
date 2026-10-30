@@ -1,6 +1,5 @@
 name = "Minor Action Boost Enhancement"
 description_template = "This will increase the total number of Action Boosts you can use by 1. However, these additional Action Boosts will only take effect after the wielder rests."
-home_bonus_type = "Equipment"
 verbose_name_template = "Minor Action Boost Enhancement +1"
 
 [[bonus]]

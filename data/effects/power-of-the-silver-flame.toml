@@ -1,6 +1,5 @@
 name = "Power of the Silver Flame"
 description_template = "Passive: {1} %b1 bonus to Positive, Light, and Alignment Spell Power."
-home_bonus_type = "Equipment"
 set_bonus_line_template = "+{1} %b1 Bonus to Evil, Chaos, Positive, Law, Good and Light Spell Power"
 verbose_name_template = "%b1 Power of the Silver Flame +{1}"
 

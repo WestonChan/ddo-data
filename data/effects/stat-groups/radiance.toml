@@ -1,6 +1,5 @@
 name = "Radiance"
 description_template = "{1} %b1 bonus to Light and Alignment spell power."
-home_bonus_type = "Equipment"
 set_bonus_line_template = "+{1} %b1 Bonus to Light and Alignment Spell Power"
 verbose_name_template = "%b1 Radiance +{1}"
 

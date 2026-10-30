@@ -1,4 +1,3 @@
 name = "Spell Point Cost Reduction"
 category = "magical"
-home_bonus_type = "Enhancement"
 verbose_name_template = "%b1 Spell Point Cost Reduction +{1}"

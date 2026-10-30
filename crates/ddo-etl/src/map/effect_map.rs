@@ -39,8 +39,6 @@ pub struct EffectMap {
     #[serde(default)]
     pub names: BTreeMap<String, String>,
     #[serde(default)]
-    pub home_bonus_types: BTreeMap<String, String>,
-    #[serde(default)]
     pub line_templates: BTreeMap<String, String>,
     #[serde(default)]
     pub template_name_aliases: BTreeMap<String, String>,
@@ -266,16 +264,6 @@ impl EffectMap {
         for (source, replacement) in &vocabulary.option_name_aliases {
             if source.trim().is_empty() || replacement.trim().is_empty() {
                 bail!("effect_map.toml [option_name_aliases] needs nonblank words");
-            }
-        }
-        for (effect_name, bonus_type_name) in &vocabulary.home_bonus_types {
-            if Stat::by_name(effect_name).is_some() {
-                bail!("effect_map.toml [home_bonus_types] {effect_name:?} belongs in its stat file");
-            }
-            if effect_name.trim().is_empty()
-                || (bonus_type_name != "none" && BonusType::parse(bonus_type_name).is_none())
-            {
-                bail!("effect_map.toml [home_bonus_types] {effect_name:?} has unknown type {bonus_type_name:?}");
             }
         }
         for (effect_name, template) in &vocabulary.line_templates {

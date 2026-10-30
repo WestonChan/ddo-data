@@ -1,6 +1,5 @@
 name = "Occultation"
 description_template = "20% Enhancement bonus to Decreased threat generated from all damage."
-home_bonus_type = "Enhancement"
 verbose_name_template = "Occultation -20"
 
 [[bonus]]

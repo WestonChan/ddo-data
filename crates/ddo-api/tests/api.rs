@@ -389,11 +389,7 @@ async fn declared_stat_home_keeps_wording_when_a_carrier_changes_the_majority() 
             .unwrap();
         }
     }
-    let canonical_path = fixture_db_path_with_data_edits("stat-home-canonical", |root| {
-        let path = root.join("effects/stats/abjuration-focus.toml");
-        let original = std::fs::read_to_string(&path).unwrap();
-        std::fs::write(&path, original.replace("home_bonus_type = \"none\"", "home_bonus_type = \"Insight\"")).unwrap();
-    });
+    let canonical_path = fixture_db_path_with_data_edits("stat-home-canonical", |_| {});
     let canonical = rusqlite::Connection::open(canonical_path).unwrap();
     let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
     let mut wording = Vec::new();
@@ -422,8 +418,23 @@ async fn declared_stat_home_keeps_wording_when_a_carrier_changes_the_majority() 
         let line = &response["effects"][0];
         wording.push((line["verbose_name"].clone(), line["description"].clone()));
     }
-    assert_eq!(wording[0].0, "Abjuration Focus +2");
+    assert_eq!(wording[0].0, "Insightful Abjuration Focus +2");
     assert_eq!(wording[0], wording[1]);
+}
+
+#[test]
+fn feat_bonus_types_are_unnamed_on_enchantment_lines() {
+    use ddo_api::{bonus_type_line_word, BonusTypeWording};
+    assert_eq!(bonus_type_line_word("Feat", None, BonusTypeWording::Enchantment), None);
+    assert_eq!(bonus_type_line_word("Feat", None, BonusTypeWording::SetBonus), Some("Feat"));
+}
+
+#[tokio::test]
+async fn fixed_bonus_rows_supply_the_line_type_without_a_home() {
+    let (_, _, response) = get("/v1/items/kundarak-delving-boots").await;
+    let speed = response["effects"].as_array().unwrap().iter().find(|line| line["name"] == "Speed").unwrap();
+    assert_eq!(speed["bonus_type"], "Enhancement");
+    assert!(speed["bonuses"].as_array().unwrap().iter().all(|bonus| bonus["bonus_type"] == "Enhancement"));
 }
 
 #[tokio::test]

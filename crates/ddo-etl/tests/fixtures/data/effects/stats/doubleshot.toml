@@ -1,5 +1,4 @@
 name = "Doubleshot"
 category = "martial"
-home_bonus_type = "none"
 set_bonus_line_template = "+{1}% %b1 Bonus to Doubleshot"
 verbose_name_template = "%b1 Doubleshot {1}%"

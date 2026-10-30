@@ -1,6 +1,5 @@
 name = "Smoke Screen"
 description_template = "{1}% Enhancement bonus to Concealment Percentage."
-home_bonus_type = "Enhancement"
 verbose_name_template = "Smoke Screen +{1}%"
 
 [[bonus]]

@@ -1,6 +1,5 @@
 name = "Smoke Screen +20"
 description_template = "You are surrounded by wisps of concealing smoke, giving opponents a 20% concealment chance to miss you."
-home_bonus_type = "Enhancement"
 verbose_name_template = "Smoke Screen +20"
 
 [[bonus]]

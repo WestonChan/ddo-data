@@ -1,5 +1,4 @@
 name = "Striding"
-home_bonus_type = "Enhancement"
 verbose_name_template = "Striding +{1}"
 
 [[bonus]]

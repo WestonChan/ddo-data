@@ -1,6 +1,5 @@
 name = "Healing Lore"
 description_template = "Passive: Your Positive Energy spells gain a {1}% %b1 bonus to their chance to critical hit."
-home_bonus_type = "Equipment"
 verbose_name_template = "%b1 Healing Lore +{1}%"
 
 [[bonus]]

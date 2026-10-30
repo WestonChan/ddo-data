@@ -1,6 +1,5 @@
 name = "Improved Metamagic"
 description_template = "Heighten: Your Heighten Metamagic costs 1 less Spell Point to use per spellcast."
-home_bonus_type = "Equipment"
 verbose_name_template = "Improved Metamagic -1"
 
 [[bonus]]

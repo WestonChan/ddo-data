@@ -1,5 +1,4 @@
 name = "Sacred"
-home_bonus_type = "Equipment"
 verbose_name_template = "Sacred +{1}"
 
 [[bonus]]

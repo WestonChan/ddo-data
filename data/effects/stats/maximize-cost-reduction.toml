@@ -1,4 +1,3 @@
 name = "Maximize Cost Reduction"
 category = "magical"
-home_bonus_type = "Equipment"
 verbose_name_template = "%b1 Maximize Cost Reduction +{1}"

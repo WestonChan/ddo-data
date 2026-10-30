@@ -1,5 +1,4 @@
 name = "Sonic Lore"
-home_bonus_type = "Equipment"
 verbose_name_template = "%b1 Sonic Lore +{1}%"
 
 [[bonus]]

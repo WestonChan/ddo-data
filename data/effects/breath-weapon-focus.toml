@@ -1,6 +1,5 @@
 name = "Breath Weapon Focus"
 description_template = "{1} Equipment bonus to the DC of Breath Weapon spells."
-home_bonus_type = "Equipment"
 verbose_name_template = "Breath Weapon Focus +{1}"
 
 [[bonus]]

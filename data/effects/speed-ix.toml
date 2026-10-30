@@ -1,6 +1,5 @@
 name = "Speed IX"
 description_template = "Passive: {1}% Enhancement bonus to movement speed, {2}% Enhancement bonus to melee and ranged attack speed."
-home_bonus_type = "Enhancement"
 stat_set_verdict = "distinct"
 stat_set_reason = "steps of one ladder differ in amount; one-enchantment ladders are ddo-data#57"
 verbose_name_template = "Speed IX"

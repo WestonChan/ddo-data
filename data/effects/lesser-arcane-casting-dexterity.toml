@@ -1,6 +1,5 @@
 name = "Lesser Arcane Casting Dexterity"
 description_template = "This ability reduces the arcane spell failure chance by -5%."
-home_bonus_type = "Enhancement"
 verbose_name_template = "Lesser Arcane Casting Dexterity -5"
 
 [[bonus]]

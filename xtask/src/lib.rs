@@ -1,6 +1,7 @@
 pub mod data_file_lints;
 pub mod diff_db;
 pub mod golden_refresh;
+pub mod home_types;
 pub mod integrity;
 pub mod redirect_checks;
 pub mod response_examples;

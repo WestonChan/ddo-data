@@ -1,6 +1,5 @@
 name = "Superior Cold Resistance"
 description_template = "This property absorbs the first 40 points of cold damage per attack that the wearer would normally take."
-home_bonus_type = "Enhancement"
 verbose_name_template = "Superior Cold Resistance +40"
 
 [[bonus]]

@@ -1,6 +1,5 @@
 name = "Mystic Diversion"
 description_template = "{1}% %b1 bonus to decreased threat generated from spell damage."
-home_bonus_type = "Enhancement"
 verbose_name_template = "%b1 Mystic Diversion +{1}%"
 
 [[bonus]]

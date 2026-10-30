@@ -1,6 +1,5 @@
 name = "Template Stat"
 category = "magical"
-home_bonus_type = "none"
 
 [[citation]]
 url = "https://ddowiki.com/page/Template"

@@ -1,6 +1,5 @@
 name = "Void Lore IV"
 description_template = "Passive: Your Negative Energy and Poison spells gain a {1}% %b1 bonus to their chance to critical hit."
-home_bonus_type = "Equipment"
 stat_set_verdict = "distinct"
 stat_set_reason = "steps of one ladder differ in amount; one-enchantment ladders are ddo-data#57"
 verbose_name_template = "%b1 Void Lore IV"

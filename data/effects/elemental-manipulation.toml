@@ -1,6 +1,5 @@
 name = "Elemental Manipulation"
 description_template = "This item provides a +90 Equipment bonus to your Acid, Cold, Electric, and Fire Spell Power."
-home_bonus_type = "Equipment"
 stat_set_verdict = "distinct"
 stat_set_reason = "Elemental Manipulation is a fixed +90 Equipment enchantment on Alarphon's Staff. Elemental Resonance is a separate, variable-value enchantment with its own wiki page."
 verbose_name_template = "Elemental Manipulation +90"

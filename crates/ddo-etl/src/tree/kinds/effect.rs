@@ -355,6 +355,7 @@ impl EffectFile {
     }
 
     pub(in crate::tree) fn write_effect(&self, db: &Connection, path: &Path, id: i64, identity: &str) -> Result<()> {
+        validate_home_type(self.home_bonus_type.as_deref(), path)?;
         validate_name_type_omission(&self.name, Some(&self.verbose_name_template), self.omits_bonus_type, true, path)?;
         ensure!(
             id == super::super::ids::stable_hash(&["effects", identity]),
@@ -379,6 +380,16 @@ impl EffectFile {
         }
         Ok(self.damage.len())
     }
+}
+
+pub(in crate::tree) fn validate_home_type(home: Option<&str>, path: &Path) -> Result<()> {
+    if let Some(error) = home
+        .and_then(ddo_model::enums::BonusType::parse)
+        .and_then(ddo_model::bonus_type_wording::home_declaration_error)
+    {
+        anyhow::bail!("{}: {error}", path.display());
+    }
+    Ok(())
 }
 
 #[cfg(test)]

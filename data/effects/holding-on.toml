@@ -1,6 +1,5 @@
 name = "Holding On"
 description_template = "Your range of unconsciousness extends by 40 hitpoints."
-home_bonus_type = "Equipment"
 verbose_name_template = "Holding On -40"
 
 [[bonus]]

@@ -32,8 +32,9 @@ pub(super) fn stat_homes(
     {
         let (id, name, home) = row?;
         let declared = home.and_then(|id| bonus_types.get(&id)).map_or("none", String::as_str);
+        let majority = majority_types.get(&id).and_then(|id| bonus_types.get(id)).map_or("none", String::as_str);
         let (category, detail) = if known_stats.effect_named(&name).is_none() {
-            ("NEW STAT HOME", format!("{name}: inferred {declared} in upstream; existing deleted files stay deleted"))
+            ("NEW STAT HOME", format!("{name}: item majority {majority} for review; code home {declared}; existing deleted files stay deleted"))
         } else if let Some(majority) = majority_types.get(&id).filter(|majority| Some(**majority) != home) {
             ("STAT HOME MAJORITY", format!("{name}: item majority {}; declared {declared} kept", bonus_types[majority]))
         } else {

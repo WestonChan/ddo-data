@@ -18,7 +18,6 @@ database_record! {
             default_value: Option<i64> => default_value,
             #[serde(default, skip_serializing_if = "Option::is_none")]
             description_template: Option<String> => description_template,
-            home_bonus_type: String => home_bonus_type_id [nullable_reference "bonus_types" "none"],
             #[serde(default, skip_serializing_if = "is_false")]
             omits_bonus_type: bool => omits_bonus_type,
             #[serde(default, skip_serializing_if = "Option::is_none")]

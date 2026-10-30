@@ -1,4 +1,3 @@
 name = "Light Spell Lore"
 category = "magical"
-home_bonus_type = "Equipment"
 verbose_name_template = "%b1 Light Spell Lore +{1}%"

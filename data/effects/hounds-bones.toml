@@ -1,7 +1,6 @@
 name = "Hound's Bones"
 default_value = 1
 description_template = "You are strengthened by the bones of a powerful Thaarak Hound. {1}% %b1 bonus to Acid and Evil Absorption."
-home_bonus_type = "Enhancement"
 verbose_name_template = "%b1 Hound's Bones +{1}%"
 
 [[bonus]]

@@ -1,6 +1,5 @@
 name = "Power of the Frozen Depths"
 description_template = "Passive: {1} %b1 bonus to Negative, Cold and Poison Spell Power."
-home_bonus_type = "Equipment"
 set_bonus_line_template = "+{1} %b1 Bonus to Cold, Negative and Poison Spell Power"
 verbose_name_template = "%b1 Power of the Frozen Depths +{1}"
 

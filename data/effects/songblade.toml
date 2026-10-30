@@ -1,6 +1,5 @@
 name = "Songblade"
 description_template = "+2 Enhancement bonus to the Perform skill."
-home_bonus_type = "Enhancement"
 verbose_name_template = "Songblade +2"
 
 [[bonus]]

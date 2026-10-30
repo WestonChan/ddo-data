@@ -1,6 +1,5 @@
 name = "Magi"
 description_template = "This item grants the wearer +100 maximum spell points. Sorcerers and Favored Souls gain up to double spell points from items."
-home_bonus_type = "Equipment"
 verbose_name_template = "Magi +100"
 
 [[bonus]]

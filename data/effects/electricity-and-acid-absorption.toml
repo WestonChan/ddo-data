@@ -1,7 +1,6 @@
 name = "Electricity and Acid Absorption"
 default_value = 1
 description_template = "Passive: {1}% Enhancement Bonus to Electricity and Acid Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)"
-home_bonus_type = "Enhancement"
 verbose_name_template = "Electricity and Acid Absorption +{1}%"
 
 [[bonus]]

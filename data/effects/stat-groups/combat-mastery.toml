@@ -1,6 +1,5 @@
 name = "Combat Mastery"
 description_template = "+{1} %b1 bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts."
-home_bonus_type = "Enhancement"
 set_bonus_line_template = "+{1} %b1 Bonus to Trip, Sunder and Stun DC"
 verbose_name_template = "%b1 Combat Mastery +{1}"
 

@@ -1,7 +1,6 @@
 name = "Thunderstorm Lore"
 default_value = 10
 description_template = "Passive: Your Sonic and Lightning spells gain a {1} %b1 bonus to their chance to critical hit."
-home_bonus_type = "Equipment"
 verbose_name_template = "%b1 Thunderstorm Lore +{1}%"
 
 [[bonus]]

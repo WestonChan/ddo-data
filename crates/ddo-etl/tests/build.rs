@@ -591,7 +591,7 @@ fn fixed_equipment_groupings_take_their_bonus_type_from_item_links() {
         .unwrap();
         assert_eq!(canonical["description_template"].as_str(), Some(description.as_str()), "{name}");
         assert_eq!(linked_type.as_deref(), Some("Equipment"), "{name}");
-        assert_eq!(home_type.as_deref(), Some("Equipment"), "{name}");
+        assert_eq!(home_type, None, "{name}");
         assert_eq!(
             db.query_row(
                 "SELECT COUNT(*) FROM effect_bonuses WHERE effect_id = ?1 AND bonus_type_id IS NOT NULL",
@@ -951,6 +951,28 @@ fn weapon_damage_is_preserved_outside_declared_damage_targets() {
 }
 
 #[test]
+fn stat_home_rules_are_independent_of_carrier_counts() {
+    let db = fixture::database(|_| {});
+    for (name, expected) in [
+        ("Bluff", Some("Competence")),
+        ("Negative Healing Amplification", Some("Profane")),
+        ("Saving Throws", Some("Resistance")),
+        ("Strength", None),
+        ("Abjuration Focus", None),
+        ("Maximum Hit Points", None),
+    ] {
+        let home: Option<String> = db
+            .query_row(
+                "SELECT bt.name FROM effects e LEFT JOIN bonus_types bt ON bt.id=e.home_bonus_type_id WHERE e.name=?1",
+                [name],
+                |row| row.get(0),
+            )
+            .unwrap();
+        assert_eq!(home.as_deref(), expected, "{name}");
+    }
+}
+
+#[test]
 fn orb_bonus_grants_saves_and_five_resistances_from_its_definition() {
     let db = build_item_buff_fixture(
         include_str!("fixtures/effect-groups/OrbOfAcid.Buffs.xml"),
@@ -977,11 +999,11 @@ fn orb_bonus_grants_saves_and_five_resistances_from_its_definition() {
     assert_eq!(
         home_types,
         [
-            ("Acid Resistance".into(), Some("Enhancement".into())),
-            ("Cold Resistance".into(), Some("Enhancement".into())),
-            ("Electric Resistance".into(), Some("Enhancement".into())),
-            ("Fire Resistance".into(), Some("Enhancement".into())),
-            ("Sonic Resistance".into(), Some("Enhancement".into())),
+            ("Acid Resistance".into(), None),
+            ("Cold Resistance".into(), None),
+            ("Electric Resistance".into(), None),
+            ("Fire Resistance".into(), None),
+            ("Sonic Resistance".into(), None),
             ("Spell DCs".into(), None),
         ]
     );

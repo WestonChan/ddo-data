@@ -529,7 +529,7 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
                 COALESCE(j.value2, e.default_value2) AS template_value2,
                 link_type.name AS template_bonus_type,
                 home_type.name AS home_bonus_type,
-                COALESCE(link_type.name, home_type.name) AS bonus_type,
+                COALESCE(link_type.name, home_type.name, fixed_type.name) AS bonus_type,
                 tg.name AS tier_group, e.tier AS tier_rank,
                 s.name AS stat, s.category AS stat_category,
                 stat_type.name AS stat_bonus_type, ob.amount AS stat_value,
@@ -539,6 +539,7 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
            LEFT JOIN effect_tier_groups tg ON tg.id = e.tier_group_id
            LEFT JOIN bonus_types link_type ON link_type.id = j.bonus_type_id
            LEFT JOIN bonus_types home_type ON home_type.id = e.home_bonus_type_id
+           LEFT JOIN ({fixed_types}) fixed_type ON fixed_type.effect_id = e.id
            LEFT JOIN (SELECT * FROM owner_bonuses filtered_bonus
                        WHERE filtered_bonus.owner_kind = '{owner_kind}' AND {bonus_owner_condition}) ob
                 ON ob.owner_id = j.{owner_column}
@@ -547,7 +548,8 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
            LEFT JOIN effects g ON g.id = ob.group_effect_id
            LEFT JOIN bonus_types stat_type ON stat_type.id = ob.bonus_type_id
           WHERE {owner_condition}
-          ORDER BY j.{owner_column}, j.sort_order, ob.effect_bonus_order, ob.group_member_order"
+          ORDER BY j.{owner_column}, j.sort_order, ob.effect_bonus_order, ob.group_member_order",
+        fixed_types = ddo_model::bonus_type_wording::FIXED_EFFECT_BONUS_TYPES_SQL,
     );
     let rows = json_rows(db, &sql, selector_params)?;
     let owner_ids = rows.iter().filter_map(|row| row["owner_id"].as_i64()).collect::<std::collections::BTreeSet<_>>();
@@ -704,7 +706,9 @@ pub fn bonus_type_line_word<'a>(
 ) -> Option<&'a str> {
     if wording == BonusTypeWording::SetBonus {
         Some(bonus_type)
-    } else if home_type == Some(bonus_type) || matches!(bonus_type, "Enhancement" | "Equipment") {
+    } else if home_type == Some(bonus_type)
+        || ddo_model::enums::BonusType::parse(bonus_type).is_some_and(ddo_model::bonus_type_wording::is_always_unnamed)
+    {
         None
     } else if bonus_type == "Insight" {
         Some("Insightful")

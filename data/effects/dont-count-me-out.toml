@@ -1,6 +1,5 @@
 name = "Don't Count Me Out!"
 description_template = "You gain a +400 Enhancement Bonus to Unconsciousness Range."
-home_bonus_type = "Equipment"
 verbose_name_template = "Don't Count Me Out! -400"
 
 [[bonus]]

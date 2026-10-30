@@ -16,10 +16,22 @@ fn edited(file: &'static str, from: &'static str, to: &'static str) -> impl Fn(&
 }
 
 #[test]
-fn every_stat_requires_an_explicit_home_declaration() {
-    let file = "effects/stats/strength.toml";
-    let error = fixture::data_build_error(edited(file, "home_bonus_type = \"Enhancement\"\n", ""));
-    assert!(error.contains("strength.toml") && error.contains("home_bonus_type"), "{error}");
+fn files_cannot_redeclare_always_unnamed_home_types() {
+    for file in ["effects/riposte.toml", "effects/stat-groups/charisma-skills.toml"] {
+        for home in ["Enhancement", "Equipment", "Feat"] {
+            let error = fixture::data_build_error(|root| {
+                let path = root.join(file);
+                let original = std::fs::read_to_string(&path).unwrap();
+                let original = original
+                    .lines()
+                    .filter(|line| !line.starts_with("home_bonus_type = "))
+                    .collect::<Vec<_>>()
+                    .join("\n");
+                std::fs::write(path, format!("home_bonus_type = {home:?}\n{original}\n")).unwrap();
+            });
+            assert!(error.contains(file) && error.contains("always unnamed"), "{error}");
+        }
+    }
 }
 
 #[test]
@@ -293,7 +305,7 @@ fn stat_aliases_read_one_amount_without_a_canonical_template() {
         let error = fixture::data_build_error(|root| {
             std::fs::write(
                 root.join("effects/stats/rune-arm-spell-focus.toml"),
-                format!("name = 'Rune Arm Spell Focus'\ncategory = 'magical'\nhome_bonus_type = 'none'\n[[alias]]\nname = 'Rune Arm Focus'\nverbose_name_template = {template:?}\n"),
+                format!("name = 'Rune Arm Spell Focus'\ncategory = 'magical'\n[[alias]]\nname = 'Rune Arm Focus'\nverbose_name_template = {template:?}\n"),
             )
             .unwrap();
         });

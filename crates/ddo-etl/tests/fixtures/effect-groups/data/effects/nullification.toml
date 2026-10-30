@@ -1,6 +1,5 @@
 name = "Nullification"
 description_template = "{1} %b1 bonus to Negative and Poison spell power."
-home_bonus_type = "Equipment"
 verbose_name_template = "%b1 Nullification +{1}"
 
 [[bonus]]

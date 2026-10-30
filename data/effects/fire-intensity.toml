@@ -1,6 +1,5 @@
 name = "Fire Intensity"
 description_template = "{1}% %b1 bonus to critical damage with Fire spells."
-home_bonus_type = "Equipment"
 verbose_name_template = "%b1 Fire Intensity +{1}%"
 
 [[bonus]]

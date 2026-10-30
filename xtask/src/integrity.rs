@@ -493,7 +493,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     .showing_every_offender(),
     IntegrityCheck::warn(
         "effects_with_tied_home_bonus_types",
-        "in-use effects with equally common bonus types need an explicit home type or an intentional none in effect_map.toml",
+        "in-use named effects with equally common carrier types; informational only, their file homes remain authoritative",
         OffenderQuery::Built(effects_with_tied_home_bonus_types),
     )
     .showing_every_offender(),
@@ -1932,20 +1932,24 @@ fn effect_link_amount_counts(db: &Connection, _options: &IntegrityOptions) -> Re
 fn effect_line_rendering_tokens(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let mut offenders = Vec::new();
     let mut templates_by_effect = BTreeMap::new();
-    let mut statement = db.prepare(
+    let mut statement = db.prepare(&format!(
         "SELECT e.id, e.name, e.verbose_name_template, e.set_bonus_line_template, e.description_template,
-                home_type.name FROM effects e LEFT JOIN bonus_types home_type ON home_type.id = e.home_bonus_type_id",
-    )?;
+                home_type.name, fixed_type.name FROM effects e
+         LEFT JOIN bonus_types home_type ON home_type.id = e.home_bonus_type_id
+         LEFT JOIN ({fixed_types}) fixed_type ON fixed_type.effect_id=e.id",
+        fixed_types = ddo_model::bonus_type_wording::FIXED_EFFECT_BONUS_TYPES_SQL,
+    ))?;
     let effects = statement.query_map([], |row| {
         Ok((
             row.get::<_, i64>(0)?,
             row.get::<_, String>(1)?,
             [row.get::<_, Option<String>>(2)?, row.get::<_, Option<String>>(3)?, row.get::<_, Option<String>>(4)?],
             row.get::<_, Option<String>>(5)?,
+            row.get::<_, Option<String>>(6)?,
         ))
     })?;
     for effect in effects {
-        let (effect_id, name, templates, home_type) = effect?;
+        let (effect_id, name, templates, home_type, fixed_type) = effect?;
         for (field, template) in ["verbose_name", "set_bonus_line", "description"].into_iter().zip(&templates) {
             if template.as_deref().is_some_and(has_unfilled_effect_token) {
                 offenders.push(Offender {
@@ -1955,7 +1959,7 @@ fn effect_line_rendering_tokens(db: &Connection, _options: &IntegrityOptions) ->
                 });
             }
         }
-        templates_by_effect.insert(effect_id, (name, templates, home_type));
+        templates_by_effect.insert(effect_id, (name, templates, home_type, fixed_type));
     }
     let links = EFFECT_OWNER_LINKS
         .iter()
@@ -1971,12 +1975,12 @@ fn effect_line_rendering_tokens(db: &Connection, _options: &IntegrityOptions) ->
         .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, Option<String>>(1)?, row.get::<_, i64>(2)?)))?;
     for entry in types {
         let (effect_id, bonus_type, link_count) = entry?;
-        let (name, templates, home_type) = &templates_by_effect[&effect_id];
+        let (name, templates, home_type, fixed_type) = &templates_by_effect[&effect_id];
+        let resolved_type = bonus_type.as_deref().or(home_type.as_deref()).or(fixed_type.as_deref());
         for (field, template) in ["verbose_name", "set_bonus_line", "description"].into_iter().zip(templates) {
             let Some(template) = template else { continue };
             if effect_text_tokens(template).iter().any(|token| matches!(token.kind, EffectTextTokenKind::BonusType))
-                && bonus_type.is_none()
-                && home_type.is_none()
+                && resolved_type.is_none()
             {
                 offenders.push(Offender {
                     name: name.clone(),
@@ -1985,7 +1989,7 @@ fn effect_line_rendering_tokens(db: &Connection, _options: &IntegrityOptions) ->
                 });
                 continue;
             }
-            let Some(bonus_type) = bonus_type.as_deref().or(home_type.as_deref()) else { continue };
+            let Some(bonus_type) = resolved_type else { continue };
             let shown_type = if field == "verbose_name" {
                 ddo_api::bonus_type_line_word(bonus_type, home_type.as_deref(), ddo_api::BonusTypeWording::Enchantment)
                     .unwrap_or("")
@@ -2074,10 +2078,7 @@ fn effects_with_tied_home_bonus_types(db: &Connection, _options: &IntegrityOptio
          GROUP BY e.id
         HAVING SUM(v.item_count = (SELECT MAX(candidate.item_count) FROM effect_vocabulary_bonus_types candidate
                                     WHERE candidate.id = e.id AND candidate.kind = v.kind)) > 1";
-    let offenders = offenders_from_sql(db, sql)?
-        .into_iter()
-        .filter(|offender| EFFECT_MAP.home_bonus_types.get(&offender.name).is_none_or(|home| home != "none"))
-        .collect();
+    let offenders = offenders_from_sql(db, sql)?;
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 

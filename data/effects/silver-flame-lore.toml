@@ -1,6 +1,5 @@
 name = "Silver Flame Lore"
 description_template = "Passive: Your Positive, Light, and Alignment spells gain a {1} %b1 bonus to their chance to critical hit."
-home_bonus_type = "Equipment"
 set_bonus_line_template = "+{1}% %b1 Bonus to Positive, Law, Chaos, Good, Light and Evil Spell Lore"
 verbose_name_template = "%b1 Silver Flame Lore +{1}%"
 
