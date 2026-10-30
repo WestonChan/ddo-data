@@ -41,6 +41,21 @@ value = 29
 [[effect]]
 name = "Taint of Evil"
 
+[[verification_request]]
+question = "Does Hallowsphere have a Red or Purple augment slot in the current game?"
+assumed = "Purple augment slot."
+raised = "2026-10-29"
+
+[[verification_request.source]]
+says = "R6-7 row 85: the screenshot shows a Red Augment Slot, but may predate a slot change."
+url = "https://images.ddowiki.com/Hallowsphere.png"
+read = "2026-10-23"
+
+[[verification_request.source]]
+says = "R6-7 row 85: the typed list says Purple Augment Slot, matching Maetrim and the current file; neither source is dated against the other."
+url = "https://ddowiki.com/page/Item:Hallowsphere"
+read = "2026-10-23"
+
 [[socket]]
 slot = "purple"
 

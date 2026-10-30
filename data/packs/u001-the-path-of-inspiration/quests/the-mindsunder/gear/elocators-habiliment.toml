@@ -44,6 +44,9 @@ name = "Resistance"
 bonus_type = "Resistance"
 value = 5
 
+[[effect]]
+name = "Suppressed Power"
+
 [[modifier]]
 amount_type = "SLA"
 amounts = [
@@ -54,6 +57,14 @@ amounts = [
 bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Displacement"]
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "add"
+reason = "R6-5 row 11: the base item screenshot and typed list show Suppressed Power. The Greater Nimbleness upgrade remains its separate socket option."
+url = "https://ddowiki.com/page/Item:Elocator's_Habiliment"
+read = "2026-10-23"
+qualifier = "Suppressed Power"
 
 [[socket]]
 slot = "crafting: suppressed power"

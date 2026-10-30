@@ -1,0 +1,8 @@
+name = "Deific Focus II"
+description_template = "On Spell Cast: +1 Sacred bonus to DC of that school for five seconds. Stacks up to 2 times. Casting a spell from another school clears all stacks of this effect."
+verbose_name_template = "Deific Focus II"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Epic_Deific_Diadem"
+read = "2026-10-23"
+note = "R6-3 row 36: Deific Focus II appears in the screenshot and typed list. Its school-dependent stacking proc stays prose pending #16."

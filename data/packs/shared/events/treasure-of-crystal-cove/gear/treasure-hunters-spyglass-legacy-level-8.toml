@@ -25,6 +25,11 @@ name = "Search"
 bonus_type = "Competence"
 value = 7
 
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 1
+
 [[modifier]]
 amount_type = "SLA"
 amounts = [
@@ -35,6 +40,14 @@ amounts = [
 bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Detect Secret Doors"]
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "add"
+reason = "R6-4 row 79: both tier-1 and tier-2 screenshots and the typed list show the missing Use Magic Device +1 Competence line. Existing upgrade lines stay unchanged."
+url = "https://ddowiki.com/page/Item:Treasure_Hunter%27s_Spyglass_(legacy)_(level_8)"
+read = "2026-10-23"
+qualifier = "Use Magic Device / Competence"
 
 [[ddobuilder_correction]]
 kind = "socket_option_bonus"

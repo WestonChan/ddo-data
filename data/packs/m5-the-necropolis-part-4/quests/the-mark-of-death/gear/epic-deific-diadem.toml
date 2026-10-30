@@ -28,6 +28,9 @@ name = "Charisma"
 bonus_type = "Enhancement"
 value = 13
 
+[[effect]]
+name = "Deific Focus II"
+
 [[modifier]]
 amount_type = "SLA"
 amounts = [
@@ -38,6 +41,14 @@ amounts = [
 bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Lesser Heighten"]
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "add"
+reason = "R6-3 row 36: the screenshot and typed list show the missing Deific Focus II proc line. Conditions and stacking stay prose pending #16."
+url = "https://ddowiki.com/page/Item:Epic_Deific_Diadem"
+read = "2026-10-23"
+qualifier = "Deific Focus II"
 
 [[socket]]
 slot = "crafting: upgradeable - primary augment"
