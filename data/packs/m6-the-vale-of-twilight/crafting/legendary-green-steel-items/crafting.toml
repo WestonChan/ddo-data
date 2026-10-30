@@ -529,7 +529,7 @@ tier = "legendary"
 
 [[recipe.augment]]
 name = "Negative Spell Power - +139 Equipment"
-level = 1
+level = 26
 
 [[recipe.ingredient]]
 ingredient = "Legendary Inferior Focus of Negative Energy"
@@ -2388,7 +2388,7 @@ tier = "legendary"
 
 [[recipe.augment]]
 name = "Negative Spell Power - +37 Quality"
-level = 1
+level = 26
 
 [[recipe.ingredient]]
 ingredient = "Legendary Focus of Negative Energy"
@@ -4247,7 +4247,7 @@ tier = "legendary"
 
 [[recipe.augment]]
 name = "Negative Spell Power - +37 Exceptional"
-level = 1
+level = 26
 
 [[recipe.ingredient]]
 ingredient = "Legendary Superior Focus of Negative Energy"

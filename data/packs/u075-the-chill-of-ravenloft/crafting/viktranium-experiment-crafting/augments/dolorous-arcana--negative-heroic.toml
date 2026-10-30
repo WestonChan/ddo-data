@@ -2,7 +2,7 @@ name = "Dolorous Arcana: Negative (Heroic)"
 description = "+35 Insight bonus to Negative and Poison Spellpower."
 family = "Lamordia_Heroic"
 icon = "Lamordia"
-min_level = 34
+min_level = 8
 
 [[effect]]
 name = "Nullification"
@@ -20,6 +20,14 @@ targets = [
     "Negative",
     "Poison",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment"
+field = "min_level"
+upstream = 34
+reason = "R6-9 row 45: the screenshot gives Minimum Level 8."
+url = "https://ddowiki.com/page/Item:Dolorous_Arcana:_Negative_(heroic)"
+read = "2026-10-23"
 
 [[slot]]
 slot = "lamordia: dolorous (weapon)"

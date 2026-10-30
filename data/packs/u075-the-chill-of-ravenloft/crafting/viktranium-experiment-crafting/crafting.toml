@@ -1084,7 +1084,7 @@ tier = "heroic"
 [[recipe.augment]]
 name = "Dolorous Arcana: Light (Heroic)"
 family = "Lamordia_Heroic"
-level = 34
+level = 8
 
 [[recipe.ingredient]]
 ingredient = "Bleak Alternator"
@@ -1136,7 +1136,7 @@ tier = "heroic"
 [[recipe.augment]]
 name = "Dolorous Arcana: Negative (Heroic)"
 family = "Lamordia_Heroic"
-level = 34
+level = 8
 
 [[recipe.ingredient]]
 ingredient = "Bleak Alternator"

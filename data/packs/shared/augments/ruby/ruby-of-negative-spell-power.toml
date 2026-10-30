@@ -31,7 +31,7 @@ levels = [
 [[effect]]
 name = "Nullification"
 bonus_type = "Equipment"
-value = 138
+value = 139
 
 [[modifier]]
 amount_type = "Simple"
@@ -43,6 +43,15 @@ targets = [
     "Negative",
     "Poison",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "value"
+upstream = 138
+reason = "R6-8 row 78: the screenshot and Level 28 table give 139, matching the declared level_values step."
+url = "https://ddowiki.com/page/Item:Ruby_of_Nullification_139"
+read = "2026-10-23"
+qualifier = "Nullification / Equipment"
 
 [[slot]]
 slot = "red"

@@ -1,6 +1,6 @@
 name = "Insightful Physical Sheltering"
 choose_level = true
-description = "Insight bonus to MRR"
+description = "Insight bonus to PRR"
 family = "CannithAndRandomItem"
 icon = "Cannith"
 level_values = [
@@ -58,6 +58,14 @@ bonus = "Insightful"
 bonus_type = "Insight"
 effect = "Physical Resistance Rating"
 effect_type = "PRR"
+
+[[ddobuilder_correction]]
+kind = "augment"
+field = "description"
+upstream = "Insight bonus to MRR"
+reason = "R6-8 row 66: this shard grants Physical Resistance Rating; the description named the wrong rating."
+url = "https://ddowiki.com/page/Essence_Crafting_enchantments"
+read = "2026-10-23"
 
 [[slot]]
 slot = "crafting: cannith bracers suffix"

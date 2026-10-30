@@ -1,7 +1,7 @@
 name = "Negative Spell Power - +37 Exceptional"
 description = "Dominion/Negative: +37 Exceptional bonus increase to Negative/Poison spell power."
 family = "Greensteel_Legendary"
-min_level = 1
+min_level = 26
 
 [[effect]]
 name = "Nullification"
@@ -18,6 +18,14 @@ targets = [
     "Negative",
     "Poison",
 ]
+
+[[ddobuilder_correction]]
+kind = "augment"
+field = "min_level"
+upstream = 1
+reason = "R6-8 rows 39 and 79: the screenshot gives Minimum Level 26."
+url = "https://ddowiki.com/page/Item:Green_Steel_Augment_(Weapon,_Tier_3,_Negative_Dominion_Ethereal)"
+read = "2026-10-23"
 
 [[slot]]
 slot = "crafting: greensteel weapon tier 3"

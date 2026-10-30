@@ -1,7 +1,7 @@
 name = "Negative Spell Power - +139 Equipment"
 description = "Dominion/Negative: +139 Equipment bonus increase to Negative/Poison spell power."
 family = "Greensteel_Legendary"
-min_level = 1
+min_level = 26
 
 [[effect]]
 name = "Nullification"
@@ -35,6 +35,15 @@ upstream = "Negative Spell Power - +150 Equipment"
 reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Nullification 139."
 url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
 read = "2026-09-30"
+
+[[ddobuilder_correction]]
+kind = "augment"
+original_name = "Negative Spell Power - +150 Equipment"
+field = "min_level"
+upstream = 1
+reason = "R6-8 rows 38 and 79: the screenshot gives Minimum Level 26."
+url = "https://ddowiki.com/page/Item:Green_Steel_Augment_(Weapon,_Tier_1,_Negative_Dominion_Ethereal)"
+read = "2026-10-23"
 
 [[ddobuilder_correction]]
 kind = "augment_bonus"
