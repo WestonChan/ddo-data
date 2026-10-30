@@ -1,0 +1,105 @@
+<Buff>
+    <Type>Elemental Resistance</Type>
+    <DisplayText>%b1 Elemental Resistance %v1: Passive: %v1 %b1 bonus to your Acid, Cold, Electricity, Fire, and Sonic Resistances.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>EnergyResistance</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Acid</Item>
+      <Item>Cold</Item>
+      <Item>Electric</Item>
+      <Item>Fire</Item>
+      <Item>Sonic</Item>
+    </Effect>
+  </Buff>
+
+<Buff>
+    <Type>OrbBonus</Type>
+    <DisplayText>%v1 Orb Bonus: While this orb is equipped and you are actively blocking, you gain a %v1 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and Sonic resistances.</DisplayText>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Orb</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Blocking</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>EnergyResistance</Type>
+      <Bonus>Orb</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Acid</Item>
+      <Item>Cold</Item>
+      <Item>Fire</Item>
+      <Item>Electric</Item>
+      <Item>Sonic</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Blocking</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>
+
+<Buff>
+    <Type>Permanent Efficacy</Type>
+    <DisplayText>Permanent Efficacy: Passive: +20 Alchemical bonus to each Spell Power.</DisplayText>
+    <Effect>
+      <Type>SpellPower</Type>
+      <Bonus>Alchemical</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+
+<Buff>
+    <Type>SpellPenetration</Type>
+    <DisplayText>%b1 Spell Penetration %v1: Passive: %v1 %b1 bonus to Spell Penetration checks.</DisplayText>
+    <Ignore>Equipment</Ignore>
+    <Effect>
+      <Type>SpellPenetrationBonus</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+
+<Buff>
+    <Type>Superior Stability</Type>
+    <DisplayText>Superior Stability: This armor grants a +6 Deflection bonus to AC and a +6 Resistance bonus to saves for characters of True Neutral alignment.</DisplayText>
+    <Effect>
+      <Type>ACBonus</Type>
+      <Bonus>Deflection</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Alignment</Type>
+          <Item>True Neutral</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <Type>SaveBonus</Type>
+      <Bonus>Resistance</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">6</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Alignment</Type>
+          <Item>True Neutral</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+  </Buff>

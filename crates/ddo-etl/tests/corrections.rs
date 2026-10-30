@@ -5053,7 +5053,9 @@ fn corrects_an_item_bonus_value_without_touching_the_shared_bonus() {
 fn refuses_to_write_an_item_bonus_without_a_type() {
     let data_files_dir = data_files_with_untyped("untyped-item", &[UNTYPED_ITEMS]);
     let error = built_db_from(&data_files_dir, &[]).unwrap_err();
-    for expected_text in ["item \"Embrace of the Spider Queen\"", "buff \"Fortification\"", "stat \"Fortification\""] {
+    for expected_text in
+        ["item \"Embrace of the Spider Queen\"", "buff \"Fortification\"", "bonus target \"Fortification\""]
+    {
         assert!(error.contains(expected_text), "{expected_text} missing from {error}");
     }
 }
@@ -5062,7 +5064,9 @@ fn refuses_to_write_an_item_bonus_without_a_type() {
 fn refuses_to_write_an_augment_bonus_without_a_type_unless_a_correction_types_it() {
     let data_files_dir = data_files_with_untyped("untyped-augment", &[UNTYPED_AUGMENTS]);
     let error = built_db_from(&data_files_dir, &[]).unwrap_err();
-    for expected_text in ["augment \"Dolorous Invigorator (Heroic)\"", "effect \"TacticalDC\"", "stat \"Trip DC\""] {
+    for expected_text in
+        ["augment \"Dolorous Invigorator (Heroic)\"", "effect \"TacticalDC\"", "bonus target \"Trip DC\""]
+    {
         assert!(error.contains(expected_text), "{expected_text} missing from {error}");
     }
     let profane_corrections: CorrectionSet = ["Trip DC", "Sunder DC", "Stun DC", "Assassinate DC"]
@@ -5154,7 +5158,7 @@ fn refuses_an_untyped_augment_slot_option_bonus_unless_an_item_bonus_correction_
     for expected_text in [
         "augment slot option of item \"Epic Bracers of Wind\"",
         "effect \"SpellLore\"",
-        "stat \"Electric Spell Lore\"",
+        "bonus target \"Electric Spell Lore\"",
         "item_bonus bonus_type correction",
     ] {
         assert!(error.contains(expected_text), "{expected_text} missing from {error}");

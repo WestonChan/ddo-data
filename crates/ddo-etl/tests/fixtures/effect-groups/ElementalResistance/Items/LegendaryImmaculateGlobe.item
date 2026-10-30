@@ -1,0 +1,51 @@
+<Items>
+  <Item>
+    <NoAutoUpdate/>
+    <Name>Legendary Immaculate Globe</Name>
+    <Icon>Orb_1f</Icon>
+    <Description>This spinning globe hums with magic. The map doesn't appear to resemble Saltmarsh,
+nor any place you've ever seen.</Description>
+    <DropLocation>Down You Go, end chest, or Legendary version of Epic Immaculate Globe</DropLocation>
+    <MinLevel>30</MinLevel>
+    <EquipmentSlot>
+      <Weapon2/>
+    </EquipmentSlot>
+    <Weapon>Orb</Weapon>
+    <AttackModifier>Intelligence</AttackModifier>
+    <DamageModifier>Charisma</DamageModifier>
+    <WeaponDamage>1</WeaponDamage>
+    <BaseDice>
+      <Number>1</Number>
+      <Sides>4</Sides>
+    </BaseDice>
+    <CriticalMultiplier>2</CriticalMultiplier>
+    <CriticalThreatRange>2</CriticalThreatRange>
+    <ShieldBonus>0</ShieldBonus>
+    <Material>Wood</Material>
+    <Buff>
+      <Type>OrbBonus</Type>
+      <Value1>15</Value1>
+      <BonusType>Orb</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Permanent Efficacy</Type>
+    </Buff>
+    <Buff>
+      <Type>Superior Stability</Type>
+      <BonusType>Enhancement</BonusType>
+    </Buff>
+    <Buff>
+      <Type>Elemental Resistance</Type>
+      <Value1>45</Value1>
+    </Buff>
+    <Buff>
+      <Type>SpellPenetration</Type>
+      <Value1>9</Value1>
+      <BonusType>Equipment</BonusType>
+    </Buff>
+    <SetBonus>Legendary Saltmarsh Explorer</SetBonus>
+    <ItemAugment>
+      <Type>Purple</Type>
+    </ItemAugment>
+  </Item>
+</Items>

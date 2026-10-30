@@ -11055,8 +11055,17 @@ note = 'Line structure checked: "Each time you acquire this feat you gain +2 dam
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Fire, Cold, Electric, Acid and Sonic Resistance"
+effect = "Elemental Resistance"
+alias = "Fire, Cold, Electric, Acid and Sonic Resistance"
 value = 2
+
+[[row.ddobuilder_correction]]
+kind = "feat_bonus"
+field = "alias"
+reason = "Keep the existing five-element line wording when its grouping merges into Elemental Resistance. The upstream Effect names the same five resistances."
+url = "https://github.com/Maetrim/DDOBuilderV2/blob/d1350a0c/Output/DataFiles/Classes/Ranger.class.xml"
+read = "2026-10-30"
+qualifier = "Elemental Resistance / Feat"
 
 [[row.modifier]]
 amount_type = "Simple"
@@ -11070,7 +11079,7 @@ targets = ["Ranged"]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Feat"
-effect = "Fire, Cold, Electric, Acid and Sonic Resistance"
+effect = "Elemental Resistance"
 effect_type = "EnergyResistance"
 targets = [
     "Acid",

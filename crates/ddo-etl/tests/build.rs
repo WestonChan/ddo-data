@@ -2237,6 +2237,102 @@ fn item_effect_alias(db: &Connection, item_name: &str, effect_name: &str) -> Opt
 }
 
 #[test]
+fn elemental_resistance_buff_links_one_five_member_group() {
+    let (db, report) = built_elemental_resistance_fixture(&Corrections::default());
+    assert_eq!(report.correction_applied_count, 1);
+    assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
+    assert_wrapper_group(
+        &db,
+        "Legendary Immaculate Globe",
+        "Elemental Resistance",
+        &["Acid Resistance", "Cold Resistance", "Electric Resistance", "Fire Resistance", "Sonic Resistance"],
+        &[("Enhancement", 45)],
+    );
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Elemental Resistance' AND is_stat"), 0);
+}
+
+fn built_elemental_resistance_fixture(corrections: &Corrections) -> (Connection, BuildReport) {
+    let source = fixture::xml_source();
+    fixture::write_elemental_resistance_owners(source.path());
+    let mut corrections = corrections.clone();
+    let committed = Corrections::from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data")).unwrap();
+    corrections
+        .entries
+        .extend(committed.entries.into_iter().filter(|correction| correction.name == "Legendary Immaculate Globe"));
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::grouping_cases(),
+        source.path(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    (db, report)
+}
+
+#[test]
+fn elemental_resistance_all_targets_share_the_five_member_group() {
+    let (db, _) = built_elemental_resistance_fixture(&Corrections::default());
+    let tiers = db.prepare("SELECT s.name,t.equipped_count,e.name,l.value FROM set_bonus_tier_effects l JOIN set_bonus_tiers t ON t.id=l.tier_id JOIN set_bonuses s ON s.id=t.set_id JOIN effects e ON e.id=l.effect_id WHERE s.name IN ('Slavelords Endurance','Legendary Slavelords Endurance') AND e.name='Elemental Resistance' AND e.is_group ORDER BY s.name,t.equipped_count").unwrap()
+        .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?,row.get::<_,String>(2)?,row.get::<_,i64>(3)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        tiers,
+        [
+            ("Legendary Slavelords Endurance".into(), 3, "Elemental Resistance".into(), 2),
+            ("Legendary Slavelords Endurance".into(), 5, "Elemental Resistance".into(), 4),
+            ("Slavelords Endurance".into(), 3, "Elemental Resistance".into(), 1),
+            ("Slavelords Endurance".into(), 5, "Elemental Resistance".into(), 2),
+        ]
+    );
+    let bonuses = db.prepare("SELECT e.name,b.amount FROM owner_bonuses b JOIN effects e ON e.id=b.stat_id JOIN feats f ON f.id=b.owner_id WHERE b.owner_kind='feat' AND f.name='Past Life: Harbinger of Nature''s Wrath' ORDER BY e.name").unwrap()
+        .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        bonuses,
+        ["Acid Resistance", "Cold Resistance", "Electric Resistance", "Fire Resistance", "Sonic Resistance"]
+            .map(|name| (name.into(), 2))
+    );
+    let draconic: (String,i64) = db.query_row("SELECT e.name,COUNT(b.target_effect_id) FROM augments a JOIN augment_effects l ON l.augment_id=a.id JOIN effects e ON e.id=l.effect_id JOIN effect_bonuses b ON b.effect_id=e.id WHERE a.name='Draconic Soul Gem' GROUP BY e.id", [], |row| Ok((row.get(0)?,row.get(1)?))).unwrap();
+    assert_eq!(draconic, ("Fire, Cold, Electric and Acid Resistance".into(), 4));
+}
+
+#[test]
+fn elemental_resistance_alias_corrections_preserve_the_three_source_titles() {
+    let aliases = [
+        ("feat_bonus", "Past Life: Ranger", "Feat"),
+        ("feat_bonus", "Abyssal Resistance", "Feat"),
+        ("augment_bonus", "Cannith Orb Enhancement", "Orb"),
+    ]
+    .into_iter()
+    .map(|(kind, name, bonus_type)| {
+        fixture::new_qualified_correction(
+            kind,
+            name,
+            &format!("stat = 'Elemental Resistance'\nbonus_type = '{bonus_type}'"),
+            "alias",
+            "'null'",
+            "'Fire, Cold, Electric, Acid and Sonic Resistance'",
+        )
+    })
+    .collect::<fixture::CorrectionSet>();
+    let corrections = fixture::corrections_from(&[("elemental-aliases.toml", &aliases)]).unwrap();
+    let (db, report) = built_elemental_resistance_fixture(&corrections);
+    assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
+    let links = db.prepare("SELECT f.name,e.name,l.alias,l.value FROM feat_effects l JOIN feats f ON f.id=l.feat_id JOIN effects e ON e.id=l.effect_id WHERE l.alias IS NOT NULL UNION ALL SELECT a.name,e.name,l.alias,l.value FROM augment_effects l JOIN augments a ON a.id=l.augment_id JOIN effects e ON e.id=l.effect_id WHERE l.alias IS NOT NULL ORDER BY 1").unwrap()
+        .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,String>(2)?,row.get::<_,i64>(3)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        links,
+        [("Abyssal Resistance", 1), ("Cannith Orb Enhancement", 13), ("Past Life: Ranger", 2)].map(|(name, amount)| (
+            name.into(),
+            "Elemental Resistance".into(),
+            "Fire, Cold, Electric, Acid and Sonic Resistance".into(),
+            amount
+        ))
+    );
+}
+
+#[test]
 fn radiance_buffs_link_five_spell_powers_at_each_owners_type() {
     let db = build_wrapper_fixture(
         fixture::groupings(),

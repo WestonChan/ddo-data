@@ -1,0 +1,163 @@
+<SetBonus>
+    <Type>Slavelords Endurance</Type>
+    <Icon>SlavelordsEndurance</Icon>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+1 Artifact bonus to MRR/PRR</Description>
+      <Effect>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+1 Artifact bonus to Resistance</Description>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+1 Artifact bonus to Spell Saves</Description>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Spell</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+1 Artifact bonus to Constitution</Description>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+        <Item>Constitution</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+2 Artifact bonus to MRR/PRR</Description>
+      <Effect>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+2 Artifact bonus to Resistance</Description>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+2 Artifact bonus to Spell Saves</Description>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>Spell</Item>
+      </Effect>
+    </Buff>
+  </SetBonus>
+
+<SetBonus>
+    <Type>Legendary Slavelords Endurance</Type>
+    <Icon>SlavelordsEndurance</Icon>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+2 Artifact bonus to PRR and MRR.</Description>
+      <Effect>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+2 Artifact bonus to Energy Resistance.</Description>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>3</EquippedCount>
+      <Description>+2 Artifact bonus to Spell Saves.</Description>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <Item>Spell</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+2 Artifact bonus to Constitution.</Description>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <Item>Constitution</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+4 Artifact bonus to PRR and MRR.</Description>
+      <Effect>
+        <Type>PRR</Type>
+        <Type>MRR</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+4 Artifact bonus to Energy Resistance.</Description>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Artifact</Bonus>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+        <Item>All</Item>
+      </Effect>
+    </Buff>
+    <Buff>
+      <EquippedCount>5</EquippedCount>
+      <Description>+4 Artifact bonus to Spell Saves.</Description>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Artifact</Bonus>
+        <Item>Spell</Item>
+        <AType>Simple</AType>
+        <Amount size="1">4</Amount>
+      </Effect>
+    </Buff>
+  </SetBonus>

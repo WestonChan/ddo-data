@@ -48,7 +48,7 @@ pub(super) struct BonusOwner<'a> {
 pub(super) struct BonusOrigin<'a> {
     pub(super) owner: &'a BonusOwner<'a>,
     pub(super) source_name: &'a str,
-    pub(super) stat_name: &'a str,
+    pub(super) target_name: &'a str,
     pub(super) value: Option<i64>,
 }
 
@@ -86,14 +86,14 @@ impl<'a> UntypedBonusCorrections<'a> {
     }
 
     pub(super) fn bonus_type_for(&mut self, bonus_origin: &BonusOrigin) -> Result<BonusType> {
-        let BonusOrigin { owner, source_name, stat_name, value } = bonus_origin;
+        let BonusOrigin { owner, source_name, target_name, value } = bonus_origin;
         let correction_kind = owner.kind.correction_kind();
         let typing_correction = self.typing_corrections.iter_mut().find(|typing_correction| {
             let correction = typing_correction.correction;
             Some(correction.kind) == correction_kind
                 && correction.name == owner.name
                 && correction.family.as_deref().is_none_or(|family| Some(family) == owner.family)
-                && correction.stat.as_deref() == Some(*stat_name)
+                && correction.stat.as_deref() == Some(*target_name)
                 && correction.bonus_value.is_none_or(|bonus_value| Some(bonus_value) == *value)
         });
         if let Some(typing_correction) = typing_correction {
@@ -109,7 +109,7 @@ impl<'a> UntypedBonusCorrections<'a> {
             None => "type it in data/effect_map.toml".to_string(),
         };
         bail!(
-            "{} {:?}: {} {source_name:?} gives stat {stat_name:?} a bonus with no bonus type; every bonus carries one, so {remedy}",
+            "{} {:?}: {} {source_name:?} gives bonus target {target_name:?} a bonus with no bonus type; every bonus carries one, so {remedy}",
             owner.kind.as_str(),
             owner.name,
             owner.kind.bonus_source_word()

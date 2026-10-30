@@ -470,6 +470,31 @@ pub(crate) fn write_command_owners(source: &std::path::Path) {
     }
 }
 
+pub(crate) fn write_elemental_resistance_owners(source: &std::path::Path) {
+    let captured =
+        std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/effect-groups/ElementalResistance");
+    for entry in
+        walkdir::WalkDir::new(&captured).into_iter().map(Result::unwrap).filter(|entry| entry.file_type().is_file())
+    {
+        let relative = entry.path().strip_prefix(&captured).unwrap();
+        let destination = source.join(relative);
+        let closing_tag = match relative.to_str().unwrap() {
+            "ItemBuffs.xml" => Some("</Buffs>"),
+            "Feats.xml" => Some("</Feats>"),
+            "SetBonuses.xml" => Some("</SetBonuses>"),
+            _ => None,
+        };
+        if let Some(closing_tag) = closing_tag {
+            let original = std::fs::read_to_string(&destination).unwrap();
+            let additions = std::fs::read_to_string(entry.path()).unwrap();
+            std::fs::write(destination, original.replace(closing_tag, &format!("{additions}{closing_tag}"))).unwrap();
+        } else {
+            std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+            std::fs::copy(entry.path(), destination).unwrap();
+        }
+    }
+}
+
 pub(crate) fn rank_option_merge(rank: &str) -> CorrectionSet {
     let mut correction = spyglass_option_correction(
         "lines",

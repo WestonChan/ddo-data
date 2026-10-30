@@ -57,7 +57,8 @@ bonus_type = "Orb"
 value = 13
 
 [[effect]]
-name = "Fire, Cold, Electric, Acid and Sonic Resistance"
+name = "Elemental Resistance"
+alias = "Fire, Cold, Electric, Acid and Sonic Resistance"
 bonus_type = "Orb"
 value = 13
 
@@ -77,7 +78,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [13]
 bonus_type = "Orb"
-effect = "Fire, Cold, Electric, Acid and Sonic Resistance"
+effect = "Elemental Resistance"
 effect_type = "EnergyResistance"
 targets = [
     "Acid",
@@ -90,6 +91,14 @@ targets = [
 [[modifier.requirement]]
 items = ["Blocking"]
 req_type = "Stance"
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "alias"
+reason = "Keep the existing five-element line wording when its grouping merges into Elemental Resistance. The upstream Effect names the same five resistances."
+url = "https://github.com/Maetrim/DDOBuilderV2/blob/d1350a0c/Output/DataFiles/Augments/CannithAndRandomItem.Augments.xml"
+read = "2026-10-30"
+qualifier = "Elemental Resistance / Orb"
 
 [[slot]]
 slot = "crafting: cannith orb enhancement"

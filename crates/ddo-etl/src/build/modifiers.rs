@@ -372,7 +372,12 @@ impl TableWriter<'_> {
         let all_abilities = bonuses.len() > 1 && effect_type == "AbilityBonus" && target == Some("All");
         let mut resolved_types = bonuses.iter().map(|bonus| {
             self.bonus_type_of(
-                &BonusOrigin { owner, source_name: effect_type, stat_name: bonus.stat.name, value: Some(bonus.value) },
+                &BonusOrigin {
+                    owner,
+                    source_name: effect_type,
+                    target_name: bonus.stat.name,
+                    value: Some(bonus.value),
+                },
                 bonus.bonus_type,
             )
         });
@@ -508,7 +513,7 @@ impl TableWriter<'_> {
                             &BonusOrigin {
                                 owner,
                                 source_name: effect_type,
-                                stat_name: bonus.stat.name,
+                                target_name: bonus.stat.name,
                                 value: Some(bonus.value),
                             },
                             bonus.bonus_type,
@@ -558,7 +563,12 @@ impl TableWriter<'_> {
         let mut bonus_type = None;
         for (effect_type, bonus) in &bonuses {
             let resolved = self.bonus_type_of(
-                &BonusOrigin { owner, source_name: effect_type, stat_name: bonus.stat.name, value: Some(bonus.value) },
+                &BonusOrigin {
+                    owner,
+                    source_name: effect_type,
+                    target_name: bonus.stat.name,
+                    value: Some(bonus.value),
+                },
                 bonus.bonus_type,
             )?;
             if bonus_type.is_some_and(|previous| previous != resolved) {

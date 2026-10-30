@@ -10,6 +10,7 @@ enhancement = ["WeaponEnchantment", "ArmorEnchantment", "ShieldEnchantment"]
 owner_type_precedence = ["ExtraLayOnHands", "Constitution Skills - Exceptional", "Charisma Skills - Exceptional", "Strength Skills - Exceptional", "Wisdom Skills - Exceptional"]
 
 [family.groups]
+"Elemental Resistance" = "Elemental Resistance"
 OrbBonus = "Orb Bonus"
 Potency = "Potency"
 Nullification = "Nullification"
@@ -441,6 +442,7 @@ Deception = ["Deception +3", "Improved Deception"]
 Wizardry = ["Wizardry I", "Wizardry II", "Wizardry III", "Wizardry V", "Wizardry VI", "Wizardry VII", "Wizardry IX", "Wizardry X", "Wizardry XI"]
 
 [groups]
+"Elemental Resistance" = ["Fire Resistance", "Cold Resistance", "Electric Resistance", "Acid Resistance", "Sonic Resistance"]
 "Orb Bonus" = ["Saving Throws", "Fire Resistance", "Cold Resistance", "Electric Resistance", "Acid Resistance", "Sonic Resistance"]
 "Combat Mastery" = ["Trip DC", "Sunder DC", "Stun DC"]
 "Heal and Repair" = ["Heal", "Repair"]
@@ -553,7 +555,6 @@ NaturalArmor = "Armor Class"
 ArmorBonus = "Armor Class"
 Shield = "Armor Class"
 RoughHide = "Armor Class"
-"Elemental Resistance" = "Elemental Resistance"
 "Elemental Absorption" = "Elemental Absorption"
 "Alignment Absorption" = "Alignment Absorption"
 "Illusion Save" = "Illusion Save"
@@ -720,6 +721,9 @@ family_names = { "Melee Attack Speed" = "Melee Alacrity", "Ranged Attack Speed" 
 targets = { All = ["Trip DC", "Sunder DC", "Stun DC"], General = ["Trip DC", "Sunder DC", "Stun DC"], Trip = ["Trip DC"], Sunder = ["Sunder DC"], Stun = ["Stun DC"], Assassinate = ["Assassinate DC"], "Rune Arm" = ["Rune Arm DC"], Vertigo = ["Trip DC"] }
 family_names = { "Assassinate DC" = "Assassinate" }
 
+[effect.targeted.EnergyResistance]
+targets = { All = ["Fire Resistance", "Cold Resistance", "Electric Resistance", "Acid Resistance", "Sonic Resistance"], Acid = ["Acid Resistance"], Cold = ["Cold Resistance"], Electric = ["Electric Resistance"], Electricity = ["Electric Resistance"], Fire = ["Fire Resistance"], Sonic = ["Sonic Resistance"], Light = ["Light Resistance"], Force = ["Force Resistance"], Negative = ["Negative Resistance"], Poison = ["Poison Resistance"] }
+
 [[effect.owner_extra_stats]]
 owner_kind = "augment"
 owner_name = "+1 Reaper Bonus to Spell, Tactical, and Assassinate DCs"
@@ -744,7 +748,6 @@ SpellLore = "{item} Spell Lore"
 SpellCriticalDamage = "{item} Spell Critical Damage"
 SpellDC = "{item} Spell Focus"
 SaveBonus = "{item} Save"
-EnergyResistance = "{item} Resistance"
 EnergyAbsorbance = "{item} Absorption"
 
 [effect.by_item_default]
@@ -753,7 +756,6 @@ SpellLore = "Universal Spell Lore"
 SpellCriticalDamage = "Universal Spell Critical Damage"
 SpellDC = "Spell DCs"
 SaveBonus = "Saving Throws"
-EnergyResistance = "Elemental Resistance"
 Weapon_Attack = "Attack Bonus"
 Weapon_Damage = "Damage Bonus"
 

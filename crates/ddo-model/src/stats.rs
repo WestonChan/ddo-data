@@ -127,7 +127,6 @@ pub const STATS: &[Stat] = &[
     Stat { id: 125, name: "Alluring", category: StatCategory::Martial },
     Stat { id: 126, name: "Rune Arm Spell Focus", category: StatCategory::Magical },
     Stat { id: 127, name: "Linguistics", category: StatCategory::Skill },
-    Stat { id: 128, name: "Elemental Resistance", category: StatCategory::Defensive },
     Stat { id: 129, name: "Positive Healing Amplification", category: StatCategory::Other },
     Stat { id: 130, name: "Negative Healing Amplification", category: StatCategory::Other },
     Stat { id: 133, name: "Critical Threat Range", category: StatCategory::Martial },

@@ -203,7 +203,12 @@ impl TableWriter<'_> {
                             &BonusOrigin {
                                 owner: &item_owner,
                                 source_name: buff.kind.trim(),
-                                stat_name: stat.name,
+                                target_name: crate::map::effect_map::EFFECT_MAP
+                                    .family
+                                    .groups
+                                    .get(buff.kind.trim())
+                                    .map(String::as_str)
+                                    .unwrap_or(stat.name),
                                 value,
                             },
                             resolved_stat.bonus_type,

@@ -1,0 +1,100 @@
+<Feat>
+      <Name>Past Life: Ranger</Name>
+      <Description>You were a Ranger in a past life.
+You occasionally find small animals in your backpack.
+Each time you acquire this feat you gain +2 damage with ranged weapons and +2 to elemental resistances.
+This feat can be stacked up to three times.</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>HeroicPastLife</Acquire>
+      <Icon>PastLifeRanger</Icon>
+      <Effect>
+        <Type>WeaponDamageBonusClass</Type>
+        <Type>WeaponDamageBonusCriticalClass</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Ranged</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Acid</Item>
+        <Item>Cold</Item>
+        <Item>Electric</Item>
+        <Item>Fire</Item>
+        <Item>Sonic</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+    </Feat>
+
+<Feat>
+      <Name>Past Life: Harbinger of Nature's Wrath</Name>
+      <Description>You recall more about your past life as a druid.
+You have +2 to all elemental resistances and can cast the flame blade spell
+three times per rest, which summons a scimitar of fire that does fire damage
+instead of slashing damage and uses the wielder's Wisdom instead of Strength
+for determining attack and damage bonuses. You can choose to summon one or two
+scimitars and the swords are automatically equipped when created. At caster
+level 1, it has a +1 enhancement bonus and the flaming effect.
+Every five caster levels the summoned swords improve.</Description>
+      <Group>Standard</Group>
+      <Group>Epic Feat</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Level</Type>
+          <Value>3</Value>
+        </Requirement>
+          <Requirement>
+            <Type>Feat</Type>
+            <Item>Past Life: Druid</Item>
+          </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PastLifeDruid</Icon>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Feat</Bonus>
+        <Item>All</Item>
+        <AType>Simple</AType>
+        <Amount size="1">2</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Flame Blade</Item>
+        <AType>SpellInfo</AType>
+        <Amount size="4">0 0 0 0</Amount>
+        <Item>Druid</Item>
+      </Effect>
+    </Feat>
+
+<Feat>
+      <Name>Abyssal Resistance</Name>
+      <Description>+1 to Fire, Cold, Acid, Electric and Sonic Resistance</Description>
+      <Group>Warlock Resistance</Group>
+      <Requirements>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Pact: The Abyss</Item>
+        </Requirement>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Warlock</Item>
+          <Value>10</Value>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>AbyssalResistance</Icon>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Feat</Bonus>
+        <Item>Fire</Item>
+        <Item>Cold</Item>
+        <Item>Acid</Item>
+        <Item>Electric</Item>
+        <Item>Sonic</Item>
+        <AType>Simple</AType>
+        <Amount size="1">1</Amount>
+      </Effect>
+    </Feat>

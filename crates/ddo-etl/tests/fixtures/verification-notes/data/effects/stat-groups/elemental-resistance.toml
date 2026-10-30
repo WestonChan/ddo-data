@@ -1,0 +1,37 @@
+name = "Elemental Resistance"
+description_template = "Passive: {1} %b1 bonus to your Acid, Cold, Electricity, Fire, and Sonic Resistances."
+verbose_name_template = "%b1 Elemental Resistance +{1}"
+
+[[alias]]
+name = "Fire, Cold, Electric, Acid and Sonic Resistance"
+verbose_name_template = "%b1 Fire, Cold, Electric, Acid and Sonic Resistance +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Fire Resistance"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Cold Resistance"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Electric Resistance"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Acid Resistance"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Sonic Resistance"
