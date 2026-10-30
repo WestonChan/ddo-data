@@ -25,13 +25,22 @@ name = "Ship Kickers"
 [[item]]
 name = "Slice"
 
+[[ddobuilder_correction]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 2
+reason = "R6-6: Eagle's Eye screenshot shows +1 Quality bonus to all Ability stats; the screenshot takes precedence over the typed +2, as C8 batch 2 directs."
+url = "https://ddowiki.com/page/Item:Eagle's_Eye"
+read = "2026-10-23"
+qualifier = "equipped_count 5, All Ability Scores / Quality"
+
 [[tier]]
 equipped_count = 5
 
 [[tier.effect]]
 bonus_type = "Quality"
 effect = "All Ability Scores"
-value = 2
+value = 1
 
 [[tier.modifier]]
 amount_type = "Simple"

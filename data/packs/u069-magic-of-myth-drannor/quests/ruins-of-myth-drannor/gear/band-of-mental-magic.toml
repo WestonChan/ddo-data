@@ -18,7 +18,7 @@ bonus_type = "Equipment"
 value = 4
 
 [[effect]]
-name = "Transmutation Focus"
+name = "Necromancy Focus"
 bonus_type = "Equipment"
 value = 4
 
@@ -26,6 +26,15 @@ value = 4
 name = "Wizardry"
 bonus_type = "Insight"
 value = 68
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "effect"
+upstream = "Transmutation Focus"
+reason = "R6-7 row 84: the screenshot third Focus line is Necromancy +4; the typed Transmutation line is wrong. Preserve the line position and Equipment value."
+url = "https://ddowiki.com/page/Item:Band_of_Mental_Magic"
+read = "2026-10-23"
+qualifier = "Necromancy Focus"
 
 [[socket]]
 slot = "blue"

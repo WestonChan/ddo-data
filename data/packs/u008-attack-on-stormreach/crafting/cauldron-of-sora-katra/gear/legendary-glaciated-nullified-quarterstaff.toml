@@ -59,12 +59,21 @@ value = 7
 [[effect]]
 name = "Necromancy Focus"
 bonus_type = "Equipment"
-value = 5
+value = 7
 
 [[effect]]
 name = "Magical Efficiency"
 bonus_type = "Enhancement"
 value = 10
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "value"
+upstream = 5
+reason = "R6-5 row 35: both the screenshot and typed list give Necromancy Focus +7."
+url = "https://ddowiki.com/page/Item:Legendary_Glaciated_Nullified_Quarterstaff"
+read = "2026-10-23"
+qualifier = "Necromancy Focus / Equipment"
 
 [[socket]]
 slot = "red"

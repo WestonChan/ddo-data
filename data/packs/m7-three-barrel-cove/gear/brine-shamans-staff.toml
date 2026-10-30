@@ -30,12 +30,12 @@ value = 6
 
 [[effect]]
 name = "Glaciation"
-bonus_type = "Enhancement"
+bonus_type = "Equipment"
 value = 48
 
 [[effect]]
 name = "Magnetism"
-bonus_type = "Enhancement"
+bonus_type = "Equipment"
 value = 48
 
 [[effect]]
@@ -61,6 +61,24 @@ amounts = [
 bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Gust of Wind"]
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "bonus_type"
+upstream = "Enhancement"
+reason = "R6-3 row 55: the screenshot gives both spell power lines Equipment 48, on separate lines."
+url = "https://ddowiki.com/page/Item:Brine_Shaman's_Staff"
+read = "2026-10-23"
+qualifier = 'effect "Glaciation"'
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "bonus_type"
+upstream = "Enhancement"
+reason = "R6-3 row 55: the screenshot gives both spell power lines Equipment 48, on separate lines."
+url = "https://ddowiki.com/page/Item:Brine_Shaman's_Staff"
+read = "2026-10-23"
+qualifier = 'effect "Magnetism"'
 
 [[source]]
 kind = "adventure_pack"

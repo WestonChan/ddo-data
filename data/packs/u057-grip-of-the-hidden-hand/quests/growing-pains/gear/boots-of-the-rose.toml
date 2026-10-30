@@ -18,7 +18,7 @@ value2 = 12
 name = "Deception"
 bonus_type = "Insight"
 value = 3
-value2 = 5
+value2 = 4
 
 [[effect]]
 name = "Hide"
@@ -29,6 +29,15 @@ value = 8
 name = "Move Silently"
 bonus_type = "Insight"
 value = 8
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "value2"
+upstream = 5
+reason = "R6-7 row 83: the screenshot gives +4 Sneak Attack Damage, taking precedence over the typed +5."
+url = "https://ddowiki.com/page/Item:Boots_of_the_Rose"
+read = "2026-10-23"
+qualifier = 'effect "Deception"'
 
 [[socket]]
 slot = "blue"

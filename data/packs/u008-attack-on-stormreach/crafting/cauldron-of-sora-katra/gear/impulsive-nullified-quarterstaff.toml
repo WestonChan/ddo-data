@@ -58,12 +58,21 @@ value = 4
 [[effect]]
 name = "Necromancy Focus"
 bonus_type = "Equipment"
-value = 3
+value = 4
 
 [[effect]]
 name = "Magical Efficiency"
 bonus_type = "Enhancement"
 value = 5
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "value"
+upstream = 3
+reason = "R6-5 row 29: both the screenshot and typed list give Necromancy Focus +4."
+url = "https://ddowiki.com/page/Item:Impulsive_Nullified_Quarterstaff"
+read = "2026-10-23"
+qualifier = "Necromancy Focus / Equipment"
 
 [[socket]]
 slot = "red"

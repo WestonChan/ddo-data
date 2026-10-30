@@ -11,7 +11,7 @@ slot = "Hands"
 name = "Rune Arm Spell Focus"
 alias = "Rune Arm Focus"
 bonus_type = "Equipment"
-value = 4
+value = 6
 
 [[effect]]
 name = "Disable Device"
@@ -37,6 +37,15 @@ value = 3
 kind = "item_bonus"
 field = "alias"
 reason = "The item screenshot names this line Rune Arm Focus."
+url = "https://ddowiki.com/page/Item:Epic_Gloves_of_the_Tinkerer"
+read = "2026-10-23"
+qualifier = "Rune Arm Spell Focus / Equipment"
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "value"
+upstream = 4
+reason = "R6-7 row 80: the screenshot and typed list give Rune Arm Focus +6."
 url = "https://ddowiki.com/page/Item:Epic_Gloves_of_the_Tinkerer"
 read = "2026-10-23"
 qualifier = "Rune Arm Spell Focus / Equipment"

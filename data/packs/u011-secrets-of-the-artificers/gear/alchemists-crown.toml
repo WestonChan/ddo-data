@@ -16,12 +16,12 @@ value = 6
 
 [[effect]]
 name = "Devotion"
-bonus_type = "Enhancement"
+bonus_type = "Equipment"
 value = 72
 
 [[effect]]
 name = "Radiance"
-bonus_type = "Enhancement"
+bonus_type = "Equipment"
 value = 72
 
 [[ddobuilder_correction]]
@@ -30,6 +30,24 @@ field = "set_bonus"
 reason = "The wiki lists this item as a member of Alchemist's Lore."
 url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-02"
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "bonus_type"
+upstream = "Enhancement"
+reason = "R6-5 row 43: the nearly-finished item screenshot gives both separate spell power lines Equipment 72."
+url = "https://ddowiki.com/page/Item:Alchemist's_Crown"
+read = "2026-10-23"
+qualifier = 'effect "Devotion"'
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "bonus_type"
+upstream = "Enhancement"
+reason = "R6-5 row 43: the nearly-finished item screenshot gives both separate spell power lines Equipment 72."
+url = "https://ddowiki.com/page/Item:Alchemist's_Crown"
+read = "2026-10-23"
+qualifier = 'effect "Radiance"'
 
 [[socket]]
 slot = "crafting: nearly finished"

@@ -23,10 +23,19 @@ value = 20
 name = "Deception"
 bonus_type = "Enhancement"
 value = 10
-value2 = 15
+value2 = 16
 
 [[effect]]
 name = "Ghostly"
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "value2"
+upstream = 15
+reason = "R6-6 row 105: the screenshot, checked at 3x zoom, gives +16 Sneak Attack Damage. It takes precedence over the typed +15."
+url = "https://ddowiki.com/page/Item:Legendary_Shadowhail_Cloak"
+read = "2026-10-23"
+qualifier = 'effect "Deception"'
 
 [[socket]]
 slot = "green"

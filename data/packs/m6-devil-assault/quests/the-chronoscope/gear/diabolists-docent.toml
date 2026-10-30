@@ -4,6 +4,7 @@ This infernal docent is connected to the devils of Shavarath somehow, though
 the exact nature of the link is unclear. It can summon evil creatures to the
 wearer's aid, and facilitates the casting of conjuration-based magic."""
 drop_location = "The Chronoscope, End reward"
+enhancement_bonus = 2
 icon = "Docent_1a"
 item_category = "Armor"
 item_type = "Docent"
@@ -46,6 +47,13 @@ amounts = [
 bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Summon Monster III"]
+
+[[ddobuilder_correction]]
+kind = "item"
+field = "enhancement_bonus"
+reason = "R6-3 row 47: the heroic screenshot shows +2 Enhancement Bonus, omitted from the typed enchantments list and Maetrim."
+url = "https://ddowiki.com/page/Item:Diabolist's_Docent"
+read = "2026-10-23"
 
 [[socket]]
 slot = "blue"

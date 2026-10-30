@@ -11,7 +11,7 @@ slot = "Head"
 
 [[effect]]
 name = "Magi"
-bonus_type = "Equipment"
+bonus_type = "Enhancement"
 
 [[effect]]
 name = "Intelligence"
@@ -22,6 +22,15 @@ value = 6
 name = "Charisma"
 bonus_type = "Enhancement"
 value = 6
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "bonus_type"
+upstream = "Equipment"
+reason = "R6-3 row 39: the screenshot gives Magi +100 Enhancement Spell Points."
+url = "https://ddowiki.com/page/Item:Totemic_Lavalier"
+read = "2026-10-23"
+qualifier = 'effect "Magi"'
 
 [[source]]
 kind = "vendor"
