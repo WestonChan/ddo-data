@@ -605,6 +605,47 @@ fn item_effect_corrections_change_a_text_line_type_or_remove_its_link() {
 }
 
 #[test]
+fn committed_insight_skill_corrections_use_the_client_cap_through_the_writer() {
+    let source = fixture::xml_source();
+    std::fs::write(
+        source.path().join("Augments/CannithAndRandomItem.Augments.xml"),
+        include_str!("fixtures/effect-groups/InsightfulSkills.Augments.xml"),
+    )
+    .unwrap();
+    std::fs::create_dir_all(source.path().join("AugmentImages")).unwrap();
+    std::fs::write(
+        source.path().join("AugmentImages/Cannith.png"),
+        include_bytes!("fixtures/effect-groups/ElementalResistance/AugmentImages/Cannith.png"),
+    )
+    .unwrap();
+    let names = ["Insightful Haggle", "Insightful Diplomacy", "Insightful Spellsight"];
+    let mut corrections = committed_corrections().clone();
+    corrections.entries.retain(|correction| names.contains(&correction.name.as_str()));
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    for name in names {
+        let (amount, bonus_type): (i64, String) = db
+            .query_row(
+                "SELECT b.amount,t.name FROM owner_bonuses b JOIN augments a ON b.owner_kind='augment' AND b.owner_id=a.id JOIN bonus_types t ON t.id=b.bonus_type_id WHERE a.name=?1",
+                [name],
+                |row| Ok((row.get(0)?,row.get(1)?)),
+            )
+            .unwrap();
+        assert_eq!((amount, bonus_type), (11, "Insight".into()), "{name}");
+    }
+    assert_eq!(report.correction_applied_count, 3);
+    assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
+}
+
+#[test]
 fn committed_data_corrects_the_furys_rage_level() {
     let corrections = committed_corrections().clone();
     let furys_rage = corrections.entries.iter().find(|c| c.name == "The Fury's Rage").unwrap();

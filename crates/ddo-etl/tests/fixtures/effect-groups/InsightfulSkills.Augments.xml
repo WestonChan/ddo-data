@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Augments>
+  <Augment>
+    <Name>Insightful Diplomacy</Name>
+    <Icon>Cannith</Icon>
+    <Description>Insight bonus to Diplomacy</Description>
+    <Type>Cannith Ring Extra</Type>
+    <Type>Random Ring Suffix</Type>
+    <Type>Cannith Trinket Extra</Type>
+    <Type>Cannith Rune Arm Extra</Type>
+    <ChooseLevel />
+    <LevelValue size="40">1 2 2 3 3 4 4 5 5 6 6 7 7 7 8 8 8 8 8 8 9 9 9 9 9 9 9 9 10 10 10 10 10 11 11 11 11 11 11 11</LevelValue>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">22</Amount>
+      <Item>Diplomacy</Item>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Insightful Haggle</Name>
+    <Icon>Cannith</Icon>
+    <Description>Insight bonus to Haggle</Description>
+    <Type>Cannith Helmet Extra</Type>
+    <Type>Random Helmet Extra</Type>
+    <Type>Cannith Trinket Extra</Type>
+    <Type>Cannith Rune Arm Extra</Type>
+    <ChooseLevel />
+    <LevelValue size="40">1 2 2 3 3 4 4 5 5 6 6 7 7 7 8 8 8 8 8 8 9 9 9 9 9 9 9 9 10 10 10 10 10 11 11 11 11 11 11 11</LevelValue>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">22</Amount>
+      <Item>Haggle</Item>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Insightful Spellsight</Name>
+    <Icon>Cannith</Icon>
+    <Description>Insight bonus to Spellcraft</Description>
+    <Type>Cannith Boots Extra</Type>
+    <Type>Cannith Bracers Extra</Type>
+    <Type>Cannith Helmet Extra</Type>
+    <Type>Cannith Trinket Extra</Type>
+    <Type>Cannith Rune Arm Extra</Type>
+    <ChooseLevel />
+    <LevelValue size="40">1 2 2 3 3 4 4 5 5 6 6 7 7 7 8 8 8 8 8 8 9 9 9 9 9 9 9 9 10 10 10 10 10 11 11 11 11 11 11 11</LevelValue>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">22</Amount>
+      <Item>Spellcraft</Item>
+    </Effect>
+  </Augment>
+</Augments>
