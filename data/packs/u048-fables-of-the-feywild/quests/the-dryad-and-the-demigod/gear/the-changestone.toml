@@ -191,14 +191,14 @@ min_level = 1
 
 [[socket.option.effect]]
 bonus_type = "Competence"
-effect = "Attack Bonus"
+effect = "Accuracy"
 value = 21
 
 [[socket.option.modifier]]
 amount_type = "Simple"
 amounts = [21]
 bonus_type = "Competence"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 targets = ["All"]
 
@@ -326,7 +326,7 @@ min_level = 1
 
 [[socket.option.effect]]
 bonus_type = "Insight"
-effect = "Attack Bonus"
+effect = "Accuracy"
 value = 9
 
 [[socket.option.modifier]]
@@ -334,7 +334,7 @@ amount_type = "Simple"
 amounts = [9]
 bonus = "Insightful"
 bonus_type = "Insight"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 targets = ["All"]
 

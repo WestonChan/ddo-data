@@ -14,12 +14,12 @@ bonus_type = "Quality"
 value = 3
 
 [[effect]]
-name = "Negative Amplification"
+name = "Negative Healing Amplification"
 bonus_type = "Profane"
 value = 63
 
 [[effect]]
-name = "Negative Amplification"
+name = "Negative Healing Amplification"
 bonus_type = "Quality"
 value = 16
 

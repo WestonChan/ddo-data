@@ -1,0 +1,36 @@
+  <Buff>
+    <Type>Accuracy</Type>
+    <DisplayText>%b1 Accuracy %v1: Passive: %v1 %b1 bonus to attack rolls </DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>Weapon_Attack</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>AttackBonus</Type>
+    <ApplyToWeaponOnly />
+    <DisplayText>%b1 Attack Bonus %v1: Provides a %v1 %b1 bonus to your attack rolls.</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>Weapon_Attack</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>All</Item>
+    </Effect>
+  </Buff>
+  <Buff>
+    <Type>NegativeAmplification</Type>
+    <DisplayText>%b1 Negative Amplification %v1: This effect amplifies all incoming negative energy healing by %v1 (%b1 bonus ). Includes spells, potions, and other effects.</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>NegativeHealingAmplification</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>

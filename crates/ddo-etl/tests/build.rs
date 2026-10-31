@@ -445,7 +445,7 @@ fn a_structured_set_effect_takes_precedence_over_its_prose_vocabulary() {
         .unwrap()
         .collect::<rusqlite::Result<Vec<_>>>()
         .unwrap();
-    assert_eq!(bonuses, vec![("Attack Bonus".into(), 2), ("Fortification".into(), 25)]);
+    assert_eq!(bonuses, vec![("Accuracy".into(), 2), ("Fortification".into(), 25)]);
 }
 
 #[test]
@@ -1260,6 +1260,36 @@ fn build_item_buff_fixture(definitions: &str, items: &[(&str, &str)], icons: &[(
     )
     .unwrap();
     db
+}
+
+#[test]
+fn attack_bonus_buff_uses_accuracy_with_its_source_title_alias() {
+    let db = build_item_buff_fixture(
+        include_str!("fixtures/effect-groups/MergedStatNames.Buffs.xml"),
+        &[("FistsOfJustice.item", include_str!("fixtures/effect-groups/FistsOfJustice.item"))],
+        &[("ItemImages/Gloves/Gloves_3b.png", include_bytes!("fixtures/effect-groups/icons/Gloves_3b.png"))],
+    );
+    let line: (String, Option<String>, i64, String) = db
+        .query_row(
+            "SELECT e.name,l.alias,l.value,t.name FROM item_effects l JOIN items i ON i.id=l.item_id
+         JOIN effects e ON e.id=l.effect_id JOIN bonus_types t ON t.id=l.bonus_type_id
+         WHERE i.name='Fists of Justice' AND t.name='Competence'",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)),
+        )
+        .unwrap();
+    assert_eq!(line, ("Accuracy".into(), Some("Attack Bonus".into()), 2, "Competence".into()));
+    let bonus: (String, i64) = db
+        .query_row(
+            "SELECT s.name,b.amount FROM owner_bonuses b JOIN items i ON b.owner_kind='item' AND i.id=b.owner_id
+         JOIN effects s ON s.id=b.stat_id JOIN bonus_types t ON t.id=b.bonus_type_id
+         WHERE i.name='Fists of Justice' AND t.name='Competence'",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?)),
+        )
+        .unwrap();
+    assert_eq!(bonus, ("Accuracy".into(), 2));
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effects WHERE name='Attack Bonus'"), 0);
 }
 
 #[test]

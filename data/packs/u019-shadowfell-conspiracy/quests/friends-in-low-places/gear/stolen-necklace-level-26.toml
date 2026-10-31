@@ -24,14 +24,14 @@ min_level = 26
 
 [[socket.option.effect]]
 bonus_type = "Competence"
-effect = "Attack Bonus"
+effect = "Accuracy"
 value = 9
 
 [[socket.option.modifier]]
 amount_type = "Simple"
 amounts = [9]
 bonus_type = "Competence"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 
 [[socket.option]]

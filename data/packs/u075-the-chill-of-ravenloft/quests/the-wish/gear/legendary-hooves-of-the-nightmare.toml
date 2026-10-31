@@ -8,7 +8,7 @@ minimum_level = 34
 slot = "Feet"
 
 [[effect]]
-name = "Negative Amplification"
+name = "Negative Healing Amplification"
 bonus_type = "Profane"
 value = 61
 

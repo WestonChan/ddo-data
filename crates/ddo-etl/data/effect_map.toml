@@ -196,6 +196,8 @@ bonus_type = "Stacking"
 value = 5
 
 [names]
+AttackBonus = "Accuracy"
+NegativeAmplification = "Negative Healing Amplification"
 FlamingBlastII = "Flaming Blast 2"
 FlamingBlastIII = "Flaming Blast 3"
 FlamingBlastIV = "Flaming Blast 4"
@@ -334,6 +336,8 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "With 2–6 augments, gain a 5%–9% Legendary bonus to Spell Points." = "Spell Point Augment Scaling"
 
 [line_templates]
+Accuracy = "%b1 Accuracy +{1}"
+"Negative Healing Amplification" = "%b1 Negative Healing Amplification +{1}"
 "Orb Bonus" = "+{1} %b1 Orb Bonus"
 "Cold Spell Critical Damage" = "%b1 Cold Spell Critical Damage +{1}%"
 "Missile Deflection" = "%b1 Missile Deflection +{1}%"
@@ -402,6 +406,8 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "Universal Spell Lore" = "+{1}% %b1 Bonus to Spell Critical Chance"
 
 [description_templates]
+Accuracy = "Passive: {1} %b1 bonus to attack rolls"
+"Negative Healing Amplification" = "This sinister and unholy effect grants you a {1} %b1 Bonus to your vulnerability to Negative spells or effects. This increases the amount by which you are healed from Negative Energy if you are Undead."
 "Blinding Fear" = "On Hit: Blinds and Shakens foe for 6 seconds, 12 second cool down."
 "Command" = "Passive: {1} %b1 bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a {2} penalty on Hide checks."
 "Flaming Blast 2" = "This weapon burns with deadly magical fire, dealing 2d6 Fire damage on a successful hit, and an additional 2d6 Fire damage on a critical hit."
@@ -577,7 +583,7 @@ RangedPower = "Ranged Power"
 Deadly = "Deadly"
 Seeker = "Seeker"
 Accuracy = "Accuracy"
-AttackBonus = "Attack Bonus"
+AttackBonus = "Accuracy"
 Doublestrike = "Doublestrike"
 Doubleshot = "Doubleshot"
 ArmorPiercing = "Fortification Bypass"
@@ -762,7 +768,7 @@ SpellLore = "Universal Spell Lore"
 SpellCriticalDamage = "Universal Spell Critical Damage"
 SpellDC = "Spell DCs"
 SaveBonus = "Saving Throws"
-Weapon_Attack = "Attack Bonus"
+Weapon_Attack = "Accuracy"
 Weapon_Damage = "Damage Bonus"
 
 [effect.companion_targets]

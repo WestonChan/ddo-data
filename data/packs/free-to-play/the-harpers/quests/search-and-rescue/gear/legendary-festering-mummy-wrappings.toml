@@ -8,7 +8,7 @@ minimum_level = 28
 slot = "Waist"
 
 [[effect]]
-name = "Negative Amplification"
+name = "Negative Healing Amplification"
 bonus_type = "Profane"
 value = 53
 

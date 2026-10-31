@@ -36,7 +36,8 @@ bonus_type = "Enhancement"
 value = 8
 
 [[effect]]
-name = "Attack Bonus"
+name = "Accuracy"
+alias = "Attack Bonus"
 bonus_type = "Competence"
 value = 3
 

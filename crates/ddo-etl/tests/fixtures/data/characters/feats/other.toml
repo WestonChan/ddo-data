@@ -870,14 +870,14 @@ source_name = "Dwarf"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Attack Bonus"
+effect = "Accuracy"
 value = 1
 
 [[row.modifier]]
 amount_type = "Simple"
 amounts = [1]
 bonus_type = "Feat"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 stack_source = "Ranger"
 targets = ["All"]

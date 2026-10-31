@@ -333,7 +333,7 @@ fn effect_resolver_derives_bonuses_from_simple_effects() {
         (simple_effect("SpellCriticalDamage", "Stacking", 5.0, &["Light/Alignment"]), "Light Spell Critical Damage"),
         (simple_effect("EnergyAbsorbance", "Enhancement", 20.0, &["Lawful"]), "Law Absorption"),
         (simple_effect("HealingAmplification", "Competence", 56.0, &[]), "Healing Amplification"),
-        (simple_effect("Weapon_Attack", "Stacking", 2.0, &["All"]), "Attack Bonus"),
+        (simple_effect("Weapon_Attack", "Stacking", 2.0, &["All"]), "Accuracy"),
     ];
     for (effect, expected) in cases {
         let bonuses = derived(effect);

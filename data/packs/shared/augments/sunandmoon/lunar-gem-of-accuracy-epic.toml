@@ -5,7 +5,7 @@ icon = "HistoryBookWhite"
 min_level = 20
 
 [[effect]]
-name = "Attack Bonus"
+name = "Accuracy"
 bonus_type = "Profane"
 value = 2
 
@@ -13,7 +13,7 @@ value = 2
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Profane"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 targets = ["All"]
 

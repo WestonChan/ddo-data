@@ -18,7 +18,7 @@ bonus_type = "Exceptional"
 value = 20
 
 [[effect]]
-name = "Negative Amplification"
+name = "Negative Healing Amplification"
 bonus_type = "Profane"
 value = 1
 

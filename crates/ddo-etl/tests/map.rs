@@ -103,6 +103,38 @@ fn fallback_family_names_drop_number_markers() {
 }
 
 #[test]
+fn merged_stat_buff_names_keep_only_the_canonical_stat_identity() {
+    let source = tempfile::tempdir().unwrap();
+    let path = source.path().join("ItemBuffs.xml");
+    std::fs::write(
+        &path,
+        format!("<Buffs>{}</Buffs>", include_str!("fixtures/effect-groups/MergedStatNames.Buffs.xml")),
+    )
+    .unwrap();
+    let definitions = item_buffs::parse(&path).unwrap();
+    assert_eq!(definitions.len(), 3);
+    let resolver = BuffResolver::from_definitions(&definitions);
+    let mut identities = Vec::new();
+    let mut expected = Vec::new();
+    for (kind, canonical, source) in [
+        ("AttackBonus", "Accuracy", "Attack Bonus"),
+        ("Accuracy", "Accuracy", "Accuracy"),
+        ("NegativeAmplification", "Negative Healing Amplification", "Negative Amplification"),
+    ] {
+        let input = buff(kind, None, Some(2), Some("Competence"));
+        assert_eq!(resolver.source_family_name(&input), source, "{kind}");
+        let ResolvedBuff::Bonuses { stats, .. } = resolver.resolved(&input).unwrap() else {
+            panic!("{kind} must grant its canonical stat");
+        };
+        identities
+            .push((resolver.family_name(&input, None), stats.iter().map(|row| row.stat.name).collect::<Vec<_>>()));
+        expected.push((canonical.to_string(), vec![canonical]));
+    }
+    assert_eq!(identities, expected);
+    assert!(ddo_model::stats::Stat::by_name("Attack Bonus").is_none());
+}
+
+#[test]
 fn bonus_types_normalise_onto_ours() {
     assert_eq!(parse_buff_bonus_type("Enhancement").unwrap(), Some(BonusType::Enhancement));
     assert_eq!(parse_buff_bonus_type("Weapon Enchantment").unwrap(), Some(BonusType::Enhancement));
@@ -883,7 +915,7 @@ fn valued_set_prose_rules_validate_types_targets_and_unique_descriptions() {
     for rule in &vocabulary.set_tier_prose_bonuses {
         assert!(vocabulary.set_tier_prose_link(&rule.description, fixture::grouping_cases()).unwrap().is_some());
     }
-    let duplicate = "\n[[set_tier_prose_bonuses]]\ndescription = \"+1 Profane bonus to Attack and Damage\"\neffect = \"Attack Bonus\"\nbonus_type = \"Profane\"\nvalue = 1\n";
+    let duplicate = "\n[[set_tier_prose_bonuses]]\ndescription = \"+1 Profane bonus to Attack and Damage\"\neffect = \"Accuracy\"\nbonus_type = \"Profane\"\nvalue = 1\n";
     for invalid in [
         format!("{source}{duplicate}"),
         source.replacen("bonus_type = \"Profane\"", "bonus_type = \"Unknown Type\"", 1),

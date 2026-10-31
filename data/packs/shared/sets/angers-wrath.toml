@@ -12,13 +12,13 @@ equipped_count = 2
 
 [[tier.effect]]
 bonus_type = "Stacking"
-effect = "Attack Bonus"
+effect = "Accuracy"
 value = 2
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Stacking"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 targets = ["All"]

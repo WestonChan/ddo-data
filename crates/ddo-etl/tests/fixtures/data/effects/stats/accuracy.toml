@@ -1,3 +1,8 @@
 name = "Accuracy"
 category = "martial"
-verbose_name_template = "Accuracy +{1}"
+description_template = "Passive: {1} %b1 bonus to attack rolls"
+verbose_name_template = "%b1 Accuracy +{1}"
+
+[[alias]]
+name = "Attack Bonus"
+verbose_name_template = "%b1 Attack Bonus +{1}"

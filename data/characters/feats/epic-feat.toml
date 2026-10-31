@@ -103,7 +103,7 @@ value = 1
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Attack Bonus"
+effect = "Accuracy"
 value = 1
 
 [[row.effect]]
@@ -151,7 +151,7 @@ effect_type = "DodgeBonus"
 amount_type = "Simple"
 amounts = [1]
 bonus_type = "Feat"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 targets = ["All"]
 
@@ -543,7 +543,7 @@ value = 5
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Attack Bonus"
+effect = "Accuracy"
 value = 10
 
 [[row.group]]
@@ -566,7 +566,7 @@ effect_type = "MissileDeflectionBypass"
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Feat"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 targets = ["All"]
 
@@ -1097,7 +1097,7 @@ icon = "EpicPrecision"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Attack Bonus"
+effect = "Accuracy"
 value = 5
 
 [[row.effect]]
@@ -1112,7 +1112,7 @@ group_name = "Epic Feat"
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Feat"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 percent = true
 targets = ["All"]
@@ -2357,7 +2357,7 @@ value = 40
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Attack Bonus"
+effect = "Accuracy"
 value = 10
 
 [[row.group]]
@@ -2379,7 +2379,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Feat"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 targets = ["All"]
 

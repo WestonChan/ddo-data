@@ -1601,7 +1601,7 @@ source_name = "Legendary"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Attack Bonus"
+effect = "Accuracy"
 value = 10
 
 [[row.effect]]
@@ -1616,7 +1616,7 @@ group_name = "Epic Destiny Feat"
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Feat"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 targets = ["All"]
 

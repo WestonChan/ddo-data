@@ -47,7 +47,7 @@ level_values = [
 ]
 
 [[effect]]
-name = "Attack Bonus"
+name = "Accuracy"
 bonus_type = "Competence"
 value = 11
 
@@ -55,7 +55,7 @@ value = 11
 amount_type = "Simple"
 amounts = [11]
 bonus_type = "Competence"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 targets = ["All"]
 

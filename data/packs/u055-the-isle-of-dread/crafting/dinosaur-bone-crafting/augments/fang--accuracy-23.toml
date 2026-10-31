@@ -5,7 +5,7 @@ icon = "Fang"
 min_level = 31
 
 [[effect]]
-name = "Attack Bonus"
+name = "Accuracy"
 bonus_type = "Competence"
 value = 23
 
@@ -13,7 +13,7 @@ value = 23
 amount_type = "Simple"
 amounts = [23]
 bonus_type = "Competence"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 targets = ["All"]
 

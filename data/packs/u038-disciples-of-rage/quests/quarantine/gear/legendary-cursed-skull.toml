@@ -34,7 +34,7 @@ bonus_type = "Equipment"
 value = 7
 
 [[effect]]
-name = "Negative Amplification"
+name = "Negative Healing Amplification"
 bonus_type = "Profane"
 value = 53
 

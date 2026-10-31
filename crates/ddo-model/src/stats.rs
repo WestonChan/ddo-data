@@ -22,7 +22,6 @@ pub const STATS: &[Stat] = &[
     Stat { id: 6, name: "Charisma", category: StatCategory::Ability },
     Stat { id: 7, name: "Melee Power", category: StatCategory::Martial },
     Stat { id: 8, name: "Ranged Power", category: StatCategory::Martial },
-    Stat { id: 9, name: "Attack Bonus", category: StatCategory::Martial },
     Stat { id: 10, name: "Damage Bonus", category: StatCategory::Martial },
     Stat { id: 11, name: "Hit Points", category: StatCategory::Martial },
     Stat { id: 12, name: "Sneak Attack Dice", category: StatCategory::Martial },

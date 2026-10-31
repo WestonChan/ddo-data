@@ -8,7 +8,8 @@ minimum_level = 9
 slot = "Goggles"
 
 [[effect]]
-name = "Attack Bonus"
+name = "Accuracy"
+alias = "Attack Bonus"
 bonus_type = "Competence"
 value = 2
 

@@ -735,7 +735,7 @@ value = -4
 
 [[row.effect]]
 bonus_type = "Enhancement"
-effect = "Attack Bonus"
+effect = "Accuracy"
 value = 3
 
 [[row.effect]]
@@ -814,7 +814,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Enhancement"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 targets = ["All"]
 
@@ -1190,7 +1190,7 @@ value = -2
 
 [[row.effect]]
 bonus_type = "Enhancement"
-effect = "Attack Bonus"
+effect = "Accuracy"
 value = 5
 
 [[row.effect]]
@@ -1266,7 +1266,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Enhancement"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 targets = ["All"]
 
@@ -1327,7 +1327,7 @@ value = -2
 
 [[row.effect]]
 bonus_type = "Enhancement"
-effect = "Attack Bonus"
+effect = "Accuracy"
 value = 3
 
 [[row.effect]]
@@ -1370,7 +1370,7 @@ req_type = "Stance"
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Enhancement"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 targets = ["All"]
 

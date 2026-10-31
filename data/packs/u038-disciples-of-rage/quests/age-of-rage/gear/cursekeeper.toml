@@ -8,7 +8,7 @@ minimum_level = 14
 slot = "Trinket"
 
 [[effect]]
-name = "Negative Amplification"
+name = "Negative Healing Amplification"
 bonus_type = "Insight"
 value = 15
 

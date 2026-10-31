@@ -8,7 +8,7 @@ minimum_level = 15
 slot = "Back"
 
 [[effect]]
-name = "Negative Amplification"
+name = "Negative Healing Amplification"
 bonus_type = "Insight"
 value = 15
 

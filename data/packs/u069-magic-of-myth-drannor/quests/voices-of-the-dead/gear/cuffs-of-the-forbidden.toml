@@ -8,12 +8,12 @@ minimum_level = 13
 slot = "Wrists"
 
 [[effect]]
-name = "Negative Amplification"
+name = "Negative Healing Amplification"
 bonus_type = "Profane"
 value = 27
 
 [[effect]]
-name = "Negative Amplification"
+name = "Negative Healing Amplification"
 bonus_type = "Quality"
 value = 7
 

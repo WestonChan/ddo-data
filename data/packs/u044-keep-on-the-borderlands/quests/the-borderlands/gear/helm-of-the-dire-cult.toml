@@ -8,7 +8,7 @@ minimum_level = 21
 slot = "Head"
 
 [[effect]]
-name = "Negative Amplification"
+name = "Negative Healing Amplification"
 bonus_type = "Profane"
 value = 40
 

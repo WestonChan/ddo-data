@@ -27,7 +27,7 @@ bonus_type = "Competence"
 value = 59
 
 [[effect]]
-name = "Negative Amplification"
+name = "Negative Healing Amplification"
 bonus_type = "Profane"
 value = 59
 

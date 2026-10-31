@@ -11,7 +11,8 @@ minimum_level = 13
 slot = "Ring"
 
 [[effect]]
-name = "Attack Bonus"
+name = "Accuracy"
+alias = "Attack Bonus"
 bonus_type = "Competence"
 value = 2
 

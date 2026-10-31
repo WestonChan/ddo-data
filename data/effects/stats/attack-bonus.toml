@@ -1,4 +1,0 @@
-name = "Attack Bonus"
-category = "martial"
-description_template = "Provides a {1} %b1 bonus to your attack rolls."
-verbose_name_template = "%b1 Attack Bonus +{1}"

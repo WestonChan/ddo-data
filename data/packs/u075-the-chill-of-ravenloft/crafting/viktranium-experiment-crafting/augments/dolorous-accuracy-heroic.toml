@@ -5,7 +5,7 @@ icon = "Lamordia"
 min_level = 8
 
 [[effect]]
-name = "Attack Bonus"
+name = "Accuracy"
 bonus_type = "Competence"
 value = 8
 
@@ -13,7 +13,7 @@ value = 8
 amount_type = "Simple"
 amounts = [8]
 bonus_type = "Competence"
-effect = "Attack Bonus"
+effect = "Accuracy"
 effect_type = "Weapon_Attack"
 targets = ["All"]
 

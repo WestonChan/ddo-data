@@ -19,7 +19,7 @@ bonus_type = "Orb"
 value = 9
 
 [[effect]]
-name = "Negative Amplification"
+name = "Negative Healing Amplification"
 bonus_type = "Profane"
 value = 53
 

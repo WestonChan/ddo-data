@@ -14,7 +14,8 @@ name = "Heal Moderate Wounds"
 clickie = "Heal Moderate Wounds"
 
 [[effect]]
-name = "Attack Bonus"
+name = "Accuracy"
+alias = "Attack Bonus"
 bonus_type = "Competence"
 value = 1
 

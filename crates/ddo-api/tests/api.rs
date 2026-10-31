@@ -316,6 +316,28 @@ async fn effect_search_reports_only_the_first_matching_alias() {
 }
 
 #[tokio::test]
+async fn attack_bonus_alias_resolves_to_the_single_accuracy_stat() {
+    let (status, headers, _) = get("/v1/effects/attack-bonus").await;
+    assert_eq!(status, StatusCode::PERMANENT_REDIRECT);
+    assert_eq!(headers[header::LOCATION], "/v1/effects/accuracy");
+    let (status, _, response) = get("/v1/effects?q=Attack%20Bonus&limit=10000").await;
+    assert_eq!(status, StatusCode::OK);
+    let rows = response["effects"].as_array().unwrap();
+    assert!(!rows.iter().any(|row| row["name"] == "Attack Bonus"));
+    let accuracy = rows.iter().find(|row| row["name"] == "Accuracy").unwrap();
+    assert_eq!(accuracy["matched_alias"], "Attack Bonus");
+    let mut filtered = Vec::new();
+    for name in ["Accuracy", "Attack Bonus"] {
+        let query = serde_urlencoded::to_string([("bonus", name)]).unwrap();
+        let (status, _, response) = get(&format!("/v1/items?{query}")).await;
+        assert_eq!(status, StatusCode::OK);
+        assert!(response["total"].as_u64().unwrap() > 0);
+        filtered.push(response);
+    }
+    assert_eq!(filtered[0], filtered[1]);
+}
+
+#[tokio::test]
 async fn effect_aliases_choose_line_wording_and_expand_search() {
     let state = fixture_state_with_data_edits("effect-aliases", |root| {
         let append = |relative: &str, suffix: &str| {

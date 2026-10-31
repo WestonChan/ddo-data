@@ -1,3 +1,9 @@
 name = "Negative Healing Amplification"
 category = "other"
+description_template = "This sinister and unholy effect grants you a {1} %b1 Bonus to your vulnerability to Negative spells or effects. This increases the amount by which you are healed from Negative Energy if you are Undead."
 verbose_name_template = "%b1 Negative Healing Amplification +{1}"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:The_Kept_Descent"
+read = "2026-10-29"
+note = "R15b and R15e screenshots name the stat Negative Healing Amplification, including Profane +63 and Quality +16. Screenshot: https://images.ddowiki.com/The_Kept_Descent.png"
