@@ -107,6 +107,63 @@ fn note_lines_include_zero_amounts_and_named_effect_targets() {
 }
 
 #[test]
+fn r15_line_templates_keep_stat_names_and_search_only_aliases() {
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db).unwrap();
+    Corrections::from_database(&db).unwrap();
+    let mut mismatches = Vec::new();
+    for (name, template, alias) in [
+        ("Heightened Awareness", "Heightened Awareness +{1}", None),
+        ("Reflex Save", "%b1 Reflex +{1}", Some("Reflex")),
+        ("Fortitude Save", "%b1 Fortitude +{1}", Some("Fortitude")),
+        ("Will Save", "%b1 Will +{1}", Some("Will")),
+        ("Enchantment Save", "%b1 Enchantment Resistance +{1}", Some("Enchantment Resistance")),
+        ("Illusion Save", "%b1 Illusion Resistance +{1}", Some("Illusion Resistance")),
+        ("Spell Save", "%b1 Spell Saves +{1}", Some("Spell Saves")),
+    ] {
+        let (id, actual, is_stat): (i64, String, bool) = db
+            .query_row("SELECT id,verbose_name_template,is_stat FROM effects WHERE name=?1", [name], |row| {
+                Ok((row.get(0)?, row.get(1)?, row.get(2)?))
+            })
+            .unwrap();
+        assert_eq!(is_stat, alias.is_some(), "{name} keeps its identity");
+        if actual != template {
+            mismatches.push(format!("{name}: expected {template:?}, got {actual:?}"));
+        }
+        let corrections: i64 = db
+            .query_row(
+                "SELECT COUNT(*) FROM corrections WHERE kind='effect' AND name=?1 AND field='verbose_name_template'",
+                [name],
+                |row| row.get(0),
+            )
+            .unwrap();
+        if corrections != 1 {
+            mismatches.push(format!("{name} needs its template correction preserved through export"));
+        }
+        if let Some(alias) = alias {
+            let matches: i64 = db.query_row("SELECT COUNT(*) FROM effect_aliases WHERE effect_id=?1 AND name=?2 AND verbose_name_template IS NULL",params![id,alias],|row|row.get(0)).unwrap();
+            if matches != 1 {
+                mismatches.push(format!("{name} needs the search-only alias {alias:?}"));
+            }
+        }
+    }
+    for (table, owner_column, name, bonus_type, amount) in [
+        ("augments", "augment_id", "Spellsight", "Competence", 22),
+        ("augments", "augment_id", "Insightful Spellsight", "Insight", 11),
+        ("items", "item_id", "The Queen's Sceptre", "Competence", 7),
+        ("items", "item_id", "The Queen's Sceptre", "Insight", 3),
+        ("items", "item_id", "Legendary Bracers of Method and Magic", "Quality", 5),
+    ] {
+        let links = if table == "items" { "item_effects" } else { "augment_effects" };
+        let query = format!("SELECT COUNT(*) FROM {table} o JOIN {links} l ON l.{owner_column}=o.id JOIN effects e ON e.id=l.effect_id JOIN bonus_types t ON t.id=l.bonus_type_id WHERE o.name=?1 AND e.name='Spellcraft' AND t.name=?2 AND l.value=?3 AND l.alias='Spellsight'");
+        let matches: i64 = db.query_row(&query, params![name, bonus_type, amount], |row| row.get(0)).unwrap();
+        if matches != 1 {
+            mismatches.push(format!("{name}: expected Spellsight alias at {amount} {bonus_type}"));
+        }
+    }
+    assert!(mismatches.is_empty(), "{}", mismatches.join("\n"));
+}
+#[test]
 fn armor_effect_names_follow_tooltips_and_keep_old_search_names() {
     let mut db = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db).unwrap();

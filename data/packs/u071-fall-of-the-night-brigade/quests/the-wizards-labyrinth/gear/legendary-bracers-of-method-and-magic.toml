@@ -24,8 +24,17 @@ value = 10
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Quality"
 value = 5
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = "R15b screenshot shows Quality Spellsight +5. Screenshot: https://images.ddowiki.com/Legendary_Bracers_of_Method_and_Magic.png"
+url = "https://ddowiki.com/page/Item:Legendary_Bracers_of_Method_and_Magic"
+read = "2026-10-28"
+qualifier = "Spellcraft / Quality"
 
 [[socket]]
 slot = "green"

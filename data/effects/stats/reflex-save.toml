@@ -1,8 +1,15 @@
 name = "Reflex Save"
 category = "defensive"
 description_template = "This item gives a {1} %b1 bonus to your Reflex save."
-verbose_name_template = "%b1 Reflex Save +{1}"
+verbose_name_template = "%b1 Reflex +{1}"
 
 [[alias]]
 name = "Reflex"
-verbose_name_template = "%b1 Reflex +{1}"
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "%b1 Reflex Save +{1}"
+reason = "R15 screenshot wording; the stat or effect identity and canonical description are unchanged. Screenshot: https://images.ddowiki.com/Epic_Wrath_of_Siberys.png"
+url = "https://ddowiki.com/page/Item:Epic_Wrath_of_Siberys"
+read = "2026-10-28"

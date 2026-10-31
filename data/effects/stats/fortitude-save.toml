@@ -1,4 +1,15 @@
 name = "Fortitude Save"
 category = "defensive"
 description_template = "This item gives a {1} %b1 bonus to your Fortitude save."
-verbose_name_template = "%b1 Fortitude Save +{1}"
+verbose_name_template = "%b1 Fortitude +{1}"
+
+[[alias]]
+name = "Fortitude"
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "%b1 Fortitude Save +{1}"
+reason = "R15 screenshot wording; the stat or effect identity and canonical description are unchanged. Screenshot: https://images.ddowiki.com/Legendary_Blademark_Amulet.png"
+url = "https://ddowiki.com/page/Item:Legendary_Blademark_Amulet"
+read = "2026-10-28"

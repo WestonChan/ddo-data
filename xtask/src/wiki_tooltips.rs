@@ -6,7 +6,7 @@ use ddo_api::{app, AppState};
 use http_body_util::BodyExt;
 use rusqlite::Connection;
 use serde_json::Value;
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 use std::path::Path;
 use tower::ServiceExt;
 
@@ -15,6 +15,7 @@ const GOLDEN_LINES: &str = include_str!("../data/tooltip_golden.json");
 #[derive(Default)]
 struct TooltipComparison {
     enhancement_bonuses_checked: usize,
+    stat_template_names_checked: usize,
     matched_fields: usize,
     matched_lines: usize,
     known_lines: usize,
@@ -28,9 +29,60 @@ struct GoldenLineContext {
     wiki_owner: bool,
 }
 
+#[derive(Default)]
+struct StatTemplateName {
+    canonical_name: String,
+    search_only_aliases: BTreeSet<String>,
+}
+
+type OwnerStatTemplateNames = BTreeMap<(String, i64, Option<i64>), BTreeMap<usize, StatTemplateName>>;
+
+fn stat_template_names(db: &Connection) -> Result<OwnerStatTemplateNames> {
+    let mut statement = db.prepare(
+        "WITH ordered_links AS (
+             SELECT 'items' AS collection, 'item' AS owner_kind, item_id AS owner_id, item_id AS bonus_owner_id,
+                    NULL AS equipped_count, effect_id, alias, sort_order,
+                    ROW_NUMBER() OVER (PARTITION BY item_id ORDER BY sort_order) - 1 AS line_index
+               FROM item_effects
+             UNION ALL
+             SELECT 'augments', 'augment', augment_id, augment_id, NULL, effect_id, alias, sort_order,
+                    ROW_NUMBER() OVER (PARTITION BY augment_id ORDER BY sort_order) - 1
+               FROM augment_effects
+             UNION ALL
+             SELECT 'sets', 'set_bonus_tier', tier.set_id, link.tier_id, tier.equipped_count,
+                    link.effect_id, link.alias, link.sort_order,
+                    ROW_NUMBER() OVER (PARTITION BY link.tier_id ORDER BY link.sort_order) - 1
+               FROM set_bonus_tier_effects link JOIN set_bonus_tiers tier ON tier.id = link.tier_id
+         )
+         SELECT l.collection, l.owner_id, l.equipped_count, l.line_index, e.name, a.name
+           FROM ordered_links l JOIN effects e ON e.id = l.effect_id
+           LEFT JOIN effect_aliases a ON a.effect_id = e.id AND a.verbose_name_template IS NULL
+          WHERE e.is_stat = 1 AND l.alias IS NULL
+            AND e.verbose_name_template IS NOT NULL
+            AND (l.owner_kind <> 'set_bonus_tier' OR NOT EXISTS (
+                 SELECT 1 FROM owner_bonuses ob WHERE ob.owner_kind = l.owner_kind
+                  AND ob.owner_id = l.bonus_owner_id AND ob.effect_link_order = l.sort_order AND ob.amount IS NOT NULL))
+            AND EXISTS (SELECT 1 FROM corrections c WHERE c.kind = 'effect'
+                         AND c.name = e.name AND c.field = 'verbose_name_template')",
+    )?;
+    let mut names = OwnerStatTemplateNames::new();
+    let mut rows = statement.query([])?;
+    while let Some(row) = rows.next()? {
+        let owner = (row.get::<_, String>(0)?, row.get::<_, i64>(1)?, row.get::<_, Option<i64>>(2)?);
+        let line_index = usize::try_from(row.get::<_, i64>(3)?)?;
+        let name = names.entry(owner).or_default().entry(line_index).or_default();
+        name.canonical_name = row.get(4)?;
+        if let Some(alias) = row.get::<_, Option<String>>(5)? {
+            name.search_only_aliases.insert(alias);
+        }
+    }
+    Ok(names)
+}
+
 pub fn check_wiki_tooltips(db_path: &Path) -> Result<String> {
     let corpus: Value = serde_json::from_str(GOLDEN_LINES)?;
     let db = Connection::open_with_flags(db_path, rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY)?;
+    let template_names = stat_template_names(&db)?;
     let state = AppState::open(db_path)?;
     let runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
     let mut comparison = TooltipComparison::default();
@@ -68,6 +120,7 @@ pub fn check_wiki_tooltips(db_path: &Path) -> Result<String> {
                         &served_tier["effects"],
                         &mut comparison,
                         wiki_owner,
+                        template_names.get(&(collection.to_string(), owner_id, Some(pieces))),
                     )?;
                 }
             } else {
@@ -78,7 +131,14 @@ pub fn check_wiki_tooltips(db_path: &Path) -> Result<String> {
                         }
                     }
                 }
-                compare_lines(owner_name, &owner["lines"], &detail["effects"], &mut comparison, wiki_owner)?;
+                compare_lines(
+                    owner_name,
+                    &owner["lines"],
+                    &detail["effects"],
+                    &mut comparison,
+                    wiki_owner,
+                    template_names.get(&(collection.to_string(), owner_id, None)),
+                )?;
             }
             if comparison.unrecorded.len() > mismatches_before {
                 let selector = match collection {
@@ -105,9 +165,9 @@ pub fn check_wiki_tooltips(db_path: &Path) -> Result<String> {
         );
     }
     Ok(format!(
-        "wiki tooltips: {} lines matched as-is, {} lines with recorded differences, {} matched fields, {} enhancement bonuses checked; known differences: {:?}; {}",
+        "wiki tooltips: {} lines matched as-is, {} lines with recorded differences, {} matched fields, {} enhancement bonuses checked, {} stat-template names checked; known differences: {:?}; {}",
         comparison.matched_lines, comparison.known_lines, comparison.matched_fields,
-        comparison.enhancement_bonuses_checked, comparison.known_by_reason, age_report
+        comparison.enhancement_bonuses_checked, comparison.stat_template_names_checked, comparison.known_by_reason, age_report
     ))
 }
 
@@ -152,6 +212,7 @@ fn compare_lines(
     served_lines: &Value,
     comparison: &mut TooltipComparison,
     wiki_owner: bool,
+    template_names: Option<&BTreeMap<usize, StatTemplateName>>,
 ) -> Result<()> {
     let served_lines = served_lines.as_array().context("served effect lines")?;
     let golden_lines = golden_lines.as_array().context("golden effect lines")?;
@@ -179,7 +240,11 @@ fn compare_lines(
             golden["wiki_name"].as_str().map(str::to_string).unwrap_or_else(|| wiki_label(wiki_text, golden));
         let line_location = format!("{owner_name} [line {line_index}]");
         let context = GoldenLineContext { different_line_counts, wiki_owner };
-        compare_field(&line_location, golden, served, "name", &wiki_name, context, comparison);
+        if let Some(template_name) = template_names.and_then(|names| names.get(&line_index)) {
+            compare_stat_template_name(&line_location, golden, served, &wiki_name, template_name, comparison);
+        } else {
+            compare_field(&line_location, golden, served, "name", &wiki_name, context, comparison);
+        }
         compare_field(&line_location, golden, served, "verbose_name", wiki_text, context, comparison);
         if golden["tooltip_is_standard"] == true {
             let tooltip = golden["wiki_tooltip"].as_str().context("standard tooltip text")?;
@@ -195,6 +260,34 @@ fn compare_lines(
         }
     }
     Ok(())
+}
+
+fn compare_stat_template_name(
+    line_location: &str,
+    golden: &Value,
+    served: &Value,
+    wiki_name: &str,
+    template_name: &StatTemplateName,
+    comparison: &mut TooltipComparison,
+) {
+    comparison.stat_template_names_checked += 1;
+    let canonical_name = &template_name.canonical_name;
+    let actual = served["name"].as_str().unwrap_or("");
+    if actual != canonical_name {
+        comparison.unrecorded.push(format!(
+            "{line_location}: {canonical_name:?} stat template requires canonical name, served {actual:?}"
+        ));
+    } else if !template_name.search_only_aliases.contains(wiki_name) {
+        comparison.unrecorded.push(format!(
+            "{line_location}: {canonical_name:?} has no search-only alias for tooltip label {wiki_name:?}"
+        ));
+    } else if golden["known_differences"].get("name").is_some() {
+        comparison
+            .unrecorded
+            .push(format!("{line_location}: {canonical_name:?} stat template name cannot have a recorded difference"));
+    } else {
+        comparison.matched_fields += 1;
+    }
 }
 
 fn compare_field(
@@ -344,10 +437,67 @@ fn wiki_label(wiki_text: &str, golden: &Value) -> String {
 #[cfg(test)]
 mod tests {
     use super::{
-        collapse_whitespace, compare_enhancement_bonus, compare_field, numeric_tokens, wiki_label, GoldenLineContext,
-        TooltipComparison,
+        collapse_whitespace, compare_enhancement_bonus, compare_field, compare_lines, numeric_tokens,
+        stat_template_names, wiki_label, GoldenLineContext, TooltipComparison,
     };
     use serde_json::json;
+
+    fn golden_line_comparison(
+        owner_name: &str,
+        verbose_name: &str,
+        wiki_name: &str,
+        removed_alias: Option<&str>,
+    ) -> TooltipComparison {
+        let mut db = rusqlite::Connection::open_in_memory().unwrap();
+        let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../data");
+        ddo_etl::tree::build_from_data(&root, &mut db).unwrap();
+        if let Some(alias) = removed_alias {
+            db.execute("DELETE FROM effect_aliases WHERE name = ?1", [alias]).unwrap();
+        }
+        let owner_id: i64 =
+            db.query_row("SELECT id FROM items WHERE name = ?1", [owner_name], |row| row.get(0)).unwrap();
+        let mut owners = ddo_api::served_effect_lines(&db, "item_effects", "item_id").unwrap();
+        let lines = owners.remove(&owner_id).unwrap().into_iter().map(|(_, line)| line).collect::<Vec<_>>();
+        let line_index = lines.iter().position(|line| line["verbose_name"] == verbose_name).unwrap();
+        let golden = json!([{"kind": "enchantment", "wiki_name": wiki_name, "wiki_text": verbose_name, "ours": lines[line_index]["name"], "ours_line": {"index": line_index}}]);
+        let mut comparison = TooltipComparison::default();
+        let names = stat_template_names(&db).unwrap();
+        compare_lines(
+            owner_name,
+            &golden,
+            &json!(lines),
+            &mut comparison,
+            false,
+            names.get(&("items".to_string(), owner_id, None)),
+        )
+        .unwrap();
+        comparison
+    }
+
+    #[test]
+    fn stat_template_line_checks_the_canonical_name_and_search_only_alias() {
+        let comparison = golden_line_comparison("Epic Wrath of Siberys", "Reflex +10", "Reflex", None);
+        assert!(comparison.unrecorded.is_empty(), "{:?}", comparison.unrecorded);
+        assert_eq!(comparison.matched_lines, 1);
+        assert_eq!(comparison.stat_template_names_checked, 1);
+    }
+
+    #[test]
+    fn stat_template_line_rejects_a_tooltip_label_without_a_search_only_alias() {
+        let comparison = golden_line_comparison("Epic Wrath of Siberys", "Reflex +10", "Reflex", Some("Reflex"));
+        assert_eq!(comparison.unrecorded.len(), 1);
+        assert!(comparison.unrecorded[0].contains("Reflex Save"));
+        assert!(comparison.unrecorded[0].contains("search-only alias"), "{:?}", comparison.unrecorded);
+    }
+
+    #[test]
+    fn non_template_line_keeps_exact_tooltip_name_matching() {
+        let comparison =
+            golden_line_comparison("Legendary Flightfoot Greaves", "Natural Armor Bonus +13", "Natural Armor", None);
+        assert_eq!(comparison.unrecorded.len(), 1);
+        assert_eq!(comparison.stat_template_names_checked, 0);
+        assert!(comparison.unrecorded[0].contains("expected \"Natural Armor\", served \"Natural Armor Bonus\""));
+    }
 
     #[test]
     fn wiki_labels_remove_the_rendered_amount_and_secondary_type() {

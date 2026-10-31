@@ -621,6 +621,7 @@ fn committed_insight_skill_corrections_use_the_client_cap_through_the_writer() {
     let names = ["Insightful Haggle", "Insightful Diplomacy", "Insightful Spellsight"];
     let mut corrections = committed_corrections().clone();
     corrections.entries.retain(|correction| names.contains(&correction.name.as_str()));
+    assert_eq!(corrections.entries.iter().filter(|correction| correction.field == "value").count(), names.len());
     let mut db = Connection::open_in_memory().unwrap();
     let report = build_database(
         fixture::groupings(),
@@ -641,7 +642,15 @@ fn committed_insight_skill_corrections_use_the_client_cap_through_the_writer() {
             .unwrap();
         assert_eq!((amount, bonus_type), (11, "Insight".into()), "{name}");
     }
-    assert_eq!(report.correction_applied_count, 3);
+    let alias: String = db
+        .query_row(
+            "SELECT l.alias FROM augment_effects l JOIN augments a ON a.id=l.augment_id WHERE a.name='Insightful Spellsight'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(alias, "Spellsight");
+    assert_eq!(report.correction_applied_count, corrections.entries.len());
     assert!(report.stale_corrections.is_empty(), "{:?}", report.stale_corrections);
 }
 

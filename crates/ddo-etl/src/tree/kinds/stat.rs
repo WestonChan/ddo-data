@@ -34,6 +34,8 @@ database_record! {
             alias: Vec<super::effect::EffectAlias>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             citation: Vec<crate::tree::Citation>,
+            #[serde(default, skip_serializing_if = "Vec::is_empty")]
+            ddobuilder_correction: Vec<crate::tree::DdobuilderCorrection>,
         }
     }
 }
@@ -42,6 +44,7 @@ impl StatFile {
     pub(in crate::tree) fn all_from_rows(
         db: &Connection,
         annotations: &crate::tree::annotations::EntityAnnotations,
+        notes: &super::super::export::CorrectionNoteIndex,
     ) -> Result<BTreeMap<i64, Self>> {
         let mut files = BTreeMap::new();
         let mut aliases = super::effect::EffectAlias::by_effect(db)?;
@@ -51,6 +54,7 @@ impl StatFile {
             let (id, mut file) = row?;
             file.alias = aliases.remove(&id).unwrap_or_default();
             file.attach_annotations(annotations, id);
+            file.ddobuilder_correction = notes.for_entity("effects", &file.name);
             files.insert(id, file);
         }
         Ok(files)

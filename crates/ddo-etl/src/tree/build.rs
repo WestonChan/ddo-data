@@ -620,6 +620,8 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                     correction_notes_to_insert
                         .extend(file.ddobuilder_correction.iter().cloned().map(|note| (file.name.clone(), note)));
                 }
+                SourceFile::Stat(file) => correction_notes_to_insert
+                    .extend(file.ddobuilder_correction.iter().cloned().map(|note| (file.name.clone(), note))),
                 SourceFile::StatGroup(file) => {
                     let id = id.context("Group file has no identity")?;
                     file.insert_bonuses(&transaction, path, id)?;

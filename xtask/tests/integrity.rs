@@ -15,6 +15,29 @@ const PACK_QUEST_OVERLAP_SQL: &str =
      LIMIT 1";
 
 #[test]
+fn template_name_check_reads_search_aliases_without_hiding_unrelated_titles() {
+    let mut db = Connection::open_in_memory().unwrap();
+    let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../data");
+    ddo_etl::tree::build_from_data(&root, &mut db).unwrap();
+    let report = integrity_report(&db, &IntegrityOptions { allowed_empty_tables: Vec::new() }).unwrap();
+    let names = ["Reflex Save", "Fortitude Save", "Will Save", "Enchantment Save", "Illusion Save", "Spell Save"];
+    let outcome = report.outcome("effect_templates_disagree_with_names").unwrap();
+    assert!(
+        !outcome.offenders.iter().any(|offender| names.contains(&offender.name.as_str())),
+        "declared search-only aliases name the stat-wide templates: {outcome}"
+    );
+    for template in ["%b1 Unrelated Save +{1}", "%b1 Reflex 3 +{1}"] {
+        db.execute("UPDATE effects SET verbose_name_template=?1 WHERE name='Reflex Save'", [template]).unwrap();
+        if template.contains('3') {
+            db.execute("UPDATE effect_aliases SET name='Reflex 3' WHERE name='Reflex'", []).unwrap();
+        }
+        let report = integrity_report(&db, &IntegrityOptions { allowed_empty_tables: Vec::new() }).unwrap();
+        let outcome = report.outcome("effect_templates_disagree_with_names").unwrap();
+        assert!(outcome.offenders.iter().any(|offender| offender.name == "Reflex Save"), "{template}: {outcome}");
+    }
+}
+
+#[test]
 fn repeated_words_are_rejected_on_every_rendered_owner_kind() {
     for (table, owner_column) in [
         ("item_effects", "item_id"),

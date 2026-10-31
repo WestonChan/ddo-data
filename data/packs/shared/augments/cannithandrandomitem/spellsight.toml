@@ -48,6 +48,7 @@ level_values = [
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Competence"
 value = 22
 
@@ -58,6 +59,14 @@ bonus_type = "Competence"
 effect = "Spellcraft"
 effect_type = "SkillBonus"
 targets = ["Spellcraft"]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "alias"
+reason = "R15a U81 client strings name the Cannith enchantment Spellsight; Spellcraft remains the stat."
+url = "https://ddowiki.com/page/Talk:Essence_Crafting"
+read = "2026-10-28"
+qualifier = 'family "CannithAndRandomItem", Spellcraft / Competence'
 
 [[slot]]
 slot = "crafting: cannith boots prefix"

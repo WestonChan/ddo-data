@@ -48,6 +48,7 @@ level_values = [
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Insight"
 value = 11
 
@@ -65,6 +66,14 @@ kind = "augment_bonus"
 field = "value"
 upstream = 22
 reason = "R15a: the U81 client strings cap this Insight skill bonus at 11 at levels 34–40; the augment level table also caps at 11. The upstream Effect incorrectly gives 22."
+url = "https://ddowiki.com/page/Talk:Essence_Crafting"
+read = "2026-10-28"
+qualifier = 'family "CannithAndRandomItem", Spellcraft / Insight'
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "alias"
+reason = "R15a U81 client strings name the Cannith enchantment Insightful Spellsight; Spellcraft remains the stat."
 url = "https://ddowiki.com/page/Talk:Essence_Crafting"
 read = "2026-10-28"
 qualifier = 'family "CannithAndRandomItem", Spellcraft / Insight'

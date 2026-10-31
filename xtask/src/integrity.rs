@@ -2106,10 +2106,16 @@ fn effect_title_mismatch(name: &str, template: &str) -> Option<EffectTitleMismat
 }
 
 fn effect_title_mismatches(db: &Connection, mismatch: EffectTitleMismatch) -> Result<Findings> {
-    let offenders = in_use_effect_templates(db)?
+    let offenders = in_use_effect_title_templates(db)?
         .into_iter()
-        .filter_map(|(id, name, template)| {
-            (effect_title_mismatch(&name, &template).as_ref() == Some(&mismatch)).then_some(Offender {
+        .filter_map(|EffectTitleTemplate { id, name, template, search_only_aliases }| {
+            let title_mismatch = effect_title_mismatch(&name, &template);
+            let matches_alias = title_mismatch == Some(EffectTitleMismatch::Name)
+                && search_only_aliases.iter().any(|alias| {
+                    effect_identity_numbers(alias) == effect_identity_numbers(&name)
+                        && effect_title_mismatch(alias, &template).is_none()
+                });
+            (title_mismatch.as_ref() == Some(&mismatch) && !matches_alias).then_some(Offender {
                 name,
                 id: Some(id),
                 detail: format!("template {template:?}"),
@@ -2244,20 +2250,39 @@ fn owner_names_disagree_with_linked_effects(db: &Connection, _options: &Integrit
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
-fn in_use_effect_templates(db: &Connection) -> Result<Vec<(i64, String, String)>> {
+struct EffectTitleTemplate {
+    id: i64,
+    name: String,
+    template: String,
+    search_only_aliases: Vec<String>,
+}
+
+fn in_use_effect_title_templates(db: &Connection) -> Result<Vec<EffectTitleTemplate>> {
     let links = EFFECT_OWNER_LINKS
         .iter()
         .map(|(table, _)| format!("SELECT effect_id FROM {table}"))
         .collect::<Vec<_>>()
         .join(" UNION ");
     let mut statement = db.prepare(&format!(
-        "SELECT e.id, e.name, e.verbose_name_template FROM effects e
+        "SELECT e.id, e.name, e.verbose_name_template, a.name FROM effects e
+           LEFT JOIN effect_aliases a ON a.effect_id = e.id AND a.verbose_name_template IS NULL
           WHERE e.id IN ({links}) AND e.verbose_name_template IS NOT NULL"
     ))?;
-    let templates = statement
-        .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))?
-        .collect::<rusqlite::Result<Vec<_>>>()?;
-    Ok(templates)
+    let mut templates = BTreeMap::new();
+    let mut rows = statement.query([])?;
+    while let Some(row) = rows.next()? {
+        let id = row.get(0)?;
+        let template = templates.entry(id).or_insert(EffectTitleTemplate {
+            id,
+            name: row.get(1)?,
+            template: row.get(2)?,
+            search_only_aliases: Vec::new(),
+        });
+        if let Some(alias) = row.get::<_, Option<String>>(3)? {
+            template.search_only_aliases.push(alias);
+        }
+    }
+    Ok(templates.into_values().collect())
 }
 
 fn skill_groups_with_different_home_bonus_types(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {

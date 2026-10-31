@@ -62,6 +62,110 @@
       ],
       "x-table": "citations"
     },
+    "CorrectionKind": {
+      "enum": [
+        "item",
+        "effect",
+        "augment",
+        "quest",
+        "feat",
+        "enhancement",
+        "enhancement_tree",
+        "clickie",
+        "optional_buff",
+        "filigree",
+        "race",
+        "class",
+        "adventure_pack",
+        "patron",
+        "set_bonus",
+        "set_tier",
+        "set_tier_bonus",
+        "spell",
+        "augment_bonus",
+        "feat_bonus",
+        "socket_option_bonus",
+        "item_bonus",
+        "item_effect",
+        "effect_damage",
+        "item_socket",
+        "socket_label"
+      ],
+      "type": "string"
+    },
+    "DdobuilderCorrection": {
+      "oneOf": [
+        {
+          "not": {
+            "required": [
+              "in_game"
+            ]
+          },
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "url"
+            ]
+          },
+          "required": [
+            "in_game"
+          ]
+        }
+      ],
+      "properties": {
+        "added_as_name": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "in_game": {
+          "const": true,
+          "type": "boolean"
+        },
+        "kind": {
+          "$ref": "#/$defs/CorrectionKind"
+        },
+        "original_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "upstream": {
+          "description": "Omitted when Maetrim has no value for this field."
+        },
+        "url": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reason",
+        "read"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "x-array": "ddobuilder_correction",
+      "x-table": "corrections"
+    },
     "EffectAlias": {
       "additionalProperties": false,
       "properties": {
@@ -119,6 +223,12 @@
     "citation": {
       "items": {
         "$ref": "#/$defs/Citation"
+      },
+      "type": "array"
+    },
+    "ddobuilder_correction": {
+      "items": {
+        "$ref": "#/$defs/DdobuilderCorrection"
       },
       "type": "array"
     },

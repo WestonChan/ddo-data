@@ -34,13 +34,31 @@ value = 16
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Competence"
 value = 7
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Insight"
 value = 3
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = "R15a screenshot shows Spellsight +7. Screenshot: https://images.ddowiki.com/The_Queen%27s_Sceptre.jpg"
+url = "https://ddowiki.com/page/Item:The_Queen's_Sceptre"
+read = "2026-10-28"
+qualifier = "Spellcraft / Competence"
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = "R15a screenshot shows Insightful Spellsight +3. Screenshot: https://images.ddowiki.com/The_Queen%27s_Sceptre.jpg"
+url = "https://ddowiki.com/page/Item:The_Queen's_Sceptre"
+read = "2026-10-28"
+qualifier = "Spellcraft / Insight"
 
 [[socket]]
 slot = "red"

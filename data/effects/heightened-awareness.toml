@@ -1,10 +1,18 @@
 name = "Heightened Awareness"
 description_template = "This item helps you to quickly read situations with sharpness and clarity, allowing you to predict actions before they occur. You gain a {1} Insight bonus to AC."
 home_bonus_type = "Insight"
-verbose_name_template = "Heightened Awareness {1}"
+verbose_name_template = "Heightened Awareness +{1}"
 
 [[bonus]]
 amount_from = 1
 rounding = "down"
 scale = 1.0
 target = "Armor Class"
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "Heightened Awareness {1}"
+reason = "R15 screenshot wording; the stat or effect identity and canonical description are unchanged. Screenshot: https://images.ddowiki.com/Legendary_Wolf_Whistle.png"
+url = "https://ddowiki.com/page/Item:Legendary_Wolf_Whistle"
+read = "2026-10-28"

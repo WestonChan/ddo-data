@@ -357,7 +357,7 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         let relative = layout.path("effects", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
-    for (id, file) in kinds::StatFile::all_from_rows(db, &annotations)? {
+    for (id, file) in kinds::StatFile::all_from_rows(db, &annotations, &notes)? {
         let relative = layout.path("effects", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }

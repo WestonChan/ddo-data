@@ -1,4 +1,15 @@
 name = "Enchantment Save"
 category = "defensive"
 description_template = "{1} %b1 bonus to your saves versus enchantments"
-verbose_name_template = "%b1 Enchantment Save +{1}"
+verbose_name_template = "%b1 Enchantment Resistance +{1}"
+
+[[alias]]
+name = "Enchantment Resistance"
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "%b1 Enchantment Save +{1}"
+reason = "R15 screenshot wording; the stat or effect identity and canonical description are unchanged. Screenshot: https://images.ddowiki.com/Legendary_Periapt_of_Charisma.png"
+url = "https://ddowiki.com/page/Item:Legendary_Periapt_of_Charisma"
+read = "2026-10-28"

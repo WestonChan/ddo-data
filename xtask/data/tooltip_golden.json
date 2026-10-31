@@ -1785,28 +1785,29 @@
         {
           "kind": "enchantment",
           "depth": 0,
-          "wiki_text": "Will Save +13",
-          "wiki_tooltip": "Will Save +13: This item gives a +13 Resistance bonus to your Will saves.",
+          "wiki_text": "Will +13",
+          "wiki_tooltip": "Will +13: This item gives a +13 Resistance bonus to your Will saves.",
           "tooltip_is_standard": true,
           "wiki_link": "/page/Will_save",
           "ours": "Will Save",
           "ours_line": {
             "index": 3,
-            "template": "%b1 Will Save {1}",
+            "template": "%b1 Will {1}",
             "type": "Resistance",
             "value": 13,
             "value2": null
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Jidz-Tet'ka",
           "page": "https://ddowiki.com/page/Item:Legendary_Arcane_Contraption",
-          "read": "2026-10-05",
+          "read": "2026-10-28",
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
               "served": "This item gives a +13 Resistance bonus to your Will save.",
               "code": "source_wording"
             }
-          }
+          },
+          "note": "R15 screenshot title supersedes the older typed title; the retained tooltip body still checks canonical description agreement. Screenshot: https://images.ddowiki.com/Legendary_Periapt_of_Charisma.png"
         },
         {
           "kind": "augment_slot",
@@ -2924,28 +2925,29 @@
         {
           "kind": "enchantment",
           "depth": 0,
-          "wiki_text": "Fortitude Save +12",
-          "wiki_tooltip": "Fortitude Save +12: This item gives a +12 Resistance bonus to your Fortitude saves.",
+          "wiki_text": "Fortitude +12",
+          "wiki_tooltip": "Fortitude +12: This item gives a +12 Resistance bonus to your Fortitude saves.",
           "tooltip_is_standard": true,
           "wiki_link": "/page/Fortitude_save",
           "ours": "Fortitude Save",
           "ours_line": {
             "index": 2,
-            "template": "%b1 Fortitude Save {1}",
+            "template": "%b1 Fortitude {1}",
             "type": "Resistance",
             "value": 12,
             "value2": null
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Greenpine_Gauntlets",
-          "read": "2026-10-05",
+          "read": "2026-10-28",
           "known_differences": {
             "description": {
               "code": "source_line_style",
               "reason": "The same fact uses different tooltip punctuation, case, sign or short-form wording.",
               "served": "This item gives a +12 Resistance bonus to your Fortitude save."
             }
-          }
+          },
+          "note": "R15 screenshot title supersedes the older typed title; the retained tooltip body still checks canonical description agreement. Screenshot: https://images.ddowiki.com/Legendary_Blademark_Amulet.png"
         },
         {
           "kind": "augment_slot",
@@ -4195,22 +4197,22 @@
         {
           "kind": "enchantment",
           "depth": 0,
-          "wiki_text": "Heightened Awareness 6",
-          "wiki_tooltip": "Heightened Awareness 6: This item helps you to quickly read situations with sharpness and clarity, allowing you to predict actions before they occur. You gain a +6 Insight bonus to AC.",
+          "wiki_text": "Heightened Awareness +6",
+          "wiki_tooltip": "Heightened Awareness +6: This item helps you to quickly read situations with sharpness and clarity, allowing you to predict actions before they occur. You gain a +6 Insight bonus to AC.",
           "tooltip_is_standard": true,
           "wiki_link": "/page/Heightened_Awareness",
           "ours": "Heightened Awareness",
           "ours_line": {
             "index": 1,
-            "template": "Heightened Awareness {1}",
+            "template": "Heightened Awareness +{1}",
             "type": "Insight",
             "value": 6,
             "value2": null
           },
-          "note": "no sign before the number; Insight bonus with no adjective",
+          "note": "R15 screenshot title supersedes the older typed title; the retained tooltip body still checks canonical description agreement. Screenshot: https://images.ddowiki.com/Legendary_Wolf_Whistle.png",
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Rakshasa_Hide",
-          "read": "2026-10-05"
+          "read": "2026-10-28"
         },
         {
           "kind": "enchantment",
@@ -6557,28 +6559,29 @@
         {
           "kind": "enchantment",
           "depth": 0,
-          "wiki_text": "Will Save +12",
-          "wiki_tooltip": "Will Save +12: This item gives a +12 Resistance bonus to your Will saves.",
+          "wiki_text": "Will +12",
+          "wiki_tooltip": "Will +12: This item gives a +12 Resistance bonus to your Will saves.",
           "tooltip_is_standard": true,
           "wiki_link": "/page/Will_save",
           "ours": "Will Save",
           "ours_line": {
             "index": 2,
-            "template": "%b1 Will Save {1}",
+            "template": "%b1 Will {1}",
             "type": "Resistance",
             "value": 12,
             "value2": null
           },
           "standard_evidence": "same tooltip (numbers aside) on Legendary Arcane Contraption",
           "page": "https://ddowiki.com/page/Item:Legendary_Jidz-Tet%27ka",
-          "read": "2026-10-05",
+          "read": "2026-10-28",
           "known_differences": {
             "description": {
               "reason": "Maetrim and wiki tooltip prose differ in wording.",
               "served": "This item gives a +12 Resistance bonus to your Will save.",
               "code": "source_wording"
             }
-          }
+          },
+          "note": "R15 screenshot title supersedes the older typed title; the retained tooltip body still checks canonical description agreement. Screenshot: https://images.ddowiki.com/Legendary_Periapt_of_Charisma.png"
         },
         {
           "kind": "enchantment",
@@ -7803,21 +7806,22 @@
         {
           "kind": "enchantment",
           "depth": 0,
-          "wiki_text": "Spell Save +11",
-          "wiki_tooltip": "Spell Save +11: This item gives a +11 Resistance bonus to your saves versus spells.",
+          "wiki_text": "Spell Saves +11",
+          "wiki_tooltip": "Spell Saves +11: This item gives a +11 Resistance bonus to your saves versus spells.",
           "tooltip_is_standard": true,
           "wiki_link": "/page/Saving_throw",
           "ours": "Spell Save",
           "ours_line": {
             "index": 2,
-            "template": "%b1 Spell Save {1}",
+            "template": "%b1 Spell Saves {1}",
             "type": "Resistance",
             "value": 11,
             "value2": null
           },
           "standard_evidence": "not seen on another sampled item; no extra page read",
           "page": "https://ddowiki.com/page/Item:Legendary_Alchemist%27s_Pendant",
-          "read": "2026-10-05"
+          "read": "2026-10-29",
+          "note": "R15 screenshot title supersedes the older typed title; the retained tooltip body still checks canonical description agreement. Screenshot: https://images.ddowiki.com/Legendary_Baron_Aubrecker%27s_Monogrammed_Belt.png"
         },
         {
           "kind": "augment_slot",
@@ -8069,6 +8073,310 @@
           },
           "note": "R15 screenshot title; descriptions use our canonical wording. Screenshot: https://images.ddowiki.com/Legendary_Planar_Lariat.png",
           "page": "https://ddowiki.com/page/Item:Legendary_Planar_Lariat",
+          "read": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "item": "Legendary Wolf Whistle",
+      "page": "https://ddowiki.com/page/Item:Legendary_Wolf_Whistle",
+      "read": "2026-10-28",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Heightened Awareness +6",
+          "wiki_tooltip": "Heightened Awareness +6",
+          "tooltip_is_standard": false,
+          "ours": "Heightened Awareness",
+          "ours_line": {
+            "index": 0,
+            "template": "Heightened Awareness +{1}",
+            "type": "Insight",
+            "value": 6,
+            "value2": null
+          },
+          "note": "R15 screenshot title; descriptions use our canonical wording. Screenshot: https://images.ddowiki.com/Legendary_Wolf_Whistle.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Wolf_Whistle",
+          "read": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "item": "Epic Wrath of Siberys",
+      "page": "https://ddowiki.com/page/Item:Epic_Wrath_of_Siberys",
+      "read": "2026-10-28",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Reflex +10",
+          "wiki_tooltip": "Reflex +10",
+          "tooltip_is_standard": false,
+          "ours": "Reflex Save",
+          "ours_line": {
+            "index": 2,
+            "template": "%b1 Reflex +{1}",
+            "type": "Resistance",
+            "value": 10,
+            "value2": null
+          },
+          "note": "R15 screenshot title; descriptions use our canonical wording. Screenshot: https://images.ddowiki.com/Epic_Wrath_of_Siberys.png",
+          "page": "https://ddowiki.com/page/Item:Epic_Wrath_of_Siberys",
+          "read": "2026-10-28"
+        },
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Insightful Reflex +5",
+          "wiki_tooltip": "Insightful Reflex +5",
+          "tooltip_is_standard": false,
+          "ours": "Reflex Save",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Reflex +{1}",
+            "type": "Insight",
+            "value": 5,
+            "value2": null
+          },
+          "note": "R15 screenshot title; descriptions use our canonical wording. Screenshot: https://images.ddowiki.com/Epic_Wrath_of_Siberys.png",
+          "page": "https://ddowiki.com/page/Item:Epic_Wrath_of_Siberys",
+          "read": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "item": "Legendary Blademark Amulet",
+      "page": "https://ddowiki.com/page/Item:Legendary_Blademark_Amulet",
+      "read": "2026-10-28",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Fortitude +12",
+          "wiki_tooltip": "Fortitude +12",
+          "tooltip_is_standard": false,
+          "ours": "Fortitude Save",
+          "ours_line": {
+            "index": 0,
+            "template": "%b1 Fortitude +{1}",
+            "type": "Resistance",
+            "value": 12,
+            "value2": null
+          },
+          "note": "R15 screenshot title; descriptions use our canonical wording. Screenshot: https://images.ddowiki.com/Legendary_Blademark_Amulet.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Blademark_Amulet",
+          "read": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "item": "Legendary Periapt of Charisma",
+      "page": "https://ddowiki.com/page/Item:Legendary_Periapt_of_Charisma",
+      "read": "2026-10-28",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Will +13",
+          "wiki_tooltip": "Will +13",
+          "tooltip_is_standard": false,
+          "ours": "Will Save",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Will +{1}",
+            "type": "Resistance",
+            "value": 13,
+            "value2": null
+          },
+          "note": "R15 screenshot title; descriptions use our canonical wording. Screenshot: https://images.ddowiki.com/Legendary_Periapt_of_Charisma.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Periapt_of_Charisma",
+          "read": "2026-10-28"
+        },
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Enchantment Resistance +12",
+          "wiki_tooltip": "Enchantment Resistance +12",
+          "tooltip_is_standard": false,
+          "ours": "Enchantment Save",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Enchantment Resistance +{1}",
+            "type": "Resistance",
+            "value": 12,
+            "value2": null
+          },
+          "note": "R15 screenshot title; descriptions use our canonical wording. Screenshot: https://images.ddowiki.com/Legendary_Periapt_of_Charisma.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Periapt_of_Charisma",
+          "read": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "item": "Legendary Eyes of Enlightenment",
+      "page": "https://ddowiki.com/page/Item:Legendary_Eyes_of_Enlightenment",
+      "read": "2026-10-28",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Illusion Resistance +11",
+          "wiki_tooltip": "Illusion Resistance +11",
+          "tooltip_is_standard": false,
+          "ours": "Illusion Save",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Illusion Resistance +{1}",
+            "type": "Resistance",
+            "value": 11,
+            "value2": null
+          },
+          "note": "R15 screenshot title; descriptions use our canonical wording. Screenshot: https://images.ddowiki.com/Legendary_Eyes_of_Enlightenment.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Eyes_of_Enlightenment",
+          "read": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "item": "Legendary Baron Aubrecker's Monogrammed Belt",
+      "page": "https://ddowiki.com/page/Item:Legendary_Baron_Aubrecker's_Monogrammed_Belt",
+      "read": "2026-10-29",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Spell Saves +12",
+          "wiki_tooltip": "Spell Saves +12",
+          "tooltip_is_standard": false,
+          "ours": "Spell Save",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spell Saves +{1}",
+            "type": "Resistance",
+            "value": 12,
+            "value2": null
+          },
+          "note": "R15 screenshot title; descriptions use our canonical wording. Screenshot: https://images.ddowiki.com/Legendary_Baron_Aubrecker%27s_Monogrammed_Belt.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Baron_Aubrecker's_Monogrammed_Belt",
+          "read": "2026-10-29"
+        }
+      ]
+    },
+    {
+      "item": "Legendary Baron Aubrecker's Monogrammed Gloves",
+      "page": "https://ddowiki.com/page/Item:Legendary_Baron_Aubrecker's_Monogrammed_Gloves",
+      "read": "2026-10-29",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Insightful Spell Saves +5",
+          "wiki_tooltip": "Insightful Spell Saves +5",
+          "tooltip_is_standard": false,
+          "ours": "Spell Save",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spell Saves +{1}",
+            "type": "Insight",
+            "value": 5,
+            "value2": null
+          },
+          "note": "R15 screenshot title; descriptions use our canonical wording. Screenshot: https://images.ddowiki.com/Legendary_Baron_Aubrecker%27s_Monogrammed_Gloves.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Baron_Aubrecker's_Monogrammed_Gloves",
+          "read": "2026-10-29"
+        }
+      ]
+    },
+    {
+      "item": "Legendary Drow Outrunner Armor",
+      "page": "https://ddowiki.com/page/Item:Legendary_Drow_Outrunner_Armor",
+      "read": "2026-10-29",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Quality Spell Saves +2",
+          "wiki_tooltip": "Quality Spell Saves +2",
+          "tooltip_is_standard": false,
+          "ours": "Spell Save",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spell Saves +{1}",
+            "type": "Quality",
+            "value": 2,
+            "value2": null
+          },
+          "note": "R15 screenshot title; descriptions use our canonical wording. Screenshot: https://images.ddowiki.com/Legendary_Drow_Outrunner_Armor.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Drow_Outrunner_Armor",
+          "read": "2026-10-29"
+        }
+      ]
+    },
+    {
+      "item": "The Queen's Sceptre",
+      "page": "https://ddowiki.com/page/Item:The_Queen's_Sceptre",
+      "read": "2026-10-28",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Spellsight +7",
+          "wiki_tooltip": "Spellsight +7",
+          "tooltip_is_standard": false,
+          "ours": "Spellcraft",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 7,
+            "value2": null
+          },
+          "note": "R15 screenshot title; descriptions use our canonical wording. Screenshot: https://images.ddowiki.com/The_Queen%27s_Sceptre.jpg",
+          "page": "https://ddowiki.com/page/Item:The_Queen's_Sceptre",
+          "read": "2026-10-28"
+        },
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Insightful Spellsight +3",
+          "wiki_tooltip": "Insightful Spellsight +3",
+          "tooltip_is_standard": false,
+          "ours": "Spellcraft",
+          "ours_line": {
+            "index": 4,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 3,
+            "value2": null
+          },
+          "note": "R15 screenshot title; descriptions use our canonical wording. Screenshot: https://images.ddowiki.com/The_Queen%27s_Sceptre.jpg",
+          "page": "https://ddowiki.com/page/Item:The_Queen's_Sceptre",
+          "read": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "item": "Legendary Bracers of Method and Magic",
+      "page": "https://ddowiki.com/page/Item:Legendary_Bracers_of_Method_and_Magic",
+      "read": "2026-10-28",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_text": "Quality Spellsight +5",
+          "wiki_tooltip": "Quality Spellsight +5",
+          "tooltip_is_standard": false,
+          "ours": "Spellcraft",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Quality",
+            "value": 5,
+            "value2": null
+          },
+          "note": "R15 screenshot title; descriptions use our canonical wording. Screenshot: https://images.ddowiki.com/Legendary_Bracers_of_Method_and_Magic.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Bracers_of_Method_and_Magic",
           "read": "2026-10-28"
         }
       ]

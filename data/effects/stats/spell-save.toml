@@ -1,4 +1,15 @@
 name = "Spell Save"
 category = "defensive"
 description_template = "This item gives a {1} %b1 bonus to your saves versus spells."
-verbose_name_template = "%b1 Spell Save +{1}"
+verbose_name_template = "%b1 Spell Saves +{1}"
+
+[[alias]]
+name = "Spell Saves"
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "%b1 Spell Save +{1}"
+reason = "R15 screenshot wording; the stat or effect identity and canonical description are unchanged. Screenshot: https://images.ddowiki.com/Legendary_Baron_Aubrecker%27s_Monogrammed_Belt.png"
+url = "https://ddowiki.com/page/Item:Legendary_Baron_Aubrecker's_Monogrammed_Belt"
+read = "2026-10-29"
