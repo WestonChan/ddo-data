@@ -27,7 +27,7 @@ bypass = "Bludgeon"
 bypass = "Magic"
 
 [[effect]]
-name = "Saving Throws"
+name = "Resistance"
 bonus_type = "Resistance"
 value = 2
 

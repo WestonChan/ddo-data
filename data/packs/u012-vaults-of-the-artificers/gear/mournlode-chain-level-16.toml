@@ -64,12 +64,12 @@ min_level = 16
 
 [[socket.option.effect]]
 bonus_type = "Deflection"
-effect = "Armor Class"
+effect = "Protection"
 value = 7
 
 [[socket.option.effect]]
 bonus_type = "Resistance"
-effect = "Saving Throws"
+effect = "Resistance"
 value = 7
 
 [[socket.option.modifier]]

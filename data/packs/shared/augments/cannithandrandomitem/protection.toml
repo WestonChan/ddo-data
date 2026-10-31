@@ -47,7 +47,7 @@ level_values = [
 ]
 
 [[effect]]
-name = "Armor Class"
+name = "Protection"
 bonus_type = "Deflection"
 value = 11
 

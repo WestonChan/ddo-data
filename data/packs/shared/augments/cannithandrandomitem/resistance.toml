@@ -47,7 +47,7 @@ level_values = [
 ]
 
 [[effect]]
-name = "Saving Throws"
+name = "Resistance"
 bonus_type = "Resistance"
 value = 11
 

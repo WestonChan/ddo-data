@@ -15,6 +15,100 @@ const PACK_QUEST_OVERLAP_SQL: &str =
      LIMIT 1";
 
 #[test]
+fn routed_stat_check_rejects_gear_links_but_keeps_sets_and_feats() {
+    for (table, owner_column, eligible) in [
+        ("item_effects", "item_id", true),
+        ("augment_effects", "augment_id", true),
+        ("item_augment_slot_option_effects", "option_id", true),
+        ("set_bonus_tier_effects", "tier_id", false),
+        ("feat_effects", "feat_id", false),
+    ] {
+        let scratch = tempfile::tempdir().unwrap();
+        let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+        let owner: i64 =
+            db.query_row(&format!("SELECT {owner_column} FROM {table} LIMIT 1"), [], |row| row.get(0)).unwrap();
+        db.execute(&format!("UPDATE {table} SET effect_id=(SELECT id FROM effects WHERE name='Armor Class'), bonus_type_id=(SELECT id FROM bonus_types WHERE name='Deflection'),value=8,value2=NULL,alias=NULL WHERE {owner_column}=?1"), [owner]).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("stat_links_at_routed_types").expect("declared routing HARD check");
+        let has_owner =
+            outcome.offenders.iter().any(|offender| offender.detail.contains(&format!("{table} owner {owner},")));
+        assert_eq!(has_owner, eligible, "{table}: {outcome}");
+    }
+}
+
+#[test]
+fn routed_stat_lines_render_the_existing_effect_wording() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+    let owners = ddo_api::served_effect_lines(&db, "augment_effects", "augment_id").unwrap();
+    for (suffix, effect) in [
+        ("Deflection", "Protection"),
+        ("Shield", "Shield Bonus"),
+        ("Armor", "Armor Bonus"),
+        ("Natural Armor", "Natural Armor Bonus"),
+        ("Quality", "Quality Shield Bonus"),
+        ("Healing", "Equipped Healing Amplification"),
+        ("Saves", "Resistance"),
+        ("Implement", "Spellcasting Implement"),
+    ] {
+        let owner: i64 = db
+            .query_row("SELECT id FROM augments WHERE name=?1", [format!("Fixture Routed {suffix}")], |row| row.get(0))
+            .unwrap();
+        let lines = &owners[&owner];
+        assert_eq!(lines.len(), 1);
+        assert_eq!(lines[0].1["name"], effect);
+        assert_eq!(lines[0].1["verbose_name"], format!("{effect} +8"));
+    }
+}
+
+#[test]
+fn routed_stat_reader_query_count_does_not_grow_with_owners() {
+    use rusqlite::trace::{TraceEvent, TraceEventCodes};
+    use std::sync::atomic::{AtomicUsize, Ordering};
+    static SELECT_COUNT: AtomicUsize = AtomicUsize::new(0);
+    fn trace(event: TraceEvent<'_>) {
+        if let TraceEvent::Stmt(statement, _) = event {
+            if statement.sql().trim_start().starts_with("SELECT") {
+                SELECT_COUNT.fetch_add(1, Ordering::SeqCst);
+            }
+        }
+    }
+    for owner_count in [1, 50] {
+        let scratch = tempfile::tempdir().unwrap();
+        let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+        let columns = db
+            .prepare("PRAGMA table_info(augments)")
+            .unwrap()
+            .query_map([], |row| row.get::<_, String>(1))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        let selected = columns
+            .iter()
+            .map(|column| match column.as_str() {
+                "id" => "?1".to_string(),
+                "name" | "slug" => format!("{column} || ?1"),
+                _ => column.clone(),
+            })
+            .collect::<Vec<_>>()
+            .join(",");
+        for position in 1..=owner_count {
+            db.execute(
+                &format!("INSERT INTO augments SELECT {selected} FROM augments WHERE name='Fixture Routed Deflection'"),
+                [-position],
+            )
+            .unwrap();
+            db.execute("INSERT INTO augment_effects(augment_id,effect_id,bonus_type_id,value,sort_order) SELECT ?1,e.id,b.id,8,0 FROM effects e,bonus_types b WHERE e.name='Armor Class' AND b.name='Deflection'",[-position]).unwrap();
+        }
+        db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
+        SELECT_COUNT.store(0, Ordering::SeqCst);
+        let routes = ddo_etl::build::stat_links_at_routed_types(&db).unwrap();
+        assert_eq!(routes.len(), usize::try_from(owner_count).unwrap());
+        assert_eq!(SELECT_COUNT.load(Ordering::SeqCst), 1);
+    }
+}
+
+#[test]
 fn template_name_check_reads_search_aliases_without_hiding_unrelated_titles() {
     let mut db = Connection::open_in_memory().unwrap();
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../data");
@@ -1705,6 +1799,11 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "UPDATE item_effects SET bonus_type_id = NULL WHERE effect_id =
              (SELECT id FROM effects WHERE name = 'Strength');",
             "Strength",
+        ),
+        violation(
+            "stat_links_at_routed_types",
+            "UPDATE item_effects SET effect_id=(SELECT id FROM effects WHERE name='Armor Class'), bonus_type_id=(SELECT id FROM bonus_types WHERE name='Deflection'), alias=NULL WHERE rowid=(SELECT MIN(rowid) FROM item_effects WHERE value IS NOT NULL AND value2 IS NULL);",
+            "Armor Class",
         ),
         violation(
             "stat_links_missing_value",

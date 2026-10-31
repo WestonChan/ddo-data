@@ -7,7 +7,7 @@ icon = "ShardOfSupremePower"
 min_level = 11
 
 [[effect]]
-name = "Armor Class"
+name = "Protection"
 bonus_type = "Deflection"
 value = 5
 

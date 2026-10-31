@@ -5,7 +5,7 @@ icon = "Horn"
 min_level = 31
 
 [[effect]]
-name = "Saving Throws"
+name = "Resistance"
 bonus_type = "Resistance"
 value = 11
 

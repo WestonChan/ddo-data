@@ -793,6 +793,53 @@ fn a_missing_placeholder_value_affects_only_its_item() {
 }
 
 #[test]
+fn stat_type_routes_require_known_stats_types_and_named_targets() {
+    let source = include_str!("../data/effect_map.toml");
+    let mut vocabulary: toml::Value = toml::from_str(source).unwrap();
+    vocabulary
+        .as_table_mut()
+        .unwrap()
+        .insert("stat_type_effects".into(), toml::from_str("'Armor Class' = { Deflection = 'Protection' }").unwrap());
+    assert!(EffectMap::from_toml(&toml::to_string(&vocabulary).unwrap()).is_ok());
+    for route in [
+        "'Unknown Stat' = { Deflection = 'Protection' }",
+        "'Armor Class' = { UnknownType = 'Protection' }",
+        "'Armor Class' = { Deflection = '' }",
+    ] {
+        vocabulary["stat_type_effects"] = toml::from_str(route).unwrap();
+        let error = EffectMap::from_toml(&toml::to_string(&vocabulary).unwrap()).unwrap_err();
+        assert!(error.to_string().contains("stat_type_effects"), "{error}");
+    }
+}
+
+#[test]
+fn stat_type_route_targets_preserve_the_stat_amount_and_type() {
+    let mut source: toml::Value = toml::from_str(include_str!("../data/effect_map.toml")).unwrap();
+    source
+        .as_table_mut()
+        .unwrap()
+        .insert("stat_type_effects".into(), toml::from_str("'Armor Class' = { Deflection = 'Protection' }").unwrap());
+    let vocabulary = EffectMap::from_toml(&toml::to_string(&source).unwrap()).unwrap();
+    for violation in [
+        "UPDATE effect_bonuses SET scale=0.5 WHERE effect_id=(SELECT id FROM effects WHERE name='Protection')",
+        "UPDATE effect_bonuses SET amount_from=2 WHERE effect_id=(SELECT id FROM effects WHERE name='Protection')",
+        "UPDATE effect_bonuses SET amount_from=0,constant=8 WHERE effect_id=(SELECT id FROM effects WHERE name='Protection')",
+        "UPDATE effect_bonuses SET target_effect_id=(SELECT id FROM effects WHERE name='Saving Throws') WHERE effect_id=(SELECT id FROM effects WHERE name='Protection')",
+        "UPDATE effects SET home_bonus_type_id=(SELECT id FROM bonus_types WHERE name='Insight') WHERE name='Protection'",
+        "UPDATE effect_bonuses SET bonus_type_id=(SELECT id FROM bonus_types WHERE name='Insight') WHERE effect_id=(SELECT id FROM effects WHERE name='Protection')",
+        "UPDATE effects SET is_group=1 WHERE name='Protection'",
+    ] {
+        let db = fixture::database(|_| {});
+        let canonical = ddo_etl::groupings::Groupings::from_database(&db).unwrap();
+        assert_eq!(vocabulary.stat_type_effect_definitions(&canonical).unwrap().len(), 1);
+        db.execute_batch(violation).unwrap();
+        let changed = ddo_etl::groupings::Groupings::from_database(&db).unwrap();
+        let error = vocabulary.stat_type_effect_definitions(&changed).unwrap_err();
+        assert!(error.to_string().contains("Armor Class") && error.to_string().contains("Deflection") && error.to_string().contains("Protection"), "{error}");
+    }
+}
+
+#[test]
 fn damage_target_declarations_require_stat_bonus_types() {
     let source = include_str!("../data/effect_map.toml");
     let mut vocabulary: toml::Value = toml::from_str(source).unwrap();

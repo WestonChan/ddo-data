@@ -282,6 +282,11 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Built(stat_links_without_bonus_types),
     ),
     IntegrityCheck::hard(
+        "stat_links_at_routed_types",
+        "item, augment and socket-option stat links without an alias use their declared effect at the routed type",
+        OffenderQuery::Built(stat_links_at_routed_types),
+    ),
+    IntegrityCheck::hard(
         "effect_families_have_owners",
         "every effect family has an owner link or is a group granted by an owned effect",
         OffenderQuery::Sql(
@@ -2368,6 +2373,21 @@ fn effects_sharing_a_stat_set(db: &Connection, _options: &IntegrityOptions) -> R
 
 fn stat_links_without_bonus_types(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     stat_link_findings(db, "l.bonus_type_id IS NULL", "has no bonus type")
+}
+
+fn stat_links_at_routed_types(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let offenders = ddo_etl::build::stat_links_at_routed_types(db)?
+        .into_iter()
+        .map(|route| Offender {
+            name: route.stat,
+            id: Some(route.owner_id),
+            detail: format!(
+                "{} owner {}, line {}: {} must link {}",
+                route.table, route.owner_id, route.sort_order, route.bonus_type, route.effect
+            ),
+        })
+        .collect();
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
 fn stat_links_missing_value(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {

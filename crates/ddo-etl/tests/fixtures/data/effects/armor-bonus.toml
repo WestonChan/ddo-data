@@ -1,0 +1,10 @@
+name = "Armor Bonus"
+description_template = "This item surrounds the wearer with an invisible but tangible field of force, granting {1} armor bonus to AC, just as though he were wearing armor."
+home_bonus_type = "Armor"
+verbose_name_template = "Armor Bonus +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Armor Class"

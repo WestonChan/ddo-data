@@ -5,7 +5,7 @@ icon = "Lamordia"
 min_level = 34
 
 [[effect]]
-name = "Saving Throws"
+name = "Resistance"
 bonus_type = "Resistance"
 value = 12
 

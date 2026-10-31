@@ -9,6 +9,48 @@ use anyhow::{Context, Result};
 use ddo_model::enums::{ModifierSource, RequirementOwner};
 use rusqlite::params;
 
+const STAT_ROUTING_OWNERS: [EffectOwner; 3] =
+    [EffectOwner::Item, EffectOwner::Augment, EffectOwner::ItemAugmentSlotOption];
+
+pub struct StatLinkRoute {
+    pub table: &'static str,
+    pub owner_id: i64,
+    pub sort_order: i64,
+    pub stat: String,
+    pub bonus_type: String,
+    pub effect: String,
+    owner_column: &'static str,
+}
+
+pub fn stat_links_at_routed_types(db: &rusqlite::Connection) -> Result<Vec<StatLinkRoute>> {
+    let queries = STAT_ROUTING_OWNERS.iter().enumerate().map(|(position, owner)| {
+        let (table, column) = owner.table();
+        format!("SELECT {position}, l.{column}, l.sort_order, e.name, b.name FROM {table} l JOIN effects e ON e.id=l.effect_id JOIN bonus_types b ON b.id=l.bonus_type_id WHERE e.is_stat=1 AND l.alias IS NULL")
+    }).collect::<Vec<_>>().join(" UNION ALL ");
+    let mut statement = db.prepare(&queries)?;
+    let mut rows = statement.query([])?;
+    let mut routes = Vec::new();
+    while let Some(row) = rows.next()? {
+        let stat: String = row.get(3)?;
+        let bonus_type: String = row.get(4)?;
+        let Some(effect) = EFFECT_MAP.stat_type_effects.get(&stat).and_then(|types| types.get(&bonus_type)) else {
+            continue;
+        };
+        let owner_index = usize::try_from(row.get::<_, i64>(0)?)?;
+        let (table, owner_column) = STAT_ROUTING_OWNERS[owner_index].table();
+        routes.push(StatLinkRoute {
+            table,
+            owner_column,
+            owner_id: row.get(1)?,
+            sort_order: row.get(2)?,
+            stat,
+            bonus_type,
+            effect: effect.clone(),
+        });
+    }
+    Ok(routes)
+}
+
 #[derive(Clone)]
 pub(super) struct DerivedEffectLink {
     pub(super) alias: Option<String>,
@@ -45,6 +87,29 @@ impl GroupingHold {
 }
 
 impl TableWriter<'_> {
+    pub(super) fn write_stat_type_effects(&mut self, definitions: &[&crate::groupings::Grouping]) -> Result<()> {
+        let routes = stat_links_at_routed_types(self.transaction)?;
+        let mut targets = std::collections::BTreeMap::new();
+        for definition in
+            definitions.iter().filter(|definition| routes.iter().any(|route| route.effect == definition.name))
+        {
+            let is_new = self.effects.family_named(&definition.name).is_none();
+            let id = self.effects.ensure_indexed_effect(definition)?;
+            if is_new {
+                self.effects.write_family_aliases(id)?;
+            }
+            targets.insert(&definition.name, id);
+        }
+        for route in routes {
+            let target = targets[&route.effect];
+            self.transaction.execute(
+                &format!("UPDATE {} SET effect_id=?1 WHERE {}=?2 AND sort_order=?3", route.table, route.owner_column),
+                params![target, route.owner_id, route.sort_order],
+            )?;
+        }
+        Ok(())
+    }
+
     pub(super) fn link_pending_derived_effects(&mut self) -> Result<()> {
         let pending = std::mem::take(&mut self.pending_derived_effects);
         for super::PendingDerivedEffects { owner_kind, owner_id, owner_name, option_name, effects } in pending {

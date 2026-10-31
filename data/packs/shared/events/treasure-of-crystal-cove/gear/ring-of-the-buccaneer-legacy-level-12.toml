@@ -38,7 +38,7 @@ min_level = 12
 
 [[socket.option.effect]]
 bonus_type = "Deflection"
-effect = "Armor Class"
+effect = "Protection"
 value = 3
 
 [[socket.option.modifier]]

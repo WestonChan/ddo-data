@@ -42,7 +42,7 @@ bonus_type = "Natural Armor"
 value = 6
 
 [[effect]]
-name = "Healing Amplification"
+name = "Equipped Healing Amplification"
 bonus_type = "Equipment"
 value = 40
 

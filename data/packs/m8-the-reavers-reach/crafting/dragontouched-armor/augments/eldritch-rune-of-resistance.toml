@@ -5,7 +5,7 @@ icon = "DraconicRune"
 min_level = 16
 
 [[effect]]
-name = "Saving Throws"
+name = "Resistance"
 bonus_type = "Resistance"
 value = 5
 

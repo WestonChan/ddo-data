@@ -7,7 +7,7 @@ icon = "DraconicRune"
 min_level = 16
 
 [[effect]]
-name = "Healing Amplification"
+name = "Equipped Healing Amplification"
 bonus_type = "Equipment"
 value = 40
 

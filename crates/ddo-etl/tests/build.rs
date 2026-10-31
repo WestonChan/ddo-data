@@ -163,6 +163,94 @@ fn r15_line_templates_keep_stat_names_and_search_only_aliases() {
     }
     assert!(mismatches.is_empty(), "{}", mismatches.join("\n"));
 }
+
+#[test]
+fn raw_deflection_armor_class_links_protection_without_changing_its_bonus() {
+    let source = fixture::xml_source();
+    let sets_path = source.path().join("SetBonuses.xml");
+    let sets = std::fs::read_to_string(&sets_path).unwrap();
+    assert!(sets.contains("<Type>PRR</Type>\n        <Bonus>Artifact</Bonus>"));
+    std::fs::write(
+        sets_path,
+        sets.replacen(
+            "<Type>PRR</Type>\n        <Bonus>Artifact</Bonus>",
+            "<Type>ACBonus</Type>\n        <Bonus>Deflection</Bonus>",
+            1,
+        ),
+    )
+    .unwrap();
+    std::fs::write(
+        source.path().join("Augments/Sapphire.Augments.xml"),
+        include_str!("fixtures/effect-groups/SapphireOfProtection.Augments.xml"),
+    )
+    .unwrap();
+    std::fs::create_dir_all(source.path().join("AugmentImages")).unwrap();
+    std::fs::write(
+        source.path().join("AugmentImages/Sapphire.png"),
+        include_bytes!("fixtures/DataFiles/AugmentImages/Sapphire.png"),
+    )
+    .unwrap();
+    let canonical = fixture::database(|_| {});
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        &groupings,
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let (effect, amount, bonus_type): (String, i64, String) = db.query_row("SELECT e.name,l.value,b.name FROM augment_effects l JOIN augments a ON a.id=l.augment_id JOIN effects e ON e.id=l.effect_id JOIN bonus_types b ON b.id=l.bonus_type_id WHERE a.name='Sapphire of Protection'",[],|row|Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap();
+    assert_eq!((effect, amount, bonus_type), ("Protection".into(), 8, "Deflection".into()));
+    let bonuses: Vec<(String, String, i64)> = db.prepare("SELECT e.name,b.name,o.amount FROM owner_bonuses o JOIN augments a ON a.id=o.owner_id JOIN effects e ON e.id=o.stat_id JOIN bonus_types b ON b.id=o.bonus_type_id WHERE o.owner_kind='augment' AND a.name='Sapphire of Protection'").unwrap().query_map([],|row|Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap().collect::<rusqlite::Result<_>>().unwrap();
+    assert_eq!(bonuses, [("Armor Class".into(), "Deflection".into(), 8)]);
+    let set_effect: String = db.query_row("SELECT e.name FROM set_bonus_tier_effects l JOIN effects e ON e.id=l.effect_id JOIN set_bonus_tiers t ON t.id=l.tier_id JOIN set_bonuses s ON s.id=t.set_id WHERE s.name='Eminence of Winter' AND t.equipped_count=2", [], |row|row.get(0)).unwrap();
+    assert_eq!(set_effect, "Armor Class");
+    let feat_effect: String = db.query_row("SELECT e.name FROM feat_effects l JOIN effects e ON e.id=l.effect_id JOIN feats f ON f.id=l.feat_id JOIN bonus_types b ON b.id=l.bonus_type_id WHERE f.name='Adamantine Body' AND b.name='Armor'", [], |row|row.get(0)).unwrap();
+    assert_eq!(feat_effect, "Armor Class");
+}
+
+#[test]
+fn stat_type_routing_keeps_a_selected_stat_alias() {
+    let canonical = fixture::database(|root| {
+        let path = root.join("effects/stats/armor-class.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(
+            path,
+            format!(
+                "{original}\n[[alias]]\nname = 'Display Armor'\nverbose_name_template = '%b1 Display Armor +{{1}}'\n"
+            ),
+        )
+        .unwrap();
+    });
+    let index = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let notes = fixture::new_qualified_correction(
+        "augment_bonus",
+        "Fixture Routed Deflection",
+        "stat = 'Armor Class'\nbonus_type = 'Deflection'",
+        "alias",
+        "'null'",
+        "'Display Armor'",
+    );
+    let corrections = fixture::corrections_from(&[("routing.toml", &notes)]).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        &index,
+        &data_files_fixture_dir(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let selected: (String, String, i64) = db.query_row("SELECT e.name,l.alias,l.value FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name='Fixture Routed Deflection'",[],|row|Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap();
+    assert_eq!(selected, ("Armor Class".into(), "Display Armor".into(), 8));
+    assert_eq!(report.correction_applied_count, 1);
+    assert!(report.stale_corrections.is_empty());
+}
+
 #[test]
 fn armor_effect_names_follow_tooltips_and_keep_old_search_names() {
     let mut db = Connection::open_in_memory().unwrap();
@@ -1094,7 +1182,8 @@ fn stat_home_rules_are_independent_of_carrier_counts() {
     for (name, expected) in [
         ("Bluff", Some("Competence")),
         ("Negative Healing Amplification", Some("Profane")),
-        ("Saving Throws", Some("Resistance")),
+        ("Fortitude Save", Some("Resistance")),
+        ("Saving Throws", None),
         ("Strength", None),
         ("Abjuration Focus", None),
         ("Maximum Hit Points", None),
@@ -3949,7 +4038,7 @@ fn bonus_additions_feed_the_finished_lines_merge() {
 #[test]
 fn writes_augments_with_slots_bonuses_and_modifiers() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.augment_count, 18);
+    assert_eq!(report.augment_count, 26);
     let ruby: i64 =
         db.query_row("SELECT id FROM augments WHERE name = 'Ruby of Acid Damage'", [], |r| r.get(0)).unwrap();
     let (family, has_selectable_level, levels, values): (String, bool, String, String) = db

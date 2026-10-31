@@ -5,7 +5,7 @@ icon = "Upgrade"
 min_level = 18
 
 [[effect]]
-name = "Healing Amplification"
+name = "Equipped Healing Amplification"
 bonus_type = "Equipment"
 value = 40
 

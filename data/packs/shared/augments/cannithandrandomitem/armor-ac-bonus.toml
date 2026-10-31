@@ -47,7 +47,7 @@ level_values = [
 ]
 
 [[effect]]
-name = "Armor Class"
+name = "Armor Bonus"
 bonus_type = "Armor"
 value = 15
 

@@ -52,7 +52,7 @@ min_level = 24
 
 [[socket.option.effect]]
 bonus_type = "Shield"
-effect = "Armor Class"
+effect = "Shield Bonus"
 value = 21
 
 [[socket.option.modifier]]

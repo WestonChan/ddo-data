@@ -51,7 +51,7 @@ value = 2
 
 [[socket.option.effect]]
 bonus_type = "Deflection"
-effect = "Armor Class"
+effect = "Protection"
 value = 7
 
 [[socket.option.modifier]]

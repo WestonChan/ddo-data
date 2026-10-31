@@ -50,7 +50,6 @@ pub const STAT_HOME_TYPES: &[(&str, StatHomeType)] = &[
     ("Healing Amplification", StatHomeType::Competence),
     ("Repair Amplification", StatHomeType::Competence),
     ("Negative Healing Amplification", StatHomeType::Profane),
-    ("Saving Throws", StatHomeType::Resistance),
     ("Fortitude Save", StatHomeType::Resistance),
     ("Reflex Save", StatHomeType::Resistance),
     ("Will Save", StatHomeType::Resistance),

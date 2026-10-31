@@ -11,6 +11,7 @@ pub(crate) use effects::{amount_count, validate_templates};
 mod items;
 pub(crate) use items::weapon_damage_text;
 mod modifiers;
+pub use modifiers::{stat_links_at_routed_types, StatLinkRoute};
 mod quest_series;
 mod sets;
 mod trees_spells;
@@ -248,6 +249,7 @@ fn build_with_wiki_references(
     let mut report = BuildReport::default();
     effects::insert_triggers(&transaction, &item_buff_definitions)?;
     let mut effects = effects::EffectCache::new(&transaction, groupings);
+    let stat_type_definitions = crate::map::effect_map::EFFECT_MAP.stat_type_effect_definitions(groupings)?;
     for definition in crate::map::effect_map::EFFECT_MAP.item_named_definitions(groupings)? {
         effects.ensure_indexed_effect(definition)?;
     }
@@ -469,6 +471,7 @@ fn build_with_wiki_references(
         },
         &mut report,
     )?;
+    writer.write_stat_type_effects(&stat_type_definitions)?;
     corrections::record_final_set_names(&transaction)?;
     writer.effects.write_missing_linked_stat_templates()?;
     wiki::apply_wiki_overrides(&transaction, &overlay_references, wiki_overrides, &mut report)?;

@@ -7,12 +7,12 @@ icon = "ShardOfGreatPower"
 min_level = 11
 
 [[effect]]
-name = "Armor Class"
+name = "Protection"
 bonus_type = "Deflection"
 value = 3
 
 [[effect]]
-name = "Saving Throws"
+name = "Resistance"
 bonus_type = "Resistance"
 value = 3
 

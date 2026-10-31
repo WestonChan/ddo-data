@@ -5,7 +5,7 @@ icon = "SlavelordsSuffix"
 min_level = 28
 
 [[effect]]
-name = "Saving Throws"
+name = "Resistance"
 bonus_type = "Resistance"
 value = 10
 

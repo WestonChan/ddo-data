@@ -37,7 +37,7 @@ bonus_type = "Competence"
 value = 43
 
 [[effect]]
-name = "Healing Amplification"
+name = "Equipped Healing Amplification"
 bonus_type = "Equipment"
 value = 22
 

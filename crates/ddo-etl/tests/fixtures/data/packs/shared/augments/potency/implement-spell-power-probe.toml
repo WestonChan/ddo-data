@@ -4,7 +4,7 @@ family = "Potency"
 min_level = 30
 
 [[effect]]
-name = "Universal Spell Power"
+name = "Spellcasting Implement"
 bonus_type = "Implement"
 value = 28
 

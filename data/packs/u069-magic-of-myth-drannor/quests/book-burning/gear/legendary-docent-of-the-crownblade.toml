@@ -19,7 +19,7 @@ armor_type = "Docent"
 mithral_body = 15
 
 [[effect]]
-name = "Healing Amplification"
+name = "Equipped Healing Amplification"
 bonus_type = "Equipment"
 value = 30
 

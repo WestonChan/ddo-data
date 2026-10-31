@@ -31,7 +31,7 @@ value = 3
 
 [[socket.option.effect]]
 bonus_type = "Resistance"
-effect = "Saving Throws"
+effect = "Resistance"
 value = 3
 
 [[socket.option.modifier]]
@@ -101,7 +101,7 @@ value = 3
 
 [[socket.option.effect]]
 bonus_type = "Deflection"
-effect = "Armor Class"
+effect = "Protection"
 value = 3
 
 [[socket.option.modifier]]

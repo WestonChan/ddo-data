@@ -47,7 +47,7 @@ level_values = [
 ]
 
 [[effect]]
-name = "Universal Spell Power"
+name = "Spellcasting Implement"
 bonus_type = "Implement"
 value = 28
 

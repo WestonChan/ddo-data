@@ -39,7 +39,7 @@ min_level = 16
 
 [[socket.option.effect]]
 bonus_type = "Implement"
-effect = "Universal Spell Power"
+effect = "Spellcasting Implement"
 value = 15
 
 [[socket.option.effect]]
@@ -72,7 +72,7 @@ min_level = 16
 
 [[socket.option.effect]]
 bonus_type = "Implement"
-effect = "Universal Spell Power"
+effect = "Spellcasting Implement"
 value = 15
 
 [[socket.option.effect]]
@@ -118,7 +118,7 @@ min_level = 16
 
 [[socket.option.effect]]
 bonus_type = "Implement"
-effect = "Universal Spell Power"
+effect = "Spellcasting Implement"
 value = 15
 
 [[socket.option.effect]]

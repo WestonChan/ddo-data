@@ -1,6 +1,12 @@
 description_trim_period = ["Sheltering"]
 damage_as_target = ["EnergyResistance", "SpellLore"]
 
+[stat_type_effects]
+"Armor Class" = { Deflection = "Protection", Shield = "Shield Bonus", Armor = "Armor Bonus", "Natural Armor" = "Natural Armor Bonus", Quality = "Quality Shield Bonus" }
+"Healing Amplification" = { Equipment = "Equipped Healing Amplification" }
+"Saving Throws" = { Resistance = "Resistance" }
+"Universal Spell Power" = { Implement = "Spellcasting Implement" }
+
 [named_effect_ids]
 "Spell Focus Mastery" = 100
 "Combat Mastery" = 118

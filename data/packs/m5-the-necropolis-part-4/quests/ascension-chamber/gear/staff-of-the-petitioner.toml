@@ -56,7 +56,7 @@ value = 48
 
 [[socket.option.effect]]
 bonus_type = "Implement"
-effect = "Universal Spell Power"
+effect = "Spellcasting Implement"
 value = 15
 
 [[socket.option.modifier]]

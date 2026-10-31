@@ -5,7 +5,7 @@ icon = "DraconicRune"
 min_level = 16
 
 [[effect]]
-name = "Armor Class"
+name = "Protection"
 bonus_type = "Deflection"
 value = 5
 

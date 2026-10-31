@@ -1,0 +1,138 @@
+<Augments>
+<Augment>
+      <Name>Fixture Routed Deflection</Name>
+      <Description>Routing fixture</Description>
+      <Type>Blue</Type>
+      <Type>Purple</Type>
+      <Type>Green</Type>
+      <Icon>Sapphire</Icon>
+      <ChooseLevel/>
+      <Levels size="10">1 4 8 12 16 20 24 28 32 36</Levels>
+      <LevelValue size="10">1 3 4 5 6 8 9 10 11 12</LevelValue>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Deflection</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">8</Amount>
+      </Effect>
+   </Augment>
+<Augment>
+      <Name>Fixture Routed Shield</Name>
+      <Description>Routing fixture</Description>
+      <Type>Blue</Type>
+      <Type>Purple</Type>
+      <Type>Green</Type>
+      <Icon>Sapphire</Icon>
+      <ChooseLevel/>
+      <Levels size="10">1 4 8 12 16 20 24 28 32 36</Levels>
+      <LevelValue size="10">1 3 4 5 6 8 9 10 11 12</LevelValue>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Shield</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">8</Amount>
+      </Effect>
+   </Augment>
+<Augment>
+      <Name>Fixture Routed Armor</Name>
+      <Description>Routing fixture</Description>
+      <Type>Blue</Type>
+      <Type>Purple</Type>
+      <Type>Green</Type>
+      <Icon>Sapphire</Icon>
+      <ChooseLevel/>
+      <Levels size="10">1 4 8 12 16 20 24 28 32 36</Levels>
+      <LevelValue size="10">1 3 4 5 6 8 9 10 11 12</LevelValue>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Armor</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">8</Amount>
+      </Effect>
+   </Augment>
+<Augment>
+      <Name>Fixture Routed Natural Armor</Name>
+      <Description>Routing fixture</Description>
+      <Type>Blue</Type>
+      <Type>Purple</Type>
+      <Type>Green</Type>
+      <Icon>Sapphire</Icon>
+      <ChooseLevel/>
+      <Levels size="10">1 4 8 12 16 20 24 28 32 36</Levels>
+      <LevelValue size="10">1 3 4 5 6 8 9 10 11 12</LevelValue>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Natural Armor</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">8</Amount>
+      </Effect>
+   </Augment>
+<Augment>
+      <Name>Fixture Routed Quality</Name>
+      <Description>Routing fixture</Description>
+      <Type>Blue</Type>
+      <Type>Purple</Type>
+      <Type>Green</Type>
+      <Icon>Sapphire</Icon>
+      <ChooseLevel/>
+      <Levels size="10">1 4 8 12 16 20 24 28 32 36</Levels>
+      <LevelValue size="10">1 3 4 5 6 8 9 10 11 12</LevelValue>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Quality</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">8</Amount>
+      </Effect>
+   </Augment>
+<Augment>
+      <Name>Fixture Routed Healing</Name>
+      <Description>Routing fixture</Description>
+      <Type>Blue</Type>
+      <Type>Purple</Type>
+      <Type>Green</Type>
+      <Icon>Sapphire</Icon>
+      <ChooseLevel/>
+      <Levels size="10">1 4 8 12 16 20 24 28 32 36</Levels>
+      <LevelValue size="10">1 3 4 5 6 8 9 10 11 12</LevelValue>
+      <Effect>
+         <Type>HealingAmplification</Type>
+         <Bonus>Equipment</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">8</Amount>
+      </Effect>
+   </Augment>
+<Augment>
+      <Name>Fixture Routed Saves</Name>
+      <Description>Routing fixture</Description>
+      <Type>Blue</Type>
+      <Type>Purple</Type>
+      <Type>Green</Type>
+      <Icon>Sapphire</Icon>
+      <ChooseLevel/>
+      <Levels size="10">1 4 8 12 16 20 24 28 32 36</Levels>
+      <LevelValue size="10">1 3 4 5 6 8 9 10 11 12</LevelValue>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Resistance</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">8</Amount>
+      </Effect>
+   </Augment>
+<Augment>
+      <Name>Fixture Routed Implement</Name>
+      <Description>Routing fixture</Description>
+      <Type>Blue</Type>
+      <Type>Purple</Type>
+      <Type>Green</Type>
+      <Icon>Sapphire</Icon>
+      <ChooseLevel/>
+      <Levels size="10">1 4 8 12 16 20 24 28 32 36</Levels>
+      <LevelValue size="10">1 3 4 5 6 8 9 10 11 12</LevelValue>
+      <Effect>
+         <Type>UniversalSpellPower</Type>
+         <Bonus>Implement</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">8</Amount>
+      </Effect>
+   </Augment>
+</Augments>

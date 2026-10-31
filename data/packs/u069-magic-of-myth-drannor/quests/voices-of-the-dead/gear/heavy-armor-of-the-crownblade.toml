@@ -19,7 +19,7 @@ armor_type = "Heavy"
 max_dex_bonus = 2
 
 [[effect]]
-name = "Healing Amplification"
+name = "Equipped Healing Amplification"
 bonus_type = "Equipment"
 value = 14
 

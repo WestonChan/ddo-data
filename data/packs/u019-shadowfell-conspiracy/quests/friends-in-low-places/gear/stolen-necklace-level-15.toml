@@ -58,7 +58,7 @@ min_level = 15
 
 [[socket.option.effect]]
 bonus_type = "Resistance"
-effect = "Saving Throws"
+effect = "Resistance"
 value = 5
 
 [[socket.option.modifier]]

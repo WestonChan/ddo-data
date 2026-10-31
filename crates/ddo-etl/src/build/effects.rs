@@ -756,11 +756,17 @@ impl<'a> EffectCache<'a> {
 
     pub(super) fn write_aliases(&self) -> Result<()> {
         for family in self.families_by_id.values() {
-            let Some(effect) = self.groupings.effect_named(&family.name) else { continue };
+            self.write_family_aliases(family.id)?;
+        }
+        Ok(())
+    }
+
+    pub(super) fn write_family_aliases(&self, family_id: i64) -> Result<()> {
+        if let Some(effect) = self.family(family_id).and_then(|family| self.groupings.effect_named(&family.name)) {
             for (position, alias) in effect.aliases.iter().enumerate() {
                 self.transaction.execute(
                     "INSERT INTO effect_aliases (effect_id, name, slug, verbose_name_template, sort_order) VALUES (?1, ?2, ?3, ?4, ?5)",
-                    params![family.id, alias.name, alias.slug, alias.verbose_name_template, position as i64],
+                    params![family_id, alias.name, alias.slug, alias.verbose_name_template, position as i64],
                 )?;
             }
         }
@@ -1035,6 +1041,7 @@ mod tests {
     fn armor_bonus_definition_uses_its_amount_in_the_description() {
         let mut db = Connection::open_in_memory().unwrap();
         db.execute_batch(ddo_model::ddl()).unwrap();
+        ddo_model::seeds::insert_all(&db).unwrap();
         let transaction = db.transaction().unwrap();
         let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
         let source = "This item surrounds the wearer with an invisible but tangible field of force, granting %b1 armor bonus to AC, just as though he were wearing armor.";

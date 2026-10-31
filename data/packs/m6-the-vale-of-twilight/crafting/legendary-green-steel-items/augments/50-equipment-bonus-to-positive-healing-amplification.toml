@@ -4,7 +4,7 @@ family = "Greensteel_Legendary"
 min_level = 1
 
 [[effect]]
-name = "Healing Amplification"
+name = "Equipped Healing Amplification"
 bonus_type = "Equipment"
 value = 50
 

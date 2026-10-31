@@ -1,6 +1,6 @@
 use crate::xml::effect::Effect;
 use crate::xml::spells::Spell;
-use anyhow::{bail, Result};
+use anyhow::{bail, ensure, Context, Result};
 use ddo_model::enums::{BonusType, DamageCategory};
 use ddo_model::seeds::{WeaponType, DAMAGE_TYPES, WEAPON_TYPES};
 use ddo_model::stats::{Stat, STATS};
@@ -15,6 +15,8 @@ pub struct EffectMap {
     pub description_trim_period: BTreeSet<String>,
     #[serde(default)]
     pub damage_as_target: BTreeSet<String>,
+    #[serde(default)]
+    pub stat_type_effects: BTreeMap<String, BTreeMap<String, String>>,
     pub family: FamilyVocabulary,
     pub effect: EffectVocabulary,
     #[serde(default)]
@@ -192,6 +194,15 @@ impl EffectMap {
 
     pub fn from_toml(toml_text: &str) -> Result<Self> {
         let vocabulary: Self = toml::from_str(toml_text)?;
+        for (stat, types) in &vocabulary.stat_type_effects {
+            ensure!(
+                Stat::by_name(stat).is_some() && !types.is_empty(),
+                "effect_map.toml [stat_type_effects] {stat:?} needs a known stat and at least one type"
+            );
+            for (bonus_type, effect) in types {
+                ensure!(BonusType::parse(bonus_type).is_some() && !effect.trim().is_empty(), "effect_map.toml [stat_type_effects] {stat:?} / {bonus_type:?} needs a known type and a named target");
+            }
+        }
         let mut prose_descriptions = BTreeSet::new();
         for rule in &vocabulary.set_tier_prose_bonuses {
             if rule.description.trim().is_empty()
@@ -690,6 +701,45 @@ impl EffectMap {
                 group_name.strip_suffix(" Skills").and_then(|ability| self.skill_ability_groups.skills.get(ability))
             })
             .map(Vec::as_slice)
+    }
+
+    pub fn stat_type_effect_definitions<'a>(
+        &self,
+        index: &'a crate::groupings::Groupings,
+    ) -> Result<Vec<&'a crate::groupings::Grouping>> {
+        let mut definitions = BTreeMap::new();
+        for (stat, types) in &self.stat_type_effects {
+            for (bonus_type, name) in types {
+                let effect = index.effect_named(name).with_context(|| {
+                    format!(
+                        "effect_map.toml [stat_type_effects] {stat:?} / {bonus_type:?} names missing effect {name:?}"
+                    )
+                })?;
+                let stat_id = index.effect_named(stat).map(|stat| stat.id);
+                let matches_home = effect.home_bonus_type.as_deref() == Some(bonus_type)
+                    || (effect.home_bonus_type.is_none()
+                        && ddo_model::bonus_type_wording::is_always_unnamed(
+                            BonusType::parse(bonus_type).expect("validated type"),
+                        ));
+                ensure!(
+                    !effect.is_group
+                        && effect.bonuses.len() == 1
+                        && crate::build::amount_count(&effect.verbose_name_template, effect.description_template.as_deref()) == 1
+                        && matches_home
+                        && effect.bonuses.iter().all(|bonus| {
+                            Some(bonus.target_id) == stat_id
+                                && bonus.amount_from == 1
+                                && bonus.constant.is_none()
+                                && bonus.scale == 1.0
+                                && bonus.trigger_id.is_none()
+                                && bonus.bonus_type.as_deref().is_none_or(|fixed| fixed == bonus_type)
+                        }),
+                    "effect_map.toml [stat_type_effects] {stat:?} / {bonus_type:?} -> {name:?} needs a single unscaled slot-one bonus on that stat at that type, with a matching home"
+                );
+                definitions.insert(name, effect);
+            }
+        }
+        Ok(definitions.into_values().collect())
     }
 
     pub(crate) fn item_named_definitions<'a>(

@@ -8,7 +8,7 @@ minimum_level = 11
 slot = "Head"
 
 [[effect]]
-name = "Healing Amplification"
+name = "Equipped Healing Amplification"
 bonus_type = "Equipment"
 value = 12
 
