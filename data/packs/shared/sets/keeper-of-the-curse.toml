@@ -2,6 +2,16 @@ name = "Keeper of the Curse"
 icon = "KeeperOfTheCurse"
 is_filigree_set = true
 
+[[verification_request]]
+question = "Does the five-piece bonus grant Pact Dice or Eldritch Blast Dice? The wiki says +3 Pact Die; no game screenshot was found."
+assumed = "5 pieces: Eldritch Blast Dice +3 Stacking"
+raised = "2026-10-31"
+
+[[verification_request.source]]
+says = "5 Pieces: +3 Pact Die. R15e found no filigree-set screenshot to decide between the two existing stats."
+url = "https://ddowiki.com/page/Sentient_Weapon/Filigrees"
+read = "2026-10-29"
+
 [[tier]]
 equipped_count = 2
 

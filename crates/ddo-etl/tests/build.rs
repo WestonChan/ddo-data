@@ -363,6 +363,62 @@ fn r15_unsettled_names_and_legacy_options_keep_verification_requests() {
 }
 
 #[test]
+fn filigree_set_questions_preserve_the_recorded_bonuses() {
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db).unwrap();
+    for name in ["Divinity", "Snowpeak's Gifts", "Frozen Wanderer", "Keeper of the Curse"] {
+        let requests: Vec<(String, String)> = db
+            .prepare(
+                "SELECT v.assumed_value,s.url FROM verification_requests v
+             JOIN set_bonuses b ON b.id=v.owner_id AND v.owner_kind='set_bonuses'
+             JOIN verification_request_sources s ON s.request_id=v.id
+             WHERE b.name=?1",
+            )
+            .unwrap()
+            .query_map([name], |row| Ok((row.get(0)?, row.get(1)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<_>>()
+            .unwrap();
+        assert_eq!(requests.len(), 1, "{name} needs its unresolved R15e reading recorded once");
+        assert_eq!(requests[0].1, "https://ddowiki.com/page/Sentient_Weapon/Filigrees");
+        let expected: Vec<String> = db
+            .prepare(
+                "SELECT t.equipped_count,e.name,b.name,l.value FROM set_bonus_tiers t
+             JOIN set_bonuses owner ON owner.id=t.set_id
+             JOIN set_bonus_tier_effects l ON l.tier_id=t.id
+             JOIN effects e ON e.id=l.effect_id JOIN bonus_types b ON b.id=l.bonus_type_id
+             WHERE owner.name=?1 AND (b.name='Enhancement' OR (owner.name='Keeper of the Curse' AND t.equipped_count=5))
+             ORDER BY t.equipped_count,l.sort_order",
+            )
+            .unwrap()
+            .query_map([name], |row| {
+                Ok(format!(
+                    "{} pieces: {} +{} {}",
+                    row.get::<_, i64>(0)?,
+                    row.get::<_, String>(1)?,
+                    row.get::<_, i64>(3)?,
+                    row.get::<_, String>(2)?
+                ))
+            })
+            .unwrap()
+            .collect::<rusqlite::Result<_>>()
+            .unwrap();
+        assert!(!expected.is_empty(), "{name}");
+        assert_eq!(serde_json::from_str::<String>(&requests[0].0).unwrap(), expected.join("; "), "{name}");
+    }
+    let keeper: (String, i64, String) = db
+        .query_row(
+            "SELECT e.name,l.value,b.name FROM set_bonus_tier_effects l JOIN set_bonus_tiers t ON t.id=l.tier_id
+         JOIN set_bonuses owner ON owner.id=t.set_id JOIN effects e ON e.id=l.effect_id
+         JOIN bonus_types b ON b.id=l.bonus_type_id WHERE owner.name='Keeper of the Curse' AND t.equipped_count=5",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)),
+        )
+        .unwrap();
+    assert_eq!(keeper, ("Eldritch Blast Dice".into(), 3, "Stacking".into()));
+}
+
+#[test]
 fn committed_verification_requests_cover_the_initial_review_cases() {
     let mut db = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(&std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db)

@@ -2,6 +2,16 @@ name = "Frozen Wanderer"
 icon = "FrozenWanderer"
 is_filigree_set = true
 
+[[verification_request]]
+question = "Are the recorded Enhancement set bonuses Enhancement in game, or untyped bonuses that stack with everything? The wiki set lines give no type and no game screenshot was found."
+assumed = "3 pieces: Magical Resistance Rating Cap +10 Enhancement; 4 pieces: Cold Spell Power +50 Enhancement; 4 pieces: Imbue Dice +1 Enhancement"
+raised = "2026-10-31"
+
+[[verification_request.source]]
+says = "3 Pieces: +10 Magical Resistance Rating Cap; 4 Pieces: Cold Mastery: Gain 50 Cold Spell Power. +1 Imbue Dice. The page says filigree bonuses stack with everything unless specifically noted; these set lines state no type. R15e found no screenshot to verify Maetrim's Enhancement type."
+url = "https://ddowiki.com/page/Sentient_Weapon/Filigrees"
+read = "2026-10-29"
+
 [[tier]]
 equipped_count = 2
 
