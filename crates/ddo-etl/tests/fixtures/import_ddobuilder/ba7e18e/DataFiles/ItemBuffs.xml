@@ -1827,4 +1827,14 @@
   
    <!--Y-->
   
+<Buff>
+    <Type>Legendary Conditioning</Type>
+    <DisplayText>Legendary Conditioning %v1%: You have a %v1% %b1 bonus to Maximum Hit Points.</DisplayText>
+    <Effect>
+      <Type>HitpointsPercent</Type>
+      <Bonus>Legendary</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
 </Buffs>

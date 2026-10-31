@@ -65,7 +65,11 @@ fn links_an_item_whose_drop_text_names_a_pack_and_no_quest_to_the_pack() {
         ["adventure_pack Magic of Myth Drannor chest any end chest 1"],
         "'Magic of Myth Drannor, rare drop in any end chest'"
     );
-    assert_eq!((report.pack_loot_link_count, report.pack_augment_loot_link_count), (1, 0));
+    assert_eq!(
+        drop_rows(&db, "Solar Gem of Enduring (Heroic)"),
+        ["adventure_pack Chill of Ravenloft chest any difficulty 0"]
+    );
+    assert_eq!((report.pack_loot_link_count, report.pack_augment_loot_link_count), (1, 1));
 }
 
 #[test]
@@ -113,7 +117,7 @@ fn links_an_augment_whose_drop_text_names_a_pack_to_the_pack() {
         drop_rows(&db, "Test Gem of Myth Drannor"),
         ["adventure_pack Magic of Myth Drannor chest any end chest 0"]
     );
-    assert_eq!(report.pack_augment_loot_link_count, 1);
+    assert_eq!(report.pack_augment_loot_link_count, 2);
 }
 
 #[test]
@@ -121,7 +125,7 @@ fn leaves_a_segment_naming_a_saga_reward_tier_unlinked_to_the_pack() {
     let (db, report) =
         built_with_augment_dropping_in("Test Gem of the Saga", "Magic of Myth Drannor (Heroic), Elite and True Elite");
     assert!(drop_rows(&db, "Test Gem of the Saga").is_empty(), "True Elite is a saga's reward list");
-    assert_eq!(report.pack_augment_loot_link_count, 0);
+    assert_eq!(report.pack_augment_loot_link_count, 1);
 }
 
 fn built_with_augment_dropping_in(augment_name: &str, drop_line: &str) -> (Connection, BuildReport) {
@@ -133,7 +137,7 @@ fn leaves_a_saga_tier_after_a_name_both_a_saga_and_a_pack_carry_to_the_saga() {
     let (db, report) =
         built_with_augment_dropping_in("Test Gem of Sharn", "Masterminds of Sharn (Epic), any difficulty");
     assert!(drop_rows(&db, "Test Gem of Sharn").is_empty(), "his wording for a saga's epic reward list");
-    assert_eq!(report.pack_augment_loot_link_count, 0);
+    assert_eq!(report.pack_augment_loot_link_count, 1);
     let (db, _) = built_with_augment_dropping_in("Test Gem of the Cove", "Magic of Myth Drannor (Heroic), end chest");
     assert_eq!(
         drop_rows(&db, "Test Gem of the Cove"),
@@ -155,7 +159,7 @@ fn recognises_a_store_purchase_as_no_drop() {
     let (db, report) =
         built_with_augment_dropping_in("Test Gem of the Store", "Magic of Myth Drannor, Ultimate Fan Bundle");
     assert!(drop_rows(&db, "Test Gem of the Store").is_empty());
-    assert_eq!(report.pack_augment_loot_link_count, 0);
+    assert_eq!(report.pack_augment_loot_link_count, 1);
 }
 
 #[test]
@@ -182,7 +186,7 @@ read = "2026-10-02"
     );
     let (db, report) = built_with(&wiki);
     assert!(drop_rows(&db, "Test Gem of the Long Saga").is_empty());
-    assert_eq!(report.pack_augment_loot_link_count, 0);
+    assert_eq!(report.pack_augment_loot_link_count, 1);
 }
 
 #[test]

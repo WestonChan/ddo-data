@@ -1,0 +1,33 @@
+name = "Solar Gem of Enduring (Heroic)"
+description = """
++5% Legendary Bonus to Maximum Hit Points.
+Drops in: Secrets of the Red Wizards, end chest (rare)
+Magic of Myth Drannor (Heroic), Elite and True Elite
+Rats in a Cage, end chest (rare)
+Sleeping with the Fishes, end chest (rare)
+The Proper Authorities, end chest (rare)
+The Chill of Ravenloft (Heroic), any difficulty"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Legendary Conditioning"
+bonus_type = "Legendary"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Legendary"
+effect = "Maximum Hit Points"
+effect_type = "HitpointsPercent"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "any difficulty"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Chill of Ravenloft"

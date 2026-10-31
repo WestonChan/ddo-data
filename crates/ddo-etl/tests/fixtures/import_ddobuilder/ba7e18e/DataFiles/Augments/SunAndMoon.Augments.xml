@@ -1,0 +1,21 @@
+<Augments>
+<Augment>
+    <Name>Solar Gem of Enduring (Heroic)</Name>
+    <Description>+5% Legendary Bonus to Maximum Hit Points.
+Drops in: Secrets of the Red Wizards, end chest (rare)
+Magic of Myth Drannor (Heroic), Elite and True Elite
+Rats in a Cage, end chest (rare)
+Sleeping with the Fishes, end chest (rare)
+The Proper Authorities, end chest (rare)
+The Chill of Ravenloft (Heroic), any difficulty</Description>
+    <MinLevel>1</MinLevel>
+    <Type>Sun</Type>
+    <Icon>HistoryBookWhite</Icon>
+    <Effect>
+      <Type>HitpointsPercent</Type>
+      <Bonus>Legendary</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+    </Effect>
+  </Augment>
+</Augments>

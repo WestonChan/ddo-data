@@ -1011,6 +1011,30 @@ skip_description_check = true
 }
 
 #[test]
+fn maximum_hit_point_lines_always_state_their_percent_unit() {
+    let mut db = Connection::open_in_memory().unwrap();
+    let production = fixtures_dir().join("../../../../data");
+    ddo_etl::tree::build_from_data(&production, &mut db).unwrap();
+    let mut checked = 0;
+    for (table, owner_column) in
+        [("augment_effects", "augment_id"), ("feat_effects", "feat_id"), ("set_bonus_tier_effects", "tier_id")]
+    {
+        for lines in ddo_api::served_effect_lines(&db, table, owner_column).unwrap().values() {
+            for (_, line) in lines {
+                if line["effect_slug"] != "maximum-hit-points" && line["effect_slug"] != "legendary-conditioning" {
+                    continue;
+                }
+                let value = line["value"].as_i64().unwrap();
+                let title = line["verbose_name"].as_str().unwrap();
+                assert!(title.contains(&format!("+{value}%")), "{table}: {title}");
+                checked += 1;
+            }
+        }
+    }
+    assert_eq!(checked, 10);
+}
+
+#[test]
 fn confirmed_percent_stats_render_units_on_their_real_set_lines() {
     let scratch = tempfile::tempdir().unwrap();
     let tree = scratch.path().join("data");

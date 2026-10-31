@@ -4286,7 +4286,7 @@ async fn events_list_their_page_and_item_count_and_detail_their_items() {
 async fn version_counts_every_source_by_kind() {
     let (_, _, version) = get("/v1/version").await;
     let counts = &version["counts"];
-    assert_eq!((&counts["pack_loot"], &counts["pack_augment_loot"]), (&serde_json::json!(1), &serde_json::json!(0)));
+    assert_eq!((&counts["pack_loot"], &counts["pack_augment_loot"]), (&serde_json::json!(1), &serde_json::json!(1)));
     let source_count_by_kind: i64 = [
         "quest_loot",
         "quest_augment_loot",

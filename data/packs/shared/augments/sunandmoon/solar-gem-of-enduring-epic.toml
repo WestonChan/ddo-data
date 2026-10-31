@@ -5,7 +5,7 @@ icon = "HistoryBookWhite"
 min_level = 20
 
 [[effect]]
-name = "Maximum Hit Points"
+name = "Legendary Conditioning"
 bonus_type = "Legendary"
 value = 7
 

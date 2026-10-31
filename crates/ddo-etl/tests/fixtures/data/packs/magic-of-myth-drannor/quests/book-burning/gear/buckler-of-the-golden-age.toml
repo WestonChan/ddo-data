@@ -33,6 +33,7 @@ name = "Shield Bashing"
 
 [[effect]]
 name = "Legendary Conditioning"
+bonus_type = "Legendary"
 value = 5
 
 [[effect]]

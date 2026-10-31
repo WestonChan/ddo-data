@@ -6,6 +6,7 @@ damage_as_target = ["EnergyResistance", "SpellLore"]
 "Healing Amplification" = { Equipment = "Equipped Healing Amplification" }
 "Saving Throws" = { Resistance = "Resistance" }
 "Universal Spell Power" = { Implement = "Spellcasting Implement" }
+"Maximum Hit Points" = { Legendary = "Legendary Conditioning" }
 
 [named_effect_ids]
 "Spell Focus Mastery" = 100
@@ -336,6 +337,7 @@ ExtraLayOnHands = "Lay on Hands Uses"
 "With 2–6 augments, gain a 5%–9% Legendary bonus to Spell Points." = "Spell Point Augment Scaling"
 
 [line_templates]
+"Maximum Hit Points" = "%b1 Maximum Hit Points +{1}%"
 Accuracy = "%b1 Accuracy +{1}"
 "Negative Healing Amplification" = "%b1 Negative Healing Amplification +{1}"
 "Orb Bonus" = "+{1} %b1 Orb Bonus"

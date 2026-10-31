@@ -1961,7 +1961,7 @@ fn every_entity_preserves_citations_with_notes_through_the_data_tree() {
 }
 
 const PLACEHOLDER_AUGMENT: &str = "Lunar Gem of Evocation (Heroic)";
-const PLACEHOLDER_AUGMENT_FILE: &str = "Augments/SunAndMoon.Augments.xml";
+const PLACEHOLDER_AUGMENT_FILE: &str = "Augments/LunarGemEvocation.Augments.xml";
 const WIKI_DROPS_LINE: &str = "Drops in: A Blood Pact, end chest\nFlocked Together, optional chest";
 
 fn placeholder_augment_description(drops: &str) -> String {

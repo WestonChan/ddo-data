@@ -213,6 +213,36 @@ fn raw_deflection_armor_class_links_protection_without_changing_its_bonus() {
 }
 
 #[test]
+fn maximum_hit_point_augments_link_legendary_conditioning_without_changing_the_bonus() {
+    let source = fixture::xml_source();
+    std::fs::write(
+        source.path().join("Augments/SunAndMoon.Augments.xml"),
+        include_str!("fixtures/effect-groups/SolarGemEnduring.Augments.xml"),
+    )
+    .unwrap();
+    std::fs::create_dir_all(source.path().join("AugmentImages")).unwrap();
+    std::fs::write(
+        source.path().join("AugmentImages/HistoryBookWhite.png"),
+        include_bytes!("fixtures/effect-groups/icons/HistoryBookWhite.png"),
+    )
+    .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let link: (String, i64, String) = db.query_row("SELECT e.name,l.value,t.name FROM augment_effects l JOIN augments a ON a.id=l.augment_id JOIN effects e ON e.id=l.effect_id JOIN bonus_types t ON t.id=l.bonus_type_id WHERE a.name='Solar Gem of Enduring (Heroic)'", [], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap();
+    assert_eq!(link, ("Legendary Conditioning".into(), 5, "Legendary".into()));
+    let bonus: (String, i64, String) = db.query_row("SELECT e.name,b.amount,t.name FROM owner_bonuses b JOIN augments a ON a.id=b.owner_id JOIN effects e ON e.id=b.stat_id JOIN bonus_types t ON t.id=b.bonus_type_id WHERE b.owner_kind='augment' AND a.name='Solar Gem of Enduring (Heroic)'", [], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap();
+    assert_eq!(bonus, ("Maximum Hit Points".into(), 5, "Legendary".into()));
+}
+
+#[test]
 fn stat_type_routing_keeps_a_selected_stat_alias() {
     let canonical = fixture::database(|root| {
         let path = root.join("effects/stats/armor-class.toml");
@@ -3043,7 +3073,7 @@ fn implement_spell_power_remains_universal() {
 #[test]
 fn writes_improved_deception_from_its_definition_as_a_typed_bluff_bonus() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.effect_fallback_buff_count, 23);
+    assert_eq!(report.effect_fallback_buff_count, 24);
     assert!(report.family_buff_count > 0);
     assert!(report.effect_buff_count > 0);
     let gloves = item_id(&db, "Backstabber's Gloves (Level 25)");
@@ -4068,7 +4098,7 @@ fn bonus_additions_feed_the_finished_lines_merge() {
 #[test]
 fn writes_augments_with_slots_bonuses_and_modifiers() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.augment_count, 26);
+    assert_eq!(report.augment_count, 27);
     let ruby: i64 =
         db.query_row("SELECT id FROM augments WHERE name = 'Ruby of Acid Damage'", [], |r| r.get(0)).unwrap();
     let (family, has_selectable_level, levels, values): (String, bool, String, String) = db
