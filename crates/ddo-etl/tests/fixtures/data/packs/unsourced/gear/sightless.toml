@@ -29,6 +29,8 @@ value = 6
 
 [[effect]]
 name = "Sheltering"
+bonus_type = "Enhancement"
+value = 33
 
 [[effect]]
 name = "Constitution"

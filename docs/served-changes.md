@@ -1,5 +1,19 @@
 # V9 data files served changes
 
+## Effect groupings and tooltip wording (2026-10-31)
+
+A fully modelled multi-stat upstream Effect now uses one effect link on set tiers, augments, feats and socket options. Legendary Hruit's Influence's three-piece tier has four lines, including its four +30 Artifact spell powers; Anger of the Avalanche uses Power of the Frozen Thunderstorm. Individual-stat filters and resolved bonuses still expand every member. Wiki-backed `lines` corrections preserve separate tooltip lines or join separate upstream links. The old set-tier collapse and ambiguous-group fallback are removed; unresolved duplicate groupings now fail the build.
+
+Verified wrapper merges retain their source titles through aliases. Tactics resolves to Combat Mastery; Potency, Radiance, Nullification, Void Lore and the skill groups are their canonical stat sets. Roman ladder steps stay distinct under #57. Alias routes preserve old effect addresses, effect-name filters resolve aliases consistently, and effect search reports `matched_alias`. Search-only aliases add vocabulary without changing a line. Descriptions come from the canonical effect.
+
+Accuracy and Attack Bonus share the Accuracy stat, with the Attack Bonus source title retained as an alias. Elemental Resistance grants its five resistance stats; the three owners of the former five-element group keep their titles through its alias. Save stat names stay canonical while their line templates follow the tooltip. Verified armor, skill, amplification and rank wording is reflected in the effects and their aliases. Enhancement, Equipment and Feat are unnamed on ordinary lines; the typed stat rules control the additional unnamed types. Percentage lines retain their units, including Maximum Hit Points, and repeated type-prefix words are rejected by a HARD check.
+
+The closing multi-slot change groups Dark Hunter's two +1 bonuses into Deception with slots 1/1, preserving both bonuses. Twelve confirmed uniform-type amplification tiers use Positive, Negative, and Repair Amplification; Lifeblood of the Undead Prince remains distinct with its three fixed types. The two pending +10 amplification prose tiers become typed group links. Eminence of Summer's six- and seven-piece lines stay unchanged through explicit cited merges. Both Melancholic Converter augments keep their three current lines while mixed-type splits wait for #72; live exceptions fail if an owner disappears or no longer needs the exception.
+
+Relative to the multi-slot commit, closing the amplification pairs changes fourteen tier line arrays and no other owner's lines: 34,824 rendered lines become 34,800. All 31,311 existing resolved bonuses remain; Night Revels' Gifts and Snowpeak's Gifts each add their three previously prose-only +10 Stacking amplification bonuses, for 31,317 total. The retired prose slug redirects to the group. These fourteen tiers are not crafting-owned.
+
+Game-bug and verification notes remain on the affected lines or at detail level, as described below. Reader questions and crafting mechanisms deferred to #72 remain visible in their records and the implementation handoff; no unresolved tooltip contradiction is covered by a new golden allowance.
+
 ## Game-bug and verification notes (schema 43, 2026-10-23)
 
 Effect lines and item, augment, set, feat and effect details add `notes`, one shape for game-bug records and open verification requests. Each note carries `kind`, `field`, `qualifier`, `text`, `intended`, `assumed`, `in_game` and `recorded`. Game-bug notes precede unverified notes, then sort by field and qualifier.
@@ -177,4 +191,3 @@ The following changed in `/v1/dump.sqlite` only:
 - `corrections`: 12 rows are added for the SunAndMoon gems whose description is his "Drops in: ?" placeholder, and the four heroism socket-label rows become two, each listing both of his spellings.
 - `entity_notes` is gone.
 - `quest_drops`: seven rows gain the `drop_text_segment` and `source_match` that a `"sources"` citation used to suppress.
-

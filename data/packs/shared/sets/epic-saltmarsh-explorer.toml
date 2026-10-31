@@ -117,24 +117,14 @@ value = 2
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Healing Amplification"
-value = 20
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Repair Amplification"
-value = 20
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Negative Healing Amplification"
+effect = "Positive, Negative, and Repair Amplification"
 value = 20
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [20]
 bonus_type = "Artifact"
-effect = "All Ability Scores"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -142,7 +132,7 @@ extra_types = ["MRR"]
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Artifact"
-effect = "All Ability Scores"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "MeleePower"
 extra_types = [
     "RangedPower",
@@ -153,7 +143,7 @@ extra_types = [
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Artifact"
-effect = "All Ability Scores"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "AbilityBonus"
 targets = ["All"]
 
@@ -161,6 +151,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [20]
 bonus_type = "Artifact"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "HealingAmplification"
 extra_types = [
     "RepairAmplification",

@@ -911,10 +911,17 @@ fn damage_targets_ignore_unresolved_targets_and_leave_weapon_damage_alone() {
 fn valued_set_prose_rules_validate_types_targets_and_unique_descriptions() {
     let source = include_str!("../data/effect_map.toml");
     let vocabulary = EffectMap::from_toml(source).unwrap();
-    assert_eq!(vocabulary.set_tier_prose_bonuses.len(), 29);
+    assert_eq!(vocabulary.set_tier_prose_bonuses.len(), 30);
     for rule in &vocabulary.set_tier_prose_bonuses {
         assert!(vocabulary.set_tier_prose_link(&rule.description, fixture::grouping_cases()).unwrap().is_some());
     }
+    let amplification = vocabulary
+        .set_tier_prose_link("+10 Positive, Negative and Repair Amplification", fixture::groupings())
+        .unwrap()
+        .unwrap();
+    assert_eq!(amplification.effect, "Positive, Negative, and Repair Amplification");
+    assert_eq!(amplification.bonus_type.as_deref(), Some("Stacking"));
+    assert_eq!(amplification.value, Some(10));
     let duplicate = "\n[[set_tier_prose_bonuses]]\ndescription = \"+1 Profane bonus to Attack and Damage\"\neffect = \"Accuracy\"\nbonus_type = \"Profane\"\nvalue = 1\n";
     for invalid in [
         format!("{source}{duplicate}"),
@@ -938,7 +945,6 @@ fn valued_set_prose_rules_validate_types_targets_and_unique_descriptions() {
         "+2 Uses of Wild Empathy",
         "+5% Poison Spell Critical Damage",
         "3rd Degree Burns",
-        "+10 Positive, Negative and Repair Amplification",
     ] {
         assert!(vocabulary.set_tier_prose_link(description, fixture::groupings()).unwrap().is_none(), "{description}");
     }

@@ -25,17 +25,7 @@ equipped_count = 3
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Healing Amplification"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Negative Healing Amplification"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Repair Amplification"
+effect = "Positive, Negative, and Repair Amplification"
 value = 30
 
 [[tier.effect]]

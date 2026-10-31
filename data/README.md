@@ -96,12 +96,27 @@ Run `ddo-etl find "<text>"` to search names and slugs case-insensitively, or add
 
 `ddo-etl export --db ddo.db --out <directory>` writes the TOML from database tables. It does not write PNGs, since image bytes are not in the database. Copy the data files' PNG files into the export directory before building it again. An icon reference uses the PNG's exact case and the matching `icons/<kind>/` folder. Enhancement icons used by one tree live beside that tree; shared enhancement images live in `icons/enhancements/`.
 
+## Effect lines and groupings
+
+Each link grants a stat or a named effect. A stat group lives under `effects/stat-groups/`, with one `[[bonus]]` per member stat. A link carries its amounts and bonus type; the group's description supplies consistent wording. One expanded stat set has one default grouping. The build rejects undeclared duplicates, naming both files. A source-verified distinct effect or composition carries `stat_set_verdict`, `stat_set_reason` and a citation. A declaration keeps that effect addressable by name while removing it from default grouping candidates.
+
+An effect's `[[alias]]` can supply an alternate line template and searchable name. Links select it with `alias = "<name>"`; an alias without a template is search-only. An alias that repeats its own member stat's name has no route. Other alias slugs route to the canonical effect. Removing or renaming a selected alias requires updating its links in the same change.
+
+A stat-wide line-template correction can keep the canonical stat name while displaying its tooltip wording: Reflex Save has lines such as "Reflex +10" and the search-only alias "Reflex". The tooltip check still compares the full line exactly; its label must match one of that stat's search-only aliases. Named effects and selected display aliases keep the exact label check. Accuracy and Negative Healing Amplification are the canonical stat names; their retired names remain aliases.
+
+Nine `[stat_type_effects]` declarations in the import vocabulary route direct item, augment and socket-option stat links to their named effects after corrections and explicit alias selection. Set and feat links are outside that routing. The HARD `stat_links_at_routed_types` check shares the writer's eligibility rule.
+
+Bonus corrections use `item_bonus`, `augment_bonus`, `set_tier_bonus`, `feat_bonus` or `socket_option_bonus`. A `lines` correction's `upstream` contains one stat-name array per upstream line. One array splits; several arrays merge. The owner file holds the result, and its qualifier names the upstream stat union in canonical order followed by ` / <bonus type>`. Set corrections add `equipped_count <n>, `; socket options live on the item and add `socket "<label>", option "<name>", `. Both option selectors must identify exactly one row. The build validates our partitions, union, values and types; the import checks his original lines and reports missing members as `no such bonus`.
+
+Default grouping and explicit merges share the slot contract: every target slot receives a value, members reading the same slot agree, and the complete stat sets match. Separate upstream Effects merge only through a cited correction. The two Melancholic Converter augments retain their current lines while mixed-type splits wait for WestonChan/ddo-data#72; check-db rejects an exception whose owner disappears or no longer needs it.
+
 The database's `dataset_version` records the upstream SHA from `upstream/commit.toml` and the build time. The entity's annotations:
 - **`[[ddobuilder_correction]]`** records where our value differs from Maetrim's: `kind`, `field`, `upstream` holding his value, `reason`, and a source.
   - A merge of several of his spellings into one name is one correction whose `upstream` lists them all.
   - Two separate corrections with one target fail the build.
 - **`[[removed]]`** entries on the surviving entity record removed upstream rows.
 - **`[[game_bug_correction]]`** records where the game differs from its intended behaviour: `kind`, `field` and `qualifier` address the target as a correction does, `intended` holds the intended value in the field's shape, with a `reason`, one source (`url` or `in_game = true`) and `read`. The file holds what the game does. It is independent of `[[ddobuilder_correction]]`, both may sit on one target, and the import never reads it. When the game is fixed, restore `intended` and delete the record.
+- **`[[verification_request]]`** records an open question, today's `assumed` value, its `raised` date and one or more `[[verification_request.source]]` rows carrying `says`, a source and `read`. Optional `kind`, `field` and `qualifier` address the affected lines; without them the note belongs to the whole entity. Neither a request nor a game-bug record changes an upstream correction.
 - **`[[citation]]`** records a check: someone compared the entity with a source and it agreed, apart from any correction beside it.
   - It sits on the whole entity by default (no `field`). `field` is for a partial check, and must name a field or nested array of the record it is on.
   - It carries an optional free-text `note`, for example what the page did not cover.
@@ -110,7 +125,9 @@ The database's `dataset_version` records the upstream SHA from `upstream/commit.
 
 Every correction and citation has exactly one source: `url = "..."` for a page, or `in_game = true` for something seen in the game client. `read` is the date read or seen. The build and the database both reject neither or both.
 
-An item, augment or quest that only the wiki knows carries `is_wiki_only = true`. A crafting system's wiki page is its own `page` field. The export reconstructs the annotations from the `corrections`, `removed_entities` and `citations` tables.
+Line notes are derived into `note_lines` on each build and never written in files. One annotation may address several lines; annotations without a line appear at detail level. A game-bug record may set `skip_description_check = true` only for an affected `value`, `bonus_type` or `lines` target. The description check reports a flag that no longer suppresses a real mismatch.
+
+An item, augment or quest that only the wiki knows carries `is_wiki_only = true`. A crafting system's wiki page is its own `page` field. The export reconstructs annotations from their typed annotation tables.
 
 To add a new entity, copy the file for its kind from `.templates/` (generated by export from the same declaration as `.schemas/`) to the place the placement rule above gives it, rename it, and fill it in.
 

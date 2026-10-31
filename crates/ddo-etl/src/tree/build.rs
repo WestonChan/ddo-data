@@ -800,6 +800,31 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         })
         .collect::<BTreeMap<_, _>>();
     let groupings = crate::groupings::Groupings::from_database(&transaction)?;
+    let duplicate_groupings = groupings.pairs(crate::groupings::GroupingPairDomain::LinkValued);
+    ensure!(
+        duplicate_groupings.is_empty(),
+        "effects sharing a stat set:\n{}",
+        duplicate_groupings
+            .iter()
+            .map(|pair| {
+                let location = |effect: &crate::groupings::Grouping| {
+                    entity_locations
+                        .iter()
+                        .find(|(_, kind, _, id)| *kind == "effects" && *id == effect.id)
+                        .map(|(path, _, _, _)| path.display().to_string())
+                        .unwrap_or_else(|| effect.name.clone())
+                };
+                format!(
+                    "{} ({}) and {} ({})",
+                    location(pair.first),
+                    pair.first.name,
+                    location(pair.second),
+                    pair.second.name
+                )
+            })
+            .collect::<Vec<_>>()
+            .join("\n")
+    );
     correction_notes::validate_adds_against_splits(
         &groupings,
         notes_by_file

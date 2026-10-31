@@ -25,7 +25,6 @@ pub(crate) fn copy_fixture_data(fixtures: &Path, root: &Path) -> Connection {
 
 pub(crate) fn add_note_fixtures(root: &Path) {
     let workspace = Path::new(env!("CARGO_MANIFEST_DIR"));
-    std::fs::remove_file(root.join("effects/sheltering.toml")).unwrap();
     copy_files(&workspace.join("../ddo-etl/tests/fixtures/verification-notes/data"), root);
     let captured = workspace.join("tests/fixtures/notes");
     copy_files(&captured.join("data"), root);

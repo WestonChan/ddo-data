@@ -1,6 +1,6 @@
-name = "Healing, Repair and Negative Healing Amplification"
-description_template = "+{1} %b1 bonus to Healing, Repair and Negative Healing Amplification."
-verbose_name_template = "%b1 Healing, Repair and Negative Healing Amplification +{1}"
+name = "Positive, Negative, and Repair Amplification"
+description_template = "+{1} %b1 bonus to Positive, Negative, and Repair Amplification."
+verbose_name_template = "%b1 Positive, Negative, and Repair Amplification +{1}"
 
 [[bonus]]
 amount_from = 1

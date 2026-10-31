@@ -72,7 +72,7 @@ enum GroupingHold {
     TypesWithoutStats(Vec<String>),
     DifferentValues,
     DifferentTypes,
-    NoUsableGrouping(Vec<String>),
+    Deferred(&'static crate::line_exceptions::DeferredAugmentSplit),
 }
 
 impl GroupingHold {
@@ -81,7 +81,7 @@ impl GroupingHold {
             Self::TypesWithoutStats(types) => format!("effect types without derived stats: {}", types.join(", ")),
             Self::DifferentValues => "different values within one effect".to_string(),
             Self::DifferentTypes => "different types within one effect".to_string(),
-            Self::NoUsableGrouping(names) => format!("no unique usable grouping: {}", names.join(", ")),
+            Self::Deferred(exception) => exception.description(),
         }
     }
 }
@@ -288,8 +288,12 @@ impl TableWriter<'_> {
                 stats: stat_names.clone(),
                 reason,
             };
-            let preserve_member_lines =
-                matches!(outcome, GroupingOutcome::Held(GroupingHold::DifferentTypes | GroupingHold::DifferentValues));
+            let preserve_member_lines = matches!(
+                outcome,
+                GroupingOutcome::Held(
+                    GroupingHold::DifferentTypes | GroupingHold::DifferentValues | GroupingHold::Deferred(_)
+                )
+            );
             let grouped_links = match outcome {
                 GroupingOutcome::Grouped(links) => Some(links),
                 GroupingOutcome::Split { links, correction } => {
@@ -618,6 +622,11 @@ impl TableWriter<'_> {
         if stats.len() < 2 {
             return Ok(GroupingOutcome::NotGrouped);
         }
+        if owner.kind == BonusOwnerKind::Augment {
+            if let Some(exception) = self.deferred_augment_splits.get(&owner_id) {
+                return Ok(GroupingOutcome::Held(GroupingHold::Deferred(exception)));
+            }
+        }
         if !types_without_stats.is_empty() {
             return Ok(GroupingOutcome::Held(GroupingHold::TypesWithoutStats(types_without_stats)));
         }
@@ -800,9 +809,14 @@ impl TableWriter<'_> {
                 }
             }
             _ => {
-                return Ok(GroupingOutcome::Held(GroupingHold::NoUsableGrouping(
-                    matching.iter().map(|grouping| grouping.name.clone()).collect(),
-                )));
+                anyhow::bail!(
+                    "{:?} {:?}: no unique usable grouping for {:?} at {}: {}",
+                    owner.kind,
+                    owner.name,
+                    stats,
+                    bonus_type.name(),
+                    matching.iter().map(|grouping| grouping.name.as_str()).collect::<Vec<_>>().join(", ")
+                );
             }
         };
         let mut link =

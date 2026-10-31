@@ -14,6 +14,12 @@ since = "2026-10-20"
 
 [[redirect]]
 kind = "effects"
+from = "10-positive-negative-and-repair-amplification"
+to = "positive-negative-and-repair-amplification"
+since = "2026-10-31"
+
+[[redirect]]
+kind = "effects"
 from = "2-artifact-bonus-to-attack-and-damage"
 to = "attack-and-damage"
 since = "2026-10-20"

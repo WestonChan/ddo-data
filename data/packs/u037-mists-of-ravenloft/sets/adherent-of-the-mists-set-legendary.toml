@@ -134,17 +134,7 @@ value = 30
 
 [[tier.effect]]
 bonus_type = "Profane"
-effect = "Healing Amplification"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Profane"
-effect = "Negative Healing Amplification"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Profane"
-effect = "Repair Amplification"
+effect = "Positive, Negative, and Repair Amplification"
 value = 30
 
 [[tier.effect]]

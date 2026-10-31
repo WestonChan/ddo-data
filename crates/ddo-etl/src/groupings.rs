@@ -584,7 +584,7 @@ mod tests {
         crate::tree::build_from_data(scratch.path(), &mut db).unwrap();
         let index = Groupings::from_database(&db).unwrap();
         assert!(!index.by_stat_set.values().flatten().any(|grouping| grouping.name == "Riposte"));
-        let named = |name: &str| index.by_stat_set.values().flatten().find(|grouping| grouping.name == name).unwrap();
+        let named = |name: &str| index.effect_named(name).unwrap();
         assert!(named("Power of the Frozen Thunderstorm").accepts_link_values_at_type("Artifact"));
         assert!(named("Deception").accepts_link_values_at_type("Equipment"));
         assert!(!named("Lifeblood of the Undead Prince").accepts_link_values_at_type("Competence"));
@@ -656,7 +656,7 @@ mod tests {
                 .unwrap();
             }
             for index in 0..effect_count {
-                let contents = format!("{}\n[[alias]]\nname = 'Example Alias {index}'\nverbose_name_template = '%b1 Example Alias {index} +{{1}}'\n", original.replace("Power of the Frozen Thunderstorm", &format!("Example Group {index}")));
+                let contents = format!("stat_set_verdict = 'distinct'\nstat_set_reason = 'Each rank has a different default amount'\ndefault_value = {}\n{}\n[[alias]]\nname = 'Example Alias {index}'\nverbose_name_template = '%b1 Example Alias {index} +{{1}}'\n", index + 1, original.replace("Power of the Frozen Thunderstorm", &format!("Example Group {index}")));
                 std::fs::write(root.join(format!("effects/example-group-{index}.toml")), contents).unwrap();
             }
             let mut db = Connection::open_in_memory().unwrap();
@@ -665,7 +665,10 @@ mod tests {
             SELECTS.store(0, Ordering::SeqCst);
             let groupings = Groupings::from_database(&db).unwrap();
             db.trace_v2(TraceEventCodes::empty(), None);
-            assert_eq!(groupings.by_stat_set.values().map(Vec::len).sum::<usize>(), effect_count);
+            assert_eq!(
+                groupings.by_id.values().filter(|effect| effect.name.starts_with("Example Group ")).count(),
+                effect_count
+            );
             assert_eq!(SELECTS.load(Ordering::SeqCst), 2, "{effect_count} effects");
         }
     }

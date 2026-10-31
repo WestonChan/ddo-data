@@ -48,6 +48,9 @@ impl TableWriter<'_> {
                 ],
             )?;
             let augment_id = self.transaction.last_insert_rowid();
+            if let Some(exception) = crate::line_exceptions::deferred_augment_split(&slug) {
+                self.deferred_augment_splits.insert(augment_id, exception);
+            }
             for set_name in augment.set_bonus_names.iter().map(|s| s.trim()).filter(|s| !s.is_empty()) {
                 self.pending_set_augment_links.push((augment_id, set_name.to_string()));
             }

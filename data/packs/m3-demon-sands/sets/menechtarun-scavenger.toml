@@ -35,24 +35,14 @@ value = 5
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Healing Amplification"
-value = 10
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Repair Amplification"
-value = 10
-
-[[tier.effect]]
-bonus_type = "Artifact"
-effect = "Negative Healing Amplification"
+effect = "Positive, Negative, and Repair Amplification"
 value = 10
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [5]
 bonus_type = "Artifact"
-effect = "Sheltering"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -60,6 +50,7 @@ extra_types = ["MRR"]
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Artifact"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "HealingAmplification"
 extra_types = [
     "RepairAmplification",

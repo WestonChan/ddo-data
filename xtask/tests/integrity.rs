@@ -1134,8 +1134,6 @@ fn shared_stat_set_report_lists_a_duplicate_but_not_a_constant_twin() {
         std::fs::read_to_string(fixtures_dir().join("../../../../data/effects/power-of-the-frozen-thunderstorm.toml"))
             .unwrap();
     std::fs::write(exported.join("effects/power-of-the-frozen-thunderstorm.toml"), &frozen_thunderstorm).unwrap();
-    let duplicate = frozen_thunderstorm.replace("Power of the Frozen Thunderstorm", "Frozen Thunderstorm Duplicate");
-    std::fs::write(exported.join("effects/stat-groups/frozen-thunderstorm-duplicate.toml"), duplicate).unwrap();
     let constant = frozen_thunderstorm
         .replace("Power of the Frozen Thunderstorm", "Frozen Thunderstorm Constant")
         .replace("{1}", "30")
@@ -1143,6 +1141,10 @@ fn shared_stat_set_report_lists_a_duplicate_but_not_a_constant_twin() {
     std::fs::write(exported.join("effects/frozen-thunderstorm-constant.toml"), constant).unwrap();
     let mut db = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(&exported, &mut db).unwrap();
+    db.execute_batch("INSERT INTO effects (name,slug,is_group,verbose_name_template,description_template)
+        SELECT 'Frozen Thunderstorm Duplicate','frozen-thunderstorm-duplicate',1,verbose_name_template,description_template FROM effects WHERE name='Power of the Frozen Thunderstorm';
+        INSERT INTO effect_bonuses (effect_id,target_effect_id,amount_from,scale,rounding,sort_order)
+        SELECT (SELECT id FROM effects WHERE name='Frozen Thunderstorm Duplicate'),target_effect_id,amount_from,scale,rounding,sort_order FROM effect_bonuses WHERE effect_id=(SELECT id FROM effects WHERE name='Power of the Frozen Thunderstorm');").unwrap();
     let report = integrity_report(&db, &fixture_options()).unwrap();
     let outcome = report.outcome("effects_sharing_a_stat_set").expect("shared stat set report");
     let printed = format!("{outcome}");
@@ -1152,7 +1154,7 @@ fn shared_stat_set_report_lists_a_duplicate_but_not_a_constant_twin() {
         assert!(printed.contains(stat), "{printed}");
     }
     assert!(!printed.contains("Frozen Thunderstorm Constant"), "{printed}");
-    assert_eq!(outcome.status, CheckStatus::Warned);
+    assert_eq!(outcome.status, CheckStatus::Failed);
 }
 
 fn check_db_output(db_path: &Path) -> Output {
@@ -1552,6 +1554,16 @@ fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
 
 fn injected_violations() -> Vec<InjectedViolation> {
     let mut violations = vec![
+        violation(
+            "deferred_line_splits_are_live",
+            "UPDATE augments SET slug='renamed-melancholic' WHERE slug='melancholic-converter-heroic';",
+            "melancholic-converter-heroic",
+        ),
+        violation(
+            "deferred_line_splits_are_live",
+            "UPDATE augment_effects SET bonus_type_id=(SELECT id FROM bonus_types WHERE name='Competence') WHERE augment_id=(SELECT id FROM augments WHERE slug='melancholic-converter-legendary');",
+            "melancholic-converter-legendary",
+        ),
         violation(
             "open_verification_requests",
             "INSERT INTO verification_requests (owner_kind,owner_id,question,assumed_value,raised)

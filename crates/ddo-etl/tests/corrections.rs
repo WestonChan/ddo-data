@@ -1182,13 +1182,6 @@ fn a_lines_merge_and_split_cannot_both_apply_to_one_line() {
 #[test]
 fn archons_resistances_stay_separate_without_a_lines_merge() {
     let source = fixture::xml_source();
-    let buffs_path = source.path().join("ItemBuffs.xml");
-    let buffs = std::fs::read_to_string(&buffs_path).unwrap();
-    std::fs::write(
-        &buffs_path,
-        buffs.replace("</Buffs>", &format!("{}</Buffs>", include_str!("fixtures/effect-groups/Sheltering.Buff.xml"))),
-    )
-    .unwrap();
     let path = source.path().join("SetBonuses.xml");
     let original = std::fs::read_to_string(&path).unwrap();
     std::fs::write(
@@ -1487,7 +1480,7 @@ fn a_split_uses_its_named_partition_even_when_other_effects_share_the_stats() {
         "stat = 'Cold Spell Power, Negative Spell Power, Poison Spell Power'\nbonus_type = 'Profane'",
         "lines",
         "[[\"Cold Spell Power\", \"Negative Spell Power\", \"Poison Spell Power\"]]",
-        "[\"Cold Spell Power\", \"Negative and Poison Spell Power\"]",
+        "[\"Cold Spell Power\", \"Nullification\"]",
     );
     let mut db = Connection::open_in_memory().unwrap();
     let report = build_database(
@@ -1501,7 +1494,7 @@ fn a_split_uses_its_named_partition_even_when_other_effects_share_the_stats() {
     .unwrap();
     let names = db.prepare("SELECT e.name FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name='Woeful Shadow (Legendary)' AND l.value=3 ORDER BY e.name")
         .unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
-    assert_eq!(names, ["Cold Spell Power", "Negative and Poison Spell Power"]);
+    assert_eq!(names, ["Cold Spell Power", "Nullification"]);
     assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
 }
 
@@ -2346,7 +2339,7 @@ fn a_lines_split_preserves_the_default_and_follows_value_changes() {
 }
 
 #[test]
-fn a_lines_split_survives_the_set_tier_group_fallback() {
+fn a_set_tier_lines_split_preserves_its_member_lines() {
     let correction = new_qualified_correction(
         "set_tier_bonus",
         "Kundarak Delving Equipment",

@@ -76,6 +76,30 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-23"
 qualifier = "equipped_count 4, Rune Arm DC / Artifact"
 
+[[ddobuilder_correction]]
+kind = "set_tier_bonus"
+field = "lines"
+upstream = [
+    ["Doublestrike"],
+    ["Doubleshot"],
+]
+reason = "R7 confirms these two bonuses as one set line; the merge records the source line explicitly."
+url = "https://ddowiki.com/page/Item:The_Prince%27s_Gauntlet"
+read = "2026-10-23"
+qualifier = "equipped_count 6, Doublestrike, Doubleshot / Artifact"
+
+[[ddobuilder_correction]]
+kind = "set_tier_bonus"
+field = "lines"
+upstream = [
+    ["Melee Power"],
+    ["Ranged Power"],
+]
+reason = "R7 confirms these two bonuses as one set line; the merge records the source line explicitly."
+url = "https://ddowiki.com/page/Item:The_Prince%27s_Gauntlet"
+read = "2026-10-23"
+qualifier = "equipped_count 7, Melee Power, Ranged Power / Artifact"
+
 [[tier]]
 equipped_count = 2
 

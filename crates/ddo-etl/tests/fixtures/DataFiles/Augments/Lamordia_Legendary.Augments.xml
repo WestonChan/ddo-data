@@ -1,0 +1,19 @@
+<Augments>
+<Augment>
+    <Name>Melancholic Converter (Legendary)</Name>
+    <Description>+61 Competence bonus to Positive Healing Amplification
++61 Enhancement bonus to Repair Healing Amplification
++61 Profane bonus to Negative Healing Amplification</Description>
+    <MinLevel>34</MinLevel>
+    <Type>Melancholic Slot (Armor)</Type>
+    <Icon>Lamordia</Icon>
+    <Effect>
+      <Type>HealingAmplification</Type>
+      <Type>NegativeHealingAmplification</Type>
+      <Type>RepairAmplification</Type>
+      <Bonus>Competence</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">61</Amount>
+    </Effect>
+  </Augment>
+</Augments>

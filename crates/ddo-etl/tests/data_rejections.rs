@@ -34,6 +34,73 @@ fn files_cannot_redeclare_always_unnamed_home_types() {
     }
 }
 
+fn duplicate_grouping_file(root: &std::path::Path, shape: &str, verdict: Option<&str>) -> String {
+    let (path, name, bonuses) = match shape {
+        "group" => {
+            ("effects/stat-groups/repeated-strikes.toml", "Repeated Strikes", vec!["Doublestrike", "Doubleshot"])
+        }
+        "wrapper" => ("effects/repeated-strikes.toml", "Repeated Strikes", vec!["Doublestrike and Doubleshot"]),
+        "ladder" => (
+            "effects/doublestrike-and-doubleshot-ii.toml",
+            "Doublestrike and Doubleshot II",
+            vec!["Doublestrike", "Doubleshot"],
+        ),
+        _ => unreachable!(),
+    };
+    let declaration = verdict
+        .map(|verdict| {
+            format!("stat_set_verdict = {verdict:?}\nstat_set_reason = 'Verified separate rank in the fixture'\n")
+        })
+        .unwrap_or_default();
+    let mut contents = format!("name = {name:?}\nverbose_name_template = '%b1 {name} +{{1}}'\ndescription_template = '+{{1}} %b1 bonus to Doublestrike and Doubleshot.'\n{declaration}");
+    for target in bonuses {
+        contents
+            .push_str(&format!("\n[[bonus]]\ntarget = {target:?}\namount_from = 1\nscale = 1.0\nrounding = 'down'\n"));
+    }
+    contents.push_str("\n[[citation]]\nurl = 'https://ddowiki.com/page/Doublestrike'\nread = '2026-10-23'\n");
+    std::fs::write(root.join(path), contents).unwrap();
+    path.to_string()
+}
+
+#[test]
+fn undeclared_duplicate_groupings_fail_for_every_shape() {
+    let mut failures = Vec::new();
+    for shape in ["group", "wrapper", "ladder"] {
+        let error = fixture::data_build_error(|root| {
+            duplicate_grouping_file(root, shape, None);
+        });
+        let expected = if shape == "ladder" { "doublestrike-and-doubleshot-ii.toml" } else { "repeated-strikes.toml" };
+        if !error.contains("effects sharing a stat set")
+            || !error.contains("doublestrike-and-doubleshot.toml")
+            || !error.contains(expected)
+        {
+            failures.push(format!("{shape}: {error:?}"));
+        }
+    }
+    assert!(failures.is_empty(), "{}", failures.join("\n"));
+}
+
+#[test]
+fn declared_duplicate_effects_remain_addressable() {
+    for verdict in ["distinct", "composes"] {
+        let db = fixture::database(|root| {
+            duplicate_grouping_file(root, "ladder", Some(verdict));
+        });
+        let groupings = ddo_etl::groupings::Groupings::from_database(&db).unwrap();
+        assert!(groupings.pairs(ddo_etl::groupings::GroupingPairDomain::LinkValued).is_empty());
+        assert_eq!(
+            groupings
+                .by_id
+                .values()
+                .find(|effect| effect.name == "Doublestrike and Doubleshot II")
+                .unwrap()
+                .stat_set_verdict
+                .as_deref(),
+            Some(verdict)
+        );
+    }
+}
+
 #[test]
 fn structural_rejections_fail_the_data_build_naming_their_file_once() {
     type Injection = (&'static str, &'static str, Box<dyn Fn(&std::path::Path)>);

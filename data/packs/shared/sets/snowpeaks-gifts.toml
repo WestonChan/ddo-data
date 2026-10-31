@@ -16,7 +16,9 @@ read = "2026-10-29"
 equipped_count = 2
 
 [[tier.effect]]
-effect = "+10 Positive, Negative and Repair Amplification"
+bonus_type = "Stacking"
+effect = "Positive, Negative, and Repair Amplification"
+value = 10
 
 [[tier.modifier]]
 amount_type = "Stacks"

@@ -18,21 +18,21 @@
                   "bonus_type": "Competence",
                   "group": null,
                   "scale": 1.0,
-                  "stat": "Attack Bonus",
+                  "stat": "Accuracy",
                   "stat_category": "martial",
                   "value": 9
                 }
               ],
               "damage": [],
-              "description": "Provides a +9 Competence bonus to your attack rolls.",
-              "effect_id": 5669595018917774,
-              "effect_slug": "attack-bonus",
-              "name": "Attack Bonus",
+              "description": "Passive: +9 Competence bonus to attack rolls",
+              "effect_id": 8708455372008361,
+              "effect_slug": "accuracy",
+              "name": "Accuracy",
               "notes": [],
               "tier": null,
               "value": 9,
               "value2": null,
-              "verbose_name": "Attack Bonus +9"
+              "verbose_name": "Accuracy +9"
             }
           ],
           "grants_slot": null,
@@ -88,14 +88,14 @@
               ],
               "damage": [],
               "description": "Passive: +9 Natural Armor Bonus to Armor Class.",
-              "effect_id": 2730631434182972,
-              "effect_slug": "natural-armor",
-              "name": "Natural Armor",
+              "effect_id": 8584692512113852,
+              "effect_slug": "natural-armor-bonus",
+              "name": "Natural Armor Bonus",
               "notes": [],
               "tier": null,
               "value": 9,
               "value2": null,
-              "verbose_name": "Resistance Natural Armor +9"
+              "verbose_name": "Resistance Natural Armor Bonus +9"
             }
           ],
           "grants_slot": null,
@@ -150,15 +150,15 @@
                 }
               ],
               "damage": [],
-              "description": null,
-              "effect_id": 5153904484950047,
-              "effect_slug": "saving-throws",
-              "name": "Saving Throws",
+              "description": "Passive: +9 Resistance bonus to Fortitude, Reflex, and Will Saving Throws.",
+              "effect_id": 5594772889868367,
+              "effect_slug": "resistance",
+              "name": "Resistance",
               "notes": [],
               "tier": null,
               "value": 9,
               "value2": null,
-              "verbose_name": "Saving Throws +9"
+              "verbose_name": "Resistance +9"
             }
           ],
           "grants_slot": null,

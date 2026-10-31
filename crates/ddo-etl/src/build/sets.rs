@@ -103,9 +103,7 @@ impl TableWriter<'_> {
     ) -> Result<Vec<DerivedEffectLink>> {
         let owner = BonusOwner { kind: BonusOwnerKind::SetBonusTier, name: set_name, family: None };
         let removed_before = self.removed_derived_bonus_count;
-        let derived_links =
-            self.ensure_derived_effects(&owner, ModifierSource::SetBonusTier, tier_id, &tier.effects)?;
-        let links = self.collapse_set_tier_stat_groups(derived_links)?;
+        let links = self.ensure_derived_effects(&owner, ModifierSource::SetBonusTier, tier_id, &tier.effects)?;
         if links.is_empty() && self.removed_derived_bonus_count == removed_before {
             if let Some(description) = trimmed_non_empty(tier.description.as_deref()) {
                 if let Some(rule) = EFFECT_MAP.set_tier_prose_link(description, self.groupings)? {
@@ -195,57 +193,6 @@ impl TableWriter<'_> {
             }
         }
         Ok(links)
-    }
-
-    fn collapse_set_tier_stat_groups(&mut self, links: Vec<DerivedEffectLink>) -> Result<Vec<DerivedEffectLink>> {
-        let mut remaining: Vec<Option<DerivedEffectLink>> = links.into_iter().map(Some).collect();
-        let mut group_names = EFFECT_MAP.group_names();
-        group_names
-            .sort_by_key(|name| std::cmp::Reverse(EFFECT_MAP.group_members(name).expect("declared group").len()));
-        for group_name in group_names {
-            let members = EFFECT_MAP.group_members(&group_name).expect("declared group");
-            if members.len() < 2 {
-                continue;
-            }
-            let member_ids: Vec<i64> =
-                members.iter().map(|name| Stat::by_name(name).expect("validated group member").id).collect();
-            for first_index in 0..remaining.len() {
-                let Some(first) = remaining[first_index].as_ref() else { continue };
-                if first.is_split_line || first.effect_id != member_ids[0] {
-                    continue;
-                }
-                let indices: Vec<Vec<usize>> = member_ids
-                    .iter()
-                    .map(|member_id| {
-                        remaining
-                            .iter()
-                            .enumerate()
-                            .filter_map(|(index, candidate)| {
-                                candidate
-                                    .as_ref()
-                                    .filter(|candidate| {
-                                        !candidate.is_split_line
-                                            && candidate.effect_id == *member_id
-                                            && candidate.bonus_type == first.bonus_type
-                                            && (candidate.value, candidate.value2) == (first.value, first.value2)
-                                    })
-                                    .map(|_| index)
-                            })
-                            .collect()
-                    })
-                    .collect();
-                if indices.iter().any(|matches| matches.len() != 1) {
-                    continue;
-                }
-                let group_id = self.effects.ensure_group(&group_name)?;
-                let first_link = remaining[first_index].as_mut().expect("first member remains");
-                first_link.effect_id = group_id;
-                for index in indices.into_iter().flatten().filter(|index| *index != first_index) {
-                    remaining[index] = None;
-                }
-            }
-        }
-        Ok(remaining.into_iter().flatten().collect())
     }
 
     pub(super) fn write_sentient_gems(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {

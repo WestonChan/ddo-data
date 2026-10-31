@@ -594,7 +594,6 @@ fn fabricators_valued_prose_links_attack_and_damage_once() {
 #[test]
 fn unbreakable_adamancy_prose_links_sheltering_once() {
     let canonical = fixture::database(|root| {
-        std::fs::remove_file(root.join("effects/sheltering.toml")).unwrap();
         std::fs::write(
             root.join("effects/stat-groups/sheltering.toml"),
             include_str!("../../../data/effects/stat-groups/sheltering.toml"),
@@ -603,14 +602,6 @@ fn unbreakable_adamancy_prose_links_sheltering_once() {
     });
     let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
     let source = fixture::xml_source();
-    let definitions = source.path().join("ItemBuffs.xml");
-    let original = std::fs::read_to_string(&definitions).unwrap();
-    std::fs::write(
-        definitions,
-        original
-            .replace("</Buffs>", &format!("{}</Buffs>", include_str!("fixtures/effect-groups/Sheltering.Buff.xml"))),
-    )
-    .unwrap();
     let path = source.path().join("SetBonuses.xml");
     let original = std::fs::read_to_string(&path).unwrap();
     std::fs::write(
@@ -1880,6 +1871,8 @@ fn assert_every_multi_stat_effect_has_one_link_or_an_exception(report: &BuildRep
 fn every_fixture_multi_stat_effect_has_one_link_or_a_recorded_exception() {
     let mut owner_kinds = std::collections::BTreeSet::new();
     for (_, report) in [built_fixture_db(), built_ambiguous_fixture_db()] {
+        assert_eq!(report.held_back_effects.len(), 2, "{:?}", report.held_back_effects);
+        assert!(report.held_back_effects.iter().all(|held| held.reason == "WestonChan/ddo-data#72: mixed-type split"));
         assert_every_multi_stat_effect_has_one_link_or_an_exception(&report);
         owner_kinds.extend(
             report
@@ -2262,10 +2255,10 @@ fn mixed_types_inside_an_ability_group_keep_every_members_type() {
 }
 
 #[test]
-fn ambiguous_upstream_stat_sets_keep_their_stat_links_and_are_reported() {
+fn resolved_upstream_stat_sets_use_their_single_grouping() {
     let (db, report) = built_ambiguous_fixture_db();
     for (owner, expected_stats) in [
-        ("Ruby of Negative Spell Power", vec!["Negative Spell Power", "Poison Spell Power"]),
+        ("Ruby of Negative Spell Power", vec!["Nullification"]),
         ("Solar Gem of Tactical DCs (Heroic)", vec!["Combat Mastery"]),
     ] {
         let mut statement = db
@@ -2280,17 +2273,13 @@ fn ambiguous_upstream_stat_sets_keep_their_stat_links_and_are_reported() {
             .collect::<rusqlite::Result<Vec<_>>>()
             .unwrap();
         assert_eq!(linked, expected_stats, "{owner}");
-        assert_eq!(
-            report.held_back_effects.iter().any(|effect| effect.owner_name == owner),
-            owner == "Ruby of Negative Spell Power",
-            "{owner}"
-        );
+        assert!(!report.held_back_effects.iter().any(|effect| effect.owner_name == owner), "{owner}");
     }
 }
 
 #[test]
 fn declared_ladder_steps_stay_addressable_without_blocking_their_group() {
-    for verdict in [None, Some("distinct"), Some("composes")] {
+    for verdict in [Some("distinct"), Some("composes")] {
         let db = fixture::grouping_case_database(|root| {
             let path = root.join("effects/void-lore-vi.toml");
             let original = std::fs::read_to_string(&path).unwrap();
@@ -2475,7 +2464,42 @@ fn dark_hunter_groups_both_amount_slots_without_a_correction() {
 }
 
 #[test]
-fn mixed_fixed_types_keep_the_amplification_stats_separate() {
+fn deferred_melancholic_splits_keep_the_verified_member_types() {
+    let source = fixture::xml_source();
+    let canonical = fixture::database(|_| {});
+    let mut corrections = Corrections::from_database(&canonical).unwrap();
+    corrections.entries.retain(|entry| entry.name.starts_with("Melancholic Converter"));
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    for (name, amount) in [("Melancholic Converter (Heroic)", 19), ("Melancholic Converter (Legendary)", 61)] {
+        let bonuses = db.prepare("SELECT s.name,t.name,b.amount FROM owner_bonuses b JOIN augments a ON a.id=b.owner_id JOIN effects s ON s.id=b.stat_id JOIN bonus_types t ON t.id=b.bonus_type_id WHERE b.owner_kind='augment' AND a.name=?1 ORDER BY s.name").unwrap()
+            .query_map([name], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(
+            bonuses,
+            [
+                ("Healing Amplification".into(), "Competence".into(), amount),
+                ("Negative Healing Amplification".into(), "Profane".into(), amount),
+                ("Repair Amplification".into(), "Enhancement".into(), amount)
+            ]
+        );
+        assert!(report
+            .held_back_effects
+            .iter()
+            .any(|held| held.owner_name == name && held.reason == "WestonChan/ddo-data#72: mixed-type split"));
+    }
+    assert_eq!(report.correction_applied_count, 4);
+}
+
+#[test]
+fn declared_mixed_type_effect_leaves_uniform_amplification_grouping_available() {
     let (db, report) = built_ambiguous_fixture_db();
     let names = db
         .prepare(
@@ -2488,8 +2512,8 @@ fn mixed_fixed_types_keep_the_amplification_stats_separate() {
         .unwrap()
         .collect::<rusqlite::Result<Vec<_>>>()
         .unwrap();
-    assert_eq!(names, ["Healing Amplification", "Negative Healing Amplification", "Repair Amplification"]);
-    assert!(report
+    assert_eq!(names, ["Positive, Negative, and Repair Amplification"]);
+    assert!(!report
         .held_back_effects
         .iter()
         .any(|effect| effect.owner_name == "Eminence of Winter"
@@ -2511,7 +2535,7 @@ fn kundaraks_multi_type_effect_keeps_one_doublestrike_and_doubleshot_link() {
 }
 
 #[test]
-fn ambiguous_set_lines_keep_the_declared_group_and_cited_tactics_removals_apply() {
+fn resolved_set_lines_use_the_group_and_cited_tactics_removals_apply() {
     let source = data_files_fixture_dir();
     let scratch = fixture::xml_source();
     std::fs::copy(source.parent().unwrap().join("effect-groups/SetBonuses.xml"), scratch.path().join("SetBonuses.xml"))
@@ -2538,7 +2562,7 @@ fn ambiguous_set_lines_keep_the_declared_group_and_cited_tactics_removals_apply(
         ),
         1
     );
-    assert!(report
+    assert!(!report
         .held_back_effects
         .iter()
         .any(|effect| effect.owner_name == "The Desert's Starless Nights" && effect.reason.contains("Nullification")));
@@ -3180,7 +3204,7 @@ fn implement_spell_power_remains_universal() {
 #[test]
 fn writes_improved_deception_from_its_definition_as_a_typed_bluff_bonus() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.effect_fallback_buff_count, 24);
+    assert_eq!(report.effect_fallback_buff_count, 25);
     assert!(report.family_buff_count > 0);
     assert!(report.effect_buff_count > 0);
     let gloves = item_id(&db, "Backstabber's Gloves (Level 25)");
@@ -4205,7 +4229,7 @@ fn bonus_additions_feed_the_finished_lines_merge() {
 #[test]
 fn writes_augments_with_slots_bonuses_and_modifiers() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.augment_count, 27);
+    assert_eq!(report.augment_count, 29);
     let ruby: i64 =
         db.query_row("SELECT id FROM augments WHERE name = 'Ruby of Acid Damage'", [], |r| r.get(0)).unwrap();
     let (family, has_selectable_level, levels, values): (String, bool, String, String) = db

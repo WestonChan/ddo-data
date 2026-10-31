@@ -31,13 +31,13 @@
       "augment_count": 0,
       "bonus_types": [
         {
-          "item_count": 6,
+          "item_count": 7,
           "name": "Enhancement"
         }
       ],
       "detail_path": "/v1/effects/6046083909513009",
       "id": 6046083909513009,
-      "item_count": 6,
+      "item_count": 7,
       "kind": "stat",
       "matched_alias": null,
       "name": "Alignment Absorption",

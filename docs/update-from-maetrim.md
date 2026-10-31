@@ -31,6 +31,10 @@ cd /tmp/ddo-data-import-<new sha prefix>
 
 The import rewrites `data/` in place and git is the rollback, so start from a clean, committed tree.
 
+Both upstream builds read C's grouping definitions, aliases and verified stat-set declarations. Each fully mapped multi-stat Effect uses its unique compatible grouping; missing stat sets get a group, and ambiguous sets stop the normalized build, naming the effects. There is no set-tier collapse fallback. Resolve a new pair from source evidence before importing again. Separate upstream lines join only through a cited `lines` correction; an upstream stat-set change makes that correction stale.
+
+The nine declared stat/type routes load their named definitions from C and run after finished corrections and explicit alias selection. They cover item, augment and socket-option links; the HARD `stat_links_at_routed_types` check uses the same eligibility rule. Set and feat links retain their separate scope. An annotation on an owner absent from A still follows the existing added-owner conflict policy; it is not silently accepted because the annotation is ours.
+
 ## 2.5. Look at what he changed first
 
 Before building anything, his git history says what changed and whether an import is worth running:
@@ -69,6 +73,9 @@ The report is the pull-request body of the future automation, so it is complete 
 - `BLANKED UPSTREAM, OURS KEPT`: he emptied a value he used to have. His blank never erases ours, so ours stays. Check whether the value is still right.
 - `SKIPPED WIKI FACT`: a wiki fact in the data files names something his previous files spelled differently or lacked. It was left out of his previous build only, and nothing in `data/` changed because of it.
 - The mapping audits (`UNCLASSIFIED BUFF TYPE`, `PARTIALLY MAPPED EFFECT`): his XML uses a buff family or effect target that `crates/ddo-etl/data/effect_map.toml` does not map. They never change the exit code. Map them there when the effect matters.
+- `UNMATCHED SET TIER PROSE BONUS`: an exact prose-vocabulary entry matched A but stopped matching B. Check the changed tier before accepting its replacement prose.
+
+Stat wording rules come from the typed declaration in `ddo-model`; an import never changes them from carrier counts. New-stat and majority-type audit lines are information for a wording review. Named effects and groups keep their own nonredundant home types in their files.
 
 How his values meet ours:
 - **His blank never erases ours.** In both of his builds, a value he leaves empty (NULL or empty text, but not 0 or false) is taken from ours before the comparison. A value he adds where his file was blank is applied as his change.
@@ -86,12 +93,15 @@ cargo run --release -p ddo-etl -- build --data data --out ddo.db
 cargo xtask check-db ddo.db
 cargo xtask validate-api --db ddo.db --all-details
 cargo xtask wiki-tooltips --db ddo.db
+cargo xtask upstream-parity --source ~/.cache/ddo-data/upstream-<new sha prefix>/Output/DataFiles --data data
 curl -sf https://ddo-data.fly.dev/v1/dump.sqlite -o deployed.sqlite
 cargo xtask check-redirects --db ddo.db --deployed deployed.sqlite
 cargo test --workspace && cargo lint && cargo fmt --all --check
 ```
 
 `wiki-tooltips` or `check-db` may flag his new content itself (a tooltip line the golden set does not know, a quest without a pack). Those are findings about his data, handled by the same rules as any other build, not by the import.
+
+`upstream-parity` uses the import's normalized upstream build and compares definitions and owner links with C. Review every new difference against the saved baseline. `effects_sharing_a_stat_set` is HARD and also enforced by the data build. `deferred_line_splits_are_live` checks the two issue-backed Melancholic Converter exceptions; their mixed-type split mechanism belongs to WestonChan/ddo-data#72. A missing owner or a resolved exception fails the check instead of silently retaining an allowance.
 
 `check-redirects` names every slug the live API serves that this build no longer has: his renames and deletions. Answer each in `data/redirects.toml` before landing, or the deploy stops on it. A rename is a `[[redirect]]` row (`kind`, `from` the old slug, `to` the new one, `since` today); a deletion (the report's `REMOVED`) is a `[[retired]]` row (`kind`, `slug`, `since`, `reason`). A renamed or retired enhancement tree or crafting system covers its selections or ingredients. If the build instead fails because a redirect's `to` no longer exists (he deleted the target), retarget the row or turn it into a `[[retired]]` row.
 

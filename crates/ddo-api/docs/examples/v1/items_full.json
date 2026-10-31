@@ -324,7 +324,7 @@
           "tier": null,
           "value": 9,
           "value2": null,
-          "verbose_name": "Fortitude Save +9"
+          "verbose_name": "Fortitude +9"
         },
         {
           "bonus_type": "Profane",

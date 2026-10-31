@@ -127,22 +127,22 @@ value = 999
 
 [[row.effect]]
 bonus_type = "Shield"
-effect = "Physical and Magical Resistance Rating"
+effect = "Sheltering"
 value = 0
 
 [[row.effect]]
 bonus_type = "Shield"
-effect = "Physical and Magical Resistance Rating"
+effect = "Sheltering"
 value = 5
 
 [[row.effect]]
 bonus_type = "Shield"
-effect = "Physical and Magical Resistance Rating"
+effect = "Sheltering"
 value = 10
 
 [[row.effect]]
 bonus_type = "Shield"
-effect = "Physical and Magical Resistance Rating"
+effect = "Sheltering"
 value = 15
 
 [[row.modifier]]
@@ -322,7 +322,7 @@ amount_type = "Simple"
 amounts = [0]
 bonus_type = "Shield"
 display_name = "Equipped Buckler PRR/MRR Bonus"
-effect = "Physical and Magical Resistance Rating"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -335,7 +335,7 @@ amount_type = "Simple"
 amounts = [5]
 bonus_type = "Shield"
 display_name = "Equipped Small Shield PRR/MRR Bonus"
-effect = "Physical and Magical Resistance Rating"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -348,7 +348,7 @@ amount_type = "Simple"
 amounts = [10]
 bonus_type = "Shield"
 display_name = "Equipped Large Shield PRR/MRR Bonus"
-effect = "Physical and Magical Resistance Rating"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -361,7 +361,7 @@ amount_type = "Simple"
 amounts = [15]
 bonus_type = "Shield"
 display_name = "Equipped Tower Shield PRR/MRR Bonus"
-effect = "Physical and Magical Resistance Rating"
+effect = "Sheltering"
 effect_type = "PRR"
 extra_types = ["MRR"]
 

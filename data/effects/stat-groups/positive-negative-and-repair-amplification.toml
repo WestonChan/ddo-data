@@ -1,0 +1,27 @@
+name = "Positive, Negative, and Repair Amplification"
+description_template = "+{1} %b1 bonus to Positive, Negative, and Repair Amplification."
+set_bonus_line_template = "+{1} %b1 Bonus to Positive, Negative, and Repair Amplification"
+verbose_name_template = "%b1 Positive, Negative, and Repair Amplification +{1}"
+
+[[citation]]
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-23"
+note = "R3 confirms one uniform-type line over Positive, Negative and Repair Amplification on the twelve held set tiers. Lifeblood has three fixed types and is distinct."
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Healing Amplification"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Negative Healing Amplification"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Repair Amplification"

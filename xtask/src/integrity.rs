@@ -114,11 +114,16 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "served descriptions or fallback lines state every granted amount with its unit, and line claims match grants",
         OffenderQuery::Built(effect_descriptions_without_their_amounts),
     ),
-    IntegrityCheck::warn(
+    IntegrityCheck::hard(
         "effects_sharing_a_stat_set",
-        "link-valued effects sharing expanded stats require source verification before choosing a grouping",
+        "each link-valued stat set has one grouping unless an effect carries a verified declaration",
         OffenderQuery::Built(effects_sharing_a_stat_set),
     ).showing_every_offender(),
+    IntegrityCheck::hard(
+        "deferred_line_splits_are_live",
+        "every issue-backed deferred split names an existing owner that still needs its exception",
+        OffenderQuery::Built(deferred_line_splits_are_live),
+    ),
     IntegrityCheck::hard(
         "redirects_agree_with_current_slugs",
         "redirects target current slugs without collisions, chains or retired current entities",
@@ -2352,6 +2357,14 @@ fn stat_link_findings(db: &Connection, condition: &str, detail: &str) -> Result<
     Ok(Findings { offenders: Some(offenders_from_sql(db, &queries.join(" UNION ALL "))?), notes: Vec::new() })
 }
 
+fn deferred_line_splits_are_live(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let offenders = ddo_etl::line_exceptions::deferred_split_violations(db)?
+        .into_iter()
+        .map(|violation| Offender { name: violation.owner_slug, id: None, detail: violation.detail })
+        .collect();
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+}
+
 fn effects_sharing_a_stat_set(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let groupings = ddo_etl::groupings::Groupings::from_database(db)?;
     let offenders = groupings
@@ -2880,18 +2893,17 @@ mod served_amount_tests {
             }
             let sets = scratch.path().join("packs/shared/sets");
             std::fs::create_dir_all(&sets).unwrap();
-            let groups = scratch.path().join("effects/stat-groups");
-            std::fs::create_dir_all(&groups).unwrap();
+            let effects = scratch.path().join("effects");
             let group =
                 std::fs::read_to_string(source.join("effects/stat-groups/doublestrike-and-doubleshot.toml")).unwrap();
             for index in 0..owner_count {
                 std::fs::write(
-                    groups.join(format!("amount-group-{index}.toml")),
-                    format!("{}\n[[alias]]\nname = 'Amount Alias {index}'\nverbose_name_template = '%b1 Amount Alias {index} +{{1}}%'\n", group.replace("Doublestrike and Doubleshot", &format!("Amount Group {index}"))),
+                    effects.join(format!("amount-rank-{index}.toml")),
+                    format!("stat_set_verdict = 'distinct'\nstat_set_reason = 'Each rank has a different default amount'\ndefault_value = {}\n{}\n[[alias]]\nname = 'Amount Alias {index}'\nverbose_name_template = '%b1 Amount Alias {index} +{{1}}%'\n[[citation]]\nurl = 'https://ddowiki.com/page/Doublestrike'\nread = '2026-10-23'\n", index + 1, group.replace("Doublestrike and Doubleshot", &format!("Amount Rank {index}"))),
                 )
                 .unwrap();
                 std::fs::write(sets.join(format!("amount-probe-{index}.toml")), format!(
-                    "name = \"Amount Probe {index}\"\n[[tier]]\nequipped_count = 2\n[[tier.effect]]\neffect = \"Amount Group {index}\"\nvalue = 3\nbonus_type = \"Artifact\"\n[[game_bug_correction]]\nkind = \"set_tier_bonus\"\nfield = \"value\"\nqualifier = \"equipped_count 2, Doublestrike / Artifact\"\nintended = 3\nreason = \"The tooltip states the intended amount.\"\nin_game = true\nread = \"2026-10-23\"\n"
+                    "name = \"Amount Probe {index}\"\n[[tier]]\nequipped_count = 2\n[[tier.effect]]\neffect = \"Amount Rank {index}\"\nvalue = {}\nbonus_type = \"Artifact\"\n[[game_bug_correction]]\nkind = \"set_tier_bonus\"\nfield = \"value\"\nqualifier = \"equipped_count 2, Doublestrike / Artifact\"\nintended = {}\nreason = \"The tooltip states the intended amount.\"\nin_game = true\nread = \"2026-10-23\"\n", index + 1, index + 1
                 )).unwrap();
             }
             let mut db = Connection::open_in_memory().unwrap();

@@ -31,6 +31,12 @@ VoidLore = "Void Lore"
 "Wisdom Skills - Exceptional" = "Wisdom Skills"
 
 [[set_tier_prose_bonuses]]
+description = "+10 Positive, Negative and Repair Amplification"
+effect = "Positive, Negative, and Repair Amplification"
+bonus_type = "Stacking"
+value = 10
+
+[[set_tier_prose_bonuses]]
 description = "Underwater action"
 effect = "Underwater Action"
 

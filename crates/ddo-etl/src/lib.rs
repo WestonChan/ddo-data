@@ -9,6 +9,7 @@ pub mod diff;
 pub mod groupings;
 pub mod icons;
 pub mod import_ddobuilder;
+pub mod line_exceptions;
 mod loot_sources;
 pub mod map;
 pub mod tree;

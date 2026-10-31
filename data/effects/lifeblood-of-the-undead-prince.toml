@@ -1,6 +1,8 @@
 name = "Lifeblood of the Undead Prince"
 default_value = 58
 description_template = "This artifact displays incredible regenerative abilities. You gain a {1} Competence Bonus to Positive Healing Amplification, a {1} Enhancement Bonus to Repair Healing Amplification and a {1} Profane Bonus to Negative Healing Amplification."
+stat_set_verdict = "distinct"
+stat_set_reason = "Lifeblood fixes Healing to Competence, Repair to Enhancement and Negative Healing to Profane; the set grouping takes one uniform type from its owner."
 verbose_name_template = "Lifeblood of the Undead Prince"
 
 [[bonus]]
@@ -23,6 +25,11 @@ bonus_type = "Profane"
 rounding = "down"
 scale = 1.0
 target = "Negative Healing Amplification"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:The_Prince%27s_Gauntlet"
+read = "2026-10-23"
+note = "R3 distinguishes the three fixed bonus types from uniform-type amplification set lines."
 
 [[ddobuilder_correction]]
 kind = "effect"

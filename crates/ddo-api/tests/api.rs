@@ -1839,8 +1839,8 @@ async fn items_match_a_stat_effect_on_their_sets_tiers_only_when_set_bonuses_are
         get("/v1/items?bonus=Hide&bonus=Physical%20Resistance%20Rating&include_set_bonuses=true").await;
     assert_eq!(
         item_names(&own_or_set),
-        ["Grudgebearer's Plate", "Kundarak Delving Boots", "Legendary Cloak of Winter"],
-        "Command's Hide penalty and the boots' Hide bonus match beside the cloak's Eminence of Winter PRR tier"
+        ["Grudgebearer's Plate", "Kundarak Delving Boots", "Legendary Cloak of Winter", "Sightless"],
+        "Hide bonuses and Sightless's Sheltering match beside the cloak's Eminence of Winter PRR tier"
     );
     let (_, _, explicitly_excluded) = get("/v1/items?bonus=Sneak%20Attack%20Dice&include_set_bonuses=false").await;
     assert_eq!(explicitly_excluded["total"], 0);

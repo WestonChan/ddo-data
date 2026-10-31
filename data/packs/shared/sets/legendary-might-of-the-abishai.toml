@@ -89,24 +89,14 @@ value = 2
 
 [[tier.effect]]
 bonus_type = "Profane"
-effect = "Healing Amplification"
-value = 10
-
-[[tier.effect]]
-bonus_type = "Profane"
-effect = "Repair Amplification"
-value = 10
-
-[[tier.effect]]
-bonus_type = "Profane"
-effect = "Negative Healing Amplification"
+effect = "Positive, Negative, and Repair Amplification"
 value = 10
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [20]
 bonus_type = "Profane"
-effect = "Spell DCs"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -114,14 +104,14 @@ extra_types = ["MRR"]
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Profane"
-effect = "Spell DCs"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "NaturalArmor"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Profane"
-effect = "Spell DCs"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "AbilityBonus"
 targets = ["All"]
 
@@ -129,7 +119,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [2]
 bonus_type = "Profane"
-effect = "Spell DCs"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "SpellDC"
 targets = ["All"]
 
@@ -137,6 +127,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Profane"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "HealingAmplification"
 extra_types = [
     "RepairAmplification",
@@ -169,24 +160,14 @@ value = 3
 
 [[tier.effect]]
 bonus_type = "Profane"
-effect = "Healing Amplification"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Profane"
-effect = "Repair Amplification"
-value = 30
-
-[[tier.effect]]
-bonus_type = "Profane"
-effect = "Negative Healing Amplification"
+effect = "Positive, Negative, and Repair Amplification"
 value = 30
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Profane"
-effect = "Spell DCs"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "PRR"
 extra_types = ["MRR"]
 
@@ -194,14 +175,14 @@ extra_types = ["MRR"]
 amount_type = "Simple"
 amounts = [10]
 bonus_type = "Profane"
-effect = "Spell DCs"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "NaturalArmor"
 
 [[tier.modifier]]
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Profane"
-effect = "Spell DCs"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "AbilityBonus"
 targets = ["All"]
 
@@ -209,7 +190,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [3]
 bonus_type = "Profane"
-effect = "Spell DCs"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "SpellDC"
 targets = ["All"]
 
@@ -217,6 +198,7 @@ targets = ["All"]
 amount_type = "Simple"
 amounts = [30]
 bonus_type = "Profane"
+effect = "Positive, Negative, and Repair Amplification"
 effect_type = "HealingAmplification"
 extra_types = [
     "RepairAmplification",
