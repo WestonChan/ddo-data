@@ -2410,17 +2410,68 @@ fn declared_parrying_ranks_release_aura_of_good_as_one_line() {
 }
 
 #[test]
-fn two_slot_deception_cannot_replace_a_single_value_sneak_attack_line() {
-    let (db, report) = built_ambiguous_fixture_db();
-    let names = db.prepare(
-        "SELECT e.name FROM feat_effects link JOIN feats f ON f.id = link.feat_id JOIN effects e ON e.id = link.effect_id
-         WHERE f.name = 'Past Life: Ranger - Dark Hunter' ORDER BY e.name",
-    ).unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+fn missing_required_slot_keeps_default_member_lines() {
+    let canonical = fixture::grouping_case_database(|root| {
+        let path = root.join("effects/deception.toml");
+        let contents = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, contents.replace("amount_from = 2", "amount_from = 1")).unwrap();
+    });
+    let index = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let source = fixture::xml_source();
+    let path = source.path().join("Feats.xml");
+    let contents = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        path,
+        contents.replace("</Feats>", &format!("{}</Feats>", include_str!("fixtures/effect-groups/Feats.xml"))),
+    )
+    .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        &index,
+        source.path(),
+        &WikiOverrides::default(),
+        &Corrections::default(),
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let names = db.prepare("SELECT e.name FROM feat_effects l JOIN feats f ON f.id=l.feat_id JOIN effects e ON e.id=l.effect_id WHERE f.name='Past Life: Ranger - Dark Hunter' ORDER BY e.name")
+        .unwrap().query_map([], |row| row.get::<_,String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
     assert_eq!(names, ["Sneak Attack Damage", "Sneak Attack Hit"]);
-    assert!(report
-        .held_back_effects
-        .iter()
-        .any(|effect| effect.owner_name == "Past Life: Ranger - Dark Hunter" && effect.reason.contains("Deception")));
+    assert!(report.held_back_effects.iter().any(|effect| effect.owner_name == "Past Life: Ranger - Dark Hunter"));
+}
+
+#[test]
+fn dark_hunter_groups_both_amount_slots_without_a_correction() {
+    let (db, report) = built_ambiguous_fixture_db();
+    let links = db
+        .prepare(
+            "SELECT e.name,link.value,link.value2 FROM feat_effects link JOIN feats f ON f.id=link.feat_id
+         JOIN effects e ON e.id=link.effect_id WHERE f.name='Past Life: Ranger - Dark Hunter' ORDER BY link.sort_order",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?, row.get::<_, Option<i64>>(2)?)))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(links, [("Deception".into(), 1, Some(1))]);
+    let bonuses = db
+        .prepare(
+            "SELECT s.name,bt.name,b.amount FROM owner_bonuses b JOIN feats f ON f.id=b.owner_id
+         JOIN effects s ON s.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id
+         WHERE b.owner_kind='feat' AND f.name='Past Life: Ranger - Dark Hunter' ORDER BY s.name",
+        )
+        .unwrap()
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?)))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(
+        bonuses,
+        [("Sneak Attack Damage".into(), "Feat".into(), 1), ("Sneak Attack Hit".into(), "Feat".into(), 1)]
+    );
+    assert!(!report.held_back_effects.iter().any(|effect| effect.owner_name == "Past Life: Ranger - Dark Hunter"));
+    assert!(!report.line_splits.iter().any(|effect| effect.owner_name == "Past Life: Ranger - Dark Hunter"));
 }
 
 #[test]

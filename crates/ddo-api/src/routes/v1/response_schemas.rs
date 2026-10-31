@@ -1175,7 +1175,7 @@ pub(crate) struct FeatsDetailResponseBonusesEntry {
     pub(crate) stat: String,
     pub(crate) stat_category: String,
     pub(crate) value: i64,
-    pub(crate) value2: Option<String>,
+    pub(crate) value2: Option<i64>,
 }
 
 #[derive(utoipa::ToSchema)]

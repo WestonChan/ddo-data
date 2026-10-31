@@ -13,6 +13,18 @@ name = "Legendary Bracers of the Claw"
 [[item]]
 name = "Legendary Gloves of the Claw"
 
+[[ddobuilder_correction]]
+kind = "set_tier_bonus"
+field = "lines"
+upstream = [[
+    "Sneak Attack Damage",
+    "Sneak Attack Hit",
+]]
+reason = "R3 lists +3 Artifact Sneak Attack and +3 Artifact Sneak Attack Damage as two separate set lines."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-23"
+qualifier = "equipped_count 2, Sneak Attack Damage, Sneak Attack Hit / Artifact"
+
 [[tier]]
 equipped_count = 2
 

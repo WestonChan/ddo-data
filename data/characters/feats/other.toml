@@ -11102,18 +11102,15 @@ source_name = "Dark Hunter"
 
 [[row.effect]]
 bonus_type = "Feat"
-effect = "Sneak Attack Hit"
+effect = "Deception"
 value = 1
-
-[[row.effect]]
-bonus_type = "Feat"
-effect = "Sneak Attack Damage"
-value = 1
+value2 = 1
 
 [[row.modifier]]
 amount_type = "Simple"
 amounts = [1]
 bonus_type = "Feat"
+effect = "Deception"
 effect_type = "SneakAttackAttack"
 extra_types = ["SneakAttackDamage"]
 

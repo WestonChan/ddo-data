@@ -25,18 +25,6 @@ name = "Legendary Raven's Talons"
 
 [[ddobuilder_correction]]
 kind = "set_tier_bonus"
-field = "lines"
-upstream = [
-    ["Sneak Attack Hit"],
-    ["Sneak Attack Damage"],
-]
-reason = "Both piece screenshots show one +3 Artifact line to Sneak Attack and Sneak Attack Damage. The former added Sneak Attack row duplicated its hit bonus."
-url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-23"
-qualifier = "equipped_count 2, Sneak Attack Damage, Sneak Attack Hit / Artifact"
-
-[[ddobuilder_correction]]
-kind = "set_tier_bonus"
 field = "add"
 reason = "Both piece screenshots show the missing +3 Artifact line to Critical Confirmation and Critical Damage, represented by Seeker."
 url = "https://ddowiki.com/page/Named_item_sets"

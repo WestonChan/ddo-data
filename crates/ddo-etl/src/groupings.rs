@@ -195,6 +195,48 @@ impl Groupings {
         Ok(stats)
     }
 
+    pub(crate) fn link_amounts(
+        &self,
+        target: &Grouping,
+        bonuses: &[(&str, Option<i64>)],
+    ) -> Result<(Option<i64>, Option<i64>)> {
+        anyhow::ensure!(
+            bonuses.iter().map(|(stat, _)| (*stat).to_string()).collect::<BTreeSet<_>>()
+                == self.expanded_stat_names(&target.name)?,
+            "grouped lines have different stats from {:?}",
+            target.name
+        );
+        let mut amounts = [None, None];
+        for bonus in &target.bonuses {
+            let slot = usize::try_from(bonus.amount_from - 1).context("grouping has no amount slot")?;
+            let slot_amount = amounts.get_mut(slot).context("grouping has an unknown amount slot")?;
+            let member = &self.by_id[&bonus.target_id];
+            for stat in self.expanded_stat_names(&member.name)? {
+                let mut stat_amounts = bonuses.iter().filter(|(name, _)| *name == stat).peekable();
+                anyhow::ensure!(stat_amounts.peek().is_some(), "grouped lines lack {stat:?} for slot {}", slot + 1);
+                for (_, amount) in stat_amounts {
+                    let amount =
+                        amount.with_context(|| format!("grouped lines lack {stat:?} for slot {}", slot + 1))?;
+                    anyhow::ensure!(
+                        slot_amount.is_none_or(|previous| previous == amount),
+                        "grouped lines have different values for slot {}",
+                        slot + 1
+                    );
+                    *slot_amount = Some(amount);
+                }
+            }
+        }
+        let required_slots = usize::try_from(crate::build::amount_count(
+            &target.verbose_name_template,
+            target.description_template.as_deref(),
+        ))?;
+        anyhow::ensure!(
+            amounts.iter().take(required_slots).all(Option::is_some) && (amounts[1].is_none() || amounts[0].is_some()),
+            "grouped lines lack a value for every target slot"
+        );
+        Ok((amounts[0], amounts[1]))
+    }
+
     pub fn valued_prose_duplicates(&self) -> Vec<ValuedProseDuplicate> {
         let names = self
             .by_id
@@ -390,6 +432,74 @@ mod tests {
     use std::path::Path;
     use std::sync::atomic::{AtomicUsize, Ordering};
 
+    fn swiftness_bonuses(movement: i64, melee: i64, ranged: Option<i64>) -> Vec<(&'static str, Option<i64>)> {
+        let source = include_str!("../tests/fixtures/effect-groups/TopazOfSwiftness.Augments.xml");
+        let attack = source
+            .split("<Effect>")
+            .find(|effect| effect.contains("Weapon_Alacrity"))
+            .unwrap()
+            .split_once("</Effect>")
+            .unwrap()
+            .0;
+        let attack_effect = |target: &str, amount: i64| {
+            format!(
+                "<Effect>{}</Effect>",
+                attack
+                    .replace("<Item>All</Item>", &format!("<Item>{target}</Item>"))
+                    .replace("<Amount size=\"1\">15</Amount>", &format!("<Amount size=\"1\">{amount}</Amount>"))
+            )
+        };
+        let replacements = ranged.map_or_else(String::new, |amount| {
+            format!("{}{}", attack_effect("Melee", melee), attack_effect("Ranged", amount))
+        });
+        let contents = source
+            .replace(&format!("<Effect>{attack}</Effect>"), &replacements)
+            .replace("<Amount size=\"1\">30</Amount>", &format!("<Amount size=\"1\">{movement}</Amount>"));
+        let scratch = tempfile::tempdir().unwrap();
+        let path = scratch.path().join("Topaz.Augments.xml");
+        std::fs::write(&path, contents).unwrap();
+        let (_, augments) = crate::xml::augments::parse_augments_file(&path).unwrap();
+        let resolver = crate::map::effect::EffectResolver::new();
+        augments[0]
+            .effects
+            .iter()
+            .flat_map(|effect| resolver.derive_bonuses(effect).unwrap())
+            .map(|bonus| (bonus.stat.name, Some(bonus.value)))
+            .collect()
+    }
+
+    #[test]
+    fn slot_amounts_preserve_each_complete_member_value() {
+        let index = fixture_groupings();
+        let target = index.effect_named("Speed").unwrap();
+        for movement in [30, 0, -5] {
+            assert_eq!(
+                index.link_amounts(target, &swiftness_bonuses(movement, 15, Some(15))).unwrap(),
+                (Some(movement), Some(15))
+            );
+        }
+    }
+
+    #[test]
+    fn unequal_slot_members_cannot_be_grouped() {
+        let index = fixture_groupings();
+        let error = index
+            .link_amounts(index.effect_named("Speed").unwrap(), &swiftness_bonuses(30, 15, Some(10)))
+            .unwrap_err()
+            .to_string();
+        assert!(error.contains("different values for slot 2"), "{error}");
+    }
+
+    #[test]
+    fn missing_slot_members_cannot_be_grouped() {
+        let index = fixture_groupings();
+        let error = index
+            .link_amounts(index.effect_named("Speed").unwrap(), &swiftness_bonuses(30, 15, None))
+            .unwrap_err()
+            .to_string();
+        assert!(error.contains("different stats"), "{error}");
+    }
+
     #[test]
     fn valued_prose_names_duplicate_stats_and_groups_but_not_conditional_lines() {
         let source = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data");
@@ -457,7 +567,7 @@ mod tests {
     }
 
     #[test]
-    fn only_single_slot_and_compatible_type_definitions_accept_one_value() {
+    fn link_slots_require_compatible_type_definitions() {
         let source = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
         let scratch = tempfile::tempdir().unwrap();
         for directory in ["data", "effect-groups/data"] {
@@ -475,10 +585,10 @@ mod tests {
         let index = Groupings::from_database(&db).unwrap();
         assert!(!index.by_stat_set.values().flatten().any(|grouping| grouping.name == "Riposte"));
         let named = |name: &str| index.by_stat_set.values().flatten().find(|grouping| grouping.name == name).unwrap();
-        assert!(named("Power of the Frozen Thunderstorm").accepts_value_at_type("Artifact"));
-        assert!(!named("Deception").accepts_value_at_type("Equipment"));
-        assert!(!named("Lifeblood of the Undead Prince").accepts_value_at_type("Competence"));
-        assert!(!named("Lifeblood of the Undead Prince").accepts_value_at_type("Profane"));
+        assert!(named("Power of the Frozen Thunderstorm").accepts_link_values_at_type("Artifact"));
+        assert!(named("Deception").accepts_link_values_at_type("Equipment"));
+        assert!(!named("Lifeblood of the Undead Prince").accepts_link_values_at_type("Competence"));
+        assert!(!named("Lifeblood of the Undead Prince").accepts_link_values_at_type("Profane"));
     }
 
     #[test]

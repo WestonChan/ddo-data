@@ -993,7 +993,7 @@ fn a_lines_merge_combines_item_buffs_and_reports_missing_members() {
     std::fs::write(&item_path, original.replacen("<Value1>20</Value1>", "<Value1>21</Value1>", 1)).unwrap();
     let error = built_db_from_index(fixture::grouping_cases(), source.path(), &[("merged-lines.toml", &correction)])
         .unwrap_err();
-    assert!(error.contains("merged lines have different values"), "{error}");
+    assert!(error.contains("grouped lines have different values for slot 1"), "{error}");
     let search_buff = original.split_once("<Buff>").unwrap().1.split_once("</Buff>").unwrap().0;
     std::fs::write(
         &item_path,

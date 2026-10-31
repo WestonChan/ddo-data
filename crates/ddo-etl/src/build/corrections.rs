@@ -912,36 +912,9 @@ pub(super) fn merged_line_amounts(
         );
         Ok((None, None))
     } else {
-        let mut amounts = [None, None];
-        for bonus in &target.bonuses {
-            let slot = usize::try_from(bonus.amount_from - 1).context("merge target has no amount slot")?;
-            let slot_amount = amounts.get_mut(slot).context("merge target has an unknown amount slot")?;
-            let member = &groupings.by_id[&bonus.target_id];
-            for stat in groupings.expanded_stat_names(&member.name)? {
-                let amount =
-                    rows.iter().find(|row| row.stat_name == stat).and_then(|row| row.amount).with_context(|| {
-                        format!("{}: merged lines lack {stat:?} for slot {}", correction.label(), slot + 1)
-                    })?;
-                ensure!(
-                    slot_amount.is_none_or(|previous| previous == amount),
-                    "{}: merged lines have different values for slot {}",
-                    correction.label(),
-                    slot + 1
-                );
-                *slot_amount = Some(amount);
-            }
-        }
-        let required_slot_count = usize::try_from(super::amount_count(
-            &target.verbose_name_template,
-            target.description_template.as_deref(),
-        ))?;
-        ensure!(
-            amounts.iter().take(required_slot_count).all(Option::is_some)
-                && (amounts[1].is_none() || amounts[0].is_some()),
-            "{}: merged lines lack a value for every target slot",
-            correction.label()
-        );
-        Ok((amounts[0], amounts[1]))
+        groupings
+            .link_amounts(target, &rows.iter().map(|row| (row.stat_name.as_str(), row.amount)).collect::<Vec<_>>())
+            .with_context(|| correction.label())
     }
 }
 

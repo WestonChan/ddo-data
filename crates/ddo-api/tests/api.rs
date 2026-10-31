@@ -452,6 +452,39 @@ fn feat_bonus_types_are_unnamed_on_enchantment_lines() {
 }
 
 #[tokio::test]
+async fn two_slot_feat_bonuses_match_the_response_schema() {
+    let root = std::env::temp_dir().join(format!("ddo-api-two-slot-feat-{}", std::process::id()));
+    let source = root.join("xml");
+    let fixtures = fixture_data_dir().parent().unwrap().to_path_buf();
+    common::copy_files(&fixtures.join("DataFiles"), &source);
+    let path = source.join("Feats.xml");
+    let feats = std::fs::read_to_string(&path).unwrap();
+    let captured = std::fs::read_to_string(fixtures.join("effect-groups/Feats.xml")).unwrap();
+    std::fs::write(path, feats.replace("</Feats>", &format!("{captured}</Feats>"))).unwrap();
+    let canonical = rusqlite::Connection::open(fixture_db_path()).unwrap();
+    let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let path = root.join("feat.db");
+    let _ = std::fs::remove_file(&path);
+    let mut db = rusqlite::Connection::open(&path).unwrap();
+    ddo_etl::build::build_database(
+        &groupings,
+        &source,
+        &ddo_etl::wiki::WikiOverrides::default(),
+        &ddo_etl::corrections::Corrections::default(),
+        &mut db,
+        &ddo_model::DatasetVersion { upstream_sha: "two-slot-feat".into(), built_at: "2026-10-31T00:00:00Z".into() },
+    )
+    .unwrap();
+    let state = AppState::open(&path).unwrap();
+    let (status, _, response) = get_from(state.clone(), "/v1/feats/past-life-ranger-dark-hunter").await;
+    assert_eq!(status, StatusCode::OK, "{response}");
+    assert!(response["bonuses"].as_array().unwrap().iter().any(|bonus| bonus["value2"] == 1));
+    let (_, _, spec) = get_from(state, "/v1/openapi.json").await;
+    let schemas = spec["components"]["schemas"].as_object().unwrap();
+    response_matches_schema(&response, &schemas["FeatsDetailResponse"], schemas, "Dark Hunter").unwrap();
+}
+
+#[tokio::test]
 async fn fixed_bonus_rows_supply_the_line_type_without_a_home() {
     let (_, _, response) = get("/v1/items/kundarak-delving-boots").await;
     let speed = response["effects"].as_array().unwrap().iter().find(|line| line["name"] == "Speed").unwrap();

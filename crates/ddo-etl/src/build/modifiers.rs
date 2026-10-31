@@ -622,9 +622,7 @@ impl TableWriter<'_> {
             return Ok(GroupingOutcome::Held(GroupingHold::TypesWithoutStats(types_without_stats)));
         }
         let value = bonuses[0].1.value;
-        if bonuses.iter().any(|(_, bonus)| bonus.value != value) {
-            return Ok(GroupingOutcome::Held(GroupingHold::DifferentValues));
-        }
+        let same_value = bonuses.iter().all(|(_, bonus)| bonus.value == value);
         let mut bonus_type = None;
         for (effect_type, bonus) in &bonuses {
             let resolved = self.bonus_type_of(
@@ -675,6 +673,9 @@ impl TableWriter<'_> {
             split_correction = Some(correction);
         }
         if let Some(correction) = split_correction {
+            if !same_value {
+                return Ok(GroupingOutcome::Held(GroupingHold::DifferentValues));
+            }
             let mut partitions = correction.line_partition_stats(self.groupings)?;
             partitions.sort_by_key(|(_, partition)| {
                 bonuses.iter().position(|(_, bonus)| partition.contains(bonus.stat.name))
@@ -713,11 +714,21 @@ impl TableWriter<'_> {
             return Ok(GroupingOutcome::Split { links: split_links, correction: correction.label() });
         }
         let matching = self.groupings.by_stat_set.get(&stats).map(Vec::as_slice).unwrap_or_default();
+        let mut amounts = (Some(value), None);
         let effect_id = match matching {
-            [grouping] if grouping.accepts_value_at_type(bonus_type.name()) => {
+            [grouping] if grouping.accepts_link_values_at_type(bonus_type.name()) => {
+                let member_amounts =
+                    bonuses.iter().map(|(_, bonus)| (bonus.stat.name, Some(bonus.value))).collect::<Vec<_>>();
+                let Ok(resolved_amounts) = self.groupings.link_amounts(grouping, &member_amounts) else {
+                    return Ok(GroupingOutcome::Held(GroupingHold::DifferentValues));
+                };
+                amounts = resolved_amounts;
                 self.effects.ensure_indexed_effect(grouping)?
             }
             [] => {
+                if !same_value {
+                    return Ok(GroupingOutcome::Held(GroupingHold::DifferentValues));
+                }
                 let declared = EFFECT_MAP
                     .group_names()
                     .into_iter()
@@ -794,7 +805,11 @@ impl TableWriter<'_> {
                 )));
             }
         };
-        Ok(GroupingOutcome::Grouped(vec![self.write_upstream_grouping_line(owner, effect_id, bonus_type, value)?]))
+        let mut link =
+            self.write_upstream_grouping_line(owner, effect_id, bonus_type, amounts.0.unwrap_or_default())?;
+        link.value = amounts.0;
+        link.value2 = amounts.1;
+        Ok(GroupingOutcome::Grouped(vec![link]))
     }
 
     fn correction_owner_matches(&self, correction: &crate::corrections::Correction, owner_id: i64) -> Result<bool> {
