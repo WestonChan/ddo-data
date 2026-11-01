@@ -1,0 +1,34 @@
+name = "+2 artifact bonus to Hit and Damage with Ranged and Thrown weapons"
+description_template = "+2 artifact bonus to Hit and Damage with Ranged and Thrown weapons."
+verbose_name_template = "+2 artifact bonus to Hit and Damage with Ranged and Thrown weapons"
+
+[[citation]]
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-23"
+note = 'R1: "+2 artifact bonus to Hit and Damage with Ranged and Thrown weapons"; the weapon condition remains prose.'
+
+[[ddobuilder_correction]]
+kind = "effect"
+original_name = "+2 Artifact bonus to damage with ranged and thrown weapons"
+field = "verbose_name_template"
+upstream = "+2 Artifact bonus to damage with ranged and thrown weapons"
+reason = 'R1: "+2 artifact bonus to Hit and Damage with Ranged and Thrown weapons"; the weapon condition remains prose.'
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-23"
+
+[[ddobuilder_correction]]
+kind = "effect"
+original_name = "+2 Artifact bonus to damage with ranged and thrown weapons"
+field = "description_template"
+upstream = "+2 Artifact bonus to damage with ranged and thrown weapons."
+reason = 'R1: "+2 artifact bonus to Hit and Damage with Ranged and Thrown weapons"; the weapon condition remains prose.'
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-23"
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "name"
+upstream = "+2 Artifact bonus to damage with ranged and thrown weapons"
+reason = 'R1: "+2 artifact bonus to Hit and Damage with Ranged and Thrown weapons"; the weapon condition remains prose.'
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-23"

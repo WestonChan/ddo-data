@@ -44,7 +44,7 @@ effect = "Doublestrike"
 value = 3
 
 [[tier.effect]]
-effect = "+2 Artifact bonus to damage with ranged and thrown weapons"
+effect = "+2 artifact bonus to Hit and Damage with Ranged and Thrown weapons"
 
 [[tier.modifier]]
 amount_type = "Simple"

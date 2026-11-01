@@ -26,6 +26,12 @@ since = "2026-10-20"
 
 [[redirect]]
 kind = "effects"
+from = "2-artifact-bonus-to-damage-with-ranged-and-thrown-weapons"
+to = "2-artifact-bonus-to-hit-and-damage-with-ranged-and-thrown-weapons"
+since = "2026-11-01"
+
+[[redirect]]
+kind = "effects"
 from = "2-damage"
 to = "damage-bonus"
 since = "2026-10-20"

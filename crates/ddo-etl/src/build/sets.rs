@@ -1,6 +1,6 @@
 use super::bonus_types::{BonusOwner, BonusOwnerKind};
 use super::effects::EffectOwner;
-use super::modifiers::DerivedEffectLink;
+use super::modifiers::{DerivedEffectLink, GroupingOutcome, LineSplitMember};
 use super::{trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::effect_map::EFFECT_MAP;
 use crate::xml::sentient_gems;
@@ -160,6 +160,30 @@ impl TableWriter<'_> {
                         equipped_count: tier.equipped_count,
                         description: description.to_string(),
                     });
+                    if let (Some(bonus_type), Some(value)) = (bonus_type, rule.value) {
+                        let members = self
+                            .groupings
+                            .expanded_stat_names(&rule.effect)?
+                            .into_iter()
+                            .map(|name| {
+                                let stat = Stat::by_name(&name).expect("validated prose stat");
+                                LineSplitMember {
+                                    bonus: crate::map::effect::DerivedBonus {
+                                        stat,
+                                        bonus_type: Some(bonus_type),
+                                        value,
+                                    },
+                                    line_name: name,
+                                }
+                            })
+                            .collect::<Vec<_>>();
+                        if let Some(outcome) = self.write_split_lines(&owner, tier_id, bonus_type, &members)? {
+                            let GroupingOutcome::Split { links, .. } = outcome else {
+                                anyhow::bail!("set {set_name:?} prose split cannot preserve its single value")
+                            };
+                            return Ok(links);
+                        }
+                    }
                     return Ok(vec![DerivedEffectLink {
                         alias: None,
                         effect_id,

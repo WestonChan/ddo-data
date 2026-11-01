@@ -2362,6 +2362,50 @@ fn a_lines_split_preserves_the_default_and_follows_value_changes() {
 }
 
 #[test]
+fn set_prose_bonus_lines_follow_the_same_split_contract() {
+    let source = data_files_with_untyped("vulkoor-prose-split", &[]);
+    let path = source.join("SetBonuses.xml");
+    let xml = std::fs::read_to_string(&path).unwrap().replace(
+        "</SetBonuses>",
+        &format!("{}\n</SetBonuses>", include_str!("fixtures/effect-groups/VulkoorsMight.xml")),
+    );
+    std::fs::write(path, xml).unwrap();
+    let mut corrections = CorrectionSet(Vec::new());
+    for name in ["Epic Vulkoor's Might", "Legendary Vulkoor's Might"] {
+        corrections = corrections
+            + &new_qualified_correction(
+                "set_tier_bonus",
+                name,
+                "equipped_count = 2\nstat = \"Damage Bonus, Accuracy\"\nbonus_type = 'Artifact'\n",
+                "lines",
+                "[[\"Accuracy\", \"Damage Bonus\"]]",
+                "[\"Accuracy\", \"Damage Bonus\"]",
+            );
+    }
+    let (db, report) = built_db_from(&source, &[("vulkoor-split.toml", &corrections)]).unwrap();
+    for name in ["Epic Vulkoor's Might", "Legendary Vulkoor's Might"] {
+        let lines = db.prepare("SELECT e.name,l.value,b.name FROM set_bonus_tier_effects l JOIN effects e ON e.id=l.effect_id JOIN bonus_types b ON b.id=l.bonus_type_id JOIN set_bonus_tiers t ON t.id=l.tier_id JOIN set_bonuses s ON s.id=t.set_id WHERE s.name=?1 AND e.name IN ('Accuracy','Damage Bonus','Attack and Damage') ORDER BY e.name").unwrap()
+            .query_map([name], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?, row.get::<_, String>(2)?)))
+            .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(lines, [("Accuracy".into(), 3, "Artifact".into()), ("Damage Bonus".into(), 3, "Artifact".into())]);
+    }
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
+    let path = source.join("SetBonuses.xml");
+    let changed = std::fs::read_to_string(&path)
+        .unwrap()
+        .replace("+3 Artifact bonus to Attack and Damage", "Vulkoor's attack and damage line was removed");
+    std::fs::write(path, changed).unwrap();
+    let (_, report) = built_db_from(&source, &[("vulkoor-split.toml", &corrections)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 2));
+    for stale in report.stale_corrections {
+        assert_eq!(stale.file_name, "vulkoor-split.toml");
+        assert!(
+            matches!(stale.cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\"")
+        );
+    }
+}
+
+#[test]
 fn a_set_tier_lines_split_preserves_its_member_lines() {
     let correction = new_qualified_correction(
         "set_tier_bonus",
@@ -2377,6 +2421,19 @@ fn a_set_tier_lines_split_preserves_its_member_lines() {
     assert_eq!(names, ["Doubleshot", "Doublestrike"]);
     assert_eq!(report.line_splits.len(), 1);
     assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    let source = data_files_with_untyped("kundarak-split-missing", &[]);
+    let path = source.join("SetBonuses.xml");
+    let xml = std::fs::read_to_string(&path).unwrap();
+    let start = xml.find("<Type>Kundarak Delving Equipment</Type>").unwrap();
+    let end = start + xml[start..].find("</SetBonus>").unwrap();
+    let changed = xml[start..end].replace("<Type>Doubleshot</Type>", "");
+    std::fs::write(path, format!("{}{}{}", &xml[..start], changed, &xml[end..])).unwrap();
+    let (_, report) = built_db_from(&source, &[("kundarak-split.toml", &correction)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+    assert_eq!(report.stale_corrections[0].file_name, "kundarak-split.toml");
+    assert!(
+        matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\"")
+    );
 }
 
 #[test]

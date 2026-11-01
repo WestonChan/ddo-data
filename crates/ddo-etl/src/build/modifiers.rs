@@ -61,14 +61,19 @@ pub(super) struct DerivedEffectLink {
     pub(super) is_split_line: bool,
 }
 
-enum GroupingOutcome {
+pub(super) struct LineSplitMember {
+    pub(super) bonus: crate::map::effect::DerivedBonus,
+    pub(super) line_name: String,
+}
+
+pub(super) enum GroupingOutcome {
     Grouped(Vec<DerivedEffectLink>),
     Split { links: Vec<DerivedEffectLink>, correction: String },
     Held(GroupingHold),
     NotGrouped,
 }
 
-enum GroupingHold {
+pub(super) enum GroupingHold {
     TypesWithoutStats(Vec<String>),
     DifferentValues,
     DifferentTypes,
@@ -483,11 +488,24 @@ impl TableWriter<'_> {
                 self.buff_resolver.effect_tier_name(effect_type, target, first_bonus.stat.name)
             }
         });
+        self.write_bonus_line(owner, &source_name, bonuses, bonus_type, all_abilities)
+    }
+
+    fn write_bonus_line(
+        &mut self,
+        owner: &BonusOwner,
+        source_name: &str,
+        bonuses: &[crate::map::effect::DerivedBonus],
+        bonus_type: ddo_model::enums::BonusType,
+        all_abilities: bool,
+    ) -> Result<DerivedEffectLink> {
+        let first_bonus = bonuses[0];
         let family_name = if owner.kind == BonusOwnerKind::Augment {
-            EFFECT_MAP.augment_line_name(owner.name, &source_name).unwrap_or(&source_name).to_string()
+            EFFECT_MAP.augment_line_name(owner.name, source_name).unwrap_or(source_name)
         } else {
             source_name
-        };
+        }
+        .to_string();
         let existing = self
             .effects
             .family_named(&family_name)
@@ -649,78 +667,28 @@ impl TableWriter<'_> {
             bonus_type = Some(resolved);
         }
         let bonus_type = bonus_type.expect("multi-stat effect has a bonus type");
-        let split_corrections = self
-            .line_corrections
+        let split_members = bonuses
             .iter()
-            .copied()
-            .filter(|correction| {
-                correction.name == owner.name
-                    && !correction.is_line_merge()
-                    && correction.from.as_text() != Some(crate::corrections::NO_SUCH_BONUS)
-                    && correction.bonus_type.as_deref() == Some(bonus_type.name())
-                    && correction.bonus_value.is_none_or(|amount| amount == value)
-                    && matches!(
-                        (owner.kind, correction.kind),
-                        (BonusOwnerKind::Augment, ddo_model::enums::CorrectionKind::AugmentBonus)
-                            | (BonusOwnerKind::Feat, ddo_model::enums::CorrectionKind::FeatBonus)
-                            | (
-                                BonusOwnerKind::ItemAugmentSlotOption,
-                                ddo_model::enums::CorrectionKind::SocketOptionBonus
-                            )
-                            | (BonusOwnerKind::SetBonusTier, ddo_model::enums::CorrectionKind::SetTierBonus)
-                    )
+            .map(|(effect_type, bonus)| {
+                let target = effect
+                    .targets
+                    .iter()
+                    .find(|target| {
+                        EFFECT_MAP.effect_stat(effect_type, target).is_some_and(|stat| stat.id == bonus.stat.id)
+                    })
+                    .map(String::as_str);
+                LineSplitMember {
+                    bonus: *bonus,
+                    line_name: if *effect_type == "SkillBonusAbility" {
+                        bonus.stat.name.to_string()
+                    } else {
+                        self.buff_resolver.effect_tier_name(effect_type, target, bonus.stat.name)
+                    },
+                }
             })
             .collect::<Vec<_>>();
-        let mut split_correction = None;
-        for correction in split_corrections {
-            if !self.correction_owner_matches(correction, owner_id)?
-                || correction.upstream_line_stats()? != [stats.clone()]
-            {
-                continue;
-            }
-            anyhow::ensure!(split_correction.is_none(), "{}: overlapping split corrections", correction.label());
-            split_correction = Some(correction);
-        }
-        if let Some(correction) = split_correction {
-            if !same_value {
-                return Ok(GroupingOutcome::Held(GroupingHold::DifferentValues));
-            }
-            let mut partitions = correction.line_partition_stats(self.groupings)?;
-            partitions.sort_by_key(|(_, partition)| {
-                bonuses.iter().position(|(_, bonus)| partition.contains(bonus.stat.name))
-            });
-            let mut split_links = Vec::new();
-            for (line_name, partition) in partitions {
-                let mut link = if ddo_model::stats::Stat::by_name(&line_name).is_some() {
-                    let (effect_type, bonus) = bonuses
-                        .iter()
-                        .find(|(_, bonus)| partition.contains(bonus.stat.name))
-                        .expect("validated split member");
-                    let target = effect
-                        .targets
-                        .iter()
-                        .find(|target| {
-                            EFFECT_MAP.effect_stat(effect_type, target).is_some_and(|stat| stat.id == bonus.stat.id)
-                        })
-                        .map(String::as_str);
-                    self.write_derived_line(owner, effect_type, target, &[*bonus], None)?
-                } else {
-                    let line_effect = self.groupings.effect_named(&line_name).ok_or_else(|| {
-                        anyhow::anyhow!(
-                            "{}: split line {line_name:?} has no indexed effect definition",
-                            correction.label()
-                        )
-                    })?;
-                    let effect_id = self.effects.ensure_indexed_effect(line_effect)?;
-                    self.write_upstream_grouping_line(owner, effect_id, bonus_type, value)?
-                };
-                link.is_split_line = true;
-                split_links.push(link);
-            }
-            if !self.applied_link_corrections.iter().any(|applied| std::ptr::eq(*applied, correction)) {
-                self.applied_link_corrections.push(correction);
-            }
-            return Ok(GroupingOutcome::Split { links: split_links, correction: correction.label() });
+        if let Some(split) = self.write_split_lines(owner, owner_id, bonus_type, &split_members)? {
+            return Ok(split);
         }
         let matching = self.groupings.by_stat_set.get(&stats).map(Vec::as_slice).unwrap_or_default();
         let mut amounts = (Some(value), None);
@@ -824,6 +792,87 @@ impl TableWriter<'_> {
         link.value = amounts.0;
         link.value2 = amounts.1;
         Ok(GroupingOutcome::Grouped(vec![link]))
+    }
+
+    pub(super) fn write_split_lines(
+        &mut self,
+        owner: &BonusOwner,
+        owner_id: i64,
+        bonus_type: ddo_model::enums::BonusType,
+        members: &[LineSplitMember],
+    ) -> Result<Option<GroupingOutcome>> {
+        let Some(first) = members.first() else { return Ok(None) };
+        let value = first.bonus.value;
+        let same_value = members.iter().all(|member| member.bonus.value == value);
+        let stats =
+            members.iter().map(|member| member.bonus.stat.name.to_string()).collect::<std::collections::BTreeSet<_>>();
+        let split_corrections = self
+            .line_corrections
+            .iter()
+            .copied()
+            .filter(|correction| {
+                correction.name == owner.name
+                    && !correction.is_line_merge()
+                    && correction.from.as_text() != Some(crate::corrections::NO_SUCH_BONUS)
+                    && correction.bonus_type.as_deref() == Some(bonus_type.name())
+                    && correction.bonus_value.is_none_or(|amount| amount == value)
+                    && matches!(
+                        (owner.kind, correction.kind),
+                        (BonusOwnerKind::Augment, ddo_model::enums::CorrectionKind::AugmentBonus)
+                            | (BonusOwnerKind::Feat, ddo_model::enums::CorrectionKind::FeatBonus)
+                            | (
+                                BonusOwnerKind::ItemAugmentSlotOption,
+                                ddo_model::enums::CorrectionKind::SocketOptionBonus
+                            )
+                            | (BonusOwnerKind::SetBonusTier, ddo_model::enums::CorrectionKind::SetTierBonus)
+                    )
+            })
+            .collect::<Vec<_>>();
+        let mut split_correction = None;
+        for correction in split_corrections {
+            if !self.correction_owner_matches(correction, owner_id)?
+                || correction.upstream_line_stats()? != [stats.clone()]
+            {
+                continue;
+            }
+            anyhow::ensure!(split_correction.is_none(), "{}: overlapping split corrections", correction.label());
+            split_correction = Some(correction);
+        }
+        if let Some(correction) = split_correction {
+            if !same_value {
+                return Ok(Some(GroupingOutcome::Held(GroupingHold::DifferentValues)));
+            }
+            let mut partitions = correction.line_partition_stats(self.groupings)?;
+            partitions.sort_by_key(|(_, partition)| {
+                members.iter().position(|member| partition.contains(member.bonus.stat.name))
+            });
+            let mut split_links = Vec::new();
+            for (line_name, partition) in partitions {
+                let mut link = if ddo_model::stats::Stat::by_name(&line_name).is_some() {
+                    let member = members
+                        .iter()
+                        .find(|member| partition.contains(member.bonus.stat.name))
+                        .expect("validated split member");
+                    self.write_bonus_line(owner, &member.line_name, &[member.bonus], bonus_type, false)?
+                } else {
+                    let line_effect = self.groupings.effect_named(&line_name).ok_or_else(|| {
+                        anyhow::anyhow!(
+                            "{}: split line {line_name:?} has no indexed effect definition",
+                            correction.label()
+                        )
+                    })?;
+                    let effect_id = self.effects.ensure_indexed_effect(line_effect)?;
+                    self.write_upstream_grouping_line(owner, effect_id, bonus_type, value)?
+                };
+                link.is_split_line = true;
+                split_links.push(link);
+            }
+            if !self.applied_link_corrections.iter().any(|applied| std::ptr::eq(*applied, correction)) {
+                self.applied_link_corrections.push(correction);
+            }
+            return Ok(Some(GroupingOutcome::Split { links: split_links, correction: correction.label() }));
+        }
+        Ok(None)
     }
 
     fn correction_owner_matches(&self, correction: &crate::corrections::Correction, owner_id: i64) -> Result<bool> {

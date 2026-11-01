@@ -4,8 +4,8 @@ icon = "VulkoorsMight"
 [[citation]]
 field = "tier"
 url = "https://ddowiki.com/page/Named_item_sets"
-read = "2026-10-02"
-note = "The tier lines were checked; this replaces the add corrections the prose mapping superseded."
+read = "2026-10-23"
+note = 'R1: "+3 Artifact bonus to Attack (all tier)" and "+3 Artifact bonus to Damage (all tier)" are separate set lines.'
 
 [[item]]
 name = "Legendary Bracers of the Claw"
@@ -25,6 +25,18 @@ url = "https://ddowiki.com/page/Named_item_sets"
 read = "2026-10-23"
 qualifier = "equipped_count 2, Sneak Attack Damage, Sneak Attack Hit / Artifact"
 
+[[ddobuilder_correction]]
+kind = "set_tier_bonus"
+field = "lines"
+upstream = [[
+    "Damage Bonus",
+    "Accuracy",
+]]
+reason = 'R1: "+3 Artifact bonus to Attack (all tier)" and "+3 Artifact bonus to Damage (all tier)" are separate set lines.'
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-23"
+qualifier = "equipped_count 2, Damage Bonus, Accuracy / Artifact"
+
 [[tier]]
 equipped_count = 2
 
@@ -35,7 +47,12 @@ value = 20
 
 [[tier.effect]]
 bonus_type = "Artifact"
-effect = "Attack and Damage"
+effect = "Accuracy"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Damage Bonus"
 value = 3
 
 [[tier.effect]]
