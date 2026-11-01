@@ -19,7 +19,7 @@ bypass = "Pierce"
 
 [[effect]]
 name = "Improved Deception"
-bonus_type = "Enhancement"
+bonus_type = "Competence"
 value = 12
 
 [[effect]]
@@ -36,6 +36,15 @@ value = 12
 name = "Tumble"
 bonus_type = "Competence"
 value = 12
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "bonus_type"
+upstream = "Enhancement"
+reason = 'R6-2 row 32: screenshot "Improved Deception +12" grants a "+12 Competence bonus to Bluff checks"; typed text says enhancement. Screenshot: https://images.ddowiki.com/Collapsible_Shortbow.png'
+url = "https://ddowiki.com/page/Item:Collapsible_Shortbow"
+read = "2026-10-23"
+qualifier = 'effect "Improved Deception"'
 
 [[socket]]
 slot = "purple"
