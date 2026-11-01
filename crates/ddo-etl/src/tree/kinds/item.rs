@@ -370,9 +370,14 @@ impl ItemFile {
             "SELECT {} FROM item_augment_slots ORDER BY item_id, sort_order",
             Socket::select_columns()
         ))?;
-        for row in sockets.query_map([], |row| Ok((row.get::<_, i64>("item_id")?, Socket::from_row(row)?)))? {
-            let (id, socket) = row?;
-            files.get_mut(&id).context("socket has no item")?.socket.push(socket);
+        let mut socket_locations = BTreeMap::new();
+        for row in sockets.query_map([], |row| {
+            Ok((row.get::<_, i64>("item_id")?, row.get::<_, i64>("sort_order")?, Socket::from_row(row)?))
+        })? {
+            let (id, order, socket) = row?;
+            let sockets = &mut files.get_mut(&id).context("socket has no item")?.socket;
+            socket_locations.insert((id, order), sockets.len());
+            sockets.push(socket);
         }
         let mut option_locations = BTreeMap::new();
         let mut options = db.prepare(&format!(
@@ -389,7 +394,9 @@ impl ItemFile {
             ))
         })? {
             let (option_id, item_id, socket_index, option_index, option) = row?;
-            let socket_index = usize::try_from(socket_index)?;
+            let socket_index = *socket_locations
+                .get(&(item_id, socket_index))
+                .with_context(|| format!("option {option_id} has no socket at order {socket_index}"))?;
             let option_index = usize::try_from(option_index)?;
             let socket = files
                 .get_mut(&item_id)

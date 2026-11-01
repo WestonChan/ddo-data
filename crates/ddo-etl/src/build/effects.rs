@@ -3,6 +3,7 @@ use crate::map::effect_map::EFFECT_MAP;
 use crate::xml::item_buffs::ItemBuffDefinition;
 use anyhow::{ensure, Context, Result};
 use ddo_model::enums::BonusType;
+pub(super) use ddo_model::enums::EffectOwner;
 use ddo_model::stats::{Stat, STATS};
 use rusqlite::{params, Transaction};
 use std::collections::{BTreeMap, HashMap, HashSet};
@@ -73,7 +74,8 @@ impl<'a> EffectCache<'a> {
             |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?, row.get(4)?)),
         )?;
         let family = self.families_by_id.get_mut(&family_id).expect("corrected effect is cached");
-        if family.name != name {
+        let renamed = family.name != name;
+        if renamed {
             self.families_by_name.remove(&family.name);
             self.families_by_name.insert(name.clone(), family_id);
         }
@@ -102,6 +104,9 @@ impl<'a> EffectCache<'a> {
             let (target_id, bonus_type_id, amount_from, constant) = row?;
             self.stats.insert((family_id, target_id, bonus_type_id), (amount_from, constant));
             family.has_stats = true;
+        }
+        if renamed {
+            self.write_family_aliases(family_id)?;
         }
         Ok(())
     }
@@ -360,6 +365,7 @@ impl<'a> EffectCache<'a> {
                 has_stats: false,
             },
         );
+        self.write_family_aliases(id)?;
         Ok(id)
     }
 
@@ -810,27 +816,6 @@ impl<'a> EffectCache<'a> {
                 .or_insert(Some(bonus_type));
         }
         Ok(())
-    }
-}
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub(super) enum EffectOwner {
-    Item,
-    Augment,
-    SetBonusTier,
-    Feat,
-    ItemAugmentSlotOption,
-}
-
-impl EffectOwner {
-    pub(super) const fn table(self) -> (&'static str, &'static str) {
-        match self {
-            Self::Item => ("item_effects", "item_id"),
-            Self::Augment => ("augment_effects", "augment_id"),
-            Self::SetBonusTier => ("set_bonus_tier_effects", "tier_id"),
-            Self::Feat => ("feat_effects", "feat_id"),
-            Self::ItemAugmentSlotOption => ("item_augment_slot_option_effects", "option_id"),
-        }
     }
 }
 

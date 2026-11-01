@@ -1004,6 +1004,43 @@ impl ModifierSource {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum EffectOwner {
+    Item,
+    Augment,
+    SetBonusTier,
+    Feat,
+    ItemAugmentSlotOption,
+}
+
+impl EffectOwner {
+    pub const ALL: [Self; 5] = [Self::Item, Self::Augment, Self::SetBonusTier, Self::Feat, Self::ItemAugmentSlotOption];
+
+    pub fn from_table(table: &str) -> Option<Self> {
+        Self::ALL.into_iter().find(|owner| owner.table().0 == table)
+    }
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Item => "item",
+            Self::Augment => "augment",
+            Self::SetBonusTier => "set_bonus_tier",
+            Self::Feat => "feat",
+            Self::ItemAugmentSlotOption => "item_augment_slot_option",
+        }
+    }
+
+    pub const fn table(self) -> (&'static str, &'static str) {
+        match self {
+            Self::Item => ("item_effects", "item_id"),
+            Self::Augment => ("augment_effects", "augment_id"),
+            Self::SetBonusTier => ("set_bonus_tier_effects", "tier_id"),
+            Self::Feat => ("feat_effects", "feat_id"),
+            Self::ItemAugmentSlotOption => ("item_augment_slot_option_effects", "option_id"),
+        }
+    }
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum RequirementOwner {
     Modifier,

@@ -2,7 +2,7 @@ use super::DdobuilderCorrection;
 use crate::build::data_correction_value;
 use crate::corrections::{Correction, CorrectionValue, FieldShape, NO_SUCH_BONUS};
 use anyhow::{bail, ensure, Context, Result};
-use ddo_model::enums::CorrectionKind;
+use ddo_model::enums::{CorrectionKind, EffectOwner};
 use rusqlite::{params, Transaction};
 use serde_json::{json, Value};
 use std::collections::BTreeMap;
@@ -544,11 +544,15 @@ pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
             continue;
         }
         let (bonus_kind, link_owner_kind) = match note.kind {
-            CorrectionKind::ItemBonus | CorrectionKind::ItemEffect => (CorrectionKind::ItemBonus, "item"),
-            CorrectionKind::AugmentBonus => (CorrectionKind::AugmentBonus, "augment"),
-            CorrectionKind::FeatBonus => (CorrectionKind::FeatBonus, "feat"),
-            CorrectionKind::SetTierBonus => (CorrectionKind::SetTierBonus, "set_bonus_tier"),
-            CorrectionKind::SocketOptionBonus => (CorrectionKind::SocketOptionBonus, "item_augment_slot_option"),
+            CorrectionKind::ItemBonus | CorrectionKind::ItemEffect => {
+                (CorrectionKind::ItemBonus, EffectOwner::Item.as_str())
+            }
+            CorrectionKind::AugmentBonus => (CorrectionKind::AugmentBonus, EffectOwner::Augment.as_str()),
+            CorrectionKind::FeatBonus => (CorrectionKind::FeatBonus, EffectOwner::Feat.as_str()),
+            CorrectionKind::SetTierBonus => (CorrectionKind::SetTierBonus, EffectOwner::SetBonusTier.as_str()),
+            CorrectionKind::SocketOptionBonus => {
+                (CorrectionKind::SocketOptionBonus, EffectOwner::ItemAugmentSlotOption.as_str())
+            }
             _ => continue,
         };
         (|| -> Result<()> {

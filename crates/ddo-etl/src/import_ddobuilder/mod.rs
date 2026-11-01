@@ -153,7 +153,7 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
     let blanked_upstream = blanks::blanked_upstream(&previous.db, &previous.filled, &new.filled)?;
     let mut mapping_audits = audit::entries(&options.source_dir)?;
     mapping_audits.extend(audit::unmapped_damage_targets(&new.db)?);
-    mapping_audits.extend(audit::stat_homes(&ours, &new.db)?);
+    mapping_audits.extend(audit::effect_homes(&ours, &new.db)?);
     mapping_audits
         .extend(audit::unmatched_set_tier_prose(&previous.matched_set_tier_prose, &new.matched_set_tier_prose));
     let events = corrections::correction_events(&previous.first_stale, &new.first_stale, &corrections, &ours)?;

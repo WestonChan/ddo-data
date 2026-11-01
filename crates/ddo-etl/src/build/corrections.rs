@@ -47,37 +47,55 @@ pub(super) fn apply_non_quest_corrections(
     })
 }
 
-pub(super) fn record_corrections_applied_while_writing(
+pub(super) fn record_observed_corrections<'a>(
     transaction: &Transaction,
-    corrections_applied_while_writing: &[&Correction],
+    observations: impl IntoIterator<Item = (&'a Correction, CorrectionValue)>,
     report: &mut BuildReport,
 ) -> Result<()> {
-    for correction in corrections_applied_while_writing {
-        record_applied_correction(transaction, correction, report)?;
+    let mut grouped = Vec::<(&Correction, Vec<CorrectionValue>)>::new();
+    for (correction, upstream) in observations {
+        if let Some((_, values)) = grouped.iter_mut().find(|(known, _)| std::ptr::eq(*known, correction)) {
+            if !values.contains(&upstream) {
+                values.push(upstream);
+            }
+        } else {
+            grouped.push((correction, vec![upstream]));
+        }
+    }
+    for (correction, values) in grouped {
+        record_correction_outcome(transaction, correction, &values, report)?;
     }
     Ok(())
 }
 
-pub(super) fn record_observed_bonus_corrections(
+fn upstream_values_match(correction: &Correction, values: &[CorrectionValue]) -> Result<bool> {
+    Ok(match (&correction.from, correction.correctable_field()?.shape) {
+        (CorrectionValue::Texts(spellings), FieldShape::RowName) => {
+            values.iter().all(|value| matches!(value, CorrectionValue::Text(name) if spellings.contains(name)))
+        }
+        _ => values == [correction.from.clone()],
+    })
+}
+
+fn record_correction_outcome(
     transaction: &Transaction,
-    observations: &[(&Correction, CorrectionValue)],
+    correction: &Correction,
+    values: &[CorrectionValue],
     report: &mut BuildReport,
 ) -> Result<()> {
-    for (correction, upstream) in observations {
-        if correction.from == *upstream {
-            record_applied_correction(transaction, correction, report)?;
-        } else {
-            record_stale_correction(
-                report,
-                correction,
-                StaleCorrectionCause::ValueChanged {
-                    expected_value: correction.from.to_json(),
-                    maetrim_value: upstream.to_json(),
-                },
-            );
-        }
+    if upstream_values_match(correction, values)? {
+        record_applied_correction(transaction, correction, report)
+    } else {
+        record_stale_correction(
+            report,
+            correction,
+            StaleCorrectionCause::ValueChanged {
+                expected_value: correction.from.to_json(),
+                maetrim_value: values.iter().map(CorrectionValue::to_json).collect::<Vec<_>>().join(" / "),
+            },
+        );
+        Ok(())
     }
-    Ok(())
 }
 
 fn apply_corrections_where(
@@ -209,33 +227,13 @@ fn apply_correction(
             maetrim_values.push(maetrim_value);
         }
     }
-    let merged_spellings = match (&correction.from, field.shape) {
-        (CorrectionValue::Texts(spellings), FieldShape::RowName) => Some(spellings),
-        _ => None,
-    };
-    let still_matches_his_value = match merged_spellings {
-        Some(spellings) => maetrim_values
-            .iter()
-            .all(|value| matches!(value, CorrectionValue::Text(current_name) if spellings.contains(current_name))),
-        None => maetrim_values == [correction.from.clone()],
-    };
-    if !still_matches_his_value {
-        let maetrim_value_texts: Vec<String> = maetrim_values.iter().map(CorrectionValue::to_json).collect();
-        record_stale_correction(
-            report,
-            correction,
-            StaleCorrectionCause::ValueChanged {
-                expected_value: correction.from.to_json(),
-                maetrim_value: maetrim_value_texts.join(" / "),
-            },
-        );
-        return Ok(());
+    if upstream_values_match(correction, &maetrim_values)? {
+        if let Some(context) = context {
+            reject_answer_definition_correction(transaction, context.grouping_answers, correction, field, &row_ids)?;
+        }
+        write_correction(transaction, effects, correction, field, &row_ids, context)?;
     }
-    if let Some(context) = context {
-        reject_answer_definition_correction(transaction, context.grouping_answers, correction, field, &row_ids)?;
-    }
-    write_correction(transaction, effects, correction, field, &row_ids, context)?;
-    record_applied_correction(transaction, correction, report)
+    record_correction_outcome(transaction, correction, &maetrim_values, report)
 }
 
 fn record_applied_correction(
@@ -303,8 +301,12 @@ fn write_correction(
             let effects = effects.context("effect replacement needs the effect cache")?;
             let effect_id = effects.ensure_indexed_effect(canonical)?;
             let family = effects.family(effect_id).expect("replacement effect is cached");
+            if family.is_stat {
+                let untyped: bool = transaction.query_row("SELECT EXISTS (SELECT 1 FROM item_effects l JOIN effects e ON e.id=l.effect_id WHERE l.item_id IN (SELECT value FROM json_each(?1)) AND e.name=?2 AND l.bonus_type_id IS NULL)", params![serde_json::to_string(row_ids)?,source], |row| row.get(0))?;
+                ensure!(!untyped, "effect replacement to stat {destination:?} cannot supply a bonus type");
+            }
             for owner_id in row_ids {
-                transaction.execute("UPDATE item_effects SET effect_id=?3, value=CASE WHEN ?4>=1 THEN value END, value2=CASE WHEN ?4>=2 THEN value2 END, bonus_type_id=CASE WHEN ?5 THEN bonus_type_id END, alias=CASE WHEN EXISTS (SELECT 1 FROM effect_aliases WHERE effect_id=?3 AND name=item_effects.alias) THEN alias END WHERE item_id=?1 AND effect_id=(SELECT id FROM effects WHERE name=?2)", params![owner_id,source,effect_id,family.amount_count,family.uses_link_type])?;
+                transaction.execute("UPDATE item_effects SET effect_id=?3, value=CASE WHEN ?4>=1 THEN value END, value2=CASE WHEN ?4>=2 THEN value2 END, bonus_type_id=CASE WHEN ?5 THEN bonus_type_id END, alias=CASE WHEN EXISTS (SELECT 1 FROM effect_aliases WHERE effect_id=?3 AND name=item_effects.alias) THEN alias END WHERE item_id=?1 AND effect_id=(SELECT id FROM effects WHERE name=?2)", params![owner_id,source,effect_id,family.amount_count,family.is_stat || family.uses_link_type])?;
             }
         }
         FieldShape::EffectBonusRemoval => {
@@ -999,6 +1001,7 @@ fn current_value(
             let source = correction.from.as_text().context("effect replacement names his effect")?;
             let destination = correction.effect.as_deref().context("effect replacement names its destination")?;
             let (source_count, destination_count): (i64, i64) = transaction.query_row("SELECT COUNT(CASE WHEN e.name=?2 THEN 1 END),COUNT(CASE WHEN e.name=?3 THEN 1 END) FROM item_effects l JOIN effects e ON e.id=l.effect_id WHERE l.item_id=?1 AND e.name IN (?2,?3)", params![row_id,source,destination], |row| Ok((row.get(0)?,row.get(1)?)))?;
+            ensure!(source == destination || source_count == 0 || destination_count == 0, "item {row_id} already links destination {destination:?} beside source {source:?}");
             ensure!(source_count <= 1 && destination_count <= 1, "item {row_id} has {source_count} links to {source:?} and {destination_count} to {destination:?}; an effect replacement needs one");
             return Ok(CorrectionValue::Text(
                 if source_count == 1 { source } else if destination_count == 1 { destination } else { NO_SUCH_BONUS }
@@ -2303,7 +2306,7 @@ fn remove_item_socket(
     item_id: i64,
     label: &str,
 ) -> Result<()> {
-    let order = item_socket_order(transaction, item_id, label)?.context("removed socket is absent")?;
+    let Some(order) = item_socket_order(transaction, item_id, label)? else { return Ok(()) };
     let linked_effects = transaction
         .prepare("SELECT DISTINCT l.effect_id FROM item_augment_slot_option_effects l JOIN item_augment_slot_options o ON o.id=l.option_id WHERE o.item_id=?1 AND o.slot_order=?2")?
         .query_map(params![item_id, order], |row| row.get::<_, i64>(0))?

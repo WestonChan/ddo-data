@@ -948,6 +948,49 @@ read = "2026-10-23"
 }
 
 #[test]
+fn description_skip_flags_resolve_nested_owner_kinds() {
+    for (file, kind, qualifier, table) in [
+        (
+            "packs/shared/sets/legendary-hruits-influence.toml",
+            "set_tier_bonus",
+            "equipped_count 3, Wisdom / Artifact",
+            "set_bonus_tier_effects",
+        ),
+        (
+            "packs/shared/gear/alabaster-of-the-twelve.toml",
+            "socket_option_bonus",
+            "socket \"crafting: attuned to heroism 2\", option \"Reviewed Wisdom\", Wisdom / Artifact",
+            "item_augment_slot_option_effects",
+        ),
+    ] {
+        let scratch = tempfile::tempdir().unwrap();
+        let tree = scratch.path().join("data");
+        copy_fixture_tree(&tree);
+        let path = tree.join(file);
+        let mut original = std::fs::read_to_string(&path).unwrap();
+        if kind == "socket_option_bonus" {
+            original.push_str("\n[[socket]]\nslot = 'crafting: attuned to heroism 2'\n[[socket.option]]\nname = 'Reviewed Wisdom'\n[[socket.option.effect]]\neffect = 'Wisdom'\nbonus_type = 'Artifact'\nvalue = 3\n");
+        }
+        std::fs::write(path, format!("{original}\n[[game_bug_correction]]\nkind = {kind:?}\nfield = 'value'\nqualifier = {qualifier:?}\nintended = 4\nreason = 'The displayed intended amount differs from the granted amount.'\nin_game = true\nread = '2026-11-01'\nskip_description_check = true\n")).unwrap();
+        let path = tree.join("effects/stats/wisdom.toml");
+        let mut stat: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+        stat["description_template"] = toml::Value::String("Grants +4 Artifact Wisdom.".into());
+        std::fs::write(path, toml::to_string(&stat).unwrap()).unwrap();
+        let mut db = Connection::open_in_memory().unwrap();
+        ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
+        let owner: i64 =
+            db.query_row("SELECT owner_id FROM note_lines WHERE note_kind='game_bug'", [], |row| row.get(0)).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("effect_descriptions_without_their_amounts").unwrap();
+        assert!(
+            !outcome.offenders.iter().any(|finding| finding.detail.contains(&format!("{table} owner {owner},"))
+                || finding.detail.contains("skip flag with nothing to skip")),
+            "{outcome}"
+        );
+    }
+}
+
+#[test]
 fn a_group_description_skip_covers_both_lines_and_becomes_stale_once() {
     let scratch = tempfile::tempdir().unwrap();
     let tree = scratch.path().join("data");

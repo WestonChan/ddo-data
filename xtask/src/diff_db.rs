@@ -66,6 +66,23 @@ impl Display for DiffReport {
     }
 }
 
+fn shared_columns(table: &str, first: &[String], second: &[String], report: &mut DiffReport) -> Vec<String> {
+    let removed = first.iter().filter(|column| !second.contains(column)).collect::<Vec<_>>();
+    let added = second.iter().filter(|column| !first.contains(column)).collect::<Vec<_>>();
+    if !removed.is_empty() || !added.is_empty() {
+        report.table_differences.push(format!("table {table}: added columns: {added:?}; removed columns: {removed:?}"));
+    }
+    first.iter().filter(|column| second.contains(column)).cloned().collect()
+}
+
+fn project_rows<T: Clone>(rows: Vec<Vec<T>>, columns: &[String], selected: &[String]) -> Vec<Vec<T>> {
+    let positions = selected
+        .iter()
+        .map(|column| columns.iter().position(|name| name == column).expect("shared column"))
+        .collect::<Vec<_>>();
+    rows.into_iter().map(|row| positions.iter().map(|position| row[*position].clone()).collect()).collect()
+}
+
 pub fn compare_tables(first: &Connection, second: &Connection, report: &mut DiffReport) -> Result<()> {
     let first_tables = table_names(first)?;
     let second_tables = table_names(second)?;
@@ -77,14 +94,15 @@ pub fn compare_tables(first: &Connection, second: &Connection, report: &mut Diff
         report.compared_tables += 1;
         let first_columns = table_columns(first, table)?;
         let second_columns = table_columns(second, table)?;
-        if first_columns != second_columns {
-            report
-                .table_differences
-                .push(format!("table {table}: columns differ: {first_columns:?} vs {second_columns:?}"));
+        let columns = shared_columns(table, &first_columns, &second_columns, report);
+        if columns.is_empty() {
             continue;
         }
-        let first_rows = table_rows(first, table)?;
-        let second_rows = table_rows(second, table)?;
+        let mut first_rows = project_rows(table_rows(first, table)?, &first_columns, &columns);
+        let mut second_rows = project_rows(table_rows(second, table)?, &second_columns, &columns);
+        for rows in [&mut first_rows, &mut second_rows] {
+            rows.sort_by_cached_key(|row| row.iter().map(ddo_etl::delta::scalar_text).collect::<Vec<_>>());
+        }
         if first_rows != second_rows {
             let mismatch = first_rows
                 .iter()
@@ -100,7 +118,7 @@ pub fn compare_tables(first: &Connection, second: &Connection, report: &mut Diff
                     format!(
                         "table {table}: row {} column {}: {:?} vs {:?}",
                         mismatch + 1,
-                        first_columns[column_index],
+                        columns[column_index],
                         first_row[column_index],
                         second_row[column_index]
                     )

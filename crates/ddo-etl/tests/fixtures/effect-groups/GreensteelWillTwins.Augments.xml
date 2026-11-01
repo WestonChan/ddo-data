@@ -1,0 +1,36 @@
+<Augments>
+   <Augment>
+      <Name>+1 Exceptional Will Save</Name>
+      <Description>Will Save +1: +1 Exceptional Resistance bonus to your Will save.
+Water:Opposition:Ethereal</Description>
+      <MinLevel>11</MinLevel>
+      <Type>Accessory Subjugation</Type>
+      <Icon>ShardOfGreatPower</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Exceptional</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+         <Item>Will</Item>
+      </Effect>
+      <AddAugment>Accessory Aspect I</AddAugment>
+      <AddAugment>Accessory Devastation</AddAugment>
+   </Augment>
+   <Augment>
+      <Name>+1 Exceptional Will Save </Name>
+      <Description>Will Save +1: +1 Exceptional Resistance bonus to your Will save.
+Positive:Opposition:Ethereal</Description>
+      <MinLevel>11</MinLevel>
+      <Type>Accessory Subjugation</Type>
+      <Icon>ShardOfGreatPower</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Exceptional</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">1</Amount>
+         <Item>Will</Item>
+      </Effect>
+      <AddAugment>Accessory Aspect I</AddAugment>
+      <AddAugment>Accessory Devastation</AddAugment>
+   </Augment>
+</Augments>

@@ -249,6 +249,7 @@ fn build_with_wiki_references(
     let mut report = BuildReport::default();
     effects::insert_triggers(&transaction, &item_buff_definitions)?;
     let mut effects = effects::EffectCache::new(&transaction, groupings);
+    effects.write_aliases()?;
     let stat_type_definitions = crate::map::effect_map::EFFECT_MAP.stat_type_effect_definitions(groupings)?;
     for definition in crate::map::effect_map::EFFECT_MAP.item_named_definitions(groupings)? {
         effects.ensure_indexed_effect(definition)?;
@@ -449,15 +450,16 @@ fn build_with_wiki_references(
     corrections_applied_while_writing.extend(&writer.applied_socket_label_corrections);
     corrections_applied_while_writing.extend(&writer.applied_bonus_removal_corrections);
     corrections_applied_while_writing.extend(&writer.applied_link_corrections);
-    corrections::record_corrections_applied_while_writing(
+    corrections::record_observed_corrections(
         &transaction,
-        &corrections_applied_while_writing,
+        corrections_applied_while_writing
+            .iter()
+            .map(|correction| (*correction, correction.from.clone()))
+            .chain(writer.observed_bonus_corrections.iter().cloned()),
         &mut report,
     )?;
-    corrections::record_observed_bonus_corrections(&transaction, &writer.observed_bonus_corrections, &mut report)?;
     corrections_applied_while_writing
         .extend(writer.observed_bonus_corrections.iter().map(|(correction, _)| *correction));
-    writer.effects.write_aliases()?;
     corrections::apply_non_quest_corrections(
         &transaction,
         &mut writer.effects,

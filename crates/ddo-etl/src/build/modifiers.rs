@@ -76,6 +76,7 @@ pub(super) enum GroupingOutcome {
 pub(super) enum GroupingHold {
     TypesWithoutStats(Vec<String>),
     DifferentValues,
+    Amounts(anyhow::Error),
     DifferentTypes,
     Deferred(&'static crate::line_exceptions::DeferredAugmentSplit),
 }
@@ -84,6 +85,7 @@ impl GroupingHold {
     fn reason(&self) -> String {
         match self {
             Self::TypesWithoutStats(types) => format!("effect types without derived stats: {}", types.join(", ")),
+            Self::Amounts(error) => format!("{error:#}"),
             Self::DifferentValues => "different values within one effect".to_string(),
             Self::DifferentTypes => "different types within one effect".to_string(),
             Self::Deferred(exception) => exception.description(),
@@ -98,11 +100,7 @@ impl TableWriter<'_> {
         for definition in
             definitions.iter().filter(|definition| routes.iter().any(|route| route.effect == definition.name))
         {
-            let is_new = self.effects.family_named(&definition.name).is_none();
             let id = self.effects.ensure_indexed_effect(definition)?;
-            if is_new {
-                self.effects.write_family_aliases(id)?;
-            }
             targets.insert(&definition.name, id);
         }
         for route in routes {
@@ -296,7 +294,10 @@ impl TableWriter<'_> {
             let preserve_member_lines = matches!(
                 outcome,
                 GroupingOutcome::Held(
-                    GroupingHold::DifferentTypes | GroupingHold::DifferentValues | GroupingHold::Deferred(_)
+                    GroupingHold::DifferentTypes
+                        | GroupingHold::DifferentValues
+                        | GroupingHold::Amounts(_)
+                        | GroupingHold::Deferred(_)
                 )
             );
             let grouped_links = match outcome {
@@ -696,8 +697,9 @@ impl TableWriter<'_> {
             [grouping] if grouping.accepts_link_values_at_type(bonus_type.name()) => {
                 let member_amounts =
                     bonuses.iter().map(|(_, bonus)| (bonus.stat.name, Some(bonus.value))).collect::<Vec<_>>();
-                let Ok(resolved_amounts) = self.groupings.link_amounts(grouping, &member_amounts) else {
-                    return Ok(GroupingOutcome::Held(GroupingHold::DifferentValues));
+                let resolved_amounts = match self.groupings.link_amounts(grouping, &member_amounts) {
+                    Ok(amounts) => amounts,
+                    Err(error) => return Ok(GroupingOutcome::Held(GroupingHold::Amounts(error))),
                 };
                 amounts = resolved_amounts;
                 self.effects.ensure_indexed_effect(grouping)?

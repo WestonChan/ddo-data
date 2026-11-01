@@ -62,6 +62,60 @@ fn a_changed_cell_names_its_table() {
 }
 
 #[test]
+fn schema_changes_preserve_shared_column_comparisons() {
+    let first = Connection::open_in_memory().unwrap();
+    let second = Connection::open_in_memory().unwrap();
+    first
+        .execute_batch(
+            "CREATE TABLE records (id INTEGER, old TEXT, value TEXT); INSERT INTO records VALUES (1,'old','before')",
+        )
+        .unwrap();
+    second
+        .execute_batch(
+            "CREATE TABLE records (value TEXT, id INTEGER, new TEXT); INSERT INTO records VALUES ('after',1,'new')",
+        )
+        .unwrap();
+    let mut report = DiffReport::default();
+    compare_tables(&first, &second, &mut report).unwrap();
+    assert!(
+        report
+            .table_differences
+            .iter()
+            .any(|line| line.contains("column value:") && line.contains("before") && line.contains("after")),
+        "{report}"
+    );
+    assert!(
+        report
+            .table_differences
+            .iter()
+            .any(|line| line.contains("added columns: [\"new\"]") && line.contains("removed columns: [\"old\"]")),
+        "{report}"
+    );
+    second.execute("UPDATE records SET value='before'", []).unwrap();
+    let mut report = DiffReport::default();
+    compare_tables(&first, &second, &mut report).unwrap();
+    assert_eq!(report.table_differences.len(), 1, "{report}");
+}
+
+#[test]
+fn schema_comparison_without_shared_columns_reports_the_schema() {
+    let first = Connection::open_in_memory().unwrap();
+    let second = Connection::open_in_memory().unwrap();
+    first.execute_batch("CREATE TABLE records (old TEXT); INSERT INTO records VALUES ('before')").unwrap();
+    second.execute_batch("CREATE TABLE records (new TEXT)").unwrap();
+    let mut report = DiffReport::default();
+    compare_tables(&first, &second, &mut report).unwrap();
+    assert_eq!(report.compared_tables, 1);
+    assert!(
+        report
+            .table_differences
+            .iter()
+            .any(|line| line.contains("added columns: [\"new\"]") && line.contains("removed columns: [\"old\"]")),
+        "{report}"
+    );
+}
+
+#[test]
 fn a_missing_row_names_its_table() {
     let work_dir = tempfile::tempdir().unwrap();
     let first = work_dir.path().join("first.db");

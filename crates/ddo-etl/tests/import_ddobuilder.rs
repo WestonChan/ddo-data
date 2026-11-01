@@ -80,6 +80,47 @@ fn write_abjuration_carrier(source: &Path, bonus_type: &str, index: usize) {
 }
 
 #[test]
+fn a_new_named_effect_reports_its_inferred_home() {
+    let world = ImportWorld::new(Corrections::default());
+    let path = world.options.source_dir.join("ItemBuffs.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let definition = include_str!("fixtures/effect-groups/AbjurationFocus.Buffs.xml")
+        .replace("SchoolFocusNumber", "NewWillWard")
+        .replace(
+            "%b1 %i1 Focus %v1: %v1 %b1 bonus to the DC of %i1 spells.",
+            "%b1 New Will Ward %v1: %v1 %b1 bonus to Will saves.",
+        )
+        .replace("SpellDC", "SaveBonus")
+        .replace("Abjuration", "Will");
+    std::fs::write(path, original.replace("</Buffs>", &format!("{definition}</Buffs>"))).unwrap();
+    let item = include_str!("fixtures/effect-groups/AbjurationFocus.item")
+        .replace("SchoolFocusNumber", "NewWillWard")
+        .replace("Abjuration Focus Carrier", "New Ward Carrier")
+        .replace("<Item>Abjuration</Item>", "")
+        .replace("Insight", "Resistance");
+    std::fs::create_dir_all(world.options.source_dir.join("Items")).unwrap();
+    std::fs::write(world.options.source_dir.join("Items/NewWard.item"), item).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    let home: String = world
+        .database()
+        .query_row(
+            "SELECT t.name FROM effects e JOIN bonus_types t ON t.id=e.home_bonus_type_id WHERE e.name='New Will Ward'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(home, "Resistance");
+    assert!(
+        report.entries.iter().any(|entry| entry.category == "NEW EFFECT HOME"
+            && entry.detail.contains("New Will Ward")
+            && entry.detail.contains("Resistance")),
+        "{report}"
+    );
+    assert!(report.to_string().contains("Named effect home types\n"));
+}
+
+#[test]
 fn import_preserves_declared_stat_homes_and_reports_a_different_majority() {
     let world = abjuration_home_import();
     for index in 3..5 {
@@ -772,6 +813,46 @@ fn plague_wolf_import_preserves_game_bug_evidence_when_upstream_adopts_the_value
             .unwrap();
         assert_eq!(feat["game_bug_correction"], bugs["game_bug_correction"]);
     }
+}
+
+#[test]
+fn a_stale_socket_removal_keeps_its_correction_as_a_conflict() {
+    let removal = fixture::new_qualified_correction(
+        "item_socket",
+        "Epic Treasure Hunter's Spyglass (legacy) (level 20)",
+        "socket = 'upgrade: tier 2'",
+        "remove",
+        "0",
+        "1",
+    );
+    let corrections = fixture::corrections_from(&[("spyglass.toml", &removal)]).unwrap();
+    let world = ImportWorld::with_sources(
+        fixture::grouping_cases(),
+        corrections,
+        WikiOverrides::default(),
+        fixture::write_spyglass_options,
+    );
+    let path = world.options.source_dir.join("Items/SpyglassOptions.item");
+    let mut original = std::fs::read_to_string(&path).unwrap();
+    let start = original.find("    <ItemAugment>").unwrap();
+    let end = start + original[start..].find("    </ItemAugment>").unwrap() + "    </ItemAugment>".len();
+    original.replace_range(start..end, "");
+    std::fs::write(path, original).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(report.has_conflicts(), "{report}");
+    assert!(
+        report.entries.iter().any(|entry| entry.category == "CONFLICT"
+            && entry.detail.contains("remove")
+            && entry.detail.contains("no such bonus")),
+        "{report}"
+    );
+    let upstream: String = world
+        .database()
+        .query_row("SELECT from_value FROM corrections WHERE kind='item_socket' AND field='remove'", [], |row| {
+            row.get(0)
+        })
+        .unwrap();
+    assert_eq!(upstream, "\"no such bonus\"");
 }
 
 #[test]
@@ -2843,6 +2924,12 @@ fn title_omission_declarations_remain_ours_through_import() {
     assert!(normalized
         .db
         .query_row("SELECT omits_bonus_type FROM effects WHERE name='Command'", [], |row| row.get::<_, bool>(0))
+        .unwrap());
+    assert!(ddo_etl::delta::OURS_ONLY_COLUMNS.contains(&("effect_aliases", "omits_bonus_type")));
+    assert!(normalized
+        .db
+        .query_row("SELECT omits_bonus_type FROM effect_aliases WHERE name='Quiet Command'", [], |row| row
+            .get::<_, bool>(0))
         .unwrap());
     let report = import_ddobuilder(&world.options).unwrap();
     assert!(!report.has_conflicts(), "{report}");

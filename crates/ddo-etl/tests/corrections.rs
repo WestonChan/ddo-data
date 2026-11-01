@@ -139,6 +139,69 @@ fn item_effect_replacement_preserves_position_and_reports_a_missing_upstream_lin
 }
 
 #[test]
+fn item_effect_replacement_rejects_an_already_linked_destination() {
+    let source = fixture::xml_source();
+    fixture::write_ship_kickers(source.path());
+    let path = source.path().join("Items/ShipKickers.item");
+    let original = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        path,
+        original.replace("  </Item>", "    <Buff><Type>Riposte</Type><Item>V</Item></Buff>\n  </Item>"),
+    )
+    .unwrap();
+    let replacement = new_qualified_correction(
+        "item_effect",
+        "Ship Kickers",
+        "effect = 'Riposte V'",
+        "effect",
+        "'Riposte'",
+        "'Riposte V'",
+    );
+    let error = built_db_from_index(fixture::grouping_cases(), source.path(), &[("ship-kickers.toml", &replacement)])
+        .unwrap_err();
+    assert!(error.contains("ship-kickers.toml") && error.contains("already links"), "{error}");
+}
+
+#[test]
+fn item_effect_replacement_refuses_a_stat_without_a_link_type() {
+    let source = fixture::xml_source();
+    fixture::write_ship_kickers(source.path());
+    let path = source.path().join("Items/ShipKickers.item");
+    let original = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(path, original.replace("<Type>Riposte</Type>", "<Type>Riposte</Type><Item>V</Item>")).unwrap();
+    let replacement = new_qualified_correction(
+        "item_effect",
+        "Ship Kickers",
+        "effect = 'Strength'",
+        "effect",
+        "'Riposte V'",
+        "'Strength'",
+    );
+    let error = built_db_from_index(fixture::grouping_cases(), source.path(), &[("ship-kickers.toml", &replacement)])
+        .unwrap_err();
+    assert!(error.contains("ship-kickers.toml") && error.contains("stat") && error.contains("bonus type"), "{error}");
+}
+
+#[test]
+fn item_effect_replacement_preserves_an_existing_stat_link_type() {
+    let source = fixture::xml_source();
+    fixture::write_ship_kickers(source.path());
+    let replacement = new_qualified_correction(
+        "item_effect",
+        "Ship Kickers",
+        "effect = 'Strength'",
+        "effect",
+        "'Dexterity'",
+        "'Strength'",
+    );
+    let (db, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("ship-kickers.toml", &replacement)]).unwrap();
+    assert_eq!(report.correction_applied_count, 1);
+    let link: (i64, i64, String) = db.query_row("SELECT l.sort_order,l.value,b.name FROM item_effects l JOIN effects e ON e.id=l.effect_id JOIN bonus_types b ON b.id=l.bonus_type_id JOIN items i ON i.id=l.item_id WHERE i.name='Ship Kickers' AND e.name='Strength'", [], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap();
+    assert_eq!(link, (0, 2, "Insight".into()));
+}
+
+#[test]
 fn item_effect_replacement_needs_no_upstream_definition_in_the_data_tree() {
     let source = fixture::xml_source();
     fixture::write_ship_kickers(source.path());
@@ -3196,6 +3259,72 @@ fn a_wiki_fact_naming_the_old_spelling_fails_the_build() {
     .unwrap();
     let error = built_db_with_wiki(&wiki, &corrections).unwrap_err();
     assert!(error.contains("Minor Fire Guard"), "{error}");
+}
+
+#[test]
+fn same_named_augment_bonus_corrections_are_recorded_once() {
+    let source = fixture::xml_source();
+    let path = source.path().join("Augments/Greensteel_Heroic.Augments.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let twins = include_str!("fixtures/effect-groups/GreensteelWillTwins.Augments.xml")
+        .replace("<Augments>", "")
+        .replace("</Augments>", "");
+    std::fs::write(path, original.replace("</Augments>", &format!("{twins}</Augments>"))).unwrap();
+    for (field, upstream, corrected, amount, bonus_type) in
+        [("value", "1", "2", 2, "Exceptional"), ("bonus_type", "'Exceptional'", "'Insight'", 1, "Insight")]
+    {
+        let correction = new_qualified_correction(
+            "augment_bonus",
+            "+1 Exceptional Will Save",
+            "stat = 'Will Save'\nbonus_type = 'Exceptional'",
+            field,
+            upstream,
+            corrected,
+        );
+        let (db, report) = built_db_from(source.path(), &[("will-twins.toml", &correction)]).unwrap();
+        let bonuses = db.prepare("SELECT b.amount,t.name FROM owner_bonuses b JOIN augments a ON a.id=b.owner_id AND b.owner_kind='augment' JOIN bonus_types t ON t.id=b.bonus_type_id WHERE a.name='+1 Exceptional Will Save' ORDER BY a.id").unwrap()
+            .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?))).unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(bonuses, [(amount, bonus_type.into()), (amount, bonus_type.into())]);
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+        assert_eq!(recorded_corrections(&db).len(), 1);
+    }
+}
+
+#[test]
+fn same_named_augment_lines_merges_are_recorded_once() {
+    let source = fixture::xml_source();
+    let original = include_str!("fixtures/effect-groups/WoefulShadow.Augments.xml");
+    let separate =
+        original.replace("<Type>Doublestrike</Type>\n      <Type>Doubleshot</Type>", "<Type>Doublestrike</Type>");
+    let first_effect = separate.split_once("    <Effect>").unwrap().1.split_once("    </Effect>").unwrap().0;
+    let separate = separate.replacen(
+        "    </Effect>",
+        &format!("    </Effect>\n    <Effect>{}    </Effect>", first_effect.replace("Doublestrike", "Doubleshot")),
+        1,
+    );
+    let twin = separate
+        .replace("<Augments>", "")
+        .replace("</Augments>", "")
+        .replace("(Legendary)</Name>", "(Legendary) </Name>")
+        .replace("<Description>", "<Description>Second source. ");
+    std::fs::write(
+        source.path().join("Augments/WoefulShadow.Augments.xml"),
+        separate.replace("</Augments>", &format!("{twin}</Augments>")),
+    )
+    .unwrap();
+    let correction = new_qualified_correction(
+        "augment_bonus",
+        "Woeful Shadow (Legendary)",
+        "stat = 'Doublestrike, Doubleshot'\nbonus_type = 'Profane'",
+        "lines",
+        "[['Doublestrike'], ['Doubleshot']]",
+        "'Doublestrike and Doubleshot'",
+    );
+    let (db, report) = built_db_from(source.path(), &[("woeful-twins.toml", &correction)]).unwrap();
+    assert_eq!(report.correction_applied_count, 1);
+    assert_eq!(recorded_corrections(&db).len(), 1);
+    assert_eq!(db.query_row("SELECT COUNT(*) FROM augment_effects l JOIN augments a ON a.id=l.augment_id JOIN effects e ON e.id=l.effect_id WHERE a.name='Woeful Shadow (Legendary)' AND e.name='Doublestrike and Doubleshot'", [], |row| row.get::<_, i64>(0)).unwrap(), 2);
 }
 
 #[test]

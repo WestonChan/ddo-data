@@ -433,7 +433,7 @@ pub(crate) fn bonuses_via(
         _ => unreachable!("bonus rendering is only used for feats"),
     };
     let sql = format!(
-        "SELECT e.id, e.slug, j.sort_order AS link_sort_order, e.verbose_name_template, e.description_template, s.name AS stat, s.category AS stat_category,
+        "SELECT e.id, e.slug, e.name, e.omits_bonus_type, home_bt.name AS home_bonus_type, j.sort_order AS link_sort_order, e.verbose_name_template, e.description_template, s.name AS stat, s.category AS stat_category,
                 bt.name AS bonus_type,
                 ob.amount AS value,
                 CASE WHEN es.amount_from = 2 THEN ob.amount END AS value2,
@@ -446,6 +446,7 @@ pub(crate) fn bonuses_via(
            LEFT JOIN effect_bonuses es ON es.effect_id = e.id AND es.target_effect_id = COALESCE(ob.group_effect_id, ob.stat_id)
                 AND (es.bonus_type_id IS ob.bonus_type_id OR es.bonus_type_id IS NULL)
            LEFT JOIN bonus_types bt ON bt.id = ob.bonus_type_id
+           LEFT JOIN bonus_types home_bt ON home_bt.id = e.home_bonus_type_id
           WHERE j.{owner_column} = ?1
           ORDER BY j.sort_order, ob.effect_bonus_order, ob.group_member_order"
     );
@@ -460,7 +461,7 @@ pub(crate) fn bonuses_via(
             None => stat_name.to_string(),
         };
         let description = bonus["description_template"].as_str().map(|template| {
-            let rendered_title = render_effect_template(bonus["verbose_name_template"].as_str().unwrap_or(""), bonus);
+            let rendered_title = render_verbose_name(bonus);
             format!("{rendered_title}: {}", render_description_template(template, bonus))
         });
         let object = bonus.as_object_mut().expect("query returns objects");
@@ -470,6 +471,8 @@ pub(crate) fn bonuses_via(
         object.remove("description_template");
         object.remove("template_value");
         object.remove("template_value2");
+        object.remove("home_bonus_type");
+        object.remove("omits_bonus_type");
         object.insert("name".to_string(), Value::String(name));
         object.insert("description".to_string(), description.map_or(Value::Null, Value::String));
     }
@@ -504,14 +507,8 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
     owner_condition: &str,
     selector_params: P,
 ) -> Result<BTreeMap<i64, Vec<(i64, Value)>>, ApiError> {
-    let owner_kind = match junction_table {
-        "item_effects" => "item",
-        "augment_effects" => "augment",
-        "set_bonus_tier_effects" => "set_bonus_tier",
-        "feat_effects" => "feat",
-        "item_augment_slot_option_effects" => "item_augment_slot_option",
-        _ => unreachable!("unknown effect owner table"),
-    };
+    let owner_kind =
+        ddo_model::enums::EffectOwner::from_table(junction_table).expect("known effect owner table").as_str();
     let bonus_owner_condition = owner_condition
         .replace(&format!("j.{owner_column}"), "filtered_bonus.owner_id")
         .replace("j.sort_order", "filtered_bonus.effect_link_order");

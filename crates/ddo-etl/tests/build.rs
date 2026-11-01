@@ -282,6 +282,29 @@ fn stat_type_routing_keeps_a_selected_stat_alias() {
 }
 
 #[test]
+fn renamed_families_write_their_search_only_aliases() {
+    let canonical = fixture::database(|root| {
+        let path = root.join("effects/natural-armor-bonus.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{original}\n[[alias]]\nname = 'Previous Armor'\n")).unwrap();
+    });
+    let index = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
+    let rename = fixture::new_correction("effect", "Natural Armor", "name", "'Natural Armor'", "'Natural Armor Bonus'");
+    let corrections = fixture::corrections_from(&[("natural-armor-bonus.toml", &rename)]).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        &index,
+        &data_files_fixture_dir(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM effect_aliases a JOIN effects e ON e.id=a.effect_id WHERE e.name='Natural Armor Bonus' AND a.name='Previous Armor' AND a.verbose_name_template IS NULL"), 1);
+}
+
+#[test]
 fn armor_effect_names_follow_tooltips_and_keep_old_search_names() {
     let mut db = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db).unwrap();
@@ -2429,7 +2452,9 @@ fn missing_required_slot_keeps_default_member_lines() {
     let names = db.prepare("SELECT e.name FROM feat_effects l JOIN feats f ON f.id=l.feat_id JOIN effects e ON e.id=l.effect_id WHERE f.name='Past Life: Ranger - Dark Hunter' ORDER BY e.name")
         .unwrap().query_map([], |row| row.get::<_,String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
     assert_eq!(names, ["Sneak Attack Damage", "Sneak Attack Hit"]);
-    assert!(report.held_back_effects.iter().any(|effect| effect.owner_name == "Past Life: Ranger - Dark Hunter"));
+    let held =
+        report.held_back_effects.iter().find(|effect| effect.owner_name == "Past Life: Ranger - Dark Hunter").unwrap();
+    assert!(held.reason.contains("lack a value for every target slot"), "{}", held.reason);
 }
 
 #[test]

@@ -29,6 +29,12 @@ fn normalized_fixture_matches_and_reports_an_edited_link() {
     let upstream =
         normalized_upstream_database(&source, &ours, &version, false, &scratch.path().join("upstream")).unwrap();
     assert!(upstream_differences(&upstream.db, &ours).unwrap().is_empty());
+    let effect_id: i64 = ours.query_row("SELECT MIN(id) FROM effects WHERE is_stat", [], |row| row.get(0)).unwrap();
+    ours.execute("INSERT INTO effect_aliases(effect_id,name,slug,sort_order) VALUES (?1,'Parity Search Alias','parity-search-alias',0)", [effect_id]).unwrap();
+    let aliases = upstream_differences(&upstream.db, &ours).unwrap();
+    assert_eq!(aliases.len(), 1, "{aliases:?}");
+    assert!(aliases[0].starts_with("effect_aliases:"), "{aliases:?}");
+    ours.execute("DELETE FROM effect_aliases WHERE name='Parity Search Alias'", []).unwrap();
     let changed = ours.execute(
         "UPDATE feat_effects SET value = value + 1 WHERE rowid = (SELECT MIN(rowid) FROM feat_effects WHERE value IS NOT NULL)",
         [],

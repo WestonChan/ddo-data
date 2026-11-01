@@ -41,9 +41,15 @@ fn references(db: &Connection, table: &str) -> Result<BTreeMap<String, String>> 
     Ok(rows)
 }
 
-fn rows_by_slug(db: &Connection, table: &str, columns: &[&String]) -> Result<BTreeMap<String, (i64, Vec<SqlValue>)>> {
+fn rows_by_slug(
+    db: &Connection,
+    table: &str,
+    row_key: &str,
+    columns: &[&String],
+) -> Result<BTreeMap<String, (i64, Vec<SqlValue>)>> {
     let selected = columns.iter().map(|column| format!(", \"{column}\"")).collect::<String>();
-    let mut statement = db.prepare(&format!("SELECT slug, id{selected} FROM \"{table}\" WHERE slug IS NOT NULL"))?;
+    let mut statement =
+        db.prepare(&format!("SELECT slug, {row_key}{selected} FROM \"{table}\" WHERE slug IS NOT NULL"))?;
     let rows = statement
         .query_map([], |row| {
             let values =
@@ -68,10 +74,15 @@ pub fn fill_cells_from_ours(his: &Connection, ours: &Connection) -> Result<Vec<F
     let mut filled = Vec::new();
     let mut reference_targets: BTreeMap<String, Option<ReferenceTarget>> = BTreeMap::new();
     for (table, rule) in TABLE_MERGES {
-        if !matches!(rule, TableMerge::Entity { .. }) {
+        let authored_columns_only = matches!(rule, TableMerge::Array { .. });
+        if !matches!(rule, TableMerge::Entity { .. }) && !authored_columns_only {
             continue;
         }
         let columns = table_columns(his, table)?;
+        if authored_columns_only && !columns.iter().any(|column| is_ours_only_column(table, column)) {
+            continue;
+        }
+        let row_key = if authored_columns_only { "rowid" } else { "id" };
         if !columns.iter().any(|column| column == "slug") {
             continue;
         }
@@ -83,11 +94,12 @@ pub fn fill_cells_from_ours(his: &Connection, ours: &Connection) -> Result<Vec<F
         }
         let fillable: Vec<&String> = columns
             .iter()
+            .filter(|column| !authored_columns_only || is_ours_only_column(table, column))
             .filter(|column| !matches!(column.as_str(), "id" | "slug") && !is_rebuilt_column(table, column))
             .filter(|column| references.get(*column).is_none_or(|target| reference_targets[target].is_some()))
             .collect();
-        let our_rows = rows_by_slug(ours, table, &fillable)?;
-        let his_rows = rows_by_slug(his, table, &fillable)?;
+        let our_rows = rows_by_slug(ours, table, row_key, &fillable)?;
+        let his_rows = rows_by_slug(his, table, row_key, &fillable)?;
         for (slug, (our_id, our_values)) in &our_rows {
             let Some((his_id, his_values)) = his_rows.get(slug) else { continue };
             let mut assignments = Vec::new();
@@ -132,7 +144,10 @@ pub fn fill_cells_from_ours(his: &Connection, ours: &Connection) -> Result<Vec<F
                 .join(", ");
             let parameters =
                 std::iter::once(SqlValue::Integer(*his_id)).chain(assignments.into_iter().map(|(_, value)| value));
-            his.execute(&format!("UPDATE \"{table}\" SET {assigned} WHERE id = ?1"), params_from_iter(parameters))?;
+            his.execute(
+                &format!("UPDATE \"{table}\" SET {assigned} WHERE {row_key} = ?1"),
+                params_from_iter(parameters),
+            )?;
         }
     }
     filled.sort();

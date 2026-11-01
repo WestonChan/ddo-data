@@ -308,12 +308,22 @@ impl Display for DdobuilderImportReport {
                 counts.resolved_corrections
             )?;
         }
-        for entry in self.entries.iter().filter(|entry| !super::audit::is_stat_home(entry)) {
+        for entry in self
+            .entries
+            .iter()
+            .filter(|entry| !super::audit::is_stat_home(entry) && entry.category != "NEW EFFECT HOME")
+        {
             writeln!(output, "{}: {} {}", entry.path.display(), entry.category, entry.detail)?;
         }
         if self.entries.iter().any(super::audit::is_stat_home) {
             writeln!(output, "Stat home types")?;
             for entry in self.entries.iter().filter(|entry| super::audit::is_stat_home(entry)) {
+                writeln!(output, "{}: {} {}", entry.path.display(), entry.category, entry.detail)?;
+            }
+        }
+        if self.entries.iter().any(|entry| entry.category == "NEW EFFECT HOME") {
+            writeln!(output, "Named effect home types")?;
+            for entry in self.entries.iter().filter(|entry| entry.category == "NEW EFFECT HOME") {
                 writeln!(output, "{}: {} {}", entry.path.display(), entry.category, entry.detail)?;
             }
         }

@@ -616,9 +616,12 @@ impl Correction {
                 }, "one upstream line splits into at least two named lines; multiple upstream lines merge into one named line");
             }
             FieldShape::Removal => {
-                if (&self.from, &self.to) != (&CorrectionValue::Integer(0), &CorrectionValue::Integer(1)) {
-                    bail!("a remove takes from = 0 (his files still carry the row) and to = 1");
-                }
+                ensure!(
+                    self.to == CorrectionValue::Integer(1)
+                        && (self.from == CorrectionValue::Integer(0)
+                            || (self.kind == CorrectionKind::ItemSocket && self.from.as_text() == Some(NO_SUCH_BONUS))),
+                    "a remove takes from = 0 (his files still carry the row) and to = 1; a missing socket records no such bonus"
+                );
             }
             FieldShape::BonusAddition => {
                 let CorrectionValue::Bonus(bonus) = &self.to else {

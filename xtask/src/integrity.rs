@@ -1198,7 +1198,8 @@ fn effect_descriptions_without_their_amounts(db: &Connection, _options: &Integri
                         amount_findings.insert((bonus["stat"].as_str().map(str::to_string), "type missing"));
                     }
                 }
-                let owner_kind = owner_column.strip_suffix("_id").context("effect owner column needs an _id suffix")?;
+                let owner_kind =
+                    ddo_model::enums::EffectOwner::from_table(table).context("known effect owner table")?.as_str();
                 let line_skips = skips.by_line.get(&(owner_kind.to_string(), owner_id, sort_order));
                 let mut causes = BTreeSet::new();
                 for (stat, cause) in amount_findings {

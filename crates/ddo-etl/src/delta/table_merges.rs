@@ -165,6 +165,7 @@ pub const REBUILT_COLUMNS: &[(&str, &str)] = &[
 
 pub const OURS_ONLY_COLUMNS: &[(&str, &str)] = &[
     ("effects", "omits_bonus_type"),
+    ("effect_aliases", "omits_bonus_type"),
     ("quests", "is_free_to_play"),
     ("quests", "legendary_level"),
     ("quests", "zone"),

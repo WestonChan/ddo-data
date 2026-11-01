@@ -1,4 +1,7 @@
-use super::{baseline_response, json_differences, json_response, table_columns, table_names, DiffReport, PAGE_SIZE};
+use super::{
+    baseline_response, json_differences, json_response, project_rows, shared_columns, table_columns, table_names,
+    DiffReport, PAGE_SIZE,
+};
 use anyhow::{ensure, Context, Result};
 use ddo_api::{app, AppState};
 use ddo_etl::delta::{polymorphic_table, sql_text, IdentityIndex};
@@ -26,16 +29,16 @@ fn compare_tables_by_slug(
         report.compared_tables += 1;
         let first_columns = table_columns(first, table)?;
         let second_columns = table_columns(second, table)?;
-        if first_columns != second_columns {
-            report
-                .table_differences
-                .push(format!("table {table}: columns differ: {first_columns:?} vs {second_columns:?}"));
+        let columns = shared_columns(table, &first_columns, &second_columns, report);
+        if columns.is_empty() {
             continue;
         }
-        let first_rows = first_index.normalized_rows(first, table)?;
-        let second_rows = second_index.normalized_rows(second, table)?;
+        let mut first_rows = project_rows(first_index.normalized_rows(first, table)?, &first_columns, &columns);
+        let mut second_rows = project_rows(second_index.normalized_rows(second, table)?, &second_columns, &columns);
+        first_rows.sort();
+        second_rows.sort();
         if first_rows != second_rows {
-            let key_index = first_columns.iter().position(|column| column == "id");
+            let key_index = columns.iter().position(|column| column == "id");
             let rows_by_key = |rows: Vec<Vec<String>>| {
                 let mut counts = BTreeMap::<String, usize>::new();
                 rows.into_iter()
@@ -43,8 +46,8 @@ fn compare_tables_by_slug(
                         let identity = if table == "effect_vocabulary_bonus_types" {
                             ["kind", "id", "bonus_type_id"]
                                 .iter()
-                                .map(|column| {
-                                    row[first_columns.iter().position(|name| name == column).unwrap()].clone()
+                                .filter_map(|column| {
+                                    columns.iter().position(|name| name == column).map(|position| row[position].clone())
                                 })
                                 .collect::<Vec<_>>()
                                 .join("/")
@@ -63,7 +66,7 @@ fn compare_tables_by_slug(
             for key in first_by_key.keys().chain(second_by_key.keys()).collect::<BTreeSet<_>>() {
                 match (first_by_key.get(key), second_by_key.get(key)) {
                     (Some(left), Some(right)) => {
-                        for (column, (before, after)) in first_columns.iter().zip(left.iter().zip(right)) {
+                        for (column, (before, after)) in columns.iter().zip(left.iter().zip(right)) {
                             if before != after {
                                 report
                                     .table_differences
@@ -420,6 +423,39 @@ mod tests {
         let mut db = Connection::open_in_memory().unwrap();
         ddo_etl::tree::build_from_data(&fixtures.join("data"), &mut db).unwrap();
         db
+    }
+
+    #[test]
+    fn schema_changes_keep_slugged_rows_and_references_comparable() {
+        let first = fixture_database();
+        let second = fixture_database();
+        second.execute_batch("ALTER TABLE items ADD COLUMN review_text TEXT; UPDATE items SET description='Changed across schema' WHERE id=(SELECT MIN(id) FROM items)").unwrap();
+        for (before, after, schema_change) in [(&first, &second, "added columns"), (&second, &first, "removed columns")]
+        {
+            let mut report = DiffReport::default();
+            compare_tables_by_slug(
+                before,
+                after,
+                &mut IdentityIndex::from_db(before).unwrap(),
+                &mut IdentityIndex::from_db(after).unwrap(),
+                &mut report,
+            )
+            .unwrap();
+            assert!(
+                report
+                    .table_differences
+                    .iter()
+                    .any(|line| line.contains("column description:") && line.contains("Changed across schema")),
+                "{report}"
+            );
+            assert!(
+                report
+                    .table_differences
+                    .iter()
+                    .any(|line| line.contains(&format!("{schema_change}: [\"review_text\"]"))),
+                "{report}"
+            );
+        }
     }
 
     #[test]

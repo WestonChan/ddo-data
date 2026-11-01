@@ -3526,6 +3526,28 @@ async fn sentient_gems_list_by_name() {
 }
 
 #[tokio::test]
+async fn feat_bonus_description_titles_match_enchantment_lines() {
+    let db = rusqlite::Connection::open(fixture_db_path()).unwrap();
+    let lines = ddo_api::served_effect_lines(&db, "feat_effects", "feat_id").unwrap();
+    let mut checked = 0;
+    for (owner, owner_lines) in lines {
+        let (status, _, detail) = get(&format!("/v1/feats/{owner}")).await;
+        assert_eq!(status, StatusCode::OK);
+        for bonus in detail["bonuses"].as_array().unwrap() {
+            let Some(description) = bonus["description"].as_str() else { continue };
+            assert!(
+                owner_lines.iter().any(|(_, line)| line["effect_id"] == bonus["id"]
+                    && description.starts_with(&format!("{}: ", line["verbose_name"].as_str().unwrap()))),
+                "{}: {bonus}",
+                detail["name"]
+            );
+            checked += 1;
+        }
+    }
+    assert!(checked > 0);
+}
+
+#[tokio::test]
 async fn feat_bonus_references_match_the_granting_effect() {
     let (_, _, feats) = get_list_rows("/v1/feats").await;
     let db = rusqlite::Connection::open(fixture_db_path()).unwrap();
