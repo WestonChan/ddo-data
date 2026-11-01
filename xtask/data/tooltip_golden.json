@@ -586,7 +586,14 @@
           "note": "tooltip's bold title is 'Improved Deception' without the number",
           "standard_evidence": "same tooltip (numbers aside) on Legendary Cloak of the Ambassador",
           "page": "https://ddowiki.com/page/Item:Legendary_Bracers_of_the_Unseen_Assassin",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "reason": "The shared description renders each link’s bonus type consistently. The maintainer’s 2026-11-01 ruling keeps our description; this screenshot uses lowercase enhancement.",
+              "served": "This item makes your weapons hard to focus upon and thus provides a +21 Enhancement bonus to Bluff checks. In addition, while using this item your weapons have a chance to envelop the target in darkness, making them vulnerable to sneak attacks for a short time.",
+              "code": "source_wording"
+            }
+          }
         },
         {
           "kind": "enchantment",
@@ -945,7 +952,14 @@
           "note": "tooltip's bold title is 'Improved Deception' without the number",
           "standard_evidence": "same tooltip (numbers aside) on Legendary Bracers of the Unseen Assassin",
           "page": "https://ddowiki.com/page/Item:Legendary_Cloak_of_the_Ambassador",
-          "read": "2026-10-05"
+          "read": "2026-10-05",
+          "known_differences": {
+            "description": {
+              "reason": "The shared description renders each link’s bonus type consistently. The maintainer’s 2026-11-01 ruling keeps our description; this screenshot uses lowercase enhancement.",
+              "served": "This item makes your weapons hard to focus upon and thus provides a +21 Enhancement bonus to Bluff checks. In addition, while using this item your weapons have a chance to envelop the target in darkness, making them vulnerable to sneak attacks for a short time.",
+              "code": "source_wording"
+            }
+          }
         },
         {
           "kind": "enchantment",

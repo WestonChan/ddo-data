@@ -1038,6 +1038,22 @@ mod tests {
     }
 
     #[test]
+    fn repair_amplification_description_has_no_space_before_its_closing_parenthesis() {
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        ddo_model::seeds::insert_all(&db).unwrap();
+        let transaction = db.transaction().unwrap();
+        let mut effects = EffectCache::new(&transaction, crate::groupings::fixture_groupings());
+        let source = "This effect amplifies all incoming repair energy healing by {1} (%b1 bonus ). Includes spells, potions, and other effects.";
+        let effect_id =
+            effects.ensure_family("Repair Amplification", "%b1 Repair Amplification {1}", Some(source), 1).unwrap();
+        let description: String = transaction
+            .query_row("SELECT description_template FROM effects WHERE id = ?1", [effect_id], |row| row.get(0))
+            .unwrap();
+        assert_eq!(description, source.replace("bonus )", "bonus)"));
+    }
+
+    #[test]
     fn fixed_dc_variants_share_the_wild_frenzy_family_and_keep_a_default() {
         let mut db = Connection::open_in_memory().unwrap();
         db.execute_batch(ddo_model::ddl()).unwrap();

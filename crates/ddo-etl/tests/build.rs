@@ -3248,6 +3248,10 @@ fn writes_improved_deception_from_its_definition_as_a_typed_bluff_bonus() {
         .map(Result::unwrap)
         .collect();
     assert!(written_bonuses.contains(&("Bluff".into(), 5, "Enhancement".into())));
+    let description: String = db
+        .query_row("SELECT description_template FROM effects WHERE name = 'Improved Deception'", [], |row| row.get(0))
+        .unwrap();
+    assert!(description.contains("{1} %b1 bonus to Bluff checks"));
 }
 
 #[test]

@@ -27,7 +27,7 @@ name = "Force Blast 6"
 
 [[effect]]
 name = "Improved Deception"
-bonus_type = "Enhancement"
+bonus_type = "Competence"
 value = 20
 
 [[effect]]
@@ -44,6 +44,15 @@ value = 20
 name = "Swim"
 bonus_type = "Competence"
 value = 20
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "bonus_type"
+upstream = "Enhancement"
+reason = 'R6-2 row 34: screenshot "Improved Deception +20" grants a "+20 Competence bonus to Bluff checks"; typed text says enhancement. Screenshot: https://images.ddowiki.com/Legendary_Collapsible_Shortbow.png'
+url = "https://ddowiki.com/page/Item:Legendary_Collapsible_Shortbow"
+read = "2026-10-23"
+qualifier = 'effect "Improved Deception"'
 
 [[socket]]
 slot = "colorless"

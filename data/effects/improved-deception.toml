@@ -1,12 +1,41 @@
 name = "Improved Deception"
 default_value = 5
-description_template = "This item makes your weapons hard to focus upon and thus provides a {1} enhancement bonus to Bluff checks. In addition, while using this item your weapons have a chance to envelop the target in darkness, making them vulnerable to sneak attacks for a short time."
+description_template = "This item makes your weapons hard to focus upon and thus provides a {1} %b1 bonus to Bluff checks. In addition, while using this item your weapons have a chance to envelop the target in darkness, making them vulnerable to sneak attacks for a short time."
+omits_bonus_type = true
 tier = 2
 tier_group = "Deception"
-verbose_name_template = "%b1 Improved Deception +{1}"
+verbose_name_template = "Improved Deception +{1}"
 
 [[bonus]]
 amount_from = 1
 rounding = "down"
 scale = 1.0
 target = "Bluff"
+
+[[citation]]
+url = "https://images.ddowiki.com/Epic_Collapsible_Shortbow.png"
+read = "2026-10-23"
+note = 'R6-2 row 33: screenshot "Improved Deception +17" grants a "+17 Competence bonus to Bluff checks"; typed text says enhancement. Screenshot: https://images.ddowiki.com/Epic_Collapsible_Shortbow.png'
+
+[[citation]]
+url = "https://images.ddowiki.com/Legendary_Collapsible_Shortbow.png"
+read = "2026-10-23"
+note = 'R6-2 row 34: screenshot "Improved Deception +20" grants a "+20 Competence bonus to Bluff checks"; typed text says enhancement. Screenshot: https://images.ddowiki.com/Legendary_Collapsible_Shortbow.png'
+
+[[citation]]
+url = "https://images.ddowiki.com/Legendary_Amethyst_Loupe.png"
+read = "2026-10-23"
+note = 'R6-7 row 82: screenshot "Improved Deception +20" grants a "+20 Competence bonus to Bluff checks"; typed text says enhancement. Screenshot: https://images.ddowiki.com/Legendary_Amethyst_Loupe.png'
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Legendary_Bracers_of_the_Unseen_Assassin"
+read = "2026-10-05"
+note = 'Existing golden record: "Improved Deception +21", with an enhancement bonus in its description.'
+
+[[ddobuilder_correction]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "%b1 Improved Deception +{1}"
+reason = "R6-2 and R6-7 screenshots name the Competence lines Improved Deception +17/+20, without a type word. The existing Enhancement golden lines also omit it."
+url = "https://ddowiki.com/page/Item:Epic_Collapsible_Shortbow"
+read = "2026-10-23"
