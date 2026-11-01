@@ -3526,6 +3526,76 @@ async fn sentient_gems_list_by_name() {
 }
 
 #[tokio::test]
+async fn aliased_titles_agree_across_every_effect_owner() {
+    let cases = [
+        ("Quiet Deception", "Quiet Deception +{1}", true, "Quiet Deception +5"),
+        ("Typed Deception", "%b1 Typed Deception +{1}", false, "Insightful Typed Deception +5"),
+    ];
+    let path = fixture_db_path_with_data_edits("alias-title-parity", |root| {
+        let append = |relative: &str, suffix: &str| {
+            let path = root.join(relative);
+            let original = std::fs::read_to_string(&path).unwrap();
+            std::fs::write(path, format!("{original}\n{suffix}")).unwrap();
+        };
+        for (alias, template, omits, _) in cases {
+            let omitted_type = if omits { "omits_bonus_type = true\n" } else { "" };
+            append(
+                "effects/improved-deception.toml",
+                &format!("[[alias]]\nname = {alias:?}\nverbose_name_template = {template:?}\n{omitted_type}"),
+            );
+            let name = format!("{alias} Carrier");
+            let slug = ddo_model::identity::slug(&name);
+            let link = format!("alias = {alias:?}\nbonus_type = 'Insight'\nvalue = 5\n");
+            for (directory, content) in [
+                (
+                    "gear",
+                    format!("name = {name:?}\nslot = 'Ring'\nminimum_level = 8\nitem_category = 'Jewelry'\n[[effect]]\nname = 'Improved Deception'\n{link}\n[[socket]]\nslot = 'upgrade: tier 2'\n[[socket.option]]\nname = {alias:?}\n[[socket.option.effect]]\neffect = 'Improved Deception'\n{link}"),
+                ),
+                (
+                    "augments",
+                    format!("name = {name:?}\ndescription = {alias:?}\nfamily = 'Named'\nmin_level = 8\n[[effect]]\nname = 'Improved Deception'\n{link}\n[[slot]]\nslot = 'red'\n"),
+                ),
+                (
+                    "sets",
+                    format!("name = {name:?}\n[[tier]]\nequipped_count = 2\n[[tier.effect]]\neffect = 'Improved Deception'\n{link}"),
+                ),
+            ] {
+                let directory = root.join("packs/unsourced").join(directory);
+                std::fs::create_dir_all(&directory).unwrap();
+                std::fs::write(directory.join(format!("{slug}.toml")), content).unwrap();
+            }
+            append(
+                "characters/feats/other.toml",
+                &format!("[[row]]\nname = {name:?}\nacquire = 'Train'\n[[row.effect]]\neffect = 'Improved Deception'\n{link}"),
+            );
+        }
+    });
+    let db = rusqlite::Connection::open(&path).unwrap();
+    let state = AppState::open(&path).unwrap();
+    for owner_kind in ddo_model::enums::EffectOwner::ALL {
+        let (table, column) = owner_kind.table();
+        let lines = ddo_api::served_effect_lines(&db, table, column).unwrap();
+        for (alias, _, _, expected) in cases {
+            let matching = lines
+                .iter()
+                .flat_map(|(owner, lines)| lines.iter().map(move |(_, line)| (*owner, line)))
+                .filter(|(_, line)| line["name"] == alias)
+                .collect::<Vec<_>>();
+            assert_eq!(matching.len(), 1, "{owner_kind:?}: {alias}");
+            let (owner, line) = matching[0];
+            assert_eq!(line["verbose_name"], expected, "{owner_kind:?}");
+            if owner_kind == ddo_model::enums::EffectOwner::Feat {
+                let (status, _, detail) = get_from(state.clone(), &format!("/v1/feats/{owner}")).await;
+                assert_eq!(status, StatusCode::OK);
+                let bonuses = detail["bonuses"].as_array().unwrap();
+                assert_eq!(bonuses.len(), 1);
+                assert_eq!(bonuses[0]["description"], format!("{expected}: {}", line["description"].as_str().unwrap()));
+            }
+        }
+    }
+}
+
+#[tokio::test]
 async fn feat_bonus_description_titles_match_enchantment_lines() {
     let db = rusqlite::Connection::open(fixture_db_path()).unwrap();
     let lines = ddo_api::served_effect_lines(&db, "feat_effects", "feat_id").unwrap();

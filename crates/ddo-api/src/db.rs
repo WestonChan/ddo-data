@@ -422,6 +422,10 @@ fn line_notes_for_owners(
     Ok(by_line)
 }
 
+const EFFECT_LINE_NAMES_SQL: &str = "COALESCE(a.name, e.name) AS name,
+    COALESCE(a.verbose_name_template, e.verbose_name_template, '%b1 ' || e.name || ' +{1}') AS verbose_name_template,
+    COALESCE(a.omits_bonus_type, e.omits_bonus_type) AS omits_bonus_type";
+
 pub(crate) fn bonuses_via(
     db: &Connection,
     junction_table: &str,
@@ -433,13 +437,14 @@ pub(crate) fn bonuses_via(
         _ => unreachable!("bonus rendering is only used for feats"),
     };
     let sql = format!(
-        "SELECT e.id, e.slug, e.name, e.omits_bonus_type, home_bt.name AS home_bonus_type, j.sort_order AS link_sort_order, e.verbose_name_template, e.description_template, s.name AS stat, s.category AS stat_category,
+        "SELECT e.id, e.slug, {EFFECT_LINE_NAMES_SQL}, home_bt.name AS home_bonus_type, j.sort_order AS link_sort_order, e.description_template, s.name AS stat, s.category AS stat_category,
                 bt.name AS bonus_type,
                 ob.amount AS value,
                 CASE WHEN es.amount_from = 2 THEN ob.amount END AS value2,
                 COALESCE(j.value, e.default_value) AS template_value,
                 COALESCE(j.value2, e.default_value2) AS template_value2
            FROM {junction_table} j JOIN effects e ON e.id = j.effect_id
+           LEFT JOIN effect_aliases a ON a.effect_id = j.effect_id AND a.name = j.alias
            JOIN owner_bonuses ob ON ob.owner_kind = '{owner_kind}' AND ob.owner_id = j.{owner_column}
                 AND ob.effect_link_order = j.sort_order
            JOIN effects s ON s.id = ob.stat_id
@@ -513,9 +518,7 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
         .replace(&format!("j.{owner_column}"), "filtered_bonus.owner_id")
         .replace("j.sort_order", "filtered_bonus.effect_link_order");
     let sql = format!(
-        "SELECT j.{owner_column} AS owner_id, j.sort_order, e.id AS effect_id, e.slug AS effect_slug, COALESCE(a.name, e.name) AS name,
-                COALESCE(a.verbose_name_template, e.verbose_name_template, '%b1 ' || e.name || ' +{{1}}') AS verbose_name_template,
-                COALESCE(a.omits_bonus_type, e.omits_bonus_type) AS omits_bonus_type,
+        "SELECT j.{owner_column} AS owner_id, j.sort_order, e.id AS effect_id, e.slug AS effect_slug, {EFFECT_LINE_NAMES_SQL},
                 j.alias,
                 e.set_bonus_line_template, e.description_template, j.value, j.value2,
                 COALESCE(j.value, e.default_value,
