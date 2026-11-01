@@ -1007,12 +1007,9 @@ fn current_value(
         FieldShape::EffectReplacement => {
             let source = correction.from.as_text().context("effect replacement names his effect")?;
             let destination = correction.effect.as_deref().context("effect replacement names its destination")?;
-            if source == NO_SUCH_BONUS {
-                return Ok(correction.from.clone());
-            }
             let (source_count, destination_count): (i64, i64) = transaction.query_row("SELECT COUNT(CASE WHEN e.name=?2 THEN 1 END),COUNT(CASE WHEN e.name=?3 THEN 1 END) FROM item_effects l JOIN effects e ON e.id=l.effect_id WHERE l.item_id=?1 AND e.name IN (?2,?3)", params![row_id,source,destination], |row| Ok((row.get(0)?,row.get(1)?)))?;
             if source != destination && source_count > 0 && destination_count > 0 {
-                return Ok(CorrectionValue::Text(NO_SUCH_BONUS.into()));
+                return Ok(CorrectionValue::Texts(vec![source.into(), destination.into()]));
             }
             ensure!(source_count <= 1 && destination_count <= 1, "item {row_id} has {source_count} links to {source:?} and {destination_count} to {destination:?}; an effect replacement needs one");
             return Ok(CorrectionValue::Text(
@@ -1857,6 +1854,11 @@ pub(super) fn pending_bonus_correction_value(
     reject_group_member_correction(transaction, groupings, correction, &[owner_id], Some(links))?;
     let matching = corrected.rows_on(transaction, owner_id, Some(links))?;
     let typed = matching.iter().filter(|row| row.bonus_type == correction.bonus_type).collect::<Vec<_>>();
+    ensure!(
+        correction.field != "remove" || correction.bonus_value.is_some() || typed.len() <= 1,
+        "{}: bonus removal matches multiple links; specify bonus_value",
+        correction.label()
+    );
     let upstream = if correction.field == "bonus_type" {
         typed.first().copied().or_else(|| matching.first()).map_or_else(
             || CorrectionValue::Text(NO_SUCH_BONUS.into()),

@@ -441,8 +441,11 @@ impl TableWriter<'_> {
             owner_kind: EffectOwner::ItemAugmentSlotOption,
             owner_id: option_id,
             owner_name: item_name.to_string(),
-            option_name: Some(slot_option.name.trim().to_string()),
-            effects: slot_option.effects.clone(),
+            family: None,
+            source: super::PendingEffectSource::Effects {
+                option_name: Some(slot_option.name.trim().to_string()),
+                effects: slot_option.effects.clone(),
+            },
         });
         Ok(())
     }

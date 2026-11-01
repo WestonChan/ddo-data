@@ -23,7 +23,7 @@ impl TableWriter<'_> {
             return Ok(());
         }
         let set_bonus_file = parse_set_bonus_file(path)?;
-        for set_bonus in &set_bonus_file.set_bonuses {
+        for set_bonus in set_bonus_file.set_bonuses {
             let set_name = set_bonus.name.trim();
             if self.written.set_bonus_ids_by_name.contains_key(set_name) {
                 continue;
@@ -39,30 +39,28 @@ impl TableWriter<'_> {
             )?;
             let set_id = self.transaction.last_insert_rowid();
             self.written.set_bonus_ids_by_name.insert(set_name.to_string(), set_id);
-            let mut tier_links: HashMap<i64, (i64, Vec<DerivedEffectLink>)> = HashMap::new();
-            for tier in &set_bonus.tiers {
-                let tier_id = match tier_links.entry(tier.equipped_count) {
-                    std::collections::hash_map::Entry::Occupied(entry) => entry.get().0,
+            let mut tier_ids = HashMap::new();
+            for tier in set_bonus.tiers {
+                let tier_id = match tier_ids.entry(tier.equipped_count) {
+                    std::collections::hash_map::Entry::Occupied(entry) => *entry.get(),
                     std::collections::hash_map::Entry::Vacant(entry) => {
                         self.transaction.execute(
                             "INSERT INTO set_bonus_tiers (set_id, equipped_count) VALUES (?1, ?2)",
                             params![set_id, tier.equipped_count],
                         )?;
-                        entry.insert((self.transaction.last_insert_rowid(), Vec::new())).0
+                        *entry.insert(self.transaction.last_insert_rowid())
                     }
                 };
                 if let Some(description) = trimmed_non_empty(tier.description.as_deref()) {
                     self.written.set_tier_descriptions_by_id.entry(tier_id).or_insert_with(|| description.to_string());
                 }
-                self.write_modifiers(ModifierSource::SetBonusTier, tier_id, &tier.effects)?;
-                let links = self.write_set_tier_effects(set_name, tier_id, tier)?;
-                tier_links.get_mut(&tier.equipped_count).expect("tier exists").1.extend(links);
-            }
-            let mut tiers = tier_links.into_values().collect::<Vec<_>>();
-            tiers.sort_by_key(|(tier_id, _)| *tier_id);
-            let owner = BonusOwner { kind: BonusOwnerKind::SetBonusTier, name: set_name, family: None };
-            for (tier_id, links) in tiers {
-                self.queue_effect_links(&owner, tier_id, links);
+                self.pending_derived_effects.push(super::PendingDerivedEffects {
+                    owner_kind: super::effects::EffectOwner::SetBonusTier,
+                    owner_id: tier_id,
+                    owner_name: set_name.to_string(),
+                    family: None,
+                    source: super::PendingEffectSource::SetTier(tier),
+                });
             }
         }
         for filigree in &set_bonus_file.filigrees {
@@ -85,7 +83,7 @@ impl TableWriter<'_> {
         Ok(())
     }
 
-    fn write_set_tier_effects(
+    pub(super) fn write_set_tier_effects(
         &mut self,
         set_name: &str,
         tier_id: i64,

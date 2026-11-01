@@ -2432,6 +2432,32 @@ fn a_lines_split_preserves_the_default_and_follows_value_changes() {
 }
 
 #[test]
+fn prose_stat_removals_are_not_recorded_without_removing_the_link() {
+    let source = fixture::xml_source();
+    let path = source.path().join("SetBonuses.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        &path,
+        original.replace(
+            "</SetBonuses>",
+            &format!("{}\n</SetBonuses>", include_str!("fixtures/effect-groups/VulkoorsMight.xml")),
+        ),
+    )
+    .unwrap();
+    let correction = new_qualified_correction(
+        "set_tier_bonus",
+        "Epic Vulkoor's Might",
+        "equipped_count = 2\nstat = 'Seeker'\nbonus_type = 'Artifact'",
+        "remove",
+        "3",
+        "'null'",
+    );
+    let (db, report) = built_db_from(source.path(), &[("vulkoor.toml", &correction)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    assert!(!set_tier_bonus_rows(&db, "Epic Vulkoor's Might", 2).iter().any(|row| row.0 == "Seeker"));
+}
+
+#[test]
 fn set_prose_bonus_lines_follow_the_same_split_contract() {
     let source = data_files_with_untyped("vulkoor-prose-split", &[]);
     let path = source.join("SetBonuses.xml");
@@ -3383,6 +3409,40 @@ fn same_named_augment_lines_merges_are_recorded_once() {
     assert_eq!(report.correction_applied_count, 1);
     assert_eq!(recorded_corrections(&db).len(), 1);
     assert_eq!(db.query_row("SELECT COUNT(*) FROM augment_effects l JOIN augments a ON a.id=l.augment_id JOIN effects e ON e.id=l.effect_id WHERE a.name='Woeful Shadow (Legendary)' AND e.name='Doublestrike and Doubleshot'", [], |row| row.get::<_, i64>(0)).unwrap(), 2);
+}
+
+fn assert_divergent_bonus_twins_stay_upstream(case: &str) {
+    let source = fixture::xml_source();
+    let (xml, correction) = fixture::bonus_correction_twins(case, true);
+    std::fs::write(source.path().join("Augments/WoefulShadow.Augments.xml"), xml).unwrap();
+    let (upstream, _) = built_db_from(source.path(), &[]).unwrap();
+    let (corrected, report) = built_db_from(source.path(), &[("woeful-twins.toml", &correction)]).unwrap();
+    let links = |db: &Connection| {
+        db.prepare("SELECT a.slug,e.name,t.name,l.value,l.value2 FROM augment_effects l JOIN augments a ON a.id=l.augment_id JOIN effects e ON e.id=l.effect_id LEFT JOIN bonus_types t ON t.id=l.bonus_type_id WHERE a.name='Woeful Shadow (Legendary)' ORDER BY a.slug,l.sort_order").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,Option<String>>(2)?,row.get::<_,Option<i64>>(3)?,row.get::<_,Option<i64>>(4)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
+    };
+    assert_eq!(links(&corrected), links(&upstream), "{case} must change every twin or none");
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+    assert!(recorded_corrections(&corrected).is_empty());
+}
+
+#[test]
+fn divergent_bonus_addition_twins_stay_upstream() {
+    assert_divergent_bonus_twins_stay_upstream("add");
+}
+
+#[test]
+fn divergent_bonus_removal_twins_stay_upstream() {
+    assert_divergent_bonus_twins_stay_upstream("remove");
+}
+
+#[test]
+fn divergent_line_split_twins_stay_upstream() {
+    assert_divergent_bonus_twins_stay_upstream("split");
+}
+
+#[test]
+fn divergent_line_merge_twins_stay_upstream() {
+    assert_divergent_bonus_twins_stay_upstream("merge");
 }
 
 #[test]

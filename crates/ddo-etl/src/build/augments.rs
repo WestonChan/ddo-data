@@ -1,4 +1,3 @@
-use super::bonus_types::{BonusOwner, BonusOwnerKind};
 use super::drop_text::DroppedLoot;
 use super::modifiers::DerivedEffectLink;
 use super::{joined_non_empty, json_number_array, trimmed_non_empty, BuildReport, TableWriter};
@@ -65,12 +64,13 @@ impl TableWriter<'_> {
                 self.link_augment_to_quests(augment_id, drop_description, report)?;
             }
             self.write_modifiers(ModifierSource::Augment, augment_id, &augment.effects)?;
-            let augment_owner =
-                BonusOwner { kind: BonusOwnerKind::Augment, name: &augment.name, family: Some(&family) };
-            let links =
-                self.ensure_derived_effects(&augment_owner, ModifierSource::Augment, augment_id, &augment.effects)?;
-            let links = self.collapse_source_backed_augment_lines(&augment.name, links)?;
-            self.queue_effect_links(&augment_owner, augment_id, links);
+            self.pending_derived_effects.push(super::PendingDerivedEffects {
+                owner_kind: super::effects::EffectOwner::Augment,
+                owner_id: augment_id,
+                owner_name: augment.name.clone(),
+                family: Some(family.clone()),
+                source: super::PendingEffectSource::Effects { effects: augment.effects.clone(), option_name: None },
+            });
         }
         report.augment_count += augments.len();
         Ok(())
@@ -94,7 +94,7 @@ impl TableWriter<'_> {
             .with_context(|| format!("augment {name:?} has no unique name variant"))
     }
 
-    fn collapse_source_backed_augment_lines(
+    pub(super) fn collapse_source_backed_augment_lines(
         &self,
         augment_name: &str,
         mut links: Vec<DerivedEffectLink>,

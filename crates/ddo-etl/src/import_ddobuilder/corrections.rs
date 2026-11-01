@@ -89,6 +89,9 @@ fn build_matching_values(
     for correction in &mut rebased.entries {
         let key = CorrectionKey::from_correction(correction);
         let Some(stale) = first_stale.iter().find(|stale| key.matches(stale)) else { continue };
+        if has_replacement_collision(correction, stale) {
+            continue;
+        }
         if let StaleCorrectionCause::ValuesDisagree { maetrim_values, .. } = &stale.cause {
             ensure!(
                 has_disagreeing_bonus_targets(correction, stale),
@@ -115,6 +118,7 @@ fn build_matching_values(
             let resolved = rebased.entries.iter().any(|correction| {
                 CorrectionKey::from_correction(correction).matches(&stale)
                     && (has_disagreeing_bonus_targets(correction, &stale)
+                        || has_replacement_collision(correction, &stale)
                         || match &stale.cause {
                             StaleCorrectionCause::ValueChanged { maetrim_value, .. } => {
                                 *maetrim_value == correction.to.to_json()
@@ -133,6 +137,12 @@ fn build_matching_values(
 
 pub(super) fn has_disagreeing_bonus_targets(correction: &Correction, stale: &StaleCorrection) -> bool {
     correction.kind.corrects_a_bonus() && matches!(stale.cause, StaleCorrectionCause::ValuesDisagree { .. })
+}
+
+fn has_replacement_collision(correction: &Correction, stale: &StaleCorrection) -> bool {
+    correction.correctable_field().is_ok_and(|field| field.shape == crate::corrections::FieldShape::EffectReplacement)
+        && matches!(&stale.cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. }
+            if matches!(CorrectionValue::from_json(maetrim_value), Ok(CorrectionValue::Texts(_))))
 }
 
 fn upstream_value(correction: &Correction, stale: &[StaleCorrection]) -> String {
@@ -165,7 +175,11 @@ pub(super) fn correction_events(
         let key = CorrectionKey::from_correction(correction);
         let previous = upstream_value(correction, previous_stale);
         let new = upstream_value(correction, new_stale);
-        if previous == new {
+        let unresolved_targets = new_stale.iter().any(|stale| {
+            key.matches(stale)
+                && (has_replacement_collision(correction, stale) || has_disagreeing_bonus_targets(correction, stale))
+        });
+        if previous == new && !unresolved_targets {
             continue;
         }
         if new == correction.to.to_json() || new == "renamed upstream" {

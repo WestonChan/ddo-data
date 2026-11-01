@@ -878,9 +878,9 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
             let key = (note.kind, correction_name.clone(), recorded_qualifier.clone(), note.field.clone());
             let evidence =
                 (from_value.clone(), to_value.clone(), note.reason.clone(), note.source.clone(), note.read.clone());
-            if let Some(previous) = recorded_notes.insert(key, evidence.clone()) {
+            if let Some((previous_path, previous)) = recorded_notes.insert(key, (path, evidence.clone())) {
                 ensure!(
-                    previous == evidence && note.field != "lines",
+                    previous == evidence && (note.field != "lines" || previous_path != path),
                     "{} {:?}.{} has conflicting notes",
                     note.kind,
                     correction_name,

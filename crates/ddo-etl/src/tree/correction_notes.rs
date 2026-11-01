@@ -70,7 +70,7 @@ pub fn correction_for_note(note: &DdobuilderCorrection, current_name: &str) -> R
     Ok(correction)
 }
 
-fn owner_id(transaction: &Transaction, kind: CorrectionKind, name: &str, correction: &Correction) -> Result<i64> {
+fn owner_ids(transaction: &Transaction, kind: CorrectionKind, name: &str, correction: &Correction) -> Result<Vec<i64>> {
     let ids = if matches!(kind, CorrectionKind::SetTier | CorrectionKind::SetTierBonus) {
         let count = correction.equipped_count.context("set correction has no piece count")?;
         let mut statement = transaction.prepare(
@@ -95,6 +95,12 @@ fn owner_id(transaction: &Transaction, kind: CorrectionKind, name: &str, correct
         let rows = statement.query_map([name], |row| row.get::<_, i64>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
         rows
     };
+    ensure!(!ids.is_empty(), "{} {name:?} matches no rows", kind.as_str());
+    Ok(ids)
+}
+
+fn owner_id(transaction: &Transaction, kind: CorrectionKind, name: &str, correction: &Correction) -> Result<i64> {
+    let ids = owner_ids(transaction, kind, name, correction)?;
     ensure!(ids.len() == 1, "{} {name:?} matches {} rows", kind.as_str(), ids.len());
     Ok(ids[0])
 }
@@ -105,7 +111,7 @@ fn added_bonus_value(
     current_name: &str,
     correction: &Correction,
 ) -> Result<Value> {
-    let owner_id = owner_id(transaction, kind, current_name, correction)?;
+    let owners = owner_ids(transaction, kind, current_name, correction)?;
     let stat = correction.stat.as_deref().context("added bonus has no stat")?;
     let bonus_type = correction.bonus_type.as_deref().context("added bonus has no bonus type")?;
     let owner_kind = match kind {
@@ -123,11 +129,16 @@ fn added_bonus_value(
           WHERE bonus.owner_kind = ?1 AND bonus.owner_id = ?2 AND (stat.name = ?3 OR linked.name = ?3)
             AND bonus_type.name IS ?4",
     )?;
-    let amounts = statement
-        .query_map(params![owner_kind, owner_id, stat, bonus_type], |row| row.get::<_, i64>(0))?
-        .collect::<rusqlite::Result<Vec<_>>>()?;
-    ensure!(amounts.len() == 1, "added bonus {stat:?} on {current_name:?} has {} values", amounts.len());
-    Ok(json!({"stat": stat, "bonus_type": bonus_type, "value": amounts[0]}))
+    let mut owner_amounts = std::collections::BTreeSet::new();
+    for owner_id in owners {
+        let amounts = statement
+            .query_map(params![owner_kind, owner_id, stat, bonus_type], |row| row.get::<_, i64>(0))?
+            .collect::<rusqlite::Result<Vec<_>>>()?;
+        ensure!(amounts.len() == 1, "added bonus {stat:?} on {current_name:?} has {} values", amounts.len());
+        owner_amounts.insert(amounts[0]);
+    }
+    ensure!(owner_amounts.len() == 1, "added bonus {stat:?} on {current_name:?} disagrees across owners");
+    Ok(json!({"stat": stat, "bonus_type": bonus_type, "value": owner_amounts.first()}))
 }
 
 pub(super) fn validate_adds_against_splits<'a>(

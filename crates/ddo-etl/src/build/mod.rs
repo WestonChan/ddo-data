@@ -418,8 +418,6 @@ fn build_with_wiki_references(
     if corrections.entries.iter().any(Correction::targets_socket_option) {
         writer.socket_option_targets = Some(SocketOptionTargets::from_database(&transaction)?);
     }
-    writer.link_pending_derived_effects()?;
-
     for path in files_with_extension(&data_files_dir.join("Augments"), "xml")? {
         writer.write_augments_file(&path, &mut report).with_context(|| format!("{}", path.display()))?;
     }
@@ -428,6 +426,7 @@ fn build_with_wiki_references(
     for path in files_with_extension(&data_files_dir.join("FiligreeSets"), "xml")? {
         writer.write_set_bonus_file(&path, true, &mut report).with_context(|| format!("{}", path.display()))?;
     }
+    writer.link_pending_derived_effects()?;
     writer.write_pending_effect_links()?;
     overlay_references.capture_renames(&transaction, corrections)?;
     if is_previous {
@@ -806,8 +805,13 @@ pub(crate) struct PendingDerivedEffects {
     owner_kind: effects::EffectOwner,
     owner_id: i64,
     owner_name: String,
-    option_name: Option<String>,
-    effects: Vec<crate::xml::effect::Effect>,
+    family: Option<String>,
+    source: PendingEffectSource,
+}
+
+pub(crate) enum PendingEffectSource {
+    Effects { effects: Vec<crate::xml::effect::Effect>, option_name: Option<String> },
+    SetTier(crate::xml::set_bonuses::SetBonusTier),
 }
 
 pub(crate) struct TableWriter<'a> {

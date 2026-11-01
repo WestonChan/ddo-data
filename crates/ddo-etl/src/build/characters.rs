@@ -95,8 +95,8 @@ impl TableWriter<'_> {
             owner_kind: super::effects::EffectOwner::Feat,
             owner_id: feat_id,
             owner_name: feat.name.trim().to_string(),
-            option_name: None,
-            effects: feat.effects.clone(),
+            family: None,
+            source: super::PendingEffectSource::Effects { option_name: None, effects: feat.effects.clone() },
         });
         Ok(feat_id)
     }

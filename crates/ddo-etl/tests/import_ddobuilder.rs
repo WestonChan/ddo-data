@@ -456,7 +456,7 @@ fn an_effect_replacement_import_reports_a_removed_link_and_keeps_the_correction(
 
 #[test]
 fn an_effect_replacement_conflicts_when_upstream_adds_the_destination_beside_the_source() {
-    let world = ship_kickers_replacement_world();
+    let mut world = ship_kickers_replacement_world();
     let path = world.options.source_dir.join("Items/ShipKickers.item");
     let previous = std::fs::read_to_string(&path).unwrap();
     std::fs::write(
@@ -464,17 +464,25 @@ fn an_effect_replacement_conflicts_when_upstream_adds_the_destination_beside_the
         previous.replace("  </Item>", "    <Buff><Type>Riposte</Type><Item>V</Item></Buff>\n  </Item>"),
     )
     .unwrap();
-    let report = import_ddobuilder(&world.options).unwrap();
-    assert!(report.has_conflicts() && report.to_string().contains("no such bonus"), "{report}");
-    let db = world.database();
-    let retained: i64 = db
-        .query_row("SELECT COUNT(*) FROM corrections WHERE name='Ship Kickers' AND field='effect'", [], |row| {
-            row.get(0)
-        })
-        .unwrap();
-    assert_eq!(retained, 1);
-    let names = db.prepare("SELECT e.name FROM item_effects l JOIN effects e ON e.id=l.effect_id JOIN items i ON i.id=l.item_id WHERE i.name='Ship Kickers' AND e.name LIKE 'Riposte%' ORDER BY e.name").unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
-    assert_eq!(names, ["Riposte", "Riposte V"]);
+    for pass in 0..2 {
+        let report = import_ddobuilder(&world.options).unwrap();
+        let text = report.to_string();
+        assert!(report.has_conflicts(), "pass {pass}: {report}");
+        assert!(text.contains("Riposte") && text.contains("Riposte V"), "{report}");
+        assert!(!text.contains("no such bonus"), "the source exists: {report}");
+        let db = world.database();
+        let retained: String = db
+            .query_row("SELECT from_value FROM corrections WHERE name='Ship Kickers' AND field='effect'", [], |row| {
+                row.get(0)
+            })
+            .unwrap();
+        assert_eq!(retained, "\"Riposte\"", "retain the actual source until the collision is settled");
+        let names = db.prepare("SELECT e.name FROM item_effects l JOIN effects e ON e.id=l.effect_id JOIN items i ON i.id=l.item_id WHERE i.name='Ship Kickers' AND e.name LIKE 'Riposte%' ORDER BY e.name").unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(names, ["Riposte", "Riposte V"]);
+        world.options.previous_dir = world.options.source_dir.clone();
+        world.options.previous_sha = world.options.sha.clone();
+        world.options.sha = Some("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee".into());
+    }
 }
 
 #[test]
@@ -510,6 +518,56 @@ fn a_bonus_correction_conflicts_atomically_when_same_named_twins_diverge() {
     assert_eq!(corrections, 1);
     let values = db.prepare("SELECT l.value FROM augment_effects l JOIN augments a ON a.id=l.augment_id WHERE a.name='+1 Exceptional Will Save' ORDER BY a.id").unwrap().query_map([], |row| row.get::<_, i64>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
     assert_eq!(values, [3, 3], "a conflict keeps both of our corrected twins");
+}
+
+fn assert_structural_twin_conflicts_persist(case: &str) {
+    let (original, correction) = fixture::bonus_correction_twins(case, false);
+    let corrections = fixture::corrections_from(&[("woeful-twins.toml", &correction)]).unwrap();
+    let mut world = ImportWorld::with_sources(fixture::groupings(), corrections, WikiOverrides::default(), |source| {
+        std::fs::create_dir_all(source.join("Augments")).unwrap();
+        std::fs::write(source.join("Augments/WoefulTwins.Augments.xml"), original).unwrap();
+    });
+    let links = |db: &Connection| {
+        db.prepare("SELECT a.slug,e.name,t.name,l.value,l.value2 FROM augment_effects l JOIN augments a ON a.id=l.augment_id JOIN effects e ON e.id=l.effect_id LEFT JOIN bonus_types t ON t.id=l.bonus_type_id WHERE a.name='Woeful Shadow (Legendary)' ORDER BY a.slug,l.sort_order").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,Option<String>>(2)?,row.get::<_,Option<i64>>(3)?,row.get::<_,Option<i64>>(4)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
+    };
+    let expected = links(&world.database());
+    let (changed, _) = fixture::bonus_correction_twins(case, true);
+    std::fs::write(world.options.source_dir.join("Augments/WoefulTwins.Augments.xml"), changed).unwrap();
+    for pass in 0..2 {
+        let report = import_ddobuilder(&world.options).unwrap();
+        assert!(report.has_conflicts(), "{case}, pass {pass}: {report}");
+        let db = world.database();
+        assert_eq!(links(&db), expected, "{case}, pass {pass}: keep both of our corrected twins");
+        assert_eq!(
+            db.query_row("SELECT COUNT(*) FROM corrections WHERE name='Woeful Shadow (Legendary)'", [], |row| row
+                .get::<_, i64>(0))
+                .unwrap(),
+            1
+        );
+        world.options.previous_dir = world.options.source_dir.clone();
+        world.options.previous_sha = world.options.sha.clone();
+        world.options.sha = Some("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee".into());
+    }
+}
+
+#[test]
+fn divergent_bonus_additions_conflict_on_consecutive_imports() {
+    assert_structural_twin_conflicts_persist("add");
+}
+
+#[test]
+fn divergent_bonus_removals_conflict_on_consecutive_imports() {
+    assert_structural_twin_conflicts_persist("remove");
+}
+
+#[test]
+fn divergent_line_splits_conflict_on_consecutive_imports() {
+    assert_structural_twin_conflicts_persist("split");
+}
+
+#[test]
+fn divergent_line_merges_conflict_on_consecutive_imports() {
+    assert_structural_twin_conflicts_persist("merge");
 }
 
 #[test]

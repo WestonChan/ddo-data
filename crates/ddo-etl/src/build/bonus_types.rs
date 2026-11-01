@@ -12,6 +12,16 @@ pub(super) enum BonusOwnerKind {
 }
 
 impl BonusOwnerKind {
+    pub(super) const fn link_correction_kind(self) -> CorrectionKind {
+        match self {
+            Self::Item => CorrectionKind::ItemBonus,
+            Self::ItemAugmentSlotOption => CorrectionKind::SocketOptionBonus,
+            Self::Augment => CorrectionKind::AugmentBonus,
+            Self::Feat => CorrectionKind::FeatBonus,
+            Self::SetBonusTier => CorrectionKind::SetTierBonus,
+        }
+    }
+
     const fn as_str(self) -> &'static str {
         match self {
             Self::Item => "item",

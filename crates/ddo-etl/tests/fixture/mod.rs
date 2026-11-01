@@ -44,6 +44,54 @@ pub(crate) fn xml_source() -> tempfile::TempDir {
     scratch
 }
 
+pub(crate) fn bonus_correction_twins(case: &str, diverges: bool) -> (String, CorrectionSet) {
+    let mut first =
+        include_str!("../fixtures/effect-groups/WoefulShadow.Augments.xml").replace("    <Icon>Lamordia</Icon>\n", "");
+    let (field, qualifier, upstream, corrected) = match case {
+        "add" => ("add", "", "'null'", "{ stat = 'Fire Spell Power', bonus_type = 'Equipment', value = 7 }"),
+        "remove" => ("remove", "stat = 'Doubleshot'\nbonus_type = 'Profane'", "3", "'null'"),
+        "split" => (
+            "lines",
+            "stat = 'Doublestrike, Doubleshot'\nbonus_type = 'Profane'",
+            "[['Doublestrike', 'Doubleshot']]",
+            "['Doublestrike', 'Doubleshot']",
+        ),
+        "merge" => {
+            first = first.replace("      <Type>Doubleshot</Type>\n", "");
+            let effect = first.split_once("    <Effect>").unwrap().1.split_once("    </Effect>").unwrap().0;
+            first = first.replacen(
+                "    </Effect>",
+                &format!("    </Effect>\n    <Effect>{}    </Effect>", effect.replace("Doublestrike", "Doubleshot")),
+                1,
+            );
+            (
+                "lines",
+                "stat = 'Doublestrike, Doubleshot'\nbonus_type = 'Profane'",
+                "[['Doublestrike'], ['Doubleshot']]",
+                "'Doublestrike and Doubleshot'",
+            )
+        }
+        _ => panic!("unknown twin correction {case}"),
+    };
+    let mut second = first.clone();
+    if diverges {
+        if case == "add" {
+            second = second.replace("  </Augment>", "    <Effect><Type>SpellPower</Type><Bonus>Equipment</Bonus><AType>Simple</AType><Amount size=\"1\">8</Amount><Item>Fire</Item></Effect>\n  </Augment>");
+        } else {
+            second = second.replace("<Type>Doubleshot</Type>", "<Type>MeleePower</Type>");
+        }
+    }
+    second = second
+        .replace("<Augments>", "")
+        .replace("</Augments>", "")
+        .replace("(Legendary)</Name>", "(Legendary) </Name>")
+        .replace("<Description>", "<Description>Second source. ");
+    (
+        first.replace("</Augments>", &format!("{second}</Augments>")),
+        new_qualified_correction("augment_bonus", "Woeful Shadow (Legendary)", qualifier, field, upstream, corrected),
+    )
+}
+
 pub(crate) fn write_scion_feat(source: &std::path::Path) {
     let path = source.join("Feats.xml");
     let feats = std::fs::read_to_string(&path).unwrap();
