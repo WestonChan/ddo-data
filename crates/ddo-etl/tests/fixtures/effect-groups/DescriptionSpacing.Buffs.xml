@@ -1,0 +1,64 @@
+<Buff>
+    <Type>Blood</Type>
+    <DisplayText>Blood: This Docent converts a portion of the wood and metal structure of the Warforged to living flesh. The Warforged will benefit more from positive energy healing such as cure spells and potions (+20 Positive Healing Amplification) but will also be more subject to critical hits (-10% fortification ).</DisplayText>
+    <Effect>
+      <Type>HealingAmplification</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+    </Effect>
+    <Effect>
+      <Type>Fortification</Type>
+      <Bonus>Penalty</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">-10</Amount>
+    </Effect>
+  </Buff>
+<Buff>
+    <Type>Crown of Summer:</Type>
+    <DisplayText>Crown of Summer: You have a +15 Positive Healing Amplification, and you gain 10 Melee Power and 5 Ranged Power (all enhancement bonus ).</DisplayText>
+    <Effect>
+      <Type>HealingAmplification</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+    </Effect>
+    <Effect>
+      <Type>MeleePower</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+    </Effect>
+    <Effect>
+      <Type>RangedPower</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+    </Effect>
+  </Buff>
+<Buff>
+    <Type>HealingAmplification</Type>
+    <DisplayText>%b1 Healing Amplification %v1: This effect amplifies all incoming positive energy healing by %v1 (%b1 bonus ). Includes spells, potions, and other effects.</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>HealingAmplification</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+<Buff>
+    <Type>RepairAmplification</Type>
+    <DisplayText>%b1 Repair Amplification %v1: This effect amplifies all incoming repair energy healing by %v1 (%b1 bonus ). Includes spells, potions, and other effects.</DisplayText>
+    <Ignore>Competence</Ignore>
+    <Effect>
+      <Type>RepairAmplification</Type>
+      <Bonus>Not Set</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+    </Effect>
+  </Buff>
+<Buff>
+    <Type>Rock Shattering</Type>
+    <DisplayText>Rock Shattering: When striking stone-like creatures (such as gargoyles and earth elementals ) or creatures that have been turned to stone, there is a chance this weapon will instantly shatter and destroy the target.</DisplayText>
+  </Buff>

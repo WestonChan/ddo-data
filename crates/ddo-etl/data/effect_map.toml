@@ -415,11 +415,7 @@ Accuracy = "%b1 Accuracy +{1}"
 
 [description_templates]
 Accuracy = "Passive: {1} %b1 bonus to attack rolls"
-"Healing Amplification" = "This effect amplifies all incoming positive energy healing by {1} (%b1 bonus). Includes spells, potions, and other effects."
 "Negative Healing Amplification" = "This sinister and unholy effect grants you a {1} %b1 Bonus to your vulnerability to Negative spells or effects. This increases the amount by which you are healed from Negative Energy if you are Undead."
-"Repair Amplification" = "This effect amplifies all incoming repair energy healing by {1} (%b1 bonus). Includes spells, potions, and other effects."
-"Blood" = "This Docent converts a portion of the wood and metal structure of the Warforged to living flesh. The Warforged will benefit more from positive energy healing such as cure spells and potions (+20 Positive Healing Amplification) but will also be more subject to critical hits (-10% fortification)."
-"Crown of Summer (power)" = "You have a +15 Positive Healing Amplification, and you gain 10 Melee Power and 5 Ranged Power (all enhancement bonus)."
 "Blinding Fear" = "On Hit: Blinds and Shakens foe for 6 seconds, 12 second cool down."
 "Command" = "Passive: {1} %b1 bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a {2} penalty on Hide checks."
 "Flaming Blast 2" = "This weapon burns with deadly magical fire, dealing 2d6 Fire damage on a successful hit, and an additional 2d6 Fire damage on a critical hit."
@@ -451,7 +447,6 @@ Assassinate = "+{1} %b1 bonus to the DC of character's Assassinate attempts."
 "Legendary Conditioning" = "You have a +{1}% Legendary bonus to Maximum Hit Points."
 "Physical Sheltering" = "{1} %b1 bonus to Physical Resistance Rating"
 "Spellcasting Implement" = "Passive: {1} Implement bonus to Universal Spell Power."
-"Rock Shattering" = "When striking stone-like creatures (such as gargoyles and earth elementals) or creatures that have been turned to stone, there is a chance this weapon will instantly shatter and destroy the target."
 "Wild Frenzy" = "This weapon has a tendency to drive those it strikes insane. On an attack roll of 20 which is confirmed as a critical hit the target will go wild and attack its own allies for 15 seconds if it fails a DC {1} Will save. Enemies driven wild in this way, however, have a chance of coming to their senses if damaged."
 
 [definition_defaults]

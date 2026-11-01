@@ -220,6 +220,17 @@ impl<'a> EffectCache<'a> {
         let description_template = if paragraph { Some(verbose_name_template) } else { description_template };
         let description_template =
             EFFECT_MAP.description_templates.get(name).map(String::as_str).or(description_template);
+        let normalized_description = description_template.map(|template| {
+            let mut normalized = String::with_capacity(template.len());
+            for character in template.chars() {
+                if character == ')' {
+                    normalized.truncate(normalized.trim_end().len());
+                }
+                normalized.push(character);
+            }
+            normalized
+        });
+        let description_template = normalized_description.as_deref();
         let trimmed_description = description_template
             .filter(|_| EFFECT_MAP.description_trim_period.contains(name))
             .map(|template| template.trim_end_matches('.').to_string());

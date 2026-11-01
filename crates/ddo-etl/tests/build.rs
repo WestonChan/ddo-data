@@ -3316,6 +3316,87 @@ fn historic_deception_steps_share_the_bluff_ladder() {
 }
 
 #[test]
+fn xml_description_spacing_keeps_both_versions_of_upstream_wording() {
+    let source = fixture::xml_source();
+    let path = source.path().join("ItemBuffs.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let old =
+        "Hidden Effect - Cursed Defiance: 5% on-being-hit chance to be unable to move and gain DR 20/- for 20 seconds";
+    assert!(original.contains(old));
+    for (description, expected) in [
+        ("First wording (one ) and (two  ).", "First wording (one) and (two)."),
+        ("Revised wording (three \t) and (four).", "Revised wording (three) and (four)."),
+    ] {
+        std::fs::write(&path, original.replace(old, &format!("Hidden Effect - Cursed Defiance: {description}")))
+            .unwrap();
+        let mut db = Connection::open_in_memory().unwrap();
+        build_database(
+            fixture::groupings(),
+            source.path(),
+            &WikiOverrides::default(),
+            &Corrections::default(),
+            &mut db,
+            &fixture_dataset_version(),
+        )
+        .unwrap();
+        let stored: String = db
+            .query_row(
+                "SELECT description_template FROM effects WHERE name='Hidden Effect - Cursed Defiance'",
+                [],
+                |row| row.get(0),
+            )
+            .unwrap();
+        assert_eq!(stored, expected);
+    }
+}
+
+#[test]
+fn description_spacing_overrides_do_not_hide_upstream_rewording() {
+    let source = fixture::xml_source();
+    let definitions = source.path().join("ItemBuffs.xml");
+    let original = std::fs::read_to_string(&definitions).unwrap();
+    let captured = include_str!("fixtures/effect-groups/DescriptionSpacing.Buffs.xml");
+    let item = source.path().join("Items/Docent of Defiance.item");
+    let contents = std::fs::read_to_string(&item).unwrap();
+    let buffs = "<Buff><Type>HealingAmplification</Type><Value1>20</Value1><BonusType>Enhancement</BonusType></Buff><Buff><Type>RepairAmplification</Type><Value1>20</Value1><BonusType>Enhancement</BonusType></Buff><Buff><Type>Blood</Type></Buff><Buff><Type>Crown of Summer:</Type></Buff><Buff><Type>Rock Shattering</Type></Buff>";
+    std::fs::write(&item, contents.replace("</Item>\n</Items>", &format!("{buffs}</Item>\n</Items>"))).unwrap();
+    let mut baseline = Vec::new();
+    for revision in ["", " Updated upstream wording."] {
+        let revised = captured.replace("</DisplayText>", &format!("{revision}</DisplayText>"));
+        std::fs::write(&definitions, original.replace("</Buffs>", &format!("{revised}</Buffs>"))).unwrap();
+        let mut db = Connection::open_in_memory().unwrap();
+        build_database(
+            fixture::groupings(),
+            source.path(),
+            &WikiOverrides::default(),
+            &Corrections::default(),
+            &mut db,
+            &fixture_dataset_version(),
+        )
+        .unwrap();
+        let descriptions =
+            ["Healing Amplification", "Repair Amplification", "Blood", "Crown of Summer (power)", "Rock Shattering"]
+                .into_iter()
+                .map(|name| {
+                    let description: String = db
+                        .query_row("SELECT description_template FROM effects WHERE name=?1", [name], |row| row.get(0))
+                        .unwrap();
+                    assert!(!description.contains(" )"), "{name}: {description}");
+                    description
+                })
+                .collect::<Vec<_>>();
+        if revision.is_empty() {
+            baseline = descriptions;
+        } else {
+            assert_eq!(
+                descriptions,
+                baseline.iter().map(|description| format!("{description}{revision}")).collect::<Vec<_>>()
+            );
+        }
+    }
+}
+
+#[test]
 fn effect_fallback_rows_stay_adjacent_and_distinct_descriptions_survive() {
     let (db, _) = built_fixture_db();
     let gauntlets = item_id(&db, "Alaric's Grim Gauntlets");
