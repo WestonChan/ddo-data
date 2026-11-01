@@ -455,6 +455,64 @@ fn an_effect_replacement_import_reports_a_removed_link_and_keeps_the_correction(
 }
 
 #[test]
+fn an_effect_replacement_conflicts_when_upstream_adds_the_destination_beside_the_source() {
+    let world = ship_kickers_replacement_world();
+    let path = world.options.source_dir.join("Items/ShipKickers.item");
+    let previous = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        path,
+        previous.replace("  </Item>", "    <Buff><Type>Riposte</Type><Item>V</Item></Buff>\n  </Item>"),
+    )
+    .unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(report.has_conflicts() && report.to_string().contains("no such bonus"), "{report}");
+    let db = world.database();
+    let retained: i64 = db
+        .query_row("SELECT COUNT(*) FROM corrections WHERE name='Ship Kickers' AND field='effect'", [], |row| {
+            row.get(0)
+        })
+        .unwrap();
+    assert_eq!(retained, 1);
+    let names = db.prepare("SELECT e.name FROM item_effects l JOIN effects e ON e.id=l.effect_id JOIN items i ON i.id=l.item_id WHERE i.name='Ship Kickers' AND e.name LIKE 'Riposte%' ORDER BY e.name").unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(names, ["Riposte", "Riposte V"]);
+}
+
+#[test]
+fn a_bonus_correction_conflicts_atomically_when_same_named_twins_diverge() {
+    let correction = fixture::new_qualified_correction(
+        "augment_bonus",
+        "+1 Exceptional Will Save",
+        "stat = 'Will Save'\nbonus_type = 'Exceptional'",
+        "value",
+        "1",
+        "3",
+    );
+    let corrections = fixture::corrections_from(&[("will-twins.toml", &correction)]).unwrap();
+    let world = ImportWorld::with_sources(fixture::groupings(), corrections, WikiOverrides::default(), |source| {
+        std::fs::create_dir_all(source.join("Augments")).unwrap();
+        let twins = include_str!("fixtures/effect-groups/GreensteelWillTwins.Augments.xml")
+            .replace("      <Icon>ShardOfGreatPower</Icon>\n", "");
+        std::fs::write(source.join("Augments/WillTwins.Augments.xml"), twins).unwrap();
+    });
+    let path = world.options.source_dir.join("Augments/WillTwins.Augments.xml");
+    let source = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(path, source.replacen("<Amount size=\"1\">1</Amount>", "<Amount size=\"1\">2</Amount>", 1)).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(report.has_conflicts(), "{report}");
+    let db = world.database();
+    let corrections: i64 = db
+        .query_row(
+            "SELECT COUNT(*) FROM corrections WHERE name='+1 Exceptional Will Save' AND field='value'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(corrections, 1);
+    let values = db.prepare("SELECT l.value FROM augment_effects l JOIN augments a ON a.id=l.augment_id WHERE a.name='+1 Exceptional Will Save' ORDER BY a.id").unwrap().query_map([], |row| row.get::<_, i64>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(values, [3, 3], "a conflict keeps both of our corrected twins");
+}
+
+#[test]
 fn an_effect_replacement_resolves_when_upstream_names_the_destination() {
     let world = ship_kickers_replacement_world();
     let path = world.options.source_dir.join("Items/ShipKickers.item");

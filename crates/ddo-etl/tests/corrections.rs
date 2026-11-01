@@ -139,7 +139,7 @@ fn item_effect_replacement_preserves_position_and_reports_a_missing_upstream_lin
 }
 
 #[test]
-fn item_effect_replacement_rejects_an_already_linked_destination() {
+fn item_effect_replacement_reports_an_already_linked_destination_as_stale() {
     let source = fixture::xml_source();
     fixture::write_ship_kickers(source.path());
     let path = source.path().join("Items/ShipKickers.item");
@@ -157,9 +157,12 @@ fn item_effect_replacement_rejects_an_already_linked_destination() {
         "'Riposte'",
         "'Riposte V'",
     );
-    let error = built_db_from_index(fixture::grouping_cases(), source.path(), &[("ship-kickers.toml", &replacement)])
-        .unwrap_err();
-    assert!(error.contains("ship-kickers.toml") && error.contains("already links"), "{error}");
+    let (db, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("ship-kickers.toml", &replacement)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+    assert_eq!(report.stale_corrections[0].file_name, "ship-kickers.toml");
+    let names = db.prepare("SELECT e.name FROM item_effects l JOIN effects e ON e.id=l.effect_id JOIN items i ON i.id=l.item_id WHERE i.name='Ship Kickers' AND e.name LIKE 'Riposte%' ORDER BY e.name").unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(names, ["Riposte", "Riposte V"]);
 }
 
 #[test]
@@ -189,15 +192,19 @@ fn item_effect_replacement_preserves_an_existing_stat_link_type() {
     let replacement = new_qualified_correction(
         "item_effect",
         "Ship Kickers",
-        "effect = 'Strength'",
+        "effect = 'Linguistics'",
         "effect",
         "'Dexterity'",
-        "'Strength'",
+        "'Linguistics'",
     );
     let (db, report) =
         built_db_from_index(fixture::grouping_cases(), source.path(), &[("ship-kickers.toml", &replacement)]).unwrap();
+    let template: String = db
+        .query_row("SELECT verbose_name_template FROM effects WHERE name='Linguistics'", [], |row| row.get(0))
+        .unwrap();
+    assert!(!template.contains("%b1"), "the regression needs a stat without a type placeholder");
     assert_eq!(report.correction_applied_count, 1);
-    let link: (i64, i64, String) = db.query_row("SELECT l.sort_order,l.value,b.name FROM item_effects l JOIN effects e ON e.id=l.effect_id JOIN bonus_types b ON b.id=l.bonus_type_id JOIN items i ON i.id=l.item_id WHERE i.name='Ship Kickers' AND e.name='Strength'", [], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap();
+    let link: (i64, i64, String) = db.query_row("SELECT l.sort_order,l.value,b.name FROM item_effects l JOIN effects e ON e.id=l.effect_id JOIN bonus_types b ON b.id=l.bonus_type_id JOIN items i ON i.id=l.item_id WHERE i.name='Ship Kickers' AND e.name='Linguistics'", [], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap();
     assert_eq!(link, (0, 2, "Insight".into()));
 }
 
@@ -2447,7 +2454,7 @@ fn set_prose_bonus_lines_follow_the_same_split_contract() {
     }
     let (db, report) = built_db_from(&source, &[("vulkoor-split.toml", &corrections)]).unwrap();
     for name in ["Epic Vulkoor's Might", "Legendary Vulkoor's Might"] {
-        let lines = db.prepare("SELECT e.name,l.value,b.name FROM set_bonus_tier_effects l JOIN effects e ON e.id=l.effect_id JOIN bonus_types b ON b.id=l.bonus_type_id JOIN set_bonus_tiers t ON t.id=l.tier_id JOIN set_bonuses s ON s.id=t.set_id WHERE s.name=?1 AND e.name IN ('Accuracy','Damage Bonus','Attack and Damage') ORDER BY e.name").unwrap()
+        let lines = db.prepare("SELECT e.name,l.value,b.name FROM set_bonus_tier_effects l JOIN effects e ON e.id=l.effect_id JOIN bonus_types b ON b.id=l.bonus_type_id JOIN set_bonus_tiers t ON t.id=l.tier_id JOIN set_bonuses s ON s.id=t.set_id WHERE s.name=?1 AND e.name IN ('Accuracy','Damage Bonus','Attack and Damage') ORDER BY l.sort_order").unwrap()
             .query_map([name], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?, row.get::<_, String>(2)?)))
             .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
         assert_eq!(lines, [("Accuracy".into(), 3, "Artifact".into()), ("Damage Bonus".into(), 3, "Artifact".into())]);
@@ -3288,6 +3295,57 @@ fn same_named_augment_bonus_corrections_are_recorded_once() {
         assert_eq!(bonuses, [(amount, bonus_type.into()), (amount, bonus_type.into())]);
         assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
         assert_eq!(recorded_corrections(&db).len(), 1);
+    }
+}
+
+#[test]
+fn same_named_bonus_corrections_leave_all_twins_upstream_when_their_values_disagree() {
+    for (field, upstream, corrected, change, expected) in [
+        (
+            "value",
+            "1",
+            "3",
+            (r#"<Amount size="1">1</Amount>"#, r#"<Amount size="1">2</Amount>"#),
+            vec![(1, "Exceptional"), (2, "Exceptional")],
+        ),
+        (
+            "bonus_type",
+            "'Exceptional'",
+            "'Quality'",
+            ("<Bonus>Exceptional</Bonus>", "<Bonus>Insight</Bonus>"),
+            vec![(1, "Exceptional"), (1, "Insight")],
+        ),
+    ] {
+        let source = fixture::xml_source();
+        let path = source.path().join("Augments/Greensteel_Heroic.Augments.xml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        let twins = include_str!("fixtures/effect-groups/GreensteelWillTwins.Augments.xml")
+            .replace("<Augments>", "")
+            .replace("</Augments>", "");
+        assert!(twins.contains(change.0));
+        let twins = twins.replacen(change.0, change.1, 1);
+        std::fs::write(path, original.replace("</Augments>", &format!("{twins}</Augments>"))).unwrap();
+        let correction = new_qualified_correction(
+            "augment_bonus",
+            "+1 Exceptional Will Save",
+            "stat = 'Will Save'\nbonus_type = 'Exceptional'",
+            field,
+            upstream,
+            corrected,
+        );
+        let (db, report) = built_db_from(source.path(), &[("will-twins.toml", &correction)]).unwrap();
+        let bonuses = db.prepare("SELECT b.amount,t.name FROM owner_bonuses b JOIN augments a ON a.id=b.owner_id AND b.owner_kind='augment' JOIN bonus_types t ON t.id=b.bonus_type_id WHERE a.name='+1 Exceptional Will Save' ORDER BY b.amount,t.name").unwrap().query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(
+            bonuses,
+            expected.into_iter().map(|(amount, kind)| (amount, kind.to_string())).collect::<Vec<_>>(),
+            "{field}"
+        );
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+        assert!(matches!(
+            &report.stale_corrections[0].cause,
+            StaleCorrectionCause::ValuesDisagree { maetrim_values, .. } if maetrim_values.len() == 2
+        ));
+        assert!(recorded_corrections(&db).is_empty());
     }
 }
 
@@ -4162,7 +4220,10 @@ fn adds_a_bonus_an_item_lacks_and_goes_stale_once_he_carries_it() {
         ),
     )])
     .unwrap_err();
-    assert!(error.contains("Acid Resistence") && error.contains("Docent of Defiance"), "{error}");
+    assert!(
+        error.contains("Acid Resistence") && error.contains("Docent of Defiance") && error.contains("corrections.toml"),
+        "{error}"
+    );
 }
 
 #[test]

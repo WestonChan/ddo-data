@@ -67,13 +67,24 @@ pub fn normalized_upstream_database(
     is_previous: bool,
     destination: &Path,
 ) -> Result<NormalizedUpstreamDatabase> {
-    let wiki = WikiOverrides::from_database(ours)?;
     let corrections = Corrections::from_database(ours)?;
+    normalized_database_with_corrections(source, ours, version, is_previous, destination, &corrections)
+}
+
+fn normalized_database_with_corrections(
+    source: &Path,
+    ours: &Connection,
+    version: &ddo_model::DatasetVersion,
+    is_previous: bool,
+    destination: &Path,
+    corrections: &Corrections,
+) -> Result<NormalizedUpstreamDatabase> {
+    let wiki = WikiOverrides::from_database(ours)?;
     let groupings = crate::groupings::Groupings::from_database(ours)?;
     let upstream = if is_previous {
-        corrections::build_previous_matching_his_values(&groupings, source, &wiki, &corrections, version)?
+        corrections::build_previous_matching_his_values(&groupings, source, &wiki, corrections, version)?
     } else {
-        corrections::build_database_matching_his_values(&groupings, source, &wiki, &corrections, version)?
+        corrections::build_database_matching_his_values(&groupings, source, &wiki, corrections, version)?
     };
     let filled = blanks::fill_cells_from_ours(&upstream.db, ours)?;
     let db = build_normalized_database(&upstream.db, source, destination)?;
@@ -146,10 +157,30 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
     let annotated = tree::annotated_entities(&ours)?;
     let previous_tree = scratch.path().join("previous");
     let new_tree = scratch.path().join("new");
-    let previous = normalized_upstream_database(&options.previous_dir, &ours, &previous_version, true, &previous_tree)
-        .context("building the previous DataFiles")?;
+    let mut previous =
+        normalized_upstream_database(&options.previous_dir, &ours, &previous_version, true, &previous_tree)
+            .context("building the previous DataFiles")?;
     let new = normalized_upstream_database(&options.source_dir, &ours, &new_version, false, &new_tree)
         .context("building the new DataFiles")?;
+    let mut applicable = corrections.clone();
+    applicable.entries.retain(|correction| {
+        !new.first_stale.iter().any(|stale| {
+            corrections::CorrectionKey::from_correction(correction).matches(stale)
+                && corrections::has_disagreeing_bonus_targets(correction, stale)
+        })
+    });
+    if applicable.entries.len() != corrections.entries.len() {
+        let original_stale = previous.first_stale;
+        previous = normalized_database_with_corrections(
+            &options.previous_dir,
+            &ours,
+            &previous_version,
+            true,
+            &scratch.path().join("previous-without-conflicting-bonuses"),
+            &applicable,
+        )?;
+        previous.first_stale = original_stale;
+    }
     let blanked_upstream = blanks::blanked_upstream(&previous.db, &previous.filled, &new.filled)?;
     let mut mapping_audits = audit::entries(&options.source_dir)?;
     mapping_audits.extend(audit::unmapped_damage_targets(&new.db)?);

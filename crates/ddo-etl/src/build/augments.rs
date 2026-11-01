@@ -1,6 +1,5 @@
 use super::bonus_types::{BonusOwner, BonusOwnerKind};
 use super::drop_text::DroppedLoot;
-use super::effects::EffectOwner;
 use super::modifiers::DerivedEffectLink;
 use super::{joined_non_empty, json_number_array, trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::drop_location::drop_text_in_description;
@@ -71,18 +70,7 @@ impl TableWriter<'_> {
             let links =
                 self.ensure_derived_effects(&augment_owner, ModifierSource::Augment, augment_id, &augment.effects)?;
             let links = self.collapse_source_backed_augment_lines(&augment.name, links)?;
-            for (sort_order, link) in
-                self.write_merged_lines(&augment_owner, augment_id, links)?.into_iter().enumerate()
-            {
-                self.effects.insert_link(
-                    (EffectOwner::Augment, augment_id),
-                    link.effect_id,
-                    link.alias.as_deref(),
-                    link.bonus_type,
-                    (link.value, link.value2),
-                    sort_order,
-                )?;
-            }
+            self.queue_effect_links(&augment_owner, augment_id, links);
         }
         report.augment_count += augments.len();
         Ok(())

@@ -372,16 +372,7 @@ impl TableWriter<'_> {
             }
         }
 
-        for (sort_order, link) in self.write_merged_lines(&item_owner, item_id, links)?.into_iter().enumerate() {
-            self.effects.insert_link(
-                (EffectOwner::Item, item_id),
-                link.effect_id,
-                link.alias.as_deref(),
-                link.bonus_type,
-                (link.value, link.value2),
-                sort_order,
-            )?;
-        }
+        self.queue_effect_links(&item_owner, item_id, links);
 
         for (slot_order, augment_slot) in item.augment_slots.iter().enumerate() {
             let slot_type_id = self.ensure_augment_slot_type(&augment_slot.kind)?;

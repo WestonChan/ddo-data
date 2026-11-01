@@ -25,7 +25,7 @@ pub(super) struct CorrectionKey {
 }
 
 impl CorrectionKey {
-    fn from_correction(correction: &Correction) -> Self {
+    pub(super) fn from_correction(correction: &Correction) -> Self {
         Self {
             kind: correction.kind.as_str().into(),
             name: correction.name.clone(),
@@ -34,7 +34,7 @@ impl CorrectionKey {
         }
     }
 
-    fn matches(&self, stale: &StaleCorrection) -> bool {
+    pub(super) fn matches(&self, stale: &StaleCorrection) -> bool {
         self.kind == stale.kind
             && self.name == stale.name
             && self.qualifier == stale.qualifier
@@ -89,8 +89,15 @@ fn build_matching_values(
     for correction in &mut rebased.entries {
         let key = CorrectionKey::from_correction(correction);
         let Some(stale) = first_stale.iter().find(|stale| key.matches(stale)) else { continue };
+        if let StaleCorrectionCause::ValuesDisagree { maetrim_values, .. } = &stale.cause {
+            ensure!(
+                has_disagreeing_bonus_targets(correction, stale),
+                "{}: his rows disagree: {}",
+                correction.label(),
+                maetrim_values.join(" / ")
+            );
+        }
         if let StaleCorrectionCause::ValueChanged { maetrim_value, .. } = &stale.cause {
-            ensure!(!maetrim_value.contains(" / "), "{}: his rows disagree: {maetrim_value}", correction.label());
             if *maetrim_value != correction.to.to_json() {
                 correction.from = CorrectionValue::from_json(maetrim_value)?;
                 changed = true;
@@ -107,12 +114,14 @@ fn build_matching_values(
         for stale in report.stale_corrections {
             let resolved = rebased.entries.iter().any(|correction| {
                 CorrectionKey::from_correction(correction).matches(&stale)
-                    && match &stale.cause {
-                        StaleCorrectionCause::ValueChanged { maetrim_value, .. } => {
-                            *maetrim_value == correction.to.to_json()
-                        }
-                        StaleCorrectionCause::RenameDoneUpstream { .. } => true,
-                    }
+                    && (has_disagreeing_bonus_targets(correction, &stale)
+                        || match &stale.cause {
+                            StaleCorrectionCause::ValueChanged { maetrim_value, .. } => {
+                                *maetrim_value == correction.to.to_json()
+                            }
+                            StaleCorrectionCause::RenameDoneUpstream { .. } => true,
+                            StaleCorrectionCause::ValuesDisagree { .. } => false,
+                        })
             });
             ensure!(resolved, "correction remains stale after rebasing: {stale:?}");
         }
@@ -122,10 +131,15 @@ fn build_matching_values(
     Ok(HisDatabase { db, first_stale, skipped_wiki_facts, line_splits, held_back_effects, matched_set_tier_prose })
 }
 
+pub(super) fn has_disagreeing_bonus_targets(correction: &Correction, stale: &StaleCorrection) -> bool {
+    correction.kind.corrects_a_bonus() && matches!(stale.cause, StaleCorrectionCause::ValuesDisagree { .. })
+}
+
 fn upstream_value(correction: &Correction, stale: &[StaleCorrection]) -> String {
     let key = CorrectionKey::from_correction(correction);
     match stale.iter().find(|stale| key.matches(stale)).map(|stale| &stale.cause) {
         Some(StaleCorrectionCause::ValueChanged { maetrim_value, .. }) => maetrim_value.clone(),
+        Some(StaleCorrectionCause::ValuesDisagree { maetrim_values, .. }) => maetrim_values.join(" / "),
         Some(StaleCorrectionCause::RenameDoneUpstream { .. }) => "renamed upstream".into(),
         None => correction.from.to_json(),
     }

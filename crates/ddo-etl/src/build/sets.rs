@@ -1,12 +1,11 @@
 use super::bonus_types::{BonusOwner, BonusOwnerKind};
-use super::effects::EffectOwner;
 use super::modifiers::{DerivedEffectLink, GroupingOutcome, LineSplitMember};
 use super::{trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::effect_map::EFFECT_MAP;
 use crate::xml::sentient_gems;
 use crate::xml::set_bonuses::parse_set_bonus_file;
 use crate::xml::set_bonuses::SetBonusTier;
-use anyhow::Result;
+use anyhow::{Context, Result};
 use ddo_model::enums::ModifierSource;
 use ddo_model::stats::Stat;
 use rusqlite::params;
@@ -63,16 +62,7 @@ impl TableWriter<'_> {
             tiers.sort_by_key(|(tier_id, _)| *tier_id);
             let owner = BonusOwner { kind: BonusOwnerKind::SetBonusTier, name: set_name, family: None };
             for (tier_id, links) in tiers {
-                for (sort_order, link) in self.write_merged_lines(&owner, tier_id, links)?.into_iter().enumerate() {
-                    self.effects.insert_link(
-                        (EffectOwner::SetBonusTier, tier_id),
-                        link.effect_id,
-                        link.alias.as_deref(),
-                        link.bonus_type,
-                        (link.value, link.value2),
-                        sort_order,
-                    )?;
-                }
+                self.queue_effect_links(&owner, tier_id, links);
             }
         }
         for filigree in &set_bonus_file.filigrees {
@@ -160,23 +150,48 @@ impl TableWriter<'_> {
                         equipped_count: tier.equipped_count,
                         description: description.to_string(),
                     });
+                    let link = DerivedEffectLink {
+                        alias: None,
+                        effect_id,
+                        bonus_type: linked_type,
+                        value: rule.value,
+                        value2: None,
+                        is_split_line: false,
+                    };
                     if let (Some(bonus_type), Some(value)) = (bonus_type, rule.value) {
-                        let members = self
-                            .groupings
-                            .expanded_stat_names(&rule.effect)?
+                        if self.split_corrections_for_owner(&owner, tier_id, bonus_type, value)?.is_empty() {
+                            return Ok(vec![link]);
+                        }
+                        let mut rows = super::corrections::line_bonus_rows(
+                            self.transaction,
+                            ddo_model::enums::CorrectionKind::SetTierBonus,
+                            tier_id,
+                            Some(std::slice::from_ref(&link)),
+                        )
+                        .with_context(|| {
+                            format!("set {set_name:?} prose target {:?} has invalid split members", rule.effect)
+                        })?;
+                        rows.sort_by(|left, right| left.stat_name.cmp(&right.stat_name));
+                        let members = rows
                             .into_iter()
-                            .map(|name| {
-                                let stat = Stat::by_name(&name).expect("validated prose stat");
-                                LineSplitMember {
+                            .map(|row| {
+                                let name = row.stat_name;
+                                let stat = Stat::by_name(&name).with_context(|| {
+                                    format!(
+                                        "set {set_name:?} prose target {:?} has unknown split member {name:?}",
+                                        rule.effect
+                                    )
+                                })?;
+                                Ok(LineSplitMember {
                                     bonus: crate::map::effect::DerivedBonus {
                                         stat,
                                         bonus_type: Some(bonus_type),
                                         value,
                                     },
                                     line_name: name,
-                                }
+                                })
                             })
-                            .collect::<Vec<_>>();
+                            .collect::<Result<Vec<_>>>()?;
                         if let Some(outcome) = self.write_split_lines(&owner, tier_id, bonus_type, &members)? {
                             let GroupingOutcome::Split { links, .. } = outcome else {
                                 anyhow::bail!("set {set_name:?} prose split cannot preserve its single value")
@@ -184,14 +199,7 @@ impl TableWriter<'_> {
                             return Ok(links);
                         }
                     }
-                    return Ok(vec![DerivedEffectLink {
-                        alias: None,
-                        effect_id,
-                        bonus_type: linked_type,
-                        value: rule.value,
-                        value2: None,
-                        is_split_line: false,
-                    }]);
+                    return Ok(vec![link]);
                 }
                 let family_name = self.buff_resolver.set_tier_prose_name(set_name, tier.equipped_count, description)?;
                 let existing = self

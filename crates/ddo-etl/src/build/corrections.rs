@@ -68,12 +68,12 @@ pub(super) fn record_observed_corrections<'a>(
     Ok(())
 }
 
-fn upstream_values_match(correction: &Correction, values: &[CorrectionValue]) -> Result<bool> {
+pub(super) fn upstream_values_match(correction: &Correction, values: &[CorrectionValue]) -> Result<bool> {
     Ok(match (&correction.from, correction.correctable_field()?.shape) {
         (CorrectionValue::Texts(spellings), FieldShape::RowName) => {
             values.iter().all(|value| matches!(value, CorrectionValue::Text(name) if spellings.contains(name)))
         }
-        _ => values == [correction.from.clone()],
+        _ => !values.is_empty() && values.iter().all(|value| *value == correction.from),
     })
 }
 
@@ -89,9 +89,16 @@ fn record_correction_outcome(
         record_stale_correction(
             report,
             correction,
-            StaleCorrectionCause::ValueChanged {
-                expected_value: correction.from.to_json(),
-                maetrim_value: values.iter().map(CorrectionValue::to_json).collect::<Vec<_>>().join(" / "),
+            if values.len() > 1 {
+                StaleCorrectionCause::ValuesDisagree {
+                    expected_value: correction.from.to_json(),
+                    maetrim_values: values.iter().map(CorrectionValue::to_json).collect(),
+                }
+            } else {
+                StaleCorrectionCause::ValueChanged {
+                    expected_value: correction.from.to_json(),
+                    maetrim_value: values.first().map(CorrectionValue::to_json).unwrap_or_default(),
+                }
             },
         );
         Ok(())
@@ -1000,8 +1007,13 @@ fn current_value(
         FieldShape::EffectReplacement => {
             let source = correction.from.as_text().context("effect replacement names his effect")?;
             let destination = correction.effect.as_deref().context("effect replacement names its destination")?;
+            if source == NO_SUCH_BONUS {
+                return Ok(correction.from.clone());
+            }
             let (source_count, destination_count): (i64, i64) = transaction.query_row("SELECT COUNT(CASE WHEN e.name=?2 THEN 1 END),COUNT(CASE WHEN e.name=?3 THEN 1 END) FROM item_effects l JOIN effects e ON e.id=l.effect_id WHERE l.item_id=?1 AND e.name IN (?2,?3)", params![row_id,source,destination], |row| Ok((row.get(0)?,row.get(1)?)))?;
-            ensure!(source == destination || source_count == 0 || destination_count == 0, "item {row_id} already links destination {destination:?} beside source {source:?}");
+            if source != destination && source_count > 0 && destination_count > 0 {
+                return Ok(CorrectionValue::Text(NO_SUCH_BONUS.into()));
+            }
             ensure!(source_count <= 1 && destination_count <= 1, "item {row_id} has {source_count} links to {source:?} and {destination_count} to {destination:?}; an effect replacement needs one");
             return Ok(CorrectionValue::Text(
                 if source_count == 1 { source } else if destination_count == 1 { destination } else { NO_SUCH_BONUS }
@@ -1830,13 +1842,12 @@ pub(super) fn added_bonus_upstream(correction: &Correction, rows: &[LineBonus]) 
     }
 }
 
-pub(super) fn write_pending_bonus_correction(
+pub(super) fn pending_bonus_correction_value(
     transaction: &Transaction,
-    effects: &mut EffectCache<'_>,
     groupings: &crate::groupings::Groupings,
     correction: &Correction,
     owner_id: i64,
-    links: &mut [super::modifiers::DerivedEffectLink],
+    links: &[super::modifiers::DerivedEffectLink],
 ) -> Result<CorrectionValue> {
     let Some(corrected) = CorrectedBonus::from_correction_if_effect_exists(transaction, correction)? else {
         let stat = correction.bonus_key().context("bonus correction names its bonus")?.0;
@@ -1859,9 +1870,22 @@ pub(super) fn write_pending_bonus_correction(
             |amount| amount.map_or(CorrectionValue::Null, CorrectionValue::Integer),
         )
     };
-    if upstream != correction.from || typed.is_empty() {
+    Ok(upstream)
+}
+
+pub(super) fn write_pending_bonus_correction(
+    transaction: &Transaction,
+    effects: &mut EffectCache<'_>,
+    groupings: &crate::groupings::Groupings,
+    correction: &Correction,
+    owner_id: i64,
+    links: &mut [super::modifiers::DerivedEffectLink],
+) -> Result<CorrectionValue> {
+    let upstream = pending_bonus_correction_value(transaction, groupings, correction, owner_id, links)?;
+    if upstream != correction.from || upstream.as_text() == Some(NO_SUCH_BONUS) {
         return Ok(upstream);
     }
+    let corrected = CorrectedBonus::of(transaction, correction)?;
     let new_type_id = if correction.field == "bonus_type" {
         Some(bonus_type_id_named(transaction, correction.to.as_text().context("bonus type is text")?)?)
     } else {

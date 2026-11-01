@@ -61,6 +61,26 @@ pub(super) struct DerivedEffectLink {
     pub(super) is_split_line: bool,
 }
 
+pub(super) struct PendingEffectLinks {
+    kind: BonusOwnerKind,
+    name: String,
+    owner_id: i64,
+    links: Vec<DerivedEffectLink>,
+}
+
+impl PendingEffectLinks {
+    fn correction_kind(&self) -> ddo_model::enums::CorrectionKind {
+        use ddo_model::enums::CorrectionKind;
+        match self.kind {
+            BonusOwnerKind::Item => CorrectionKind::ItemBonus,
+            BonusOwnerKind::Augment => CorrectionKind::AugmentBonus,
+            BonusOwnerKind::Feat => CorrectionKind::FeatBonus,
+            BonusOwnerKind::SetBonusTier => CorrectionKind::SetTierBonus,
+            BonusOwnerKind::ItemAugmentSlotOption => CorrectionKind::SocketOptionBonus,
+        }
+    }
+}
+
 pub(super) struct LineSplitMember {
     pub(super) bonus: crate::map::effect::DerivedBonus,
     pub(super) line_name: String,
@@ -93,7 +113,84 @@ impl GroupingHold {
     }
 }
 
-impl TableWriter<'_> {
+impl<'a> TableWriter<'a> {
+    pub(super) fn queue_effect_links(&mut self, owner: &BonusOwner, owner_id: i64, links: Vec<DerivedEffectLink>) {
+        self.pending_effect_links.push(PendingEffectLinks {
+            kind: owner.kind,
+            name: owner.name.to_string(),
+            owner_id,
+            links,
+        });
+    }
+
+    pub(super) fn write_pending_effect_links(&mut self) -> Result<()> {
+        let mut owners = std::mem::take(&mut self.pending_effect_links);
+        for correction in self.bonus_link_corrections.clone() {
+            if correction.field == "bonus_type" && correction.from == crate::corrections::CorrectionValue::Null {
+                continue;
+            }
+            let mut matching = Vec::new();
+            for (index, owner) in owners.iter().enumerate() {
+                if correction.kind == owner.correction_kind()
+                    && correction.name == owner.name
+                    && self.correction_owner_matches(correction, owner.owner_id)?
+                {
+                    let upstream = super::corrections::pending_bonus_correction_value(
+                        self.transaction,
+                        self.groupings,
+                        correction,
+                        owner.owner_id,
+                        &owner.links,
+                    )
+                    .with_context(|| format!("correction file {}: {}", correction.file_name, correction.label()))?;
+                    self.observed_bonus_corrections.push((correction, upstream.clone()));
+                    matching.push((index, upstream));
+                }
+            }
+            let values = matching.iter().map(|(_, upstream)| upstream.clone()).collect::<Vec<_>>();
+            if super::corrections::upstream_values_match(correction, &values)? {
+                for (index, _) in matching {
+                    let owner = &mut owners[index];
+                    super::corrections::write_pending_bonus_correction(
+                        self.transaction,
+                        &mut self.effects,
+                        self.groupings,
+                        correction,
+                        owner.owner_id,
+                        &mut owner.links,
+                    )
+                    .with_context(|| format!("correction file {}: {}", correction.file_name, correction.label()))?;
+                }
+            }
+        }
+        for pending in owners {
+            let owner = BonusOwner { kind: pending.kind, name: &pending.name, family: None };
+            let effect_owner = match pending.kind {
+                BonusOwnerKind::Item => EffectOwner::Item,
+                BonusOwnerKind::Augment => EffectOwner::Augment,
+                BonusOwnerKind::Feat => EffectOwner::Feat,
+                BonusOwnerKind::SetBonusTier => EffectOwner::SetBonusTier,
+                BonusOwnerKind::ItemAugmentSlotOption => EffectOwner::ItemAugmentSlotOption,
+            };
+            for (sort_order, link) in self
+                .write_merged_lines(&owner, pending.owner_id, pending.links)
+                .with_context(|| format!("writing effect lines for {:?}", owner.name))?
+                .into_iter()
+                .enumerate()
+            {
+                self.effects.insert_link(
+                    (effect_owner, pending.owner_id),
+                    link.effect_id,
+                    link.alias.as_deref(),
+                    link.bonus_type,
+                    (link.value, link.value2),
+                    sort_order,
+                )?;
+            }
+        }
+        Ok(())
+    }
+
     pub(super) fn write_stat_type_effects(&mut self, definitions: &[&crate::groupings::Grouping]) -> Result<()> {
         let routes = stat_links_at_routed_types(self.transaction)?;
         let mut targets = std::collections::BTreeMap::new();
@@ -159,17 +256,7 @@ impl TableWriter<'_> {
                 }
             }
             let links = self.ensure_derived_effects(&owner, modifier_source, owner_id, &mapped_effects)?;
-            let links = self.write_merged_lines(&owner, owner_id, links)?;
-            for (sort_order, link) in links.into_iter().enumerate() {
-                self.effects.insert_link(
-                    (owner_kind, owner_id),
-                    link.effect_id,
-                    link.alias.as_deref(),
-                    link.bonus_type,
-                    (link.value, link.value2),
-                    sort_order,
-                )?;
-            }
+            self.queue_effect_links(&owner, owner_id, links);
         }
         Ok(())
     }
@@ -808,7 +895,66 @@ impl TableWriter<'_> {
         let same_value = members.iter().all(|member| member.bonus.value == value);
         let stats =
             members.iter().map(|member| member.bonus.stat.name.to_string()).collect::<std::collections::BTreeSet<_>>();
-        let split_corrections = self
+        let split_corrections = self.split_corrections_for_owner(owner, owner_id, bonus_type, value)?;
+        let mut split_correction = None;
+        for correction in split_corrections {
+            if correction.upstream_line_stats()? != [stats.clone()] {
+                continue;
+            }
+            anyhow::ensure!(split_correction.is_none(), "{}: overlapping split corrections", correction.label());
+            split_correction = Some(correction);
+        }
+        if let Some(correction) = split_correction {
+            if !same_value {
+                return Ok(Some(GroupingOutcome::Held(GroupingHold::DifferentValues)));
+            }
+            let mut partitions = correction.line_partition_stats(self.groupings)?;
+            partitions.sort_by_key(|(_, partition)| {
+                members.iter().position(|member| partition.contains(member.bonus.stat.name))
+            });
+            let mut split_links = Vec::new();
+            for (line_name, partition) in partitions {
+                let mut link = if ddo_model::stats::Stat::by_name(&line_name).is_some() {
+                    let member = members
+                        .iter()
+                        .find(|member| partition.contains(member.bonus.stat.name))
+                        .with_context(|| {
+                            format!(
+                                "{}: split target {line_name:?} has no member on {}",
+                                correction.label(),
+                                owner.name
+                            )
+                        })?;
+                    self.write_bonus_line(owner, &member.line_name, &[member.bonus], bonus_type, false)?
+                } else {
+                    let line_effect = self.groupings.effect_named(&line_name).ok_or_else(|| {
+                        anyhow::anyhow!(
+                            "{}: split line {line_name:?} has no indexed effect definition",
+                            correction.label()
+                        )
+                    })?;
+                    let effect_id = self.effects.ensure_indexed_effect(line_effect)?;
+                    self.write_upstream_grouping_line(owner, effect_id, bonus_type, value)?
+                };
+                link.is_split_line = true;
+                split_links.push(link);
+            }
+            if !self.applied_link_corrections.iter().any(|applied| std::ptr::eq(*applied, correction)) {
+                self.applied_link_corrections.push(correction);
+            }
+            return Ok(Some(GroupingOutcome::Split { links: split_links, correction: correction.label() }));
+        }
+        Ok(None)
+    }
+
+    pub(super) fn split_corrections_for_owner(
+        &self,
+        owner: &BonusOwner,
+        owner_id: i64,
+        bonus_type: ddo_model::enums::BonusType,
+        value: i64,
+    ) -> Result<Vec<&'a crate::corrections::Correction>> {
+        let candidates = self
             .line_corrections
             .iter()
             .copied()
@@ -830,51 +976,14 @@ impl TableWriter<'_> {
                     )
             })
             .collect::<Vec<_>>();
-        let mut split_correction = None;
-        for correction in split_corrections {
-            if !self.correction_owner_matches(correction, owner_id)?
-                || correction.upstream_line_stats()? != [stats.clone()]
-            {
-                continue;
-            }
-            anyhow::ensure!(split_correction.is_none(), "{}: overlapping split corrections", correction.label());
-            split_correction = Some(correction);
-        }
-        if let Some(correction) = split_correction {
-            if !same_value {
-                return Ok(Some(GroupingOutcome::Held(GroupingHold::DifferentValues)));
-            }
-            let mut partitions = correction.line_partition_stats(self.groupings)?;
-            partitions.sort_by_key(|(_, partition)| {
-                members.iter().position(|member| partition.contains(member.bonus.stat.name))
-            });
-            let mut split_links = Vec::new();
-            for (line_name, partition) in partitions {
-                let mut link = if ddo_model::stats::Stat::by_name(&line_name).is_some() {
-                    let member = members
-                        .iter()
-                        .find(|member| partition.contains(member.bonus.stat.name))
-                        .expect("validated split member");
-                    self.write_bonus_line(owner, &member.line_name, &[member.bonus], bonus_type, false)?
-                } else {
-                    let line_effect = self.groupings.effect_named(&line_name).ok_or_else(|| {
-                        anyhow::anyhow!(
-                            "{}: split line {line_name:?} has no indexed effect definition",
-                            correction.label()
-                        )
-                    })?;
-                    let effect_id = self.effects.ensure_indexed_effect(line_effect)?;
-                    self.write_upstream_grouping_line(owner, effect_id, bonus_type, value)?
-                };
-                link.is_split_line = true;
-                split_links.push(link);
-            }
-            if !self.applied_link_corrections.iter().any(|applied| std::ptr::eq(*applied, correction)) {
-                self.applied_link_corrections.push(correction);
-            }
-            return Ok(Some(GroupingOutcome::Split { links: split_links, correction: correction.label() }));
-        }
-        Ok(None)
+        candidates
+            .into_iter()
+            .filter_map(|correction| match self.correction_owner_matches(correction, owner_id) {
+                Ok(true) => Some(Ok(correction)),
+                Ok(false) => None,
+                Err(error) => Some(Err(error)),
+            })
+            .collect()
     }
 
     fn correction_owner_matches(&self, correction: &crate::corrections::Correction, owner_id: i64) -> Result<bool> {
@@ -900,31 +1009,6 @@ impl TableWriter<'_> {
             BonusOwnerKind::SetBonusTier => CorrectionKind::SetTierBonus,
             BonusOwnerKind::ItemAugmentSlotOption => CorrectionKind::SocketOptionBonus,
         };
-        let source_corrections = self
-            .bonus_link_corrections
-            .iter()
-            .copied()
-            .filter(|correction| {
-                correction.kind == kind
-                    && correction.name == owner.name
-                    && !(correction.field == "bonus_type"
-                        && correction.from == crate::corrections::CorrectionValue::Null)
-            })
-            .collect::<Vec<_>>();
-        for correction in source_corrections {
-            if self.correction_owner_matches(correction, owner_id)? {
-                let upstream = super::corrections::write_pending_bonus_correction(
-                    self.transaction,
-                    &mut self.effects,
-                    self.groupings,
-                    correction,
-                    owner_id,
-                    &mut links,
-                )
-                .with_context(|| format!("correction file {}: {}", correction.file_name, correction.label()))?;
-                self.observed_bonus_corrections.push((correction, upstream));
-            }
-        }
         let mut conflicting_additions = std::collections::BTreeSet::new();
         for correction in self
             .bonus_additions
@@ -941,12 +1025,15 @@ impl TableWriter<'_> {
                 unreachable!("validated bonus addition")
             };
             if upstream == crate::corrections::CorrectionValue::Null && correction.from == upstream {
-                links.push(super::corrections::write_added_bonus_link(
-                    self.transaction,
-                    &mut self.effects,
-                    self.groupings,
-                    bonus,
-                )?);
+                links.push(
+                    super::corrections::write_added_bonus_link(
+                        self.transaction,
+                        &mut self.effects,
+                        self.groupings,
+                        bonus,
+                    )
+                    .with_context(|| format!("correction file {}: {}", correction.file_name, correction.label()))?,
+                );
             } else if upstream != correction.to {
                 conflicting_additions.extend(rows.iter().map(|row| row.order));
             }

@@ -181,6 +181,7 @@ pub struct StaleCorrection {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum StaleCorrectionCause {
     ValueChanged { expected_value: String, maetrim_value: String },
+    ValuesDisagree { expected_value: String, maetrim_values: Vec<String> },
     RenameDoneUpstream { new_name: String },
 }
 
@@ -369,6 +370,7 @@ fn build_with_wiki_references(
         pending_set_augment_links: Vec::new(),
         pending_set_option_links: Vec::new(),
         pending_derived_effects: Vec::new(),
+        pending_effect_links: Vec::new(),
     };
 
     writer.write_standard_feats(&data_files_dir.join("Feats.xml"), &mut report)?;
@@ -426,6 +428,7 @@ fn build_with_wiki_references(
     for path in files_with_extension(&data_files_dir.join("FiligreeSets"), "xml")? {
         writer.write_set_bonus_file(&path, true, &mut report).with_context(|| format!("{}", path.display()))?;
     }
+    writer.write_pending_effect_links()?;
     overlay_references.capture_renames(&transaction, corrections)?;
     if is_previous {
         wiki_previous::omit_unresolved_previous_facts(
@@ -839,6 +842,7 @@ pub(crate) struct TableWriter<'a> {
     pending_set_augment_links: Vec<(i64, String)>,
     pending_set_option_links: Vec<(i64, String)>,
     pending_derived_effects: Vec<PendingDerivedEffects>,
+    pending_effect_links: Vec<modifiers::PendingEffectLinks>,
 }
 
 impl TableWriter<'_> {

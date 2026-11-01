@@ -618,12 +618,38 @@ fn fabricators_valued_prose_links_attack_and_damage_once() {
 
 #[test]
 fn unbreakable_adamancy_prose_links_sheltering_once() {
+    unbreakable_adamancy_prose_links(false, false);
+}
+
+#[test]
+fn unbreakable_adamancy_prose_can_use_a_group_only_in_the_mapping() {
+    for split in [false, true] {
+        unbreakable_adamancy_prose_links(true, split);
+    }
+}
+
+fn unbreakable_adamancy_prose_links(mapping_only: bool, split: bool) {
     let canonical = fixture::database(|root| {
-        std::fs::write(
-            root.join("effects/stat-groups/sheltering.toml"),
-            include_str!("../../../data/effects/stat-groups/sheltering.toml"),
-        )
-        .unwrap();
+        if mapping_only {
+            std::fs::remove_file(root.join("effects/stat-groups/sheltering.toml")).unwrap();
+            let feats = root.join("characters/feats/other.toml");
+            let contents = std::fs::read_to_string(&feats).unwrap();
+            std::fs::write(
+                feats,
+                contents.replace("effect = \"Sheltering\"", "effect = \"Physical Resistance Rating\""),
+            )
+            .unwrap();
+            let item = root.join("packs/unsourced/gear/sightless.toml");
+            let contents = std::fs::read_to_string(&item).unwrap();
+            std::fs::write(item, contents.replace("name = \"Sheltering\"", "name = \"Physical Resistance Rating\""))
+                .unwrap();
+        } else {
+            std::fs::write(
+                root.join("effects/stat-groups/sheltering.toml"),
+                include_str!("../../../data/effects/stat-groups/sheltering.toml"),
+            )
+            .unwrap();
+        }
     });
     let groupings = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
     let source = fixture::xml_source();
@@ -644,18 +670,27 @@ fn unbreakable_adamancy_prose_links_sheltering_once() {
     )
     .unwrap();
     let mut db = Connection::open_in_memory().unwrap();
+    let corrections = if split {
+        fixture::corrections_from(&[("unbreakable-adamancy.toml", &fixture::new_qualified_correction("set_tier_bonus", "Unbreakable Adamancy", "equipped_count = 2\nstat = 'Physical Resistance Rating, Magical Resistance Rating'\nbonus_type = 'Luck'", "lines", "[['Physical Resistance Rating', 'Magical Resistance Rating']]", "['Physical Resistance Rating', 'Magical Resistance Rating']"))]).unwrap()
+    } else {
+        Corrections::default()
+    };
     build_database(
         &groupings,
         source.path(),
         &WikiOverrides::default(),
-        &Corrections::default(),
+        &corrections,
         &mut db,
         &fixture_dataset_version(),
     )
     .unwrap();
     let links = db.prepare("SELECT e.name, bt.name, l.value FROM set_bonus_tier_effects l JOIN set_bonus_tiers t ON t.id=l.tier_id JOIN set_bonuses s ON s.id=t.set_id JOIN effects e ON e.id=l.effect_id LEFT JOIN bonus_types bt ON bt.id=l.bonus_type_id WHERE s.name='Unbreakable Adamancy' AND t.equipped_count=2 ORDER BY l.sort_order").unwrap()
         .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,Option<String>>(1)?,row.get::<_,Option<i64>>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
-    assert_eq!(links, [("Sheltering".into(), Some("Luck".into()), Some(5))]);
+    let names =
+        if split { vec!["Magical Resistance Rating", "Physical Resistance Rating"] } else { vec!["Sheltering"] };
+    let mut links = links;
+    links.sort();
+    assert_eq!(links, names.into_iter().map(|name| (name.into(), Some("Luck".into()), Some(5))).collect::<Vec<_>>());
     let bonuses = db.prepare("SELECT stat.name, bt.name, b.amount FROM owner_bonuses b JOIN set_bonus_tiers t ON b.owner_kind='set_bonus_tier' AND t.id=b.owner_id JOIN set_bonuses s ON s.id=t.set_id JOIN effects stat ON stat.id=b.stat_id JOIN bonus_types bt ON bt.id=b.bonus_type_id WHERE s.name='Unbreakable Adamancy' AND t.equipped_count=2 ORDER BY stat.name").unwrap()
         .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
     assert_eq!(
