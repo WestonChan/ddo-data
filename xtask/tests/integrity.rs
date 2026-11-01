@@ -15,6 +15,28 @@ const PACK_QUEST_OVERLAP_SQL: &str =
      LIMIT 1";
 
 #[test]
+fn description_templates_reject_spaces_before_closing_parentheses() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+    for (description, fails) in [
+        (None, false),
+        (Some(""), false),
+        (Some("Grants healing (Enhancement bonus)."), false),
+        (Some("Grants healing (Enhancement bonus )."), true),
+        (Some("Grants healing (Enhancement bonus  )."), true),
+        (Some("Grants healing (Enhancement bonus) ."), false),
+    ] {
+        db.execute("UPDATE effects SET description_template=?1 WHERE name='Strength'", [description]).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report
+            .outcome("effect_descriptions_have_no_space_before_closing_parentheses")
+            .expect("description-spacing HARD check");
+        assert_eq!(outcome.status == CheckStatus::Failed, fails, "{description:?}: {outcome}");
+        assert_eq!(outcome.offenders.iter().any(|offender| offender.name == "Strength"), fails);
+    }
+}
+
+#[test]
 fn routed_stat_check_rejects_gear_links_but_keeps_sets_and_feats() {
     for (table, owner_column, eligible) in [
         ("item_effects", "item_id", true),
@@ -1597,6 +1619,11 @@ fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
 
 fn injected_violations() -> Vec<InjectedViolation> {
     let mut violations = vec![
+        violation(
+            "effect_descriptions_have_no_space_before_closing_parentheses",
+            "UPDATE effects SET description_template='Grants a bonus (Enhancement bonus ).' WHERE name='Strength';",
+            "Strength",
+        ),
         violation(
             "deferred_line_splits_are_live",
             "UPDATE augments SET slug='renamed-melancholic' WHERE slug='melancholic-converter-heroic';",

@@ -109,6 +109,14 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
          listed by cause; rank-named steps are listed separately (ddo-data#56)",
         OffenderQuery::Built(effect_templates_with_digits_without_amounts),
     ),
+    IntegrityCheck::hard(
+        "effect_descriptions_have_no_space_before_closing_parentheses",
+        "effect description templates have no space immediately before a closing parenthesis",
+        OffenderQuery::Sql(
+            "SELECT name, id, description_template FROM effects WHERE INSTR(description_template, ' )') > 0 ORDER BY name",
+        ),
+    )
+    .showing_every_offender(),
     IntegrityCheck::warn(
         "effect_descriptions_without_their_amounts",
         "served descriptions or fallback lines state every granted amount with its unit, and line claims match grants",
