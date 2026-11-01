@@ -318,7 +318,7 @@ fn write_correction(
             }
         }
         FieldShape::BonusAlias => {
-            let alias_name = correction.to.as_text().context("alias correction names an alias")?;
+            let alias_name = correction.to.as_text();
             let bonus = CorrectedBonus::of(transaction, correction)?;
             let table_name = bonus.link_table.table_name;
             let matched_links = bonus.matching_bonuses_sql(&format!("{table_name}.rowid"));
@@ -385,6 +385,13 @@ fn write_correction(
                     params![item_id, effect_name, bonus_type_id],
                 )?;
                 ensure!(changed == 1, "item {item_id} has no unique effect {effect_name:?}");
+            }
+        }
+        FieldShape::Removal if correction.kind == CorrectionKind::ItemSocket => {
+            let label = correction.socket.as_deref().context("socket removal needs a label")?;
+            let effects = effects.context("socket removal needs the family cache")?;
+            for item_id in row_ids {
+                remove_item_socket(transaction, effects, *item_id, label)?;
             }
         }
         FieldShape::Removal if correction.kind == CorrectionKind::ItemEffect => {
@@ -1098,6 +1105,14 @@ fn current_value(
                 Some(Some(name)) => CorrectionValue::Text(name),
                 Some(None) => CorrectionValue::Null,
                 None => CorrectionValue::Text(NO_SUCH_BONUS.to_string()),
+            });
+        }
+        FieldShape::Removal if correction.kind == CorrectionKind::ItemSocket => {
+            let label = correction.socket.as_deref().context("socket removal needs a label")?;
+            return Ok(if item_socket_order(transaction, row_id, label)?.is_some() {
+                CorrectionValue::Integer(0)
+            } else {
+                CorrectionValue::Text(NO_SUCH_BONUS.to_string())
             });
         }
         FieldShape::Removal if correction.kind == CorrectionKind::ItemEffect => {
@@ -2269,6 +2284,38 @@ fn add_item_socket(transaction: &Transaction, item_ids: &[i64], socket_label: &s
              SELECT ?1, COALESCE(MAX(sort_order) + 1, 0), ?2 FROM item_augment_slots WHERE item_id = ?1",
             params![item_id, slot_type_id],
         )?;
+    }
+    Ok(())
+}
+
+fn item_socket_order(transaction: &Transaction, item_id: i64, label: &str) -> Result<Option<i64>> {
+    let orders = transaction
+        .prepare("SELECT s.sort_order FROM item_augment_slots s JOIN augment_slot_types t ON t.id=s.slot_id WHERE s.item_id=?1 AND t.label=?2 ORDER BY s.sort_order")?
+        .query_map(params![item_id, label], |row| row.get::<_, i64>(0))?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    ensure!(orders.len() <= 1, "socket {label:?} matches {} sockets at positions {orders:?}", orders.len());
+    Ok(orders.first().copied())
+}
+
+fn remove_item_socket(
+    transaction: &Transaction,
+    effects: &mut EffectCache<'_>,
+    item_id: i64,
+    label: &str,
+) -> Result<()> {
+    let order = item_socket_order(transaction, item_id, label)?.context("removed socket is absent")?;
+    let linked_effects = transaction
+        .prepare("SELECT DISTINCT l.effect_id FROM item_augment_slot_option_effects l JOIN item_augment_slot_options o ON o.id=l.option_id WHERE o.item_id=?1 AND o.slot_order=?2")?
+        .query_map(params![item_id, order], |row| row.get::<_, i64>(0))?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    transaction.execute(
+        "DELETE FROM modifiers WHERE source_kind=?1 AND source_id IN (SELECT id FROM item_augment_slot_options WHERE item_id=?2 AND slot_order=?3)",
+        params![ModifierSource::ItemAugmentSlotOption.as_str(), item_id, order],
+    )?;
+    transaction
+        .execute("DELETE FROM item_augment_slots WHERE item_id=?1 AND sort_order=?2", params![item_id, order])?;
+    for effect in linked_effects {
+        effects.delete_unowned(effect)?;
     }
     Ok(())
 }

@@ -490,11 +490,13 @@ impl Correction {
     }
 
     pub(crate) fn targets_socket_option(&self) -> bool {
-        self.kind == CorrectionKind::SocketOptionBonus || self.socket.is_some() || self.option.is_some()
+        self.kind == CorrectionKind::SocketOptionBonus
+            || (self.kind != CorrectionKind::ItemSocket && (self.socket.is_some() || self.option.is_some()))
     }
 
     fn validate_qualifier_keys(&self, field: &CorrectableField) -> Result<()> {
         let names_option = self.targets_socket_option();
+        let removes_socket = self.kind == CorrectionKind::ItemSocket && field.name == "remove";
         ensure!(
             !names_option
                 || self.kind == CorrectionKind::SocketOptionBonus
@@ -502,8 +504,8 @@ impl Correction {
             "socket and option qualify only socket_option_bonus or item description corrections"
         );
         ensure!(
-            self.socket.is_some() == names_option && self.option.is_some() == names_option,
-            "a socket-option correction requires both socket and option"
+            self.socket.is_some() == (names_option || removes_socket) && self.option.is_some() == names_option,
+            "a socket-option correction requires both socket and option; a socket removal requires only socket"
         );
         ensure!(
             self.socket.as_ref().is_none_or(|name| !name.trim().is_empty())
@@ -594,8 +596,8 @@ impl Correction {
                     "an alias correction starts from null, an alias name, or a missing bonus"
                 );
                 ensure!(
-                    self.to.as_text().is_some_and(|name| !name.trim().is_empty()),
-                    "an alias correction names the chosen alias"
+                    self.to == CorrectionValue::Null || self.to.as_text().is_some_and(|name| !name.trim().is_empty()),
+                    "an alias correction names the chosen alias or null for the canonical name"
                 );
             }
             FieldShape::BonusLines if self.from.as_text() == Some(NO_SUCH_BONUS) => {
@@ -816,7 +818,7 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::EffectBonusRemoval => "his constant amount or bonus row for from and \"null\" for to",
         FieldShape::BonusDedupe => "2 for from and 1 for to",
         FieldShape::BonusLines => "upstream stat sets and the corrected line names",
-        FieldShape::BonusAlias => "an alias name",
+        FieldShape::BonusAlias => "an alias name or null for the canonical name",
         FieldShape::TierAddition => "a { equipped_count, description } table",
         FieldShape::EffectAddition => "an effect name or a { name, description } table",
         FieldShape::DamageAddition | FieldShape::DamageRemoval => "a damage row",
@@ -887,7 +889,7 @@ impl Corrections {
                 file_name: "data".to_string(),
             };
             set_correction_qualifiers(&mut correction, &qualifier)?;
-            if correction.targets_socket_option() {
+            if correction.targets_socket_option() || correction.kind == CorrectionKind::ItemSocket {
                 if file_paths.is_none() {
                     file_paths = Some(crate::tree::DataFilePaths::from_database(db)?);
                 }

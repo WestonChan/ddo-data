@@ -191,6 +191,29 @@ fn effect_scale_and_rounding_corrections_target_the_definition() {
 }
 
 #[test]
+fn alias_correction_can_restore_the_canonical_name() {
+    let source = data_files_with_untyped("clear-alias", &[]);
+    std::fs::copy(
+        fixtures_dir().join("effect-groups/EpicDuelistsLeathers.item"),
+        source.join("Items/EpicDuelistsLeathers.item"),
+    )
+    .unwrap();
+    let correction = new_qualified_correction(
+        "item_bonus",
+        "Epic Duelist's Leathers (level 20)",
+        "stat = 'Accuracy'\nbonus_type = 'Competence'",
+        "alias",
+        "\"Attack Bonus\"",
+        "\"null\"",
+    );
+    let (db, report) = built_db_from(&source, &[("clear-alias.toml", &correction)]).unwrap();
+    assert_eq!(report.correction_applied_count, 1);
+    assert!(report.stale_corrections.is_empty());
+    let link: (Option<String>, i64) = db.query_row("SELECT l.alias,l.value FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name=?1 AND e.name='Accuracy'", ["Epic Duelist's Leathers (level 20)"], |row| Ok((row.get(0)?,row.get(1)?))).unwrap();
+    assert_eq!(link, (None, 2));
+}
+
+#[test]
 fn alias_correction_uses_the_link_alias_and_reports_a_missing_member() {
     let canonical = fixture::database(|root| {
         let path = root.join("effects/stats/spot.toml");
@@ -270,7 +293,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::SetTierBonus, "add:add:BonusAddition:false, alias:alias:BonusAlias:true, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
         (CorrectionKind::ItemEffect, "add:add:EffectAddition:false, bonus_type:bonus_type:BonusTypeName:false, effect:effect:EffectReplacement:false, remove:remove:Removal:false, value2:value2:Integer:true, value:value:Integer:true"),
         (CorrectionKind::EffectDamage, "add:add:DamageAddition:false, remove:remove:DamageRemoval:false"),
-        (CorrectionKind::ItemSocket, "add:add:SocketAddition:false"),
+        (CorrectionKind::ItemSocket, "add:add:SocketAddition:false, remove:remove:Removal:false"),
     ];
     assert_eq!(expected.len(), CorrectionKind::ALL.len());
     for (kind, expected) in expected {
@@ -4049,6 +4072,81 @@ fn an_added_effect_writes_its_description_only_on_the_effect_it_creates() {
         recorded,
         [("Book Shot".to_string(), r#"{"description":"Hurls books at enemies.","name":"Book Shot"}"#.to_string())]
     );
+}
+
+#[test]
+fn item_socket_removal_deletes_only_the_qualified_socket_and_its_options() {
+    let source = data_files_with_untyped("socket-removal", &[]);
+    std::fs::copy(
+        fixtures_dir().join("effect-groups/EpicDuelistsLeathers.item"),
+        source.join("Items/EpicDuelistsLeathers.item"),
+    )
+    .unwrap();
+    let correction = new_qualified_correction(
+        "item_socket",
+        "Epic Duelist's Leathers (level 20)",
+        "socket = \"upgrade: tier 2\"",
+        "remove",
+        "0",
+        "1",
+    );
+    let (db, report) = built_db_from(&source, &[("socket-removal.toml", &correction)]).unwrap();
+    assert_eq!(report.correction_applied_count, 1);
+    assert_eq!(item_socket_labels(&db, "Epic Duelist's Leathers (level 20)"), ["upgrade: tier 3"]);
+    let options: Vec<String> = db
+        .prepare("SELECT o.name FROM item_augment_slot_options o JOIN items i ON i.id=o.item_id WHERE i.name=?1")
+        .unwrap()
+        .query_map(["Epic Duelist's Leathers (level 20)"], |row| row.get(0))
+        .unwrap()
+        .map(Result::unwrap)
+        .collect();
+    assert_eq!(options, ["Dodge 8% and Adds a Blue augment slot"]);
+    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM modifiers m WHERE m.source_kind='item_augment_slot_option' AND NOT EXISTS (SELECT 1 FROM item_augment_slot_options o WHERE o.id=m.source_id)"), 0);
+}
+
+#[test]
+fn item_socket_removal_is_stale_when_his_socket_is_gone() {
+    let source = data_files_with_untyped("socket-removal-stale", &[]);
+    let mut xml = std::fs::read_to_string(fixtures_dir().join("effect-groups/EpicDuelistsLeathers.item")).unwrap();
+    let start = xml.find("    <ItemAugment>").unwrap();
+    let end = start + xml[start..].find("</ItemAugment>").unwrap() + "</ItemAugment>".len();
+    xml.replace_range(start..end, "");
+    std::fs::write(source.join("Items/EpicDuelistsLeathers.item"), xml).unwrap();
+    let correction = new_qualified_correction(
+        "item_socket",
+        "Epic Duelist's Leathers (level 20)",
+        "socket = \"upgrade: tier 2\"",
+        "remove",
+        "0",
+        "1",
+    );
+    let (_, report) = built_db_from(&source, &[("socket-removal.toml", &correction)]).unwrap();
+    assert_eq!(report.correction_applied_count, 0);
+    assert_eq!(report.stale_corrections.len(), 1);
+    assert!(
+        matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. } if maetrim_value == "\"no such bonus\"")
+    );
+}
+
+#[test]
+fn item_socket_removal_rejects_ambiguous_labels() {
+    let source = data_files_with_untyped("socket-removal-ambiguous", &[]);
+    let xml = std::fs::read_to_string(fixtures_dir().join("effect-groups/EpicDuelistsLeathers.item"))
+        .unwrap()
+        .replace("<Type>Tier 3</Type>", "<Type>Tier 2</Type>");
+    std::fs::write(source.join("Items/EpicDuelistsLeathers.item"), xml).unwrap();
+    let correction = new_qualified_correction(
+        "item_socket",
+        "Epic Duelist's Leathers (level 20)",
+        "socket = \"upgrade: tier 2\"",
+        "remove",
+        "0",
+        "1",
+    );
+    let error = built_db_from(&source, &[("socket-removal.toml", &correction)]).unwrap_err();
+    for expected in ["socket-removal.toml", "upgrade: tier 2", "2 sockets"] {
+        assert!(error.contains(expected), "{error}");
+    }
 }
 
 #[test]

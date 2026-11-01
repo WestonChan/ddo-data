@@ -742,6 +742,8 @@ fn set_qualifiers(correction: &mut Correction, qualifier_keys: &str) {
     for (key, value) in keys {
         let text = || value.as_str().unwrap().to_string();
         match key.as_str() {
+            "socket" => correction.socket = Some(text()),
+            "option" => correction.option = Some(text()),
             "family" => correction.family = Some(text()),
             "selection" => correction.selection = Some(text()),
             "stance" => correction.stance = Some(text()),

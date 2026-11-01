@@ -8,7 +8,7 @@ enhancement_bonus = 6
 icon = "LightArmor_1b"
 item_category = "Armor"
 item_type = "Light"
-material = "Leather"
+material = "Spiritcraft Leather"
 minimum_level = 20
 slot = "Body"
 
@@ -18,88 +18,110 @@ armor_bonus = 7
 armor_type = "Light"
 max_dex_bonus = 14
 
+[[citation]]
+url = "https://ddowiki.com/page/Item:Epic_Duelist%27s_Leathers_(level_20)"
+read = "2026-10-31"
+note = 'R16b U39 screenshot: "Balance +17", "Accuracy +15", "Dodge +9%", "Blue Augment Slot: Empty", and "Spiritcraft Leather". No Nimbleness or upgrade tiers. Screenshot: https://images.ddowiki.com/Duelist%27s_Leathers_Level20.png'
+
 [[effect]]
 name = "Feat: Mobility"
 
 [[effect]]
 name = "Balance"
 bonus_type = "Competence"
-value = 15
-
-[[effect]]
-name = "Superior Nimbleness"
-bonus_type = "Stacking"
+value = 17
 
 [[effect]]
 name = "Dodge"
 bonus_type = "Enhancement"
-value = 6
+value = 9
 
 [[effect]]
 name = "Accuracy"
-alias = "Attack Bonus"
 bonus_type = "Competence"
-value = 2
+value = 15
 
-[[verification_request]]
-question = "Does this record mix the current item with upgrade options belonging to the legacy level-20 item?"
-assumed = "The current item retains its existing effects and two upgrade options: Epic Nimbleness, and Dodge 8% and Adds a Blue augment slot."
-raised = "2026-10-30"
-
-[[verification_request.source]]
-says = "R15c: the current item page lists no upgrade tiers or Nimbleness. The legacy tier-2 screenshot shows Epic Nimbleness, while our current item carries that option. Screenshot: https://images.ddowiki.com/Epic_Duelist%27s_Leathers_%28level_20%29%28tier_2%29.png"
+[[ddobuilder_correction]]
+kind = "item"
+field = "material"
+upstream = "Leather"
+reason = 'R16b U39 screenshot: "Balance +17", "Accuracy +15", "Dodge +9%", "Blue Augment Slot: Empty", and "Spiritcraft Leather". No Nimbleness or upgrade tiers. Screenshot: https://images.ddowiki.com/Duelist%27s_Leathers_Level20.png'
 url = "https://ddowiki.com/page/Item:Epic_Duelist%27s_Leathers_(level_20)"
-read = "2026-10-28"
+read = "2026-10-31"
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "value"
+upstream = 15
+reason = 'R16b U39 screenshot: "Balance +17", "Accuracy +15", "Dodge +9%", "Blue Augment Slot: Empty", and "Spiritcraft Leather". No Nimbleness or upgrade tiers. Screenshot: https://images.ddowiki.com/Duelist%27s_Leathers_Level20.png'
+url = "https://ddowiki.com/page/Item:Epic_Duelist%27s_Leathers_(level_20)"
+read = "2026-10-31"
+qualifier = "Balance / Competence"
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "value"
+upstream = 2
+reason = 'R16b U39 screenshot: "Balance +17", "Accuracy +15", "Dodge +9%", "Blue Augment Slot: Empty", and "Spiritcraft Leather". No Nimbleness or upgrade tiers. Screenshot: https://images.ddowiki.com/Duelist%27s_Leathers_Level20.png'
+url = "https://ddowiki.com/page/Item:Epic_Duelist%27s_Leathers_(level_20)"
+read = "2026-10-31"
+qualifier = "Accuracy / Competence"
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "value"
+upstream = 6
+reason = 'R16b U39 screenshot: "Balance +17", "Accuracy +15", "Dodge +9%", "Blue Augment Slot: Empty", and "Spiritcraft Leather". No Nimbleness or upgrade tiers. Screenshot: https://images.ddowiki.com/Duelist%27s_Leathers_Level20.png'
+url = "https://ddowiki.com/page/Item:Epic_Duelist%27s_Leathers_(level_20)"
+read = "2026-10-31"
+qualifier = "Dodge / Enhancement"
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+upstream = "Attack Bonus"
+reason = 'R16b U39 screenshot: "Balance +17", "Accuracy +15", "Dodge +9%", "Blue Augment Slot: Empty", and "Spiritcraft Leather". No Nimbleness or upgrade tiers. Screenshot: https://images.ddowiki.com/Duelist%27s_Leathers_Level20.png'
+url = "https://ddowiki.com/page/Item:Epic_Duelist%27s_Leathers_(level_20)"
+read = "2026-10-31"
+qualifier = "Accuracy / Competence"
+
+[[ddobuilder_correction]]
+kind = "item_effect"
+field = "remove"
+upstream = 0
+reason = 'R16b U39 screenshot: "Balance +17", "Accuracy +15", "Dodge +9%", "Blue Augment Slot: Empty", and "Spiritcraft Leather". No Nimbleness or upgrade tiers. Screenshot: https://images.ddowiki.com/Duelist%27s_Leathers_Level20.png'
+url = "https://ddowiki.com/page/Item:Epic_Duelist%27s_Leathers_(level_20)"
+read = "2026-10-31"
+qualifier = 'effect "Superior Nimbleness"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "remove"
+upstream = 0
+reason = 'R16b U39 screenshot: "Balance +17", "Accuracy +15", "Dodge +9%", "Blue Augment Slot: Empty", and "Spiritcraft Leather". No Nimbleness or upgrade tiers. Screenshot: https://images.ddowiki.com/Duelist%27s_Leathers_Level20.png'
+url = "https://ddowiki.com/page/Item:Epic_Duelist%27s_Leathers_(level_20)"
+read = "2026-10-31"
+qualifier = 'socket "upgrade: tier 2"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "remove"
+upstream = 0
+reason = 'R16b U39 screenshot: "Balance +17", "Accuracy +15", "Dodge +9%", "Blue Augment Slot: Empty", and "Spiritcraft Leather". No Nimbleness or upgrade tiers. Screenshot: https://images.ddowiki.com/Duelist%27s_Leathers_Level20.png'
+url = "https://ddowiki.com/page/Item:Epic_Duelist%27s_Leathers_(level_20)"
+read = "2026-10-31"
+qualifier = 'socket "upgrade: tier 3"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "add"
+reason = 'R16b U39 screenshot: "Balance +17", "Accuracy +15", "Dodge +9%", "Blue Augment Slot: Empty", and "Spiritcraft Leather". No Nimbleness or upgrade tiers. Screenshot: https://images.ddowiki.com/Duelist%27s_Leathers_Level20.png'
+url = "https://ddowiki.com/page/Item:Epic_Duelist%27s_Leathers_(level_20)"
+read = "2026-10-31"
+qualifier = "blue"
 
 [[socket]]
-slot = "upgrade: tier 2"
-
-[[socket.option]]
-name = "Epic Nimbleness"
-description = """
-Epic Nimbleness: This suit of armor looks much less restrictive than others of
-its type. A suit of armor that has this property has a maximum Dexterity bonus
-6 higher than normal, and its armor check penalty is reduced by 4."""
-icon = "Upgrade"
-min_level = 20
-
-[[socket.option.effect]]
-bonus_type = "Stacking"
-effect = "Armor Check Penalty"
-value = -4
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [-4]
-bonus_type = "Stacking"
-effect = "Armor Check Penalty"
-effect_type = "ArmorCheckPenalty"
-
-[[socket]]
-slot = "upgrade: tier 3"
-
-[[socket.option]]
-name = "Dodge 8% and Adds a Blue augment slot"
-description = """
-Dodge +8%: +8% Enhancement bonus to Dodge.
-Adds a Blue augment slot to this item"""
-icon = "Upgrade"
-min_level = 20
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Dodge"
-value = 8
-
-[[socket.option.grant]]
 slot = "blue"
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [8]
-bonus_type = "Enhancement"
-effect = "Dodge"
-effect_type = "DodgeBonus"
 
 [[source]]
 kind = "event"

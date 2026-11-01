@@ -351,13 +351,15 @@ fn verified_amplification_and_riposte_lines_follow_the_r15_screenshots() {
 }
 
 #[test]
-fn r15_unsettled_names_and_legacy_options_keep_verification_requests() {
+fn verification_requests_follow_the_resolved_and_unsettled_reader_findings() {
     let mut db = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db).unwrap();
-    for (kind, name) in [("augments", "Weaverwisp Melody"), ("items", "Epic Duelist's Leathers (level 20)")] {
+    for (kind, name) in [("augments", "Weaverwisp Melody"), ("items", "Epic Duelist's Leathers (legacy) (level 20)")] {
         let requests: i64 = db.query_row("SELECT COUNT(*) FROM verification_requests v JOIN entity_identity e ON e.kind=v.owner_kind AND e.entity_id=v.owner_id WHERE v.owner_kind=?1 AND e.name=?2",params![kind,name],|row|row.get(0)).unwrap();
-        assert!(requests > 0, "{name} needs the unresolved R15 reading recorded");
+        assert!(requests > 0, "{name} needs the unresolved reading recorded");
     }
+    let resolved_requests: i64 = db.query_row("SELECT COUNT(*) FROM verification_requests v JOIN items i ON v.owner_kind='items' AND i.id=v.owner_id WHERE i.slug='epic-duelists-leathers-level-20'", [], |row| row.get(0)).unwrap();
+    assert_eq!(resolved_requests, 0);
     let melody: (String, i64) = db.query_row("SELECT e.name,l.value FROM augment_effects l JOIN augments a ON a.id=l.augment_id JOIN effects e ON e.id=l.effect_id WHERE a.name='Weaverwisp Melody'",[],|row|Ok((row.get(0)?,row.get(1)?))).unwrap();
     assert_eq!(melody, ("Song Physical Resistance Rating".into(), 3));
 }

@@ -294,6 +294,15 @@ pub(super) fn correction_values(
             json!(description)
         }
         (CorrectionKind::ItemSocket, "add") => json!(note.qualifier),
+        (CorrectionKind::ItemSocket, "remove") => {
+            let current = data_correction_value(transaction, &correction, current_name, groupings, socket_options)?;
+            ensure!(
+                current.as_text() == Some(NO_SUCH_BONUS),
+                "removed socket is still present: {}",
+                correction.label()
+            );
+            json!(1)
+        }
         (CorrectionKind::ItemEffect, "effect") => {
             let owner = owner_id(transaction, CorrectionKind::ItemEffect, current_name, &correction)?;
             let count: i64 = transaction.query_row("SELECT COUNT(*) FROM item_effects l JOIN effects e ON e.id=l.effect_id WHERE l.item_id=?1 AND e.name=?2", params![owner,note.qualifier], |row| row.get(0))?;

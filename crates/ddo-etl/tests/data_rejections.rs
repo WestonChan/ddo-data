@@ -16,6 +16,18 @@ fn edited(file: &'static str, from: &'static str, to: &'static str) -> impl Fn(&
 }
 
 #[test]
+fn socket_removal_requires_the_socket_to_be_absent_from_our_file() {
+    let file = "packs/menace-of-the-underdark/quests/caught-in-the-web/gear/sireth-spear-of-the-sky.toml";
+    let error = fixture::data_build_error(|root| {
+        let path = root.join(file);
+        let mut text = std::fs::read_to_string(&path).unwrap();
+        text.push_str("\n[[ddobuilder_correction]]\nkind = 'item_socket'\nfield = 'remove'\nqualifier = 'socket \"crafting: attuned to heroism 2\"'\nupstream = 0\nreason = 'The screenshot has no upgrade socket.'\nurl = 'https://ddowiki.com/page/Item:Sireth,_Spear_of_the_Sky'\nread = '2026-10-31'\n");
+        std::fs::write(path, text).unwrap();
+    });
+    assert!(error.contains(file) && error.contains("removed socket is still present"), "{error}");
+}
+
+#[test]
 fn files_cannot_redeclare_always_unnamed_home_types() {
     for file in ["effects/riposte.toml", "effects/stat-groups/charisma-skills.toml"] {
         for home in ["Enhancement", "Equipment", "Feat"] {
