@@ -47,12 +47,7 @@ level_values = [
 ]
 
 [[effect]]
-name = "Armor Class"
-bonus_type = "Insight"
-value = 7
-
-[[effect]]
-name = "Saving Throws"
+name = "Parrying"
 bonus_type = "Insight"
 value = 7
 
@@ -72,6 +67,18 @@ bonus_type = "Insight"
 effect = "Saving Throws"
 effect_type = "SaveBonus"
 targets = ["All"]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [
+    ["Armor Class"],
+    ["Saving Throws"],
+]
+reason = 'R16 screenshot/prose: Parrying page: "Parrying +X items: +X Insight bonus to Armor Class, +X Insight bonus to Saves." / "The current enchantment found on randomly generated loot and crafted by Essence Crafting is formatted as "Parrying (Number)."" / "While Parrying 8 provides a +8 Insight Bonus, Parrying VIII only provides a +4 Insight Bonus." / Bittersnow screenshot: "Parrying +1: This item enchants its user with incredible awareness and speed, granting a 1 Insight bonus to AC and to Saves." / Legendary Bittersnow screenshot: "Parrying +6: This item enchants its user with incredible awareness and speed, granting a 6 Insight bonus to AC and to Saves." Evidence: https://images.ddowiki.com/Bittersnow.png; https://images.ddowiki.com/Legendary_Bittersnow.png'
+url = "https://ddowiki.com/page/Parrying"
+read = "2026-10-31"
+qualifier = "Armor Class, Saving Throws / Insight"
 
 [[slot]]
 slot = "crafting: cannith armor extra"

@@ -9,6 +9,7 @@ slot = "Hands"
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Competence"
 value = 14
 
@@ -16,6 +17,14 @@ value = 14
 name = "Fortification"
 bonus_type = "Enhancement"
 value = 81
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Spellsight +14: +14 Competence bonus to Spellcraft."; typed "Spellcraft +14", tooltip "Passive: +14 Competence bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Hunger%27s_Hands.png'
+url = "https://ddowiki.com/page/Item:Hunger%27s_Hands"
+read = "2026-10-31"
+qualifier = "Spellcraft / Competence"
 
 [[source]]
 kind = "starter"

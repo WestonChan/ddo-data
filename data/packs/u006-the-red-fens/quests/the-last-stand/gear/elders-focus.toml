@@ -15,6 +15,7 @@ bonus_type = "Equipment"
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Competence"
 value = 10
 
@@ -22,6 +23,14 @@ value = 10
 name = "Wizardry"
 bonus_type = "Enhancement"
 value = 60
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Spellsight +10: +10 Competence bonus to Spellcraft."; typed "Spellcraft +10", tooltip "Passive: +10 Competence bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Elder%27s_Focus.png'
+url = "https://ddowiki.com/page/Item:Elder%27s_Focus"
+read = "2026-10-31"
+qualifier = "Spellcraft / Competence"
 
 [[source]]
 kind = "quest"

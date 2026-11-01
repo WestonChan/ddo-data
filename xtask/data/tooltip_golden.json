@@ -8427,6 +8427,1273 @@
           "read": "2026-10-29"
         }
       ]
+    },
+    {
+      "item": "Legendary Acolyte's Lenses",
+      "page": "https://ddowiki.com/page/Item:Legendary_Acolyte%27s_Lenses",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +20",
+          "wiki_tooltip": "Spellsight +20: +20 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 20,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_Acolyte%27s_Lenses.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Acolyte%27s_Lenses",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Legendary Eyes of the Eternal Flame",
+      "page": "https://ddowiki.com/page/Item:Legendary_Eyes_of_the_Eternal_Flame",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +10",
+          "wiki_tooltip": "Insightful Spellsight +10: +10 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 10,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_Eyes_of_the_Eternal_Flame.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Eyes_of_the_Eternal_Flame",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Sage's Locket (Level 26)",
+      "page": "https://ddowiki.com/page/Item:Sage%27s_Locket_(level_26)",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellcraft",
+          "wiki_text": "Spellcraft +15",
+          "wiki_tooltip": "Spellcraft +15: Passive: +15 Competence Bonus to the Spellcraft skill.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellcraft",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellcraft +{1}",
+            "type": "Competence",
+            "value": 15,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Sage%27s_Locket_%28Level_26%29.png",
+          "page": "https://ddowiki.com/page/Item:Sage%27s_Locket_(level_26)",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Eyes of the Crushing Wave",
+      "page": "https://ddowiki.com/page/Item:Eyes_of_the_Crushing_Wave",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +5",
+          "wiki_tooltip": "Insightful Spellsight +5: +5 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 5,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Eyes_of_the_Crushing_Wave.png",
+          "page": "https://ddowiki.com/page/Item:Eyes_of_the_Crushing_Wave",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Eyes of the Lady of Rot and Decay",
+      "page": "https://ddowiki.com/page/Item:Eyes_of_the_Lady_of_Rot_and_Decay",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +5",
+          "wiki_tooltip": "Insightful Spellsight +5: +5 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 5,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Eyes_of_the_Lady_of_Rot_and_Decay.jpg",
+          "page": "https://ddowiki.com/page/Item:Eyes_of_the_Lady_of_Rot_and_Decay",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Bracers of Method and Magic",
+      "page": "https://ddowiki.com/page/Item:Bracers_of_Method_and_Magic",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +7",
+          "wiki_tooltip": "Spellsight +7: +7 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 7,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Bracers_of_Method_and_Magic.png",
+          "page": "https://ddowiki.com/page/Item:Bracers_of_Method_and_Magic",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Scarlet Scale Cloak",
+      "page": "https://ddowiki.com/page/Item:Scarlet_Scale_Cloak",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +12",
+          "wiki_tooltip": "Spellsight +12: +12 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 2,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 12,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Scarlet_Scale_Cloak.png",
+          "page": "https://ddowiki.com/page/Item:Scarlet_Scale_Cloak",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Falrinth's Folly",
+      "page": "https://ddowiki.com/page/Item:Falrinth%27s_Folly",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +10",
+          "wiki_tooltip": "Spellsight +10: +10 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 0,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 10,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Falrinth%27s_Folly.jpg",
+          "page": "https://ddowiki.com/page/Item:Falrinth%27s_Folly",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Legendary Scarlet Scale Cloak",
+      "page": "https://ddowiki.com/page/Item:Legendary_Scarlet_Scale_Cloak",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +20",
+          "wiki_tooltip": "Spellsight +20: +20 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 2,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 20,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_Scarlet_Scale_Cloak.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Scarlet_Scale_Cloak",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Elder's Focus",
+      "page": "https://ddowiki.com/page/Item:Elder%27s_Focus",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +10",
+          "wiki_tooltip": "Spellsight +10: +10 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 10,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Elder%27s_Focus.png",
+          "page": "https://ddowiki.com/page/Item:Elder%27s_Focus",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Docent of Moonlight",
+      "page": "https://ddowiki.com/page/Item:Docent_of_Moonlight",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +15",
+          "wiki_tooltip": "Spellsight +15: +15 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 15,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Docent_of_Moonlight.png",
+          "page": "https://ddowiki.com/page/Item:Docent_of_Moonlight",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Spellworker's Gloves",
+      "page": "https://ddowiki.com/page/Item:Spellworker%27s_Gloves",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +14",
+          "wiki_tooltip": "Spellsight +14: +14 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 0,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 14,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Spellworker%27s_Gloves.png",
+          "page": "https://ddowiki.com/page/Item:Spellworker%27s_Gloves",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Morninglord's Sceptre",
+      "page": "https://ddowiki.com/page/Item:Morninglord%27s_Sceptre",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +20",
+          "wiki_tooltip": "Spellsight +20: +20 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 20,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Morninglord%27s_Sceptre.png",
+          "page": "https://ddowiki.com/page/Item:Morninglord%27s_Sceptre",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        },
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +10",
+          "wiki_tooltip": "Insightful Spellsight +10: +10 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 4,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 10,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Morninglord%27s_Sceptre.png",
+          "page": "https://ddowiki.com/page/Item:Morninglord%27s_Sceptre",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Legendary Auspicious Bracers",
+      "page": "https://ddowiki.com/page/Item:Legendary_Auspicious_Bracers",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +22",
+          "wiki_tooltip": "Spellsight +22: +22 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 22,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_Auspicious_Bracers.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Auspicious_Bracers",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "The Legendary Queen's Sceptre",
+      "page": "https://ddowiki.com/page/Item:The_Legendary_Queen%27s_Sceptre",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +20",
+          "wiki_tooltip": "Spellsight +20: +20 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 20,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/The_Legendary_Queen%27s_Sceptre.png",
+          "page": "https://ddowiki.com/page/Item:The_Legendary_Queen%27s_Sceptre",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        },
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +10",
+          "wiki_tooltip": "Insightful Spellsight +10: +10 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 4,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 10,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/The_Legendary_Queen%27s_Sceptre.png",
+          "page": "https://ddowiki.com/page/Item:The_Legendary_Queen%27s_Sceptre",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Legendary Falrinth's Folly",
+      "page": "https://ddowiki.com/page/Item:Legendary_Falrinth%27s_Folly",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +21",
+          "wiki_tooltip": "Spellsight +21: +21 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 0,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 21,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_Falrinth%27s_Folly.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Falrinth%27s_Folly",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Legendary Absorption Gauntlet",
+      "page": "https://ddowiki.com/page/Item:Legendary_Absorption_Gauntlet",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Quality Spellsight +5",
+          "wiki_tooltip": "Quality Spellsight +5: +5 Quality bonus to Spellcraft Skill.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 2,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Quality",
+            "value": 5,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_Absorption_Gauntlet.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Absorption_Gauntlet",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Legendary Eyes of the Black Earth",
+      "page": "https://ddowiki.com/page/Item:Legendary_Eyes_of_the_Black_Earth",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +10",
+          "wiki_tooltip": "Insightful Spellsight +10: +10 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 10,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_Eyes_of_the_Black_Earth.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Eyes_of_the_Black_Earth",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Stone-steady Boots",
+      "page": "https://ddowiki.com/page/Item:Stone-steady_Boots",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellcraft",
+          "wiki_text": "Spellcraft +13",
+          "wiki_tooltip": "Spellcraft +13: Passive: +13 Competence Bonus to the Spellcraft skill.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellcraft",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellcraft +{1}",
+            "type": "Competence",
+            "value": 13,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Stone-steady_Boots.png",
+          "page": "https://ddowiki.com/page/Item:Stone-steady_Boots",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Legendary University Mage's Hat",
+      "page": "https://ddowiki.com/page/Item:Legendary_University_Mage%27s_Hat",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +21",
+          "wiki_tooltip": "Spellsight +21: +21 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 21,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_University_Mage%27s_Hat.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_University_Mage%27s_Hat",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Legendary Eyes of the Howling Hatred",
+      "page": "https://ddowiki.com/page/Item:Legendary_Eyes_of_the_Howling_Hatred",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +10",
+          "wiki_tooltip": "Insightful Spellsight +10: +10 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 10,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_Eyes_of_the_Howling_Hatred.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Eyes_of_the_Howling_Hatred",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Absorption Gauntlet",
+      "page": "https://ddowiki.com/page/Item:Absorption_Gauntlet",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Quality Spellsight +4",
+          "wiki_tooltip": "Quality Spellsight +4: +4 Quality bonus to Spellcraft Skill.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 2,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Quality",
+            "value": 4,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Absorption_Gauntlet.png",
+          "page": "https://ddowiki.com/page/Item:Absorption_Gauntlet",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Legendary Eyes of the Lady of Rot and Decay",
+      "page": "https://ddowiki.com/page/Item:Legendary_Eyes_of_the_Lady_of_Rot_and_Decay",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +10",
+          "wiki_tooltip": "Insightful Spellsight +10: +10 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 10,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_Eyes_of_the_Lady_of_Rot_and_Decay.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Eyes_of_the_Lady_of_Rot_and_Decay",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Eyes of the Black Earth",
+      "page": "https://ddowiki.com/page/Item:Eyes_of_the_Black_Earth",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +5",
+          "wiki_tooltip": "Insightful Spellsight +5: +5 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 5,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Eyes_of_the_Black_Earth.jpg",
+          "page": "https://ddowiki.com/page/Item:Eyes_of_the_Black_Earth",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Eyes of the Eternal Flame",
+      "page": "https://ddowiki.com/page/Item:Eyes_of_the_Eternal_Flame",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +5",
+          "wiki_tooltip": "Insightful Spellsight +5: +5 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 5,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Eyes_of_the_Eternal_Flame.png",
+          "page": "https://ddowiki.com/page/Item:Eyes_of_the_Eternal_Flame",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Acolyte's Lenses",
+      "page": "https://ddowiki.com/page/Item:Acolyte%27s_Lenses",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +16",
+          "wiki_tooltip": "Spellsight +16: +16 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 16,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Acolyte%27s_Lenses.png",
+          "page": "https://ddowiki.com/page/Item:Acolyte%27s_Lenses",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Legendary Docent of Moonlight",
+      "page": "https://ddowiki.com/page/Item:Legendary_Docent_of_Moonlight",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +21",
+          "wiki_tooltip": "Spellsight +21: +21 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 21,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_Docent_of_Moonlight.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Docent_of_Moonlight",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Gauntlets of the Arcane Soldier",
+      "page": "https://ddowiki.com/page/Item:Gauntlets_of_the_Arcane_Soldier",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Quality Spellsight +5",
+          "wiki_tooltip": "Quality Spellsight +5: +5 Quality bonus to Spellcraft Skill.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 2,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Quality",
+            "value": 5,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Gauntlets_of_the_Arcane_Soldier.png",
+          "page": "https://ddowiki.com/page/Item:Gauntlets_of_the_Arcane_Soldier",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Libram of Silver Magic",
+      "page": "https://ddowiki.com/page/Item:Libram_of_Silver_Magic",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellcraft",
+          "wiki_text": "Spellcraft +20",
+          "wiki_tooltip": "Spellcraft +20: Passive: +20 Competence Bonus to the Spellcraft skill.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellcraft",
+          "ours_line": {
+            "index": 5,
+            "template": "%b1 Spellcraft +{1}",
+            "type": "Competence",
+            "value": 20,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Libram_of_Silver_Magic.png; https://images.ddowiki.com/Libram_of_Silver_Magic_%28Upgraded%29.png",
+          "page": "https://ddowiki.com/page/Item:Libram_of_Silver_Magic",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Legendary Robe of Sunlight",
+      "page": "https://ddowiki.com/page/Item:Legendary_Robe_of_Sunlight",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +21",
+          "wiki_tooltip": "Spellsight +21: +21 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 21,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_Robe_of_Sunlight.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Robe_of_Sunlight",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Legendary Beads of Winter",
+      "page": "https://ddowiki.com/page/Item:Legendary_Beads_of_Winter",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +11",
+          "wiki_tooltip": "Insightful Spellsight +11: +11 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 11,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_Beads_of_Winter.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Beads_of_Winter",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Study Spectacles",
+      "page": "https://ddowiki.com/page/Item:Study_Spectacles",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +8",
+          "wiki_tooltip": "Insightful Spellsight +8: +8 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 2,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 8,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Study_Spectacles.png",
+          "page": "https://ddowiki.com/page/Item:Study_Spectacles",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Legendary Study Spectacles",
+      "page": "https://ddowiki.com/page/Item:Legendary_Study_Spectacles",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +10",
+          "wiki_tooltip": "Insightful Spellsight +10: +10 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 2,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 10,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_Study_Spectacles.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Study_Spectacles",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Eyes of the Howling Hatred",
+      "page": "https://ddowiki.com/page/Item:Eyes_of_the_Howling_Hatred",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +5",
+          "wiki_tooltip": "Insightful Spellsight +5: +5 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 5,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Eyes_of_the_Howling_Hatred.png",
+          "page": "https://ddowiki.com/page/Item:Eyes_of_the_Howling_Hatred",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Hunger's Hands",
+      "page": "https://ddowiki.com/page/Item:Hunger%27s_Hands",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +14",
+          "wiki_tooltip": "Spellsight +14: +14 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 0,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 14,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Hunger%27s_Hands.png",
+          "page": "https://ddowiki.com/page/Item:Hunger%27s_Hands",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Auspicious Bracers",
+      "page": "https://ddowiki.com/page/Item:Auspicious_Bracers",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +10",
+          "wiki_tooltip": "Spellsight +10: +10 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 10,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Auspicious_Bracers.png",
+          "page": "https://ddowiki.com/page/Item:Auspicious_Bracers",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Beads of Winter",
+      "page": "https://ddowiki.com/page/Item:Beads_of_Winter",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +5",
+          "wiki_tooltip": "Insightful Spellsight +5: +5 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 5,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Beads_of_Winter.png",
+          "page": "https://ddowiki.com/page/Item:Beads_of_Winter",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "University Mage's Hat",
+      "page": "https://ddowiki.com/page/Item:University_Mage%27s_Hat",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +17",
+          "wiki_tooltip": "Spellsight +17: +17 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 17,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/University_Mage%27s_Hat.png",
+          "page": "https://ddowiki.com/page/Item:University_Mage%27s_Hat",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Robe of Sunlight",
+      "page": "https://ddowiki.com/page/Item:Robe_of_Sunlight",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +15",
+          "wiki_tooltip": "Spellsight +15: +15 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 15,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Robe_of_Sunlight.png",
+          "page": "https://ddowiki.com/page/Item:Robe_of_Sunlight",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Legendary Eyes of the Crushing Wave",
+      "page": "https://ddowiki.com/page/Item:Legendary_Eyes_of_the_Crushing_Wave",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +10",
+          "wiki_tooltip": "Insightful Spellsight +10: +10 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 1,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 10,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Legendary_Eyes_of_the_Crushing_Wave.png",
+          "page": "https://ddowiki.com/page/Item:Legendary_Eyes_of_the_Crushing_Wave",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Barovian's Sceptre",
+      "page": "https://ddowiki.com/page/Item:Barovian%27s_Sceptre",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +12",
+          "wiki_tooltip": "Spellsight +12: +12 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 12,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Barovian%27s_Sceptre.png",
+          "page": "https://ddowiki.com/page/Item:Barovian%27s_Sceptre",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        },
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Insightful Spellsight +6",
+          "wiki_tooltip": "Insightful Spellsight +6: +6 Insight bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 4,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Insight",
+            "value": 6,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Barovian%27s_Sceptre.png",
+          "page": "https://ddowiki.com/page/Item:Barovian%27s_Sceptre",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Echo of The Tome of Strahd",
+      "page": "https://ddowiki.com/page/Item:Echo_of_The_Tome_of_Strahd",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellsight",
+          "wiki_text": "Spellsight +20",
+          "wiki_tooltip": "Spellsight +20: +20 Competence bonus to Spellcraft.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellsight",
+          "ours_line": {
+            "index": 4,
+            "template": "%b1 Spellsight +{1}",
+            "type": "Competence",
+            "value": 20,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Echo_of_the_Tome_of_Strahd.png",
+          "page": "https://ddowiki.com/page/Item:Echo_of_The_Tome_of_Strahd",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
+    },
+    {
+      "item": "Epic Inferno Bracers",
+      "page": "https://ddowiki.com/page/Item:Epic_Inferno_Bracers",
+      "read": "2026-10-31",
+      "lines": [
+        {
+          "kind": "enchantment",
+          "depth": 0,
+          "wiki_name": "Spellcraft",
+          "wiki_text": "Spellcraft +20",
+          "wiki_tooltip": "Spellcraft +20: Passive: +20 Competence Bonus to the Spellcraft skill.",
+          "tooltip_is_standard": false,
+          "wiki_link": "/page/Spellcraft",
+          "ours": "Spellcraft",
+          "ours_line": {
+            "index": 3,
+            "template": "%b1 Spellcraft +{1}",
+            "type": "Competence",
+            "value": 20,
+            "value2": null
+          },
+          "standard_evidence": "R16c full-size screenshot: https://images.ddowiki.com/Epic_Inferno_Bracers.png",
+          "page": "https://ddowiki.com/page/Item:Epic_Inferno_Bracers",
+          "read": "2026-10-31",
+          "note": "R16c screenshot title; descriptions use our canonical wording."
+        }
+      ]
     }
   ],
   "augments": [

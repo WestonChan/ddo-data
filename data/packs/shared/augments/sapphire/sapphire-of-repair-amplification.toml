@@ -1,6 +1,6 @@
 name = "Sapphire of Repair Amplification"
 choose_level = true
-description = "Competence bonus to Repair Amplification"
+description = "This effect amplifies all incoming repair energy healing (Enhancement bonus). Includes spells, potions, and other effects."
 family = "Sapphire"
 icon = "GolemsHeart"
 level_values = [
@@ -30,7 +30,7 @@ levels = [
 
 [[effect]]
 name = "Repair Amplification"
-bonus_type = "Competence"
+bonus_type = "Enhancement"
 value = 8
 
 [[modifier]]
@@ -39,6 +39,23 @@ amounts = [8]
 bonus_type = "Competence"
 effect = "Repair Amplification"
 effect_type = "RepairAmplification"
+
+[[ddobuilder_correction]]
+kind = "augment"
+field = "description"
+upstream = "Competence bonus to Repair Amplification"
+reason = 'R16 screenshot/prose: screenshot +11: "Drag this augment into a slot to upgrade an item to provide a +11 Enhancement bonus to your Repair Amplification. This augment can go in a Blue, Green, or Purple Augment Slot." / +63: "… provide a +63 Enhancement bonus to your Repair Amplification. …" / typed: "Repair Amplification +11" tooltip "… by +11 (Enhancement bonus). …" Evidence: https://images.ddowiki.com/Sapphire_of_Repair_Amplification_%2B11.png; https://images.ddowiki.com/Sapphire_of_Repair_Amplification_%2B63.png'
+url = "https://ddowiki.com/page/Item:Sapphire_of_Repair_Amplification"
+read = "2026-10-31"
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "bonus_type"
+upstream = "Competence"
+reason = 'R16 screenshot/prose: screenshot +11: "Drag this augment into a slot to upgrade an item to provide a +11 Enhancement bonus to your Repair Amplification. This augment can go in a Blue, Green, or Purple Augment Slot." / +63: "… provide a +63 Enhancement bonus to your Repair Amplification. …" / typed: "Repair Amplification +11" tooltip "… by +11 (Enhancement bonus). …" Evidence: https://images.ddowiki.com/Sapphire_of_Repair_Amplification_%2B11.png; https://images.ddowiki.com/Sapphire_of_Repair_Amplification_%2B63.png'
+url = "https://ddowiki.com/page/Item:Sapphire_of_Repair_Amplification"
+read = "2026-10-31"
+qualifier = "Repair Amplification / Competence"
 
 [[slot]]
 slot = "blue"

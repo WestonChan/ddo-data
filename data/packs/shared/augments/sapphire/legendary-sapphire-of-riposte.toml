@@ -9,12 +9,7 @@ icon = "SapphireBlueBorder"
 min_level = 30
 
 [[effect]]
-name = "Armor Class"
-bonus_type = "Insight"
-value = 6
-
-[[effect]]
-name = "Saving Throws"
+name = "Riposte"
 bonus_type = "Insight"
 value = 6
 
@@ -34,6 +29,18 @@ bonus_type = "Insight"
 effect = "Saving Throws"
 effect_type = "SaveBonus"
 targets = ["All"]
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "lines"
+upstream = [
+    ["Armor Class"],
+    ["Saving Throws"],
+]
+reason = 'R16 screenshot/prose: screenshot: "Drag this augment into a slot to upgrade an item to provide a +6 Insight bonus to AC and to Saves. This augment can go in a Blue, Green, or Purple Augment Slot." / typed Enhancements: "Riposte +6" tooltip "Riposte +6: This item enchants its user with incredible awareness and speed, granting a +6 Insight bonus to AC and to Saves." / Notes: "Minor bug: This ability is actually Parrying, so the description is misleading." Evidence: https://images.ddowiki.com/Legendary_Sapphire_of_Riposte.png'
+url = "https://ddowiki.com/page/Item:Legendary_Sapphire_of_Riposte"
+read = "2026-10-31"
+qualifier = "Armor Class, Saving Throws / Insight"
 
 [[slot]]
 slot = "blue"

@@ -11,7 +11,7 @@ slot = "Waist"
 
 [[effect]]
 name = "Repair Amplification"
-bonus_type = "Competence"
+bonus_type = "Enhancement"
 value = 25
 
 [[effect]]
@@ -28,6 +28,15 @@ value = 84
 name = "Sheltering"
 bonus_type = "Enhancement"
 value = 16
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "bonus_type"
+upstream = "Competence"
+reason = 'R16 screenshot/prose: screenshot: "Repair Amplification +25: +25 Enhancement Bonus to Repair Amplification." / typed: "Repair Amplification +25" tooltip "This effect amplifies all incoming repair healing by +25 (Enhancement bonus). Includes spells, potions, and other effects." Evidence: https://images.ddowiki.com/Chain_of_Manacles.png'
+url = "https://ddowiki.com/page/Item:Chain_of_Manacles"
+read = "2026-10-31"
+qualifier = "Repair Amplification / Competence"
 
 [[socket]]
 slot = "yellow"

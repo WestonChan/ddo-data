@@ -21,6 +21,7 @@ value = 17
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Quality"
 value = 5
 
@@ -28,6 +29,14 @@ value = 5
 name = "Fire Absorption"
 bonus_type = "Enhancement"
 value = 36
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Quality Spellsight +5: +5 Quality bonus to Spellcraft Skill."; typed "Quality Spellcraft +5", tooltip "Passive: +5 Quality bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Legendary_Absorption_Gauntlet.png'
+url = "https://ddowiki.com/page/Item:Legendary_Absorption_Gauntlet"
+read = "2026-10-31"
+qualifier = "Spellcraft / Quality"
 
 [[socket]]
 slot = "green"

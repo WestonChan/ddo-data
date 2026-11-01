@@ -21,11 +21,20 @@ value = 16
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Insight"
 value = 8
 
 [[effect]]
 name = "Eversight"
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Insightful Spellsight +8: +8 Insight bonus to Spellcraft."; typed "Insightful Spellcraft +8", tooltip "Passive: +8 Insight bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Study_Spectacles.png'
+url = "https://ddowiki.com/page/Item:Study_Spectacles"
+read = "2026-10-31"
+qualifier = "Spellcraft / Insight"
 
 [[socket]]
 slot = "yellow"

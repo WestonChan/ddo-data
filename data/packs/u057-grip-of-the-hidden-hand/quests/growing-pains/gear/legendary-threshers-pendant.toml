@@ -11,7 +11,7 @@ slot = "Neck"
 
 [[effect]]
 name = "Repair Amplification"
-bonus_type = "Competence"
+bonus_type = "Enhancement"
 value = 56
 
 [[effect]]
@@ -28,6 +28,15 @@ value = 11
 name = "Spell Save"
 bonus_type = "Resistance"
 value = 11
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "bonus_type"
+upstream = "Competence"
+reason = 'R16 screenshot/prose: screenshot: "Repair Amplification +56: +56 Enhancement Bonus to Repair Amplification." / typed: "Repair Amplification +56" tooltip "This effect amplifies all incoming repair healing by +56 (Enhancement bonus). Includes spells, potions, and other effects." Evidence: https://images.ddowiki.com/Legendary_Thresher%27s_Pendant.png'
+url = "https://ddowiki.com/page/Item:Legendary_Thresher%27s_Pendant"
+read = "2026-10-31"
+qualifier = "Repair Amplification / Competence"
 
 [[socket]]
 slot = "green"

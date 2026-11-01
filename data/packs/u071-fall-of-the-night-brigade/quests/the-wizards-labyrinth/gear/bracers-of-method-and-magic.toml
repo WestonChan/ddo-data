@@ -24,8 +24,17 @@ value = 3
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Competence"
 value = 7
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Spellsight +7: +7 Competence bonus to Spellcraft."; typed "Spellcraft +7", tooltip "Passive: +7 Competence bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Bracers_of_Method_and_Magic.png'
+url = "https://ddowiki.com/page/Item:Bracers_of_Method_and_Magic"
+read = "2026-10-31"
+qualifier = "Spellcraft / Competence"
 
 [[socket]]
 slot = "blue"

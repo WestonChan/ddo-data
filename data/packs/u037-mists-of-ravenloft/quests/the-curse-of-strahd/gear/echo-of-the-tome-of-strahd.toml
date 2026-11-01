@@ -37,6 +37,7 @@ value = 5
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Competence"
 value = 20
 
@@ -53,6 +54,14 @@ amounts = [
 bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Dark Discorporation"]
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Spellsight +20: +20 Competence bonus to Spellcraft."; typed page text "Spellcraft +20" (no standard Enchantments list) Evidence: https://images.ddowiki.com/Echo_of_the_Tome_of_Strahd.png'
+url = "https://ddowiki.com/page/Item:Echo_of_The_Tome_of_Strahd"
+read = "2026-10-31"
+qualifier = "Spellcraft / Competence"
 
 [[socket]]
 slot = "orange"

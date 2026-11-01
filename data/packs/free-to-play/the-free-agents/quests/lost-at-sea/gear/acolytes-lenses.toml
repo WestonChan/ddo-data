@@ -26,8 +26,17 @@ value = 77
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Competence"
 value = 16
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Spellsight +16: +16 Competence bonus to Spellcraft."; typed "Spellcraft +16", tooltip "Passive: +16 Competence bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Acolyte%27s_Lenses.png'
+url = "https://ddowiki.com/page/Item:Acolyte%27s_Lenses"
+read = "2026-10-31"
+qualifier = "Spellcraft / Competence"
 
 [[socket]]
 slot = "green"

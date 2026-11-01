@@ -1,6 +1,6 @@
 name = "Repair Amplification"
 choose_level = true
-description = "All incoming repair energy healing gains a Competence bonus"
+description = "This effect amplifies all incoming repair energy healing (Enhancement bonus). Includes spells, potions, and other effects."
 family = "CannithAndRandomItem"
 icon = "Cannith"
 level_values = [
@@ -48,7 +48,7 @@ level_values = [
 
 [[effect]]
 name = "Repair Amplification"
-bonus_type = "Competence"
+bonus_type = "Enhancement"
 value = 61
 
 [[modifier]]
@@ -57,6 +57,23 @@ amounts = [61]
 bonus_type = "Competence"
 effect = "Repair Amplification"
 effect_type = "RepairAmplification"
+
+[[ddobuilder_correction]]
+kind = "augment"
+field = "description"
+upstream = "All incoming repair energy healing gains a Competence bonus"
+reason = 'R16 screenshot/prose: Repair Amplification page, Items > Crafted: "Essence Crafting - enhancement bonus" / Essence Crafting enchantment list: "Healing, Negative, or Repair Amplification"; combo row "Convalescent Healing Amplification Repair Amplification - Armor, Boots, Ring, Shield 81 425 475" Evidence: '
+url = "https://ddowiki.com/page/Repair_Amplification"
+read = "2026-10-31"
+
+[[ddobuilder_correction]]
+kind = "augment_bonus"
+field = "bonus_type"
+upstream = "Competence"
+reason = 'R16 screenshot/prose: Repair Amplification page, Items > Crafted: "Essence Crafting - enhancement bonus" / Essence Crafting enchantment list: "Healing, Negative, or Repair Amplification"; combo row "Convalescent Healing Amplification Repair Amplification - Armor, Boots, Ring, Shield 81 425 475" Evidence: '
+url = "https://ddowiki.com/page/Repair_Amplification"
+read = "2026-10-31"
+qualifier = "Repair Amplification / Competence"
 
 [[slot]]
 slot = "crafting: cannith armor suffix"

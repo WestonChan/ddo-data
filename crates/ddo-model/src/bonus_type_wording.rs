@@ -48,7 +48,6 @@ pub const STAT_HOME_TYPES: &[(&str, StatHomeType)] = &[
     ("Accuracy", StatHomeType::Competence),
     ("Deadly", StatHomeType::Competence),
     ("Healing Amplification", StatHomeType::Competence),
-    ("Repair Amplification", StatHomeType::Competence),
     ("Negative Healing Amplification", StatHomeType::Profane),
     ("Fortitude Save", StatHomeType::Resistance),
     ("Reflex Save", StatHomeType::Resistance),
@@ -74,6 +73,13 @@ pub fn home_declaration_error(bonus_type: BonusType) -> Option<String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn repair_amplification_uses_only_always_unnamed_types() {
+        assert_eq!(stat_home_type("Repair Amplification"), None);
+        assert!(is_always_unnamed(BonusType::Enhancement));
+        assert!(!is_always_unnamed(BonusType::Competence));
+    }
 
     #[test]
     fn stat_home_types_allow_only_the_three_reviewed_types() {

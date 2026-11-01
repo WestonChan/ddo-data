@@ -16,8 +16,17 @@ value = 12
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Competence"
 value = 22
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Spellsight +22: +22 Competence bonus to Spellcraft."; typed "Spellcraft +22", tooltip "Passive: +22 Competence bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Legendary_Auspicious_Bracers.png'
+url = "https://ddowiki.com/page/Item:Legendary_Auspicious_Bracers"
+read = "2026-10-31"
+qualifier = "Spellcraft / Competence"
 
 [[socket]]
 slot = "lamordia: melancholic (accessory)"

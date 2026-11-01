@@ -21,6 +21,7 @@ value = 3
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Competence"
 value = 20
 
@@ -28,6 +29,14 @@ value = 20
 name = "Constitution"
 bonus_type = "Quality"
 value = 3
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Spellsight +20: +20 Competence bonus to Spellcraft."; typed "Spellcraft +20", tooltip "Passive: +20 Competence bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Legendary_Scarlet_Scale_Cloak.png'
+url = "https://ddowiki.com/page/Item:Legendary_Scarlet_Scale_Cloak"
+read = "2026-10-31"
+qualifier = "Spellcraft / Competence"
 
 [[socket]]
 slot = "blue"

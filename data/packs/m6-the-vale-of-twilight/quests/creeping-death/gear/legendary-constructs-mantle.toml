@@ -11,7 +11,7 @@ slot = "Back"
 
 [[effect]]
 name = "Repair Amplification"
-bonus_type = "Competence"
+bonus_type = "Enhancement"
 value = 53
 
 [[effect]]
@@ -28,6 +28,15 @@ value = 20
 name = "Magnetism"
 bonus_type = "Quality"
 value = 35
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "bonus_type"
+upstream = "Competence"
+reason = 'R16 screenshot/prose: screenshot: "Repair Amplification +53: +53 Enhancement Bonus to Repair Amplification." / typed: "Repair Amplification +53" tooltip "This effect amplifies all incoming repair healing by +53 (Enhancement bonus). Includes spells, potions, and other effects." Evidence: https://images.ddowiki.com/Legendary_Construct%27s_Mantle.png'
+url = "https://ddowiki.com/page/Item:Legendary_Construct%27s_Mantle"
+read = "2026-10-31"
+qualifier = "Repair Amplification / Competence"
 
 [[socket]]
 slot = "green"

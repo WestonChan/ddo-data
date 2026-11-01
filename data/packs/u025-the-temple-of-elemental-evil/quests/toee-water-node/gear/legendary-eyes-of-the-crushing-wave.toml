@@ -14,6 +14,7 @@ value = 22
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Insight"
 value = 10
 
@@ -26,6 +27,14 @@ value = 286
 name = "Spell Save"
 bonus_type = "Resistance"
 value = 11
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Insightful Spellsight +10: +10 Insight bonus to Spellcraft."; typed "Insightful Spellcraft +10", tooltip "Passive: +10 Insight bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Legendary_Eyes_of_the_Crushing_Wave.png'
+url = "https://ddowiki.com/page/Item:Legendary_Eyes_of_the_Crushing_Wave"
+read = "2026-10-31"
+qualifier = "Spellcraft / Insight"
 
 [[socket]]
 slot = "yellow"

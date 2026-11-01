@@ -32,13 +32,31 @@ value = 23
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Competence"
 value = 12
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Insight"
 value = 6
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Spellsight +12: +12 Competence bonus to Spellcraft."; typed "Spellcraft +12", tooltip "Passive: +12 Competence bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Barovian%27s_Sceptre.png'
+url = "https://ddowiki.com/page/Item:Barovian%27s_Sceptre"
+read = "2026-10-31"
+qualifier = "Spellcraft / Competence"
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Insightful Spellsight +6: +6 Insight bonus to Spellcraft."; typed "Insightful Spellcraft +6", tooltip "Passive: +6 Insight bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Barovian%27s_Sceptre.png'
+url = "https://ddowiki.com/page/Item:Barovian%27s_Sceptre"
+read = "2026-10-31"
+qualifier = "Spellcraft / Insight"
 
 [[socket]]
 slot = "red"

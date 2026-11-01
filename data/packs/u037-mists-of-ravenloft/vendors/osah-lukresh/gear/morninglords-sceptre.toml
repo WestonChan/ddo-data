@@ -35,13 +35,31 @@ value = 49
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Competence"
 value = 20
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Insight"
 value = 10
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Spellsight +20: +20 Competence bonus to Spellcraft."; typed "Spellcraft +20", tooltip "Passive: +20 Competence bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Morninglord%27s_Sceptre.png'
+url = "https://ddowiki.com/page/Item:Morninglord%27s_Sceptre"
+read = "2026-10-31"
+qualifier = "Spellcraft / Competence"
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Insightful Spellsight +10: +10 Insight bonus to Spellcraft."; typed "Insightful Spellcraft +10", tooltip "Passive: +10 Insight bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Morninglord%27s_Sceptre.png'
+url = "https://ddowiki.com/page/Item:Morninglord%27s_Sceptre"
+read = "2026-10-31"
+qualifier = "Spellcraft / Insight"
 
 [[socket]]
 slot = "red"

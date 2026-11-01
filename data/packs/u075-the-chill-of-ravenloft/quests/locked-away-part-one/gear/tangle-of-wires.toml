@@ -11,13 +11,22 @@ slot = "Waist"
 
 [[effect]]
 name = "Repair Amplification"
-bonus_type = "Competence"
+bonus_type = "Enhancement"
 value = 19
 
 [[effect]]
 name = "Reconstruction"
 bonus_type = "Quality"
 value = 17
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "bonus_type"
+upstream = "Competence"
+reason = 'R16 screenshot/prose: screenshot: "Repair Amplification +19: +19 Enhancement Bonus to Repair Amplification." / typed: "Repair Amplification +19" tooltip "This effect amplifies all incoming repair healing by +19 (Enhancement bonus). Includes spells, potions, and other effects." Evidence: https://images.ddowiki.com/Tangle_of_Wires.png'
+url = "https://ddowiki.com/page/Item:Tangle_of_Wires"
+read = "2026-10-31"
+qualifier = "Repair Amplification / Competence"
 
 [[socket]]
 slot = "lamordia: melancholic (accessory)"

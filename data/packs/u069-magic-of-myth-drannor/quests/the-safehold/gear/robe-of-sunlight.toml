@@ -29,8 +29,17 @@ value = 13
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Competence"
 value = 15
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Spellsight +15: +15 Competence bonus to Spellcraft."; typed "Spellcraft +15", tooltip "Passive: +15 Competence bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Robe_of_Sunlight.png'
+url = "https://ddowiki.com/page/Item:Robe_of_Sunlight"
+read = "2026-10-31"
+qualifier = "Spellcraft / Competence"
 
 [[socket]]
 slot = "blue"

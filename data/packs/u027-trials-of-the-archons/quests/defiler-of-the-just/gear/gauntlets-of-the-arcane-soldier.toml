@@ -17,6 +17,7 @@ name = "Arcane Augmentation IX"
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Quality"
 value = 5
 
@@ -24,6 +25,14 @@ value = 5
 name = "Wizardry"
 bonus_type = "Quality"
 value = 67
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Quality Spellsight +5: +5 Quality bonus to Spellcraft Skill."; typed "Quality Spellcraft +5", tooltip "Passive: +5 Quality bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Gauntlets_of_the_Arcane_Soldier.png'
+url = "https://ddowiki.com/page/Item:Gauntlets_of_the_Arcane_Soldier"
+read = "2026-10-31"
+qualifier = "Spellcraft / Quality"
 
 [[socket]]
 slot = "green"

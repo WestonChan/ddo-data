@@ -14,8 +14,17 @@ value = 12
 
 [[effect]]
 name = "Spellcraft"
+alias = "Spellsight"
 bonus_type = "Insight"
 value = 11
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "alias"
+reason = 'R16 screenshot/prose: screenshot: "Insightful Spellsight +11: +11 Insight bonus to Spellcraft."; typed "Insightful Spellcraft +11", tooltip "Passive: +11 Insight bonus to the Spellcraft skill." Evidence: https://images.ddowiki.com/Legendary_Beads_of_Winter.png'
+url = "https://ddowiki.com/page/Item:Legendary_Beads_of_Winter"
+read = "2026-10-31"
+qualifier = "Spellcraft / Insight"
 
 [[socket]]
 slot = "lamordia: melancholic (accessory)"

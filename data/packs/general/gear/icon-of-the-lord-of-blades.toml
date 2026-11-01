@@ -17,8 +17,17 @@ value = 5
 
 [[effect]]
 name = "Repair Amplification"
-bonus_type = "Competence"
+bonus_type = "Enhancement"
 value = 20
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "bonus_type"
+upstream = "Competence"
+reason = 'R16 screenshot/prose: screenshot: "Repair Amplification +20: Passive: +20 Enhancement Bonus to Repair Amplification." / typed: "Repair Amplification +20" tooltip "This effect amplifies all incoming repair healing by +20 (Enhancement bonus). Includes spells, potions, and other effects." Evidence: https://images.ddowiki.com/Icon_of_the_Lord_of_Blades.png'
+url = "https://ddowiki.com/page/Item:Icon_of_the_Lord_of_Blades"
+read = "2026-10-31"
+qualifier = "Repair Amplification / Competence"
 
 [[source]]
 kind = "starter"
