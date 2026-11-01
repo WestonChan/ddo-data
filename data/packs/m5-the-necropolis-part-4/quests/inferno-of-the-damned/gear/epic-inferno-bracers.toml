@@ -29,6 +29,16 @@ name = "Spellcraft"
 bonus_type = "Competence"
 value = 20
 
+[[verification_request]]
+question = 'Does the current item still show "Superior Fire Resistance:", as in its old-style screenshot, rather than Fire Resistance +40?'
+assumed = "The current Fire Resistance +40 Enhancement link remains unchanged; no Superior Fire Resistance effect is created."
+raised = "2026-11-01"
+
+[[verification_request.source]]
+says = 'R16c screenshot: "Superior Fire Resistance:". The typed enchantments list says "Fire Resistance +40". The old-style screenshot may predate a later item change. Screenshot: https://images.ddowiki.com/Epic_Inferno_Bracers.png'
+url = "https://ddowiki.com/page/Item:Epic_Inferno_Bracers"
+read = "2026-10-31"
+
 [[socket]]
 slot = "crafting: upgradeable - primary augment"
 
