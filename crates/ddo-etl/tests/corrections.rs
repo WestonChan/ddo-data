@@ -1093,9 +1093,16 @@ fn a_lines_merge_combines_item_buffs_and_reports_missing_members() {
         original.replace("</Item>\n</Items>", &format!("<Buff>{search_buff}</Buff></Item>\n</Items>")),
     )
     .unwrap();
-    let error = built_db_from_index(fixture::grouping_cases(), source.path(), &[("merged-lines.toml", &correction)])
-        .unwrap_err();
-    assert!(error.contains("matches several links"), "{error}");
+    let (separate, _) = built_db_from_index(fixture::grouping_cases(), source.path(), &[]).unwrap();
+    let (db, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("merged-lines.toml", &correction)]).unwrap();
+    assert_eq!(fixture::search_and_spot_lines(&db), fixture::search_and_spot_lines(&separate));
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+    assert_eq!(report.stale_corrections[0].file_name, "merged-lines.toml");
+    assert!(
+        matches!(&report.stale_corrections[0].cause, ddo_etl::build::StaleCorrectionCause::ValueChanged { maetrim_value, .. }
+        if maetrim_value.contains("ambiguous merge source") && maetrim_value.contains("Search"))
+    );
     std::fs::write(
         &item_path,
         original.replacen("<BonusType>Competence</BonusType>", "<BonusType>Insight</BonusType>", 1),

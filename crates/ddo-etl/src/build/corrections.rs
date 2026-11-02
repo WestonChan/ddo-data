@@ -230,8 +230,16 @@ fn apply_correction(
             set_tier_descriptions_by_id,
             context.map(|context| context.groupings),
         )?;
-        if !maetrim_values.contains(&maetrim_value) {
-            maetrim_values.push(maetrim_value);
+        let observations = match maetrim_value {
+            CorrectionValue::Texts(values) if field.shape == FieldShape::BonusRemoval => {
+                values.into_iter().map(CorrectionValue::Text).collect()
+            }
+            value => vec![value],
+        };
+        for observation in observations {
+            if !maetrim_values.contains(&observation) {
+                maetrim_values.push(observation);
+            }
         }
     }
     if upstream_values_match(correction, &maetrim_values)? {
@@ -810,6 +818,12 @@ pub(super) struct LineMerge {
     pub(super) stats: std::collections::BTreeSet<String>,
 }
 
+pub(super) enum LineMergeMatch {
+    Matched(LineMerge),
+    Missing,
+    Ambiguous(Vec<String>),
+}
+
 pub(super) fn line_bonus_rows(
     transaction: &Transaction,
     kind: CorrectionKind,
@@ -865,7 +879,7 @@ pub(crate) fn line_bonuses_by_owner(
     Ok(owners)
 }
 
-pub(super) fn line_merge_selection(correction: &Correction, rows: &[LineBonus]) -> Result<Option<LineMerge>> {
+pub(super) fn line_merge_selection(correction: &Correction, rows: &[LineBonus]) -> Result<LineMergeMatch> {
     let mut orders = std::collections::BTreeSet::new();
     for stats in correction.upstream_line_stats()? {
         let possible = rows
@@ -885,9 +899,14 @@ pub(super) fn line_merge_selection(correction: &Correction, rows: &[LineBonus]) 
             })
             .collect::<std::collections::BTreeSet<_>>();
         if matches.is_empty() {
-            return Ok(None);
+            return Ok(LineMergeMatch::Missing);
         }
-        ensure!(matches.len() == 1, "{}: merge source {stats:?} matches several links", correction.label());
+        if matches.len() > 1 {
+            return Ok(LineMergeMatch::Ambiguous(ambiguous_bonus_lines(
+                "merge source",
+                rows.iter().filter(|row| matches.contains(&row.order)),
+            )));
+        }
         orders.extend(matches);
     }
     let selected = rows.iter().filter(|row| orders.contains(&row.order)).collect::<Vec<_>>();
@@ -898,7 +917,7 @@ pub(super) fn line_merge_selection(correction: &Correction, rows: &[LineBonus]) 
         "{}: merged lines have overlapping stats or different types or values",
         correction.label()
     );
-    Ok(Some(LineMerge { orders, stats }))
+    Ok(LineMergeMatch::Matched(LineMerge { orders, stats }))
 }
 
 pub(super) fn merged_line_amounts(
@@ -1011,7 +1030,12 @@ fn current_value(
             if source != destination && source_count > 0 && destination_count > 0 {
                 return Ok(CorrectionValue::Texts(vec![source.into(), destination.into()]));
             }
-            ensure!(source_count <= 1 && destination_count <= 1, "item {row_id} has {source_count} links to {source:?} and {destination_count} to {destination:?}; an effect replacement needs one");
+            if source_count > 1 || destination_count > 1 {
+                return Ok(CorrectionValue::Texts(vec![
+                    format!("{source}: {source_count} links"),
+                    format!("{destination}: {destination_count} links"),
+                ]));
+            }
             return Ok(CorrectionValue::Text(
                 if source_count == 1 { source } else if destination_count == 1 { destination } else { NO_SUCH_BONUS }
                     .into(),
@@ -1042,7 +1066,9 @@ fn current_value(
             let values = transaction.prepare(&bonus.matching_bonuses_sql(&format!("DISTINCT {table_name}.alias")))?
                 .query_map(params![row_id, bonus.stat_id, bonus.bonus_type_id, bonus.bonus_value], |row| row.get::<_, Option<String>>(0))?
                 .collect::<rusqlite::Result<Vec<_>>>()?;
-            ensure!(values.len() <= 1, "alias correction matches links with different aliases");
+            if values.len() > 1 {
+                return Ok(CorrectionValue::Texts(values.into_iter().map(|value| value.unwrap_or_else(|| NULL_SPELLING.into())).collect()));
+            }
             return Ok(match values.into_iter().next() {
                 None => CorrectionValue::Text(NO_SUCH_BONUS.to_string()),
                 Some(None) => CorrectionValue::Null,
@@ -1054,10 +1080,10 @@ fn current_value(
                 return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
             }
             let rows = line_bonus_rows(transaction, correction.kind, row_id, None)?;
-            return Ok(if line_merge_selection(correction, &rows)?.is_some() {
-                correction.from.clone()
-            } else {
-                CorrectionValue::Text(NO_SUCH_BONUS.to_string())
+            return Ok(match line_merge_selection(correction, &rows)? {
+                LineMergeMatch::Matched(_) => correction.from.clone(),
+                LineMergeMatch::Missing => CorrectionValue::Text(NO_SUCH_BONUS.to_string()),
+                LineMergeMatch::Ambiguous(reasons) => CorrectionValue::Texts(reasons),
             });
         }
         _ if correction.targets_effect_bonus() => {
@@ -1099,7 +1125,11 @@ fn current_value(
             let values: Vec<Option<i64>> = statement
                 .query_map(params![row_id, effect_name], |row| row.get(0))?
                 .collect::<rusqlite::Result<_>>()?;
-            ensure!(values.len() == 1, "item {row_id} must have one effect {effect_name:?}");
+            if values.len() != 1 {
+                return Ok(CorrectionValue::Texts(vec![format!(
+                    "ambiguous effect amount: {effect_name} has {} links with values {values:?}", values.len()
+                )]));
+            }
             return Ok(values[0].map_or(CorrectionValue::Null, CorrectionValue::Integer));
         }
         FieldShape::BonusTypeName if correction.kind == CorrectionKind::ItemEffect => {
@@ -1149,11 +1179,10 @@ fn current_value(
                 return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
             }
             if field.shape == FieldShape::BonusRemoval && correction.bonus_value.is_none() && matching_values.len() > 1 {
-                let value_texts: Vec<String> = matching_values.iter().map(CorrectionValue::to_json).collect();
-                bail!(
-                    "bonus removal matches multiple links with values [{}]; specify bonus_value",
-                    value_texts.join(", ")
-                );
+                let rows = corrected_bonus.rows_on(transaction, row_id, None)?;
+                return Ok(CorrectionValue::Texts(ambiguous_bonus_lines(
+                    "removal", rows.iter().filter(|row| row.bonus_type == correction.bonus_type)
+                )));
             }
             return Ok(matching_values.into_iter().next().unwrap_or(CorrectionValue::Null));
         }
@@ -1829,7 +1858,9 @@ pub(super) fn added_bonus_rows(
 pub(super) fn added_bonus_upstream(correction: &Correction, rows: &[LineBonus]) -> Result<CorrectionValue> {
     let CorrectionValue::Bonus(bonus) = &correction.to else { bail!("an add names the bonus in to") };
     let values = rows.iter().map(|row| row.amount).collect::<std::collections::BTreeSet<_>>();
-    ensure!(values.len() <= 1, "{}: added bonus already has multiple values", correction.label());
+    if values.len() > 1 {
+        return Ok(CorrectionValue::Texts(ambiguous_bonus_lines("addition", rows)));
+    }
     match values.first() {
         None => Ok(CorrectionValue::Null),
         Some(amount) => Ok(CorrectionValue::Bonus(BonusAddition {
@@ -1837,6 +1868,20 @@ pub(super) fn added_bonus_upstream(correction: &Correction, rows: &[LineBonus]) 
             ..bonus.clone()
         })),
     }
+}
+
+fn ambiguous_bonus_lines<'a>(operation: &str, rows: impl IntoIterator<Item = &'a LineBonus>) -> Vec<String> {
+    rows.into_iter()
+        .map(|row| {
+            format!(
+                "ambiguous {operation}: link {} grants {} / {} at {:?}",
+                row.order,
+                row.stat_name,
+                row.bonus_type.as_deref().unwrap_or("none"),
+                row.amount,
+            )
+        })
+        .collect()
 }
 
 pub(super) fn pending_bonus_correction_values(
@@ -1855,18 +1900,7 @@ pub(super) fn pending_bonus_correction_values(
     let matching = corrected.rows_on(transaction, owner_id, Some(links))?;
     let typed = matching.iter().filter(|row| row.bonus_type == correction.bonus_type).collect::<Vec<_>>();
     if correction.field == "remove" && correction.bonus_value.is_none() && typed.len() > 1 {
-        return Ok(typed
-            .iter()
-            .map(|row| {
-                CorrectionValue::Text(format!(
-                    "ambiguous removal: link {} grants {} / {} at {:?}",
-                    row.order,
-                    row.stat_name,
-                    row.bonus_type.as_deref().unwrap_or("none"),
-                    row.amount,
-                ))
-            })
-            .collect());
+        return Ok(ambiguous_bonus_lines("removal", typed).into_iter().map(CorrectionValue::Text).collect());
     }
     let upstream = if correction.field == "bonus_type" {
         let candidates = if typed.is_empty() { matching.iter().collect() } else { typed };
@@ -2603,6 +2637,156 @@ mod tests {
             read: "2026-10-21".into(),
             file_name: "test.toml".into(),
         }
+    }
+
+    fn copied_fixture(name: &str) -> tempfile::TempDir {
+        let fixture = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures").join(name);
+        let scratch = tempfile::tempdir().unwrap();
+        for entry in
+            walkdir::WalkDir::new(&fixture).into_iter().map(Result::unwrap).filter(|entry| entry.file_type().is_file())
+        {
+            let destination = scratch.path().join(entry.path().strip_prefix(&fixture).unwrap());
+            std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+            std::fs::copy(entry.path(), destination).unwrap();
+        }
+        scratch
+    }
+
+    fn ambiguous_item_bonus_database() -> rusqlite::Connection {
+        let scratch = copied_fixture("DataFiles");
+        let path = scratch.path().join("Items/Acid Rune Arm.item");
+        let original = std::fs::read_to_string(&path).unwrap();
+        let buffs = [3, 2].into_iter().map(|amount| format!("<Buff><Type>AbilityBonus</Type><Value1>{amount}</Value1><BonusType>Quality</BonusType><Item>Strength</Item></Buff><Buff><Type>Deception</Type><Value1>{amount}</Value1><Value2>{}</Value2><BonusType>Enhancement</BonusType></Buff>", amount + 2)).collect::<String>();
+        std::fs::write(path, original.replace("</Item>\n</Items>", &format!("{buffs}</Item>\n</Items>"))).unwrap();
+        let mut db = rusqlite::Connection::open_in_memory().unwrap();
+        crate::build::build_database(
+            crate::groupings::fixture_groupings(),
+            scratch.path(),
+            &crate::wiki::WikiOverrides::default(),
+            &Corrections::default(),
+            &mut db,
+            &ddo_model::DatasetVersion { upstream_sha: "test".into(), built_at: "2026-11-01T00:00:00Z".into() },
+        )
+        .unwrap();
+        db
+    }
+
+    #[test]
+    fn post_write_ambiguous_removal_matches_the_pending_writer_verdict() {
+        let mut db = ambiguous_item_bonus_database();
+        let transaction = db.transaction().unwrap();
+        let owner = id_named(&transaction, "items", "Acid Rune Arm").unwrap().unwrap();
+        let mut correction = bonus_correction(CorrectionKind::ItemBonus, "Strength", "Quality", "remove");
+        correction.name = "Acid Rune Arm".into();
+        correction.from = CorrectionValue::Integer(3);
+        correction.to = CorrectionValue::Null;
+        let pending = transaction.prepare("SELECT l.effect_id,b.name,l.value,l.value2 FROM item_effects l LEFT JOIN bonus_types b ON b.id=l.bonus_type_id WHERE l.item_id=?1 ORDER BY l.sort_order").unwrap()
+            .query_map([owner], |row| Ok(super::super::modifiers::DerivedEffectLink {
+                alias: None, effect_id: row.get(0)?, bonus_type: row.get::<_, Option<String>>(1)?.and_then(|name| ddo_model::enums::BonusType::parse(&name)),
+                value: row.get(2)?, value2: row.get(3)?, is_split_line: false,
+            })).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        let observations = pending_bonus_correction_values(
+            &transaction,
+            crate::groupings::fixture_groupings(),
+            &correction,
+            owner,
+            &pending,
+        )
+        .unwrap();
+        let mut expected = BuildReport::default();
+        record_observed_corrections(
+            &transaction,
+            observations.into_iter().map(|value| (&correction, value)),
+            &mut expected,
+        )
+        .unwrap();
+        assert!(
+            matches!(&expected.stale_corrections[0].cause, StaleCorrectionCause::ValuesDisagree { maetrim_values, .. }
+            if maetrim_values.len() == 2 && maetrim_values.iter().all(|value| value.contains("ambiguous removal")))
+        );
+        for _ in 0..2 {
+            let mut report = BuildReport::default();
+            apply_correction(&transaction, None, &correction, None, &mut report).unwrap();
+            assert_eq!(report.stale_corrections, expected.stale_corrections);
+            assert_eq!(report.correction_applied_count, 0);
+            let amounts =
+                CorrectedBonus::of(&transaction, &correction).unwrap().values_on(&transaction, owner).unwrap();
+            assert_eq!(amounts, [CorrectionValue::Integer(3), CorrectionValue::Integer(2)]);
+        }
+    }
+
+    #[test]
+    fn repeated_replacement_sources_are_stale_without_losing_links() {
+        let mut db = ambiguous_item_bonus_database();
+        let transaction = db.transaction().unwrap();
+        let mut correction = bonus_correction(CorrectionKind::ItemEffect, "Strength", "Quality", "effect");
+        correction.name = "Acid Rune Arm".into();
+        correction.stat = None;
+        correction.bonus_type = None;
+        correction.effect = Some("Dexterity".into());
+        correction.to = CorrectionValue::Text("Dexterity".into());
+        let mut report = BuildReport::default();
+        apply_correction(&transaction, None, &correction, None, &mut report).unwrap();
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+        assert!(matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. }
+            if maetrim_value.contains("Strength") && maetrim_value.contains("2 links")));
+    }
+
+    #[test]
+    fn ambiguous_item_effect_amounts_are_stale() {
+        let mut db = ambiguous_item_bonus_database();
+        let transaction = db.transaction().unwrap();
+        let mut correction = bonus_correction(CorrectionKind::ItemEffect, "Deception", "Enhancement", "value2");
+        correction.name = "Acid Rune Arm".into();
+        correction.stat = None;
+        correction.bonus_type = None;
+        correction.effect = Some("Deception".into());
+        correction.from = CorrectionValue::Integer(5);
+        correction.to = CorrectionValue::Integer(6);
+        let mut report = BuildReport::default();
+        apply_correction(&transaction, None, &correction, None, &mut report).unwrap();
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+        assert!(matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. }
+            if maetrim_value.contains("ambiguous effect amount") && maetrim_value.contains("Deception")));
+    }
+
+    #[test]
+    fn conflicting_existing_additions_are_stale() {
+        let mut db = ambiguous_item_bonus_database();
+        let transaction = db.transaction().unwrap();
+        let mut correction = bonus_correction(CorrectionKind::ItemBonus, "Strength", "Quality", "add");
+        correction.name = "Acid Rune Arm".into();
+        correction.from = CorrectionValue::Null;
+        correction.to =
+            CorrectionValue::Bonus(BonusAddition { stat: "Strength".into(), bonus_type: "Quality".into(), value: 4 });
+        let mut report = BuildReport::default();
+        apply_correction(&transaction, None, &correction, None, &mut report).unwrap();
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+        assert!(matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. }
+            if maetrim_value.contains("ambiguous addition") && maetrim_value.contains("Strength")));
+    }
+
+    #[test]
+    fn conflicting_link_aliases_are_stale() {
+        let scratch = copied_fixture("data");
+        let stat_path = scratch.path().join("effects/stats/strength.toml");
+        let original = std::fs::read_to_string(&stat_path).unwrap();
+        std::fs::write(stat_path, format!("{original}\n[[alias]]\nname = 'First Strength'\nverbose_name_template = '%b1 First Strength +{{1}}'\n\n[[alias]]\nname = 'Second Strength'\nverbose_name_template = '%b1 Second Strength +{{1}}'\n")).unwrap();
+        let owner_path = scratch.path().join("packs/shared/augments/dinosaurbone/voidscale.toml");
+        let original = std::fs::read_to_string(&owner_path).unwrap();
+        std::fs::write(owner_path, format!("{original}\n[[effect]]\nname = 'Strength'\nbonus_type = 'Quality'\nvalue = 3\nalias = 'First Strength'\n\n[[effect]]\nname = 'Strength'\nbonus_type = 'Quality'\nvalue = 2\nalias = 'Second Strength'\n")).unwrap();
+        let mut db = rusqlite::Connection::open_in_memory().unwrap();
+        crate::tree::build_from_data(scratch.path(), &mut db).unwrap();
+        let transaction = db.transaction().unwrap();
+        let mut correction = bonus_correction(CorrectionKind::AugmentBonus, "Strength", "Quality", "alias");
+        correction.name = "Voidscale".into();
+        correction.from = CorrectionValue::Null;
+        correction.to = CorrectionValue::Text("First Strength".into());
+        let mut report = BuildReport::default();
+        apply_correction(&transaction, None, &correction, None, &mut report).unwrap();
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+        assert!(matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. }
+            if maetrim_value.contains("First Strength") && maetrim_value.contains("Second Strength")));
     }
 
     #[test]

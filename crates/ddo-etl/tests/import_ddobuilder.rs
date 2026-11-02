@@ -456,14 +456,21 @@ fn an_effect_replacement_import_reports_a_removed_link_and_keeps_the_correction(
 
 #[test]
 fn an_effect_replacement_conflicts_when_upstream_adds_the_destination_beside_the_source() {
+    assert_replacement_conflicts_persist("<Buff><Type>Riposte</Type><Item>V</Item></Buff>");
+}
+
+#[test]
+fn an_effect_replacement_with_repeated_sources_conflicts_on_consecutive_imports() {
+    assert_replacement_conflicts_persist(
+        "<Buff><Type>Riposte</Type><Value1>4</Value1><Value2>3</Value2><BonusType>Insightful</BonusType></Buff>",
+    );
+}
+
+fn assert_replacement_conflicts_persist(additional_buff: &str) {
     let mut world = ship_kickers_replacement_world();
     let path = world.options.source_dir.join("Items/ShipKickers.item");
     let previous = std::fs::read_to_string(&path).unwrap();
-    std::fs::write(
-        path,
-        previous.replace("  </Item>", "    <Buff><Type>Riposte</Type><Item>V</Item></Buff>\n  </Item>"),
-    )
-    .unwrap();
+    std::fs::write(path, previous.replace("  </Item>", &format!("    {additional_buff}\n  </Item>"))).unwrap();
     for pass in 0..2 {
         let report = import_ddobuilder(&world.options).unwrap();
         let text = report.to_string();
@@ -478,7 +485,7 @@ fn an_effect_replacement_conflicts_when_upstream_adds_the_destination_beside_the
             .unwrap();
         assert_eq!(retained, "\"Riposte\"", "retain the actual source until the collision is settled");
         let names = db.prepare("SELECT e.name FROM item_effects l JOIN effects e ON e.id=l.effect_id JOIN items i ON i.id=l.item_id WHERE i.name='Ship Kickers' AND e.name LIKE 'Riposte%' ORDER BY e.name").unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
-        assert_eq!(names, ["Riposte", "Riposte V"]);
+        assert_eq!(names, ["Riposte V"], "an ambiguous replacement keeps our corrected link");
         world.options.previous_dir = world.options.source_dir.clone();
         world.options.previous_sha = world.options.sha.clone();
         world.options.sha = Some("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee".into());
@@ -556,6 +563,16 @@ fn divergent_bonus_additions_conflict_on_consecutive_imports() {
 }
 
 #[test]
+fn ambiguous_bonus_additions_conflict_on_consecutive_imports() {
+    assert_structural_twin_conflicts_persist("ambiguous_add");
+}
+
+#[test]
+fn ambiguous_line_merges_conflict_on_consecutive_imports() {
+    assert_structural_twin_conflicts_persist("ambiguous_merge");
+}
+
+#[test]
 fn divergent_bonus_removals_conflict_on_consecutive_imports() {
     assert_structural_twin_conflicts_persist("remove");
 }
@@ -587,7 +604,8 @@ fn held_line_splits_keep_their_cause_on_consecutive_imports() {
         let report = import_ddobuilder(&world.options).unwrap();
         let rendered = report.to_string();
         assert!(report.has_conflicts(), "pass {pass}: {rendered}");
-        let conflict = rendered.lines().find(|line| line.contains("CONFLICT")).unwrap();
+        let conflict =
+            rendered.lines().find(|line| line.contains("CONFLICT augment_bonus") && line.contains("].lines ")).unwrap();
         assert!(conflict.contains("held: effect types without derived stats: Weapon_AttackAndDamage"), "{conflict}");
         assert!(!conflict.contains("no such bonus"), "{conflict}");
         let db = world.database();

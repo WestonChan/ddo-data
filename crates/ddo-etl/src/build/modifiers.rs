@@ -1405,12 +1405,15 @@ impl<'a> TableWriter<'a> {
                         )?)
                     }
                 };
-                let selection = super::corrections::line_merge_selection(correction, rows)?
-                    .filter(|selection| selection.orders.is_disjoint(&conflicting_additions[index]));
-                let upstream = if selection.is_some() {
-                    correction.from.clone()
-                } else {
-                    CorrectionValue::Text(NO_SUCH_BONUS.into())
+                use super::corrections::LineMergeMatch;
+                let (selection, upstream) = match super::corrections::line_merge_selection(correction, rows)? {
+                    LineMergeMatch::Matched(selection)
+                        if selection.orders.is_disjoint(&conflicting_additions[index]) =>
+                    {
+                        (Some(selection), correction.from.clone())
+                    }
+                    LineMergeMatch::Ambiguous(reasons) => (None, CorrectionValue::Texts(reasons)),
+                    _ => (None, CorrectionValue::Text(NO_SUCH_BONUS.into())),
                 };
                 self.observed_bonus_corrections.push((correction, upstream.clone()));
                 observations.push(upstream);

@@ -166,7 +166,7 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
     applicable.entries.retain(|correction| {
         !new.first_stale.iter().any(|stale| {
             corrections::CorrectionKey::from_correction(correction).matches(stale)
-                && corrections::has_disagreeing_bonus_targets(correction, stale)
+                && corrections::has_unresolved_targets(correction, stale)
         })
     });
     if applicable.entries.len() != corrections.entries.len() {
@@ -176,7 +176,7 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
             &ours,
             &previous_version,
             true,
-            &scratch.path().join("previous-without-conflicting-bonuses"),
+            &scratch.path().join("previous-without-unresolved-corrections"),
             &applicable,
         )?;
         previous.first_stale = original_stale;

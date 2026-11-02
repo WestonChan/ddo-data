@@ -48,7 +48,9 @@ pub(crate) fn bonus_correction_twins(case: &str, diverges: bool) -> (String, Cor
     let mut first =
         include_str!("../fixtures/effect-groups/WoefulShadow.Augments.xml").replace("    <Icon>Lamordia</Icon>\n", "");
     let (field, qualifier, upstream, corrected) = match case {
-        "add" => ("add", "", "'null'", "{ stat = 'Fire Spell Power', bonus_type = 'Equipment', value = 7 }"),
+        "add" | "ambiguous_add" => {
+            ("add", "", "'null'", "{ stat = 'Fire Spell Power', bonus_type = 'Equipment', value = 7 }")
+        }
         "remove" | "ambiguous_remove" => ("remove", "stat = 'Doubleshot'\nbonus_type = 'Profane'", "3", "'null'"),
         "group_remove" => ("remove", "stat = 'Doublestrike and Doubleshot'\nbonus_type = 'Profane'", "3", "'null'"),
         "split" | "held_split" => (
@@ -57,7 +59,7 @@ pub(crate) fn bonus_correction_twins(case: &str, diverges: bool) -> (String, Cor
             "[['Doublestrike', 'Doubleshot']]",
             "['Doublestrike', 'Doubleshot']",
         ),
-        "merge" => {
+        "merge" | "ambiguous_merge" => {
             first = first.replace("      <Type>Doubleshot</Type>\n", "");
             let effect = first.split_once("    <Effect>").unwrap().1.split_once("    </Effect>").unwrap().0;
             first = first.replacen(
@@ -76,8 +78,14 @@ pub(crate) fn bonus_correction_twins(case: &str, diverges: bool) -> (String, Cor
     };
     let mut second = first.clone();
     if diverges {
-        if case == "add" {
+        if case == "add" || case == "ambiguous_add" {
             second = second.replace("  </Augment>", "    <Effect><Type>SpellPower</Type><Bonus>Equipment</Bonus><AType>Simple</AType><Amount size=\"1\">8</Amount><Item>Fire</Item></Effect>\n  </Augment>");
+            if case == "ambiguous_add" {
+                second = second.replace("  </Augment>", "    <Effect><Type>SpellPower</Type><Bonus>Equipment</Bonus><AType>Simple</AType><Amount size=\"1\">7</Amount><Item>Fire</Item></Effect>\n  </Augment>");
+                first.clone_from(&second);
+            }
+        } else if case == "ambiguous_merge" {
+            second = second.replace("  </Augment>", "    <Effect><Type>Doublestrike</Type><Bonus>Profane</Bonus><AType>Simple</AType><Amount size=\"1\">4</Amount></Effect>\n  </Augment>");
         } else if case == "held_split" {
             second =
                 second.replace("<Type>Doubleshot</Type>", "<Type>Doubleshot</Type><Type>Weapon_AttackAndDamage</Type>");

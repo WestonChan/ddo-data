@@ -89,12 +89,12 @@ fn build_matching_values(
     for correction in &mut rebased.entries {
         let key = CorrectionKey::from_correction(correction);
         let Some(stale) = first_stale.iter().find(|stale| key.matches(stale)) else { continue };
-        if has_unresolved_line_target(correction, stale) {
+        if has_unrepresentable_upstream_value(correction, stale) {
             continue;
         }
         if let StaleCorrectionCause::ValuesDisagree { maetrim_values, .. } = &stale.cause {
             ensure!(
-                has_disagreeing_bonus_targets(correction, stale),
+                has_unresolved_targets(correction, stale),
                 "{}: his rows disagree: {}",
                 correction.label(),
                 maetrim_values.join(" / ")
@@ -117,8 +117,7 @@ fn build_matching_values(
         for stale in report.stale_corrections {
             let resolved = rebased.entries.iter().any(|correction| {
                 CorrectionKey::from_correction(correction).matches(&stale)
-                    && (has_disagreeing_bonus_targets(correction, &stale)
-                        || has_unresolved_line_target(correction, &stale)
+                    && (has_unresolved_targets(correction, &stale)
                         || match &stale.cause {
                             StaleCorrectionCause::ValueChanged { maetrim_value, .. } => {
                                 *maetrim_value == correction.to.to_json()
@@ -135,18 +134,17 @@ fn build_matching_values(
     Ok(HisDatabase { db, first_stale, skipped_wiki_facts, line_splits, held_back_effects, matched_set_tier_prose })
 }
 
-pub(super) fn has_disagreeing_bonus_targets(correction: &Correction, stale: &StaleCorrection) -> bool {
-    correction.kind.corrects_a_bonus() && matches!(stale.cause, StaleCorrectionCause::ValuesDisagree { .. })
+pub(super) fn has_unresolved_targets(correction: &Correction, stale: &StaleCorrection) -> bool {
+    has_unrepresentable_upstream_value(correction, stale)
+        || (correction.kind.corrects_a_bonus() && matches!(stale.cause, StaleCorrectionCause::ValuesDisagree { .. }))
 }
 
-fn has_unresolved_line_target(correction: &Correction, stale: &StaleCorrection) -> bool {
-    correction.correctable_field().is_ok_and(|field| {
-        matches!(
-            field.shape,
-            crate::corrections::FieldShape::EffectReplacement | crate::corrections::FieldShape::BonusLines
-        )
-    }) && matches!(&stale.cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. }
-            if matches!(CorrectionValue::from_json(maetrim_value), Ok(CorrectionValue::Texts(_))))
+fn has_unrepresentable_upstream_value(correction: &Correction, stale: &StaleCorrection) -> bool {
+    let StaleCorrectionCause::ValueChanged { maetrim_value, .. } = &stale.cause else { return false };
+    let Ok(upstream @ CorrectionValue::Texts(_)) = CorrectionValue::from_json(maetrim_value) else { return false };
+    let mut rebased = correction.clone();
+    rebased.from = upstream;
+    rebased.correctable_field().is_ok_and(|field| rebased.validate_values(field).is_err())
 }
 
 fn upstream_value(correction: &Correction, stale: &[StaleCorrection]) -> String {
@@ -179,10 +177,8 @@ pub(super) fn correction_events(
         let key = CorrectionKey::from_correction(correction);
         let previous = upstream_value(correction, previous_stale);
         let new = upstream_value(correction, new_stale);
-        let unresolved_targets = new_stale.iter().any(|stale| {
-            key.matches(stale)
-                && (has_unresolved_line_target(correction, stale) || has_disagreeing_bonus_targets(correction, stale))
-        });
+        let unresolved_targets =
+            new_stale.iter().any(|stale| key.matches(stale) && has_unresolved_targets(correction, stale));
         if previous == new && !unresolved_targets {
             continue;
         }
