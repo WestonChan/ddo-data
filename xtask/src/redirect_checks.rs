@@ -1,4 +1,5 @@
 use anyhow::{Context, Result};
+use ddo_api::entity_slugs::resolve_entity_slug;
 use ddo_model::enums::EntityKind;
 use rusqlite::Connection;
 use std::collections::BTreeSet;
@@ -51,7 +52,8 @@ pub fn redirect_check_violations(
         exempt.insert((EntityKind::Stance.as_str().to_string(), slug?));
     }
     for (kind, slug) in current_slugs(deployed)?.difference(&current) {
-        if !exempt.contains(&(kind.clone(), slug.clone())) {
+        let entity_kind = EntityKind::parse(kind).with_context(|| format!("unknown served entity kind {kind:?}"))?;
+        if !exempt.contains(&(kind.clone(), slug.clone())) && resolve_entity_slug(db, entity_kind, slug)?.is_none() {
             violations.push(format!("{kind} {slug:?} was served by the deployed database but is missing; declare a redirect or retired row in data/redirects.toml"));
         }
     }

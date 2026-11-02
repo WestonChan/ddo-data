@@ -134,6 +134,48 @@ fn schema_37_child_exemptions_follow_foreign_keys_not_slug_prefixes() {
 }
 
 #[test]
+fn a_previously_served_effect_slug_can_become_a_permanent_alias() {
+    let folder = tempfile::tempdir().unwrap();
+    let root = folder.path().join("data");
+    exported_fixture(&root);
+    let previous_path = root.join("effects/previous-title.toml");
+    std::fs::write(&previous_path, "name = 'Previous Title'\nverbose_name_template = 'Previous Title'\n").unwrap();
+    let deployed = build(&root);
+    std::fs::remove_file(previous_path).unwrap();
+    let canonical_path = root.join("effects/canonical-title.toml");
+    let canonical = "name = 'Canonical Title'\nverbose_name_template = 'Canonical Title'\n";
+    for template in ["", "verbose_name_template = 'Previous Title'\n"] {
+        std::fs::write(&canonical_path, format!("{canonical}\n[[alias]]\nname = 'Previous Title'\n{template}"))
+            .unwrap();
+        let current = build(&root);
+        let resolved = ddo_api::entity_slugs::resolve_entity_slug(
+            &current,
+            ddo_model::enums::EntityKind::Effect,
+            "previous-title",
+        )
+        .unwrap()
+        .unwrap();
+        assert!(resolved.is_redirect);
+        assert_eq!(resolved.slug, "canonical-title");
+        let redirects: i64 = current
+            .query_row(
+                "SELECT COUNT(*) FROM redirects WHERE kind = 'effects' AND from_slug = 'previous-title'",
+                [],
+                |row| row.get(0),
+            )
+            .unwrap();
+        assert_eq!(redirects, 0);
+        let violations = redirect_check_violations(&current, Some(&deployed), Some("2026-10-31")).unwrap();
+        assert!(violations.is_empty(), "{violations:?}");
+    }
+    std::fs::write(canonical_path, canonical).unwrap();
+    let current = build(&root);
+    let violations = redirect_check_violations(&current, Some(&deployed), Some("2026-10-31")).unwrap();
+    assert_eq!(violations.len(), 1, "{violations:?}");
+    assert!(violations[0].contains("effects") && violations[0].contains("previous-title"), "{violations:?}");
+}
+
+#[test]
 fn vanished_slug_requires_a_redirect_or_retirement_against_schema_37() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");
