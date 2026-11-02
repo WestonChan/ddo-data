@@ -1,11 +1,10 @@
-use super::bonus_types::{BonusOwner, BonusOwnerKind};
-use super::modifiers::{DerivedEffectLink, GroupingOutcome, LineSplitMember};
+use super::modifiers::DerivedEffectLink;
 use super::{trimmed_non_empty, BuildReport, TableWriter};
 use crate::map::effect_map::EFFECT_MAP;
 use crate::xml::sentient_gems;
 use crate::xml::set_bonuses::parse_set_bonus_file;
 use crate::xml::set_bonuses::SetBonusTier;
-use anyhow::{Context, Result};
+use anyhow::Result;
 use ddo_model::enums::ModifierSource;
 use ddo_model::stats::Stat;
 use rusqlite::params;
@@ -83,128 +82,77 @@ impl TableWriter<'_> {
         Ok(())
     }
 
-    pub(super) fn write_set_tier_effects(
+    pub(super) fn write_set_tier_prose(
         &mut self,
         set_name: &str,
-        tier_id: i64,
         tier: &SetBonusTier,
     ) -> Result<Vec<DerivedEffectLink>> {
-        let owner = BonusOwner { kind: BonusOwnerKind::SetBonusTier, name: set_name, family: None };
-        let removed_before = self.removed_derived_bonus_count;
-        let links = self.ensure_derived_effects(&owner, ModifierSource::SetBonusTier, tier_id, &tier.effects)?;
-        if links.is_empty() && self.removed_derived_bonus_count == removed_before {
-            if let Some(description) = trimmed_non_empty(tier.description.as_deref()) {
-                if let Some(rule) = EFFECT_MAP.set_tier_prose_link(description, self.groupings)? {
-                    let bonus_type = rule
-                        .bonus_type
-                        .as_deref()
-                        .map(|name| ddo_model::enums::BonusType::parse(name).expect("validated prose type"));
-                    let effect_id = if bonus_type.is_none() {
-                        if let Some(family) = self.effects.family_named(&rule.effect) {
-                            anyhow::ensure!(
-                                family.amount_count == 0 && !family.is_stat && !self.effects.has_stats(family.id),
-                                "prose line {description:?} names {:?}, which is no longer text-only",
-                                rule.effect
-                            );
-                            family.id
-                        } else {
-                            let effect = self.groupings.effect_named(&rule.effect).expect("validated prose target");
-                            self.effects.ensure_family(
-                                &effect.name,
-                                &effect.verbose_name_template,
-                                effect.description_template.as_deref(),
-                                0,
-                            )?
-                        }
-                    } else if let Some(stat) = Stat::by_name(&rule.effect) {
-                        let existing = self
-                            .effects
-                            .family_named(&rule.effect)
-                            .filter(|family| !family.verbose_name_template.is_empty())
-                            .map(|family| family.id);
-                        let effect_id = match existing {
-                            Some(effect_id) => effect_id,
-                            None => self.effects.ensure_family(
-                                &rule.effect,
-                                &format!("%b1 {} +{{1}}", rule.effect),
-                                None,
-                                1,
-                            )?,
-                        };
-                        self.effects.ensure_stat(effect_id, stat, bonus_type, 1, None, 0)?;
-                        effect_id
-                    } else if let Some(grouping) = self.groupings.grouping_named(&rule.effect) {
-                        self.effects.ensure_indexed_effect(grouping)?
+        if let Some(description) = trimmed_non_empty(tier.description.as_deref()) {
+            if let Some(rule) = EFFECT_MAP.set_tier_prose_link(description, self.groupings)? {
+                let bonus_type = rule
+                    .bonus_type
+                    .as_deref()
+                    .map(|name| ddo_model::enums::BonusType::parse(name).expect("validated prose type"));
+                let effect_id = if bonus_type.is_none() {
+                    if let Some(family) = self.effects.family_named(&rule.effect) {
+                        anyhow::ensure!(
+                            family.amount_count == 0 && !family.is_stat && !self.effects.has_stats(family.id),
+                            "prose line {description:?} names {:?}, which is no longer text-only",
+                            rule.effect
+                        );
+                        family.id
                     } else {
-                        self.effects.ensure_group(&rule.effect)?
-                    };
-                    let family = self.effects.family(effect_id).expect("prose effect cached");
-                    let linked_type = bonus_type.filter(|_| family.is_stat || family.uses_link_type);
-                    if bonus_type.is_some() {
-                        self.grouping_answers.insert(effect_id);
+                        let effect = self.groupings.effect_named(&rule.effect).expect("validated prose target");
+                        self.effects.ensure_family(
+                            &effect.name,
+                            &effect.verbose_name_template,
+                            effect.description_template.as_deref(),
+                            0,
+                        )?
                     }
-                    self.matched_set_tier_prose.insert(super::SetTierProseMatch {
-                        set_name: set_name.to_string(),
-                        equipped_count: tier.equipped_count,
-                        description: description.to_string(),
-                    });
-                    let link = DerivedEffectLink {
-                        alias: None,
-                        effect_id,
-                        bonus_type: linked_type,
-                        value: rule.value,
-                        value2: None,
-                        is_split_line: false,
+                } else if let Some(stat) = Stat::by_name(&rule.effect) {
+                    let existing = self
+                        .effects
+                        .family_named(&rule.effect)
+                        .filter(|family| !family.verbose_name_template.is_empty())
+                        .map(|family| family.id);
+                    let effect_id = match existing {
+                        Some(effect_id) => effect_id,
+                        None => {
+                            self.effects.ensure_family(&rule.effect, &format!("%b1 {} +{{1}}", rule.effect), None, 1)?
+                        }
                     };
-                    if let (Some(bonus_type), Some(value)) = (bonus_type, rule.value) {
-                        if self.split_corrections_for_owner(&owner, tier_id, bonus_type, value)?.is_empty() {
-                            return Ok(vec![link]);
-                        }
-                        let mut rows = super::corrections::line_bonus_rows(
-                            self.transaction,
-                            ddo_model::enums::CorrectionKind::SetTierBonus,
-                            tier_id,
-                            Some(std::slice::from_ref(&link)),
-                        )
-                        .with_context(|| {
-                            format!("set {set_name:?} prose target {:?} has invalid split members", rule.effect)
-                        })?;
-                        rows.sort_by(|left, right| left.stat_name.cmp(&right.stat_name));
-                        let members = rows
-                            .into_iter()
-                            .map(|row| {
-                                let name = row.stat_name;
-                                let stat = Stat::by_name(&name).with_context(|| {
-                                    format!(
-                                        "set {set_name:?} prose target {:?} has unknown split member {name:?}",
-                                        rule.effect
-                                    )
-                                })?;
-                                Ok(LineSplitMember {
-                                    bonus: crate::map::effect::DerivedBonus {
-                                        stat,
-                                        bonus_type: Some(bonus_type),
-                                        value,
-                                    },
-                                    line_name: name,
-                                })
-                            })
-                            .collect::<Result<Vec<_>>>()?;
-                        if let Some(outcome) = self.write_split_lines(&owner, tier_id, bonus_type, &members)? {
-                            let GroupingOutcome::Split { links, .. } = outcome else {
-                                anyhow::bail!("set {set_name:?} prose split cannot preserve its single value")
-                            };
-                            return Ok(links);
-                        }
-                    }
-                    return Ok(vec![link]);
+                    self.effects.ensure_stat(effect_id, stat, bonus_type, 1, None, 0)?;
+                    effect_id
+                } else if let Some(grouping) = self.groupings.grouping_named(&rule.effect) {
+                    self.effects.ensure_indexed_effect(grouping)?
+                } else {
+                    self.effects.ensure_group(&rule.effect)?
+                };
+                let family = self.effects.family(effect_id).expect("prose effect cached");
+                let linked_type = bonus_type.filter(|_| family.is_stat || family.uses_link_type);
+                if bonus_type.is_some() {
+                    self.grouping_answers.insert(effect_id);
                 }
-                let family_name = self.buff_resolver.set_tier_prose_name(set_name, tier.equipped_count, description)?;
-                let existing = self
-                    .effects
-                    .family_named(&family_name)
-                    .map(|family| (family.id, family.verbose_name_template.clone()));
-                let effect_id = match existing {
+                self.matched_set_tier_prose.insert(super::SetTierProseMatch {
+                    set_name: set_name.to_string(),
+                    equipped_count: tier.equipped_count,
+                    description: description.to_string(),
+                });
+                let link = DerivedEffectLink {
+                    alias: None,
+                    effect_id,
+                    bonus_type: linked_type,
+                    value: rule.value,
+                    value2: None,
+                    is_split_line: false,
+                };
+                return Ok(vec![link]);
+            }
+            let family_name = self.buff_resolver.set_tier_prose_name(set_name, tier.equipped_count, description)?;
+            let existing =
+                self.effects.family_named(&family_name).map(|family| (family.id, family.verbose_name_template.clone()));
+            let effect_id = match existing {
                     Some((id, verbose_name_template)) if verbose_name_template == description => id,
                     Some(_) => anyhow::bail!(
                         "set {set_name:?} tier {} prose {description:?} collides with family {family_name:?}; add a [names] entry",
@@ -212,17 +160,16 @@ impl TableWriter<'_> {
                     ),
                     None => self.effects.ensure_family( &family_name, description, None, 0)?,
                 };
-                return Ok(vec![DerivedEffectLink {
-                    alias: None,
-                    effect_id,
-                    bonus_type: None,
-                    value: None,
-                    value2: None,
-                    is_split_line: false,
-                }]);
-            }
+            return Ok(vec![DerivedEffectLink {
+                alias: None,
+                effect_id,
+                bonus_type: None,
+                value: None,
+                value2: None,
+                is_split_line: false,
+            }]);
         }
-        Ok(links)
+        Ok(Vec::new())
     }
 
     pub(super) fn write_sentient_gems(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {

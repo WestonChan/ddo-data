@@ -1839,40 +1839,45 @@ pub(super) fn added_bonus_upstream(correction: &Correction, rows: &[LineBonus]) 
     }
 }
 
-pub(super) fn pending_bonus_correction_value(
+pub(super) fn pending_bonus_correction_values(
     transaction: &Transaction,
     groupings: &crate::groupings::Groupings,
     correction: &Correction,
     owner_id: i64,
     links: &[super::modifiers::DerivedEffectLink],
-) -> Result<CorrectionValue> {
+) -> Result<Vec<CorrectionValue>> {
     let Some(corrected) = CorrectedBonus::from_correction_if_effect_exists(transaction, correction)? else {
         let stat = correction.bonus_key().context("bonus correction names its bonus")?.0;
         ensure!(groupings.effect_named(stat).is_some(), "stat {stat:?} is not an effect; use its exact name");
-        return Ok(CorrectionValue::Text(NO_SUCH_BONUS.into()));
+        return Ok(vec![CorrectionValue::Text(NO_SUCH_BONUS.into())]);
     };
     reject_group_member_correction(transaction, groupings, correction, &[owner_id], Some(links))?;
     let matching = corrected.rows_on(transaction, owner_id, Some(links))?;
     let typed = matching.iter().filter(|row| row.bonus_type == correction.bonus_type).collect::<Vec<_>>();
-    ensure!(
-        correction.field != "remove" || correction.bonus_value.is_some() || typed.len() <= 1,
-        "{}: bonus removal matches multiple links; specify bonus_value",
-        correction.label()
-    );
+    if correction.field == "remove" && correction.bonus_value.is_none() && typed.len() > 1 {
+        return Ok(typed
+            .iter()
+            .map(|row| {
+                CorrectionValue::Text(format!(
+                    "ambiguous removal: link {} grants {} / {} at {:?}",
+                    row.order,
+                    row.stat_name,
+                    row.bonus_type.as_deref().unwrap_or("none"),
+                    row.amount,
+                ))
+            })
+            .collect());
+    }
     let upstream = if correction.field == "bonus_type" {
-        typed.first().copied().or_else(|| matching.first()).map_or_else(
-            || CorrectionValue::Text(NO_SUCH_BONUS.into()),
-            |row| row.bonus_type.clone().map_or(CorrectionValue::Null, CorrectionValue::Text),
-        )
+        let candidates = if typed.is_empty() { matching.iter().collect() } else { typed };
+        candidates
+            .iter()
+            .map(|row| row.bonus_type.clone().map_or(CorrectionValue::Null, CorrectionValue::Text))
+            .collect::<Vec<_>>()
     } else {
-        let amounts = typed.iter().map(|row| row.amount).collect::<std::collections::BTreeSet<_>>();
-        ensure!(amounts.len() <= 1, "{}: bonus correction matches multiple values", correction.label());
-        amounts.first().map_or_else(
-            || CorrectionValue::Text(NO_SUCH_BONUS.into()),
-            |amount| amount.map_or(CorrectionValue::Null, CorrectionValue::Integer),
-        )
+        typed.iter().map(|row| row.amount.map_or(CorrectionValue::Null, CorrectionValue::Integer)).collect()
     };
-    Ok(upstream)
+    Ok(if upstream.is_empty() { vec![CorrectionValue::Text(NO_SUCH_BONUS.into())] } else { upstream })
 }
 
 pub(super) fn write_pending_bonus_correction(
@@ -1881,12 +1886,8 @@ pub(super) fn write_pending_bonus_correction(
     groupings: &crate::groupings::Groupings,
     correction: &Correction,
     owner_id: i64,
-    links: &mut [super::modifiers::DerivedEffectLink],
-) -> Result<CorrectionValue> {
-    let upstream = pending_bonus_correction_value(transaction, groupings, correction, owner_id, links)?;
-    if upstream != correction.from || upstream.as_text() == Some(NO_SUCH_BONUS) {
-        return Ok(upstream);
-    }
+    links: &mut Vec<super::modifiers::DerivedEffectLink>,
+) -> Result<()> {
     let corrected = CorrectedBonus::of(transaction, correction)?;
     let new_type_id = if correction.field == "bonus_type" {
         Some(bonus_type_id_named(transaction, correction.to.as_text().context("bonus type is text")?)?)
@@ -1927,6 +1928,16 @@ pub(super) fn write_pending_bonus_correction(
             })
         })?
         .collect::<rusqlite::Result<Vec<_>>>()?;
+    if correction.field == "remove" {
+        let removed = matches.iter().map(|bonus| bonus.sort_order).collect::<HashSet<_>>();
+        let mut order = 0;
+        links.retain(|_| {
+            let keep = !removed.contains(&order);
+            order += 1;
+            keep
+        });
+        return Ok(());
+    }
     for bonus in matches {
         let order = usize::try_from(bonus.sort_order)?;
         let mut corrected_link =
@@ -1935,7 +1946,7 @@ pub(super) fn write_pending_bonus_correction(
         corrected_link.is_split_line = links[order].is_split_line;
         links[order] = corrected_link;
     }
-    Ok(upstream)
+    Ok(())
 }
 
 pub(super) fn write_added_bonus_link(

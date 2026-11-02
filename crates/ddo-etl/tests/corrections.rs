@@ -3517,6 +3517,21 @@ fn divergent_line_split_twins_stay_upstream() {
 }
 
 #[test]
+fn divergent_writer_holds_leave_all_split_twins_upstream() {
+    assert_divergent_bonus_twins_stay_upstream("held_split");
+}
+
+#[test]
+fn divergent_grouping_removal_twins_stay_upstream() {
+    assert_divergent_bonus_twins_stay_upstream("group_remove");
+}
+
+#[test]
+fn ambiguous_bonus_removal_leaves_all_twins_upstream() {
+    assert_divergent_bonus_twins_stay_upstream("ambiguous_remove");
+}
+
+#[test]
 fn divergent_line_merge_twins_stay_upstream() {
     assert_divergent_bonus_twins_stay_upstream("merge");
 }
@@ -3952,8 +3967,16 @@ fn removes_only_the_qualified_bonus_link_for_each_owner_kind() {
         assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
         for amounts in [[3, 2], [3, 3]] {
             write_bonuses(&[("Quality", amounts[0]), ("Quality", amounts[1])]);
-            let error = built_db_from(source.path(), &[("removal.toml", &removal)]).unwrap_err();
-            assert!(error.contains("specify bonus_value"), "{kind}: {error}");
+            let (_, report) = built_db_from(source.path(), &[("removal.toml", &removal)]).unwrap();
+            assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1), "{kind}");
+            assert!(
+                matches!(&report.stale_corrections[0].cause,
+                    StaleCorrectionCause::ValuesDisagree { maetrim_values, .. }
+                    if maetrim_values.len() == 2 && maetrim_values.iter().all(|value| value.contains("ambiguous removal"))
+                ),
+                "{kind}: {:?}",
+                report.stale_corrections
+            );
         }
         write_bonuses(&[("Quality", 3), ("Quality", 2)]);
         let narrowed =

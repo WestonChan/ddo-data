@@ -356,8 +356,6 @@ fn build_with_wiki_references(
             .iter()
             .filter(|correction| correction.kind.corrects_a_bonus() && correction.field == "remove")
             .collect(),
-        applied_bonus_removal_corrections: Vec::new(),
-        removed_derived_bonus_count: 0,
         augment_description_corrections: corrections
             .entries
             .iter()
@@ -450,7 +448,6 @@ fn build_with_wiki_references(
     let mut corrections_applied_while_writing = writer.untyped_bonus_corrections.applied_corrections();
     corrections_applied_while_writing.extend(applied_drop_location_corrections);
     corrections_applied_while_writing.extend(&writer.applied_socket_label_corrections);
-    corrections_applied_while_writing.extend(&writer.applied_bonus_removal_corrections);
     corrections_applied_while_writing.extend(&writer.applied_link_corrections);
     corrections::record_observed_corrections(
         &transaction,
@@ -839,8 +836,6 @@ pub(crate) struct TableWriter<'a> {
     socket_label_corrections: HashMap<&'a str, &'a Correction>,
     applied_socket_label_corrections: Vec<&'a Correction>,
     bonus_removal_corrections: Vec<&'a Correction>,
-    applied_bonus_removal_corrections: Vec<&'a Correction>,
-    removed_derived_bonus_count: usize,
     augment_description_corrections: HashMap<&'a str, Vec<&'a Correction>>,
     pending_set_item_links: Vec<(i64, String)>,
     pending_set_augment_links: Vec<(i64, String)>,

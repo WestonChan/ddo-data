@@ -68,6 +68,31 @@ pub(super) struct PendingEffectLinks {
     links: Vec<DerivedEffectLink>,
 }
 
+fn derived_bonus_link(bonus: &crate::map::effect::DerivedBonus) -> DerivedEffectLink {
+    DerivedEffectLink {
+        effect_id: bonus.stat.id,
+        alias: None,
+        bonus_type: bonus.bonus_type,
+        value: Some(bonus.value),
+        value2: None,
+        is_split_line: false,
+    }
+}
+
+struct DerivedLineCandidate {
+    bonuses_by_type: Vec<Vec<crate::map::effect::DerivedBonus>>,
+    original_bonuses: Vec<Vec<crate::map::effect::DerivedBonus>>,
+    fixed_links_by_type: Vec<Vec<DerivedEffectLink>>,
+    hold: Option<GroupingHold>,
+}
+
+struct PendingDerivedLines {
+    source: super::PendingDerivedEffects,
+    candidates: Vec<DerivedLineCandidate>,
+    prose_links: Vec<DerivedEffectLink>,
+    prose_members: Vec<LineSplitMember>,
+}
+
 impl super::PendingDerivedEffects {
     fn owner(&self) -> BonusOwner<'_> {
         let kind = match self.owner_kind {
@@ -128,6 +153,32 @@ pub(super) enum GroupingHold {
     Deferred(&'static crate::line_exceptions::DeferredAugmentSplit),
 }
 
+enum LineSplitMatch {
+    Missing,
+    Ready,
+    Held(GroupingHold),
+}
+
+fn line_split_match(
+    correction: &crate::corrections::Correction,
+    stats: std::collections::BTreeSet<String>,
+    links: &[DerivedEffectLink],
+) -> Result<LineSplitMatch> {
+    let Some(first) = links.first() else { return Ok(LineSplitMatch::Missing) };
+    if correction.upstream_line_stats()? != [stats]
+        || first.bonus_type.map(|kind| kind.name()) != correction.bonus_type.as_deref()
+        || correction.bonus_value.is_some_and(|amount| first.value != Some(amount))
+        || !links.iter().all(|link| link.bonus_type == first.bonus_type)
+    {
+        return Ok(LineSplitMatch::Missing);
+    }
+    Ok(if links.iter().all(|link| link.value == first.value) {
+        LineSplitMatch::Ready
+    } else {
+        LineSplitMatch::Held(GroupingHold::DifferentValues)
+    })
+}
+
 impl GroupingHold {
     fn reason(&self) -> String {
         match self {
@@ -160,17 +211,20 @@ impl<'a> TableWriter<'a> {
 
     pub(super) fn write_pending_effect_links(&mut self) -> Result<()> {
         let mut owners = std::mem::take(&mut self.pending_effect_links);
-        for correction in self.bonus_link_corrections.clone() {
+        for correction in
+            self.bonus_link_corrections.iter().chain(&self.bonus_removal_corrections).copied().collect::<Vec<_>>()
+        {
             if correction.field == "bonus_type" && correction.from == crate::corrections::CorrectionValue::Null {
                 continue;
             }
             let mut matching = Vec::new();
+            let mut values = Vec::new();
             for (index, owner) in owners.iter().enumerate() {
-                if correction.kind == owner.kind.link_correction_kind()
+                if correction.kind == owner.kind.bonus_link_correction_kind()
                     && correction.name == owner.name
                     && self.correction_owner_matches(correction, owner.owner_id)?
                 {
-                    let upstream = super::corrections::pending_bonus_correction_value(
+                    let upstream = super::corrections::pending_bonus_correction_values(
                         self.transaction,
                         self.groupings,
                         correction,
@@ -178,13 +232,13 @@ impl<'a> TableWriter<'a> {
                         &owner.links,
                     )
                     .with_context(|| format!("correction file {}: {}", correction.file_name, correction.label()))?;
-                    self.observed_bonus_corrections.push((correction, upstream.clone()));
-                    matching.push((index, upstream));
+                    self.observed_bonus_corrections.extend(upstream.iter().cloned().map(|value| (correction, value)));
+                    values.extend(upstream);
+                    matching.push(index);
                 }
             }
-            let values = matching.iter().map(|(_, upstream)| upstream.clone()).collect::<Vec<_>>();
             if super::corrections::upstream_values_match(correction, &values)? {
-                for (index, _) in matching {
+                for index in matching {
                     let owner = &mut owners[index];
                     super::corrections::write_pending_bonus_correction(
                         self.transaction,
@@ -241,123 +295,303 @@ impl<'a> TableWriter<'a> {
     }
 
     pub(super) fn link_pending_derived_effects(&mut self) -> Result<()> {
-        let mut pending = std::mem::take(&mut self.pending_derived_effects);
-        for source in &mut pending {
+        let sources = std::mem::take(&mut self.pending_derived_effects);
+        let mut pending = Vec::new();
+        for mut source in sources {
             source.normalize_option_targets();
+            pending.push(self.write_line_candidates(source)?);
         }
-        self.select_derived_corrections(&pending)?;
-        for source in pending {
+        self.apply_candidate_removals(&mut pending)?;
+        for pending in &mut pending {
+            let owner = pending.source.owner();
+            for (effect, candidate) in pending.source.effects().iter().zip(&mut pending.candidates) {
+                candidate.hold = self.candidate_grouping_hold(&owner, pending.source.owner_id, effect, candidate);
+            }
+        }
+        self.select_candidate_splits(&mut pending)?;
+        for mut pending in pending {
+            let source = &pending.source;
             let owner = source.owner();
-            let links = match &source.source {
-                super::PendingEffectSource::SetTier(tier) => {
-                    self.write_modifiers(ModifierSource::SetBonusTier, source.owner_id, &tier.effects)?;
-                    self.write_set_tier_effects(&source.owner_name, source.owner_id, tier)?
-                }
-                super::PendingEffectSource::Effects { effects, .. } => {
-                    let modifier_source = match source.owner_kind {
-                        EffectOwner::Feat => ModifierSource::Feat,
-                        EffectOwner::Augment => ModifierSource::Augment,
-                        EffectOwner::ItemAugmentSlotOption => ModifierSource::ItemAugmentSlotOption,
-                        _ => unreachable!("set tiers use their prose writer"),
-                    };
-                    let links = self.ensure_derived_effects(&owner, modifier_source, source.owner_id, effects)?;
-                    if source.owner_kind == EffectOwner::Augment {
-                        self.collapse_source_backed_augment_lines(&source.owner_name, links)?
-                    } else {
-                        links
+            let modifier_source = match source.owner_kind {
+                EffectOwner::Feat => ModifierSource::Feat,
+                EffectOwner::Augment => ModifierSource::Augment,
+                EffectOwner::ItemAugmentSlotOption => ModifierSource::ItemAugmentSlotOption,
+                EffectOwner::SetBonusTier => ModifierSource::SetBonusTier,
+                EffectOwner::Item => unreachable!("item buffs already have links"),
+            };
+            if source.owner_kind == EffectOwner::SetBonusTier {
+                self.write_modifiers(modifier_source, source.owner_id, source.effects())?;
+            }
+            let mut links = self.write_derived_candidates(
+                &owner,
+                modifier_source,
+                source.owner_id,
+                source.effects(),
+                &mut pending.candidates,
+            )?;
+            if !pending.prose_links.is_empty() {
+                if let Some(first) = pending.prose_members.first() {
+                    if let Some(outcome) = self.write_split_lines(
+                        &owner,
+                        source.owner_id,
+                        first.bonus.bonus_type.context("typed prose member")?,
+                        &pending.prose_members,
+                    )? {
+                        let GroupingOutcome::Split { links: split_links, .. } = outcome else {
+                            anyhow::bail!("set {:?} prose split cannot preserve its single value", owner.name)
+                        };
+                        pending.prose_links = split_links;
                     }
                 }
-            };
+                links.extend(pending.prose_links);
+            }
+            if source.owner_kind == EffectOwner::Augment {
+                links = self.collapse_source_backed_augment_lines(&source.owner_name, links)?;
+            }
             self.queue_effect_links(&owner, source.owner_id, links);
         }
         Ok(())
     }
 
-    fn select_derived_corrections(&mut self, pending: &[super::PendingDerivedEffects]) -> Result<()> {
-        use crate::corrections::{CorrectionValue, NO_SUCH_BONUS};
-        let corrections =
-            self.bonus_removal_corrections
-                .iter()
-                .copied()
-                .filter(|correction| correction.stat.as_deref().and_then(ddo_model::stats::Stat::by_name).is_some())
-                .chain(self.line_corrections.iter().copied().filter(|correction| {
-                    !correction.is_line_merge() && correction.from.as_text() != Some(NO_SUCH_BONUS)
-                }))
-                .collect::<Vec<_>>();
-        let mut lines_by_source = Vec::new();
-        for source in pending {
-            let owner = source.owner();
-            let relevant = corrections.iter().any(|correction| {
-                correction.kind == owner.kind.link_correction_kind() && correction.name == owner.name
-            });
-            lines_by_source.push(if relevant { self.derived_source_lines(source)? } else { Vec::new() });
-        }
-        let mut blocked = Vec::new();
-        for correction in corrections {
-            let mut owners = std::collections::BTreeMap::<i64, Vec<usize>>::new();
-            for (index, source) in pending.iter().enumerate() {
-                let owner = source.owner();
-                if correction.kind == owner.kind.link_correction_kind()
-                    && correction.name == owner.name
-                    && self.correction_owner_matches(correction, source.owner_id)?
-                {
-                    owners.entry(source.owner_id).or_default().push(index);
+    fn write_line_candidates(&mut self, source: super::PendingDerivedEffects) -> Result<PendingDerivedLines> {
+        let owner = source.owner();
+        let mut candidates = Vec::new();
+        for effect in source.effects() {
+            let mut bonuses_by_type = Vec::new();
+            let mut fixed_links_by_type = Vec::new();
+            for effect_type in &effect.types {
+                let mut single_type = effect.clone();
+                single_type.types = vec![effect_type.clone()];
+                let mut bonuses = self.owner_derived_bonuses(&owner, &single_type)?;
+                for bonus in &mut bonuses {
+                    bonus.bonus_type = Some(self.bonus_type_of(
+                        &BonusOrigin {
+                            owner: &owner,
+                            source_name: effect_type,
+                            target_name: bonus.stat.name,
+                            value: Some(bonus.value),
+                        },
+                        bonus.bonus_type,
+                    )?);
                 }
+                let mut fixed_links = Vec::new();
+                if bonuses.is_empty() {
+                    self.ensure_targeted_fixed_effect(&single_type, &mut fixed_links)?;
+                }
+                bonuses_by_type.push(bonuses);
+                fixed_links_by_type.push(fixed_links);
+            }
+            candidates.push(DerivedLineCandidate {
+                original_bonuses: bonuses_by_type.clone(),
+                bonuses_by_type,
+                fixed_links_by_type,
+                hold: None,
+            });
+        }
+        let mut prose_links = Vec::new();
+        let mut prose_members = Vec::new();
+        if candidates.iter().all(|candidate| {
+            candidate.bonuses_by_type.iter().all(Vec::is_empty)
+                && candidate.fixed_links_by_type.iter().all(Vec::is_empty)
+        }) {
+            if let super::PendingEffectSource::SetTier(tier) = &source.source {
+                prose_links = self.write_set_tier_prose(&source.owner_name, tier)?;
+                prose_members = self.prose_split_members(&owner, source.owner_id, &prose_links)?;
+            }
+        }
+        Ok(PendingDerivedLines { source, candidates, prose_links, prose_members })
+    }
+
+    fn prose_split_members(
+        &self,
+        owner: &BonusOwner,
+        owner_id: i64,
+        links: &[DerivedEffectLink],
+    ) -> Result<Vec<LineSplitMember>> {
+        let [link] = links else { return Ok(Vec::new()) };
+        let Some(value) = link.value else { return Ok(Vec::new()) };
+        let mut has_split = false;
+        for correction in &self.line_corrections {
+            if !correction.is_line_merge()
+                && correction.name == owner.name
+                && correction.kind == owner.kind.bonus_link_correction_kind()
+                && correction.from.as_text() != Some(crate::corrections::NO_SUCH_BONUS)
+                && self.correction_owner_matches(correction, owner_id)?
+            {
+                has_split = true;
+                break;
+            }
+        }
+        if !has_split {
+            return Ok(Vec::new());
+        }
+        let target = &self.effects.family(link.effect_id).context("prose effect is cached")?.name;
+        let mut rows = super::corrections::line_bonus_rows(
+            self.transaction,
+            owner.kind.bonus_link_correction_kind(),
+            owner_id,
+            Some(links),
+        )
+        .with_context(|| format!("set {:?} prose target {target:?} has invalid split members", owner.name))?;
+        let Some(bonus_type) =
+            rows.first().and_then(|row| row.bonus_type.as_deref()).and_then(ddo_model::enums::BonusType::parse)
+        else {
+            return Ok(Vec::new());
+        };
+        if self.split_corrections_for_owner(owner, owner_id, bonus_type, value)?.is_empty() {
+            return Ok(Vec::new());
+        }
+        rows.sort_by(|left, right| left.stat_name.cmp(&right.stat_name));
+        rows.into_iter()
+            .map(|row| {
+                let stat =
+                    ddo_model::stats::Stat::by_name(&row.stat_name).with_context(|| {
+                        format!(
+                            "set {:?} prose target {target:?} has unknown split member {:?}",
+                            owner.name, row.stat_name,
+                        )
+                    })?;
+                Ok(LineSplitMember {
+                    bonus: crate::map::effect::DerivedBonus { stat, bonus_type: Some(bonus_type), value },
+                    line_name: row.stat_name,
+                })
+            })
+            .collect()
+    }
+
+    fn matching_candidate_owners(
+        &self,
+        correction: &crate::corrections::Correction,
+        pending: &[PendingDerivedLines],
+    ) -> Result<std::collections::BTreeMap<i64, Vec<usize>>> {
+        let mut owners = std::collections::BTreeMap::<i64, Vec<usize>>::new();
+        for (index, pending) in pending.iter().enumerate() {
+            let source = &pending.source;
+            let owner = source.owner();
+            if correction.kind == owner.kind.bonus_link_correction_kind()
+                && correction.name == owner.name
+                && self.correction_owner_matches(correction, source.owner_id)?
+            {
+                owners.entry(source.owner_id).or_default().push(index);
+            }
+        }
+        Ok(owners)
+    }
+
+    fn candidate_grouping_hold(
+        &self,
+        owner: &BonusOwner,
+        owner_id: i64,
+        effect: &Effect,
+        candidate: &DerivedLineCandidate,
+    ) -> Option<GroupingHold> {
+        let stats = candidate
+            .bonuses_by_type
+            .iter()
+            .flatten()
+            .map(|bonus| bonus.stat.id)
+            .collect::<std::collections::BTreeSet<_>>();
+        if stats.len() < 2 {
+            return None;
+        }
+        if owner.kind == BonusOwnerKind::Augment {
+            if let Some(exception) = self.deferred_augment_splits.get(&owner_id) {
+                return Some(GroupingHold::Deferred(exception));
+            }
+        }
+        let without_stats = effect
+            .types
+            .iter()
+            .zip(&candidate.original_bonuses)
+            .filter(|(_, bonuses)| bonuses.is_empty())
+            .map(|(kind, _)| kind.clone())
+            .collect::<Vec<_>>();
+        if !without_stats.is_empty() {
+            return Some(GroupingHold::TypesWithoutStats(without_stats));
+        }
+        let types = candidate
+            .bonuses_by_type
+            .iter()
+            .flatten()
+            .map(|bonus| bonus.bonus_type.map(|kind| kind.id()))
+            .collect::<std::collections::BTreeSet<_>>();
+        (types.len() > 1).then_some(GroupingHold::DifferentTypes)
+    }
+
+    fn apply_candidate_removals(&mut self, pending: &mut [PendingDerivedLines]) -> Result<()> {
+        let removals = self
+            .bonus_removal_corrections
+            .iter()
+            .copied()
+            .filter(|correction| correction.stat.as_deref().and_then(ddo_model::stats::Stat::by_name).is_some())
+            .collect::<Vec<_>>();
+        let mut decided = Vec::new();
+        for correction in removals {
+            let owners = self.matching_candidate_owners(correction, pending)?;
+            if owners.is_empty() {
+                continue;
             }
             let mut observations = Vec::new();
             for (owner_id, indices) in &owners {
-                let lines = indices.iter().flat_map(|index| lines_by_source[*index].iter()).collect::<Vec<_>>();
-                let upstream = if correction.field == "remove" {
-                    let members = lines.iter().flat_map(|line| line.iter().cloned()).collect::<Vec<_>>();
-                    super::corrections::pending_bonus_correction_value(
+                let links = indices
+                    .iter()
+                    .flat_map(|index| {
+                        let source = &pending[*index];
+                        source
+                            .candidates
+                            .iter()
+                            .flat_map(|candidate| candidate.bonuses_by_type.iter().flatten())
+                            .map(derived_bonus_link)
+                            .chain(source.prose_links.iter().cloned())
+                    })
+                    .collect::<Vec<_>>();
+                observations.extend(
+                    super::corrections::pending_bonus_correction_values(
                         self.transaction,
                         self.groupings,
                         correction,
                         *owner_id,
-                        &members,
-                    )?
-                } else {
-                    let matches = lines
-                        .into_iter()
-                        .map(|line| self.split_source_matches(correction, line))
-                        .collect::<Result<Vec<_>>>()?;
-                    if matches.contains(&true) {
-                        correction.from.clone()
-                    } else {
-                        CorrectionValue::Text(NO_SUCH_BONUS.into())
-                    }
-                };
-                observations.push(upstream);
+                        &links,
+                    )
+                    .with_context(|| format!("correction file {}: {}", correction.file_name, correction.label()))?,
+                );
             }
-            if owners.is_empty() {
+            let applies = super::corrections::upstream_values_match(correction, &observations)?;
+            self.observed_bonus_corrections.extend(observations.into_iter().map(|upstream| (correction, upstream)));
+            decided.push(correction);
+            if !applies {
                 continue;
             }
-            if !super::corrections::upstream_values_match(correction, &observations)? {
-                self.observed_bonus_corrections.extend(observations.into_iter().map(|upstream| (correction, upstream)));
-                blocked.push(correction);
-            } else if correction.field == "remove" {
-                for (owner_id, indices) in owners {
-                    let links = indices
-                        .iter()
-                        .flat_map(|index| lines_by_source[*index].iter().flatten())
-                        .map(|link| {
-                            (
-                                link.effect_id,
-                                link.bonus_type.expect("resolved bonus type").id(),
-                                link.value.expect("derived amount"),
-                            )
-                        })
-                        .collect::<Vec<_>>();
-                    let removed = super::corrections::removed_derived_bonus_indices(
-                        self.transaction,
-                        correction,
-                        owner_id,
-                        &links,
-                    )?;
-                    let mut position = 0;
-                    for index in indices {
-                        for line in &mut lines_by_source[index] {
-                            line.retain(|_| {
+            for (owner_id, indices) in owners {
+                let bonuses = indices
+                    .iter()
+                    .flat_map(|index| pending[*index].candidates.iter())
+                    .flat_map(|candidate| candidate.bonuses_by_type.iter().flatten())
+                    .map(|bonus| {
+                        (bonus.stat.id, bonus.bonus_type.expect("candidate has resolved type").id(), bonus.value)
+                    })
+                    .collect::<Vec<_>>();
+                let removed = super::corrections::removed_derived_bonus_indices(
+                    self.transaction,
+                    correction,
+                    owner_id,
+                    &bonuses,
+                )?;
+                let mut position = 0;
+                for index in indices {
+                    if !pending[index].prose_links.is_empty() {
+                        super::corrections::write_pending_bonus_correction(
+                            self.transaction,
+                            &mut self.effects,
+                            self.groupings,
+                            correction,
+                            owner_id,
+                            &mut pending[index].prose_links,
+                        )?;
+                    }
+                    for candidate in &mut pending[index].candidates {
+                        for bonuses in &mut candidate.bonuses_by_type {
+                            bonuses.retain(|_| {
                                 let keep = !removed.contains(&position);
                                 position += 1;
                                 keep
@@ -368,110 +602,70 @@ impl<'a> TableWriter<'a> {
             }
         }
         self.bonus_removal_corrections
-            .retain(|correction| !blocked.iter().any(|blocked| std::ptr::eq(*blocked, *correction)));
-        self.line_corrections.retain(|correction| !blocked.iter().any(|blocked| std::ptr::eq(*blocked, *correction)));
+            .retain(|correction| !decided.iter().any(|known| std::ptr::eq(*known, *correction)));
         Ok(())
     }
 
-    fn derived_source_lines(&mut self, source: &super::PendingDerivedEffects) -> Result<Vec<Vec<DerivedEffectLink>>> {
-        let owner = source.owner();
-        let mut lines = Vec::new();
-        for effect in source.effects() {
-            let mut members = Vec::new();
-            for kind in &effect.types {
-                let mut single_type = effect.clone();
-                single_type.types = vec![kind.clone()];
-                for bonus in self.owner_derived_bonuses(&owner, &single_type)? {
-                    let bonus_type = self.bonus_type_of(
-                        &BonusOrigin {
-                            owner: &owner,
-                            source_name: kind,
-                            target_name: bonus.stat.name,
-                            value: Some(bonus.value),
-                        },
-                        bonus.bonus_type,
-                    )?;
-                    members.push(DerivedEffectLink {
-                        effect_id: bonus.stat.id,
-                        bonus_type: Some(bonus_type),
-                        value: Some(bonus.value),
-                        value2: None,
-                        alias: None,
-                        is_split_line: false,
-                    });
-                }
-            }
-            lines.push(members);
-        }
-        if lines.iter().all(Vec::is_empty) {
-            if let super::PendingEffectSource::SetTier(tier) = &source.source {
-                if let Some(rule) = tier
-                    .description
-                    .as_deref()
-                    .map(|description| EFFECT_MAP.set_tier_prose_link(description, self.groupings))
-                    .transpose()?
-                    .flatten()
-                {
-                    if let (Some(kind), Some(value)) = (rule.bonus_type.as_deref(), rule.value) {
-                        let stats = if let Some(stat) = ddo_model::stats::Stat::by_name(&rule.effect) {
-                            vec![stat.name.to_string()]
-                        } else if self.groupings.effect_named(&rule.effect).is_some() {
-                            self.groupings.expanded_stat_names(&rule.effect)?.into_iter().collect()
-                        } else {
-                            EFFECT_MAP
-                                .groups
-                                .get(&rule.effect)
-                                .with_context(|| {
-                                    format!("set {:?} prose target {:?} has no group", owner.name, rule.effect)
-                                })?
-                                .clone()
-                        };
-                        let bonus_type =
-                            ddo_model::enums::BonusType::parse(kind).context("prose rule has a known type")?;
-                        lines.push(
-                            stats
-                                .into_iter()
-                                .map(|name| {
-                                    let stat = ddo_model::stats::Stat::by_name(&name).with_context(|| {
-                                        format!(
-                                            "set {:?} prose target {:?} has unknown split member {name:?}",
-                                            owner.name, rule.effect
-                                        )
-                                    })?;
-                                    Ok(DerivedEffectLink {
-                                        effect_id: stat.id,
-                                        bonus_type: Some(bonus_type),
-                                        value: Some(value),
-                                        value2: None,
-                                        alias: None,
-                                        is_split_line: false,
-                                    })
-                                })
-                                .collect::<Result<Vec<_>>>()?,
-                        );
+    fn select_candidate_splits(&mut self, pending: &mut [PendingDerivedLines]) -> Result<()> {
+        use crate::corrections::{CorrectionValue, NO_SUCH_BONUS};
+        let mut blocked = Vec::new();
+        for correction in self
+            .line_corrections
+            .iter()
+            .copied()
+            .filter(|correction| !correction.is_line_merge() && correction.from.as_text() != Some(NO_SUCH_BONUS))
+        {
+            let owners = self.matching_candidate_owners(correction, pending)?;
+            let mut observations = Vec::new();
+            for indices in owners.values() {
+                let mut matches = false;
+                for index in indices {
+                    let pending = &mut pending[*index];
+                    for candidate in &mut pending.candidates {
+                        if candidate.hold.is_none() {
+                            let links =
+                                candidate.bonuses_by_type.iter().flatten().map(derived_bonus_link).collect::<Vec<_>>();
+                            match self.split_source_match(correction, &links)? {
+                                LineSplitMatch::Ready => matches = true,
+                                LineSplitMatch::Held(hold) => candidate.hold = Some(hold),
+                                LineSplitMatch::Missing => {}
+                            }
+                        }
                     }
+                    let links = pending
+                        .prose_members
+                        .iter()
+                        .map(|member| derived_bonus_link(&member.bonus))
+                        .collect::<Vec<_>>();
+                    matches |= matches!(self.split_source_match(correction, &links)?, LineSplitMatch::Ready);
                 }
+                observations.push(if matches {
+                    correction.from.clone()
+                } else {
+                    CorrectionValue::Text(NO_SUCH_BONUS.into())
+                });
+            }
+            if !owners.is_empty() && !super::corrections::upstream_values_match(correction, &observations)? {
+                self.observed_bonus_corrections.extend(observations.into_iter().map(|upstream| (correction, upstream)));
+                blocked.push(correction);
             }
         }
-        Ok(lines)
+        self.line_corrections.retain(|correction| !blocked.iter().any(|known| std::ptr::eq(*known, *correction)));
+        Ok(())
     }
 
-    fn split_source_matches(
+    fn split_source_match(
         &self,
         correction: &crate::corrections::Correction,
         line: &[DerivedEffectLink],
-    ) -> Result<bool> {
-        let Some(first) = line.first() else { return Ok(false) };
+    ) -> Result<LineSplitMatch> {
         let stats = line
             .iter()
             .map(|link| {
                 self.effects.family(link.effect_id).map(|family| family.name.clone()).context("derived stat is cached")
             })
             .collect::<Result<std::collections::BTreeSet<_>>>()?;
-        Ok(correction.upstream_line_stats()? == [stats]
-            && first.bonus_type.map(|kind| kind.name()) == correction.bonus_type.as_deref()
-            && correction.bonus_value.is_none_or(|amount| first.value == Some(amount))
-            && line.iter().all(|link| link.bonus_type == first.bonus_type && link.value == first.value))
+        line_split_match(correction, stats, line)
     }
 
     pub(super) fn write_modifiers(&mut self, source: ModifierSource, source_id: i64, effects: &[Effect]) -> Result<()> {
@@ -546,28 +740,20 @@ impl<'a> TableWriter<'a> {
         Ok(())
     }
 
-    pub(super) fn ensure_derived_effects(
+    fn write_derived_candidates(
         &mut self,
         owner: &BonusOwner,
         modifier_source: ModifierSource,
         owner_id: i64,
         effects: &[Effect],
+        candidates: &mut [DerivedLineCandidate],
     ) -> Result<Vec<DerivedEffectLink>> {
         let mut links = Vec::new();
-        for (source_order, effect) in effects.iter().enumerate() {
-            let mut derived_by_type = effect
-                .types
-                .iter()
-                .map(|effect_type| {
-                    let mut single_type = effect.clone();
-                    single_type.types = vec![effect_type.clone()];
-                    self.owner_derived_bonuses(owner, &single_type)
-                })
-                .collect::<Result<Vec<_>>>()?;
+        for (source_order, (effect, candidate)) in effects.iter().zip(candidates).enumerate() {
+            let mut derived_by_type = std::mem::take(&mut candidate.bonuses_by_type);
             let first_link = links.len();
-            let types_had_stats = derived_by_type.iter().map(|bonuses| !bonuses.is_empty()).collect::<Vec<_>>();
-            let source_bonuses = derived_by_type.clone();
-            self.remove_derived_bonuses(owner, owner_id, effect, &mut derived_by_type)?;
+            let types_had_stats =
+                candidate.original_bonuses.iter().map(|bonuses| !bonuses.is_empty()).collect::<Vec<_>>();
             let all_bonuses_removed =
                 types_had_stats.iter().any(|had_stats| *had_stats) && derived_by_type.iter().all(Vec::is_empty);
             let source_index = self.derived_effect_lines.len();
@@ -579,10 +765,12 @@ impl<'a> TableWriter<'a> {
                 .into_iter()
                 .collect::<Vec<_>>();
             if all_bonuses_removed {
-                derived_by_type = source_bonuses;
+                candidate.bonuses_by_type = candidate.original_bonuses.clone();
+                candidate.hold = self.candidate_grouping_hold(owner, owner_id, effect, candidate);
+                derived_by_type = std::mem::take(&mut candidate.bonuses_by_type);
             }
             let outcome =
-                self.write_grouped_effect_links(owner, owner_id, effect, &derived_by_type, &types_had_stats)?;
+                self.write_grouped_effect_links(owner, owner_id, effect, &derived_by_type, candidate.hold.take())?;
             self.derived_effect_lines.push(super::DerivedEffectLines {
                 owner_kind: modifier_source.as_str().to_string(),
                 owner_name: owner.name.to_string(),
@@ -637,8 +825,6 @@ impl<'a> TableWriter<'a> {
                 if types_had_stats[type_index] && derived_by_type[type_index].is_empty() {
                     continue;
                 }
-                let mut single_type_effect = effect.clone();
-                single_type_effect.types = vec![effect_type.clone()];
                 if (effect_type == "SpellPower"
                     && (effect.targets.is_empty() || effect.targets.iter().all(|target| target == "All"))
                     && matches!(effect.bonus.as_deref(), Some("Equipment" | "Insight" | "Insightful" | "Quality")))
@@ -674,7 +860,7 @@ impl<'a> TableWriter<'a> {
                 }
                 let derived_bonuses = derived_by_type[type_index].clone();
                 if derived_bonuses.is_empty() {
-                    self.ensure_targeted_fixed_effect(&single_type_effect, &mut links)?;
+                    links.append(&mut candidate.fixed_links_by_type[type_index]);
                     continue;
                 }
                 let all_abilities =
@@ -762,26 +948,13 @@ impl<'a> TableWriter<'a> {
     ) -> Result<DerivedEffectLink> {
         let first_bonus = bonuses[0];
         let all_abilities = bonuses.len() > 1 && effect_type == "AbilityBonus" && target == Some("All");
-        let mut resolved_types = bonuses.iter().map(|bonus| {
-            self.bonus_type_of(
-                &BonusOrigin {
-                    owner,
-                    source_name: effect_type,
-                    target_name: bonus.stat.name,
-                    value: Some(bonus.value),
-                },
-                bonus.bonus_type,
-            )
-        });
-        let bonus_type = resolved_types.next().expect("derived group has a first bonus")?;
-        for resolved_type in resolved_types {
-            anyhow::ensure!(
-                resolved_type? == bonus_type,
-                "{:?} {:?} has different types within one {effect_type} line",
-                owner.kind,
-                owner.name
-            );
-        }
+        let bonus_type = first_bonus.bonus_type.context("derived candidate has a resolved type")?;
+        anyhow::ensure!(
+            bonuses.iter().all(|bonus| bonus.bonus_type == Some(bonus_type)),
+            "{:?} {:?} has different types within one {effect_type} line",
+            owner.kind,
+            owner.name
+        );
         if let ("SkillBonusAbility", Some(ability)) = (effect_type, target) {
             let complete_skill_group = EFFECT_MAP.skill_ability_groups.skills.get(ability).is_some_and(|members| {
                 members.iter().all(|member| bonuses.iter().any(|bonus| bonus.stat.name == member))
@@ -869,97 +1042,14 @@ impl<'a> TableWriter<'a> {
         })
     }
 
-    fn remove_derived_bonuses(
-        &mut self,
-        owner: &BonusOwner,
-        owner_id: i64,
-        effect: &Effect,
-        derived_by_type: &mut [Vec<crate::map::effect::DerivedBonus>],
-    ) -> Result<()> {
-        let original_stats =
-            derived_by_type.iter().flatten().map(|bonus| bonus.stat.id).collect::<std::collections::BTreeSet<_>>();
-        if !original_stats.is_empty() {
-            let removals = self
-                .bonus_removal_corrections
-                .iter()
-                .copied()
-                .filter(|correction| {
-                    correction.name == owner.name
-                        && match owner.kind {
-                            BonusOwnerKind::SetBonusTier => {
-                                correction.kind == ddo_model::enums::CorrectionKind::SetTierBonus
-                            }
-                            BonusOwnerKind::Augment => {
-                                correction.kind == ddo_model::enums::CorrectionKind::AugmentBonus
-                            }
-                            BonusOwnerKind::Feat => correction.kind == ddo_model::enums::CorrectionKind::FeatBonus,
-                            BonusOwnerKind::ItemAugmentSlotOption => {
-                                correction.kind == ddo_model::enums::CorrectionKind::SocketOptionBonus
-                            }
-                            _ => false,
-                        }
-                })
-                .collect::<Vec<_>>();
-            for correction in removals {
-                if !self.correction_owner_matches(correction, owner_id)? {
-                    continue;
-                }
-                let mut resolved_bonuses = Vec::new();
-                for (effect_type, derived) in effect.types.iter().zip(derived_by_type.iter()) {
-                    for bonus in derived {
-                        let bonus_type = self.bonus_type_of(
-                            &BonusOrigin {
-                                owner,
-                                source_name: effect_type,
-                                target_name: bonus.stat.name,
-                                value: Some(bonus.value),
-                            },
-                            bonus.bonus_type,
-                        )?;
-                        resolved_bonuses.push((bonus.stat.id, bonus_type.id(), bonus.value));
-                    }
-                }
-                let removed = super::corrections::removed_derived_bonus_indices(
-                    self.transaction,
-                    correction,
-                    owner_id,
-                    &resolved_bonuses,
-                )?;
-                if !removed.is_empty() {
-                    self.removed_derived_bonus_count += removed.len();
-                    if !self.applied_bonus_removal_corrections.iter().any(|applied| std::ptr::eq(*applied, correction))
-                    {
-                        self.applied_bonus_removal_corrections.push(correction);
-                    }
-                    let mut index = 0;
-                    for derived in derived_by_type.iter_mut() {
-                        derived.retain(|_| {
-                            let survives = !removed.contains(&index);
-                            index += 1;
-                            survives
-                        });
-                    }
-                }
-            }
-        }
-        Ok(())
-    }
-
     fn write_grouped_effect_links(
         &mut self,
         owner: &BonusOwner,
         owner_id: i64,
         effect: &Effect,
         derived_by_type: &[Vec<crate::map::effect::DerivedBonus>],
-        types_had_stats: &[bool],
+        hold: Option<GroupingHold>,
     ) -> Result<GroupingOutcome> {
-        let types_without_stats = effect
-            .types
-            .iter()
-            .zip(types_had_stats)
-            .filter(|(_, had_stats)| !**had_stats)
-            .map(|(effect_type, _)| effect_type.clone())
-            .collect::<Vec<_>>();
         let mut bonuses = Vec::new();
         for (effect_type, derived) in effect.types.iter().zip(derived_by_type.iter()) {
             bonuses.extend(derived.iter().copied().map(|bonus| (effect_type.as_str(), bonus)));
@@ -969,33 +1059,12 @@ impl<'a> TableWriter<'a> {
         if stats.len() < 2 {
             return Ok(GroupingOutcome::NotGrouped);
         }
-        if owner.kind == BonusOwnerKind::Augment {
-            if let Some(exception) = self.deferred_augment_splits.get(&owner_id) {
-                return Ok(GroupingOutcome::Held(GroupingHold::Deferred(exception)));
-            }
-        }
-        if !types_without_stats.is_empty() {
-            return Ok(GroupingOutcome::Held(GroupingHold::TypesWithoutStats(types_without_stats)));
+        if let Some(hold) = hold {
+            return Ok(GroupingOutcome::Held(hold));
         }
         let value = bonuses[0].1.value;
         let same_value = bonuses.iter().all(|(_, bonus)| bonus.value == value);
-        let mut bonus_type = None;
-        for (effect_type, bonus) in &bonuses {
-            let resolved = self.bonus_type_of(
-                &BonusOrigin {
-                    owner,
-                    source_name: effect_type,
-                    target_name: bonus.stat.name,
-                    value: Some(bonus.value),
-                },
-                bonus.bonus_type,
-            )?;
-            if bonus_type.is_some_and(|previous| previous != resolved) {
-                return Ok(GroupingOutcome::Held(GroupingHold::DifferentTypes));
-            }
-            bonus_type = Some(resolved);
-        }
-        let bonus_type = bonus_type.expect("multi-stat effect has a bonus type");
+        let bonus_type = bonuses[0].1.bonus_type.context("derived candidate has a resolved type")?;
         let split_members = bonuses
             .iter()
             .map(|(effect_type, bonus)| {
@@ -1133,7 +1202,6 @@ impl<'a> TableWriter<'a> {
     ) -> Result<Option<GroupingOutcome>> {
         let Some(first) = members.first() else { return Ok(None) };
         let value = first.bonus.value;
-        let same_value = members.iter().all(|member| member.bonus.value == value);
         let source_links = members
             .iter()
             .map(|member| DerivedEffectLink {
@@ -1148,16 +1216,15 @@ impl<'a> TableWriter<'a> {
         let split_corrections = self.split_corrections_for_owner(owner, owner_id, bonus_type, value)?;
         let mut split_correction = None;
         for correction in split_corrections {
-            if !self.split_source_matches(correction, &source_links)? {
-                continue;
+            match self.split_source_match(correction, &source_links)? {
+                LineSplitMatch::Missing => continue,
+                LineSplitMatch::Held(hold) => return Ok(Some(GroupingOutcome::Held(hold))),
+                LineSplitMatch::Ready => {}
             }
             anyhow::ensure!(split_correction.is_none(), "{}: overlapping split corrections", correction.label());
             split_correction = Some(correction);
         }
         if let Some(correction) = split_correction {
-            if !same_value {
-                return Ok(Some(GroupingOutcome::Held(GroupingHold::DifferentValues)));
-            }
             let mut partitions = correction.line_partition_stats(self.groupings)?;
             partitions.sort_by_key(|(_, partition)| {
                 members.iter().position(|member| partition.contains(member.bonus.stat.name))
@@ -1252,7 +1319,7 @@ impl<'a> TableWriter<'a> {
     ) -> Result<Vec<usize>> {
         let mut matching = Vec::new();
         for (index, owner) in owners.iter().enumerate() {
-            if correction.kind == owner.kind.link_correction_kind()
+            if correction.kind == owner.kind.bonus_link_correction_kind()
                 && correction.name == owner.name
                 && self.correction_owner_matches(correction, owner.owner_id)?
             {
@@ -1487,5 +1554,41 @@ impl<'a> TableWriter<'a> {
             value2: None,
         });
         Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn split_with_unequal_member_values_is_held() {
+        let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");
+        let corrections = crate::corrections::Corrections::from_data(&root).unwrap();
+        let correction = corrections
+            .entries
+            .iter()
+            .find(|correction| correction.field == "lines" && !correction.is_line_merge())
+            .unwrap();
+        let stats = correction.upstream_line_stats().unwrap().remove(0);
+        let bonus_type = ddo_model::enums::BonusType::parse(correction.bonus_type.as_deref().unwrap()).unwrap();
+        let value = correction.bonus_value.unwrap_or(3);
+        let mut links = stats
+            .iter()
+            .map(|name| {
+                derived_bonus_link(&crate::map::effect::DerivedBonus {
+                    stat: ddo_model::stats::Stat::by_name(name).unwrap(),
+                    bonus_type: Some(bonus_type),
+                    value,
+                })
+            })
+            .collect::<Vec<_>>();
+        assert!(links.len() > 1);
+        assert!(matches!(line_split_match(correction, stats.clone(), &links).unwrap(), LineSplitMatch::Ready));
+        links.last_mut().unwrap().value = Some(value + 1);
+        assert!(matches!(
+            line_split_match(correction, stats, &links).unwrap(),
+            LineSplitMatch::Held(GroupingHold::DifferentValues)
+        ));
     }
 }

@@ -49,8 +49,9 @@ pub(crate) fn bonus_correction_twins(case: &str, diverges: bool) -> (String, Cor
         include_str!("../fixtures/effect-groups/WoefulShadow.Augments.xml").replace("    <Icon>Lamordia</Icon>\n", "");
     let (field, qualifier, upstream, corrected) = match case {
         "add" => ("add", "", "'null'", "{ stat = 'Fire Spell Power', bonus_type = 'Equipment', value = 7 }"),
-        "remove" => ("remove", "stat = 'Doubleshot'\nbonus_type = 'Profane'", "3", "'null'"),
-        "split" => (
+        "remove" | "ambiguous_remove" => ("remove", "stat = 'Doubleshot'\nbonus_type = 'Profane'", "3", "'null'"),
+        "group_remove" => ("remove", "stat = 'Doublestrike and Doubleshot'\nbonus_type = 'Profane'", "3", "'null'"),
+        "split" | "held_split" => (
             "lines",
             "stat = 'Doublestrike, Doubleshot'\nbonus_type = 'Profane'",
             "[['Doublestrike', 'Doubleshot']]",
@@ -77,6 +78,11 @@ pub(crate) fn bonus_correction_twins(case: &str, diverges: bool) -> (String, Cor
     if diverges {
         if case == "add" {
             second = second.replace("  </Augment>", "    <Effect><Type>SpellPower</Type><Bonus>Equipment</Bonus><AType>Simple</AType><Amount size=\"1\">8</Amount><Item>Fire</Item></Effect>\n  </Augment>");
+        } else if case == "held_split" {
+            second =
+                second.replace("<Type>Doubleshot</Type>", "<Type>Doubleshot</Type><Type>Weapon_AttackAndDamage</Type>");
+        } else if case == "ambiguous_remove" {
+            second = second.replace("  </Augment>", "    <Effect><Type>Doubleshot</Type><Bonus>Profane</Bonus><AType>Simple</AType><Amount size=\"1\">4</Amount></Effect>\n  </Augment>");
         } else {
             second = second.replace("<Type>Doubleshot</Type>", "<Type>MeleePower</Type>");
         }

@@ -566,6 +566,21 @@ fn divergent_line_splits_conflict_on_consecutive_imports() {
 }
 
 #[test]
+fn divergent_writer_holds_conflict_on_consecutive_imports() {
+    assert_structural_twin_conflicts_persist("held_split");
+}
+
+#[test]
+fn divergent_grouping_removals_conflict_on_consecutive_imports() {
+    assert_structural_twin_conflicts_persist("group_remove");
+}
+
+#[test]
+fn ambiguous_bonus_removals_conflict_on_consecutive_imports() {
+    assert_structural_twin_conflicts_persist("ambiguous_remove");
+}
+
+#[test]
 fn divergent_line_merges_conflict_on_consecutive_imports() {
     assert_structural_twin_conflicts_persist("merge");
 }

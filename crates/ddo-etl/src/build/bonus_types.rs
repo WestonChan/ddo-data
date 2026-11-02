@@ -12,7 +12,7 @@ pub(super) enum BonusOwnerKind {
 }
 
 impl BonusOwnerKind {
-    pub(super) const fn link_correction_kind(self) -> CorrectionKind {
+    pub(super) const fn bonus_link_correction_kind(self) -> CorrectionKind {
         match self {
             Self::Item => CorrectionKind::ItemBonus,
             Self::ItemAugmentSlotOption => CorrectionKind::SocketOptionBonus,
@@ -32,7 +32,7 @@ impl BonusOwnerKind {
         }
     }
 
-    const fn correction_kind(self) -> Option<CorrectionKind> {
+    const fn untyped_bonus_correction_kind(self) -> Option<CorrectionKind> {
         match self {
             Self::Item | Self::ItemAugmentSlotOption => Some(CorrectionKind::ItemBonus),
             Self::Augment => Some(CorrectionKind::AugmentBonus),
@@ -97,7 +97,7 @@ impl<'a> UntypedBonusCorrections<'a> {
 
     pub(super) fn bonus_type_for(&mut self, bonus_origin: &BonusOrigin) -> Result<BonusType> {
         let BonusOrigin { owner, source_name, target_name, value } = bonus_origin;
-        let correction_kind = owner.kind.correction_kind();
+        let correction_kind = owner.kind.untyped_bonus_correction_kind();
         let typing_correction = self.typing_corrections.iter_mut().find(|typing_correction| {
             let correction = typing_correction.correction;
             Some(correction.kind) == correction_kind
