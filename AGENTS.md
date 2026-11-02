@@ -127,6 +127,13 @@ The worktree compiles from scratch into its own `target/` (a few minutes the fir
 
 Unexpected files or served differences are a bug in the change, not noise. Report the counts and the classification. Only then commit.
 
+## Wiki facts and corrections
+
+- **Sources rank: an in-game screenshot, then a typed tooltip list, then wiki prose or an enchantment page, then Maetrim.** A screenshot on a wiki page is the game itself, so a reader looks at the image and cites its URL. A decision resting on typed text alone is open to a screenshot re-check.
+- **Names and lines follow the in-game tooltip; descriptions are ours.** An effect's name and its served line read as the game's tooltip reads, through an alias where items word it differently (Spellsight for Spellcraft). Its description is our own text, kept consistent across the group, and is not bent to match one item's wording.
+- **A conflict in the data is a reason to check.** Two records that disagree, or look like duplicates, are compared against the wiki, Maetrim or the game before anything is fixed, merged or declared distinct. The outcome is a fix, a merge, or a declared difference, each citing that check.
+- **Crafting-owned findings get plain fixes only.** An owner is crafting-owned when its file sits under a `crafting/` folder or it is a crafting system's tier or option. Its one-entity fixes (a value, type or name, with a citation, or a `[[verification_request]]`) happen wherever they are found. Anything needing a new mechanism, correction shape or modelling decision goes to the crafting epic, WestonChan/ddo-data#72, and every data finding records the flag.
+
 ## Code Quality
 
 - **No comments, no doc comments.** Code carries its meaning in names, types, and tests. Do not write `//`, `/* */`, `///`, or `//!`. If something needs a comment to be understood, rename, split, or restructure it until it doesn't. Reasoning that cannot live in code goes in `ddo-tools/docs/architecture.md`, a `docs/` file here, or the issue. `cargo lint` fails on any comment; `cargo xtask no-comments --fix` strips them.

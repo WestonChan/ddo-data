@@ -1,5 +1,29 @@
 # V9 data files served changes
 
+## Wiki-read corrections and review fixes (2026-11-02)
+
+These follow the 2026-10-31 entry and close WestonChan/ddo-data#46. Against main before #46 there are 7,126 table differences and 13,865 response differences. Every detail response pairs: 11,099 paired, 4,431 added (the new grouping and alias addresses), none removed or failed. Effect links on items, augments, set tiers, feats and socket options gain an `alias` column, and effects gain `stat_set_verdict`, `stat_set_reason` and `omits_bonus_type`.
+
+- **Repair Amplification** is Enhancement, the type its screenshots show, so its 34 lines lose the Competence word they never had in game, and the stat's home type is Enhancement.
+- **Spellsight:** 42 Spellcraft lines whose screenshots read "Spellsight" select that alias. Four items whose screenshots read "Spellcraft" keep it.
+- **Riposte and Parrying:** Legendary Sapphire of Riposte and the Parrying augment show one numeric line each (Riposte +6, Parrying +7), not separate armor-class and saving-throw lines.
+- **Epic Duelist's Leathers** (level 20, current) matches its screenshot. The legacy version keeps its values, with a verification request about its Maximum Dexterity Bonus. Epic Inferno Bracers carry a verification request about the "Superior Fire Resistance" title on an old screenshot.
+- **Vulkoor's Might** Epic and Legendary two-piece tiers split "Attack and Damage" into two Artifact +3 lines, as the base set already does. Their Seeker line stays one line until Seeker has its two stats. Draconic Ferocity's two-piece prose reads "Hit and Damage", as the wiki does.
+- **Improved Deception** is Competence on Heroic, Epic and Legendary Collapsible Shortbow and Legendary Amethyst Loupe, per their screenshots.
+- **Feat bonus titles** render through the line-word rule, so 504 titles on 307 feats lose a leading "Feat" or "Enhancement". Past Life: Ranger and Abyssal Resistance keep their selected wording, "Fire, Cold, Electric, Acid and Sonic Resistance +N", instead of "Elemental Resistance +N".
+- **Descriptions** lose the space before a closing parenthesis: Healing Amplification (200 lines), Crown of Summer (power) (7), Blood, Rock Shattering, and Repair Amplification's template.
+- **Insight lines:** Levik's Defender, Protector's Heart and Troubleshooter keep their separate Insight armor-class and saving-throw lines, with the type shown (maintainer, 2026-11-01).
+
+The rest changes only the build and the import, not what is served:
+- a socket removal correction;
+- an alias correction to null, which restores the canonical name;
+- one correction recording path for the writer and the post-pass;
+- aliases written as their families are created;
+- modifiers that keep their effect reference through member removals (Celerity, and Wild Shape: Fire and Water Elemental, in the upstream build);
+- persistent conflicts for stale, ambiguous and held corrections, with all-or-none twins (see `docs/update-from-maetrim.md`);
+- `upstream-parity`, which now compares aliases and modifiers;
+- `diff-db`, which now compares across a schema change.
+
 ## Effect groupings and tooltip wording (2026-10-31)
 
 A fully modelled multi-stat upstream Effect now uses one effect link on set tiers, augments, feats and socket options. Legendary Hruit's Influence's three-piece tier has four lines, including its four +30 Artifact spell powers; Anger of the Avalanche uses Power of the Frozen Thunderstorm. Individual-stat filters and resolved bonuses still expand every member. Wiki-backed `lines` corrections preserve separate tooltip lines or join separate upstream links. The old set-tier collapse and ambiguous-group fallback are removed; unresolved duplicate groupings now fail the build.
