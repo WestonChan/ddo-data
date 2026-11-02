@@ -571,6 +571,47 @@ fn divergent_writer_holds_conflict_on_consecutive_imports() {
 }
 
 #[test]
+fn held_line_splits_keep_their_cause_on_consecutive_imports() {
+    let (original, correction) = fixture::bonus_correction_twins("held_split", false);
+    let corrections = fixture::corrections_from(&[("woeful-held-split.toml", &correction)]).unwrap();
+    let mut world = ImportWorld::with_sources(fixture::groupings(), corrections, WikiOverrides::default(), |source| {
+        std::fs::create_dir_all(source.join("Augments")).unwrap();
+        std::fs::write(source.join("Augments/WoefulTwins.Augments.xml"), &original).unwrap();
+    });
+    std::fs::write(
+        world.options.source_dir.join("Augments/WoefulTwins.Augments.xml"),
+        original.replace("<Type>Doubleshot</Type>", "<Type>Doubleshot</Type><Type>Weapon_AttackAndDamage</Type>"),
+    )
+    .unwrap();
+    for pass in 0..2 {
+        let report = import_ddobuilder(&world.options).unwrap();
+        let rendered = report.to_string();
+        assert!(report.has_conflicts(), "pass {pass}: {rendered}");
+        let conflict = rendered.lines().find(|line| line.contains("CONFLICT")).unwrap();
+        assert!(conflict.contains("held: effect types without derived stats: Weapon_AttackAndDamage"), "{conflict}");
+        assert!(!conflict.contains("no such bonus"), "{conflict}");
+        let db = world.database();
+        let upstream: String = db
+            .query_row(
+                "SELECT from_value FROM corrections WHERE name='Woeful Shadow (Legendary)' AND field='lines'",
+                [],
+                |row| row.get(0),
+            )
+            .unwrap();
+        assert_eq!(
+            serde_json::from_str::<serde_json::Value>(&upstream).unwrap(),
+            serde_json::json!([["Doublestrike", "Doubleshot"]])
+        );
+        assert_eq!(db.query_row(
+            "SELECT COUNT(*) FROM augment_effects l JOIN augments a ON a.id=l.augment_id JOIN effects e ON e.id=l.effect_id WHERE a.name='Woeful Shadow (Legendary)' AND e.name IN ('Doublestrike','Doubleshot')", [], |row| row.get::<_, i64>(0),
+        ).unwrap(), 4);
+        world.options.previous_dir = world.options.source_dir.clone();
+        world.options.previous_sha = world.options.sha.clone();
+        world.options.sha = Some("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee".into());
+    }
+}
+
+#[test]
 fn divergent_grouping_removals_conflict_on_consecutive_imports() {
     assert_structural_twin_conflicts_persist("group_remove");
 }

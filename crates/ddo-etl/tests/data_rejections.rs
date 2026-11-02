@@ -28,6 +28,27 @@ fn socket_removal_requires_the_socket_to_be_absent_from_our_file() {
 }
 
 #[test]
+fn unequal_member_amounts_are_valid_links_but_not_a_lines_split() {
+    let file = "packs/shared/augments/dinosaurbone/voidscale.toml";
+    let members = "\n[[effect]]\nname = 'Doublestrike'\nbonus_type = 'Profane'\nvalue = 3\n\n[[effect]]\nname = 'Doubleshot'\nbonus_type = 'Profane'\nvalue = 4\n";
+    let db = fixture::database(|root| {
+        let path = root.join(file);
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{original}{members}")).unwrap();
+    });
+    let amounts = db.prepare("SELECT e.name,l.value FROM augment_effects l JOIN augments a ON a.id=l.augment_id JOIN effects e ON e.id=l.effect_id WHERE a.name='Voidscale' AND e.name IN ('Doublestrike','Doubleshot') ORDER BY e.name").unwrap()
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?))).unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(amounts, [("Doubleshot".into(), 4), ("Doublestrike".into(), 3)]);
+    let error = fixture::data_build_error(|root| {
+        let path = root.join(file);
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{original}{members}\n[[ddobuilder_correction]]\nkind = 'augment_bonus'\nfield = 'lines'\nqualifier = 'Doublestrike, Doubleshot / Profane'\nupstream = [['Doublestrike', 'Doubleshot']]\nreason = 'Separate member lines'\nurl = 'https://ddowiki.com/page/Test'\nread = '2026-11-01'\n")).unwrap();
+    });
+    assert!(error.contains(file) && error.contains("split lines have different stats, types or values"), "{error}");
+}
+
+#[test]
 fn files_cannot_redeclare_always_unnamed_home_types() {
     for file in ["effects/riposte.toml", "effects/stat-groups/charisma-skills.toml"] {
         for home in ["Enhancement", "Equipment", "Feat"] {

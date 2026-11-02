@@ -166,11 +166,13 @@ fn line_split_match(
 ) -> Result<LineSplitMatch> {
     let Some(first) = links.first() else { return Ok(LineSplitMatch::Missing) };
     if correction.upstream_line_stats()? != [stats]
-        || first.bonus_type.map(|kind| kind.name()) != correction.bonus_type.as_deref()
+        || !links.iter().any(|link| link.bonus_type.map(|kind| kind.name()) == correction.bonus_type.as_deref())
         || correction.bonus_value.is_some_and(|amount| first.value != Some(amount))
-        || !links.iter().all(|link| link.bonus_type == first.bonus_type)
     {
         return Ok(LineSplitMatch::Missing);
+    }
+    if !links.iter().all(|link| link.bonus_type == first.bonus_type) {
+        return Ok(LineSplitMatch::Held(GroupingHold::DifferentTypes));
     }
     Ok(if links.iter().all(|link| link.value == first.value) {
         LineSplitMatch::Ready
@@ -619,17 +621,25 @@ impl<'a> TableWriter<'a> {
             let mut observations = Vec::new();
             for indices in owners.values() {
                 let mut matches = false;
+                let mut holds = std::collections::BTreeSet::new();
                 for index in indices {
                     let pending = &mut pending[*index];
                     for candidate in &mut pending.candidates {
-                        if candidate.hold.is_none() {
-                            let links =
-                                candidate.bonuses_by_type.iter().flatten().map(derived_bonus_link).collect::<Vec<_>>();
-                            match self.split_source_match(correction, &links)? {
-                                LineSplitMatch::Ready => matches = true,
-                                LineSplitMatch::Held(hold) => candidate.hold = Some(hold),
-                                LineSplitMatch::Missing => {}
+                        let links =
+                            candidate.bonuses_by_type.iter().flatten().map(derived_bonus_link).collect::<Vec<_>>();
+                        match self.split_source_match(correction, &links)? {
+                            LineSplitMatch::Ready => {
+                                if let Some(hold) = &candidate.hold {
+                                    holds.insert(format!("held: {}", hold.reason()));
+                                } else {
+                                    matches = true;
+                                }
                             }
+                            LineSplitMatch::Held(hold) => {
+                                let hold = candidate.hold.get_or_insert(hold);
+                                holds.insert(format!("held: {}", hold.reason()));
+                            }
+                            LineSplitMatch::Missing => {}
                         }
                     }
                     let links = pending
@@ -641,6 +651,8 @@ impl<'a> TableWriter<'a> {
                 }
                 observations.push(if matches {
                     correction.from.clone()
+                } else if !holds.is_empty() {
+                    CorrectionValue::Texts(holds.into_iter().collect())
                 } else {
                     CorrectionValue::Text(NO_SUCH_BONUS.into())
                 });
@@ -1563,13 +1575,29 @@ mod tests {
 
     #[test]
     fn split_with_unequal_member_values_is_held() {
-        let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");
-        let corrections = crate::corrections::Corrections::from_data(&root).unwrap();
-        let correction = corrections
-            .entries
-            .iter()
-            .find(|correction| correction.field == "lines" && !correction.is_line_merge())
-            .unwrap();
+        use crate::corrections::{Correction, CorrectionValue};
+        let correction = &Correction {
+            kind: ddo_model::enums::CorrectionKind::AugmentBonus,
+            name: "Split strikes".into(),
+            field: "lines".into(),
+            from: CorrectionValue::StatSets(vec![vec!["Doublestrike".into(), "Doubleshot".into()]]),
+            to: CorrectionValue::Texts(vec!["Doublestrike".into(), "Doubleshot".into()]),
+            family: None,
+            socket: None,
+            option: None,
+            selection: None,
+            stance: None,
+            dc: None,
+            effect: None,
+            stat: Some("Doublestrike, Doubleshot".into()),
+            bonus_type: Some("Profane".into()),
+            bonus_value: None,
+            equipped_count: None,
+            reason: "Separate member lines".into(),
+            source: "https://ddowiki.com/page/Test".to_string().into(),
+            read: "2026-11-01".into(),
+            file_name: "split-strikes.toml".into(),
+        };
         let stats = correction.upstream_line_stats().unwrap().remove(0);
         let bonus_type = ddo_model::enums::BonusType::parse(correction.bonus_type.as_deref().unwrap()).unwrap();
         let value = correction.bonus_value.unwrap_or(3);
@@ -1587,8 +1615,14 @@ mod tests {
         assert!(matches!(line_split_match(correction, stats.clone(), &links).unwrap(), LineSplitMatch::Ready));
         links.last_mut().unwrap().value = Some(value + 1);
         assert!(matches!(
-            line_split_match(correction, stats, &links).unwrap(),
+            line_split_match(correction, stats.clone(), &links).unwrap(),
             LineSplitMatch::Held(GroupingHold::DifferentValues)
+        ));
+        links.last_mut().unwrap().value = Some(value);
+        links.last_mut().unwrap().bonus_type = Some(ddo_model::enums::BonusType::Insight);
+        assert!(matches!(
+            line_split_match(correction, stats, &links).unwrap(),
+            LineSplitMatch::Held(GroupingHold::DifferentTypes)
         ));
     }
 }

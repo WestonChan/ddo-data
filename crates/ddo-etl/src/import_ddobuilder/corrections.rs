@@ -89,7 +89,7 @@ fn build_matching_values(
     for correction in &mut rebased.entries {
         let key = CorrectionKey::from_correction(correction);
         let Some(stale) = first_stale.iter().find(|stale| key.matches(stale)) else { continue };
-        if has_replacement_collision(correction, stale) {
+        if has_unresolved_line_target(correction, stale) {
             continue;
         }
         if let StaleCorrectionCause::ValuesDisagree { maetrim_values, .. } = &stale.cause {
@@ -118,7 +118,7 @@ fn build_matching_values(
             let resolved = rebased.entries.iter().any(|correction| {
                 CorrectionKey::from_correction(correction).matches(&stale)
                     && (has_disagreeing_bonus_targets(correction, &stale)
-                        || has_replacement_collision(correction, &stale)
+                        || has_unresolved_line_target(correction, &stale)
                         || match &stale.cause {
                             StaleCorrectionCause::ValueChanged { maetrim_value, .. } => {
                                 *maetrim_value == correction.to.to_json()
@@ -139,9 +139,13 @@ pub(super) fn has_disagreeing_bonus_targets(correction: &Correction, stale: &Sta
     correction.kind.corrects_a_bonus() && matches!(stale.cause, StaleCorrectionCause::ValuesDisagree { .. })
 }
 
-fn has_replacement_collision(correction: &Correction, stale: &StaleCorrection) -> bool {
-    correction.correctable_field().is_ok_and(|field| field.shape == crate::corrections::FieldShape::EffectReplacement)
-        && matches!(&stale.cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. }
+fn has_unresolved_line_target(correction: &Correction, stale: &StaleCorrection) -> bool {
+    correction.correctable_field().is_ok_and(|field| {
+        matches!(
+            field.shape,
+            crate::corrections::FieldShape::EffectReplacement | crate::corrections::FieldShape::BonusLines
+        )
+    }) && matches!(&stale.cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. }
             if matches!(CorrectionValue::from_json(maetrim_value), Ok(CorrectionValue::Texts(_))))
 }
 
@@ -177,7 +181,7 @@ pub(super) fn correction_events(
         let new = upstream_value(correction, new_stale);
         let unresolved_targets = new_stale.iter().any(|stale| {
             key.matches(stale)
-                && (has_replacement_collision(correction, stale) || has_disagreeing_bonus_targets(correction, stale))
+                && (has_unresolved_line_target(correction, stale) || has_disagreeing_bonus_targets(correction, stale))
         });
         if previous == new && !unresolved_targets {
             continue;

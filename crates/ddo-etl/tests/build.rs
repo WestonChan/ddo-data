@@ -1972,6 +1972,51 @@ fn partially_mapped_multi_stat_effects_keep_their_lines_and_are_held() {
         && effect.effect_types.contains(&"Weapon_AttackAndDamage".to_string())));
 }
 
+#[test]
+fn a_held_split_keeps_its_member_lines_and_reports_the_hold() {
+    let source = fixture::xml_source();
+    let (original, correction) = fixture::bonus_correction_twins("held_split", false);
+    std::fs::write(
+        source.path().join("Augments/WoefulTwins.Augments.xml"),
+        original.replace("<Type>Doubleshot</Type>", "<Type>Doubleshot</Type><Type>Weapon_AttackAndDamage</Type>"),
+    )
+    .unwrap();
+    let corrections = fixture::corrections_from(&[("woeful-held-split.toml", &correction)]).unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    let members = db.prepare("SELECT e.name,b.name,l.value FROM augment_effects l JOIN augments a ON a.id=l.augment_id JOIN effects e ON e.id=l.effect_id JOIN bonus_types b ON b.id=l.bonus_type_id WHERE a.name='Woeful Shadow (Legendary)' AND b.name='Profane' ORDER BY a.slug,e.name").unwrap()
+        .query_map([], |row| Ok((row.get::<_, String>(0)?,row.get::<_, String>(1)?,row.get::<_, i64>(2)?))).unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        members,
+        ["Doubleshot", "Doublestrike", "Doubleshot", "Doublestrike"].map(|name| (
+            name.to_string(),
+            "Profane".to_string(),
+            3
+        ))
+    );
+    let held = report
+        .held_back_effects
+        .iter()
+        .filter(|held| held.owner_name == "Woeful Shadow (Legendary)")
+        .collect::<Vec<_>>();
+    assert_eq!(held.len(), 2);
+    assert!(held.iter().all(|held| held.reason == "effect types without derived stats: Weapon_AttackAndDamage"));
+    assert!(report.line_splits.is_empty());
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+    assert!(matches!(&report.stale_corrections[0].cause,
+        ddo_etl::build::StaleCorrectionCause::ValueChanged { maetrim_value, .. }
+        if maetrim_value.contains("held: effect types without derived stats: Weapon_AttackAndDamage")));
+}
+
 fn create_untyped_shadow_source() -> tempfile::TempDir {
     let source = fixture::xml_source();
     std::fs::write(
