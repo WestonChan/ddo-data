@@ -1987,18 +1987,19 @@ fn create_untyped_shadow_source() -> tempfile::TempDir {
     source
 }
 
-#[test]
-fn member_removal_keeps_a_sibling_type_without_derived_stats() {
+fn assert_member_removal_keeps_a_sibling_type_without_derived_stats(keep_cold: bool) {
     let source = create_untyped_shadow_source();
     let path = source.path().join("Augments/WoefulShadow.Augments.xml");
     let contents = std::fs::read_to_string(&path).unwrap();
+    let targets = if keep_cold { "<Item>Fire</Item><Item>Cold</Item>" } else { "<Item>Fire</Item>" };
     std::fs::write(
         path,
         contents.replace(
             "<Type>Doublestrike</Type>\n      <Type>Doubleshot</Type>",
-            "<Type>SpellPower</Type><Type>Weapon_CriticalRange</Type><Bonus>Profane</Bonus><Item>Fire</Item><Item>Cold</Item>",
+            &format!("<Type>SpellPower</Type><Type>Weapon_CriticalRange</Type><Bonus>Profane</Bonus>{targets}"),
         ),
-    ).unwrap();
+    )
+    .unwrap();
     let corrections = fixture::new_qualified_correction(
         "augment_bonus",
         "Woeful Shadow (Legendary)",
@@ -2028,7 +2029,8 @@ fn member_removal_keeps_a_sibling_type_without_derived_stats() {
         .unwrap()
         .collect::<rusqlite::Result<Vec<_>>>()
         .unwrap();
-    assert!(names.contains(&"Critical Threat Range (Fire, Cold)".to_string()), "{names:?}");
+    let qualified = if keep_cold { "Critical Threat Range (Fire, Cold)" } else { "Critical Threat Range (Fire)" };
+    assert!(names.contains(&qualified.to_string()), "{names:?}");
     assert_eq!(
         count(
             &db,
@@ -2039,6 +2041,16 @@ fn member_removal_keeps_a_sibling_type_without_derived_stats() {
         ),
         0
     );
+}
+
+#[test]
+fn member_removal_keeps_a_sibling_type_without_derived_stats() {
+    assert_member_removal_keeps_a_sibling_type_without_derived_stats(true);
+}
+
+#[test]
+fn removing_all_bonuses_keeps_a_sibling_type_without_derived_stats() {
+    assert_member_removal_keeps_a_sibling_type_without_derived_stats(false);
 }
 
 #[test]

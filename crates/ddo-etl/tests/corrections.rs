@@ -2660,6 +2660,71 @@ fn member_guard_ignores_a_grouping_at_another_value() {
 }
 
 #[test]
+fn removed_wild_shape_penalties_keep_their_modifier_reference() {
+    let source = fixture::xml_source();
+    let path = source.path().join("Feats.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let captured = include_str!("fixtures/effect-groups/ElementalWildShapes.Feat.xml");
+    std::fs::write(path, original.replace("</Feats>", &format!("{captured}</Feats>"))).unwrap();
+    std::fs::create_dir_all(source.path().join("FeatImages")).unwrap();
+    for (name, image) in [
+        (
+            "WildShapeFireElemental",
+            include_bytes!("fixtures/effect-groups/icons/WildShapeFireElemental.png").as_slice(),
+        ),
+        (
+            "WildShapeWaterElemental",
+            include_bytes!("fixtures/effect-groups/icons/WildShapeWaterElemental.png").as_slice(),
+        ),
+    ] {
+        std::fs::write(source.path().join(format!("FeatImages/{name}.png")), image).unwrap();
+    }
+    let owners = ["Wild Shape: Fire Elemental", "Wild Shape: Water Elemental"];
+    let corrections = Corrections {
+        entries: committed_corrections()
+            .entries
+            .iter()
+            .filter(|correction| owners.contains(&correction.name.as_str()) && correction.field == "remove")
+            .cloned()
+            .collect(),
+    };
+    assert_eq!(corrections.entries.len(), 4);
+    let mut db = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::grouping_cases(),
+        source.path(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut db,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (4, 0));
+    for owner in owners {
+        let modifier_effect: Option<String> = db
+            .query_row(
+                "SELECT e.name FROM modifiers m JOIN feats f ON f.id=m.source_id
+             LEFT JOIN effects e ON e.id=m.effect_id
+             WHERE m.source_kind='feat' AND f.name=?1 AND m.sort_order=2 AND m.effect_type='AbilityBonus'",
+                [owner],
+                |row| row.get(0),
+            )
+            .unwrap();
+        assert_eq!(modifier_effect.as_deref(), Some("Intelligence and Charisma"), "{owner}");
+        let penalty_count: i64 = db
+            .query_row(
+                "SELECT COUNT(*) FROM owner_bonuses ob JOIN feats f ON f.id=ob.owner_id
+             JOIN effects s ON s.id=ob.stat_id WHERE ob.owner_kind='feat' AND f.name=?1
+             AND s.name IN ('Intelligence','Charisma')",
+                [owner],
+                |row| row.get(0),
+            )
+            .unwrap();
+        assert_eq!(penalty_count, 0, "{owner}");
+    }
+}
+
+#[test]
 fn member_removal_precedes_grouping_and_matches_only_its_value() {
     let source = fixture::xml_source();
     let path = source.path().join("SetBonuses.xml");
@@ -2706,6 +2771,17 @@ fn member_removal_precedes_grouping_and_matches_only_its_value() {
         [("Doublestrike".into(), "Stacking".into(), 2), ("Doubleshot".into(), "Stacking".into(), 2)]
     );
     assert!(!set_tier_bonus_rows(&db, "Celerity", 3).iter().any(|(name, _, _)| name == "Movement Speed"));
+    let modifier_effect: Option<String> = db
+        .query_row(
+            "SELECT e.name FROM modifiers m JOIN set_bonus_tiers t ON t.id=m.source_id
+             JOIN set_bonuses s ON s.id=t.set_id LEFT JOIN effects e ON e.id=m.effect_id
+             WHERE m.source_kind='set_bonus_tier' AND s.name='Celerity' AND t.equipped_count=3
+               AND m.sort_order=0 AND m.effect_type='MovementSpeed'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(modifier_effect.as_deref(), Some("Movement Speed"));
     let restored = Corrections::from_database(&db).unwrap();
     for expected in &corrections.entries {
         let actual = restored.entries.iter().find(|entry| entry.name == expected.name).unwrap();

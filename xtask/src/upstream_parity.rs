@@ -4,10 +4,11 @@ use rusqlite::Connection;
 use std::collections::BTreeMap;
 use std::path::Path;
 
-const EFFECT_TABLES: [&str; 8] = [
+const EFFECT_TABLES: [&str; 9] = [
     "effects",
     "effect_bonuses",
     "effect_aliases",
+    "modifiers",
     "item_effects",
     "augment_effects",
     "set_bonus_tier_effects",

@@ -566,8 +566,11 @@ impl<'a> TableWriter<'a> {
                 .collect::<Result<Vec<_>>>()?;
             let first_link = links.len();
             let types_had_stats = derived_by_type.iter().map(|bonuses| !bonuses.is_empty()).collect::<Vec<_>>();
+            let source_bonuses = derived_by_type.clone();
+            self.remove_derived_bonuses(owner, owner_id, effect, &mut derived_by_type)?;
+            let all_bonuses_removed =
+                types_had_stats.iter().any(|had_stats| *had_stats) && derived_by_type.iter().all(Vec::is_empty);
             let source_index = self.derived_effect_lines.len();
-            let outcome = self.write_grouped_effect_links(owner, owner_id, effect, &mut derived_by_type)?;
             let stat_names = derived_by_type
                 .iter()
                 .flatten()
@@ -575,6 +578,11 @@ impl<'a> TableWriter<'a> {
                 .collect::<std::collections::BTreeSet<_>>()
                 .into_iter()
                 .collect::<Vec<_>>();
+            if all_bonuses_removed {
+                derived_by_type = source_bonuses;
+            }
+            let outcome =
+                self.write_grouped_effect_links(owner, owner_id, effect, &derived_by_type, &types_had_stats)?;
             self.derived_effect_lines.push(super::DerivedEffectLines {
                 owner_kind: modifier_source.as_str().to_string(),
                 owner_name: owner.name.to_string(),
@@ -619,8 +627,10 @@ impl<'a> TableWriter<'a> {
                         params![modifier_source.as_str(), owner_id, source_order as i64, grouped_links[0].effect_id],
                     )?;
                 }
-                self.derived_effect_lines[source_index].link_count = grouped_links.len();
-                links.extend(grouped_links);
+                if !all_bonuses_removed {
+                    self.derived_effect_lines[source_index].link_count = grouped_links.len();
+                    links.extend(grouped_links);
+                }
                 continue;
             }
             for (type_index, effect_type) in effect.types.iter().enumerate() {
@@ -699,7 +709,6 @@ impl<'a> TableWriter<'a> {
                     links.push(self.write_derived_line(owner, effect_type, target, &bonuses, line_name)?);
                 }
             }
-            self.derived_effect_lines[source_index].link_count = links.len() - first_link;
             if let Some(first) = links.get(first_link) {
                 if links[first_link..].iter().all(|link| link.effect_id == first.effect_id) {
                     self.transaction.execute(
@@ -708,6 +717,14 @@ impl<'a> TableWriter<'a> {
                     )?;
                 }
             }
+            if all_bonuses_removed {
+                let retained = links
+                    .drain(first_link..)
+                    .filter(|link| !self.effects.has_stats(link.effect_id))
+                    .collect::<Vec<_>>();
+                links.extend(retained);
+            }
+            self.derived_effect_lines[source_index].link_count = links.len() - first_link;
         }
         Ok(links)
     }
@@ -852,20 +869,13 @@ impl<'a> TableWriter<'a> {
         })
     }
 
-    fn write_grouped_effect_links(
+    fn remove_derived_bonuses(
         &mut self,
         owner: &BonusOwner,
         owner_id: i64,
         effect: &Effect,
         derived_by_type: &mut [Vec<crate::map::effect::DerivedBonus>],
-    ) -> Result<GroupingOutcome> {
-        let types_without_stats = effect
-            .types
-            .iter()
-            .zip(derived_by_type.iter())
-            .filter(|(_, bonuses)| bonuses.is_empty())
-            .map(|(effect_type, _)| effect_type.clone())
-            .collect::<Vec<_>>();
+    ) -> Result<()> {
         let original_stats =
             derived_by_type.iter().flatten().map(|bonus| bonus.stat.id).collect::<std::collections::BTreeSet<_>>();
         if !original_stats.is_empty() {
@@ -932,6 +942,24 @@ impl<'a> TableWriter<'a> {
                 }
             }
         }
+        Ok(())
+    }
+
+    fn write_grouped_effect_links(
+        &mut self,
+        owner: &BonusOwner,
+        owner_id: i64,
+        effect: &Effect,
+        derived_by_type: &[Vec<crate::map::effect::DerivedBonus>],
+        types_had_stats: &[bool],
+    ) -> Result<GroupingOutcome> {
+        let types_without_stats = effect
+            .types
+            .iter()
+            .zip(types_had_stats)
+            .filter(|(_, had_stats)| !**had_stats)
+            .map(|(effect_type, _)| effect_type.clone())
+            .collect::<Vec<_>>();
         let mut bonuses = Vec::new();
         for (effect_type, derived) in effect.types.iter().zip(derived_by_type.iter()) {
             bonuses.extend(derived.iter().copied().map(|bonus| (effect_type.as_str(), bonus)));

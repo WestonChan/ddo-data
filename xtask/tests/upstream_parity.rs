@@ -29,6 +29,16 @@ fn normalized_fixture_matches_and_reports_an_edited_link() {
     let upstream =
         normalized_upstream_database(&source, &ours, &version, false, &scratch.path().join("upstream")).unwrap();
     assert!(upstream_differences(&upstream.db, &ours).unwrap().is_empty());
+    let (modifier_id, modifier_effect): (i64, i64) = ours
+        .query_row("SELECT id, effect_id FROM modifiers WHERE effect_id IS NOT NULL LIMIT 1", [], |row| {
+            Ok((row.get(0)?, row.get(1)?))
+        })
+        .unwrap();
+    ours.execute("UPDATE modifiers SET effect_id=NULL WHERE id=?1", [modifier_id]).unwrap();
+    let modifiers = upstream_differences(&upstream.db, &ours).unwrap();
+    assert_eq!(modifiers.len(), 2, "a dropped modifier effect must be reported: {modifiers:?}");
+    assert!(modifiers.iter().all(|difference| difference.starts_with("modifiers:")), "{modifiers:?}");
+    ours.execute("UPDATE modifiers SET effect_id=?2 WHERE id=?1", [modifier_id, modifier_effect]).unwrap();
     let effect_id: i64 = ours.query_row("SELECT MIN(id) FROM effects WHERE is_stat", [], |row| row.get(0)).unwrap();
     ours.execute("INSERT INTO effect_aliases(effect_id,name,slug,sort_order) VALUES (?1,'Parity Search Alias','parity-search-alias',0)", [effect_id]).unwrap();
     let aliases = upstream_differences(&upstream.db, &ours).unwrap();
