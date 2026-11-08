@@ -139,6 +139,12 @@ const fn kind_operations(kind: CorrectionKind) -> &'static [CorrectableField] {
                 &[
                     field("alias", FieldShape::BonusAlias, true),
                     field("value", FieldShape::Integer, true),
+                    CorrectableField {
+                        name: "bonus_type",
+                        column: "bonus_type_id",
+                        shape: FieldShape::BonusTypeName,
+                        is_nullable: true,
+                    },
                     field("remove", FieldShape::BonusRemoval, false),
                     field("lines", FieldShape::BonusLines, false),
                 ]

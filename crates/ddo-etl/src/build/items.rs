@@ -173,7 +173,7 @@ impl TableWriter<'_> {
         }
 
         let mut links = Vec::new();
-        let item_owner = BonusOwner { kind: BonusOwnerKind::Item, name: item_name, family: None };
+        let item_owner = BonusOwner { kind: BonusOwnerKind::Item, name: item_name, family: None, option: None };
         for (buff, resolved_buff) in resolved_buffs {
             let first_link = links.len();
             match resolved_buff {
@@ -377,8 +377,19 @@ impl TableWriter<'_> {
         for (slot_order, augment_slot) in item.augment_slots.iter().enumerate() {
             let slot_type_id = self.ensure_augment_slot_type(&augment_slot.kind)?;
             self.insert_item_augment_slot(item_id, slot_order, slot_type_id)?;
-            for (option_order, slot_option) in augment_slot.options.iter().enumerate() {
-                self.write_augment_slot_option(item_name, item_id, (slot_order, option_order), slot_option)?;
+            if !augment_slot.options.is_empty() {
+                let label = self.transaction.query_row(
+                    "SELECT label FROM augment_slot_types WHERE id=?1",
+                    [slot_type_id],
+                    |row| row.get(0),
+                )?;
+                self.pending_socket_options.push(super::SocketOptionList {
+                    label,
+                    options: augment_slot.options.clone(),
+                    socket: (item_id, slot_order as i64),
+                    item_slug: crate::tree::xml_entity_slug("items", None, item_name, None),
+                    item_name: item_name.to_owned(),
+                });
             }
         }
 
@@ -405,19 +416,70 @@ impl TableWriter<'_> {
         Ok(())
     }
 
-    fn write_augment_slot_option(
+    pub(super) fn write_socket_option_sets(&mut self, existing: &super::ExistingSocketOptionSets) -> Result<()> {
+        let mut label_corrections = self.socket_label_corrections.values().copied().collect::<Vec<_>>();
+        label_corrections.sort_by(|left, right| left.name.cmp(&right.name));
+        for correction in label_corrections {
+            if self.applied_socket_label_corrections.iter().any(|applied| std::ptr::eq(*applied, correction)) {
+                continue;
+            }
+            let target = correction.to.as_text().context("a socket label rename has a target")?;
+            let mut applied = false;
+            for spelling in correction.upstream_names() {
+                let Some(id) = self.written.augment_slot_type_ids_by_label.get(spelling).copied() else {
+                    continue;
+                };
+                let destination = super::corrections::canonical_socket_label_id(self.transaction, id, target)?;
+                super::corrections::rename_socket_label(self.transaction, id, target)?;
+                for known_id in self.written.augment_slot_type_ids_by_label.values_mut() {
+                    if *known_id == id {
+                        *known_id = destination;
+                    }
+                }
+                self.written.augment_slot_type_ids_by_label.insert(target.to_string(), destination);
+                applied = true;
+            }
+            if applied {
+                self.applied_socket_label_corrections.push(correction);
+            }
+        }
+        let socket_labels = self.transaction.prepare("SELECT s.item_id,s.sort_order,t.label FROM item_augment_slots s JOIN augment_slot_types t ON t.id=s.slot_id")?
+            .query_map([], |row| Ok(((row.get::<_, i64>(0)?,row.get::<_, i64>(1)?),row.get::<_, String>(2)?)))?
+            .collect::<rusqlite::Result<std::collections::BTreeMap<_,_>>>()?;
+        for options in &mut self.pending_socket_options {
+            options.label = socket_labels[&options.socket].clone();
+        }
+        for group in super::socket_option_sets::matched_socket_option_sets(
+            std::mem::take(&mut self.pending_socket_options),
+            existing,
+        )? {
+            self.transaction.execute("INSERT INTO socket_option_sets(slug,name,variant,slot_id) VALUES(?1,?2,?3,(SELECT id FROM augment_slot_types WHERE label=?4))",params![group.slug,group.name,group.variant,group.label])?;
+            let set_id = self.transaction.last_insert_rowid();
+            for (item_id, position) in group.sockets {
+                self.transaction.execute(
+                    "UPDATE item_augment_slots SET option_set_id=?1 WHERE item_id=?2 AND sort_order=?3",
+                    params![set_id, item_id, position],
+                )?;
+            }
+            for (position, option) in group.options.iter().enumerate() {
+                self.write_socket_option(&group.slug, set_id, position, option)?;
+            }
+        }
+        Ok(())
+    }
+
+    fn write_socket_option(
         &mut self,
-        item_name: &str,
-        item_id: i64,
-        (slot_order, option_order): (usize, usize),
+        set_slug: &str,
+        set_id: i64,
+        option_order: usize,
         slot_option: &AugmentSlotOption,
     ) -> Result<()> {
         self.transaction.execute(
-            "INSERT INTO item_augment_slot_options (item_id, slot_order, option_order, name, description, min_level, icon)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+            "INSERT INTO socket_options (set_id, option_order, name, description, min_level, icon)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
             params![
-                item_id,
-                slot_order as i64,
+                set_id,
                 option_order as i64,
                 slot_option.name.trim(),
                 trimmed_non_empty(Some(&slot_option.description)),
@@ -429,18 +491,18 @@ impl TableWriter<'_> {
         for (grant_order, slot_type_name) in slot_option.granted_augments.iter().enumerate() {
             let granted_slot_type_id = self.ensure_augment_slot_type(slot_type_name)?;
             self.transaction.execute(
-                "INSERT INTO item_augment_slot_option_grants (option_id, sort_order, slot_id) VALUES (?1, ?2, ?3)",
+                "INSERT INTO socket_option_grants (option_id, sort_order, slot_id) VALUES (?1, ?2, ?3)",
                 params![option_id, grant_order as i64, granted_slot_type_id],
             )?;
         }
         for set_name in slot_option.set_bonus_names.iter().filter_map(|s| trimmed_non_empty(Some(s))) {
             self.pending_set_option_links.push((option_id, set_name.to_string()));
         }
-        self.write_modifiers(ModifierSource::ItemAugmentSlotOption, option_id, &slot_option.effects)?;
+        self.write_modifiers(ModifierSource::SocketOption, option_id, &slot_option.effects)?;
         self.pending_derived_effects.push(super::PendingDerivedEffects {
-            owner_kind: EffectOwner::ItemAugmentSlotOption,
+            owner_kind: EffectOwner::SocketOption,
             owner_id: option_id,
-            owner_name: item_name.to_string(),
+            owner_name: set_slug.to_string(),
             family: None,
             source: super::PendingEffectSource::Effects {
                 option_name: Some(slot_option.name.trim().to_string()),

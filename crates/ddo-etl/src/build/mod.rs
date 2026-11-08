@@ -15,6 +15,9 @@ mod modifiers;
 pub use modifiers::{stat_links_at_routed_types, StatLinkRoute};
 mod quest_series;
 mod sets;
+mod socket_option_sets;
+pub use socket_option_sets::ExistingSocketOptionSets;
+pub(crate) use socket_option_sets::{group_socket_options_into_sets, SocketOptionList};
 mod trees_spells;
 mod vendors_and_events;
 mod wiki;
@@ -368,6 +371,7 @@ fn build_with_wiki_references(
         pending_set_item_links: Vec::new(),
         pending_set_augment_links: Vec::new(),
         pending_set_option_links: Vec::new(),
+        pending_socket_options: Vec::new(),
         pending_derived_effects: Vec::new(),
         pending_effect_links: Vec::new(),
     };
@@ -414,8 +418,12 @@ fn build_with_wiki_references(
             writer.write_item(item, drop_location, &mut report).with_context(|| format!("{}", path.display()))?;
         }
     }
+    overlay_references.capture_renames(&transaction, corrections)?;
+    writer.write_socket_option_sets(&wiki_overrides.socket_option_sets)?;
     if corrections.entries.iter().any(Correction::targets_socket_option) {
-        writer.socket_option_targets = Some(SocketOptionTargets::from_database(&transaction)?);
+        let mut targets = SocketOptionTargets::from_database(&transaction)?;
+        targets.include_upstream_names(corrections);
+        writer.socket_option_targets = Some(targets);
     }
     for path in files_with_extension(&data_files_dir.join("Augments"), "xml")? {
         writer.write_augments_file(&path, &mut report).with_context(|| format!("{}", path.display()))?;
@@ -454,7 +462,17 @@ fn build_with_wiki_references(
         &transaction,
         corrections_applied_while_writing
             .iter()
-            .map(|correction| (*correction, correction.from.clone()))
+            .flat_map(|correction| {
+                if correction.kind == CorrectionKind::SocketLabel {
+                    correction
+                        .upstream_names()
+                        .into_iter()
+                        .map(|name| (*correction, crate::corrections::CorrectionValue::Text(name.to_string())))
+                        .collect::<Vec<_>>()
+                } else {
+                    vec![(*correction, correction.from.clone())]
+                }
+            })
             .chain(writer.observed_bonus_corrections.iter().cloned()),
         &mut report,
     )?;
@@ -838,6 +856,7 @@ pub(crate) struct TableWriter<'a> {
     pending_set_item_links: Vec<(i64, String)>,
     pending_set_augment_links: Vec<(i64, String)>,
     pending_set_option_links: Vec<(i64, String)>,
+    pending_socket_options: Vec<SocketOptionList<crate::xml::items::AugmentSlotOption>>,
     pending_derived_effects: Vec<PendingDerivedEffects>,
     pending_effect_links: Vec<modifiers::PendingEffectLinks>,
 }

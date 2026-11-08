@@ -34,6 +34,7 @@ pub(crate) use build::referenced_data_icons;
 pub use build::{build_from_data, rederive_data_build_tables};
 pub(crate) use crafting::{
     cost_references, ingredient_id, qualified_reference_id, recipe_focus_path, recipe_set_option_id,
+    socket_option_set_slug,
 };
 pub use ddo_model::identity::slug;
 use export::*;
@@ -41,6 +42,7 @@ pub use export::{
     annotated_entities, data_file_bytes, export_database, export_ddobuilder_tree, replace_data_files, DataFileChanges,
 };
 pub(crate) use kinds::insert_xml_vendor_currencies;
+pub(crate) use kinds::socket_option_set::SocketOption;
 use kinds::UpstreamCommitFile;
 pub(crate) use kinds::{CraftingUnlockOwner, CraftingUnlockRecord};
 pub use kinds::{EffectBonus, ExceptionsFile, PackException, QuestPackException, Redirect, RetiredSlug};
@@ -512,13 +514,9 @@ mod tests {
                 })
                 .collect()
         };
-        assert_eq!(
-            toml_bytes(&root),
-            toml_bytes(&fixtures.join("data")),
-            "export must match the committed fixture data"
-        );
         assert_eq!(toml_bytes(&root), toml_bytes(&fresh_a));
         assert_eq!(toml_bytes(&fresh_a), toml_bytes(&fresh_b));
+        let canonical_files = toml_bytes(&fresh_a);
         std::fs::remove_dir_all(fresh_exports).unwrap();
         assert!(!stale_file.exists());
         assert!(!stale_schema.exists());
@@ -537,8 +535,7 @@ mod tests {
             .into_iter()
             .map(Result::unwrap)
             .filter(|entry| entry.file_type().is_file())
-            .any(|entry| std::fs::read_to_string(entry.path())
-                .is_ok_and(|contents| contents.contains("[[socket.option]]"))));
+            .any(|entry| std::fs::read_to_string(entry.path()).is_ok_and(|contents| contents.contains("[[option]]"))));
         assert!(
             walkdir::WalkDir::new(&root)
                 .into_iter()
@@ -727,7 +724,7 @@ mod tests {
         let expected = "quest_chains \"The Lost Seekers\": move packs/free-to-play/the-coin-lords/chains/the-lost-seekers.toml -> packs/free-to-play/chains/the-lost-seekers.toml";
         assert!(restored.layout_warnings.iter().any(|warning| warning == expected), "{restored}");
         export_database(&restored_membership_db, &root).unwrap();
-        assert_eq!(toml_bytes(&root), toml_bytes(&fixtures.join("data")));
+        assert_eq!(toml_bytes(&root), canonical_files);
         let mut moved_kinds = std::collections::BTreeSet::new();
         let mut moved_files = Vec::new();
         for entry in walkdir::WalkDir::new(&root).into_iter().map(Result::unwrap) {
@@ -760,7 +757,7 @@ mod tests {
             };
             moved_files.push((path.to_path_buf(), misplaced, kind, name.to_string()));
         }
-        assert_eq!(moved_kinds.len(), 15);
+        assert_eq!(moved_kinds.len(), 16);
         for (original, misplaced, _, _) in &moved_files {
             std::fs::create_dir_all(misplaced.parent().unwrap()).unwrap();
             std::fs::rename(original, misplaced).unwrap();

@@ -28,6 +28,7 @@ pub use vendors::{PricedVendorItem, VendorItem, WikiVendor};
 
 #[derive(Debug, Default, Clone, PartialEq)]
 pub struct WikiOverrides {
+    pub socket_option_sets: crate::build::ExistingSocketOptionSets,
     pub quest_loot: Vec<QuestLoot>,
     pub quests: Vec<WikiQuest>,
     pub crafting_systems: Vec<CraftingSystem>,

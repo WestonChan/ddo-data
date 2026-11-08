@@ -165,6 +165,11 @@ impl Catalog {
                             slug(fields.get("tier").and_then(toml::Value::as_str).unwrap_or_default())
                         ),
                         "augment_slot_types" => slug(name),
+                        "socket_option_sets" => crate::tree::socket_option_set_slug(
+                            fields.get("label").and_then(toml::Value::as_str).unwrap_or_default(),
+                            name,
+                            variant,
+                        ),
                         "augments" => {
                             let base = crate::tree::augment_name_slug(name);
                             variant.map_or(base.clone(), |variant| format!("{base}-{}", slug(variant)))

@@ -389,7 +389,9 @@ impl Correction {
 
     pub fn upstream_names(&self) -> Vec<&str> {
         match &self.from {
-            CorrectionValue::Texts(spellings) if self.field == "name" => spellings.iter().map(String::as_str).collect(),
+            CorrectionValue::Texts(spellings) if self.field == "name" && self.kind != CorrectionKind::SocketOption => {
+                spellings.iter().map(String::as_str).collect()
+            }
             _ => vec![self.name.as_str()],
         }
     }
@@ -476,8 +478,10 @@ impl Correction {
     }
 
     pub(crate) fn target_table_name(&self) -> &'static str {
-        if self.kind == CorrectionKind::Item && self.targets_socket_option() {
-            "item_augment_slot_options"
+        if self.kind == CorrectionKind::SocketOption
+            || (self.kind == CorrectionKind::Item && self.targets_socket_option())
+        {
+            "socket_options"
         } else if self.dc.is_some() {
             "dcs"
         } else if self.stance.is_some() {
@@ -490,7 +494,7 @@ impl Correction {
     }
 
     pub(crate) fn targets_socket_option(&self) -> bool {
-        self.kind == CorrectionKind::SocketOptionBonus
+        matches!(self.kind, CorrectionKind::SocketOptionBonus | CorrectionKind::SocketOption)
             || (self.kind != CorrectionKind::ItemSocket && (self.socket.is_some() || self.option.is_some()))
     }
 
@@ -499,13 +503,14 @@ impl Correction {
         let removes_socket = self.kind == CorrectionKind::ItemSocket && field.name == "remove";
         ensure!(
             !names_option
-                || self.kind == CorrectionKind::SocketOptionBonus
+                || matches!(self.kind, CorrectionKind::SocketOptionBonus | CorrectionKind::SocketOption)
                 || (self.kind == CorrectionKind::Item && field.name == "description"),
             "socket and option qualify only socket_option_bonus or item description corrections"
         );
         ensure!(
-            self.socket.is_some() == (names_option || removes_socket) && self.option.is_some() == names_option,
-            "a socket-option correction requires both socket and option; a socket removal requires only socket"
+            self.socket.is_some() == (removes_socket || (names_option && self.kind == CorrectionKind::Item))
+                && self.option.is_some() == names_option,
+            "a set option correction requires only an option qualifier; a legacy item option needs socket and option"
         );
         ensure!(
             self.socket.as_ref().is_none_or(|name| !name.trim().is_empty())

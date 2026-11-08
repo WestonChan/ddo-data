@@ -298,18 +298,22 @@ fn arrays_merge_as_one_unit() {
 }
 
 #[test]
-fn socket_slots_and_options_merge_as_one_array() {
+fn set_options_merge_as_one_array() {
     let previous = ordinary_fixture_database("");
-    let new = ordinary_fixture_database("UPDATE item_augment_slot_options SET description = 'His socket choice' WHERE id = (SELECT min(id) FROM item_augment_slot_options)");
+    let new = ordinary_fixture_database(
+        "UPDATE socket_options SET description = 'His socket choice' WHERE id = (SELECT min(id) FROM socket_options)",
+    );
     let mut ours = ordinary_fixture_database("");
     let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
     assert!(outcome.conflicts.is_empty());
     assert!(database_delta(&ours, &new).unwrap().is_empty());
     assert_foreign_keys(&ours);
-    let mut ours = ordinary_fixture_database("UPDATE item_augment_slot_options SET description = 'Our socket choice' WHERE id = (SELECT min(id) FROM item_augment_slot_options)");
+    let mut ours = ordinary_fixture_database(
+        "UPDATE socket_options SET description = 'Our socket choice' WHERE id = (SELECT min(id) FROM socket_options)",
+    );
     let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
     assert_eq!(outcome.conflicts.len(), 1);
-    assert_eq!(outcome.conflicts[0].subject, ConflictSubject::Array("socket"));
+    assert_eq!(outcome.conflicts[0].subject, ConflictSubject::Array("option"));
     assert!(outcome.conflicts[0].ours.contains("Our socket choice"));
     assert_foreign_keys(&ours);
 }

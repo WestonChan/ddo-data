@@ -130,14 +130,13 @@ impl IdentityIndex {
     }
 
     pub fn pair_response_names(&mut self, current: &mut Self) -> Result<()> {
-        let mut baseline_names: BTreeMap<(String, String, Option<String>), Vec<i64>> = BTreeMap::new();
         let variant_tables = self
             .rows
             .iter()
             .filter_map(|((table, _), fields)| fields.contains_key("variant").then_some(table.clone()))
             .collect::<BTreeSet<_>>();
         let names = |rows: &BTreeMap<(String, i64), RowFields>| {
-            let mut names: BTreeMap<(String, String, Option<String>), Vec<i64>> = BTreeMap::new();
+            let mut names = BTreeMap::<_, Vec<i64>>::new();
             for ((table, id), fields) in rows {
                 let Some(name) = fields.get("name").or_else(|| fields.get("label")).and_then(sql_text) else {
                     continue;
@@ -146,18 +145,34 @@ impl IdentityIndex {
                     .contains(table)
                     .then(|| fields.get("variant").and_then(sql_text).map(str::to_string))
                     .flatten();
-                names.entry((table.clone(), name.to_string(), variant)).or_default().push(*id);
+                let label = if table == "socket_option_sets" {
+                    let Some(SqlValue::Integer(slot_id)) = fields.get("slot_id") else {
+                        anyhow::bail!("socket option set {name:?} has no slot identity");
+                    };
+                    Some(
+                        rows.get(&("augment_slot_types".into(), *slot_id))
+                            .and_then(|slot| slot.get("label"))
+                            .and_then(sql_text)
+                            .with_context(|| format!("socket option set {name:?} has no socket label"))?
+                            .to_string(),
+                    )
+                } else {
+                    None
+                };
+                names.entry((table.clone(), name.to_string(), variant, label)).or_default().push(*id);
             }
-            names
+            Ok(names)
         };
-        baseline_names.extend(names(&self.rows));
-        let current_names = names(&current.rows);
-        for ((table, name, variant), baseline_ids) in baseline_names {
-            let current_ids =
-                current_names.get(&(table.clone(), name.clone(), variant.clone())).cloned().unwrap_or_default();
+        let baseline_names: BTreeMap<_, _> = names(&self.rows)?;
+        let current_names = names(&current.rows)?;
+        for ((table, name, variant, label), baseline_ids) in baseline_names {
+            let current_ids = current_names
+                .get(&(table.clone(), name.clone(), variant.clone(), label.clone()))
+                .cloned()
+                .unwrap_or_default();
             if baseline_ids.len() != 1 || current_ids.len() > 1 {
                 let reason = format!(
-                    "ambiguous name {name:?} variant {variant:?}: {} baseline rows and {} current rows",
+                    "ambiguous name {name:?} variant {variant:?} label {label:?}: {} baseline rows and {} current rows",
                     baseline_ids.len(),
                     current_ids.len()
                 );
@@ -171,7 +186,10 @@ impl IdentityIndex {
             }
             let identity = match current_ids.first() {
                 Some(id) => current.identity(&table, *id)?,
-                None => format!("{table}/removed:{name:?}/{variant:?}"),
+                None => match label {
+                    Some(label) => format!("{table}/removed:{name:?}/{variant:?}/{label:?}"),
+                    None => format!("{table}/removed:{name:?}/{variant:?}"),
+                },
             };
             self.resolved.insert((table, baseline_ids[0]), identity);
         }
@@ -216,9 +234,6 @@ impl IdentityIndex {
             return fields.get("owner_kind").and_then(sql_text).map(str::to_string);
         }
         self.foreign_keys.get(&(table.to_string(), column.to_string())).cloned().or_else(|| {
-            if table == "item_augment_slot_options" && column == "item_id" {
-                return Some("items".to_string());
-            }
             if table == "class_spells" && column == "spell_id" {
                 return Some("spells".to_string());
             }
@@ -293,11 +308,11 @@ fn identity_qualifiers(table: &str) -> &'static [&'static str] {
         "crafting_ingredients" => &["system_id", "tier"],
         "crafting_steps" => &["system_id"],
         "socket_options" => &["set_id", "option_order"],
+        "socket_option_sets" => &["slot_id", "variant"],
         "dcs" | "stances" => &["owner_kind", "owner_id"],
         "enhancement_selections" => &["enhancement_id"],
         "enhancements" => &["tree_id"],
         "feats" => &["source_kind", "source_id", "description", "acquire"],
-        "item_augment_slot_options" => &["item_id", "slot_order", "option_order"],
         _ => &[],
     }
 }
@@ -316,7 +331,6 @@ pub fn polymorphic_table(kind: &str) -> Option<&'static str> {
         "filigree" => "filigrees",
         "guild_buff" => "guild_buffs",
         "item" => "items",
-        "item_augment_slot_option" => "item_augment_slot_options",
         "crafting_step" => "crafting_steps",
         "socket_option" => "socket_options",
         "modifier" => "modifiers",

@@ -290,10 +290,6 @@ fn fixture_identity_kinds_match_the_entity_kind_declaration() {
         .unwrap()
         .collect::<rusqlite::Result<_>>()
         .unwrap();
-    let expected = EntityKind::ALL
-        .iter()
-        .filter(|kind| !matches!(kind, EntityKind::SocketOptionSet))
-        .map(|kind| kind.table_name().to_string())
-        .collect();
+    let expected = EntityKind::ALL.iter().map(|kind| kind.table_name().to_string()).collect();
     assert_eq!(actual, expected);
 }

@@ -815,6 +815,120 @@ fn a_two_slot_merge_import_updates_only_the_changed_slot() {
 }
 
 #[test]
+fn sets_keep_their_identity_through_corrections_and_reimports() {
+    let mut notes = fixture::rank_option_merge("Riposte VII");
+    notes.0.clear();
+    for level in [26, 27] {
+        let mut correction = fixture::rank_option_merge("Riposte VII").0.remove(0);
+        correction.name = format!("crafting-variant-shield-of-morning-level-{level}");
+        notes.0.push(correction);
+    }
+    let corrections = fixture::corrections_from(&[("shield-of-morning.toml", &notes)]).unwrap();
+    let mut world =
+        ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {
+            let captured = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/effect-groups/ShieldOfMorning");
+            std::fs::create_dir_all(source.join("Items")).unwrap();
+            for level in [26, 27, 28] {
+                let name = format!("Shield of Morning (Level {level}).item");
+                std::fs::copy(captured.join(&name), source.join("Items").join(name)).unwrap();
+            }
+            for (folder, name) in [("ItemImages", "Shield_13.png"), ("AugmentImages", "Variant.png")] {
+                std::fs::create_dir_all(source.join(folder)).unwrap();
+                std::fs::copy(captured.join(name), source.join(folder).join(name)).unwrap();
+            }
+            let path = source.join("ItemBuffs.xml");
+            let existing = ddo_etl::xml::item_buffs::parse(&path).unwrap();
+            let mut buffs = std::fs::read_to_string(&path).unwrap();
+            for definition in
+                include_str!("fixtures/effect-groups/ShieldOfMorning/ItemBuffs.xml").split("<Buff>").skip(1)
+            {
+                let kind = definition.split_once("<Type>").unwrap().1.split_once("</Type>").unwrap().0;
+                if !existing.contains_key(kind) {
+                    buffs = buffs.replace("</Buffs>", &format!("<Buff>{definition}</Buffs>"));
+                }
+            }
+            std::fs::write(path, buffs).unwrap();
+        });
+    world.options.source_dir = world.options.previous_dir.clone();
+    world.options.sha = world.options.previous_sha.clone();
+    let identities = |db: &Connection| {
+        db.prepare("SELECT slug,variant FROM socket_option_sets WHERE name LIKE 'Shield of Morning%' ORDER BY slug")
+            .unwrap()
+            .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, Option<String>>(1)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap()
+    };
+    let expected = [26, 27].map(|level| (format!("crafting-variant-shield-of-morning-level-{level}"), None));
+    assert_eq!(identities(&world.database()), expected);
+    let before = world.bytes();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert_eq!(world.bytes(), before);
+    let db = world.database();
+    let id: i64 =
+        db.query_row("SELECT id FROM socket_option_sets WHERE slug=?1", [&expected[0].0], |row| row.get(0)).unwrap();
+    let path = world
+        .options
+        .data_dir
+        .join(tree::DataFilePaths::from_database(&db).unwrap().path("socket_option_sets", id).unwrap());
+    let mut set: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+    let option = set["option"]
+        .as_array_mut()
+        .unwrap()
+        .iter_mut()
+        .find(|option| option["name"].as_str() == Some("Riposte VII"))
+        .unwrap();
+    let upstream = option["description"].clone();
+    option["description"] = "Reviewed Riposte VII description.".into();
+    let mut note: toml::Value = toml::from_str("kind='socket_option'\nfield='description'\nqualifier='option \"Riposte VII\"'\nreason='Check stable ownership through a new correction.'\nurl='https://ddowiki.com/page/Item:Shield_of_Morning_(level_26)'\nread='2026-11-08'\n").unwrap();
+    note.as_table_mut().unwrap().insert("upstream".into(), upstream);
+    set["ddobuilder_correction"].as_array_mut().unwrap().push(note);
+    std::fs::write(path, toml::to_string(&set).unwrap()).unwrap();
+    assert_eq!(identities(&world.database()), expected);
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert_eq!(identities(&world.database()), expected);
+
+    let db = world.database();
+    let paths = tree::DataFilePaths::from_database(&db).unwrap();
+    let shared_id: i64 =
+        db.query_row("SELECT id FROM socket_option_sets WHERE slug=?1", [&expected[0].0], |row| row.get(0)).unwrap();
+    let shared_path = world.options.data_dir.join(paths.path("socket_option_sets", shared_id).unwrap());
+    let mut separate: toml::Value = toml::from_str(&std::fs::read_to_string(&shared_path).unwrap()).unwrap();
+    separate["name"] = "Shield of Morning (Level 28)".into();
+    let option = separate["option"]
+        .as_array_mut()
+        .unwrap()
+        .iter_mut()
+        .find(|option| option["name"].as_str() == Some("Riposte VII"))
+        .unwrap();
+    option["description"] = "A separate reviewed description.".into();
+    std::fs::write(shared_path.with_file_name("shield-of-morning-level-28.toml"), toml::to_string(&separate).unwrap())
+        .unwrap();
+    let item_id: i64 =
+        db.query_row("SELECT id FROM items WHERE name='Shield of Morning (Level 28)'", [], |row| row.get(0)).unwrap();
+    let item_path = world.options.data_dir.join(paths.path("items", item_id).unwrap());
+    let mut item: toml::Value = toml::from_str(&std::fs::read_to_string(&item_path).unwrap()).unwrap();
+    let socket = item["socket"]
+        .as_array_mut()
+        .unwrap()
+        .iter_mut()
+        .find(|socket| socket["slot"].as_str() == Some("crafting: variant"))
+        .unwrap();
+    socket["set"] = "Shield of Morning (Level 28)".into();
+    std::fs::write(item_path, toml::to_string(&item).unwrap()).unwrap();
+    world.edit("");
+    let separated = identities(&world.database());
+    assert_eq!(separated.len(), 3);
+    let before = world.bytes();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert_eq!(identities(&world.database()), separated);
+    assert_eq!(world.bytes(), before);
+}
+
+#[test]
 fn a_rank_option_import_preserves_the_merge_and_resolves_corrected_prose() {
     let source = fixture::xml_source();
     fixture::write_rank_options(source.path());
@@ -835,7 +949,7 @@ fn a_rank_option_import_preserves_the_merge_and_resolves_corrected_prose() {
     let report = import_ddobuilder(&world.options).unwrap();
     assert!(!report.has_conflicts() && report.to_string().contains("RESOLVED CORRECTION"), "{report}");
     let db = world.database();
-    let served: (String, Option<i64>, Option<i64>, String) = db.query_row("SELECT e.name,l.value,l.value2,o.description FROM item_augment_slot_option_effects l JOIN effects e ON e.id=l.effect_id JOIN item_augment_slot_options o ON o.id=l.option_id WHERE o.name='Riposte VI'", [], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?,row.get(3)?))).unwrap();
+    let served: (String, Option<i64>, Option<i64>, String) = db.query_row("SELECT e.name,l.value,l.value2,o.description FROM socket_option_effects l JOIN effects e ON e.id=l.effect_id JOIN socket_options o ON o.id=l.option_id WHERE o.name='Riposte VI'", [], |row| Ok((row.get(0)?,row.get(1)?,row.get(2)?,row.get(3)?))).unwrap();
     assert_eq!(served, ("Riposte VI".into(), None, None, description.0[0].to.as_text().unwrap().into()));
     let before = tree::data_file_bytes(&world.options.data_dir).unwrap();
     tree::export_database(&db, &world.options.data_dir).unwrap();
@@ -1085,7 +1199,13 @@ fn socket_option_lines_import_follows_amounts_and_reports_changed_stats() {
                     |row| row.get(0),
                 )
                 .unwrap();
-            assert_eq!(from, "\"no such bonus\"");
+            if change == "option" {
+                assert_eq!(from, serde_json::json!([["Search", "Spot"]]).to_string());
+                assert!(report.to_string().contains("DECLINED REMOVAL socket_option_sets/"), "{report}");
+                assert!(report.to_string().contains("KEPT CORRECTION socket_option_bonus"), "{report}");
+            } else {
+                assert_eq!(from, "\"no such bonus\"", "{change}: {report}");
+            }
         } else {
             assert_eq!(fixture::spyglass_option_lines(&db), [("Search".into(), 25), ("Spot".into(), 25)]);
         }
@@ -2216,7 +2336,7 @@ fn every_entity_preserves_citations_with_notes_through_the_data_tree() {
     tree::build_from_data(&fixtures.join("data"), &mut db).unwrap();
     let mut expected = Vec::new();
     for (table, merge) in ddo_etl::delta::TABLE_MERGES {
-        if !matches!(merge, ddo_etl::delta::TableMerge::Entity { .. }) || matches!(*table, "socket_option_sets") {
+        if !matches!(merge, ddo_etl::delta::TableMerge::Entity { .. }) {
             continue;
         }
         let columns = db

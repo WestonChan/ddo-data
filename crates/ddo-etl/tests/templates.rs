@@ -29,7 +29,10 @@ fn every_template_builds_under_its_placement_and_exports_byte_equal() {
             (Placement::Dataset, Some(_)) => panic!("{kind} is a dataset file and has no template"),
             (_, None) => panic!("{kind} has no template"),
             (Placement::Entity(pattern), Some(template)) => {
-                let path = PathBuf::from(pattern.replace("{slug}", &template.slug));
+                let contents: toml::Value = toml::from_str(&template.text).unwrap();
+                let label =
+                    contents.get("label").and_then(toml::Value::as_str).map(ddo_etl::tree::slug).unwrap_or_default();
+                let path = PathBuf::from(pattern.replace("{slug}", &template.slug).replace("{label}", &label));
                 std::fs::create_dir_all(data.join(&path).parent().unwrap()).unwrap();
                 std::fs::write(data.join(&path), &template.text).unwrap();
                 entity_files.push((kind, path, template.text.clone()));

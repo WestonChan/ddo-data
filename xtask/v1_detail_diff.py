@@ -10,7 +10,7 @@ OWNER_TABLES = {
     "augments": ("augment_effects", "augment_id"),
     "feats": ("feat_effects", "feat_id"),
     "sets": ("set_bonus_tier_effects", "tier_id"),
-    "options": ("item_augment_slot_option_effects", "option_id"),
+    "options": ("socket_option_effects", "option_id"),
 }
 
 LEGACY_OWNER_TABLES = {

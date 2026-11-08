@@ -9,13 +9,8 @@ use anyhow::{Context, Result};
 use ddo_model::enums::{ModifierSource, RequirementOwner};
 use rusqlite::params;
 
-const STAT_ROUTING_OWNERS: [EffectOwner; 5] = [
-    EffectOwner::Item,
-    EffectOwner::Augment,
-    EffectOwner::ItemAugmentSlotOption,
-    EffectOwner::CraftingStep,
-    EffectOwner::SocketOption,
-];
+const STAT_ROUTING_OWNERS: [EffectOwner; 4] =
+    [EffectOwner::Item, EffectOwner::Augment, EffectOwner::CraftingStep, EffectOwner::SocketOption];
 
 pub struct StatLinkRoute {
     pub table: &'static str,
@@ -102,15 +97,23 @@ impl super::PendingDerivedEffects {
     fn owner(&self) -> BonusOwner<'_> {
         let kind = match self.owner_kind {
             EffectOwner::Feat => BonusOwnerKind::Feat,
-            EffectOwner::ItemAugmentSlotOption => BonusOwnerKind::ItemAugmentSlotOption,
+            EffectOwner::SocketOption => BonusOwnerKind::SocketOption,
             EffectOwner::Augment => BonusOwnerKind::Augment,
             EffectOwner::SetBonusTier => BonusOwnerKind::SetBonusTier,
-            EffectOwner::CraftingStep | EffectOwner::SocketOption => {
+            EffectOwner::CraftingStep => {
                 unreachable!("crafting owners have no pending XML effects")
             }
             EffectOwner::Item => unreachable!("item buffs already have links"),
         };
-        BonusOwner { kind, name: &self.owner_name, family: self.family.as_deref() }
+        BonusOwner {
+            kind,
+            name: &self.owner_name,
+            family: self.family.as_deref(),
+            option: match &self.source {
+                super::PendingEffectSource::Effects { option_name, .. } => option_name.as_deref(),
+                super::PendingEffectSource::SetTier(_) => None,
+            },
+        }
     }
 
     fn effects(&self) -> &[Effect] {
@@ -269,7 +272,7 @@ impl<'a> TableWriter<'a> {
                 BonusOwnerKind::Augment => EffectOwner::Augment,
                 BonusOwnerKind::Feat => EffectOwner::Feat,
                 BonusOwnerKind::SetBonusTier => EffectOwner::SetBonusTier,
-                BonusOwnerKind::ItemAugmentSlotOption => EffectOwner::ItemAugmentSlotOption,
+                BonusOwnerKind::SocketOption => EffectOwner::SocketOption,
             };
             for (sort_order, link) in pending.links.into_iter().enumerate() {
                 self.effects.insert_link(
@@ -325,10 +328,9 @@ impl<'a> TableWriter<'a> {
             let modifier_source = match source.owner_kind {
                 EffectOwner::Feat => ModifierSource::Feat,
                 EffectOwner::Augment => ModifierSource::Augment,
-                EffectOwner::ItemAugmentSlotOption => ModifierSource::ItemAugmentSlotOption,
+                EffectOwner::SocketOption => ModifierSource::SocketOption,
                 EffectOwner::SetBonusTier => ModifierSource::SetBonusTier,
                 EffectOwner::CraftingStep => ModifierSource::CraftingStep,
-                EffectOwner::SocketOption => ModifierSource::SocketOption,
                 EffectOwner::Item => unreachable!("item buffs already have links"),
             };
             if source.owner_kind == EffectOwner::SetBonusTier {
@@ -1307,10 +1309,7 @@ impl<'a> TableWriter<'a> {
                         (owner.kind, correction.kind),
                         (BonusOwnerKind::Augment, ddo_model::enums::CorrectionKind::AugmentBonus)
                             | (BonusOwnerKind::Feat, ddo_model::enums::CorrectionKind::FeatBonus)
-                            | (
-                                BonusOwnerKind::ItemAugmentSlotOption,
-                                ddo_model::enums::CorrectionKind::SocketOptionBonus
-                            )
+                            | (BonusOwnerKind::SocketOption, ddo_model::enums::CorrectionKind::SocketOptionBonus)
                             | (BonusOwnerKind::SetBonusTier, ddo_model::enums::CorrectionKind::SetTierBonus)
                     )
             })

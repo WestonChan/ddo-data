@@ -968,7 +968,6 @@ impl DamageCategory {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum ModifierSource {
     Item,
-    ItemAugmentSlotOption,
     CraftingStep,
     SocketOption,
     Augment,
@@ -993,7 +992,6 @@ pub enum ModifierSource {
 impl ModifierSource {
     pub const ALL: &'static [ModifierSource] = &[
         Self::Item,
-        Self::ItemAugmentSlotOption,
         Self::CraftingStep,
         Self::SocketOption,
         Self::Augment,
@@ -1018,7 +1016,6 @@ impl ModifierSource {
     pub const fn as_str(self) -> &'static str {
         match self {
             Self::Item => "item",
-            Self::ItemAugmentSlotOption => "item_augment_slot_option",
             Self::CraftingStep => "crafting_step",
             Self::SocketOption => "socket_option",
             Self::Augment => "augment",
@@ -1048,21 +1045,13 @@ pub enum EffectOwner {
     Augment,
     SetBonusTier,
     Feat,
-    ItemAugmentSlotOption,
     CraftingStep,
     SocketOption,
 }
 
 impl EffectOwner {
-    pub const ALL: [Self; 7] = [
-        Self::Item,
-        Self::Augment,
-        Self::SetBonusTier,
-        Self::Feat,
-        Self::ItemAugmentSlotOption,
-        Self::CraftingStep,
-        Self::SocketOption,
-    ];
+    pub const ALL: [Self; 6] =
+        [Self::Item, Self::Augment, Self::SetBonusTier, Self::Feat, Self::CraftingStep, Self::SocketOption];
 
     pub fn from_table(table: &str) -> Option<Self> {
         Self::ALL.into_iter().find(|owner| owner.table().0 == table)
@@ -1074,7 +1063,6 @@ impl EffectOwner {
             Self::Augment => "augment",
             Self::SetBonusTier => "set_bonus_tier",
             Self::Feat => "feat",
-            Self::ItemAugmentSlotOption => "item_augment_slot_option",
             Self::CraftingStep => "crafting_step",
             Self::SocketOption => "socket_option",
         }
@@ -1086,7 +1074,6 @@ impl EffectOwner {
             Self::Augment => ("augment_effects", "augment_id"),
             Self::SetBonusTier => ("set_bonus_tier_effects", "tier_id"),
             Self::Feat => ("feat_effects", "feat_id"),
-            Self::ItemAugmentSlotOption => ("item_augment_slot_option_effects", "option_id"),
             Self::CraftingStep => ("crafting_step_effects", "step_id"),
             Self::SocketOption => ("socket_option_effects", "option_id"),
         }
@@ -1366,10 +1353,10 @@ impl CorrectionKind {
             Self::SetTier | Self::SetTierBonus => "set_bonus_tiers",
             Self::Spell => "spells",
             Self::AugmentBonus => "augments",
-            Self::ItemBonus | Self::ItemEffect | Self::ItemSocket | Self::SocketOptionBonus => "items",
+            Self::ItemBonus | Self::ItemEffect | Self::ItemSocket => "items",
             Self::EffectDamage => "effects",
             Self::SocketLabel => "augment_slot_types",
-            Self::SocketOption => "socket_option_sets",
+            Self::SocketOption | Self::SocketOptionBonus => "socket_option_sets",
         }
     }
 
@@ -1383,6 +1370,7 @@ impl CorrectionKind {
     pub const fn name_column(self) -> &'static str {
         match self {
             Self::SocketLabel => "label",
+            Self::SocketOption | Self::SocketOptionBonus => "slug",
             _ => "name",
         }
     }

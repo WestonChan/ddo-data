@@ -590,52 +590,6 @@ CREATE TABLE IF NOT EXISTS item_augment_slots (
     FOREIGN KEY (slot_id, option_set_id) REFERENCES socket_option_sets(slot_id, id)
 );
 
--- The <Augment> choices upstream fixes for a socket: the upgrade tiers a player unlocks on Quenched, Smoldering,
--- Energized, Thunder-Forged, Attuned to Heroism and Upgradeable items, or the choices a crafting step offers;
--- no rows is an ordinary open socket. Whatever an option gives (a socket, set membership, effects, the raw <Effect>
--- rows as modifiers with source_kind 'item_augment_slot_option') stays on the option until the player picks or
--- unlocks it, so none of it is the item's own socket, set or effect.
-CREATE TABLE IF NOT EXISTS item_augment_slot_options (
-    id           INTEGER PRIMARY KEY,
-    item_id      INTEGER NOT NULL,
-    slot_order   INTEGER NOT NULL,
-    option_order INTEGER NOT NULL,                    -- <Augment> position within the <ItemAugment>
-    name         TEXT    NOT NULL,                    -- <Augment><Name>
-    description  TEXT,                                -- <Augment><Description>
-    min_level    INTEGER,                             -- <Augment><MinLevel>
-    icon         TEXT,                                -- <Augment><Icon>
-    UNIQUE (item_id, slot_order, option_order),
-    FOREIGN KEY (item_id, slot_order) REFERENCES item_augment_slots(item_id, sort_order) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS item_augment_slot_option_grants (
-    option_id  INTEGER NOT NULL REFERENCES item_augment_slot_options(id) ON DELETE CASCADE,
-    sort_order INTEGER NOT NULL,                      -- <GrantAugment> or <AddAugment> position within the option
-    slot_id    INTEGER NOT NULL REFERENCES augment_slot_types(id),  -- the socket the option adds
-    PRIMARY KEY (option_id, sort_order)
-);
-
-CREATE TABLE IF NOT EXISTS item_augment_slot_option_sets (
-    option_id INTEGER NOT NULL REFERENCES item_augment_slot_options(id) ON DELETE CASCADE,
-    set_id    INTEGER NOT NULL REFERENCES set_bonuses(id),  -- <SetBonus>: a set the option makes the item count toward
-    PRIMARY KEY (option_id, set_id)
-);
-CREATE INDEX IF NOT EXISTS idx_item_augment_slot_option_sets_set ON item_augment_slot_option_sets(set_id);
-
-CREATE TABLE IF NOT EXISTS item_augment_slot_option_effects (
-    option_id      INTEGER NOT NULL REFERENCES item_augment_slot_options(id) ON DELETE CASCADE,
-    alias TEXT,
-    effect_id     INTEGER NOT NULL REFERENCES effects(id),
-    bonus_type_id  INTEGER REFERENCES bonus_types(id),
-    value          INTEGER,
-    value2         INTEGER,
-    sort_order     INTEGER NOT NULL,
-    CHECK ((value IS NULL) <= (value2 IS NULL)),
-    PRIMARY KEY (option_id, sort_order)
-);
-CREATE INDEX IF NOT EXISTS idx_item_augment_slot_option_effects_effect
-    ON item_augment_slot_option_effects(effect_id);
-
 CREATE TABLE IF NOT EXISTS socket_option_sets (
     id INTEGER PRIMARY KEY,
     slug TEXT NOT NULL UNIQUE,

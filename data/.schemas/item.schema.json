@@ -779,6 +779,19 @@
           },
           "type": "array"
         },
+        "set": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "socket_option_sets"
+        },
+        "set_variant": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "slot": {
           "type": "string",
           "x-reference-kind": "augment_slot_types"
@@ -791,7 +804,8 @@
       "x-columns": [
         "item_id",
         "sort_order",
-        "slot_id"
+        "slot_id",
+        "option_set_id"
       ],
       "x-table": "item_augment_slots"
     },
@@ -812,7 +826,7 @@
         "sort_order",
         "slot_id"
       ],
-      "x-table": "item_augment_slot_option_grants"
+      "x-table": "socket_option_grants"
     },
     "SocketOption": {
       "additionalProperties": false,
@@ -871,15 +885,14 @@
       "type": "object",
       "x-columns": [
         "id",
-        "item_id",
-        "slot_order",
+        "set_id",
         "option_order",
         "name",
         "description",
         "icon",
         "min_level"
       ],
-      "x-table": "item_augment_slot_options"
+      "x-table": "socket_options"
     },
     "SocketOptionEffect": {
       "additionalProperties": false,
@@ -929,7 +942,7 @@
         "value",
         "value2"
       ],
-      "x-table": "item_augment_slot_option_effects"
+      "x-table": "socket_option_effects"
     },
     "SocketSet": {
       "additionalProperties": false,
@@ -945,9 +958,9 @@
       "type": "object",
       "x-columns": [
         "option_id",
-        "set_id"
+        "set_bonus_id"
       ],
-      "x-table": "item_augment_slot_option_sets"
+      "x-table": "socket_option_set_bonuses"
     },
     "VendorPrice": {
       "additionalProperties": false,

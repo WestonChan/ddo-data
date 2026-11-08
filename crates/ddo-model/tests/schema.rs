@@ -62,7 +62,7 @@ fn ddl_creates_effect_tables_without_legacy_bonus_tables() {
         "effect_vocabulary_bonus_types",
         "item_effects",
         "item_augment_slots",
-        "item_augment_slot_options",
+        "socket_options",
         "quest_drops",
         "pack_drops",
         "quest_chain_rewards",
@@ -101,7 +101,6 @@ fn ddl_creates_effect_tables_without_legacy_bonus_tables() {
         "feat_conditional_groups",
         "feat_sub_items",
         "feat_effects",
-        "item_augment_slot_option_effects",
         "crafting_step_effects",
         "socket_option_effects",
         "stances",
@@ -143,7 +142,7 @@ fn ddl_creates_effect_tables_without_legacy_bonus_tables() {
         "augment_bonuses",
         "set_bonus_tier_bonuses",
         "feat_bonuses",
-        "item_augment_slot_option_bonuses",
+        "socket_option_bonuses",
     ] {
         assert!(!tables.contains(removed_table), "legacy table {removed_table} remains");
     }
@@ -1340,7 +1339,7 @@ fn effect_owner_links_require_the_first_amount_before_the_second() {
         ("augment_effects", "augment_id"),
         ("set_bonus_tier_effects", "tier_id"),
         ("feat_effects", "feat_id"),
-        ("item_augment_slot_option_effects", "option_id"),
+        ("socket_option_effects", "option_id"),
     ] {
         assert!(
             db.execute(
@@ -1415,64 +1414,53 @@ fn single_table_rules_are_schema_constraints() {
 }
 
 #[test]
-fn an_item_augment_slot_option_keeps_its_granted_socket_sets_and_bonuses_on_the_option() {
+fn a_socket_option_keeps_its_granted_socket_sets_and_bonuses_on_the_option() {
     let db = fresh_db();
     ddo_model::seeds::insert_all(&db).unwrap();
     db.execute_batch(
         "PRAGMA foreign_keys = ON;
          INSERT INTO items (id, name, slot_id, item_category, wiki_url, slug) VALUES (1, 'Sireth', 1, 'Weapon', 'https://ddowiki.com/page/Item:Sireth', 'sireth');
          INSERT INTO augment_slot_types (id, label, family, variant, slug) VALUES (1, 'crafting: attuned to heroism 4', 'crafting', 'attuned to heroism 4', 'crafting-attuned-to-heroism-4'), (2, 'red', 'standard', 'red', 'red');
-         INSERT INTO item_augment_slots (item_id, sort_order, slot_id) VALUES (1, 0, 1);
+         INSERT INTO socket_option_sets (id,slot_id,name,slug) VALUES (1,1,'Sireth','crafting-attuned-to-heroism-4-sireth');
+         INSERT INTO item_augment_slots (item_id, sort_order, slot_id, option_set_id) VALUES (1, 0, 1, 1);
          INSERT INTO set_bonuses (id, name, slug) VALUES (1, 'Prowess / Planar Conflux Set Bonus', 'prowess-planar-conflux-set-bonus');",
     )
     .unwrap();
     db.execute(
-        "INSERT INTO item_augment_slot_options (item_id, slot_order, option_order, name, icon) VALUES (1, 0, 0, 'Red Augment Slot', 'Heroism')",
+        "INSERT INTO socket_options (set_id, option_order, name, icon) VALUES (1, 0, 'Red Augment Slot', 'Heroism')",
         [],
     )
     .unwrap();
     let option_id = db.last_insert_rowid();
+    db.execute("INSERT INTO socket_option_grants (option_id, sort_order, slot_id) VALUES (?1, 0, 2)", [option_id])
+        .unwrap();
+    db.execute("INSERT INTO socket_option_set_bonuses (option_id, set_bonus_id) VALUES (?1, 1)", [option_id]).unwrap();
     db.execute(
-        "INSERT INTO item_augment_slot_option_grants (option_id, sort_order, slot_id) VALUES (?1, 0, 2)",
+        "INSERT INTO socket_option_effects (option_id, effect_id, bonus_type_id, value, sort_order) VALUES (?1, 1, 1, 8, 0)",
         [option_id],
     )
     .unwrap();
-    db.execute("INSERT INTO item_augment_slot_option_sets (option_id, set_id) VALUES (?1, 1)", [option_id]).unwrap();
     db.execute(
-        "INSERT INTO item_augment_slot_option_effects (option_id, effect_id, bonus_type_id, value, sort_order) VALUES (?1, 1, 1, 8, 0)",
-        [option_id],
-    )
-    .unwrap();
-    db.execute(
-        "INSERT INTO modifiers (source_kind, source_id, sort_order, effect_type) VALUES ('item_augment_slot_option', ?1, 0, 'AbilityBonus')",
+        "INSERT INTO modifiers (source_kind, source_id, sort_order, effect_type) VALUES ('socket_option', ?1, 0, 'AbilityBonus')",
         [option_id],
     )
     .unwrap();
     assert!(db
-        .execute(
-            "INSERT INTO item_augment_slot_option_grants (option_id, sort_order, slot_id) VALUES (?1, 1, 99)",
-            [option_id]
-        )
+        .execute("INSERT INTO socket_option_grants (option_id, sort_order, slot_id) VALUES (?1, 1, 99)", [option_id])
         .is_err());
-    assert!(db
-        .execute(
-            "INSERT INTO item_augment_slot_options (item_id, slot_order, option_order, name) VALUES (1, 0, 0, 'Again')",
-            []
-        )
-        .is_err());
+    assert!(db.execute("INSERT INTO socket_options (set_id, option_order, name) VALUES (1, 0, 'Again')", []).is_err());
     let item_socket_count: i64 =
         db.query_row("SELECT COUNT(*) FROM item_augment_slots WHERE item_id = 1", [], |r| r.get(0)).unwrap();
     assert_eq!(item_socket_count, 1, "a granted socket stays on the option, never an item socket");
     db.execute("DELETE FROM items WHERE id = 1", []).unwrap();
-    for option_table in
-        ["item_augment_slot_option_grants", "item_augment_slot_option_sets", "item_augment_slot_option_effects"]
-    {
+    assert_eq!(db.query_row("SELECT COUNT(*) FROM socket_options", [], |row| row.get::<_, i64>(0)).unwrap(), 1);
+    db.execute("DELETE FROM socket_option_sets WHERE id = 1", []).unwrap();
+    for option_table in ["socket_option_grants", "socket_option_set_bonuses", "socket_option_effects"] {
         let row_count: i64 = db.query_row(&format!("SELECT COUNT(*) FROM {option_table}"), [], |r| r.get(0)).unwrap();
-        assert_eq!(row_count, 0, "{option_table} rows go with their item");
+        assert_eq!(row_count, 0, "{option_table} rows go with their set");
     }
-    let options_sql: String = db
-        .query_row("SELECT sql FROM sqlite_master WHERE name = 'item_augment_slot_options'", [], |r| r.get(0))
-        .unwrap();
+    let options_sql: String =
+        db.query_row("SELECT sql FROM sqlite_master WHERE name = 'socket_options'", [], |r| r.get(0)).unwrap();
     assert!(!options_sql.contains("already applied"), "{options_sql}");
-    const { assert!(SCHEMA_VERSION >= 19, "item augment slot options require schema 19 or newer") };
+    const { assert!(SCHEMA_VERSION >= 49, "socket option sets require schema 49 or newer") };
 }

@@ -18,6 +18,26 @@ fn fixture_dataset_version() -> DatasetVersion {
 }
 
 #[test]
+fn fixture_items_share_sets_and_point_at_them() {
+    let db = fixture::database(|root| {
+        let directory = root.join("packs/unsourced/gear");
+        let mut ring: toml::Value =
+            toml::from_str(&std::fs::read_to_string(directory.join("celestial-emerald-ring.toml")).unwrap()).unwrap();
+        ring["name"] = "Shared Options Ring".into();
+        std::fs::write(directory.join("shared-options-ring.toml"), toml::to_string(&ring).unwrap()).unwrap();
+    });
+    let mut query = db.prepare("SELECT socket.option_set_id FROM item_augment_slots socket JOIN items item ON item.id=socket.item_id JOIN augment_slot_types label ON label.id=socket.slot_id WHERE item.name IN ('Celestial Emerald Ring','Shared Options Ring') AND label.label='crafting: nearly finished' ORDER BY item.name").unwrap();
+    let sets =
+        query.query_map([], |row| row.get::<_, Option<i64>>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(sets.len(), 2);
+    assert!(sets[0].is_some());
+    assert_eq!(sets[0], sets[1]);
+    let count: i64 =
+        db.query_row("SELECT COUNT(*) FROM socket_options WHERE set_id=?1", [sets[0]], |row| row.get(0)).unwrap();
+    assert_eq!(count, 3);
+}
+
+#[test]
 fn shared_station_keeps_its_ingredient_unlock_once() {
     let db = fixture::database(|root| {
         let directory = root.join("packs/shared/crafting/ingredients");
@@ -41,6 +61,52 @@ fn shared_station_keeps_its_ingredient_unlock_once() {
     let exported = tempfile::tempdir().unwrap();
     ddo_etl::tree::export_database(&db, exported.path()).unwrap();
     assert!(exported.path().join("packs/shared/crafting/ingredients/test-key.toml").is_file());
+}
+
+#[test]
+fn unqualified_and_explicit_crafting_references_keep_their_variants() {
+    let db = fixture::database(|root| {
+        let directory = root.join("packs/shared/sockets/crafting-nearly-finished");
+        std::fs::create_dir_all(&directory).unwrap();
+        let ingredients = root.join("packs/shared/crafting/ingredients");
+        std::fs::create_dir_all(&ingredients).unwrap();
+        let mut stations = String::new();
+        let mut recipes = String::from("[[step]]\nname='Choose'\nslot='crafting: nearly finished'\n");
+        for variant in [None, Some("2")] {
+            let suffix = variant.map(|value| format!("-{value}")).unwrap_or_default();
+            let field = variant.map(|value| format!("variant='{value}'\n")).unwrap_or_default();
+            std::fs::write(
+                directory.join(format!("test-choices{suffix}.toml")),
+                format!("label='crafting: nearly finished'\nname='Test Choices'\n{field}[[option]]\nname='Choice'\n"),
+            )
+            .unwrap();
+            std::fs::write(
+                ingredients.join(format!("test-key{suffix}.toml")),
+                format!("name='Test Key'\n{field}tier='any'\ncitation=[]\n"),
+            )
+            .unwrap();
+            stations.push_str(&format!("[[row]]\nname='Test Forge'\n{field}kind='interface'\ncitation=[]\n"));
+            recipes.push_str(&format!("[[station]]\nname='Test Forge'\n{field}[[recipe]]\noption='Choice{suffix}'\nstep='Choose'\ntier='any'\n[[recipe.ingredient]]\ningredient='Test Key'\n{field}quantity=1\n[[recipe.set_option]]\nset='Test Choices'\nname='Choice'\n{}", field.replace("variant=", "set_variant=")));
+        }
+        std::fs::write(root.join("packs/shared/crafting/stations.toml"), stations).unwrap();
+        let system = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let mut record: toml::Value = toml::from_str(&std::fs::read_to_string(&system).unwrap()).unwrap();
+        record.as_table_mut().unwrap().remove("npc");
+        std::fs::write(system, format!("{}\n{recipes}", toml::to_string(&record).unwrap())).unwrap();
+        let item = root.join("packs/unsourced/gear/celestial-emerald-ring.toml");
+        let mut record: toml::Value = toml::from_str(&std::fs::read_to_string(&item).unwrap()).unwrap();
+        record["socket"] = toml::from_str::<toml::Value>("[[socket]]\nslot='crafting: nearly finished'\nset='Test Choices'\n[[socket]]\nslot='crafting: nearly finished'\nset='Test Choices'\nset_variant='2'\n").unwrap()["socket"].clone();
+        std::fs::write(item, toml::to_string(&record).unwrap()).unwrap();
+    });
+    for sql in [
+        "SELECT s.variant FROM crafting_recipe_set_options p JOIN socket_options o ON o.id=p.option_id JOIN socket_option_sets s ON s.id=o.set_id JOIN crafting_recipes r ON r.id=p.recipe_id WHERE s.name='Test Choices' ORDER BY r.sort_order",
+        "SELECT s.variant FROM socket_option_sets s JOIN item_augment_slots l ON l.option_set_id=s.id WHERE s.name='Test Choices' ORDER BY l.sort_order",
+        "SELECT s.variant FROM crafting_stations s JOIN crafting_system_stations l ON l.station_id=s.id WHERE s.name='Test Forge' ORDER BY l.sort_order",
+        "SELECT i.variant FROM crafting_ingredients i JOIN crafting_recipe_ingredients c ON c.ingredient_id=i.id JOIN crafting_recipes r ON r.id=c.recipe_id WHERE i.name='Test Key' ORDER BY r.sort_order",
+    ] {
+        let variants = db.prepare(sql).unwrap().query_map([],|row|row.get::<_,Option<String>>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+        assert_eq!(variants, [None, Some("2".into())], "{sql}");
+    }
 }
 
 #[test]
@@ -2234,7 +2300,7 @@ fn every_fixture_multi_stat_effect_has_one_link_or_a_recorded_exception() {
                 .map(|output| output.owner_kind),
         );
     }
-    for kind in ["augment", "feat", "item_augment_slot_option", "set_bonus_tier"] {
+    for kind in ["augment", "feat", "socket_option", "set_bonus_tier"] {
         assert!(owner_kinds.contains(kind), "{owner_kinds:?}");
     }
 }
@@ -4346,7 +4412,7 @@ fn writes_augment_slots_and_presets() {
     let rows: Vec<(String, Option<String>)> = db
         .prepare(
             "SELECT t.label, o.name FROM item_augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id
-               LEFT JOIN item_augment_slot_options o ON o.item_id = s.item_id AND o.slot_order = s.sort_order
+               LEFT JOIN socket_options o ON o.set_id = s.option_set_id
               WHERE s.item_id = ?1 ORDER BY s.sort_order, o.option_order",
         )
         .unwrap()
@@ -4357,13 +4423,13 @@ fn writes_augment_slots_and_presets() {
     assert_eq!(rows.len(), 4, "four slots, each with exactly one fixed option");
     assert_eq!(rows[0], ("crafting: attuned to heroism 1".to_string(), Some("Planar Conflux".to_string())));
     assert_eq!(rows[1].1.as_deref(), Some("+8 Enhancement Bonus"));
-    assert_eq!(count(&db, &format!("SELECT COUNT(*) FROM item_augment_slot_options WHERE item_id = {cloak}")), 0);
+    assert_eq!(count(&db, &format!("SELECT COUNT(*) FROM socket_options o JOIN item_augment_slots socket ON socket.option_set_id=o.set_id WHERE socket.item_id = {cloak}")), 0);
 }
 
 fn option_id(db: &Connection, item_name: &str, slot_order: i64) -> i64 {
     db.query_row(
-        "SELECT o.id FROM item_augment_slot_options o JOIN items i ON i.id = o.item_id
-          WHERE i.name = ?1 AND o.slot_order = ?2 AND o.option_order = 0",
+        "SELECT o.id FROM socket_options o JOIN item_augment_slots socket ON socket.option_set_id=o.set_id JOIN items i ON i.id = socket.item_id
+          WHERE i.name = ?1 AND socket.sort_order = ?2 AND o.option_order = 0",
         params![item_name, slot_order],
         |r| r.get(0),
     )
@@ -4374,13 +4440,13 @@ fn option_strings(db: &Connection, sql: &str, option_id: i64) -> Vec<String> {
     db.prepare(sql).unwrap().query_map(params![option_id], |r| r.get(0)).unwrap().map(Result::unwrap).collect()
 }
 
-const OPTION_GRANT_LABELS_SQL: &str = "SELECT t.label FROM item_augment_slot_option_grants g
+const OPTION_GRANT_LABELS_SQL: &str = "SELECT t.label FROM socket_option_grants g
     JOIN augment_slot_types t ON t.id = g.slot_id WHERE g.option_id = ?1 ORDER BY g.sort_order";
 
 const OPTION_BONUSES_SQL: &str = "SELECT s.name || ' ' || bt.name || ' ' || ob.amount
      FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id
      JOIN bonus_types bt ON bt.id = ob.bonus_type_id
-     WHERE ob.owner_kind = 'item_augment_slot_option' AND ob.owner_id = ?1
+     WHERE ob.owner_kind = 'socket_option' AND ob.owner_id = ?1
      ORDER BY ob.effect_link_order, ob.stat_id";
 
 #[test]
@@ -4395,7 +4461,7 @@ fn keeps_what_an_augment_slot_option_gives_on_the_option() {
     assert_eq!(
         option_strings(
             &db,
-            "SELECT effect_type FROM modifiers WHERE source_kind = 'item_augment_slot_option' AND source_id = ?1 ORDER BY sort_order",
+            "SELECT effect_type FROM modifiers WHERE source_kind = 'socket_option' AND source_id = ?1 ORDER BY sort_order",
             first_tier
         ),
         ["SpellPenetrationBonus", "ACBonus"]
@@ -4420,9 +4486,8 @@ fn keeps_what_an_augment_slot_option_gives_on_the_option() {
 
     assert_eq!(option_strings(&db, OPTION_GRANT_LABELS_SQL, option_id(&db, "Sireth, Spear of the Sky", 3)), ["red"]);
     let planar_conflux = option_id(&db, "Sireth, Spear of the Sky", 0);
-    let icon: Option<String> = db
-        .query_row("SELECT icon FROM item_augment_slot_options WHERE id = ?1", params![planar_conflux], |r| r.get(0))
-        .unwrap();
+    let icon: Option<String> =
+        db.query_row("SELECT icon FROM socket_options WHERE id = ?1", params![planar_conflux], |r| r.get(0)).unwrap();
     assert_eq!(icon.as_deref(), Some("Heroism"));
     assert_eq!(
         option_strings(&db, OPTION_GRANT_LABELS_SQL, option_id(&db, "Baz'Morath, the Curator of Decay", 0)),
@@ -4434,7 +4499,7 @@ fn keeps_what_an_augment_slot_option_gives_on_the_option() {
     assert_eq!(
         option_strings(
             &db,
-            "SELECT s.name FROM item_augment_slot_option_sets os JOIN set_bonuses s ON s.id = os.set_id WHERE os.option_id = ?1",
+            "SELECT s.name FROM socket_option_set_bonuses os JOIN set_bonuses s ON s.id = os.set_bonus_id WHERE os.option_id = ?1",
             fabricators_ingenuity
         ),
         ["Fabricator's Ingenuity"]

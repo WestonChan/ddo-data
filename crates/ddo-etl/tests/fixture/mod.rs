@@ -452,14 +452,16 @@ pub(crate) fn spyglass_option_correction(
     let note = serde_json::from_value::<ddo_etl::tree::DdobuilderCorrection>(serde_json::json!({
         "kind": "socket_option_bonus",
         "field": field,
-        "qualifier": "socket \"upgrade: tier 2\", option \"Spot +20, Search +20, Insightful Intelligence +2\", Search and Spot / Competence",
+        "qualifier": "option \"Spot +20, Search +20, Insightful Intelligence +2\", Search and Spot / Competence",
         "upstream": upstream,
         "reason": "Test correction on a captured socket option.",
         "url": "https://ddowiki.com/page/Item:Epic_Treasure_Hunter%27s_Spyglass_(Level_20)",
         "read": "2026-10-23"
-    })).unwrap();
+    }))
+    .unwrap();
     let mut correction =
-        ddo_etl::tree::correction_for_note(&note, "Epic Treasure Hunter's Spyglass (legacy) (level 20)").unwrap();
+        ddo_etl::tree::correction_for_note(&note, "upgrade-tier-2-epic-treasure-hunters-spyglass-legacy-level-20")
+            .unwrap();
     correction.from =
         CorrectionValue::from_json(&note.upstream.unwrap_or(serde_json::Value::Null).to_string()).unwrap();
     if field == "lines" {
@@ -563,7 +565,7 @@ pub(crate) fn rank_option_merge(rank: &str) -> CorrectionSet {
         serde_json::json!([["Armor Class"], ["Saving Throws"]]),
         CorrectionValue::Text(rank.into()),
     );
-    correction.0[0].socket = Some("crafting: variant".into());
+    correction.0[0].name = "crafting-variant-epic-treasure-hunters-spyglass-legacy-level-20".into();
     correction.0[0].option = Some(rank.into());
     correction.0[0].stat = Some("Armor Class, Saving Throws".into());
     correction.0[0].bonus_type = Some("Insight".into());
@@ -580,13 +582,15 @@ pub(crate) fn rank_option_description_correction(source: &std::path::Path) -> Co
         .unwrap()
         .description;
     let note = serde_json::from_value::<ddo_etl::tree::DdobuilderCorrection>(serde_json::json!({
-        "kind": "item", "field": "description",
-        "qualifier": "socket \"crafting: variant\", option \"Riposte VI\"",
+        "kind": "socket_option", "field": "description",
+        "qualifier": "option \"Riposte VI\"",
         "upstream": description, "reason": "Correct the captured option's saves text.",
         "url": "https://ddowiki.com/page/Item:Fell_Shiv_(Level_25)", "read": "2026-10-26"
     }))
     .unwrap();
-    let mut correction = ddo_etl::tree::correction_for_note(&note, &item.items[0].name).unwrap();
+    let mut correction =
+        ddo_etl::tree::correction_for_note(&note, "crafting-variant-epic-treasure-hunters-spyglass-legacy-level-20")
+            .unwrap();
     correction.from = CorrectionValue::Text(description.clone());
     correction.to = CorrectionValue::Text(description.replace("+2 Insight", "+3 Insight"));
     CorrectionSet(vec![correction])
@@ -602,9 +606,9 @@ pub(crate) fn rank_option_value_correction() -> CorrectionSet {
 }
 
 pub(crate) fn spyglass_option_lines(db: &rusqlite::Connection) -> Vec<(String, i64)> {
-    db.prepare("SELECT e.name,l.value FROM item_augment_slot_option_effects l JOIN effects e ON e.id=l.effect_id
-        JOIN item_augment_slot_options o ON o.id=l.option_id JOIN items i ON i.id=o.item_id
-        WHERE i.name='Epic Treasure Hunter''s Spyglass (legacy) (level 20)' AND o.slot_order=0 AND e.name != 'Intelligence'
+    db.prepare("SELECT e.name,l.value FROM socket_option_effects l JOIN effects e ON e.id=l.effect_id
+        JOIN socket_options o ON o.id=l.option_id JOIN item_augment_slots socket ON socket.option_set_id=o.set_id JOIN items i ON i.id=socket.item_id
+        WHERE i.name='Epic Treasure Hunter''s Spyglass (legacy) (level 20)' AND socket.sort_order=0 AND e.name != 'Intelligence'
         ORDER BY e.name").unwrap().query_map([], |row| Ok((row.get(0)?,row.get(1)?))).unwrap()
         .collect::<rusqlite::Result<_>>().unwrap()
 }

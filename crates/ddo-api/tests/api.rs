@@ -1492,7 +1492,7 @@ async fn item_effect_rendering_uses_one_query_at_small_and_large_link_counts() {
                         if statement.sql().contains("FROM item_effects j JOIN effects e") {
                             EFFECT_QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
                         }
-                        if statement.sql().contains("FROM item_augment_slot_option_effects j JOIN effects e") {
+                        if statement.sql().contains("FROM socket_option_effects j JOIN effects e") {
                             OPTION_EFFECT_QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
                         }
                     }
@@ -1553,7 +1553,7 @@ async fn version_reports_dataset_and_schema() {
         "augment_effects",
         "set_bonus_tier_effects",
         "feat_effects",
-        "item_augment_slot_option_effects",
+        "socket_option_effects",
     ] {
         assert!(json["counts"][count_name].is_number(), "missing {count_name}");
     }

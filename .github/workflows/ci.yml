@@ -30,11 +30,6 @@ jobs:
             --allow-empty-table crafting_stations \
             --allow-empty-table crafting_system_stations \
             --allow-empty-table crafting_unlocks \
-            --allow-empty-table socket_option_sets \
-            --allow-empty-table socket_options \
-            --allow-empty-table socket_option_effects \
-            --allow-empty-table socket_option_grants \
-            --allow-empty-table socket_option_set_bonuses \
             --allow-empty-table crafting_recipe_set_options
           cargo xtask validate-api --db target/data-source.db --all-details
           cargo xtask wiki-tooltips --db target/data-source.db
@@ -50,9 +45,4 @@ jobs:
             --allow-empty-table crafting_step_costs \
             --allow-empty-table crafting_system_stations \
             --allow-empty-table crafting_unlocks \
-            --allow-empty-table socket_option_sets \
-            --allow-empty-table socket_options \
-            --allow-empty-table socket_option_effects \
-            --allow-empty-table socket_option_grants \
-            --allow-empty-table socket_option_set_bonuses \
             --allow-empty-table crafting_recipe_set_options

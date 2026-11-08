@@ -159,10 +159,6 @@ fn referenced_array_rows_have_unique_identities() {
         let mut statement = db.prepare(&format!("PRAGMA foreign_key_list('{table}')")).unwrap();
         for target in statement.query_map([], |row| row.get::<_, String>(2)).unwrap() {
             let target = target.unwrap();
-            if table == "item_augment_slot_options" && target == "item_augment_slots" {
-                assert_eq!(table_merge(table), table_merge(&target));
-                continue;
-            }
             if matches!(table_merge(&target), Some(TableMerge::Array { .. } | TableMerge::ArrayOwnedByOneOf { .. })) {
                 targets.insert(target);
             }

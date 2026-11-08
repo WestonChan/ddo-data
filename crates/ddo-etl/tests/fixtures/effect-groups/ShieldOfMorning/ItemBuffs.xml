@@ -1,0 +1,27 @@
+<Buff>
+    <Type>ShieldEnchantment</Type>
+    <DisplayText>%v1 Enhancement Bonus: Weapons and Shields: %v1 Enhancement bonus to Attack and Damage rolls. Armor and Shields: %v1 Enhancement bonus to Armor Class.</DisplayText>
+    <Ignore>Enhancement</Ignore>
+    <Effect>
+      <Type>ShieldEnchantment</Type>
+      <Bonus>Shield</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Item>Buckler</Item>
+      <Item>Small Shield</Item>
+      <Item>Large Shield</Item>
+      <Item>Tower Shield</Item>
+    </Effect>
+  </Buff>
+<Buff>
+    <Type>Shield of Greater Sunburst</Type>
+    <DisplayText>Shield of Greater Sunburst: This item blazes with the eternal fury at the heart of a sun. Occasionally, this power comes to the surface, unleashing a nova of light which will blind the struck enemy, dealing severe light damage to it and any other nearby foes.</DisplayText>
+  </Buff>
+<Buff>
+    <Type>Solar Guard VI</Type>
+    <DisplayText>Solar Guard VI: When Hit in Melee: Deals 6 to 24 Light damage to your attacker.</DisplayText>
+  </Buff>
+<Buff>
+    <Type>Solar Guard VII</Type>
+    <DisplayText>Solar Guard VII: When Hit in Melee: Deals 7 to 28 Light damage to your attacker.</DisplayText>
+  </Buff>

@@ -344,8 +344,8 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::Quest, "epic_level:epic_level:Integer:true, favor:favor:Integer:true, is_raid:is_raid:Flag:false, level:level:Integer:true, name:name:RowName:false, pack:pack_id:NamedReference { referenced_table: \"adventure_packs\" }:false, patron:patron_id:NamedReference { referenced_table: \"patrons\" }:true, remove:remove:Removal:false"),
         (CorrectionKind::Feat, "description:description:Text:true, icon:icon:Text:true"),
         (CorrectionKind::FeatBonus, "add:add:BonusAddition:false, alias:alias:BonusAlias:true, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
-        (CorrectionKind::SocketOptionBonus, "alias:alias:BonusAlias:true, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
-        (CorrectionKind::SocketOption, ""),
+        (CorrectionKind::SocketOptionBonus, "alias:alias:BonusAlias:true, bonus_type:bonus_type_id:BonusTypeName:true, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
+        (CorrectionKind::SocketOption, "description:description:Text:true, name:name:RowName:false"),
         (CorrectionKind::Enhancement, "arrows:arrows:TextList:false, cooldown_seconds:cooldown_seconds:Integer:true, cost_per_rank:cost_per_rank:IntegerList:false, description:description:Text:false, duration_seconds:duration_seconds:Integer:true, icon:icon:Text:true, is_clickie:is_clickie:Flag:false, is_tier5:is_tier5:Flag:false, min_spent:min_spent:Integer:false, name:name:RowName:false, ranks:ranks:Integer:false, x:x:Integer:false, y:y:Integer:false"),
         (CorrectionKind::Spell, "description:description:Text:false, icon:icon:Text:true"),
         (CorrectionKind::EnhancementTree, "icon:icon:Text:false"),
@@ -1643,7 +1643,7 @@ fn socket_option_targets_are_loaded_once_for_one_and_fifty_owners() {
     static SELECTS: AtomicUsize = AtomicUsize::new(0);
     fn trace(event: TraceEvent<'_>) {
         if let TraceEvent::Stmt(statement, _) = event {
-            if statement.sql().contains("slot_type.label, option.name") {
+            if statement.sql().contains("SELECT s.id,s.slug,o.name,o.id,o.option_order") {
                 SELECTS.fetch_add(1, Ordering::SeqCst);
             }
         }
@@ -1665,13 +1665,16 @@ fn socket_option_targets_are_loaded_once_for_one_and_fifty_owners() {
             )
             .0
             .remove(0);
-            let renamed = format!("{} {index}", correction.name);
+            let original_name = "Epic Treasure Hunter's Spyglass (legacy) (level 20)";
+            let renamed = format!("{original_name} {index}");
             std::fs::write(
                 source.path().join(format!("Items/SpyglassOptions{index}.item")),
-                captured.replace(&format!("<Name>{}</Name>", correction.name), &format!("<Name>{renamed}</Name>")),
+                captured
+                    .replace(&format!("<Name>{original_name}</Name>"), &format!("<Name>{renamed}</Name>"))
+                    .replace("<MinLevel>20</MinLevel>", &format!("<MinLevel>{}</MinLevel>", 20 + index)),
             )
             .unwrap();
-            correction.name = renamed;
+            correction.name = format!("upgrade-tier-2-{}", ddo_model::identity::slug(&renamed));
             corrections.entries.push(correction);
         }
         std::fs::remove_file(source.path().join("Items/SpyglassOptions.item")).unwrap();
@@ -1691,6 +1694,185 @@ fn socket_option_targets_are_loaded_once_for_one_and_fifty_owners() {
         assert_eq!(report.correction_applied_count, count);
         assert_eq!(SELECTS.load(Ordering::SeqCst), 1, "{field}: {count} owners");
     }
+}
+
+#[test]
+fn shared_option_corrections_keep_every_carriers_source() {
+    let source = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data");
+    let root = tempfile::tempdir().unwrap();
+    for entry in
+        walkdir::WalkDir::new(&source).into_iter().map(Result::unwrap).filter(|entry| entry.file_type().is_file())
+    {
+        let destination = root.path().join(entry.path().strip_prefix(&source).unwrap());
+        std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+        std::fs::copy(entry.path(), destination).unwrap();
+    }
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(root.path(), &mut db).unwrap();
+    let gauntlets_slug: String = db.query_row("SELECT s.slug FROM socket_option_sets s JOIN item_augment_slots l ON l.option_set_id=s.id JOIN items i ON i.id=l.item_id WHERE i.name='Gauntlets of Eternity'", [], |row| row.get(0)).unwrap();
+    let correction_owner: String = db
+        .query_row(
+            "SELECT name FROM corrections WHERE name=?1 AND kind='socket_option_bonus' AND field='lines'",
+            [&gauntlets_slug],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(correction_owner, gauntlets_slug);
+    let lines = db.prepare("SELECT e.name,l.value FROM socket_option_effects l JOIN effects e ON e.id=l.effect_id JOIN socket_options o ON o.id=l.option_id JOIN socket_option_sets s ON s.id=o.set_id WHERE s.slug=?1 AND e.name IN ('Heal','Repair') ORDER BY e.name").unwrap().query_map([&gauntlets_slug], |row|Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(lines, [("Heal".into(), 15), ("Repair".into(), 15)]);
+    let slug = "crafting-variant-shield-of-morning-level-17";
+    let sources: Vec<String> = db
+        .prepare("SELECT source FROM corrections WHERE name=?1 AND kind='socket_option_bonus' AND field='lines'")
+        .unwrap()
+        .query_map([slug], |row| row.get(0))
+        .unwrap()
+        .collect::<rusqlite::Result<_>>()
+        .unwrap();
+    assert_eq!(sources, ["https://ddowiki.com/page/Item:Shield_of_Morning_(level_17)"]);
+    let count: i64 = db.query_row("SELECT COUNT(*) FROM citations c JOIN socket_option_sets s ON s.id=c.owner_id WHERE c.owner_kind='socket_option_sets' AND s.slug=?1 AND c.field='option' AND c.note='Preserved from Shield of Morning (Level 18).' AND c.url='https://ddowiki.com/page/Item:Shield_of_Morning_(level_18)'", [slug], |row| row.get(0)).unwrap();
+    assert_eq!(count, 1);
+    let path = root
+        .path()
+        .join("packs/u019-shadowfell-conspiracy/quests/breaking-the-ranks/gear/shield-of-morning-level-18.toml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(&path, original.replace("R13 confirms", "A disagreeing reason confirms")).unwrap();
+    let error = format!(
+        "{:#}",
+        ddo_etl::tree::build_from_data(root.path(), &mut Connection::open_in_memory().unwrap()).unwrap_err()
+    );
+    for expected in ["conflicting notes", "shield-of-morning-level-17.toml", "shield-of-morning-level-18.toml"] {
+        assert!(error.contains(expected), "{error}");
+    }
+    let exported = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&db, exported.path()).unwrap();
+    ddo_etl::tree::schemas::validate_source_fields(exported.path()).unwrap();
+    ddo_etl::tree::export_database(&db, root.path()).unwrap();
+    let ring_path = walkdir::WalkDir::new(root.path())
+        .into_iter()
+        .map(Result::unwrap)
+        .find(|entry| entry.file_name() == "ring-of-the-stalker-level-11.toml")
+        .unwrap()
+        .into_path();
+    let ring = std::fs::read_to_string(&ring_path).unwrap();
+    assert!(!ring.contains("set_variant"), "{ring}");
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(root.path(), &mut rebuilt).unwrap();
+    ddo_etl::tree::export_database(&rebuilt, root.path()).unwrap();
+    assert_eq!(std::fs::read_to_string(ring_path).unwrap(), ring);
+}
+
+#[test]
+fn same_named_sets_on_two_labels_keep_their_corrections_apart() {
+    let db = fixture::database(|root| {
+        for (label, label_slug, amount, upstream) in [
+            ("upgrade: tier 2", "upgrade-tier-2", 8, 6),
+            ("crafting: nearly finished", "crafting-nearly-finished", 9, 7),
+        ] {
+            let folder = root.join("packs/shared/sockets").join(label_slug);
+            std::fs::create_dir_all(&folder).unwrap();
+            std::fs::write(
+                folder.join("blue-augment-slot-yellow-augment-slot.toml"),
+                format!(
+                    r#"
+label = "{label}"
+name = "Blue Augment Slot | Yellow Augment Slot"
+[[option]]
+name = "Blue Augment Slot"
+[[option.effect]]
+effect = "Constitution"
+bonus_type = "Enhancement"
+value = {amount}
+[[option]]
+name = "Yellow Augment Slot"
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "value"
+upstream = {upstream}
+qualifier = 'option "Blue Augment Slot", Constitution / Enhancement'
+reason = "The fixture distinguishes the two owners."
+url = "https://ddowiki.com/page/Item:Celestial_Emerald_Ring"
+read = "2026-11-08"
+"#
+                ),
+            )
+            .unwrap();
+        }
+    });
+    for (label, amount, upstream) in [("upgrade-tier-2", 8, 6), ("crafting-nearly-finished", 9, 7)] {
+        let slug = format!("{label}-blue-augment-slot-yellow-augment-slot");
+        let actual: (i64,String) = db.query_row("SELECT e.value,c.from_value FROM socket_option_sets s JOIN socket_options o ON o.set_id=s.id JOIN socket_option_effects e ON e.option_id=o.id JOIN corrections c ON c.name=s.slug AND c.kind='socket_option_bonus' WHERE s.slug=?1",[slug],|row| Ok((row.get(0)?,row.get(1)?))).unwrap();
+        assert_eq!(actual, (amount, upstream.to_string()));
+    }
+    let scratch = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&db, scratch.path()).unwrap();
+    copy_fixture_icons(scratch.path());
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(scratch.path(), &mut rebuilt).unwrap();
+    assert_eq!(recorded_corrections(&db), recorded_corrections(&rebuilt));
+}
+
+#[test]
+fn socket_option_name_corrections_keep_the_set_identity() {
+    let source = fixture::xml_source();
+    fixture::write_spyglass_options(source.path());
+    let mut rename =
+        fixture::spyglass_option_correction("description", serde_json::json!(""), CorrectionValue::Text("".into()));
+    let correction = &mut rename.0[0];
+    correction.kind = ddo_model::enums::CorrectionKind::SocketOption;
+    correction.stat = None;
+    correction.bonus_type = None;
+    correction.field = "name".into();
+    correction.from = CorrectionValue::Text(correction.option.clone().unwrap());
+    correction.to = CorrectionValue::Text("Reviewed Choice".into());
+    correction.option = Some("Reviewed Choice".into());
+    let owner = correction.name.clone();
+    let (db, report) =
+        built_db_from_index(fixture::grouping_cases(), source.path(), &[("rename.toml", &rename)]).unwrap();
+    assert_eq!(report.correction_stale_count, 0, "{report:?}");
+    let name: String = db
+        .query_row(
+            "SELECT o.name FROM socket_options o JOIN socket_option_sets s ON s.id=o.set_id WHERE s.slug=?1",
+            [owner],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(name, "Reviewed Choice");
+}
+
+#[test]
+fn a_set_correction_names_the_missing_option_and_nearest_choices() {
+    let root = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&fixture::database(|_| {}), root.path()).unwrap();
+    copy_fixture_icons(root.path());
+    let folder = root.path().join("packs/shared/sockets/crafting-nearly-finished");
+    std::fs::create_dir_all(&folder).unwrap();
+    std::fs::write(
+        folder.join("reviewed-choices.toml"),
+        r#"
+label = "crafting: nearly finished"
+name = "Reviewed Choices"
+[[option]]
+name = "Blue Augment Slot"
+description = "A socket."
+[[ddobuilder_correction]]
+kind = "socket_option"
+field = "description"
+upstream = "Old socket."
+qualifier = 'option "Blu Augment Slot"'
+reason = "Test missing target diagnostics."
+url = "https://ddowiki.com/page/Augment_Slot"
+read = "2026-11-08"
+"#,
+    )
+    .unwrap();
+    let error = ddo_etl::tree::build_from_data(root.path(), &mut Connection::open_in_memory().unwrap()).unwrap_err();
+    let message = format!("{error:#}");
+    assert!(
+        message.contains("crafting-nearly-finished-reviewed-choices")
+            && message.contains("Blu Augment Slot")
+            && message.contains("Blue Augment Slot"),
+        "{message}"
+    );
 }
 
 #[test]
@@ -1750,10 +1932,10 @@ fn socket_option_corrections_reject_every_ambiguous_match() {
     fixture::write_spyglass_options(source.path());
     let path = source.path().join("Items/SpyglassOptions.item");
     let original = std::fs::read_to_string(&path).unwrap();
-    let socket = original.split_once("    <ItemAugment>").unwrap().1.split_once("    </ItemAugment>").unwrap().0;
+    let option = original.split_once("      <Augment>").unwrap().1.split_once("      </Augment>").unwrap().0;
     std::fs::write(
         path,
-        original.replace("  </Item>", &format!("    <ItemAugment>{socket}    </ItemAugment>\n  </Item>")),
+        original.replacen("      </Augment>", &format!("      </Augment>\n      <Augment>{option}      </Augment>"), 1),
     )
     .unwrap();
     let split = fixture::spyglass_option_correction(
@@ -1764,9 +1946,7 @@ fn socket_option_corrections_reject_every_ambiguous_match() {
     let error = built_db_from_index(fixture::grouping_cases(), source.path(), &[("ambiguous-option.toml", &split)])
         .err()
         .unwrap();
-    for expected in
-        ["ambiguous-option.toml", "ambiguous", "socket order 0, option order 0", "socket order 2, option order 0"]
-    {
+    for expected in ["ambiguous-option.toml", "ambiguous", "option order 0", "option order 1"] {
         assert!(error.contains(expected), "{error}");
     }
 }
@@ -1779,7 +1959,7 @@ fn rank_option_merges_preserve_constant_and_slot_amounts() {
     let (db, report) =
         built_db_from_index(fixture::grouping_cases(), source.path(), &[("rank-options.toml", &corrections)]).unwrap();
     assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
-    let lines = db.prepare("SELECT o.name,e.name,l.value,l.value2 FROM item_augment_slot_option_effects l JOIN effects e ON e.id=l.effect_id JOIN item_augment_slot_options o ON o.id=l.option_id WHERE o.name IN ('Riposte V','Parrying I') ORDER BY o.name").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,Option<i64>>(2)?,row.get::<_,Option<i64>>(3)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    let lines = db.prepare("SELECT o.name,e.name,l.value,l.value2 FROM socket_option_effects l JOIN effects e ON e.id=l.effect_id JOIN socket_options o ON o.id=l.option_id WHERE o.name IN ('Riposte V','Parrying I') ORDER BY o.name").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,Option<i64>>(2)?,row.get::<_,Option<i64>>(3)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
     assert_eq!(
         lines,
         [
@@ -1787,7 +1967,7 @@ fn rank_option_merges_preserve_constant_and_slot_amounts() {
             ("Riposte V".into(), "Riposte V".into(), None, None)
         ]
     );
-    let bonuses = db.prepare("SELECT o.name,e.name,b.amount FROM owner_bonuses b JOIN item_augment_slot_options o ON b.owner_kind='item_augment_slot_option' AND b.owner_id=o.id JOIN effects e ON e.id=b.stat_id WHERE o.name IN ('Riposte V','Parrying I') ORDER BY o.name,e.name").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    let bonuses = db.prepare("SELECT o.name,e.name,b.amount FROM owner_bonuses b JOIN socket_options o ON b.owner_kind='socket_option' AND b.owner_id=o.id JOIN effects e ON e.id=b.stat_id WHERE o.name IN ('Riposte V','Parrying I') ORDER BY o.name,e.name").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
     assert_eq!(
         bonuses,
         [
@@ -1833,13 +2013,15 @@ fn socket_option_description_changes_only_the_qualified_option() {
     fixture::write_rank_options(source.path());
     let correction = fixture::rank_option_description_correction(source.path());
     let descriptions = |db: &Connection| {
-        db.prepare("SELECT i.name,o.name,o.description FROM item_augment_slot_options o JOIN items i ON i.id=o.item_id ORDER BY i.name,o.slot_order,o.option_order").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,Option<String>>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
+        db.prepare("SELECT i.name,o.name,o.description FROM socket_options o JOIN item_augment_slots socket ON socket.option_set_id=o.set_id JOIN items i ON i.id=socket.item_id ORDER BY i.name,socket.sort_order,o.option_order").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,Option<String>>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
     };
     let (before, _) = built_db_from_index(fixture::grouping_cases(), source.path(), &[]).unwrap();
     let mut expected = descriptions(&before);
     let selected = expected
         .iter_mut()
-        .find(|(owner, option, _)| owner == &correction.0[0].name && option == "Riposte VI")
+        .find(|(owner, option, _)| {
+            owner == "Epic Treasure Hunter's Spyglass (legacy) (level 20)" && option == "Riposte VI"
+        })
         .unwrap();
     selected.2 = correction.0[0].to.as_text().map(str::to_string);
     let (after, report) =
@@ -1865,21 +2047,25 @@ fn socket_option_description_rejects_ambiguous_pairs_with_the_file() {
     let correction = fixture::rank_option_description_correction(source.path());
     let path = source.path().join("Items/SpyglassOptions.item");
     let item = std::fs::read_to_string(&path).unwrap();
+    let start = item.find("        <Name>Riposte VI</Name>").unwrap();
+    let end = start + item[start..].find("      </Augment>").unwrap();
+    let option = &item[start..end];
     std::fs::write(
         path,
-        item.replace("  </Item>", &format!("{}  </Item>", include_str!("fixtures/effect-groups/RankOptions.xml"))),
+        format!(
+            "{}      </Augment>\n      <Augment>
+{}{}",
+            &item[..end],
+            option,
+            &item[end..]
+        ),
     )
     .unwrap();
     let error =
         built_db_from_index(fixture::grouping_cases(), source.path(), &[("option-description.toml", &correction)])
             .err()
             .unwrap();
-    for expected in [
-        "option-description.toml",
-        "ambiguous socket-option target",
-        "socket order 2, option order 1",
-        "socket order 3, option order 1",
-    ] {
+    for expected in ["option-description.toml", "ambiguous socket-option target", "option order 1", "option order 2"] {
         assert!(error.contains(expected), "{error}");
     }
 }
@@ -1909,9 +2095,9 @@ fn rank_option_merge_applies_a_source_value_correction_first() {
     let (db, report) =
         built_db_from_index(fixture::grouping_cases(), source.path(), &[("rank-options.toml", &corrections)]).unwrap();
     assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
-    let bonuses = db.prepare("SELECT e.name,b.amount FROM owner_bonuses b JOIN item_augment_slot_options o ON b.owner_kind='item_augment_slot_option' AND b.owner_id=o.id JOIN effects e ON e.id=b.stat_id WHERE o.name='Riposte VI' ORDER BY e.name").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    let bonuses = db.prepare("SELECT e.name,b.amount FROM owner_bonuses b JOIN socket_options o ON b.owner_kind='socket_option' AND b.owner_id=o.id JOIN effects e ON e.id=b.stat_id WHERE o.name='Riposte VI' ORDER BY e.name").unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
     assert_eq!(bonuses, [("Armor Class".into(), 3), ("Saving Throws".into(), 3)]);
-    assert_eq!(db.query_row("SELECT COUNT(*) FROM item_augment_slot_option_effects l JOIN item_augment_slot_options o ON o.id=l.option_id JOIN effects e ON e.id=l.effect_id WHERE o.name='Riposte VI' AND e.name='Riposte VI' AND l.value IS NULL AND l.value2 IS NULL", [], |row| row.get::<_,i64>(0)).unwrap(), 1);
+    assert_eq!(db.query_row("SELECT COUNT(*) FROM socket_option_effects l JOIN socket_options o ON o.id=l.option_id JOIN effects e ON e.id=l.effect_id WHERE o.name='Riposte VI' AND e.name='Riposte VI' AND l.value IS NULL AND l.value2 IS NULL", [], |row| row.get::<_,i64>(0)).unwrap(), 1);
 }
 
 #[test]
@@ -1964,9 +2150,7 @@ fn socket_option_alias_round_trips_and_a_removed_option_is_stale() {
                 (corrections.entries.len(), 0)
             );
             let chosen: String = db
-                .query_row("SELECT alias FROM item_augment_slot_option_effects WHERE alias IS NOT NULL", [], |row| {
-                    row.get(0)
-                })
+                .query_row("SELECT alias FROM socket_option_effects WHERE alias IS NOT NULL", [], |row| row.get(0))
                 .unwrap();
             assert_eq!(chosen, "Perception");
             let exported = tempfile::tempdir().unwrap();
@@ -2001,23 +2185,17 @@ fn socket_option_alias_round_trips_and_a_removed_option_is_stale() {
                 ddo_etl::tree::data_file_bytes(exported.path()).unwrap(),
                 ddo_etl::tree::data_file_bytes(second.path()).unwrap()
             );
-            let name = "epic-treasure-hunters-spyglass-legacy-level-20.toml";
-            let path = walkdir::WalkDir::new(exported.path())
-                .into_iter()
-                .map(Result::unwrap)
-                .find(|entry| entry.file_name() == name)
-                .unwrap()
-                .into_path();
-            let mut item: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
-            let sockets = item["socket"].as_array_mut().unwrap();
-            sockets.push(sockets[0].clone());
-            std::fs::write(&path, toml::to_string(&item).unwrap()).unwrap();
+            let path = exported.path().join(&restored_alias.file_name);
+            let mut set: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+            let options = set["option"].as_array_mut().unwrap();
+            options.push(options[0].clone());
+            std::fs::write(&path, toml::to_string(&set).unwrap()).unwrap();
             let error = format!(
                 "{:#}",
                 ddo_etl::tree::build_from_data(exported.path(), &mut Connection::open_in_memory().unwrap())
                     .unwrap_err()
             );
-            for expected in [name, "ambiguous", "socket order 0, option order 0", "socket order 2, option order 0"] {
+            for expected in ["ambiguous", "option order 0", "option order 1"] {
                 assert!(error.contains(expected), "{error}");
             }
         }
@@ -2025,7 +2203,7 @@ fn socket_option_alias_round_trips_and_a_removed_option_is_stale() {
 }
 
 #[test]
-fn socket_option_qualifiers_require_both_nonblank_selectors() {
+fn socket_option_qualifiers_require_a_nonblank_option() {
     let valid = fixture::spyglass_option_correction(
         "alias",
         serde_json::Value::Null,
@@ -2034,15 +2212,9 @@ fn socket_option_qualifiers_require_both_nonblank_selectors() {
     .0
     .remove(0);
     assert!(valid.validate().is_ok());
-    for selectors in [
-        (None, valid.option.clone()),
-        (valid.socket.clone(), None),
-        (Some(" ".into()), valid.option.clone()),
-        (valid.socket.clone(), Some("".into())),
-    ] {
+    for option in [None, Some(String::new()), Some(" ".into())] {
         let mut invalid = valid.clone();
-        invalid.socket = selectors.0;
-        invalid.option = selectors.1;
+        invalid.option = option;
         assert!(invalid.validate().is_err());
     }
     let mut wrong_kind = valid;
@@ -3700,7 +3872,7 @@ fn corrects_an_augment_bonus_value_and_type_without_touching_the_shared_bonus() 
         row_count(
             &db,
             "SELECT COUNT(*) FROM effects e WHERE e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM item_effects r WHERE r.effect_id = e.id)
-               AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_effects r WHERE r.effect_id = e.id)
+               AND NOT EXISTS (SELECT 1 FROM socket_option_effects r WHERE r.effect_id = e.id)
                AND NOT EXISTS (SELECT 1 FROM augment_effects r WHERE r.effect_id = e.id)
                AND NOT EXISTS (SELECT 1 FROM feat_effects r WHERE r.effect_id = e.id)
                AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_effects r WHERE r.effect_id = e.id)
@@ -4508,14 +4680,14 @@ fn item_socket_removal_deletes_only_the_qualified_socket_and_its_options() {
     assert_eq!(report.correction_applied_count, 1);
     assert_eq!(item_socket_labels(&db, "Epic Duelist's Leathers (level 20)"), ["upgrade: tier 3"]);
     let options: Vec<String> = db
-        .prepare("SELECT o.name FROM item_augment_slot_options o JOIN items i ON i.id=o.item_id WHERE i.name=?1")
+        .prepare("SELECT o.name FROM socket_options o JOIN item_augment_slots socket ON socket.option_set_id=o.set_id JOIN items i ON i.id=socket.item_id WHERE i.name=?1")
         .unwrap()
         .query_map(["Epic Duelist's Leathers (level 20)"], |row| row.get(0))
         .unwrap()
         .map(Result::unwrap)
         .collect();
     assert_eq!(options, ["Dodge 8% and Adds a Blue augment slot"]);
-    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM modifiers m WHERE m.source_kind='item_augment_slot_option' AND NOT EXISTS (SELECT 1 FROM item_augment_slot_options o WHERE o.id=m.source_id)"), 0);
+    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM modifiers m WHERE m.source_kind='socket_option' AND NOT EXISTS (SELECT 1 FROM socket_options o WHERE o.id=m.source_id)"), 0);
 }
 
 #[test]
@@ -4769,7 +4941,7 @@ fn copied_directory(source_dir: &std::path::Path, copy_dir: &std::path::Path) {
 
 const UNTYPED_ITEMS: (&str, &str) = ("untyped_items", "Items");
 const UNTYPED_AUGMENTS: (&str, &str) = ("untyped_augments", "Augments");
-const UNTYPED_ITEM_AUGMENT_SLOT_OPTIONS: (&str, &str) = ("untyped_item_augment_slot_options", "Items");
+const UNTYPED_SOCKET_OPTIONS: (&str, &str) = ("untyped_socket_options", "Items");
 
 fn data_files_with_untyped(test_name: &str, untyped_fixture_dirs: &[(&str, &str)]) -> PathBuf {
     let data_files_dir =
@@ -5679,8 +5851,8 @@ fn removing_an_item_removes_its_augment_slot_options_and_their_modifiers() {
     assert_eq!(
         row_count(
             &db,
-            "SELECT COUNT(*) FROM modifiers m WHERE m.source_kind = 'item_augment_slot_option'
-              AND NOT EXISTS (SELECT 1 FROM item_augment_slot_options o WHERE o.id = m.source_id)"
+            "SELECT COUNT(*) FROM modifiers m WHERE m.source_kind = 'socket_option'
+              AND NOT EXISTS (SELECT 1 FROM socket_options o WHERE o.id = m.source_id)"
         ),
         0
     );
@@ -5694,8 +5866,8 @@ fn merging_a_socket_label_moves_the_sockets_options_grant() {
     assert_eq!(report.correction_applied_count, 1, "{:?}", report.stale_corrections);
     let granted_labels: Vec<String> = db
         .prepare(
-            "SELECT t.label FROM item_augment_slot_option_grants g JOIN augment_slot_types t ON t.id = g.slot_id
-               JOIN item_augment_slot_options o ON o.id = g.option_id JOIN items i ON i.id = o.item_id
+            "SELECT t.label FROM socket_option_grants g JOIN augment_slot_types t ON t.id = g.slot_id
+               JOIN socket_options o ON o.id = g.option_id JOIN item_augment_slots socket ON socket.option_set_id=o.set_id JOIN items i ON i.id = socket.item_id
               WHERE i.name = 'Sireth, Spear of the Sky'",
         )
         .unwrap()
@@ -5707,14 +5879,14 @@ fn merging_a_socket_label_moves_the_sockets_options_grant() {
 }
 
 #[test]
-fn refuses_an_untyped_augment_slot_option_bonus_unless_an_item_bonus_correction_types_it() {
-    let data_files_dir = data_files_with_untyped("untyped-slot-option", &[UNTYPED_ITEM_AUGMENT_SLOT_OPTIONS]);
+fn refuses_an_untyped_socket_option_bonus_unless_its_correction_types_it() {
+    let data_files_dir = data_files_with_untyped("untyped-slot-option", &[UNTYPED_SOCKET_OPTIONS]);
     let error = built_db_from(&data_files_dir, &[]).unwrap_err();
     for expected_text in [
-        "augment slot option of item \"Epic Bracers of Wind\"",
+        "socket option set \"upgrade-tier-2-epic-bracers-of-wind\"",
         "effect \"SpellLore\"",
         "bonus target \"Electric Spell Lore\"",
-        "item_bonus bonus_type correction",
+        "socket_option_bonus bonus_type correction",
     ] {
         assert!(error.contains(expected_text), "{expected_text} missing from {error}");
     }
@@ -5722,9 +5894,16 @@ fn refuses_an_untyped_augment_slot_option_bonus_unless_an_item_bonus_correction_
         .iter()
         .map(|bonus_value| {
             new_qualified_correction(
-                "item_bonus",
-                "Epic Bracers of Wind",
-                &format!("stat = \"Electric Spell Lore\"\nbonus_type = \"null\"\nbonus_value = {bonus_value}"),
+                "socket_option_bonus",
+                &format!("upgrade-tier-{}-epic-bracers-of-wind", bonus_value - 15),
+                &format!(
+                    "option = {:?}\nstat = \"Electric Spell Lore\"\nbonus_type = \"null\"\nbonus_value = {bonus_value}",
+                    if *bonus_value == 17 {
+                        "Magnetism 116, Lightning Lore 17%, Dodge 10% and a Colorless Augment slot"
+                    } else {
+                        "Magnetism 122, Lightning Lore 18%, Dodge 11% and a Green Augment slot"
+                    }
+                ),
                 "bonus_type",
                 "\"null\"",
                 "\"Equipment\"",
@@ -5743,8 +5922,8 @@ fn refuses_an_untyped_augment_slot_option_bonus_unless_an_item_bonus_correction_
             "SELECT bt.name, ob.amount
                FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id
                JOIN bonus_types bt ON bt.id = ob.bonus_type_id
-               JOIN item_augment_slot_options o ON o.id = ob.owner_id JOIN items i ON i.id = o.item_id
-              WHERE ob.owner_kind = 'item_augment_slot_option' AND i.name = 'Epic Bracers of Wind'
+               JOIN socket_options o ON o.id = ob.owner_id JOIN item_augment_slots socket ON socket.option_set_id=o.set_id JOIN items i ON i.id = socket.item_id
+              WHERE ob.owner_kind = 'socket_option' AND i.name = 'Epic Bracers of Wind'
                 AND s.name = 'Electric Spell Lore' ORDER BY 2",
         )
         .unwrap()

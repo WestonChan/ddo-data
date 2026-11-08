@@ -252,6 +252,16 @@ pub(super) fn correction_values(
     let mut correction = correction_for_note(note, current_name)?;
     let mut upstream = note.upstream.clone().unwrap_or(Value::Null);
     correction.from = CorrectionValue::from_json(&upstream.to_string())?;
+    if correction.targets_socket_option()
+        && correction.from.as_text() != Some(crate::corrections::NO_SUCH_BONUS)
+        && socket_options.option_id(&correction, current_name)?.is_none()
+    {
+        let option = correction.option.as_deref().unwrap_or_default();
+        anyhow::bail!(
+            "set {current_name:?} has no option {option:?}; nearest options: {}",
+            super::schemas::nearest_names(option, socket_options.option_names(current_name)).join(", ")
+        );
+    }
     if note.field == "is_legacy" {
         if let Some(value) = upstream.as_bool() {
             upstream = json!(i64::from(value));
@@ -273,9 +283,10 @@ pub(super) fn correction_values(
             let stat_name = correction.stat.as_deref().context("bonus correction has no stat")?;
             let amount = correction.bonus_value.context("bonus correction has no amount")?;
             let mut statement = transaction.prepare(
-                "SELECT DISTINCT bonus_type.name FROM item_augment_slot_options option
-                 JOIN items item ON item.id = option.item_id
-                 JOIN item_augment_slot_option_effects link ON link.option_id = option.id
+                "SELECT DISTINCT bonus_type.name FROM socket_options option
+                 JOIN item_augment_slots socket ON socket.option_set_id=option.set_id
+                 JOIN items item ON item.id = socket.item_id
+                 JOIN socket_option_effects link ON link.option_id = option.id
                  JOIN effects effect ON effect.id = link.effect_id
                  LEFT JOIN bonus_types bonus_type ON bonus_type.id = link.bonus_type_id
                  WHERE item.name = ?1 AND effect.name = ?2 AND link.value = ?3",
@@ -358,7 +369,7 @@ pub(super) fn validate_game_bug_corrections(
     layout: &super::ExportLayout,
 ) -> Result<()> {
     let mut statement = transaction.prepare(&format!(
-        "SELECT annotation.*, identity.name AS owner_name FROM
+        "SELECT annotation.*, CASE WHEN identity.kind='socket_option_sets' THEN identity.slug ELSE identity.name END AS owner_name FROM
          (SELECT {} FROM game_bug_corrections ORDER BY id) annotation
          LEFT JOIN entity_identity identity ON identity.kind = annotation.owner_kind AND identity.entity_id = annotation.owner_id",
         super::GameBugCorrection::select_columns()
@@ -432,7 +443,7 @@ pub(super) fn validate_verification_requests(
     layout: &super::ExportLayout,
 ) -> Result<()> {
     let mut statement = transaction.prepare(&format!(
-        "SELECT request.*, identity.name AS owner_name, source.url, source.in_game FROM
+        "SELECT request.*, CASE WHEN identity.kind='socket_option_sets' THEN identity.slug ELSE identity.name END AS owner_name, source.url, source.in_game FROM
          (SELECT id, {} FROM verification_requests) request
          LEFT JOIN entity_identity identity ON identity.kind = request.owner_kind AND identity.entity_id = request.owner_id JOIN verification_request_sources source ON source.request_id = request.id AND source.sort_order = 0",
         super::VerificationRequest::select_columns()
@@ -562,7 +573,7 @@ pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
             CorrectionKind::FeatBonus => (CorrectionKind::FeatBonus, EffectOwner::Feat.as_str()),
             CorrectionKind::SetTierBonus => (CorrectionKind::SetTierBonus, EffectOwner::SetBonusTier.as_str()),
             CorrectionKind::SocketOptionBonus => {
-                (CorrectionKind::SocketOptionBonus, EffectOwner::ItemAugmentSlotOption.as_str())
+                (CorrectionKind::SocketOptionBonus, EffectOwner::SocketOption.as_str())
             }
             _ => continue,
         };
@@ -572,7 +583,7 @@ pub(super) fn rederive_note_lines(db: &rusqlite::Connection) -> Result<()> {
                 let count = correction.equipped_count.context("set annotation needs a piece count")?;
                 *tiers.get(&(owner_id, count)).context("set annotation's tier is absent")?
             } else if note.kind == CorrectionKind::SocketOptionBonus {
-                socket_options.option_id(&correction, socket_options.item_name(owner_id)?)?
+                socket_options.option_id(&correction, socket_options.set_slug(owner_id)?)?
                     .context("socket-option annotation's option is absent")?
             } else { owner_id };
             let target = correction.stat.as_deref().or(correction.effect.as_deref()).context("bonus annotation must name its target")?;

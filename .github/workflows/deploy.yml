@@ -112,11 +112,6 @@ jobs:
             --allow-empty-table crafting_stations \
             --allow-empty-table crafting_system_stations \
             --allow-empty-table crafting_unlocks \
-            --allow-empty-table socket_option_sets \
-            --allow-empty-table socket_options \
-            --allow-empty-table socket_option_effects \
-            --allow-empty-table socket_option_grants \
-            --allow-empty-table socket_option_set_bonuses \
             --allow-empty-table crafting_recipe_set_options
 
       - name: Validate every API response against its schema

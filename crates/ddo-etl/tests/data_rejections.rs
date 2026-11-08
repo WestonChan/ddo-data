@@ -96,6 +96,28 @@ fn a_station_reference_without_a_variant_is_ambiguous() {
 }
 
 #[test]
+fn a_set_reference_without_an_unqualified_identity_lists_its_variants() {
+    let error = fixture::data_build_error(|root| {
+        let directory = root.join("packs/shared/sockets/crafting-nearly-finished");
+        std::fs::create_dir_all(&directory).unwrap();
+        for variant in ["2", "3"] {
+            std::fs::write(directory.join(format!("test-choices-{variant}.toml")), format!("label='crafting: nearly finished'\nname='Test Choices'\nvariant='{variant}'\n[[option]]\nname='Choice'\n")).unwrap();
+        }
+        let path = root.join("packs/unsourced/gear/celestial-emerald-ring.toml");
+        let mut record: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+        record["socket"] =
+            toml::from_str::<toml::Value>("[[socket]]\nslot='crafting: nearly finished'\nset='Test Choices'\n")
+                .unwrap()["socket"]
+                .clone();
+        std::fs::write(path, toml::to_string(&record).unwrap()).unwrap();
+    });
+    assert!(
+        error.contains("matched 2 rows") && error.contains("Some(\"2\")") && error.contains("Some(\"3\")"),
+        "{error}"
+    );
+}
+
+#[test]
 fn a_system_naming_a_station_the_vocabulary_lacks_is_rejected_with_nearest_names() {
     let error =
         station_reference_error("[[row]]\nname='Test Forge'\nkind='interface'\ncitation=[]\n", "name='Test Forg'");

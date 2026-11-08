@@ -96,7 +96,9 @@ pub(crate) use guild_buffs::GuildBuffsFile;
 pub(super) mod item;
 pub(crate) use item::ItemFile;
 pub(super) mod item_materials;
+pub(super) mod socket_option_set;
 pub(crate) use item_materials::ItemMaterialsFile;
+pub(crate) use socket_option_set::SocketOptionSetFile;
 pub(super) mod optional_buffs;
 pub(crate) use optional_buffs::OptionalBuffsFile;
 pub(super) mod pack;
@@ -143,6 +145,7 @@ pub(crate) fn declared_correctable_fields(
     use ddo_model::enums::CorrectionKind;
     let direct = match kind {
         CorrectionKind::Item => ItemFile::CORRECTABLE_FIELDS,
+        CorrectionKind::SocketOption => socket_option_set::SocketOption::CORRECTABLE_FIELDS,
         CorrectionKind::Augment => AugmentFile::CORRECTABLE_FIELDS,
         CorrectionKind::Quest => QuestFile::CORRECTABLE_FIELDS,
         CorrectionKind::Effect => EffectFile::CORRECTABLE_FIELDS,

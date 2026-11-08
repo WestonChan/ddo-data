@@ -137,6 +137,10 @@ fn build_matching_values(
 pub(super) fn has_unresolved_targets(correction: &Correction, stale: &StaleCorrection) -> bool {
     has_unrepresentable_upstream_value(correction, stale)
         || (correction.kind.corrects_a_bonus() && matches!(stale.cause, StaleCorrectionCause::ValuesDisagree { .. }))
+        || (correction.targets_socket_option()
+            && correction.from.as_text() == Some(crate::corrections::NO_SUCH_BONUS)
+            && matches!(&stale.cause, StaleCorrectionCause::ValueChanged { maetrim_value, .. }
+                if *maetrim_value == CorrectionValue::Text(crate::corrections::NO_SUCH_BONUS.into()).to_json()))
 }
 
 fn has_unrepresentable_upstream_value(correction: &Correction, stale: &StaleCorrection) -> bool {

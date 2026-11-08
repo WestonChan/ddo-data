@@ -14,7 +14,7 @@ pub fn stat_home_violations(db: &Connection, declarations: &[(&str, StatHomeType
         ("item_effects", "item_id"),
         ("augment_effects", "augment_id"),
         ("feat_effects", "feat_id"),
-        ("item_augment_slot_option_effects", "option_id"),
+        ("socket_option_effects", "option_id"),
     ] {
         for lines in ddo_api::served_effect_lines(db, table, owner_column)
             .map_err(|error| anyhow::anyhow!("{error:?}"))?

@@ -4,7 +4,7 @@ use std::process::{Command, Output};
 use std::sync::OnceLock;
 use xtask::integrity::{integrity_report, CheckStatus, IntegrityOptions, Severity, INTEGRITY_CHECKS};
 
-const TABLES_EMPTY_IN_FIXTURES: [&str; 14] = [
+const TABLES_EMPTY_IN_FIXTURES: [&str; 9] = [
     "effect_damage",
     "race_feat_slots",
     "removed_entities",
@@ -13,11 +13,6 @@ const TABLES_EMPTY_IN_FIXTURES: [&str; 14] = [
     "crafting_step_costs",
     "crafting_system_stations",
     "crafting_unlocks",
-    "socket_option_sets",
-    "socket_options",
-    "socket_option_effects",
-    "socket_option_grants",
-    "socket_option_set_bonuses",
     "crafting_recipe_set_options",
 ];
 const PACK_QUEST_OVERLAP_SQL: &str =
@@ -63,10 +58,9 @@ fn insert_crafting_effect_owners(db: &Connection) {
 fn routed_stat_check_rejects_gear_links_but_keeps_sets_and_feats() {
     for (table, owner_column, eligible) in [
         ("crafting_step_effects", "step_id", true),
-        ("socket_option_effects", "option_id", true),
         ("item_effects", "item_id", true),
         ("augment_effects", "augment_id", true),
-        ("item_augment_slot_option_effects", "option_id", true),
+        ("socket_option_effects", "option_id", true),
         ("set_bonus_tier_effects", "tier_id", false),
         ("feat_effects", "feat_id", false),
     ] {
@@ -183,12 +177,11 @@ fn template_name_check_reads_search_aliases_without_hiding_unrelated_titles() {
 fn repeated_words_are_rejected_on_every_rendered_owner_kind() {
     for (table, owner_column) in [
         ("crafting_step_effects", "step_id"),
-        ("socket_option_effects", "option_id"),
         ("item_effects", "item_id"),
         ("augment_effects", "augment_id"),
         ("set_bonus_tier_effects", "tier_id"),
         ("feat_effects", "feat_id"),
-        ("item_augment_slot_option_effects", "option_id"),
+        ("socket_option_effects", "option_id"),
     ] {
         let scratch = tempfile::tempdir().unwrap();
         let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
@@ -1008,20 +1001,22 @@ fn description_skip_flags_resolve_nested_owner_kinds() {
             "set_bonus_tier_effects",
         ),
         (
-            "packs/shared/gear/alabaster-of-the-twelve.toml",
+            "packs/shared/sockets/crafting-attuned-to-heroism-2/reviewed-wisdom.toml",
             "socket_option_bonus",
-            "socket \"crafting: attuned to heroism 2\", option \"Reviewed Wisdom\", Wisdom / Artifact",
-            "item_augment_slot_option_effects",
+            "option \"Reviewed Wisdom\", Wisdom / Artifact",
+            "socket_option_effects",
         ),
     ] {
         let scratch = tempfile::tempdir().unwrap();
         let tree = scratch.path().join("data");
         copy_fixture_tree(&tree);
         let path = tree.join(file);
-        let mut original = std::fs::read_to_string(&path).unwrap();
-        if kind == "socket_option_bonus" {
-            original.push_str("\n[[socket]]\nslot = 'crafting: attuned to heroism 2'\n[[socket.option]]\nname = 'Reviewed Wisdom'\n[[socket.option.effect]]\neffect = 'Wisdom'\nbonus_type = 'Artifact'\nvalue = 3\n");
-        }
+        let original = if kind == "socket_option_bonus" {
+            std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+            "label = 'crafting: attuned to heroism 2'\nname = 'Reviewed Wisdom'\n[[option]]\nname = 'Reviewed Wisdom'\n[[option.effect]]\neffect = 'Wisdom'\nbonus_type = 'Artifact'\nvalue = 3\n[[verification_request]]\nkind = 'socket_option_bonus'\nfield = 'value'\nqualifier = 'option \"Reviewed Wisdom\", Wisdom / Artifact'\nassumed = 3\nquestion = 'Does the recorded amount still apply?'\nraised = '2026-11-08'\n[[verification_request.source]]\nin_game = true\nread = '2026-11-08'\nsays = 'The recorded amount is three.'\n".to_string()
+        } else {
+            std::fs::read_to_string(&path).unwrap()
+        };
         std::fs::write(path, format!("{original}\n[[game_bug_correction]]\nkind = {kind:?}\nfield = 'value'\nqualifier = {qualifier:?}\nintended = 4\nreason = 'The displayed intended amount differs from the granted amount.'\nin_game = true\nread = '2026-11-01'\nskip_description_check = true\n")).unwrap();
         let path = tree.join("effects/stats/wisdom.toml");
         let mut stat: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
@@ -1031,6 +1026,19 @@ fn description_skip_flags_resolve_nested_owner_kinds() {
         ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
         let owner: i64 =
             db.query_row("SELECT owner_id FROM note_lines WHERE note_kind='game_bug'", [], |row| row.get(0)).unwrap();
+        if kind == "socket_option_bonus" {
+            assert_eq!(
+                db.query_row(
+                    "SELECT COUNT(*) FROM note_lines WHERE owner_kind='socket_option' AND owner_id=?1",
+                    [owner],
+                    |row| row.get::<_, i64>(0)
+                )
+                .unwrap(),
+                2
+            );
+            ddo_etl::tree::export_database(&db, &tree).unwrap();
+            ddo_etl::tree::build_from_data(&tree, &mut Connection::open_in_memory().unwrap()).unwrap();
+        }
         let report = integrity_report(&db, &fixture_options()).unwrap();
         let outcome = report.outcome("effect_descriptions_without_their_amounts").unwrap();
         assert!(
@@ -2333,8 +2341,8 @@ fn the_unknown_placeholder_class_needs_no_progression() {
 fn a_set_only_an_augment_slot_option_joins_has_members() {
     let injected_sql =
         "INSERT INTO set_bonuses (name, slug) VALUES ('Integrity Probe Option Set', 'integrity-probe-option-set');
-         INSERT INTO item_augment_slot_option_sets (option_id, set_id)
-         VALUES ((SELECT MIN(id) FROM item_augment_slot_options), last_insert_rowid());
+         INSERT INTO socket_option_set_bonuses (option_id, set_bonus_id)
+         VALUES ((SELECT MIN(id) FROM socket_options), last_insert_rowid());
          INSERT INTO set_bonuses (name, slug) VALUES ('Integrity Probe Bare Set', 'integrity-probe-bare-set');";
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(work_dir.path(), injected_sql);
@@ -2359,14 +2367,17 @@ fn a_set_only_an_augment_slot_option_joins_has_members() {
 fn a_socket_type_an_option_grants_or_holds_options_needs_no_augment() {
     let injected_sql = "INSERT INTO augment_slot_types (label, family, variant, slug)
          VALUES ('crafting: integrity probe granted', 'crafting', 'integrity probe granted', 'crafting-integrity-probe-granted');
-         INSERT INTO item_augment_slot_option_grants (option_id, sort_order, slot_id)
-         VALUES ((SELECT MIN(id) FROM item_augment_slot_options), 99, last_insert_rowid());
+         INSERT INTO socket_option_grants (option_id, sort_order, slot_id)
+         VALUES ((SELECT MIN(id) FROM socket_options), 99, last_insert_rowid());
          INSERT INTO augment_slot_types (label, family, variant, slug)
          VALUES ('crafting: integrity probe upgrade', 'crafting', 'integrity probe upgrade', 'crafting-integrity-probe-upgrade');
          INSERT INTO item_augment_slots (item_id, sort_order, slot_id)
          VALUES ((SELECT MIN(id) FROM items), 99, last_insert_rowid());
-         INSERT INTO item_augment_slot_options (item_id, slot_order, option_order, name)
-         VALUES ((SELECT MIN(id) FROM items), 99, 0, 'Integrity Probe Upgrade');
+         INSERT INTO socket_option_sets (slug,name,slot_id)
+         VALUES ('integrity-probe-upgrade','Integrity Probe Upgrade',(SELECT slot_id FROM item_augment_slots WHERE sort_order=99));
+         UPDATE item_augment_slots SET option_set_id=last_insert_rowid() WHERE sort_order=99;
+         INSERT INTO socket_options (set_id, option_order, name)
+         VALUES (last_insert_rowid(), 0, 'Integrity Probe Upgrade');
          INSERT INTO augment_slot_types (label, family, variant, slug)
          VALUES ('crafting: integrity probe bare', 'crafting', 'integrity probe bare', 'crafting-integrity-probe-bare');";
     let work_dir = tempfile::tempdir().unwrap();

@@ -176,6 +176,7 @@ pub(crate) fn file_kind(root: &Path, path: &Path) -> Result<&'static str> {
                     "VendorCurrencies"
                 }
                 _ if segments.contains(&"augments") => "Augment",
+                _ if segments.contains(&"sockets") => "SocketOptionSet",
                 _ if segments.contains(&"crafting") && segments.contains(&"ingredients") => "CraftingIngredient",
                 _ => "Item",
             },
@@ -349,6 +350,7 @@ declare_file_kinds! {
     Clickies(ClickiesFile) => Rows("effects/clickies.toml"),
     CraftingIngredient(CraftingIngredientFile) => Entity("packs/shared/crafting/ingredients/{slug}.toml"),
     CraftingStations(CraftingStationsFile) => Rows("packs/shared/crafting/stations.toml"),
+    SocketOptionSet(SocketOptionSetFile) => Entity("packs/shared/sockets/{label}/{slug}.toml"),
     CraftingSystem(CraftingSystemFile) => Entity("packs/shared/crafting/{slug}/crafting.toml"),
     DamageTypes(DamageTypesFile) => Rows("effects/damage-types.toml"),
     Effect(EffectFile) => Entity("effects/{slug}.toml"),
@@ -405,6 +407,7 @@ impl SourceFile {
             Self::Saga(file) => Some(("sagas", &file.name)),
             Self::CraftingSystem(file) => Some(("crafting_systems", &file.name)),
             Self::CraftingIngredient(file) => Some(("crafting_ingredients", &file.name)),
+            Self::SocketOptionSet(file) => Some(("socket_option_sets", &file.name)),
             Self::Vendor(file) => Some(("vendors", &file.name)),
             Self::Event(file) => Some(("events", &file.name)),
             Self::Patron(file) => Some(("patrons", &file.name)),
@@ -422,6 +425,7 @@ impl SourceFile {
             Self::Effect(file) => file.append_icons(kind, &mut icons),
             Self::EnhancementTree(file) => file.append_icons(kind, &mut icons),
             Self::Item(file) => file.append_icons(kind, &mut icons),
+            Self::SocketOptionSet(file) => file.append_icons(kind, &mut icons),
             Self::Set(file) => file.append_icons(kind, &mut icons),
             Self::Stat(file) => file.append_icons(kind, &mut icons),
             Self::Pack(file) => file.append_icons(kind, &mut icons),
@@ -515,6 +519,11 @@ declared_records! {
     super::kinds::clickies::Clickie,
     super::kinds::crafting_system::CraftingStepCost,
     super::kinds::crafting_ingredient::CraftingIngredientFile,
+    super::kinds::socket_option_set::SocketOptionSetFile,
+    super::kinds::socket_option_set::SocketOption,
+    super::kinds::socket_option_set::SocketOptionEffect,
+    super::kinds::socket_option_set::SocketGrant,
+    super::kinds::socket_option_set::SocketSet,
     super::kinds::crafting_stations::CraftingStation,
     super::kinds::crafting_system::CraftingUnlock,
     super::kinds::crafting_system::CraftingSystemStation,
@@ -548,14 +557,10 @@ declared_records! {
     super::kinds::feat_category::Feat,
     super::kinds::filigree_set::Filigree,
     super::kinds::guild_buffs::GuildBuff,
-    super::kinds::item::SocketOptionEffect,
-    super::kinds::item::SocketGrant,
-    super::kinds::item::SocketSet,
     super::kinds::item::Armor,
     super::kinds::item::ItemClickie,
     super::kinds::item::ItemDrBypass,
     super::kinds::item::ItemEffect,
-    super::kinds::item::SocketOption,
     super::kinds::item::Socket,
     super::kinds::item::Weapon,
     super::kinds::item::ItemFile,
@@ -601,29 +606,6 @@ declared_records! {
 }
 
 pub const UNPOPULATED_COLUMNS: &[(&str, &str)] = &[
-    ("item_augment_slots", "option_set_id"),
-    ("socket_option_sets", "slug"),
-    ("socket_option_sets", "variant"),
-    ("socket_option_sets", "slot_id"),
-    ("socket_option_sets", "name"),
-    ("socket_options", "set_id"),
-    ("socket_options", "option_order"),
-    ("socket_options", "name"),
-    ("socket_options", "description"),
-    ("socket_options", "min_level"),
-    ("socket_options", "icon"),
-    ("socket_option_effects", "option_id"),
-    ("socket_option_effects", "alias"),
-    ("socket_option_effects", "effect_id"),
-    ("socket_option_effects", "bonus_type_id"),
-    ("socket_option_effects", "value"),
-    ("socket_option_effects", "value2"),
-    ("socket_option_effects", "sort_order"),
-    ("socket_option_grants", "option_id"),
-    ("socket_option_grants", "sort_order"),
-    ("socket_option_grants", "slot_id"),
-    ("socket_option_set_bonuses", "option_id"),
-    ("socket_option_set_bonuses", "set_bonus_id"),
     ("effects", "default_value2"),
     ("effects", "wiki_url"),
     ("effect_bonuses", "trigger_id"),
@@ -1247,7 +1229,6 @@ mod tests {
         let entities = crate::delta::TABLE_MERGES
             .iter()
             .filter_map(|(table, merge)| matches!(merge, crate::delta::TableMerge::Entity { .. }).then_some(*table))
-            .filter(|table| !matches!(*table, "socket_option_sets"))
             .collect::<std::collections::BTreeSet<_>>();
         let mut covered = std::collections::BTreeSet::new();
         let mut missing = Vec::new();

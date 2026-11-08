@@ -204,7 +204,7 @@ impl TableWriter<'_> {
         let pending_option_links = std::mem::take(&mut self.pending_set_option_links);
         self.insert_set_member_links(
             pending_option_links,
-            "INSERT OR IGNORE INTO item_augment_slot_option_sets (set_id, option_id) VALUES (?1, ?2)",
+            "INSERT OR IGNORE INTO socket_option_set_bonuses (set_bonus_id, option_id) VALUES (?1, ?2)",
         )
     }
 

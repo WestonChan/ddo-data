@@ -22,11 +22,10 @@
     "feats": 1021,
     "filigrees": 445,
     "guild_buffs": 37,
-    "item_augment_slot_option_effects": 2364,
     "item_effects": 28576,
     "items": 8729,
     "legacy_items": 656,
-    "modifiers": 17598,
+    "modifiers": 15052,
     "optional_buffs": 138,
     "pack_augment_loot": 0,
     "pack_loot": 489,
@@ -36,13 +35,14 @@
     "quest_loot": 4954,
     "quests": 607,
     "races": 30,
-    "requirements": 9921,
+    "requirements": 9855,
     "saga_rewards": 51,
     "sagas": 17,
     "sentient_gems": 14,
     "set_bonus_tier_effects": 990,
     "set_bonuses": 328,
-    "socket_option_sets": 0,
+    "socket_option_effects": 901,
+    "socket_option_sets": 544,
     "sources": 8961,
     "spells": 706,
     "starter_items": 174,
@@ -53,7 +53,7 @@
     "wiki_quests": 4
   },
   "dataset": {
-    "built_at": "2026-11-08T18:30:02Z",
+    "built_at": "2026-11-08T21:51:05Z",
     "upstream_sha": "d1350a0c6ec396a65dc02680fa9801a14a79ebf3"
   },
   "schema_version": 49

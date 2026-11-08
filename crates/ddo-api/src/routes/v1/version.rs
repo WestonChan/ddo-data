@@ -99,7 +99,7 @@ const COUNTED_ROWS: &[(&str, &str)] = &[
     ("augment_effects", "augment_effects"),
     ("set_bonus_tier_effects", "set_bonus_tier_effects"),
     ("feat_effects", "feat_effects"),
-    ("item_augment_slot_option_effects", "item_augment_slot_option_effects"),
+    ("socket_option_effects", "socket_option_effects"),
     ("crafting_systems", "crafting_systems"),
     ("crafting_steps", "crafting_steps"),
     ("crafting_stations", "crafting_stations"),

@@ -21,7 +21,8 @@ pub fn data_file_bytes(root: &Path) -> Result<BTreeMap<PathBuf, Vec<u8>>> {
 }
 
 pub(super) const NOTE_KINDS_BY_TABLE: &[(&str, &[&str])] = &[
-    ("items", &["item", "item_bonus", "item_effect", "item_socket", "socket_option_bonus"]),
+    ("items", &["item", "item_bonus", "item_effect", "item_socket"]),
+    ("socket_option_sets", &["socket_option_bonus", "socket_option"]),
     ("augments", &["augment", "augment_bonus"]),
     ("quests", &["quest"]),
     ("set_bonuses", &["set_bonus", "set_tier", "set_tier_bonus"]),
@@ -54,6 +55,11 @@ pub(super) struct CorrectionNoteIndex {
 impl CorrectionNoteIndex {
     pub(super) fn from_database(db: &Connection) -> Result<Self> {
         let mut rows: BTreeMap<(String, String), Vec<CorrectionNote>> = BTreeMap::new();
+        let set_slugs = db
+            .prepare("SELECT slug FROM socket_option_sets")?
+            .query_map([], |row| row.get::<_, String>(0))?
+            .collect::<rusqlite::Result<std::collections::BTreeSet<_>>>()?;
+
         let mut renames: BTreeMap<(String, String), Vec<String>> = BTreeMap::new();
         let mut select = db.prepare(&format!(
             "SELECT {} FROM corrections ORDER BY id",
@@ -71,6 +77,9 @@ impl CorrectionNoteIndex {
                 qualifier,
                 to_value: applied_json,
             } = correction?;
+            if matches!(kind.as_str(), "socket_option" | "socket_option_bonus") {
+                ensure!(set_slugs.contains(&name), "orphan socket-option correction names absent set slug {name:?}");
+            }
             let upstream_value: serde_json::Value = serde_json::from_str(&upstream_json)?;
             let upstream = if upstream_value.is_null() {
                 None
@@ -80,7 +89,10 @@ impl CorrectionNoteIndex {
                 Some(upstream_value)
             };
             let applied: serde_json::Value = serde_json::from_str(&applied_json)?;
-            if field == "name" && !super::correction_notes::is_selection_rename(&field, &qualifier) {
+            if field == "name"
+                && kind != "socket_option"
+                && !super::correction_notes::is_selection_rename(&field, &qualifier)
+            {
                 if let Some(new_name) = applied.as_str() {
                     if new_name != name {
                         renames.entry((kind.clone(), new_name.to_string())).or_default().push(name.clone());
@@ -197,7 +209,11 @@ pub fn annotated_entities(db: &Connection) -> Result<BTreeSet<(String, i64)>> {
     }
     let notes = CorrectionNoteIndex::from_database(db)?;
     for (table, _) in NOTE_KINDS_BY_TABLE {
-        let name_column = if *table == "augment_slot_types" { "label" } else { "name" };
+        let name_column = match *table {
+            "augment_slot_types" => "label",
+            "socket_option_sets" => "slug",
+            _ => "name",
+        };
         let mut select = db.prepare(&format!("SELECT id, {name_column} FROM {table}"))?;
         for entity in select.query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)))? {
             let (id, name) = entity?;
@@ -406,6 +422,9 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
     for (id, file) in kinds::CraftingSystemFile::all_from_rows(db, &annotations, &mut modifiers)? {
         let relative = layout.path("crafting_systems", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
+    }
+    for (id, file) in kinds::SocketOptionSetFile::all_from_rows(db, &annotations, &notes, &mut modifiers)? {
+        write_export_file(root, layout.path("socket_option_sets", id)?, &typed_file_text(&file)?, &mut report)?;
     }
     for (id, file) in kinds::CraftingIngredientFile::all_from_rows(db, &annotations)? {
         write_export_file(root, layout.path("crafting_ingredients", id)?, &typed_file_text(&file)?, &mut report)?;

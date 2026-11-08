@@ -1,0 +1,823 @@
+{
+  "$defs": {
+    "Citation": {
+      "oneOf": [
+        {
+          "not": {
+            "required": [
+              "in_game"
+            ]
+          },
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "url"
+            ]
+          },
+          "required": [
+            "in_game"
+          ]
+        }
+      ],
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "in_game": {
+          "const": true,
+          "type": "boolean"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "read"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
+      "x-table": "citations"
+    },
+    "CorrectionKind": {
+      "enum": [
+        "item",
+        "effect",
+        "augment",
+        "quest",
+        "feat",
+        "enhancement",
+        "enhancement_tree",
+        "clickie",
+        "optional_buff",
+        "filigree",
+        "race",
+        "class",
+        "adventure_pack",
+        "patron",
+        "set_bonus",
+        "set_tier",
+        "set_tier_bonus",
+        "spell",
+        "augment_bonus",
+        "feat_bonus",
+        "socket_option_bonus",
+        "socket_option",
+        "item_bonus",
+        "item_effect",
+        "effect_damage",
+        "item_socket",
+        "socket_label"
+      ],
+      "type": "string"
+    },
+    "DdobuilderCorrection": {
+      "oneOf": [
+        {
+          "not": {
+            "required": [
+              "in_game"
+            ]
+          },
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "url"
+            ]
+          },
+          "required": [
+            "in_game"
+          ]
+        }
+      ],
+      "properties": {
+        "added_as_name": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "in_game": {
+          "const": true,
+          "type": "boolean"
+        },
+        "kind": {
+          "$ref": "#/$defs/CorrectionKind"
+        },
+        "original_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "upstream": {
+          "description": "Omitted when Maetrim has no value for this field."
+        },
+        "url": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reason",
+        "read"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "x-array": "ddobuilder_correction",
+      "x-table": "corrections"
+    },
+    "FileNumber": {
+      "anyOf": [
+        {
+          "format": "int64",
+          "type": "integer"
+        },
+        {
+          "format": "double",
+          "type": "number"
+        }
+      ]
+    },
+    "GameBugCorrection": {
+      "oneOf": [
+        {
+          "not": {
+            "required": [
+              "in_game"
+            ]
+          },
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "url"
+            ]
+          },
+          "required": [
+            "in_game"
+          ]
+        }
+      ],
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "in_game": {
+          "const": true,
+          "type": "boolean"
+        },
+        "intended": true,
+        "kind": {
+          "$ref": "#/$defs/CorrectionKind"
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "skip_description_check": {
+          "type": "boolean"
+        },
+        "url": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "field",
+        "intended",
+        "reason",
+        "read"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "x-array": "game_bug_correction",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "kind",
+        "field",
+        "qualifier",
+        "intended_value",
+        "skip_description_check",
+        "reason",
+        "url",
+        "in_game",
+        "read"
+      ],
+      "x-table": "game_bug_corrections"
+    },
+    "Modifier": {
+      "additionalProperties": false,
+      "properties": {
+        "amount_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "amounts": {
+          "items": {
+            "$ref": "#/$defs/FileNumber"
+          },
+          "type": "array"
+        },
+        "apply_as_item_effect": {
+          "type": "boolean"
+        },
+        "bonus": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "cap": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "damage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dice_bonus": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "dice_damage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dice_number": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "dice_sides": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "display_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effect": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "effects"
+        },
+        "effect_type": {
+          "type": "string"
+        },
+        "extra_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "is_item_specific": {
+          "type": "boolean"
+        },
+        "is_rare": {
+          "type": "boolean"
+        },
+        "percent": {
+          "type": "boolean"
+        },
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rank": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        },
+        "requirement_group": {
+          "items": {
+            "$ref": "#/$defs/RequirementGroup"
+          },
+          "type": "array"
+        },
+        "stack_source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "targets": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "effect_type"
+      ],
+      "type": "object",
+      "x-columns": [
+        "source_kind",
+        "source_id",
+        "sort_order",
+        "amount_type",
+        "amounts",
+        "apply_as_item_effect",
+        "bonus",
+        "bonus_type_id",
+        "cap",
+        "damage",
+        "dice_bonus",
+        "dice_damage",
+        "dice_number",
+        "dice_sides",
+        "display_name",
+        "effect_id",
+        "effect_type",
+        "extra_types",
+        "is_item_specific",
+        "is_rare",
+        "percent",
+        "rank",
+        "stack_source",
+        "targets",
+        "value"
+      ],
+      "x-table": "modifiers"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "req_type": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "req_type"
+      ],
+      "type": "object",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "group_kind",
+        "group_index",
+        "sort_order",
+        "items",
+        "req_type",
+        "value"
+      ],
+      "x-table": "requirements"
+    },
+    "RequirementGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "SocketGrant": {
+      "additionalProperties": false,
+      "properties": {
+        "slot": {
+          "type": "string",
+          "x-reference-kind": "augment_slot_types"
+        }
+      },
+      "required": [
+        "slot"
+      ],
+      "type": "object",
+      "x-columns": [
+        "option_id",
+        "sort_order",
+        "slot_id"
+      ],
+      "x-table": "socket_option_grants"
+    },
+    "SocketOption": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effect": {
+          "items": {
+            "$ref": "#/$defs/SocketOptionEffect"
+          },
+          "type": "array"
+        },
+        "grant": {
+          "items": {
+            "$ref": "#/$defs/SocketGrant"
+          },
+          "type": "array"
+        },
+        "icon": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-image-kind": ""
+        },
+        "min_level": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "modifier": {
+          "items": {
+            "$ref": "#/$defs/Modifier"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "set": {
+          "items": {
+            "$ref": "#/$defs/SocketSet"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "x-columns": [
+        "id",
+        "set_id",
+        "option_order",
+        "name",
+        "description",
+        "icon",
+        "min_level"
+      ],
+      "x-table": "socket_options"
+    },
+    "SocketOptionEffect": {
+      "additionalProperties": false,
+      "properties": {
+        "alias": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "effect": {
+          "type": "string",
+          "x-reference-kind": "effects"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "value2": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "effect"
+      ],
+      "type": "object",
+      "x-columns": [
+        "option_id",
+        "sort_order",
+        "bonus_type_id",
+        "effect_id",
+        "alias",
+        "value",
+        "value2"
+      ],
+      "x-table": "socket_option_effects"
+    },
+    "SocketSet": {
+      "additionalProperties": false,
+      "properties": {
+        "set": {
+          "type": "string",
+          "x-reference-kind": "set_bonuses"
+        }
+      },
+      "required": [
+        "set"
+      ],
+      "type": "object",
+      "x-columns": [
+        "option_id",
+        "set_bonus_id"
+      ],
+      "x-table": "socket_option_set_bonuses"
+    },
+    "VerificationRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "assumed": true,
+        "field": {
+          "type": "string"
+        },
+        "kind": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CorrectionKind"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "raised": {
+          "type": "string"
+        },
+        "source": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/VerificationRequestSource"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "question",
+        "assumed",
+        "raised"
+      ],
+      "type": "object",
+      "x-array": "verification_request",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "kind",
+        "field",
+        "qualifier",
+        "question",
+        "assumed_value",
+        "raised"
+      ],
+      "x-table": "verification_requests"
+    },
+    "VerificationRequestSource": {
+      "oneOf": [
+        {
+          "not": {
+            "required": [
+              "in_game"
+            ]
+          },
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "url"
+            ]
+          },
+          "required": [
+            "in_game"
+          ]
+        }
+      ],
+      "properties": {
+        "in_game": {
+          "const": true,
+          "type": "boolean"
+        },
+        "read": {
+          "type": "string"
+        },
+        "says": {
+          "type": "string"
+        },
+        "url": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "says",
+        "read"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "x-array": "source",
+      "x-columns": [
+        "request_id",
+        "sort_order",
+        "says",
+        "url",
+        "in_game",
+        "read"
+      ],
+      "x-table": "verification_request_sources"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "citation": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "type": "array"
+    },
+    "ddobuilder_correction": {
+      "items": {
+        "$ref": "#/$defs/DdobuilderCorrection"
+      },
+      "type": "array"
+    },
+    "game_bug_correction": {
+      "items": {
+        "$ref": "#/$defs/GameBugCorrection"
+      },
+      "type": "array"
+    },
+    "label": {
+      "type": "string",
+      "x-reference-kind": "augment_slot_types"
+    },
+    "name": {
+      "type": "string"
+    },
+    "option": {
+      "items": {
+        "$ref": "#/$defs/SocketOption"
+      },
+      "type": "array"
+    },
+    "variant": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verification_request": {
+      "items": {
+        "$ref": "#/$defs/VerificationRequest"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "label",
+    "name",
+    "option"
+  ],
+  "title": "SocketOptionSetFile",
+  "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "slot_id",
+    "name",
+    "variant"
+  ],
+  "x-table": "socket_option_sets"
+}

@@ -224,7 +224,7 @@ pub struct ItemAugmentSlot {
     pub options: Vec<AugmentSlotOption>,
 }
 
-#[derive(Debug, Default)]
+#[derive(Debug, Clone, PartialEq, Default)]
 pub struct AugmentSlotOption {
     pub name: String,
     pub description: String,

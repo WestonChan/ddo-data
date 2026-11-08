@@ -142,6 +142,10 @@ enum FolderPlacement<'a> {
         family: &'a str,
     },
     CraftingIngredient(&'a BTreeSet<i64>),
+    SocketOptionSet {
+        items: &'a BTreeSet<i64>,
+        label: &'a str,
+    },
     Filigrees(&'a [(i64, String)]),
     Character {
         kind: &'a str,
@@ -158,6 +162,18 @@ fn narrowest_folder(
     packs: &[String],
 ) -> Result<PathBuf> {
     match placement {
+        FolderPlacement::SocketOptionSet { items, label } => {
+            let packs = items
+                .iter()
+                .map(|id| paths[&("items".into(), *id)].components().take(2).collect::<PathBuf>())
+                .collect::<BTreeSet<_>>();
+            let pack = if packs.len() == 1 && packs.first().unwrap() != Path::new("packs/unsourced") {
+                packs.first().unwrap().clone()
+            } else {
+                PathBuf::from("packs/shared")
+            };
+            Ok(pack.join("sockets").join(slug(label)))
+        }
         FolderPlacement::CraftingIngredient(systems) => Ok(if systems.len() == 1 {
             paths[&("crafting_systems".into(), *systems.first().unwrap())].parent().unwrap().join("ingredients")
         } else {
@@ -539,6 +555,36 @@ impl ExportLayout {
             )?;
             paths.insert(("items".to_string(), id), folder.join(format!("{identity}.toml")));
         }
+        let mut set_items = BTreeMap::<i64, BTreeSet<i64>>::new();
+        let mut select =
+            db.prepare("SELECT option_set_id,item_id FROM item_augment_slots WHERE option_set_id IS NOT NULL")?;
+        for row in select.query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, i64>(1)?)))? {
+            let (set, item) = row?;
+            set_items.entry(set).or_default().insert(item);
+        }
+        let mut select = db.prepare(
+            "SELECT s.id,s.name,l.label,s.variant FROM socket_option_sets s JOIN augment_slot_types l ON l.id=s.slot_id",
+        )?;
+        for row in select.query_map([], |row| {
+            Ok((
+                row.get::<_, i64>(0)?,
+                row.get::<_, String>(1)?,
+                row.get::<_, String>(2)?,
+                row.get::<_, Option<String>>(3)?,
+            ))
+        })? {
+            let (id, name, label, variant) = row?;
+            let identity = super::qualified_slug(&name, variant.as_deref());
+            let items = set_items.remove(&id).unwrap_or_default();
+            let folder = narrowest_folder(
+                FolderPlacement::SocketOptionSet { items: &items, label: &label },
+                &folders,
+                &paths,
+                &aliases,
+                &packs,
+            )?;
+            paths.insert(("socket_option_sets".into(), id), folder.join(format!("{identity}.toml")));
+        }
         let mut systems_by_family = BTreeMap::<String, BTreeSet<i64>>::new();
         let mut select = db.prepare("SELECT family.family, system.id FROM crafting_system_families family JOIN crafting_systems system ON system.id = family.system_id")?;
         for row in select.query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?)))? {
@@ -828,7 +874,11 @@ impl DataFilePaths {
             .collect();
         let notes = super::export::CorrectionNoteIndex::from_database(db)?;
         for ((table, id), fields) in &rows {
-            let name_column = if table == "augment_slot_types" { "label" } else { "name" };
+            let name_column = match table.as_str() {
+                "augment_slot_types" => "label",
+                "socket_option_sets" => "slug",
+                _ => "name",
+            };
             let Some(name) = fields.get(name_column).and_then(crate::delta::sql_text) else {
                 continue;
             };

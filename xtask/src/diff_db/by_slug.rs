@@ -475,6 +475,11 @@ mod tests {
         normalize_response(&mut response, &mut baseline, Some("effects")).unwrap();
         assert_eq!(response["id"], format!("effects/{expected_slug}"));
         assert_eq!(response["bonuses"][0]["effect_id"], response["id"]);
+        let mut sets = db.prepare("SELECT id,slug FROM socket_option_sets").unwrap();
+        for row in sets.query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?))).unwrap() {
+            let (id, slug) = row.unwrap();
+            assert_eq!(baseline.identity("socket_option_sets", id).unwrap(), format!("socket_option_sets/{slug}"));
+        }
         assert!(baseline
             .identity("effects", i64::MAX)
             .unwrap_err()

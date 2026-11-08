@@ -56,6 +56,12 @@ exemplar!(
     CraftingStationsFile,
     concat!("[[row]]\nname = \"Template Station\"\nkind = \"interface\"\n", whole_entity_citation!("row."))
 );
+impl FileTemplate for SocketOptionSetFile {
+    const EXEMPLAR: &'static str = concat!(
+        "label = \"crafting: template socket\"\nname = \"Template Choice\"\n[[option]]\nname = \"Template Choice\"\n",
+        whole_entity_citation!("")
+    );
+}
 exemplar!(
     CraftingSystemFile,
     concat!("name = \"Template Crafting\"\npage = \"https://ddowiki.com/page/Template\"\n", whole_entity_citation!(""), "\n[[recipe]]\noption = \"Template Recipe\"\ntier = \"any\"\n\n[[recipe.ingredient]]\ningredient = \"Template Ingredient\"\nquantity = 1\n")

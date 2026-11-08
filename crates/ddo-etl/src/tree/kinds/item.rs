@@ -1,4 +1,5 @@
 use super::super::file_types::*;
+use super::socket_option_set::SocketOption;
 use crate::tree::tables::Modifier;
 use anyhow::{ensure, Context, Result};
 use rusqlite::Connection;
@@ -6,47 +7,6 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use std::path::Path;
-
-database_record! {
-    #[derive(Debug, Serialize, Deserialize, JsonSchema)]
-    #[serde(deny_unknown_fields)]
-    pub(crate) struct SocketOptionEffect in "item_augment_slot_option_effects" {
-        keys { option_id: i64, sort_order: i64 }
-        fields {
-            #[serde(default, skip_serializing_if = "Option::is_none")]
-            bonus_type: Option<String> => bonus_type_id [optional_reference "bonus_types"],
-            effect: String => effect_id [reference "effects"],
-            #[serde(default, skip_serializing_if = "Option::is_none")]
-            alias: Option<String> => alias,
-            #[serde(default, skip_serializing_if = "Option::is_none")]
-            value: Option<i64> => value,
-            #[serde(default, skip_serializing_if = "Option::is_none")]
-            value2: Option<i64> => value2,
-        }
-    }
-}
-
-database_record! {
-    #[derive(Debug, Serialize, Deserialize, JsonSchema)]
-    #[serde(deny_unknown_fields)]
-    pub(crate) struct SocketGrant in "item_augment_slot_option_grants" {
-        keys { option_id: i64, sort_order: i64 }
-        fields {
-            slot: String => slot_id [reference "augment_slot_types" "label"],
-        }
-    }
-}
-
-database_record! {
-    #[derive(Debug, Serialize, Deserialize, JsonSchema)]
-    #[serde(deny_unknown_fields)]
-    pub(crate) struct SocketSet in "item_augment_slot_option_sets" {
-        keys { option_id: i64 }
-        fields {
-            set: String => set_id [reference "set_bonuses"],
-        }
-    }
-}
 
 database_record! {
     #[derive(Debug, Serialize, Deserialize, JsonSchema)]
@@ -125,37 +85,17 @@ database_record! {
 database_record! {
     #[derive(Debug, Serialize, Deserialize, JsonSchema)]
     #[serde(deny_unknown_fields)]
-    pub(crate) struct SocketOption in "item_augment_slot_options" {
-        keys { id: Option<i64>, item_id: i64, slot_order: i64, option_order: i64 }
-        fields {
-            name: String => name,
-            #[serde(default, skip_serializing_if = "Option::is_none")]
-            description: Option<String> => description,
-            #[serde(default, skip_serializing_if = "Option::is_none")]
-            icon: Option<String> => icon [image ""],
-            #[serde(default, skip_serializing_if = "Option::is_none")]
-            min_level: Option<i64> => min_level,
-        }
-        attached {
-            #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            effect: Vec<SocketOptionEffect>,
-            #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            grant: Vec<SocketGrant>,
-            #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            modifier: Vec<Modifier>,
-            #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            set: Vec<SocketSet>,
-        }
-    }
-}
-
-database_record! {
-    #[derive(Debug, Serialize, Deserialize, JsonSchema)]
-    #[serde(deny_unknown_fields)]
     pub(crate) struct Socket in "item_augment_slots" {
+        context { option_set_id: Option<i64> }
         keys { item_id: i64, sort_order: i64 }
         fields {
             slot: String => slot_id [reference "augment_slot_types" "label"],
+            #[serde(default, rename = "set", skip_serializing_if = "Option::is_none")]
+            option_set: Option<String> => option_set_id [resolved_reference "socket_option_sets" option_set_id],
+        }
+        projected {
+            #[serde(default, skip_serializing_if = "Option::is_none")]
+            set_variant: Option<String> => "(SELECT variant FROM socket_option_sets WHERE id=item_augment_slots.option_set_id)",
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -280,24 +220,6 @@ database_record! {
 
 }
 
-fn socket_option_for_id<'a>(
-    files: &'a mut BTreeMap<i64, ItemFile>,
-    locations: &BTreeMap<i64, (i64, usize, usize)>,
-    option_id: i64,
-) -> Result<&'a mut SocketOption> {
-    let &(item_id, socket_index, option_index) =
-        locations.get(&option_id).with_context(|| format!("socket option {option_id} has no parent"))?;
-    files
-        .get_mut(&item_id)
-        .with_context(|| format!("socket option {option_id} has no item {item_id}"))?
-        .socket
-        .get_mut(socket_index)
-        .with_context(|| format!("socket option {option_id} has no socket {socket_index}"))?
-        .option
-        .get_mut(option_index)
-        .with_context(|| format!("socket option {option_id} has no entry {option_index}"))
-}
-
 impl ItemFile {
     pub(in crate::tree) fn insert_modifiers(&self, db: &Connection, path: &Path, id: i64) -> Result<usize> {
         self.modifier.iter().enumerate().try_fold(0, |count, (position, modifier)| {
@@ -379,61 +301,6 @@ impl ItemFile {
             socket_locations.insert((id, order), sockets.len());
             sockets.push(socket);
         }
-        let mut option_locations = BTreeMap::new();
-        let mut options = db.prepare(&format!(
-            "SELECT {} FROM item_augment_slot_options ORDER BY item_id, slot_order, option_order",
-            SocketOption::select_columns()
-        ))?;
-        for row in options.query_map([], |row| {
-            Ok((
-                row.get::<_, i64>("id")?,
-                row.get::<_, i64>("item_id")?,
-                row.get::<_, i64>("slot_order")?,
-                row.get::<_, i64>("option_order")?,
-                SocketOption::from_row(row)?,
-            ))
-        })? {
-            let (option_id, item_id, socket_index, option_index, option) = row?;
-            let socket_index = *socket_locations
-                .get(&(item_id, socket_index))
-                .with_context(|| format!("option {option_id} has no socket at order {socket_index}"))?;
-            let option_index = usize::try_from(option_index)?;
-            let socket = files
-                .get_mut(&item_id)
-                .with_context(|| format!("option {option_id} has no item {item_id}"))?
-                .socket
-                .get_mut(socket_index)
-                .with_context(|| format!("option {option_id} has no socket {socket_index}"))?;
-            ensure!(socket.option.len() == option_index, "option {option_id} has a gap in array order");
-            socket.option.push(option);
-            option_locations.insert(option_id, (item_id, socket_index, option_index));
-        }
-        let mut select = db.prepare(&format!(
-            "SELECT {} FROM item_augment_slot_option_grants ORDER BY option_id, sort_order",
-            SocketGrant::select_columns()
-        ))?;
-        for row in select.query_map([], |row| Ok((row.get::<_, i64>("option_id")?, SocketGrant::from_row(row)?)))? {
-            let (id, record) = row?;
-            socket_option_for_id(&mut files, &option_locations, id)?.grant.push(record);
-        }
-        let mut select = db.prepare(&format!(
-            "SELECT {} FROM item_augment_slot_option_sets ORDER BY option_id, rowid",
-            SocketSet::select_columns()
-        ))?;
-        for row in select.query_map([], |row| Ok((row.get::<_, i64>("option_id")?, SocketSet::from_row(row)?)))? {
-            let (id, record) = row?;
-            socket_option_for_id(&mut files, &option_locations, id)?.set.push(record);
-        }
-        let mut select = db.prepare(&format!(
-            "SELECT {} FROM item_augment_slot_option_effects ORDER BY option_id, sort_order",
-            SocketOptionEffect::select_columns()
-        ))?;
-        for row in
-            select.query_map([], |row| Ok((row.get::<_, i64>("option_id")?, SocketOptionEffect::from_row(row)?)))?
-        {
-            let (id, record) = row?;
-            socket_option_for_id(&mut files, &option_locations, id)?.effect.push(record);
-        }
         for (id, entries) in std::mem::take(&mut source_rows.items) {
             let file = files.get_mut(&id).with_context(|| format!("sources have no item {id}"))?;
             if let Some(drop_location) = &file.drop_location {
@@ -466,22 +333,31 @@ impl ItemFile {
                 file.modifier.push(record);
             }
         }
-        for option_id in option_locations.keys().copied().collect::<Vec<_>>() {
-            let Some(entries) = modifier_rows.remove(&("item_augment_slot_option".to_string(), option_id)) else {
-                continue;
-            };
-            let option = socket_option_for_id(&mut files, &option_locations, option_id)?;
-            for record in entries {
-                option.modifier.push(record);
-            }
-        }
         Ok(files)
     }
 
     pub(in crate::tree) fn insert_sockets(&self, db: &Connection, path: &Path, id: i64) -> Result<usize> {
         for (position, socket) in self.socket.iter().enumerate() {
+            ensure!(
+                socket.option_set.is_none() || socket.option.is_empty(),
+                "{}: socket {:?} cannot carry both set and option rows",
+                path.display(),
+                socket.slot
+            );
+            ensure!(
+                socket.option_set.is_some() || socket.set_variant.is_none(),
+                "{}: socket set_variant requires set",
+                path.display()
+            );
+            let set = socket
+                .option_set
+                .as_deref()
+                .map(|name| {
+                    crate::tree::crafting::socket_option_set_id(db, &socket.slot, name, socket.set_variant.as_deref())
+                })
+                .transpose()?;
             socket
-                .insert(db, id, position as i64)
+                .insert(db, set, id, position as i64)
                 .with_context(|| format!("{}: socket {:?}", path.display(), socket.slot))?;
         }
         Ok(self.socket.len())
@@ -537,35 +413,6 @@ impl ItemFile {
             bypass.insert(db, id)?;
         }
         Ok(1 + self.armor.len() + self.dr_bypass.len())
-    }
-}
-
-impl ItemFile {
-    pub(in crate::tree) fn insert_socket_options(&self, db: &Connection, id: i64) -> Result<usize> {
-        let mut count = 0;
-        for (slot_order, socket) in self.socket.iter().enumerate() {
-            for (option_order, option) in socket.option.iter().enumerate() {
-                option.insert(db, None, id, slot_order as i64, option_order as i64)?;
-                let option_id = db.last_insert_rowid();
-                count += 1;
-                for (position, grant) in option.grant.iter().enumerate() {
-                    grant.insert(db, option_id, position as i64)?;
-                    count += 1;
-                }
-                for set in &option.set {
-                    set.insert(db, option_id)?;
-                    count += 1;
-                }
-                for (position, effect) in option.effect.iter().enumerate() {
-                    effect.insert(db, option_id, position as i64)?;
-                    count += 1;
-                }
-                for (position, modifier) in option.modifier.iter().enumerate() {
-                    count += modifier.write_modifier(db, "item_augment_slot_option", option_id, position as i64)?;
-                }
-            }
-        }
-        Ok(count)
     }
 }
 
@@ -672,6 +519,6 @@ mod tests {
             assert_eq!(restored.len(), counts.len() + 1);
             counts.push(QUERY_COUNT.load(Ordering::SeqCst));
         }
-        assert_eq!(counts, vec![11, 11]);
+        assert_eq!(counts, vec![7, 7]);
     }
 }

@@ -5,7 +5,7 @@ use ddo_model::enums::{BonusType, CorrectionKind};
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(super) enum BonusOwnerKind {
     Item,
-    ItemAugmentSlotOption,
+    SocketOption,
     Augment,
     Feat,
     SetBonusTier,
@@ -15,7 +15,7 @@ impl BonusOwnerKind {
     pub(super) const fn bonus_link_correction_kind(self) -> CorrectionKind {
         match self {
             Self::Item => CorrectionKind::ItemBonus,
-            Self::ItemAugmentSlotOption => CorrectionKind::SocketOptionBonus,
+            Self::SocketOption => CorrectionKind::SocketOptionBonus,
             Self::Augment => CorrectionKind::AugmentBonus,
             Self::Feat => CorrectionKind::FeatBonus,
             Self::SetBonusTier => CorrectionKind::SetTierBonus,
@@ -25,7 +25,7 @@ impl BonusOwnerKind {
     const fn as_str(self) -> &'static str {
         match self {
             Self::Item => "item",
-            Self::ItemAugmentSlotOption => "augment slot option of item",
+            Self::SocketOption => "socket option set",
             Self::Augment => "augment",
             Self::Feat => "feat",
             Self::SetBonusTier => "set bonus tier of",
@@ -34,7 +34,8 @@ impl BonusOwnerKind {
 
     const fn untyped_bonus_correction_kind(self) -> Option<CorrectionKind> {
         match self {
-            Self::Item | Self::ItemAugmentSlotOption => Some(CorrectionKind::ItemBonus),
+            Self::Item => Some(CorrectionKind::ItemBonus),
+            Self::SocketOption => Some(CorrectionKind::SocketOptionBonus),
             Self::Augment => Some(CorrectionKind::AugmentBonus),
             Self::Feat | Self::SetBonusTier => None,
         }
@@ -43,7 +44,7 @@ impl BonusOwnerKind {
     const fn bonus_source_word(self) -> &'static str {
         match self {
             Self::Item => "buff",
-            Self::ItemAugmentSlotOption | Self::Augment | Self::Feat | Self::SetBonusTier => "effect",
+            Self::SocketOption | Self::Augment | Self::Feat | Self::SetBonusTier => "effect",
         }
     }
 }
@@ -53,6 +54,7 @@ pub(super) struct BonusOwner<'a> {
     pub(super) kind: BonusOwnerKind,
     pub(super) name: &'a str,
     pub(super) family: Option<&'a str>,
+    pub(super) option: Option<&'a str>,
 }
 
 pub(super) struct BonusOrigin<'a> {
@@ -102,6 +104,7 @@ impl<'a> UntypedBonusCorrections<'a> {
             let correction = typing_correction.correction;
             Some(correction.kind) == correction_kind
                 && correction.name == owner.name
+                && correction.option.as_deref() == owner.option
                 && correction.family.as_deref().is_none_or(|family| Some(family) == owner.family)
                 && correction.stat.as_deref() == Some(*target_name)
                 && correction.bonus_value.is_none_or(|bonus_value| Some(bonus_value) == *value)

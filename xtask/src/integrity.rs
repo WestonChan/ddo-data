@@ -718,7 +718,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     IntegrityCheck::warn(
         "slot_types_no_augment_fits",
         "socket types no augment fits, with how many item sockets carry each. A socket an augment slot option \
-         grants, or one holding the options an item upgrades through (item_augment_slot_options), is filled by \
+         grants, or one holding the options an item upgrades through (socket_options), is filled by \
          those options and is not listed. Three stay on a full upstream build: Cannith Weapon Extra on the crafting \
          tutorial's Fire Touch Heavy Mace, which no Cannith augment in Maetrim's files fits, and Random Effect 1 and \
          2 on +5 Engraved Cormyrian Leather Armor, whose random effects his files do not model",
@@ -726,9 +726,9 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
             "SELECT t.label, t.id, (SELECT COUNT(*) FROM item_augment_slots s WHERE s.slot_id = t.id) \
              || ' item socket(s)' FROM augment_slot_types t \
              WHERE NOT EXISTS (SELECT 1 FROM augment_slots a WHERE a.slot_id = t.id) \
-             AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_grants g WHERE g.slot_id = t.id) \
-             AND NOT EXISTS (SELECT 1 FROM item_augment_slots s JOIN item_augment_slot_options o \
-             ON o.item_id = s.item_id AND o.slot_order = s.sort_order WHERE s.slot_id = t.id) ORDER BY t.label",
+             AND NOT EXISTS (SELECT 1 FROM socket_option_grants g WHERE g.slot_id = t.id) \
+             AND NOT EXISTS (SELECT 1 FROM item_augment_slots s JOIN socket_options o \
+             ON o.set_id = s.option_set_id WHERE s.slot_id = t.id) ORDER BY t.label",
         ),
     )
     .showing_every_offender(),
@@ -743,7 +743,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
              FROM set_bonuses s \
              WHERE NOT EXISTS (SELECT 1 FROM set_bonus_items i WHERE i.set_id = s.id) \
              AND NOT EXISTS (SELECT 1 FROM set_bonus_augments a WHERE a.set_id = s.id) \
-             AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_sets o WHERE o.set_id = s.id) \
+             AND NOT EXISTS (SELECT 1 FROM socket_option_set_bonuses o WHERE o.set_bonus_id = s.id) \
              AND NOT EXISTS (SELECT 1 FROM filigrees f WHERE f.set_id = s.id) ORDER BY s.name",
         ),
     )
@@ -2243,11 +2243,9 @@ fn effect_descriptions_with_fewer_critical_dice_than_hit_dice(
 fn owner_names_disagree_with_linked_effects(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let mut offenders = Vec::new();
     for effect_name in EFFECT_MAP.named_effect_ids.keys() {
-        for (owner_table, link_table, owner_column) in [
-            ("augments", "augment_effects", "augment_id"),
-            ("item_augment_slot_options", "item_augment_slot_option_effects", "option_id"),
-            ("socket_options", "socket_option_effects", "option_id"),
-        ] {
+        for (owner_table, link_table, owner_column) in
+            [("augments", "augment_effects", "augment_id"), ("socket_options", "socket_option_effects", "option_id")]
+        {
             let sql = format!(
                 "SELECT owner.name, owner.id, 'names ' || ?1 || ' but links other effects'
                    FROM {owner_table} owner

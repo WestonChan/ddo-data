@@ -90,10 +90,10 @@ pub(super) fn item_records(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64,
         t.label, t.family, t.variant, t.qualifier FROM item_augment_slots s
         JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.item_id IN ({ids}) ORDER BY s.item_id, s.sort_order",
     )?;
-    let mut options = grouped_rows(db, ids, "SELECT o.item_id AS owner_id, o.slot_order, o.id AS option_id, o.name, o.description,
-        o.min_level, o.icon, (SELECT t.label FROM item_augment_slot_option_grants g
+    let mut options = grouped_rows(db, ids, "SELECT socket.item_id AS owner_id, socket.sort_order AS slot_order, o.id AS option_id, o.name, o.description,
+        o.min_level, o.icon, (SELECT t.label FROM socket_option_grants g
         JOIN augment_slot_types t ON t.id = g.slot_id WHERE g.option_id = o.id ORDER BY g.sort_order LIMIT 1) AS grants_slot
-        FROM item_augment_slot_options o WHERE o.item_id IN ({ids}) ORDER BY o.item_id, o.slot_order, o.option_order")?;
+        FROM socket_options o JOIN item_augment_slots socket ON socket.option_set_id=o.set_id WHERE socket.item_id IN ({ids}) ORDER BY socket.item_id, socket.sort_order, o.option_order")?;
     let option_ids: Vec<i64> = options
         .values()
         .flatten()
@@ -101,21 +101,21 @@ pub(super) fn item_records(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64,
             option["option_id"].as_i64().ok_or_else(|| anyhow::anyhow!("item augment option has no numeric id"))
         })
         .collect::<Result<_, _>>()?;
-    let mut option_sets = grouped_rows(
+    let option_sets = grouped_rows(
         db,
         &option_ids,
         "SELECT os.option_id AS owner_id, s.id, s.slug, s.name
-        FROM item_augment_slot_option_sets os JOIN set_bonuses s ON s.id = os.set_id
+        FROM socket_option_set_bonuses os JOIN set_bonuses s ON s.id = os.set_bonus_id
         WHERE os.option_id IN ({ids}) ORDER BY os.option_id, s.name",
     )?;
-    let mut option_effects = effects_via(
+    let option_effects = effects_via(
         db,
-        "item_augment_slot_option_effects",
+        "socket_option_effects",
         "option_id",
         &format!("j.option_id IN ({})", sql_integer_list(&option_ids)),
         [],
     )?;
-    let mut option_modifiers = modifiers_for_owners(db, "item_augment_slot_option", &option_ids)?;
+    let option_modifiers = modifiers_for_owners(db, "socket_option", &option_ids)?;
     for (item_id, item) in &mut items {
         let mut item_slots = slots.remove(item_id).unwrap_or_default();
         let mut options_by_slot = BTreeMap::<i64, Vec<Value>>::new();
@@ -129,9 +129,9 @@ pub(super) fn item_records(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64,
                 .as_object_mut()
                 .ok_or_else(|| anyhow::anyhow!("item augment option is not an object"))?
                 .remove("slot_order");
-            option["sets"] = Value::Array(option_sets.remove(&option_id).unwrap_or_default());
-            option["effects"] = Value::Array(option_effects.remove(&option_id).unwrap_or_default());
-            option["modifiers"] = Value::Array(option_modifiers.remove(&option_id).unwrap_or_default());
+            option["sets"] = Value::Array(option_sets.get(&option_id).cloned().unwrap_or_default());
+            option["effects"] = Value::Array(option_effects.get(&option_id).cloned().unwrap_or_default());
+            option["modifiers"] = Value::Array(option_modifiers.get(&option_id).cloned().unwrap_or_default());
             option.as_object_mut().expect("slot option").remove("option_id");
             options_by_slot.entry(slot_order).or_default().push(option);
         }

@@ -19,7 +19,7 @@ pub const ICON_KIND_SOURCE_FOLDERS: &[(&str, &str)] = &[
 
 pub const ICON_TABLE_KINDS: &[(&str, &str)] = &[
     ("items", "items"),
-    ("item_augment_slot_options", "augments"),
+    ("socket_options", "augments"),
     ("augments", "augments"),
     ("feats", "feats"),
     ("enhancements", "enhancements"),
@@ -48,6 +48,7 @@ pub struct IconCompletionReport {
 pub fn icon_kind_for_data_path(path: &Path) -> Option<(&'static str, &'static str)> {
     match crate::tree::file_kind(Path::new(""), path).ok()? {
         "Augment" => Some(("augments", "augments")),
+        "SocketOptionSet" => Some(("socket_options", "augments")),
         "Item" => Some(("items", "items")),
         "Set" => Some(("set_bonuses", "sets")),
         "OptionalBuffs" => Some(("optional_buffs", "*")),

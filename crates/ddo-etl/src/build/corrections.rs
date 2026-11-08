@@ -146,8 +146,14 @@ fn apply_correction(
     row_ids.sort_unstable();
     row_ids.dedup();
     if row_ids.is_empty() {
-        if correction.targets_socket_option() && id_named(transaction, "items", &correction.name)?.is_some() {
-            if correction.from.as_text() == Some(NO_SUCH_BONUS) {
+        if correction.targets_socket_option() {
+            if correction.from.as_text() == Some(NO_SUCH_BONUS)
+                && transaction.query_row(
+                    "SELECT EXISTS(SELECT 1 FROM socket_option_sets WHERE slug=?1)",
+                    [&correction.name],
+                    |row| row.get::<_, bool>(0),
+                )?
+            {
                 return record_applied_correction(transaction, correction, report);
             }
             record_stale_correction(
@@ -627,57 +633,91 @@ fn write_correction(
     Ok(())
 }
 
+#[derive(Clone)]
 struct SocketOptionLocation {
     id: i64,
-    socket_order: i64,
     option_order: i64,
 }
 
 pub(crate) struct SocketOptionTargets {
-    options_by_names: HashMap<(String, String, String), Vec<SocketOptionLocation>>,
-    item_names: HashMap<i64, String>,
+    options_by_names: HashMap<(String, String), Vec<SocketOptionLocation>>,
+    set_slugs: HashMap<i64, String>,
 }
 
 impl SocketOptionTargets {
+    pub(crate) fn include_upstream_names(&mut self, corrections: &Corrections) {
+        for correction in &corrections.entries {
+            if correction.kind != CorrectionKind::SocketOption || correction.field != "name" {
+                continue;
+            }
+            let Some(target) = correction.to.as_text() else { continue };
+            let upstream = match &correction.from {
+                CorrectionValue::Text(name) => vec![name.as_str()],
+                CorrectionValue::Texts(names) => names.iter().map(String::as_str).collect(),
+                _ => continue,
+            };
+            let locations = upstream
+                .into_iter()
+                .filter_map(|name| self.options_by_names.get(&(correction.name.clone(), name.to_string())))
+                .flatten()
+                .cloned()
+                .collect::<Vec<_>>();
+            if !locations.is_empty() {
+                self.options_by_names.entry((correction.name.clone(), target.to_string())).or_insert(locations);
+            }
+        }
+    }
+
     pub(crate) fn from_database(db: &rusqlite::Connection) -> Result<Self> {
-        let mut targets = Self { options_by_names: HashMap::new(), item_names: HashMap::new() };
+        let mut targets = Self { options_by_names: HashMap::new(), set_slugs: HashMap::new() };
         let mut statement = db.prepare(
-            "SELECT item.id, item.name, slot_type.label, option.name, option.id, option.slot_order, option.option_order
-             FROM item_augment_slot_options option JOIN items item ON item.id = option.item_id
-             JOIN item_augment_slots socket ON socket.item_id = option.item_id AND socket.sort_order = option.slot_order
-             JOIN augment_slot_types slot_type ON slot_type.id = socket.slot_id
-             ORDER BY item.id, option.slot_order, option.option_order",
+            "SELECT s.id,s.slug,o.name,o.id,o.option_order FROM socket_options o
+             JOIN socket_option_sets s ON s.id=o.set_id ORDER BY s.slug,o.option_order",
         )?;
         let mut rows = statement.query([])?;
         while let Some(row) = rows.next()? {
             let name: String = row.get(1)?;
-            targets.item_names.insert(row.get(0)?, name.clone());
-            targets.options_by_names.entry((name, row.get(2)?, row.get(3)?)).or_default().push(SocketOptionLocation {
-                id: row.get(4)?,
-                socket_order: row.get(5)?,
-                option_order: row.get(6)?,
-            });
+            targets.set_slugs.insert(row.get(0)?, name.clone());
+            targets
+                .options_by_names
+                .entry((name, row.get(2)?))
+                .or_default()
+                .push(SocketOptionLocation { id: row.get(3)?, option_order: row.get(4)? });
         }
         Ok(targets)
     }
 
-    pub(crate) fn option_id(&self, correction: &Correction, item_name: &str) -> Result<Option<i64>> {
-        let socket = correction.socket.as_deref().context("socket-option correction needs a socket label")?;
+    pub(crate) fn option_id(&self, correction: &Correction, set_slug: &str) -> Result<Option<i64>> {
         let option = correction.option.as_deref().context("socket-option correction needs an option name")?;
-        let matches = self
-            .options_by_names
-            .get(&(item_name.to_string(), socket.to_string(), option.to_string()))
-            .map(Vec::as_slice)
-            .unwrap_or_default();
+        let direct = self.options_by_names.get(&(set_slug.to_string(), option.to_string()));
+        let (matches, order) = if let Some(matches) = direct {
+            (matches.as_slice(), None)
+        } else if let Some((name, order)) =
+            option.rsplit_once('#').and_then(|(name, order)| order.parse::<i64>().ok().map(|order| (name, order)))
+        {
+            (
+                self.options_by_names
+                    .get(&(set_slug.to_string(), name.to_string()))
+                    .map(Vec::as_slice)
+                    .unwrap_or_default(),
+                Some(order),
+            )
+        } else {
+            (&[][..], None)
+        };
+        let matches = matches
+            .iter()
+            .filter(|location| order.is_none_or(|order| order == location.option_order))
+            .collect::<Vec<_>>();
         ensure!(
             matches.len() <= 1,
-            "{}: {} has an ambiguous socket-option target on {item_name:?}: {}",
+            "{}: {} has an ambiguous socket-option target on {set_slug:?}: {}",
             correction.file_name,
             correction.label(),
             matches
                 .iter()
-                .map(|SocketOptionLocation { id, socket_order, option_order }| format!(
-                    "socket order {socket_order}, option order {option_order} (option id {id})"
+                .map(|SocketOptionLocation { id, option_order }| format!(
+                    "option order {option_order} (option id {id}); use name#order"
                 ))
                 .collect::<Vec<_>>()
                 .join("; ")
@@ -685,8 +725,12 @@ impl SocketOptionTargets {
         Ok(matches.first().map(|location| location.id))
     }
 
-    pub(crate) fn item_name(&self, item_id: i64) -> Result<&str> {
-        self.item_names.get(&item_id).map(String::as_str).context("socket-option annotation's item is absent")
+    pub(crate) fn set_slug(&self, set_id: i64) -> Result<&str> {
+        self.set_slugs.get(&set_id).map(String::as_str).context("socket-option annotation's set is absent")
+    }
+
+    pub(crate) fn option_names<'a>(&'a self, set_slug: &'a str) -> impl Iterator<Item = &'a str> {
+        self.options_by_names.keys().filter(move |(owner, _)| owner == set_slug).map(|(_, name)| name.as_str())
     }
 }
 
@@ -1263,7 +1307,7 @@ fn current_value(
             "SELECT {referenced_table}.name FROM {table_name} LEFT JOIN {referenced_table} ON {referenced_table}.id = {table_name}.{} WHERE {table_name}.id = ?1",
             field.column
         ),
-        FieldShape::RowName => format!("SELECT {} FROM {table_name} WHERE id = ?1", correction.kind.name_column()),
+        FieldShape::RowName => format!("SELECT {} FROM {table_name} WHERE id = ?1", if correction.kind == CorrectionKind::SocketOption { "name" } else { correction.kind.name_column() }),
         _ => format!("SELECT {} FROM {table_name} WHERE id = ?1", field.column),
     };
     let sql_value: SqlValue = transaction.query_row(&value_sql, params![row_id], |r| r.get(0))?;
@@ -1347,7 +1391,11 @@ pub(crate) fn data_correction_value(
     if row_ids.is_empty()
         && correction.targets_socket_option()
         && correction.from.as_text() == Some(NO_SUCH_BONUS)
-        && id_named(transaction, "items", current_name)?.is_some()
+        && transaction.query_row(
+            "SELECT EXISTS(SELECT 1 FROM socket_option_sets WHERE slug=?1)",
+            [current_name],
+            |row| row.get::<_, bool>(0),
+        )?
     {
         return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
     }
@@ -1417,7 +1465,7 @@ impl BonusLinkTable {
     const FEAT: Self = Self { table_name: "feat_effects", owner_column: "feat_id" };
     const ITEM: Self = Self { table_name: "item_effects", owner_column: "item_id" };
     const SET_TIER: Self = Self { table_name: "set_bonus_tier_effects", owner_column: "tier_id" };
-    const SOCKET_OPTION: Self = Self { table_name: "item_augment_slot_option_effects", owner_column: "option_id" };
+    const SOCKET_OPTION: Self = Self { table_name: "socket_option_effects", owner_column: "option_id" };
 
     fn of(kind: CorrectionKind) -> Result<Self> {
         match kind {
@@ -2374,24 +2422,13 @@ fn item_socket_order(transaction: &Transaction, item_id: i64, label: &str) -> Re
 
 fn remove_item_socket(
     transaction: &Transaction,
-    effects: &mut EffectCache<'_>,
+    _effects: &mut EffectCache<'_>,
     item_id: i64,
     label: &str,
 ) -> Result<()> {
     let Some(order) = item_socket_order(transaction, item_id, label)? else { return Ok(()) };
-    let linked_effects = transaction
-        .prepare("SELECT DISTINCT l.effect_id FROM item_augment_slot_option_effects l JOIN item_augment_slot_options o ON o.id=l.option_id WHERE o.item_id=?1 AND o.slot_order=?2")?
-        .query_map(params![item_id, order], |row| row.get::<_, i64>(0))?
-        .collect::<rusqlite::Result<Vec<_>>>()?;
-    transaction.execute(
-        "DELETE FROM modifiers WHERE source_kind=?1 AND source_id IN (SELECT id FROM item_augment_slot_options WHERE item_id=?2 AND slot_order=?3)",
-        params![ModifierSource::ItemAugmentSlotOption.as_str(), item_id, order],
-    )?;
     transaction
         .execute("DELETE FROM item_augment_slots WHERE item_id=?1 AND sort_order=?2", params![item_id, order])?;
-    for effect in linked_effects {
-        effects.delete_unowned(effect)?;
-    }
     Ok(())
 }
 
@@ -2409,11 +2446,7 @@ fn remove_rows(
     };
     let owner_values = vec!["(?)"; row_ids.len()].join(", ");
     let link_query = match kind {
-        CorrectionKind::Item => {
-            "SELECT effect_id FROM item_effects WHERE item_id IN (SELECT id FROM removed_owner)
-             UNION SELECT oe.effect_id FROM item_augment_slot_option_effects oe
-             JOIN item_augment_slot_options o ON o.id = oe.option_id WHERE o.item_id IN (SELECT id FROM removed_owner)"
-        }
+        CorrectionKind::Item => "SELECT effect_id FROM item_effects WHERE item_id IN (SELECT id FROM removed_owner)",
         CorrectionKind::Augment => {
             "SELECT effect_id FROM augment_effects WHERE augment_id IN (SELECT id FROM removed_owner)"
         }
@@ -2427,13 +2460,6 @@ fn remove_rows(
         .query_map(params_from_iter(row_ids.iter()), |row| row.get(0))?
         .collect::<rusqlite::Result<_>>()?;
     for row_id in row_ids {
-        if kind == CorrectionKind::Item {
-            transaction.execute(
-                "DELETE FROM modifiers WHERE source_kind = ?1
-                    AND source_id IN (SELECT id FROM item_augment_slot_options WHERE item_id = ?2)",
-                params![ModifierSource::ItemAugmentSlotOption.as_str(), row_id],
-            )?;
-        }
         transaction.execute(
             "DELETE FROM modifiers WHERE source_kind = ?1 AND source_id = ?2",
             params![modifier_source.as_str(), row_id],
@@ -2480,6 +2506,9 @@ fn relink_item_sets(transaction: &Transaction, item_ids: &[i64], set_name: Optio
 
 fn rename_rows(transaction: &Transaction, correction: &Correction, row_ids: &[i64]) -> Result<()> {
     let new_name = correction.to.as_text().context("a row's name cannot be null")?;
+    if correction.kind == CorrectionKind::SocketOption {
+        return write_column(transaction, "socket_options", "name", row_ids, SqlValue::Text(new_name.to_string()));
+    }
     if correction.selection.is_some() {
         for row_id in row_ids {
             let exists: bool = transaction.query_row(
@@ -2555,15 +2584,28 @@ fn refuse_an_augment_name_taken_in_its_families(
 pub(super) fn rename_socket_label(transaction: &Transaction, slot_type_id: i64, new_label: &str) -> Result<()> {
     let merged_slot_type_id = canonical_socket_label_id(transaction, slot_type_id, new_label)?;
     if merged_slot_type_id != slot_type_id {
+        let socket_sets = transaction.prepare("SELECT item_id,sort_order,option_set_id FROM item_augment_slots WHERE slot_id=?1 AND option_set_id IS NOT NULL")?
+            .query_map([slot_type_id], |row| Ok((row.get::<_, i64>(0)?,row.get::<_, i64>(1)?,row.get::<_, i64>(2)?)))?
+            .collect::<rusqlite::Result<Vec<_>>>()?;
+        transaction.execute("UPDATE item_augment_slots SET option_set_id=NULL WHERE slot_id=?1", [slot_type_id])?;
         for (table_name, column) in [
+            ("socket_option_sets", "slot_id"),
             ("item_augment_slots", "slot_id"),
-            ("item_augment_slot_option_grants", "slot_id"),
+            ("socket_option_grants", "slot_id"),
+            ("augment_socket_grants", "slot_id"),
+            ("crafting_steps", "slot_id"),
             ("crafting_recipes", "slot_id"),
             ("crafting_recipes", "grants_slot_id"),
         ] {
             transaction.execute(
                 &format!("UPDATE {table_name} SET {column} = ?2 WHERE {column} = ?1"),
                 params![slot_type_id, merged_slot_type_id],
+            )?;
+        }
+        for (item_id, position, set_id) in socket_sets {
+            transaction.execute(
+                "UPDATE item_augment_slots SET option_set_id=?3 WHERE item_id=?1 AND sort_order=?2",
+                params![item_id, position, set_id],
             )?;
         }
         transaction.execute(

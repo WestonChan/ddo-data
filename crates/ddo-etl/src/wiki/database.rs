@@ -24,6 +24,7 @@ impl WikiOverrides {
     pub fn from_database(db: &Connection) -> Result<Self> {
         let paths = DataFilePaths::from_database(db)?;
         Ok(Self {
+            socket_option_sets: crate::build::ExistingSocketOptionSets::from_database(db)?,
             quests: quests(db, &paths)?,
             quest_loot: quest_loot(db, &paths)?,
             crafting_systems: crafting_systems(db, &paths)?,
