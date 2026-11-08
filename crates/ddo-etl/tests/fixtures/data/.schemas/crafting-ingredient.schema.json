@@ -1,0 +1,117 @@
+{
+  "$defs": {
+    "Citation": {
+      "oneOf": [
+        {
+          "not": {
+            "required": [
+              "in_game"
+            ]
+          },
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "url"
+            ]
+          },
+          "required": [
+            "in_game"
+          ]
+        }
+      ],
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "in_game": {
+          "const": true,
+          "type": "boolean"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "read"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
+      "x-table": "citations"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bind": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "citation": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "type": "array"
+    },
+    "drop_location": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "tier": {
+      "type": "string"
+    },
+    "variant": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "tier",
+    "citation"
+  ],
+  "title": "CraftingIngredientFile",
+  "type": "object",
+  "x-columns": [
+    "id",
+    "slug",
+    "name",
+    "variant",
+    "tier",
+    "bind",
+    "source"
+  ],
+  "x-table": "crafting_ingredients"
+}

@@ -145,6 +145,14 @@ impl<'a> EffectCache<'a> {
         self.families_by_name.get(name).and_then(|id| self.families_by_id.get(id))
     }
 
+    pub(super) fn ensure_named_effect(&mut self, name: &str) -> Result<i64> {
+        if let Some(effect) = self.family_named(name) {
+            return Ok(effect.id);
+        }
+        let definition = self.groupings.effect_named(name).with_context(|| format!("unknown effect {name:?}"))?;
+        self.ensure_indexed_effect(definition)
+    }
+
     pub(super) fn family(&self, id: i64) -> Option<&CachedEffect> {
         self.families_by_id.get(&id)
     }

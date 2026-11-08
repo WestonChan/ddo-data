@@ -15,6 +15,8 @@ database_record! {
             #[serde(default, skip_serializing_if = "Option::is_none")]
             qualifier: Option<String> => qualifier,
             variant: String => variant,
+            #[serde(default, skip_serializing_if = "Option::is_none")]
+            not_crafting_reason: Option<String> => not_crafting_reason,
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]

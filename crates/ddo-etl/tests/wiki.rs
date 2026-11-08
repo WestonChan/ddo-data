@@ -40,6 +40,142 @@ fn fixture_wiki() -> WikiOverrides {
     WikiOverrides::from_database(&fixture::database(|_| {})).unwrap()
 }
 
+#[test]
+fn previous_xml_omits_later_item_costs_and_unlocks_but_current_xml_is_strict() {
+    let ours = fixture::database(|root| {
+        let original = std::fs::read_to_string(root.join("packs/free-to-play/gear/acrobats-ring.toml")).unwrap();
+        let mut item: toml::Value = toml::from_str(&original).unwrap();
+        item["name"] = "Later Ring".into();
+        item.as_table_mut().unwrap().remove("source");
+        item.as_table_mut().unwrap().remove("drop_location");
+        std::fs::write(root.join("packs/unsourced/gear/later-ring.toml"), toml::to_string(&item).unwrap()).unwrap();
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path,format!("{original}\n[[unlock]]\nkind='kept_item'\nitem='Later Ring'\ntext='Wear the later ring.'\n[[step]]\nname='Later upgrade'\n[[step.cost]]\ntier='any'\nitem='Later Ring'\nquantity=1\n[[recipe]]\noption='Later recipe'\nstep='Later upgrade'\ntier='any'\n[[recipe.ingredient]]\nitem='Later Ring'\nquantity=2\n[[recipe.unlock]]\nkind='kept_item'\nitem='Later Ring'\ntext='Keep the later ring.'\n")).unwrap();
+        let path = root.join("packs/shared/crafting/stations.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(
+            path,
+            format!("{original}\n[[row.unlock]]\nkind='kept_item'\nitem='Later Ring'\ntext='Show the later ring.'\n"),
+        )
+        .unwrap();
+    });
+    let wiki = WikiOverrides::from_database(&ours).unwrap();
+    let mut previous = Connection::open_in_memory().unwrap();
+    let report = ddo_etl::build::build_previous_database(
+        fixture::groupings(),
+        &fixtures_dir().join("DataFiles"),
+        &wiki,
+        &Corrections::default(),
+        &mut previous,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!(report.skipped_wiki_facts.len(), 5, "{:?}", report.skipped_wiki_facts);
+    assert!(report.skipped_wiki_facts.iter().all(|fact| fact.unresolved_name == "Later Ring"));
+    let count: i64 = previous.query_row("SELECT COUNT(*) FROM crafting_unlocks", [], |row| row.get(0)).unwrap();
+    assert_eq!(count, 0);
+    let error = build_report_with(&wiki).unwrap_err();
+    assert!(error.contains("Later Ring"), "{error}");
+}
+
+#[test]
+fn crafting_twin_preserves_a_named_effect_used_only_by_a_step() {
+    let ours = fixture::database(|root| {
+        let effect = std::fs::read_to_string(root.join("effects/improved-deception.toml"))
+            .unwrap()
+            .replace("Improved Deception", "Crafting Deception");
+        let mut effect: toml::Value = toml::from_str(&effect).unwrap();
+        effect.as_table_mut().unwrap().remove("tier");
+        effect.as_table_mut().unwrap().remove("tier_group");
+        std::fs::write(root.join("effects/crafting-deception.toml"), toml::to_string(&effect).unwrap()).unwrap();
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path,format!("{original}\n[[step]]\nname='Deceptive upgrade'\n[[step.effect]]\neffect='Crafting Deception'\nbonus_type='Insight'\nvalue=7\n")).unwrap();
+    });
+    let groupings = ddo_etl::groupings::Groupings::from_database(&ours).unwrap();
+    let wiki = WikiOverrides::from_database(&ours).unwrap();
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    build_database(
+        &groupings,
+        &fixtures_dir().join("DataFiles"),
+        &wiki,
+        &Corrections::default(),
+        &mut rebuilt,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!(string_column(&rebuilt,"SELECT e.name || '|' || b.amount FROM owner_bonuses b JOIN effects e ON e.id=b.stat_id WHERE b.owner_kind='crafting_step'"),["Bluff|7"]);
+}
+
+#[test]
+fn crafting_twin_preserves_steps_lines_modifiers_costs_and_recipe_links() {
+    let wiki = authored_wiki("INSERT INTO crafting_steps (id,system_id,sort_order,name,is_random) SELECT 900002,id,0,'Random creation',1 FROM crafting_systems WHERE name='Catalyst Crafting';
+        INSERT INTO crafting_step_effects (step_id,sort_order,effect_id,bonus_type_id,value,equipment_slot_id) VALUES (900002,0,(SELECT id FROM effects WHERE name='Constitution'),(SELECT id FROM bonus_types WHERE name='Enhancement'),10,(SELECT id FROM equipment_slots WHERE name='Off Hand'));
+        INSERT INTO modifiers (source_kind,source_id,sort_order,effect_type,amounts) VALUES ('crafting_step',900002,0,'Weapon_BaseDamage','[0.5]');
+        INSERT INTO crafting_step_costs (step_id,tier,sort_order,item_id,quantity) SELECT 900002,'heroic',0,id,2 FROM items WHERE name=\"Acrobat's Ring\";
+        INSERT INTO crafting_recipes (system_id,sort_order,tier,option,step_id) SELECT id,0,'heroic','Create random item',900002 FROM crafting_systems WHERE name='Catalyst Crafting';");
+    let (rebuilt, _) = built_db_with(&wiki);
+    assert_eq!(string_column(&rebuilt,"SELECT s.name || '|' || s.is_random || '|' || r.option FROM crafting_steps s JOIN crafting_recipes r ON r.step_id=s.id"),["Random creation|1|Create random item"]);
+    assert_eq!(string_column(&rebuilt,"SELECT e.name || '|' || l.value || '|' || s.name FROM crafting_step_effects l JOIN effects e ON e.id=l.effect_id JOIN equipment_slots s ON s.id=l.equipment_slot_id"),["Constitution|10|Off Hand"]);
+    assert_eq!(
+        string_column(
+            &rebuilt,
+            "SELECT effect_type || '|' || amounts FROM modifiers WHERE source_kind='crafting_step'"
+        ),
+        ["Weapon_BaseDamage|[0.5]"]
+    );
+    assert_eq!(string_column(&rebuilt,"SELECT c.tier || '|' || i.name || '|' || c.quantity FROM crafting_step_costs c JOIN items i ON i.id=c.item_id"),["heroic|Acrobat's Ring|2"]);
+}
+
+#[test]
+fn crafting_twin_preserves_stations_and_all_unlock_owners() {
+    let wiki = authored_wiki("INSERT INTO crafting_stations (id,slug,name,kind,sort_order) VALUES (900001,'fixture-interface','Fixture Interface','interface',0);
+        INSERT INTO crafting_system_stations (system_id,station_id,sort_order,note) SELECT id,900001,0,'Shared interface' FROM crafting_systems WHERE name='Catalyst Crafting';
+        UPDATE crafting_systems SET npc=NULL WHERE name='Catalyst Crafting';
+        INSERT INTO crafting_unlocks (station_id,sort_order,kind,text) VALUES (900001,0,'other','Open the interface.');
+        INSERT INTO crafting_unlocks (system_id,sort_order,kind,value,text) SELECT id,0,'level',10,'Requires level 10.' FROM crafting_systems WHERE name='Catalyst Crafting';
+        INSERT INTO crafting_recipes (system_id,sort_order,tier,option) SELECT id,0,'any','Gated recipe' FROM crafting_systems WHERE name='Catalyst Crafting';
+        INSERT INTO crafting_unlocks (recipe_id,sort_order,kind,value,text) SELECT id,0,'crafting_level',20,'Requires crafting level 20.' FROM crafting_recipes WHERE system_id=(SELECT id FROM crafting_systems WHERE name='Catalyst Crafting');");
+    let (rebuilt, _) = built_db_with(&wiki);
+    assert_eq!(string_column(&rebuilt,"SELECT s.name || '|' || l.note FROM crafting_stations s JOIN crafting_system_stations l ON l.station_id=s.id"), ["Fixture Interface|Shared interface"]);
+    assert_eq!(
+        string_column(&rebuilt, "SELECT kind || '|' || text FROM crafting_unlocks ORDER BY kind"),
+        ["crafting_level|Requires crafting level 20.", "level|Requires level 10.", "other|Open the interface."]
+    );
+}
+
+#[test]
+fn crafting_twin_preserves_shared_ingredients() {
+    let ours = fixture::database(|root| {
+        let directory = root.join("packs/shared/crafting/ingredients");
+        std::fs::create_dir_all(&directory).unwrap();
+        std::fs::write(directory.join("thread-of-fate.toml"), "name='Thread of Fate'\ntier='any'\ndrop_location='Fixture chest'\n[[citation]]\nurl='https://ddowiki.com/page/Test'\nread='2026-11-08'\n").unwrap();
+        for system in ["catalyst-crafting", "test-upgrade-altar"] {
+            let path = root.join(format!("packs/shared/crafting/{system}/crafting.toml"));
+            let original = std::fs::read_to_string(&path).unwrap();
+            std::fs::write(path, format!("{original}\n[[recipe]]\noption='Shared thread'\ntier='any'\n[[recipe.ingredient]]\ningredient='Thread of Fate'\nquantity=3\n")).unwrap();
+        }
+    });
+    let wiki = WikiOverrides::from_database(&ours).unwrap();
+    let (rebuilt, _) = built_db_with(&wiki);
+    let usage: (String, i64) = rebuilt.query_row("SELECT i.source,COUNT(DISTINCT r.system_id) FROM crafting_ingredients i JOIN crafting_recipe_ingredients c ON c.ingredient_id=i.id JOIN crafting_recipes r ON r.id=c.recipe_id WHERE i.name='Thread of Fate' GROUP BY i.id", [], |row| Ok((row.get(0)?,row.get(1)?))).unwrap();
+    assert_eq!(usage, ("Fixture chest".into(), 2));
+}
+
+#[test]
+fn crafting_twin_preserves_consumed_items() {
+    let ours = fixture::database(|root| {
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{original}\n[[recipe]]\noption='Consume ring'\ntier='heroic'\n[[recipe.ingredient]]\nitem=\"Acrobat's Ring\"\nquantity=2\n")).unwrap();
+    });
+    let wiki = WikiOverrides::from_database(&ours).unwrap();
+    let (rebuilt, _) = built_db_with(&wiki);
+    let cost: (String, i64) = rebuilt.query_row("SELECT i.name,c.quantity FROM crafting_recipe_ingredients c JOIN crafting_recipes r ON r.id=c.recipe_id JOIN items i ON i.id=c.item_id WHERE r.option='Consume ring'", [], |row| Ok((row.get(0)?,row.get(1)?))).unwrap();
+    assert_eq!(cost, ("Acrobat's Ring".into(), 2));
+}
+
 fn crafting_wiki(edit: impl FnOnce(&mut Vec<CraftingSystem>)) -> WikiOverrides {
     let mut crafting_systems = fixture_wiki().crafting_systems;
     edit(&mut crafting_systems);
@@ -407,7 +543,7 @@ fn reader_emits_crafting_systems_with_their_ingredients_and_recipes() {
     assert_eq!(system.ingredients.len(), 4);
     assert_eq!(system.ingredients[0].bind.as_deref(), Some("Bound to Account"));
     assert_eq!(system.recipes.len(), 3);
-    assert_eq!(system.recipes[0].cost[1].ingredient, "Small Focus of Earth");
+    assert_eq!(system.recipes[0].cost[1].ingredient.as_deref(), Some("Small Focus of Earth"));
     assert_eq!(system.recipes[2].augments, Vec::<String>::new());
     let upgrade_system = wiki.crafting_systems.iter().find(|system| system.name == "Test Upgrade Altar").unwrap();
     assert_eq!(upgrade_system.name, "Test Upgrade Altar");

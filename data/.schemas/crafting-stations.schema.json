@@ -1,0 +1,236 @@
+{
+  "$defs": {
+    "Citation": {
+      "oneOf": [
+        {
+          "not": {
+            "required": [
+              "in_game"
+            ]
+          },
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "not": {
+            "required": [
+              "url"
+            ]
+          },
+          "required": [
+            "in_game"
+          ]
+        }
+      ],
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "in_game": {
+          "const": true,
+          "type": "boolean"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "read"
+      ],
+      "type": "object",
+      "unevaluatedProperties": false,
+      "x-array": "citation",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "field",
+        "url",
+        "in_game",
+        "read",
+        "note"
+      ],
+      "x-table": "citations"
+    },
+    "CraftingStation": {
+      "additionalProperties": false,
+      "properties": {
+        "citation": {
+          "items": {
+            "$ref": "#/$defs/Citation"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "$ref": "#/$defs/StationKind"
+        },
+        "name": {
+          "type": "string"
+        },
+        "place": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "quests"
+        },
+        "unlock": {
+          "items": {
+            "$ref": "#/$defs/CraftingUnlock"
+          },
+          "type": "array"
+        },
+        "variant": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "kind",
+        "citation"
+      ],
+      "type": "object",
+      "x-columns": [
+        "id",
+        "slug",
+        "sort_order",
+        "name",
+        "variant",
+        "kind",
+        "place",
+        "quest_id"
+      ],
+      "x-table": "crafting_stations"
+    },
+    "CraftingUnlock": {
+      "additionalProperties": false,
+      "properties": {
+        "crafting_ingredient": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "crafting_ingredients"
+        },
+        "feat": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "feats"
+        },
+        "item": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "items"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "pack": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "adventure_packs"
+        },
+        "patron": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "patrons"
+        },
+        "quest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "quests"
+        },
+        "text": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "variant": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "text"
+      ],
+      "type": "object",
+      "x-columns": [
+        "id",
+        "sort_order",
+        "system_id",
+        "station_id",
+        "recipe_id",
+        "kind",
+        "quest_id",
+        "patron_id",
+        "pack_id",
+        "feat_id",
+        "item_id",
+        "crafting_ingredient_id",
+        "value",
+        "text"
+      ],
+      "x-table": "crafting_unlocks"
+    },
+    "StationKind": {
+      "enum": [
+        "device",
+        "npc",
+        "interface"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "row": {
+      "items": {
+        "$ref": "#/$defs/CraftingStation"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "row"
+  ],
+  "title": "CraftingStationsFile",
+  "type": "object"
+}

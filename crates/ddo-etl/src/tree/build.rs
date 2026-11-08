@@ -207,6 +207,7 @@ fn file_build_order(file: &SourceFile) -> u8 {
         | SourceFile::SourceAliases(_)
         | SourceFile::Exceptions(_)
         | SourceFile::VendorCurrencies(_)
+        | SourceFile::CraftingIngredient(_)
         | SourceFile::UpstreamCommit(_) => 0,
         SourceFile::WeaponTypes(_)
         | SourceFile::Stat(_)
@@ -215,6 +216,7 @@ fn file_build_order(file: &SourceFile) -> u8 {
         | SourceFile::Quest(_)
         | SourceFile::Race(_)
         | SourceFile::CraftingSystem(_) => 1,
+        SourceFile::CraftingStations(_) => 2,
         SourceFile::Class(file) => {
             if file.base_class.is_some() {
                 3
@@ -409,6 +411,12 @@ fn write_data_file(
             validate_entity_file_name(path, &slug(&file.name), folder_owned, None)?;
             return Ok(Some(file.write_crafting_system(db, path, ids)?));
         }
+        SourceFile::CraftingIngredient(file) => {
+            let identity = qualified_slug(&file.name, file.variant.as_deref());
+            validate_entity_file_name(path, &identity, false, None)?;
+            return Ok(Some(file.write_ingredient(db, path, ids)?));
+        }
+        SourceFile::CraftingStations(file) => file.write_stations(db, path, ids)?,
         SourceFile::FeatCategory(file) => {
             for row in &file.row {
                 let identity = qualified_slug(&row.name, row.variant.as_deref());
@@ -671,6 +679,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                     file.insert_recipes(&transaction, path, id)?;
                     removed_entries_to_insert.extend(file.removed.iter().cloned());
                 }
+                SourceFile::CraftingStations(file) => file.insert_unlocks(&transaction)?,
                 SourceFile::OptionalBuffs(file) => {
                     for row in &file.row {
                         correction_notes_to_insert

@@ -271,6 +271,12 @@
         "label": {
           "type": "string"
         },
+        "not_crafting_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "qualifier": {
           "type": [
             "string",
@@ -299,7 +305,8 @@
         "family",
         "label",
         "qualifier",
-        "variant"
+        "variant",
+        "not_crafting_reason"
       ],
       "x-table": "augment_slot_types"
     },

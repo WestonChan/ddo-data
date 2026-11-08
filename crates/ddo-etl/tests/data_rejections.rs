@@ -6,6 +6,183 @@ const CHAIN_ITEM: &str = "packs/free-to-play/gear/acrobats-ring.toml";
 const CRAFTING: &str = "packs/shared/crafting/heroic-green-steel/crafting.toml";
 const VENDOR_ITEM: &str = "packs/free-to-play/vendors/morten-edgewright/gear/ethereal-great-crossbow.toml";
 
+fn crafting_row_error(rows: &str) -> String {
+    fixture::data_build_error(|root| {
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{original}\n{rows}")).unwrap();
+    })
+}
+
+#[test]
+fn a_cost_row_naming_both_an_ingredient_and_an_item_is_rejected() {
+    let error = crafting_row_error("[[recipe]]\noption='Invalid cost'\ntier='any'\n[[recipe.ingredient]]\ningredient='Small Shard of Power'\nitem=\"Acrobat's Ring\"\nquantity=1\n");
+    assert!(error.contains("exactly one ingredient or item"), "{error}");
+}
+
+#[test]
+fn a_cost_row_naming_neither_an_ingredient_nor_an_item_is_rejected() {
+    let error =
+        crafting_row_error("[[recipe]]\noption='Invalid cost'\ntier='any'\n[[recipe.ingredient]]\nquantity=1\n");
+    assert!(error.contains("exactly one ingredient or item"), "{error}");
+}
+
+#[test]
+fn a_cost_row_naming_an_unknown_item_is_rejected_with_nearest_names() {
+    let error = crafting_row_error(
+        "[[recipe]]\noption='Invalid cost'\ntier='any'\n[[recipe.ingredient]]\nitem=\"Acrobat's Rin\"\nquantity=1\n",
+    );
+    assert!(error.contains("Acrobat's Ring") && error.contains("nearest"), "{error}");
+}
+
+#[test]
+fn an_unlock_whose_kind_and_reference_disagree_is_rejected() {
+    let error =
+        crafting_row_error("[[unlock]]\nkind='level'\nvalue=10\nitem=\"Acrobat's Ring\"\ntext='Invalid level gate'\n");
+    assert!(error.contains("Invalid level gate") && error.contains("CHECK constraint"), "{error}");
+}
+
+#[test]
+fn an_other_unlock_with_a_reference_or_value_is_rejected() {
+    for extra in ["value=10", "item=\"Acrobat's Ring\""] {
+        let error = crafting_row_error(&format!("[[unlock]]\nkind='other'\ntext='Invalid other gate'\n{extra}\n"));
+        assert!(error.contains("Invalid other gate") && error.contains("CHECK constraint"), "{error}");
+    }
+}
+
+#[test]
+fn an_unlock_naming_an_unknown_quest_is_rejected_with_nearest_names() {
+    let error = crafting_row_error("[[unlock]]\nkind='quest'\nquest='Book Burnin'\ntext='Complete the quest'\n");
+    assert!(error.contains("Book Burning") && error.contains("nearest"), "{error}");
+}
+
+#[test]
+fn a_recipe_set_option_on_a_recipe_without_a_socketed_step_is_rejected() {
+    let error = crafting_row_error("[[recipe]]\noption='Invalid price'\ntier='any'\n[[recipe.set_option]]\nset='Test options'\nname='Test option'\n");
+    assert!(error.contains("requires a socketed step"), "{error}");
+    let error = crafting_row_error("[[step]]\nname='Pure step'\n[[recipe]]\noption='Invalid price'\ntier='any'\nstep='Pure step'\n[[recipe.set_option]]\nset='Test options'\nname='Test option'\n");
+    assert!(error.contains("requires a socketed step"), "{error}");
+}
+
+#[test]
+fn a_step_cost_naming_an_unknown_ingredient_is_rejected_with_nearest_names() {
+    let error = crafting_row_error(
+        "[[step]]\nname='Create item'\n[[step.cost]]\ntier='any'\ningredient='Small Shard of Powe'\nquantity=1\n",
+    );
+    assert!(error.contains("Small Shard of Power") && error.contains("nearest"), "{error}");
+}
+
+fn station_reference_error(stations: &str, reference: &str) -> String {
+    fixture::data_build_error(|root| {
+        std::fs::write(root.join("packs/shared/crafting/stations.toml"), stations).unwrap();
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let mut file: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+        file.as_table_mut().unwrap().remove("npc");
+        std::fs::write(path, format!("{}\n[[station]]\n{reference}\n", toml::to_string(&file).unwrap())).unwrap();
+    })
+}
+
+#[test]
+fn a_device_station_without_a_place_is_rejected() {
+    let error =
+        station_reference_error("[[row]]\nname='Test Forge'\nkind='device'\ncitation=[]\n", "name='Test Forge'");
+    assert!(error.contains("Test Forge") && error.contains("CHECK constraint"), "{error}");
+}
+
+#[test]
+fn a_station_reference_without_a_variant_is_ambiguous() {
+    let error = station_reference_error("[[row]]\nname='Test Forge'\nvariant='hall'\nkind='device'\nplace='Hall'\ncitation=[]\n[[row]]\nname='Test Forge'\nvariant='airship'\nkind='device'\nplace='Airship'\ncitation=[]\n","name='Test Forge'");
+    assert!(error.contains("matched 2 rows") && error.contains("hall") && error.contains("airship"), "{error}");
+}
+
+#[test]
+fn a_system_naming_a_station_the_vocabulary_lacks_is_rejected_with_nearest_names() {
+    let error =
+        station_reference_error("[[row]]\nname='Test Forge'\nkind='interface'\ncitation=[]\n", "name='Test Forg'");
+    assert!(error.contains("Test Forge") && error.contains("nearest"), "{error}");
+}
+
+#[test]
+fn a_crafting_file_with_npc_and_station_links_is_rejected() {
+    let error = fixture::data_build_error(|root| {
+        std::fs::write(
+            root.join("packs/shared/crafting/stations.toml"),
+            "[[row]]\nname='Test Forge'\nkind='interface'\ncitation=[]\n",
+        )
+        .unwrap();
+        let path = root.join(CRAFTING);
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{original}\n[[station]]\nname='Test Forge'\n")).unwrap();
+    });
+    assert!(error.contains("npc and station links cannot occur together"), "{error}");
+}
+
+#[test]
+fn an_ingredient_reference_without_a_variant_is_ambiguous() {
+    let error = fixture::data_build_error(|root| {
+        let directory = root.join("packs/shared/crafting/ingredients");
+        std::fs::create_dir_all(&directory).unwrap();
+        for variant in ["heroic", "legendary"] {
+            std::fs::write(
+                directory.join(format!("test-key-{variant}.toml")),
+                format!("name='Test Key'\nvariant='{variant}'\ntier='any'\ncitation=[]\n"),
+            )
+            .unwrap();
+        }
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path,format!("{original}\n[[recipe]]\noption='Ambiguous cost'\ntier='any'\n[[recipe.ingredient]]\ningredient='Test Key'\nquantity=1\n")).unwrap();
+    });
+    assert!(error.contains("matched 2 rows") && error.contains("heroic") && error.contains("legendary"), "{error}");
+}
+
+#[test]
+fn an_unused_shared_ingredient_is_rejected_with_its_file() {
+    let error = fixture::data_build_error(|root| {
+        let directory = root.join("packs/shared/crafting/ingredients");
+        std::fs::create_dir_all(&directory).unwrap();
+        std::fs::write(directory.join("unused-key.toml"), "name='Unused Key'\ntier='any'\ncitation=[]\n").unwrap();
+    });
+    assert!(error.contains("unused-key.toml") && error.contains("no using system"), "{error}");
+}
+
+#[test]
+fn a_recipe_with_slot_in_a_file_that_declares_steps_is_rejected() {
+    let error = fixture::data_build_error(|root| {
+        let path = root.join(CRAFTING);
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{original}\n[[step]]\nname='Invasion'\nslot='crafting: accessory invasion'\n"))
+            .unwrap();
+    });
+    assert!(error.contains(CRAFTING) && error.contains("cannot name slot"), "{error}");
+}
+
+#[test]
+fn a_recipe_naming_no_step_of_its_file_is_rejected_with_nearest_names() {
+    let error = fixture::data_build_error(|root| {
+        let path = root.join(CRAFTING);
+        let original = std::fs::read_to_string(&path)
+            .unwrap()
+            .replace("slot = \"crafting: accessory invasion\"", "step = 'Invasio'");
+        std::fs::write(path, format!("{original}\n[[step]]\nname='Invasion'\nslot='crafting: accessory invasion'\n"))
+            .unwrap();
+    });
+    assert!(error.contains(CRAFTING) && error.contains("Invasio") && error.contains("nearest: Invasion"), "{error}");
+}
+
+#[test]
+fn two_steps_sharing_a_socket_are_rejected() {
+    let error = fixture::data_build_error(|root| {
+        let path = root.join(CRAFTING);
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path,format!("{original}\n[[step]]\nname='Invasion'\nslot='crafting: accessory invasion'\n[[step]]\nname='Other invasion'\nslot='crafting: accessory invasion'\n")).unwrap();
+    });
+    assert!(
+        error.contains(CRAFTING) && error.contains("Other invasion") && error.contains("UNIQUE constraint"),
+        "{error}"
+    );
+}
+
 #[test]
 fn an_adds_augment_line_naming_no_socket_label_fails_the_build() {
     let error = fixture::data_build_error(edited(

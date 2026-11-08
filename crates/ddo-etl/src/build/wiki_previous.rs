@@ -44,6 +44,21 @@ impl PreviousReferences<'_> {
             self.fact("items", reward.name(), &series.file_name, format!("{} reward {}", series.name, reward.name()))
         });
     }
+
+    fn unlock(&mut self, unlock: &crate::wiki::CraftingUnlock, file: &str, owner: &str) -> bool {
+        [
+            ("quests", &unlock.quest),
+            ("patrons", &unlock.patron),
+            ("adventure_packs", &unlock.pack),
+            ("items", &unlock.item),
+            ("crafting_ingredients", &unlock.crafting_ingredient),
+            ("feats", &unlock.feat),
+        ]
+        .into_iter()
+        .all(|(table, name)| {
+            name.as_deref().is_none_or(|name| self.fact(table, name, file, format!("{owner} {} unlock", unlock.kind)))
+        })
+    }
 }
 
 pub(super) fn omit_unresolved_previous_facts(
@@ -56,6 +71,12 @@ pub(super) fn omit_unresolved_previous_facts(
     let mut known = references.known_names(transaction)?;
     known.extend(wiki.items.iter().map(|item| ("items".into(), item.name.clone())));
     known.extend(wiki.augments.iter().map(|augment| ("augments".into(), augment.name.clone())));
+    known.extend(
+        wiki.crafting_ingredients
+            .iter()
+            .chain(wiki.crafting_systems.iter().flat_map(|system| &system.ingredients))
+            .map(|ingredient| ("crafting_ingredients".into(), ingredient.name.clone())),
+    );
     let mut references = PreviousReferences { known, early, skipped };
     wiki.quests.retain(|quest| {
         let valid = quest.pack.as_ref().is_none_or(|name| {
@@ -102,9 +123,44 @@ pub(super) fn omit_unresolved_previous_facts(
             references.fact("augment_slot_types", name, &augment.file_name, format!("{} socket {name}", augment.name))
         });
     }
+    for station in &mut wiki.crafting_stations {
+        let file = "packs/shared/crafting/stations.toml";
+        references.optional("quests", &mut station.quest, file, format!("{} station quest", station.name));
+        station.unlocks.retain(|unlock| references.unlock(unlock, file, &station.name));
+    }
     for system in &mut wiki.crafting_systems {
         references.optional("adventure_packs", &mut system.pack, &system.file_name, format!("{} pack", system.name));
+        system.unlocks.retain(|unlock| references.unlock(unlock, &system.file_name, &system.name));
+        for step in &mut system.steps {
+            references.optional(
+                "augment_slot_types",
+                &mut step.slot,
+                &system.file_name,
+                format!("{} step {} socket", system.name, step.name),
+            );
+            step.costs.retain(|cost| {
+                cost.cost.item.as_deref().is_none_or(|name| {
+                    references.fact(
+                        "items",
+                        name,
+                        &system.file_name,
+                        format!("{} step {} cost", system.name, step.name),
+                    )
+                })
+            });
+        }
         for recipe in &mut system.recipes {
+            recipe.unlocks.retain(|unlock| references.unlock(unlock, &system.file_name, &recipe.option));
+            recipe.cost.retain(|cost| {
+                cost.item.as_deref().is_none_or(|name| {
+                    references.fact(
+                        "items",
+                        name,
+                        &system.file_name,
+                        format!("{} recipe {} cost", system.name, recipe.option),
+                    )
+                })
+            });
             references.optional(
                 "augment_slot_types",
                 &mut recipe.slot,

@@ -27,6 +27,20 @@ impl WikiOverrides {
             quests: quests(db, &paths)?,
             quest_loot: quest_loot(db, &paths)?,
             crafting_systems: crafting_systems(db, &paths)?,
+            crafting_stations: crafting_stations(db)?,
+            crafting_ingredients: rows(
+                db,
+                "SELECT name,variant,tier,bind,source FROM crafting_ingredients WHERE system_id IS NULL ORDER BY slug",
+                |row| {
+                    Ok(CraftingIngredient {
+                        name: row.get(0)?,
+                        variant: row.get(1)?,
+                        tier: row.get(2)?,
+                        bind: row.get(3)?,
+                        source: row.get(4)?,
+                    })
+                },
+            )?,
             quest_chains: quest_chains(db, &paths)?,
             sagas: sagas(db, &paths)?,
             vendors: vendors(db, &paths)?,
@@ -124,25 +138,53 @@ fn events(db: &Connection, paths: &DataFilePaths) -> Result<Vec<WikiEvent>> {
         .collect()
 }
 
+fn crafting_unlocks(db: &Connection, owner_column: &str) -> Result<BTreeMap<i64, Vec<CraftingUnlock>>> {
+    groups(db, &format!("SELECT u.{owner_column},u.kind,q.name,p.name,pack.name,i.name,c.name,f.name,COALESCE(i.variant,c.variant),u.value,u.text FROM crafting_unlocks u LEFT JOIN quests q ON q.id=u.quest_id LEFT JOIN patrons p ON p.id=u.patron_id LEFT JOIN adventure_packs pack ON pack.id=u.pack_id LEFT JOIN items i ON i.id=u.item_id LEFT JOIN crafting_ingredients c ON c.id=u.crafting_ingredient_id LEFT JOIN feats f ON f.id=u.feat_id WHERE u.{owner_column} IS NOT NULL ORDER BY u.{owner_column},u.sort_order"), |row| Ok((row.get(0)?, CraftingUnlock {kind:row.get(1)?,quest:row.get(2)?,patron:row.get(3)?,pack:row.get(4)?,item:row.get(5)?,crafting_ingredient:row.get(6)?,feat:row.get(7)?,variant:row.get(8)?,value:row.get(9)?,text:row.get(10)?})))
+}
+
+fn crafting_stations(db: &Connection) -> Result<Vec<CraftingStation>> {
+    let mut unlocks = crafting_unlocks(db, "station_id")?;
+    rows(db, "SELECT s.id,s.name,s.variant,s.kind,s.place,q.name FROM crafting_stations s LEFT JOIN quests q ON q.id=s.quest_id ORDER BY s.sort_order,s.id", |row| {
+        let id = row.get::<_,i64>(0)?;
+        let kind = row.get::<_,String>(3)?;
+        Ok(CraftingStation {name:row.get(1)?,variant:row.get(2)?,kind:ddo_model::enums::StationKind::parse(&kind).expect("station kind constrained by schema"),place:row.get(4)?,quest:row.get(5)?,unlocks:unlocks.remove(&id).unwrap_or_default()})
+    })
+}
+
 fn crafting_systems(db: &Connection, paths: &DataFilePaths) -> Result<Vec<CraftingSystem>> {
+    let mut steps = crafting_steps(db)?;
+    let mut set_options = groups(db,"SELECT l.recipe_id,s.name,s.variant,o.name FROM crafting_recipe_set_options l JOIN socket_options o ON o.id=l.option_id JOIN socket_option_sets s ON s.id=o.set_id ORDER BY l.recipe_id,s.slug,o.option_order",|row|Ok((row.get(0)?,CraftingRecipeSetOption {set:row.get(1)?,variant:row.get(2)?,name:row.get(3)?})))?;
+    let mut stations = groups(db, "SELECT l.system_id,s.name,s.variant,l.note FROM crafting_system_stations l JOIN crafting_stations s ON s.id=l.station_id ORDER BY l.system_id,l.sort_order", |row| Ok((row.get(0)?, CraftingSystemStation {name:row.get(1)?,variant:row.get(2)?,note:row.get(3)?})))?;
+    let mut unlocks = crafting_unlocks(db, "system_id")?;
+    let mut recipe_unlocks = crafting_unlocks(db, "recipe_id")?;
     let mut families =
         groups(db, "SELECT system_id,family FROM crafting_system_families ORDER BY system_id,rowid", |r| {
             Ok((r.get(0)?, r.get::<_, String>(1)?))
         })?;
     let mut ingredients = groups(
         db,
-        "SELECT system_id,name,tier,bind,source FROM crafting_ingredients ORDER BY system_id,sort_order",
+        "SELECT system_id,name,tier,bind,source,variant FROM crafting_ingredients WHERE system_id IS NOT NULL ORDER BY system_id,sort_order",
         |r| {
-            Ok((r.get(0)?, CraftingIngredient { name: r.get(1)?, tier: r.get(2)?, bind: r.get(3)?, source: r.get(4)? }))
+            Ok((r.get(0)?, CraftingIngredient { name: r.get(1)?, tier: r.get(2)?, bind: r.get(3)?, source: r.get(4)?, variant:r.get(5)? }))
         },
     )?;
     let mut augments=groups(db,"SELECT r.recipe_id,a.name FROM crafting_recipe_augments r JOIN augments a ON a.id=r.augment_id ORDER BY r.recipe_id,r.sort_order",|r|Ok((r.get(0)?,r.get::<_,String>(1)?)))?;
-    let mut costs=groups(db,"SELECT c.recipe_id,i.name,c.quantity FROM crafting_recipe_ingredients c JOIN crafting_ingredients i ON i.id=c.ingredient_id ORDER BY c.recipe_id,c.sort_order",|r|Ok((r.get(0)?,IngredientCost{ingredient:r.get(1)?,quantity:r.get(2)?})))?;
+    let mut costs=groups(db,"SELECT c.recipe_id,i.name,c.quantity,item.name,COALESCE(i.variant,item.variant) FROM crafting_recipe_ingredients c LEFT JOIN crafting_ingredients i ON i.id=c.ingredient_id LEFT JOIN items item ON item.id=c.item_id ORDER BY c.recipe_id,c.sort_order",|r|Ok((r.get(0)?,IngredientCost{ingredient:r.get(1)?,quantity:r.get(2)?,item:r.get(3)?,variant:r.get(4)?})))?;
     let mut recipes = BTreeMap::<i64, Vec<CraftingRecipe>>::new();
-    for (id,system,tier,slot,grants_slot,option,note) in rows(db,"SELECT r.id,r.system_id,r.tier,s.label,g.label,r.option,r.note FROM crafting_recipes r LEFT JOIN augment_slot_types s ON s.id=r.slot_id LEFT JOIN augment_slot_types g ON g.id=r.grants_slot_id ORDER BY r.system_id,r.sort_order",|r|Ok((r.get::<_,i64>(0)?,r.get::<_,i64>(1)?,r.get(2)?,r.get(3)?,r.get(4)?,r.get(5)?,r.get(6)?)))? {
-        recipes.entry(system).or_default().push(CraftingRecipe{tier,slot,grants_slot,option,note,augments:augments.remove(&id).unwrap_or_default(),cost:costs.remove(&id).unwrap_or_default()});
+    for (id,system,tier,slot,grants_slot,option,note,step,yields_ingredient,yields_variant) in rows(db,"SELECT r.id,r.system_id,r.tier,s.label,g.label,r.option,r.note,step.name,i.name,i.variant FROM crafting_recipes r LEFT JOIN augment_slot_types s ON s.id=r.slot_id LEFT JOIN augment_slot_types g ON g.id=r.grants_slot_id LEFT JOIN crafting_steps step ON step.id=r.step_id LEFT JOIN crafting_ingredients i ON i.id=r.yields_ingredient_id ORDER BY r.system_id,r.sort_order",|r|Ok((r.get::<_,i64>(0)?,r.get::<_,i64>(1)?,r.get(2)?,r.get(3)?,r.get(4)?,r.get(5)?,r.get(6)?,r.get(7)?,r.get(8)?,r.get(9)?)))? {
+        recipes.entry(system).or_default().push(CraftingRecipe{tier,slot,grants_slot,option,note,step,yields_ingredient,yields_variant,augments:augments.remove(&id).unwrap_or_default(),cost:costs.remove(&id).unwrap_or_default(),unlocks:recipe_unlocks.remove(&id).unwrap_or_default(),set_options:set_options.remove(&id).unwrap_or_default()});
     }
-    rows(db,"SELECT s.id,s.name,s.page,s.npc,p.name FROM crafting_systems s LEFT JOIN adventure_packs p ON p.id=s.pack_id ORDER BY s.id",|r|Ok((r.get::<_,i64>(0)?,r.get(1)?,r.get(2)?,r.get(3)?,r.get(4)?)))?.into_iter().map(|(id,name,wiki_url,npc,pack)|Ok(CraftingSystem{name,wiki_url,npc,pack,families:families.remove(&id).unwrap_or_default(),ingredients:ingredients.remove(&id).unwrap_or_default(),recipes:recipes.remove(&id).unwrap_or_default(),file_name:paths.path("crafting_systems",id)?.display().to_string()})).collect()
+    rows(db,"SELECT s.id,s.name,s.page,s.npc,p.name FROM crafting_systems s LEFT JOIN adventure_packs p ON p.id=s.pack_id ORDER BY s.id",|r|Ok((r.get::<_,i64>(0)?,r.get(1)?,r.get(2)?,r.get(3)?,r.get(4)?)))?.into_iter().map(|(id,name,wiki_url,npc,pack)|Ok(CraftingSystem{name,wiki_url,npc,pack,families:families.remove(&id).unwrap_or_default(),ingredients:ingredients.remove(&id).unwrap_or_default(),recipes:recipes.remove(&id).unwrap_or_default(),stations:stations.remove(&id).unwrap_or_default(),unlocks:unlocks.remove(&id).unwrap_or_default(),steps:steps.remove(&id).unwrap_or_default(),file_name:paths.path("crafting_systems",id)?.display().to_string()})).collect()
+}
+
+fn crafting_steps(db: &Connection) -> Result<BTreeMap<i64, Vec<CraftingStep>>> {
+    let mut effects = groups(db,"SELECT l.step_id,e.name,b.name,l.alias,l.value,l.value2,s.name FROM crafting_step_effects l JOIN effects e ON e.id=l.effect_id LEFT JOIN bonus_types b ON b.id=l.bonus_type_id LEFT JOIN equipment_slots s ON s.id=l.equipment_slot_id ORDER BY l.step_id,l.sort_order",|row|Ok((row.get(0)?,CraftingStepEffect {effect:row.get(1)?,bonus_type:row.get(2)?,alias:row.get(3)?,value:row.get(4)?,value2:row.get(5)?,equipment_slot:row.get(6)?})))?;
+    let mut costs = groups(db,"SELECT c.step_id,c.tier,i.name,item.name,COALESCE(i.variant,item.variant),c.quantity FROM crafting_step_costs c LEFT JOIN crafting_ingredients i ON i.id=c.ingredient_id LEFT JOIN items item ON item.id=c.item_id ORDER BY c.step_id,c.tier,c.sort_order",|row|Ok((row.get(0)?,CraftingStepCost {tier:row.get(1)?,cost:IngredientCost {ingredient:row.get(2)?,item:row.get(3)?,variant:row.get(4)?,quantity:row.get(5)?}})))?;
+    let mut modifiers = crate::tree::modifier_rows_by_owner(db)?;
+    groups(db,"SELECT s.id,s.system_id,s.name,t.label,s.is_random FROM crafting_steps s LEFT JOIN augment_slot_types t ON t.id=s.slot_id ORDER BY s.system_id,s.sort_order",|row| {
+        let id = row.get::<_,i64>(0)?;
+        Ok((row.get(1)?,CraftingStep {name:row.get(2)?,slot:row.get(3)?,is_random:row.get(4)?,effects:effects.remove(&id).unwrap_or_default(),costs:costs.remove(&id).unwrap_or_default(),modifiers:modifiers.remove(&("crafting_step".into(),id)).unwrap_or_default()}))
+    })
 }
 
 #[derive(Default)]

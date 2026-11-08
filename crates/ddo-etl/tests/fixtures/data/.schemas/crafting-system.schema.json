@@ -62,6 +62,159 @@
       ],
       "x-table": "citations"
     },
+    "CraftingStep": {
+      "additionalProperties": false,
+      "properties": {
+        "cost": {
+          "items": {
+            "$ref": "#/$defs/CraftingStepCost"
+          },
+          "type": "array"
+        },
+        "effect": {
+          "items": {
+            "$ref": "#/$defs/CraftingStepEffect"
+          },
+          "type": "array"
+        },
+        "is_random": {
+          "type": "boolean"
+        },
+        "modifier": {
+          "items": {
+            "$ref": "#/$defs/Modifier"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slot": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "augment_slot_types"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "x-columns": [
+        "id",
+        "system_id",
+        "sort_order",
+        "name",
+        "slot_id",
+        "is_random"
+      ],
+      "x-table": "crafting_steps"
+    },
+    "CraftingStepCost": {
+      "additionalProperties": false,
+      "properties": {
+        "ingredient": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "crafting_ingredients"
+        },
+        "item": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "items"
+        },
+        "quantity": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "tier": {
+          "type": "string"
+        },
+        "variant": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "tier",
+        "quantity"
+      ],
+      "type": "object",
+      "x-columns": [
+        "step_id",
+        "sort_order",
+        "tier",
+        "ingredient_id",
+        "item_id",
+        "quantity"
+      ],
+      "x-table": "crafting_step_costs"
+    },
+    "CraftingStepEffect": {
+      "additionalProperties": false,
+      "properties": {
+        "alias": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "effect": {
+          "type": "string",
+          "x-reference-kind": "effects"
+        },
+        "equipment_slot": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "equipment_slots"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "value2": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "effect"
+      ],
+      "type": "object",
+      "x-columns": [
+        "step_id",
+        "sort_order",
+        "effect_id",
+        "bonus_type_id",
+        "alias",
+        "value",
+        "value2",
+        "equipment_slot_id"
+      ],
+      "x-table": "crafting_step_effects"
+    },
     "CraftingSystemFamily": {
       "additionalProperties": false,
       "properties": {
@@ -161,6 +314,12 @@
         "option": {
           "type": "string"
         },
+        "set_option": {
+          "items": {
+            "$ref": "#/$defs/CraftingSystemRecipeSetOption"
+          },
+          "type": "array"
+        },
         "slot": {
           "type": [
             "string",
@@ -168,8 +327,33 @@
           ],
           "x-reference-kind": "augment_slot_types"
         },
+        "step": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
         "tier": {
           "type": "string"
+        },
+        "unlock": {
+          "items": {
+            "$ref": "#/$defs/CraftingUnlock"
+          },
+          "type": "array"
+        },
+        "variant": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "yields_ingredient": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "crafting_ingredients"
         }
       },
       "required": [
@@ -181,6 +365,8 @@
         "id",
         "system_id",
         "sort_order",
+        "step_id",
+        "yields_ingredient_id",
         "focus_path",
         "grants_slot_id",
         "note",
@@ -230,8 +416,18 @@
       "additionalProperties": false,
       "properties": {
         "ingredient": {
-          "type": "string",
+          "type": [
+            "string",
+            "null"
+          ],
           "x-reference-kind": "crafting_ingredients"
+        },
+        "item": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "items"
         },
         "quantity": {
           "format": "int64",
@@ -242,10 +438,15 @@
             "string",
             "null"
           ]
+        },
+        "variant": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       },
       "required": [
-        "ingredient",
         "quantity"
       ],
       "type": "object",
@@ -253,9 +454,347 @@
         "recipe_id",
         "sort_order",
         "ingredient_id",
+        "item_id",
         "quantity"
       ],
       "x-table": "crafting_recipe_ingredients"
+    },
+    "CraftingSystemRecipeSetOption": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "set": {
+          "type": "string"
+        },
+        "set_variant": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "set",
+        "name"
+      ],
+      "type": "object",
+      "x-columns": [
+        "recipe_id",
+        "option_id"
+      ],
+      "x-table": "crafting_recipe_set_options"
+    },
+    "CraftingSystemStation": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "x-reference-kind": "crafting_stations"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "variant": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "x-columns": [
+        "system_id",
+        "sort_order",
+        "station_id",
+        "note"
+      ],
+      "x-table": "crafting_system_stations"
+    },
+    "CraftingUnlock": {
+      "additionalProperties": false,
+      "properties": {
+        "crafting_ingredient": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "crafting_ingredients"
+        },
+        "feat": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "feats"
+        },
+        "item": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "items"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "pack": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "adventure_packs"
+        },
+        "patron": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "patrons"
+        },
+        "quest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "quests"
+        },
+        "text": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "variant": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "text"
+      ],
+      "type": "object",
+      "x-columns": [
+        "id",
+        "sort_order",
+        "system_id",
+        "station_id",
+        "recipe_id",
+        "kind",
+        "quest_id",
+        "patron_id",
+        "pack_id",
+        "feat_id",
+        "item_id",
+        "crafting_ingredient_id",
+        "value",
+        "text"
+      ],
+      "x-table": "crafting_unlocks"
+    },
+    "FileNumber": {
+      "anyOf": [
+        {
+          "format": "int64",
+          "type": "integer"
+        },
+        {
+          "format": "double",
+          "type": "number"
+        }
+      ]
+    },
+    "Modifier": {
+      "additionalProperties": false,
+      "properties": {
+        "amount_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "amounts": {
+          "items": {
+            "$ref": "#/$defs/FileNumber"
+          },
+          "type": "array"
+        },
+        "apply_as_item_effect": {
+          "type": "boolean"
+        },
+        "bonus": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "cap": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "damage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dice_bonus": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "dice_damage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dice_number": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "dice_sides": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "display_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effect": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "effects"
+        },
+        "effect_type": {
+          "type": "string"
+        },
+        "extra_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "is_item_specific": {
+          "type": "boolean"
+        },
+        "is_rare": {
+          "type": "boolean"
+        },
+        "percent": {
+          "type": "boolean"
+        },
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rank": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        },
+        "requirement_group": {
+          "items": {
+            "$ref": "#/$defs/RequirementGroup"
+          },
+          "type": "array"
+        },
+        "stack_source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "targets": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "effect_type"
+      ],
+      "type": "object",
+      "x-columns": [
+        "source_kind",
+        "source_id",
+        "sort_order",
+        "amount_type",
+        "amounts",
+        "apply_as_item_effect",
+        "bonus",
+        "bonus_type_id",
+        "cap",
+        "damage",
+        "dice_bonus",
+        "dice_damage",
+        "dice_number",
+        "dice_sides",
+        "display_name",
+        "effect_id",
+        "effect_type",
+        "extra_types",
+        "is_item_specific",
+        "is_rare",
+        "percent",
+        "rank",
+        "stack_source",
+        "targets",
+        "value"
+      ],
+      "x-table": "modifiers"
     },
     "RemovedEntry": {
       "additionalProperties": false,
@@ -295,6 +834,67 @@
         "read"
       ],
       "x-table": "removed_entities"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "req_type": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "req_type"
+      ],
+      "type": "object",
+      "x-columns": [
+        "owner_kind",
+        "owner_id",
+        "group_kind",
+        "group_index",
+        "sort_order",
+        "items",
+        "req_type",
+        "value"
+      ],
+      "x-table": "requirements"
+    },
+    "RequirementGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "requirement"
+      ],
+      "type": "object"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -346,6 +946,24 @@
     "removed": {
       "items": {
         "$ref": "#/$defs/RemovedEntry"
+      },
+      "type": "array"
+    },
+    "station": {
+      "items": {
+        "$ref": "#/$defs/CraftingSystemStation"
+      },
+      "type": "array"
+    },
+    "step": {
+      "items": {
+        "$ref": "#/$defs/CraftingStep"
+      },
+      "type": "array"
+    },
+    "unlock": {
+      "items": {
+        "$ref": "#/$defs/CraftingUnlock"
       },
       "type": "array"
     }

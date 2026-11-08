@@ -18,6 +18,281 @@ fn fixture_dataset_version() -> DatasetVersion {
 }
 
 #[test]
+fn shared_station_keeps_its_ingredient_unlock_once() {
+    let db = fixture::database(|root| {
+        let directory = root.join("packs/shared/crafting/ingredients");
+        std::fs::create_dir_all(&directory).unwrap();
+        std::fs::write(directory.join("test-key.toml"), "name='Test Key'\ntier='any'\ncitation=[]\n").unwrap();
+        std::fs::write(root.join("packs/shared/crafting/stations.toml"),"[[row]]\nname='Shared Forge'\nkind='device'\nplace='Test Hall'\ncitation=[]\n[[row.unlock]]\nkind='kept_item'\ncrafting_ingredient='Test Key'\ntext='Keep the key.'\n").unwrap();
+        for name in ["catalyst-crafting", "test-upgrade-altar"] {
+            let path = root.join(format!("packs/shared/crafting/{name}/crafting.toml"));
+            let mut system: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+            system.as_table_mut().unwrap().remove("npc");
+            std::fs::write(path, format!("{}\n[[station]]\nname='Shared Forge'\n", toml::to_string(&system).unwrap()))
+                .unwrap();
+        }
+    });
+    let count: i64 = db
+        .query_row("SELECT COUNT(*) FROM crafting_unlocks WHERE crafting_ingredient_id IS NOT NULL", [], |row| {
+            row.get(0)
+        })
+        .unwrap();
+    assert_eq!(count, 1);
+    let exported = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&db, exported.path()).unwrap();
+    assert!(exported.path().join("packs/shared/crafting/ingredients/test-key.toml").is_file());
+}
+
+#[test]
+fn qualified_station_and_ingredient_references_select_the_named_variant() {
+    let db = fixture::database(|root| {
+        std::fs::write(root.join("packs/shared/crafting/stations.toml"),"[[row]]\nname='Test Forge'\nvariant='hall'\nkind='device'\nplace='Hall'\ncitation=[]\n[[row]]\nname='Test Forge'\nvariant='tower'\nkind='device'\nplace='Tower'\ncitation=[]\n").unwrap();
+        let directory = root.join("packs/shared/crafting/ingredients");
+        std::fs::create_dir_all(&directory).unwrap();
+        for variant in ["heroic", "legendary"] {
+            std::fs::write(
+                directory.join(format!("test-key-{variant}.toml")),
+                format!("name='Test Key'\nvariant='{variant}'\ntier='{variant}'\ncitation=[]\n"),
+            )
+            .unwrap();
+        }
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let mut system: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+        system.as_table_mut().unwrap().remove("npc");
+        std::fs::write(path,format!("{}\n[[station]]\nname='Test Forge'\nvariant='tower'\n[[recipe]]\noption='Heroic key'\ntier='heroic'\n[[recipe.ingredient]]\ningredient='Test Key'\nvariant='heroic'\nquantity=1\n[[recipe]]\noption='Legendary key'\ntier='legendary'\n[[recipe.ingredient]]\ningredient='Test Key'\nvariant='legendary'\nquantity=2\n",toml::to_string(&system).unwrap())).unwrap();
+    });
+    let place: String = db
+        .query_row(
+            "SELECT s.place FROM crafting_system_stations l JOIN crafting_stations s ON s.id=l.station_id",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(place, "Tower");
+    let costs = db.prepare("SELECT r.tier,i.variant,c.quantity FROM crafting_recipe_ingredients c JOIN crafting_recipes r ON r.id=c.recipe_id JOIN crafting_ingredients i ON i.id=c.ingredient_id WHERE i.name='Test Key' ORDER BY r.tier").unwrap().query_map([],|row|Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(costs, [("heroic".into(), "heroic".into(), 1), ("legendary".into(), "legendary".into(), 2)]);
+}
+
+#[test]
+fn kept_item_unlocks_resolve_an_item_or_a_crafting_ingredient() {
+    let db = fixture::database(|root| {
+        let directory = root.join("packs/shared/crafting/ingredients");
+        std::fs::create_dir_all(&directory).unwrap();
+        std::fs::write(directory.join("test-key.toml"), "name='Test Key'\ntier='any'\ncitation=[]\n").unwrap();
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path,format!("{original}\n[[unlock]]\nkind='kept_item'\nitem=\"Acrobat's Ring\"\ntext='The ring must be worn.'\n[[unlock]]\nkind='kept_item'\ncrafting_ingredient='Test Key'\ntext='Keep the key.'\n")).unwrap();
+    });
+    let links = db.prepare("SELECT i.name,c.name,u.text FROM crafting_unlocks u LEFT JOIN items i ON i.id=u.item_id LEFT JOIN crafting_ingredients c ON c.id=u.crafting_ingredient_id ORDER BY u.sort_order").unwrap().query_map([],|row|Ok((row.get::<_,Option<String>>(0)?,row.get::<_,Option<String>>(1)?,row.get::<_,String>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        links,
+        [
+            (Some("Acrobat's Ring".into()), None, "The ring must be worn.".into()),
+            (None, Some("Test Key".into()), "Keep the key.".into())
+        ]
+    );
+}
+
+#[test]
+fn crafting_unlocks_resolve_quests_patrons_packs_and_feats() {
+    let db = fixture::database(|root| {
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path,format!("{original}\n[[unlock]]\nkind='quest'\nquest='Book Burning'\ntext='Complete Book Burning.'\n[[unlock]]\nkind='raid_flagging'\nquest='Book Burning'\ntext='Flag for the fixture raid.'\n[[unlock]]\nkind='favor'\npatron='House Cannith'\nvalue=150\ntext='Earn 150 favor.'\n[[unlock]]\nkind='pack'\npack='Free to Play'\ntext='Access the fixture pack.'\n[[unlock]]\nkind='feat'\nfeat='Adamantine Body'\ntext='Have the feat.'\n")).unwrap();
+    });
+    let links = db.prepare("SELECT u.kind,COALESCE(q.name,p.name,a.name,f.name),u.value FROM crafting_unlocks u LEFT JOIN quests q ON q.id=u.quest_id LEFT JOIN patrons p ON p.id=u.patron_id LEFT JOIN adventure_packs a ON a.id=u.pack_id LEFT JOIN feats f ON f.id=u.feat_id ORDER BY u.sort_order").unwrap().query_map([],|row|Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,Option<i64>>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        links,
+        [
+            ("quest".into(), "Book Burning".into(), None),
+            ("raid_flagging".into(), "Book Burning".into(), None),
+            ("favor".into(), "House Cannith".into(), Some(150)),
+            ("pack".into(), "Free to Play".into(), None),
+            ("feat".into(), "Adamantine Body".into(), None)
+        ]
+    );
+}
+
+#[test]
+fn a_recipe_yields_a_shared_ingredient() {
+    let db = fixture::database(|root| {
+        let directory = root.join("packs/shared/crafting/ingredients");
+        std::fs::create_dir_all(&directory).unwrap();
+        std::fs::write(
+            directory.join("test-emblem.toml"),
+            "name='Test Emblem'\ntier='any'\n[[citation]]\nurl='https://ddowiki.com/page/Test'\nread='2026-11-08'\n",
+        )
+        .unwrap();
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(
+            path,
+            format!("{original}\n[[recipe]]\noption='Create emblem'\ntier='any'\nyields_ingredient='Test Emblem'\n"),
+        )
+        .unwrap();
+    });
+    let name: String = db.query_row("SELECT i.name FROM crafting_recipes r JOIN crafting_ingredients i ON i.id=r.yields_ingredient_id WHERE r.option='Create emblem'", [], |row| row.get(0)).unwrap();
+    assert_eq!(name, "Test Emblem");
+}
+
+#[test]
+fn socket_labels_build_their_not_crafting_reason() {
+    let db = fixture::database(|root| {
+        let path = root.join("effects/augment-slot-types.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        let changed = original.replacen("[[row]]", "[[row]]\nnot_crafting_reason='Random loot generator'", 1);
+        std::fs::write(path, changed).unwrap();
+    });
+    let count: i64 = db
+        .query_row(
+            "SELECT COUNT(*) FROM augment_slot_types WHERE not_crafting_reason='Random loot generator'",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    assert_eq!(count, 1);
+}
+
+#[test]
+fn stations_are_shared_rows_and_systems_link_them_with_notes() {
+    let db = crafting_station_fixture();
+    assert_eq!(
+        db.query_row("SELECT COUNT(*) FROM crafting_stations WHERE name='Fixture Forge'", [], |row| row
+            .get::<_, i64>(0))
+            .unwrap(),
+        1
+    );
+    let notes=db.prepare("SELECT s.name,l.note FROM crafting_system_stations l JOIN crafting_systems s ON s.id=l.system_id ORDER BY s.name").unwrap()
+        .query_map([],|row|Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        notes,
+        [
+            ("Catalyst Crafting".into(), "Catalyst station note".into()),
+            ("Test Upgrade Altar".into(), "Upgrade station note".into())
+        ]
+    );
+}
+
+#[test]
+fn crafting_unlocks_build_with_their_linked_rows() {
+    let db = crafting_station_fixture();
+    let gates=db.prepare("SELECT kind,value,system_id IS NOT NULL,station_id IS NOT NULL,recipe_id IS NOT NULL FROM crafting_unlocks ORDER BY kind").unwrap()
+        .query_map([],|row|Ok((row.get::<_,String>(0)?,row.get::<_,Option<i64>>(1)?,row.get::<_,bool>(2)?,row.get::<_,bool>(3)?,row.get::<_,bool>(4)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        gates,
+        [
+            ("crafting_level".into(), Some(20), false, false, true),
+            ("level".into(), Some(10), true, false, false),
+            ("other".into(), None, false, true, false)
+        ]
+    );
+}
+
+fn crafting_station_fixture() -> Connection {
+    fixture::database(|root| {
+        std::fs::write(root.join("packs/shared/crafting/stations.toml"),"[[row]]\nname='Fixture Forge'\nkind='device'\nplace='Fixture hall'\n[[row.unlock]]\nkind='other'\ntext='Reveal the forge.'\n[[row.citation]]\nurl='https://ddowiki.com/page/Test'\nread='2026-11-08'\n").unwrap();
+        for (system, note) in
+            [("catalyst-crafting", "Catalyst station note"), ("test-upgrade-altar", "Upgrade station note")]
+        {
+            let path = root.join(format!("packs/shared/crafting/{system}/crafting.toml"));
+            let original = std::fs::read_to_string(&path)
+                .unwrap()
+                .lines()
+                .filter(|line| !line.starts_with("npc = "))
+                .collect::<Vec<_>>()
+                .join("\n");
+            let gates = if system == "catalyst-crafting" {
+                "\n[[unlock]]\nkind='level'\nvalue=10\ntext='Requires level 10.'\n[[recipe]]\noption='Gated recipe'\ntier='any'\n[[recipe.unlock]]\nkind='crafting_level'\nvalue=20\ntext='Requires crafting level 20.'\n"
+            } else {
+                ""
+            };
+            std::fs::write(path, format!("{original}\n[[station]]\nname='Fixture Forge'\nnote='{note}'\n{gates}"))
+                .unwrap();
+        }
+    })
+}
+
+#[test]
+fn shared_ingredient_files_are_used_by_several_systems() {
+    let db = fixture::database(|root| {
+        let path = root.join("packs/shared/crafting/ingredients/thread-of-fate.toml");
+        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+        std::fs::write(path,"name='Thread of Fate'\ntier='any'\ndrop_location='Fixture quest'\n[[citation]]\nurl='https://ddowiki.com/page/Item:Thread_of_Fate'\nread='2026-11-08'\n").unwrap();
+        for system in ["catalyst-crafting", "test-upgrade-altar"] {
+            let path = root.join(format!("packs/shared/crafting/{system}/crafting.toml"));
+            let original = std::fs::read_to_string(&path).unwrap();
+            std::fs::write(path,format!("{original}\n[[recipe]]\noption='Shared ingredient recipe'\ntier='any'\n[[recipe.ingredient]]\ningredient='Thread of Fate'\nquantity=3\n")).unwrap();
+        }
+    });
+    assert_eq!(db.query_row("SELECT COUNT(*) FROM crafting_ingredients WHERE name='Thread of Fate' AND system_id IS NULL AND slug='thread-of-fate'",[],|row|row.get::<_,i64>(0)).unwrap(),1);
+    assert_eq!(db.query_row("SELECT COUNT(DISTINCT r.system_id) FROM crafting_recipe_ingredients c JOIN crafting_recipes r ON r.id=c.recipe_id JOIN crafting_ingredients i ON i.id=c.ingredient_id WHERE i.name='Thread of Fate'",[],|row|row.get::<_,i64>(0)).unwrap(),2);
+}
+
+#[test]
+fn a_recipe_consumes_an_item_by_reference() {
+    let db = fixture::database(|root| {
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path,format!("{original}\n[[recipe]]\noption='Fixture upgrade'\ntier='heroic'\n[[recipe.ingredient]]\nitem=\"Acrobat's Ring\"\nquantity=2\n")).unwrap();
+    });
+    let cost:(String,i64,Option<i64>)=db.query_row("SELECT i.name,c.quantity,c.ingredient_id FROM crafting_recipe_ingredients c JOIN items i ON i.id=c.item_id",[],|row| Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap();
+    assert_eq!(cost, ("Acrobat's Ring".into(), 2, None));
+}
+
+#[test]
+fn step_costs_apply_to_recipes_without_their_own_and_overrides_stand() {
+    let db = fixture::database(|root| {
+        let path = root.join("packs/shared/crafting/heroic-green-steel/crafting.toml");
+        let mut file: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+        let recipes = file["recipe"].as_array_mut().unwrap();
+        for recipe in recipes.iter_mut().take(2) {
+            let row = recipe.as_table_mut().unwrap();
+            row.remove("slot");
+            row.insert("step".into(), toml::Value::String("Invasion".into()));
+        }
+        recipes[1].as_table_mut().unwrap().remove("ingredient");
+        std::fs::write(path,format!("{}\n[[step]]\nname='Invasion'\nslot='crafting: accessory invasion'\n[[step.cost]]\ntier='heroic'\ningredient='Small Shard of Power'\nquantity=10\n[[step.cost]]\ntier='legendary'\ningredient='Shroud Commendation'\nquantity=20\n",toml::to_string(&file).unwrap())).unwrap();
+    });
+    let costs=db.prepare("SELECT c.tier,i.name,c.quantity FROM crafting_step_costs c JOIN crafting_ingredients i ON i.id=c.ingredient_id ORDER BY c.tier").unwrap()
+        .query_map([],|row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        costs,
+        [("heroic".into(), "Small Shard of Power".into(), 10), ("legendary".into(), "Shroud Commendation".into(), 20)]
+    );
+    assert_eq!(db.query_row("SELECT COUNT(*) FROM crafting_recipe_ingredients c JOIN crafting_recipes r ON r.id=c.recipe_id WHERE r.option='Minor Fire Guard'",[],|row|row.get::<_,i64>(0)).unwrap(),0);
+    assert_eq!(db.query_row("SELECT SUM(c.quantity) FROM crafting_recipe_ingredients c JOIN crafting_recipes r ON r.id=c.recipe_id WHERE r.option='+5 Fortitude Save'",[],|row|row.get::<_,i64>(0)).unwrap(),2);
+}
+
+#[test]
+fn crafting_steps_build_from_the_file_and_derive_recipe_sockets() {
+    let db = fixture::database(|root| {
+        let path = root.join("packs/shared/crafting/heroic-green-steel/crafting.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        let changed = original.replace("slot = \"crafting: accessory invasion\"", "step = \"Invasion\"");
+        std::fs::write(path, format!("{changed}\n[[step]]\nname = 'Invasion'\nslot = 'crafting: accessory invasion'\nis_random = true\n[[step.effect]]\neffect = 'Constitution'\nbonus_type = 'Enhancement'\nvalue = 10\nequipment_slot = 'Off Hand'\n[[step]]\nname = 'Cleanse'\n")).unwrap();
+    });
+    let rows = db.prepare("SELECT r.option,s.name,t.label FROM crafting_recipes r JOIN crafting_steps s ON s.id=r.step_id JOIN augment_slot_types t ON t.id=s.slot_id WHERE r.system_id=(SELECT id FROM crafting_systems WHERE name='Heroic Green Steel') ORDER BY r.option").unwrap()
+        .query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,String>(2)?))).unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        rows,
+        [
+            ("+5 Fortitude Save".into(), "Invasion".into(), "crafting: accessory invasion".into()),
+            ("Minor Fire Guard".into(), "Invasion".into(), "crafting: accessory invasion".into())
+        ]
+    );
+    let line: (String,i64,bool) = db.query_row("SELECT e.name,l.value,s.is_random FROM crafting_step_effects l JOIN crafting_steps s ON s.id=l.step_id JOIN equipment_slots e ON e.id=l.equipment_slot_id",[],|row| Ok((row.get(0)?,row.get(1)?,row.get(2)?))).unwrap();
+    assert_eq!(line, ("Off Hand".into(), 10, true));
+    assert_eq!(
+        db.query_row("SELECT COUNT(*) FROM crafting_steps WHERE name='Cleanse' AND slot_id IS NULL", [], |row| row
+            .get::<_, i64>(0))
+            .unwrap(),
+        1
+    );
+    assert_eq!(db.query_row("SELECT COUNT(*) FROM crafting_recipes r JOIN crafting_steps s ON s.id=r.step_id WHERE r.slot_id IS NOT s.slot_id",[],|row|row.get::<_,i64>(0)).unwrap(),0);
+}
+
+#[test]
 fn augment_socket_grants_derive_from_both_lines_in_order() {
     let db = fixture::database(|root| {
         let path = root.join("packs/shared/crafting/heroic-green-steel/augments/minor-fire-guard.toml");

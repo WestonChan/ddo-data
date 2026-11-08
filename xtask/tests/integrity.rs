@@ -4,14 +4,13 @@ use std::process::{Command, Output};
 use std::sync::OnceLock;
 use xtask::integrity::{integrity_report, CheckStatus, IntegrityOptions, Severity, INTEGRITY_CHECKS};
 
-const TABLES_EMPTY_IN_FIXTURES: [&str; 15] = [
+const TABLES_EMPTY_IN_FIXTURES: [&str; 14] = [
     "effect_damage",
     "race_feat_slots",
     "removed_entities",
     "crafting_steps",
     "crafting_step_effects",
     "crafting_step_costs",
-    "crafting_stations",
     "crafting_system_stations",
     "crafting_unlocks",
     "socket_option_sets",

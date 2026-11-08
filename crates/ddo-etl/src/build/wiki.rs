@@ -18,6 +18,7 @@ pub(super) fn apply_wiki_overrides(
     transaction: &Transaction,
     references: &OverlayReferences,
     wiki_overrides: &WikiOverrides,
+    effects: &mut super::effects::EffectCache<'_>,
     report: &mut BuildReport,
 ) -> Result<()> {
     for quest_loot in &wiki_overrides.quest_loot {
@@ -71,8 +72,24 @@ pub(super) fn apply_wiki_overrides(
         }
         report.wiki_quest_loot_entry_count += 1;
     }
+    report.wiki_crafting_ingredient_count += wiki_overrides.crafting_ingredients.len();
+    for station in &wiki_overrides.crafting_stations {
+        let station_id = crate::tree::qualified_reference_id(
+            transaction,
+            "crafting_stations",
+            &station.name,
+            station.variant.as_deref(),
+        )?;
+        for (position, unlock) in station.unlocks.iter().enumerate() {
+            unlock_record(unlock).write_unlock(
+                transaction,
+                crate::tree::CraftingUnlockOwner::Station(station_id),
+                position as i64,
+            )?;
+        }
+    }
     for crafting_system in &wiki_overrides.crafting_systems {
-        insert_crafting_system_contents(transaction, references, crafting_system, report)
+        insert_crafting_system_contents(transaction, references, crafting_system, effects, report)
             .with_context(|| format!("wiki {} crafting {:?}", crafting_system.file_name, crafting_system.name))?;
     }
     Ok(())
@@ -141,6 +158,32 @@ fn insert_wiki_quest(transaction: &Transaction, references: &OverlayReferences, 
 }
 
 pub(super) fn write_wiki_crafting_systems(transaction: &Transaction, wiki_overrides: &WikiOverrides) -> Result<()> {
+    for ingredient in &wiki_overrides.crafting_ingredients {
+        let slug = crate::tree::qualified_slug(&ingredient.name, ingredient.variant.as_deref());
+        transaction.execute(
+            "INSERT INTO crafting_ingredients (id,slug,name,variant,tier,bind,source) VALUES (?1,?2,?3,?4,?5,?6,?7)",
+            params![
+                crate::tree::xml_overlay_id("crafting_ingredients", &slug)?,
+                slug,
+                ingredient.name,
+                ingredient.variant,
+                ingredient.tier,
+                ingredient.bind,
+                ingredient.source
+            ],
+        )?;
+    }
+    for (position, station) in wiki_overrides.crafting_stations.iter().enumerate() {
+        let slug = crate::tree::qualified_slug(&station.name, station.variant.as_deref());
+        let quest_id = station
+            .quest
+            .as_deref()
+            .map(|name| {
+                transaction.query_row("SELECT id FROM quests WHERE name=?1", [name], |row| row.get::<_, i64>(0))
+            })
+            .transpose()?;
+        transaction.execute("INSERT INTO crafting_stations (id,slug,name,variant,kind,place,quest_id,sort_order) VALUES (?1,?2,?3,?4,?5,?6,?7,?8)",params![crate::tree::xml_overlay_id("crafting_stations",&slug)?,slug,station.name,station.variant,station.kind.as_str(),station.place,quest_id,position as i64])?;
+    }
     for crafting_system in &wiki_overrides.crafting_systems {
         transaction.execute(
             "INSERT INTO crafting_systems (name, page, npc, slug, id) VALUES (?1, ?2, ?3, ?4, ?5)",
@@ -163,6 +206,7 @@ fn insert_crafting_system_contents(
     transaction: &Transaction,
     references: &OverlayReferences,
     crafting_system: &CraftingSystem,
+    effects: &mut super::effects::EffectCache<'_>,
     report: &mut BuildReport,
 ) -> Result<()> {
     let pack_id = match &crafting_system.pack {
@@ -187,33 +231,44 @@ fn insert_crafting_system_contents(
         .id(transaction, "crafting_systems", &crafting_system.name)?
         .context("the crafting system row is written before his items")?;
     transaction.execute("UPDATE crafting_systems SET pack_id = ?2 WHERE id = ?1", params![system_id, pack_id])?;
+    for (position, station) in crafting_system.stations.iter().enumerate() {
+        let station_id = crate::tree::qualified_reference_id(
+            transaction,
+            "crafting_stations",
+            &station.name,
+            station.variant.as_deref(),
+        )?;
+        transaction.execute(
+            "INSERT INTO crafting_system_stations (system_id,station_id,sort_order,note) VALUES (?1,?2,?3,?4)",
+            params![system_id, station_id, position as i64, station.note],
+        )?;
+    }
     for family in &crafting_system.families {
         transaction.execute(
             "INSERT OR IGNORE INTO crafting_system_families (system_id, family) VALUES (?1, ?2)",
             params![system_id, family],
         )?;
     }
-    let mut ingredient_ids_by_name_and_tier = HashMap::new();
     for (sort_order, ingredient) in crafting_system.ingredients.iter().enumerate() {
         transaction.execute(
             "INSERT INTO crafting_ingredients (system_id, sort_order, name, tier, bind, source, slug) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
             params![system_id, sort_order as i64, ingredient.name, ingredient.tier, ingredient.bind, ingredient.source, format!("{}-{}-{}", crate::tree::slug(&crafting_system.name), crate::tree::slug(&ingredient.name), crate::tree::slug(&ingredient.tier))],
         )?;
-        ingredient_ids_by_name_and_tier
-            .insert((ingredient.name.as_str(), ingredient.tier.as_str()), transaction.last_insert_rowid());
         report.wiki_crafting_ingredient_count += 1;
     }
-    for (sort_order, recipe) in crafting_system.recipes.iter().enumerate() {
-        insert_crafting_recipe(
+    for (position, unlock) in crafting_system.unlocks.iter().enumerate() {
+        unlock_record(unlock).write_unlock(
             transaction,
-            references,
-            crafting_system,
-            system_id,
-            sort_order,
-            recipe,
-            &ingredient_ids_by_name_and_tier,
-        )
-        .with_context(|| format!("recipe {:?}", recipe.option))?;
+            crate::tree::CraftingUnlockOwner::System(system_id),
+            position as i64,
+        )?;
+    }
+    for (position, step) in crafting_system.steps.iter().enumerate() {
+        insert_crafting_step(transaction, references, crafting_system, system_id, step, position, effects)?;
+    }
+    for (sort_order, recipe) in crafting_system.recipes.iter().enumerate() {
+        insert_crafting_recipe(transaction, references, crafting_system, system_id, sort_order, recipe)
+            .with_context(|| format!("recipe {:?}", recipe.option))?;
         report.wiki_crafting_recipe_count += 1;
     }
     report.wiki_crafting_system_count += 1;
@@ -227,12 +282,34 @@ fn insert_crafting_recipe(
     system_id: i64,
     sort_order: usize,
     recipe: &CraftingRecipe,
-    ingredient_ids_by_name_and_tier: &HashMap<(&str, &str), i64>,
 ) -> Result<()> {
+    let step_id = recipe
+        .step
+        .as_deref()
+        .map(|name| {
+            transaction.query_row(
+                "SELECT id FROM crafting_steps WHERE system_id=?1 AND name=?2",
+                params![system_id, name],
+                |row| row.get::<_, i64>(0),
+            )
+        })
+        .transpose()?;
     let slot_type_id = recipe
         .slot
         .as_deref()
         .map(|label| slot_type_id_labelled(transaction, references, "slot", label))
+        .transpose()?;
+    let slot_type_id = match step_id {
+        Some(id) => transaction
+            .query_row("SELECT slot_id FROM crafting_steps WHERE id=?1", [id], |row| row.get::<_, Option<i64>>(0))?,
+        None => slot_type_id,
+    };
+    let yielded_ingredient = recipe
+        .yields_ingredient
+        .as_deref()
+        .map(|name| {
+            crate::tree::ingredient_id(transaction, Some(system_id), name, recipe.yields_variant.as_deref(), None)
+        })
         .transpose()?;
     let granted_slot_type_id = recipe
         .grants_slot
@@ -240,8 +317,8 @@ fn insert_crafting_recipe(
         .map(|label| slot_type_id_labelled(transaction, references, "grants_slot", label))
         .transpose()?;
     transaction.execute(
-        "INSERT INTO crafting_recipes (system_id, tier, slot_id, grants_slot_id, option, note, focus_path, sort_order)
-         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
+        "INSERT INTO crafting_recipes (system_id, tier, slot_id, grants_slot_id, option, note, focus_path, sort_order,step_id,yields_ingredient_id)
+         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8,?9,?10)",
         params![
             system_id,
             recipe.tier,
@@ -250,10 +327,30 @@ fn insert_crafting_recipe(
             recipe.option,
             recipe.note,
             recipe.note.as_deref().and_then(crate::tree::recipe_focus_path),
-            sort_order as i64
+            sort_order as i64,step_id,yielded_ingredient
         ],
     )?;
     let recipe_id = transaction.last_insert_rowid();
+    for option in &recipe.set_options {
+        let option_id = crate::tree::recipe_set_option_id(
+            transaction,
+            step_id,
+            &option.set,
+            option.variant.as_deref(),
+            &option.name,
+        )?;
+        transaction.execute(
+            "INSERT INTO crafting_recipe_set_options (recipe_id,option_id) VALUES (?1,?2)",
+            params![recipe_id, option_id],
+        )?;
+    }
+    for (position, unlock) in recipe.unlocks.iter().enumerate() {
+        unlock_record(unlock).write_unlock(
+            transaction,
+            crate::tree::CraftingUnlockOwner::Recipe { id: recipe_id, system_id },
+            position as i64,
+        )?;
+    }
     let mut augment_order = 0_i64;
     for augment_name in &recipe.augments {
         let augment_ids = augment_ids_named_in(transaction, references, augment_name, &crafting_system.families)?;
@@ -272,18 +369,121 @@ fn insert_crafting_recipe(
         }
     }
     for (sort_order, cost) in recipe.cost.iter().enumerate() {
-        let ingredient = crafting_system.ingredient_for(recipe, &cost.ingredient)?;
+        let (ingredient_id, item_id) =
+            crafting_cost_references(transaction, crafting_system, system_id, &recipe.tier, cost)?;
         transaction.execute(
-            "INSERT INTO crafting_recipe_ingredients (recipe_id, ingredient_id, sort_order, quantity) VALUES (?1, ?2, ?3, ?4)",
+            "INSERT INTO crafting_recipe_ingredients (recipe_id, ingredient_id, sort_order, quantity, item_id) VALUES (?1, ?2, ?3, ?4, ?5)",
             params![
                 recipe_id,
-                ingredient_ids_by_name_and_tier[&(ingredient.name.as_str(), ingredient.tier.as_str())],
+                ingredient_id,
                 sort_order as i64,
-                cost.quantity
+                cost.quantity,
+                item_id
             ],
         )?;
     }
     Ok(())
+}
+
+fn crafting_cost_references(
+    transaction: &Transaction,
+    system: &CraftingSystem,
+    system_id: i64,
+    tier: &str,
+    cost: &crate::wiki::IngredientCost,
+) -> Result<(Option<i64>, Option<i64>)> {
+    let legacy_tier = cost
+        .ingredient
+        .as_deref()
+        .filter(|name| system.ingredients.iter().any(|ingredient| ingredient.name == *name))
+        .map(|name| system.ingredient_for(tier, name).map(|ingredient| ingredient.tier.as_str()))
+        .transpose()?;
+    crate::tree::cost_references(
+        transaction,
+        system_id,
+        cost.ingredient.as_deref(),
+        cost.item.as_deref(),
+        cost.variant.as_deref(),
+        legacy_tier,
+    )
+}
+
+fn insert_crafting_step(
+    transaction: &Transaction,
+    references: &OverlayReferences,
+    system: &CraftingSystem,
+    system_id: i64,
+    step: &crate::wiki::CraftingStep,
+    position: usize,
+    effects: &mut super::effects::EffectCache<'_>,
+) -> Result<()> {
+    let slot_id = step
+        .slot
+        .as_deref()
+        .map(|label| slot_type_id_labelled(transaction, references, "step slot", label))
+        .transpose()?;
+    transaction.execute(
+        "INSERT INTO crafting_steps (system_id,sort_order,name,slot_id,is_random) VALUES (?1,?2,?3,?4,?5)",
+        params![system_id, position as i64, step.name, slot_id, step.is_random],
+    )?;
+    let step_id = transaction.last_insert_rowid();
+    for (position, line) in step.effects.iter().enumerate() {
+        let effect_id = effects.ensure_named_effect(&line.effect).with_context(|| format!("step {:?}", step.name))?;
+        let bonus_type = line
+            .bonus_type
+            .as_deref()
+            .map(|name| {
+                ddo_model::enums::BonusType::parse(name).with_context(|| format!("unknown bonus type {name:?}"))
+            })
+            .transpose()?;
+        effects.insert_link(
+            (EffectOwner::CraftingStep, step_id),
+            effect_id,
+            line.alias.as_deref(),
+            bonus_type,
+            (line.value, line.value2),
+            position,
+        )?;
+        let equipment_slot = line
+            .equipment_slot
+            .as_deref()
+            .map(|name| {
+                transaction
+                    .query_row("SELECT id FROM equipment_slots WHERE name=?1", [name], |row| row.get::<_, i64>(0))
+            })
+            .transpose()?;
+        transaction.execute(
+            "UPDATE crafting_step_effects SET equipment_slot_id=?1 WHERE step_id=?2 AND sort_order=?3",
+            params![equipment_slot, step_id, position as i64],
+        )?;
+    }
+    for (position, modifier) in step.modifiers.iter().enumerate() {
+        modifier.write_modifier(transaction, "crafting_step", step_id, position as i64)?;
+    }
+    let mut positions = std::collections::BTreeMap::new();
+    for cost in &step.costs {
+        let (ingredient_id, item_id) =
+            crafting_cost_references(transaction, system, system_id, &cost.tier, &cost.cost)?;
+        let position = positions.entry(&cost.tier).or_insert(0_i64);
+        transaction.execute("INSERT INTO crafting_step_costs (step_id,tier,sort_order,ingredient_id,item_id,quantity) VALUES (?1,?2,?3,?4,?5,?6)",params![step_id,cost.tier,*position,ingredient_id,item_id,cost.cost.quantity])?;
+        *position += 1;
+    }
+    Ok(())
+}
+
+fn unlock_record(unlock: &crate::wiki::CraftingUnlock) -> crate::tree::CraftingUnlockRecord {
+    crate::tree::CraftingUnlockRecord {
+        kind: unlock.kind.clone(),
+        quest: unlock.quest.clone(),
+        patron: unlock.patron.clone(),
+        pack: unlock.pack.clone(),
+        item: unlock.item.clone(),
+        crafting_ingredient: unlock.crafting_ingredient.clone(),
+        feat: unlock.feat.clone(),
+        variant: unlock.variant.clone(),
+        value: unlock.value,
+        text: unlock.text.clone(),
+    }
 }
 
 fn slot_type_id_labelled(

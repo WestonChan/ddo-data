@@ -3568,13 +3568,17 @@ async fn aliased_titles_agree_across_every_effect_owner() {
                 "characters/feats/other.toml",
                 &format!("[[row]]\nname = {name:?}\nacquire = 'Train'\n[[row.effect]]\neffect = 'Improved Deception'\n{link}"),
             );
+            let directory = root.join("packs/shared/crafting").join(&slug);
+            std::fs::create_dir_all(&directory).unwrap();
+            std::fs::write(directory.join("crafting.toml"),format!("name={name:?}\npage='https://ddowiki.com/page/Test'\ncitation=[]\n[[step]]\nname='Alias step'\n[[step.effect]]\neffect='Improved Deception'\n{link}")).unwrap();
         }
     });
     let db = rusqlite::Connection::open(&path).unwrap();
     let state = AppState::open(&path).unwrap();
-    for owner_kind in ddo_model::enums::EffectOwner::ALL.into_iter().filter(|owner| {
-        !matches!(owner, ddo_model::enums::EffectOwner::CraftingStep | ddo_model::enums::EffectOwner::SocketOption)
-    }) {
+    for owner_kind in ddo_model::enums::EffectOwner::ALL
+        .into_iter()
+        .filter(|owner| !matches!(owner, ddo_model::enums::EffectOwner::SocketOption))
+    {
         let (table, column) = owner_kind.table();
         let lines = ddo_api::served_effect_lines(&db, table, column).unwrap();
         for (alias, _, _, expected) in cases {

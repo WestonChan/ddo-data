@@ -403,9 +403,12 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         let relative = layout.path("classes", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
     }
-    for (id, file) in kinds::CraftingSystemFile::all_from_rows(db, &annotations)? {
+    for (id, file) in kinds::CraftingSystemFile::all_from_rows(db, &annotations, &mut modifiers)? {
         let relative = layout.path("crafting_systems", id)?;
         write_export_file(root, relative, &file.file_text()?, &mut report)?;
+    }
+    for (id, file) in kinds::CraftingIngredientFile::all_from_rows(db, &annotations)? {
+        write_export_file(root, layout.path("crafting_ingredients", id)?, &typed_file_text(&file)?, &mut report)?;
     }
     for (id, file) in kinds::EnhancementTreeFile::all_from_rows(db, &annotations, &notes, &mut modifiers)? {
         let relative = layout.path("enhancement_trees", id)?;
@@ -488,6 +491,15 @@ pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport
         write_generated_files(root, folder, files)?;
     }
     let currencies = kinds::VendorCurrenciesFile::from_rows(db, &annotations)?;
+    let stations = kinds::CraftingStationsFile::from_rows(db, &annotations)?;
+    if !stations.row.is_empty() {
+        write_export_file(
+            root,
+            Path::new("packs/shared/crafting/stations.toml"),
+            &typed_file_text(&stations)?,
+            &mut report,
+        )?;
+    }
     write_export_file(root, fixed_data_file("vendor_currencies")?, &toml::to_string_pretty(&currencies)?, &mut report)?;
     write_pack_exceptions(db, root, &mut report)?;
     let alias_path = root.join(fixed_data_file("source_aliases")?);

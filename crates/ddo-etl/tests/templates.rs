@@ -53,6 +53,9 @@ fn every_template_builds_under_its_placement_and_exports_byte_equal() {
         std::fs::create_dir_all(data.join(path).parent().unwrap()).unwrap();
         std::fs::write(data.join(path), toml::to_string_pretty(&file).unwrap()).unwrap();
     }
+    let second_ingredient_user = data.join("packs/shared/crafting/template-ingredient-consumer/crafting.toml");
+    std::fs::create_dir_all(second_ingredient_user.parent().unwrap()).unwrap();
+    std::fs::write(second_ingredient_user, "name='Template Ingredient Consumer'\npage='https://ddowiki.com/page/Test'\n[[citation]]\nurl='https://ddowiki.com/page/Test'\nread='2026-11-08'\n[[recipe]]\noption='Use shared template ingredient'\ntier='any'\n[[recipe.ingredient]]\ningredient='Template Ingredient'\nquantity=2\n").unwrap();
     ddo_etl::icons::place_enhancement_icons_beside_trees(&data).unwrap();
     let mut db = rusqlite::Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(&data, &mut db).unwrap_or_else(|error| panic!("{error:#}"));

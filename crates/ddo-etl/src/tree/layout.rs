@@ -141,6 +141,7 @@ enum FolderPlacement<'a> {
         systems: Option<&'a BTreeSet<i64>>,
         family: &'a str,
     },
+    CraftingIngredient(&'a BTreeSet<i64>),
     Filigrees(&'a [(i64, String)]),
     Character {
         kind: &'a str,
@@ -157,6 +158,11 @@ fn narrowest_folder(
     packs: &[String],
 ) -> Result<PathBuf> {
     match placement {
+        FolderPlacement::CraftingIngredient(systems) => Ok(if systems.len() == 1 {
+            paths[&("crafting_systems".into(), *systems.first().unwrap())].parent().unwrap().join("ingredients")
+        } else {
+            PathBuf::from("packs/shared/crafting/ingredients")
+        }),
         FolderPlacement::Pack(name) => Ok(folders[name].clone()),
         FolderPlacement::Quest { pack, patron, identity } => {
             let mut parent = pack.map_or_else(|| PathBuf::from("packs/shared"), |pack| folders[pack].clone());
@@ -282,6 +288,9 @@ fn narrowest_folder(
 }
 
 pub(super) fn expected_reference_path(table: &str, name: &str, referring: &Path) -> Result<PathBuf> {
+    if let Ok(path) = fixed_data_file(table) {
+        return Ok(path.to_path_buf());
+    }
     let identity = slug(name);
     let segments = referring.iter().collect::<Vec<_>>();
     let mut pack = PathBuf::from("packs/shared");
@@ -353,20 +362,10 @@ pub(super) fn expected_reference_path(table: &str, name: &str, referring: &Path)
             },
             "crafting.toml".into(),
         )),
-        "vendor_currencies" => return Ok(PathBuf::from("packs/shared/vendors/currencies.toml")),
         "enhancement_trees" => {
             Some((FolderPlacement::Character { kind: table, identity: &identity }, "tree.toml".into()))
         }
         "adventure_packs" => return Ok(PathBuf::from("packs").join(format!("<update>-{identity}")).join("pack.toml")),
-        "bonus_types"
-        | "augment_slot_types"
-        | "equipment_slots"
-        | "weapon_types"
-        | "damage_types"
-        | "item_materials"
-        | "triggers"
-        | "weapon_proficiencies"
-        | "clickies" => Some((FolderPlacement::Effect(""), format!("{}.toml", table.replace('_', "-")))),
         _ => None,
     };
     if let Some((placement, filename)) = source {
@@ -461,6 +460,27 @@ impl ExportLayout {
             if let Some(path) = parent {
                 paths.insert((kind.clone(), id), path);
             }
+        }
+        let mut ingredient_systems = BTreeMap::<i64, BTreeSet<i64>>::new();
+        let mut uses=db.prepare("SELECT cost.ingredient_id,recipe.system_id FROM crafting_recipe_ingredients cost JOIN crafting_recipes recipe ON recipe.id=cost.recipe_id WHERE cost.ingredient_id IS NOT NULL
+            UNION SELECT cost.ingredient_id,step.system_id FROM crafting_step_costs cost JOIN crafting_steps step ON step.id=cost.step_id WHERE cost.ingredient_id IS NOT NULL
+            UNION SELECT yields_ingredient_id,system_id FROM crafting_recipes WHERE yields_ingredient_id IS NOT NULL
+            UNION SELECT gate.crafting_ingredient_id,COALESCE(gate.system_id,recipe.system_id,station.system_id) FROM crafting_unlocks gate LEFT JOIN crafting_recipes recipe ON recipe.id=gate.recipe_id LEFT JOIN crafting_system_stations station ON station.station_id=gate.station_id WHERE gate.crafting_ingredient_id IS NOT NULL AND COALESCE(gate.system_id,recipe.system_id,station.system_id) IS NOT NULL")?;
+        for row in uses.query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, i64>(1)?)))? {
+            let (ingredient, system) = row?;
+            ingredient_systems.entry(ingredient).or_default().insert(system);
+        }
+        let mut ingredients = db.prepare("SELECT id,slug,name FROM crafting_ingredients WHERE system_id IS NULL")?;
+        for row in ingredients
+            .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))?
+        {
+            let (id, identity, name) = row?;
+            let systems = ingredient_systems
+                .get(&id)
+                .with_context(|| format!("crafting ingredient {name:?} ({identity}.toml) has no using system"))?;
+            let folder =
+                narrowest_folder(FolderPlacement::CraftingIngredient(systems), &folders, &paths, &aliases, &packs)?;
+            paths.insert(("crafting_ingredients".into(), id), folder.join(format!("{identity}.toml")));
         }
         let mut item_sources = BTreeMap::<i64, Vec<ItemSourceFolder>>::new();
         let mut select = db.prepare(
@@ -713,6 +733,7 @@ pub(super) const FIXED_DATA_FILES: &[(&str, &str)] = &[
     ("augment_slot_types", "effects/augment-slot-types.toml"),
     ("bonus_types", "effects/bonus-types.toml"),
     ("clickies", "effects/clickies.toml"),
+    ("crafting_stations", "packs/shared/crafting/stations.toml"),
     ("damage_types", "effects/damage-types.toml"),
     ("dataset_version", "upstream/commit.toml"),
     ("equipment_slots", "effects/equipment-slots.toml"),

@@ -32,7 +32,9 @@ pub use annotations::{
 };
 pub(crate) use build::referenced_data_icons;
 pub use build::{build_from_data, rederive_data_build_tables};
-pub(crate) use crafting::recipe_focus_path;
+pub(crate) use crafting::{
+    cost_references, ingredient_id, qualified_reference_id, recipe_focus_path, recipe_set_option_id,
+};
 pub use ddo_model::identity::slug;
 use export::*;
 pub use export::{
@@ -40,6 +42,7 @@ pub use export::{
 };
 pub(crate) use kinds::insert_xml_vendor_currencies;
 use kinds::UpstreamCommitFile;
+pub(crate) use kinds::{CraftingUnlockOwner, CraftingUnlockRecord};
 pub use kinds::{EffectBonus, ExceptionsFile, PackException, QuestPackException, Redirect, RetiredSlug};
 pub(crate) use layout::qualified_slug;
 use layout::*;
@@ -47,6 +50,7 @@ pub use layout::{pack_exceptions, DataFilePaths};
 pub(crate) use schemas::file_kind;
 pub use schemas::find;
 use tables::*;
+pub(crate) use tables::{modifier_rows_by_owner, Modifier};
 use xml_slugs::*;
 pub(crate) use xml_slugs::{
     assign_xml_entity_slugs, augment_slug_candidates, store_xml_annotations, xml_entity_slug, xml_overlay_id,
@@ -311,7 +315,7 @@ mod tests {
             super::kinds::OptionalBuffsFile::from_rows(&db, &annotations, &mut modifiers, &notes).unwrap();
         let trees =
             super::kinds::EnhancementTreeFile::all_from_rows(&db, &annotations, &notes, &mut modifiers).unwrap();
-        let systems = super::kinds::CraftingSystemFile::all_from_rows(&db, &annotations).unwrap();
+        let systems = super::kinds::CraftingSystemFile::all_from_rows(&db, &annotations, &mut modifiers).unwrap();
         let mut identities = super::ids::StableIds::default();
         for row in &mut clickies.row {
             row.name.push_str(" Copy");

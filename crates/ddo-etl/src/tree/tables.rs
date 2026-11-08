@@ -2,7 +2,7 @@ use super::*;
 use schemars::JsonSchema;
 
 database_record! {
-    #[derive(Debug, Clone, Default, Serialize, Deserialize, schemars::JsonSchema)]
+    #[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize, schemars::JsonSchema)]
     #[serde(deny_unknown_fields)]
     pub(crate) struct Requirement in "requirements" {
         keys { owner_kind: &str, owner_id: i64, group_kind: &str, group_index: i64, sort_order: i64 }
@@ -21,7 +21,7 @@ database_record! {
 }
 
 database_record! {
-    #[derive(Debug, Clone, Default, Serialize, Deserialize, schemars::JsonSchema)]
+    #[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize, schemars::JsonSchema)]
     #[serde(deny_unknown_fields)]
     pub(crate) struct Modifier in "modifiers" {
         keys { source_kind: &str, source_id: i64, sort_order: i64 }
@@ -207,7 +207,7 @@ pub(super) fn optional_json<T: Serialize>(rows: &[T]) -> Result<Option<String>> 
 }
 
 impl Modifier {
-    pub(super) fn write_modifier(&self, db: &Connection, kind: &str, owner_id: i64, position: i64) -> Result<usize> {
+    pub(crate) fn write_modifier(&self, db: &Connection, kind: &str, owner_id: i64, position: i64) -> Result<usize> {
         ensure!(
             self.phase.as_ref().is_none_or(|phase| kind.ends_with(&format!("_{phase}"))),
             "modifier phase does not match its owner kind"
@@ -218,7 +218,7 @@ impl Modifier {
     }
 }
 
-#[derive(Debug, Clone, Default, Serialize, Deserialize, schemars::JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize, schemars::JsonSchema)]
 pub(crate) struct Requirements {
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub(crate) requirement: Vec<Requirement>,
@@ -226,7 +226,7 @@ pub(crate) struct Requirements {
     pub(crate) requirement_group: Vec<RequirementGroup>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, schemars::JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, schemars::JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub(crate) struct RequirementGroup {
     pub(crate) kind: String,
@@ -289,7 +289,7 @@ impl Requirements {
     }
 }
 
-pub(super) type ModifierRowsByOwner = BTreeMap<(String, i64), Vec<Modifier>>;
+pub(crate) type ModifierRowsByOwner = BTreeMap<(String, i64), Vec<Modifier>>;
 
 pub(super) fn json_list<T: serde::de::DeserializeOwned>(
     row: &rusqlite::Row<'_>,
@@ -345,7 +345,7 @@ pub(super) fn requirement_rows_by_owner(db: &Connection) -> Result<RequirementRo
         .collect())
 }
 
-pub(super) fn modifier_rows_by_owner(db: &Connection) -> Result<ModifierRowsByOwner> {
+pub(crate) fn modifier_rows_by_owner(db: &Connection) -> Result<ModifierRowsByOwner> {
     let mut modifiers = ModifierRowsByOwner::new();
     let mut locations = BTreeMap::new();
     let mut select = db.prepare(&format!(

@@ -5,3 +5,11 @@ page = "https://ddowiki.com/page/Template"
 url = "https://ddowiki.com/page/Template"
 read = "2026-10-18"
 note = "Template: the page read and what it confirms."
+
+[[recipe]]
+option = "Template Recipe"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Template Ingredient"
+quantity = 1

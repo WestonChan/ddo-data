@@ -53,6 +53,22 @@ path = "data/.schemas/crafting-system.schema.json"
 
 [[rule]]
 include = [
+    "data/packs/*/crafting/*/ingredients/*.toml",
+    "data/packs/free-to-play/*/crafting/*/ingredients/*.toml",
+    "data/packs/shared/crafting/ingredients/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/crafting-ingredient.schema.json"
+
+[[rule]]
+include = ["data/packs/shared/crafting/stations.toml"]
+
+[rule.schema]
+path = "data/.schemas/crafting-stations.schema.json"
+
+[[rule]]
+include = [
     "data/effects/damage-types.toml",
 ]
 

@@ -49,8 +49,16 @@ exemplar!(
     )
 );
 exemplar!(
+    CraftingIngredientFile,
+    concat!("name = \"Template Ingredient\"\ntier = \"any\"\n", whole_entity_citation!(""))
+);
+exemplar!(
+    CraftingStationsFile,
+    concat!("[[row]]\nname = \"Template Station\"\nkind = \"interface\"\n", whole_entity_citation!("row."))
+);
+exemplar!(
     CraftingSystemFile,
-    concat!("name = \"Template Crafting\"\npage = \"https://ddowiki.com/page/Template\"\n", whole_entity_citation!(""))
+    concat!("name = \"Template Crafting\"\npage = \"https://ddowiki.com/page/Template\"\n", whole_entity_citation!(""), "\n[[recipe]]\noption = \"Template Recipe\"\ntier = \"any\"\n\n[[recipe.ingredient]]\ningredient = \"Template Ingredient\"\nquantity = 1\n")
 );
 exemplar!(
     DamageTypesFile,

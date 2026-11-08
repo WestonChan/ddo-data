@@ -1,5 +1,6 @@
 mod catalog;
 pub use catalog::find;
+pub(super) use catalog::nearest_names;
 pub(super) use catalog::Catalog;
 
 use super::kinds::*;
@@ -168,10 +169,14 @@ pub(crate) fn file_kind(root: &Path, path: &Path) -> Result<&'static str> {
                 "crafting.toml" => "CraftingSystem",
                 "vendor.toml" => "Vendor",
                 "event.toml" => "Event",
+                "stations.toml" if segments.as_slice() == ["packs", "shared", "crafting", "stations.toml"] => {
+                    "CraftingStations"
+                }
                 "currencies.toml" if segments.as_slice() == ["packs", "shared", "vendors", "currencies.toml"] => {
                     "VendorCurrencies"
                 }
                 _ if segments.contains(&"augments") => "Augment",
+                _ if segments.contains(&"crafting") && segments.contains(&"ingredients") => "CraftingIngredient",
                 _ => "Item",
             },
             "characters" | "effects" | "upstream" => match segments.get(1).copied() {
@@ -342,6 +347,8 @@ declare_file_kinds! {
     BonusTypes(BonusTypesFile) => Rows("effects/bonus-types.toml"),
     Class(ClassFile) => Entity("characters/classes/{slug}.toml"),
     Clickies(ClickiesFile) => Rows("effects/clickies.toml"),
+    CraftingIngredient(CraftingIngredientFile) => Entity("packs/shared/crafting/ingredients/{slug}.toml"),
+    CraftingStations(CraftingStationsFile) => Rows("packs/shared/crafting/stations.toml"),
     CraftingSystem(CraftingSystemFile) => Entity("packs/shared/crafting/{slug}/crafting.toml"),
     DamageTypes(DamageTypesFile) => Rows("effects/damage-types.toml"),
     Effect(EffectFile) => Entity("effects/{slug}.toml"),
@@ -397,6 +404,7 @@ impl SourceFile {
             Self::QuestChain(file) => Some(("quest_chains", &file.name)),
             Self::Saga(file) => Some(("sagas", &file.name)),
             Self::CraftingSystem(file) => Some(("crafting_systems", &file.name)),
+            Self::CraftingIngredient(file) => Some(("crafting_ingredients", &file.name)),
             Self::Vendor(file) => Some(("vendors", &file.name)),
             Self::Event(file) => Some(("events", &file.name)),
             Self::Patron(file) => Some(("patrons", &file.name)),
@@ -505,7 +513,15 @@ declared_records! {
     super::kinds::class::ClassSpellSlot,
     super::kinds::class::ClassFile,
     super::kinds::clickies::Clickie,
+    super::kinds::crafting_system::CraftingStepCost,
+    super::kinds::crafting_ingredient::CraftingIngredientFile,
+    super::kinds::crafting_stations::CraftingStation,
+    super::kinds::crafting_system::CraftingUnlock,
+    super::kinds::crafting_system::CraftingSystemStation,
+    super::kinds::crafting_system::CraftingStep,
+    super::kinds::crafting_system::CraftingStepEffect,
     super::kinds::crafting_system::CraftingSystemRecipeAugment,
+    super::kinds::crafting_system::CraftingSystemRecipeSetOption,
     super::kinds::crafting_system::CraftingSystemRecipeIngredient,
     super::kinds::crafting_system::CraftingSystemFamily,
     super::kinds::crafting_system::CraftingSystemIngredient,
@@ -585,54 +601,7 @@ declared_records! {
 }
 
 pub const UNPOPULATED_COLUMNS: &[(&str, &str)] = &[
-    ("augment_slot_types", "not_crafting_reason"),
     ("item_augment_slots", "option_set_id"),
-    ("crafting_recipe_ingredients", "item_id"),
-    ("crafting_recipes", "step_id"),
-    ("crafting_recipes", "yields_ingredient_id"),
-    ("crafting_steps", "system_id"),
-    ("crafting_steps", "sort_order"),
-    ("crafting_steps", "name"),
-    ("crafting_steps", "slot_id"),
-    ("crafting_steps", "is_random"),
-    ("crafting_step_effects", "step_id"),
-    ("crafting_step_effects", "alias"),
-    ("crafting_step_effects", "effect_id"),
-    ("crafting_step_effects", "bonus_type_id"),
-    ("crafting_step_effects", "value"),
-    ("crafting_step_effects", "value2"),
-    ("crafting_step_effects", "sort_order"),
-    ("crafting_step_effects", "equipment_slot_id"),
-    ("crafting_step_costs", "step_id"),
-    ("crafting_step_costs", "tier"),
-    ("crafting_step_costs", "ingredient_id"),
-    ("crafting_step_costs", "item_id"),
-    ("crafting_step_costs", "sort_order"),
-    ("crafting_step_costs", "quantity"),
-    ("crafting_stations", "slug"),
-    ("crafting_stations", "variant"),
-    ("crafting_stations", "name"),
-    ("crafting_stations", "kind"),
-    ("crafting_stations", "place"),
-    ("crafting_stations", "quest_id"),
-    ("crafting_stations", "sort_order"),
-    ("crafting_system_stations", "system_id"),
-    ("crafting_system_stations", "station_id"),
-    ("crafting_system_stations", "sort_order"),
-    ("crafting_system_stations", "note"),
-    ("crafting_unlocks", "system_id"),
-    ("crafting_unlocks", "station_id"),
-    ("crafting_unlocks", "recipe_id"),
-    ("crafting_unlocks", "sort_order"),
-    ("crafting_unlocks", "kind"),
-    ("crafting_unlocks", "quest_id"),
-    ("crafting_unlocks", "patron_id"),
-    ("crafting_unlocks", "pack_id"),
-    ("crafting_unlocks", "item_id"),
-    ("crafting_unlocks", "crafting_ingredient_id"),
-    ("crafting_unlocks", "feat_id"),
-    ("crafting_unlocks", "value"),
-    ("crafting_unlocks", "text"),
     ("socket_option_sets", "slug"),
     ("socket_option_sets", "variant"),
     ("socket_option_sets", "slot_id"),
@@ -655,8 +624,6 @@ pub const UNPOPULATED_COLUMNS: &[(&str, &str)] = &[
     ("socket_option_grants", "slot_id"),
     ("socket_option_set_bonuses", "option_id"),
     ("socket_option_set_bonuses", "set_bonus_id"),
-    ("crafting_recipe_set_options", "recipe_id"),
-    ("crafting_recipe_set_options", "option_id"),
     ("effects", "default_value2"),
     ("effects", "wiki_url"),
     ("effect_bonuses", "trigger_id"),
@@ -969,6 +936,10 @@ mod tests {
             ("packs/shared/sagas/example.toml", "Saga", None),
             ("packs/example/crafting/example/crafting.toml", "CraftingSystem", None),
             ("packs/shared/crafting/example/crafting.toml", "CraftingSystem", None),
+            ("packs/shared/crafting/stations.toml", "CraftingStations", None),
+            ("packs/shared/crafting/ingredients/example.toml", "CraftingIngredient", None),
+            ("packs/example/crafting/example/ingredients/example.toml", "CraftingIngredient", None),
+            ("packs/free-to-play/example/crafting/example/ingredients/example.toml", "CraftingIngredient", None),
             ("packs/example/vendors/example/vendor.toml", "Vendor", None),
             ("packs/shared/vendors/example/vendor.toml", "Vendor", None),
             ("packs/example/events/example/event.toml", "Event", None),
@@ -1276,7 +1247,7 @@ mod tests {
         let entities = crate::delta::TABLE_MERGES
             .iter()
             .filter_map(|(table, merge)| matches!(merge, crate::delta::TableMerge::Entity { .. }).then_some(*table))
-            .filter(|table| !matches!(*table, "crafting_stations" | "socket_option_sets"))
+            .filter(|table| !matches!(*table, "socket_option_sets"))
             .collect::<std::collections::BTreeSet<_>>();
         let mut covered = std::collections::BTreeSet::new();
         let mut missing = Vec::new();

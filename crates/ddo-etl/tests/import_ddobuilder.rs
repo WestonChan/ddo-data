@@ -1550,6 +1550,51 @@ fn assert_overlay_tables_match(normalized: &Connection, ours: &Connection) {
 }
 
 #[test]
+fn crafting_file_and_xml_builds_preserve_the_same_authored_rows() {
+    let ours = fixture::database(|root| {
+        let directory = root.join("packs/shared/crafting/ingredients");
+        std::fs::create_dir_all(&directory).unwrap();
+        std::fs::write(
+            directory.join("thread-of-fate.toml"),
+            "name='Thread of Fate'\ntier='any'\ndrop_location='Fixture chest'\ncitation=[]\n",
+        )
+        .unwrap();
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let mut system: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+        system.as_table_mut().unwrap().remove("npc");
+        std::fs::write(path,format!("{}\n[[station]]\nname='Test Altar Keeper'\nnote='Use this keeper.'\n[[unlock]]\nkind='kept_item'\ncrafting_ingredient='Thread of Fate'\ntext='Keep the thread.'\n[[step]]\nname='Create'\nis_random=true\n[[step.effect]]\neffect='Constitution'\nbonus_type='Enhancement'\nvalue=10\nequipment_slot='Off Hand'\n[[step.modifier]]\neffect_type='Weapon_BaseDamage'\namounts=[0.5]\n[[step.cost]]\ntier='heroic'\nitem=\"Acrobat's Ring\"\nquantity=2\n[[step.cost]]\ntier='legendary'\ningredient='Thread of Fate'\nquantity=3\n[[recipe]]\noption='Create thread'\nstep='Create'\ntier='heroic'\nyields_ingredient='Thread of Fate'\n[[recipe.unlock]]\nkind='crafting_level'\nvalue=20\ntext='Requires crafting level 20.'\n",toml::to_string(&system).unwrap())).unwrap();
+        let path = root.join("packs/shared/crafting/test-upgrade-altar/crafting.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path,format!("{original}\n[[recipe]]\noption='Use thread'\ntier='any'\n[[recipe.ingredient]]\ningredient='Thread of Fate'\nquantity=1\n")).unwrap();
+        let path = root.join("packs/shared/crafting/stations.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("{original}\n[[row.unlock]]\nkind='other'\ntext='Speak to the keeper.'\n"))
+            .unwrap();
+    });
+    let scratch = tempfile::tempdir().unwrap();
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let source = scratch.path().join("source");
+    copy_tree(&fixtures.join("DataFiles"), &source);
+    copy_data_icons_into_source(&fixtures.join("data"), &source, scratch.path());
+    let version = ours
+        .query_row("SELECT upstream_sha,built_at FROM dataset_version", [], |row| {
+            Ok(DatasetVersion { upstream_sha: row.get(0)?, built_at: row.get(1)? })
+        })
+        .unwrap();
+    for previous in [true, false] {
+        let normalized = ddo_etl::import_ddobuilder::normalized_upstream_database(
+            &source,
+            &ours,
+            &version,
+            previous,
+            &scratch.path().join(if previous { "previous" } else { "new" }),
+        )
+        .unwrap();
+        assert_overlay_tables_match(&normalized.db, &ours);
+    }
+}
+
+#[test]
 fn database_overlay_preserves_authored_array_order_and_effect_titles() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let scratch = tempfile::tempdir().unwrap();
@@ -2171,9 +2216,7 @@ fn every_entity_preserves_citations_with_notes_through_the_data_tree() {
     tree::build_from_data(&fixtures.join("data"), &mut db).unwrap();
     let mut expected = Vec::new();
     for (table, merge) in ddo_etl::delta::TABLE_MERGES {
-        if !matches!(merge, ddo_etl::delta::TableMerge::Entity { .. })
-            || matches!(*table, "crafting_stations" | "socket_option_sets")
-        {
+        if !matches!(merge, ddo_etl::delta::TableMerge::Entity { .. }) || matches!(*table, "socket_option_sets") {
             continue;
         }
         let columns = db
@@ -3168,7 +3211,12 @@ fn import_keeps_the_generated_templates() {
     import_ddobuilder(&world.options).unwrap();
     assert_eq!(std::fs::read(templates.join("item.toml")).unwrap(), before);
     assert_eq!(std::fs::read(world.options.data_dir.join(".schemas/item.schema.json")).unwrap(), schema_before);
-    assert_eq!(std::fs::read_dir(&templates).unwrap().count(), 35);
+    let actual = std::fs::read_dir(&templates)
+        .unwrap()
+        .map(|entry| entry.unwrap().file_name().to_string_lossy().into_owned())
+        .collect::<std::collections::BTreeSet<_>>();
+    let expected = tree::schemas::kind_templates().unwrap().into_iter().map(|template| template.file_name).collect();
+    assert_eq!(actual, expected);
 }
 
 #[test]

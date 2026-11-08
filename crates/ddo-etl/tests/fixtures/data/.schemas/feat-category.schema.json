@@ -158,6 +158,7 @@
         "augment_bonus",
         "feat_bonus",
         "socket_option_bonus",
+        "socket_option",
         "item_bonus",
         "item_effect",
         "effect_damage",

@@ -37,7 +37,7 @@ impl crate::corrections::CorrectionFieldType for ItemCategoryFile {
     const SHAPE: crate::corrections::FieldShape = crate::corrections::FieldShape::Text;
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize, JsonSchema)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize, JsonSchema)]
 #[serde(untagged)]
 pub(crate) enum FileNumber {
     Integer(i64),

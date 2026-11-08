@@ -477,7 +477,7 @@ fn build_with_wiki_references(
     writer.write_stat_type_effects(&stat_type_definitions)?;
     corrections::record_final_set_names(&transaction)?;
     writer.effects.write_missing_linked_stat_templates()?;
-    wiki::apply_wiki_overrides(&transaction, &overlay_references, wiki_overrides, &mut report)?;
+    wiki::apply_wiki_overrides(&transaction, &overlay_references, wiki_overrides, &mut writer.effects, &mut report)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, &overlay_references, wiki_overrides, &mut report)?;
     vendors_and_events::write_wiki_vendor_and_event_items(
         &transaction,

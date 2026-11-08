@@ -48,7 +48,6 @@ jobs:
             --allow-empty-table crafting_steps \
             --allow-empty-table crafting_step_effects \
             --allow-empty-table crafting_step_costs \
-            --allow-empty-table crafting_stations \
             --allow-empty-table crafting_system_stations \
             --allow-empty-table crafting_unlocks \
             --allow-empty-table socket_option_sets \

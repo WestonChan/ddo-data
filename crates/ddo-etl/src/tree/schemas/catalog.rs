@@ -52,6 +52,14 @@ fn singular_kind(table: &str) -> String {
     }
 }
 
+pub(in crate::tree) fn nearest_names<'a>(query: &str, names: impl IntoIterator<Item = &'a str>) -> Vec<&'a str> {
+    let query = query.to_lowercase();
+    let mut names = names.into_iter().collect::<Vec<_>>();
+    names.sort_by_cached_key(|name| (edit_distance(&query, &name.to_lowercase()), *name));
+    names.truncate(5);
+    names
+}
+
 fn edit_distance(left: &str, right: &str) -> usize {
     let right = right.chars().collect::<Vec<_>>();
     let mut previous = (0..=right.len()).collect::<Vec<_>>();
@@ -151,7 +159,7 @@ impl Catalog {
                             variant,
                         ),
                         "enhancement_selections" | "stances" => ddo_model::identity::nested_slug(owner_slug, name),
-                        "crafting_ingredients" => format!(
+                        "crafting_ingredients" if !owner_slug.is_empty() => format!(
                             "{owner_slug}-{}-{}",
                             slug(name),
                             slug(fields.get("tier").and_then(toml::Value::as_str).unwrap_or_default())
