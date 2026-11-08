@@ -17,6 +17,23 @@ fn fixture_dataset_version() -> DatasetVersion {
     DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-09-20T00:00:00Z".into() }
 }
 
+#[test]
+fn augment_socket_grants_derive_from_both_lines_in_order() {
+    let db = fixture::database(|root| {
+        let path = root.join("packs/shared/crafting/heroic-green-steel/augments/minor-fire-guard.toml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        let changed = original.replace(
+            "adds_augment = \"Accessory Subjugation\"",
+            "adds_augment = \"Blue\\nColorless\"\ngrants_augment = \"Yellow\"",
+        );
+        assert_ne!(original, changed);
+        std::fs::write(path, changed).unwrap();
+    });
+    let labels = db.prepare("SELECT s.label FROM augment_socket_grants g JOIN augments a ON a.id=g.augment_id JOIN augment_slot_types s ON s.id=g.slot_id WHERE a.name='Minor Fire Guard' ORDER BY g.sort_order").unwrap()
+        .query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(labels, ["blue", "colorless", "yellow"]);
+}
+
 fn built_fixture_db() -> (Connection, BuildReport) {
     let mut db = Connection::open_in_memory().unwrap();
     let report = build_database(

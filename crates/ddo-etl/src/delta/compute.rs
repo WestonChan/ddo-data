@@ -115,7 +115,7 @@ impl DatabaseSnapshot {
                         "duplicate entity identity {identity}"
                     );
                 }
-                TableMerge::Array { .. } | TableMerge::DatasetArray { .. } => {
+                TableMerge::Array { .. } | TableMerge::ArrayOwnedByOneOf { .. } | TableMerge::DatasetArray { .. } => {
                     let key = snapshot.array_key(&address, &mut BTreeSet::new())?;
                     snapshot.array_rows.entry(key).or_default().push(address);
                 }
@@ -157,23 +157,42 @@ impl DatabaseSnapshot {
         let key = match table_merge(&address.table).context("array table has no merge rule")? {
             TableMerge::DatasetArray { array } => ArrayKey { owner: "dataset".to_string(), array },
             TableMerge::Array { owner_column, array } => {
-                let owner = self
-                    .reference(address, owner_column)?
-                    .with_context(|| format!("{}.{} has no array owner", address.table, owner_column))?;
-                match table_merge(&owner.table) {
-                    Some(TableMerge::Entity { .. }) => {
-                        let owner_id = self.id(&owner)?;
-                        ArrayKey { owner: self.index.identity(&owner.table, owner_id)?, array }
-                    }
-                    Some(TableMerge::Array { .. }) => self.array_key(&owner, visiting)?,
-                    _ => anyhow::bail!("array {} has unsupported owner {}", address.table, owner.table),
-                }
+                self.owned_array_key(address, owner_column, array, visiting)?
+            }
+            TableMerge::ArrayOwnedByOneOf { owner_columns, array } => {
+                let fields = self.fields(address);
+                let owners = owner_columns
+                    .iter()
+                    .filter(|column| matches!(fields.get(**column), Some(SqlValue::Integer(_))))
+                    .collect::<Vec<_>>();
+                ensure!(owners.len() == 1, "{} must have exactly one array owner", address.table);
+                self.owned_array_key(address, owners[0], array, visiting)?
             }
             _ => anyhow::bail!("{} is not an array table", address.table),
         };
         visiting.remove(address);
         self.array_keys.insert(address.clone(), key.clone());
         Ok(key)
+    }
+
+    fn owned_array_key(
+        &mut self,
+        address: &RowAddress,
+        owner_column: &str,
+        array: &'static str,
+        visiting: &mut BTreeSet<RowAddress>,
+    ) -> Result<ArrayKey> {
+        let owner = self
+            .reference(address, owner_column)?
+            .with_context(|| format!("{}.{} has no array owner", address.table, owner_column))?;
+        match table_merge(&owner.table) {
+            Some(TableMerge::Entity { .. }) => {
+                let owner_id = self.id(&owner)?;
+                Ok(ArrayKey { owner: self.index.identity(&owner.table, owner_id)?, array })
+            }
+            Some(TableMerge::Array { .. } | TableMerge::ArrayOwnedByOneOf { .. }) => self.array_key(&owner, visiting),
+            _ => anyhow::bail!("array {} has unsupported owner {}", address.table, owner.table),
+        }
     }
 
     pub(super) fn normalized_fields(&mut self, address: &RowAddress) -> Result<BTreeMap<String, String>> {

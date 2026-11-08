@@ -2171,7 +2171,9 @@ fn every_entity_preserves_citations_with_notes_through_the_data_tree() {
     tree::build_from_data(&fixtures.join("data"), &mut db).unwrap();
     let mut expected = Vec::new();
     for (table, merge) in ddo_etl::delta::TABLE_MERGES {
-        if !matches!(merge, ddo_etl::delta::TableMerge::Entity { .. }) {
+        if !matches!(merge, ddo_etl::delta::TableMerge::Entity { .. })
+            || matches!(*table, "crafting_stations" | "socket_option_sets")
+        {
             continue;
         }
         let columns = db

@@ -74,7 +74,7 @@ pub fn fill_cells_from_ours(his: &Connection, ours: &Connection) -> Result<Vec<F
     let mut filled = Vec::new();
     let mut reference_targets: BTreeMap<String, Option<ReferenceTarget>> = BTreeMap::new();
     for (table, rule) in TABLE_MERGES {
-        let authored_columns_only = matches!(rule, TableMerge::Array { .. });
+        let authored_columns_only = matches!(rule, TableMerge::Array { .. } | TableMerge::ArrayOwnedByOneOf { .. });
         if !matches!(rule, TableMerge::Entity { .. }) && !authored_columns_only {
             continue;
         }

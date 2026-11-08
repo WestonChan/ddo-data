@@ -56,13 +56,8 @@ const DROP_LOCATION_HEAD_SQL: &str = "COALESCE(NULLIF(TRIM(CASE WHEN instr(i.dro
      THEN substr(i.drop_location, 1, instr(i.drop_location, ',') - 1) ELSE i.drop_location END), ''), \
      '(no drop location)')";
 
-const EFFECT_OWNER_LINKS: [(&str, &str); 5] = [
-    ("item_effects", "item_id"),
-    ("augment_effects", "augment_id"),
-    ("set_bonus_tier_effects", "tier_id"),
-    ("feat_effects", "feat_id"),
-    ("item_augment_slot_option_effects", "option_id"),
-];
+static EFFECT_OWNER_LINKS: std::sync::LazyLock<Vec<(&str, &str)>> =
+    std::sync::LazyLock::new(|| ddo_model::enums::EffectOwner::ALL.iter().map(|owner| owner.table()).collect());
 
 const REPEATED_LINE_WORD_ALLOWANCES: &[&str] = &[];
 
@@ -302,14 +297,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     IntegrityCheck::hard(
         "effect_families_have_owners",
         "every effect family has an owner link or is a group granted by an owned effect",
-        OffenderQuery::Sql(
-            "SELECT e.name, e.id, 'no owner link' FROM effects e WHERE e.is_stat = 0 AND e.id NOT IN
-               (SELECT effect_id FROM item_effects UNION SELECT effect_id FROM augment_effects
-                UNION SELECT effect_id FROM set_bonus_tier_effects UNION SELECT effect_id FROM feat_effects
-                UNION SELECT effect_id FROM item_augment_slot_option_effects
-                UNION SELECT eb.target_effect_id FROM effect_bonuses eb WHERE eb.target_effect_id IN
-                  (SELECT id FROM effects WHERE is_group = 1))",
-        ),
+        OffenderQuery::Built(effect_families_without_owners),
     ),
     IntegrityCheck::hard(
         "effect_groups_have_flat_members",
@@ -1116,9 +1104,19 @@ fn description_check_skips(db: &Connection) -> Result<DescriptionCheckSkips> {
     Ok(skips)
 }
 
+fn effect_families_without_owners(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let links = EFFECT_OWNER_LINKS
+        .iter()
+        .map(|(table, _)| format!("SELECT effect_id FROM {table}"))
+        .collect::<Vec<_>>()
+        .join(" UNION ");
+    let sql = format!("SELECT e.name,e.id,'no owner link' FROM effects e WHERE e.is_stat=0 AND e.id NOT IN ({links} UNION SELECT eb.target_effect_id FROM effect_bonuses eb WHERE eb.target_effect_id IN (SELECT id FROM effects WHERE is_group=1))");
+    Ok(Findings { offenders: Some(offenders_from_sql(db, &sql)?), notes: Vec::new() })
+}
+
 fn served_effect_lines_repeat_words(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let mut offenders = Vec::new();
-    for (table, owner_column) in EFFECT_OWNER_LINKS {
+    for (table, owner_column) in EFFECT_OWNER_LINKS.iter().copied() {
         for (owner_id, lines) in ddo_api::served_effect_lines(db, table, owner_column)
             .map_err(|error| anyhow::anyhow!("rendering {table}: {error:?}"))?
         {
@@ -1181,7 +1179,7 @@ fn effect_descriptions_without_their_amounts(db: &Connection, _options: &Integri
     }
     let mut offenders = Vec::new();
     let mut cause_counts = BTreeMap::<&str, usize>::new();
-    for (table, owner_column) in EFFECT_OWNER_LINKS {
+    for (table, owner_column) in EFFECT_OWNER_LINKS.iter().copied() {
         for (owner_id, lines) in ddo_api::served_effect_lines(db, table, owner_column)
             .map_err(|error| anyhow::anyhow!("rendering {table}: {error:?}"))?
         {
@@ -2248,6 +2246,7 @@ fn owner_names_disagree_with_linked_effects(db: &Connection, _options: &Integrit
         for (owner_table, link_table, owner_column) in [
             ("augments", "augment_effects", "augment_id"),
             ("item_augment_slot_options", "item_augment_slot_option_effects", "option_id"),
+            ("socket_options", "socket_option_effects", "option_id"),
         ] {
             let sql = format!(
                 "SELECT owner.name, owner.id, 'names ' || ?1 || ' but links other effects'
@@ -2721,6 +2720,7 @@ pub fn integrity_report(db: &Connection, options: &IntegrityOptions) -> Result<I
 #[cfg(test)]
 mod served_amount_tests {
     use super::*;
+    use ddo_model::enums::EffectOwner;
     use rusqlite::trace::{TraceEvent, TraceEventCodes};
     use serde_json::json;
     use std::path::Path;
@@ -2923,7 +2923,7 @@ mod served_amount_tests {
                 effect_descriptions_without_their_amounts(&db, &IntegrityOptions { allowed_empty_tables: Vec::new() })
                     .unwrap();
             db.trace_v2(TraceEventCodes::empty(), None);
-            assert_eq!(STATEMENTS.load(Ordering::SeqCst), 17, "{owner_count} owners");
+            assert_eq!(STATEMENTS.load(Ordering::SeqCst), 2 + 3 * EffectOwner::ALL.len(), "{owner_count} owners");
             assert!(findings.offenders.unwrap().is_empty());
             db.execute("UPDATE game_bug_corrections SET skip_description_check = 1", []).unwrap();
             db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
@@ -2932,7 +2932,11 @@ mod served_amount_tests {
                 effect_descriptions_without_their_amounts(&db, &IntegrityOptions { allowed_empty_tables: Vec::new() })
                     .unwrap();
             db.trace_v2(TraceEventCodes::empty(), None);
-            assert_eq!(STATEMENTS.load(Ordering::SeqCst), 19, "{owner_count} flagged owners");
+            assert_eq!(
+                STATEMENTS.load(Ordering::SeqCst),
+                4 + 3 * EffectOwner::ALL.len(),
+                "{owner_count} flagged owners"
+            );
             let stale = findings.offenders.unwrap();
             assert_eq!(stale.len(), owner_count);
             assert!(stale.iter().all(|finding| finding.detail.contains("skip flag with nothing to skip")));
@@ -2947,7 +2951,7 @@ mod served_amount_tests {
             assert_eq!(STATEMENTS.load(Ordering::SeqCst), 4, "{owner_count} effects");
             assert!(findings.offenders.unwrap().is_empty());
             for (name, statement_count) in [
-                ("served_effect_lines_repeat_words", 15),
+                ("served_effect_lines_repeat_words", 3 * EffectOwner::ALL.len()),
                 ("effect_templates_with_digits_without_amounts", 1),
                 ("effect_line_rendering_tokens", 2),
                 ("effect_templates_disagree_with_names", 1),

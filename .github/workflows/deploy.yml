@@ -117,8 +117,7 @@ jobs:
             --allow-empty-table socket_option_effects \
             --allow-empty-table socket_option_grants \
             --allow-empty-table socket_option_set_bonuses \
-            --allow-empty-table crafting_recipe_set_options \
-            --allow-empty-table augment_socket_grants
+            --allow-empty-table crafting_recipe_set_options
 
       - name: Validate every API response against its schema
         if: steps.compare.outputs.changed == 'true'

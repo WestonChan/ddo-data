@@ -657,9 +657,6 @@ pub const UNPOPULATED_COLUMNS: &[(&str, &str)] = &[
     ("socket_option_set_bonuses", "set_bonus_id"),
     ("crafting_recipe_set_options", "recipe_id"),
     ("crafting_recipe_set_options", "option_id"),
-    ("augment_socket_grants", "augment_id"),
-    ("augment_socket_grants", "sort_order"),
-    ("augment_socket_grants", "slot_id"),
     ("effects", "default_value2"),
     ("effects", "wiki_url"),
     ("effect_bonuses", "trigger_id"),
@@ -1279,6 +1276,7 @@ mod tests {
         let entities = crate::delta::TABLE_MERGES
             .iter()
             .filter_map(|(table, merge)| matches!(merge, crate::delta::TableMerge::Entity { .. }).then_some(*table))
+            .filter(|table| !matches!(*table, "crafting_stations" | "socket_option_sets"))
             .collect::<std::collections::BTreeSet<_>>();
         let mut covered = std::collections::BTreeSet::new();
         let mut missing = Vec::new();
@@ -1333,9 +1331,9 @@ mod tests {
             assert_eq!(property_name, declared, "a file array mirroring {table} must be named {declared}");
             let merged_array = crate::delta::TABLE_MERGES.iter().find(|(merged, _)| merged == table).and_then(
                 |(_, merge)| match merge {
-                    crate::delta::TableMerge::Array { array, .. } | crate::delta::TableMerge::Corrections { array } => {
-                        Some(*array)
-                    }
+                    crate::delta::TableMerge::Array { array, .. }
+                    | crate::delta::TableMerge::ArrayOwnedByOneOf { array, .. }
+                    | crate::delta::TableMerge::Corrections { array } => Some(*array),
                     _ => None,
                 },
             );

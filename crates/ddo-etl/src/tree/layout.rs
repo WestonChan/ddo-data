@@ -772,6 +772,10 @@ impl DataFilePaths {
                 let owner_column = match table_merge(table) {
                     Some(TableMerge::Entity { owner_column, .. }) => *owner_column,
                     Some(TableMerge::Array { owner_column, .. }) => Some(*owner_column),
+                    Some(TableMerge::ArrayOwnedByOneOf { owner_columns, .. }) => owner_columns
+                        .iter()
+                        .copied()
+                        .find(|column| matches!(fields.get(*column), Some(Value::Integer(_)))),
                     _ => None,
                 };
                 if let Some(column) = owner_column {

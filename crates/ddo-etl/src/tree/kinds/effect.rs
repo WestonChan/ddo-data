@@ -83,6 +83,10 @@ impl EffectAlias {
                  UNION ALL SELECT 'items', o.item_id, l.effect_id, l.alias
                    FROM item_augment_slot_option_effects l
                    JOIN item_augment_slot_options o ON o.id = l.option_id
+                 UNION ALL SELECT 'crafting_systems', s.system_id, l.effect_id, l.alias
+                   FROM crafting_step_effects l JOIN crafting_steps s ON s.id = l.step_id
+                 UNION ALL SELECT 'socket_option_sets', o.set_id, l.effect_id, l.alias
+                   FROM socket_option_effects l JOIN socket_options o ON o.id = l.option_id
              )
              SELECT l.owner_kind, l.owner_id, e.name, l.alias, a.name IS NOT NULL
                FROM links l JOIN effects e ON e.id = l.effect_id

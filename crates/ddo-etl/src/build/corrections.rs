@@ -2241,15 +2241,16 @@ fn write_set_tier_descriptions(
             let family_name = buff_resolver.set_tier_prose_name(&set_name, equipped_count, description)?;
             if let Some((_, old_id, old_name)) = &old_link {
                 if *old_name == family_name {
-                    let owner_count: i64 = transaction.query_row(
-                        "SELECT (SELECT COUNT(*) FROM item_effects WHERE effect_id = ?1)
-                              + (SELECT COUNT(*) FROM augment_effects WHERE effect_id = ?1)
-                              + (SELECT COUNT(*) FROM set_bonus_tier_effects WHERE effect_id = ?1)
-                              + (SELECT COUNT(*) FROM feat_effects WHERE effect_id = ?1)
-                              + (SELECT COUNT(*) FROM item_augment_slot_option_effects WHERE effect_id = ?1)",
-                        [old_id],
-                        |row| row.get(0),
-                    )?;
+                    let counts = EffectOwner::ALL
+                        .iter()
+                        .map(|owner| {
+                            let (table, _) = owner.table();
+                            format!("(SELECT COUNT(*) FROM {table} WHERE effect_id = ?1)")
+                        })
+                        .collect::<Vec<_>>()
+                        .join(" + ");
+                    let owner_count: i64 =
+                        transaction.query_row(&format!("SELECT {counts}"), [old_id], |row| row.get(0))?;
                     if owner_count == 1 {
                         effects.replace_family_text(*old_id, description)?;
                         continue;

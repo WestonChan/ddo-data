@@ -1,4 +1,5 @@
 mod augments;
+pub(crate) use augments::insert_augment_socket_grants;
 mod bonus_types;
 mod buffs;
 mod characters;
@@ -484,13 +485,8 @@ fn build_with_wiki_references(
         wiki_overrides,
         &mut report,
     )?;
-    for (table, owner_column) in [
-        ("item_effects", "item_id"),
-        ("augment_effects", "augment_id"),
-        ("feat_effects", "feat_id"),
-        ("set_bonus_tier_effects", "tier_id"),
-        ("item_augment_slot_option_effects", "option_id"),
-    ] {
+    for owner in ddo_model::enums::EffectOwner::ALL {
+        let (table, owner_column) = owner.table();
         remove_duplicate_effect_links(&transaction, table, owner_column)?;
     }
     remove_duplicate_modifiers(&transaction)?;
@@ -551,11 +547,13 @@ fn remove_duplicate_effect_links(
     table: &str,
     owner_column: &str,
 ) -> Result<()> {
+    let equipment_scope =
+        if table == ddo_model::enums::EffectOwner::CraftingStep.table().0 { ", equipment_slot_id" } else { "" };
     transaction.execute_batch(&format!(
         "DELETE FROM {table} WHERE rowid IN (
             SELECT rowid FROM (
                 SELECT rowid, ROW_NUMBER() OVER (
-                    PARTITION BY {owner_column}, effect_id, bonus_type_id, value, value2
+                    PARTITION BY {owner_column}, effect_id, bonus_type_id, value, value2{equipment_scope}
                     ORDER BY sort_order, rowid
                 ) AS duplicate_number FROM {table}
             ) WHERE duplicate_number > 1
@@ -969,6 +967,33 @@ pub(crate) fn json_string_array(strings: &[String]) -> Option<String> {
 #[cfg(test)]
 mod duplicate_effect_link_tests {
     use rusqlite::Connection;
+
+    #[test]
+    fn step_lines_with_different_equipment_scopes_remain_distinct() {
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(
+            "CREATE TABLE crafting_step_effects (
+            step_id INTEGER NOT NULL, effect_id INTEGER NOT NULL, bonus_type_id INTEGER,
+            value REAL, value2 REAL, sort_order INTEGER NOT NULL, equipment_slot_id INTEGER,
+            PRIMARY KEY (step_id, sort_order));
+            INSERT INTO crafting_step_effects VALUES (1,10,1,10,NULL,0,1),(1,10,1,10,NULL,1,2),(1,10,1,10,NULL,2,1),
+                (2,10,1,10,NULL,0,NULL),(2,10,1,10,NULL,1,NULL);",
+        )
+        .unwrap();
+        let transaction = db.transaction().unwrap();
+        super::remove_duplicate_effect_links(&transaction, "crafting_step_effects", "step_id").unwrap();
+        transaction.commit().unwrap();
+        let rows = db
+            .prepare(
+                "SELECT step_id,equipment_slot_id,sort_order FROM crafting_step_effects ORDER BY step_id,sort_order",
+            )
+            .unwrap()
+            .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, Option<i64>>(1)?, row.get::<_, i64>(2)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert_eq!(rows, [(1, Some(1), 0), (1, Some(2), 1), (2, None, 0)]);
+    }
 
     #[test]
     fn identical_links_are_removed_and_remaining_order_is_contiguous() {

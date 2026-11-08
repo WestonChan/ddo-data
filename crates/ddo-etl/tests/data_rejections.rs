@@ -6,6 +6,16 @@ const CHAIN_ITEM: &str = "packs/free-to-play/gear/acrobats-ring.toml";
 const CRAFTING: &str = "packs/shared/crafting/heroic-green-steel/crafting.toml";
 const VENDOR_ITEM: &str = "packs/free-to-play/vendors/morten-edgewright/gear/ethereal-great-crossbow.toml";
 
+#[test]
+fn an_adds_augment_line_naming_no_socket_label_fails_the_build() {
+    let error = fixture::data_build_error(edited(
+        "packs/shared/crafting/heroic-green-steel/augments/minor-fire-guard.toml",
+        "adds_augment = \"Accessory Subjugation\"",
+        "adds_augment = \"Unknown Socket\"",
+    ));
+    assert!(error.contains("Minor Fire Guard") && error.contains("Unknown Socket"), "{error}");
+}
+
 fn edited(file: &'static str, from: &'static str, to: &'static str) -> impl Fn(&std::path::Path) {
     move |root| {
         let path = root.join(file);

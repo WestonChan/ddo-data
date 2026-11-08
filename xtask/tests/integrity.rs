@@ -4,7 +4,7 @@ use std::process::{Command, Output};
 use std::sync::OnceLock;
 use xtask::integrity::{integrity_report, CheckStatus, IntegrityOptions, Severity, INTEGRITY_CHECKS};
 
-const TABLES_EMPTY_IN_FIXTURES: [&str; 16] = [
+const TABLES_EMPTY_IN_FIXTURES: [&str; 15] = [
     "effect_damage",
     "race_feat_slots",
     "removed_entities",
@@ -20,7 +20,6 @@ const TABLES_EMPTY_IN_FIXTURES: [&str; 16] = [
     "socket_option_grants",
     "socket_option_set_bonuses",
     "crafting_recipe_set_options",
-    "augment_socket_grants",
 ];
 const PACK_QUEST_OVERLAP_SQL: &str =
     "INSERT INTO pack_drops (owner_kind, pack_id, owner_id, loot_type, chest, is_rare)
@@ -53,9 +52,19 @@ fn description_templates_reject_spaces_before_closing_parentheses() {
     }
 }
 
+fn insert_crafting_effect_owners(db: &Connection) {
+    db.execute_batch("INSERT INTO crafting_steps (id,system_id,name,sort_order) SELECT -1,id,'Test step',0 FROM crafting_systems LIMIT 1;
+        INSERT INTO socket_option_sets (id,slug,slot_id,name) SELECT -1,'test-choices',id,'Test choices' FROM augment_slot_types LIMIT 1;
+        INSERT INTO socket_options (id,set_id,option_order,name) VALUES (-1,-1,0,'Test choice');
+        INSERT INTO crafting_step_effects (step_id,effect_id,bonus_type_id,value,sort_order) SELECT -1,effect_id,bonus_type_id,value,0 FROM item_effects LIMIT 1;
+        INSERT INTO socket_option_effects (option_id,effect_id,bonus_type_id,value,sort_order) SELECT -1,effect_id,bonus_type_id,value,0 FROM item_effects LIMIT 1;").unwrap();
+}
+
 #[test]
 fn routed_stat_check_rejects_gear_links_but_keeps_sets_and_feats() {
     for (table, owner_column, eligible) in [
+        ("crafting_step_effects", "step_id", true),
+        ("socket_option_effects", "option_id", true),
         ("item_effects", "item_id", true),
         ("augment_effects", "augment_id", true),
         ("item_augment_slot_option_effects", "option_id", true),
@@ -64,6 +73,7 @@ fn routed_stat_check_rejects_gear_links_but_keeps_sets_and_feats() {
     ] {
         let scratch = tempfile::tempdir().unwrap();
         let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+        insert_crafting_effect_owners(&db);
         let owner: i64 =
             db.query_row(&format!("SELECT {owner_column} FROM {table} LIMIT 1"), [], |row| row.get(0)).unwrap();
         db.execute(&format!("UPDATE {table} SET effect_id=(SELECT id FROM effects WHERE name='Armor Class'), bonus_type_id=(SELECT id FROM bonus_types WHERE name='Deflection'),value=8,value2=NULL,alias=NULL WHERE {owner_column}=?1"), [owner]).unwrap();
@@ -173,6 +183,8 @@ fn template_name_check_reads_search_aliases_without_hiding_unrelated_titles() {
 #[test]
 fn repeated_words_are_rejected_on_every_rendered_owner_kind() {
     for (table, owner_column) in [
+        ("crafting_step_effects", "step_id"),
+        ("socket_option_effects", "option_id"),
         ("item_effects", "item_id"),
         ("augment_effects", "augment_id"),
         ("set_bonus_tier_effects", "tier_id"),
@@ -181,6 +193,7 @@ fn repeated_words_are_rejected_on_every_rendered_owner_kind() {
     ] {
         let scratch = tempfile::tempdir().unwrap();
         let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+        insert_crafting_effect_owners(&db);
         let (owner_id, effect_id): (i64, i64) = db
             .query_row(&format!("SELECT {owner_column}, effect_id FROM {table} LIMIT 1"), [], |row| {
                 Ok((row.get(0)?, row.get(1)?))

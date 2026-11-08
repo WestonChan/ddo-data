@@ -291,6 +291,8 @@ fn identity_qualifiers(table: &str) -> &'static [&'static str] {
     match table {
         "augments" => &["family", "min_level", "description"],
         "crafting_ingredients" => &["system_id", "tier"],
+        "crafting_steps" => &["system_id"],
+        "socket_options" => &["set_id", "option_order"],
         "dcs" | "stances" => &["owner_kind", "owner_id"],
         "enhancement_selections" => &["enhancement_id"],
         "enhancements" => &["tree_id"],
@@ -315,6 +317,8 @@ pub fn polymorphic_table(kind: &str) -> Option<&'static str> {
         "guild_buff" => "guild_buffs",
         "item" => "items",
         "item_augment_slot_option" => "item_augment_slot_options",
+        "crafting_step" => "crafting_steps",
+        "socket_option" => "socket_options",
         "modifier" => "modifiers",
         "optional_buff" => "optional_buffs",
         "set_bonus_tier" => "set_bonus_tiers",

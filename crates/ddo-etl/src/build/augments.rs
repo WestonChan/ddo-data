@@ -9,6 +9,41 @@ use ddo_model::enums::{BonusType, ModifierSource};
 use rusqlite::params;
 use std::path::Path;
 
+pub(crate) fn insert_augment_socket_grants(db: &rusqlite::Connection) -> Result<()> {
+    let slots = db
+        .prepare("SELECT label,id FROM augment_slot_types")?
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?)))?
+        .collect::<rusqlite::Result<std::collections::HashMap<_, _>>>()?;
+    let mut augments = db.prepare("SELECT id,name,adds_augment,grants_augment FROM augments WHERE adds_augment IS NOT NULL OR grants_augment IS NOT NULL ORDER BY id")?;
+    let mut insert =
+        db.prepare("INSERT INTO augment_socket_grants (augment_id,sort_order,slot_id) VALUES (?1,?2,?3)")?;
+    for augment in augments.query_map([], |row| {
+        Ok((
+            row.get::<_, i64>(0)?,
+            row.get::<_, String>(1)?,
+            row.get::<_, Option<String>>(2)?,
+            row.get::<_, Option<String>>(3)?,
+        ))
+    })? {
+        let (id, name, adds, grants) = augment?;
+        for (position, line) in adds
+            .iter()
+            .chain(grants.iter())
+            .flat_map(|text| text.lines())
+            .map(str::trim)
+            .filter(|line| !line.is_empty())
+            .enumerate()
+        {
+            let slot = crate::map::augment_slot::AugmentSlotType::parse(line);
+            let slot_id = slots
+                .get(&slot.label)
+                .with_context(|| format!("augment {name:?} grants unknown socket {line:?} (label {:?})", slot.label))?;
+            insert.execute(params![id, i64::try_from(position)?, slot_id])?;
+        }
+    }
+    Ok(())
+}
+
 impl TableWriter<'_> {
     pub(super) fn write_augments_file(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
         let (family, augments) = parse_augments_file(path)?;
@@ -58,6 +93,17 @@ impl TableWriter<'_> {
                     "INSERT OR IGNORE INTO augment_slots (augment_id, slot_id) VALUES (?1, ?2)",
                     params![augment_id, slot_type_id],
                 )?;
+            }
+            for label in augment
+                .added_augments
+                .iter()
+                .map(String::as_str)
+                .chain(augment.granted_augment.as_deref())
+                .flat_map(str::lines)
+                .map(str::trim)
+                .filter(|label| !label.is_empty())
+            {
+                self.ensure_augment_slot_type(label)?;
             }
             if let Some(description) = augment.description.as_deref() {
                 let drop_description = self.corrected_description(&augment.name, &family, description);

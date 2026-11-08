@@ -438,6 +438,7 @@ fn write_data_file(
 
 pub fn rederive_data_build_tables(db: &Connection) -> Result<()> {
     crate::delta::clear_rederived_tables(db)?;
+    crate::build::insert_augment_socket_grants(db)?;
     crate::build::effect_vocabulary::insert_data_effect_vocabulary(db)?;
     crate::build::effect_vocabulary::write_stat_home_types(db)?;
     insert_entity_identities(db)?;

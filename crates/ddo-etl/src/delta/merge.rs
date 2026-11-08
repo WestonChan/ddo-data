@@ -246,7 +246,7 @@ pub fn merge_delta_into(
             }
         }
     }
-    decline_removals(&mut edits, &mut current, annotated, &edited_entities)?;
+    decline_removals(&mut edits, &mut current, &mut new, annotated, &edited_entities)?;
     assign_merged_positions(&mut edits, &mut previous, &mut current, &mut new)?;
     let foreign_keys: bool = ours.pragma_query_value(None, "foreign_keys", |row| row.get(0))?;
     ours.pragma_update(None, "foreign_keys", false)?;
@@ -317,21 +317,50 @@ fn removal_rows(
             }
         }
     }
+    for identity in declined.keys() {
+        if let Some(key) = current.array_keys.get(&edits.removals[identity]) {
+            for row in current.array_rows.get(key).into_iter().flatten() {
+                removed.remove(row);
+            }
+        }
+    }
     removed
 }
 
 fn decline_removals(
     edits: &mut MergeEdits,
     current: &mut DatabaseSnapshot,
+    new: &mut DatabaseSnapshot,
     annotated: &BTreeSet<(String, i64)>,
     edited_entities: &BTreeSet<String>,
 ) -> Result<()> {
+    let mut incoming_identities = BTreeSet::new();
+    for ((table, id), address) in &new.rows_by_id {
+        if new.array_keys.contains_key(address) {
+            incoming_identities.insert(new.index.identity(table, *id)?);
+        }
+    }
+    for ((table, id), address) in &current.rows_by_id {
+        if edits.deleted.contains(address) && current.array_keys.contains_key(address) {
+            let identity = current.index.identity(table, *id)?;
+            if !incoming_identities.contains(&identity) {
+                edits.removals.insert(identity, address.clone());
+            }
+        }
+    }
     if edits.removals.is_empty() {
         return Ok(());
     }
     let mut declined = BTreeMap::new();
-    let identities_by_address: BTreeMap<_, _> =
+    let mut identities_by_address: BTreeMap<_, _> =
         edits.removals.iter().map(|(identity, address)| (address.clone(), identity.clone())).collect();
+    for (key, rows) in &current.array_rows {
+        if edits.removals.contains_key(&key.owner) {
+            for address in rows {
+                identities_by_address.insert(address.clone(), key.owner.clone());
+            }
+        }
+    }
     for (identity, address) in &edits.removals {
         if annotated.contains(&(address.table.clone(), current.id(address)?)) {
             declined.insert(identity.clone(), RemovalDeclineReason::Annotated);
@@ -375,7 +404,31 @@ fn decline_removals(
                     if let Some(target) = current.reference(&address, column)? {
                         if let Some(identity) = identities_by_address.get(&target) {
                             let referrer = if let Some(key) = current.array_keys.get(&address) {
-                                key.owner.clone()
+                                let mut owner = address.clone();
+                                let label = loop {
+                                    let fields = current.fields(&owner);
+                                    if let Some(SqlValue::Text(name)) =
+                                        fields.get("option").or_else(|| fields.get("name"))
+                                    {
+                                        break Some(name.clone());
+                                    }
+                                    let owner_column = match table_merge(&owner.table) {
+                                        Some(TableMerge::Array { owner_column, .. }) => Some(*owner_column),
+                                        Some(TableMerge::ArrayOwnedByOneOf { owner_columns, .. }) => owner_columns
+                                            .iter()
+                                            .copied()
+                                            .find(|column| matches!(fields.get(*column), Some(SqlValue::Integer(_)))),
+                                        _ => None,
+                                    };
+                                    let Some(column) = owner_column else { break None };
+                                    let Some(parent) = current.reference(&owner, column)? else { break None };
+                                    owner = parent;
+                                };
+                                let target_identity = current.index.identity(&target.table, current.id(&target)?)?;
+                                match label {
+                                    Some(name) => format!("{} / {name} references {target_identity}", key.owner),
+                                    _ => format!("{} / {} references {target_identity}", key.owner, key.array),
+                                }
                             } else {
                                 current.index.identity(table, current.id(&address)?)?
                             };
@@ -389,6 +442,16 @@ fn decline_removals(
             break;
         }
     }
+    let kept_array_keys = declined
+        .keys()
+        .filter_map(|identity| current.array_keys.get(&edits.removals[identity]).cloned())
+        .collect::<BTreeSet<_>>();
+    for key in &kept_array_keys {
+        edits.inserted.retain(|address| new.array_keys.get(address) != Some(key));
+        if let Some(counts) = edits.outcome.applied.get_mut(array_table(key)) {
+            counts.arrays_replaced = counts.arrays_replaced.saturating_sub(1);
+        }
+    }
     edits.deleted = removal_rows(edits, current, &declined);
     for (identity, address) in &edits.removals {
         if let Some(reason) = declined.remove(identity) {
@@ -399,7 +462,7 @@ fn decline_removals(
                 reason,
                 position_renumbered: false,
             });
-        } else {
+        } else if !current.array_keys.contains_key(address) {
             edits.outcome.applied.entry(address.table.clone()).or_default().removed += 1;
             edits.outcome.deleted.push(DeletedEntity {
                 table: address.table.clone(),
@@ -561,11 +624,11 @@ struct TranslatedRows {
 impl TranslatedRows {
     fn from_edits(edits: &MergeEdits, current: &mut DatabaseSnapshot, new: &mut DatabaseSnapshot) -> Result<Self> {
         let mut entities = BTreeMap::new();
-        for rows in current.entity_rows.values() {
-            for (identity, address) in rows {
-                if !edits.deleted.contains(address) {
-                    entities.insert(identity.clone(), current.id(address)?);
-                }
+        for ((table, id), address) in &current.rows_by_id {
+            if !edits.deleted.contains(address)
+                && !matches!(table_merge(table), Some(TableMerge::Rederived | TableMerge::DatasetVersion))
+            {
+                entities.insert(current.index.identity(table, *id)?, *id);
             }
         }
         let mut maximum_ids = BTreeMap::new();
@@ -588,9 +651,7 @@ impl TranslatedRows {
             *maximum = (*maximum).max(assigned);
             allocated.insert((address.table.clone(), assigned));
             ids.insert(address.clone(), assigned);
-            if is_entity {
-                entities.insert(new.index.identity(&address.table, original_id)?, assigned);
-            }
+            entities.insert(new.index.identity(&address.table, original_id)?, assigned);
         }
         Ok(Self { ids, entities })
     }
@@ -724,16 +785,43 @@ fn apply_edits(
         let assignments =
             contents.columns.iter().map(|column| format!("\"{column}\" = ?")).collect::<Vec<_>>().join(", ");
         let mut update = db.prepare(&format!("UPDATE \"{table}\" SET {assignments} WHERE rowid = ?"))?;
+        let mut translated_references = BTreeMap::new();
+        for row_index in 0..contents.rows.len() {
+            let address = RowAddress { table: table.clone(), row_index };
+            if edits.deleted.contains(&address)
+                || matches!(table_merge(table), Some(TableMerge::Rederived | TableMerge::DatasetVersion))
+            {
+                continue;
+            }
+            for column in &contents.columns {
+                if column == "id" || edits.columns.get(&address).is_some_and(|columns| columns.contains_key(column)) {
+                    continue;
+                }
+                let Some(target) = current.reference(&address, column)? else { continue };
+                let old_id = current.id(&target)?;
+                let identity = current.index.identity(&target.table, old_id)?;
+                if let Some(id) = translation.entities.get(&identity).filter(|id| **id != old_id) {
+                    translated_references
+                        .entry(address.clone())
+                        .or_insert_with(BTreeMap::new)
+                        .insert(column.clone(), SqlValue::Integer(*id));
+                }
+            }
+        }
         let addresses = edits
             .columns
             .keys()
             .chain(edits.current_positions.keys())
+            .chain(translated_references.keys())
             .filter(|address| &address.table == table)
             .cloned()
             .collect::<BTreeSet<_>>();
         for address in &addresses {
             let columns = edits.columns.get(address);
             let mut fields = current.fields(address);
+            if let Some(references) = translated_references.get(address) {
+                fields.extend(references.clone());
+            }
             for (column, incoming) in columns.into_iter().flatten() {
                 fields.insert(column.clone(), translation.cell(incoming, column, new)?);
             }

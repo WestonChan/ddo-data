@@ -15,6 +15,11 @@ variant = "accessory invasion"
 
 [[row]]
 family = "crafting"
+label = "crafting: accessory subjugation"
+variant = "accessory subjugation"
+
+[[row]]
+family = "crafting"
 label = "crafting: almost there"
 variant = "almost there"
 
@@ -57,6 +62,11 @@ variant = "finishing touch"
 family = "crafting"
 label = "crafting: legendary alchemical tier 1"
 variant = "legendary alchemical tier 1"
+
+[[row]]
+family = "crafting"
+label = "crafting: legendary alchemical tier 2"
+variant = "legendary alchemical tier 2"
 
 [[row]]
 family = "crafting"

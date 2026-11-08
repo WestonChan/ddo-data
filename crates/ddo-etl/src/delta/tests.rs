@@ -74,14 +74,27 @@ fn every_array_row_resolves_its_owner() {
     let db = fixture_database();
     let index = IdentityIndex::from_db(&db).unwrap();
     for &(table, ref rule) in TABLE_MERGES {
-        let TableMerge::Array { owner_column, .. } = rule else { continue };
+        let owner_columns = match rule {
+            TableMerge::Array { owner_column, .. } => vec![*owner_column],
+            TableMerge::ArrayOwnedByOneOf { owner_columns, .. } => owner_columns.to_vec(),
+            _ => continue,
+        };
         let columns = table_columns(&db, table).unwrap();
         for (_, row) in table_rows_by_rowid(&db, table).unwrap() {
-            let fields = columns.iter().cloned().zip(row).collect();
+            let fields: super::RowFields = columns.iter().cloned().zip(row).collect();
+            let owners = owner_columns
+                .iter()
+                .filter(|column| matches!(fields.get(**column), Some(rusqlite::types::Value::Integer(_))))
+                .collect::<Vec<_>>();
+            assert_eq!(owners.len(), 1, "{table}");
+            let owner_column = *owners[0];
             let target = index.reference_target(table, owner_column, &fields).unwrap();
-            let rusqlite::types::Value::Integer(id) = fields[*owner_column] else { panic!("{table} owner") };
+            let rusqlite::types::Value::Integer(id) = fields[owner_column] else { panic!("{table} owner") };
             assert!(index.row(&target, id).is_some(), "{table} -> {target}/{id}");
-            assert!(matches!(table_merge(&target), Some(TableMerge::Array { .. } | TableMerge::Entity { .. })));
+            assert!(matches!(
+                table_merge(&target),
+                Some(TableMerge::Array { .. } | TableMerge::ArrayOwnedByOneOf { .. } | TableMerge::Entity { .. })
+            ));
         }
     }
 }
@@ -95,9 +108,19 @@ fn delta_rejects_different_schema_versions() {
 }
 
 fn assert_array_reference_contract(db: &Connection) {
-    let snapshot = super::compute::DatabaseSnapshot::from_database(db).unwrap();
+    let mut snapshot = super::compute::DatabaseSnapshot::from_database(db).unwrap();
+    let mut array_identities = std::collections::BTreeMap::<String, Vec<i64>>::new();
+    for ((table, id), address) in &snapshot.rows_by_id {
+        if snapshot.array_keys.contains_key(address) {
+            let identity = snapshot.index.identity(table, *id).unwrap();
+            array_identities.entry(identity).or_default().push(*id);
+        }
+    }
     for (table, contents) in &snapshot.tables {
-        if !matches!(table_merge(table), Some(TableMerge::Array { .. } | TableMerge::Entity { .. })) {
+        if !matches!(
+            table_merge(table),
+            Some(TableMerge::Array { .. } | TableMerge::ArrayOwnedByOneOf { .. } | TableMerge::Entity { .. })
+        ) {
             continue;
         }
         for row_index in 0..contents.rows.len() {
@@ -106,16 +129,13 @@ fn assert_array_reference_contract(db: &Connection) {
                 let Some(target) = snapshot.reference(&address, column).unwrap() else { continue };
                 match table_merge(&target.table).unwrap() {
                     TableMerge::Entity { .. } => {}
-                    TableMerge::Array { .. } => {
+                    TableMerge::Array { .. } | TableMerge::ArrayOwnedByOneOf { .. } => {
+                        let target_id = snapshot.id(&target).unwrap();
+                        let identity = snapshot.index.identity(&target.table, target_id).unwrap();
                         assert_eq!(
-                            snapshot.array_keys.get(&address),
-                            snapshot.array_keys.get(&target),
-                            "{table}.{column}"
-                        );
-                        assert!(
-                            snapshot.array_keys.contains_key(&address),
-                            "entity {table} references array {}",
-                            target.table
+                            array_identities[&identity],
+                            [target_id],
+                            "{table}.{column}: ambiguous array identity {identity}"
                         );
                     }
                     rule => panic!("{table}.{column} references {rule:?}"),
@@ -126,8 +146,39 @@ fn assert_array_reference_contract(db: &Connection) {
 }
 
 #[test]
-fn array_references_point_to_entities_or_their_own_array() {
-    assert_array_reference_contract(&fixture_database());
+fn references_resolve_by_identity() {
+    assert_array_reference_contract(&super::merge_tests::crafting_reference_database());
+}
+
+#[test]
+fn referenced_array_rows_have_unique_identities() {
+    let db = super::merge_tests::crafting_reference_database();
+    let mut snapshot = super::compute::DatabaseSnapshot::from_database(&db).unwrap();
+    let mut targets = BTreeSet::new();
+    for table in snapshot.tables.keys() {
+        let mut statement = db.prepare(&format!("PRAGMA foreign_key_list('{table}')")).unwrap();
+        for target in statement.query_map([], |row| row.get::<_, String>(2)).unwrap() {
+            let target = target.unwrap();
+            if table == "item_augment_slot_options" && target == "item_augment_slots" {
+                assert_eq!(table_merge(table), table_merge(&target));
+                continue;
+            }
+            if matches!(table_merge(&target), Some(TableMerge::Array { .. } | TableMerge::ArrayOwnedByOneOf { .. })) {
+                targets.insert(target);
+            }
+        }
+    }
+    for target in targets {
+        assert!(
+            snapshot.tables[&target].columns.iter().any(|column| column == "id"),
+            "{target}: referenced array has no row identity"
+        );
+        let mut identities = BTreeSet::new();
+        for (table, id) in snapshot.rows_by_id.keys().filter(|(table, _)| table == &target) {
+            let identity = snapshot.index.identity(table, *id).unwrap();
+            assert!(identities.insert(identity.clone()), "{target}: duplicate identity {identity}");
+        }
+    }
 }
 
 #[test]

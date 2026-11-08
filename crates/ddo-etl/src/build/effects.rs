@@ -701,15 +701,16 @@ impl<'a> EffectCache<'a> {
         if self.family(family_id).is_some_and(|family| family.is_stat) {
             return Ok(());
         }
-        let deleted = self.transaction.execute(
-            "DELETE FROM effects WHERE id = ?1
-             AND NOT EXISTS (SELECT 1 FROM item_effects WHERE effect_id = ?1)
-             AND NOT EXISTS (SELECT 1 FROM augment_effects WHERE effect_id = ?1)
-             AND NOT EXISTS (SELECT 1 FROM set_bonus_tier_effects WHERE effect_id = ?1)
-             AND NOT EXISTS (SELECT 1 FROM feat_effects WHERE effect_id = ?1)
-             AND NOT EXISTS (SELECT 1 FROM item_augment_slot_option_effects WHERE effect_id = ?1)",
-            [family_id],
-        )?;
+        let unowned = EffectOwner::ALL
+            .iter()
+            .map(|owner| {
+                let (table, _) = owner.table();
+                format!("NOT EXISTS (SELECT 1 FROM {table} WHERE effect_id = ?1)")
+            })
+            .collect::<Vec<_>>()
+            .join(" AND ");
+        let deleted =
+            self.transaction.execute(&format!("DELETE FROM effects WHERE id = ?1 AND {unowned}"), [family_id])?;
         if deleted > 0 {
             if let Some(family) = self.families_by_id.remove(&family_id) {
                 self.families_by_name.remove(&family.name);
@@ -735,13 +736,7 @@ impl<'a> EffectCache<'a> {
             "effect {:?} cannot merge into {destination_name:?}: their text or bonuses differ",
             source.name
         );
-        for owner in [
-            EffectOwner::Item,
-            EffectOwner::Augment,
-            EffectOwner::SetBonusTier,
-            EffectOwner::Feat,
-            EffectOwner::ItemAugmentSlotOption,
-        ] {
+        for owner in EffectOwner::ALL {
             let (table, _) = owner.table();
             self.transaction.execute(
                 &format!("UPDATE {table} SET effect_id = ?2 WHERE effect_id = ?1"),

@@ -9,8 +9,13 @@ use anyhow::{Context, Result};
 use ddo_model::enums::{ModifierSource, RequirementOwner};
 use rusqlite::params;
 
-const STAT_ROUTING_OWNERS: [EffectOwner; 3] =
-    [EffectOwner::Item, EffectOwner::Augment, EffectOwner::ItemAugmentSlotOption];
+const STAT_ROUTING_OWNERS: [EffectOwner; 5] = [
+    EffectOwner::Item,
+    EffectOwner::Augment,
+    EffectOwner::ItemAugmentSlotOption,
+    EffectOwner::CraftingStep,
+    EffectOwner::SocketOption,
+];
 
 pub struct StatLinkRoute {
     pub table: &'static str,

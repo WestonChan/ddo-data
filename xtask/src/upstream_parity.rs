@@ -4,23 +4,14 @@ use rusqlite::Connection;
 use std::collections::BTreeMap;
 use std::path::Path;
 
-const EFFECT_TABLES: [&str; 9] = [
-    "effects",
-    "effect_bonuses",
-    "effect_aliases",
-    "modifiers",
-    "item_effects",
-    "augment_effects",
-    "set_bonus_tier_effects",
-    "feat_effects",
-    "item_augment_slot_option_effects",
-];
-
 pub fn upstream_differences(upstream: &Connection, ours: &Connection) -> Result<Vec<String>> {
     let mut upstream_index = IdentityIndex::from_db(upstream)?;
     let mut our_index = IdentityIndex::from_db(ours)?;
     let mut differences = Vec::new();
-    for table in EFFECT_TABLES {
+    for table in ["effects", "effect_bonuses", "effect_aliases", "modifiers"]
+        .into_iter()
+        .chain(ddo_model::enums::EffectOwner::ALL.into_iter().map(|owner| owner.table().0))
+    {
         let mut row_counts: BTreeMap<Vec<String>, (usize, usize)> = BTreeMap::new();
         for row in upstream_index.normalized_rows(upstream, table)? {
             row_counts.entry(row).or_default().0 += 1;

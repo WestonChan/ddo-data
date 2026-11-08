@@ -107,6 +107,8 @@ fn response_reference_table(column: &str) -> Option<&'static str> {
 
 fn response_collection_table(field: &str) -> Option<&'static str> {
     Some(match field {
+        "socket_option_sets" | "option_sets" => "socket_option_sets",
+        "stations" => "crafting_stations",
         "adventure_packs" => "adventure_packs",
         "augments" => "augments",
         "classes" => "classes",

@@ -193,12 +193,11 @@ fn carrier_lines(db: &Connection, owner_kind: &str, rows: &[Value]) -> Result<Ha
     if rows.is_empty() {
         return Ok(HashMap::new());
     }
-    let (table, owner_column) = match owner_kind {
-        "item" => ("item_effects", "item_id"),
-        "augment" => ("augment_effects", "augment_id"),
-        "set_bonus_tier" => ("set_bonus_tier_effects", "tier_id"),
-        _ => unreachable!("unknown carrier owner kind"),
-    };
+    let (table, owner_column) = ddo_model::enums::EffectOwner::ALL
+        .into_iter()
+        .find(|owner| owner.as_str() == owner_kind)
+        .expect("known carrier owner kind")
+        .table();
     let mut links =
         rows.iter().filter_map(|row| Some((row["id"].as_i64()?, row["link_order"].as_i64()?))).collect::<Vec<_>>();
     links.sort_unstable();

@@ -35,8 +35,7 @@ jobs:
             --allow-empty-table socket_option_effects \
             --allow-empty-table socket_option_grants \
             --allow-empty-table socket_option_set_bonuses \
-            --allow-empty-table crafting_recipe_set_options \
-            --allow-empty-table augment_socket_grants
+            --allow-empty-table crafting_recipe_set_options
           cargo xtask validate-api --db target/data-source.db --all-details
           cargo xtask wiki-tooltips --db target/data-source.db
       - name: Check the fixture database's integrity
@@ -57,5 +56,4 @@ jobs:
             --allow-empty-table socket_option_effects \
             --allow-empty-table socket_option_grants \
             --allow-empty-table socket_option_set_bonuses \
-            --allow-empty-table crafting_recipe_set_options \
-            --allow-empty-table augment_socket_grants
+            --allow-empty-table crafting_recipe_set_options

@@ -14,6 +14,158 @@ fn assert_foreign_keys(db: &Connection) {
     assert!(!db.prepare("PRAGMA foreign_key_check").unwrap().exists([]).unwrap());
 }
 
+pub(super) fn crafting_reference_database() -> Connection {
+    let db = fixture_database();
+    db.execute_batch("INSERT INTO crafting_systems (id,slug,name,page) VALUES (-1,'test-system','Test system','Test'),(-2,'other-system','Other system','Other');
+        INSERT INTO crafting_steps (id,system_id,name,sort_order) VALUES (-1,-1,'Test step',0),(-2,-2,'Test step',0);
+        INSERT INTO crafting_recipes (id,system_id,step_id,tier,option,sort_order) VALUES (-1,-1,-1,'any','Test recipe',0);
+        INSERT INTO socket_option_sets (id,slug,name,slot_id) SELECT -1,'test-set','Test set',id FROM augment_slot_types LIMIT 1;
+        INSERT INTO socket_option_sets (id,slug,name,slot_id) SELECT -2,'other-set','Other set',slot_id FROM socket_option_sets WHERE id=-1;
+        INSERT INTO socket_options (id,set_id,option_order,name) VALUES (-1,-1,0,'Choice'),(-2,-2,0,'Choice');").unwrap();
+    db
+}
+
+#[test]
+fn a_recipe_keeps_its_step_when_only_the_recipe_array_changes() {
+    let previous = crafting_reference_database();
+    let new = crafting_reference_database();
+    let mut ours = crafting_reference_database();
+    new.execute("UPDATE crafting_recipes SET note='Changed recipe' WHERE id=-1", []).unwrap();
+    ours.execute_batch("PRAGMA foreign_keys=OFF; UPDATE crafting_steps SET id=-20 WHERE id=-1; UPDATE crafting_recipes SET step_id=-20; PRAGMA foreign_keys=ON;").unwrap();
+    let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+    assert!(outcome.conflicts.is_empty());
+    let recipe: (i64, String) = ours
+        .query_row("SELECT step_id,note FROM crafting_recipes WHERE system_id=-1", [], |row| {
+            Ok((row.get(0)?, row.get(1)?))
+        })
+        .unwrap();
+    assert_eq!(recipe, (-20, "Changed recipe".into()));
+    assert_foreign_keys(&ours);
+}
+
+#[test]
+fn a_set_option_reference_survives_an_unrelated_set_change() {
+    let previous = crafting_reference_database();
+    let new = crafting_reference_database();
+    let mut ours = crafting_reference_database();
+    for db in [&previous, &new, &ours] {
+        db.execute("INSERT INTO crafting_recipe_set_options VALUES (-1,-1)", []).unwrap();
+        db.execute("UPDATE crafting_recipes SET step_id=NULL", []).unwrap();
+    }
+    new.execute("UPDATE socket_options SET description='Changed other choice' WHERE id=-2", []).unwrap();
+    new.execute("UPDATE crafting_recipes SET note='Changed recipe' WHERE id=-1", []).unwrap();
+    let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+    assert!(outcome.conflicts.is_empty());
+    assert_eq!(
+        ours.query_row("SELECT option_id FROM crafting_recipe_set_options", [], |row| row.get::<_, i64>(0)).unwrap(),
+        -1
+    );
+    assert_foreign_keys(&ours);
+}
+
+#[test]
+fn a_kept_recipe_follows_its_replaced_step_by_identity() {
+    let previous = crafting_reference_database();
+    let new = crafting_reference_database();
+    let mut ours = crafting_reference_database();
+    new.execute("UPDATE crafting_steps SET is_random=1 WHERE id=-1", []).unwrap();
+    let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+    assert!(outcome.conflicts.is_empty());
+    assert!(ours
+        .query_row(
+            "SELECT s.is_random FROM crafting_recipes r JOIN crafting_steps s ON s.id=r.step_id WHERE r.id=-1",
+            [],
+            |row| row.get::<_, bool>(0)
+        )
+        .unwrap());
+    assert_foreign_keys(&ours);
+}
+
+#[test]
+fn removing_a_step_referenced_by_a_kept_recipe_is_declined() {
+    let previous = crafting_reference_database();
+    let new = crafting_reference_database();
+    let mut ours = crafting_reference_database();
+    for db in [&previous, &new] {
+        db.execute("UPDATE crafting_recipes SET step_id=NULL", []).unwrap();
+    }
+    new.execute("DELETE FROM crafting_steps WHERE id=-1", []).unwrap();
+    let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+    assert!(outcome.declined_removals.iter().any(|row| row.table == "crafting_steps"
+        && matches!(&row.reason,RemovalDeclineReason::ReferencedBy(name) if name.contains("Test recipe"))));
+    assert_foreign_keys(&ours);
+}
+
+#[test]
+fn declining_one_step_removal_preserves_its_whole_array() {
+    let previous = crafting_reference_database();
+    let new = crafting_reference_database();
+    let mut ours = crafting_reference_database();
+    for db in [&previous, &new, &ours] {
+        db.execute("INSERT INTO crafting_steps (id,system_id,name,sort_order) VALUES (-3,-1,'Z other step',1)", [])
+            .unwrap();
+    }
+    for db in [&previous, &new] {
+        db.execute("UPDATE crafting_recipes SET step_id=NULL", []).unwrap();
+    }
+    new.execute("DELETE FROM crafting_steps WHERE system_id=-1", []).unwrap();
+    let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+    assert!(!outcome.declined_removals.is_empty());
+    assert_eq!(
+        ours.query_row("SELECT COUNT(*) FROM crafting_steps WHERE system_id=-1", [], |row| row.get::<_, i64>(0))
+            .unwrap(),
+        2
+    );
+    assert_foreign_keys(&ours);
+}
+
+#[test]
+fn removing_a_referenced_set_is_declined_with_the_referrer_named() {
+    let previous = crafting_reference_database();
+    let new = crafting_reference_database();
+    let mut ours = crafting_reference_database();
+    ours.execute("INSERT INTO crafting_recipe_set_options VALUES (-1,-1)", []).unwrap();
+    new.execute("DELETE FROM socket_option_sets WHERE id=-1", []).unwrap();
+    let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+    let removal = outcome.declined_removals.iter().find(|row| row.identity == "socket_option_sets/test-set").unwrap();
+    let RemovalDeclineReason::ReferencedBy(referrer) = &removal.reason else { panic!("{:?}", removal.reason) };
+    assert!(referrer.contains("crafting_systems/test-system") && referrer.contains("Test recipe"), "{referrer}");
+    assert_eq!(
+        ours.query_row("SELECT COUNT(*) FROM socket_options WHERE set_id=-1", [], |row| row.get::<_, i64>(0)).unwrap(),
+        1
+    );
+    assert_foreign_keys(&ours);
+}
+
+#[test]
+fn unlocks_of_a_station_and_a_recipe_with_one_id_number_merge_as_separate_arrays() {
+    let build_side = || {
+        let db = fixture_database();
+        db.execute_batch("INSERT INTO crafting_stations (id,slug,name,kind,sort_order) VALUES (-1,'test-station','Test station','interface',0);
+            INSERT INTO crafting_systems (id,slug,name,page) VALUES (-1,'test-system','Test system','Test');
+            INSERT INTO crafting_recipes (id,system_id,tier,option,sort_order) VALUES (-1,-1,'any','Test recipe',100);
+            INSERT INTO crafting_unlocks (station_id,sort_order,kind,text) VALUES (-1,0,'other','Station gate');
+            INSERT INTO crafting_unlocks (recipe_id,sort_order,kind,text) VALUES (-1,0,'other','Recipe gate');").unwrap();
+        db
+    };
+    let previous = build_side();
+    let new = build_side();
+    let mut ours = build_side();
+    new.execute("UPDATE crafting_unlocks SET text='Changed station gate' WHERE station_id=-1", []).unwrap();
+    ours.execute("UPDATE crafting_unlocks SET text='Changed recipe gate' WHERE recipe_id=-1", []).unwrap();
+    let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+    assert!(outcome.conflicts.is_empty(), "{:?}", outcome.conflicts);
+    let gates = ours
+        .prepare("SELECT text FROM crafting_unlocks ORDER BY text")
+        .unwrap()
+        .query_map([], |row| row.get::<_, String>(0))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(gates, ["Changed recipe gate", "Changed station gate"]);
+    assert_foreign_keys(&ours);
+}
+
 fn ordinary_fixture_database(sql: &str) -> Connection {
     let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let mut original = Connection::open_in_memory().unwrap();
@@ -675,7 +827,10 @@ fn unique_positions_follow_entity_or_array_merge_policy() {
                     })
             }) {
                 match rule {
-                    TableMerge::Array { .. } | TableMerge::DatasetArray { .. } | TableMerge::Rederived => {}
+                    TableMerge::Array { .. }
+                    | TableMerge::ArrayOwnedByOneOf { .. }
+                    | TableMerge::DatasetArray { .. }
+                    | TableMerge::Rederived => {}
                     TableMerge::Entity { owner_column: Some(owner), position_column: Some(declared) } => {
                         assert_eq!(position, declared, "{table} position has no declared group policy");
                         assert!(columns.contains(&Some((*owner).into())), "{table}");
