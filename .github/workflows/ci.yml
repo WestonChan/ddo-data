@@ -23,7 +23,20 @@ jobs:
         run: cargo run --release -p ddo-etl -- build --data data --out target/data-source.db
       - name: Validate the database and the served data
         run: |
-          cargo xtask check-db target/data-source.db
+          cargo xtask check-db target/data-source.db \
+            --allow-empty-table crafting_steps \
+            --allow-empty-table crafting_step_effects \
+            --allow-empty-table crafting_step_costs \
+            --allow-empty-table crafting_stations \
+            --allow-empty-table crafting_system_stations \
+            --allow-empty-table crafting_unlocks \
+            --allow-empty-table socket_option_sets \
+            --allow-empty-table socket_options \
+            --allow-empty-table socket_option_effects \
+            --allow-empty-table socket_option_grants \
+            --allow-empty-table socket_option_set_bonuses \
+            --allow-empty-table crafting_recipe_set_options \
+            --allow-empty-table augment_socket_grants
           cargo xtask validate-api --db target/data-source.db --all-details
           cargo xtask wiki-tooltips --db target/data-source.db
       - name: Check the fixture database's integrity
@@ -32,4 +45,17 @@ jobs:
           cargo run -q -p ddo-etl -- build --data crates/ddo-etl/tests/fixtures/data --out target/fixture.db
           cargo xtask check-db target/fixture.db \
             --allow-empty-table effect_damage --allow-empty-table race_feat_slots \
-            --allow-empty-table removed_entities
+            --allow-empty-table removed_entities \
+            --allow-empty-table crafting_steps \
+            --allow-empty-table crafting_step_effects \
+            --allow-empty-table crafting_step_costs \
+            --allow-empty-table crafting_stations \
+            --allow-empty-table crafting_system_stations \
+            --allow-empty-table crafting_unlocks \
+            --allow-empty-table socket_option_sets \
+            --allow-empty-table socket_options \
+            --allow-empty-table socket_option_effects \
+            --allow-empty-table socket_option_grants \
+            --allow-empty-table socket_option_set_bonuses \
+            --allow-empty-table crafting_recipe_set_options \
+            --allow-empty-table augment_socket_grants

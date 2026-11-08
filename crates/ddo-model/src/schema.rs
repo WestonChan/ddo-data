@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 48;
+pub const SCHEMA_VERSION: i64 = 49;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -25,6 +25,7 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
     let save_progression = sql_in_clause(SaveProgression::ALL.iter().map(|s| s.as_str()));
     let tree_kind = sql_in_clause(EnhancementTreeKind::ALL.iter().map(|k| k.as_str()));
     let requirement_group = sql_in_clause(RequirementGroupKind::ALL.iter().map(|g| g.as_str()));
+    let station_kind = sql_in_clause(crate::enums::StationKind::ALL.iter().map(|kind| kind.as_str()));
     let crafting_tier = sql_in_clause(CraftingTier::ALL.iter().map(|t| t.as_str()));
     let correction_kind = sql_in_clause(CorrectionKind::ALL.iter().map(|k| k.as_str()));
     let saga_tier = sql_in_clause(SagaTier::ALL.iter().map(|t| t.as_str()));
@@ -45,15 +46,9 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
             .collect::<Vec<_>>().join("\n");
         format!("CREATE TRIGGER IF NOT EXISTS {owner_table}_delete_sources AFTER DELETE ON {owner_table} BEGIN {deletions} END;")
     }).join("\n");
-    let owner_links = [
-        ("item", "item_effects", "item_id"),
-        ("augment", "augment_effects", "augment_id"),
-        ("set_bonus_tier", "set_bonus_tier_effects", "tier_id"),
-        ("feat", "feat_effects", "feat_id"),
-        ("item_augment_slot_option", "item_augment_slot_option_effects", "option_id"),
-    ]
-    .iter()
-    .map(|(kind, table, owner_column)| {
+    let owner_links = crate::enums::EffectOwner::ALL.iter().map(|owner| {
+        let kind = owner.as_str();
+        let (table, owner_column) = owner.table();
         format!("SELECT '{kind}' AS owner_kind, {owner_column} AS owner_id, effect_id, bonus_type_id, value, value2, sort_order AS effect_link_order FROM {table}")
     })
     .collect::<Vec<_>>()
@@ -315,6 +310,7 @@ CREATE TABLE IF NOT EXISTS augment_slot_types (
     label     TEXT NOT NULL UNIQUE,                   -- computed from <ItemAugment><Type>
     family    TEXT NOT NULL,                          -- 'standard', 'dino', 'lamordia', 'slavers', 'upgrade', 'crafting'
     variant   TEXT NOT NULL,                          -- the colour, tier, or family parameter
+    not_crafting_reason TEXT,
     qualifier TEXT                                    -- 'weapon' / 'armor' / 'accessory' / 'legendary'
 );
 
@@ -589,7 +585,9 @@ CREATE TABLE IF NOT EXISTS item_augment_slots (
     item_id    INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
     sort_order INTEGER NOT NULL,                      -- <ItemAugment> position
     slot_id    INTEGER NOT NULL REFERENCES augment_slot_types(id),
-    PRIMARY KEY (item_id, sort_order)
+    option_set_id INTEGER,
+    PRIMARY KEY (item_id, sort_order),
+    FOREIGN KEY (slot_id, option_set_id) REFERENCES socket_option_sets(slot_id, id)
 );
 
 -- The <Augment> choices upstream fixes for a socket: the upgrade tiers a player unlocks on Quenched, Smoldering,
@@ -637,6 +635,54 @@ CREATE TABLE IF NOT EXISTS item_augment_slot_option_effects (
 );
 CREATE INDEX IF NOT EXISTS idx_item_augment_slot_option_effects_effect
     ON item_augment_slot_option_effects(effect_id);
+
+CREATE TABLE IF NOT EXISTS socket_option_sets (
+    id INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
+    slot_id INTEGER NOT NULL REFERENCES augment_slot_types(id),
+    name TEXT NOT NULL,
+    UNIQUE (slot_id, id)
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_socket_option_sets_label_name_variant
+    ON socket_option_sets(slot_id, name, COALESCE(variant, ''));
+
+CREATE TABLE IF NOT EXISTS socket_options (
+    id INTEGER PRIMARY KEY,
+    set_id INTEGER NOT NULL REFERENCES socket_option_sets(id) ON DELETE CASCADE,
+    option_order INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    description TEXT,
+    min_level INTEGER,
+    icon TEXT,
+    UNIQUE (set_id, option_order)
+);
+
+CREATE TABLE IF NOT EXISTS socket_option_effects (
+    option_id INTEGER NOT NULL REFERENCES socket_options(id) ON DELETE CASCADE,
+    alias TEXT,
+    effect_id INTEGER NOT NULL REFERENCES effects(id),
+    bonus_type_id INTEGER REFERENCES bonus_types(id),
+    value INTEGER,
+    value2 INTEGER,
+    sort_order INTEGER NOT NULL,
+    CHECK ((value IS NULL) <= (value2 IS NULL)),
+    PRIMARY KEY (option_id, sort_order)
+);
+CREATE INDEX IF NOT EXISTS idx_socket_option_effects_effect ON socket_option_effects(effect_id);
+
+CREATE TABLE IF NOT EXISTS socket_option_grants (
+    option_id INTEGER NOT NULL REFERENCES socket_options(id) ON DELETE CASCADE,
+    sort_order INTEGER NOT NULL,
+    slot_id INTEGER NOT NULL REFERENCES augment_slot_types(id),
+    PRIMARY KEY (option_id, sort_order)
+);
+
+CREATE TABLE IF NOT EXISTS socket_option_set_bonuses (
+    option_id INTEGER NOT NULL REFERENCES socket_options(id) ON DELETE CASCADE,
+    set_bonus_id INTEGER NOT NULL REFERENCES set_bonuses(id),
+    PRIMARY KEY (option_id, set_bonus_id)
+);
 
 -- Quest chains and sagas (data files) ---------------------------
 --
@@ -1457,6 +1503,13 @@ CREATE TABLE IF NOT EXISTS augment_slots (
 );
 CREATE INDEX IF NOT EXISTS idx_augment_slots_slot ON augment_slots(slot_id);
 
+CREATE TABLE IF NOT EXISTS augment_socket_grants (
+    augment_id INTEGER NOT NULL REFERENCES augments(id) ON DELETE CASCADE,
+    sort_order INTEGER NOT NULL,
+    slot_id INTEGER NOT NULL REFERENCES augment_slot_types(id),
+    PRIMARY KEY (augment_id, sort_order)
+);
+
 CREATE TABLE IF NOT EXISTS augment_effects (
     augment_id     INTEGER NOT NULL REFERENCES augments(id) ON DELETE CASCADE,
     alias TEXT,
@@ -1488,11 +1541,69 @@ CREATE TABLE IF NOT EXISTS crafting_system_families (
     PRIMARY KEY (system_id, family)
 );
 
+CREATE TABLE IF NOT EXISTS crafting_stations (
+    id INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
+    name TEXT NOT NULL,
+    kind TEXT NOT NULL CHECK (kind {station_kind}),
+    place TEXT,
+    quest_id INTEGER REFERENCES quests(id),
+    sort_order INTEGER NOT NULL,
+    CHECK (kind = 'interface' OR place IS NOT NULL)
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_crafting_stations_name_variant
+    ON crafting_stations(name, COALESCE(variant, ''));
+
+CREATE TABLE IF NOT EXISTS crafting_system_stations (
+    system_id INTEGER NOT NULL REFERENCES crafting_systems(id) ON DELETE CASCADE,
+    station_id INTEGER NOT NULL REFERENCES crafting_stations(id),
+    sort_order INTEGER NOT NULL,
+    note TEXT,
+    PRIMARY KEY (system_id, station_id)
+);
+
+CREATE TABLE IF NOT EXISTS crafting_steps (
+    id INTEGER PRIMARY KEY,
+    system_id INTEGER NOT NULL REFERENCES crafting_systems(id) ON DELETE CASCADE,
+    sort_order INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    slot_id INTEGER REFERENCES augment_slot_types(id),
+    is_random INTEGER NOT NULL DEFAULT 0 CHECK (is_random IN (0, 1)),
+    UNIQUE (system_id, name),
+    UNIQUE (system_id, slot_id)
+);
+
+CREATE TABLE IF NOT EXISTS crafting_step_effects (
+    step_id INTEGER NOT NULL REFERENCES crafting_steps(id) ON DELETE CASCADE,
+    alias TEXT,
+    effect_id INTEGER NOT NULL REFERENCES effects(id),
+    bonus_type_id INTEGER REFERENCES bonus_types(id),
+    value INTEGER,
+    value2 INTEGER,
+    sort_order INTEGER NOT NULL,
+    equipment_slot_id INTEGER REFERENCES equipment_slots(id),
+    CHECK ((value IS NULL) <= (value2 IS NULL)),
+    PRIMARY KEY (step_id, sort_order)
+);
+CREATE INDEX IF NOT EXISTS idx_crafting_step_effects_effect ON crafting_step_effects(effect_id);
+
+CREATE TABLE IF NOT EXISTS crafting_step_costs (
+    step_id INTEGER NOT NULL REFERENCES crafting_steps(id) ON DELETE CASCADE,
+    tier TEXT NOT NULL CHECK (tier {crafting_tier}),
+    ingredient_id INTEGER REFERENCES crafting_ingredients(id) ON DELETE CASCADE,
+    item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
+    sort_order INTEGER NOT NULL,
+    quantity INTEGER NOT NULL CHECK (quantity > 0),
+    CHECK ((ingredient_id IS NULL) <> (item_id IS NULL)),
+    PRIMARY KEY (step_id, tier, sort_order)
+);
+
 CREATE TABLE IF NOT EXISTS crafting_ingredients (
     id        INTEGER PRIMARY KEY,
     slug TEXT NOT NULL UNIQUE,
     variant TEXT,
-    system_id INTEGER NOT NULL REFERENCES crafting_systems(id) ON DELETE CASCADE,
+    system_id INTEGER REFERENCES crafting_systems(id) ON DELETE CASCADE,
     sort_order INTEGER NOT NULL DEFAULT 0,
     name      TEXT    NOT NULL,
     tier      TEXT    NOT NULL CHECK (tier {crafting_tier}),
@@ -1507,6 +1618,8 @@ CREATE TABLE IF NOT EXISTS crafting_recipes (
     system_id      INTEGER NOT NULL REFERENCES crafting_systems(id) ON DELETE CASCADE,
     tier           TEXT    NOT NULL CHECK (tier {crafting_tier}),
     slot_id        INTEGER REFERENCES augment_slot_types(id),   -- the socket the row's augments fill
+    step_id INTEGER REFERENCES crafting_steps(id),
+    yields_ingredient_id INTEGER REFERENCES crafting_ingredients(id),
     grants_slot_id INTEGER REFERENCES augment_slot_types(id),   -- the socket the row adds to the item
     option         TEXT    NOT NULL,                            -- the wiki's label for the row
     note           TEXT,
@@ -1525,10 +1638,42 @@ CREATE INDEX IF NOT EXISTS idx_crafting_recipe_augments_augment ON crafting_reci
 
 CREATE TABLE IF NOT EXISTS crafting_recipe_ingredients (
     recipe_id     INTEGER NOT NULL REFERENCES crafting_recipes(id) ON DELETE CASCADE,
-    ingredient_id INTEGER NOT NULL REFERENCES crafting_ingredients(id) ON DELETE CASCADE,
+    ingredient_id INTEGER REFERENCES crafting_ingredients(id) ON DELETE CASCADE,
+    item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
     sort_order INTEGER NOT NULL DEFAULT 0,
     quantity      INTEGER NOT NULL CHECK (quantity > 0),
-    PRIMARY KEY (recipe_id, ingredient_id)
+    CHECK ((ingredient_id IS NULL) <> (item_id IS NULL)),
+    PRIMARY KEY (recipe_id, sort_order)
+);
+
+CREATE TABLE IF NOT EXISTS crafting_unlocks (
+    id INTEGER PRIMARY KEY,
+    system_id INTEGER REFERENCES crafting_systems(id) ON DELETE CASCADE,
+    station_id INTEGER REFERENCES crafting_stations(id) ON DELETE CASCADE,
+    recipe_id INTEGER REFERENCES crafting_recipes(id) ON DELETE CASCADE,
+    sort_order INTEGER NOT NULL,
+    kind TEXT NOT NULL CHECK (kind IN ('quest', 'raid_flagging', 'favor', 'level', 'feat', 'pack', 'kept_item', 'guild_amenity', 'crafting_level', 'reaper_experience', 'other')),
+    quest_id INTEGER REFERENCES quests(id),
+    patron_id INTEGER REFERENCES patrons(id),
+    pack_id INTEGER REFERENCES adventure_packs(id),
+    item_id INTEGER REFERENCES items(id),
+    crafting_ingredient_id INTEGER REFERENCES crafting_ingredients(id),
+    feat_id INTEGER REFERENCES feats(id),
+    value INTEGER,
+    text TEXT NOT NULL,
+    CHECK ((system_id IS NOT NULL) + (station_id IS NOT NULL) + (recipe_id IS NOT NULL) = 1),
+    CHECK ((quest_id IS NOT NULL) = (kind IN ('quest', 'raid_flagging'))),
+    CHECK ((patron_id IS NOT NULL) = (kind = 'favor')),
+    CHECK ((pack_id IS NOT NULL) = (kind = 'pack')),
+    CHECK ((feat_id IS NOT NULL) = (kind = 'feat')),
+    CHECK ((item_id IS NOT NULL) + (crafting_ingredient_id IS NOT NULL) = (kind = 'kept_item')),
+    CHECK ((value IS NOT NULL) = (kind IN ('favor', 'level', 'guild_amenity', 'crafting_level', 'reaper_experience')))
+);
+
+CREATE TABLE IF NOT EXISTS crafting_recipe_set_options (
+    recipe_id INTEGER NOT NULL REFERENCES crafting_recipes(id) ON DELETE CASCADE,
+    option_id INTEGER NOT NULL REFERENCES socket_options(id),
+    PRIMARY KEY (recipe_id, option_id)
 );
 
 -- Corrections (data files) ------------------------------------------------

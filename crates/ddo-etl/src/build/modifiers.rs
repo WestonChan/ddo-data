@@ -100,6 +100,9 @@ impl super::PendingDerivedEffects {
             EffectOwner::ItemAugmentSlotOption => BonusOwnerKind::ItemAugmentSlotOption,
             EffectOwner::Augment => BonusOwnerKind::Augment,
             EffectOwner::SetBonusTier => BonusOwnerKind::SetBonusTier,
+            EffectOwner::CraftingStep | EffectOwner::SocketOption => {
+                unreachable!("crafting owners have no pending XML effects")
+            }
             EffectOwner::Item => unreachable!("item buffs already have links"),
         };
         BonusOwner { kind, name: &self.owner_name, family: self.family.as_deref() }
@@ -319,6 +322,8 @@ impl<'a> TableWriter<'a> {
                 EffectOwner::Augment => ModifierSource::Augment,
                 EffectOwner::ItemAugmentSlotOption => ModifierSource::ItemAugmentSlotOption,
                 EffectOwner::SetBonusTier => ModifierSource::SetBonusTier,
+                EffectOwner::CraftingStep => ModifierSource::CraftingStep,
+                EffectOwner::SocketOption => ModifierSource::SocketOption,
                 EffectOwner::Item => unreachable!("item buffs already have links"),
             };
             if source.owner_kind == EffectOwner::SetBonusTier {

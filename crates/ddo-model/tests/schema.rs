@@ -102,6 +102,8 @@ fn ddl_creates_effect_tables_without_legacy_bonus_tables() {
         "feat_sub_items",
         "feat_effects",
         "item_augment_slot_option_effects",
+        "crafting_step_effects",
+        "socket_option_effects",
         "stances",
         "dcs",
         "attacks",
@@ -289,6 +291,247 @@ fn crafting_tables_accept_only_the_four_crafting_tiers_and_one_ingredient_per_na
     assert!(db
         .execute("INSERT INTO crafting_systems (name, page, slug) VALUES ('Green Steel', 'q', 'green-steel')", [])
         .is_err());
+}
+
+fn crafting_schema_db() -> Connection {
+    let db = fresh_db();
+    db.execute_batch(
+        "INSERT INTO crafting_systems (id, name, page, slug) VALUES (1, 'Forge', 'p', 'forge'), (2, 'Altar', 'p', 'altar');
+        INSERT INTO augment_slot_types (id, slug, label, family, variant) VALUES (1, 'tier-1', 'Tier 1', 'crafting', 'tier 1'), (2, 'tier-2', 'Tier 2', 'crafting', 'tier 2');
+        INSERT INTO equipment_slots (id, name, slug, sort_order, category) VALUES (1, 'Off Hand', 'off-hand', 0, 'weapon');
+        INSERT INTO items (id, name, slug, slot_id, item_category, wiki_url) VALUES (1, 'Orb', 'orb', 1, 'Weapon', 'https://ddowiki.com/page/Item:Orb');
+        INSERT INTO crafting_ingredients (id, system_id, name, slug, tier) VALUES (1, 1, 'Ingot', 'ingot', 'epic');
+        INSERT INTO crafting_recipes (id, system_id, tier, option, sort_order) VALUES (1, 1, 'epic', 'Upgrade', 0);
+        INSERT INTO effects (id, name, slug, verbose_name_template) VALUES (1, 'Orb Bonus', 'orb-bonus', 'Orb Bonus');
+        INSERT INTO augments (id, name, slug, family) VALUES (1, 'Choice', 'choice', 'Thunderforged');
+        INSERT INTO crafting_steps (id, system_id, name, sort_order, slot_id) VALUES (1, 1, 'Tier 1', 0, 1);
+        INSERT INTO crafting_stations (id, name, slug, kind, sort_order) VALUES (1, 'Forge', 'forge', 'interface', 0);
+        INSERT INTO socket_option_sets (id, name, slug, slot_id) VALUES (1, 'Choices', 'choices', 1);
+        INSERT INTO socket_options (id, set_id, option_order, name) VALUES (1, 1, 0, 'Choice');"
+    ).unwrap();
+    db
+}
+
+#[test]
+fn crafting_steps_bridge_one_socket_per_system_and_grant_scoped_lines() {
+    let db = crafting_schema_db();
+    db.execute_batch("INSERT INTO crafting_steps (system_id, name, sort_order, slot_id) VALUES (2, 'Tier 1', 0, 1);
+        INSERT INTO crafting_steps (system_id, name, sort_order) VALUES (1, 'Blank', 1), (1, 'Finish', 2);
+        INSERT INTO crafting_step_effects (step_id, effect_id, value, sort_order, equipment_slot_id) VALUES (1, 1, 10, 0, 1);
+        INSERT INTO crafting_step_effects (step_id, effect_id, sort_order) VALUES (1, 1, 1);").unwrap();
+    assert!(db
+        .execute("INSERT INTO crafting_steps (system_id, name, sort_order, slot_id) VALUES (1, 'Duplicate', 3, 1)", [])
+        .is_err());
+    assert!(db.execute("INSERT INTO crafting_steps (system_id, name, sort_order) VALUES (1, 'Blank', 3)", []).is_err());
+    assert!(db
+        .execute("INSERT INTO crafting_steps (system_id, name, sort_order, is_random) VALUES (1, 'Random', 3, 2)", [])
+        .is_err());
+    assert!(db
+        .execute("INSERT INTO crafting_step_effects (step_id, effect_id, value2, sort_order) VALUES (1, 1, 11, 2)", [])
+        .is_err());
+    db.execute("DELETE FROM crafting_systems WHERE id = 1", []).unwrap();
+    assert_eq!(db.query_row("SELECT count(*) FROM crafting_step_effects", [], |r| r.get::<_, i64>(0)).unwrap(), 0);
+}
+
+#[test]
+fn crafting_step_costs_are_one_set_per_grade() {
+    let db = crafting_schema_db();
+    for tier in ["heroic", "epic", "legendary", "any"] {
+        db.execute("INSERT INTO crafting_step_costs (step_id, tier, ingredient_id, quantity, sort_order) VALUES (1, ?1, 1, 60, 0)", [tier]).unwrap();
+        assert!(db.execute("INSERT INTO crafting_step_costs (step_id, tier, ingredient_id, quantity, sort_order) VALUES (1, ?1, 1, 61, 0)", [tier]).is_err());
+    }
+    for (tier, quantity) in [("mythic", 1), ("epic", 0), ("epic", -1)] {
+        assert!(db.execute("INSERT INTO crafting_step_costs (step_id, tier, ingredient_id, quantity, sort_order) VALUES (1, ?1, 1, ?2, 1)", rusqlite::params![tier, quantity]).is_err());
+    }
+}
+
+#[test]
+fn cost_rows_point_at_exactly_one_ingredient_or_item() {
+    let db = crafting_schema_db();
+    for (table, owner_columns, owner_values) in
+        [("crafting_recipe_ingredients", "recipe_id", "1"), ("crafting_step_costs", "step_id, tier", "1, 'epic'")]
+    {
+        for (position, (ingredient, item, valid)) in
+            [(None, None, false), (Some(1), Some(1), false), (Some(1), None, true), (None, Some(1), true)]
+                .into_iter()
+                .enumerate()
+        {
+            assert_eq!(db.execute(&format!("INSERT INTO {table} ({owner_columns}, ingredient_id, item_id, quantity, sort_order) VALUES ({owner_values}, ?1, ?2, 1, ?3)"), rusqlite::params![ingredient, item, i64::try_from(position).unwrap()]).is_ok(), valid, "{table}: {ingredient:?}/{item:?}");
+        }
+    }
+    db.execute("DELETE FROM items WHERE id = 1", []).unwrap();
+    for table in ["crafting_recipe_ingredients", "crafting_step_costs"] {
+        assert_eq!(db.query_row(&format!("SELECT count(*) FROM {table}"), [], |r| r.get::<_, i64>(0)).unwrap(), 1);
+    }
+}
+
+#[test]
+fn crafting_unlocks_belong_to_exactly_one_parent_and_follow_it() {
+    for parent in ["system_id", "station_id", "recipe_id"] {
+        let db = crafting_schema_db();
+        db.execute(
+            &format!("INSERT INTO crafting_unlocks ({parent}, sort_order, kind, text) VALUES (1, 0, 'other', 'Gate')"),
+            [],
+        )
+        .unwrap();
+        let parent_table = match parent {
+            "system_id" => "crafting_systems",
+            "station_id" => "crafting_stations",
+            _ => "crafting_recipes",
+        };
+        db.execute(&format!("DELETE FROM {parent_table} WHERE id = 1"), []).unwrap();
+        assert_eq!(db.query_row("SELECT count(*) FROM crafting_unlocks", [], |r| r.get::<_, i64>(0)).unwrap(), 0);
+    }
+    let db = crafting_schema_db();
+    for parents in ["NULL, NULL, NULL", "1, 1, NULL", "1, NULL, 1", "NULL, 1, 1", "1, 1, 1"] {
+        assert!(db.execute(&format!("INSERT INTO crafting_unlocks (system_id, station_id, recipe_id, sort_order, kind, text) VALUES ({parents}, 0, 'other', 'Gate')"), []).is_err());
+    }
+}
+
+#[test]
+fn crafting_unlocks_tie_each_kind_to_its_reference() {
+    let db = crafting_schema_db();
+    db.execute_batch(
+        "INSERT INTO adventure_packs (id, name, slug) VALUES (1, 'Pack', 'pack');
+        INSERT INTO quests (id, name, slug, pack_id) VALUES (1, 'Quest', 'quest', 1);
+        INSERT INTO patrons (id, name, slug) VALUES (1, 'Patron', 'patron');
+        INSERT INTO feats (id, name, slug, source_kind) VALUES (1, 'Feat', 'feat', 'standard');",
+    )
+    .unwrap();
+    let reference_columns =
+        ["quest_id", "patron_id", "pack_id", "item_id", "crafting_ingredient_id", "feat_id", "value"];
+    for (kind, required) in [
+        ("quest", vec!["quest_id"]),
+        ("raid_flagging", vec!["quest_id"]),
+        ("favor", vec!["patron_id", "value"]),
+        ("level", vec!["value"]),
+        ("feat", vec!["feat_id"]),
+        ("pack", vec!["pack_id"]),
+        ("kept_item", vec!["item_id"]),
+        ("kept_item", vec!["crafting_ingredient_id"]),
+        ("guild_amenity", vec!["value"]),
+        ("crafting_level", vec!["value"]),
+        ("reaper_experience", vec!["value"]),
+        ("other", vec![]),
+    ] {
+        for mask in 0..128 {
+            let present: Vec<_> = reference_columns
+                .iter()
+                .enumerate()
+                .filter(|(index, _)| mask & (1 << index) != 0)
+                .map(|(_, column)| *column)
+                .collect();
+            let valid = present == required
+                || (kind == "kept_item" && (present == ["item_id"] || present == ["crafting_ingredient_id"]));
+            let values = reference_columns
+                .iter()
+                .map(|column| if present.contains(column) { "1" } else { "NULL" })
+                .collect::<Vec<_>>()
+                .join(", ");
+            let inserted = db.execute(&format!("INSERT INTO crafting_unlocks (system_id, sort_order, kind, text, {}) VALUES (1, 0, ?1, 'Gate', {values})", reference_columns.join(", ")), [kind]);
+            assert_eq!(inserted.is_ok(), valid, "{kind}: {present:?}: {inserted:?}");
+        }
+    }
+}
+
+#[test]
+fn item_sockets_can_only_point_at_a_set_of_their_own_label() {
+    let db = crafting_schema_db();
+    db.execute("INSERT INTO item_augment_slots (item_id, sort_order, slot_id, option_set_id) VALUES (1, 0, 1, 1)", [])
+        .unwrap();
+    db.execute("INSERT INTO item_augment_slots (item_id, sort_order, slot_id) VALUES (1, 1, 2)", []).unwrap();
+    assert!(db
+        .execute("INSERT INTO item_augment_slots (item_id, sort_order, slot_id, option_set_id) VALUES (1, 2, 2, 1)", [])
+        .is_err());
+}
+
+#[test]
+fn socket_option_sets_cascade_their_options_and_lines() {
+    let db = crafting_schema_db();
+    db.execute_batch(
+        "INSERT INTO socket_option_effects (option_id, effect_id, sort_order) VALUES (1, 1, 0);
+        INSERT INTO socket_option_grants (option_id, sort_order, slot_id) VALUES (1, 0, 2);
+        INSERT INTO set_bonuses (id, name, slug) VALUES (1, 'Set', 'set');
+        INSERT INTO socket_option_set_bonuses (option_id, set_bonus_id) VALUES (1, 1);
+        DELETE FROM socket_option_sets WHERE id = 1;",
+    )
+    .unwrap();
+    for table in ["socket_options", "socket_option_effects", "socket_option_grants", "socket_option_set_bonuses"] {
+        assert_eq!(
+            db.query_row(&format!("SELECT count(*) FROM {table}"), [], |r| r.get::<_, i64>(0)).unwrap(),
+            0,
+            "{table}"
+        );
+    }
+}
+
+#[test]
+fn augment_socket_grants_cascade_with_their_augment() {
+    let db = crafting_schema_db();
+    db.execute_batch(
+        "INSERT INTO augment_socket_grants (augment_id, sort_order, slot_id) VALUES (1, 0, 1), (1, 1, 2);
+        DELETE FROM augments WHERE id = 1;",
+    )
+    .unwrap();
+    assert_eq!(db.query_row("SELECT count(*) FROM augment_socket_grants", [], |r| r.get::<_, i64>(0)).unwrap(), 0);
+}
+
+#[test]
+fn socket_labels_carry_an_optional_not_crafting_reason() {
+    let db = crafting_schema_db();
+    assert_eq!(
+        db.query_row("SELECT not_crafting_reason FROM augment_slot_types WHERE id = 1", [], |r| r
+            .get::<_, Option<String>>(0))
+            .unwrap(),
+        None
+    );
+    db.execute("UPDATE augment_slot_types SET not_crafting_reason = 'Random loot generator' WHERE id = 1", []).unwrap();
+    assert_eq!(
+        db.query_row("SELECT not_crafting_reason FROM augment_slot_types WHERE id = 1", [], |r| r.get::<_, String>(0))
+            .unwrap(),
+        "Random loot generator"
+    );
+}
+
+#[test]
+fn crafting_station_and_option_set_variants_distinguish_equal_names() {
+    let db = crafting_schema_db();
+    for (table, name, extra_columns, extra_values) in [
+        ("crafting_stations", "Forge", "kind, sort_order", "'interface', 1"),
+        ("socket_option_sets", "Choices", "slot_id", "1"),
+    ] {
+        for (variant, slug, valid) in [
+            (None, "duplicate", false),
+            (Some(""), "empty", false),
+            (Some("second"), "second", true),
+            (Some("second"), "duplicate-second", false),
+        ] {
+            assert_eq!(db.execute(&format!("INSERT INTO {table} (name, slug, variant, {extra_columns}) VALUES (?1, ?2, ?3, {extra_values})"), rusqlite::params![name, slug, variant]).is_ok(), valid, "{table}/{variant:?}");
+        }
+    }
+}
+
+#[test]
+fn crafting_stations_require_a_place_unless_they_are_an_interface() {
+    let db = fresh_db();
+    for (kind, place, valid) in [
+        ("device", None, false),
+        ("npc", None, false),
+        ("interface", None, true),
+        ("device", Some("Meridia"), true),
+        ("npc", Some("Meridia"), true),
+        ("interface", Some("Inventory"), true),
+        ("unknown", Some("Meridia"), false),
+    ] {
+        db.execute("DELETE FROM crafting_stations", []).unwrap();
+        assert_eq!(db.execute("INSERT INTO crafting_stations (name, slug, kind, place, sort_order) VALUES ('Station', 'station', ?1, ?2, 0)", rusqlite::params![kind, place]).is_ok(), valid, "{kind}/{place:?}");
+    }
+}
+
+#[test]
+fn crafting_shared_ingredients_do_not_require_a_system_during_transition() {
+    let db = fresh_db();
+    db.execute("INSERT INTO crafting_ingredients (name, slug, tier) VALUES ('Thread', 'thread', 'any')", []).unwrap();
 }
 
 #[test]

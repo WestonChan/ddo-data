@@ -102,7 +102,23 @@ jobs:
 
       - name: Check the dataset's integrity
         if: steps.compare.outputs.changed == 'true'
-        run: cargo run --release -q -p xtask -- check-db ddo.db --allow-empty-table vendors --allow-empty-table events
+        run: |
+          cargo run --release -q -p xtask -- check-db ddo.db \
+            --allow-empty-table vendors \
+            --allow-empty-table events \
+            --allow-empty-table crafting_steps \
+            --allow-empty-table crafting_step_effects \
+            --allow-empty-table crafting_step_costs \
+            --allow-empty-table crafting_stations \
+            --allow-empty-table crafting_system_stations \
+            --allow-empty-table crafting_unlocks \
+            --allow-empty-table socket_option_sets \
+            --allow-empty-table socket_options \
+            --allow-empty-table socket_option_effects \
+            --allow-empty-table socket_option_grants \
+            --allow-empty-table socket_option_set_bonuses \
+            --allow-empty-table crafting_recipe_set_options \
+            --allow-empty-table augment_socket_grants
 
       - name: Validate every API response against its schema
         if: steps.compare.outputs.changed == 'true'

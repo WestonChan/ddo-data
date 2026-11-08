@@ -617,6 +617,7 @@ pub enum EntityKind {
     Clickie,
     CraftingSystem,
     CraftingIngredient,
+    CraftingStation,
     DamageType,
     Effect,
     EnhancementTree,
@@ -635,6 +636,7 @@ pub enum EntityKind {
     Race,
     Saga,
     SentientGem,
+    SocketOptionSet,
     Set,
     Spell,
     Stance,
@@ -677,6 +679,7 @@ impl EntityKind {
         Self::Clickie,
         Self::CraftingSystem,
         Self::CraftingIngredient,
+        Self::CraftingStation,
         Self::DamageType,
         Self::Effect,
         Self::EnhancementTree,
@@ -695,6 +698,7 @@ impl EntityKind {
         Self::Race,
         Self::Saga,
         Self::SentientGem,
+        Self::SocketOptionSet,
         Self::Set,
         Self::Spell,
         Self::Stance,
@@ -712,6 +716,7 @@ impl EntityKind {
             Self::Clickie => "clickies",
             Self::CraftingSystem => "crafting-systems",
             Self::CraftingIngredient => "crafting-ingredients",
+            Self::CraftingStation => "crafting-stations",
             Self::DamageType => "damage-types",
             Self::Effect => "effects",
             Self::EnhancementTree => "enhancement-trees",
@@ -730,6 +735,7 @@ impl EntityKind {
             Self::Race => "races",
             Self::Saga => "sagas",
             Self::SentientGem => "sentient-gems",
+            Self::SocketOptionSet => "socket-option-sets",
             Self::Set => "sets",
             Self::Spell => "spells",
             Self::Stance => "stances",
@@ -748,6 +754,7 @@ impl EntityKind {
             Self::Clickie => "clickies",
             Self::CraftingSystem => "crafting_systems",
             Self::CraftingIngredient => "crafting_ingredients",
+            Self::CraftingStation => "crafting_stations",
             Self::DamageType => "damage_types",
             Self::Effect => "effects",
             Self::EnhancementTree => "enhancement_trees",
@@ -766,6 +773,7 @@ impl EntityKind {
             Self::Race => "races",
             Self::Saga => "sagas",
             Self::SentientGem => "sentient_gems",
+            Self::SocketOptionSet => "socket_option_sets",
             Self::Set => "set_bonuses",
             Self::Spell => "spells",
             Self::Stance => "stances",
@@ -912,6 +920,30 @@ impl CraftingTier {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, schemars::JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum StationKind {
+    Device,
+    Npc,
+    Interface,
+}
+
+impl StationKind {
+    pub const ALL: [Self; 3] = [Self::Device, Self::Npc, Self::Interface];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Device => "device",
+            Self::Npc => "npc",
+            Self::Interface => "interface",
+        }
+    }
+
+    pub fn parse(text: &str) -> Option<Self> {
+        Self::ALL.into_iter().find(|kind| kind.as_str() == text)
+    }
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum DamageCategory {
     Physical,
@@ -937,6 +969,8 @@ impl DamageCategory {
 pub enum ModifierSource {
     Item,
     ItemAugmentSlotOption,
+    CraftingStep,
+    SocketOption,
     Augment,
     SetBonusTier,
     Filigree,
@@ -960,6 +994,8 @@ impl ModifierSource {
     pub const ALL: &'static [ModifierSource] = &[
         Self::Item,
         Self::ItemAugmentSlotOption,
+        Self::CraftingStep,
+        Self::SocketOption,
         Self::Augment,
         Self::SetBonusTier,
         Self::Filigree,
@@ -983,6 +1019,8 @@ impl ModifierSource {
         match self {
             Self::Item => "item",
             Self::ItemAugmentSlotOption => "item_augment_slot_option",
+            Self::CraftingStep => "crafting_step",
+            Self::SocketOption => "socket_option",
             Self::Augment => "augment",
             Self::SetBonusTier => "set_bonus_tier",
             Self::Filigree => "filigree",
@@ -1011,10 +1049,20 @@ pub enum EffectOwner {
     SetBonusTier,
     Feat,
     ItemAugmentSlotOption,
+    CraftingStep,
+    SocketOption,
 }
 
 impl EffectOwner {
-    pub const ALL: [Self; 5] = [Self::Item, Self::Augment, Self::SetBonusTier, Self::Feat, Self::ItemAugmentSlotOption];
+    pub const ALL: [Self; 7] = [
+        Self::Item,
+        Self::Augment,
+        Self::SetBonusTier,
+        Self::Feat,
+        Self::ItemAugmentSlotOption,
+        Self::CraftingStep,
+        Self::SocketOption,
+    ];
 
     pub fn from_table(table: &str) -> Option<Self> {
         Self::ALL.into_iter().find(|owner| owner.table().0 == table)
@@ -1027,6 +1075,8 @@ impl EffectOwner {
             Self::SetBonusTier => "set_bonus_tier",
             Self::Feat => "feat",
             Self::ItemAugmentSlotOption => "item_augment_slot_option",
+            Self::CraftingStep => "crafting_step",
+            Self::SocketOption => "socket_option",
         }
     }
 
@@ -1037,6 +1087,8 @@ impl EffectOwner {
             Self::SetBonusTier => ("set_bonus_tier_effects", "tier_id"),
             Self::Feat => ("feat_effects", "feat_id"),
             Self::ItemAugmentSlotOption => ("item_augment_slot_option_effects", "option_id"),
+            Self::CraftingStep => ("crafting_step_effects", "step_id"),
+            Self::SocketOption => ("socket_option_effects", "option_id"),
         }
     }
 }
@@ -1217,6 +1269,7 @@ pub enum CorrectionKind {
     AugmentBonus,
     FeatBonus,
     SocketOptionBonus,
+    SocketOption,
     ItemBonus,
     ItemEffect,
     EffectDamage,
@@ -1253,6 +1306,7 @@ impl CorrectionKind {
         Self::AugmentBonus,
         Self::FeatBonus,
         Self::SocketOptionBonus,
+        Self::SocketOption,
         Self::ItemBonus,
         Self::ItemEffect,
         Self::EffectDamage,
@@ -1283,6 +1337,7 @@ impl CorrectionKind {
             Self::AugmentBonus => "augment_bonus",
             Self::FeatBonus => "feat_bonus",
             Self::SocketOptionBonus => "socket_option_bonus",
+            Self::SocketOption => "socket_option",
             Self::ItemBonus => "item_bonus",
             Self::ItemEffect => "item_effect",
             Self::EffectDamage => "effect_damage",
@@ -1314,6 +1369,7 @@ impl CorrectionKind {
             Self::ItemBonus | Self::ItemEffect | Self::ItemSocket | Self::SocketOptionBonus => "items",
             Self::EffectDamage => "effects",
             Self::SocketLabel => "augment_slot_types",
+            Self::SocketOption => "socket_option_sets",
         }
     }
 
@@ -1363,7 +1419,7 @@ mod entity_kind_tests {
                 kind.table_name()
             );
         }
-        assert_eq!(words.len(), 32);
+        assert_eq!(words.len(), 34);
         assert_eq!(EntityKind::from_table_name("unknown"), None);
         assert_eq!(EntityKind::from_table_name(""), None);
         assert_eq!(EntityKind::from_table_name("sets"), None);

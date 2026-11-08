@@ -345,6 +345,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::Feat, "description:description:Text:true, icon:icon:Text:true"),
         (CorrectionKind::FeatBonus, "add:add:BonusAddition:false, alias:alias:BonusAlias:true, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
         (CorrectionKind::SocketOptionBonus, "alias:alias:BonusAlias:true, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, value:value:Integer:true"),
+        (CorrectionKind::SocketOption, ""),
         (CorrectionKind::Enhancement, "arrows:arrows:TextList:false, cooldown_seconds:cooldown_seconds:Integer:true, cost_per_rank:cost_per_rank:IntegerList:false, description:description:Text:false, duration_seconds:duration_seconds:Integer:true, icon:icon:Text:true, is_clickie:is_clickie:Flag:false, is_tier5:is_tier5:Flag:false, min_spent:min_spent:Integer:false, name:name:RowName:false, ranks:ranks:Integer:false, x:x:Integer:false, y:y:Integer:false"),
         (CorrectionKind::Spell, "description:description:Text:false, icon:icon:Text:true"),
         (CorrectionKind::EnhancementTree, "icon:icon:Text:false"),

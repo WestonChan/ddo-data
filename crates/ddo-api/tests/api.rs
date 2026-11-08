@@ -3572,7 +3572,9 @@ async fn aliased_titles_agree_across_every_effect_owner() {
     });
     let db = rusqlite::Connection::open(&path).unwrap();
     let state = AppState::open(&path).unwrap();
-    for owner_kind in ddo_model::enums::EffectOwner::ALL {
+    for owner_kind in ddo_model::enums::EffectOwner::ALL.into_iter().filter(|owner| {
+        !matches!(owner, ddo_model::enums::EffectOwner::CraftingStep | ddo_model::enums::EffectOwner::SocketOption)
+    }) {
         let (table, column) = owner_kind.table();
         let lines = ddo_api::served_effect_lines(&db, table, column).unwrap();
         for (alias, _, _, expected) in cases {

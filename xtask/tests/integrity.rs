@@ -4,7 +4,24 @@ use std::process::{Command, Output};
 use std::sync::OnceLock;
 use xtask::integrity::{integrity_report, CheckStatus, IntegrityOptions, Severity, INTEGRITY_CHECKS};
 
-const TABLES_EMPTY_IN_FIXTURES: [&str; 3] = ["effect_damage", "race_feat_slots", "removed_entities"];
+const TABLES_EMPTY_IN_FIXTURES: [&str; 16] = [
+    "effect_damage",
+    "race_feat_slots",
+    "removed_entities",
+    "crafting_steps",
+    "crafting_step_effects",
+    "crafting_step_costs",
+    "crafting_stations",
+    "crafting_system_stations",
+    "crafting_unlocks",
+    "socket_option_sets",
+    "socket_options",
+    "socket_option_effects",
+    "socket_option_grants",
+    "socket_option_set_bonuses",
+    "crafting_recipe_set_options",
+    "augment_socket_grants",
+];
 const PACK_QUEST_OVERLAP_SQL: &str =
     "INSERT INTO pack_drops (owner_kind, pack_id, owner_id, loot_type, chest, is_rare)
      SELECT CASE WHEN s.item_id IS NOT NULL THEN 'item' ELSE 'augment' END, q.pack_id, COALESCE(s.item_id, s.augment_id), s.loot_type, s.chest, s.is_rare
