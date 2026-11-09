@@ -155,6 +155,86 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         ),
     ),
     IntegrityCheck::hard(
+        "crafting_options_repeat_step_base_properties",
+        "a crafting candidate never repeats a stat and bonus type granted by its step",
+        OffenderQuery::Built(crafting_options_repeat_step_base_properties),
+    ),
+    IntegrityCheck::hard(
+        "items_do_not_carry_step_base_properties",
+        "an item never carries the same stat, type and amount as a base line on its crafting step",
+        OffenderQuery::Built(items_do_not_carry_step_base_properties),
+    ),
+    IntegrityCheck::warn(
+        "items_do_not_carry_craftable_bonuses",
+        "an item never repeats a candidate bonus on its non-colour sockets; 28 real items await ddo-data#72",
+        OffenderQuery::Built(items_do_not_carry_craftable_bonuses),
+    ).showing_every_offender(),
+    IntegrityCheck::hard(
+        "crafting_recipe_sockets_match_steps",
+        "a recipe's transitional socket agrees with its step's socket",
+        OffenderQuery::Sql("SELECT r.option,r.id,s.name FROM crafting_recipes r JOIN crafting_steps s ON s.id=r.step_id WHERE r.slot_id IS NOT s.slot_id"),
+    ),
+    IntegrityCheck::warn(
+        "crafting_recipe_augments_fit_their_socket",
+        "yielded augments fit the recipe's socket; 19 real recipe/augment pairs await ddo-data#72",
+        OffenderQuery::Sql("SELECT r.option,r.id,a.name || ': ' || t.label FROM crafting_recipe_augments link JOIN crafting_recipes r ON r.id=link.recipe_id JOIN augments a ON a.id=link.augment_id LEFT JOIN crafting_steps s ON s.id=r.step_id JOIN augment_slot_types t ON t.id=COALESCE(s.slot_id,r.slot_id) WHERE NOT EXISTS (SELECT 1 FROM augment_slots fits WHERE fits.augment_id=a.id AND fits.slot_id=t.id) ORDER BY r.option,a.name"),
+    ).showing_every_offender(),
+    IntegrityCheck::hard(
+        "crafting_recipe_set_options_match_step_sockets",
+        "a priced option belongs to a set on its recipe's socketed step",
+        OffenderQuery::Sql("SELECT c.name || ': ' || r.option,r.id,o.name FROM crafting_recipe_set_options link JOIN crafting_recipes r ON r.id=link.recipe_id JOIN crafting_systems c ON c.id=r.system_id JOIN socket_options o ON o.id=link.option_id JOIN socket_option_sets pool ON pool.id=o.set_id LEFT JOIN crafting_steps s ON s.id=r.step_id WHERE s.slot_id IS NULL OR s.slot_id<>pool.slot_id ORDER BY c.name,r.option"),
+    ),
+    IntegrityCheck::hard(
+        "recipe_costs_do_not_repeat_their_step_costs",
+        "a recipe's own cost differs from its step's cost for that grade",
+        OffenderQuery::Sql("WITH own_cost AS (SELECT recipe_id,ingredient_id,item_id,SUM(quantity) quantity FROM crafting_recipe_ingredients GROUP BY recipe_id,ingredient_id,item_id), step_cost AS (SELECT step_id,tier,ingredient_id,item_id,SUM(quantity) quantity FROM crafting_step_costs GROUP BY step_id,tier,ingredient_id,item_id) SELECT r.option,r.id,s.name || ': ' || r.tier FROM crafting_recipes r JOIN crafting_steps s ON s.id=r.step_id WHERE EXISTS (SELECT 1 FROM own_cost c WHERE c.recipe_id=r.id) AND NOT EXISTS (SELECT ingredient_id,item_id,quantity FROM own_cost WHERE recipe_id=r.id EXCEPT SELECT ingredient_id,item_id,quantity FROM step_cost WHERE step_id=r.step_id AND tier=r.tier) AND NOT EXISTS (SELECT ingredient_id,item_id,quantity FROM step_cost WHERE step_id=r.step_id AND tier=r.tier EXCEPT SELECT ingredient_id,item_id,quantity FROM own_cost WHERE recipe_id=r.id) ORDER BY r.option"),
+    ),
+    IntegrityCheck::hard(
+        "step_base_lines_scope_consistently",
+        "a step's base lines are either all equipment-scoped or all unscoped",
+        OffenderQuery::Sql("SELECT c.name || ': ' || s.name,s.id,'mixed scoped and unscoped lines' FROM crafting_steps s JOIN crafting_systems c ON c.id=s.system_id JOIN crafting_step_effects e ON e.step_id=s.id GROUP BY s.id HAVING MIN(e.equipment_slot_id IS NULL)<>MAX(e.equipment_slot_id IS NULL)"),
+    ),
+    IntegrityCheck::hard(
+        "crafting_systems_have_stations",
+        "every crafting system links a shared station or interface",
+        OffenderQuery::Sql("SELECT c.name,c.id,'no station' FROM crafting_systems c WHERE NOT EXISTS (SELECT 1 FROM crafting_system_stations s WHERE s.system_id=c.id) ORDER BY c.name"),
+    ),
+    IntegrityCheck::hard(
+        "crafted_outputs_keep_no_challenge_source",
+        "a crafted item has no challenge source in its crafting system's pack",
+        OffenderQuery::Sql("SELECT DISTINCT i.name,i.id,c.name FROM crafting_outputs output JOIN items i ON output.owner_kind='item' AND i.id=output.owner_id JOIN crafting_systems c ON c.id=output.crafting_system_id JOIN challenge_rewards reward ON reward.owner_kind='item' AND reward.owner_id=i.id AND reward.pack_id=c.pack_id ORDER BY i.name,c.name"),
+    ),
+    IntegrityCheck::hard(
+        "socket_labels_are_owned_or_declared_not_crafting",
+        "every non-colour socket label has a crafting step or a not-crafting reason, never both",
+        OffenderQuery::Sql("SELECT t.label,t.id,CASE WHEN t.not_crafting_reason IS NULL THEN 'no step or reason' ELSE 'both step and reason' END FROM augment_slot_types t WHERE t.family<>'standard' AND (t.not_crafting_reason IS NOT NULL)=EXISTS (SELECT 1 FROM crafting_steps s WHERE s.slot_id=t.id) ORDER BY t.label"),
+    ).showing_every_offender(),
+    IntegrityCheck::hard(
+        "socket_labels_fill_one_way",
+        "a non-colour label is filled by augments or fixed option sets, never both",
+        OffenderQuery::Sql("SELECT t.label,t.id,'both augments and fixed options' FROM augment_slot_types t WHERE t.family<>'standard' AND EXISTS (SELECT 1 FROM augment_slots a WHERE a.slot_id=t.id) AND EXISTS (SELECT 1 FROM socket_option_sets s WHERE s.slot_id=t.id) ORDER BY t.label"),
+    ),
+    IntegrityCheck::warn(
+        "socket_option_sets_differing_only_by_option_names",
+        "sets with equal content except option names need a reader's spelling verdict and correction (ddo-data#72)",
+        OffenderQuery::Built(socket_option_sets_differing_only_by_option_names),
+    ).showing_every_offender(),
+    IntegrityCheck::warn(
+        "socket_option_sets_sharing_names",
+        "same-named sets on one label have variants and need a reader's naming review (ddo-data#72)",
+        OffenderQuery::Sql("SELECT s.name,s.id,t.label || ': ' || COALESCE(s.variant,'unqualified') FROM socket_option_sets s JOIN augment_slot_types t ON t.id=s.slot_id WHERE EXISTS (SELECT 1 FROM socket_option_sets other WHERE other.slot_id=s.slot_id AND other.name=s.name AND other.id<>s.id) ORDER BY t.label,s.name,s.variant"),
+    ).showing_every_offender(),
+    IntegrityCheck::warn(
+        "crafting_ingredients_sharing_a_name",
+        "same-named ingredients need a reader's identity and variant verdict (ddo-data#72)",
+        OffenderQuery::Sql("SELECT i.name,i.id,COALESCE(i.variant,'unqualified') FROM crafting_ingredients i WHERE EXISTS (SELECT 1 FROM crafting_ingredients other WHERE other.name=i.name AND other.id<>i.id AND other.variant IS NOT i.variant) ORDER BY i.name,i.variant"),
+    ).showing_every_offender(),
+    IntegrityCheck::hard(
+        "crafting_ingredients_are_not_items",
+        "a consumed item is referenced as an item rather than copied into the ingredient list",
+        OffenderQuery::Sql("SELECT i.name,i.id,'also an item' FROM crafting_ingredients i WHERE EXISTS (SELECT 1 FROM items item WHERE item.name=i.name) ORDER BY i.name"),
+    ),
+    IntegrityCheck::hard(
         "legacy_items_hidden",
         "every item flagged is_legacy has a reason: a (legacy) or (historic) name, an is_legacy correction, or no \
          sources row (its only sources are retired)",
@@ -768,6 +848,109 @@ fn offenders_from_sql(db: &Connection, sql: &str) -> Result<Vec<Offender>> {
         })?
         .collect::<rusqlite::Result<Vec<_>>>()?;
     Ok(offenders)
+}
+
+const ITEM_INNATE_BONUSES: &str = "innate AS MATERIALIZED (
+    SELECT owner_id item_id,stat_id,bonus_type_id,amount FROM owner_bonuses WHERE owner_kind='item'
+)";
+
+const SOCKET_CANDIDATE_BONUSES: &str = "candidates AS MATERIALIZED (
+    SELECT slots.slot_id,NULL option_set_id,'augment' owner_kind,a.id owner_id,a.name,b.stat_id,b.bonus_type_id,b.amount
+      FROM augment_slots slots JOIN augments a ON a.id=slots.augment_id
+      JOIN owner_bonuses b ON b.owner_kind='augment' AND b.owner_id=a.id
+    UNION ALL
+    SELECT sets.slot_id,sets.id,'socket_option',o.id,o.name,b.stat_id,b.bonus_type_id,b.amount
+      FROM socket_option_sets sets JOIN socket_options o ON o.set_id=sets.id
+      JOIN owner_bonuses b ON b.owner_kind='socket_option' AND b.owner_id=o.id
+)";
+
+fn crafting_options_repeat_step_base_properties(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let sql = format!(
+        "WITH {SOCKET_CANDIDATE_BONUSES}
+        SELECT DISTINCT candidate.name,candidate.owner_id,system.name || ': ' || step.name || ': ' || stat.name
+        FROM candidates candidate JOIN crafting_steps step ON step.slot_id=candidate.slot_id
+        JOIN crafting_systems system ON system.id=step.system_id
+        JOIN owner_bonuses base ON base.owner_kind='crafting_step' AND base.owner_id=step.id
+          AND base.stat_id=candidate.stat_id AND base.bonus_type_id IS candidate.bonus_type_id
+        JOIN effects stat ON stat.id=base.stat_id ORDER BY candidate.name,system.name,step.name,stat.name"
+    );
+    Ok(Findings { offenders: Some(offenders_from_sql(db, &sql)?), notes: vec![] })
+}
+
+fn items_do_not_carry_step_base_properties(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let sql = format!(
+        "WITH {ITEM_INNATE_BONUSES}
+        SELECT DISTINCT item.name,item.id,system.name || ': ' || step.name || ': ' || stat.name
+        FROM innate JOIN items item ON item.id=innate.item_id
+        JOIN item_augment_slots socket ON socket.item_id=item.id
+        JOIN crafting_steps step ON step.slot_id=socket.slot_id
+        JOIN crafting_systems system ON system.id=step.system_id
+        JOIN owner_bonuses base ON base.owner_kind='crafting_step' AND base.owner_id=step.id
+          AND base.stat_id=innate.stat_id AND base.bonus_type_id IS innate.bonus_type_id AND base.amount=innate.amount
+        JOIN crafting_step_effects line ON line.step_id=step.id AND line.sort_order=base.effect_link_order
+        JOIN effects stat ON stat.id=base.stat_id
+        WHERE line.equipment_slot_id IS NULL OR line.equipment_slot_id=item.slot_id
+        ORDER BY item.name,system.name,step.name,stat.name"
+    );
+    Ok(Findings { offenders: Some(offenders_from_sql(db, &sql)?), notes: vec![] })
+}
+
+fn items_do_not_carry_craftable_bonuses(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let sql = format!(
+        "WITH {ITEM_INNATE_BONUSES},{SOCKET_CANDIDATE_BONUSES}
+        SELECT DISTINCT item.name,item.id,slot.label || ': ' || stat.name
+        FROM innate JOIN items item ON item.id=innate.item_id
+        JOIN item_augment_slots socket ON socket.item_id=item.id
+        JOIN augment_slot_types slot ON slot.id=socket.slot_id
+        JOIN candidates candidate ON candidate.slot_id=slot.id
+          AND (candidate.option_set_id IS NULL OR candidate.option_set_id=socket.option_set_id)
+          AND candidate.stat_id=innate.stat_id AND candidate.bonus_type_id IS innate.bonus_type_id
+          AND candidate.amount=innate.amount
+        JOIN effects stat ON stat.id=innate.stat_id WHERE slot.family<>'standard'
+        ORDER BY item.name,slot.label,stat.name"
+    );
+    Ok(Findings { offenders: Some(offenders_from_sql(db, &sql)?), notes: vec![] })
+}
+
+fn socket_content_json(db: &Connection, table: &str, alias: &str, identity_columns: &[&str]) -> Result<String> {
+    let columns = db
+        .prepare("SELECT name FROM pragma_table_info(?1) ORDER BY cid")?
+        .query_map([table], |row| row.get::<_, String>(0))?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    let fields = columns
+        .iter()
+        .filter(|column| !identity_columns.contains(&column.as_str()))
+        .map(|column| format!("'{column}',{alias}.\"{column}\""))
+        .collect::<Vec<_>>()
+        .join(",");
+    Ok(format!("json_object({fields})"))
+}
+
+fn socket_option_sets_differing_only_by_option_names(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let option = socket_content_json(db, "socket_options", "o", &["id", "set_id", "name"])?;
+    let effect = socket_content_json(db, "socket_option_effects", "e", &["option_id"])?;
+    let grant = socket_content_json(db, "socket_option_grants", "g", &["option_id"])?;
+    let membership = socket_content_json(db, "socket_option_set_bonuses", "b", &["option_id"])?;
+    let modifier = socket_content_json(db, "modifiers", "m", &["id", "source_kind", "source_id"])?;
+    let requirement = socket_content_json(db, "requirements", "r", &["id", "owner_kind", "owner_id"])?;
+    let sql = format!("WITH options AS (
+        SELECT o.set_id,o.option_order,o.name,json_array(json({option}),
+          (SELECT json_group_array(json(content)) FROM (SELECT {effect} content FROM socket_option_effects e WHERE e.option_id=o.id ORDER BY e.sort_order)),
+          (SELECT json_group_array(json(content)) FROM (SELECT {grant} content FROM socket_option_grants g WHERE g.option_id=o.id ORDER BY g.sort_order)),
+          (SELECT json_group_array(json(content)) FROM (SELECT {membership} content FROM socket_option_set_bonuses b WHERE b.option_id=o.id ORDER BY b.set_bonus_id)),
+          (SELECT json_group_array(json(content)) FROM (SELECT json_array(json({modifier}),
+            (SELECT json_group_array(json(content)) FROM (SELECT {requirement} content FROM requirements r WHERE r.owner_kind='modifier' AND r.owner_id=m.id ORDER BY r.group_kind,r.group_index,r.sort_order))) content
+            FROM modifiers m WHERE m.source_kind='socket_option' AND m.source_id=o.id ORDER BY m.sort_order))) content
+        FROM socket_options o
+    ), sets AS MATERIALIZED (
+        SELECT s.id,s.name,s.slot_id,
+          (SELECT json_group_array(json(content)) FROM (SELECT content FROM options WHERE set_id=s.id ORDER BY option_order)) content,
+          (SELECT json_group_array(name) FROM (SELECT name FROM options WHERE set_id=s.id ORDER BY option_order)) names
+        FROM socket_option_sets s
+    ) SELECT a.name || ' / ' || b.name,a.id,t.label
+        FROM sets a JOIN sets b ON a.id<b.id AND a.slot_id=b.slot_id AND a.content=b.content AND a.names<>b.names
+        JOIN augment_slot_types t ON t.id=a.slot_id ORDER BY t.label,a.name,b.name");
+    Ok(Findings { offenders: Some(offenders_from_sql(db, &sql)?), notes: vec![] })
 }
 
 fn normalized_pack_name(name: &str) -> String {
@@ -2585,6 +2768,19 @@ fn unreferenced_stats(db: &Connection, _options: &IntegrityOptions) -> Result<Fi
 }
 
 fn findings_of(check: &IntegrityCheck, db: &Connection, options: &IntegrityOptions) -> Result<Findings> {
+    if matches!(
+        check.name,
+        "crafting_systems_have_stations"
+            | "socket_labels_are_owned_or_declared_not_crafting"
+            | "crafting_ingredients_are_not_items"
+    ) && options.allowed_empty_tables.iter().any(|table| table == "crafting_steps")
+        && !db.query_row("SELECT EXISTS (SELECT 1 FROM crafting_steps)", [], |row| row.get::<_, bool>(0))?
+    {
+        return Ok(Findings {
+            offenders: None,
+            notes: vec!["awaiting the crafting fill; explicitly allowed empty crafting_steps".into()],
+        });
+    }
     match check.offender_query {
         OffenderQuery::Sql(sql) => Ok(Findings { offenders: Some(offenders_from_sql(db, sql)?), notes: Vec::new() }),
         OffenderQuery::Built(build_findings) => build_findings(db, options),

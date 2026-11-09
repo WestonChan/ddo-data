@@ -620,7 +620,6 @@ impl TableWriter<'_> {
                 report.drop_text_rare_link_count += 1;
             }
         }
-        report.pack_loot_link_count += self.link_to_drop_text_packs(DroppedLoot::Item(item_id), drop_location)?;
         self.link_to_sources_named_in_drop_text(DroppedLoot::Item(item_id), drop_location, report)?;
         for linked_table in self.link_item_to_drop_text_reward_givers(item_id, drop_location)? {
             match linked_table {

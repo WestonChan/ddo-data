@@ -1618,6 +1618,158 @@ fn violation(check_name: &'static str, injected_sql: &str, offender_name: &'stat
     InjectedViolation { check_name, injected_sql: injected_sql.to_string(), offender_name }
 }
 
+#[test]
+fn crafting_integrity_checks_reject_each_injected_violation() {
+    let violations = [
+        violation("crafting_options_repeat_step_base_properties", "INSERT INTO augment_effects (augment_id,effect_id,bonus_type_id,value,sort_order) SELECT a.id,e.id,b.id,10,999 FROM augments a,effects e,bonus_types b WHERE a.name='Blinding Fear' AND e.name='Orb Bonus' AND b.name='Orb';", "Blinding Fear"),
+        violation("items_do_not_carry_step_base_properties", "UPDATE item_effects SET value=10 WHERE item_id=(SELECT id FROM items WHERE name='Thunder-Forged Orb') AND effect_id=(SELECT id FROM effects WHERE name='Orb Bonus');", "Thunder-Forged Orb"),
+        violation("items_do_not_carry_craftable_bonuses", "INSERT INTO item_effects (item_id,effect_id,bonus_type_id,value,sort_order) SELECT i.id,e.id,b.id,19,999 FROM items i,effects e,bonus_types b WHERE i.name='Gravekeeper''s Docent' AND e.name='Healing Amplification' AND b.name='Competence';", "Gravekeeper's Docent"),
+        violation("crafting_recipe_sockets_match_steps", "UPDATE crafting_recipes SET slot_id=(SELECT id FROM augment_slot_types WHERE label='colorless') WHERE option='Blinding Fear';", "Blinding Fear"),
+        violation("crafting_recipe_augments_fit_their_socket", "UPDATE augment_slots SET slot_id=(SELECT id FROM augment_slot_types WHERE label='colorless') WHERE augment_id=(SELECT id FROM augments WHERE name='Blinding Fear');", "Blinding Fear"),
+        violation("crafting_recipe_set_options_match_step_sockets", "UPDATE crafting_recipes SET step_id=(SELECT s.id FROM crafting_steps s JOIN crafting_systems c ON c.id=s.system_id WHERE c.name='Test Upgrade Altar' AND s.name='Tier 2') WHERE id IN (SELECT recipe_id FROM crafting_recipe_set_options);", "Test Upgrade Altar"),
+        violation("recipe_costs_do_not_repeat_their_step_costs", "INSERT INTO crafting_recipe_ingredients (recipe_id,sort_order,ingredient_id,item_id,quantity) SELECT r.id,c.sort_order,c.ingredient_id,c.item_id,c.quantity FROM crafting_recipes r JOIN crafting_step_costs c ON c.step_id=r.step_id AND c.tier=r.tier WHERE r.option='Blinding Fear';", "Blinding Fear"),
+        violation("step_base_lines_scope_consistently", "INSERT INTO crafting_step_effects (step_id,effect_id,bonus_type_id,value,sort_order) SELECT step_id,effect_id,bonus_type_id,value,999 FROM crafting_step_effects LIMIT 1;", "Thunder-Forged"),
+        violation("crafting_systems_have_stations", "DELETE FROM crafting_system_stations WHERE system_id=(SELECT id FROM crafting_systems WHERE name='Catalyst Crafting');", "Catalyst Crafting"),
+        violation("crafted_outputs_keep_no_challenge_source", "UPDATE crafting_systems SET pack_id=(SELECT pack_id FROM quests WHERE is_challenge=1 LIMIT 1) WHERE name='Catalyst Crafting'; INSERT INTO challenge_rewards (owner_kind,pack_id,owner_id) SELECT 'item',q.pack_id,i.id FROM quests q,items i WHERE q.is_challenge=1 AND i.name='Visor of Fraz-Urb''luu' LIMIT 1;", "Visor of Fraz-Urb'luu"),
+        violation("socket_labels_are_owned_or_declared_not_crafting", "DELETE FROM crafting_steps WHERE slot_id=(SELECT id FROM augment_slot_types WHERE label='lamordia: melancholic (armor)');", "melancholic"),
+        violation("socket_labels_are_owned_or_declared_not_crafting", "UPDATE augment_slot_types SET not_crafting_reason='Not crafting' WHERE label='crafting: thunderforged tier 1';", "thunderforged tier 1"),
+        violation("socket_labels_fill_one_way", "INSERT INTO augment_slots (augment_id,slot_id) SELECT a.id,t.id FROM augments a,augment_slot_types t WHERE a.name='Blinding Fear' AND t.label='crafting: nearly finished';", "nearly finished"),
+        violation("socket_option_sets_differing_only_by_option_names", "UPDATE socket_option_sets SET slot_id=(SELECT id FROM augment_slot_types WHERE label='crafting: add augment 1'),name='Equivalent Choices' WHERE slot_id=(SELECT id FROM augment_slot_types WHERE label='crafting: add augment 2'); UPDATE socket_options SET name='Another name' WHERE set_id=(SELECT id FROM socket_option_sets WHERE name='Equivalent Choices');", "Equivalent Choices"),
+        violation("socket_option_sets_sharing_names", "UPDATE socket_option_sets SET slot_id=(SELECT id FROM augment_slot_types WHERE label='crafting: add augment 1'),variant='2' WHERE slot_id=(SELECT id FROM augment_slot_types WHERE label='crafting: add augment 2');", "Test Cannith Crafted Ring"),
+        violation("crafting_ingredients_sharing_a_name", "INSERT INTO crafting_ingredients (slug,name,variant,tier) VALUES ('other-thread','Thread of Fate','other','any');", "Thread of Fate"),
+        violation("crafting_ingredients_are_not_items", "INSERT INTO crafting_ingredients (slug,name,tier) VALUES ('copied-docent','Gravekeeper''s Docent','heroic');", "Gravekeeper's Docent"),
+    ];
+    let mut failures = Vec::new();
+    for violation in violations {
+        let scratch = tempfile::tempdir().unwrap();
+        let path = fixture_db_copy_with(scratch.path(), &violation.injected_sql);
+        let db = Connection::open(path).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let Some(outcome) = report.outcome(violation.check_name) else {
+            failures.push(format!("{}: no check detects the injected violation", violation.check_name));
+            continue;
+        };
+        if !matches!(outcome.status, CheckStatus::Failed | CheckStatus::Warned)
+            || !outcome.offenders.iter().any(|offender| offender.name.contains(violation.offender_name))
+        {
+            failures.push(format!("{}: expected {:?}: {report}", violation.check_name, violation.offender_name));
+        }
+    }
+    assert!(failures.is_empty(), "{}", failures.join("\n"));
+}
+
+#[test]
+fn crafting_fill_allowance_requires_an_explicit_empty_step_table() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+    let mut options = fixture_options();
+    options.allowed_empty_tables.push("crafting_steps".into());
+    let checks = [
+        "crafting_systems_have_stations",
+        "socket_labels_are_owned_or_declared_not_crafting",
+        "crafting_ingredients_are_not_items",
+    ];
+    let populated = integrity_report(&db, &options).unwrap();
+    for name in checks {
+        assert_ne!(populated.outcome(name).unwrap().status, CheckStatus::Skipped);
+    }
+    db.execute_batch("UPDATE crafting_recipes SET step_id=NULL; DELETE FROM crafting_steps").unwrap();
+    let allowed = integrity_report(&db, &options).unwrap();
+    let required = integrity_report(&db, &fixture_options()).unwrap();
+    for name in checks {
+        assert_eq!(allowed.outcome(name).unwrap().status, CheckStatus::Skipped, "{name}");
+        assert_ne!(required.outcome(name).unwrap().status, CheckStatus::Skipped, "{name}");
+    }
+}
+
+#[test]
+fn option_name_comparison_keeps_every_other_part_of_the_option_content() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+    db.execute_batch("BEGIN; PRAGMA defer_foreign_keys=ON;
+        UPDATE item_augment_slots SET slot_id=(SELECT id FROM augment_slot_types WHERE label='crafting: add augment 1') WHERE slot_id=(SELECT id FROM augment_slot_types WHERE label='crafting: add augment 2');
+        UPDATE socket_option_sets SET slot_id=(SELECT id FROM augment_slot_types WHERE label='crafting: add augment 1'),name='Equivalent Choices' WHERE slot_id=(SELECT id FROM augment_slot_types WHERE label='crafting: add augment 2'); UPDATE socket_options SET name='Another name' WHERE set_id=(SELECT id FROM socket_option_sets WHERE name='Equivalent Choices'); COMMIT;").unwrap();
+    let option_id: i64 = db.query_row("SELECT id FROM socket_options WHERE set_id=(SELECT id FROM socket_option_sets WHERE name='Equivalent Choices')", [], |row| row.get(0)).unwrap();
+    let baseline = integrity_report(&db, &fixture_options()).unwrap();
+    assert!(!baseline.outcome("socket_option_sets_differing_only_by_option_names").unwrap().offenders.is_empty());
+    for change in [
+        format!("UPDATE socket_options SET description='Different description' WHERE id={option_id}"),
+        format!("UPDATE socket_options SET min_level=99 WHERE id={option_id}"),
+        format!("UPDATE socket_options SET icon='different.png' WHERE id={option_id}"),
+        format!("UPDATE socket_options SET option_order=99 WHERE id={option_id}"),
+        format!("UPDATE socket_option_grants SET slot_id=(SELECT id FROM augment_slot_types WHERE label='blue') WHERE option_id={option_id}"),
+        format!("INSERT INTO socket_option_effects (option_id,effect_id,bonus_type_id,value,sort_order) SELECT {option_id},effect_id,bonus_type_id,value,0 FROM item_effects LIMIT 1"),
+        format!("INSERT INTO socket_option_set_bonuses (option_id,set_bonus_id) SELECT {option_id},id FROM set_bonuses LIMIT 1"),
+        format!("INSERT INTO modifiers (source_kind,source_id,sort_order,effect_type,amounts) VALUES ('socket_option',{option_id},0,'Weapon_BaseDamage','[0.5]')"),
+    ] {
+        db.execute_batch("SAVEPOINT option_content").unwrap();
+        db.execute_batch(&change).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        assert!(report.outcome("socket_option_sets_differing_only_by_option_names").unwrap().offenders.is_empty(), "{change}");
+        db.execute_batch("ROLLBACK TO option_content; RELEASE option_content").unwrap();
+    }
+}
+
+#[test]
+fn crafting_bonus_checks_respect_amounts_equipment_scope_and_colour_sockets() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+    for amount in [9, 10, 11] {
+        db.execute("UPDATE item_effects SET value=?1 WHERE item_id=(SELECT id FROM items WHERE name='Thunder-Forged Orb') AND effect_id=(SELECT id FROM effects WHERE name='Orb Bonus')", [amount]).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        assert_eq!(
+            report
+                .outcome("items_do_not_carry_step_base_properties")
+                .unwrap()
+                .offenders
+                .iter()
+                .any(|offender| offender.name == "Thunder-Forged Orb"),
+            amount == 10
+        );
+    }
+    db.execute_batch("UPDATE crafting_step_effects SET equipment_slot_id=(SELECT id FROM equipment_slots WHERE name='Ring');
+        INSERT INTO item_effects (item_id,effect_id,bonus_type_id,value,sort_order) SELECT i.id,e.id,b.id,19,999 FROM items i,effects e,bonus_types b WHERE i.name='Gravekeeper''s Docent' AND e.name='Healing Amplification' AND b.name='Competence';").unwrap();
+    db.execute_batch("INSERT OR IGNORE INTO augment_slots (augment_id,slot_id) SELECT b.owner_id,t.id FROM owner_bonuses b,augment_slot_types t WHERE b.owner_kind='augment' AND b.stat_id=(SELECT id FROM effects WHERE name='Healing Amplification') AND b.amount=19 AND t.label='blue';").unwrap();
+    for (label, amount, repeats) in
+        [("blue", 19, false), ("lamordia: melancholic (armor)", 18, false), ("lamordia: melancholic (armor)", 19, true)]
+    {
+        db.execute("UPDATE item_augment_slots SET slot_id=(SELECT id FROM augment_slot_types WHERE label=?1) WHERE item_id=(SELECT id FROM items WHERE name='Gravekeeper''s Docent') AND option_set_id IS NULL", [label]).unwrap();
+        db.execute("UPDATE item_effects SET value=?1 WHERE item_id=(SELECT id FROM items WHERE name='Gravekeeper''s Docent') AND sort_order=999", [amount]).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        assert!(report.outcome("items_do_not_carry_step_base_properties").unwrap().offenders.is_empty());
+        assert_eq!(
+            report
+                .outcome("items_do_not_carry_craftable_bonuses")
+                .unwrap()
+                .offenders
+                .iter()
+                .any(|offender| offender.name == "Gravekeeper's Docent"),
+            repeats,
+            "{label}, {amount}"
+        );
+    }
+}
+
+#[test]
+fn step_cost_comparison_uses_grade_references_and_total_quantities_not_row_order() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+    db.execute_batch("INSERT INTO crafting_recipe_ingredients (recipe_id,sort_order,ingredient_id,item_id,quantity) SELECT r.id,100-c.sort_order,c.ingredient_id,c.item_id,c.quantity FROM crafting_recipes r JOIN crafting_step_costs c ON c.step_id=r.step_id AND c.tier=r.tier WHERE r.option='Blinding Fear';").unwrap();
+    for (change, repeats) in [
+        ("SELECT 1;", true),
+        ("UPDATE crafting_recipe_ingredients SET quantity=quantity+1 WHERE recipe_id=(SELECT id FROM crafting_recipes WHERE option='Blinding Fear');", false),
+        ("UPDATE crafting_recipe_ingredients SET quantity=quantity-1 WHERE recipe_id=(SELECT id FROM crafting_recipes WHERE option='Blinding Fear');", true),
+        ("UPDATE crafting_recipes SET tier='heroic' WHERE option='Blinding Fear';", false),
+        ("UPDATE crafting_recipes SET tier='epic' WHERE option='Blinding Fear'; UPDATE crafting_recipe_ingredients SET ingredient_id=NULL,item_id=(SELECT id FROM items WHERE name='Thunder-Forged Orb') WHERE recipe_id=(SELECT id FROM crafting_recipes WHERE option='Blinding Fear');", false),
+        ("UPDATE crafting_step_costs SET ingredient_id=NULL,item_id=(SELECT id FROM items WHERE name='Thunder-Forged Orb') WHERE step_id=(SELECT step_id FROM crafting_recipes WHERE option='Blinding Fear') AND tier='epic';", true),
+        ("DELETE FROM crafting_recipe_ingredients WHERE recipe_id=(SELECT id FROM crafting_recipes WHERE option='Blinding Fear');", false),
+    ] {
+        db.execute_batch(change).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        assert_eq!(report.outcome("recipe_costs_do_not_repeat_their_step_costs").unwrap().offenders.iter().any(|offender| offender.name == "Blinding Fear"), repeats, "{change}");
+    }
+}
+
 fn probe_ring_insert(name: &str) -> String {
     format!(
         "INSERT INTO items (slug, name, slot_id, item_category, wiki_url, minimum_level, description)
@@ -2085,8 +2237,8 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "slot_types_no_augment_fits",
-            "INSERT INTO augment_slot_types (label, family, variant, slug)
-             VALUES ('crafting: integrity probe', 'crafting', 'integrity probe', 'crafting-integrity-probe');",
+            "INSERT INTO augment_slot_types (label, family, variant, slug, not_crafting_reason)
+             VALUES ('crafting: integrity probe', 'crafting', 'integrity probe', 'crafting-integrity-probe', 'Integrity probe has no crafting owner');",
             "crafting: integrity probe",
         ),
         violation(

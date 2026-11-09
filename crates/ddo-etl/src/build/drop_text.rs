@@ -346,10 +346,15 @@ impl DropTextLinker {
         pack_name_spans_by_pack
     }
 
-    fn pack_links_in(&self, drop_text: &str) -> Vec<DropTextPackLink> {
+    fn pack_links_in(&self, drop_text: &str, loot_minimum_level: Option<i64>) -> Vec<DropTextPackLink> {
         let mut pack_links: Vec<DropTextPackLink> = Vec::new();
         for segment in self.segments_naming_no_quest(drop_text) {
-            if self.challenge_packs_by_text.iter().any(|alias| alias.is_named_by(segment, None)) {
+            if self.challenge_packs_by_text.iter().any(|alias| alias.is_named_by(segment, None))
+                || self
+                    .named_sources_in(segment, loot_minimum_level)
+                    .iter()
+                    .any(|matched| matches!(matched.source, LootSource::CraftingSystem(_)))
+            {
                 continue;
             }
             let pack_name_spans_by_pack = self.pack_name_spans_in(segment);
@@ -531,6 +536,9 @@ impl DropTextLinker {
                 });
             }
         }
+        if named_sources.iter().any(|matched| matches!(matched.source, LootSource::CraftingSystem(_))) {
+            named_sources.retain(|matched| !matches!(matched.source, LootSource::Challenge(_)));
+        }
         let mut distinct_sources: Vec<MatchedLootSource> = Vec::new();
         for named_source in named_sources {
             if !distinct_sources.iter().any(|known| known.source.same_source_as(named_source.source)) {
@@ -549,9 +557,9 @@ impl DropTextLinker {
         transaction: &Transaction,
         loot: DroppedLoot,
         drop_text: &str,
+        loot_minimum_level: Option<i64>,
     ) -> Result<Vec<SourceKind>> {
         let mut linked_kinds = Vec::new();
-        let loot_minimum_level = loot.minimum_level(transaction)?;
         for segment in segment_ranges(drop_text).into_iter().map(|range| &drop_text[range]) {
             for named_source in self.named_sources_in(segment, loot_minimum_level) {
                 let changed_row_count = insert_source_link(
@@ -828,8 +836,9 @@ impl DropTextLinker {
         transaction: &Transaction,
         loot: DroppedLoot,
         drop_text: &str,
+        loot_minimum_level: Option<i64>,
     ) -> Result<usize> {
-        let pack_links = self.pack_links_in(drop_text);
+        let pack_links = self.pack_links_in(drop_text, loot_minimum_level);
         for pack_link in &pack_links {
             insert_source_link(
                 transaction,
@@ -850,10 +859,6 @@ impl DropTextLinker {
 }
 
 impl TableWriter<'_> {
-    pub(super) fn link_to_drop_text_packs(&self, loot: DroppedLoot, drop_text: &str) -> Result<usize> {
-        self.drop_text_linker.link_loot_to_packs_named_in(self.transaction, loot, drop_text)
-    }
-
     pub(super) fn link_item_to_drop_text_reward_givers(
         &self,
         item_id: i64,
@@ -887,7 +892,16 @@ impl TableWriter<'_> {
         drop_text: &str,
         report: &mut BuildReport,
     ) -> Result<()> {
-        for linked_kind in self.drop_text_linker.link_loot_to_sources_named_in(self.transaction, loot, drop_text)? {
+        let minimum_level = loot.minimum_level(self.transaction)?;
+        let pack_count =
+            self.drop_text_linker.link_loot_to_packs_named_in(self.transaction, loot, drop_text, minimum_level)?;
+        match loot {
+            DroppedLoot::Item(_) => report.pack_loot_link_count += pack_count,
+            DroppedLoot::Augment(_) => report.pack_augment_loot_link_count += pack_count,
+        }
+        for linked_kind in
+            self.drop_text_linker.link_loot_to_sources_named_in(self.transaction, loot, drop_text, minimum_level)?
+        {
             match linked_kind {
                 SourceKind::CraftingSystem => report.drop_text_crafting_system_source_count += 1,
                 SourceKind::Challenge => report.drop_text_challenge_source_count += 1,

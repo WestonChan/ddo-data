@@ -385,6 +385,64 @@ fn rejects_a_vendor_alias_repeating_a_head_and_turn_in_but_keeps_one_whose_turn_
 }
 
 #[test]
+fn a_segment_a_crafting_system_alias_matches_links_no_pack_or_challenge() {
+    let ours = fixture::database(|root| {
+        for name in ["Green Steel items", "Vaults of the Artificers"] {
+            let path = root.join(format!("packs/shared/crafting/{}/crafting.toml", ddo_etl::tree::slug(name)));
+            std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+            std::fs::write(
+                path,
+                format!("name = {name:?}\npage = \"https://ddowiki.com/page/Test_crafting\"\ncitation = []\n"),
+            )
+            .unwrap();
+        }
+    });
+    let source = fixture::xml_source();
+    let quests_path = source.path().join("Quests.xml");
+    let mut quests = std::fs::read_to_string(&quests_path).unwrap();
+    for pack in ["Magma Forge", "Altar of Fecundity"] {
+        quests = quests.replace("</Quests>", &format!("<Quest><Name>{pack} probe</Name><Patron>None</Patron><AdventurePack>{pack}</AdventurePack><Favor>0</Favor><Levels size=\"1\">1</Levels><DoNotShow /></Quest></Quests>"));
+    }
+    std::fs::write(quests_path, quests).unwrap();
+    for (item, original, replacement) in [
+        ("Thunder-Forged Orb", "Magma Forge, Crafted from various ingredients", "Magma Forge, Chest"),
+        ("Green Steel Weave Boots", "Altar of Fecundity, Manufactured Ingredient Recipes", "Altar of Fecundity, Chest"),
+        (
+            "Legendary Green Steel Belt",
+            "Altar of Fecundity, Manufactured Ingredient Recipes",
+            "Altar of Fecundity, Chest",
+        ),
+    ] {
+        let path = source.path().join(format!("Items/{item}.item"));
+        let contents = std::fs::read_to_string(&path).unwrap();
+        assert!(contents.contains(original));
+        std::fs::write(path, contents.replace(original, replacement)).unwrap();
+    }
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::from_database(&ours).unwrap(),
+        &Corrections::default(),
+        &mut db,
+        &DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-10-02T00:00:00Z".into() },
+    )
+    .unwrap();
+    let actual =
+        ["Thunder-Forged Orb", "Epic Ring of the Stalker", "Green Steel Weave Boots", "Legendary Green Steel Belt"]
+            .map(|name| source_rows(&db, name));
+    assert_eq!(
+        actual,
+        [
+            vec!["crafting_system Thunder-Forged 0"],
+            vec!["crafting_system Vaults of the Artificers 0"],
+            vec!["crafting_system Green Steel items 0"],
+            vec!["adventure_pack Altar of Fecundity 0"],
+        ]
+    );
+}
+
+#[test]
 fn links_an_item_made_at_a_station_two_systems_share_to_the_one_its_minimum_level_falls_in() {
     let ours = fixture::database(|root| {
         for name in ["Green Steel items", "Legendary Green Steel items"] {
