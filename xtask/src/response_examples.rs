@@ -32,6 +32,9 @@ pub const EXAMPLE_REQUESTS: &[ExampleRequest<'static>] = &[
     sample("weapon-types", "/v1/weapon-types"),
     sample("damage-types", "/v1/damage-types"),
     sample("augment-slot-types", "/v1/augment-slot-types"),
+    sample("augment-slot-types_slug", "/v1/augment-slot-types/sun"),
+    sample("socket-option-sets", "/v1/socket-option-sets"),
+    sample("socket-option-sets_slug", "/v1/socket-option-sets/crafting-add-augment-1-cannith-crafted-belt"),
     sample("adventure-packs", "/v1/adventure-packs"),
     sample("adventure-packs_slug", "/v1/adventure-packs/the-chill-of-ravenloft"),
     sample("patrons", "/v1/patrons"),
@@ -255,7 +258,8 @@ mod tests {
                 .find(|request| format!("{}.json", request.example_name) == example.file_name)
                 .unwrap();
             let body: serde_json::Value = serde_json::from_str(example.example_json).unwrap();
-            assert_eq!(request.path.rsplit_once('/').unwrap().1, body["slug"].as_str().unwrap());
+            let slug_field = if example.route == "/v1/augment-slot-types/{slug}" { "slot_type_slug" } else { "slug" };
+            assert_eq!(request.path.rsplit_once('/').unwrap().1, body[slug_field].as_str().unwrap());
         }
     }
 }

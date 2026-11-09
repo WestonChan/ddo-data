@@ -3056,6 +3056,7 @@ const ALL_LIST_PATHS: &[(&str, &str)] = &[
     ("/v1/guild-buffs", "guild_buffs"),
     ("/v1/optional-buffs", "optional_buffs"),
     ("/v1/crafting-systems", "crafting_systems"),
+    ("/v1/socket-option-sets", "socket_option_sets"),
     ("/v1/effects", "effects"),
     ("/v1/adventure-packs", "adventure_packs"),
     ("/v1/patrons", "patrons"),
@@ -3720,6 +3721,353 @@ async fn crafting_systems_list_their_families_and_counts() {
 }
 
 #[tokio::test]
+async fn item_socket_options_read_through_sets_and_carry_the_recipes_that_price_them() {
+    let (_, _, original) = get("/v1/items/celestial-emerald-ring").await;
+    let state = fixture_state_with_data_edits("uniform-option-pricing", |root| {
+        let path = root.join("packs/shared/crafting/test-upgrade-altar/crafting.toml");
+        let mut contents = std::fs::read_to_string(&path).unwrap();
+        contents.push_str(
+            "\n[[recipe]]\noption = \"Uniform choice\"\ntier = \"legendary\"\nstep = \"Nearly Finished (test)\"\n",
+        );
+        std::fs::write(path, contents).unwrap();
+    });
+    let (status, _, item) = get_from(state, "/v1/items/celestial-emerald-ring").await;
+    assert_eq!(status, StatusCode::OK);
+    let original_socket = original["augment_slots"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|socket| socket["label"] == "crafting: nearly finished")
+        .unwrap();
+    let socket = item["augment_slots"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|socket| socket["label"] == "crafting: nearly finished")
+        .unwrap();
+    for (before, option) in
+        original_socket["options"].as_array().unwrap().iter().zip(socket["options"].as_array().unwrap())
+    {
+        let expected = if option["name"] == "+8 Constitution" { "Choose Constitution" } else { "Uniform choice" };
+        assert_eq!(option["crafting"].as_array().unwrap().len(), 1);
+        assert_eq!(option["crafting"][0]["option"], expected);
+        if expected == "Uniform choice" {
+            assert_eq!(before["crafting"], serde_json::json!([]));
+        }
+    }
+}
+
+#[tokio::test]
+async fn recipes_without_a_cost_for_their_grade_serve_an_empty_cost() {
+    let state = fixture_state_with_data_edits("missing-step-grade", |root| {
+        let path = root.join("packs/shared/crafting/thunder-forged/crafting.toml");
+        let mut contents = std::fs::read_to_string(&path).unwrap();
+        contents.push_str("\n[[recipe]]\noption = \"No grade cost\"\ntier = \"heroic\"\nstep = \"Tier 1\"\n\n[[recipe]]\noption = \"No step cost\"\ntier = \"epic\"\n");
+        std::fs::write(path, contents).unwrap();
+    });
+    let (_, _, system) = get_from(state, "/v1/crafting-systems/thunder-forged").await;
+    for option in ["No grade cost", "No step cost"] {
+        let recipe = system["recipes"].as_array().unwrap().iter().find(|recipe| recipe["option"] == option).unwrap();
+        assert_eq!(recipe["cost"], serde_json::json!([]));
+        assert_eq!(recipe["cost_from_step"], false);
+        if option == "No step cost" {
+            assert!(recipe["step"].is_null());
+            assert!(recipe["slot"].is_null());
+        }
+    }
+}
+
+#[tokio::test]
+async fn every_served_socket_object_has_one_shape() {
+    let keys = ["family", "label", "qualifier", "slot_type_id", "slot_type_slug", "variant"];
+    let (_, _, vocabulary) = get("/v1/augment-slot-types?limit=10000").await;
+    let mut canonical = std::collections::BTreeMap::new();
+    for row in vocabulary["augment_slot_types"].as_array().unwrap() {
+        let (status, _, detail) = get(&format!("/v1/augment-slot-types/{}", row["slug"].as_str().unwrap())).await;
+        assert_eq!(status, StatusCode::OK, "{detail}");
+        assert_eq!(detail["not_crafting_reason"], row["not_crafting_reason"]);
+        canonical.insert(row["id"].as_i64().unwrap(), detail);
+    }
+    let (_, _, items) = get("/v1/items?view=full&limit=10000").await;
+    for item in items["items"].as_array().unwrap() {
+        for socket in item["augment_slots"].as_array().unwrap() {
+            let root = &canonical[&socket["slot_type_id"].as_i64().unwrap()];
+            for key in keys {
+                assert_eq!(socket[key], root[key]);
+            }
+        }
+    }
+    for root in canonical.values() {
+        for step in root["crafting_steps"].as_array().unwrap() {
+            let socket = &step["socket"];
+            assert_eq!(socket.as_object().unwrap().keys().map(String::as_str).collect::<Vec<_>>(), keys);
+            for key in keys {
+                assert_eq!(socket[key], root[key]);
+            }
+        }
+    }
+}
+
+#[tokio::test]
+async fn socket_option_augment_and_recipe_grants_serve_every_socket_through_one_shape() {
+    let (_, _, augment) = get("/v1/augments/minor-fire-guard").await;
+    assert_eq!(augment["grants_sockets"].as_array().unwrap().len(), 2);
+    let (_, _, item) = get("/v1/items/test-cannith-crafted-ring").await;
+    let (_, _, system) = get("/v1/crafting-systems/test-upgrade-altar").await;
+    let expected_keys = ["family", "label", "qualifier", "slot_type_id", "slot_type_slug", "variant"];
+    let mut grants = augment["grants_sockets"].as_array().unwrap().clone();
+    for socket in item["augment_slots"].as_array().unwrap() {
+        assert!(socket["option_set_id"].is_number());
+        let (status, _, set) =
+            get(&format!("/v1/socket-option-sets/{}", socket["option_set_slug"].as_str().unwrap())).await;
+        assert_eq!(status, StatusCode::OK);
+        assert_eq!(socket["options"], set["options"]);
+        for option in socket["options"].as_array().unwrap() {
+            assert_eq!(option["crafting"].as_array().unwrap().len(), 1);
+            grants.extend(option["grants_sockets"].as_array().unwrap().clone());
+        }
+    }
+    for recipe in system["recipes"].as_array().unwrap() {
+        grants.extend(recipe["grants_sockets"].as_array().unwrap().clone());
+    }
+    assert!(grants.len() >= 6);
+    for grant in grants {
+        assert_eq!(grant.as_object().unwrap().keys().map(String::as_str).collect::<Vec<_>>(), expected_keys);
+        let (status, _, socket) =
+            get(&format!("/v1/augment-slot-types/{}", grant["slot_type_slug"].as_str().unwrap())).await;
+        assert_eq!(status, StatusCode::OK);
+        for key in expected_keys {
+            assert_eq!(grant[key], socket[key]);
+        }
+    }
+}
+
+#[tokio::test]
+async fn crafting_npc_is_derived_and_deprecated_in_both_schemas() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    for name in ["CraftingSystemsPageResponseCraftingSystemsEntry", "CraftingSystemsDetailResponse"] {
+        assert_eq!(spec["components"]["schemas"][name]["properties"]["npc"]["deprecated"], true);
+    }
+    let (_, _, system) = get("/v1/crafting-systems/thunder-forged").await;
+    let station = &system["stations"][0];
+    assert_eq!(system["npc"], format!("{}, {}", station["name"].as_str().unwrap(), station["place"].as_str().unwrap()));
+}
+
+#[tokio::test]
+async fn crafting_detail_ingredients_are_the_ingredients_its_recipes_steps_yields_and_unlocks_use() {
+    let (_, _, system) = get("/v1/crafting-systems/test-upgrade-altar").await;
+    for name in ["Thread of Fate", "Top of the Test Emblem", "Bottom of the Test Emblem"] {
+        assert_eq!(
+            system["ingredients"].as_array().unwrap().iter().filter(|ingredient| ingredient["name"] == name).count(),
+            1
+        );
+    }
+    let (_, _, thunder) = get("/v1/crafting-systems/thunder-forged").await;
+    assert_eq!(thunder["npc"], "Magma Forge, The Ruins of Thunderholme");
+    let (_, _, altar) = get("/v1/crafting-systems/test-upgrade-altar").await;
+    let gates = altar["stations"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .flat_map(|station| station["unlocks"].as_array().unwrap())
+        .filter(|gate| gate["kind"] == "kept_item")
+        .collect::<Vec<_>>();
+    assert_eq!(gates.len(), 2);
+    assert!(gates.iter().all(|gate| gate["crafting_ingredient_slug"].is_string() && gate["item_id"].is_null()));
+}
+
+async fn crafting_query_counts(
+    route: &str,
+    add_augments: bool,
+    query_count: &'static AtomicUsize,
+    trace: fn(TraceEvent<'_>),
+) -> Vec<usize> {
+    let mut counts = Vec::new();
+    for additional in [1, 12] {
+        let state = fixture_state_with_data_edits(&format!("crafting-scale-{additional}-{add_augments}"), |root| {
+            let path = root.join("packs/shared/crafting/thunder-forged/crafting.toml");
+            let mut system = std::fs::read_to_string(&path).unwrap();
+            for index in 0..additional {
+                system.push_str(&format!(
+                    "\n[[recipe]]\noption = \"Scale choice {index}\"\ntier = \"epic\"\nstep = \"Tier 1\"\n"
+                ));
+                if add_augments {
+                    let original = root.join("packs/shared/crafting/thunder-forged/augments/blinding-fear.toml");
+                    let contents = std::fs::read_to_string(original)
+                        .unwrap()
+                        .replace("name = \"Blinding Fear\"", &format!("name = \"Scale augment {index}\""));
+                    std::fs::write(
+                        root.join(format!("packs/shared/crafting/thunder-forged/augments/scale-augment-{index}.toml")),
+                        contents,
+                    )
+                    .unwrap();
+                }
+            }
+            std::fs::write(path, system).unwrap();
+        });
+        state
+            .read_db(move |db| {
+                db.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
+                Ok(())
+            })
+            .await
+            .unwrap();
+        query_count.store(0, Ordering::SeqCst);
+        let (status, _, response) = get_from(state, route).await;
+        assert_eq!(status, StatusCode::OK, "{response}");
+        let count = query_count.load(Ordering::SeqCst);
+        assert!(response[if add_augments { "augments" } else { "recipes" }].as_array().unwrap().len() >= additional);
+        counts.push(count);
+    }
+    counts
+}
+
+#[tokio::test]
+async fn crafting_detail_query_count_does_not_grow_with_recipes() {
+    static QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
+    let counts = crafting_query_counts("/v1/crafting-systems/thunder-forged", false, &QUERY_COUNT, |event| {
+        if let TraceEvent::Stmt(_, _) = event {
+            QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+        }
+    })
+    .await;
+    assert_eq!(counts[0], counts[1]);
+}
+
+#[tokio::test]
+async fn augment_slot_type_detail_query_count_does_not_grow_with_candidates() {
+    static QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
+    let counts =
+        crafting_query_counts("/v1/augment-slot-types/crafting-thunderforged-tier-1", true, &QUERY_COUNT, |event| {
+            if let TraceEvent::Stmt(_, _) = event {
+                QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+            }
+        })
+        .await;
+    assert_eq!(counts[0], counts[1]);
+}
+
+#[tokio::test]
+async fn crafting_system_detail_serves_steps_with_scoped_base_lines_modifiers_costs_and_recipe_steps() {
+    let (status, _, system) = get("/v1/crafting-systems/thunder-forged").await;
+    assert_eq!(status, StatusCode::OK);
+    let steps = system["steps"].as_array().expect("crafting steps");
+    assert_eq!(steps.len(), 3);
+    for (index, step) in steps.iter().enumerate() {
+        assert_eq!(step["name"], format!("Tier {}", index + 1));
+        assert_eq!(step["effects"][0]["equipment_slot"], "Off Hand");
+        assert_eq!(step["effects"].as_array().unwrap().len(), 1);
+        assert_eq!(step["effects"][0]["value"], 10 + index);
+        assert!(!step["modifiers"].as_array().unwrap().is_empty());
+    }
+    let recipes = system["recipes"].as_array().unwrap();
+    let inherited = recipes.iter().find(|recipe| recipe["option"] == "Blinding Fear").unwrap();
+    assert_eq!(inherited["step"], "Tier 1");
+    assert_eq!(inherited["cost_from_step"], true);
+    assert_eq!(inherited["cost"], steps[0]["costs"][0]["cost"]);
+    assert!(recipes.iter().any(|recipe| recipe["step"] == "Tier 1"
+        && recipe["cost_from_step"] == false
+        && recipe["cost"] != inherited["cost"]));
+    let (_, _, deck) = get("/v1/crafting-systems/deck-of-many-curses").await;
+    assert_eq!(deck["steps"][0]["is_random"], true);
+}
+
+#[tokio::test]
+async fn crafting_system_detail_serves_stations_and_typed_unlocks_with_linked_rows() {
+    let (_, _, system) = get("/v1/crafting-systems/viktranium-experiment-crafting").await;
+    assert!(!system["stations"].as_array().expect("stations").is_empty());
+    assert!(!system["unlocks"].as_array().expect("unlocks").is_empty());
+    for gate in
+        system["unlocks"].as_array().unwrap().iter().chain(
+            system["stations"].as_array().unwrap().iter().flat_map(|station| station["unlocks"].as_array().unwrap()),
+        )
+    {
+        assert!(gate["text"].is_string());
+        for reference in ["quest", "patron", "pack", "item", "crafting_ingredient", "feat"] {
+            if gate[format!("{reference}_id")].is_number() {
+                assert!(gate[format!("{reference}_slug")].is_string(), "{gate}");
+            }
+        }
+    }
+}
+
+#[tokio::test]
+async fn cost_entries_name_an_ingredient_or_an_item_with_its_slug() {
+    let (_, _, system) = get("/v1/crafting-systems/catalyst-crafting").await;
+    let costs = system["recipes"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .flat_map(|recipe| recipe["cost"].as_array().unwrap())
+        .collect::<Vec<_>>();
+    assert!(costs.iter().any(|cost| cost["item_id"].is_number()), "{system}");
+    assert!(costs.iter().any(|cost| cost["ingredient_id"].is_number()));
+    for cost in costs {
+        assert_ne!(cost["item_id"].is_null(), cost["ingredient_id"].is_null());
+        if let Some(slug) = cost["item_slug"].as_str() {
+            let (status, _, item) = get(&format!("/v1/items/{slug}")).await;
+            assert_eq!(status, StatusCode::OK);
+            assert_eq!(cost["item"], item["name"]);
+        } else {
+            assert!(system["ingredients"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .any(|ingredient| ingredient["slug"] == cost["ingredient_slug"]));
+        }
+    }
+}
+
+#[tokio::test]
+async fn augment_slot_type_detail_answers_candidates_from_one_slug() {
+    for (slug, collection) in [
+        ("lamordia-melancholic-armor", "augments"),
+        ("crafting-thunderforged-tier-1", "augments"),
+        ("crafting-nearly-finished", "option_sets"),
+    ] {
+        let (status, _, socket) = get(&format!("/v1/augment-slot-types/{slug}")).await;
+        assert_eq!(status, StatusCode::OK, "{slug}: {socket}");
+        assert!(!socket[collection].as_array().unwrap().is_empty());
+        assert!(!socket["crafting_steps"].as_array().unwrap().is_empty());
+        assert_eq!(socket["slot_type_slug"], slug);
+    }
+    let (_, _, socket) = get("/v1/augment-slot-types/crafting-nearly-finished").await;
+    assert_eq!(socket["crafting_steps"].as_array().unwrap().len(), 2);
+    assert!(socket["option_sets"].as_array().unwrap().len() >= 2);
+    let (_, _, sets) = get("/v1/socket-option-sets?slot=crafting%3A%20nearly%20finished").await;
+    for set in sets["socket_option_sets"].as_array().expect("sets") {
+        let (status, _, detail) = get(&format!("/v1/socket-option-sets/{}", set["slug"].as_str().unwrap())).await;
+        assert_eq!(status, StatusCode::OK);
+        assert!(!detail["options"].as_array().unwrap().is_empty());
+        assert!(!detail["items"].as_array().unwrap().is_empty());
+    }
+}
+
+#[tokio::test]
+async fn augments_filter_by_the_crafting_system_that_yields_them() {
+    let (status, _, page) = get("/v1/augments?crafting_system=thunder-forged").await;
+    assert_eq!(status, StatusCode::OK, "{page}");
+    assert!(!page["augments"].as_array().unwrap().is_empty());
+    assert!(page["augments"].as_array().unwrap().iter().all(|augment| augment["crafting"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|recipe| recipe["system"] == "Thunder-Forged")));
+    let (_, _, both) =
+        get("/v1/augments?crafting_system=thunder-forged&crafting_system=deck-of-many-curses&limit=10000").await;
+    let (_, _, deck) = get("/v1/augments?crafting_system=deck-of-many-curses").await;
+    assert_eq!(both["total"].as_i64().unwrap(), page["total"].as_i64().unwrap() + deck["total"].as_i64().unwrap());
+    let (_, _, empty) = get("/v1/augments?crafting_system=missing-system").await;
+    assert_eq!(empty["total"], 0);
+}
+
+fn ingredient_cost_reference(ingredients: &[Value], name: &str, tier: &str, quantity: i64) -> Value {
+    let ingredient = ingredients.iter().find(|ingredient| ingredient["name"] == name).unwrap();
+    serde_json::json!({"ingredient":name,"ingredient_id":ingredient["id"],"ingredient_slug":ingredient["slug"],
+        "item":null,"item_id":null,"item_slug":null,"tier":tier,"quantity":quantity})
+}
+
+#[tokio::test]
 async fn crafting_system_detail_carries_ingredients_and_recipes_with_augments_and_cost() {
     let (_, _, list) = get_list_rows("/v1/crafting-systems").await;
     let id = list.as_array().unwrap().iter().find(|row| row["name"] == "Heroic Green Steel").unwrap()["id"]
@@ -3753,8 +4101,8 @@ async fn crafting_system_detail_carries_ingredients_and_recipes_with_augments_an
     assert_eq!(
         fortitude["cost"],
         serde_json::json!([
-            { "ingredient": "Small Shard of Power", "tier": "heroic", "quantity": 1 },
-            { "ingredient": "Small Focus of Earth", "tier": "heroic", "quantity": 1 }
+            ingredient_cost_reference(ingredients, "Small Shard of Power", "heroic", 1),
+            ingredient_cost_reference(ingredients, "Small Focus of Earth", "heroic", 1)
         ])
     );
     let cleanse = &recipes[2];
@@ -3788,6 +4136,8 @@ async fn crafting_system_detail_carries_ingredients_and_recipes_with_augments_an
 
 #[tokio::test]
 async fn augment_detail_lists_the_crafting_recipes_that_yield_it() {
+    let (_, _, system) = get("/v1/crafting-systems/heroic-green-steel").await;
+    let ingredients = system["ingredients"].as_array().unwrap();
     let (_, _, found) = get("/v1/augments?q=minor+fire+guard").await;
     let id = found["augments"][0]["id"].as_i64().unwrap();
     let (_, _, augment) = get(&format!("/v1/augments/{id}")).await;
@@ -3795,11 +4145,13 @@ async fn augment_detail_lists_the_crafting_recipes_that_yield_it() {
         augment["crafting"],
         serde_json::json!([{
             "system": "Heroic Green Steel",
+            "step": "Invasion",
+            "cost_from_step": false,
             "tier": "heroic",
             "option": "Minor Fire Guard",
             "cost": [
-                { "ingredient": "Small Shard of Power", "tier": "heroic", "quantity": 1 },
-                { "ingredient": "Small Focus of Fire", "tier": "heroic", "quantity": 1 }
+                ingredient_cost_reference(ingredients,"Small Shard of Power","heroic",1),
+                ingredient_cost_reference(ingredients,"Small Focus of Fire","heroic",1)
             ]
         }])
     );
@@ -3811,6 +4163,8 @@ async fn augment_detail_lists_the_crafting_recipes_that_yield_it() {
 
 #[tokio::test]
 async fn augment_list_rows_carry_the_crafting_recipes_that_yield_them() {
+    let (_, _, system) = get("/v1/crafting-systems/heroic-green-steel").await;
+    let ingredients = system["ingredients"].as_array().unwrap();
     let (status, _, found) = get("/v1/augments?q=fortitude+save&family=Greensteel_Heroic").await;
     assert_eq!(status, StatusCode::OK);
     let augments = found["augments"].as_array().unwrap();
@@ -3820,11 +4174,13 @@ async fn augment_list_rows_carry_the_crafting_recipes_that_yield_them() {
             augment["crafting"],
             serde_json::json!([{
                 "system": "Heroic Green Steel",
+            "step": "Invasion",
+            "cost_from_step": false,
                 "tier": "heroic",
                 "option": "+5 Fortitude Save",
                 "cost": [
-                    { "ingredient": "Small Shard of Power", "tier": "heroic", "quantity": 1 },
-                    { "ingredient": "Small Focus of Earth", "tier": "heroic", "quantity": 1 }
+                    ingredient_cost_reference(ingredients,"Small Shard of Power","heroic",1),
+                    ingredient_cost_reference(ingredients,"Small Focus of Earth","heroic",1)
                 ]
             }])
         );

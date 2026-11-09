@@ -1,8 +1,8 @@
-use super::crafting::crafting_recipes_yielding;
+use super::crafting::crafting_recipes_yielding_many;
 use super::quests::{adventure_packs_dropping_via, quests_dropping_via, sources_via};
 use crate::db::{
-    convert_to_booleans, effects_for_owner, effects_via, json_row, json_rows, modifiers_for, notes_for_owners,
-    paged_query, WhereClause,
+    convert_to_booleans, effects_via, grouped_rows, json_row, json_rows, modifiers_for, notes_for_owners, paged_query,
+    sockets_by_id, sql_integer_list, WhereClause,
 };
 use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
@@ -21,31 +21,47 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
 declare_query_parameters! {
     pub(super) struct AugmentFilters {
         pub slot: Option<String>,
+        #[serde(default, deserialize_with = "crate::query::repeated_key_values")]
+        pub crafting_system: Vec<String>,
         pub family: Option<String>,
         pub max_level: Option<i64>,
     }
+    repeatable: ["crafting_system"]
 }
 
 const AUGMENT_FLAG_COLUMNS: &[&str] = &["choose_level", "dual_values", "enter_value", "suppress_set_bonus"];
 
-fn attach_child_collections(
-    db: &rusqlite::Connection,
-    augment: &mut Value,
-    effects: Vec<Value>,
-) -> Result<(), ApiError> {
-    let augment_id = augment["id"].as_i64().unwrap_or(0);
-    let slot_labels: Vec<Value> = json_rows(
-        db,
-        "SELECT t.label FROM augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.augment_id = ?1 ORDER BY t.label",
-        [augment_id],
-    )?
-    .into_iter()
-    .map(|row| row["label"].clone())
-    .collect();
-    augment["slots"] = Value::Array(slot_labels);
-    augment["effects"] = Value::Array(effects);
-    augment["crafting"] = Value::Array(crafting_recipes_yielding(db, augment_id)?);
+pub(super) fn attach_augment_collections(db: &rusqlite::Connection, augments: &mut [Value]) -> Result<(), ApiError> {
+    let ids = augments.iter().filter_map(|augment| augment["id"].as_i64()).collect::<Vec<_>>();
+    let mut effects =
+        effects_via(db, "augment_effects", "augment_id", &format!("j.augment_id IN ({})", sql_integer_list(&ids)), [])?;
+    let mut slots = grouped_rows(db,&ids,"SELECT link.augment_id AS owner_id,t.label FROM augment_slots link JOIN augment_slot_types t ON t.id=link.slot_id WHERE link.augment_id IN ({ids}) ORDER BY link.augment_id,t.label")?;
+    let mut crafting = crafting_recipes_yielding_many(db, &ids)?;
+    let mut grants = grouped_rows(db,&ids,"SELECT augment_id AS owner_id,slot_id FROM augment_socket_grants WHERE augment_id IN ({ids}) ORDER BY augment_id,sort_order")?;
+    let sockets = sockets_by_id(db)?;
+    for augment in augments {
+        let id = augment["id"].as_i64().unwrap();
+        convert_to_booleans(augment, AUGMENT_FLAG_COLUMNS);
+        augment["effects"] = Value::Array(effects.remove(&id).unwrap_or_default());
+        augment["slots"] =
+            Value::Array(slots.remove(&id).unwrap_or_default().into_iter().map(|row| row["label"].clone()).collect());
+        augment["crafting"] = Value::Array(crafting.remove(&id).unwrap_or_default());
+        augment["grants_sockets"] = Value::Array(
+            grants
+                .remove(&id)
+                .unwrap_or_default()
+                .into_iter()
+                .filter_map(|grant| sockets.get(&grant["slot_id"].as_i64().unwrap()).cloned())
+                .collect(),
+        );
+    }
     Ok(())
+}
+
+pub(super) fn augments_fitting_socket(db: &rusqlite::Connection, slot_id: i64) -> Result<Vec<Value>, ApiError> {
+    let mut augments = json_rows(db,&format!("SELECT {AUGMENT_COLUMNS} FROM augments a JOIN augment_slots fits ON fits.augment_id=a.id WHERE fits.slot_id=?1 ORDER BY a.name,a.min_level,a.slug"),[slot_id])?;
+    attach_augment_collections(db, &mut augments)?;
+    Ok(augments)
 }
 
 const AUGMENT_COLUMNS: &str =
@@ -71,6 +87,7 @@ const AUGMENTS_SORT_FIELDS: &[(&str, &str)] =
     ("weapon_class", "weapon_class"),
     ("slot", "(SELECT MIN(t.label) FROM augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.augment_id = a.id)"),
     ("max_level", "a.min_level"),
+    ("crafting_system", "(SELECT MIN(system.name) FROM crafting_recipe_augments link JOIN crafting_recipes recipe ON recipe.id=link.recipe_id JOIN crafting_systems system ON system.id=recipe.system_id WHERE link.augment_id=a.id)"),
 ];
 
 declare_list_parameters!(AugmentsParameters, AUGMENTS_SORT_FIELDS, "");
@@ -83,6 +100,7 @@ declare_list_parameters!(AugmentsParameters, AUGMENTS_SORT_FIELDS, "");
     description = "Lists augments with sockets, rendered effects and crafting recipes.",
     params(
         AugmentsParameters,
+        ("crafting_system" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat crafting system slugs from /v1/crafting-systems to match augments yielded by any; omitted includes all."),
         ("slot" = Option<String>, Query, description = "Socket label as /v1/augment-slot-types lists it, e.g. `red` or `lamordia: melancholic (accessory)`; case-insensitive"),
         ("family" = Option<String>, Query, description = "Augment family, e.g. `standard`, `lamordia`, `dino`, `crafting`"),
         ("max_level" = Option<i64>, Query, description = "Only augments usable at this character level or lower; augments with no minimum level always pass"),
@@ -105,6 +123,9 @@ async fn augments(
                     slot_label.to_lowercase(),
                 );
             }
+            if !filters.crafting_system.is_empty() {
+                where_clause.add_bound_list_condition("EXISTS (SELECT 1 FROM crafting_recipe_augments link JOIN crafting_recipes recipe ON recipe.id=link.recipe_id JOIN crafting_systems system ON system.id=recipe.system_id WHERE link.augment_id=a.id AND system.slug IN (?))",filters.crafting_system);
+            }
             if let Some(family) = &filters.family {
                 where_clause.add_bound_condition("a.family = ?", family.clone());
             }
@@ -120,24 +141,7 @@ async fn augments(
                 AUGMENTS_SORT_FIELDS,
                 &where_clause,
             )?;
-            let augment_ids: Vec<i64> = page.rows.iter().filter_map(|augment| augment["id"].as_i64()).collect();
-            let mut effects_by_augment = if augment_ids.is_empty() {
-                std::collections::BTreeMap::new()
-            } else {
-                let placeholders = (1..=augment_ids.len()).map(|index| format!("?{index}")).collect::<Vec<_>>().join(", ");
-                effects_via(
-                    db,
-                    "augment_effects",
-                    "augment_id",
-                    &format!("j.augment_id IN ({placeholders})"),
-                    rusqlite::params_from_iter(augment_ids.iter()),
-                )?
-            };
-            for augment in &mut page.rows {
-                convert_to_booleans(augment, AUGMENT_FLAG_COLUMNS);
-                let augment_id = augment["id"].as_i64().unwrap_or(0);
-                attach_child_collections(db, augment, effects_by_augment.remove(&augment_id).unwrap_or_default())?;
-            }
+            attach_augment_collections(db,&mut page.rows)?;
             Ok(Json(page.into_json("augments")))
         })
         .await
@@ -155,9 +159,7 @@ async fn augment_detail(State(state): State<AppState>, EntityPath(id): EntityPat
     state
         .read_db(move |db| {
             let mut augment = json_row(db, &format!("SELECT {AUGMENT_COLUMNS} FROM augments a WHERE a.id = ?1"), [id])?;
-            convert_to_booleans(&mut augment, AUGMENT_FLAG_COLUMNS);
-            let effects = effects_for_owner(db, "augment_effects", "augment_id", id)?;
-            attach_child_collections(db, &mut augment, effects)?;
+            attach_augment_collections(db, std::slice::from_mut(&mut augment))?;
             augment["notes"] = Value::Array(notes_for_owners(db, "augments", &[id])?.remove(&id).unwrap_or_default());
             augment["quests"] = Value::Array(quests_dropping_via(db, "augment_id", id)?);
             augment["adventure_packs"] = Value::Array(adventure_packs_dropping_via(db, "augment_id", id)?);

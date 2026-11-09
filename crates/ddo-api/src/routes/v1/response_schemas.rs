@@ -266,6 +266,7 @@ pub(crate) struct AdventurePacksDetailResponse {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct AugmentSlotTypesPageResponseAugmentSlotTypesEntry {
+    pub(crate) not_crafting_reason: Option<String>,
     pub(crate) family: String,
     pub(crate) id: i64,
     pub(crate) slug: String,
@@ -284,6 +285,7 @@ pub(crate) struct AugmentSlotTypesPageResponse {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct AugmentsPageResponseAugmentsEntry {
+    pub(crate) grants_sockets: Vec<SocketResponse>,
     pub(crate) adds_augment: Option<String>,
     pub(crate) choose_level: bool,
     pub(crate) crafting: Vec<AugmentsDetailResponseCraftingEntry>,
@@ -329,15 +331,156 @@ pub(crate) struct AugmentsDetailResponseAdventurePacksEntry {
 }
 
 #[derive(utoipa::ToSchema)]
-pub(crate) struct AugmentsDetailResponseCraftingEntryCostEntry {
-    pub(crate) ingredient: String,
+pub(crate) struct SocketResponse {
+    pub(crate) slot_type_id: i64,
+    pub(crate) slot_type_slug: String,
+    pub(crate) label: String,
+    pub(crate) family: String,
+    pub(crate) variant: String,
+    pub(crate) qualifier: Option<String>,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct CraftingUnlockResponse {
+    pub(crate) kind: String,
+    pub(crate) value: Option<i64>,
+    pub(crate) text: String,
+    pub(crate) quest: Option<String>,
+    pub(crate) quest_id: Option<i64>,
+    pub(crate) quest_slug: Option<String>,
+    pub(crate) patron: Option<String>,
+    pub(crate) patron_id: Option<i64>,
+    pub(crate) patron_slug: Option<String>,
+    pub(crate) pack: Option<String>,
+    pub(crate) pack_id: Option<i64>,
+    pub(crate) pack_slug: Option<String>,
+    pub(crate) item: Option<String>,
+    pub(crate) item_id: Option<i64>,
+    pub(crate) item_slug: Option<String>,
+    pub(crate) crafting_ingredient: Option<String>,
+    pub(crate) crafting_ingredient_id: Option<i64>,
+    pub(crate) crafting_ingredient_slug: Option<String>,
+    pub(crate) feat: Option<String>,
+    pub(crate) feat_id: Option<i64>,
+    pub(crate) feat_slug: Option<String>,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct CraftingStationResponse {
+    pub(crate) id: i64,
+    pub(crate) slug: String,
+    pub(crate) name: String,
+    pub(crate) variant: Option<String>,
+    pub(crate) kind: String,
+    pub(crate) place: Option<String>,
+    pub(crate) quest: Option<String>,
+    pub(crate) quest_id: Option<i64>,
+    pub(crate) quest_slug: Option<String>,
+    pub(crate) note: Option<String>,
+    pub(crate) unlocks: Vec<CraftingUnlockResponse>,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct CraftingStepEffect {
+    #[serde(flatten)]
+    pub(crate) effect: EffectLine,
+    pub(crate) equipment_slot: Option<String>,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct CraftingStepCost {
+    pub(crate) tier: String,
+    pub(crate) cost: Vec<CraftingCost>,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct CraftingStepResponse {
+    pub(crate) name: String,
+    pub(crate) socket: Option<SocketResponse>,
+    pub(crate) is_random: bool,
+    pub(crate) effects: Vec<CraftingStepEffect>,
+    pub(crate) modifiers: Vec<ItemsDetailResponseAugmentSlotsEntryOptionsEntryModifiersEntry>,
+    pub(crate) costs: Vec<CraftingStepCost>,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct CraftingSetOptionResponse {
+    pub(crate) set: String,
+    pub(crate) set_id: i64,
+    pub(crate) set_slug: String,
+    pub(crate) name: String,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct SocketOptionSetRow {
+    pub(crate) id: i64,
+    pub(crate) slug: String,
+    pub(crate) name: String,
+    pub(crate) variant: Option<String>,
+    pub(crate) label: String,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct SocketOptionSetsResponse {
+    pub(crate) socket_option_sets: Vec<SocketOptionSetRow>,
+    pub(crate) total: i64,
+    pub(crate) limit: i64,
+    pub(crate) offset: i64,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct SocketOptionSetItem {
+    pub(crate) id: i64,
+    pub(crate) slug: String,
+    pub(crate) name: String,
+    pub(crate) minimum_level: i64,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct SocketOptionSetResponse {
+    #[serde(flatten)]
+    pub(crate) set: SocketOptionSetRow,
+    pub(crate) options: Vec<ItemsDetailResponseAugmentSlotsEntryOptionsEntry>,
+    pub(crate) items: Vec<SocketOptionSetItem>,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct SocketCraftingStep {
+    #[serde(flatten)]
+    pub(crate) step: CraftingStepResponse,
+    pub(crate) system: String,
+    pub(crate) system_id: i64,
+    pub(crate) system_slug: String,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct SocketCandidatesResponse {
+    #[serde(flatten)]
+    pub(crate) socket: SocketResponse,
+    pub(crate) not_crafting_reason: Option<String>,
+    pub(crate) crafting_steps: Vec<SocketCraftingStep>,
+    pub(crate) augments: Vec<AugmentsPageResponseAugmentsEntry>,
+    pub(crate) recipes: Vec<CraftingSystemsDetailResponseRecipesEntry>,
+    pub(crate) option_sets: Vec<SocketOptionSetRow>,
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct CraftingCost {
+    pub(crate) ingredient: Option<String>,
+    pub(crate) ingredient_id: Option<i64>,
+    pub(crate) ingredient_slug: Option<String>,
+    pub(crate) item: Option<String>,
+    pub(crate) item_id: Option<i64>,
+    pub(crate) item_slug: Option<String>,
     pub(crate) quantity: i64,
     pub(crate) tier: String,
 }
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct AugmentsDetailResponseCraftingEntry {
-    pub(crate) cost: Vec<AugmentsDetailResponseCraftingEntryCostEntry>,
+    pub(crate) step: Option<String>,
+    pub(crate) cost_from_step: bool,
+    pub(crate) cost: Vec<CraftingCost>,
     pub(crate) option: String,
     pub(crate) system: String,
     pub(crate) tier: String,
@@ -398,6 +541,7 @@ pub(crate) struct AugmentsDetailResponseQuestsEntry {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct AugmentsDetailResponse {
+    pub(crate) grants_sockets: Vec<SocketResponse>,
     #[schema(schema_with = schema_notes)]
     pub(crate) notes: Vec<Note>,
     pub(crate) adds_augment: Option<String>,
@@ -569,6 +713,19 @@ pub(crate) struct ClickiesPageResponse {
     pub(crate) total: i64,
 }
 
+fn schema_crafting_npc() -> RefOr<Schema> {
+    utoipa::openapi::schema::ObjectBuilder::new()
+        .schema_type(utoipa::openapi::schema::SchemaType::from_iter([
+            utoipa::openapi::schema::Type::String,
+            utoipa::openapi::schema::Type::Null,
+        ]))
+        .description(Some(
+            "Deprecated display text derived from the first station; use stations for location and unlocks.",
+        ))
+        .deprecated(Some(utoipa::openapi::Deprecated::True))
+        .into()
+}
+
 #[derive(utoipa::ToSchema)]
 pub(crate) struct CraftingSystemsPageResponseCraftingSystemsEntry {
     pub(crate) families: Vec<String>,
@@ -576,6 +733,7 @@ pub(crate) struct CraftingSystemsPageResponseCraftingSystemsEntry {
     pub(crate) slug: String,
     pub(crate) ingredient_count: i64,
     pub(crate) name: String,
+    #[schema(schema_with = schema_crafting_npc)]
     pub(crate) npc: Option<String>,
     pub(crate) pack: Option<String>,
     pub(crate) page: String,
@@ -609,16 +767,17 @@ pub(crate) struct CraftingSystemsDetailResponseRecipesEntryAugmentsEntry {
 }
 
 #[derive(utoipa::ToSchema)]
-pub(crate) struct CraftingSystemsDetailResponseRecipesEntryCostEntry {
-    pub(crate) ingredient: String,
-    pub(crate) quantity: i64,
-    pub(crate) tier: String,
-}
-
-#[derive(utoipa::ToSchema)]
 pub(crate) struct CraftingSystemsDetailResponseRecipesEntry {
+    pub(crate) step: Option<String>,
+    pub(crate) cost_from_step: bool,
+    pub(crate) yields_ingredient: Option<String>,
+    pub(crate) yields_ingredient_id: Option<i64>,
+    pub(crate) yields_ingredient_slug: Option<String>,
+    pub(crate) grants_sockets: Vec<SocketResponse>,
+    pub(crate) unlocks: Vec<CraftingUnlockResponse>,
+    pub(crate) set_options: Vec<CraftingSetOptionResponse>,
     pub(crate) augments: Vec<CraftingSystemsDetailResponseRecipesEntryAugmentsEntry>,
-    pub(crate) cost: Vec<CraftingSystemsDetailResponseRecipesEntryCostEntry>,
+    pub(crate) cost: Vec<CraftingCost>,
     pub(crate) grants_slot: Option<String>,
     pub(crate) note: Option<String>,
     pub(crate) option: String,
@@ -628,12 +787,16 @@ pub(crate) struct CraftingSystemsDetailResponseRecipesEntry {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct CraftingSystemsDetailResponse {
+    pub(crate) steps: Vec<CraftingStepResponse>,
+    pub(crate) stations: Vec<CraftingStationResponse>,
+    pub(crate) unlocks: Vec<CraftingUnlockResponse>,
     pub(crate) families: Vec<String>,
     pub(crate) id: i64,
     pub(crate) slug: String,
     pub(crate) ingredient_count: i64,
     pub(crate) ingredients: Vec<CraftingSystemsDetailResponseIngredientsEntry>,
     pub(crate) name: String,
+    #[schema(schema_with = schema_crafting_npc)]
     pub(crate) npc: Option<String>,
     pub(crate) pack: Option<String>,
     pub(crate) page: String,
@@ -1563,6 +1726,8 @@ pub(crate) struct ItemsDetailResponseAugmentSlotsEntryOptionsEntrySetsEntry {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemsDetailResponseAugmentSlotsEntryOptionsEntry {
+    pub(crate) grants_sockets: Vec<SocketResponse>,
+    pub(crate) crafting: Vec<AugmentsDetailResponseCraftingEntry>,
     pub(crate) description: Option<String>,
     pub(crate) effects: Vec<EffectLine>,
     pub(crate) grants_slot: Option<String>,
@@ -1575,6 +1740,9 @@ pub(crate) struct ItemsDetailResponseAugmentSlotsEntryOptionsEntry {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemsDetailResponseAugmentSlotsEntry {
+    pub(crate) option_set_id: Option<i64>,
+    pub(crate) option_set_slug: Option<String>,
+    pub(crate) option_set_name: Option<String>,
     pub(crate) family: String,
     pub(crate) label: String,
     pub(crate) options: Vec<ItemsDetailResponseAugmentSlotsEntryOptionsEntry>,

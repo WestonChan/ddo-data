@@ -35,6 +35,7 @@
   "enter_value": false,
   "family": "SunAndMoon",
   "grants_augment": null,
+  "grants_sockets": [],
   "icon": "HistoryBookWhite",
   "id": 5232143457338569,
   "level_values": null,

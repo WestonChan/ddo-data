@@ -6,8 +6,12 @@
     {
       "family": "crafting",
       "label": "crafting: variant",
+      "option_set_id": 6454407721599473,
+      "option_set_name": "Stolen Necklace (Level 25)",
+      "option_set_slug": "crafting-variant-stolen-necklace-level-25",
       "options": [
         {
+          "crafting": [],
           "description": "Accuracy IX: Passive: +9 Competence bonus to attack rolls",
           "effects": [
             {
@@ -36,6 +40,7 @@
             }
           ],
           "grants_slot": null,
+          "grants_sockets": [],
           "icon": null,
           "min_level": 25,
           "modifiers": [
@@ -71,6 +76,7 @@
           "sets": []
         },
         {
+          "crafting": [],
           "description": "Natural Armor +9: Passive: +9 Natural Armor Bonus to Armor Class.",
           "effects": [
             {
@@ -99,6 +105,7 @@
             }
           ],
           "grants_slot": null,
+          "grants_sockets": [],
           "icon": null,
           "min_level": 25,
           "modifiers": [
@@ -134,6 +141,7 @@
           "sets": []
         },
         {
+          "crafting": [],
           "description": "Resistance +9: Passive: +9 Resistance bonus to Fortitude, Reflex, and Will Saving Throws.",
           "effects": [
             {
@@ -162,6 +170,7 @@
             }
           ],
           "grants_slot": null,
+          "grants_sockets": [],
           "icon": null,
           "min_level": 25,
           "modifiers": [
@@ -206,6 +215,9 @@
     {
       "family": "standard",
       "label": "yellow",
+      "option_set_id": null,
+      "option_set_name": null,
+      "option_set_slug": null,
       "options": [],
       "qualifier": null,
       "slot_type_id": 1357484692219291,

@@ -12,6 +12,7 @@ mod quests;
 mod races;
 mod response_schemas;
 mod sets;
+mod socket_option_sets;
 mod spells;
 mod stances;
 mod vendors_and_events;
@@ -98,7 +99,7 @@ use utoipa_axum::router::OpenApiRouter;
         response_schemas::AugmentsPageResponseAugmentsEntry,
         response_schemas::AugmentsPageResponse,
         response_schemas::AugmentsDetailResponseAdventurePacksEntry,
-        response_schemas::AugmentsDetailResponseCraftingEntryCostEntry,
+        response_schemas::CraftingCost,
         response_schemas::AugmentsDetailResponseCraftingEntry,
         response_schemas::AugmentsDetailResponseModifiersEntryRequirementsEntry,
         response_schemas::AugmentsDetailResponseModifiersEntry,
@@ -120,7 +121,6 @@ use utoipa_axum::router::OpenApiRouter;
         response_schemas::CraftingSystemsPageResponse,
         response_schemas::CraftingSystemsDetailResponseIngredientsEntry,
         response_schemas::CraftingSystemsDetailResponseRecipesEntryAugmentsEntry,
-        response_schemas::CraftingSystemsDetailResponseRecipesEntryCostEntry,
         response_schemas::CraftingSystemsDetailResponseRecipesEntry,
         response_schemas::CraftingSystemsDetailResponse,
         response_schemas::DamageTypesPageResponseDamageTypesEntry,
@@ -277,6 +277,9 @@ declare_response_examples! { "v1":
     ("/v1/weapon-types", "weapon-types"),
     ("/v1/damage-types", "damage-types"),
     ("/v1/augment-slot-types", "augment-slot-types"),
+    ("/v1/augment-slot-types/{slug}", "augment-slot-types_slug"),
+    ("/v1/socket-option-sets", "socket-option-sets"),
+    ("/v1/socket-option-sets/{slug}", "socket-option-sets_slug"),
     ("/v1/adventure-packs", "adventure-packs"),
     ("/v1/adventure-packs/{slug}", "adventure-packs_slug"),
     ("/v1/patrons", "patrons"),
@@ -327,6 +330,7 @@ pub(crate) fn router() -> OpenApiRouter<AppState> {
         .merge(items::router())
         .merge(augments::router())
         .merge(crafting::router())
+        .merge(socket_option_sets::router())
         .merge(sets::router())
         .merge(feats::router())
         .merge(stances::router())

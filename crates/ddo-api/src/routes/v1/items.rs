@@ -24,6 +24,7 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
         .routes(routes!(weapon_types))
         .routes(routes!(damage_types))
         .routes(routes!(augment_slot_types))
+        .routes(routes!(augment_slot_type_detail))
 }
 
 declare_query_parameters! {
@@ -504,6 +505,7 @@ const AUGMENT_SLOT_TYPES_SORT_FIELDS: &[(&str, &str)] = &[
     ("variant", "listed.variant"),
     ("qualifier", "listed.qualifier"),
     ("label", "label"),
+    ("not_crafting_reason", "not_crafting_reason"),
 ];
 
 declare_list_parameters!(
@@ -537,7 +539,7 @@ async fn augment_slot_types(
         state,
         query,
         TableListSource {
-            select_sql: "SELECT id, label, family, variant, qualifier FROM augment_slot_types",
+            select_sql: "SELECT id, label, family, variant, qualifier, not_crafting_reason FROM augment_slot_types",
             rows_key: "augment_slot_types",
             name_column: "listed.label",
             default_order: "listed.family, label",
@@ -546,4 +548,37 @@ async fn augment_slot_types(
         },
     )
     .await
+}
+
+#[utoipa::path(get,path="/v1/augment-slot-types/{slug}",tag="items",summary="Get a socket's candidates",
+    description="Returns the socket, crafting steps, fitting augments, fixed option sets and recipes that yield no augment.",
+    params(("slug"=String,Path,description="Socket label slug or numeric id from /v1/augment-slot-types.")),
+    responses((status=200,description="The socket and every candidate pool",body=super::response_schemas::SocketCandidatesResponse),
+        (status=308,description="Renamed slug; follow Location to its current slug."),
+        (status=404,description="No socket label has this slug or numeric id",body=crate::error::ErrorBody)))]
+async fn augment_slot_type_detail(
+    State(state): State<AppState>,
+    EntityPath(id): EntityPath,
+) -> Result<Json<Value>, ApiError> {
+    state.read_db(move |db| {
+        let row = crate::db::json_row(db,"SELECT id,slug,label,family,variant,qualifier,not_crafting_reason FROM augment_slot_types WHERE id=?1",[id])?;
+        let mut socket = crate::db::socket_json(&row);
+        socket["not_crafting_reason"] = row["not_crafting_reason"].clone();
+        socket["augments"] = Value::Array(super::augments::augments_fitting_socket(db,id)?);
+        let mut steps = crate::db::json_rows(db,"SELECT step.id,system.name AS system,system.id AS system_id,system.slug AS system_slug FROM crafting_steps step JOIN crafting_systems system ON system.id=step.system_id WHERE step.slot_id=?1 ORDER BY system.name,step.sort_order",[id])?;
+        let step_ids = steps.iter().filter_map(|step| step["id"].as_i64()).collect::<Vec<_>>();
+        let mut details = super::crafting::steps_by_id(db,&step_ids)?;
+        for step in &mut steps {
+            let id = step["id"].as_i64().unwrap();
+            let fields = step.as_object_mut().unwrap();
+            fields.remove("id");
+            fields.extend(details.remove(&id).unwrap().as_object().unwrap().clone());
+        }
+        socket["crafting_steps"] = Value::Array(steps);
+        let recipe_ids = crate::db::json_rows(db,"SELECT r.id FROM crafting_recipes r JOIN crafting_steps step ON step.id=r.step_id JOIN crafting_systems system ON system.id=r.system_id WHERE step.slot_id=?1 AND NOT EXISTS (SELECT 1 FROM crafting_recipe_augments yielded WHERE yielded.recipe_id=r.id) ORDER BY system.name,r.sort_order",[id])?.iter().filter_map(|row| row["id"].as_i64()).collect::<Vec<_>>();
+        let mut recipes = super::crafting::recipes_by_id(db,&recipe_ids)?;
+        socket["recipes"] = Value::Array(recipe_ids.into_iter().filter_map(|id| recipes.remove(&id)).collect());
+        socket["option_sets"] = Value::Array(crate::db::json_rows(db,"SELECT s.id,s.slug,s.name,s.variant,t.label FROM socket_option_sets s JOIN augment_slot_types t ON t.id=s.slot_id WHERE s.slot_id=?1 ORDER BY s.name,s.variant,s.slug",[id])?);
+        Ok(Json(socket))
+    }).await
 }

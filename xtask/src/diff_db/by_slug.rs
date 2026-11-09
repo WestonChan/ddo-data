@@ -92,13 +92,21 @@ fn route_table(path: &str) -> Option<&'static str> {
     ddo_model::enums::EntityKind::parse(path.strip_prefix("/v1/")?).map(|kind| kind.table_name())
 }
 
-fn response_reference_table(column: &str) -> Option<&'static str> {
+fn response_reference_table(column: &str, owner_table: Option<&str>) -> Option<&'static str> {
     Some(match column {
         "base_class_id" | "class_id" => "classes",
         "clickie_id" => "clickies",
         "effect_id" => "effects",
         "feat_id" => "feats",
+        "set_id" if owner_table == Some("socket_options") => "socket_option_sets",
         "set_id" => "set_bonuses",
+        "option_set_id" => "socket_option_sets",
+        "ingredient_id" | "crafting_ingredient_id" | "yields_ingredient_id" => "crafting_ingredients",
+        "item_id" => "items",
+        "quest_id" => "quests",
+        "patron_id" => "patrons",
+        "pack_id" => "adventure_packs",
+        "system_id" => "crafting_systems",
         "slot_type_id" => "augment_slot_types",
         "spell_id" => "spells",
         _ => return None,
@@ -108,6 +116,7 @@ fn response_reference_table(column: &str) -> Option<&'static str> {
 fn response_collection_table(field: &str) -> Option<&'static str> {
     Some(match field {
         "socket_option_sets" | "option_sets" => "socket_option_sets",
+        "set_options" => "socket_options",
         "stations" => "crafting_stations",
         "adventure_packs" => "adventure_packs",
         "augments" => "augments",
@@ -162,7 +171,7 @@ fn normalize_response(value: &mut JsonValue, index: &mut IdentityIndex, root_tab
                     let target = if field == "source_id" {
                         source_kind.as_deref().and_then(polymorphic_table)
                     } else {
-                        response_reference_table(&field)
+                        response_reference_table(&field, root_table)
                     };
                     if let Some(target) = target {
                         fields.insert(field, JsonValue::String(index.identity(target, id)?));
@@ -479,6 +488,9 @@ mod tests {
         for row in sets.query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?))).unwrap() {
             let (id, slug) = row.unwrap();
             assert_eq!(baseline.identity("socket_option_sets", id).unwrap(), format!("socket_option_sets/{slug}"));
+            let mut recipe = serde_json::json!({"set_options":[{"set_id":id,"set_slug":slug,"name":"Choice"}]});
+            normalize_response(&mut recipe, &mut baseline, None).unwrap();
+            assert_eq!(recipe["set_options"][0]["set_id"], format!("socket_option_sets/{slug}"));
         }
         assert!(baseline
             .identity("effects", i64::MAX)

@@ -1,0 +1,92 @@
+{
+  "id": 5276998261143949,
+  "items": [
+    {
+      "id": 1094740549099241,
+      "minimum_level": 0,
+      "name": "Cannith Crafted Belt",
+      "slug": "cannith-crafted-belt"
+    },
+    {
+      "id": 8235673960418410,
+      "minimum_level": 0,
+      "name": "Cannith Crafted Boots",
+      "slug": "cannith-crafted-boots"
+    },
+    {
+      "id": 3924593713014401,
+      "minimum_level": 0,
+      "name": "Cannith Crafted Bracers",
+      "slug": "cannith-crafted-bracers"
+    }
+  ],
+  "label": "crafting: add augment 1",
+  "name": "Cannith Crafted Belt",
+  "options": [
+    {
+      "crafting": [],
+      "description": "Adds a Colorless augment slot to this item",
+      "effects": [],
+      "grants_slot": "colorless",
+      "grants_sockets": [
+        {
+          "family": "standard",
+          "label": "colorless",
+          "qualifier": null,
+          "slot_type_id": 2766181780834634,
+          "slot_type_slug": "colorless",
+          "variant": "colorless"
+        }
+      ],
+      "icon": null,
+      "min_level": 5,
+      "modifiers": [],
+      "name": "Adds a Colorless augment slot",
+      "sets": []
+    },
+    {
+      "crafting": [],
+      "description": "Adds a Red augment slot to this item",
+      "effects": [],
+      "grants_slot": "red",
+      "grants_sockets": [
+        {
+          "family": "standard",
+          "label": "red",
+          "qualifier": null,
+          "slot_type_id": 2298265021857881,
+          "slot_type_slug": "red",
+          "variant": "red"
+        }
+      ],
+      "icon": null,
+      "min_level": 5,
+      "modifiers": [],
+      "name": "Adds a Red augment slot",
+      "sets": []
+    },
+    {
+      "crafting": [],
+      "description": "Adds a Blue augment slot to this item",
+      "effects": [],
+      "grants_slot": "blue",
+      "grants_sockets": [
+        {
+          "family": "standard",
+          "label": "blue",
+          "qualifier": null,
+          "slot_type_id": 1347619477428085,
+          "slot_type_slug": "blue",
+          "variant": "blue"
+        }
+      ],
+      "icon": null,
+      "min_level": 5,
+      "modifiers": [],
+      "name": "Adds a Blue augment slot",
+      "sets": []
+    }
+  ],
+  "slug": "crafting-add-augment-1-cannith-crafted-belt",
+  "variant": null
+}

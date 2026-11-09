@@ -1,5 +1,7 @@
-use crate::db::paged_rows;
-use crate::db::{json_row, json_rows};
+use crate::db::{
+    convert_to_booleans, effects_via_with_link_order, grouped_rows, json_row, json_rows, modifiers_for_owners,
+    paged_rows, sockets_by_id, sql_integer_list,
+};
 use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
 use crate::query::{declare_list_parameters, ApiQuery};
@@ -8,6 +10,7 @@ use axum::extract::State;
 use axum::Json;
 use rusqlite::Connection;
 use serde_json::Value;
+use std::collections::BTreeMap;
 use utoipa_axum::router::OpenApiRouter;
 use utoipa_axum::routes;
 
@@ -37,29 +40,121 @@ fn attach_augment_families(db: &Connection, crafting_system: &mut Value) -> Resu
     Ok(())
 }
 
-fn recipe_cost(db: &Connection, recipe_id: i64) -> Result<Vec<Value>, ApiError> {
-    json_rows(
-        db,
-        "SELECT i.name AS ingredient, i.tier, ri.quantity FROM crafting_recipe_ingredients ri
-           JOIN crafting_ingredients i ON i.id = ri.ingredient_id
-          WHERE ri.recipe_id = ?1 ORDER BY ri.sort_order",
-        [recipe_id],
-    )
+const COST_COLUMNS: &str = "ingredient.name AS ingredient,ingredient.id AS ingredient_id,ingredient.slug AS ingredient_slug,
+    item.name AS item,item.id AS item_id,item.slug AS item_slug,COALESCE(ingredient.tier,cost.tier) AS tier,cost.quantity";
+
+const EFFECTIVE_RECIPE_COSTS: &str = "WITH cost AS (
+    SELECT own.recipe_id,own.sort_order,own.ingredient_id,own.item_id,r.tier,own.quantity,0 AS from_step FROM crafting_recipe_ingredients own JOIN crafting_recipes r ON r.id=own.recipe_id
+    UNION ALL SELECT r.id,step.sort_order,step.ingredient_id,step.item_id,r.tier,step.quantity,1 FROM crafting_recipes r JOIN crafting_step_costs step ON step.step_id=r.step_id AND step.tier=r.tier
+    WHERE NOT EXISTS (SELECT 1 FROM crafting_recipe_ingredients own WHERE own.recipe_id=r.id)
+)";
+
+fn unlocks_for(db: &Connection, parent: &str, ids: &[i64]) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
+    grouped_rows(db, ids, &format!("SELECT u.{parent} AS owner_id,u.kind,u.value,u.text,
+        q.name AS quest,q.id AS quest_id,q.slug AS quest_slug,p.name AS patron,p.id AS patron_id,p.slug AS patron_slug,
+        pack.name AS pack,pack.id AS pack_id,pack.slug AS pack_slug,i.name AS item,i.id AS item_id,i.slug AS item_slug,
+        ingredient.name AS crafting_ingredient,ingredient.id AS crafting_ingredient_id,ingredient.slug AS crafting_ingredient_slug,
+        f.name AS feat,f.id AS feat_id,f.slug AS feat_slug FROM crafting_unlocks u
+        LEFT JOIN quests q ON q.id=u.quest_id LEFT JOIN patrons p ON p.id=u.patron_id LEFT JOIN adventure_packs pack ON pack.id=u.pack_id
+        LEFT JOIN items i ON i.id=u.item_id LEFT JOIN crafting_ingredients ingredient ON ingredient.id=u.crafting_ingredient_id LEFT JOIN feats f ON f.id=u.feat_id
+        WHERE u.{parent} IN ({{ids}}) ORDER BY u.{parent},u.sort_order"))
 }
 
-pub(super) fn crafting_recipes_yielding(db: &Connection, augment_id: i64) -> Result<Vec<Value>, ApiError> {
-    let mut recipes = json_rows(
+pub(super) fn steps_by_id(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64, Value>, ApiError> {
+    let sockets = sockets_by_id(db)?;
+    let mut effects = effects_via_with_link_order(
         db,
-        "SELECT r.id, s.name AS system, r.tier, r.option FROM crafting_recipe_augments ra
-           JOIN crafting_recipes r ON r.id = ra.recipe_id JOIN crafting_systems s ON s.id = r.system_id
-          WHERE ra.augment_id = ?1 ORDER BY s.name, r.sort_order",
-        [augment_id],
+        "crafting_step_effects",
+        "step_id",
+        &format!("j.step_id IN ({})", sql_integer_list(ids)),
+        [],
     )?;
-    for recipe in &mut recipes {
-        let recipe_id = recipe.as_object_mut().and_then(|r| r.remove("id")).and_then(|v| v.as_i64()).unwrap_or(0);
-        recipe["cost"] = Value::Array(recipe_cost(db, recipe_id)?);
+    let scopes = json_rows(db, &format!("SELECT e.step_id,e.sort_order,s.name AS equipment_slot FROM crafting_step_effects e LEFT JOIN equipment_slots s ON s.id=e.equipment_slot_id WHERE e.step_id IN ({})", sql_integer_list(ids)), [])?
+        .into_iter().map(|row| ((row["step_id"].as_i64().unwrap(),row["sort_order"].as_i64().unwrap()),row["equipment_slot"].clone())).collect::<BTreeMap<_,_>>();
+    let mut modifiers = modifiers_for_owners(db, "crafting_step", ids)?;
+    let mut costs = grouped_rows(db, ids, &format!("SELECT cost.step_id AS owner_id,cost.tier AS grade,{COST_COLUMNS} FROM crafting_step_costs cost LEFT JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id LEFT JOIN items item ON item.id=cost.item_id WHERE cost.step_id IN ({{ids}}) ORDER BY cost.step_id,cost.tier,cost.sort_order"))?;
+    let mut steps = BTreeMap::new();
+    for mut step in json_rows(
+        db,
+        &format!(
+            "SELECT id,name,slot_id,is_random FROM crafting_steps WHERE id IN ({}) ORDER BY sort_order",
+            sql_integer_list(ids)
+        ),
+        [],
+    )? {
+        let id = step["id"].as_i64().unwrap();
+        step["socket"] = step["slot_id"].as_i64().and_then(|slot| sockets.get(&slot)).cloned().unwrap_or(Value::Null);
+        convert_to_booleans(&mut step, &["is_random"]);
+        step["effects"] = Value::Array(
+            effects
+                .remove(&id)
+                .unwrap_or_default()
+                .into_iter()
+                .map(|(order, mut line)| {
+                    line["equipment_slot"] = scopes.get(&(id, order)).cloned().unwrap_or(Value::Null);
+                    line
+                })
+                .collect(),
+        );
+        step["modifiers"] = Value::Array(modifiers.remove(&id).unwrap_or_default());
+        let mut grades = BTreeMap::<String, Vec<Value>>::new();
+        for mut cost in costs.remove(&id).unwrap_or_default() {
+            let grade = cost.as_object_mut().unwrap().remove("grade").unwrap().as_str().unwrap().to_string();
+            grades.entry(grade).or_default().push(cost);
+        }
+        step["costs"] =
+            Value::Array(grades.into_iter().map(|(tier, cost)| serde_json::json!({"tier":tier,"cost":cost})).collect());
+        for key in ["id", "slot_id"] {
+            step.as_object_mut().unwrap().remove(key);
+        }
+        steps.insert(id, step);
+    }
+    Ok(steps)
+}
+
+pub(super) fn recipes_by_id(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64, Value>, ApiError> {
+    let sockets = sockets_by_id(db)?;
+    let mut costs = grouped_rows(db, ids, &format!("{EFFECTIVE_RECIPE_COSTS} SELECT cost.recipe_id AS owner_id,cost.from_step,{COST_COLUMNS} FROM cost LEFT JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id LEFT JOIN items item ON item.id=cost.item_id WHERE cost.recipe_id IN ({{ids}}) ORDER BY cost.recipe_id,cost.sort_order"))?;
+    let mut augments = grouped_rows(db, ids, "SELECT link.recipe_id AS owner_id,a.id,a.slug,a.name,a.min_level FROM crafting_recipe_augments link JOIN augments a ON a.id=link.augment_id WHERE link.recipe_id IN ({ids}) ORDER BY link.recipe_id,link.sort_order")?;
+    let mut options = grouped_rows(db, ids, "SELECT link.recipe_id AS owner_id,s.name AS 'set',s.id AS set_id,s.slug AS set_slug,o.name FROM crafting_recipe_set_options link JOIN socket_options o ON o.id=link.option_id JOIN socket_option_sets s ON s.id=o.set_id WHERE link.recipe_id IN ({ids}) ORDER BY link.recipe_id,s.slug,o.option_order")?;
+    let mut unlocks = unlocks_for(db, "recipe_id", ids)?;
+    let mut recipes = BTreeMap::new();
+    for mut recipe in json_rows(db, &format!("SELECT r.id,r.tier,r.option,r.note,step.name AS step,t.label AS slot,g.label AS grants_slot,r.grants_slot_id,
+        ingredient.name AS yields_ingredient,ingredient.id AS yields_ingredient_id,ingredient.slug AS yields_ingredient_slug
+        FROM crafting_recipes r LEFT JOIN crafting_steps step ON step.id=r.step_id LEFT JOIN augment_slot_types t ON t.id=COALESCE(step.slot_id,r.slot_id)
+        LEFT JOIN augment_slot_types g ON g.id=r.grants_slot_id LEFT JOIN crafting_ingredients ingredient ON ingredient.id=r.yields_ingredient_id WHERE r.id IN ({}) ORDER BY r.sort_order",sql_integer_list(ids)),[])? {
+        let id = recipe["id"].as_i64().unwrap();
+        let mut recipe_costs = costs.remove(&id).unwrap_or_default();
+        recipe["cost_from_step"] = Value::Bool(recipe_costs.first().is_some_and(|cost| cost["from_step"]==1));
+        for cost in &mut recipe_costs { cost.as_object_mut().unwrap().remove("from_step"); }
+        recipe["cost"] = Value::Array(recipe_costs);
+        recipe["augments"] = Value::Array(augments.remove(&id).unwrap_or_default());
+        recipe["set_options"] = Value::Array(options.remove(&id).unwrap_or_default());
+        recipe["unlocks"] = Value::Array(unlocks.remove(&id).unwrap_or_default());
+        recipe["grants_sockets"] = Value::Array(recipe["grants_slot_id"].as_i64().and_then(|slot| sockets.get(&slot)).cloned().into_iter().collect());
+        for key in ["id","grants_slot_id"] { recipe.as_object_mut().unwrap().remove(key); }
+        recipes.insert(id,recipe);
     }
     Ok(recipes)
+}
+
+pub(super) fn crafting_entries(
+    db: &Connection,
+    links: BTreeMap<i64, Vec<Value>>,
+) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
+    let ids = links.values().flatten().filter_map(|link| link["recipe_id"].as_i64()).collect::<Vec<_>>();
+    let recipes = recipes_by_id(db, &ids)?;
+    Ok(links.into_iter().map(|(owner,links)| (owner,links.into_iter().map(|link| {
+        let recipe = &recipes[&link["recipe_id"].as_i64().unwrap()];
+        serde_json::json!({"system":link["system"],"tier":recipe["tier"],"option":recipe["option"],"step":recipe["step"],"cost":recipe["cost"],"cost_from_step":recipe["cost_from_step"]})
+    }).collect())).collect())
+}
+
+pub(super) fn crafting_recipes_yielding_many(
+    db: &Connection,
+    ids: &[i64],
+) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
+    crafting_entries(db,grouped_rows(db,ids,"SELECT link.augment_id AS owner_id,r.id AS recipe_id,s.name AS system FROM crafting_recipe_augments link JOIN crafting_recipes r ON r.id=link.recipe_id JOIN crafting_systems s ON s.id=r.system_id WHERE link.augment_id IN ({ids}) ORDER BY link.augment_id,s.name,r.sort_order")?)
 }
 
 const CRAFTING_SYSTEMS_SORT_FIELDS: &[(&str, &str)] = &[
@@ -109,7 +204,7 @@ async fn crafting_systems(
     path = "/v1/crafting-systems/{slug}",
     tag = "crafting",
     summary = "Get a crafting system",
-    description = "Returns a crafting system with ingredient families and recipes.",
+    description = "Returns crafting stations, unlocks, steps, choices and effective recipe costs.",
     params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The system with its ingredients and recipes", body = crate::routes::v1::response_schemas::CraftingSystemsDetailResponse),
@@ -130,26 +225,20 @@ async fn crafting_system_detail(
                 &format!("{INGREDIENT_USES} SELECT id, name, tier, bind, source FROM crafting_ingredients WHERE id IN (SELECT ingredient_id FROM ingredient_uses WHERE system_id = ?1) ORDER BY name"),
                 [id],
             )?);
-            let mut recipes = json_rows(
-                db,
-                "SELECT r.id, r.tier, t.label AS slot, g.label AS grants_slot, r.option, r.note FROM crafting_recipes r
-                   LEFT JOIN augment_slot_types t ON t.id = r.slot_id
-                   LEFT JOIN augment_slot_types g ON g.id = r.grants_slot_id
-                  WHERE r.system_id = ?1 ORDER BY r.sort_order",
-                [id],
-            )?;
-            for recipe in &mut recipes {
-                let recipe_id = recipe["id"].as_i64().unwrap_or(0);
-                recipe["augments"] = Value::Array(json_rows(
-                    db,
-                    "SELECT a.id, a.name, a.min_level FROM crafting_recipe_augments ra JOIN augments a ON a.id = ra.augment_id
-                      WHERE ra.recipe_id = ?1 ORDER BY ra.sort_order",
-                    [recipe_id],
-                )?);
-                recipe["cost"] = Value::Array(recipe_cost(db, recipe_id)?);
-                recipe.as_object_mut().expect("recipe row").remove("id");
+            let recipe_ids = json_rows(db,"SELECT id FROM crafting_recipes WHERE system_id=?1 ORDER BY sort_order",[id])?.iter().filter_map(|row| row["id"].as_i64()).collect::<Vec<_>>();
+            let mut recipes = recipes_by_id(db,&recipe_ids)?;
+            crafting_system["recipes"] = Value::Array(recipe_ids.into_iter().filter_map(|id| recipes.remove(&id)).collect());
+            let step_ids = json_rows(db,"SELECT id FROM crafting_steps WHERE system_id=?1 ORDER BY sort_order",[id])?.iter().filter_map(|row| row["id"].as_i64()).collect::<Vec<_>>();
+            let mut steps = steps_by_id(db,&step_ids)?;
+            crafting_system["steps"] = Value::Array(step_ids.into_iter().filter_map(|id| steps.remove(&id)).collect());
+            crafting_system["unlocks"] = Value::Array(unlocks_for(db,"system_id",&[id])?.remove(&id).unwrap_or_default());
+            let mut stations = json_rows(db,"SELECT s.id,s.slug,s.name,s.variant,s.kind,s.place,q.name AS quest,q.id AS quest_id,q.slug AS quest_slug,link.note FROM crafting_system_stations link JOIN crafting_stations s ON s.id=link.station_id LEFT JOIN quests q ON q.id=s.quest_id WHERE link.system_id=?1 ORDER BY link.sort_order",[id])?;
+            let station_ids = stations.iter().filter_map(|station| station["id"].as_i64()).collect::<Vec<_>>();
+            let mut station_unlocks = unlocks_for(db,"station_id",&station_ids)?;
+            for station in &mut stations {
+                station["unlocks"] = Value::Array(station_unlocks.remove(&station["id"].as_i64().unwrap()).unwrap_or_default());
             }
-            crafting_system["recipes"] = Value::Array(recipes);
+            crafting_system["stations"] = Value::Array(stations);
             Ok(Json(crafting_system))
         })
         .await

@@ -103,6 +103,20 @@ pub(crate) fn sql_integer_list(ids: &[i64]) -> String {
     }
 }
 
+pub(crate) fn socket_json(row: &Value) -> Value {
+    serde_json::json!({
+        "slot_type_id": row["id"], "slot_type_slug": row["slug"], "label": row["label"],
+        "family": row["family"], "variant": row["variant"], "qualifier": row["qualifier"]
+    })
+}
+
+pub(crate) fn sockets_by_id(db: &Connection) -> Result<BTreeMap<i64, Value>, ApiError> {
+    Ok(json_rows(db, "SELECT id,slug,label,family,variant,qualifier FROM augment_slot_types", [])?
+        .into_iter()
+        .map(|row| (row["id"].as_i64().expect("socket id"), socket_json(&row)))
+        .collect())
+}
+
 pub(crate) fn grouped_rows(db: &Connection, ids: &[i64], sql: &str) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
     let mut grouped = BTreeMap::new();
     for mut row in json_rows(db, &sql.replace("{ids}", &sql_integer_list(ids)), [])? {
@@ -620,18 +634,6 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
         }
     }
     Ok(by_owner)
-}
-
-pub(crate) fn effects_for_owner(
-    db: &Connection,
-    junction_table: &str,
-    owner_column: &str,
-    owner_id: i64,
-) -> Result<Vec<Value>, ApiError> {
-    let owner_condition = format!("j.{owner_column} = ?1");
-    Ok(effects_via(db, junction_table, owner_column, &owner_condition, [owner_id])?
-        .remove(&owner_id)
-        .unwrap_or_default())
 }
 
 fn render_effect_template(template: &str, row: &Value) -> String {

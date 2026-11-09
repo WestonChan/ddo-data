@@ -1,0 +1,28 @@
+{
+  "limit": 100,
+  "offset": 0,
+  "socket_option_sets": [
+    {
+      "id": 3059408772420885,
+      "label": "upgrade: tier 1",
+      "name": "+3 Combustion Scorched Bastard Sword",
+      "slug": "upgrade-tier-1-3-combustion-scorched-bastard-sword",
+      "variant": null
+    },
+    {
+      "id": 6696183991990116,
+      "label": "upgrade: tier 2",
+      "name": "+3 Combustion Scorched Bastard Sword",
+      "slug": "upgrade-tier-2-3-combustion-scorched-bastard-sword",
+      "variant": null
+    },
+    {
+      "id": 7412532899146663,
+      "label": "upgrade: tier 1",
+      "name": "+3 Combustion Scorched Dagger",
+      "slug": "upgrade-tier-1-3-combustion-scorched-dagger",
+      "variant": null
+    }
+  ],
+  "total": 544
+}

@@ -8,6 +8,14 @@
   "ingredients": [
     {
       "bind": "Unbound",
+      "id": 3846156687207629,
+      "name": "Broken Collar",
+      "slug": "slave-lords-crafting-broken-collar-heroic",
+      "source": "Part 3, Assault on the Aerie of the Slave Lords",
+      "tier": "heroic"
+    },
+    {
+      "bind": "Unbound",
       "id": 6663960991195802,
       "name": "Broken Shackle",
       "slug": "slave-lords-crafting-broken-shackle-heroic",
@@ -20,14 +28,6 @@
       "name": "Chain Links",
       "slug": "slave-lords-crafting-chain-links-heroic",
       "source": "Part 2, Secret of the Slavers' Stockade",
-      "tier": "heroic"
-    },
-    {
-      "bind": "Unbound",
-      "id": 3846156687207629,
-      "name": "Broken Collar",
-      "slug": "slave-lords-crafting-broken-collar-heroic",
-      "source": "Part 3, Assault on the Aerie of the Slave Lords",
       "tier": "heroic"
     }
   ],
@@ -61,15 +61,28 @@
       "cost": [
         {
           "ingredient": "Broken Shackle",
+          "ingredient_id": 6663960991195802,
+          "ingredient_slug": "slave-lords-crafting-broken-shackle-heroic",
+          "item": null,
+          "item_id": null,
+          "item_slug": null,
           "quantity": 50,
           "tier": "heroic"
         }
       ],
+      "cost_from_step": false,
       "grants_slot": null,
+      "grants_sockets": [],
       "note": null,
       "option": "Attributes +5",
+      "set_options": [],
       "slot": "crafting: slavelords prefix",
-      "tier": "heroic"
+      "step": null,
+      "tier": "heroic",
+      "unlocks": [],
+      "yields_ingredient": null,
+      "yields_ingredient_id": null,
+      "yields_ingredient_slug": null
     },
     {
       "augments": [
@@ -95,15 +108,28 @@
       "cost": [
         {
           "ingredient": "Legendary Broken Shackle",
+          "ingredient_id": 7264227654339788,
+          "ingredient_slug": "slave-lords-crafting-legendary-broken-shackle-legendary",
+          "item": null,
+          "item_id": null,
+          "item_slug": null,
           "quantity": 100,
           "tier": "legendary"
         }
       ],
+      "cost_from_step": false,
       "grants_slot": null,
+      "grants_sockets": [],
       "note": null,
       "option": "Attributes +13",
+      "set_options": [],
       "slot": "crafting: legendary slavelords prefix",
-      "tier": "legendary"
+      "step": null,
+      "tier": "legendary",
+      "unlocks": [],
+      "yields_ingredient": null,
+      "yields_ingredient_id": null,
+      "yields_ingredient_slug": null
     },
     {
       "augments": [
@@ -117,16 +143,32 @@
       "cost": [
         {
           "ingredient": "Broken Shackle",
+          "ingredient_id": 6663960991195802,
+          "ingredient_slug": "slave-lords-crafting-broken-shackle-heroic",
+          "item": null,
+          "item_id": null,
+          "item_slug": null,
           "quantity": 50,
           "tier": "heroic"
         }
       ],
+      "cost_from_step": false,
       "grants_slot": null,
+      "grants_sockets": [],
       "note": null,
       "option": "False Life +18",
+      "set_options": [],
       "slot": "crafting: slavelords prefix",
-      "tier": "heroic"
+      "step": null,
+      "tier": "heroic",
+      "unlocks": [],
+      "yields_ingredient": null,
+      "yields_ingredient_id": null,
+      "yields_ingredient_slug": null
     }
   ],
-  "slug": "slave-lords-crafting"
+  "slug": "slave-lords-crafting",
+  "stations": [],
+  "steps": [],
+  "unlocks": []
 }

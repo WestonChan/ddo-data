@@ -1,0 +1,200 @@
+{
+  "augments": [
+    {
+      "adds_augment": null,
+      "choose_level": false,
+      "crafting": [],
+      "description": "Artifact Abjuration Focus +2\nDrops in: Locked Away (Part Two), end chest (rare)\nThe Chill of Ravenloft (Heroic), any difficulty\nTerror of Demogorgon (Heroic), any difficulty",
+      "dual_values": false,
+      "effect_description": null,
+      "effects": [
+        {
+          "bonus_type": "Artifact",
+          "bonuses": [
+            {
+              "amount_source": "owner",
+              "bonus_type": "Artifact",
+              "group": null,
+              "scale": 1.0,
+              "stat": "Abjuration Focus",
+              "stat_category": "magical",
+              "value": 2
+            }
+          ],
+          "damage": [],
+          "description": "+2 Artifact bonus to the DC of Abjuration spells.",
+          "effect_id": 8173522954163380,
+          "effect_slug": "abjuration-focus",
+          "name": "Abjuration Focus",
+          "notes": [],
+          "tier": null,
+          "value": 2,
+          "value2": null,
+          "verbose_name": "Artifact Abjuration Focus +2"
+        }
+      ],
+      "enter_value": false,
+      "family": "SunAndMoon",
+      "grants_augment": null,
+      "grants_sockets": [],
+      "icon": "HistoryBookWhite",
+      "id": 6098630551731069,
+      "level_values": null,
+      "level_values2": null,
+      "levels": null,
+      "min_level": 1,
+      "name": "Solar Gem of Abjuration (Heroic)",
+      "set_bonus": null,
+      "slots": [
+        "sun"
+      ],
+      "slug": "solar-gem-of-abjuration-heroic",
+      "suppress_set_bonus": false,
+      "weapon_class": null
+    },
+    {
+      "adds_augment": null,
+      "choose_level": false,
+      "crafting": [],
+      "description": "Artifact Abjuration Focus +4\nDrops in: Locked Away (Part Two), end chest (rare)\nThe Chill of Ravenloft (Legendary), any difficulty\nTerror of Demogorgon (Legendary), any difficulty",
+      "dual_values": false,
+      "effect_description": null,
+      "effects": [
+        {
+          "bonus_type": "Artifact",
+          "bonuses": [
+            {
+              "amount_source": "owner",
+              "bonus_type": "Artifact",
+              "group": null,
+              "scale": 1.0,
+              "stat": "Abjuration Focus",
+              "stat_category": "magical",
+              "value": 4
+            }
+          ],
+          "damage": [],
+          "description": "+4 Artifact bonus to the DC of Abjuration spells.",
+          "effect_id": 8173522954163380,
+          "effect_slug": "abjuration-focus",
+          "name": "Abjuration Focus",
+          "notes": [],
+          "tier": null,
+          "value": 4,
+          "value2": null,
+          "verbose_name": "Artifact Abjuration Focus +4"
+        }
+      ],
+      "enter_value": false,
+      "family": "SunAndMoon",
+      "grants_augment": null,
+      "grants_sockets": [],
+      "icon": "HistoryBookWhite",
+      "id": 4636400578114319,
+      "level_values": null,
+      "level_values2": null,
+      "levels": null,
+      "min_level": 30,
+      "name": "Solar Gem of Abjuration (Legendary)",
+      "set_bonus": null,
+      "slots": [
+        "sun"
+      ],
+      "slug": "solar-gem-of-abjuration-legendary",
+      "suppress_set_bonus": false,
+      "weapon_class": null
+    },
+    {
+      "adds_augment": null,
+      "choose_level": false,
+      "crafting": [],
+      "description": "Artifact Alignment Absorption +3%\nDrops in: Back to the Abyss, end chest (rare)\nTerror of Demogorgon (Heroic), any difficulty",
+      "dual_values": false,
+      "effect_description": null,
+      "effects": [
+        {
+          "bonus_type": "Artifact",
+          "bonuses": [
+            {
+              "amount_source": "owner",
+              "bonus_type": "Artifact",
+              "group": {
+                "id": 6475770059136766,
+                "name": "Law, Chaos, Good and Evil Absorption",
+                "slug": "law-chaos-good-and-evil-absorption"
+              },
+              "scale": 1.0,
+              "stat": "Law Absorption",
+              "stat_category": "defensive",
+              "value": 3
+            },
+            {
+              "amount_source": "owner",
+              "bonus_type": "Artifact",
+              "group": {
+                "id": 6475770059136766,
+                "name": "Law, Chaos, Good and Evil Absorption",
+                "slug": "law-chaos-good-and-evil-absorption"
+              },
+              "scale": 1.0,
+              "stat": "Chaos Absorption",
+              "stat_category": "defensive",
+              "value": 3
+            },
+            {
+              "amount_source": "owner",
+              "bonus_type": "Artifact",
+              "group": {
+                "id": 6475770059136766,
+                "name": "Law, Chaos, Good and Evil Absorption",
+                "slug": "law-chaos-good-and-evil-absorption"
+              },
+              "scale": 1.0,
+              "stat": "Good Absorption",
+              "stat_category": "defensive",
+              "value": 3
+            }
+          ],
+          "damage": [],
+          "description": "+3% Artifact bonus to Law, Chaos, Good and Evil Absorption.",
+          "effect_id": 6475770059136766,
+          "effect_slug": "law-chaos-good-and-evil-absorption",
+          "name": "Law, Chaos, Good and Evil Absorption",
+          "notes": [],
+          "tier": null,
+          "value": 3,
+          "value2": null,
+          "verbose_name": "Artifact Law, Chaos, Good and Evil Absorption +3%"
+        }
+      ],
+      "enter_value": false,
+      "family": "SunAndMoon",
+      "grants_augment": null,
+      "grants_sockets": [],
+      "icon": "HistoryBookWhite",
+      "id": 8626920912251095,
+      "level_values": null,
+      "level_values2": null,
+      "levels": null,
+      "min_level": 1,
+      "name": "Solar Gem of Alignment Absorption (Heroic)",
+      "set_bonus": null,
+      "slots": [
+        "sun"
+      ],
+      "slug": "solar-gem-of-alignment-absorption-heroic",
+      "suppress_set_bonus": false,
+      "weapon_class": null
+    }
+  ],
+  "crafting_steps": [],
+  "family": "standard",
+  "label": "sun",
+  "not_crafting_reason": null,
+  "option_sets": [],
+  "qualifier": null,
+  "recipes": [],
+  "slot_type_id": 5760627246934300,
+  "slot_type_slug": "sun",
+  "variant": "sun"
+}

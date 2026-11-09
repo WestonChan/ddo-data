@@ -72,7 +72,8 @@ async fn every_detail_route_accepts_slugs_ids_and_cached_query_preserving_redire
         let current = format!("{prefix}/{slug}");
         let (status, _, body) = response(&current).await;
         assert_eq!(status, StatusCode::OK, "{current}");
-        assert_eq!(body["slug"], slug);
+        let slug_field = if kind == EntityKind::AugmentSlotType { "slot_type_slug" } else { "slug" };
+        assert_eq!(body[slug_field], slug);
         let (numeric_status, _, numeric) = response(&format!("{prefix}/{id}")).await;
         assert_eq!(numeric_status, StatusCode::OK);
         assert_eq!(body, numeric, "{current}");
@@ -91,7 +92,7 @@ async fn every_detail_route_accepts_slugs_ids_and_cached_query_preserving_redire
         }
         checked += 1;
     }
-    assert_eq!(checked, 16);
+    assert_eq!(checked, 18);
     let (status, _, _) = response("/v1/items/retired-item").await;
     assert_eq!(status, StatusCode::NOT_FOUND);
     let slug: String =

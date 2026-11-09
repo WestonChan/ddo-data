@@ -1,4 +1,5 @@
 use serde_json::Value;
+use std::collections::BTreeSet;
 use std::fmt::Write;
 
 pub fn response_matches_schema(
@@ -16,6 +17,32 @@ fn validate_response(
     schemas: &serde_json::Map<String, Value>,
     path: &mut String,
 ) -> Result<(), String> {
+    validate_response_with_properties(value, schema, schemas, path, &BTreeSet::new())
+}
+
+fn declared_properties(schema: &Value, schemas: &serde_json::Map<String, Value>, properties: &mut BTreeSet<String>) {
+    if let Some(reference) =
+        schema["$ref"].as_str().and_then(|reference| reference.strip_prefix("#/components/schemas/"))
+    {
+        if let Some(target) = schemas.get(reference) {
+            declared_properties(target, schemas, properties);
+        }
+    }
+    if let Some(fields) = schema["properties"].as_object() {
+        properties.extend(fields.keys().cloned());
+    }
+    for part in schema["allOf"].as_array().into_iter().flatten() {
+        declared_properties(part, schemas, properties);
+    }
+}
+
+fn validate_response_with_properties(
+    value: &Value,
+    schema: &Value,
+    schemas: &serde_json::Map<String, Value>,
+    path: &mut String,
+    inherited_properties: &BTreeSet<String>,
+) -> Result<(), String> {
     if let Some(allowed) = schema.as_bool() {
         return if allowed { Ok(()) } else { Err(format!("{path}: schema forbids this value")) };
     }
@@ -26,7 +53,7 @@ fn validate_response(
         let name =
             reference.strip_prefix("#/components/schemas/").ok_or_else(|| format!("{path}: invalid {reference}"))?;
         let target = schemas.get(name).ok_or_else(|| format!("{path}: missing {name}"))?;
-        return validate_response(value, target, schemas, path);
+        return validate_response_with_properties(value, target, schemas, path, inherited_properties);
     }
     if let Some(choices) = schema["oneOf"].as_array().or_else(|| schema["anyOf"].as_array()) {
         if choices.iter().any(|choice| validate_response(value, choice, schemas, path).is_ok()) {
@@ -35,8 +62,10 @@ fn validate_response(
         return Err(format!("{path}: {value} matches no schema choice"));
     }
     if let Some(parts) = schema["allOf"].as_array() {
+        let mut properties = inherited_properties.clone();
+        declared_properties(schema, schemas, &mut properties);
         for part in parts {
-            validate_response(value, part, schemas, path)?;
+            validate_response_with_properties(value, part, schemas, path, &properties)?;
         }
         return Ok(());
     }
@@ -76,6 +105,12 @@ fn validate_response(
             return Ok(());
         }
         for (name, field) in object {
+            if additional.is_none()
+                && properties.is_none_or(|fields| !fields.contains_key(name))
+                && inherited_properties.contains(name)
+            {
+                continue;
+            }
             let field_schema = properties
                 .and_then(|fields| fields.get(name))
                 .or(additional)
@@ -101,4 +136,30 @@ fn validate_response(
         }
     }
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+
+    #[test]
+    fn composed_objects_validate_all_declared_fields_and_reject_undocumented_fields() {
+        let schemas = json!({"Socket":{"type":"object","properties":{"label":{"type":"string"}},"required":["label"]}})
+            .as_object()
+            .unwrap()
+            .clone();
+        let schema = json!({"allOf":[{"$ref":"#/components/schemas/Socket"},{"type":"object","properties":{"choices":{"type":"array","items":{"type":"string"}}},"required":["choices"]}]});
+        for (value, valid) in [
+            (json!({"label":"blue","choices":["gem"]}), true),
+            (json!({"label":"blue","choices":["gem"],"unknown":true}), false),
+            (json!({"label":"blue"}), false),
+            (json!({"label":4,"choices":[]}), false),
+            (json!({"label":"blue","choices":[4]}), false),
+        ] {
+            assert_eq!(response_matches_schema(&value, &schema, &schemas, "socket").is_ok(), valid, "{value}");
+        }
+        let closed = json!({"allOf":[schema,{"type":"object","properties":{},"additionalProperties":false}]});
+        assert!(response_matches_schema(&json!({"label":"blue","choices":[]}), &closed, &schemas, "socket").is_err());
+    }
 }
