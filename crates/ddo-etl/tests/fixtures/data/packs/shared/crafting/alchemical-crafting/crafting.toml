@@ -1,0 +1,18 @@
+name = "Alchemical Crafting"
+page = "https://ddowiki.com/page/Alchemical_Crafting"
+
+[[station]]
+name = "Cannith Melting Station"
+variant = "Manufactury"
+
+[[step]]
+name = "Legendary Alchemical Tier 1"
+slot = "crafting: legendary alchemical tier 1"
+
+[[step]]
+name = "Legendary Alchemical Tier 2"
+slot = "crafting: legendary alchemical tier 2"
+
+[[citation]]
+url = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-11-08"

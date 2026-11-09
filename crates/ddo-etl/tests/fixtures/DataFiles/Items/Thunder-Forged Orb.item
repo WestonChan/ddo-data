@@ -31,5 +31,10 @@
     <ItemAugment>
       <Type>Thunderforged Tier 1</Type>
     </ItemAugment>
+    <Buff>
+      <Type>OrbBonus</Type>
+      <Value1>9</Value1>
+      <BonusType>Orb</BonusType>
+    </Buff>
   </Item>
 </Items>

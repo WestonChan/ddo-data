@@ -1,0 +1,80 @@
+name = "Viktranium Experiment Crafting"
+pack = "Chill of Ravenloft"
+page = "https://ddowiki.com/page/Viktranium_Experiment_Crafting"
+
+[[station]]
+name = "Viktranium Experiment Workbench"
+note = "The armor workbench."
+
+[[unlock]]
+kind = "favor"
+patron = "House Cannith"
+value = 150
+text = "Requires patron favor."
+
+[[unlock]]
+kind = "level"
+value = 8
+text = "Requires level 8."
+
+[[unlock]]
+kind = "pack"
+pack = "Chill of Ravenloft"
+text = "Requires Chill of Ravenloft access."
+
+[[unlock]]
+kind = "feat"
+feat = "Adamantine Body"
+text = "Requires Adamantine Body."
+
+[[step]]
+name = "Melancholic (armor)"
+slot = "lamordia: melancholic (armor)"
+
+[[step.cost]]
+tier = "heroic"
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[step]]
+name = "Dolorous (armor)"
+slot = "lamordia: dolorous (armor)"
+
+[[step]]
+name = "Miserable (accessory)"
+slot = "lamordia: miserable (accessory)"
+
+[[family]]
+family = "Lamordia_Heroic"
+
+[[family]]
+family = "Lamordia_Legendary"
+
+[[citation]]
+url = "https://ddowiki.com/page/Viktranium_Experiment_Crafting"
+read = "2026-11-08"
+
+[[recipe]]
+option = "Melancholic Converter (Heroic)"
+tier = "heroic"
+step = "Melancholic (armor)"
+
+[[recipe.augment]]
+name = "Melancholic Converter (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe]]
+option = "Melancholic Converter (Legendary)"
+tier = "legendary"
+step = "Melancholic (armor)"
+
+[[recipe.augment]]
+name = "Melancholic Converter (Legendary)"
+family = "Lamordia_Legendary"
+level = 34

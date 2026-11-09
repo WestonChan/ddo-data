@@ -74,7 +74,7 @@ fn a_step_cost_naming_an_unknown_ingredient_is_rejected_with_nearest_names() {
 
 fn station_reference_error(stations: &str, reference: &str) -> String {
     fixture::data_build_error(|root| {
-        std::fs::write(root.join("packs/shared/crafting/stations.toml"), stations).unwrap();
+        fixture::append_to_file(root.join("packs/shared/crafting/stations.toml"), stations);
         let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
         let mut file: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
         file.as_table_mut().unwrap().remove("npc");
@@ -127,14 +127,9 @@ fn a_system_naming_a_station_the_vocabulary_lacks_is_rejected_with_nearest_names
 #[test]
 fn a_crafting_file_with_npc_and_station_links_is_rejected() {
     let error = fixture::data_build_error(|root| {
-        std::fs::write(
-            root.join("packs/shared/crafting/stations.toml"),
-            "[[row]]\nname='Test Forge'\nkind='interface'\ncitation=[]\n",
-        )
-        .unwrap();
         let path = root.join(CRAFTING);
         let original = std::fs::read_to_string(&path).unwrap();
-        std::fs::write(path, format!("{original}\n[[station]]\nname='Test Forge'\n")).unwrap();
+        std::fs::write(path, format!("npc='Legacy Keeper'\n{original}")).unwrap();
     });
     assert!(error.contains("npc and station links cannot occur together"), "{error}");
 }
@@ -170,25 +165,14 @@ fn an_unused_shared_ingredient_is_rejected_with_its_file() {
 
 #[test]
 fn a_recipe_with_slot_in_a_file_that_declares_steps_is_rejected() {
-    let error = fixture::data_build_error(|root| {
-        let path = root.join(CRAFTING);
-        let original = std::fs::read_to_string(&path).unwrap();
-        std::fs::write(path, format!("{original}\n[[step]]\nname='Invasion'\nslot='crafting: accessory invasion'\n"))
-            .unwrap();
-    });
+    let error =
+        fixture::data_build_error(edited(CRAFTING, "step = \"Invasion\"", "slot = \"crafting: accessory invasion\""));
     assert!(error.contains(CRAFTING) && error.contains("cannot name slot"), "{error}");
 }
 
 #[test]
 fn a_recipe_naming_no_step_of_its_file_is_rejected_with_nearest_names() {
-    let error = fixture::data_build_error(|root| {
-        let path = root.join(CRAFTING);
-        let original = std::fs::read_to_string(&path)
-            .unwrap()
-            .replace("slot = \"crafting: accessory invasion\"", "step = 'Invasio'");
-        std::fs::write(path, format!("{original}\n[[step]]\nname='Invasion'\nslot='crafting: accessory invasion'\n"))
-            .unwrap();
-    });
+    let error = fixture::data_build_error(edited(CRAFTING, "step = \"Invasion\"", "step = \"Invasio\""));
     assert!(error.contains(CRAFTING) && error.contains("Invasio") && error.contains("nearest: Invasion"), "{error}");
 }
 
@@ -197,7 +181,11 @@ fn two_steps_sharing_a_socket_are_rejected() {
     let error = fixture::data_build_error(|root| {
         let path = root.join(CRAFTING);
         let original = std::fs::read_to_string(&path).unwrap();
-        std::fs::write(path,format!("{original}\n[[step]]\nname='Invasion'\nslot='crafting: accessory invasion'\n[[step]]\nname='Other invasion'\nslot='crafting: accessory invasion'\n")).unwrap();
+        std::fs::write(
+            path,
+            format!("{original}\n[[step]]\nname='Other invasion'\nslot='crafting: accessory invasion'\n"),
+        )
+        .unwrap();
     });
     assert!(
         error.contains(CRAFTING) && error.contains("Other invasion") && error.contains("UNIQUE constraint"),
@@ -209,7 +197,7 @@ fn two_steps_sharing_a_socket_are_rejected() {
 fn an_adds_augment_line_naming_no_socket_label_fails_the_build() {
     let error = fixture::data_build_error(edited(
         "packs/shared/crafting/heroic-green-steel/augments/minor-fire-guard.toml",
-        "adds_augment = \"Accessory Subjugation\"",
+        "adds_augment = \"\"\"\nAccessory Subjugation\nColorless\"\"\"",
         "adds_augment = \"Unknown Socket\"",
     ));
     assert!(error.contains("Minor Fire Guard") && error.contains("Unknown Socket"), "{error}");
@@ -364,13 +352,13 @@ fn structural_rejections_fail_the_data_build_naming_their_file_once() {
         ),
         ("a crafting cost quantity of 0", CRAFTING, Box::new(edited(CRAFTING, "quantity = 1", "quantity = 0"))),
         ("a crafting cost quantity of -1", CRAFTING, Box::new(edited(CRAFTING, "quantity = 1", "quantity = -1"))),
-        ("an ingredient tier of mythic", CRAFTING, Box::new(edited(CRAFTING, "tier = \"heroic\"", "tier = \"mythic\""))),
-        ("a recipe tier of mythic", CRAFTING, Box::new(edited(CRAFTING, "option = \"Minor Fire Guard\"\nslot = \"crafting: accessory invasion\"\ntier = \"heroic\"", "option = \"Minor Fire Guard\"\nslot = \"crafting: accessory invasion\"\ntier = \"mythic\""))),
+        ("an ingredient tier of mythic", "packs/shared/crafting/heroic-green-steel/ingredients/small-focus-of-earth.toml", Box::new(edited("packs/shared/crafting/heroic-green-steel/ingredients/small-focus-of-earth.toml", "tier = \"heroic\"", "tier = \"mythic\""))),
+        ("a recipe tier of mythic", CRAFTING, Box::new(edited(CRAFTING, "option = \"Minor Fire Guard\"\ntier = \"heroic\"", "option = \"Minor Fire Guard\"\ntier = \"mythic\""))),
         ("a cost naming an undeclared ingredient", CRAFTING, Box::new(edited(CRAFTING, "ingredient = \"Small Shard of Power\"", "ingredient = \"Undeclared Shard\""))),
         (
             "an ingredient declared twice",
             CRAFTING,
-            Box::new(edited(CRAFTING, "[[ingredient]]\nname = \"Small Focus of Earth\"\ntier = \"heroic\"\n", "[[ingredient]]\nname = \"Small Focus of Earth\"\ntier = \"heroic\"\n\n[[ingredient]]\nname = \"Small Focus of Earth\"\ntier = \"heroic\"\n")),
+            Box::new(|root| fixture::append_to_file(root.join(CRAFTING), "[[ingredient]]\nname='Duplicate Test Ingredient'\ntier='heroic'\n[[ingredient]]\nname='Duplicate Test Ingredient'\ntier='heroic'\n")),
         ),
         (
             "a vendor listing an item twice",

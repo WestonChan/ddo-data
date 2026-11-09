@@ -1,0 +1,29 @@
+name = "Slave Lords Crafting"
+page = "https://ddowiki.com/page/Slave_Lords_Crafting"
+
+[[station]]
+name = "Garvon"
+
+[[step]]
+name = "Slavelords Bonus"
+slot = "crafting: slavelords bonus"
+
+[[step]]
+name = "Slavelords Extra"
+slot = "crafting: slavelords extra"
+
+[[step]]
+name = "Slavelords Prefix"
+slot = "crafting: slavelords prefix"
+
+[[step]]
+name = "Slavelords Suffix"
+slot = "crafting: slavelords suffix"
+
+[[step]]
+name = "Slavelords Set Bonus"
+slot = "crafting: slavelords set bonus"
+
+[[citation]]
+url = "https://ddowiki.com/page/Slave_Lords_Crafting"
+read = "2026-11-08"

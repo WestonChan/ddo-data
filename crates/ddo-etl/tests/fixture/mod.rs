@@ -4,6 +4,12 @@ use ddo_etl::corrections::{Correction, CorrectionValue, Corrections};
 use ddo_model::enums::CorrectionKind;
 use std::ops::Add;
 
+pub(crate) fn append_to_file(path: impl AsRef<std::path::Path>, contents: impl AsRef<str>) {
+    use std::io::Write;
+    let mut file = std::fs::OpenOptions::new().append(true).open(path).unwrap();
+    writeln!(file, "{}", contents.as_ref()).unwrap();
+}
+
 pub(crate) fn groupings() -> &'static ddo_etl::groupings::Groupings {
     static GROUPINGS: std::sync::OnceLock<ddo_etl::groupings::Groupings> = std::sync::OnceLock::new();
     GROUPINGS.get_or_init(|| ddo_etl::groupings::Groupings::from_database(&database(|_| {})).unwrap())

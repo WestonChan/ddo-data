@@ -1,0 +1,41 @@
+name = "Deck of Many Curses"
+page = "https://ddowiki.com/page/Deck_of_Many_Curses"
+
+[[station]]
+name = "Deck of Many Curses"
+
+[[step]]
+name = "Curse"
+slot = "crafting: deck curse"
+is_random = true
+
+[[family]]
+family = "DeckOfManyCurses"
+
+[[citation]]
+url = "https://ddowiki.com/page/Deck_of_Many_Curses"
+read = "2026-11-08"
+
+[[recipe]]
+option = "Curse of Major Fortitude"
+tier = "any"
+step = "Curse"
+
+[[recipe.augment]]
+name = "Curse of Major Fortitude"
+level = 1
+
+[[recipe]]
+option = "Curse of Major Will"
+tier = "any"
+step = "Curse"
+
+[[recipe.augment]]
+name = "Curse of Major Will"
+level = 1
+
+[[recipe]]
+note = "Use a Deck of Many Curses; remove an existing curse with a Curse Cleansing Card before applying another."
+option = "Apply the deck"
+tier = "any"
+step = "Curse"

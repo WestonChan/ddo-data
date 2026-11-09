@@ -132,7 +132,8 @@ fn links_an_item_to_the_crafting_system_its_drop_text_or_station_names() {
         ["crafting_system Thunder-Forged 0"],
         "'Magma Forge, Crafted from various ingredients', Magma Forge being Thunder-Forged's station"
     );
-    assert_eq!(report.drop_text_crafting_system_source_count, 2);
+    assert_eq!(source_rows(&db, "Test Cannith Crafted Ring"), ["crafting_system Test Upgrade Altar 0"]);
+    assert_eq!(report.drop_text_crafting_system_source_count, 3);
     let heads = unlinked_heads(&db);
     assert!(!heads.iter().any(|head| head == "Catalyst Crafting" || head == "Magma Forge"), "{heads:?}");
 }
@@ -155,7 +156,7 @@ drop_location = "Catalyst Crafting, Turn in a test ring at the Strange Catalyst 
     });
     let (db, report) = built_with(&WikiOverrides::from_database(&ours).unwrap());
     assert_eq!(source_rows(&db, "Test Catalysed Ring"), ["crafting_system Catalyst Crafting 0"]);
-    assert_eq!(report.drop_text_crafting_system_source_count, 3);
+    assert_eq!(report.drop_text_crafting_system_source_count, 4);
 }
 
 #[test]
@@ -403,7 +404,7 @@ fn links_an_item_made_at_a_station_two_systems_share_to_the_one_its_minimum_leve
         ["crafting_system Legendary Green Steel items 0"],
         "the same text at minimum level 26"
     );
-    assert_eq!(report.drop_text_crafting_system_source_count, 4);
+    assert_eq!(report.drop_text_crafting_system_source_count, 5);
     assert!(!unlinked_heads(&db).iter().any(|head| head == "Altar of Fecundity"));
 }
 

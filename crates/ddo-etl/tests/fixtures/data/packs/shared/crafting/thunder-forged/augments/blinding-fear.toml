@@ -1,0 +1,8 @@
+name = "Blinding Fear"
+adds_augment = "Thunderforged Tier 2"
+description = "Blinding Fear: On Hit: Blinds and Shakens foe for 6 sec, 12 sec cool down."
+family = "Thunderforged"
+min_level = 24
+
+[[slot]]
+slot = "crafting: thunderforged tier 1"

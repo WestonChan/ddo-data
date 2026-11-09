@@ -1,0 +1,25 @@
+name = "Mikrom Sum"
+page = "https://ddowiki.com/page/Mikrom_Sum"
+
+[[station]]
+name = "Mikrom Sum"
+
+[[step]]
+name = "Attuned To Heroism 1"
+slot = "crafting: attuned to heroism 1"
+
+[[step]]
+name = "Attuned To Heroism 2"
+slot = "crafting: attuned to heroism 2"
+
+[[step]]
+name = "Attuned To Heroism 3"
+slot = "crafting: attuned to heroism 3"
+
+[[step]]
+name = "Attuned To Heroism 4"
+slot = "crafting: attuned to heroism 4"
+
+[[citation]]
+url = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-11-08"

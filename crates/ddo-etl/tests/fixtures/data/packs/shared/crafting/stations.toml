@@ -6,3 +6,187 @@ place = "Test Hall"
 [[row.citation]]
 url = "https://ddowiki.com/page/Test_Upgrade_Altar"
 read = "2026-09-29"
+
+[[row]]
+name = "Altar of Invasion"
+kind = "device"
+place = "Inside Caught in the Web"
+quest = "Caught in the Web"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Altar_of_Invasion"
+read = "2026-11-08"
+
+[[row]]
+name = "Altar of Fecundity"
+kind = "device"
+place = "Meridia"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Altar_of_Fecundity"
+read = "2026-11-08"
+
+[[row]]
+name = "Garvon"
+kind = "npc"
+place = "Forsaken Temple"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Garvon"
+read = "2026-11-08"
+
+[[row]]
+name = "Fountain of Necrotic Might"
+kind = "device"
+place = "Upper Necropolis"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Fountain_of_Necrotic_Might"
+read = "2026-11-08"
+
+[[row]]
+name = "Sharpened Bone"
+kind = "npc"
+place = "Village of Tanaroa"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Sharpened_Bone"
+read = "2026-11-08"
+
+[[row]]
+name = "Cannith Melting Station"
+variant = "Manufactury"
+kind = "device"
+place = "House Cannith Manufactury"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Cannith_Melting_Station"
+read = "2026-11-08"
+
+[[row]]
+name = "Bound Crafting Device"
+kind = "device"
+place = "House Cannith Crafting Hall"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Bound_Crafting_Device"
+read = "2026-11-08"
+
+[[row]]
+name = "Mikrom Sum"
+kind = "npc"
+place = "Eveningstar"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-11-08"
+
+[[row]]
+name = "Cannith Melting Station"
+variant = "Guild Airship"
+kind = "device"
+place = "Guild Airship"
+
+[[row.unlock]]
+kind = "guild_amenity"
+value = 1
+text = "Requires the guild crafting amenity."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Cannith_Melting_Station"
+read = "2026-11-08"
+
+[[row]]
+name = "Viktranium Experiment Workbench"
+kind = "device"
+place = "Land of Lamordia"
+
+[[row.unlock]]
+kind = "kept_item"
+item = "Gravekeeper's Docent"
+text = "The item must be worn."
+
+[[row.unlock]]
+kind = "quest"
+quest = "Caught in the Web"
+text = "Complete Caught in the Web."
+
+[[row.unlock]]
+kind = "other"
+text = "Speak to the keeper to reveal the workbench."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Viktranium_Experiment_Workbench"
+read = "2026-11-08"
+
+[[row]]
+name = "Sealed Altar"
+kind = "device"
+place = "Gravenhollow"
+
+[[row.unlock]]
+kind = "kept_item"
+crafting_ingredient = "Top of the Test Emblem"
+text = "Keep the top half."
+
+[[row.unlock]]
+kind = "kept_item"
+crafting_ingredient = "Bottom of the Test Emblem"
+text = "Keep the bottom half."
+
+[[row.unlock]]
+kind = "other"
+text = "Reveal the altar by speaking to its keeper."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Sealed_Altar"
+read = "2026-11-08"
+
+[[row]]
+name = "Fetid Cauldron"
+kind = "device"
+place = "Test Hall"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Fetid_Cauldron"
+read = "2026-11-08"
+
+[[row]]
+name = "Cannith Reforging Station"
+kind = "device"
+place = "House Cannith Manufactury"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Cannith_Reforging_Station"
+read = "2026-11-08"
+
+[[row]]
+name = "Strange Catalyst Forge"
+kind = "device"
+place = "Test Hall"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Strange_Catalyst_Forge"
+read = "2026-11-08"
+
+[[row]]
+name = "Deck of Many Curses"
+kind = "interface"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Deck_of_Many_Curses"
+read = "2026-11-08"
+
+[[row]]
+name = "Magma Forge"
+kind = "device"
+place = "The Ruins of Thunderholme"
+
+[[row.unlock]]
+kind = "raid_flagging"
+quest = "Caught in the Web"
+text = "Complete the raid flagging quest."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Magma_Forge"
+read = "2026-11-08"

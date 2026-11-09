@@ -1,0 +1,8 @@
+label = "crafting: add augment 2"
+name = "Test Cannith Crafted Ring"
+
+[[option]]
+name = "Adds a Colorless augment slot"
+
+[[option.grant]]
+slot = "colorless"

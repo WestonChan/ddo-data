@@ -435,10 +435,12 @@ impl<'a> EffectCache<'a> {
 
     pub(super) fn ensure_group(&mut self, name: &str) -> Result<i64> {
         let members = EFFECT_MAP.group_members(name).expect("declared group has members");
-        let description = name
-            .strip_suffix(" Skills")
-            .filter(|ability| EFFECT_MAP.skill_ability_groups.skills.contains_key(*ability))
-            .map(|ability| format!("{{1}} %b1 bonus to all {ability} based skills."));
+        let description =
+            self.groupings.effect_named(name).and_then(|group| group.description_template.clone()).or_else(|| {
+                name.strip_suffix(" Skills")
+                    .filter(|ability| EFFECT_MAP.skill_ability_groups.skills.contains_key(*ability))
+                    .map(|ability| format!("{{1}} %b1 bonus to all {ability} based skills."))
+            });
         let template = EFFECT_MAP.line_templates.get(name).cloned().unwrap_or_else(|| format!("%b1 {name} +{{1}}"));
         self.ensure_flat_group(name, members, &template, description.as_deref(), None)
     }

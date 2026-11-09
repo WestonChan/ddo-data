@@ -1,28 +1,19 @@
 name = "Heroic Green Steel"
-npc = "Altar of Invasion"
 page = "https://ddowiki.com/page/Green_Steel_items"
+
+[[station]]
+name = "Altar of Invasion"
+
+[[step]]
+name = "Invasion"
+slot = "crafting: accessory invasion"
+
+[[step]]
+name = "Subjugation"
+slot = "crafting: accessory subjugation"
 
 [[family]]
 family = "Greensteel_Heroic"
-
-[[ingredient]]
-name = "Small Shard of Power"
-bind = "Bound to Account"
-drop_location = "The Shroud"
-tier = "heroic"
-
-[[ingredient]]
-name = "Small Focus of Earth"
-tier = "heroic"
-
-[[ingredient]]
-name = "Small Focus of Fire"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shroud Commendation"
-bind = "Unbound"
-tier = "any"
 
 [[citation]]
 url = "https://ddowiki.com/page/Green_Steel_items"
@@ -30,8 +21,8 @@ read = "2026-09-27"
 
 [[recipe]]
 option = "+5 Fortitude Save"
-slot = "crafting: accessory invasion"
 tier = "heroic"
+step = "Invasion"
 
 [[recipe.augment]]
 name = "+5 Fortitude Save"
@@ -57,8 +48,8 @@ quantity = 1
 
 [[recipe]]
 option = "Minor Fire Guard"
-slot = "crafting: accessory invasion"
 tier = "heroic"
+step = "Invasion"
 
 [[recipe.augment]]
 name = "Minor Fire Guard"

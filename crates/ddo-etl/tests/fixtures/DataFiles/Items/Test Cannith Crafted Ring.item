@@ -1,0 +1,22 @@
+<Items>
+  <Item>
+    <Name>Test Cannith Crafted Ring</Name>
+    <MinLevel>1</MinLevel>
+    <DropLocation>Test Upgrade Altar</DropLocation>
+    <EquipmentSlot><Ring/></EquipmentSlot>
+    <ItemAugment>
+      <Type>Add Augment 1</Type>
+      <Augment>
+        <Name>Adds a Colorless augment slot</Name>
+        <GrantAugment>Colorless</GrantAugment>
+      </Augment>
+    </ItemAugment>
+    <ItemAugment>
+      <Type>Add Augment 2</Type>
+      <Augment>
+        <Name>Adds a Colorless augment slot</Name>
+        <GrantAugment>Colorless</GrantAugment>
+      </Augment>
+    </ItemAugment>
+  </Item>
+</Items>

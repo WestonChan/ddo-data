@@ -179,7 +179,14 @@ pub(crate) fn assign_xml_entity_slugs(db: &Connection) -> Result<()> {
         db.execute(&format!("UPDATE {table} SET slug = ?1 WHERE id = ?2"), rusqlite::params![identity, id])?;
     }
     for table in NAMED_ENTITY_TABLES {
-        if matches!(*table, "enhancements" | "enhancement_selections" | "crafting_ingredients" | "socket_option_sets") {
+        if matches!(
+            *table,
+            "enhancements"
+                | "enhancement_selections"
+                | "crafting_ingredients"
+                | "crafting_stations"
+                | "socket_option_sets"
+        ) {
             continue;
         }
         if *table == "augments" {

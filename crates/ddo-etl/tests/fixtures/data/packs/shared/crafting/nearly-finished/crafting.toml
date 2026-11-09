@@ -1,0 +1,30 @@
+name = "Nearly Finished"
+page = "https://ddowiki.com/page/Nearly_Finished"
+
+[[station]]
+name = "Cannith Reforging Station"
+
+[[step]]
+name = "Nearly Finished"
+slot = "crafting: nearly finished"
+
+[[step]]
+name = "Almost There"
+slot = "crafting: almost there"
+
+[[step]]
+name = "Finishing Touch"
+slot = "crafting: finishing touch"
+
+[[citation]]
+url = "https://ddowiki.com/page/Nearly_Finished"
+read = "2026-11-08"
+
+[[recipe]]
+option = "Fabricator's Ingenuity"
+tier = "any"
+step = "Nearly Finished"
+
+[[recipe.set_option]]
+set = "Fabricator's Gauntlets"
+name = "Fabricator's Ingenuity"

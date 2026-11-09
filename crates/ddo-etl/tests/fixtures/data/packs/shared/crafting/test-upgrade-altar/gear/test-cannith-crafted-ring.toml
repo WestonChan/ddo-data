@@ -1,0 +1,21 @@
+name = "Test Cannith Crafted Ring"
+drop_location = "Test Upgrade Altar"
+item_category = "Jewelry"
+minimum_level = 1
+slot = "Ring"
+
+[[citation]]
+url = "https://ddowiki.com/page/Cannith_Crafting"
+read = "2026-11-08"
+
+[[socket]]
+slot = "crafting: add augment 1"
+set = "Test Cannith Crafted Ring"
+
+[[socket]]
+slot = "crafting: add augment 2"
+set = "Test Cannith Crafted Ring"
+
+[[source]]
+kind = "crafting_system"
+name = "Test Upgrade Altar"

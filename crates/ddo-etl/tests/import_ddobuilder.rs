@@ -1891,10 +1891,32 @@ fn import_with_merged_socket_labels(adoption: HisAdoption) -> MergedSocketLabelI
     }
     let item = wiki.items.iter_mut().find(|item| item.name == "Battle Axe of the Oozing Hunger").unwrap();
     item.augment_slots = vec!["crafting: reviewed tier 1".into(), "crafting: reviewed tier 2".into()];
-    for recipe in &mut wiki.crafting_systems[0].recipes {
-        recipe.slot = Some("crafting: reviewed tier 1".into());
-        recipe.grants_slot = Some("crafting: reviewed tier 2".into());
-    }
+    let system = wiki.crafting_systems.iter_mut().find(|system| system.name == "Mikrom Sum").unwrap();
+    let step_template = system.steps[0].clone();
+    system.steps = heroism_merges()
+        .into_iter()
+        .map(|(_, label)| {
+            let mut step = step_template.clone();
+            step.name = label.clone();
+            step.slot = Some(label);
+            step
+        })
+        .collect();
+    system.recipes.push(ddo_etl::wiki::CraftingRecipe {
+        tier: "any".into(),
+        step: Some("crafting: reviewed tier 1".into()),
+        yields_ingredient: None,
+        yields_variant: None,
+        slot: None,
+        option: "Reviewed socket grant".into(),
+        augments: vec![],
+        note: None,
+        grants_slot: Some("crafting: reviewed tier 2".into()),
+        cost: vec![],
+        unlocks: vec![],
+        set_options: vec![],
+    });
+    let recipe_count = system.recipes.len() as i64;
     let source = scratch.path().join("DataFiles");
     copy_tree(&fixtures.join("DataFiles"), &source);
     let root = scratch.path().join("data");
@@ -1937,12 +1959,7 @@ fn import_with_merged_socket_labels(adoption: HisAdoption) -> MergedSocketLabelI
     assert!(!report.has_conflicts(), "{report}");
     let mut rebuilt = Connection::open_in_memory().unwrap();
     tree::build_from_data(&root, &mut rebuilt).unwrap();
-    MergedSocketLabelImport {
-        report: report.to_string(),
-        previous,
-        rebuilt,
-        recipe_count: wiki.crafting_systems[0].recipes.len() as i64,
-    }
+    MergedSocketLabelImport { report: report.to_string(), previous, rebuilt, recipe_count }
 }
 
 #[test]
@@ -1951,6 +1968,14 @@ fn merged_socket_labels_follow_the_writer_and_have_no_import_delta() {
     assert!(!import.report.contains("CORRECTION"), "{}", import.report);
     assert!(!import.report.contains("reviewed tier"), "{}", import.report);
     for db in [&import.previous, &import.rebuilt] {
+        let steps = db
+            .prepare("SELECT t.label FROM crafting_steps s JOIN crafting_systems c ON c.id=s.system_id JOIN augment_slot_types t ON t.id=s.slot_id WHERE c.name='Mikrom Sum' ORDER BY s.sort_order")
+            .unwrap()
+            .query_map([], |row| row.get::<_, String>(0))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert_eq!(steps, ["crafting: reviewed tier 1", "crafting: reviewed tier 2"]);
         let labels = db.prepare("SELECT s.label FROM item_augment_slots l JOIN items i ON i.id=l.item_id JOIN augment_slot_types s ON s.id=l.slot_id WHERE i.name='Battle Axe of the Oozing Hunger' ORDER BY l.sort_order").unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<Result<Vec<_>, _>>().unwrap();
         assert_eq!(labels, ["crafting: reviewed tier 1", "crafting: reviewed tier 2"]);
         assert_eq!(db.query_row("SELECT COUNT(*) FROM crafting_recipes r JOIN augment_slot_types s ON s.id=r.slot_id JOIN augment_slot_types g ON g.id=r.grants_slot_id WHERE s.label='crafting: reviewed tier 1' AND g.label='crafting: reviewed tier 2'", [], |row| row.get::<_, i64>(0)).unwrap(), import.recipe_count);

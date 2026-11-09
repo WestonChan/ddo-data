@@ -1,0 +1,29 @@
+name = "Dinosaur Bone crafting"
+page = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+
+[[station]]
+name = "Sharpened Bone"
+
+[[step]]
+name = "Claw (Weapon)"
+slot = "isle of dread: claw (weapon)"
+
+[[step]]
+name = "Fang (Weapon)"
+slot = "isle of dread: fang (weapon)"
+
+[[step]]
+name = "Horn (Weapon)"
+slot = "isle of dread: horn (weapon)"
+
+[[step]]
+name = "Scale (Armor)"
+slot = "isle of dread: scale (armor)"
+
+[[step]]
+name = "Scale (Weapon)"
+slot = "isle of dread: scale (weapon)"
+
+[[citation]]
+url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-11-08"

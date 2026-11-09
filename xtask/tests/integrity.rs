@@ -4,17 +4,7 @@ use std::process::{Command, Output};
 use std::sync::OnceLock;
 use xtask::integrity::{integrity_report, CheckStatus, IntegrityOptions, Severity, INTEGRITY_CHECKS};
 
-const TABLES_EMPTY_IN_FIXTURES: [&str; 9] = [
-    "effect_damage",
-    "race_feat_slots",
-    "removed_entities",
-    "crafting_steps",
-    "crafting_step_effects",
-    "crafting_step_costs",
-    "crafting_system_stations",
-    "crafting_unlocks",
-    "crafting_recipe_set_options",
-];
+const TABLES_EMPTY_IN_FIXTURES: [&str; 3] = ["effect_damage", "race_feat_slots", "removed_entities"];
 const PACK_QUEST_OVERLAP_SQL: &str =
     "INSERT INTO pack_drops (owner_kind, pack_id, owner_id, loot_type, chest, is_rare)
      SELECT CASE WHEN s.item_id IS NOT NULL THEN 'item' ELSE 'augment' END, q.pack_id, COALESCE(s.item_id, s.augment_id), s.loot_type, s.chest, s.is_rare
@@ -1546,15 +1536,15 @@ fn items_with_a_source_but_no_pack_counts_items_by_kind_and_excludes_unrelated_i
     assert_eq!(outcome.status, CheckStatus::Warned);
     assert_eq!(
         outcome.offenders.iter().map(|offender| offender.name.as_str()).collect::<Vec<_>>(),
-        ["Ethereal Great Crossbow", "Thunder-Forged Orb", "Visor of Fraz-Urb'luu"]
+        ["Ethereal Great Crossbow", "Test Cannith Crafted Ring", "Thunder-Forged Orb", "Visor of Fraz-Urb'luu"]
     );
     assert!(
-        outcome.notes.iter().any(|note| note.contains("crafting_system: 2") && note.contains("vendor: 2")),
+        outcome.notes.iter().any(|note| note.contains("crafting_system: 3") && note.contains("vendor: 2")),
         "{report}"
     );
     let output = check_db_output(&db_path);
     assert!(output.status.success(), "{}", stdout_of(&output));
-    assert!(stdout_of(&output).contains("check items_with_a_source_but_no_pack: WARN (3 offenders)"));
+    assert!(stdout_of(&output).contains("check items_with_a_source_but_no_pack: WARN (4 offenders)"));
 }
 
 fn integrity_pair_effects_sql() -> &'static str {

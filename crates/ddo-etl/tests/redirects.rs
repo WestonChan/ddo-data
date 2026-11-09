@@ -147,7 +147,10 @@ fn authored_child_redirects_cannot_duplicate_derived_redirects() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-    let original = common::copy_fixture_data(&fixtures, &root);
+    common::copy_fixture_data(&fixtures, &root);
+    overlapping_owners::write_overlapping_owners(&root, "foo");
+    let mut original = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&root, &mut original).unwrap();
     let (owner, child): (String, String) = original.query_row("SELECT s.slug, i.slug FROM crafting_ingredients i JOIN crafting_systems s ON s.id = i.system_id ORDER BY i.slug LIMIT 1", [], |row| Ok((row.get(0)?, row.get(1)?))).unwrap();
     let old_child = format!("former-system{}", &child[owner.len()..]);
     std::fs::write(
@@ -257,7 +260,10 @@ fn redirect_file_round_trips_authored_rows_and_derives_owned_ingredients() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
-    let original = common::copy_fixture_data(&fixtures, &root);
+    common::copy_fixture_data(&fixtures, &root);
+    overlapping_owners::write_overlapping_owners(&root, "foo");
+    let mut original = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&root, &mut original).unwrap();
     let target: String = original.query_row("SELECT slug FROM crafting_systems WHERE id IN (SELECT system_id FROM crafting_ingredients) ORDER BY slug LIMIT 1", [], |row| row.get(0)).unwrap();
     let contents = format!("[[redirect]]\nkind = \"crafting-systems\"\nfrom = \"former-system\"\nto = {target:?}\nsince = \"2026-10-01\"\n\n[[retired]]\nkind = \"items\"\nslug = \"retired-item\"\nsince = \"2026-10-01\"\nreason = \"Duplicate item\"\n");
     std::fs::write(root.join("redirects.toml"), &contents).unwrap();

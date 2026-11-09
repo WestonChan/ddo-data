@@ -757,7 +757,7 @@ mod tests {
             };
             moved_files.push((path.to_path_buf(), misplaced, kind, name.to_string()));
         }
-        assert_eq!(moved_kinds.len(), 16);
+        assert_eq!(moved_kinds.len(), 17);
         for (original, misplaced, _, _) in &moved_files {
             std::fs::create_dir_all(misplaced.parent().unwrap()).unwrap();
             std::fs::rename(original, misplaced).unwrap();

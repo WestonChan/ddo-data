@@ -1,10 +1,37 @@
 name = "Test Upgrade Altar"
-npc = "Test Altar Keeper"
 page = "https://ddowiki.com/page/Test_Upgrade_Altar"
 
-[[ingredient]]
-name = "Test Upgrade Token"
-tier = "any"
+[[station]]
+name = "Test Altar Keeper"
+
+[[station]]
+name = "Fetid Cauldron"
+
+[[station]]
+name = "Sealed Altar"
+
+[[step]]
+name = "Tier 1"
+
+[[step]]
+name = "Tier 2"
+slot = "upgrade: tier 2"
+
+[[step]]
+name = "Tier 3"
+slot = "upgrade: tier 3"
+
+[[step]]
+name = "Nearly Finished (test)"
+slot = "crafting: nearly finished"
+
+[[step]]
+name = "Add augment 1"
+slot = "crafting: add augment 1"
+
+[[step]]
+name = "Add augment 2"
+slot = "crafting: add augment 2"
 
 [[citation]]
 url = "https://ddowiki.com/page/Test_Upgrade_Altar"
@@ -28,3 +55,73 @@ tier = "any"
 [[recipe.ingredient]]
 ingredient = "Test Upgrade Token"
 quantity = 3
+
+[[recipe]]
+option = "Create a test item"
+tier = "heroic"
+step = "Tier 1"
+
+[[recipe.ingredient]]
+ingredient = "Test Upgrade Token"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Thread of Fate"
+quantity = 1
+
+[[recipe]]
+option = "Choose Constitution"
+tier = "legendary"
+step = "Nearly Finished (test)"
+
+[[recipe.set_option]]
+set = "Celestial Emerald Ring"
+name = "+8 Constitution"
+
+[[recipe]]
+yields_ingredient = "Top of the Test Emblem"
+option = "Create Top of the Test Emblem"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Thread of Fate"
+quantity = 1
+
+[[recipe]]
+yields_ingredient = "Bottom of the Test Emblem"
+option = "Create Bottom of the Test Emblem"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Thread of Fate"
+quantity = 1
+
+[[recipe]]
+grants_slot = "colorless"
+option = "Add Colorless augment 1"
+tier = "any"
+step = "Add augment 1"
+
+[[recipe.set_option]]
+set = "Test Cannith Crafted Ring"
+name = "Adds a Colorless augment slot"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 100
+text = "Requires Reaper experience."
+
+[[recipe]]
+grants_slot = "colorless"
+option = "Add Colorless augment 2"
+tier = "any"
+step = "Add augment 2"
+
+[[recipe.set_option]]
+set = "Test Cannith Crafted Ring"
+name = "Adds a Colorless augment slot"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 100
+text = "Requires Reaper experience."

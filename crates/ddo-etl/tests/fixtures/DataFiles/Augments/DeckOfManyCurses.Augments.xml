@@ -1,0 +1,30 @@
+<Augments>
+<Augment>
+      <Name>Curse of Major Fortitude</Name>
+      <Description>+2 Fortune Bonus to Fortitude Saving Throws</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Deck Curse</Type>
+      <Icon>DeckOfCurses</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Fortune</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">2</Amount>
+         <Item>Fortitude</Item>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Curse of Major Will</Name>
+      <Description>+2 Fortune Bonus to Will Saving Throws</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Deck Curse</Type>
+      <Icon>DeckOfCurses</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Fortune</Bonus>
+         <AType>Simple</AType>
+         <Amount size="1">2</Amount>
+         <Item>Will</Item>
+      </Effect>
+   </Augment>
+   </Augments>

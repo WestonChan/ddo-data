@@ -9,13 +9,14 @@ fn flattens_item_images_and_copies_the_rest() {
     let report = export_icons(&data_files_dir, &icons_dir).unwrap();
     assert_eq!(report.copied_count_by_kind.get("items"), Some(&3), "{report:?}");
     assert_eq!(report.copied_count_by_kind.get("feats"), Some(&1));
-    assert_eq!(report.copied_count_by_kind.get("augments"), Some(&4));
+    assert_eq!(report.copied_count_by_kind.get("augments"), Some(&5));
     assert!(icons_dir.join("items/Quarterstaff_6a.png").is_file(), "nested item images are flattened to their stem");
     assert!(icons_dir.join("items/Docent_1a.png").is_file());
     assert!(icons_dir.join("items/Boots_1.png").is_file());
     assert!(icons_dir.join("feats/PowerAttack.png").is_file());
     assert!(icons_dir.join("augments/Sapphire.png").is_file());
     assert!(icons_dir.join("augments/HistoryBookWhite.png").is_file());
+    assert!(icons_dir.join("augments/DeckOfCurses.png").is_file());
     assert_eq!(
         std::fs::read(icons_dir.join("augments/Lamordia.png")).unwrap(),
         std::fs::read(data_files_dir.join("AugmentImages/Lamordia.png")).unwrap()

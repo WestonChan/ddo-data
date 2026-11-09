@@ -1,0 +1,17 @@
+name = "Fountain of Necrotic Might"
+page = "https://ddowiki.com/page/Fountain_of_Necrotic_Might"
+
+[[station]]
+name = "Fountain of Necrotic Might"
+
+[[step]]
+name = "Upgradeable - Primary Augment"
+slot = "crafting: upgradeable - primary augment"
+
+[[step]]
+name = "Upgradeable - Secondary Augment"
+slot = "crafting: upgradeable - secondary augment"
+
+[[citation]]
+url = "https://ddowiki.com/page/Fountain_of_Necrotic_Might"
+read = "2026-11-08"

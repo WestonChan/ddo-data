@@ -15,8 +15,17 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(crafting_systems)).routes(routes!(crafting_system_detail))
 }
 
-const CRAFTING_SYSTEM_COLUMNS_AND_JOINS: &str = "s.id, s.name, s.page, p.name AS pack, s.npc,
-        (SELECT COUNT(*) FROM crafting_ingredients i WHERE i.system_id = s.id) AS ingredient_count,
+const INGREDIENT_USES: &str = "WITH ingredient_uses(ingredient_id,system_id) AS (
+    SELECT id,system_id FROM crafting_ingredients WHERE system_id IS NOT NULL
+    UNION SELECT cost.ingredient_id,recipe.system_id FROM crafting_recipe_ingredients cost JOIN crafting_recipes recipe ON recipe.id=cost.recipe_id WHERE cost.ingredient_id IS NOT NULL
+    UNION SELECT cost.ingredient_id,step.system_id FROM crafting_step_costs cost JOIN crafting_steps step ON step.id=cost.step_id WHERE cost.ingredient_id IS NOT NULL
+    UNION SELECT yields_ingredient_id,system_id FROM crafting_recipes WHERE yields_ingredient_id IS NOT NULL
+    UNION SELECT gate.crafting_ingredient_id,COALESCE(gate.system_id,recipe.system_id,station.system_id) FROM crafting_unlocks gate LEFT JOIN crafting_recipes recipe ON recipe.id=gate.recipe_id LEFT JOIN crafting_system_stations station ON station.station_id=gate.station_id WHERE gate.crafting_ingredient_id IS NOT NULL
+)";
+
+const CRAFTING_SYSTEM_COLUMNS_AND_JOINS: &str = "s.id, s.name, s.page, p.name AS pack,
+        COALESCE((SELECT station.name || COALESCE(', ' || station.place,'') FROM crafting_system_stations link JOIN crafting_stations station ON station.id=link.station_id WHERE link.system_id=s.id ORDER BY link.sort_order LIMIT 1),s.npc) AS npc,
+        (SELECT COUNT(*) FROM ingredient_uses i WHERE i.system_id = s.id) AS ingredient_count,
         (SELECT COUNT(*) FROM crafting_recipes r WHERE r.system_id = s.id) AS recipe_count
    FROM crafting_systems s LEFT JOIN adventure_packs p ON p.id = s.pack_id";
 
@@ -84,7 +93,7 @@ async fn crafting_systems(
 ) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
-            let select_sql = format!("SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS}");
+            let select_sql = format!("{INGREDIENT_USES} SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS}");
             let mut page =
                 paged_rows(db, &select_sql, &query, "listed.name", "listed.name", CRAFTING_SYSTEMS_SORT_FIELDS)?;
             for row in &mut page.rows {
@@ -114,11 +123,11 @@ async fn crafting_system_detail(
     state
         .read_db(move |db| {
             let mut crafting_system =
-                json_row(db, &format!("SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS} WHERE s.id = ?1"), [id])?;
+                json_row(db, &format!("{INGREDIENT_USES} SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS} WHERE s.id = ?1"), [id])?;
             attach_augment_families(db, &mut crafting_system)?;
             crafting_system["ingredients"] = Value::Array(json_rows(
                 db,
-                "SELECT id, name, tier, bind, source FROM crafting_ingredients WHERE system_id = ?1 ORDER BY sort_order",
+                &format!("{INGREDIENT_USES} SELECT id, name, tier, bind, source FROM crafting_ingredients WHERE id IN (SELECT ingredient_id FROM ingredient_uses WHERE system_id = ?1) ORDER BY name"),
                 [id],
             )?);
             let mut recipes = json_rows(

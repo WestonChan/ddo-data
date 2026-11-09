@@ -1,5 +1,7 @@
 name = "Minor Fire Guard"
-adds_augment = "Accessory Subjugation"
+adds_augment = """
+Accessory Subjugation
+Colorless"""
 description = """
 50% chance to do 1d4 Fire damage on being hit
 Fire:Dominion:Material"""

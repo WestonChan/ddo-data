@@ -1,0 +1,17 @@
+name = "Essence Crafting"
+page = "https://ddowiki.com/page/Essence_Crafting"
+
+[[station]]
+name = "Bound Crafting Device"
+
+[[step]]
+name = "Cannith Rune Arm Prefix"
+slot = "crafting: cannith rune arm prefix"
+
+[[step]]
+name = "Cannith Rune Arm Suffix"
+slot = "crafting: cannith rune arm suffix"
+
+[[citation]]
+url = "https://ddowiki.com/page/Essence_Crafting"
+read = "2026-11-08"

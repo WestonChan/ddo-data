@@ -1,7 +1,25 @@
 name = "Catalyst Crafting"
-npc = "Strange Catalyst Forge"
 page = "https://ddowiki.com/page/Catalyst_Crafting"
+
+[[station]]
+name = "Strange Catalyst Forge"
+
+[[step]]
+name = "Catalyst upgrade"
 
 [[citation]]
 url = "https://ddowiki.com/page/Catalyst_Crafting"
 read = "2026-10-02"
+
+[[recipe]]
+option = "Visor of Fraz-Urb'luu"
+tier = "heroic"
+step = "Catalyst upgrade"
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 1
+
+[[recipe.ingredient]]
+item = "Acrobat's Ring"
+quantity = 1

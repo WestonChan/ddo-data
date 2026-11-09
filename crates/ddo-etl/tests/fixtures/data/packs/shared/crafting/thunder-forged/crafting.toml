@@ -1,7 +1,181 @@
 name = "Thunder-Forged"
-npc = "Magma Forge"
 page = "https://ddowiki.com/page/Thunder-Forged"
+
+[[station]]
+name = "Magma Forge"
+
+[[step]]
+name = "Tier 1"
+slot = "crafting: thunderforged tier 1"
+
+[[step.effect]]
+effect = "Orb Bonus"
+bonus_type = "Orb"
+value = 10
+equipment_slot = "Off Hand"
+
+[[step.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Stacking"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[step.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Bane"
+dice_number = [
+    5,
+    8,
+]
+dice_sides = [
+    6,
+    6,
+]
+display_name = "Bane of Dragons"
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+is_item_specific = true
+targets = ["All"]
+
+[[step.modifier.requirement]]
+items = ["Dragon"]
+req_type = "Stance"
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Thunder-Forged Dwarven Ingot"
+quantity = 60
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Commendation of Valor"
+quantity = 45
+
+[[step]]
+name = "Tier 2"
+slot = "crafting: thunderforged tier 2"
+
+[[step.effect]]
+effect = "Orb Bonus"
+bonus_type = "Orb"
+value = 11
+equipment_slot = "Off Hand"
+
+[[step.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Stacking"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[step.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Bane"
+dice_number = [
+    5,
+    8,
+]
+dice_sides = [
+    6,
+    6,
+]
+display_name = "Bane of Dragons"
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+is_item_specific = true
+targets = ["All"]
+
+[[step.modifier.requirement]]
+items = ["Dragon"]
+req_type = "Stance"
+
+[[step]]
+name = "Tier 3"
+slot = "crafting: thunderforged tier 3"
+
+[[step.effect]]
+effect = "Orb Bonus"
+bonus_type = "Orb"
+value = 12
+equipment_slot = "Off Hand"
+
+[[step.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Stacking"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[step.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Bane"
+dice_number = [
+    5,
+    8,
+]
+dice_sides = [
+    6,
+    6,
+]
+display_name = "Bane of Dragons"
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+is_item_specific = true
+targets = ["All"]
+
+[[step.modifier.requirement]]
+items = ["Dragon"]
+req_type = "Stance"
+
+[[family]]
+family = "Thunderforged"
 
 [[citation]]
 url = "https://ddowiki.com/page/Thunder-Forged"
 read = "2026-10-02"
+
+[[citation]]
+url = "https://images.ddowiki.com/Thunder-Forged_Alloy_Orb.png"
+read = "2026-11-08"
+
+[[recipe]]
+option = "Blinding Fear"
+tier = "epic"
+step = "Tier 1"
+
+[[recipe.augment]]
+name = "Blinding Fear"
+level = 24
+
+[[recipe]]
+option = "Tier 1 override"
+tier = "epic"
+step = "Tier 1"
+
+[[recipe.ingredient]]
+ingredient = "Thunder-Forged Dwarven Ingot"
+quantity = 61
+
+[[recipe.ingredient]]
+ingredient = "Commendation of Valor"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Thread of Fate"
+quantity = 1
+
+[[recipe]]
+option = "Dwarvencraft Focus"
+tier = "epic"
+step = "Tier 2"
+
+[[recipe.augment]]
+name = "Dwarvencraft Focus"
+level = 26

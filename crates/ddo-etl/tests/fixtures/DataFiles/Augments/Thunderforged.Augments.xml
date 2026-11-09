@@ -1,0 +1,77 @@
+<Augments>
+<Augment>
+    <Name>Blinding Fear</Name>
+    <Description>Blinding Fear: On Hit: Blinds and Shakens foe for 6 sec, 12 sec cool down.</Description>
+    <MinLevel>24</MinLevel>
+    <Type>Thunderforged Tier 1</Type>
+    <AddAugment>Thunderforged Tier 2</AddAugment>
+    </Augment>
+  <Augment>
+    <Name>Dwarvencraft Focus</Name>
+    <Description>Dwarvencraft Focus: Passive: +3 Equipment Bonus to all Spell DCs.</Description>
+    <MinLevel>26</MinLevel>
+    <Type>Thunderforged Tier 2</Type>
+    <AddAugment>Thunderforged Tier 3</AddAugment>
+    <Effect>
+      <Type>SpellDC</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">3</Amount>
+      <Item>All</Item>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Base Damage</DisplayName>
+      <Type>Weapon_BaseDamage</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="4">3.5 4.0 4.5 4.5</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Thunderforged Weapon Enchantment</DisplayName>
+      <Type>Weapon_Enchantment</Type>
+      <Bonus>Weapon Enchantment</Bonus>
+      <Amount size="4">9 10 11 12</Amount>
+      <Item>All</Item>
+      <IsItemSpecific />
+      <AType>Stacks</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Bane of Dragons</DisplayName>
+      <Type>WeaponOtherDamageBonus</Type>
+      <Type>WeaponOtherDamageBonusCritical</Type>
+      <Bonus>Enhancement</Bonus>
+      <Dice>
+        <Number size="2">5 8</Number>
+        <Sides size="2">6 6</Sides>
+        <Damage>Bane</Damage>
+      </Dice>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Dragon</Item>
+        </Requirement>
+      </Requirements>
+      <IsItemSpecific />
+      <AType>NotNeeded</AType>
+    </Effect>
+    <Effect>
+      <DisplayName>Dwarvencraft Minor Lore</DisplayName>
+      <Type>SpellLore</Type>
+      <Bonus>Insightful</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+      <Item>All</Item>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <GrantConditionalAugment>Red</GrantConditionalAugment>
+    <WeaponClass>Two Handed</WeaponClass>
+  </Augment>
+  </Augments>

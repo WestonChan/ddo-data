@@ -8,6 +8,10 @@ material = "Adamantine"
 minimum_level = 22
 slot = "Off Hand"
 
+[[citation]]
+url = "https://images.ddowiki.com/Thunder-Forged_Alloy_Orb.png"
+read = "2026-11-08"
+
 [[dr_bypass]]
 bypass = "Adamantine"
 
@@ -22,6 +26,11 @@ bypass = "Mithral"
 
 [[dr_bypass]]
 bypass = "Silver"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 9
 
 [[socket]]
 slot = "crafting: thunderforged tier 1"
