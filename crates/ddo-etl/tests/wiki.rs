@@ -643,7 +643,7 @@ fn merges_crafting_systems_ingredients_and_recipes() {
     let (db, report) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
     assert_eq!(
         (report.wiki_crafting_system_count, report.wiki_crafting_recipe_count, report.wiki_crafting_ingredient_count),
-        (13, 21, 13)
+        (13, 22, 13)
     );
     let (name, page, pack, npc): (String, String, Option<i64>, Option<String>) = db
         .query_row("SELECT name, page, pack_id, npc FROM crafting_systems WHERE name = 'Heroic Green Steel'", [], |r| {
@@ -730,8 +730,8 @@ fn merges_a_family_less_system_whose_recipes_grant_sockets() {
         [
             "Test tier 2 upgrade|upgrade: tier 2||0",
             "Test Colorless Augment Slot|colorless|Test note: adds a socket, never an augment.|1",
-            "Add Colorless augment 1|colorless||6",
-            "Add Colorless augment 2|colorless||7"
+            "Add Colorless augment 1|colorless||7",
+            "Add Colorless augment 2|colorless||8"
         ]
     );
     assert_eq!(

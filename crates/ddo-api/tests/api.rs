@@ -1571,7 +1571,7 @@ async fn version_reports_dataset_and_schema() {
             &json["counts"]["crafting_recipes"],
             &json["counts"]["crafting_ingredients"]
         ),
-        (&serde_json::json!(13), &serde_json::json!(21), &serde_json::json!(13))
+        (&serde_json::json!(13), &serde_json::json!(22), &serde_json::json!(13))
     );
     assert_eq!(headers.get("x-dataset-version").unwrap(), "fixture");
     assert!(headers.get(header::ETAG).is_some());
@@ -4239,6 +4239,7 @@ async fn augment_detail_lists_the_crafting_recipes_that_yield_it() {
             "system": "Heroic Green Steel",
             "step": "Invasion",
             "cost_from_step": false,
+            "consumed_outputs": null,
             "tier": "heroic",
             "option": "Minor Fire Guard",
             "cost": [
@@ -4268,6 +4269,7 @@ async fn augment_list_rows_carry_the_crafting_recipes_that_yield_them() {
                 "system": "Heroic Green Steel",
             "step": "Invasion",
             "cost_from_step": false,
+            "consumed_outputs": null,
                 "tier": "heroic",
                 "option": "+5 Fortitude Save",
                 "cost": [
