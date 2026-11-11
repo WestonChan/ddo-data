@@ -214,6 +214,11 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "a non-colour label is filled by augments or fixed option sets, never both",
         OffenderQuery::Sql("SELECT t.label,t.id,'both augments and fixed options' FROM augment_slot_types t WHERE t.family<>'standard' AND EXISTS (SELECT 1 FROM augment_slots a WHERE a.slot_id=t.id) AND EXISTS (SELECT 1 FROM socket_option_sets s WHERE s.slot_id=t.id) ORDER BY t.label"),
     ),
+    IntegrityCheck::hard(
+        "socket_option_sets_have_a_carrier",
+        "every socket option set is carried by an item socket",
+        OffenderQuery::Sql("SELECT s.name,s.id,s.slug FROM socket_option_sets s WHERE NOT EXISTS (SELECT 1 FROM item_augment_slots socket WHERE socket.option_set_id=s.id) ORDER BY s.slug"),
+    ),
     IntegrityCheck::warn(
         "socket_option_sets_differing_only_by_option_names",
         "sets with equal content except option names need a reader's spelling verdict and correction (ddo-data#72)",

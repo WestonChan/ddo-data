@@ -412,9 +412,8 @@ fn write_correction(
         }
         FieldShape::Removal if correction.kind == CorrectionKind::ItemSocket => {
             let label = correction.socket.as_deref().context("socket removal needs a label")?;
-            let effects = effects.context("socket removal needs the family cache")?;
             for item_id in row_ids {
-                remove_item_socket(transaction, effects, *item_id, label)?;
+                remove_item_socket(transaction, *item_id, label)?;
             }
         }
         FieldShape::Removal if correction.kind == CorrectionKind::ItemEffect => {
@@ -2420,12 +2419,7 @@ fn item_socket_order(transaction: &Transaction, item_id: i64, label: &str) -> Re
     Ok(orders.first().copied())
 }
 
-fn remove_item_socket(
-    transaction: &Transaction,
-    _effects: &mut EffectCache<'_>,
-    item_id: i64,
-    label: &str,
-) -> Result<()> {
+fn remove_item_socket(transaction: &Transaction, item_id: i64, label: &str) -> Result<()> {
     let Some(order) = item_socket_order(transaction, item_id, label)? else { return Ok(()) };
     transaction
         .execute("DELETE FROM item_augment_slots WHERE item_id=?1 AND sort_order=?2", params![item_id, order])?;

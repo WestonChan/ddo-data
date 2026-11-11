@@ -492,6 +492,7 @@ fn build_with_wiki_references(
         },
         &mut report,
     )?;
+    socket_option_sets::remove_sets_without_carriers(&transaction, &mut writer.effects)?;
     writer.write_stat_type_effects(&stat_type_definitions)?;
     corrections::record_final_set_names(&transaction)?;
     writer.effects.write_missing_linked_stat_templates()?;

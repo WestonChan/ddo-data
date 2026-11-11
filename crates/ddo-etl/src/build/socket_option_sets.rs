@@ -10,6 +10,24 @@ pub(crate) struct SocketOptionList<T = SocketOption> {
     pub(crate) item_name: String,
 }
 
+pub(super) fn remove_sets_without_carriers(
+    transaction: &rusqlite::Transaction<'_>,
+    effects: &mut super::effects::EffectCache<'_>,
+) -> Result<()> {
+    let unused_sets = transaction.prepare("SELECT id FROM socket_option_sets s WHERE NOT EXISTS (SELECT 1 FROM item_augment_slots socket WHERE socket.option_set_id=s.id)")?
+        .query_map([], |row| row.get::<_, i64>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
+    for set_id in unused_sets {
+        let linked_effects = transaction.prepare("SELECT DISTINCT e.effect_id FROM socket_option_effects e JOIN socket_options o ON o.id=e.option_id WHERE o.set_id=?1")?
+            .query_map([set_id], |row| row.get::<_, i64>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
+        transaction.execute("DELETE FROM modifiers WHERE source_kind='socket_option' AND source_id IN (SELECT id FROM socket_options WHERE set_id=?1)", [set_id])?;
+        transaction.execute("DELETE FROM socket_option_sets WHERE id=?1", [set_id])?;
+        for effect_id in linked_effects {
+            effects.delete_unowned(effect_id)?;
+        }
+    }
+    Ok(())
+}
+
 #[derive(Debug, Default, Clone, PartialEq)]
 pub struct ExistingSocketOptionSets {
     identities: BTreeMap<String, SocketOptionSetIdentity>,

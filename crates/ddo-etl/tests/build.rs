@@ -89,6 +89,34 @@ fn socket_option_sets_follow_their_free_to_play_carriers_patron() {
 }
 
 #[test]
+fn the_transitional_reader_keeps_no_set_for_a_removed_socket() {
+    let db = fixture::database(|root| {
+        let path = root.join("packs/unsourced/gear/celestial-emerald-ring.toml");
+        let mut ring: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+        ring["socket"]
+            .as_array_mut()
+            .unwrap()
+            .retain(|socket| socket["slot"].as_str() != Some("crafting: nearly finished"));
+        let note: toml::Value = toml::from_str("kind='item_socket'\nfield='remove'\nqualifier='socket \"crafting: nearly finished\"'\nupstream=0\nreason='Remove the socket.'\nin_game=true\nread='2026-11-11'").unwrap();
+        ring.as_table_mut()
+            .unwrap()
+            .entry("ddobuilder_correction")
+            .or_insert(toml::Value::Array(vec![]))
+            .as_array_mut()
+            .unwrap()
+            .push(note);
+        let system_path = root.join("packs/shared/crafting/test-upgrade-altar/crafting.toml");
+        let mut system: toml::Value = toml::from_str(&std::fs::read_to_string(&system_path).unwrap()).unwrap();
+        system["recipe"].as_array_mut().unwrap().retain(|recipe| {
+            recipe.get("set_option").is_none_or(|options| !options.to_string().contains("Celestial Emerald Ring"))
+        });
+        std::fs::write(system_path, toml::to_string(&system).unwrap()).unwrap();
+        std::fs::write(path, toml::to_string(&ring).unwrap()).unwrap();
+    });
+    assert_eq!(count(&db, "SELECT COUNT(*) FROM socket_option_sets WHERE name='Celestial Emerald Ring'"), 0);
+}
+
+#[test]
 fn fixture_items_share_sets_and_point_at_them() {
     let db = fixture::database(|root| {
         let directory = root.join("packs/unsourced/gear");

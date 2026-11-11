@@ -4687,7 +4687,38 @@ fn item_socket_removal_deletes_only_the_qualified_socket_and_its_options() {
         .map(Result::unwrap)
         .collect();
     assert_eq!(options, ["Dodge 8% and Adds a Blue augment slot"]);
+    assert_eq!(
+        row_count(
+            &db,
+            "SELECT COUNT(*) FROM socket_option_sets WHERE slug='upgrade-tier-2-epic-duelists-leathers-level-20'"
+        ),
+        0
+    );
+    let exported = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&db, exported.path()).unwrap();
+    assert!(!walkdir::WalkDir::new(exported.path()).into_iter().map(Result::unwrap).any(|entry| entry
+        .path()
+        .to_string_lossy()
+        .contains("sockets/upgrade-tier-2/epic-duelists-leathers-level-20.toml")));
+
     assert_eq!(row_count(&db, "SELECT COUNT(*) FROM modifiers m WHERE m.source_kind='socket_option' AND NOT EXISTS (SELECT 1 FROM socket_options o WHERE o.id=m.source_id)"), 0);
+}
+
+#[test]
+fn removing_an_item_removes_its_unshared_option_sets() {
+    let source = data_files_with_untyped("carrier-removal", &[]);
+    std::fs::copy(
+        fixtures_dir().join("effect-groups/EpicDuelistsLeathers.item"),
+        source.join("Items/EpicDuelistsLeathers.item"),
+    )
+    .unwrap();
+    let correction = new_correction("item", "Epic Duelist's Leathers (level 20)", "remove", "0", "1");
+    let (db, report) = built_db_from(&source, &[("carrier-removal.toml", &correction)]).unwrap();
+    assert_eq!(report.correction_applied_count, 1);
+    assert_eq!(
+        row_count(&db, "SELECT COUNT(*) FROM socket_option_sets WHERE name='Epic Duelist''s Leathers (level 20)'"),
+        0
+    );
 }
 
 #[test]
