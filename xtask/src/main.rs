@@ -125,6 +125,12 @@ enum Task {
 fn main() -> Result<()> {
     match Cli::parse().command {
         Task::Lint => {
+            xtask::data_file_lints::deny_copied_step_cost_fallbacks(&[
+                &workspace_root().join("crates/ddo-model/src"),
+                &workspace_root().join("crates/ddo-etl/src"),
+                &workspace_root().join("crates/ddo-api/src"),
+                &workspace_root().join("xtask/src"),
+            ])?;
             xtask::data_file_lints::deny_generic_file_mappers(&workspace_root().join("crates/ddo-etl/src/tree"))?;
             xtask::data_file_lints::deny_annotation_table_literals(&workspace_root().join("crates/ddo-etl/src"))?;
             xtask::data_file_lints::deny_citation_field_reads(&[

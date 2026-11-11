@@ -1602,6 +1602,25 @@ CREATE TABLE IF NOT EXISTS crafting_recipe_ingredients (
     PRIMARY KEY (recipe_id, sort_order)
 );
 
+CREATE VIEW IF NOT EXISTS crafting_recipe_step_costs
+    (recipe_id, sort_order, ingredient_id, item_id, tier, quantity) AS
+SELECT recipe.id, cost.sort_order, cost.ingredient_id, cost.item_id, recipe.tier, cost.quantity
+FROM crafting_recipes recipe
+JOIN crafting_step_costs cost ON cost.step_id = recipe.step_id
+    AND (cost.tier = recipe.tier OR (cost.tier = 'any' AND NOT EXISTS (
+        SELECT 1 FROM crafting_step_costs exact
+        WHERE exact.step_id = recipe.step_id AND exact.tier = recipe.tier
+    )));
+
+CREATE VIEW IF NOT EXISTS crafting_recipe_effective_costs
+    (recipe_id, sort_order, ingredient_id, item_id, tier, quantity, from_step) AS
+SELECT cost.recipe_id, cost.sort_order, cost.ingredient_id, cost.item_id, recipe.tier, cost.quantity, 0
+FROM crafting_recipe_ingredients cost JOIN crafting_recipes recipe ON recipe.id = cost.recipe_id
+UNION ALL
+SELECT cost.recipe_id, cost.sort_order, cost.ingredient_id, cost.item_id, cost.tier, cost.quantity, 1
+FROM crafting_recipe_step_costs cost
+WHERE NOT EXISTS (SELECT 1 FROM crafting_recipe_ingredients own WHERE own.recipe_id = cost.recipe_id);
+
 CREATE TABLE IF NOT EXISTS crafting_unlocks (
     id INTEGER PRIMARY KEY,
     system_id INTEGER REFERENCES crafting_systems(id) ON DELETE CASCADE,

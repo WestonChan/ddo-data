@@ -362,6 +362,50 @@ fn crafting_step_costs_are_one_set_per_grade() {
 }
 
 #[test]
+fn crafting_cost_views_resolve_overrides_exact_tiers_and_any_fallbacks() {
+    let db = crafting_schema_db();
+    db.execute_batch(
+        "UPDATE crafting_recipes SET step_id=1 WHERE id=1;
+        INSERT INTO crafting_steps (id,system_id,name,sort_order) VALUES (2,1,'Exact only',1);
+        INSERT INTO crafting_recipes (id,system_id,step_id,tier,option,sort_order) VALUES
+            (2,1,2,'heroic','Exact',1), (3,1,1,'legendary','Fallback',2),
+            (4,1,1,'epic','Shadow',3), (5,1,NULL,'any','No step',4),
+            (6,1,2,'legendary','No grade cost',5);
+        INSERT INTO crafting_step_costs (step_id,tier,sort_order,ingredient_id,item_id,quantity) VALUES
+            (1,'any',0,1,NULL,3), (1,'any',1,NULL,1,2),
+            (1,'epic',0,1,NULL,60), (2,'heroic',0,1,NULL,11);
+        INSERT INTO crafting_recipe_ingredients (recipe_id,sort_order,item_id,quantity) VALUES (1,0,1,7);",
+    )
+    .unwrap();
+    let step_rows = db.prepare("SELECT recipe_id,sort_order,ingredient_id,item_id,tier,quantity FROM crafting_recipe_step_costs ORDER BY recipe_id,sort_order").unwrap()
+        .query_map([], |row| Ok((row.get::<_,i64>(0)?,row.get::<_,i64>(1)?,row.get::<_,Option<i64>>(2)?,row.get::<_,Option<i64>>(3)?,row.get::<_,String>(4)?,row.get::<_,i64>(5)?))).unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        step_rows,
+        [
+            (1, 0, Some(1), None, "epic".into(), 60),
+            (2, 0, Some(1), None, "heroic".into(), 11),
+            (3, 0, Some(1), None, "legendary".into(), 3),
+            (3, 1, None, Some(1), "legendary".into(), 2),
+            (4, 0, Some(1), None, "epic".into(), 60),
+        ]
+    );
+    let effective = db.prepare("SELECT recipe_id,sort_order,ingredient_id,item_id,tier,quantity,from_step FROM crafting_recipe_effective_costs ORDER BY recipe_id,sort_order").unwrap()
+        .query_map([], |row| Ok((row.get::<_,i64>(0)?,row.get::<_,i64>(1)?,row.get::<_,Option<i64>>(2)?,row.get::<_,Option<i64>>(3)?,row.get::<_,String>(4)?,row.get::<_,i64>(5)?,row.get::<_,i64>(6)?))).unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        effective,
+        [
+            (1, 0, None, Some(1), "epic".into(), 7, 0),
+            (2, 0, Some(1), None, "heroic".into(), 11, 1),
+            (3, 0, Some(1), None, "legendary".into(), 3, 1),
+            (3, 1, None, Some(1), "legendary".into(), 2, 1),
+            (4, 0, Some(1), None, "epic".into(), 60, 1),
+        ]
+    );
+}
+
+#[test]
 fn cost_rows_point_at_exactly_one_ingredient_or_item() {
     let db = crafting_schema_db();
     for (table, owner_columns, owner_values) in

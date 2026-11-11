@@ -43,12 +43,6 @@ fn attach_augment_families(db: &Connection, crafting_system: &mut Value) -> Resu
 const COST_COLUMNS: &str = "ingredient.name AS ingredient,ingredient.id AS ingredient_id,ingredient.slug AS ingredient_slug,
     item.name AS item,item.id AS item_id,item.slug AS item_slug,COALESCE(ingredient.tier,cost.tier) AS tier,cost.quantity";
 
-const EFFECTIVE_RECIPE_COSTS: &str = "WITH cost AS (
-    SELECT own.recipe_id,own.sort_order,own.ingredient_id,own.item_id,r.tier,own.quantity,0 AS from_step FROM crafting_recipe_ingredients own JOIN crafting_recipes r ON r.id=own.recipe_id
-    UNION ALL SELECT r.id,step.sort_order,step.ingredient_id,step.item_id,r.tier,step.quantity,1 FROM crafting_recipes r JOIN crafting_step_costs step ON step.step_id=r.step_id AND (step.tier=r.tier OR (step.tier='any' AND NOT EXISTS (SELECT 1 FROM crafting_step_costs exact WHERE exact.step_id=r.step_id AND exact.tier=r.tier)))
-    WHERE NOT EXISTS (SELECT 1 FROM crafting_recipe_ingredients own WHERE own.recipe_id=r.id)
-)";
-
 fn unlocks_for(db: &Connection, parent: &str, ids: &[i64]) -> Result<BTreeMap<i64, Vec<Value>>, ApiError> {
     grouped_rows(db, ids, &format!("SELECT u.{parent} AS owner_id,u.kind,u.value,u.text,
         q.name AS quest,q.id AS quest_id,q.slug AS quest_slug,p.name AS patron,p.id AS patron_id,p.slug AS patron_slug,
@@ -120,7 +114,7 @@ pub(super) fn steps_by_id(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64, 
 
 pub(super) fn recipes_by_id(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64, Value>, ApiError> {
     let sockets = sockets_by_id(db)?;
-    let mut costs = grouped_rows(db, ids, &format!("{EFFECTIVE_RECIPE_COSTS} SELECT cost.recipe_id AS owner_id,cost.from_step,{COST_COLUMNS} FROM cost LEFT JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id LEFT JOIN items item ON item.id=cost.item_id WHERE cost.recipe_id IN ({{ids}}) ORDER BY cost.recipe_id,cost.sort_order"))?;
+    let mut costs = grouped_rows(db, ids, &format!("SELECT cost.recipe_id AS owner_id,cost.from_step,{COST_COLUMNS} FROM crafting_recipe_effective_costs cost LEFT JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id LEFT JOIN items item ON item.id=cost.item_id WHERE cost.recipe_id IN ({{ids}}) ORDER BY cost.recipe_id,cost.sort_order"))?;
     let mut augments = grouped_rows(db, ids, "SELECT link.recipe_id AS owner_id,a.id,a.slug,a.name,a.min_level FROM crafting_recipe_augments link JOIN augments a ON a.id=link.augment_id WHERE link.recipe_id IN ({ids}) ORDER BY link.recipe_id,link.sort_order")?;
     let mut options = grouped_rows(db, ids, "SELECT link.recipe_id AS owner_id,s.name AS 'set',s.id AS set_id,s.slug AS set_slug,o.name FROM crafting_recipe_set_options link JOIN socket_options o ON o.id=link.option_id JOIN socket_option_sets s ON s.id=o.set_id WHERE link.recipe_id IN ({ids}) ORDER BY link.recipe_id,s.slug,o.option_order")?;
     let mut unlocks = unlocks_for(db, "recipe_id", ids)?;

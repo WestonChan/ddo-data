@@ -16,6 +16,36 @@ const ANNOTATION_TABLES: [&str; 7] = [
 
 const DECLARED_ANNOTATION_TABLES: [&str; 3] = [AppliedCorrection::TABLE, Citation::TABLE, RemovedEntry::TABLE];
 
+pub fn deny_copied_step_cost_fallbacks(roots: &[&Path]) -> anyhow::Result<()> {
+    let mut findings = Vec::new();
+    for root in roots {
+        for entry in WalkDir::new(root) {
+            let entry = entry?;
+            let path = entry.path();
+            if path.extension().is_none_or(|extension| extension != "rs") || path.ends_with("ddo-model/src/schema.rs") {
+                continue;
+            }
+            let source = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
+            for (index, line) in source.lines().enumerate() {
+                let names_step_costs = line.contains("crafting_step_costs");
+                let names_any_tier = line.contains("'any'");
+                if names_step_costs && names_any_tier {
+                    findings.push(format!(
+                        "{}:{}: step-cost fallback belongs in the model's crafting cost views",
+                        path.display(),
+                        index + 1
+                    ));
+                }
+            }
+        }
+    }
+    findings.sort();
+    if !findings.is_empty() {
+        bail!("{}", findings.join("\n"));
+    }
+    Ok(())
+}
+
 pub fn deny_annotation_table_literals(root: &Path) -> anyhow::Result<()> {
     let mut findings = Vec::new();
     for entry in WalkDir::new(root) {
