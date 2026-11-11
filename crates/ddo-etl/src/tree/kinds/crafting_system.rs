@@ -386,18 +386,23 @@ impl CraftingSystemFile {
             let (system_id, position) = step_locations[&id];
             files.get_mut(&system_id).unwrap().step[position].effect.push(line);
         }
-        for (id, (system_id, position)) in &step_locations {
-            files.get_mut(system_id).unwrap().step[*position].modifier =
-                modifiers.remove(&("crafting_step".into(), *id)).unwrap_or_default();
-        }
         let mut costs = db.prepare(&format!(
-            "SELECT {} FROM crafting_step_costs ORDER BY step_id,tier,sort_order",
+            "SELECT {} FROM crafting_step_costs ORDER BY step_id,sort_order",
             CraftingStepCost::select_columns()
         ))?;
         for row in costs.query_map([], |row| Ok((row.get::<_, i64>("step_id")?, CraftingStepCost::from_row(row)?)))? {
             let (id, cost) = row?;
             let (system_id, position) = step_locations[&id];
             files.get_mut(&system_id).unwrap().step[position].cost.push(cost);
+        }
+        for (id, (system_id, position)) in &step_locations {
+            files.get_mut(system_id).unwrap().step[*position].modifier =
+                modifiers.remove(&("crafting_step".into(), *id)).unwrap_or_default();
+            files.get_mut(system_id).unwrap().step[*position].cost.sort_by_key(|cost| {
+                ddo_model::enums::CraftingTier::parse(&cost.tier)
+                    .expect("crafting tier constrained by schema")
+                    .sort_order()
+            });
         }
         let mut select = db.prepare(&format!(
             "SELECT {} FROM crafting_system_families ORDER BY rowid",

@@ -435,6 +435,30 @@ fn a_recipe_consumes_an_item_by_reference() {
 }
 
 #[test]
+fn step_costs_export_in_grade_order_on_both_paths() {
+    let db = fixture::database(|root| {
+        let mut contents = "\n[[step]]\nname='Cost order'\n".to_string();
+        for tier in ["any", "legendary", "epic", "heroic"] {
+            contents.push_str(&format!("[[step.cost]]\ntier='{tier}'\ningredient='Thread of Fate'\nquantity=1\n"));
+        }
+        fixture::append_to_file(root.join("packs/shared/crafting/catalyst-crafting/crafting.toml"), &contents);
+    });
+    let exported = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&db, exported.path()).unwrap();
+    let text =
+        std::fs::read_to_string(exported.path().join("packs/shared/crafting/catalyst-crafting/crafting.toml")).unwrap();
+    let system: toml::Value = toml::from_str(&text).unwrap();
+    let step =
+        system["step"].as_array().unwrap().iter().find(|step| step["name"].as_str() == Some("Cost order")).unwrap();
+    let tiers = step["cost"].as_array().unwrap().iter().map(|cost| cost["tier"].as_str().unwrap()).collect::<Vec<_>>();
+    assert_eq!(tiers, ["heroic", "epic", "legendary", "any"]);
+    let wiki = WikiOverrides::from_database(&db).unwrap();
+    let system = wiki.crafting_systems.iter().find(|system| system.name == "Catalyst Crafting").unwrap();
+    let step = system.steps.iter().find(|step| step.name == "Cost order").unwrap();
+    assert_eq!(step.costs.iter().map(|cost| cost.tier.as_str()).collect::<Vec<_>>(), tiers);
+}
+
+#[test]
 fn step_costs_apply_to_recipes_without_their_own_and_overrides_stand() {
     let db = fixture::database(|root| {
         let path = root.join("packs/shared/crafting/heroic-green-steel/crafting.toml");

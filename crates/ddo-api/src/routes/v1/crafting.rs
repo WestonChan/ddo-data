@@ -72,7 +72,7 @@ pub(super) fn steps_by_id(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64, 
     let scopes = json_rows(db, &format!("SELECT e.step_id,e.sort_order,s.name AS equipment_slot FROM crafting_step_effects e LEFT JOIN equipment_slots s ON s.id=e.equipment_slot_id WHERE e.step_id IN ({})", sql_integer_list(ids)), [])?
         .into_iter().map(|row| ((row["step_id"].as_i64().unwrap(),row["sort_order"].as_i64().unwrap()),row["equipment_slot"].clone())).collect::<BTreeMap<_,_>>();
     let mut modifiers = modifiers_for_owners(db, "crafting_step", ids)?;
-    let mut costs = grouped_rows(db, ids, &format!("SELECT cost.step_id AS owner_id,cost.tier AS grade,{COST_COLUMNS} FROM crafting_step_costs cost LEFT JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id LEFT JOIN items item ON item.id=cost.item_id WHERE cost.step_id IN ({{ids}}) ORDER BY cost.step_id,cost.tier,cost.sort_order"))?;
+    let mut costs = grouped_rows(db, ids, &format!("SELECT cost.step_id AS owner_id,cost.tier AS grade,{COST_COLUMNS} FROM crafting_step_costs cost LEFT JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id LEFT JOIN items item ON item.id=cost.item_id WHERE cost.step_id IN ({{ids}}) ORDER BY cost.step_id,cost.sort_order"))?;
     let mut steps = BTreeMap::new();
     for mut step in json_rows(
         db,
@@ -102,8 +102,14 @@ pub(super) fn steps_by_id(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64, 
             let grade = cost.as_object_mut().unwrap().remove("grade").unwrap().as_str().unwrap().to_string();
             grades.entry(grade).or_default().push(cost);
         }
-        step["costs"] =
-            Value::Array(grades.into_iter().map(|(tier, cost)| serde_json::json!({"tier":tier,"cost":cost})).collect());
+        step["costs"] = Value::Array(
+            ddo_model::enums::CraftingTier::ALL
+                .iter()
+                .filter_map(|tier| {
+                    grades.remove(tier.as_str()).map(|cost| serde_json::json!({"tier":tier.as_str(),"cost":cost}))
+                })
+                .collect(),
+        );
         for key in ["id", "slot_id"] {
             step.as_object_mut().unwrap().remove(key);
         }

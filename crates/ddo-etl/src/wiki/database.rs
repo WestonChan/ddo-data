@@ -180,7 +180,12 @@ fn crafting_systems(db: &Connection, paths: &DataFilePaths) -> Result<Vec<Crafti
 
 fn crafting_steps(db: &Connection) -> Result<BTreeMap<i64, Vec<CraftingStep>>> {
     let mut effects = groups(db,"SELECT l.step_id,e.name,b.name,l.alias,l.value,l.value2,s.name FROM crafting_step_effects l JOIN effects e ON e.id=l.effect_id LEFT JOIN bonus_types b ON b.id=l.bonus_type_id LEFT JOIN equipment_slots s ON s.id=l.equipment_slot_id ORDER BY l.step_id,l.sort_order",|row|Ok((row.get(0)?,CraftingStepEffect {effect:row.get(1)?,bonus_type:row.get(2)?,alias:row.get(3)?,value:row.get(4)?,value2:row.get(5)?,equipment_slot:row.get(6)?})))?;
-    let mut costs = groups(db,"SELECT c.step_id,c.tier,i.name,item.name,COALESCE(i.variant,item.variant),c.quantity FROM crafting_step_costs c LEFT JOIN crafting_ingredients i ON i.id=c.ingredient_id LEFT JOIN items item ON item.id=c.item_id ORDER BY c.step_id,c.tier,c.sort_order",|row|Ok((row.get(0)?,CraftingStepCost {tier:row.get(1)?,cost:IngredientCost {ingredient:row.get(2)?,item:row.get(3)?,variant:row.get(4)?,quantity:row.get(5)?}})))?;
+    let mut costs = groups(db,"SELECT c.step_id,c.tier,i.name,item.name,COALESCE(i.variant,item.variant),c.quantity FROM crafting_step_costs c LEFT JOIN crafting_ingredients i ON i.id=c.ingredient_id LEFT JOIN items item ON item.id=c.item_id ORDER BY c.step_id,c.sort_order",|row|Ok((row.get(0)?,CraftingStepCost {tier:row.get(1)?,cost:IngredientCost {ingredient:row.get(2)?,item:row.get(3)?,variant:row.get(4)?,quantity:row.get(5)?}})))?;
+    for step_costs in costs.values_mut() {
+        step_costs.sort_by_key(|cost| {
+            ddo_model::enums::CraftingTier::parse(&cost.tier).expect("crafting tier constrained by schema").sort_order()
+        });
+    }
     let mut modifiers = crate::tree::modifier_rows_by_owner(db)?;
     groups(db,"SELECT s.id,s.system_id,s.name,t.label,s.is_random FROM crafting_steps s LEFT JOIN augment_slot_types t ON t.id=s.slot_id ORDER BY s.system_id,s.sort_order",|row| {
         let id = row.get::<_,i64>(0)?;

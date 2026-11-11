@@ -3758,6 +3758,24 @@ async fn item_socket_options_read_through_sets_and_carry_the_recipes_that_price_
 }
 
 #[tokio::test]
+async fn step_costs_are_served_in_grade_order() {
+    let state = fixture_state_with_data_edits("step-grade-order", |root| {
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let mut contents = std::fs::read_to_string(&path).unwrap();
+        contents.push_str("\n[[step]]\nname='Cost order'\n");
+        for tier in ["any", "legendary", "epic", "heroic"] {
+            contents.push_str(&format!("[[step.cost]]\ntier='{tier}'\ningredient='Thread of Fate'\nquantity=1\n"));
+        }
+        std::fs::write(path, contents).unwrap();
+    });
+    let (status, _, system) = get_from(state, "/v1/crafting-systems/catalyst-crafting").await;
+    assert_eq!(status, StatusCode::OK);
+    let step = system["steps"].as_array().unwrap().iter().find(|step| step["name"] == "Cost order").unwrap();
+    let tiers = step["costs"].as_array().unwrap().iter().map(|cost| cost["tier"].as_str().unwrap()).collect::<Vec<_>>();
+    assert_eq!(tiers, ["heroic", "epic", "legendary", "any"]);
+}
+
+#[tokio::test]
 async fn recipes_without_a_cost_for_their_grade_serve_an_empty_cost() {
     let state = fixture_state_with_data_edits("missing-step-grade", |root| {
         let path = root.join("packs/shared/crafting/thunder-forged/crafting.toml");

@@ -915,6 +915,10 @@ impl CraftingTier {
         }
     }
 
+    pub fn sort_order(self) -> usize {
+        Self::ALL.iter().position(|tier| *tier == self).expect("every crafting tier has an order")
+    }
+
     pub fn parse(text: &str) -> Option<Self> {
         Self::ALL.iter().copied().find(|t| t.as_str() == text)
     }
