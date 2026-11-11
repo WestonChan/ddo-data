@@ -473,7 +473,7 @@ fn insert_crafting_step(
 
 fn unlock_record(unlock: &crate::wiki::CraftingUnlock) -> crate::tree::CraftingUnlockRecord {
     crate::tree::CraftingUnlockRecord {
-        kind: unlock.kind.clone(),
+        kind: unlock.kind,
         quest: unlock.quest.clone(),
         patron: unlock.patron.clone(),
         pack: unlock.pack.clone(),

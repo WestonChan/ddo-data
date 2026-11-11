@@ -56,7 +56,8 @@ impl PreviousReferences<'_> {
         ]
         .into_iter()
         .all(|(table, name)| {
-            name.as_deref().is_none_or(|name| self.fact(table, name, file, format!("{owner} {} unlock", unlock.kind)))
+            name.as_deref()
+                .is_none_or(|name| self.fact(table, name, file, format!("{owner} {} unlock", unlock.kind.as_str())))
         })
     }
 }

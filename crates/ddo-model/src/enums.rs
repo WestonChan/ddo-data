@@ -944,6 +944,58 @@ impl StationKind {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, schemars::JsonSchema)]
+#[serde(rename_all = "snake_case")]
+pub enum CraftingUnlockKind {
+    Quest,
+    RaidFlagging,
+    Favor,
+    Level,
+    Feat,
+    Pack,
+    KeptItem,
+    GuildAmenity,
+    CraftingLevel,
+    ReaperExperience,
+    Other,
+}
+
+impl CraftingUnlockKind {
+    pub const ALL: [Self; 11] = [
+        Self::Quest,
+        Self::RaidFlagging,
+        Self::Favor,
+        Self::Level,
+        Self::Feat,
+        Self::Pack,
+        Self::KeptItem,
+        Self::GuildAmenity,
+        Self::CraftingLevel,
+        Self::ReaperExperience,
+        Self::Other,
+    ];
+
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Quest => "quest",
+            Self::RaidFlagging => "raid_flagging",
+            Self::Favor => "favor",
+            Self::Level => "level",
+            Self::Feat => "feat",
+            Self::Pack => "pack",
+            Self::KeptItem => "kept_item",
+            Self::GuildAmenity => "guild_amenity",
+            Self::CraftingLevel => "crafting_level",
+            Self::ReaperExperience => "reaper_experience",
+            Self::Other => "other",
+        }
+    }
+
+    pub fn parse(text: &str) -> Option<Self> {
+        Self::ALL.into_iter().find(|kind| kind.as_str() == text)
+    }
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum DamageCategory {
     Physical,

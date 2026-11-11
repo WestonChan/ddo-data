@@ -984,6 +984,30 @@ mod tests {
     }
 
     #[test]
+    fn crafting_unlock_schemas_restrict_kinds_to_the_shared_vocabulary() {
+        for kind in ["CraftingSystem", "CraftingStations"] {
+            let schema = super::file_schema(kind);
+            assert_eq!(schema["$defs"]["CraftingUnlock"]["properties"]["kind"]["$ref"], "#/$defs/CraftingUnlockKind");
+            assert_eq!(
+                schema["$defs"]["CraftingUnlockKind"]["enum"],
+                serde_json::json!([
+                    "quest",
+                    "raid_flagging",
+                    "favor",
+                    "level",
+                    "feat",
+                    "pack",
+                    "kept_item",
+                    "guild_amenity",
+                    "crafting_level",
+                    "reaper_experience",
+                    "other"
+                ])
+            );
+        }
+    }
+
+    #[test]
     fn declared_file_paths_reject_missing_and_duplicate_taplo_rules() {
         let workspace_root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
         let config: toml::Value =

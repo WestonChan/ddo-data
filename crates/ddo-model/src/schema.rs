@@ -25,6 +25,7 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
     let save_progression = sql_in_clause(SaveProgression::ALL.iter().map(|s| s.as_str()));
     let tree_kind = sql_in_clause(EnhancementTreeKind::ALL.iter().map(|k| k.as_str()));
     let requirement_group = sql_in_clause(RequirementGroupKind::ALL.iter().map(|g| g.as_str()));
+    let crafting_unlock_kind = sql_in_clause(crate::enums::CraftingUnlockKind::ALL.iter().map(|kind| kind.as_str()));
     let station_kind = sql_in_clause(crate::enums::StationKind::ALL.iter().map(|kind| kind.as_str()));
     let crafting_tier = sql_in_clause(CraftingTier::ALL.iter().map(|t| t.as_str()));
     let correction_kind = sql_in_clause(CorrectionKind::ALL.iter().map(|k| k.as_str()));
@@ -1606,7 +1607,7 @@ CREATE TABLE IF NOT EXISTS crafting_unlocks (
     station_id INTEGER REFERENCES crafting_stations(id) ON DELETE CASCADE,
     recipe_id INTEGER REFERENCES crafting_recipes(id) ON DELETE CASCADE,
     sort_order INTEGER NOT NULL,
-    kind TEXT NOT NULL CHECK (kind IN ('quest', 'raid_flagging', 'favor', 'level', 'feat', 'pack', 'kept_item', 'guild_amenity', 'crafting_level', 'reaper_experience', 'other')),
+    kind TEXT NOT NULL CHECK (kind {crafting_unlock_kind}),
     quest_id INTEGER REFERENCES quests(id),
     patron_id INTEGER REFERENCES patrons(id),
     pack_id INTEGER REFERENCES adventure_packs(id),

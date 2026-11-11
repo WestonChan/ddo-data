@@ -61,7 +61,7 @@ pub struct CraftingSystemStation {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CraftingUnlock {
-    pub kind: String,
+    pub kind: ddo_model::enums::CraftingUnlockKind,
     pub quest: Option<String>,
     pub patron: Option<String>,
     pub pack: Option<String>,

@@ -38,7 +38,7 @@ database_record! {
         keys { id: Option<i64>, sort_order: i64 }
         values { system_id => owner.system_id(), station_id => owner.station_id(), recipe_id => owner.recipe_id() }
         fields {
-            kind: String => kind,
+            kind: ddo_model::enums::CraftingUnlockKind => kind [enum_text],
             #[serde(default, skip_serializing_if = "Option::is_none")]
             quest: Option<String> => quest_id [optional_reference "quests"],
             #[serde(default, skip_serializing_if = "Option::is_none")]

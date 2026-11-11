@@ -146,7 +146,7 @@
           "x-reference-kind": "items"
         },
         "kind": {
-          "type": "string"
+          "$ref": "#/$defs/CraftingUnlockKind"
         },
         "pack": {
           "type": [
@@ -208,6 +208,22 @@
         "text"
       ],
       "x-table": "crafting_unlocks"
+    },
+    "CraftingUnlockKind": {
+      "enum": [
+        "quest",
+        "raid_flagging",
+        "favor",
+        "level",
+        "feat",
+        "pack",
+        "kept_item",
+        "guild_amenity",
+        "crafting_level",
+        "reaper_experience",
+        "other"
+      ],
+      "type": "string"
     },
     "StationKind": {
       "enum": [
