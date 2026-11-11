@@ -221,9 +221,9 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::hard(
         "socket_option_sets_have_a_carrier",
-        "every socket option set is carried by an item socket, or is still referenced by a recipe or a correction",
-        OffenderQuery::Sql(ddo_etl::build::UNREFERENCED_SOCKET_OPTION_SETS),
-    ),
+        "every socket option set is carried by an item socket",
+        OffenderQuery::Sql(ddo_etl::build::CARRIERLESS_SOCKET_OPTION_SETS),
+    ).showing_every_offender(),
     IntegrityCheck::warn(
         "socket_option_sets_differing_only_by_option_names",
         "sets with equal content except option names need a reader's spelling verdict and correction (ddo-data#72)",

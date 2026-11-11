@@ -10,20 +10,31 @@ pub(crate) struct SocketOptionList<T = SocketOption> {
     pub(crate) item_name: String,
 }
 
-pub const UNREFERENCED_SOCKET_OPTION_SETS: &str = "SELECT s.name,s.id,s.slug FROM socket_option_sets s
+pub const CARRIERLESS_SOCKET_OPTION_SETS: &str = "WITH referrers(set_id,detail) AS (
+    SELECT o.set_id,'recipe ' || system.name || ' / ' || r.option || ' / option ' || o.name
+      FROM crafting_recipe_set_options link JOIN socket_options o ON o.id=link.option_id
+      JOIN crafting_recipes r ON r.id=link.recipe_id JOIN crafting_systems system ON system.id=r.system_id
+    UNION ALL
+    SELECT s.id,c.kind || ' [' || c.qualifier || '].' || c.field
+      FROM corrections c JOIN socket_option_sets s ON s.slug=c.name
+      WHERE c.kind IN ('socket_option','socket_option_bonus')
+)
+SELECT s.name,s.id,referrers.detail FROM socket_option_sets s
+    LEFT JOIN referrers ON referrers.set_id=s.id
     WHERE NOT EXISTS (SELECT 1 FROM item_augment_slots socket WHERE socket.option_set_id=s.id)
-      AND NOT EXISTS (SELECT 1 FROM crafting_recipe_set_options link JOIN socket_options o ON o.id=link.option_id WHERE o.set_id=s.id)
-      AND NOT EXISTS (SELECT 1 FROM corrections c WHERE c.kind IN ('socket_option','socket_option_bonus') AND c.name=s.slug)
-    ORDER BY s.slug";
+    ORDER BY s.slug,referrers.detail";
 
-pub(super) fn remove_sets_without_carriers(
+pub(super) fn remove_unreferenced_carrierless_sets(
     transaction: &rusqlite::Transaction<'_>,
     effects: &mut super::effects::EffectCache<'_>,
 ) -> Result<()> {
     let unused_sets = transaction
-        .prepare(UNREFERENCED_SOCKET_OPTION_SETS)?
-        .query_map([], |row| row.get::<_, i64>(1))?
-        .collect::<rusqlite::Result<Vec<_>>>()?;
+        .prepare(CARRIERLESS_SOCKET_OPTION_SETS)?
+        .query_map([], |row| Ok((row.get::<_, i64>(1)?, row.get::<_, Option<String>>(2)?)))?
+        .collect::<rusqlite::Result<Vec<_>>>()?
+        .into_iter()
+        .filter_map(|(id, referrer)| referrer.is_none().then_some(id))
+        .collect::<Vec<_>>();
     for set_id in unused_sets {
         let linked_effects = transaction.prepare("SELECT DISTINCT e.effect_id FROM socket_option_effects e JOIN socket_options o ON o.id=e.option_id WHERE o.set_id=?1")?
             .query_map([set_id], |row| row.get::<_, i64>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;

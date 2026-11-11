@@ -17,7 +17,7 @@ mod quest_series;
 mod sets;
 mod socket_option_sets;
 pub(crate) use socket_option_sets::{group_socket_options_into_sets, SocketOptionList};
-pub use socket_option_sets::{ExistingSocketOptionSets, UNREFERENCED_SOCKET_OPTION_SETS};
+pub use socket_option_sets::{ExistingSocketOptionSets, CARRIERLESS_SOCKET_OPTION_SETS};
 mod trees_spells;
 mod vendors_and_events;
 mod wiki;
@@ -533,7 +533,7 @@ pub(crate) fn build_with_wiki_references(
         &mut report,
         options.omitted_recipe_set_options,
     )?;
-    socket_option_sets::remove_sets_without_carriers(&transaction, &mut writer.effects)?;
+    socket_option_sets::remove_unreferenced_carrierless_sets(&transaction, &mut writer.effects)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, &overlay_references, wiki_overrides, &mut report)?;
     vendors_and_events::write_wiki_vendor_and_event_items(
         &transaction,

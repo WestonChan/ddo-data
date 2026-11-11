@@ -4852,6 +4852,21 @@ fn removing_a_last_carrier_keeps_priced_sets_and_cleans_unreferenced_modifiers()
         );
         assert_eq!(row_count(&db, "SELECT COUNT(*) FROM crafting_recipe_set_options"), i64::from(referenced));
         assert_eq!(row_count(&db, requirements), i64::from(referenced));
+        let carrierless = db
+            .prepare(ddo_etl::build::CARRIERLESS_SOCKET_OPTION_SETS)
+            .unwrap()
+            .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, Option<String>>(2)?)))
+            .unwrap()
+            .collect::<Result<Vec<_>, _>>()
+            .unwrap();
+        assert_eq!(carrierless.len(), usize::from(referenced), "{carrierless:?}");
+        if referenced {
+            assert_eq!(carrierless[0].0, "Epic Duelist's Leathers (level 20)");
+            let detail = carrierless[0].1.as_deref().unwrap();
+            for expected in ["Nearly Finished", "Fabricator's Ingenuity", "Epic Nimbleness"] {
+                assert!(detail.contains(expected), "{detail}");
+            }
+        }
         assert_eq!(row_count(&db, "SELECT COUNT(*) FROM requirements r WHERE r.owner_kind='modifier' AND NOT EXISTS (SELECT 1 FROM modifiers m WHERE m.id=r.owner_id)"), 0);
         assert_eq!(row_count(&db, "SELECT COUNT(*) FROM modifiers m WHERE m.source_kind='socket_option' AND NOT EXISTS (SELECT 1 FROM socket_options o WHERE o.id=m.source_id)"), 0);
         assert_eq!(row_count(&db, "SELECT COUNT(*) FROM corrections c WHERE c.kind IN ('socket_option','socket_option_bonus') AND NOT EXISTS (SELECT 1 FROM socket_option_sets s WHERE s.slug=c.name)"), 0);

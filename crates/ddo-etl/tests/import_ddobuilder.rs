@@ -1558,6 +1558,21 @@ fn a_priced_set_survives_when_upstream_removes_its_last_carrier() {
         tree::build_from_data(&root, &mut rebuilt).unwrap();
         let (id, links): (i64, i64) = rebuilt.query_row("SELECT s.id,COUNT(*) FROM crafting_recipe_set_options link JOIN socket_options o ON o.id=link.option_id JOIN socket_option_sets s ON s.id=o.set_id JOIN crafting_recipes r ON r.id=link.recipe_id WHERE r.option='Fabricator''s Ingenuity' GROUP BY s.id", [], |row| Ok((row.get(0)?, row.get(1)?))).unwrap();
         assert_eq!(links, 1);
+        let carrierless = rebuilt
+            .prepare(ddo_etl::build::CARRIERLESS_SOCKET_OPTION_SETS)
+            .unwrap()
+            .query_map([], |row| {
+                Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?, row.get::<_, Option<String>>(2)?))
+            })
+            .unwrap()
+            .collect::<Result<Vec<_>, _>>()
+            .unwrap();
+        assert_eq!(carrierless.len(), usize::from(removed_from_new), "{carrierless:?}");
+        if removed_from_new {
+            assert_eq!((carrierless[0].0.as_str(), carrierless[0].1), ("Fabricator's Gauntlets", id));
+            let detail = carrierless[0].2.as_deref().unwrap();
+            assert!(detail.contains("Nearly Finished") && detail.contains("Fabricator's Ingenuity"), "{detail}");
+        }
         if removed_from_new {
             let paths = tree::DataFilePaths::from_database(&rebuilt).unwrap();
             assert!(paths.path("socket_option_sets", id).unwrap().starts_with("packs/shared/sockets"));

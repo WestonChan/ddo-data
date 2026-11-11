@@ -15,23 +15,45 @@ const PACK_QUEST_OVERLAP_SQL: &str =
      LIMIT 1";
 
 #[test]
-fn carrierless_sets_are_allowed_only_while_referenced() {
+fn carrierless_sets_fail_and_name_every_referrer() {
     let scratch = tempfile::tempdir().unwrap();
     let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
-    let set: i64 = db.query_row("SELECT o.set_id FROM crafting_recipe_set_options link JOIN socket_options o ON o.id=link.option_id LIMIT 1", [], |row| row.get(0)).unwrap();
+    let set: i64 = db.query_row("SELECT o.set_id FROM crafting_recipe_set_options link JOIN socket_options o ON o.id=link.option_id JOIN crafting_recipes r ON r.id=link.recipe_id WHERE r.option='Fabricator''s Ingenuity'", [], |row| row.get(0)).unwrap();
     db.execute("UPDATE item_augment_slots SET option_set_id=NULL WHERE option_set_id=?1", [set]).unwrap();
-    let status = || {
-        integrity_report(&db, &fixture_options()).unwrap().outcome("socket_option_sets_have_a_carrier").unwrap().status
+    let offenders = || {
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("socket_option_sets_have_a_carrier").unwrap();
+        assert_eq!(outcome.status, CheckStatus::Failed);
+        assert!(outcome.offenders.iter().all(|row| row.name == "Fabricator's Gauntlets" && row.id == Some(set)));
+        outcome.offenders.iter().map(|row| row.detail.clone()).collect::<Vec<_>>()
     };
-    assert_eq!(status(), CheckStatus::Passed);
+    let priced = offenders();
+    assert_eq!(priced.len(), 1);
+    assert!(priced[0].contains("Nearly Finished") && priced[0].contains("Fabricator's Ingenuity"), "{priced:?}");
+    db.execute("INSERT INTO corrections (kind,name,qualifier,field,from_value,to_value,reason,source,read) SELECT 'socket_option',s.slug,o.name,'name',json_quote('Old'),json_quote(o.name),'Fixture reference','https://ddowiki.com/page/Test','2026-11-11' FROM socket_option_sets s JOIN socket_options o ON o.set_id=s.id WHERE s.id=?1 LIMIT 1", [set]).unwrap();
+    let both = offenders();
+    assert_eq!(both.len(), 2);
+    assert!(both.contains(&priced[0]));
+    assert!(
+        both.iter().any(|detail| detail.contains("socket_option")
+            && detail.contains("Fabricator's Ingenuity")
+            && detail.contains("name")),
+        "{both:?}"
+    );
     db.execute(
         "DELETE FROM crafting_recipe_set_options WHERE option_id IN (SELECT id FROM socket_options WHERE set_id=?1)",
         [set],
     )
     .unwrap();
-    assert_eq!(status(), CheckStatus::Failed);
-    db.execute("INSERT INTO corrections (kind,name,qualifier,field,from_value,to_value,reason,source,read) SELECT 'socket_option',s.slug,o.name,'name','\"Old\"',json_quote(o.name),'Fixture reference','https://ddowiki.com/page/Test','2026-11-11' FROM socket_option_sets s JOIN socket_options o ON o.set_id=s.id WHERE s.id=?1 LIMIT 1", [set]).unwrap();
-    assert_eq!(status(), CheckStatus::Passed);
+    let corrected = offenders();
+    assert_eq!(corrected.len(), 1);
+    assert!(corrected[0].contains("socket_option"), "{corrected:?}");
+    db.execute(
+        "DELETE FROM corrections WHERE kind='socket_option' AND name=(SELECT slug FROM socket_option_sets WHERE id=?1)",
+        [set],
+    )
+    .unwrap();
+    assert_eq!(offenders(), [""]);
 }
 
 #[test]
