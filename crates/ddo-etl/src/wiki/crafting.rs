@@ -21,6 +21,7 @@ pub struct CraftingStep {
     pub name: String,
     pub slot: Option<String>,
     pub is_random: bool,
+    pub consumed_outputs: Option<i64>,
     pub effects: Vec<CraftingStepEffect>,
     pub(crate) modifiers: Vec<crate::tree::Modifier>,
     pub costs: Vec<CraftingStepCost>,

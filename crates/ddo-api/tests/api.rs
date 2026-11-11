@@ -3758,6 +3758,42 @@ async fn item_socket_options_read_through_sets_and_carry_the_recipes_that_price_
 }
 
 #[tokio::test]
+async fn exchange_steps_serve_consumed_outputs_on_the_step_and_its_recipes() {
+    let state = fixture_state_with_data_edits("consumed-outputs", |root| {
+        for (system, step_name, quantity) in
+            [("test-upgrade-altar", "Nearly Finished (test)", 3_i64), ("thunder-forged", "Tier 1", 4_i64)]
+        {
+            let path = root.join(format!("packs/shared/crafting/{system}/crafting.toml"));
+            let contents = std::fs::read_to_string(&path).unwrap();
+            let prefix = format!("[[step]]\nname = {step_name:?}\n");
+            assert!(contents.contains(&prefix));
+            std::fs::write(path, contents.replacen(&prefix, &format!("{prefix}consumed_outputs = {quantity}\n"), 1))
+                .unwrap();
+        }
+    });
+    let (_, _, system) = get_from(state.clone(), "/v1/crafting-systems/test-upgrade-altar").await;
+    let step = system["steps"].as_array().unwrap().iter().find(|step| step["name"] == "Item exchange").unwrap();
+    assert_eq!(step["consumed_outputs"], 2);
+    assert!(step["socket"].is_null());
+    let recipe = system["recipes"].as_array().unwrap().iter().find(|recipe| recipe["step"] == "Item exchange").unwrap();
+    assert_eq!(recipe["consumed_outputs"], 2);
+    assert_eq!(recipe["cost"][0]["quantity"], 1);
+    assert_eq!(recipe["cost_from_step"], false);
+    let (_, _, augments) = get_from(state.clone(), "/v1/augments?q=Blinding%20Fear").await;
+    assert_eq!(augments["augments"][0]["crafting"][0]["consumed_outputs"], 4);
+    let (_, _, item) = get_from(state, "/v1/items/celestial-emerald-ring").await;
+    let socket = item["augment_slots"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|socket| socket["label"] == "crafting: nearly finished")
+        .unwrap();
+    let option =
+        socket["options"].as_array().unwrap().iter().find(|option| option["name"] == "+8 Constitution").unwrap();
+    assert_eq!(option["crafting"][0]["consumed_outputs"], 3);
+}
+
+#[tokio::test]
 async fn step_costs_are_served_in_grade_order() {
     let state = fixture_state_with_data_edits("step-grade-order", |root| {
         let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");

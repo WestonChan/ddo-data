@@ -65,6 +65,13 @@
     "CraftingStep": {
       "additionalProperties": false,
       "properties": {
+        "consumed_outputs": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
         "cost": {
           "items": {
             "$ref": "#/$defs/CraftingStepCost"
@@ -107,7 +114,8 @@
         "sort_order",
         "name",
         "slot_id",
-        "is_random"
+        "is_random",
+        "consumed_outputs"
       ],
       "x-table": "crafting_steps"
     },

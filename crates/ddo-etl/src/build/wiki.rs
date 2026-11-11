@@ -423,8 +423,8 @@ fn insert_crafting_step(
         .map(|label| slot_type_id_labelled(transaction, references, "step slot", label))
         .transpose()?;
     transaction.execute(
-        "INSERT INTO crafting_steps (system_id,sort_order,name,slot_id,is_random) VALUES (?1,?2,?3,?4,?5)",
-        params![system_id, position as i64, step.name, slot_id, step.is_random],
+        "INSERT INTO crafting_steps (system_id,sort_order,name,slot_id,is_random,consumed_outputs) VALUES (?1,?2,?3,?4,?5,?6)",
+        params![system_id, position as i64, step.name, slot_id, step.is_random, step.consumed_outputs],
     )?;
     let step_id = transaction.last_insert_rowid();
     for (position, line) in step.effects.iter().enumerate() {

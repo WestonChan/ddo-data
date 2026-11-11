@@ -77,7 +77,7 @@ pub(super) fn steps_by_id(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64, 
     for mut step in json_rows(
         db,
         &format!(
-            "SELECT id,name,slot_id,is_random FROM crafting_steps WHERE id IN ({}) ORDER BY sort_order",
+            "SELECT id,name,slot_id,is_random,consumed_outputs FROM crafting_steps WHERE id IN ({}) ORDER BY sort_order",
             sql_integer_list(ids)
         ),
         [],
@@ -125,7 +125,7 @@ pub(super) fn recipes_by_id(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64
     let mut options = grouped_rows(db, ids, "SELECT link.recipe_id AS owner_id,s.name AS 'set',s.id AS set_id,s.slug AS set_slug,o.name FROM crafting_recipe_set_options link JOIN socket_options o ON o.id=link.option_id JOIN socket_option_sets s ON s.id=o.set_id WHERE link.recipe_id IN ({ids}) ORDER BY link.recipe_id,s.slug,o.option_order")?;
     let mut unlocks = unlocks_for(db, "recipe_id", ids)?;
     let mut recipes = BTreeMap::new();
-    for mut recipe in json_rows(db, &format!("SELECT r.id,r.tier,r.option,r.note,step.name AS step,t.label AS slot,g.label AS grants_slot,r.grants_slot_id,
+    for mut recipe in json_rows(db, &format!("SELECT r.id,r.tier,r.option,r.note,step.name AS step,step.consumed_outputs,t.label AS slot,g.label AS grants_slot,r.grants_slot_id,
         ingredient.name AS yields_ingredient,ingredient.id AS yields_ingredient_id,ingredient.slug AS yields_ingredient_slug
         FROM crafting_recipes r LEFT JOIN crafting_steps step ON step.id=r.step_id LEFT JOIN augment_slot_types t ON t.id=COALESCE(step.slot_id,r.slot_id)
         LEFT JOIN augment_slot_types g ON g.id=r.grants_slot_id LEFT JOIN crafting_ingredients ingredient ON ingredient.id=r.yields_ingredient_id WHERE r.id IN ({}) ORDER BY r.sort_order",sql_integer_list(ids)),[])? {
@@ -152,7 +152,7 @@ pub(super) fn crafting_entries(
     let recipes = recipes_by_id(db, &ids)?;
     Ok(links.into_iter().map(|(owner,links)| (owner,links.into_iter().map(|link| {
         let recipe = &recipes[&link["recipe_id"].as_i64().unwrap()];
-        serde_json::json!({"system":link["system"],"tier":recipe["tier"],"option":recipe["option"],"step":recipe["step"],"cost":recipe["cost"],"cost_from_step":recipe["cost_from_step"]})
+        serde_json::json!({"system":link["system"],"tier":recipe["tier"],"option":recipe["option"],"step":recipe["step"],"consumed_outputs":recipe["consumed_outputs"],"cost":recipe["cost"],"cost_from_step":recipe["cost_from_step"]})
     }).collect())).collect())
 }
 

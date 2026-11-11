@@ -395,6 +395,7 @@ pub(crate) struct CraftingStepCost {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct CraftingStepResponse {
+    pub(crate) consumed_outputs: Option<i64>,
     pub(crate) name: String,
     pub(crate) socket: Option<SocketResponse>,
     pub(crate) is_random: bool,
@@ -478,6 +479,7 @@ pub(crate) struct CraftingCost {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct AugmentsDetailResponseCraftingEntry {
+    pub(crate) consumed_outputs: Option<i64>,
     pub(crate) step: Option<String>,
     pub(crate) cost_from_step: bool,
     pub(crate) cost: Vec<CraftingCost>,
@@ -768,6 +770,7 @@ pub(crate) struct CraftingSystemsDetailResponseRecipesEntryAugmentsEntry {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct CraftingSystemsDetailResponseRecipesEntry {
+    pub(crate) consumed_outputs: Option<i64>,
     pub(crate) step: Option<String>,
     pub(crate) cost_from_step: bool,
     pub(crate) yields_ingredient: Option<String>,

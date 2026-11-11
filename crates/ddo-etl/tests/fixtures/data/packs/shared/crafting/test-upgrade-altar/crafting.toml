@@ -33,6 +33,10 @@ slot = "crafting: add augment 1"
 name = "Add augment 2"
 slot = "crafting: add augment 2"
 
+[[step]]
+name = "Item exchange"
+consumed_outputs = 2
+
 [[citation]]
 url = "https://ddowiki.com/page/Test_Upgrade_Altar"
 read = "2026-09-29"
@@ -67,6 +71,15 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
+quantity = 1
+
+[[recipe]]
+option = "Exchange a test item"
+tier = "any"
+step = "Item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Test Upgrade Token"
 quantity = 1
 
 [[recipe]]

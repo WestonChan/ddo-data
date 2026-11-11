@@ -142,6 +142,8 @@ database_record! {
             slot: Option<String> => slot_id [optional_reference "augment_slot_types" "label"],
             #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
             is_random: bool => is_random,
+            #[serde(default, skip_serializing_if = "Option::is_none")]
+            consumed_outputs: Option<i64> => consumed_outputs,
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]

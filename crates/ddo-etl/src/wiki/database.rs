@@ -187,9 +187,9 @@ fn crafting_steps(db: &Connection) -> Result<BTreeMap<i64, Vec<CraftingStep>>> {
         });
     }
     let mut modifiers = crate::tree::modifier_rows_by_owner(db)?;
-    groups(db,"SELECT s.id,s.system_id,s.name,t.label,s.is_random FROM crafting_steps s LEFT JOIN augment_slot_types t ON t.id=s.slot_id ORDER BY s.system_id,s.sort_order",|row| {
+    groups(db,"SELECT s.id,s.system_id,s.name,t.label,s.is_random,s.consumed_outputs FROM crafting_steps s LEFT JOIN augment_slot_types t ON t.id=s.slot_id ORDER BY s.system_id,s.sort_order",|row| {
         let id = row.get::<_,i64>(0)?;
-        Ok((row.get(1)?,CraftingStep {name:row.get(2)?,slot:row.get(3)?,is_random:row.get(4)?,effects:effects.remove(&id).unwrap_or_default(),costs:costs.remove(&id).unwrap_or_default(),modifiers:modifiers.remove(&("crafting_step".into(),id)).unwrap_or_default()}))
+        Ok((row.get(1)?,CraftingStep {name:row.get(2)?,slot:row.get(3)?,is_random:row.get(4)?,consumed_outputs:row.get(5)?,effects:effects.remove(&id).unwrap_or_default(),costs:costs.remove(&id).unwrap_or_default(),modifiers:modifiers.remove(&("crafting_step".into(),id)).unwrap_or_default()}))
     })
 }
 

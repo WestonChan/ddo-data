@@ -58,6 +58,7 @@
           "slug": "dexterity-5"
         }
       ],
+      "consumed_outputs": null,
       "cost": [
         {
           "ingredient": "Broken Shackle",
@@ -105,6 +106,7 @@
           "slug": "dexterity-13"
         }
       ],
+      "consumed_outputs": null,
       "cost": [
         {
           "ingredient": "Legendary Broken Shackle",
@@ -140,6 +142,7 @@
           "slug": "false-life-18"
         }
       ],
+      "consumed_outputs": null,
       "cost": [
         {
           "ingredient": "Broken Shackle",

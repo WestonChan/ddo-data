@@ -1621,6 +1621,7 @@ fn violation(check_name: &'static str, injected_sql: &str, offender_name: &'stat
 #[test]
 fn crafting_integrity_checks_reject_each_injected_violation() {
     let violations = [
+        violation("steps_consuming_outputs_belong_to_systems_with_outputs", "DELETE FROM crafting_outputs WHERE crafting_system_id=(SELECT id FROM crafting_systems WHERE name='Test Upgrade Altar');", "Item exchange"),
         violation("socket_option_sets_have_a_carrier", "INSERT INTO socket_option_sets (slug,name,slot_id) SELECT 'un carried','Uncarried Set',id FROM augment_slot_types LIMIT 1;", "Uncarried Set"),
         violation("crafting_options_repeat_step_base_properties", "INSERT INTO augment_effects (augment_id,effect_id,bonus_type_id,value,sort_order) SELECT a.id,e.id,b.id,10,999 FROM augments a,effects e,bonus_types b WHERE a.name='Blinding Fear' AND e.name='Orb Bonus' AND b.name='Orb';", "Blinding Fear"),
         violation("items_do_not_carry_step_base_properties", "UPDATE item_effects SET value=10 WHERE item_id=(SELECT id FROM items WHERE name='Thunder-Forged Orb') AND effect_id=(SELECT id FROM effects WHERE name='Orb Bonus');", "Thunder-Forged Orb"),

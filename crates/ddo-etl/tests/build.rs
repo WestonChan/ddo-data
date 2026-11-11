@@ -435,6 +435,37 @@ fn a_recipe_consumes_an_item_by_reference() {
 }
 
 #[test]
+fn a_step_consuming_the_systems_outputs_round_trips() {
+    let exported = tempfile::tempdir().unwrap();
+    let db = fixture::database(|root| {
+        for entry in walkdir::WalkDir::new(root).into_iter().map(Result::unwrap).filter(|entry| {
+            entry.file_type().is_file() && entry.path().extension().is_some_and(|extension| extension == "png")
+        }) {
+            let path = exported.path().join(entry.path().strip_prefix(root).unwrap());
+            std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+            std::fs::copy(entry.path(), path).unwrap();
+        }
+    });
+    let quantity: i64 = db.query_row("SELECT s.consumed_outputs FROM crafting_steps s JOIN crafting_systems c ON c.id=s.system_id WHERE c.name='Test Upgrade Altar' AND s.name='Item exchange'", [], |row| row.get(0)).unwrap();
+    assert_eq!(quantity, 2);
+    assert!(count(&db, "SELECT COUNT(*) FROM crafting_outputs o JOIN crafting_systems c ON c.id=o.crafting_system_id WHERE c.name='Test Upgrade Altar'")>0);
+    ddo_etl::tree::export_database(&db, exported.path()).unwrap();
+    let text = std::fs::read_to_string(exported.path().join("packs/shared/crafting/test-upgrade-altar/crafting.toml"))
+        .unwrap();
+    let system: toml::Value = toml::from_str(&text).unwrap();
+    let step =
+        system["step"].as_array().unwrap().iter().find(|step| step["name"].as_str() == Some("Item exchange")).unwrap();
+    assert_eq!(step["consumed_outputs"].as_integer(), Some(2));
+    assert!(step.get("slot").is_none());
+    let wiki = WikiOverrides::from_database(&db).unwrap();
+    let system = wiki.crafting_systems.iter().find(|system| system.name == "Test Upgrade Altar").unwrap();
+    assert_eq!(system.steps.iter().find(|step| step.name == "Item exchange").unwrap().consumed_outputs, Some(2));
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(exported.path(), &mut rebuilt).unwrap();
+    assert_eq!(count(&rebuilt, "SELECT consumed_outputs FROM crafting_steps WHERE name='Item exchange'"), 2);
+}
+
+#[test]
 fn step_costs_export_in_grade_order_on_both_paths() {
     let db = fixture::database(|root| {
         let mut contents = "\n[[step]]\nname='Cost order'\n".to_string();

@@ -1524,6 +1524,7 @@ CREATE TABLE IF NOT EXISTS crafting_steps (
     sort_order INTEGER NOT NULL,
     name TEXT NOT NULL,
     slot_id INTEGER REFERENCES augment_slot_types(id),
+    consumed_outputs INTEGER CHECK (consumed_outputs IS NULL OR consumed_outputs > 0),
     is_random INTEGER NOT NULL DEFAULT 0 CHECK (is_random IN (0, 1)),
     UNIQUE (system_id, name),
     UNIQUE (system_id, slot_id)

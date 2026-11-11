@@ -312,6 +312,23 @@ fn crafting_schema_db() -> Connection {
 }
 
 #[test]
+fn crafting_steps_consumed_outputs_is_a_positive_count() {
+    let db = crafting_schema_db();
+    for quantity in [None, Some(1), Some(2), Some(i64::MAX)] {
+        db.execute("UPDATE crafting_steps SET consumed_outputs=?1 WHERE id=1", [quantity]).unwrap();
+        assert_eq!(
+            db.query_row("SELECT consumed_outputs FROM crafting_steps WHERE id=1", [], |row| row
+                .get::<_, Option<i64>>(0))
+                .unwrap(),
+            quantity
+        );
+    }
+    for quantity in [0, -1, i64::MIN] {
+        assert!(db.execute("UPDATE crafting_steps SET consumed_outputs=?1 WHERE id=1", [quantity]).is_err());
+    }
+}
+
+#[test]
 fn crafting_steps_bridge_one_socket_per_system_and_grant_scoped_lines() {
     let db = crafting_schema_db();
     db.execute_batch("INSERT INTO crafting_steps (system_id, name, sort_order, slot_id) VALUES (2, 'Tier 1', 0, 1);

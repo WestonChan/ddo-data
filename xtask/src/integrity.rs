@@ -195,6 +195,11 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Sql("SELECT c.name || ': ' || s.name,s.id,'mixed scoped and unscoped lines' FROM crafting_steps s JOIN crafting_systems c ON c.id=s.system_id JOIN crafting_step_effects e ON e.step_id=s.id GROUP BY s.id HAVING MIN(e.equipment_slot_id IS NULL)<>MAX(e.equipment_slot_id IS NULL)"),
     ),
     IntegrityCheck::hard(
+        "steps_consuming_outputs_belong_to_systems_with_outputs",
+        "a step consuming crafted outputs belongs to a system with outputs",
+        OffenderQuery::Sql("SELECT s.name,s.id,c.name FROM crafting_steps s JOIN crafting_systems c ON c.id=s.system_id WHERE s.consumed_outputs IS NOT NULL AND NOT EXISTS (SELECT 1 FROM crafting_outputs o WHERE o.crafting_system_id=s.system_id) ORDER BY c.name,s.sort_order"),
+    ),
+    IntegrityCheck::hard(
         "crafting_systems_have_stations",
         "every crafting system links a shared station or interface",
         OffenderQuery::Sql("SELECT c.name,c.id,'no station' FROM crafting_systems c WHERE NOT EXISTS (SELECT 1 FROM crafting_system_stations s WHERE s.system_id=c.id) ORDER BY c.name"),
