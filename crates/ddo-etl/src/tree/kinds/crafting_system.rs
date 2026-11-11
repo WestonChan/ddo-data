@@ -400,11 +400,9 @@ impl CraftingSystemFile {
         for (id, (system_id, position)) in &step_locations {
             files.get_mut(system_id).unwrap().step[*position].modifier =
                 modifiers.remove(&("crafting_step".into(), *id)).unwrap_or_default();
-            files.get_mut(system_id).unwrap().step[*position].cost.sort_by_key(|cost| {
-                ddo_model::enums::CraftingTier::parse(&cost.tier)
-                    .expect("crafting tier constrained by schema")
-                    .sort_order()
-            });
+            files.get_mut(system_id).unwrap().step[*position]
+                .cost
+                .sort_by_key(|cost| ddo_model::enums::CraftingTier::sort_key(&cost.tier));
         }
         let mut select = db.prepare(&format!(
             "SELECT {} FROM crafting_system_families ORDER BY rowid",

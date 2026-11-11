@@ -915,7 +915,11 @@ impl CraftingTier {
         }
     }
 
-    pub fn sort_order(self) -> usize {
+    pub fn sort_key(stored: &str) -> usize {
+        Self::parse(stored).expect("crafting tier constrained by schema").sort_order()
+    }
+
+    fn sort_order(self) -> usize {
         Self::ALL.iter().position(|tier| *tier == self).expect("every crafting tier has an order")
     }
 
