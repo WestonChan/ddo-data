@@ -15,6 +15,12 @@ fn crafting_row_error(rows: &str) -> String {
 }
 
 #[test]
+fn a_recipe_rejects_the_unqualified_variant_field() {
+    let error = crafting_row_error("[[recipe]]\noption='Invalid variant'\ntier='any'\nvariant='legendary'\n");
+    assert!(error.contains("unknown field") && error.contains("variant"), "{error}");
+}
+
+#[test]
 fn a_cost_row_naming_both_an_ingredient_and_an_item_is_rejected() {
     let error = crafting_row_error("[[recipe]]\noption='Invalid cost'\ntier='any'\n[[recipe.ingredient]]\ningredient='Small Shard of Power'\nitem=\"Acrobat's Ring\"\nquantity=1\n");
     assert!(error.contains("exactly one ingredient or item"), "{error}");

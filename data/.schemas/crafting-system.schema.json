@@ -342,18 +342,18 @@
           },
           "type": "array"
         },
-        "variant": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
         "yields_ingredient": {
           "type": [
             "string",
             "null"
           ],
           "x-reference-kind": "crafting_ingredients"
+        },
+        "yields_variant": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       },
       "required": [

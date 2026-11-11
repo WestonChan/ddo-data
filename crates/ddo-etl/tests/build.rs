@@ -302,6 +302,35 @@ fn a_recipe_yields_a_shared_ingredient() {
 }
 
 #[test]
+fn a_recipe_names_its_yielded_ingredients_variant() {
+    let db = fixture::database(|root| {
+        let directory = root.join("packs/shared/crafting/ingredients");
+        std::fs::create_dir_all(&directory).unwrap();
+        std::fs::write(
+            directory.join("test-emblem-legendary.toml"),
+            "name='Test Emblem'\nvariant='legendary'\ntier='legendary'\ncitation=[]\n",
+        )
+        .unwrap();
+        fixture::append_to_file(root.join("packs/shared/crafting/catalyst-crafting/crafting.toml"), "[[recipe]]\noption='Create emblem'\ntier='legendary'\nyields_ingredient='Test Emblem'\nyields_variant='legendary'\n");
+    });
+    let variant: String = db.query_row("SELECT i.variant FROM crafting_recipes r JOIN crafting_ingredients i ON i.id=r.yields_ingredient_id WHERE r.option='Create emblem'", [], |row| row.get(0)).unwrap();
+    assert_eq!(variant, "legendary");
+    let exported = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&db, exported.path()).unwrap();
+    let text =
+        std::fs::read_to_string(exported.path().join("packs/shared/crafting/catalyst-crafting/crafting.toml")).unwrap();
+    let system: toml::Value = toml::from_str(&text).unwrap();
+    let recipe = system["recipe"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|recipe| recipe["option"].as_str() == Some("Create emblem"))
+        .unwrap();
+    assert_eq!(recipe["yields_variant"].as_str(), Some("legendary"));
+    assert!(recipe.get("variant").is_none());
+}
+
+#[test]
 fn socket_labels_build_their_not_crafting_reason() {
     let db = fixture::database(|root| {
         let path = root.join("effects/augment-slot-types.toml");

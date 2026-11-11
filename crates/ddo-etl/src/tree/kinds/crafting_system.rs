@@ -285,7 +285,7 @@ database_record! {
         }
         projected {
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            variant: Option<String> => "(SELECT variant FROM crafting_ingredients WHERE id=crafting_recipes.yields_ingredient_id)",
+            yields_variant: Option<String> => "(SELECT variant FROM crafting_ingredients WHERE id=crafting_recipes.yields_ingredient_id)",
             #[serde(default, skip_serializing_if = "Option::is_none")]
             step: Option<String> => "(SELECT name FROM crafting_steps WHERE id = crafting_recipes.step_id)",
         }
@@ -622,7 +622,9 @@ impl CraftingSystemFile {
             let yielded_ingredient = recipe
                 .yields_ingredient
                 .as_deref()
-                .map(|name| crate::tree::crafting::ingredient_id(db, Some(id), name, recipe.variant.as_deref(), None))
+                .map(|name| {
+                    crate::tree::crafting::ingredient_id(db, Some(id), name, recipe.yields_variant.as_deref(), None)
+                })
                 .transpose()?;
             recipe.insert(db, yielded_ingredient, None, id, position as i64, step_id)?;
             let recipe_id = db.last_insert_rowid();
