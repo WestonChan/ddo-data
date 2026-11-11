@@ -285,6 +285,15 @@ path = "data/.schemas/set.schema.json"
 
 [[rule]]
 include = [
+    "data/packs/*/sockets/*/*.toml",
+    "data/packs/free-to-play/*/sockets/*/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/socket-option-set.schema.json"
+
+[[rule]]
+include = [
     "data/characters/spells/*.toml",
 ]
 

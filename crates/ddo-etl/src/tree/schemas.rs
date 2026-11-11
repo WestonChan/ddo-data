@@ -695,6 +695,7 @@ pub fn validate_taplo_config(workspace_root: &Path) -> Result<()> {
             .context("Taplo rule has no schema path")?;
         ensure!(workspace_root.join(schema_path).is_file(), "Taplo schema {schema_path} does not exist");
     }
+    validate_declared_taplo_paths(rules)?;
     let data_root = workspace_root.join("data");
     let root_entries = std::fs::read_dir(&data_root)?
         .map(|entry| entry.map(|entry| entry.file_name().to_string_lossy().into_owned()))
@@ -724,6 +725,19 @@ pub fn validate_taplo_config(workspace_root: &Path) -> Result<()> {
             "{}: matches {matching} Taplo schema rules, expected exactly one",
             entry.path().display()
         );
+    }
+    Ok(())
+}
+
+fn validate_declared_taplo_paths(rules: &[toml::Value]) -> Result<()> {
+    for (kind, placement) in FILE_KINDS {
+        let pattern = match placement {
+            Placement::Entity(pattern) | Placement::GroupedRows(pattern) | Placement::Rows(pattern) => pattern,
+            Placement::Dataset => continue,
+        };
+        let relative = format!("data/{pattern}");
+        let matching = matching_taplo_rules(rules, &relative).len();
+        ensure!(matching == 1, "{kind}: {relative} matches {matching} Taplo schema rules, expected exactly one");
     }
     Ok(())
 }
@@ -929,6 +943,12 @@ mod tests {
             ("packs/shared/vendors/currencies.toml", "VendorCurrencies", None),
             ("packs/example/challenges/example.toml", "Quest", None),
             ("packs/shared/sets/example.toml", "Set", Some(("set_bonuses", "sets"))),
+            ("packs/shared/sockets/label/example.toml", "SocketOptionSet", Some(("socket_options", "augments"))),
+            (
+                "packs/free-to-play/patron/sockets/label/example.toml",
+                "SocketOptionSet",
+                Some(("socket_options", "augments")),
+            ),
             ("packs/shared/patrons/example.toml", "Patron", None),
             ("packs/shared/augments/named/example.toml", "Augment", Some(("augments", "augments"))),
             ("packs/example/crafting/example/augments/example.toml", "Augment", Some(("augments", "augments"))),
@@ -960,6 +980,33 @@ mod tests {
             let schema: serde_json::Value =
                 serde_json::from_str(&std::fs::read_to_string(workspace_root.join(schema_path)).unwrap()).unwrap();
             assert_eq!(&schema, super::file_schema(kind), "{relative}");
+        }
+    }
+
+    #[test]
+    fn declared_file_paths_reject_missing_and_duplicate_taplo_rules() {
+        let workspace_root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
+        let config: toml::Value =
+            toml::from_str(&std::fs::read_to_string(workspace_root.join("taplo.toml")).unwrap()).unwrap();
+        let rules = config["rule"].as_array().unwrap();
+        super::validate_declared_taplo_paths(rules).unwrap();
+        for (kind, placement) in super::FILE_KINDS {
+            let pattern = match placement {
+                super::Placement::Entity(pattern)
+                | super::Placement::GroupedRows(pattern)
+                | super::Placement::Rows(pattern) => pattern,
+                super::Placement::Dataset => continue,
+            };
+            let relative = format!("data/{pattern}");
+            let matching = super::matching_taplo_rules(rules, &relative);
+            let mut missing = rules.clone();
+            missing.retain(|rule| rule != matching[0]);
+            let error = super::validate_declared_taplo_paths(&missing).unwrap_err().to_string();
+            assert!(error.contains("matches 0 Taplo schema rules"), "{kind}: {error}");
+            let mut duplicate = rules.clone();
+            duplicate.push(matching[0].clone());
+            let error = super::validate_declared_taplo_paths(&duplicate).unwrap_err().to_string();
+            assert!(error.contains("matches 2 Taplo schema rules"), "{kind}: {error}");
         }
     }
 

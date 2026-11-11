@@ -163,10 +163,7 @@ fn narrowest_folder(
 ) -> Result<PathBuf> {
     match placement {
         FolderPlacement::SocketOptionSet { items, label } => {
-            let packs = items
-                .iter()
-                .map(|id| paths[&("items".into(), *id)].components().take(2).collect::<PathBuf>())
-                .collect::<BTreeSet<_>>();
+            let packs = items.iter().map(|id| pack_folder(&paths[&("items".into(), *id)])).collect::<BTreeSet<_>>();
             let pack = if packs.len() == 1 && packs.first().unwrap() != Path::new("packs/unsourced") {
                 packs.first().unwrap().clone()
             } else {
@@ -303,12 +300,8 @@ fn narrowest_folder(
     }
 }
 
-pub(super) fn expected_reference_path(table: &str, name: &str, referring: &Path) -> Result<PathBuf> {
-    if let Ok(path) = fixed_data_file(table) {
-        return Ok(path.to_path_buf());
-    }
-    let identity = slug(name);
-    let segments = referring.iter().collect::<Vec<_>>();
+fn pack_folder(path: &Path) -> PathBuf {
+    let segments = path.iter().collect::<Vec<_>>();
     let mut pack = PathBuf::from("packs/shared");
     if segments.first().is_some_and(|segment| *segment == "packs") && segments.len() > 1 {
         pack = segments[..2].iter().collect();
@@ -329,12 +322,22 @@ pub(super) fn expected_reference_path(table: &str, name: &str, referring: &Path)
                         | "challenges"
                         | "gear"
                         | "augments"
+                        | "sockets"
                 )
             )
         {
             pack.push(segments[2]);
         }
     }
+    pack
+}
+
+pub(super) fn expected_reference_path(table: &str, name: &str, referring: &Path) -> Result<PathBuf> {
+    if let Ok(path) = fixed_data_file(table) {
+        return Ok(path.to_path_buf());
+    }
+    let identity = slug(name);
+    let pack = pack_folder(referring);
     let folders = BTreeMap::from([("referencing pack".to_string(), pack)]);
     let source = match table {
         "quests" => Some((

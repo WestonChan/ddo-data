@@ -70,6 +70,25 @@ fn crafting_fixtures_cover_owned_pools_random_steps_and_pure_first_tiers() {
 }
 
 #[test]
+fn socket_option_sets_follow_their_free_to_play_carriers_patron() {
+    let db = fixture::database(|root| {
+        let path = root.join("packs/unsourced/gear/celestial-emerald-ring.toml");
+        let mut ring: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+        ring.as_table_mut().unwrap().insert(
+            "source".into(),
+            toml::Value::Array(vec![toml::from_str("kind='quest'\nname='Redemption'\nloot_type='chest'").unwrap()]),
+        );
+        std::fs::write(path, toml::to_string(&ring).unwrap()).unwrap();
+    });
+    let exported = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&db, exported.path()).unwrap();
+    assert!(exported
+        .path()
+        .join("packs/free-to-play/the-coin-lords/sockets/crafting-nearly-finished/celestial-emerald-ring.toml")
+        .is_file());
+}
+
+#[test]
 fn fixture_items_share_sets_and_point_at_them() {
     let db = fixture::database(|root| {
         let directory = root.join("packs/unsourced/gear");
