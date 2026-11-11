@@ -42,6 +42,13 @@ impl DdobuilderImportReport {
     pub fn has_conflicts(&self) -> bool {
         self.conflict_count() != 0
     }
+    pub fn needs_settlement(&self) -> bool {
+        self.has_conflicts()
+            || self
+                .entries
+                .iter()
+                .any(|entry| matches!(entry.category, "DECLINED REMOVAL" | "ICON DECLINED" | "NEEDS RESEARCH"))
+    }
 }
 
 fn quoted(value: &str) -> String {
@@ -329,5 +336,44 @@ impl Display for DdobuilderImportReport {
         }
         writeln!(output, "files: {} written, {} removed", self.files.written, self.files.removed)?;
         writeln!(output, "{} conflicts", self.conflict_count())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn settlement_includes_conflicts_and_required_actions_but_not_skipped_facts() {
+        let mut report = DdobuilderImportReport {
+            previous_sha: "previous".into(),
+            new_sha: "new".into(),
+            tables: BTreeMap::new(),
+            entries: Vec::new(),
+            files: DataFileChanges { written: 0, removed: 0 },
+            conflict_count: 0,
+        };
+        assert!(!report.needs_settlement());
+        report.conflict_count = 1;
+        assert!(report.needs_settlement());
+        report.conflict_count = 0;
+        for (category, expected) in [
+            ("DECLINED REMOVAL", true),
+            ("ICON DECLINED", true),
+            ("NEEDS RESEARCH", true),
+            ("SKIPPED WIKI FACT", false),
+            ("RESOLVED CORRECTION", false),
+            ("REMOVED", false),
+            ("CHANGED UPSTREAM, ABSENT IN OURS", false),
+            ("BLANKED UPSTREAM, OURS KEPT", false),
+            ("PARTIALLY MAPPED EFFECT", false),
+        ] {
+            report.entries = vec![ImportReportEntry {
+                path: "fixture.toml".into(),
+                category,
+                detail: "Fixture report entry".into(),
+            }];
+            assert_eq!(report.needs_settlement(), expected, "{category}");
+        }
     }
 }

@@ -80,7 +80,7 @@ fn main() -> Result<ExitCode> {
                     previous_sha,
                 })?;
             println!("{report}");
-            return Ok(if report.has_conflicts() { ExitCode::from(2) } else { ExitCode::SUCCESS });
+            return Ok(if report.needs_settlement() { ExitCode::from(2) } else { ExitCode::SUCCESS });
         }
         CliCommand::Build { data_dir, out: database_path } => {
             if database_path.exists() {

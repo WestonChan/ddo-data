@@ -1486,18 +1486,69 @@ fn copy_data_icons_into_source(root: &Path, source: &Path, scratch: &Path) {
     }
 }
 
+fn priced_socket_set_import() -> (tempfile::TempDir, DdobuilderImportOptions) {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let scratch = tempfile::tempdir().unwrap();
+    let root = scratch.path().join("data");
+    let previous = scratch.path().join("previous");
+    let source = scratch.path().join("source");
+    copy_tree(&fixtures.join("data"), &root);
+    copy_tree(&fixtures.join("DataFiles"), &previous);
+    copy_data_icons_into_source(&root, &previous, scratch.path());
+    copy_tree(&previous, &source);
+    let options = DdobuilderImportOptions {
+        previous_dir: previous,
+        source_dir: source,
+        data_dir: root,
+        previous_sha: Some("fixture".into()),
+        sha: Some("fixture-next".into()),
+    };
+    (scratch, options)
+}
+
+#[test]
+fn the_import_binary_exits_two_after_reporting_a_declined_set_removal() {
+    let (_scratch, options) = priced_socket_set_import();
+    std::fs::remove_file(options.source_dir.join("Items/Fabricator's Gauntlets.item")).unwrap();
+    let output = std::process::Command::new(env!("CARGO_BIN_EXE_ddo-etl"))
+        .arg("import-ddobuilder")
+        .arg("--previous")
+        .arg(&options.previous_dir)
+        .arg("--source")
+        .arg(&options.source_dir)
+        .arg("--data")
+        .arg(&options.data_dir)
+        .args(["--previous-sha", "fixture", "--sha", "fixture-next"])
+        .output()
+        .unwrap();
+    let stdout = String::from_utf8(output.stdout).unwrap();
+    let stderr = String::from_utf8(output.stderr).unwrap();
+    for expected in [
+        "table | added | removed | changed | conflicts | declined removals | resolved corrections",
+        "DECLINED REMOVAL socket_option_sets/",
+        "SKIPPED WIKI FACT",
+        "0 conflicts",
+    ] {
+        assert!(stdout.contains(expected), "{stdout}\n{stderr}");
+    }
+    eprintln!("process exit: {:?}", output.status.code());
+    for line in stdout.lines().filter(|line| {
+        line.starts_with("table |") || line.contains("DECLINED REMOVAL") || line.contains("SKIPPED WIKI FACT")
+    }) {
+        eprintln!("{line}");
+    }
+    assert_eq!(output.status.code(), Some(2), "{stdout}\n{stderr}");
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&options.data_dir, &mut rebuilt).unwrap();
+}
+
 #[test]
 fn a_priced_set_survives_when_upstream_removes_its_last_carrier() {
-    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     for removed_from_new in [true, false] {
-        let scratch = tempfile::tempdir().unwrap();
-        let root = scratch.path().join("data");
-        let previous = scratch.path().join("previous");
-        let source = scratch.path().join("source");
-        copy_tree(&fixtures.join("data"), &root);
-        copy_tree(&fixtures.join("DataFiles"), &previous);
-        copy_data_icons_into_source(&root, &previous, scratch.path());
-        copy_tree(&previous, &source);
+        let (_scratch, options) = priced_socket_set_import();
+        let root = options.data_dir.clone();
+        let previous = options.previous_dir.clone();
+        let source = options.source_dir.clone();
         if removed_from_new {
             let carrier = source.join("Items/Fabricator's Gauntlets.item");
             let xml = std::fs::read_to_string(&carrier).unwrap();
@@ -1586,6 +1637,7 @@ fn a_priced_set_survives_when_upstream_removes_its_last_carrier() {
         })
         .unwrap();
         assert!(!again.has_conflicts(), "{again}");
+        assert!(!again.needs_settlement(), "{again}");
         assert_eq!((again.files.written, again.files.removed), (0, 0), "{again}");
         if removed_from_new {
             assert_eq!(
