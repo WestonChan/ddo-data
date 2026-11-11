@@ -10,15 +10,24 @@ pub(crate) struct SocketOptionList<T = SocketOption> {
     pub(crate) item_name: String,
 }
 
+pub const UNREFERENCED_SOCKET_OPTION_SETS: &str = "SELECT s.name,s.id,s.slug FROM socket_option_sets s
+    WHERE NOT EXISTS (SELECT 1 FROM item_augment_slots socket WHERE socket.option_set_id=s.id)
+      AND NOT EXISTS (SELECT 1 FROM crafting_recipe_set_options link JOIN socket_options o ON o.id=link.option_id WHERE o.set_id=s.id)
+      AND NOT EXISTS (SELECT 1 FROM corrections c WHERE c.kind IN ('socket_option','socket_option_bonus') AND c.name=s.slug)
+    ORDER BY s.slug";
+
 pub(super) fn remove_sets_without_carriers(
     transaction: &rusqlite::Transaction<'_>,
     effects: &mut super::effects::EffectCache<'_>,
 ) -> Result<()> {
-    let unused_sets = transaction.prepare("SELECT id FROM socket_option_sets s WHERE NOT EXISTS (SELECT 1 FROM item_augment_slots socket WHERE socket.option_set_id=s.id)")?
-        .query_map([], |row| row.get::<_, i64>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
+    let unused_sets = transaction
+        .prepare(UNREFERENCED_SOCKET_OPTION_SETS)?
+        .query_map([], |row| row.get::<_, i64>(1))?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
     for set_id in unused_sets {
         let linked_effects = transaction.prepare("SELECT DISTINCT e.effect_id FROM socket_option_effects e JOIN socket_options o ON o.id=e.option_id WHERE o.set_id=?1")?
             .query_map([set_id], |row| row.get::<_, i64>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
+        transaction.execute("DELETE FROM requirements WHERE owner_kind='modifier' AND owner_id IN (SELECT m.id FROM modifiers m JOIN socket_options o ON m.source_kind='socket_option' AND m.source_id=o.id WHERE o.set_id=?1)", [set_id])?;
         transaction.execute("DELETE FROM modifiers WHERE source_kind='socket_option' AND source_id IN (SELECT id FROM socket_options WHERE set_id=?1)", [set_id])?;
         transaction.execute("DELETE FROM socket_option_sets WHERE id=?1", [set_id])?;
         for effect_id in linked_effects {

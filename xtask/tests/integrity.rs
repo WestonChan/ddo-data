@@ -15,6 +15,26 @@ const PACK_QUEST_OVERLAP_SQL: &str =
      LIMIT 1";
 
 #[test]
+fn carrierless_sets_are_allowed_only_while_referenced() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+    let set: i64 = db.query_row("SELECT o.set_id FROM crafting_recipe_set_options link JOIN socket_options o ON o.id=link.option_id LIMIT 1", [], |row| row.get(0)).unwrap();
+    db.execute("UPDATE item_augment_slots SET option_set_id=NULL WHERE option_set_id=?1", [set]).unwrap();
+    let status = || {
+        integrity_report(&db, &fixture_options()).unwrap().outcome("socket_option_sets_have_a_carrier").unwrap().status
+    };
+    assert_eq!(status(), CheckStatus::Passed);
+    db.execute(
+        "DELETE FROM crafting_recipe_set_options WHERE option_id IN (SELECT id FROM socket_options WHERE set_id=?1)",
+        [set],
+    )
+    .unwrap();
+    assert_eq!(status(), CheckStatus::Failed);
+    db.execute("INSERT INTO corrections (kind,name,qualifier,field,from_value,to_value,reason,source,read) SELECT 'socket_option',s.slug,o.name,'name','\"Old\"',json_quote(o.name),'Fixture reference','https://ddowiki.com/page/Test','2026-11-11' FROM socket_option_sets s JOIN socket_options o ON o.set_id=s.id WHERE s.id=?1 LIMIT 1", [set]).unwrap();
+    assert_eq!(status(), CheckStatus::Passed);
+}
+
+#[test]
 fn description_templates_reject_spaces_before_closing_parentheses() {
     let scratch = tempfile::tempdir().unwrap();
     let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();

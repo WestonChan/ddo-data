@@ -4722,6 +4722,55 @@ fn removing_an_item_removes_its_unshared_option_sets() {
 }
 
 #[test]
+fn removing_a_last_carrier_keeps_priced_sets_and_cleans_unreferenced_modifiers() {
+    let source = data_files_with_untyped("priced-carrier-removal", &[]);
+    let xml = std::fs::read_to_string(fixtures_dir().join("effect-groups/EpicDuelistsLeathers.item")).unwrap()
+        .replace("<Type>ArmorCheckPenalty</Type>", "<Type>ArmorCheckPenalty</Type><Requirements><Requirement><Type>Stance</Type><Item>Power Attack</Item></Requirement></Requirements>");
+    std::fs::write(source.join("Items/EpicDuelistsLeathers.item"), xml).unwrap();
+    let (baseline, _) = built_db_from(&source, &[]).unwrap();
+    let requirements = "SELECT COUNT(*) FROM requirements r JOIN modifiers m ON r.owner_kind='modifier' AND r.owner_id=m.id JOIN socket_options o ON m.source_kind='socket_option' AND m.source_id=o.id JOIN socket_option_sets s ON s.id=o.set_id WHERE s.slug='upgrade-tier-2-epic-duelists-leathers-level-20'";
+    assert_eq!(row_count(&baseline, requirements), 1);
+    let correction = new_qualified_correction(
+        "item_socket",
+        "Epic Duelist's Leathers (level 20)",
+        "socket='upgrade: tier 2'",
+        "remove",
+        "0",
+        "1",
+    );
+    let corrections = validated_corrections(&[("socket-removal.toml", &correction)]).unwrap();
+    for referenced in [true, false] {
+        let mut wiki = WikiOverrides::default();
+        if referenced {
+            let fixture_wiki = WikiOverrides::from_database(&fixture::database(|_| {})).unwrap();
+            let mut system =
+                fixture_wiki.crafting_systems.into_iter().find(|system| system.name == "Nearly Finished").unwrap();
+            system.stations.clear();
+            system.steps.truncate(1);
+            system.steps[0].slot = Some("upgrade: tier 2".into());
+            system.recipes[0].set_options[0].set = "Epic Duelist's Leathers (level 20)".into();
+            system.recipes[0].set_options[0].name = "Epic Nimbleness".into();
+            wiki.crafting_systems.push(system);
+        }
+        let mut db = Connection::open_in_memory().unwrap();
+        build_database(fixture::groupings(), &source, &wiki, &corrections, &mut db, &fixture_dataset_version())
+            .unwrap();
+        assert_eq!(
+            row_count(
+                &db,
+                "SELECT COUNT(*) FROM socket_option_sets WHERE slug='upgrade-tier-2-epic-duelists-leathers-level-20'"
+            ),
+            i64::from(referenced)
+        );
+        assert_eq!(row_count(&db, "SELECT COUNT(*) FROM crafting_recipe_set_options"), i64::from(referenced));
+        assert_eq!(row_count(&db, requirements), i64::from(referenced));
+        assert_eq!(row_count(&db, "SELECT COUNT(*) FROM requirements r WHERE r.owner_kind='modifier' AND NOT EXISTS (SELECT 1 FROM modifiers m WHERE m.id=r.owner_id)"), 0);
+        assert_eq!(row_count(&db, "SELECT COUNT(*) FROM modifiers m WHERE m.source_kind='socket_option' AND NOT EXISTS (SELECT 1 FROM socket_options o WHERE o.id=m.source_id)"), 0);
+        assert_eq!(row_count(&db, "SELECT COUNT(*) FROM corrections c WHERE c.kind IN ('socket_option','socket_option_bonus') AND NOT EXISTS (SELECT 1 FROM socket_option_sets s WHERE s.slug=c.name)"), 0);
+    }
+}
+
+#[test]
 fn item_socket_removal_is_stale_when_his_socket_is_gone() {
     let source = data_files_with_untyped("socket-removal-stale", &[]);
     let mut xml = std::fs::read_to_string(fixtures_dir().join("effect-groups/EpicDuelistsLeathers.item")).unwrap();

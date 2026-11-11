@@ -221,8 +221,8 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::hard(
         "socket_option_sets_have_a_carrier",
-        "every socket option set is carried by an item socket",
-        OffenderQuery::Sql("SELECT s.name,s.id,s.slug FROM socket_option_sets s WHERE NOT EXISTS (SELECT 1 FROM item_augment_slots socket WHERE socket.option_set_id=s.id) ORDER BY s.slug"),
+        "every socket option set is carried by an item socket, or is still referenced by a recipe or a correction",
+        OffenderQuery::Sql(ddo_etl::build::UNREFERENCED_SOCKET_OPTION_SETS),
     ),
     IntegrityCheck::warn(
         "socket_option_sets_differing_only_by_option_names",

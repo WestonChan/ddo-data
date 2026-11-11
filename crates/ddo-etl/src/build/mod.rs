@@ -16,8 +16,8 @@ pub use modifiers::{stat_links_at_routed_types, StatLinkRoute};
 mod quest_series;
 mod sets;
 mod socket_option_sets;
-pub use socket_option_sets::ExistingSocketOptionSets;
 pub(crate) use socket_option_sets::{group_socket_options_into_sets, SocketOptionList};
+pub use socket_option_sets::{ExistingSocketOptionSets, UNREFERENCED_SOCKET_OPTION_SETS};
 mod trees_spells;
 mod vendors_and_events;
 mod wiki;
@@ -492,11 +492,11 @@ fn build_with_wiki_references(
         },
         &mut report,
     )?;
-    socket_option_sets::remove_sets_without_carriers(&transaction, &mut writer.effects)?;
     writer.write_stat_type_effects(&stat_type_definitions)?;
     corrections::record_final_set_names(&transaction)?;
     writer.effects.write_missing_linked_stat_templates()?;
     wiki::apply_wiki_overrides(&transaction, &overlay_references, wiki_overrides, &mut writer.effects, &mut report)?;
+    socket_option_sets::remove_sets_without_carriers(&transaction, &mut writer.effects)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, &overlay_references, wiki_overrides, &mut report)?;
     vendors_and_events::write_wiki_vendor_and_event_items(
         &transaction,
