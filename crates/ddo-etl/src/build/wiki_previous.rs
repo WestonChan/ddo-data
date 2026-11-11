@@ -9,6 +9,25 @@ pub struct SkippedWikiFact {
     pub fact: String,
     pub file_name: String,
     pub unresolved_name: String,
+    pub(crate) is_recipe_set_option: bool,
+}
+
+impl SkippedWikiFact {
+    pub(super) fn recipe_set_option(
+        system: &crate::wiki::CraftingSystem,
+        recipe: &crate::wiki::CraftingRecipe,
+        option: &crate::wiki::CraftingRecipeSetOption,
+    ) -> Self {
+        Self {
+            fact: format!(
+                "recipe {:?} at step {:?}, tier {}, set {:?} variant {:?}, option {:?}",
+                recipe.option, recipe.step, recipe.tier, option.set, option.variant, option.name
+            ),
+            file_name: system.file_name.clone(),
+            unresolved_name: option.set.clone(),
+            is_recipe_set_option: true,
+        }
+    }
 }
 
 struct PreviousReferences<'a> {
@@ -25,7 +44,12 @@ impl PreviousReferences<'_> {
         if self.known.contains(&(table.into(), name.into())) {
             return true;
         }
-        self.skipped.push(SkippedWikiFact { fact, file_name: file.into(), unresolved_name: name.into() });
+        self.skipped.push(SkippedWikiFact {
+            fact,
+            file_name: file.into(),
+            unresolved_name: name.into(),
+            is_recipe_set_option: false,
+        });
         false
     }
 

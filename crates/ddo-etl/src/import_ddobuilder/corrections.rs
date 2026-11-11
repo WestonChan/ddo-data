@@ -1,4 +1,4 @@
-use crate::build::{build_database, StaleCorrection, StaleCorrectionCause};
+use crate::build::{SkippedWikiFact, StaleCorrection, StaleCorrectionCause, WikiBuildOptions};
 use crate::corrections::{Correction, CorrectionValue, Corrections};
 use crate::wiki::WikiOverrides;
 use anyhow::{ensure, Result};
@@ -54,8 +54,16 @@ pub(super) fn build_database_matching_his_values(
     wiki: &WikiOverrides,
     corrections: &Corrections,
     version: &DatasetVersion,
+    omitted_recipe_set_options: &[SkippedWikiFact],
 ) -> Result<HisDatabase> {
-    build_matching_values(groupings, source, wiki, corrections, version, false)
+    build_matching_values(
+        groupings,
+        source,
+        wiki,
+        corrections,
+        version,
+        WikiBuildOptions { is_previous: false, omitted_recipe_set_options },
+    )
 }
 
 pub(super) fn build_previous_matching_his_values(
@@ -64,8 +72,16 @@ pub(super) fn build_previous_matching_his_values(
     wiki: &WikiOverrides,
     corrections: &Corrections,
     version: &DatasetVersion,
+    omitted_recipe_set_options: &[SkippedWikiFact],
 ) -> Result<HisDatabase> {
-    build_matching_values(groupings, source, wiki, corrections, version, true)
+    build_matching_values(
+        groupings,
+        source,
+        wiki,
+        corrections,
+        version,
+        WikiBuildOptions { is_previous: true, omitted_recipe_set_options },
+    )
 }
 
 fn build_matching_values(
@@ -74,11 +90,11 @@ fn build_matching_values(
     wiki: &WikiOverrides,
     corrections: &Corrections,
     version: &DatasetVersion,
-    is_previous: bool,
+    options: WikiBuildOptions<'_>,
 ) -> Result<HisDatabase> {
-    let builder = if is_previous { crate::build::build_previous_database } else { build_database };
     let mut db = Connection::open_in_memory()?;
-    let first_report = builder(groupings, source, wiki, corrections, &mut db, version)?;
+    let first_report =
+        crate::build::build_with_wiki_references(groupings, source, wiki, corrections, &mut db, version, options)?;
     let first_stale = first_report.stale_corrections;
     let mut skipped_wiki_facts = first_report.skipped_wiki_facts;
     let mut line_splits = first_report.line_splits;
@@ -109,7 +125,8 @@ fn build_matching_values(
     }
     if changed {
         db = Connection::open_in_memory()?;
-        let report = builder(groupings, source, wiki, &rebased, &mut db, version)?;
+        let report =
+            crate::build::build_with_wiki_references(groupings, source, wiki, &rebased, &mut db, version, options)?;
         line_splits = report.line_splits;
         held_back_effects = report.held_back_effects;
         matched_set_tier_prose = report.matched_set_tier_prose;
@@ -250,6 +267,7 @@ mod tests {
             &wiki,
             &corrections,
             &ddo_model::DatasetVersion { upstream_sha: "fixture".into(), built_at: "2026-10-17T00:00:00Z".into() },
+            &[],
         )
         .err()
         .expect("variant descriptions must disagree");

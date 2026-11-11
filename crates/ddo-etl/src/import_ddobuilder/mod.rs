@@ -7,6 +7,7 @@ mod report;
 pub use blanks::{fill_cells_from_ours, FilledCell};
 pub use report::{DdobuilderImportReport, ImportReportEntry, ImportTableCounts};
 
+use crate::build::WikiBuildOptions;
 use crate::corrections::Corrections;
 use crate::delta::{database_delta, merge_delta_into};
 use crate::tree::{self, DataFilePaths};
@@ -68,23 +69,44 @@ pub fn normalized_upstream_database(
     destination: &Path,
 ) -> Result<NormalizedUpstreamDatabase> {
     let corrections = Corrections::from_database(ours)?;
-    normalized_database_with_corrections(source, ours, version, is_previous, destination, &corrections)
+    normalized_database_with_corrections(
+        source,
+        ours,
+        version,
+        WikiBuildOptions { is_previous, ..WikiBuildOptions::default() },
+        destination,
+        &corrections,
+    )
 }
 
 fn normalized_database_with_corrections(
     source: &Path,
     ours: &Connection,
     version: &ddo_model::DatasetVersion,
-    is_previous: bool,
+    options: WikiBuildOptions<'_>,
     destination: &Path,
     corrections: &Corrections,
 ) -> Result<NormalizedUpstreamDatabase> {
     let wiki = WikiOverrides::from_database(ours)?;
     let groupings = crate::groupings::Groupings::from_database(ours)?;
-    let upstream = if is_previous {
-        corrections::build_previous_matching_his_values(&groupings, source, &wiki, corrections, version)?
+    let upstream = if options.is_previous {
+        corrections::build_previous_matching_his_values(
+            &groupings,
+            source,
+            &wiki,
+            corrections,
+            version,
+            options.omitted_recipe_set_options,
+        )?
     } else {
-        corrections::build_database_matching_his_values(&groupings, source, &wiki, corrections, version)?
+        corrections::build_database_matching_his_values(
+            &groupings,
+            source,
+            &wiki,
+            corrections,
+            version,
+            options.omitted_recipe_set_options,
+        )?
     };
     let filled = blanks::fill_cells_from_ours(&upstream.db, ours)?;
     let db = build_normalized_database(&upstream.db, source, destination)?;
@@ -160,8 +182,37 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
     let mut previous =
         normalized_upstream_database(&options.previous_dir, &ours, &previous_version, true, &previous_tree)
             .context("building the previous DataFiles")?;
-    let new = normalized_upstream_database(&options.source_dir, &ours, &new_version, false, &new_tree)
+    let mut new = normalized_upstream_database(&options.source_dir, &ours, &new_version, false, &new_tree)
         .context("building the new DataFiles")?;
+    let omitted = previous
+        .skipped_wiki_facts
+        .iter()
+        .chain(&new.skipped_wiki_facts)
+        .filter(|fact| fact.is_recipe_set_option)
+        .cloned()
+        .collect::<BTreeSet<_>>()
+        .into_iter()
+        .collect::<Vec<_>>();
+    if !omitted.is_empty() {
+        previous = normalized_database_with_corrections(
+            &options.previous_dir,
+            &ours,
+            &previous_version,
+            WikiBuildOptions { is_previous: true, omitted_recipe_set_options: &omitted },
+            &previous_tree,
+            &corrections,
+        )
+        .context("rebuilding the previous DataFiles with omitted recipe set options")?;
+        new = normalized_database_with_corrections(
+            &options.source_dir,
+            &ours,
+            &new_version,
+            WikiBuildOptions { is_previous: false, omitted_recipe_set_options: &omitted },
+            &new_tree,
+            &corrections,
+        )
+        .context("rebuilding the new DataFiles with omitted recipe set options")?;
+    }
     let mut applicable = corrections.clone();
     applicable.entries.retain(|correction| {
         !new.first_stale.iter().any(|stale| {
@@ -175,7 +226,7 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
             &options.previous_dir,
             &ours,
             &previous_version,
-            true,
+            WikiBuildOptions { is_previous: true, omitted_recipe_set_options: &omitted },
             &scratch.path().join("previous-without-unresolved-corrections"),
             &applicable,
         )?;
@@ -223,11 +274,16 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
         });
     }
     report.files = tree::replace_data_files(&staging, &options.data_dir)?;
-    report.entries.extend(previous.skipped_wiki_facts.into_iter().map(|skipped| ImportReportEntry {
-        path: skipped.file_name.into(),
-        category: "SKIPPED WIKI FACT",
-        detail: format!("{}: unresolved previous name {:?}", skipped.fact, skipped.unresolved_name),
-    }));
+    for (build, skipped_facts) in [("previous", previous.skipped_wiki_facts), ("new", new.skipped_wiki_facts)] {
+        report.entries.extend(skipped_facts.into_iter().map(|skipped| ImportReportEntry {
+            path: skipped.file_name.into(),
+            category: "SKIPPED WIKI FACT",
+            detail: format!(
+                "{}: omitted in the {build} build for unresolved name {:?}",
+                skipped.fact, skipped.unresolved_name
+            ),
+        }));
+    }
     Ok(report)
 }
 

@@ -203,7 +203,15 @@ pub fn build_database(
     db: &mut Connection,
     dataset_version: &DatasetVersion,
 ) -> Result<BuildReport> {
-    build_with_wiki_references(groupings, data_files_dir, wiki_overrides, corrections, db, dataset_version, false)
+    build_with_wiki_references(
+        groupings,
+        data_files_dir,
+        wiki_overrides,
+        corrections,
+        db,
+        dataset_version,
+        WikiBuildOptions::default(),
+    )
 }
 
 pub fn build_previous_database(
@@ -214,18 +222,33 @@ pub fn build_previous_database(
     db: &mut Connection,
     dataset_version: &DatasetVersion,
 ) -> Result<BuildReport> {
-    build_with_wiki_references(groupings, data_files_dir, wiki_overrides, corrections, db, dataset_version, true)
+    build_with_wiki_references(
+        groupings,
+        data_files_dir,
+        wiki_overrides,
+        corrections,
+        db,
+        dataset_version,
+        WikiBuildOptions { is_previous: true, ..WikiBuildOptions::default() },
+    )
 }
 
-fn build_with_wiki_references(
+#[derive(Clone, Copy, Default)]
+pub(crate) struct WikiBuildOptions<'a> {
+    pub(crate) is_previous: bool,
+    pub(crate) omitted_recipe_set_options: &'a [SkippedWikiFact],
+}
+
+pub(crate) fn build_with_wiki_references(
     groupings: &crate::groupings::Groupings,
     data_files_dir: &Path,
     wiki_overrides: &WikiOverrides,
     corrections: &Corrections,
     db: &mut Connection,
     dataset_version: &DatasetVersion,
-    is_previous: bool,
+    options: WikiBuildOptions<'_>,
 ) -> Result<BuildReport> {
+    let is_previous = options.is_previous;
     let mut previous_wiki = wiki_overrides.clone();
     db.execute_batch(ddo_model::ddl()).context("applying DDL")?;
     seeds::insert_all(db).context("inserting seed tables")?;
@@ -495,7 +518,14 @@ fn build_with_wiki_references(
     writer.write_stat_type_effects(&stat_type_definitions)?;
     corrections::record_final_set_names(&transaction)?;
     writer.effects.write_missing_linked_stat_templates()?;
-    wiki::apply_wiki_overrides(&transaction, &overlay_references, wiki_overrides, &mut writer.effects, &mut report)?;
+    wiki::apply_wiki_overrides(
+        &transaction,
+        &overlay_references,
+        wiki_overrides,
+        &mut writer.effects,
+        &mut report,
+        options.omitted_recipe_set_options,
+    )?;
     socket_option_sets::remove_sets_without_carriers(&transaction, &mut writer.effects)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, &overlay_references, wiki_overrides, &mut report)?;
     vendors_and_events::write_wiki_vendor_and_event_items(

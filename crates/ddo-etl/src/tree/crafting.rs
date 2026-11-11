@@ -1,4 +1,4 @@
-use anyhow::{ensure, Result};
+use anyhow::{ensure, Context, Result};
 use rusqlite::{params, Connection, OptionalExtension};
 
 fn prefer_unqualified<T>(matches: &mut Vec<T>, variant: Option<&str>, row_variant: impl Fn(&T) -> Option<&str>) {
@@ -12,18 +12,28 @@ pub(crate) fn socket_option_set_slug(label: &str, name: &str, variant: Option<&s
 }
 
 pub(crate) fn socket_option_set_id(db: &Connection, label: &str, name: &str, variant: Option<&str>) -> Result<i64> {
+    optional_socket_option_set_id(db, label, name, variant)?
+        .with_context(|| format!("socket option set {name:?} on {label:?} matched 0 rows"))
+}
+
+fn optional_socket_option_set_id(
+    db: &Connection,
+    label: &str,
+    name: &str,
+    variant: Option<&str>,
+) -> Result<Option<i64>> {
     let mut query = db.prepare_cached("SELECT s.id,s.variant FROM socket_option_sets s JOIN augment_slot_types l ON l.id=s.slot_id WHERE l.label=?1 AND s.name=?2 AND (?3 IS NULL OR s.variant=?3)")?;
     let mut matches = query
         .query_map(params![label, name, variant], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, Option<String>>(1)?)))?
         .collect::<rusqlite::Result<Vec<_>>>()?;
     prefer_unqualified(&mut matches, variant, |row| row.1.as_deref());
     ensure!(
-        matches.len() == 1,
+        matches.len() <= 1,
         "socket option set {name:?} on {label:?} matched {} rows: {:?}; specify set_variant when ambiguous",
         matches.len(),
         matches.iter().map(|(_, variant)| variant).collect::<Vec<_>>()
     );
-    Ok(matches[0].0)
+    Ok(matches.first().map(|row| row.0))
 }
 
 pub(crate) fn recipe_focus_path(note: &str) -> Option<String> {
@@ -113,6 +123,17 @@ pub(crate) fn recipe_set_option_id(
     variant: Option<&str>,
     name: &str,
 ) -> Result<i64> {
+    recipe_set_option_id_if_set_exists(db, step_id, set, variant, name)?
+        .with_context(|| format!("socket option set {set:?} matched 0 rows on its step socket"))
+}
+
+pub(crate) fn recipe_set_option_id_if_set_exists(
+    db: &Connection,
+    step_id: Option<i64>,
+    set: &str,
+    variant: Option<&str>,
+    name: &str,
+) -> Result<Option<i64>> {
     let label: Option<String> = db
         .query_row(
             "SELECT l.label FROM crafting_steps step JOIN augment_slot_types l ON l.id=step.slot_id WHERE step.id=?1",
@@ -121,7 +142,9 @@ pub(crate) fn recipe_set_option_id(
         )
         .optional()?;
     ensure!(label.is_some(), "recipe set option {name:?} in {set:?} requires a socketed step");
-    let set_id = socket_option_set_id(db, label.as_deref().unwrap(), set, variant)?;
+    let Some(set_id) = optional_socket_option_set_id(db, label.as_deref().unwrap(), set, variant)? else {
+        return Ok(None);
+    };
     let mut query = db.prepare_cached("SELECT id FROM socket_options WHERE set_id=?1 AND name=?2")?;
     let matches =
         query.query_map(params![set_id, name], |row| row.get::<_, i64>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
@@ -131,5 +154,5 @@ pub(crate) fn recipe_set_option_id(
         matches.len(),
         variant
     );
-    Ok(matches[0])
+    Ok(Some(matches[0]))
 }

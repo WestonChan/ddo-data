@@ -1487,6 +1487,102 @@ fn copy_data_icons_into_source(root: &Path, source: &Path, scratch: &Path) {
 }
 
 #[test]
+fn a_priced_set_survives_when_upstream_removes_its_last_carrier() {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    for removed_from_new in [true, false] {
+        let scratch = tempfile::tempdir().unwrap();
+        let root = scratch.path().join("data");
+        let previous = scratch.path().join("previous");
+        let source = scratch.path().join("source");
+        copy_tree(&fixtures.join("data"), &root);
+        copy_tree(&fixtures.join("DataFiles"), &previous);
+        copy_data_icons_into_source(&root, &previous, scratch.path());
+        copy_tree(&previous, &source);
+        if removed_from_new {
+            let carrier = source.join("Items/Fabricator's Gauntlets.item");
+            let xml = std::fs::read_to_string(&carrier).unwrap();
+            std::fs::write(
+                &carrier,
+                xml.replace("<Name>Fabricator's Ingenuity</Name>", "<Name>Unpriced option</Name>"),
+            )
+            .unwrap();
+            let error = import_ddobuilder(&DdobuilderImportOptions {
+                previous_dir: previous.clone(),
+                source_dir: source.clone(),
+                data_dir: root.clone(),
+                previous_sha: Some("fixture".into()),
+                sha: Some("fixture-next".into()),
+            })
+            .expect_err("a missing option in an existing set stays a hard error");
+            let message = format!("{error:#}");
+            assert!(
+                message.contains("recipe set option")
+                    && message.contains("Fabricator's Ingenuity")
+                    && message.contains("matched 0 rows"),
+                "{message}"
+            );
+            std::fs::write(carrier, xml).unwrap();
+        }
+        let removed_from = if removed_from_new { &source } else { &previous };
+        std::fs::remove_file(removed_from.join("Items/Fabricator's Gauntlets.item")).unwrap();
+        let report = import_ddobuilder(&DdobuilderImportOptions {
+            previous_dir: previous,
+            source_dir: source.clone(),
+            data_dir: root.clone(),
+            previous_sha: Some("fixture".into()),
+            sha: Some("fixture-next".into()),
+        })
+        .unwrap();
+        let rendered = report.to_string();
+        if removed_from_new {
+            let declined =
+                report.entries.iter().filter(|entry| entry.category == "DECLINED REMOVAL").collect::<Vec<_>>();
+            assert!(
+                declined.iter().any(|entry| entry.detail.contains("Fabricator's Ingenuity")
+                    && entry.detail.contains("fabricators-gauntlets")),
+                "{rendered}"
+            );
+        }
+        let skipped = report.entries.iter().filter(|entry| entry.category == "SKIPPED WIKI FACT").collect::<Vec<_>>();
+        assert!(
+            skipped.iter().any(|entry| entry.path.to_string_lossy().contains("crafting/nearly-finished/crafting.toml")
+                && entry.detail.contains(if removed_from_new { "new" } else { "previous" })),
+            "{rendered}"
+        );
+        for entry in
+            report.entries.iter().filter(|entry| matches!(entry.category, "DECLINED REMOVAL" | "SKIPPED WIKI FACT"))
+        {
+            eprintln!("{}: {} {}", entry.path.display(), entry.category, entry.detail);
+        }
+        let mut rebuilt = Connection::open_in_memory().unwrap();
+        tree::build_from_data(&root, &mut rebuilt).unwrap();
+        let (id, links): (i64, i64) = rebuilt.query_row("SELECT s.id,COUNT(*) FROM crafting_recipe_set_options link JOIN socket_options o ON o.id=link.option_id JOIN socket_option_sets s ON s.id=o.set_id JOIN crafting_recipes r ON r.id=link.recipe_id WHERE r.option='Fabricator''s Ingenuity' GROUP BY s.id", [], |row| Ok((row.get(0)?, row.get(1)?))).unwrap();
+        assert_eq!(links, 1);
+        if removed_from_new {
+            let paths = tree::DataFilePaths::from_database(&rebuilt).unwrap();
+            assert!(paths.path("socket_option_sets", id).unwrap().starts_with("packs/shared/sockets"));
+        }
+        let again = import_ddobuilder(&DdobuilderImportOptions {
+            previous_dir: source.clone(),
+            source_dir: source,
+            data_dir: root.clone(),
+            previous_sha: Some("fixture-next".into()),
+            sha: Some("fixture-next".into()),
+        })
+        .unwrap();
+        assert!(!again.has_conflicts(), "{again}");
+        assert_eq!((again.files.written, again.files.removed), (0, 0), "{again}");
+        if removed_from_new {
+            assert_eq!(
+                again.entries.iter().filter(|entry| entry.category == "SKIPPED WIKI FACT").count(),
+                2,
+                "{again}"
+            );
+        }
+    }
+}
+
+#[test]
 fn canonical_wiki_rows_do_not_appear_in_an_unrelated_import_delta() {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let scratch = tempfile::tempdir().unwrap();
