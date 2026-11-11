@@ -490,6 +490,39 @@ fn step_costs_export_in_grade_order_on_both_paths() {
 }
 
 #[test]
+fn a_step_cost_on_tier_any_applies_to_every_grade() {
+    let db = fixture::database(|root| {
+        let mut contents =
+            "\n[[step]]\nname='Any cost'\n[[step.cost]]\ntier='any'\ningredient='Thread of Fate'\nquantity=2\n"
+                .to_string();
+        for tier in ["heroic", "epic", "legendary", "any"] {
+            contents.push_str(&format!("[[recipe]]\noption='{tier} default'\nstep='Any cost'\ntier='{tier}'\n"));
+        }
+        fixture::append_to_file(root.join("packs/shared/crafting/catalyst-crafting/crafting.toml"), &contents);
+    });
+    let wiki = WikiOverrides::from_database(&db).unwrap();
+    let system = wiki.crafting_systems.iter().find(|system| system.name == "Catalyst Crafting").unwrap();
+    let step = system.steps.iter().find(|step| step.name == "Any cost").unwrap();
+    assert_eq!(step.costs.len(), 1);
+    assert_eq!(step.costs[0].tier.as_str(), "any");
+    assert_eq!(step.costs[0].cost.quantity, 2);
+    for tier in ["heroic", "epic", "legendary", "any"] {
+        let recipe = system.recipes.iter().find(|recipe| recipe.option == format!("{tier} default")).unwrap();
+        assert_eq!(recipe.step.as_deref(), Some("Any cost"));
+        assert!(recipe.cost.is_empty());
+    }
+    let exported = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&db, exported.path()).unwrap();
+    let text =
+        std::fs::read_to_string(exported.path().join("packs/shared/crafting/catalyst-crafting/crafting.toml")).unwrap();
+    let record: toml::Value = toml::from_str(&text).unwrap();
+    let step =
+        record["step"].as_array().unwrap().iter().find(|step| step["name"].as_str() == Some("Any cost")).unwrap();
+    assert_eq!(step["cost"].as_array().unwrap().len(), 1);
+    assert_eq!(step["cost"][0]["tier"].as_str(), Some("any"));
+}
+
+#[test]
 fn step_costs_apply_to_recipes_without_their_own_and_overrides_stand() {
     let db = fixture::database(|root| {
         let path = root.join("packs/shared/crafting/heroic-green-steel/crafting.toml");

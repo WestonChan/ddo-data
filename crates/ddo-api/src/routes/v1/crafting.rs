@@ -45,7 +45,7 @@ const COST_COLUMNS: &str = "ingredient.name AS ingredient,ingredient.id AS ingre
 
 const EFFECTIVE_RECIPE_COSTS: &str = "WITH cost AS (
     SELECT own.recipe_id,own.sort_order,own.ingredient_id,own.item_id,r.tier,own.quantity,0 AS from_step FROM crafting_recipe_ingredients own JOIN crafting_recipes r ON r.id=own.recipe_id
-    UNION ALL SELECT r.id,step.sort_order,step.ingredient_id,step.item_id,r.tier,step.quantity,1 FROM crafting_recipes r JOIN crafting_step_costs step ON step.step_id=r.step_id AND step.tier=r.tier
+    UNION ALL SELECT r.id,step.sort_order,step.ingredient_id,step.item_id,r.tier,step.quantity,1 FROM crafting_recipes r JOIN crafting_step_costs step ON step.step_id=r.step_id AND (step.tier=r.tier OR (step.tier='any' AND NOT EXISTS (SELECT 1 FROM crafting_step_costs exact WHERE exact.step_id=r.step_id AND exact.tier=r.tier)))
     WHERE NOT EXISTS (SELECT 1 FROM crafting_recipe_ingredients own WHERE own.recipe_id=r.id)
 )";
 

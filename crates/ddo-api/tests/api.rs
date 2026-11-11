@@ -3812,6 +3812,44 @@ async fn step_costs_are_served_in_grade_order() {
 }
 
 #[tokio::test]
+async fn a_step_cost_on_tier_any_applies_to_every_grade() {
+    let state = fixture_state_with_data_edits("any-step-cost", |root| {
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let mut contents = std::fs::read_to_string(&path).unwrap();
+        contents.push_str("\n[[step]]\nname='Any cost'\n[[step.cost]]\ntier='any'\ningredient='Thread of Fate'\nquantity=1\n[[step.cost]]\ntier='any'\ningredient='Small Shard of Power'\nquantity=2\n[[step.cost]]\ntier='epic'\ningredient='Thread of Fate'\nquantity=3\n");
+        for tier in ["heroic", "epic", "legendary", "any"] {
+            contents.push_str(&format!("[[recipe]]\noption='{tier} default'\nstep='Any cost'\ntier='{tier}'\n"));
+            contents.push_str(&format!("[[recipe]]\noption='{tier} override'\nstep='Any cost'\ntier='{tier}'\n[[recipe.ingredient]]\ningredient='Thread of Fate'\nquantity=4\n"));
+        }
+        std::fs::write(path, contents).unwrap();
+    });
+    let (status, _, system) = get_from(state, "/v1/crafting-systems/catalyst-crafting").await;
+    assert_eq!(status, StatusCode::OK);
+    for tier in ["heroic", "epic", "legendary", "any"] {
+        for overridden in [false, true] {
+            let option = format!("{tier} {}", if overridden { "override" } else { "default" });
+            let recipe =
+                system["recipes"].as_array().unwrap().iter().find(|recipe| recipe["option"] == option).unwrap();
+            let actual = recipe["cost"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|cost| (cost["ingredient"].as_str().unwrap(), cost["quantity"].as_i64().unwrap()))
+                .collect::<Vec<_>>();
+            let expected = if overridden {
+                vec![("Thread of Fate", 4)]
+            } else if tier == "epic" {
+                vec![("Thread of Fate", 3)]
+            } else {
+                vec![("Thread of Fate", 1), ("Small Shard of Power", 2)]
+            };
+            assert_eq!(actual, expected, "{option}");
+            assert_eq!(recipe["cost_from_step"], !overridden);
+        }
+    }
+}
+
+#[tokio::test]
 async fn recipes_without_a_cost_for_their_grade_serve_an_empty_cost() {
     let state = fixture_state_with_data_edits("missing-step-grade", |root| {
         let path = root.join("packs/shared/crafting/thunder-forged/crafting.toml");
