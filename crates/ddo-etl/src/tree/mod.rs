@@ -502,21 +502,65 @@ mod tests {
         let fresh_b = fresh_exports.join("fresh-b");
         super::export_database(&baseline, &fresh_a).unwrap();
         super::export_database(&baseline, &fresh_b).unwrap();
-        let toml_bytes = |folder: &Path| -> BTreeMap<std::path::PathBuf, Vec<u8>> {
+        let record_file_bytes = |folder: &Path| -> BTreeMap<std::path::PathBuf, Vec<u8>> {
             walkdir::WalkDir::new(folder)
                 .into_iter()
                 .map(Result::unwrap)
                 .filter(|entry| {
-                    entry.file_type().is_file() && entry.path().extension().is_some_and(|ext| ext == "toml")
+                    entry.file_type().is_file()
+                        && entry.path().extension().is_some_and(|ext| ext == "toml" || ext == "json")
                 })
                 .map(|entry| {
                     (entry.path().strip_prefix(folder).unwrap().to_path_buf(), std::fs::read(entry.path()).unwrap())
                 })
                 .collect()
         };
-        assert_eq!(toml_bytes(&root), toml_bytes(&fresh_a));
-        assert_eq!(toml_bytes(&fresh_a), toml_bytes(&fresh_b));
-        let canonical_files = toml_bytes(&fresh_a);
+        assert_eq!(record_file_bytes(&root), record_file_bytes(&fresh_a));
+        assert_eq!(record_file_bytes(&fresh_a), record_file_bytes(&fresh_b));
+        let canonical_files = record_file_bytes(&fresh_a);
+        let committed_files = record_file_bytes(&fixtures.join("data"));
+        for (path, committed) in &committed_files {
+            let exported = canonical_files.get(path).unwrap_or_else(|| panic!("missing exported {}", path.display()));
+            let text = String::from_utf8_lossy(committed);
+            if text.contains("[[socket.option]]") || text.contains("[[ingredient]]") {
+                let without_transitional_arrays = |bytes: &[u8]| {
+                    let mut record: toml::Value = toml::from_str(std::str::from_utf8(bytes).unwrap()).unwrap();
+                    let fields = record.as_table_mut().unwrap();
+                    fields.remove("ingredient");
+                    if let Some(sockets) = fields.get_mut("socket").and_then(toml::Value::as_array_mut) {
+                        for socket in sockets {
+                            for field in ["option", "set", "set_variant"] {
+                                socket.as_table_mut().unwrap().remove(field);
+                            }
+                        }
+                    }
+                    if let Some(notes) = fields.get_mut("ddobuilder_correction").and_then(toml::Value::as_array_mut) {
+                        notes.retain(|note| {
+                            !matches!(note["kind"].as_str(), Some("socket_option" | "socket_option_bonus"))
+                        });
+                        if notes.is_empty() {
+                            fields.remove("ddobuilder_correction");
+                        }
+                    }
+                    record
+                };
+                assert_eq!(
+                    without_transitional_arrays(committed),
+                    without_transitional_arrays(exported),
+                    "{}",
+                    path.display()
+                );
+            } else {
+                assert_eq!(committed, exported, "{}", path.display());
+            }
+        }
+        for path in canonical_files.keys().filter(|path| !committed_files.contains_key(*path)) {
+            assert!(
+                path.components().any(|component| component.as_os_str() == "sockets"),
+                "unexpected exported {}",
+                path.display()
+            );
+        }
         std::fs::remove_dir_all(fresh_exports).unwrap();
         assert!(!stale_file.exists());
         assert!(!stale_schema.exists());
@@ -724,7 +768,7 @@ mod tests {
         let expected = "quest_chains \"The Lost Seekers\": move packs/free-to-play/the-coin-lords/chains/the-lost-seekers.toml -> packs/free-to-play/chains/the-lost-seekers.toml";
         assert!(restored.layout_warnings.iter().any(|warning| warning == expected), "{restored}");
         export_database(&restored_membership_db, &root).unwrap();
-        assert_eq!(toml_bytes(&root), canonical_files);
+        assert_eq!(record_file_bytes(&root), canonical_files);
         let mut moved_kinds = std::collections::BTreeSet::new();
         let mut moved_files = Vec::new();
         for entry in walkdir::WalkDir::new(&root).into_iter().map(Result::unwrap) {

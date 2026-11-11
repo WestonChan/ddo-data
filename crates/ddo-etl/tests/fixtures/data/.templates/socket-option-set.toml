@@ -1,0 +1,10 @@
+label = "crafting: template socket"
+name = "Template Choice"
+
+[[option]]
+name = "Template Choice"
+
+[[citation]]
+url = "https://ddowiki.com/page/Template"
+read = "2026-10-18"
+note = "Template: the page read and what it confirms."
