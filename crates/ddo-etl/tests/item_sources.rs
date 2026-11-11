@@ -385,6 +385,50 @@ fn rejects_a_vendor_alias_repeating_a_head_and_turn_in_but_keeps_one_whose_turn_
 }
 
 #[test]
+fn a_segment_naming_a_crafting_system_links_no_event() {
+    let ours = fixture::database(|root| {
+        for (directory, file, name, page_field) in [
+            ("events/shared-event", "event.toml", "Shared Event", "wiki_url"),
+            ("crafting/dusty-system", "crafting.toml", "Dusty System", "page"),
+        ] {
+            let path = root.join("packs/shared").join(directory).join(file);
+            std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+            std::fs::write(
+                path,
+                format!("name = {name:?}\n{page_field} = \"https://ddowiki.com/page/Test_crafting\"\ncitation = []\n"),
+            )
+            .unwrap();
+        }
+    });
+    let source = fixture::xml_source();
+    for (item, original, replacement) in [
+        (
+            "Thunder-Forged Orb",
+            "Magma Forge, Crafted from various ingredients",
+            "Shared Event, Turn in 500 Copper Doubloon at Dusty System",
+        ),
+        ("Green Steel Weave Boots", "Altar of Fecundity, Manufactured Ingredient Recipes", "Shared Event, Chest"),
+    ] {
+        let path = source.path().join(format!("Items/{item}.item"));
+        let contents = std::fs::read_to_string(&path).unwrap();
+        assert!(contents.contains(original));
+        std::fs::write(path, contents.replace(original, replacement)).unwrap();
+    }
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::from_database(&ours).unwrap(),
+        &Corrections::default(),
+        &mut db,
+        &DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-10-02T00:00:00Z".into() },
+    )
+    .unwrap();
+    assert_eq!(source_rows(&db, "Thunder-Forged Orb"), ["crafting_system Dusty System 0"]);
+    assert_eq!(source_rows(&db, "Green Steel Weave Boots"), ["event Shared Event 0"]);
+}
+
+#[test]
 fn a_segment_a_crafting_system_alias_matches_links_no_pack_or_challenge() {
     let ours = fixture::database(|root| {
         for name in ["Green Steel items", "Vaults of the Artificers"] {

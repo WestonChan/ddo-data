@@ -537,7 +537,7 @@ impl DropTextLinker {
             }
         }
         if named_sources.iter().any(|matched| matches!(matched.source, LootSource::CraftingSystem(_))) {
-            named_sources.retain(|matched| !matches!(matched.source, LootSource::Challenge(_)));
+            named_sources.retain(|matched| !matches!(matched.source, LootSource::Challenge(_) | LootSource::Event(_)));
         }
         let mut distinct_sources: Vec<MatchedLootSource> = Vec::new();
         for named_source in named_sources {
