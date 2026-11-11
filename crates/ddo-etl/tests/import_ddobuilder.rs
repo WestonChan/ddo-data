@@ -871,18 +871,26 @@ fn renamed_item_carriers_keep_their_set_identity_through_two_imports() {
         WikiOverrides::default(),
         fixture::write_spyglass_options,
     );
-    world.options.source_dir = world.options.previous_dir.clone();
-    world.options.sha = world.options.previous_sha.clone();
     let identities = |db: &Connection| {
         db.prepare("SELECT s.slug,s.name,s.variant FROM socket_option_sets s JOIN item_augment_slots socket ON socket.option_set_id=s.id JOIN items i ON i.id=socket.item_id WHERE i.name='Reviewed Spyglass' ORDER BY s.slug").unwrap()
             .query_map([],|row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,Option<String>>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
     };
     let expected = identities(&world.database());
     assert!(!expected.is_empty());
+    let source = world.options.source_dir.join("Items/SpyglassOptions.item");
+    let xml = std::fs::read_to_string(&source).unwrap();
+    let changed = xml.replace("Spot +20: Passive:", "Updated spot description. Spot +20: Passive:");
+    assert_ne!(changed, xml);
+    std::fs::write(&source, changed).unwrap();
     for _ in 0..2 {
         let report = import_ddobuilder(&world.options).unwrap();
         assert!(!report.has_conflicts(), "{report}");
-        assert_eq!(identities(&world.database()), expected);
+        let db = world.database();
+        assert_eq!(identities(&db), expected);
+        let changed_options: i64 = db.query_row("SELECT COUNT(*) FROM socket_options o JOIN socket_option_sets s ON s.id=o.set_id JOIN item_augment_slots socket ON socket.option_set_id=s.id JOIN items i ON i.id=socket.item_id WHERE i.name='Reviewed Spyglass' AND o.description LIKE 'Updated spot description.%'", [], |row| row.get(0)).unwrap();
+        assert_eq!(changed_options, 1);
+        world.options.previous_dir = world.options.source_dir.clone();
+        world.options.previous_sha = world.options.sha.clone();
     }
 }
 

@@ -643,6 +643,12 @@ impl OverlayReferences {
         Ok(())
     }
 
+    pub(super) fn corrected_name(&self, table: &str, id: i64) -> Option<String> {
+        self.active_renames.borrow().iter().find_map(|((owner_table, name), rename)| {
+            (owner_table == table && rename.rows.iter().any(|(row_id, _)| *row_id == id)).then(|| name.clone())
+        })
+    }
+
     fn upstream_name(&self, table: &str, name: &str) -> String {
         self.active_renames
             .borrow()

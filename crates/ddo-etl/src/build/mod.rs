@@ -419,7 +419,7 @@ fn build_with_wiki_references(
         }
     }
     overlay_references.capture_renames(&transaction, corrections)?;
-    writer.write_socket_option_sets(&wiki_overrides.socket_option_sets)?;
+    writer.write_socket_option_sets(&wiki_overrides.socket_option_sets, &overlay_references)?;
     if corrections.entries.iter().any(Correction::targets_socket_option) {
         let mut targets = SocketOptionTargets::from_database(&transaction)?;
         targets.include_upstream_names(corrections);

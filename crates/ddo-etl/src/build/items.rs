@@ -416,7 +416,11 @@ impl TableWriter<'_> {
         Ok(())
     }
 
-    pub(super) fn write_socket_option_sets(&mut self, existing: &super::ExistingSocketOptionSets) -> Result<()> {
+    pub(super) fn write_socket_option_sets(
+        &mut self,
+        existing: &super::ExistingSocketOptionSets,
+        references: &super::wiki::OverlayReferences,
+    ) -> Result<()> {
         let mut label_corrections = self.socket_label_corrections.values().copied().collect::<Vec<_>>();
         label_corrections.sort_by(|left, right| left.name.cmp(&right.name));
         for correction in label_corrections {
@@ -448,6 +452,9 @@ impl TableWriter<'_> {
             .collect::<rusqlite::Result<std::collections::BTreeMap<_,_>>>()?;
         for options in &mut self.pending_socket_options {
             options.label = socket_labels[&options.socket].clone();
+            if let Some(name) = references.corrected_name("items", options.socket.0) {
+                options.item_slug = crate::tree::xml_entity_slug("items", None, &name, None);
+            }
         }
         for group in super::socket_option_sets::matched_socket_option_sets(
             std::mem::take(&mut self.pending_socket_options),
