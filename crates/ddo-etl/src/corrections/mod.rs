@@ -248,6 +248,39 @@ impl CorrectionValue {
     }
 }
 
+#[derive(Debug, PartialEq, Eq)]
+pub struct CorrectionWithoutTarget {
+    pub id: i64,
+    pub kind: String,
+    pub name: String,
+    pub qualifier: String,
+    pub field: String,
+}
+
+pub fn corrections_recording_missing_targets(db: &Connection) -> Result<Vec<CorrectionWithoutTarget>> {
+    let mut statement = db.prepare("SELECT id,kind,name,qualifier,field,from_value FROM corrections ORDER BY id")?;
+    let rows = statement.query_map([], |row| {
+        Ok((
+            CorrectionWithoutTarget {
+                id: row.get(0)?,
+                kind: row.get(1)?,
+                name: row.get(2)?,
+                qualifier: row.get(3)?,
+                field: row.get(4)?,
+            },
+            row.get::<_, String>(5)?,
+        ))
+    })?;
+    let mut missing = Vec::new();
+    for row in rows {
+        let (correction, upstream) = row?;
+        if !CorrectionValue::from_json(&upstream)?.has_matching_target() {
+            missing.push(correction);
+        }
+    }
+    Ok(missing)
+}
+
 #[derive(Debug, Clone, PartialEq)]
 pub struct Correction {
     pub kind: CorrectionKind,

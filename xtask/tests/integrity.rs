@@ -1844,6 +1844,11 @@ fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
 fn injected_violations() -> Vec<InjectedViolation> {
     let mut violations = vec![
         violation(
+            "corrections_have_a_target",
+            "UPDATE corrections SET from_value=json_quote('no such bonus') WHERE id=(SELECT id FROM corrections WHERE kind='item' AND name='Docent of Defiance' AND field='minimum_level');",
+            "Docent of Defiance",
+        ),
+        violation(
             "effect_descriptions_have_no_space_before_closing_parentheses",
             "UPDATE effects SET description_template='Grants a bonus (Enhancement bonus ).' WHERE name='Strength';",
             "Strength",

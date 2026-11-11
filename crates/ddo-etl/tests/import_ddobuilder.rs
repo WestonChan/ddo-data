@@ -1055,6 +1055,18 @@ fn a_merge_import_reports_a_missing_member_and_keeps_the_correction() {
         )
         .unwrap();
     assert_eq!(upstream, "\"no such bonus\"");
+    let missing = ddo_etl::corrections::corrections_recording_missing_targets(&db).unwrap();
+    assert_eq!(missing.len(), 1);
+    assert_eq!(
+        (missing[0].kind.as_str(), missing[0].name.as_str(), missing[0].qualifier.as_str(), missing[0].field.as_str()),
+        ("item_bonus", "Legendary Keylock Ring", "Search, Spot / Competence", "lines")
+    );
+    let correction_id: i64 = db
+        .query_row("SELECT id FROM corrections WHERE name='Legendary Keylock Ring' AND field='lines'", [], |row| {
+            row.get(0)
+        })
+        .unwrap();
+    assert_eq!(missing[0].id, correction_id);
 }
 
 #[test]
@@ -3157,6 +3169,20 @@ fn a_socket_relabel_import_keeps_the_missing_target_correction_and_his_replaceme
             [], |row| row.get(0),
         ).unwrap();
         assert_eq!(upstream, r#""no such bonus""#);
+        let missing = ddo_etl::corrections::corrections_recording_missing_targets(&rebuilt).unwrap();
+        assert_eq!(missing.len(), 1);
+        assert_eq!(
+            (
+                missing[0].kind.as_str(),
+                missing[0].name.as_str(),
+                missing[0].qualifier.as_str(),
+                missing[0].field.as_str()
+            ),
+            ("item_socket", "Sireth, Spear of the Sky", r#"option "Planar Conflux""#, "label")
+        );
+        let correction_id: i64 = rebuilt.query_row("SELECT id FROM corrections WHERE kind='item_socket' AND name='Sireth, Spear of the Sky' AND field='label'", [], |row| row.get(0)).unwrap();
+        assert_eq!(missing[0].id, correction_id);
+
         let socket: (String,String) = rebuilt.query_row(
             "SELECT t.label,o.name FROM item_augment_slots a JOIN items i ON i.id=a.item_id JOIN augment_slot_types t ON t.id=a.slot_id JOIN socket_options o ON o.set_id=a.option_set_id WHERE i.name='Sireth, Spear of the Sky' AND a.sort_order=0",
             [], |row| Ok((row.get(0)?,row.get(1)?)),

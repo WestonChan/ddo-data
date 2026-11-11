@@ -123,6 +123,11 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Built(effects_sharing_a_stat_set),
     ).showing_every_offender(),
     IntegrityCheck::hard(
+        "corrections_have_a_target",
+        "no correction records a missing upstream target; re-address or delete each one",
+        OffenderQuery::Built(corrections_have_a_target),
+    ).showing_every_offender(),
+    IntegrityCheck::hard(
         "deferred_line_splits_are_live",
         "every issue-backed deferred split names an existing owner that still needs its exception",
         OffenderQuery::Built(deferred_line_splits_are_live),
@@ -2554,6 +2559,18 @@ fn stat_link_findings(db: &Connection, condition: &str, detail: &str) -> Result<
         })
         .collect::<Vec<_>>();
     Ok(Findings { offenders: Some(offenders_from_sql(db, &queries.join(" UNION ALL "))?), notes: Vec::new() })
+}
+
+fn corrections_have_a_target(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let offenders = ddo_etl::corrections::corrections_recording_missing_targets(db)?
+        .into_iter()
+        .map(|correction| Offender {
+            name: correction.name,
+            id: Some(correction.id),
+            detail: format!("{} [{}].{}", correction.kind, correction.qualifier, correction.field),
+        })
+        .collect();
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
 fn deferred_line_splits_are_live(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
