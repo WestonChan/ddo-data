@@ -815,6 +815,78 @@ fn a_two_slot_merge_import_updates_only_the_changed_slot() {
 }
 
 #[test]
+fn socket_option_bonus_types_import_from_the_authored_carrier_notes() {
+    let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");
+    let mut corrections = Corrections::from_data(&root).unwrap();
+    corrections.entries.retain(|note| note.name.contains("bracers-of-wind") || note.name == "Epic Bracers of Wind");
+    assert_eq!(corrections.entries.len(), 2);
+    let mut world = ImportWorld::with_sources(fixture::groupings(), corrections, WikiOverrides::default(), |source| {
+        std::fs::create_dir_all(source.join("Items")).unwrap();
+        std::fs::write(
+            source.join("Items/Epic Bracers of Wind.item"),
+            include_str!("fixtures/untyped_socket_options/Epic Bracers of Wind.item"),
+        )
+        .unwrap();
+        let path = source.join("ItemBuffs.xml");
+        let existing = ddo_etl::xml::item_buffs::parse(&path).unwrap();
+        let mut buffs = std::fs::read_to_string(&path).unwrap();
+        for definition in include_str!("fixtures/DataFiles/ItemBuffs.xml").split("<Buff>").skip(1) {
+            let kind = definition.split_once("<Type>").unwrap().1.split_once("</Type>").unwrap().0;
+            if !existing.contains_key(kind) {
+                buffs = buffs.replace("</Buffs>", &format!("<Buff>{definition}</Buffs>"));
+            }
+        }
+        std::fs::write(path, buffs).unwrap();
+        for (folder, kind, name) in
+            [("ItemImages", "items", "Bracers_10.png"), ("AugmentImages", "augments", "Upgrade.png")]
+        {
+            std::fs::create_dir_all(source.join(folder)).unwrap();
+            std::fs::copy(root.join("icons").join(kind).join(name), source.join(folder).join(name)).unwrap();
+        }
+    });
+    world.options.source_dir = world.options.previous_dir.clone();
+    world.options.sha = world.options.previous_sha.clone();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    let db = world.database();
+    let paths = tree::DataFilePaths::from_database(&db).unwrap();
+    for (tier, amount) in [(2, 17), (3, 18)] {
+        let (id, kind): (i64, String) = db.query_row("SELECT s.id,b.name FROM socket_option_sets s JOIN socket_options o ON o.set_id=s.id JOIN socket_option_effects e ON e.option_id=o.id JOIN effects stat ON stat.id=e.effect_id JOIN bonus_types b ON b.id=e.bonus_type_id WHERE s.slug=?1 AND stat.name='Electric Spell Lore' AND e.value=?2", rusqlite::params![format!("upgrade-tier-{tier}-epic-bracers-of-wind"),amount], |row| Ok((row.get(0)?,row.get(1)?))).unwrap();
+        assert_eq!(kind, "Equipment");
+        let file = std::fs::read_to_string(world.options.data_dir.join(paths.path("socket_option_sets", id).unwrap()))
+            .unwrap();
+        assert!(file.contains("kind = \"socket_option_bonus\"") && file.contains("field = \"bonus_type\""), "{file}");
+    }
+}
+
+#[test]
+fn renamed_item_carriers_keep_their_set_identity_through_two_imports() {
+    let original = "Epic Treasure Hunter's Spyglass (legacy) (level 20)";
+    let rename = fixture::new_correction("item", original, "name", &format!("{original:?}"), "\"Reviewed Spyglass\"")
+        .cited("Exercise carrier identity through an item rename.", "https://ddowiki.com/page/Test", "2026-11-10");
+    let corrections = fixture::corrections_from(&[("rename.toml", &rename)]).unwrap();
+    let mut world = ImportWorld::with_sources(
+        fixture::grouping_cases(),
+        corrections,
+        WikiOverrides::default(),
+        fixture::write_spyglass_options,
+    );
+    world.options.source_dir = world.options.previous_dir.clone();
+    world.options.sha = world.options.previous_sha.clone();
+    let identities = |db: &Connection| {
+        db.prepare("SELECT s.slug,s.name,s.variant FROM socket_option_sets s JOIN item_augment_slots socket ON socket.option_set_id=s.id JOIN items i ON i.id=socket.item_id WHERE i.name='Reviewed Spyglass' ORDER BY s.slug").unwrap()
+            .query_map([],|row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,Option<String>>(2)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap()
+    };
+    let expected = identities(&world.database());
+    assert!(!expected.is_empty());
+    for _ in 0..2 {
+        let report = import_ddobuilder(&world.options).unwrap();
+        assert!(!report.has_conflicts(), "{report}");
+        assert_eq!(identities(&world.database()), expected);
+    }
+}
+
+#[test]
 fn sets_keep_their_identity_through_corrections_and_reimports() {
     let mut notes = fixture::rank_option_merge("Riposte VII");
     notes.0.clear();

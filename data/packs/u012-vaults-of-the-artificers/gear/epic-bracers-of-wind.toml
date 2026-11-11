@@ -33,20 +33,20 @@ value = 9
 name = "Air Guard"
 
 [[ddobuilder_correction]]
-kind = "item_bonus"
+kind = "socket_option_bonus"
 field = "bonus_type"
 reason = "The wiki's Tier 2 upgrade raises the bracers' Lightning Lore +16% to +17%, the Equipment bonus his own option description names; his effect's bonus is Not Equipment."
 url = "https://ddowiki.com/page/Item:Epic_Bracers_of_Wind"
 read = "2026-10-02"
-qualifier = "Electric Spell Lore / null / 17"
+qualifier = 'socket "upgrade: tier 2", option "Magnetism 116, Lightning Lore 17%, Dodge 10% and a Colorless Augment slot", Electric Spell Lore / null'
 
 [[ddobuilder_correction]]
-kind = "item_bonus"
+kind = "socket_option_bonus"
 field = "bonus_type"
 reason = "The wiki's Tier 3 upgrade raises the bracers' Lightning Lore +17% to +18%, the Equipment bonus his own option description names; his effect's bonus is Not Equipment."
 url = "https://ddowiki.com/page/Item:Epic_Bracers_of_Wind"
 read = "2026-10-02"
-qualifier = "Electric Spell Lore / null / 18"
+qualifier = 'socket "upgrade: tier 3", option "Magnetism 122, Lightning Lore 18%, Dodge 11% and a Green Augment slot", Electric Spell Lore / null'
 
 [[socket]]
 slot = "upgrade: tier 2"
