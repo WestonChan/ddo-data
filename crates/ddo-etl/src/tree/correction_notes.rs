@@ -358,6 +358,12 @@ pub(super) fn correction_values(
     };
     correction.from = CorrectionValue::from_json(&upstream.to_string())?;
     correction.to = CorrectionValue::from_json(&applied.to_string())?;
+    ensure!(
+        correction.to.has_matching_target(),
+        "correction target is absent: qualifier {:?} on {}",
+        note.qualifier,
+        correction.label()
+    );
     correction.validate_values(correction.correctable_field()?)?;
     Ok((correction.from.to_json(), correction.to.to_json()))
 }

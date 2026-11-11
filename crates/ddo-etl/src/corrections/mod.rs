@@ -176,6 +176,10 @@ impl CorrectionValue {
         }
     }
 
+    pub(crate) fn has_matching_target(&self) -> bool {
+        self.as_text() != Some(NO_SUCH_BONUS)
+    }
+
     pub fn as_bonus_type_name(&self) -> Option<&str> {
         match self {
             Self::Text(bonus_type_name) => Some(bonus_type_name),

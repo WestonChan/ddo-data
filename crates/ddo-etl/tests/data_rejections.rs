@@ -15,6 +15,17 @@ fn crafting_row_error(rows: &str) -> String {
 }
 
 #[test]
+fn a_correction_whose_qualifier_matches_no_line_is_rejected() {
+    let qualifier = "Strength / Enhancement / 999";
+    let error = fixture::data_build_error(|root| {
+        fixture::append_to_file(root.join(CHAIN_ITEM), format!("\n[[ddobuilder_correction]]\nkind='item_bonus'\nfield='bonus_type'\nqualifier={qualifier:?}\nupstream='Equipment'\nreason='Fixture target probe.'\nurl='https://ddowiki.com/page/Item:Acrobat%27s_Ring'\nread='2026-11-11'\n"));
+    });
+    assert!(error.contains("correction target is absent"), "{error}");
+    assert!(error.contains(CHAIN_ITEM), "{error}");
+    assert!(error.contains(qualifier), "{error}");
+}
+
+#[test]
 fn a_recipe_rejects_the_unqualified_variant_field() {
     let error = crafting_row_error("[[recipe]]\noption='Invalid variant'\ntier='any'\nvariant='legendary'\n");
     assert!(error.contains("unknown field") && error.contains("variant"), "{error}");
