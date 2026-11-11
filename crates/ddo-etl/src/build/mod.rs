@@ -939,6 +939,10 @@ impl TableWriter<'_> {
             let target = correction.to.as_text().context("a socket label rename has a target")?;
             ensure!(!correction.upstream_names().contains(&target), "socket label correction must change the label");
             let id = self.written.augment_slot_type_ids_by_label[&existing_label];
+            if target != existing_label && target != slot_type.label {
+                self.written.augment_slot_type_ids_by_label.insert(slot_type.label, id);
+                return Ok(id);
+            }
             if existing_label != target {
                 corrections::rename_socket_label(self.transaction, id, target)?;
             }

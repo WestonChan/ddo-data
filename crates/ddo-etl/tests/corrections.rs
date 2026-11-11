@@ -4899,6 +4899,46 @@ fn colliding_socket_label_slugs_apply_the_recorded_rename_in_either_input_order(
     }
 }
 
+#[test]
+fn colliding_socket_label_spellings_merge_into_a_third_label_in_either_input_order() {
+    let labels = ["Upgradeable - Tier 2", "Upgradeable Tier 2", "Tier 2"];
+    let mut failures = Vec::new();
+    for order in [[0, 1, 2], [1, 0, 2], [2, 0, 1], [2, 1, 0], [0, 2, 1], [1, 2, 0]] {
+        let directory = data_files_with_untyped(&format!("third-socket-label-{order:?}"), &[]);
+        let path = directory.join("Items/Sireth, Spear of the Sky.item");
+        let mut xml = std::fs::read_to_string(&path).unwrap();
+        for (position, label) in order.iter().enumerate() {
+            xml = xml.replace(
+                &format!("<Type>Attuned to Heroism {}</Type>", position + 1),
+                &format!("<Type>{}</Type>", labels[*label]),
+            );
+        }
+        std::fs::write(&path, xml).unwrap();
+        let correction = merge_of(
+            "socket_label",
+            &["crafting: upgradeable - tier 2", "crafting: upgradeable tier 2"],
+            "upgrade: tier 2",
+        );
+        match built_db_from(&directory, &[("labels.toml", &correction)]) {
+            Ok((db, report)) => {
+                assert_eq!(
+                    &item_socket_labels(&db, "Sireth, Spear of the Sky")[..3],
+                    ["upgrade: tier 2"; 3],
+                    "{order:?}"
+                );
+                assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+                assert_eq!(
+                    row_count(&db, "SELECT COUNT(*) FROM augment_slot_types WHERE slug='crafting-upgradeable-tier-2'"),
+                    0
+                );
+            }
+            Err(error) => failures.push(format!("{order:?}: {error}")),
+        }
+        std::fs::remove_dir_all(directory.parent().unwrap()).unwrap();
+    }
+    assert!(failures.is_empty(), "{}", failures.join("\n"));
+}
+
 fn merge_of(kind: &str, spellings: &[&str], target: &str) -> CorrectionSet {
     fixture::correction_between(
         kind,

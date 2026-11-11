@@ -434,6 +434,9 @@ impl TableWriter<'_> {
                     continue;
                 };
                 let destination = super::corrections::canonical_socket_label_id(self.transaction, id, target)?;
+                if id == destination && self.written.augment_slot_type_ids_by_label.get(target) == Some(&id) {
+                    continue;
+                }
                 super::corrections::rename_socket_label(self.transaction, id, target)?;
                 for known_id in self.written.augment_slot_type_ids_by_label.values_mut() {
                     if *known_id == id {
