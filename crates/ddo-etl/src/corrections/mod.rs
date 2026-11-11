@@ -180,6 +180,10 @@ impl CorrectionValue {
         self.as_text() != Some(NO_SUCH_BONUS)
     }
 
+    pub(crate) fn has_missing_target(&self, found: &[Self]) -> bool {
+        self.has_matching_target() && found.iter().any(|value| !value.has_matching_target())
+    }
+
     pub fn as_bonus_type_name(&self) -> Option<&str> {
         match self {
             Self::Text(bonus_type_name) => Some(bonus_type_name),

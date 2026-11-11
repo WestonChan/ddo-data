@@ -26,6 +26,46 @@ fn a_correction_whose_qualifier_matches_no_line_is_rejected() {
 }
 
 #[test]
+fn missing_correction_targets_agree_between_xml_and_tree_builds() {
+    let qualifier = "Strength / Enhancement / 999";
+    for (upstream, recorded_stale) in [("Strength", false), ("no such bonus", true)] {
+        let correction = fixture::new_qualified_correction(
+            "item_bonus",
+            "Acrobat's Ring",
+            "stat='Strength'\nbonus_type='Enhancement'\nbonus_value=999",
+            "alias",
+            &format!("{upstream:?}"),
+            "\"Fixture Strength\"",
+        );
+        let corrections = fixture::corrections_from(&[(CHAIN_ITEM, &correction)]).unwrap();
+        let mut db = rusqlite::Connection::open_in_memory().unwrap();
+        let report = ddo_etl::build::build_database(
+            fixture::groupings(),
+            fixture::xml_source().path(),
+            &ddo_etl::wiki::WikiOverrides::default(),
+            &corrections,
+            &mut db,
+            &ddo_model::DatasetVersion { upstream_sha: "test".into(), built_at: "2026-11-11T00:00:00Z".into() },
+        )
+        .unwrap();
+        assert_eq!(report.correction_applied_count, usize::from(recorded_stale));
+        assert_eq!(report.stale_corrections.len(), usize::from(!recorded_stale));
+        if !recorded_stale {
+            assert_eq!(report.stale_corrections[0].file_name, CHAIN_ITEM);
+        }
+        let error = fixture::data_build_error(|root| {
+            fixture::append_to_file(root.join(CHAIN_ITEM), format!("\n[[ddobuilder_correction]]\nkind='item_bonus'\nfield='alias'\nqualifier={qualifier:?}\nupstream={upstream:?}\nreason='Fixture target probe.'\nurl='https://ddowiki.com/page/Test'\nread='2026-11-11'\n"));
+        });
+        if recorded_stale {
+            assert!(error.is_empty(), "{error}");
+        } else {
+            assert!(error.contains("correction target is absent"), "{error}");
+            assert!(error.contains(CHAIN_ITEM) && error.contains(qualifier), "{error}");
+        }
+    }
+}
+
+#[test]
 fn a_recipe_rejects_the_unqualified_variant_field() {
     let error = crafting_row_error("[[recipe]]\noption='Invalid variant'\ntier='any'\nvariant='legendary'\n");
     assert!(error.contains("unknown field") && error.contains("variant"), "{error}");

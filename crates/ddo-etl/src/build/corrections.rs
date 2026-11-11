@@ -69,7 +69,7 @@ pub(super) fn record_observed_corrections<'a>(
 }
 
 pub(super) fn upstream_values_match(correction: &Correction, values: &[CorrectionValue]) -> Result<bool> {
-    if correction.from.has_matching_target() && values.iter().any(|value| !value.has_matching_target()) {
+    if correction.from.has_missing_target(values) {
         return Ok(false);
     }
     Ok(match (&correction.from, correction.correctable_field()?.shape) {

@@ -1,6 +1,6 @@
 use super::DdobuilderCorrection;
 use crate::build::data_correction_value;
-use crate::corrections::{Correction, CorrectionValue, FieldShape, NO_SUCH_BONUS};
+use crate::corrections::{Correction, CorrectionValue, FieldShape};
 use anyhow::{bail, ensure, Context, Result};
 use ddo_model::enums::{CorrectionKind, EffectOwner};
 use rusqlite::{params, Transaction};
@@ -253,7 +253,7 @@ pub(super) fn correction_values(
     let mut upstream = note.upstream.clone().unwrap_or(Value::Null);
     correction.from = CorrectionValue::from_json(&upstream.to_string())?;
     if correction.targets_socket_option()
-        && correction.from.as_text() != Some(crate::corrections::NO_SUCH_BONUS)
+        && correction.from.has_matching_target()
         && socket_options.option_id(&correction, current_name)?.is_none()
     {
         let option = correction.option.as_deref().unwrap_or_default();
@@ -318,18 +318,14 @@ pub(super) fn correction_values(
         (CorrectionKind::ItemSocket, "add") => json!(note.qualifier),
         (CorrectionKind::ItemSocket, "remove") => {
             let current = data_correction_value(transaction, &correction, current_name, groupings, socket_options)?;
-            ensure!(
-                current.as_text() == Some(NO_SUCH_BONUS),
-                "removed socket is still present: {}",
-                correction.label()
-            );
+            ensure!(!current.has_matching_target(), "removed socket is still present: {}", correction.label());
             json!(1)
         }
         (CorrectionKind::ItemEffect, "effect") => {
             let owner = owner_id(transaction, CorrectionKind::ItemEffect, current_name, &correction)?;
             let count: i64 = transaction.query_row("SELECT COUNT(*) FROM item_effects l JOIN effects e ON e.id=l.effect_id WHERE l.item_id=?1 AND e.name=?2", params![owner,note.qualifier], |row| row.get(0))?;
             ensure!(
-                count == 1 || (count == 0 && correction.from.as_text() == Some(NO_SUCH_BONUS)),
+                count == 1 || (count == 0 && !correction.from.has_matching_target()),
                 "item {current_name:?} must link destination effect {:?} exactly once, found {count}",
                 note.qualifier
             );
@@ -359,7 +355,7 @@ pub(super) fn correction_values(
     correction.from = CorrectionValue::from_json(&upstream.to_string())?;
     correction.to = CorrectionValue::from_json(&applied.to_string())?;
     ensure!(
-        correction.to.has_matching_target(),
+        !correction.from.has_missing_target(std::slice::from_ref(&correction.to)),
         "correction target is absent: qualifier {:?} on {}",
         note.qualifier,
         correction.label()
@@ -417,14 +413,10 @@ pub(super) fn validate_game_bug_corrections(
             let field = correction.correctable_field()?;
             let current = data_correction_value(transaction, &correction, &owner_name, groupings, socket_options)?;
             if field.shape == FieldShape::BonusRemoval {
-                ensure!(
-                    current.as_text() == Some(NO_SUCH_BONUS),
-                    "game-bug remove target is present: {}",
-                    correction.label()
-                );
+                ensure!(!current.has_matching_target(), "game-bug remove target is present: {}", correction.label());
                 correction.to = CorrectionValue::Null;
             } else {
-                ensure!(current.as_text() != Some(NO_SUCH_BONUS), "game-bug target is absent: {}", correction.label());
+                ensure!(current.has_matching_target(), "game-bug target is absent: {}", correction.label());
                 correction.to = current;
             }
             correction.validate_values(field)?;
@@ -496,11 +488,7 @@ pub(super) fn validate_verification_requests(
                 correction.from = CorrectionValue::from_json(&request.assumed.to_string())?;
                 correction.to =
                     data_correction_value(transaction, &correction, &owner_name, groupings, socket_options)?;
-                ensure!(
-                    correction.to.as_text() != Some(NO_SUCH_BONUS),
-                    "verification target is absent: {}",
-                    correction.label()
-                );
+                ensure!(correction.to.has_matching_target(), "verification target is absent: {}", correction.label());
                 correction.validate_values(field)?;
                 ensure!(
                     correction.from == correction.to,
