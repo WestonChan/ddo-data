@@ -364,7 +364,7 @@ fn correctable_fields_pin_each_kinds_names_columns_shapes_and_nullability() {
         (CorrectionKind::SetTierBonus, "add:add:BonusAddition:false, alias:alias:BonusAlias:true, bonus_type:bonus_type:BonusTypeName:false, lines:lines:BonusLines:false, remove:remove:BonusRemoval:false, rounding:rounding:StatRounding:false, scale:scale:StatScale:false, value:value:Integer:true"),
         (CorrectionKind::ItemEffect, "add:add:EffectAddition:false, bonus_type:bonus_type:BonusTypeName:false, effect:effect:EffectReplacement:false, remove:remove:Removal:false, value2:value2:Integer:true, value:value:Integer:true"),
         (CorrectionKind::EffectDamage, "add:add:DamageAddition:false, remove:remove:DamageRemoval:false"),
-        (CorrectionKind::ItemSocket, "add:add:SocketAddition:false, remove:remove:Removal:false"),
+        (CorrectionKind::ItemSocket, "add:add:SocketAddition:false, label:label:SocketRelabel:false, remove:remove:Removal:false"),
     ];
     assert_eq!(expected.len(), CorrectionKind::ALL.len());
     for (kind, expected) in expected {
@@ -4658,6 +4658,94 @@ fn an_added_effect_writes_its_description_only_on_the_effect_it_creates() {
         recorded,
         [("Book Shot".to_string(), r#"{"description":"Hurls books at enemies.","name":"Book Shot"}"#.to_string())]
     );
+}
+
+fn socket_relabel_source(name: &str, replacement: Option<(&str, &str)>) -> std::path::PathBuf {
+    let source = data_files_with_untyped(name, &[]);
+    let mut xml = std::fs::read_to_string(fixtures_dir().join("effect-groups/EpicDuelistsLeathers.item")).unwrap();
+    if let Some((before, after)) = replacement {
+        xml = xml.replace(before, after);
+    }
+    std::fs::write(source.join("Items/EpicDuelistsLeathers.item"), xml).unwrap();
+    source
+}
+
+fn leathers_socket_relabel(option: &str) -> CorrectionSet {
+    new_qualified_correction(
+        "item_socket",
+        "Epic Duelist's Leathers (level 20)",
+        &format!("option = {option:?}"),
+        "label",
+        "\"upgrade: tier 2\"",
+        "\"upgrade: tier 3\"",
+    )
+}
+
+#[test]
+fn item_socket_label_moves_only_the_socket_holding_the_named_option() {
+    let source = socket_relabel_source("socket-relabel", None);
+    let correction = leathers_socket_relabel("Epic Nimbleness");
+    let (db, report) = built_db_from(&source, &[("label.toml", &correction)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    assert_eq!(item_socket_labels(&db, "Epic Duelist's Leathers (level 20)"), ["upgrade: tier 3"; 2]);
+    let labels: Vec<(String, String)> = db.prepare(
+        "SELECT o.name,t.label FROM socket_options o JOIN socket_option_sets s ON s.id=o.set_id JOIN augment_slot_types t ON t.id=s.slot_id JOIN item_augment_slots a ON a.option_set_id=s.id JOIN items i ON i.id=a.item_id WHERE i.name=?1 ORDER BY a.sort_order"
+    ).unwrap().query_map(["Epic Duelist's Leathers (level 20)"], |r| Ok((r.get(0)?,r.get(1)?))).unwrap().collect::<Result<_,_>>().unwrap();
+    assert_eq!(
+        labels,
+        [
+            ("Epic Nimbleness".into(), "upgrade: tier 3".into()),
+            ("Dodge 8% and Adds a Blue augment slot".into(), "upgrade: tier 3".into()),
+        ]
+    );
+    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM pragma_foreign_key_check"), 0);
+}
+
+#[test]
+fn item_socket_label_is_stale_when_the_option_is_gone() {
+    let source = socket_relabel_source("socket-relabel-missing", None);
+    let correction = leathers_socket_relabel("Absent option");
+    let (db, report) = built_db_from(&source, &[("label.toml", &correction)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+    assert_eq!(item_socket_labels(&db, "Epic Duelist's Leathers (level 20)"), ["upgrade: tier 2", "upgrade: tier 3"]);
+}
+
+#[test]
+fn item_socket_label_is_stale_when_his_label_changed() {
+    let source = socket_relabel_source("socket-relabel-fixed", Some(("<Type>Tier 2</Type>", "<Type>Tier 3</Type>")));
+    let correction = leathers_socket_relabel("Epic Nimbleness");
+    let (_, report) = built_db_from(&source, &[("label.toml", &correction)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (0, 1));
+}
+
+#[test]
+fn item_socket_label_rejects_an_option_on_two_sockets() {
+    let source = socket_relabel_source(
+        "socket-relabel-ambiguous",
+        Some(("<Name>Dodge 8% and Adds a Blue augment slot</Name>", "<Name>Epic Nimbleness</Name>")),
+    );
+    let correction = leathers_socket_relabel("Epic Nimbleness");
+    let error = built_db_from(&source, &[("label.toml", &correction)]).unwrap_err();
+    assert!(error.contains("Epic Duelist's Leathers (level 20)") && error.contains("2 sockets"), "{error}");
+}
+
+#[test]
+fn item_socket_label_compares_the_label_after_a_socket_label_merge() {
+    let source = socket_relabel_source(
+        "socket-relabel-merged",
+        Some(("<Type>Tier 2</Type>", "<Type>Upgradeable - Tier 2</Type>")),
+    );
+    let merge = new_correction(
+        "socket_label",
+        "crafting: upgradeable - tier 2",
+        "name",
+        "\"crafting: upgradeable - tier 2\"",
+        "\"upgrade: tier 2\"",
+    );
+    let relabel = leathers_socket_relabel("Epic Nimbleness");
+    let (db, report) = built_db_from(&source, &[("merge.toml", &merge), ("label.toml", &relabel)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
+    assert_eq!(item_socket_labels(&db, "Epic Duelist's Leathers (level 20)"), ["upgrade: tier 3"; 2]);
 }
 
 #[test]

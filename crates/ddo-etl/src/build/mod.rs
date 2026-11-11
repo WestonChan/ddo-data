@@ -378,6 +378,12 @@ pub(crate) fn build_with_wiki_references(
             .flat_map(|correction| correction.upstream_names().into_iter().map(move |spelling| (spelling, correction)))
             .collect(),
         applied_socket_label_corrections: Vec::new(),
+        socket_relabels: corrections
+            .entries
+            .iter()
+            .filter(|correction| correction.kind == CorrectionKind::ItemSocket && correction.field == "label")
+            .collect(),
+        applied_socket_relabels: Vec::new(),
         bonus_removal_corrections: corrections
             .entries
             .iter()
@@ -480,6 +486,7 @@ pub(crate) fn build_with_wiki_references(
     let mut corrections_applied_while_writing = writer.untyped_bonus_corrections.applied_corrections();
     corrections_applied_while_writing.extend(applied_drop_location_corrections);
     corrections_applied_while_writing.extend(&writer.applied_socket_label_corrections);
+    corrections_applied_while_writing.extend(&writer.applied_socket_relabels);
     corrections_applied_while_writing.extend(&writer.applied_link_corrections);
     corrections::record_observed_corrections(
         &transaction,
@@ -882,6 +889,8 @@ pub(crate) struct TableWriter<'a> {
     written: WrittenRows,
     socket_label_corrections: HashMap<&'a str, &'a Correction>,
     applied_socket_label_corrections: Vec<&'a Correction>,
+    socket_relabels: Vec<&'a Correction>,
+    applied_socket_relabels: Vec<&'a Correction>,
     bonus_removal_corrections: Vec<&'a Correction>,
     augment_description_corrections: HashMap<&'a str, Vec<&'a Correction>>,
     pending_set_item_links: Vec<(i64, String)>,

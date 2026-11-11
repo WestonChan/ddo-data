@@ -28,6 +28,7 @@ pub enum FieldShape {
     DamageAddition,
     DamageRemoval,
     SocketAddition,
+    SocketRelabel,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -94,8 +95,11 @@ const ITEM_EFFECT_OPERATIONS: &[CorrectableField] = &[
 const EFFECT_DAMAGE_OPERATIONS: &[CorrectableField] =
     &[field("add", FieldShape::DamageAddition, false), field("remove", FieldShape::DamageRemoval, false)];
 
-const ITEM_SOCKET_OPERATIONS: &[CorrectableField] =
-    &[field("add", FieldShape::SocketAddition, false), field("remove", FieldShape::Removal, false)];
+const ITEM_SOCKET_OPERATIONS: &[CorrectableField] = &[
+    field("add", FieldShape::SocketAddition, false),
+    field("label", FieldShape::SocketRelabel, false),
+    field("remove", FieldShape::Removal, false),
+];
 
 pub fn correctable_fields(kind: CorrectionKind) -> &'static [CorrectableField] {
     static FIELDS: std::sync::LazyLock<std::collections::HashMap<CorrectionKind, Vec<CorrectableField>>> =

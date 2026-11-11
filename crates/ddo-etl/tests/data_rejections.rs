@@ -15,6 +15,33 @@ fn crafting_row_error(rows: &str) -> String {
 }
 
 #[test]
+fn item_socket_label_notes_require_one_present_socket_with_a_changed_label() {
+    let path = "packs/unsourced/gear/celestial-emerald-ring.toml";
+    for (option, ambiguous, expected) in [
+        ("Absent option", false, "correction target is absent"),
+        ("+8 Constitution", false, "must change the socket label"),
+        ("+8 Constitution", true, "2 sockets"),
+    ] {
+        let error = fixture::data_build_error(|root| {
+            if ambiguous {
+                let file = root.join(path);
+                let original = std::fs::read_to_string(&file).unwrap();
+                let start = original.find("[[socket]]").unwrap();
+                let end = original[start + 1..].find("[[socket]]").unwrap() + start + 1;
+                let duplicate = &original[start..end];
+                std::fs::write(file, format!("{original}\n{duplicate}")).unwrap();
+            }
+            let qualifier = format!("option {option:?}");
+            fixture::append_to_file(root.join(path), format!(
+                "\n[[ddobuilder_correction]]\nkind='item_socket'\nfield='label'\nqualifier={qualifier:?}\nupstream='crafting: nearly finished'\nreason='Fixture socket label.'\nin_game=true\nread='2026-11-11'\n"
+            ));
+        });
+        assert!(error.contains(path) && error.contains(expected), "{error}");
+        assert!(error.contains(option), "{error}");
+    }
+}
+
+#[test]
 fn a_correction_whose_qualifier_matches_no_line_is_rejected() {
     let qualifier = "Strength / Enhancement / 999";
     let error = fixture::data_build_error(|root| {

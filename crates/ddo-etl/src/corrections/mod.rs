@@ -464,7 +464,9 @@ impl Correction {
         }
         match &self.to {
             CorrectionValue::Bonus(bonus) => qualifier_parts.push(format!("{} / {}", bonus.stat, bonus.bonus_type)),
-            CorrectionValue::Text(added_socket_label) if self.kind == CorrectionKind::ItemSocket => {
+            CorrectionValue::Text(added_socket_label)
+                if self.kind == CorrectionKind::ItemSocket && self.field == "add" =>
+            {
                 qualifier_parts.push(added_socket_label.clone())
             }
             added_effect if self.kind == CorrectionKind::ItemEffect && self.field == "add" => {
@@ -509,6 +511,7 @@ impl Correction {
     fn validate_qualifier_keys(&self, field: &CorrectableField) -> Result<()> {
         let names_option = self.targets_socket_option();
         let removes_socket = self.kind == CorrectionKind::ItemSocket && field.name == "remove";
+        let relabels_socket = self.kind == CorrectionKind::ItemSocket && field.name == "label";
         ensure!(
             !names_option
                 || matches!(self.kind, CorrectionKind::SocketOptionBonus | CorrectionKind::SocketOption)
@@ -517,7 +520,7 @@ impl Correction {
         );
         ensure!(
             self.socket.is_some() == (removes_socket || (names_option && self.kind == CorrectionKind::Item))
-                && self.option.is_some() == names_option,
+                && self.option.is_some() == (names_option || relabels_socket),
             "a set option correction requires only an option qualifier; a legacy item option needs socket and option"
         );
         ensure!(
@@ -706,6 +709,14 @@ impl Correction {
                     bail!("a bonus_type takes from = his current type or \"null\", and to = a bonus type's name");
                 }
             }
+            FieldShape::SocketRelabel => {
+                ensure!(
+                    matches!((&self.from, &self.to), (CorrectionValue::Text(_), CorrectionValue::Text(_)))
+                        && (self.from != self.to || !self.from.has_matching_target()),
+                    "a label correction must change the socket label: {}",
+                    self.qualifier()
+                );
+            }
             FieldShape::SocketAddition => {
                 if !matches!((&self.from, &self.to), (CorrectionValue::Null, CorrectionValue::Text(_))) {
                     bail!("an add takes from = \"null\" and to = the socket label to add");
@@ -774,7 +785,7 @@ impl Correction {
         let field = self.correctable_field()?;
         self.validate_qualifier_keys(field)?;
         self.validate_values(field)?;
-        if self.from == self.to {
+        if self.from == self.to && field.shape != FieldShape::SocketRelabel {
             bail!("to equals from ({}); a correction must change the value", self.to.to_json());
         }
         if self.reason.trim().is_empty() {
@@ -838,7 +849,7 @@ fn expected_value_text(field: &CorrectableField) -> String {
         FieldShape::TierAddition => "a { equipped_count, description } table",
         FieldShape::EffectAddition => "an effect name or a { name, description } table",
         FieldShape::DamageAddition | FieldShape::DamageRemoval => "a damage row",
-        FieldShape::SocketAddition => "a socket label",
+        FieldShape::SocketAddition | FieldShape::SocketRelabel => "a socket label",
     };
     if field.is_nullable {
         format!("{non_null_text}, or \"null\"")
@@ -1017,6 +1028,44 @@ pub(crate) fn set_correction_qualifiers(correction: &mut Correction, qualifier: 
 #[cfg(test)]
 mod tests {
     use super::{CorrectionValue, Corrections, DamageRow};
+
+    #[test]
+    fn a_socket_relabel_qualifier_contains_only_the_option_and_parses_back() {
+        let mut correction = super::Correction {
+            kind: ddo_model::enums::CorrectionKind::ItemSocket,
+            name: "Fixture armor".into(),
+            field: "label".into(),
+            from: CorrectionValue::Text("upgrade: tier 2".into()),
+            to: CorrectionValue::Text("upgrade: tier 3".into()),
+            family: None,
+            socket: None,
+            option: Some("Epic Nimbleness".into()),
+            selection: None,
+            stance: None,
+            dc: None,
+            effect: None,
+            stat: None,
+            bonus_type: None,
+            bonus_value: None,
+            equipped_count: None,
+            reason: "Fixture relabel.".into(),
+            source: crate::AnnotationSource::InGame,
+            read: "2026-11-11".into(),
+            file_name: "fixture.toml".into(),
+        };
+        let qualifier = correction.qualifier();
+        assert_eq!(qualifier, r#"option "Epic Nimbleness""#);
+        correction.option = None;
+        super::set_correction_qualifiers(&mut correction, &qualifier).unwrap();
+        assert_eq!(correction.option.as_deref(), Some("Epic Nimbleness"));
+        assert!(correction.socket.is_none());
+        correction.validate().unwrap();
+        correction.to = correction.from.clone();
+        assert!(correction.validate().is_err());
+        correction.from = CorrectionValue::Text(super::NO_SUCH_BONUS.into());
+        correction.to = correction.from.clone();
+        correction.validate().unwrap();
+    }
 
     #[test]
     fn committed_data_restores_all_current_corrections() {

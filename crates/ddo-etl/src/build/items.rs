@@ -416,6 +416,45 @@ impl TableWriter<'_> {
         Ok(())
     }
 
+    fn relabel_item_sockets(&mut self) -> Result<()> {
+        for correction in &self.socket_relabels {
+            let option_name = correction.option.as_deref().context("a socket relabel names an option")?;
+            let sockets = self
+                .pending_socket_options
+                .iter()
+                .filter(|socket| {
+                    socket.item_name == correction.name
+                        && socket.options.iter().any(|option| option.name == option_name)
+                })
+                .collect::<Vec<_>>();
+            ensure!(
+                sockets.len() <= 1,
+                "{}: option {option_name:?} matches {} sockets on {:?}",
+                correction.file_name,
+                sockets.len(),
+                correction.name
+            );
+            let Some(socket) = sockets.first() else { continue };
+            let current: String = self.transaction.query_row(
+                "SELECT t.label FROM item_augment_slots a JOIN augment_slot_types t ON t.id=a.slot_id WHERE a.item_id=?1 AND a.sort_order=?2",
+                params![socket.socket.0, socket.socket.1], |row| row.get(0),
+            )?;
+            if Some(current.as_str()) != correction.from.as_text() {
+                continue;
+            }
+            let target = correction.to.as_text().context("a socket relabel has a target label")?;
+            let target_id = super::corrections::required_socket_label_id(self.transaction, target)?;
+            let changed = self.transaction.execute(
+                "UPDATE item_augment_slots SET slot_id=?1 WHERE item_id=?2 AND sort_order=?3",
+                params![target_id, socket.socket.0, socket.socket.1],
+            )?;
+            if changed != 0 {
+                self.applied_socket_relabels.push(correction);
+            }
+        }
+        Ok(())
+    }
+
     pub(super) fn write_socket_option_sets(
         &mut self,
         existing: &super::ExistingSocketOptionSets,
@@ -450,6 +489,7 @@ impl TableWriter<'_> {
                 self.applied_socket_label_corrections.push(correction);
             }
         }
+        self.relabel_item_sockets()?;
         let socket_labels = self.transaction.prepare("SELECT s.item_id,s.sort_order,t.label FROM item_augment_slots s JOIN augment_slot_types t ON t.id=s.slot_id")?
             .query_map([], |row| Ok(((row.get::<_, i64>(0)?,row.get::<_, i64>(1)?),row.get::<_, String>(2)?)))?
             .collect::<rusqlite::Result<std::collections::BTreeMap<_,_>>>()?;

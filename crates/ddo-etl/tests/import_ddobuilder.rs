@@ -2997,6 +2997,107 @@ fn import_refuses_a_previous_that_is_not_the_recorded_commit() {
     assert_eq!(before, world.bytes());
 }
 
+fn relabelled_socket_import() -> (tempfile::TempDir, DdobuilderImportOptions, Connection) {
+    let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+    let scratch = tempfile::tempdir().unwrap();
+    let source = scratch.path().join("DataFiles");
+    copy_tree(&fixtures.join("DataFiles"), &source);
+    let mut corrections = fixture::fixture_icon_corrections();
+    corrections.entries.extend(
+        fixture::new_qualified_correction(
+            "item_socket",
+            "Sireth, Spear of the Sky",
+            "option='Planar Conflux'",
+            "label",
+            "\"crafting: attuned to heroism 1\"",
+            "\"crafting: attuned to heroism 2\"",
+        )
+        .0,
+    );
+    let mut written = Connection::open_in_memory().unwrap();
+    build::build_database(
+        fixture::groupings(),
+        &source,
+        &WikiOverrides::default(),
+        &corrections,
+        &mut written,
+        &DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-11-11T00:00:00Z".into() },
+    )
+    .unwrap();
+    let root = scratch.path().join("data");
+    export_fixture_with_icons(&written, &source, &root);
+    copy_data_icons_into_source(&root, &source, scratch.path());
+    let options = DdobuilderImportOptions {
+        previous_dir: source.clone(),
+        source_dir: source,
+        data_dir: root,
+        previous_sha: Some(PREVIOUS_SHA.into()),
+        sha: Some(PREVIOUS_SHA.into()),
+    };
+    (scratch, options, written)
+}
+
+#[test]
+fn a_relabelled_socket_has_no_import_delta() {
+    let (_scratch, options, written) = relabelled_socket_import();
+    let sockets = |db: &Connection| {
+        db.prepare(
+        "SELECT a.sort_order,t.label,s.slug FROM item_augment_slots a JOIN items i ON i.id=a.item_id JOIN augment_slot_types t ON t.id=a.slot_id LEFT JOIN socket_option_sets s ON s.id=a.option_set_id WHERE i.name='Sireth, Spear of the Sky' ORDER BY a.sort_order"
+    ).unwrap().query_map([], |r| Ok((r.get::<_,i64>(0)?,r.get::<_,String>(1)?,r.get::<_,Option<String>>(2)?))).unwrap().collect::<Result<Vec<_>,_>>().unwrap()
+    };
+    let expected = sockets(&written);
+    assert_eq!(expected[0].1, "crafting: attuned to heroism 2");
+    for _ in 0..2 {
+        let report = import_ddobuilder(&options).unwrap();
+        assert!(!report.has_conflicts(), "{report}");
+        assert_eq!((report.files.written, report.files.removed), (0, 0), "{report}");
+        let mut rebuilt = Connection::open_in_memory().unwrap();
+        tree::build_from_data(&options.data_dir, &mut rebuilt).unwrap();
+        assert_eq!(sockets(&rebuilt), expected);
+    }
+}
+
+#[test]
+fn a_socket_relabel_import_keeps_the_missing_target_correction_and_his_replacement() {
+    let (scratch, mut options, _) = relabelled_socket_import();
+    let changed = scratch.path().join("changed");
+    copy_tree(&options.source_dir, &changed);
+    let item = changed.join("Items/Sireth, Spear of the Sky.item");
+    let xml = std::fs::read_to_string(&item).unwrap();
+    std::fs::write(item, xml.replace("<Name>Planar Conflux</Name>", "<Name>Upstream replacement option</Name>"))
+        .unwrap();
+    options.source_dir = changed;
+    options.sha = Some(NEW_SHA.into());
+    let report = import_ddobuilder(&options).unwrap();
+    assert!(report.has_conflicts(), "{report}");
+    let text = report.to_string();
+    let conflicts = text.lines().filter(|line| line.contains(": CONFLICT ")).collect::<Vec<_>>();
+    assert_eq!(conflicts.len(), 1, "{report}");
+    for expected in ["item_socket", "Sireth, Spear of the Sky", "label", "no such bonus"] {
+        assert!(conflicts[0].contains(expected), "{report}");
+    }
+    for pass in 0..2 {
+        if pass == 1 {
+            options.previous_dir = options.source_dir.clone();
+            options.previous_sha = options.sha.clone();
+            let repeated = import_ddobuilder(&options).unwrap();
+            assert_eq!((repeated.files.written, repeated.files.removed), (0, 0), "{repeated}");
+        }
+        let mut rebuilt = Connection::open_in_memory().unwrap();
+        tree::build_from_data(&options.data_dir, &mut rebuilt).unwrap();
+        let upstream: String = rebuilt.query_row(
+            "SELECT from_value FROM corrections WHERE kind='item_socket' AND name='Sireth, Spear of the Sky' AND field='label'",
+            [], |row| row.get(0),
+        ).unwrap();
+        assert_eq!(upstream, r#""no such bonus""#);
+        let socket: (String,String) = rebuilt.query_row(
+            "SELECT t.label,o.name FROM item_augment_slots a JOIN items i ON i.id=a.item_id JOIN augment_slot_types t ON t.id=a.slot_id JOIN socket_options o ON o.set_id=a.option_set_id WHERE i.name='Sireth, Spear of the Sky' AND a.sort_order=0",
+            [], |row| Ok((row.get(0)?,row.get(1)?)),
+        ).unwrap();
+        assert_eq!(socket, ("crafting: attuned to heroism 1".into(), "Upstream replacement option".into()));
+    }
+}
+
 #[test]
 fn import_twice_changes_nothing_the_second_time() {
     let mut world = ImportWorld::new(Corrections::default());

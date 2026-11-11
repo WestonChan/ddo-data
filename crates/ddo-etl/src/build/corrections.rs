@@ -563,6 +563,13 @@ fn write_correction(
                 )?;
             }
         }
+        FieldShape::SocketRelabel => {
+            ensure!(
+                !correction.from.has_matching_target(),
+                "socket relabel was not applied while writing: {}",
+                correction.label()
+            );
+        }
         FieldShape::SocketAddition => {
             let socket_label = correction.to.as_text().context("an add names the socket label in to")?;
             add_item_socket(transaction, row_ids, socket_label)?;
@@ -1275,6 +1282,15 @@ fn current_value(
             } else {
                 CorrectionValue::Null
             });
+        }
+        FieldShape::SocketRelabel => {
+            let option_name = correction.option.as_deref().context("a socket relabel names an option")?;
+            let sockets = transaction.prepare(
+                "SELECT DISTINCT a.sort_order,t.label FROM item_augment_slots a JOIN augment_slot_types t ON t.id=a.slot_id JOIN socket_options o ON o.set_id=a.option_set_id WHERE a.item_id=?1 AND o.name=?2 ORDER BY a.sort_order"
+            )?.query_map(params![row_id,option_name], |row| Ok((row.get::<_,i64>(0)?,row.get::<_,String>(1)?)))?
+                .collect::<rusqlite::Result<Vec<_>>>()?;
+            ensure!(sockets.len() <= 1, "option {option_name:?} matches {} sockets on {:?}", sockets.len(), correction.name);
+            return Ok(CorrectionValue::Text(sockets.into_iter().next().map_or_else(|| NO_SUCH_BONUS.to_string(), |(_, label)| label)));
         }
         FieldShape::SocketAddition => {
             let socket_label = correction.to.as_text().context("an add names the socket label in to")?;
@@ -2399,10 +2415,14 @@ fn matching_effect_id(effects: &EffectCache<'_>, effect_name: &str) -> Option<i6
         .min()
 }
 
-fn add_item_socket(transaction: &Transaction, item_ids: &[i64], socket_label: &str) -> Result<()> {
-    let slot_type_id = socket_label_id(transaction, socket_label)?.with_context(|| {
+pub(super) fn required_socket_label_id(transaction: &Transaction, socket_label: &str) -> Result<i64> {
+    socket_label_id(transaction, socket_label)?.with_context(|| {
         format!("to {socket_label:?} is not a socket label in Maetrim's files; use one /v1/augment-slot-types lists")
-    })?;
+    })
+}
+
+fn add_item_socket(transaction: &Transaction, item_ids: &[i64], socket_label: &str) -> Result<()> {
+    let slot_type_id = required_socket_label_id(transaction, socket_label)?;
     for item_id in item_ids {
         transaction.execute(
             "INSERT INTO item_augment_slots (item_id, sort_order, slot_id)
