@@ -117,6 +117,11 @@ fn build_matching_values(
             );
         }
         if let StaleCorrectionCause::ValueChanged { maetrim_value, .. } = &stale.cause {
+            ensure!(
+                correction.from.has_matching_target() || correction.to.has_matching_target(),
+                "{}: Maetrim's files have this target again (current value: {maetrim_value}), but the correction recorded it as missing and no longer holds our value; delete the correction, import, then add it again if it is still wanted",
+                correction.label()
+            );
             if *maetrim_value != correction.to.to_json() {
                 correction.from = CorrectionValue::from_json(maetrim_value)?;
                 changed = true;

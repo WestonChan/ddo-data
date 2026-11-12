@@ -370,21 +370,68 @@ fn a_bonus_type_missing_target_repeats_when_its_owner_keeps_another_link() {
 }
 
 #[test]
-fn restoring_an_unsettled_alias_target_stops_without_writing() {
-    let mut world = alias_import_world();
-    let original = remove_alias_bonus(&world);
-    let report = import_ddobuilder(&world.options).unwrap();
-    assert!(report.has_conflicts(), "{report}");
-    let missing = world.scratch.path().join("missing-alias-target");
-    copy_tree(&world.options.source_dir, &missing);
-    std::fs::write(world.options.source_dir.join("Items/CharismaSkills.item"), original).unwrap();
-    world.options.previous_dir = missing;
-    world.options.previous_sha = world.options.sha.clone();
-    world.options.sha = Some("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee".into());
-    let before = world.bytes();
-    let error = import_ddobuilder(&world.options).unwrap_err();
-    assert_eq!(world.bytes(), before);
-    assert!(format!("{error:#}").contains("has no alias \"no such bonus\""), "{error:#}");
+fn restoring_a_target_whose_correction_lost_its_value_stops_without_writing() {
+    let mut failures = Vec::new();
+    for (field, owner, current) in [
+        ("alias", "Pink and Green Ioun Stone (unsuppressed)", "null"),
+        ("bonus_type", "Pink and Green Ioun Stone (unsuppressed)", "\"Exceptional\""),
+        ("label", "Sireth, Spear of the Sky", "\"crafting: attuned to heroism 1\""),
+    ] {
+        let mut world = match field {
+            "alias" => alias_import_world(),
+            "bonus_type" => charisma_bonus_type_import_world(false),
+            _ => {
+                let (scratch, mut options, _) = relabelled_socket_import();
+                let source = scratch.path().join("changed");
+                copy_tree(&options.source_dir, &source);
+                options.source_dir = source;
+                options.sha = Some(NEW_SHA.into());
+                ImportWorld { scratch, options }
+            }
+        };
+        let path = world.options.source_dir.join(if field == "label" {
+            "Items/Sireth, Spear of the Sky.item"
+        } else {
+            "Items/CharismaSkills.item"
+        });
+        let original = if field == "label" {
+            let original = std::fs::read_to_string(&path).unwrap();
+            std::fs::write(
+                &path,
+                original.replace("<Name>Planar Conflux</Name>", "<Name>Upstream replacement option</Name>"),
+            )
+            .unwrap();
+            original
+        } else {
+            remove_alias_bonus(&world)
+        };
+        let report = import_ddobuilder(&world.options).unwrap();
+        assert!(report.has_conflicts(), "{field}: {report}");
+        let missing = world.scratch.path().join("missing-target");
+        copy_tree(&world.options.source_dir, &missing);
+        std::fs::write(&path, original).unwrap();
+        world.options.previous_dir = missing;
+        world.options.previous_sha = world.options.sha.clone();
+        world.options.sha = Some("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee".into());
+        let before = world.bytes();
+        let error = import_ddobuilder(&world.options).unwrap_err();
+        assert_eq!(world.bytes(), before, "{field}: failed restore wrote files");
+        let message = format!("{error:#}");
+        println!("{field} restore: {message}");
+        for expected in [
+            owner,
+            &format!(".{field}"),
+            "Maetrim's files",
+            &format!("current value: {current}"),
+            "recorded it as missing",
+            "delete the correction, import, then add it again if it is still wanted",
+        ] {
+            if !message.contains(expected) {
+                failures.push(format!("{field}: missing {expected:?}: {message}"));
+            }
+        }
+    }
+    assert!(failures.is_empty(), "{}", failures.join("\n"));
 }
 
 #[test]
