@@ -19,7 +19,8 @@ pub const CARRIERLESS_SOCKET_OPTION_SETS: &str = "WITH referrers(set_id,detail) 
       FROM corrections c JOIN socket_option_sets s ON s.slug=c.name
       WHERE c.kind IN ('socket_option','socket_option_bonus')
 )
-SELECT s.name,s.id,referrers.detail FROM socket_option_sets s
+SELECT s.name,s.id,COALESCE(referrers.detail,'unreferenced: ' || s.slug),referrers.set_id IS NOT NULL
+    FROM socket_option_sets s
     LEFT JOIN referrers ON referrers.set_id=s.id
     WHERE NOT EXISTS (SELECT 1 FROM item_augment_slots socket WHERE socket.option_set_id=s.id)
     ORDER BY s.slug,referrers.detail";
@@ -30,10 +31,10 @@ pub(super) fn remove_unreferenced_carrierless_sets(
 ) -> Result<()> {
     let unused_sets = transaction
         .prepare(CARRIERLESS_SOCKET_OPTION_SETS)?
-        .query_map([], |row| Ok((row.get::<_, i64>(1)?, row.get::<_, Option<String>>(2)?)))?
+        .query_map([], |row| Ok((row.get::<_, i64>(1)?, row.get::<_, bool>(3)?)))?
         .collect::<rusqlite::Result<Vec<_>>>()?
         .into_iter()
-        .filter_map(|(id, referrer)| referrer.is_none().then_some(id))
+        .filter_map(|(id, referenced)| (!referenced).then_some(id))
         .collect::<Vec<_>>();
     for set_id in unused_sets {
         let linked_effects = transaction.prepare("SELECT DISTINCT e.effect_id FROM socket_option_effects e JOIN socket_options o ON o.id=e.option_id WHERE o.set_id=?1")?

@@ -53,7 +53,7 @@ fn carrierless_sets_fail_and_name_every_referrer() {
         [set],
     )
     .unwrap();
-    assert_eq!(offenders(), [""]);
+    assert_eq!(offenders(), ["unreferenced: crafting-nearly-finished-fabricators-gauntlets"]);
 }
 
 #[test]
