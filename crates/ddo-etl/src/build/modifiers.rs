@@ -430,7 +430,7 @@ impl<'a> TableWriter<'a> {
             if !correction.is_line_merge()
                 && correction.name == owner.name
                 && correction.kind == owner.kind.bonus_link_correction_kind()
-                && correction.from.as_text() != Some(crate::corrections::NO_SUCH_BONUS)
+                && correction.from.has_matching_target()
                 && self.correction_owner_matches(correction, owner_id)?
             {
                 has_split = true;
@@ -628,7 +628,7 @@ impl<'a> TableWriter<'a> {
             .line_corrections
             .iter()
             .copied()
-            .filter(|correction| !correction.is_line_merge() && correction.from.as_text() != Some(NO_SUCH_BONUS))
+            .filter(|correction| !correction.is_line_merge() && correction.from.has_matching_target())
         {
             let owners = self.matching_candidate_owners(correction, pending)?;
             let mut observations = Vec::new();
@@ -1303,7 +1303,7 @@ impl<'a> TableWriter<'a> {
             .filter(|correction| {
                 correction.name == owner.name
                     && !correction.is_line_merge()
-                    && correction.from.as_text() != Some(crate::corrections::NO_SUCH_BONUS)
+                    && correction.from.has_matching_target()
                     && correction.bonus_type.as_deref() == Some(bonus_type.name())
                     && correction.bonus_value.is_none_or(|amount| amount == value)
                     && matches!(

@@ -16,6 +16,77 @@ const ANNOTATION_TABLES: [&str; 7] = [
 
 const DECLARED_ANNOTATION_TABLES: [&str; 3] = [AppliedCorrection::TABLE, Citation::TABLE, RemovedEntry::TABLE];
 
+pub fn deny_inline_missing_target_comparisons(roots: &[&Path]) -> anyhow::Result<()> {
+    let mut findings = Vec::new();
+    for root in roots {
+        for entry in WalkDir::new(root) {
+            let entry = entry?;
+            let path = entry.path();
+            if path.extension().is_none_or(|extension| extension != "rs") {
+                continue;
+            }
+            let source = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
+            let mut position = 0;
+            let tokens: Vec<_> = tokenize(&source, FrontmatterAllowed::No)
+                .filter_map(|token| {
+                    let start = position;
+                    position += token.len as usize;
+                    (!matches!(
+                        token.kind,
+                        TokenKind::Whitespace | TokenKind::LineComment { .. } | TokenKind::BlockComment { .. }
+                    ))
+                    .then_some((&source[start..position], start))
+                })
+                .collect();
+            let predicate_start = path
+                .ends_with("ddo-etl/src/corrections/mod.rs")
+                .then(|| tokens.windows(2).position(|pair| pair[0].0 == "fn" && pair[1].0 == "has_matching_target"))
+                .flatten();
+            let predicate_body = predicate_start.and_then(|start| {
+                let opening = start + tokens[start..].iter().position(|token| token.0 == "{")?;
+                let mut depth = 0;
+                let closing = tokens[opening..].iter().position(|token| {
+                    if token.0 == "{" {
+                        depth += 1;
+                    }
+                    if token.0 == "}" {
+                        depth -= 1;
+                    }
+                    depth == 0
+                })?;
+                Some(opening..=opening + closing)
+            });
+            for (index, pair) in tokens.windows(2).enumerate() {
+                if !matches!((pair[0].0, pair[1].0), ("=", "=") | ("!", "="))
+                    || predicate_body.as_ref().is_some_and(|body| body.contains(&index))
+                {
+                    continue;
+                }
+                let mut operand = index + 2;
+                if tokens.get(operand).is_some_and(|token| token.0 == "Some")
+                    && tokens.get(operand + 1).is_some_and(|token| token.0 == "(")
+                {
+                    operand += 2;
+                }
+                while tokens.get(operand + 1).is_some_and(|token| token.0 == ":")
+                    && tokens.get(operand + 2).is_some_and(|token| token.0 == ":")
+                {
+                    operand += 3;
+                }
+                if tokens.get(operand).is_some_and(|token| matches!(token.0, "NO_SUCH_BONUS" | "\"no such bonus\"")) {
+                    let line = source[..pair[0].1].matches('\n').count() + 1;
+                    findings.push(format!("{}:{line}: call CorrectionValue::has_matching_target instead of comparing the missing-target marker", path.display()));
+                }
+            }
+        }
+    }
+    findings.sort();
+    if !findings.is_empty() {
+        bail!("{}", findings.join("\n"));
+    }
+    Ok(())
+}
+
 pub fn deny_copied_step_cost_fallbacks(roots: &[&Path]) -> anyhow::Result<()> {
     let mut findings = Vec::new();
     for root in roots {
@@ -314,6 +385,44 @@ pub fn deny_generic_file_mappers(root: &Path) -> anyhow::Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn missing_target_comparisons_use_the_shared_predicate() {
+        let folder = tempfile::tempdir().unwrap();
+        let path = folder.path().join("corrections.rs");
+        for expression in [
+            "value.as_text() == Some(NO_SUCH_BONUS)",
+            "value.as_text() != Some(crate::corrections::NO_SUCH_BONUS)",
+            "value.as_text() == Some(\"no such bonus\")",
+            "value.as_text() != Some(\"no such bonus\")",
+            "text == NO_SUCH_BONUS",
+        ] {
+            std::fs::write(&path, format!("fn read() {{\n    {expression}\n}}\n")).unwrap();
+            let error = deny_inline_missing_target_comparisons(&[folder.path()]).unwrap_err().to_string();
+            assert!(
+                error.contains("corrections.rs:2") && error.contains("CorrectionValue::has_matching_target"),
+                "{error}"
+            );
+        }
+        for expression in [
+            "CorrectionValue::Text(NO_SUCH_BONUS.into())",
+            "CorrectionValue::Text(\"no such bonus\".into())",
+            "value.has_matching_target()",
+        ] {
+            std::fs::write(&path, format!("fn read() {{ {expression} }}\n")).unwrap();
+            deny_inline_missing_target_comparisons(&[folder.path()]).unwrap();
+        }
+        let predicate_path = folder.path().join("crates/ddo-etl/src/corrections/mod.rs");
+        std::fs::create_dir_all(predicate_path.parent().unwrap()).unwrap();
+        std::fs::write(
+            &predicate_path,
+            "fn has_matching_target(&self) -> bool { self.as_text() != Some(NO_SUCH_BONUS) }",
+        )
+        .unwrap();
+        deny_inline_missing_target_comparisons(&[folder.path()]).unwrap();
+        std::fs::write(&predicate_path, "fn has_matching_target(&self) -> bool { self.as_text() != Some(NO_SUCH_BONUS) }\nfn other() { value.as_text() == Some(NO_SUCH_BONUS) }\n").unwrap();
+        assert!(deny_inline_missing_target_comparisons(&[folder.path()]).unwrap_err().to_string().contains("mod.rs:2"));
+    }
 
     #[test]
     fn annotation_columns_must_come_from_declarations() {

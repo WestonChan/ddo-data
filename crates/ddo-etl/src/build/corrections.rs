@@ -150,7 +150,7 @@ fn apply_correction(
     row_ids.dedup();
     if row_ids.is_empty() {
         if correction.targets_socket_option() {
-            if correction.from.as_text() == Some(NO_SUCH_BONUS)
+            if !correction.from.has_matching_target()
                 && transaction.query_row(
                     "SELECT EXISTS(SELECT 1 FROM socket_option_sets WHERE slug=?1)",
                     [&correction.name],
@@ -484,10 +484,7 @@ fn write_correction(
             remove_bonuses(transaction, &corrected_bonus, row_ids)?;
         }
         FieldShape::BonusLines => {
-            ensure!(
-                correction.from.as_text() == Some(NO_SUCH_BONUS),
-                "lines corrections must be applied before inserting links"
-            );
+            ensure!(!correction.from.has_matching_target(), "lines corrections must be applied before inserting links");
         }
         FieldShape::BonusDedupe => {
             let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
@@ -1018,7 +1015,7 @@ fn corrected_lines_value(
     correction: &Correction,
     owner_id: i64,
 ) -> Result<CorrectionValue> {
-    if correction.from.as_text() == Some(NO_SUCH_BONUS) {
+    if !correction.from.has_matching_target() {
         return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
     }
     let rows = line_bonus_rows(transaction, correction.kind, owner_id, None)?;
@@ -1135,7 +1132,7 @@ fn current_value(
             });
         }
         FieldShape::BonusLines => {
-            if correction.from.as_text() == Some(NO_SUCH_BONUS) {
+            if !correction.from.has_matching_target() {
                 return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
             }
             let rows = line_bonus_rows(transaction, correction.kind, row_id, None)?;
@@ -1417,7 +1414,7 @@ pub(crate) fn data_correction_value(
     let row_ids = maetrim_row_ids_named(transaction, correction, current_name, Some(socket_options))?;
     if row_ids.is_empty()
         && correction.targets_socket_option()
-        && correction.from.as_text() == Some(NO_SUCH_BONUS)
+        && !correction.from.has_matching_target()
         && transaction.query_row(
             "SELECT EXISTS(SELECT 1 FROM socket_option_sets WHERE slug=?1)",
             [current_name],
@@ -1435,11 +1432,7 @@ pub(crate) fn data_correction_value(
             current_value(transaction, correction, field, row_id, None, Some(groupings))?
         };
         if field.shape == FieldShape::EffectBonusRemoval {
-            ensure!(
-                value.as_text() == Some(NO_SUCH_BONUS),
-                "removed effect member is still present: {}",
-                correction.label()
-            );
+            ensure!(!value.has_matching_target(), "removed effect member is still present: {}", correction.label());
             value = CorrectionValue::Null;
         }
         if value == CorrectionValue::Null && matches!(field.shape, FieldShape::IntegerList | FieldShape::TextList) {

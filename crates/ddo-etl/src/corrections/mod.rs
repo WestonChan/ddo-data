@@ -650,7 +650,7 @@ impl Correction {
                     "an alias correction names the chosen alias or null for the canonical name"
                 );
             }
-            FieldShape::BonusLines if self.from.as_text() == Some(NO_SUCH_BONUS) => {
+            FieldShape::BonusLines if !self.from.has_matching_target() => {
                 ensure!(
                     self.to.as_text().is_some_and(|name| !name.trim().is_empty())
                         || matches!(&self.to, CorrectionValue::Texts(lines) if lines.len() >= 2),
@@ -669,7 +669,7 @@ impl Correction {
                 ensure!(
                     self.to == CorrectionValue::Integer(1)
                         && (self.from == CorrectionValue::Integer(0)
-                            || (self.kind == CorrectionKind::ItemSocket && self.from.as_text() == Some(NO_SUCH_BONUS))),
+                            || (self.kind == CorrectionKind::ItemSocket && !self.from.has_matching_target())),
                     "a remove takes from = 0 (his files still carry the row) and to = 1; a missing socket records no such bonus"
                 );
             }
@@ -699,7 +699,7 @@ impl Correction {
                 ensure!(self.to == CorrectionValue::Null, "an effect member removal takes to = \"null\"");
                 match &self.from {
                     CorrectionValue::Integer(_) => {}
-                    CorrectionValue::Text(text) if text == NO_SUCH_BONUS => {}
+                    value if !value.has_matching_target() => {}
                     CorrectionValue::EffectBonus(bonus) => {
                         ensure!(
                             Some(&bonus.target) == self.stat.as_ref(),
