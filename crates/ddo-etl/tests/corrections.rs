@@ -4018,6 +4018,35 @@ fn corrects_set_tier_bonuses_and_creates_a_missing_tier() {
 }
 
 #[test]
+fn an_added_set_tiers_live_bonus_type_reaches_the_generic_writer() {
+    let corrections = new_qualified_correction(
+        "set_tier",
+        "Eminence of Winter",
+        "equipped_count = 8",
+        "add",
+        "'null'",
+        "{ equipped_count = 8, description = 'A new tier.' }",
+    ) + &new_qualified_correction(
+        "set_tier_bonus",
+        "Eminence of Winter",
+        "equipped_count = 8",
+        "add",
+        "'null'",
+        "{ stat = 'Constitution', bonus_type = 'Artifact', value = 4 }",
+    ) + &new_qualified_correction(
+        "set_tier_bonus",
+        "Eminence of Winter",
+        "equipped_count = 8\nstat = 'Constitution'\nbonus_type = 'Artifact'",
+        "bonus_type",
+        "'Artifact'",
+        "'Insight'",
+    );
+    let (db, report) = built_db_with(&[("added-tier.toml", &corrections)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (3, 0));
+    assert_eq!(set_tier_bonus_rows(&db, "Eminence of Winter", 8), [("Constitution".into(), "Insight".into(), 4)]);
+}
+
+#[test]
 fn set_tier_add_goes_stale_when_the_tier_exists() {
     let correction = new_qualified_correction(
         "set_tier",

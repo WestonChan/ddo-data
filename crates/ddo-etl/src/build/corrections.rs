@@ -452,9 +452,6 @@ fn write_correction(
             )?;
         }
         FieldShape::BonusTypeName => {
-            if !correction.from.has_matching_target() {
-                return Ok(());
-            }
             let new_type_name = correction.to.as_text().context("a bonus type cannot be null")?;
             let new_type_id = bonus_type_id_named(transaction, new_type_name)?;
             let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
