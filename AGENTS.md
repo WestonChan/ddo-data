@@ -99,7 +99,7 @@ The rules his values follow:
 - sets the ours-only columns unconditionally
 
 Wiki facts behave differently in each build:
-- **In A,** a wiki fact naming something only his later files have is left out and reported as `SKIPPED WIKI FACT`.
+- **In A,** a wiki fact naming something only Maetrim’s later files have is left out. Nothing is reported, because there is nothing to fix.
 - **In B,** such a fact fails the import, naming its data file.
 
 The 12 SunAndMoon gems whose description he leaves as "Drops in: ?" carry a description correction. His edit to one of those descriptions is reported as the stale-correction CONFLICT, for a person to settle. The XML-only mapping audits print as import report lines. The V9 entry in `ddo-tools/docs/architecture.md` records the XML-path inputs this replaced and why they went; the `retired_inputs` guard keeps them gone.

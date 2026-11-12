@@ -1883,17 +1883,15 @@ fn the_import_binary_exits_two_after_reporting_a_declined_set_removal() {
     for expected in [
         "table | added | removed | changed | conflicts | declined removals | resolved corrections",
         "DECLINED REMOVAL socket_option_sets/",
-        "SKIPPED WIKI FACT",
         "0 conflicts",
     ] {
         assert!(stdout.contains(expected), "{stdout}\n{stderr}");
     }
     eprintln!("process exit: {:?}", output.status.code());
-    for line in stdout.lines().filter(|line| {
-        line.starts_with("table |") || line.contains("DECLINED REMOVAL") || line.contains("SKIPPED WIKI FACT")
-    }) {
+    for line in stdout.lines().filter(|line| line.starts_with("table |") || line.contains("DECLINED REMOVAL")) {
         eprintln!("{line}");
     }
+    assert!(!stdout.contains("SKIPPED WIKI FACT"), "{stdout}");
     assert_eq!(output.status.code(), Some(2), "{stdout}\n{stderr}");
     let mut rebuilt = Connection::open_in_memory().unwrap();
     tree::build_from_data(&options.data_dir, &mut rebuilt).unwrap();
@@ -1951,15 +1949,8 @@ fn a_priced_set_survives_when_upstream_removes_its_last_carrier() {
                 "{rendered}"
             );
         }
-        let skipped = report.entries.iter().filter(|entry| entry.category == "SKIPPED WIKI FACT").collect::<Vec<_>>();
-        assert!(
-            skipped.iter().any(|entry| entry.path.to_string_lossy().contains("crafting/nearly-finished/crafting.toml")
-                && entry.detail.contains(if removed_from_new { "new" } else { "previous" })),
-            "{rendered}"
-        );
-        for entry in
-            report.entries.iter().filter(|entry| matches!(entry.category, "DECLINED REMOVAL" | "SKIPPED WIKI FACT"))
-        {
+        assert!(!report.entries.iter().any(|entry| entry.category == "SKIPPED WIKI FACT"), "{rendered}");
+        for entry in report.entries.iter().filter(|entry| entry.category == "DECLINED REMOVAL") {
             eprintln!("{}: {} {}", entry.path.display(), entry.category, entry.detail);
         }
         let mut rebuilt = Connection::open_in_memory().unwrap();
@@ -1996,13 +1987,7 @@ fn a_priced_set_survives_when_upstream_removes_its_last_carrier() {
         assert!(!again.has_conflicts(), "{again}");
         assert!(!again.needs_settlement(), "{again}");
         assert_eq!((again.files.written, again.files.removed), (0, 0), "{again}");
-        if removed_from_new {
-            assert_eq!(
-                again.entries.iter().filter(|entry| entry.category == "SKIPPED WIKI FACT").count(),
-                2,
-                "{again}"
-            );
-        }
+        assert!(!again.entries.iter().any(|entry| entry.category == "SKIPPED WIKI FACT"), "{again}");
     }
 }
 
@@ -3251,11 +3236,7 @@ fn previous_xml_skips_later_named_wiki_facts_but_new_xml_stays_strict() {
     world.options.source_dir = source;
     let report = import_ddobuilder(&world.options).unwrap();
     assert!(!report.has_conflicts(), "{report}");
-    let skips = report.entries.iter().filter(|entry| entry.category == "SKIPPED WIKI FACT").collect::<Vec<_>>();
-    assert_eq!(skips.len(), 1, "{report}");
-    assert_eq!(skips[0].path, PathBuf::from(&file));
-    assert!(skips[0].detail.contains("Later Terror of Demogorgon"), "{report}");
-    assert!(skips[0].detail.contains("Later Vendor"), "{report}");
+    assert!(!report.entries.iter().any(|entry| entry.category == "SKIPPED WIKI FACT"), "{report}");
     assert_eq!(
         world
             .database()

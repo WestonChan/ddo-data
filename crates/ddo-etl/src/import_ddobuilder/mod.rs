@@ -274,16 +274,6 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
         });
     }
     report.files = tree::replace_data_files(&staging, &options.data_dir)?;
-    for (build, skipped_facts) in [("previous", previous.skipped_wiki_facts), ("new", new.skipped_wiki_facts)] {
-        report.entries.extend(skipped_facts.into_iter().map(|skipped| ImportReportEntry {
-            path: skipped.file_name.into(),
-            category: "SKIPPED WIKI FACT",
-            detail: format!(
-                "{}: omitted in the {build} build for unresolved name {:?}",
-                skipped.fact, skipped.unresolved_name
-            ),
-        }));
-    }
     Ok(report)
 }
 

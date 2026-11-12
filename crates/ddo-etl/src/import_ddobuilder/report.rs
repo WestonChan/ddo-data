@@ -344,7 +344,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn settlement_includes_conflicts_and_required_actions_but_not_skipped_facts() {
+    fn settlement_includes_only_conflicts_and_required_actions() {
         let mut report = DdobuilderImportReport {
             previous_sha: "previous".into(),
             new_sha: "new".into(),
@@ -361,7 +361,6 @@ mod tests {
             ("DECLINED REMOVAL", true),
             ("ICON DECLINED", true),
             ("NEEDS RESEARCH", true),
-            ("SKIPPED WIKI FACT", false),
             ("RESOLVED CORRECTION", false),
             ("REMOVED", false),
             ("CHANGED UPSTREAM, ABSENT IN OURS", false),
