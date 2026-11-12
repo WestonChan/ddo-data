@@ -230,8 +230,7 @@ fn woeful_lines(db: &Connection) -> Vec<(String, i64)> {
         .query_map([], |row| Ok((row.get(0)?,row.get(1)?))).unwrap().collect::<rusqlite::Result<_>>().unwrap()
 }
 
-#[test]
-fn an_upstream_alias_change_rebases_the_existing_alias_correction() {
+fn alias_import_world() -> ImportWorld {
     let canonical = fixture::database(|root| {
         let path = root.join("effects/stat-groups/charisma-skills.toml");
         let original = std::fs::read_to_string(&path).unwrap();
@@ -248,7 +247,7 @@ fn an_upstream_alias_change_rebases_the_existing_alias_correction() {
         "\"Charisma Observance\"",
     );
     let corrections = fixture::corrections_from(&[("alias.toml", &alias)]).unwrap();
-    let world = ImportWorld::with_sources(&groupings, corrections, WikiOverrides::default(), |source| {
+    ImportWorld::with_sources(&groupings, corrections, WikiOverrides::default(), |source| {
         let path = source.join("ItemBuffs.xml");
         let original = std::fs::read_to_string(&path).unwrap();
         std::fs::write(
@@ -268,7 +267,13 @@ fn an_upstream_alias_change_rebases_the_existing_alias_correction() {
             ),
         )
         .unwrap();
-    });
+    })
+}
+
+#[test]
+fn an_upstream_alias_change_rebases_the_existing_alias_correction() {
+    let world = alias_import_world();
+    let item = include_str!("fixtures/effect-groups/CharismaSkills.item");
     std::fs::write(world.options.source_dir.join("Items/CharismaSkills.item"), item).unwrap();
     let report = import_ddobuilder(&world.options).unwrap();
     assert!(report.has_conflicts(), "{report}");
@@ -278,6 +283,47 @@ fn an_upstream_alias_change_rebases_the_existing_alias_correction() {
     let upstream: String =
         db.query_row("SELECT from_value FROM corrections WHERE field='alias'", [], |row| row.get(0)).unwrap();
     assert_eq!(upstream, "\"Charisma Skills - Exceptional Bonus\"");
+}
+
+fn remove_alias_bonus(world: &ImportWorld) -> String {
+    let path = world.options.source_dir.join("Items/CharismaSkills.item");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let start = original.find("    <Buff>").unwrap();
+    let end = start + original[start..].find("    </Buff>").unwrap() + "    </Buff>".len();
+    std::fs::write(path, format!("{}{}", &original[..start], &original[end..])).unwrap();
+    original
+}
+
+#[test]
+fn an_alias_missing_target_repeats_without_a_report() {
+    let mut world = alias_import_world();
+    remove_alias_bonus(&world);
+    let report = import_ddobuilder(&world.options).unwrap();
+    println!("{report}");
+    println!(
+        "Charisma Skills file survives: {}",
+        world.options.data_dir.join("effects/stat-groups/charisma-skills.toml").exists()
+    );
+    assert!(report.has_conflicts() && report.to_string().contains("no such bonus"), "{report}");
+    assert_missing_targets_repeat_cleanly(&mut world.options);
+}
+
+#[test]
+fn restoring_an_unsettled_alias_target_stops_without_writing() {
+    let mut world = alias_import_world();
+    let original = remove_alias_bonus(&world);
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(report.has_conflicts(), "{report}");
+    let missing = world.scratch.path().join("missing-alias-target");
+    copy_tree(&world.options.source_dir, &missing);
+    std::fs::write(world.options.source_dir.join("Items/CharismaSkills.item"), original).unwrap();
+    world.options.previous_dir = missing;
+    world.options.previous_sha = world.options.sha.clone();
+    world.options.sha = Some("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee".into());
+    let before = world.bytes();
+    let error = import_ddobuilder(&world.options).unwrap_err();
+    assert_eq!(world.bytes(), before);
+    assert!(format!("{error:#}").contains("has no alias \"no such bonus\""), "{error:#}");
 }
 
 #[test]

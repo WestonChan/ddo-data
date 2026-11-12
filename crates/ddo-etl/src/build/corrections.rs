@@ -344,6 +344,9 @@ fn write_correction(
             }
         }
         FieldShape::BonusAlias => {
+            if !correction.from.has_matching_target() {
+                return Ok(());
+            }
             let alias_name = correction.to.as_text();
             let bonus = CorrectedBonus::of(transaction, correction)?;
             let table_name = bonus.link_table.table_name;
