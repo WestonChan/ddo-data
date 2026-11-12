@@ -818,7 +818,7 @@ impl Correction {
         let field = self.correctable_field()?;
         self.validate_qualifier_keys(field)?;
         self.validate_values(field)?;
-        if self.from == self.to && field.shape != FieldShape::SocketRelabel {
+        if self.from == self.to && self.from.has_matching_target() {
             bail!("to equals from ({}); a correction must change the value", self.to.to_json());
         }
         if self.reason.trim().is_empty() {
@@ -1062,17 +1062,16 @@ pub(crate) fn set_correction_qualifiers(correction: &mut Correction, qualifier: 
 mod tests {
     use super::{CorrectionValue, Corrections, DamageRow};
 
-    #[test]
-    fn a_socket_relabel_qualifier_contains_only_the_option_and_parses_back() {
-        let mut correction = super::Correction {
-            kind: ddo_model::enums::CorrectionKind::ItemSocket,
-            name: "Fixture armor".into(),
-            field: "label".into(),
+    fn fixture_correction(kind: ddo_model::enums::CorrectionKind, field: &str) -> super::Correction {
+        super::Correction {
+            kind,
+            name: "Fixture owner".into(),
+            field: field.into(),
             from: CorrectionValue::Text("upgrade: tier 2".into()),
             to: CorrectionValue::Text("upgrade: tier 3".into()),
             family: None,
             socket: None,
-            option: Some("Epic Nimbleness".into()),
+            option: None,
             selection: None,
             stance: None,
             dc: None,
@@ -1081,11 +1080,17 @@ mod tests {
             bonus_type: None,
             bonus_value: None,
             equipped_count: None,
-            reason: "Fixture relabel.".into(),
+            reason: "Fixture correction.".into(),
             source: crate::AnnotationSource::InGame,
             read: "2026-11-11".into(),
             file_name: "fixture.toml".into(),
-        };
+        }
+    }
+
+    #[test]
+    fn a_socket_relabel_qualifier_contains_only_the_option_and_parses_back() {
+        let mut correction = fixture_correction(ddo_model::enums::CorrectionKind::ItemSocket, "label");
+        correction.option = Some("Epic Nimbleness".into());
         let qualifier = correction.qualifier();
         assert_eq!(qualifier, r#"option "Epic Nimbleness""#);
         correction.option = None;
@@ -1098,6 +1103,128 @@ mod tests {
         correction.from = CorrectionValue::Text(super::NO_SUCH_BONUS.into());
         correction.to = correction.from.clone();
         correction.validate().unwrap();
+    }
+
+    #[test]
+    fn recorded_missing_targets_validate_for_each_recording_shape_and_live_equal_values_do_not() {
+        use ddo_model::enums::CorrectionKind;
+        let missing = CorrectionValue::Text(super::NO_SUCH_BONUS.into());
+        let mut failures = Vec::new();
+        for (case, kind, field, qualifier, from, to, accepted) in [
+            (
+                "lines split",
+                CorrectionKind::ItemBonus,
+                "lines",
+                "Doublestrike, Doubleshot / Profane",
+                missing.clone(),
+                missing.clone(),
+                true,
+            ),
+            (
+                "lines merge",
+                CorrectionKind::ItemBonus,
+                "lines",
+                "Search, Spot / Competence",
+                missing.clone(),
+                missing.clone(),
+                true,
+            ),
+            (
+                "alias absent",
+                CorrectionKind::ItemBonus,
+                "alias",
+                "Strength / Enhancement / 3",
+                missing.clone(),
+                missing.clone(),
+                true,
+            ),
+            (
+                "alias retained",
+                CorrectionKind::ItemBonus,
+                "alias",
+                "Strength / Enhancement / 3",
+                missing.clone(),
+                CorrectionValue::Text("Fixture Strength".into()),
+                true,
+            ),
+            (
+                "relabel",
+                CorrectionKind::ItemSocket,
+                "label",
+                r#"option "Epic Nimbleness""#,
+                missing.clone(),
+                missing.clone(),
+                true,
+            ),
+            (
+                "effect replacement",
+                CorrectionKind::ItemEffect,
+                "effect",
+                "Riposte V",
+                missing.clone(),
+                CorrectionValue::Text("Riposte V".into()),
+                true,
+            ),
+            (
+                "effect-stat removal",
+                CorrectionKind::Effect,
+                "remove",
+                r#"stat "Strength""#,
+                missing.clone(),
+                CorrectionValue::Null,
+                true,
+            ),
+            (
+                "socket removal",
+                CorrectionKind::ItemSocket,
+                "remove",
+                r#"socket "blue""#,
+                missing.clone(),
+                CorrectionValue::Integer(1),
+                true,
+            ),
+            (
+                "equal alias",
+                CorrectionKind::ItemBonus,
+                "alias",
+                "Strength / Enhancement / 3",
+                CorrectionValue::Text("X".into()),
+                CorrectionValue::Text("X".into()),
+                false,
+            ),
+            (
+                "equal null alias",
+                CorrectionKind::ItemBonus,
+                "alias",
+                "Strength / Enhancement / 3",
+                CorrectionValue::Null,
+                CorrectionValue::Null,
+                false,
+            ),
+            (
+                "equal value",
+                CorrectionKind::ItemBonus,
+                "value",
+                "Strength / Enhancement / 3",
+                CorrectionValue::Integer(3),
+                CorrectionValue::Integer(3),
+                false,
+            ),
+        ] {
+            let mut correction = fixture_correction(kind, field);
+            correction.from = from;
+            correction.to = to;
+            super::set_correction_qualifiers(&mut correction, qualifier).unwrap();
+            match correction.validate() {
+                Ok(()) if !accepted => failures.push(format!("{case}: accepted live equal values")),
+                Err(error) if accepted => failures.push(format!("{case}: {error:#}")),
+                Err(error) if !error.to_string().contains("to equals from") => {
+                    failures.push(format!("{case}: wrong error: {error:#}"))
+                }
+                _ => {}
+            }
+        }
+        assert!(failures.is_empty(), "{}", failures.join("\n"));
     }
 
     #[test]

@@ -1039,9 +1039,10 @@ fn a_rank_option_import_preserves_the_merge_and_resolves_corrected_prose() {
 #[test]
 fn a_merge_import_reports_a_missing_member_and_keeps_the_correction() {
     let corrections = fixture::corrections_from(&[("keylock-merge.toml", &fixture::search_and_spot_merge())]).unwrap();
-    let world = ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {
-        fixture::write_search_and_spot_item(source, 20, true);
-    });
+    let mut world =
+        ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {
+            fixture::write_search_and_spot_item(source, 20, true);
+        });
     fixture::write_search_and_spot_item(&world.options.source_dir, 20, false);
     let report = import_ddobuilder(&world.options).unwrap();
     assert!(report.has_conflicts() && report.to_string().contains("no such bonus"), "{report}");
@@ -1067,6 +1068,7 @@ fn a_merge_import_reports_a_missing_member_and_keeps_the_correction() {
         })
         .unwrap();
     assert_eq!(missing[0].id, correction_id);
+    assert_missing_targets_repeat_cleanly(&mut world.options);
 }
 
 #[test]
@@ -1427,7 +1429,7 @@ fn a_split_import_accepts_a_changed_amount_without_conflict() {
 
 #[test]
 fn a_split_import_reports_changed_stats_and_takes_the_new_lines() {
-    let world = woeful_split_import();
+    let mut world = woeful_split_import();
     let path = world.options.source_dir.join("Augments/WoefulShadow.Augments.xml");
     let xml = std::fs::read_to_string(&path).unwrap();
     std::fs::write(path, xml.replace("<Type>Doubleshot</Type>", "<Type>RangedPower</Type>")).unwrap();
@@ -1447,6 +1449,7 @@ fn a_split_import_reports_changed_stats_and_takes_the_new_lines() {
         )
         .unwrap();
     assert_eq!(upstream, "\"no such bonus\"");
+    assert_missing_targets_repeat_cleanly(&mut world.options);
 }
 
 #[test]
@@ -1470,6 +1473,38 @@ fn a_split_import_reports_a_changed_type_or_removed_effect() {
         assert!(woeful_lines(&rebuilt).is_empty());
         let count: i64 = rebuilt.query_row("SELECT COUNT(*) FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name='Woeful Shadow (Legendary)' AND e.name='Doublestrike and Doubleshot'", [], |row| row.get(0)).unwrap();
         assert_eq!(count, i64::from(!removed));
+    }
+}
+
+fn assert_missing_targets_repeat_cleanly(options: &mut DdobuilderImportOptions) {
+    let database = |root: &Path| {
+        let mut db = Connection::open_in_memory().unwrap();
+        tree::build_from_data(root, &mut db).unwrap();
+        db
+    };
+    let before = database(&options.data_dir);
+    Corrections::from_database(&before).unwrap();
+    let missing = ddo_etl::corrections::corrections_recording_missing_targets(&before).unwrap();
+    assert!(!missing.is_empty());
+    options.previous_dir = options.source_dir.clone();
+    options.previous_sha = options.sha.clone();
+    let report = import_ddobuilder(options).unwrap();
+    assert!(!report.has_conflicts() && !report.needs_settlement(), "{report}");
+    assert_eq!((report.files.written, report.files.removed), (0, 0), "{report}");
+    assert!(
+        report
+            .entries
+            .iter()
+            .all(|entry| !matches!(entry.category, "CONFLICT" | "KEPT CORRECTION" | "RESOLVED CORRECTION")),
+        "{report}"
+    );
+    let after = database(&options.data_dir);
+    assert_eq!(ddo_etl::corrections::corrections_recording_missing_targets(&after).unwrap(), missing);
+    for correction in missing {
+        let upstream: String = after
+            .query_row("SELECT from_value FROM corrections WHERE id=?1", [correction.id], |row| row.get(0))
+            .unwrap();
+        assert_eq!(upstream, r#""no such bonus""#);
     }
 }
 

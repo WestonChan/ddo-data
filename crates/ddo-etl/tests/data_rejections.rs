@@ -82,6 +82,11 @@ fn missing_correction_targets_agree_between_xml_and_tree_builds() {
         }
         let error = fixture::data_build_error(|root| {
             fixture::append_to_file(root.join(CHAIN_ITEM), format!("\n[[ddobuilder_correction]]\nkind='item_bonus'\nfield='alias'\nqualifier={qualifier:?}\nupstream={upstream:?}\nreason='Fixture target probe.'\nurl='https://ddowiki.com/page/Test'\nread='2026-11-11'\n"));
+            if recorded_stale {
+                let mut rebuilt = rusqlite::Connection::open_in_memory().unwrap();
+                ddo_etl::tree::build_from_data(root, &mut rebuilt).unwrap();
+                ddo_etl::corrections::Corrections::from_database(&rebuilt).unwrap();
+            }
         });
         if recorded_stale {
             assert!(error.is_empty(), "{error}");
