@@ -591,14 +591,18 @@ fn a_riposte_rank_change_updates_the_link_without_conflict() {
 }
 
 fn ship_kickers_replacement_world() -> ImportWorld {
+    ship_kickers_effect_import_world("effect", "Riposte V", "\"Riposte\"", "\"Riposte V\"")
+}
+
+fn ship_kickers_effect_import_world(field: &str, effect: &str, from: &str, to: &str) -> ImportWorld {
     let index = ddo_etl::groupings::Groupings::from_database(&fixture::riposte_rank_database()).unwrap();
     let correction = fixture::new_qualified_correction(
         "item_effect",
         "Ship Kickers",
-        "effect = 'Riposte V'",
-        "effect",
-        "\"Riposte\"",
-        "\"Riposte V\"",
+        &format!("effect = {effect:?}"),
+        field,
+        from,
+        to,
     );
     let corrections = fixture::corrections_from(&[("ship-kickers.toml", &correction)]).unwrap();
     ImportWorld::with_sources(&index, corrections, WikiOverrides::default(), |source| {
@@ -680,8 +684,7 @@ fn assert_replacement_conflicts_persist(additional_buff: &str) {
     }
 }
 
-#[test]
-fn a_bonus_correction_conflicts_atomically_when_same_named_twins_diverge() {
+fn will_save_value_import_world() -> ImportWorld {
     let correction = fixture::new_qualified_correction(
         "augment_bonus",
         "+1 Exceptional Will Save",
@@ -691,12 +694,17 @@ fn a_bonus_correction_conflicts_atomically_when_same_named_twins_diverge() {
         "3",
     );
     let corrections = fixture::corrections_from(&[("will-twins.toml", &correction)]).unwrap();
-    let world = ImportWorld::with_sources(fixture::groupings(), corrections, WikiOverrides::default(), |source| {
+    ImportWorld::with_sources(fixture::groupings(), corrections, WikiOverrides::default(), |source| {
         std::fs::create_dir_all(source.join("Augments")).unwrap();
         let twins = include_str!("fixtures/effect-groups/GreensteelWillTwins.Augments.xml")
             .replace("      <Icon>ShardOfGreatPower</Icon>\n", "");
         std::fs::write(source.join("Augments/WillTwins.Augments.xml"), twins).unwrap();
-    });
+    })
+}
+
+#[test]
+fn a_bonus_correction_conflicts_atomically_when_same_named_twins_diverge() {
+    let world = will_save_value_import_world();
     let path = world.options.source_dir.join("Augments/WillTwins.Augments.xml");
     let source = std::fs::read_to_string(&path).unwrap();
     std::fs::write(path, source.replacen("<Amount size=\"1\">1</Amount>", "<Amount size=\"1\">2</Amount>", 1)).unwrap();
@@ -713,6 +721,71 @@ fn a_bonus_correction_conflicts_atomically_when_same_named_twins_diverge() {
     assert_eq!(corrections, 1);
     let values = db.prepare("SELECT l.value FROM augment_effects l JOIN augments a ON a.id=l.augment_id WHERE a.name='+1 Exceptional Will Save' ORDER BY a.id").unwrap().query_map([], |row| row.get::<_, i64>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
     assert_eq!(values, [3, 3], "a conflict keeps both of our corrected twins");
+}
+
+#[test]
+fn removing_a_bonus_under_a_value_correction_stops_without_writing() {
+    let world = will_save_value_import_world();
+    let path = world.options.source_dir.join("Augments/WillTwins.Augments.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let removed = original.replace("<Item>Will</Item>", "<Item>Fortitude</Item>");
+    assert_ne!(removed, original);
+    std::fs::write(path, removed).unwrap();
+    let before = world.bytes();
+    let error = import_ddobuilder(&world.options).unwrap_err();
+    assert_eq!(world.bytes(), before);
+    let message = format!("{error:#}");
+    assert!(
+        message.contains("augment_bonus \"+1 Exceptional Will Save\".value") && message.contains("no such bonus"),
+        "{message}"
+    );
+}
+
+#[test]
+fn removing_a_bonus_under_a_remove_correction_stops_without_writing() {
+    let (original, correction) = fixture::bonus_correction_twins("remove", false);
+    let corrections = fixture::corrections_from(&[("woeful-twins.toml", &correction)]).unwrap();
+    let world = ImportWorld::with_sources(fixture::groupings(), corrections, WikiOverrides::default(), |source| {
+        std::fs::create_dir_all(source.join("Augments")).unwrap();
+        std::fs::write(source.join("Augments/WoefulTwins.Augments.xml"), &original).unwrap();
+    });
+    let removed = original.replace("      <Type>Doubleshot</Type>\n", "");
+    assert_ne!(removed, original);
+    std::fs::write(world.options.source_dir.join("Augments/WoefulTwins.Augments.xml"), removed).unwrap();
+    let before = world.bytes();
+    let error = import_ddobuilder(&world.options).unwrap_err();
+    assert_eq!(world.bytes(), before);
+    let message = format!("{error:#}");
+    assert!(
+        message.contains("augment_bonus \"Woeful Shadow (Legendary)\".remove")
+            && message.contains("a bonus remove takes"),
+        "{message}"
+    );
+}
+
+#[test]
+fn removing_an_item_effect_under_a_bonus_type_correction_stops_without_writing() {
+    assert_removed_item_effect_stops_without_writing("bonus_type", "\"Insight\"", "\"Quality\"");
+}
+
+#[test]
+fn removing_an_item_effect_under_a_remove_correction_stops_without_writing() {
+    assert_removed_item_effect_stops_without_writing("remove", "0", "1");
+}
+
+fn assert_removed_item_effect_stops_without_writing(field: &str, from: &str, to: &str) {
+    let world = ship_kickers_effect_import_world(field, "Riposte", from, to);
+    let path = world.options.source_dir.join("Items/ShipKickers.item");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let start = original.find("    <Buff>\n      <Type>Riposte</Type>").unwrap();
+    let end = start + original[start..].find("    </Buff>").unwrap() + "    </Buff>".len();
+    std::fs::write(path, format!("{}{}", &original[..start], &original[end..])).unwrap();
+    let before = world.bytes();
+    let error = import_ddobuilder(&world.options).unwrap_err();
+    assert_eq!(world.bytes(), before);
+    let message = format!("{error:#}");
+    println!("{field}: {message}");
+    assert!(message.contains("effect \"Riposte\""), "{message}");
 }
 
 fn assert_structural_twin_conflicts_persist(case: &str) {
