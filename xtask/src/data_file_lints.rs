@@ -50,7 +50,12 @@ pub fn deny_missing_target_literals(roots: &[&Path]) -> anyhow::Result<()> {
                 let literal = &source[start..start + suffix_start as usize];
                 let opening = literal.find('"').expect("a string literal has an opening quote");
                 let closing = literal.rfind('"').expect("a terminated string literal has a closing quote");
-                if &literal[opening + 1..closing] == marker {
+                let content = &literal[opening + 1..closing];
+                let decoded = match kind {
+                    LiteralKind::RawStr { .. } | LiteralKind::RawByteStr { .. } => Some(content.to_owned()),
+                    _ => decoded_string_content(content),
+                };
+                if decoded.as_deref() == Some(marker) {
                     let line = source[..start].matches('\n').count() + 1;
                     findings.push(format!(
                         "{}:{line}: use CorrectionValue::missing_target or its target predicates instead of the marker literal",
@@ -65,6 +70,55 @@ pub fn deny_missing_target_literals(roots: &[&Path]) -> anyhow::Result<()> {
         bail!("{}", findings.join("\n"));
     }
     Ok(())
+}
+
+fn decoded_string_content(content: &str) -> Option<String> {
+    let mut characters = content.chars().peekable();
+    let mut decoded = String::new();
+    while let Some(character) = characters.next() {
+        if character != '\\' {
+            decoded.push(character);
+            continue;
+        }
+        let escaped = match characters.next()? {
+            '\\' => '\\',
+            '"' => '"',
+            '\'' => '\'',
+            'n' => '\n',
+            'r' => '\r',
+            't' => '\t',
+            '0' => '\0',
+            'x' => {
+                let high = characters.next()?.to_digit(16)?;
+                let low = characters.next()?.to_digit(16)?;
+                char::from_u32(high * 16 + low)?
+            }
+            'u' => {
+                if characters.next()? != '{' {
+                    return None;
+                }
+                let mut digits = String::new();
+                loop {
+                    match characters.next()? {
+                        '}' => break,
+                        '_' => {}
+                        digit => digits.push(digit),
+                    }
+                }
+                char::from_u32(u32::from_str_radix(&digits, 16).ok()?)?
+            }
+            newline @ ('\n' | '\r') => {
+                if newline == '\r' && characters.next()? != '\n' {
+                    return None;
+                }
+                while characters.next_if(|next| matches!(next, ' ' | '\t' | '\n' | '\r')).is_some() {}
+                continue;
+            }
+            _ => return None,
+        };
+        decoded.push(escaped);
+    }
+    Some(decoded)
 }
 
 pub fn deny_copied_step_cost_fallbacks(roots: &[&Path]) -> anyhow::Result<()> {
@@ -389,6 +443,9 @@ mod tests {
             format!("b{literal}"),
             format!("br#\"{missing}\"#"),
             format!("CorrectionValue::Text({literal}.into())"),
+            format!("\"{}\"", missing.replacen(' ', "\\x20", 1)),
+            format!("\"{}\"", missing.replace('b', "\\u{62}")),
+            format!("\"{}\"", missing.replace("bonus", "\\\n    bonus")),
         ] {
             std::fs::write(&path, format!("fn read() {{\n    {expression}\n}}\n")).unwrap();
             match deny_missing_target_literals(&[folder.path()]) {
