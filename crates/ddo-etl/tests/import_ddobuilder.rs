@@ -1786,6 +1786,17 @@ fn a_split_import_reports_a_changed_type_or_removed_effect() {
     }
 }
 
+fn assert_only_standing_audits<'a>(
+    entries: impl IntoIterator<Item = &'a ddo_etl::import_ddobuilder::ImportReportEntry>,
+) {
+    for entry in entries {
+        assert!(
+            matches!(entry.category, "PARTIALLY MAPPED EFFECT" | "UNCLASSIFIED BUFF TYPE" | "STAT HOME MAJORITY"),
+            "unexpected repeat report entry: {entry:?}"
+        );
+    }
+}
+
 fn assert_missing_targets_repeat_cleanly(options: &mut DdobuilderImportOptions) {
     let database = |root: &Path| {
         let mut db = Connection::open_in_memory().unwrap();
@@ -1798,23 +1809,29 @@ fn assert_missing_targets_repeat_cleanly(options: &mut DdobuilderImportOptions) 
     assert!(!missing.is_empty());
     options.previous_dir = options.source_dir.clone();
     options.previous_sha = options.sha.clone();
-    let report = import_ddobuilder(options).unwrap();
-    assert!(!report.has_conflicts() && !report.needs_settlement(), "{report}");
-    assert_eq!((report.files.written, report.files.removed), (0, 0), "{report}");
-    assert!(
-        report
+    let mut previous_entries = None;
+    for _ in 0..2 {
+        let report = import_ddobuilder(options).unwrap();
+        assert!(!report.has_conflicts() && !report.needs_settlement(), "{report}");
+        assert_eq!((report.files.written, report.files.removed), (0, 0), "{report}");
+        assert_only_standing_audits(&report.entries);
+        let entries = report
             .entries
             .iter()
-            .all(|entry| !matches!(entry.category, "CONFLICT" | "KEPT CORRECTION" | "RESOLVED CORRECTION")),
-        "{report}"
-    );
-    let after = database(&options.data_dir);
-    assert_eq!(ddo_etl::corrections::corrections_recording_missing_targets(&after).unwrap(), missing);
-    for correction in missing {
-        let upstream: String = after
-            .query_row("SELECT from_value FROM corrections WHERE id=?1", [correction.id], |row| row.get(0))
-            .unwrap();
-        assert_eq!(upstream, r#""no such bonus""#);
+            .map(|entry| (entry.path.clone(), entry.category, entry.detail.clone()))
+            .collect::<Vec<_>>();
+        if let Some(previous) = &previous_entries {
+            assert_eq!(&entries, previous);
+        }
+        previous_entries = Some(entries);
+        let after = database(&options.data_dir);
+        assert_eq!(ddo_etl::corrections::corrections_recording_missing_targets(&after).unwrap(), missing);
+        for correction in &missing {
+            let upstream: String = after
+                .query_row("SELECT from_value FROM corrections WHERE id=?1", [correction.id], |row| row.get(0))
+                .unwrap();
+            assert_eq!(upstream, r#""no such bonus""#);
+        }
     }
 }
 
