@@ -4702,6 +4702,20 @@ fn item_socket_label_moves_only_the_socket_holding_the_named_option() {
 }
 
 #[test]
+fn item_socket_label_matches_the_normalized_option_name() {
+    let source = socket_relabel_source(
+        "socket-relabel-whitespace",
+        Some(("<Name>Epic Nimbleness</Name>", "<Name>Epic Nimbleness </Name>")),
+    );
+    let correction = leathers_socket_relabel("Epic Nimbleness");
+    let (db, report) = built_db_from(&source, &[("label.toml", &correction)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 0));
+    assert_eq!(item_socket_labels(&db, "Epic Duelist's Leathers (level 20)"), ["upgrade: tier 3"; 2]);
+    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM socket_options WHERE name='Epic Nimbleness'"), 1);
+    assert_eq!(row_count(&db, "SELECT COUNT(*) FROM socket_options WHERE name!=trim(name)"), 0);
+}
+
+#[test]
 fn item_socket_label_is_stale_when_the_option_is_gone() {
     let source = socket_relabel_source("socket-relabel-missing", None);
     let correction = leathers_socket_relabel("Absent option");

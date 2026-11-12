@@ -262,7 +262,7 @@ impl<'de> Deserialize<'de> for AugmentSlotOption {
         for child in raw_option.children {
             match child {
                 AugmentSlotOptionChild::Name(name) => {
-                    option.name = name;
+                    option.name = name.trim().to_string();
                     has_name = true;
                 }
                 AugmentSlotOptionChild::Description(description) => option.description = description,

@@ -531,7 +531,7 @@ impl TableWriter<'_> {
             params![
                 set_id,
                 option_order as i64,
-                slot_option.name.trim(),
+                slot_option.name,
                 trimmed_non_empty(Some(&slot_option.description)),
                 slot_option.minimum_level,
                 trimmed_non_empty(slot_option.icon.as_deref()),
@@ -555,7 +555,7 @@ impl TableWriter<'_> {
             owner_name: set_slug.to_string(),
             family: None,
             source: super::PendingEffectSource::Effects {
-                option_name: Some(slot_option.name.trim().to_string()),
+                option_name: Some(slot_option.name.clone()),
                 effects: slot_option.effects.clone(),
             },
         });
