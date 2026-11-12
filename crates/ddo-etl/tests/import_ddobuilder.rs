@@ -231,6 +231,10 @@ fn woeful_lines(db: &Connection) -> Vec<(String, i64)> {
 }
 
 fn alias_import_world() -> ImportWorld {
+    alias_import_world_with_sources(|_| {})
+}
+
+fn alias_import_world_with_sources(add_items: impl FnOnce(&Path)) -> ImportWorld {
     let canonical = fixture::database(|root| {
         let path = root.join("effects/stat-groups/charisma-skills.toml");
         let original = std::fs::read_to_string(&path).unwrap();
@@ -267,6 +271,7 @@ fn alias_import_world() -> ImportWorld {
             ),
         )
         .unwrap();
+        add_items(source);
     })
 }
 
@@ -309,6 +314,20 @@ fn an_alias_missing_target_repeats_without_a_report() {
 }
 
 #[test]
+fn an_alias_missing_target_repeats_when_another_item_keeps_the_effect() {
+    let mut world = alias_import_world_with_sources(|source| {
+        let item = include_str!("fixtures/effect-groups/CharismaSkills.item")
+            .replace("Pink and Green Ioun Stone (unsuppressed)", "Other Charisma Carrier");
+        std::fs::write(source.join("Items/OtherCharismaCarrier.item"), item).unwrap();
+    });
+    remove_alias_bonus(&world);
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(report.has_conflicts() && report.to_string().contains("no such bonus"), "{report}");
+    assert!(world.options.data_dir.join("effects/stat-groups/charisma-skills.toml").exists());
+    assert_missing_targets_repeat_cleanly(&mut world.options);
+}
+
+#[test]
 fn restoring_an_unsettled_alias_target_stops_without_writing() {
     let mut world = alias_import_world();
     let original = remove_alias_bonus(&world);
@@ -324,6 +343,30 @@ fn restoring_an_unsettled_alias_target_stops_without_writing() {
     let error = import_ddobuilder(&world.options).unwrap_err();
     assert_eq!(world.bytes(), before);
     assert!(format!("{error:#}").contains("has no alias \"no such bonus\""), "{error:#}");
+}
+
+#[test]
+fn an_effect_stat_removal_missing_target_repeats_without_a_report() {
+    let correction = fixture::new_qualified_correction(
+        "effect", "Lifeblood of the Undead Prince", "stat = 'Repair Amplification'", "remove",
+        "{ target = 'Repair Amplification', bonus_type = 'Competence', amount_from = 1, scale = 1.0, rounding = 'down' }",
+        "'null'",
+    );
+    let corrections = fixture::corrections_from(&[("effect-removal.toml", &correction)]).unwrap();
+    let mut world = ImportWorld::with_sources(
+        fixture::grouping_cases(),
+        corrections,
+        WikiOverrides::default(),
+        fixture::write_diadem_item,
+    );
+    let path = world.options.source_dir.join("ItemBuffs.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let changed = original.replace("      <Type>RepairAmplification</Type>\n", "");
+    assert_ne!(changed, original);
+    std::fs::write(path, changed).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(report.has_conflicts() && report.to_string().contains("no such bonus"), "{report}");
+    assert_missing_targets_repeat_cleanly(&mut world.options);
 }
 
 #[test]
@@ -481,13 +524,22 @@ fn ship_kickers_replacement_world() -> ImportWorld {
 
 #[test]
 fn an_effect_replacement_import_reports_a_removed_link_and_keeps_the_correction() {
-    let world = ship_kickers_replacement_world();
+    let mut world = ship_kickers_replacement_world();
+    let initial = world.database();
+    let carriers: Vec<String> = initial.prepare("SELECT i.name FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE e.name='Riposte V' ORDER BY i.name").unwrap()
+        .query_map([], |row| row.get(0)).unwrap().collect::<rusqlite::Result<_>>().unwrap();
+    println!("Riposte V initial carriers: {carriers:?}");
     let path = world.options.source_dir.join("Items/ShipKickers.item");
     let previous = std::fs::read_to_string(&path).unwrap();
     let start = previous.find("    <Buff>\n      <Type>Riposte</Type>").unwrap();
     let end = start + previous[start..].find("    </Buff>").unwrap() + "    </Buff>".len();
     std::fs::write(path, format!("{}{}", &previous[..start], &previous[end..])).unwrap();
     let report = import_ddobuilder(&world.options).unwrap();
+    let destination_exists = world.options.data_dir.join("effects/riposte-v.toml").exists();
+    let destination_removed =
+        report.entries.iter().any(|entry| entry.category == "REMOVED" && entry.detail == "effects/riposte-v");
+    println!("Riposte V file survives: {destination_exists}; reported removed: {destination_removed}");
+    assert!(destination_exists && !destination_removed, "{report}");
     assert!(report.has_conflicts() && report.to_string().contains("no such bonus"), "{report}");
     let db = world.database();
     let retained: String = db
@@ -498,6 +550,7 @@ fn an_effect_replacement_import_reports_a_removed_link_and_keeps_the_correction(
     assert_eq!(retained, "\"no such bonus\"");
     let links: i64 = db.query_row("SELECT COUNT(*) FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE i.name='Ship Kickers' AND e.name LIKE 'Riposte%'", [], |row| row.get(0)).unwrap();
     assert_eq!(links, 0);
+    assert_missing_targets_repeat_cleanly(&mut world.options);
 }
 
 #[test]
@@ -1270,7 +1323,7 @@ fn a_stale_socket_removal_keeps_its_correction_as_a_conflict() {
         "1",
     );
     let corrections = fixture::corrections_from(&[("spyglass.toml", &removal)]).unwrap();
-    let world = ImportWorld::with_sources(
+    let mut world = ImportWorld::with_sources(
         fixture::grouping_cases(),
         corrections,
         WikiOverrides::default(),
@@ -1297,6 +1350,7 @@ fn a_stale_socket_removal_keeps_its_correction_as_a_conflict() {
         })
         .unwrap();
     assert_eq!(upstream, "\"no such bonus\"");
+    assert_missing_targets_repeat_cleanly(&mut world.options);
 }
 
 #[test]
@@ -1308,7 +1362,7 @@ fn socket_option_lines_import_follows_amounts_and_reports_changed_stats() {
             ddo_etl::corrections::CorrectionValue::Texts(vec!["Search".into(), "Spot".into()]),
         );
         let corrections = fixture::corrections_from(&[("option-split.toml", &split)]).unwrap();
-        let world = ImportWorld::with_sources(
+        let mut world = ImportWorld::with_sources(
             fixture::grouping_cases(),
             corrections,
             WikiOverrides::default(),
@@ -1345,6 +1399,7 @@ fn socket_option_lines_import_follows_amounts_and_reports_changed_stats() {
                 assert!(report.to_string().contains("KEPT CORRECTION socket_option_bonus"), "{report}");
             } else {
                 assert_eq!(from, "\"no such bonus\"", "{change}: {report}");
+                assert_missing_targets_repeat_cleanly(&mut world.options);
             }
         } else {
             assert_eq!(fixture::spyglass_option_lines(&db), [("Search".into(), 25), ("Spot".into(), 25)]);
@@ -1356,7 +1411,7 @@ fn socket_option_lines_import_follows_amounts_and_reports_changed_stats() {
 fn feat_lines_import_follows_amounts_and_reports_changed_stats() {
     for changed_stats in [false, true] {
         let corrections = fixture::corrections_from(&[("feat-split.toml", &fixture::scion_dodge_split())]).unwrap();
-        let world = ImportWorld::with_sources(
+        let mut world = ImportWorld::with_sources(
             fixture::grouping_cases(),
             corrections,
             WikiOverrides::default(),
@@ -1382,6 +1437,7 @@ fn feat_lines_import_follows_amounts_and_reports_changed_stats() {
                 .unwrap();
             assert_eq!(from, "\"no such bonus\"");
             assert_eq!(fixture::scion_dodge_lines(&db), [("Ranged Power and Dodge".into(), 4)]);
+            assert_missing_targets_repeat_cleanly(&mut world.options);
         } else {
             assert_eq!(fixture::scion_dodge_lines(&db), [("Dodge".into(), 5), ("Dodge Cap".into(), 5)]);
         }
@@ -1435,7 +1491,7 @@ fn a_stat_set_split_import_reports_a_changed_qualified_amount() {
         &(split + &fixture::dolorous_stat_set_corrections()),
     )])
     .unwrap();
-    let world = ImportWorld::with_sources(
+    let mut world = ImportWorld::with_sources(
         fixture::grouping_cases(),
         corrections,
         WikiOverrides::default(),
@@ -1460,6 +1516,7 @@ fn a_stat_set_split_import_reports_a_changed_qualified_amount() {
         )
         .unwrap();
     assert_eq!(upstream, "\"no such bonus\"");
+    assert_missing_targets_repeat_cleanly(&mut world.options);
 }
 
 #[test]
@@ -1501,7 +1558,7 @@ fn a_split_import_reports_changed_stats_and_takes_the_new_lines() {
 #[test]
 fn a_split_import_reports_a_changed_type_or_removed_effect() {
     for removed in [false, true] {
-        let world = woeful_split_import();
+        let mut world = woeful_split_import();
         let path = world.options.source_dir.join("Augments/WoefulShadow.Augments.xml");
         let xml = std::fs::read_to_string(&path).unwrap();
         let changed = if removed {
@@ -1519,6 +1576,7 @@ fn a_split_import_reports_a_changed_type_or_removed_effect() {
         assert!(woeful_lines(&rebuilt).is_empty());
         let count: i64 = rebuilt.query_row("SELECT COUNT(*) FROM augment_effects l JOIN effects e ON e.id=l.effect_id JOIN augments a ON a.id=l.augment_id WHERE a.name='Woeful Shadow (Legendary)' AND e.name='Doublestrike and Doubleshot'", [], |row| row.get(0)).unwrap();
         assert_eq!(count, i64::from(!removed));
+        assert_missing_targets_repeat_cleanly(&mut world.options);
     }
 }
 
@@ -3238,10 +3296,7 @@ fn a_socket_relabel_import_keeps_the_missing_target_correction_and_his_replaceme
     }
     for pass in 0..2 {
         if pass == 1 {
-            options.previous_dir = options.source_dir.clone();
-            options.previous_sha = options.sha.clone();
-            let repeated = import_ddobuilder(&options).unwrap();
-            assert_eq!((repeated.files.written, repeated.files.removed), (0, 0), "{repeated}");
+            assert_missing_targets_repeat_cleanly(&mut options);
         }
         let mut rebuilt = Connection::open_in_memory().unwrap();
         tree::build_from_data(&options.data_dir, &mut rebuilt).unwrap();
