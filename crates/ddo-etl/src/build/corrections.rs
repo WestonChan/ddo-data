@@ -4,7 +4,7 @@ use super::wiki::folded_effect_name;
 use super::{BuildReport, StaleCorrection, StaleCorrectionCause};
 use crate::corrections::{
     BonusAddition, CorrectableField, Correction, CorrectionValue, Corrections, DamageRow, FieldShape, TierAddition,
-    NO_SUCH_BONUS, NULL_SPELLING,
+    NULL_SPELLING,
 };
 use crate::map::buff::BuffResolver;
 use anyhow::{bail, ensure, Context, Result};
@@ -164,7 +164,7 @@ fn apply_correction(
                 correction,
                 StaleCorrectionCause::ValueChanged {
                     expected_value: correction.from.to_json(),
-                    maetrim_value: CorrectionValue::Text(NO_SUCH_BONUS.to_string()).to_json(),
+                    maetrim_value: CorrectionValue::missing_target().to_json(),
                 },
             );
             return Ok(());
@@ -1016,7 +1016,7 @@ fn corrected_lines_value(
     owner_id: i64,
 ) -> Result<CorrectionValue> {
     if !correction.from.has_matching_target() {
-        return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
+        return Ok(CorrectionValue::missing_target());
     }
     let rows = line_bonus_rows(transaction, correction.kind, owner_id, None)?;
     let expected_stats =
@@ -1092,10 +1092,13 @@ fn current_value(
                     format!("{destination}: {destination_count} links"),
                 ]));
             }
-            return Ok(CorrectionValue::Text(
-                if source_count == 1 { source } else if destination_count == 1 { destination } else { NO_SUCH_BONUS }
-                    .into(),
-            ));
+            return Ok(if source_count == 1 {
+                CorrectionValue::Text(source.into())
+            } else if destination_count == 1 {
+                CorrectionValue::Text(destination.into())
+            } else {
+                CorrectionValue::missing_target()
+            });
         }
         FieldShape::EffectBonusRemoval => {
             let stat_name = correction.stat.as_deref().context("effect bonus correction names a stat")?;
@@ -1104,7 +1107,7 @@ fn current_value(
                 "unknown stat {stat_name:?} in effect member removal"
             );
             let Some(bonus_row_id) = optional_effect_bonus_row_id(transaction, row_id, stat_name)? else {
-                return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
+                return Ok(CorrectionValue::missing_target());
             };
             let bonus = crate::tree::EffectBonus::from_database(transaction, bonus_row_id)?;
             if matches!(correction.from, CorrectionValue::Integer(_)) {
@@ -1116,7 +1119,7 @@ fn current_value(
         }
         FieldShape::BonusAlias => {
             let Some(bonus) = CorrectedBonus::from_correction_if_effect_exists(transaction, correction)? else {
-                return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
+                return Ok(CorrectionValue::missing_target());
             };
             let table_name = bonus.link_table.table_name;
             let values = transaction.prepare(&bonus.matching_bonuses_sql(&format!("DISTINCT {table_name}.alias")))?
@@ -1126,19 +1129,19 @@ fn current_value(
                 return Ok(CorrectionValue::Texts(values.into_iter().map(|value| value.unwrap_or_else(|| NULL_SPELLING.into())).collect()));
             }
             return Ok(match values.into_iter().next() {
-                None => CorrectionValue::Text(NO_SUCH_BONUS.to_string()),
+                None => CorrectionValue::missing_target(),
                 Some(None) => CorrectionValue::Null,
                 Some(Some(name)) => CorrectionValue::Text(name),
             });
         }
         FieldShape::BonusLines => {
             if !correction.from.has_matching_target() {
-                return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
+                return Ok(CorrectionValue::missing_target());
             }
             let rows = line_bonus_rows(transaction, correction.kind, row_id, None)?;
             return Ok(match line_merge_selection(correction, &rows)? {
                 LineMergeMatch::Matched(_) => correction.from.clone(),
-                LineMergeMatch::Missing => CorrectionValue::Text(NO_SUCH_BONUS.to_string()),
+                LineMergeMatch::Missing => CorrectionValue::missing_target(),
                 LineMergeMatch::Ambiguous(reasons) => CorrectionValue::Texts(reasons),
             });
         }
@@ -1202,7 +1205,7 @@ fn current_value(
             return Ok(match bonus_type_name {
                 Some(Some(name)) => CorrectionValue::Text(name),
                 Some(None) => CorrectionValue::Null,
-                None => CorrectionValue::Text(NO_SUCH_BONUS.to_string()),
+                None => CorrectionValue::missing_target(),
             });
         }
         FieldShape::Removal if correction.kind == CorrectionKind::ItemSocket => {
@@ -1210,7 +1213,7 @@ fn current_value(
             return Ok(if item_socket_order(transaction, row_id, label)?.is_some() {
                 CorrectionValue::Integer(0)
             } else {
-                CorrectionValue::Text(NO_SUCH_BONUS.to_string())
+                CorrectionValue::missing_target()
             });
         }
         FieldShape::Removal if correction.kind == CorrectionKind::ItemEffect => {
@@ -1221,18 +1224,18 @@ fn current_value(
                 params![row_id, effect_name],
                 |row| row.get(0),
             )?;
-            return Ok(if present { CorrectionValue::Integer(0) } else { CorrectionValue::Text(NO_SUCH_BONUS.to_string()) });
+            return Ok(if present { CorrectionValue::Integer(0) } else { CorrectionValue::missing_target() });
         }
         FieldShape::Removal => return Ok(CorrectionValue::Integer(0)),
         FieldShape::Integer | FieldShape::BonusRemoval if correction.kind.corrects_a_bonus() => {
             let Some(corrected_bonus) = CorrectedBonus::from_correction_if_effect_exists(transaction, correction)? else {
                 let stat_name = correction.bonus_key().context("a bonus correction names its bonus")?.0;
                 ensure!(groupings.is_some_and(|index| index.effect_named(stat_name).is_some()), "stat {stat_name:?} is not an effect; use its exact name");
-                return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
+                return Ok(CorrectionValue::missing_target());
             };
             let matching_values = corrected_bonus.values_on(transaction, row_id)?;
             if matching_values.is_empty() {
-                return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
+                return Ok(CorrectionValue::missing_target());
             }
             if field.shape == FieldShape::BonusRemoval && correction.bonus_value.is_none() && matching_values.len() > 1 {
                 let rows = corrected_bonus.rows_on(transaction, row_id, None)?;
@@ -1296,7 +1299,7 @@ fn current_value(
             )?.query_map(params![row_id,option_name], |row| Ok((row.get::<_,i64>(0)?,row.get::<_,String>(1)?)))?
                 .collect::<rusqlite::Result<Vec<_>>>()?;
             ensure!(sockets.len() <= 1, "option {option_name:?} matches {} sockets on {:?}", sockets.len(), correction.name);
-            return Ok(CorrectionValue::Text(sockets.into_iter().next().map_or_else(|| NO_SUCH_BONUS.to_string(), |(_, label)| label)));
+            return Ok(sockets.into_iter().next().map_or_else(CorrectionValue::missing_target, |(_, label)| CorrectionValue::Text(label)));
         }
         FieldShape::SocketAddition => {
             let socket_label = correction.to.as_text().context("an add names the socket label in to")?;
@@ -1421,7 +1424,7 @@ pub(crate) fn data_correction_value(
             |row| row.get::<_, bool>(0),
         )?
     {
-        return Ok(CorrectionValue::Text(NO_SUCH_BONUS.to_string()));
+        return Ok(CorrectionValue::missing_target());
     }
     ensure!(!row_ids.is_empty(), "no {} named {current_name:?} for data correction", correction.kind.as_str());
     let mut values = Vec::new();
@@ -1771,7 +1774,7 @@ impl CorrectedBonus {
         Ok(match matching_type.or(bonus_types_on_stat.first()) {
             Some((_, Some(type_name))) => CorrectionValue::Text(type_name.clone()),
             Some((_, None)) => CorrectionValue::Null,
-            None => CorrectionValue::Text(NO_SUCH_BONUS.to_string()),
+            None => CorrectionValue::missing_target(),
         })
     }
 }
@@ -1963,7 +1966,7 @@ fn missing_bonus_type_value(
             "stat {stat:?} is not an effect; use its exact name"
         );
     }
-    Ok(CorrectionValue::Text(NO_SUCH_BONUS.into()))
+    Ok(CorrectionValue::missing_target())
 }
 
 pub(super) fn pending_bonus_correction_values(
@@ -1979,7 +1982,7 @@ pub(super) fn pending_bonus_correction_values(
         }
         let stat = correction.bonus_key().context("bonus correction names its bonus")?.0;
         ensure!(groupings.effect_named(stat).is_some(), "stat {stat:?} is not an effect; use its exact name");
-        return Ok(vec![CorrectionValue::Text(NO_SUCH_BONUS.into())]);
+        return Ok(vec![CorrectionValue::missing_target()]);
     };
     reject_group_member_correction(transaction, groupings, correction, &[owner_id], Some(links))?;
     let matching = corrected.rows_on(transaction, owner_id, Some(links))?;
@@ -1996,7 +1999,7 @@ pub(super) fn pending_bonus_correction_values(
     } else {
         typed.iter().map(|row| row.amount.map_or(CorrectionValue::Null, CorrectionValue::Integer)).collect()
     };
-    Ok(if upstream.is_empty() { vec![CorrectionValue::Text(NO_SUCH_BONUS.into())] } else { upstream })
+    Ok(if upstream.is_empty() { vec![CorrectionValue::missing_target()] } else { upstream })
 }
 
 pub(super) fn write_pending_bonus_correction(

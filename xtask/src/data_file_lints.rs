@@ -1,6 +1,7 @@
 use anyhow::{bail, Context};
+use ddo_etl::corrections::CorrectionValue;
 use ddo_etl::tree::{AppliedCorrection, Citation, EntityIdentity, PackException, Redirect, RemovedEntry, RetiredSlug};
-use ra_ap_rustc_lexer::{tokenize, FrontmatterAllowed, TokenKind};
+use ra_ap_rustc_lexer::{tokenize, FrontmatterAllowed, LiteralKind, TokenKind};
 use std::path::Path;
 use walkdir::WalkDir;
 
@@ -16,66 +17,45 @@ const ANNOTATION_TABLES: [&str; 7] = [
 
 const DECLARED_ANNOTATION_TABLES: [&str; 3] = [AppliedCorrection::TABLE, Citation::TABLE, RemovedEntry::TABLE];
 
-pub fn deny_inline_missing_target_comparisons(roots: &[&Path]) -> anyhow::Result<()> {
+pub fn deny_missing_target_literals(roots: &[&Path]) -> anyhow::Result<()> {
+    let missing_target = CorrectionValue::missing_target();
+    let marker = missing_target.as_text().expect("a missing target is text");
     let mut findings = Vec::new();
     for root in roots {
         for entry in WalkDir::new(root) {
             let entry = entry?;
             let path = entry.path();
-            if path.extension().is_none_or(|extension| extension != "rs") {
+            if path.extension().is_none_or(|extension| extension != "rs")
+                || path.ends_with("ddo-etl/src/corrections/missing_target.rs")
+            {
                 continue;
             }
             let source = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
             let mut position = 0;
-            let tokens: Vec<_> = tokenize(&source, FrontmatterAllowed::No)
-                .filter_map(|token| {
-                    let start = position;
-                    position += token.len as usize;
-                    (!matches!(
-                        token.kind,
-                        TokenKind::Whitespace | TokenKind::LineComment { .. } | TokenKind::BlockComment { .. }
-                    ))
-                    .then_some((&source[start..position], start))
-                })
-                .collect();
-            let predicate_start = path
-                .ends_with("ddo-etl/src/corrections/mod.rs")
-                .then(|| tokens.windows(2).position(|pair| pair[0].0 == "fn" && pair[1].0 == "has_matching_target"))
-                .flatten();
-            let predicate_body = predicate_start.and_then(|start| {
-                let opening = start + tokens[start..].iter().position(|token| token.0 == "{")?;
-                let mut depth = 0;
-                let closing = tokens[opening..].iter().position(|token| {
-                    if token.0 == "{" {
-                        depth += 1;
-                    }
-                    if token.0 == "}" {
-                        depth -= 1;
-                    }
-                    depth == 0
-                })?;
-                Some(opening..=opening + closing)
-            });
-            for (index, pair) in tokens.windows(2).enumerate() {
-                if !matches!((pair[0].0, pair[1].0), ("=", "=") | ("!", "="))
-                    || predicate_body.as_ref().is_some_and(|body| body.contains(&index))
-                {
+            for token in tokenize(&source, FrontmatterAllowed::No) {
+                let start = position;
+                position += token.len as usize;
+                let TokenKind::Literal { kind, suffix_start } = token.kind else {
+                    continue;
+                };
+                if !matches!(
+                    kind,
+                    LiteralKind::Str { terminated: true }
+                        | LiteralKind::ByteStr { terminated: true }
+                        | LiteralKind::RawStr { n_hashes: Some(_) }
+                        | LiteralKind::RawByteStr { n_hashes: Some(_) }
+                ) {
                     continue;
                 }
-                let mut operand = index + 2;
-                if tokens.get(operand).is_some_and(|token| token.0 == "Some")
-                    && tokens.get(operand + 1).is_some_and(|token| token.0 == "(")
-                {
-                    operand += 2;
-                }
-                while tokens.get(operand + 1).is_some_and(|token| token.0 == ":")
-                    && tokens.get(operand + 2).is_some_and(|token| token.0 == ":")
-                {
-                    operand += 3;
-                }
-                if tokens.get(operand).is_some_and(|token| matches!(token.0, "NO_SUCH_BONUS" | "\"no such bonus\"")) {
-                    let line = source[..pair[0].1].matches('\n').count() + 1;
-                    findings.push(format!("{}:{line}: call CorrectionValue::has_matching_target instead of comparing the missing-target marker", path.display()));
+                let literal = &source[start..start + suffix_start as usize];
+                let opening = literal.find('"').expect("a string literal has an opening quote");
+                let closing = literal.rfind('"').expect("a terminated string literal has a closing quote");
+                if &literal[opening + 1..closing] == marker {
+                    let line = source[..start].matches('\n').count() + 1;
+                    findings.push(format!(
+                        "{}:{line}: use CorrectionValue::missing_target or its target predicates instead of the marker literal",
+                        path.display()
+                    ));
                 }
             }
         }
@@ -387,41 +367,49 @@ mod tests {
     use super::*;
 
     #[test]
-    fn missing_target_comparisons_use_the_shared_predicate() {
+    fn missing_target_literals_belong_to_the_declaring_module() {
         let folder = tempfile::tempdir().unwrap();
         let path = folder.path().join("corrections.rs");
+        let missing_target = CorrectionValue::missing_target();
+        let missing = missing_target.as_text().unwrap();
+        let literal = format!("{missing:?}");
+        let mut missed = Vec::new();
         for expression in [
-            "value.as_text() == Some(NO_SUCH_BONUS)",
-            "value.as_text() != Some(crate::corrections::NO_SUCH_BONUS)",
-            "value.as_text() == Some(\"no such bonus\")",
-            "value.as_text() != Some(\"no such bonus\")",
-            "text == NO_SUCH_BONUS",
+            format!("x == Some({literal})"),
+            format!("x != Some({literal})"),
+            format!("text == {literal}"),
+            format!("Some({literal}) == x"),
+            format!("{literal} == text"),
+            format!("matches!(x, Some({literal}))"),
+            format!("match text {{ {literal} => true, _ => false }}"),
+            format!("text.eq({literal})"),
+            format!("text == &{literal}"),
+            format!("text.starts_with({literal})"),
+            format!("r##\"{missing}\"##"),
+            format!("b{literal}"),
+            format!("br#\"{missing}\"#"),
+            format!("CorrectionValue::Text({literal}.into())"),
         ] {
             std::fs::write(&path, format!("fn read() {{\n    {expression}\n}}\n")).unwrap();
-            let error = deny_inline_missing_target_comparisons(&[folder.path()]).unwrap_err().to_string();
-            assert!(
-                error.contains("corrections.rs:2") && error.contains("CorrectionValue::has_matching_target"),
-                "{error}"
-            );
+            match deny_missing_target_literals(&[folder.path()]) {
+                Ok(()) => missed.push(expression),
+                Err(error) => assert!(error.to_string().contains("corrections.rs:2"), "{error}"),
+            }
         }
+        assert!(missed.is_empty(), "unreported marker literals:\n{}", missed.join("\n"));
         for expression in [
-            "CorrectionValue::Text(NO_SUCH_BONUS.into())",
-            "CorrectionValue::Text(\"no such bonus\".into())",
+            "CorrectionValue::missing_target()",
             "value.has_matching_target()",
+            "\"a missing target needs correction\"",
+            "\"\"",
         ] {
             std::fs::write(&path, format!("fn read() {{ {expression} }}\n")).unwrap();
-            deny_inline_missing_target_comparisons(&[folder.path()]).unwrap();
+            deny_missing_target_literals(&[folder.path()]).unwrap();
         }
-        let predicate_path = folder.path().join("crates/ddo-etl/src/corrections/mod.rs");
-        std::fs::create_dir_all(predicate_path.parent().unwrap()).unwrap();
-        std::fs::write(
-            &predicate_path,
-            "fn has_matching_target(&self) -> bool { self.as_text() != Some(NO_SUCH_BONUS) }",
-        )
-        .unwrap();
-        deny_inline_missing_target_comparisons(&[folder.path()]).unwrap();
-        std::fs::write(&predicate_path, "fn has_matching_target(&self) -> bool { self.as_text() != Some(NO_SUCH_BONUS) }\nfn other() { value.as_text() == Some(NO_SUCH_BONUS) }\n").unwrap();
-        assert!(deny_inline_missing_target_comparisons(&[folder.path()]).unwrap_err().to_string().contains("mod.rs:2"));
+        let declaring_path = folder.path().join("crates/ddo-etl/src/corrections/missing_target.rs");
+        std::fs::create_dir_all(declaring_path.parent().unwrap()).unwrap();
+        std::fs::write(&declaring_path, format!("const MARKER: &str = {literal};")).unwrap();
+        deny_missing_target_literals(&[folder.path()]).unwrap();
     }
 
     #[test]

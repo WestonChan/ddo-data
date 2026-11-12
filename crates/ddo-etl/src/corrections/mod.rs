@@ -1,4 +1,5 @@
 mod fields;
+mod missing_target;
 pub(crate) use fields::CorrectionFieldType;
 
 pub use fields::{correctable_fields, CorrectableField, FieldShape};
@@ -13,7 +14,6 @@ use std::collections::HashMap;
 use std::path::Path;
 
 pub const NULL_SPELLING: &str = "null";
-pub(crate) const NO_SUCH_BONUS: &str = "no such bonus";
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum CorrectionValue {
@@ -174,14 +174,6 @@ impl CorrectionValue {
             Self::Text(text) => Some(text),
             _ => None,
         }
-    }
-
-    pub(crate) fn has_matching_target(&self) -> bool {
-        self.as_text() != Some(NO_SUCH_BONUS)
-    }
-
-    pub(crate) fn has_missing_target(&self, found: &[Self]) -> bool {
-        self.has_matching_target() && found.iter().any(|value| !value.has_matching_target())
     }
 
     pub fn as_bonus_type_name(&self) -> Option<&str> {
@@ -1101,7 +1093,7 @@ mod tests {
         correction.validate().unwrap();
         correction.to = correction.from.clone();
         assert!(correction.validate().is_err());
-        correction.from = CorrectionValue::Text(super::NO_SUCH_BONUS.into());
+        correction.from = CorrectionValue::missing_target();
         correction.to = correction.from.clone();
         correction.validate().unwrap();
     }
@@ -1109,7 +1101,7 @@ mod tests {
     #[test]
     fn recorded_missing_targets_validate_for_each_recording_shape_and_live_equal_values_do_not() {
         use ddo_model::enums::CorrectionKind;
-        let missing = CorrectionValue::Text(super::NO_SUCH_BONUS.into());
+        let missing = CorrectionValue::missing_target();
         let mut failures = Vec::new();
         for (case, kind, field, qualifier, from, to, accepted) in [
             (

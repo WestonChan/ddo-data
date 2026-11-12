@@ -622,7 +622,7 @@ impl<'a> TableWriter<'a> {
     }
 
     fn select_candidate_splits(&mut self, pending: &mut [PendingDerivedLines]) -> Result<()> {
-        use crate::corrections::{CorrectionValue, NO_SUCH_BONUS};
+        use crate::corrections::CorrectionValue;
         let mut blocked = Vec::new();
         for correction in self
             .line_corrections
@@ -667,7 +667,7 @@ impl<'a> TableWriter<'a> {
                 } else if !holds.is_empty() {
                     CorrectionValue::Texts(holds.into_iter().collect())
                 } else {
-                    CorrectionValue::Text(NO_SUCH_BONUS.into())
+                    CorrectionValue::missing_target()
                 });
             }
             if !owners.is_empty() && !super::corrections::upstream_values_match(correction, &observations)? {
@@ -1352,7 +1352,7 @@ impl<'a> TableWriter<'a> {
     }
 
     fn write_grouped_line_corrections(&mut self, owners: &mut [PendingEffectLinks]) -> Result<()> {
-        use crate::corrections::{CorrectionValue, NO_SUCH_BONUS};
+        use crate::corrections::CorrectionValue;
         let mut conflicting_additions = vec![std::collections::BTreeSet::new(); owners.len()];
         for correction in self.bonus_additions.clone() {
             let mut matching = Vec::new();
@@ -1423,7 +1423,7 @@ impl<'a> TableWriter<'a> {
                         (Some(selection), correction.from.clone())
                     }
                     LineMergeMatch::Ambiguous(reasons) => (None, CorrectionValue::Texts(reasons)),
-                    _ => (None, CorrectionValue::Text(NO_SUCH_BONUS.into())),
+                    _ => (None, CorrectionValue::missing_target()),
                 };
                 self.observed_bonus_corrections.push((correction, upstream.clone()));
                 observations.push(upstream);
