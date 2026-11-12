@@ -313,11 +313,6 @@ fn an_alias_missing_target_repeats_without_a_report() {
     let mut world = alias_import_world();
     remove_alias_bonus(&world);
     let report = import_ddobuilder(&world.options).unwrap();
-    println!("{report}");
-    println!(
-        "Charisma Skills file survives: {}",
-        world.options.data_dir.join("effects/stat-groups/charisma-skills.toml").exists()
-    );
     assert!(report.has_conflicts() && report.to_string().contains("no such bonus"), "{report}");
     assert_missing_targets_repeat_cleanly(&mut world.options);
 }
@@ -350,7 +345,6 @@ fn assert_bonus_type_missing_target_repeats(keeps_other_bonus: bool) {
     let mut world = charisma_bonus_type_import_world(keeps_other_bonus);
     remove_alias_bonus(&world);
     let report = import_ddobuilder(&world.options).unwrap();
-    println!("{report}");
     assert!(
         report.entries.iter().any(|entry| entry.category == "CONFLICT"
             && entry.detail.contains(".bonus_type")
@@ -422,7 +416,6 @@ fn restoring_a_target_whose_correction_lost_its_value_stops_without_writing() {
         let error = import_ddobuilder(&world.options).unwrap_err();
         assert_eq!(world.bytes(), before, "{field}: failed restore wrote files");
         let message = format!("{error:#}");
-        println!("{field} restore: {message}");
         for expected in [
             owner,
             &format!(".{field}"),
@@ -623,10 +616,6 @@ fn ship_kickers_effect_import_world(field: &str, effect: &str, from: &str, to: &
 #[test]
 fn an_effect_replacement_import_reports_a_removed_link_and_keeps_the_correction() {
     let mut world = ship_kickers_replacement_world();
-    let initial = world.database();
-    let carriers: Vec<String> = initial.prepare("SELECT i.name FROM item_effects l JOIN items i ON i.id=l.item_id JOIN effects e ON e.id=l.effect_id WHERE e.name='Riposte V' ORDER BY i.name").unwrap()
-        .query_map([], |row| row.get(0)).unwrap().collect::<rusqlite::Result<_>>().unwrap();
-    println!("Riposte V initial carriers: {carriers:?}");
     let path = world.options.source_dir.join("Items/ShipKickers.item");
     let previous = std::fs::read_to_string(&path).unwrap();
     let start = previous.find("    <Buff>\n      <Type>Riposte</Type>").unwrap();
@@ -636,7 +625,6 @@ fn an_effect_replacement_import_reports_a_removed_link_and_keeps_the_correction(
     let destination_exists = world.options.data_dir.join("effects/riposte-v.toml").exists();
     let destination_removed =
         report.entries.iter().any(|entry| entry.category == "REMOVED" && entry.detail == "effects/riposte-v");
-    println!("Riposte V file survives: {destination_exists}; reported removed: {destination_removed}");
     assert!(destination_exists && !destination_removed, "{report}");
     assert!(report.has_conflicts() && report.to_string().contains("no such bonus"), "{report}");
     let db = world.database();
@@ -789,7 +777,6 @@ fn assert_removed_item_effect_stops_without_writing(field: &str, from: &str, to:
     let error = import_ddobuilder(&world.options).unwrap_err();
     assert_eq!(world.bytes(), before);
     let message = format!("{error:#}");
-    println!("{field}: {message}");
     assert!(message.contains("effect \"Riposte\""), "{message}");
 }
 
@@ -1643,7 +1630,6 @@ fn a_stat_set_split_import_reports_a_removed_assassinate_stat() {
     assert_eq!(upstream, "\"no such bonus\"");
     let types: Vec<(String, String)> = db.prepare("SELECT name,from_value FROM corrections WHERE field='bonus_type' AND qualifier='Assassinate DC / null' ORDER BY name").unwrap()
         .query_map([], |row| Ok((row.get(0)?, row.get(1)?))).unwrap().collect::<rusqlite::Result<_>>().unwrap();
-    println!("Assassinate bonus-type records: {types:?}");
     assert_eq!(types.len(), 2);
     assert!(types.iter().all(|(_, upstream)| upstream == "\"no such bonus\""));
     let missing = ddo_etl::corrections::corrections_recording_missing_targets(&db).unwrap();
@@ -1904,10 +1890,6 @@ fn the_import_binary_exits_two_after_reporting_a_declined_set_removal() {
     ] {
         assert!(stdout.contains(expected), "{stdout}\n{stderr}");
     }
-    eprintln!("process exit: {:?}", output.status.code());
-    for line in stdout.lines().filter(|line| line.starts_with("table |") || line.contains("DECLINED REMOVAL")) {
-        eprintln!("{line}");
-    }
     assert!(!stdout.contains("SKIPPED WIKI FACT"), "{stdout}");
     assert_eq!(output.status.code(), Some(2), "{stdout}\n{stderr}");
     let mut rebuilt = Connection::open_in_memory().unwrap();
@@ -1967,9 +1949,6 @@ fn a_priced_set_survives_when_upstream_removes_its_last_carrier() {
             );
         }
         assert!(!report.entries.iter().any(|entry| entry.category == "SKIPPED WIKI FACT"), "{rendered}");
-        for entry in report.entries.iter().filter(|entry| entry.category == "DECLINED REMOVAL") {
-            eprintln!("{}: {} {}", entry.path.display(), entry.category, entry.detail);
-        }
         let mut rebuilt = Connection::open_in_memory().unwrap();
         tree::build_from_data(&root, &mut rebuilt).unwrap();
         let (id, links): (i64, i64) = rebuilt.query_row("SELECT s.id,COUNT(*) FROM crafting_recipe_set_options link JOIN socket_options o ON o.id=link.option_id JOIN socket_option_sets s ON s.id=o.set_id JOIN crafting_recipes r ON r.id=link.recipe_id WHERE r.option='Fabricator''s Ingenuity' GROUP BY s.id", [], |row| Ok((row.get(0)?, row.get(1)?))).unwrap();
