@@ -196,6 +196,10 @@ fn missing_seeded_stat_reports_its_majority_without_a_home_or_recreating_its_del
 }
 
 fn woeful_split_import() -> ImportWorld {
+    woeful_split_import_with_sources(|_| {})
+}
+
+fn woeful_split_import_with_sources(add_augments: impl FnOnce(&Path)) -> ImportWorld {
     let correction = fixture::new_qualified_correction(
         "augment_bonus",
         "Woeful Shadow (Legendary)",
@@ -221,6 +225,7 @@ fn woeful_split_import() -> ImportWorld {
                 include_bytes!("fixtures/effect-groups/icons/Lamordia.png"),
             )
             .unwrap();
+            add_augments(source);
         },
     )
 }
@@ -1725,6 +1730,34 @@ fn a_split_import_reports_changed_stats_and_takes_the_new_lines() {
         )
         .unwrap();
     assert_eq!(upstream, "\"no such bonus\"");
+    assert_missing_targets_repeat_cleanly(&mut world.options);
+}
+
+#[test]
+fn a_lines_missing_target_repeats_after_its_parent_effect_file_is_removed() {
+    let mut world = woeful_split_import_with_sources(|source| {
+        let path = source.join("Augments/WoefulShadow.Augments.xml");
+        let original = std::fs::read_to_string(&path).unwrap();
+        let carrier = original.replace("Woeful Shadow (Legendary)", "Uncorrected Woeful Shadow");
+        std::fs::write(path, original.replace("</Augments>", &carrier.replace("<Augments>", ""))).unwrap();
+    });
+    let parent = world.options.data_dir.join("effects/stat-groups/doublestrike-and-doubleshot.toml");
+    assert!(parent.exists());
+    let path = world.options.source_dir.join("Augments/WoefulShadow.Augments.xml");
+    let original = std::fs::read_to_string(&path).unwrap();
+    let start = original.find("    <Effect>").unwrap();
+    let end = start + original[start..].find("</Effect>").unwrap() + "</Effect>".len();
+    std::fs::write(path, original.replace(&original[start..end], "")).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(report.has_conflicts(), "{report}");
+    assert!(!parent.exists());
+    assert!(
+        report
+            .entries
+            .iter()
+            .any(|entry| entry.category == "REMOVED" && entry.detail == "effects/doublestrike-and-doubleshot"),
+        "{report}"
+    );
     assert_missing_targets_repeat_cleanly(&mut world.options);
 }
 
