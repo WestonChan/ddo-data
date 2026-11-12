@@ -4,72 +4,30 @@ use anyhow::Result;
 use rusqlite::Transaction;
 use std::collections::BTreeSet;
 
-#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
-pub struct SkippedWikiFact {
-    pub fact: String,
-    pub file_name: String,
-    pub unresolved_name: String,
-    pub(crate) is_recipe_set_option: bool,
-}
-
-impl SkippedWikiFact {
-    pub(super) fn recipe_set_option(
-        system: &crate::wiki::CraftingSystem,
-        recipe: &crate::wiki::CraftingRecipe,
-        option: &crate::wiki::CraftingRecipeSetOption,
-    ) -> Self {
-        Self {
-            fact: format!(
-                "recipe {:?} at step {:?}, tier {}, set {:?} variant {:?}, option {:?}",
-                recipe.option, recipe.step, recipe.tier, option.set, option.variant, option.name
-            ),
-            file_name: system.file_name.clone(),
-            unresolved_name: option.set.clone(),
-            is_recipe_set_option: true,
-        }
-    }
-}
-
-struct PreviousReferences<'a> {
+struct PreviousReferences {
     known: BTreeSet<(String, String)>,
     early: bool,
-    skipped: &'a mut Vec<SkippedWikiFact>,
 }
 
-impl PreviousReferences<'_> {
-    fn fact(&mut self, table: &str, name: &str, file: &str, fact: String) -> bool {
-        if self.early && !matches!(table, "quests" | "adventure_packs" | "patrons") {
-            return true;
-        }
-        if self.known.contains(&(table.into(), name.into())) {
-            return true;
-        }
-        self.skipped.push(SkippedWikiFact {
-            fact,
-            file_name: file.into(),
-            unresolved_name: name.into(),
-            is_recipe_set_option: false,
-        });
-        false
+impl PreviousReferences {
+    fn contains(&self, table: &str, name: &str) -> bool {
+        (self.early && !matches!(table, "quests" | "adventure_packs" | "patrons"))
+            || self.known.contains(&(table.into(), name.into()))
     }
 
-    fn optional(&mut self, table: &str, name: &mut Option<String>, file: &str, fact: String) {
-        if name.as_ref().is_some_and(|name| !self.fact(table, name, file, fact)) {
+    fn retain_known_name(&self, table: &str, name: &mut Option<String>) {
+        if name.as_ref().is_some_and(|name| !self.contains(table, name)) {
             *name = None;
         }
     }
 
-    fn series<Reward: QuestSeriesReward>(&mut self, series: &mut WikiQuestSeries<Reward>) {
-        self.optional("adventure_packs", &mut series.pack, &series.file_name, format!("{} pack", series.name));
-        series
-            .quests
-            .retain(|name| self.fact("quests", name, &series.file_name, format!("{} quest {name}", series.name)));
-        series.rewards.retain(|reward| {
-            self.fact("items", reward.name(), &series.file_name, format!("{} reward {}", series.name, reward.name()))
-        });
+    fn retain_known_series_references<Reward: QuestSeriesReward>(&self, series: &mut WikiQuestSeries<Reward>) {
+        self.retain_known_name("adventure_packs", &mut series.pack);
+        series.quests.retain(|name| self.contains("quests", name));
+        series.rewards.retain(|reward| self.contains("items", reward.name()));
     }
 
-    fn unlock(&mut self, unlock: &crate::wiki::CraftingUnlock, file: &str, owner: &str) -> bool {
+    fn has_unlock_references(&self, unlock: &crate::wiki::CraftingUnlock) -> bool {
         [
             ("quests", &unlock.quest),
             ("patrons", &unlock.patron),
@@ -79,10 +37,7 @@ impl PreviousReferences<'_> {
             ("feats", &unlock.feat),
         ]
         .into_iter()
-        .all(|(table, name)| {
-            name.as_deref()
-                .is_none_or(|name| self.fact(table, name, file, format!("{owner} {} unlock", unlock.kind.as_str())))
-        })
+        .all(|(table, name)| name.as_deref().is_none_or(|name| self.contains(table, name)))
     }
 }
 
@@ -91,7 +46,6 @@ pub(super) fn omit_unresolved_previous_facts(
     references: &OverlayReferences,
     wiki: &mut WikiOverrides,
     early: bool,
-    skipped: &mut Vec<SkippedWikiFact>,
 ) -> Result<()> {
     let mut known = references.known_names(transaction)?;
     known.extend(wiki.items.iter().map(|item| ("items".into(), item.name.clone())));
@@ -102,128 +56,66 @@ pub(super) fn omit_unresolved_previous_facts(
             .chain(wiki.crafting_systems.iter().flat_map(|system| &system.ingredients))
             .map(|ingredient| ("crafting_ingredients".into(), ingredient.name.clone())),
     );
-    let mut references = PreviousReferences { known, early, skipped };
+    let mut references = PreviousReferences { known, early };
     wiki.quests.retain(|quest| {
-        let valid = quest.pack.as_ref().is_none_or(|name| {
-            references.fact("adventure_packs", name, &quest.file_name, format!("{} quest", quest.name))
-        }) && quest
-            .patron
-            .as_ref()
-            .is_none_or(|name| references.fact("patrons", name, &quest.file_name, format!("{} quest", quest.name)));
+        let valid = quest.pack.as_ref().is_none_or(|name| references.contains("adventure_packs", name))
+            && quest.patron.as_ref().is_none_or(|name| references.contains("patrons", name));
         if valid {
             references.known.insert(("quests".into(), quest.name.clone()));
         }
         valid
     });
     wiki.quest_loot.retain_mut(|quest| {
-        if !references.fact("quests", &quest.name, &quest.file_name, format!("{} loot", quest.name)) {
+        if !references.contains("quests", &quest.name) {
             return false;
         }
         for (drops, table) in [(&mut quest.items, "items"), (&mut quest.augments, "augments")] {
-            drops.retain(|drop| {
-                references.fact(table, drop.name(), &quest.file_name, format!("{} drop {}", quest.name, drop.name()))
-            });
+            drops.retain(|drop| references.contains(table, drop.name()));
         }
         for (drops, table) in [(&mut quest.rare, "items"), (&mut quest.rare_augments, "augments")] {
-            drops.retain(|drop| {
-                references.fact(
-                    table,
-                    drop.name(),
-                    &quest.file_name,
-                    format!("{} rare drop {}", quest.name, drop.name()),
-                )
-            });
+            drops.retain(|drop| references.contains(table, drop.name()));
         }
         true
     });
     for item in &mut wiki.items {
-        references.optional("set_bonuses", &mut item.set, &item.file_name, format!("{} set", item.name));
-        item.augment_slots.retain(|name| {
-            references.fact("augment_slot_types", name, &item.file_name, format!("{} socket {name}", item.name))
-        });
+        references.retain_known_name("set_bonuses", &mut item.set);
+        item.augment_slots.retain(|name| references.contains("augment_slot_types", name));
     }
     for augment in &mut wiki.augments {
-        references.optional("set_bonuses", &mut augment.set, &augment.file_name, format!("{} set", augment.name));
-        augment.slots.retain(|name| {
-            references.fact("augment_slot_types", name, &augment.file_name, format!("{} socket {name}", augment.name))
-        });
+        references.retain_known_name("set_bonuses", &mut augment.set);
+        augment.slots.retain(|name| references.contains("augment_slot_types", name));
     }
     for station in &mut wiki.crafting_stations {
-        let file = "packs/shared/crafting/stations.toml";
-        references.optional("quests", &mut station.quest, file, format!("{} station quest", station.name));
-        station.unlocks.retain(|unlock| references.unlock(unlock, file, &station.name));
+        references.retain_known_name("quests", &mut station.quest);
+        station.unlocks.retain(|unlock| references.has_unlock_references(unlock));
     }
     for system in &mut wiki.crafting_systems {
-        references.optional("adventure_packs", &mut system.pack, &system.file_name, format!("{} pack", system.name));
-        system.unlocks.retain(|unlock| references.unlock(unlock, &system.file_name, &system.name));
+        references.retain_known_name("adventure_packs", &mut system.pack);
+        system.unlocks.retain(|unlock| references.has_unlock_references(unlock));
         for step in &mut system.steps {
-            references.optional(
-                "augment_slot_types",
-                &mut step.slot,
-                &system.file_name,
-                format!("{} step {} socket", system.name, step.name),
-            );
-            step.costs.retain(|cost| {
-                cost.cost.item.as_deref().is_none_or(|name| {
-                    references.fact(
-                        "items",
-                        name,
-                        &system.file_name,
-                        format!("{} step {} cost", system.name, step.name),
-                    )
-                })
-            });
+            references.retain_known_name("augment_slot_types", &mut step.slot);
+            step.costs.retain(|cost| cost.cost.item.as_deref().is_none_or(|name| references.contains("items", name)));
         }
         for recipe in &mut system.recipes {
-            recipe.unlocks.retain(|unlock| references.unlock(unlock, &system.file_name, &recipe.option));
-            recipe.cost.retain(|cost| {
-                cost.item.as_deref().is_none_or(|name| {
-                    references.fact(
-                        "items",
-                        name,
-                        &system.file_name,
-                        format!("{} recipe {} cost", system.name, recipe.option),
-                    )
-                })
-            });
-            references.optional(
-                "augment_slot_types",
-                &mut recipe.slot,
-                &system.file_name,
-                format!("{} recipe {} slot", system.name, recipe.option),
-            );
-            references.optional(
-                "augment_slot_types",
-                &mut recipe.grants_slot,
-                &system.file_name,
-                format!("{} recipe {} granted socket", system.name, recipe.option),
-            );
-            recipe.augments.retain(|name| {
-                references.fact(
-                    "augments",
-                    name,
-                    &system.file_name,
-                    format!("{} recipe {} augment {name}", system.name, recipe.option),
-                )
-            });
+            recipe.unlocks.retain(|unlock| references.has_unlock_references(unlock));
+            recipe.cost.retain(|cost| cost.item.as_deref().is_none_or(|name| references.contains("items", name)));
+            references.retain_known_name("augment_slot_types", &mut recipe.slot);
+            references.retain_known_name("augment_slot_types", &mut recipe.grants_slot);
+            recipe.augments.retain(|name| references.contains("augments", name));
         }
     }
     for chain in &mut wiki.quest_chains {
-        references.series(chain);
+        references.retain_known_series_references(chain);
     }
     for saga in &mut wiki.sagas {
-        references.series(saga);
+        references.retain_known_series_references(saga);
     }
     for vendor in &mut wiki.vendors {
-        references.optional("adventure_packs", &mut vendor.pack, &vendor.file_name, format!("{} pack", vendor.name));
-        vendor.items.retain(|item| {
-            references.fact("items", item.name(), &vendor.file_name, format!("{} offer {}", vendor.name, item.name()))
-        });
+        references.retain_known_name("adventure_packs", &mut vendor.pack);
+        vendor.items.retain(|item| references.contains("items", item.name()));
     }
     for event in &mut wiki.events {
-        event
-            .items
-            .retain(|name| references.fact("items", name, &event.file_name, format!("{} offer {name}", event.name)));
+        event.items.retain(|name| references.contains("items", name));
     }
     Ok(())
 }

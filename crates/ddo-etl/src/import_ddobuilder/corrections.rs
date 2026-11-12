@@ -1,4 +1,4 @@
-use crate::build::{SkippedWikiFact, StaleCorrection, StaleCorrectionCause, WikiBuildOptions};
+use crate::build::{OmittedRecipeSetOption, StaleCorrection, StaleCorrectionCause, WikiBuildOptions};
 use crate::corrections::{Correction, CorrectionValue, Corrections};
 use crate::wiki::WikiOverrides;
 use anyhow::{ensure, Result};
@@ -10,7 +10,7 @@ use std::path::Path;
 pub(super) struct HisDatabase {
     pub(super) db: Connection,
     pub(super) first_stale: Vec<StaleCorrection>,
-    pub(super) skipped_wiki_facts: Vec<crate::build::SkippedWikiFact>,
+    pub(super) omitted_recipe_set_options: Vec<crate::build::OmittedRecipeSetOption>,
     pub(super) line_splits: Vec<crate::build::DerivedEffectSplit>,
     pub(super) held_back_effects: Vec<crate::build::DerivedEffectSplit>,
     pub(super) matched_set_tier_prose: std::collections::BTreeSet<crate::build::SetTierProseMatch>,
@@ -54,7 +54,7 @@ pub(super) fn build_database_matching_his_values(
     wiki: &WikiOverrides,
     corrections: &Corrections,
     version: &DatasetVersion,
-    omitted_recipe_set_options: &[SkippedWikiFact],
+    omitted_recipe_set_options: &[OmittedRecipeSetOption],
 ) -> Result<HisDatabase> {
     build_matching_values(
         groupings,
@@ -72,7 +72,7 @@ pub(super) fn build_previous_matching_his_values(
     wiki: &WikiOverrides,
     corrections: &Corrections,
     version: &DatasetVersion,
-    omitted_recipe_set_options: &[SkippedWikiFact],
+    omitted_recipe_set_options: &[OmittedRecipeSetOption],
 ) -> Result<HisDatabase> {
     build_matching_values(
         groupings,
@@ -96,7 +96,7 @@ fn build_matching_values(
     let first_report =
         crate::build::build_with_wiki_references(groupings, source, wiki, corrections, &mut db, version, options)?;
     let first_stale = first_report.stale_corrections;
-    let mut skipped_wiki_facts = first_report.skipped_wiki_facts;
+    let mut omitted_recipe_set_options = first_report.omitted_recipe_set_options;
     let mut line_splits = first_report.line_splits;
     let mut held_back_effects = first_report.held_back_effects;
     let mut matched_set_tier_prose = first_report.matched_set_tier_prose;
@@ -135,7 +135,7 @@ fn build_matching_values(
         line_splits = report.line_splits;
         held_back_effects = report.held_back_effects;
         matched_set_tier_prose = report.matched_set_tier_prose;
-        skipped_wiki_facts.extend(report.skipped_wiki_facts);
+        omitted_recipe_set_options.extend(report.omitted_recipe_set_options);
         for stale in report.stale_corrections {
             let resolved = rebased.entries.iter().any(|correction| {
                 CorrectionKey::from_correction(correction).matches(&stale)
@@ -151,9 +151,16 @@ fn build_matching_values(
             ensure!(resolved, "correction remains stale after rebasing: {stale:?}");
         }
     }
-    skipped_wiki_facts.sort();
-    skipped_wiki_facts.dedup();
-    Ok(HisDatabase { db, first_stale, skipped_wiki_facts, line_splits, held_back_effects, matched_set_tier_prose })
+    omitted_recipe_set_options.sort();
+    omitted_recipe_set_options.dedup();
+    Ok(HisDatabase {
+        db,
+        first_stale,
+        omitted_recipe_set_options,
+        line_splits,
+        held_back_effects,
+        matched_set_tier_prose,
+    })
 }
 
 pub(super) fn has_unresolved_targets(correction: &Correction, stale: &StaleCorrection) -> bool {

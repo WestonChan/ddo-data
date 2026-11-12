@@ -62,7 +62,7 @@ fn previous_xml_omits_later_item_costs_and_unlocks_but_current_xml_is_strict() {
     });
     let wiki = WikiOverrides::from_database(&ours).unwrap();
     let mut previous = Connection::open_in_memory().unwrap();
-    let report = ddo_etl::build::build_previous_database(
+    ddo_etl::build::build_previous_database(
         fixture::groupings(),
         &fixtures_dir().join("DataFiles"),
         &wiki,
@@ -71,8 +71,6 @@ fn previous_xml_omits_later_item_costs_and_unlocks_but_current_xml_is_strict() {
         &fixture_dataset_version(),
     )
     .unwrap();
-    assert_eq!(report.skipped_wiki_facts.len(), 5, "{:?}", report.skipped_wiki_facts);
-    assert!(report.skipped_wiki_facts.iter().all(|fact| fact.unresolved_name == "Later Ring"));
     let count: i64 = previous.query_row("SELECT COUNT(*) FROM crafting_unlocks WHERE text IN ('Wear the later ring.','Keep the later ring.','Show the later ring.')", [], |row| row.get(0)).unwrap();
     assert_eq!(count, 0);
     let error = build_report_with(&wiki).unwrap_err();

@@ -20,7 +20,7 @@ pub(super) fn apply_wiki_overrides(
     wiki_overrides: &WikiOverrides,
     effects: &mut super::effects::EffectCache<'_>,
     report: &mut BuildReport,
-    omitted_recipe_set_options: &[super::SkippedWikiFact],
+    omitted_recipe_set_options: &[OmittedRecipeSetOption],
 ) -> Result<()> {
     for quest_loot in &wiki_overrides.quest_loot {
         let citation = format!("wiki quest_loot {:?} ({})", quest_loot.name, quest_loot.file_name);
@@ -216,7 +216,7 @@ fn insert_crafting_system_contents(
     crafting_system: &CraftingSystem,
     effects: &mut super::effects::EffectCache<'_>,
     report: &mut BuildReport,
-    omitted_recipe_set_options: &[super::SkippedWikiFact],
+    omitted_recipe_set_options: &[OmittedRecipeSetOption],
 ) -> Result<()> {
     let pack_id = match &crafting_system.pack {
         Some(pack_name) => Some(references.id(transaction, "adventure_packs", pack_name)?.with_context(|| {
@@ -283,7 +283,10 @@ fn insert_crafting_system_contents(
             system_id,
             sort_order,
             recipe,
-            &mut RecipeSetOptionFacts { omitted: omitted_recipe_set_options, skipped: &mut report.skipped_wiki_facts },
+            &mut RecipeSetOptionOmissions {
+                requested: omitted_recipe_set_options,
+                omitted: &mut report.omitted_recipe_set_options,
+            },
         )
         .with_context(|| format!("recipe {:?}", recipe.option))?;
         report.wiki_crafting_recipe_count += 1;
@@ -292,9 +295,34 @@ fn insert_crafting_system_contents(
     Ok(())
 }
 
-struct RecipeSetOptionFacts<'a> {
-    omitted: &'a [super::SkippedWikiFact],
-    skipped: &'a mut Vec<super::SkippedWikiFact>,
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+pub struct OmittedRecipeSetOption {
+    system: String,
+    recipe: String,
+    step: Option<String>,
+    tier: String,
+    set: String,
+    variant: Option<String>,
+    option: String,
+}
+
+impl OmittedRecipeSetOption {
+    fn new(system: &CraftingSystem, recipe: &CraftingRecipe, option: &crate::wiki::CraftingRecipeSetOption) -> Self {
+        Self {
+            system: system.name.clone(),
+            recipe: recipe.option.clone(),
+            step: recipe.step.clone(),
+            tier: recipe.tier.clone(),
+            set: option.set.clone(),
+            variant: option.variant.clone(),
+            option: option.name.clone(),
+        }
+    }
+}
+
+struct RecipeSetOptionOmissions<'a> {
+    requested: &'a [OmittedRecipeSetOption],
+    omitted: &'a mut Vec<OmittedRecipeSetOption>,
 }
 
 fn insert_crafting_recipe(
@@ -304,7 +332,7 @@ fn insert_crafting_recipe(
     system_id: i64,
     sort_order: usize,
     recipe: &CraftingRecipe,
-    facts: &mut RecipeSetOptionFacts<'_>,
+    omissions: &mut RecipeSetOptionOmissions<'_>,
 ) -> Result<()> {
     let step_id = recipe
         .step
@@ -355,9 +383,9 @@ fn insert_crafting_recipe(
     )?;
     let recipe_id = transaction.last_insert_rowid();
     for option in &recipe.set_options {
-        let fact = super::SkippedWikiFact::recipe_set_option(crafting_system, recipe, option);
-        if facts.omitted.contains(&fact) {
-            facts.skipped.push(fact);
+        let option_identity = OmittedRecipeSetOption::new(crafting_system, recipe, option);
+        if omissions.requested.contains(&option_identity) {
+            omissions.omitted.push(option_identity);
             continue;
         }
         let Some(option_id) = crate::tree::recipe_set_option_id_if_set_exists(
@@ -368,7 +396,7 @@ fn insert_crafting_recipe(
             &option.name,
         )?
         else {
-            facts.skipped.push(fact);
+            omissions.omitted.push(option_identity);
             continue;
         };
         transaction.execute(

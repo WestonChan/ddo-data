@@ -58,7 +58,7 @@ pub struct NormalizedUpstreamDatabase {
     matched_set_tier_prose: BTreeSet<crate::build::SetTierProseMatch>,
     filled: Vec<FilledCell>,
     first_stale: Vec<crate::build::StaleCorrection>,
-    skipped_wiki_facts: Vec<crate::build::SkippedWikiFact>,
+    omitted_recipe_set_options: Vec<crate::build::OmittedRecipeSetOption>,
 }
 
 pub fn normalized_upstream_database(
@@ -117,7 +117,7 @@ fn normalized_database_with_corrections(
         matched_set_tier_prose: upstream.matched_set_tier_prose,
         filled,
         first_stale: upstream.first_stale,
-        skipped_wiki_facts: upstream.skipped_wiki_facts,
+        omitted_recipe_set_options: upstream.omitted_recipe_set_options,
     })
 }
 
@@ -185,10 +185,9 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
     let mut new = normalized_upstream_database(&options.source_dir, &ours, &new_version, false, &new_tree)
         .context("building the new DataFiles")?;
     let omitted = previous
-        .skipped_wiki_facts
+        .omitted_recipe_set_options
         .iter()
-        .chain(&new.skipped_wiki_facts)
-        .filter(|fact| fact.is_recipe_set_option)
+        .chain(&new.omitted_recipe_set_options)
         .cloned()
         .collect::<BTreeSet<_>>()
         .into_iter()

@@ -21,8 +21,8 @@ pub use socket_option_sets::{ExistingSocketOptionSets, CARRIERLESS_SOCKET_OPTION
 mod trees_spells;
 mod vendors_and_events;
 mod wiki;
+pub use wiki::OmittedRecipeSetOption;
 mod wiki_previous;
-pub use wiki_previous::SkippedWikiFact;
 
 use crate::corrections::{Correction, Corrections};
 use crate::map::augment_slot::AugmentSlotType;
@@ -52,7 +52,7 @@ pub struct BuildReport {
     pub line_splits: Vec<DerivedEffectSplit>,
     pub held_back_effects: Vec<DerivedEffectSplit>,
     pub matched_set_tier_prose: BTreeSet<SetTierProseMatch>,
-    pub skipped_wiki_facts: Vec<SkippedWikiFact>,
+    pub omitted_recipe_set_options: Vec<OmittedRecipeSetOption>,
     pub written_item_count: usize,
     pub skipped_cosmetic_item_count: usize,
     pub legacy_item_count: usize,
@@ -236,7 +236,7 @@ pub fn build_previous_database(
 #[derive(Clone, Copy, Default)]
 pub(crate) struct WikiBuildOptions<'a> {
     pub(crate) is_previous: bool,
-    pub(crate) omitted_recipe_set_options: &'a [SkippedWikiFact],
+    pub(crate) omitted_recipe_set_options: &'a [OmittedRecipeSetOption],
 }
 
 pub(crate) fn build_with_wiki_references(
@@ -305,13 +305,7 @@ pub(crate) fn build_with_wiki_references(
     let overlay_references = wiki::OverlayReferences::default();
     overlay_references.capture_renames(&transaction, corrections)?;
     if is_previous {
-        wiki_previous::omit_unresolved_previous_facts(
-            &transaction,
-            &overlay_references,
-            &mut previous_wiki,
-            true,
-            &mut report.skipped_wiki_facts,
-        )?;
+        wiki_previous::omit_unresolved_previous_facts(&transaction, &overlay_references, &mut previous_wiki, true)?;
     }
     let wiki_overrides = &previous_wiki;
     corrections::apply_quest_corrections(&transaction, corrections, &mut report)?;
@@ -466,13 +460,7 @@ pub(crate) fn build_with_wiki_references(
     writer.write_pending_effect_links()?;
     overlay_references.capture_renames(&transaction, corrections)?;
     if is_previous {
-        wiki_previous::omit_unresolved_previous_facts(
-            &transaction,
-            &overlay_references,
-            &mut previous_wiki,
-            false,
-            &mut report.skipped_wiki_facts,
-        )?;
+        wiki_previous::omit_unresolved_previous_facts(&transaction, &overlay_references, &mut previous_wiki, false)?;
     }
     let wiki_overrides = &previous_wiki;
     writer.write_wiki_items(&wiki_overrides.items, &mut report)?;
