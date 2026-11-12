@@ -452,6 +452,9 @@ fn write_correction(
             )?;
         }
         FieldShape::BonusTypeName => {
+            if !correction.from.has_matching_target() {
+                return Ok(());
+            }
             let new_type_name = correction.to.as_text().context("a bonus type cannot be null")?;
             let new_type_id = bonus_type_id_named(transaction, new_type_name)?;
             let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
@@ -1243,7 +1246,10 @@ fn current_value(
             return Ok(matching_values.into_iter().next().unwrap_or(CorrectionValue::Null));
         }
         FieldShape::BonusTypeName => {
-            return CorrectedBonus::of(transaction, correction)?.bonus_type_on(transaction, row_id);
+            return match CorrectedBonus::from_correction_if_effect_exists(transaction, correction)? {
+                Some(bonus) => bonus.bonus_type_on(transaction, row_id),
+                None => missing_bonus_type_value(correction, groupings),
+            };
         }
         FieldShape::StatScale | FieldShape::StatRounding => {
             let corrected_bonus = CorrectedBonus::of(transaction, correction)?;
@@ -1953,6 +1959,20 @@ fn ambiguous_bonus_lines<'a>(operation: &str, rows: impl IntoIterator<Item = &'a
         .collect()
 }
 
+fn missing_bonus_type_value(
+    correction: &Correction,
+    groupings: Option<&crate::groupings::Groupings>,
+) -> Result<CorrectionValue> {
+    if correction.from.has_matching_target() {
+        let stat = correction.bonus_key().context("bonus correction names its bonus")?.0;
+        ensure!(
+            groupings.is_some_and(|index| index.effect_named(stat).is_some()),
+            "stat {stat:?} is not an effect; use its exact name"
+        );
+    }
+    Ok(CorrectionValue::Text(NO_SUCH_BONUS.into()))
+}
+
 pub(super) fn pending_bonus_correction_values(
     transaction: &Transaction,
     groupings: &crate::groupings::Groupings,
@@ -1961,6 +1981,9 @@ pub(super) fn pending_bonus_correction_values(
     links: &[super::modifiers::DerivedEffectLink],
 ) -> Result<Vec<CorrectionValue>> {
     let Some(corrected) = CorrectedBonus::from_correction_if_effect_exists(transaction, correction)? else {
+        if correction.field == "bonus_type" {
+            return Ok(vec![missing_bonus_type_value(correction, Some(groupings))?]);
+        }
         let stat = correction.bonus_key().context("bonus correction names its bonus")?.0;
         ensure!(groupings.effect_named(stat).is_some(), "stat {stat:?} is not an effect; use its exact name");
         return Ok(vec![CorrectionValue::Text(NO_SUCH_BONUS.into())]);
@@ -2732,6 +2755,27 @@ mod tests {
         )
         .unwrap();
         db
+    }
+
+    #[test]
+    fn live_bonus_type_reads_reject_unknown_stats() {
+        let mut db = ambiguous_item_bonus_database();
+        let transaction = db.transaction().unwrap();
+        let owner = id_named(&transaction, "items", "Acid Rune Arm").unwrap().unwrap();
+        let mut correction = bonus_correction(CorrectionKind::ItemBonus, "Unknown stat", "Quality", "bonus_type");
+        correction.name = "Acid Rune Arm".into();
+        correction.from = CorrectionValue::Text("Quality".into());
+        correction.to = CorrectionValue::Text("Insight".into());
+        let groupings = crate::groupings::fixture_groupings();
+        let field = correction.correctable_field().unwrap();
+        let observed = current_value(&transaction, &correction, field, owner, None, Some(groupings));
+        let pending = pending_bonus_correction_values(&transaction, groupings, &correction, owner, &[]);
+        for error in [observed.unwrap_err(), pending.unwrap_err()] {
+            assert!(
+                format!("{error:#}").contains("stat \"Unknown stat\" is not an effect; use its exact name"),
+                "{error:#}"
+            );
+        }
     }
 
     #[test]

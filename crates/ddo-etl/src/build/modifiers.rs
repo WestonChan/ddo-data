@@ -250,7 +250,8 @@ impl<'a> TableWriter<'a> {
                     matching.push(index);
                 }
             }
-            if super::corrections::upstream_values_match(correction, &values)? {
+            if correction.from.has_matching_target() && super::corrections::upstream_values_match(correction, &values)?
+            {
                 for index in matching {
                     let owner = &mut owners[index];
                     super::corrections::write_pending_bonus_correction(

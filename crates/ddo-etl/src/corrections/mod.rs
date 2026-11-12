@@ -618,6 +618,7 @@ impl Correction {
         }
         if field.shape == FieldShape::BonusTypeName
             && self.kind != CorrectionKind::ItemEffect
+            && self.from.has_matching_target()
             && self.bonus_type.as_deref() != self.from.as_bonus_type_name()
         {
             bail!("from must be the bonus_type the correction names, his current type or \"null\"");
@@ -1145,6 +1146,15 @@ mod tests {
                 "Strength / Enhancement / 3",
                 missing.clone(),
                 CorrectionValue::Text("Fixture Strength".into()),
+                true,
+            ),
+            (
+                "bonus type absent",
+                CorrectionKind::ItemBonus,
+                "bonus_type",
+                "Strength / Enhancement / 3",
+                missing.clone(),
+                missing.clone(),
                 true,
             ),
             (
