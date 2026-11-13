@@ -349,15 +349,24 @@ impl DropTextLinker {
     fn pack_links_in(&self, drop_text: &str, loot_minimum_level: Option<i64>) -> Vec<DropTextPackLink> {
         let mut pack_links: Vec<DropTextPackLink> = Vec::new();
         for segment in self.segments_naming_no_quest(drop_text) {
-            if self.challenge_packs_by_text.iter().any(|alias| alias.is_named_by(segment, None))
-                || self
-                    .named_sources_in(segment, loot_minimum_level)
-                    .iter()
-                    .any(|matched| matches!(matched.source, LootSource::CraftingSystem(_)))
-            {
+            if self.challenge_packs_by_text.iter().any(|alias| alias.is_named_by(segment, None)) {
                 continue;
             }
-            let pack_name_spans_by_pack = self.pack_name_spans_in(segment);
+            let crafting_name_spans: Vec<_> = self
+                .named_sources_in(segment, loot_minimum_level)
+                .into_iter()
+                .filter(|matched| matches!(matched.source, LootSource::CraftingSystem(_)))
+                .flat_map(|matched| quest_name_spans(segment, &matched.source_match))
+                .collect();
+            let mut pack_name_spans_by_pack = self.pack_name_spans_in(segment);
+            for (_, pack_name_spans) in &mut pack_name_spans_by_pack {
+                pack_name_spans.retain(|pack_span| {
+                    !crafting_name_spans
+                        .iter()
+                        .any(|crafting_span| pack_span.start < crafting_span.end && crafting_span.start < pack_span.end)
+                });
+            }
+            pack_name_spans_by_pack.retain(|(_, spans)| !spans.is_empty());
             let every_pack_name_span: Vec<Range<usize>> =
                 pack_name_spans_by_pack.iter().flat_map(|(_, spans)| spans).cloned().collect();
             let loot_types = [

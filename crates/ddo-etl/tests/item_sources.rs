@@ -429,6 +429,56 @@ fn a_segment_naming_a_crafting_system_links_no_event() {
 }
 
 #[test]
+fn a_segment_naming_a_pack_chest_and_a_crafting_system_keeps_both_sources() {
+    let ours = fixture::database(|root| {
+        let path = root.join("packs/shared/crafting/cauldron-of-cadence/crafting.toml");
+        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+        std::fs::write(
+            path,
+            "name = \"Cauldron of Cadence\"\npage = \"https://ddowiki.com/page/Cauldron_of_Cadence\"\ncitation = []\n",
+        )
+        .unwrap();
+    });
+    let source = fixture::xml_source();
+    let quests_path = source.path().join("Quests.xml");
+    let quests = std::fs::read_to_string(&quests_path).unwrap();
+    std::fs::write(
+        quests_path,
+        quests.replace(
+            "</Quests>",
+            "<Quest><Name>Feywild source probe</Name><Patron>None</Patron><AdventurePack>Fables of the Feywild</AdventurePack><Favor>0</Favor><Levels size=\"1\">1</Levels><DoNotShow /></Quest></Quests>",
+        ),
+    )
+    .unwrap();
+    let item_path = source.path().join("Items/Thunder-Forged Orb.item");
+    let contents = std::fs::read_to_string(&item_path).unwrap();
+    let original = "Magma Forge, Crafted from various ingredients";
+    assert!(contents.contains(original));
+    std::fs::write(
+        item_path,
+        contents.replace(
+            original,
+            "Fables of the Feywild, any chest, or turn in 20 Chunks of Ferrocrystal at the Cauldron of Cadence",
+        ),
+    )
+    .unwrap();
+    let mut db = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::from_database(&ours).unwrap(),
+        &Corrections::default(),
+        &mut db,
+        &DatasetVersion { upstream_sha: "31ef0201".into(), built_at: "2026-10-02T00:00:00Z".into() },
+    )
+    .unwrap();
+    assert_eq!(
+        source_rows(&db, "Thunder-Forged Orb"),
+        ["adventure_pack Fables of the Feywild 0", "crafting_system Cauldron of Cadence 0"]
+    );
+}
+
+#[test]
 fn a_segment_a_crafting_system_alias_matches_links_no_pack_or_challenge() {
     let ours = fixture::database(|root| {
         for name in ["Green Steel items", "Vaults of the Artificers"] {
