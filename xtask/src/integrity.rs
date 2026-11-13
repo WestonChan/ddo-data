@@ -215,6 +215,11 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Sql("SELECT DISTINCT i.name,i.id,c.name FROM crafting_outputs output JOIN items i ON output.owner_kind='item' AND i.id=output.owner_id JOIN crafting_systems c ON c.id=output.crafting_system_id JOIN challenge_rewards reward ON reward.owner_kind='item' AND reward.owner_id=i.id AND reward.pack_id=c.pack_id ORDER BY i.name,c.name"),
     ),
     IntegrityCheck::hard(
+        "crafted_outputs_keep_no_turn_in_pack_source",
+        "a crafted item has no pack source whose chest text begins with turn in",
+        OffenderQuery::Sql("SELECT i.name,i.id,p.name || ': ' || source.chest FROM pack_drops source JOIN items i ON source.owner_kind='item' AND i.id=source.owner_id JOIN adventure_packs p ON p.id=source.pack_id WHERE lower(source.chest) LIKE 'turn in%' AND EXISTS (SELECT 1 FROM crafting_outputs output WHERE output.owner_kind='item' AND output.owner_id=i.id) ORDER BY i.name,p.name"),
+    ),
+    IntegrityCheck::hard(
         "socket_labels_are_owned_or_declared_not_crafting",
         "every non-colour socket label has a crafting step or a not-crafting reason, never both",
         OffenderQuery::Sql("SELECT t.label,t.id,CASE WHEN t.not_crafting_reason IS NULL THEN 'no step or reason' ELSE 'both step and reason' END FROM augment_slot_types t WHERE t.family<>'standard' AND (t.not_crafting_reason IS NOT NULL)=EXISTS (SELECT 1 FROM crafting_steps s WHERE s.slot_id=t.id) ORDER BY t.label"),

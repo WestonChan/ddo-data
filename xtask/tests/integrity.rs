@@ -1676,6 +1676,8 @@ fn crafting_integrity_checks_reject_each_injected_violation() {
         violation("step_base_lines_scope_consistently", "INSERT INTO crafting_step_effects (step_id,effect_id,bonus_type_id,value,sort_order) SELECT step_id,effect_id,bonus_type_id,value,999 FROM crafting_step_effects LIMIT 1;", "Thunder-Forged"),
         violation("crafting_systems_have_stations", "DELETE FROM crafting_system_stations WHERE system_id=(SELECT id FROM crafting_systems WHERE name='Catalyst Crafting');", "Catalyst Crafting"),
         violation("crafted_outputs_keep_no_challenge_source", "UPDATE crafting_systems SET pack_id=(SELECT pack_id FROM quests WHERE is_challenge=1 LIMIT 1) WHERE name='Catalyst Crafting'; INSERT INTO challenge_rewards (owner_kind,pack_id,owner_id) SELECT 'item',q.pack_id,i.id FROM quests q,items i WHERE q.is_challenge=1 AND i.name='Visor of Fraz-Urb''luu' LIMIT 1;", "Visor of Fraz-Urb'luu"),
+        violation("crafted_outputs_keep_no_turn_in_pack_source", "INSERT INTO pack_drops (owner_kind,pack_id,owner_id,loot_type,chest) SELECT 'item',p.id,i.id,'chest','turn in various ingredients' FROM adventure_packs p,items i WHERE i.name='Visor of Fraz-Urb''luu' LIMIT 1;", "Visor of Fraz-Urb'luu"),
+        violation("crafted_outputs_keep_no_turn_in_pack_source", "INSERT INTO pack_drops (owner_kind,pack_id,owner_id,loot_type,chest) SELECT 'item',p.id,i.id,'chest','Turn in various ingredients' FROM adventure_packs p,items i WHERE i.name='Visor of Fraz-Urb''luu' LIMIT 1;", "Visor of Fraz-Urb'luu"),
         violation("socket_labels_are_owned_or_declared_not_crafting", "DELETE FROM crafting_steps WHERE slot_id=(SELECT id FROM augment_slot_types WHERE label='lamordia: melancholic (armor)');", "melancholic"),
         violation("socket_labels_are_owned_or_declared_not_crafting", "UPDATE augment_slot_types SET not_crafting_reason='Not crafting' WHERE label='crafting: thunderforged tier 1';", "thunderforged tier 1"),
         violation("socket_labels_fill_one_way", "INSERT INTO augment_slots (augment_id,slot_id) SELECT a.id,t.id FROM augments a,augment_slot_types t WHERE a.name='Blinding Fear' AND t.label='crafting: nearly finished';", "nearly finished"),
@@ -1701,6 +1703,26 @@ fn crafting_integrity_checks_reject_each_injected_violation() {
         }
     }
     assert!(failures.is_empty(), "{}", failures.join("\n"));
+}
+
+#[test]
+fn crafted_items_can_keep_pack_chests_with_a_turn_in_alternative() {
+    for chest in [None, Some("any chest, or turn in 20 Chunks of Ferrocrystal")] {
+        let scratch = tempfile::tempdir().unwrap();
+        let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+        assert_eq!(
+            db.execute(
+                "INSERT INTO pack_drops (owner_kind,pack_id,owner_id,loot_type,chest)
+                 SELECT 'item',p.id,i.id,'chest',?1 FROM adventure_packs p,items i
+                 WHERE i.name='Visor of Fraz-Urb''luu' LIMIT 1",
+                [chest],
+            )
+            .unwrap(),
+            1
+        );
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        assert!(report.failed_hard_check_names().is_empty(), "{chest:?}: {report}");
+    }
 }
 
 #[test]
