@@ -315,7 +315,7 @@ fn socket_removal_requires_the_socket_to_be_absent_from_our_file() {
 
 #[test]
 fn unequal_member_amounts_are_valid_links_but_not_a_lines_split() {
-    let file = "packs/shared/augments/dinosaurbone/voidscale.toml";
+    let file = "packs/shared/crafting/dinosaur-bone-crafting/augments/voidscale.toml";
     let members = "\n[[effect]]\nname = 'Doublestrike'\nbonus_type = 'Profane'\nvalue = 3\n\n[[effect]]\nname = 'Doubleshot'\nbonus_type = 'Profane'\nvalue = 4\n";
     let db = fixture::database(|root| {
         let path = root.join(file);
@@ -598,7 +598,7 @@ fn repeated_alias_names_identify_both_effects() {
 fn missing_aliases_name_the_file_for_every_link_owner() {
     for (file, array) in [
         (CHAIN_ITEM, "effect"),
-        ("packs/shared/augments/dinosaurbone/silverscale.toml", "effect"),
+        ("packs/shared/crafting/dinosaur-bone-crafting/augments/silverscale.toml", "effect"),
         ("characters/feats/other.toml", "row.effect"),
         ("packs/shared/sets/perfect-silence.toml", "tier.effect"),
         ("packs/unsourced/gear/epic-ring-of-master-artifice.toml", "socket.option.effect"),

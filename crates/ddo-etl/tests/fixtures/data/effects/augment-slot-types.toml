@@ -151,6 +151,19 @@ variant = "green"
 
 [[row]]
 family = "dino"
+label = "isle of dread: artifact claw (accessory)"
+qualifier = "accessory"
+variant = "artifact claw"
+not_crafting_reason = "Minor Artifact form of the accessory claw slot, filled by the same recipes."
+
+[[row]]
+family = "dino"
+label = "isle of dread: claw (accessory)"
+qualifier = "accessory"
+variant = "claw"
+
+[[row]]
+family = "dino"
 label = "isle of dread: claw (weapon)"
 qualifier = "weapon"
 variant = "claw"

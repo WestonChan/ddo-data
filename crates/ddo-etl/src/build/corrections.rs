@@ -2872,7 +2872,7 @@ mod tests {
         let stat_path = scratch.path().join("effects/stats/strength.toml");
         let original = std::fs::read_to_string(&stat_path).unwrap();
         std::fs::write(stat_path, format!("{original}\n[[alias]]\nname = 'First Strength'\nverbose_name_template = '%b1 First Strength +{{1}}'\n\n[[alias]]\nname = 'Second Strength'\nverbose_name_template = '%b1 Second Strength +{{1}}'\n")).unwrap();
-        let owner_path = scratch.path().join("packs/shared/augments/dinosaurbone/voidscale.toml");
+        let owner_path = scratch.path().join("packs/shared/crafting/dinosaur-bone-crafting/augments/voidscale.toml");
         let original = std::fs::read_to_string(&owner_path).unwrap();
         std::fs::write(owner_path, format!("{original}\n[[effect]]\nname = 'Strength'\nbonus_type = 'Quality'\nvalue = 3\nalias = 'First Strength'\n\n[[effect]]\nname = 'Strength'\nbonus_type = 'Quality'\nvalue = 2\nalias = 'Second Strength'\n")).unwrap();
         let mut db = rusqlite::Connection::open_in_memory().unwrap();

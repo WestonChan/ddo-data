@@ -39,4 +39,28 @@
       <Amount size="1">56</Amount>
     </Effect>
   </Augment>
+  <Augment>
+    <Name>Claw: +35 Magical Resistance Rating</Name>
+    <Description>+35 Magical Resistance Rating</Description>
+    <MinLevel>31</MinLevel>
+    <Type>IoD: Accessory: Claw Slot</Type>
+    <Effect>
+      <Type>MRR</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">35</Amount>
+    </Effect>
+  </Augment>
+  <Augment>
+    <Name>Claw: +38 Magical Resistance Rating</Name>
+    <Description>+38 Magical Resistance Rating</Description>
+    <MinLevel>31</MinLevel>
+    <Type>IoD: Accessory: Artifact Claw Slot</Type>
+    <Effect>
+      <Type>MRR</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">38</Amount>
+    </Effect>
+  </Augment>
   </Augments>

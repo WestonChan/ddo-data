@@ -1661,8 +1661,58 @@ fn violation(check_name: &'static str, injected_sql: &str, offender_name: &'stat
 }
 
 #[test]
+fn crafting_mirrors_accept_amount_variants_shared_augments_and_empty_effects() {
+    for mutation in [
+        "",
+        "UPDATE augment_effects SET value2=value+1 WHERE augment_id IN (SELECT id FROM augments WHERE name IN ('Claw: +35 Magical Resistance Rating','Claw: +38 Magical Resistance Rating'));",
+        "DELETE FROM augment_effects WHERE augment_id IN (SELECT id FROM augments WHERE name IN ('Claw: +35 Magical Resistance Rating','Claw: +38 Magical Resistance Rating'));",
+        "INSERT INTO augment_slots (augment_id,slot_id) SELECT a.id,t.id FROM augments a,augment_slot_types t WHERE a.name IN ('Voidscale','Silverscale') AND t.label IN ('isle of dread: claw (accessory)','isle of dread: artifact claw (accessory)');
+         INSERT INTO crafting_recipes (system_id,tier,slot_id,step_id,option,sort_order) SELECT system_id,tier,slot_id,step_id,'Shared mirror recipe',999 FROM crafting_recipes WHERE option='Claw: Magical Resistance Rating';
+         INSERT INTO crafting_recipe_augments (recipe_id,augment_id) SELECT r.id,a.id FROM crafting_recipes r,augments a WHERE r.option='Shared mirror recipe' AND a.name='Voidscale';",
+    ] {
+        let scratch = tempfile::tempdir().unwrap();
+        let db = Connection::open(fixture_db_copy_with(scratch.path(), mutation)).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        for name in ["crafting_mirrors_have_matching_augments", "crafting_recipe_augments_fit_their_socket"] {
+            let outcome = report.outcome(name).unwrap_or_else(|| panic!("missing check: {name}"));
+            assert_eq!(outcome.status, CheckStatus::Passed, "{mutation}: {outcome}");
+        }
+    }
+}
+
+#[test]
+fn crafting_mirror_offenders_name_the_recipe_or_augment_and_both_labels() {
+    let plain = "isle of dread: claw (accessory)";
+    let mirror = "isle of dread: artifact claw (accessory)";
+    for (mutation, name, detail) in [
+        ("DELETE FROM crafting_recipe_augments WHERE augment_id=(SELECT id FROM augments WHERE name='Claw: +35 Magical Resistance Rating');", "Claw: Magical Resistance Rating", "yield counts"),
+        ("INSERT INTO augment_slots (augment_id,slot_id) SELECT a.id,t.id FROM augments a,augment_slot_types t WHERE a.name='Voidscale' AND t.label='isle of dread: claw (accessory)'; INSERT INTO crafting_recipe_augments(recipe_id,augment_id) SELECT r.id,a.id FROM crafting_recipes r,augments a WHERE r.option='Claw: Magical Resistance Rating' AND a.name='Voidscale';", "Claw: Magical Resistance Rating", "yield counts"),
+        ("INSERT INTO augment_slots (augment_id,slot_id) SELECT a.id,t.id FROM augments a,augment_slot_types t WHERE a.name='Voidscale' AND t.label='isle of dread: artifact claw (accessory)';", "Voidscale", "no recipe"),
+        ("UPDATE augment_effects SET effect_id=(SELECT id FROM effects WHERE name='Strength') WHERE augment_id=(SELECT id FROM augments WHERE name='Claw: +38 Magical Resistance Rating');", "Claw: Magical Resistance Rating", "effect lines differ"),
+        ("UPDATE augment_effects SET bonus_type_id=(SELECT id FROM bonus_types WHERE name='Insight') WHERE augment_id=(SELECT id FROM augments WHERE name='Claw: +38 Magical Resistance Rating');", "Claw: Magical Resistance Rating", "effect lines differ"),
+        ("UPDATE augment_effects SET alias='Different alias' WHERE augment_id=(SELECT id FROM augments WHERE name='Claw: +38 Magical Resistance Rating');", "Claw: Magical Resistance Rating", "effect lines differ"),
+        ("UPDATE augment_effects SET sort_order=7 WHERE augment_id=(SELECT id FROM augments WHERE name='Claw: +38 Magical Resistance Rating');", "Claw: Magical Resistance Rating", "effect lines differ"),
+        ("DELETE FROM augment_effects WHERE augment_id=(SELECT id FROM augments WHERE name='Claw: +38 Magical Resistance Rating');", "Claw: Magical Resistance Rating", "effect lines differ"),
+        ("INSERT INTO crafting_recipes(system_id,tier,slot_id,step_id,option,sort_order) SELECT system_id,'legendary',slot_id,id,'Second mirror socket',999 FROM crafting_steps WHERE name='Scale (Armor)'; INSERT INTO crafting_recipe_augments(recipe_id,augment_id) SELECT r.id,a.id FROM crafting_recipes r,augments a WHERE r.option='Second mirror socket' AND a.name='Claw: +38 Magical Resistance Rating';", "Claw: Magical Resistance Rating", "mirrors multiple sockets"),
+    ] {
+        let scratch = tempfile::tempdir().unwrap();
+        let db = Connection::open(fixture_db_copy_with(scratch.path(), mutation)).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("crafting_mirrors_have_matching_augments").expect("mirror HARD check");
+        assert_eq!(outcome.status, CheckStatus::Failed, "{mutation}: {outcome}");
+        assert!(outcome.offenders.iter().any(|row| row.name == name && row.id.is_some()
+            && row.detail.contains(detail) && row.detail.contains(plain) && row.detail.contains(mirror)),
+            "{mutation}: {outcome}");
+    }
+}
+
+#[test]
 fn crafting_integrity_checks_reject_each_injected_violation() {
     let violations = [
+        violation("crafting_mirrors_have_matching_augments", "DELETE FROM crafting_recipe_augments WHERE augment_id=(SELECT id FROM augments WHERE name='Claw: +35 Magical Resistance Rating');", "Claw: Magical Resistance Rating"),
+        violation("crafting_mirrors_have_matching_augments", "INSERT INTO augment_slots(augment_id,slot_id) SELECT a.id,t.id FROM augments a,augment_slot_types t WHERE a.name='Voidscale' AND t.label='isle of dread: artifact claw (accessory)';", "Voidscale"),
+        violation("crafting_mirrors_have_matching_augments", "UPDATE augment_effects SET alias='Different alias' WHERE augment_id=(SELECT id FROM augments WHERE name='Claw: +38 Magical Resistance Rating');", "Claw: Magical Resistance Rating"),
+        violation("crafting_mirrors_have_matching_augments", "INSERT INTO crafting_recipes(system_id,tier,slot_id,step_id,option,sort_order) SELECT system_id,'legendary',slot_id,id,'Second mirror socket',999 FROM crafting_steps WHERE name='Scale (Armor)'; INSERT INTO crafting_recipe_augments(recipe_id,augment_id) SELECT r.id,a.id FROM crafting_recipes r,augments a WHERE r.option='Second mirror socket' AND a.name='Claw: +38 Magical Resistance Rating';", "Claw: Magical Resistance Rating"),
         violation("steps_consuming_outputs_belong_to_systems_with_outputs", "DELETE FROM crafting_outputs WHERE crafting_system_id=(SELECT id FROM crafting_systems WHERE name='Test Upgrade Altar');", "Item exchange"),
         violation("socket_option_sets_have_a_carrier", "INSERT INTO socket_option_sets (slug,name,slot_id) SELECT 'un carried','Uncarried Set',id FROM augment_slot_types LIMIT 1;", "Uncarried Set"),
         violation("crafting_options_repeat_step_base_properties", "INSERT INTO augment_effects (augment_id,effect_id,bonus_type_id,value,sort_order) SELECT a.id,e.id,b.id,10,999 FROM augments a,effects e,bonus_types b WHERE a.name='Blinding Fear' AND e.name='Orb Bonus' AND b.name='Orb';", "Blinding Fear"),

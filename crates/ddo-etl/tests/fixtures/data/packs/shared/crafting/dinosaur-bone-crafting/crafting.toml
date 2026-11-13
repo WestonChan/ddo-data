@@ -24,6 +24,26 @@ slot = "isle of dread: scale (armor)"
 name = "Scale (Weapon)"
 slot = "isle of dread: scale (weapon)"
 
+[[step]]
+name = "Claw (accessory)"
+slot = "isle of dread: claw (accessory)"
+
+[[family]]
+family = "DinosaurBone"
+
 [[citation]]
 url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
 read = "2026-11-08"
+
+[[recipe]]
+option = "Claw: Magical Resistance Rating"
+tier = "legendary"
+step = "Claw (accessory)"
+
+[[recipe.augment]]
+name = "Claw: +35 Magical Resistance Rating"
+level = 31
+
+[[recipe.augment]]
+name = "Claw: +38 Magical Resistance Rating"
+level = 31

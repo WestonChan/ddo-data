@@ -5017,7 +5017,7 @@ fn bonus_additions_feed_the_finished_lines_merge() {
 #[test]
 fn writes_augments_with_slots_bonuses_and_modifiers() {
     let (db, report) = built_fixture_db();
-    assert_eq!(report.augment_count, 33);
+    assert_eq!(report.augment_count, 35);
     let ruby: i64 =
         db.query_row("SELECT id FROM augments WHERE name = 'Ruby of Acid Damage'", [], |r| r.get(0)).unwrap();
     let (family, has_selectable_level, levels, values): (String, bool, String, String) = db

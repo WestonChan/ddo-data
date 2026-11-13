@@ -181,8 +181,13 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::warn(
         "crafting_recipe_augments_fit_their_socket",
-        "yielded augments fit the recipe's socket; 19 real recipe/augment pairs await ddo-data#72",
-        OffenderQuery::Sql("SELECT r.option,r.id,a.name || ': ' || t.label FROM crafting_recipe_augments link JOIN crafting_recipes r ON r.id=link.recipe_id JOIN augments a ON a.id=link.augment_id LEFT JOIN crafting_steps s ON s.id=r.step_id JOIN augment_slot_types t ON t.id=COALESCE(s.slot_id,r.slot_id) WHERE NOT EXISTS (SELECT 1 FROM augment_slots fits WHERE fits.augment_id=a.id AND fits.slot_id=t.id) ORDER BY r.option,a.name"),
+        "yielded augments fit the recipe's socket or a mirror of it",
+        OffenderQuery::Built(crafting_recipe_augments_fit_their_socket),
+    ).showing_every_offender(),
+    IntegrityCheck::hard(
+        "crafting_mirrors_have_matching_augments",
+        "mirror sockets pair every recipe and exclusive augment with the same effect lines except amounts",
+        OffenderQuery::Built(crafting_mirrors_have_matching_augments),
     ).showing_every_offender(),
     IntegrityCheck::hard(
         "crafting_recipe_set_options_match_step_sockets",
@@ -883,6 +888,69 @@ const SOCKET_CANDIDATE_BONUSES: &str = "candidates AS MATERIALIZED (
       FROM socket_option_sets sets JOIN socket_options o ON o.set_id=sets.id
       JOIN owner_bonuses b ON b.owner_kind='socket_option' AND b.owner_id=o.id
 )";
+
+const CRAFTING_SOCKET_MIRRORS: &str = "mirrors AS MATERIALIZED (
+    SELECT DISTINCT step.id step_id,step.slot_id socket_id,fits.slot_id mirror_id,
+        socket.label || ' / ' || mirror.label labels
+    FROM crafting_steps step JOIN augment_slot_types socket ON socket.id=step.slot_id
+    JOIN crafting_recipes recipe ON recipe.step_id=step.id
+    JOIN crafting_recipe_augments yielded ON yielded.recipe_id=recipe.id
+    JOIN augment_slots fits ON fits.augment_id=yielded.augment_id
+    JOIN augment_slot_types mirror ON mirror.id=fits.slot_id
+    WHERE mirror.not_crafting_reason IS NOT NULL AND mirror.id<>socket.id
+)";
+
+fn crafting_recipe_augments_fit_their_socket(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let sql = format!(
+        "WITH {CRAFTING_SOCKET_MIRRORS}
+        SELECT r.option,r.id,a.name || ': ' || t.label
+        FROM crafting_recipe_augments link JOIN crafting_recipes r ON r.id=link.recipe_id
+        JOIN augments a ON a.id=link.augment_id LEFT JOIN crafting_steps s ON s.id=r.step_id
+        JOIN augment_slot_types t ON t.id=COALESCE(s.slot_id,r.slot_id)
+        WHERE NOT EXISTS (SELECT 1 FROM augment_slots fits WHERE fits.augment_id=a.id AND fits.slot_id=t.id)
+          AND NOT EXISTS (SELECT 1 FROM mirrors m JOIN augment_slots fits ON fits.slot_id=m.mirror_id
+                          WHERE m.step_id=s.id AND fits.augment_id=a.id)
+        ORDER BY r.option,a.name"
+    );
+    Ok(Findings { offenders: Some(offenders_from_sql(db, &sql)?), notes: vec![] })
+}
+
+fn crafting_mirrors_have_matching_augments(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let sql = format!(
+        "WITH {CRAFTING_SOCKET_MIRRORS}, recipe_pairs AS MATERIALIZED (
+            SELECT m.step_id,m.socket_id,m.mirror_id,m.labels,r.id,r.option,
+                COUNT(plain.augment_id) plain_count,COUNT(artifact.augment_id) mirror_count,
+                MIN(plain.augment_id) plain_augment_id,MIN(artifact.augment_id) mirror_augment_id
+            FROM mirrors m JOIN crafting_recipes r ON r.step_id=m.step_id
+            LEFT JOIN crafting_recipe_augments yielded ON yielded.recipe_id=r.id
+            LEFT JOIN augment_slots plain ON plain.augment_id=yielded.augment_id AND plain.slot_id=m.socket_id
+            LEFT JOIN augment_slots artifact ON artifact.augment_id=yielded.augment_id AND artifact.slot_id=m.mirror_id
+            GROUP BY m.step_id,m.socket_id,m.mirror_id,r.id
+        )
+        SELECT option,id,labels || ': yield counts ' || plain_count || ' / ' || mirror_count detail
+        FROM recipe_pairs WHERE plain_count<>1 OR mirror_count<>1
+        UNION ALL
+        SELECT a.name,a.id,m.labels || ': exclusive augment has no recipe at the step'
+        FROM mirrors m JOIN augment_slots fits ON fits.slot_id IN (m.socket_id,m.mirror_id)
+        JOIN augments a ON a.id=fits.augment_id
+        WHERE NOT EXISTS (SELECT 1 FROM crafting_recipes r JOIN crafting_recipe_augments yielded ON yielded.recipe_id=r.id
+                          WHERE r.step_id=m.step_id AND yielded.augment_id=a.id)
+        GROUP BY m.step_id,m.socket_id,m.mirror_id,a.id HAVING COUNT(*)=1
+        UNION ALL
+        SELECT p.option,p.id,p.labels || ': effect lines differ'
+        FROM recipe_pairs p WHERE plain_count=1 AND mirror_count=1 AND (
+            EXISTS (SELECT effect_id,bonus_type_id,alias,sort_order FROM augment_effects WHERE augment_id=p.plain_augment_id
+                    EXCEPT SELECT effect_id,bonus_type_id,alias,sort_order FROM augment_effects WHERE augment_id=p.mirror_augment_id)
+            OR EXISTS (SELECT effect_id,bonus_type_id,alias,sort_order FROM augment_effects WHERE augment_id=p.mirror_augment_id
+                       EXCEPT SELECT effect_id,bonus_type_id,alias,sort_order FROM augment_effects WHERE augment_id=p.plain_augment_id)
+        )
+        UNION ALL
+        SELECT p.option,p.id,p.labels || ': label mirrors multiple sockets'
+        FROM recipe_pairs p WHERE EXISTS (SELECT 1 FROM mirrors other WHERE other.mirror_id=p.mirror_id AND other.socket_id<>p.socket_id)
+        ORDER BY 1,2,3"
+    );
+    Ok(Findings { offenders: Some(offenders_from_sql(db, &sql)?), notes: vec![] })
+}
 
 fn crafting_options_repeat_step_base_properties(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let sql = format!(

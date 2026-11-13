@@ -119,7 +119,7 @@ says = "Two on the Will Save line."
             );
             for relative in [
                 "packs/shared/events/treasure-of-crystal-cove/gear/cutthroats-smallblade-level-4.toml",
-                "packs/shared/augments/dinosaurbone/silverscale.toml",
+                "packs/shared/crafting/dinosaur-bone-crafting/augments/silverscale.toml",
                 "effects/striding.toml",
             ] {
                 append(
@@ -1571,7 +1571,7 @@ async fn version_reports_dataset_and_schema() {
             &json["counts"]["crafting_recipes"],
             &json["counts"]["crafting_ingredients"]
         ),
-        (&serde_json::json!(13), &serde_json::json!(22), &serde_json::json!(13))
+        (&serde_json::json!(13), &serde_json::json!(23), &serde_json::json!(13))
     );
     assert_eq!(headers.get("x-dataset-version").unwrap(), "fixture");
     assert!(headers.get(header::ETAG).is_some());
