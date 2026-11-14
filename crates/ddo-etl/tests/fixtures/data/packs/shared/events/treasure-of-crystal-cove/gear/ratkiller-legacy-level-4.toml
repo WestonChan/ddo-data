@@ -29,40 +29,11 @@ name = "Lesser Animal Bane"
 
 [[socket]]
 slot = "upgrade: tier 2"
-
-[[socket.option]]
-name = "+2 Enhancement Bonus"
-description = "+2 Enhancement Bonus: +2 Enhancement bonus to attack and damage rolls."
-icon = "Upgrade"
-min_level = 4
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [2]
-bonus_type = "Enhancement"
-effect_type = "Weapon_Enchantment"
+set = "Ratkiller (legacy) (level 4)"
 
 [[socket]]
 slot = "upgrade: tier 3"
-
-[[socket.option]]
-name = "Stunning +4"
-description = "Stunning +4: +4 Enhancement bonus to the DC of character's Stunning Blow and Stunning Fist attempts."
-icon = "Upgrade"
-min_level = 4
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Stun DC"
-value = 4
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [4]
-bonus_type = "Enhancement"
-effect = "Stun DC"
-effect_type = "TacticalDC"
-targets = ["Stun"]
+set = "Ratkiller (legacy) (level 4)"
 
 [[source]]
 kind = "event"

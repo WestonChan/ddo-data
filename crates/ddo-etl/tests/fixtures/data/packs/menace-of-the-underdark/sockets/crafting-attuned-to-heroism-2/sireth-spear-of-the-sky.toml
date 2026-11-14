@@ -1,0 +1,14 @@
+label = "crafting: attuned to heroism 2"
+name = "Sireth, Spear of the Sky"
+
+[[option]]
+name = "+8 Enhancement Bonus"
+description = "+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls."
+icon = "Heroism"
+min_level = 23
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"

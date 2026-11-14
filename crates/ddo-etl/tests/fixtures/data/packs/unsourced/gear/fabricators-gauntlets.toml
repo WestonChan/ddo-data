@@ -25,11 +25,4 @@ value = 10
 
 [[socket]]
 slot = "crafting: nearly finished"
-
-[[socket.option]]
-name = "Fabricator's Ingenuity"
-description = "Adds the Fabricator's Ingenuity set bonus to this item."
-min_level = 18
-
-[[socket.option.set]]
-set = "Fabricator's Ingenuity"
+set = "Fabricator's Gauntlets"

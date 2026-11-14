@@ -212,22 +212,17 @@ mod tests {
 
     fn socket(item_id: i64) -> SocketOptionList {
         #[derive(serde::Deserialize)]
-        struct ItemSockets {
-            socket: Vec<SocketOptions>,
-        }
-        #[derive(serde::Deserialize)]
-        struct SocketOptions {
-            slot: String,
-            #[serde(default)]
+        struct SocketOptionSet {
+            label: String,
             option: Vec<SocketOption>,
         }
-        let item: ItemSockets =
-            toml::from_str(include_str!("../../tests/fixtures/data/packs/unsourced/gear/celestial-emerald-ring.toml"))
-                .unwrap();
-        let socket = item.socket.into_iter().find(|socket| !socket.option.is_empty()).unwrap();
+        let option_set: SocketOptionSet = toml::from_str(include_str!(
+            "../../tests/fixtures/data/packs/shared/sockets/crafting-nearly-finished/celestial-emerald-ring.toml"
+        ))
+        .unwrap();
         SocketOptionList {
-            label: socket.slot,
-            options: socket.option,
+            label: option_set.label,
+            options: option_set.option,
             socket: (item_id, 0),
             item_slug: format!("item-{item_id}"),
             item_name: format!("Item {item_id}"),

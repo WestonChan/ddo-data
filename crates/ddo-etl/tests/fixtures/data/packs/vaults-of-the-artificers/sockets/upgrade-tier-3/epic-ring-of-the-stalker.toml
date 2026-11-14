@@ -1,0 +1,47 @@
+label = "upgrade: tier 3"
+name = "Epic Ring of the Stalker"
+
+[[option]]
+name = "Seeker 11, Deception 8 and a Green augment slot"
+description = """
+Seeker +11: Provides a +11 Enhancement bonus to confirm critical hits, and a
++11 Enhancement bonus to critical hit damage (before multipliers are applied).
+Deception +8: +8 Enhancement bonus to hit and +12 to damage for any hit that
+would qualify as a sneak attack.
+Adds a Green augment slot."""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+value = 12
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+value = 12
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]

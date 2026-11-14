@@ -1,0 +1,14 @@
+label = "crafting: finishing touch"
+name = "Baz'Morath, the Curator of Decay"
+
+[[option]]
+name = "Completed Weapon"
+description = "This item is fully completed, and as a result deals an additional 0.5[W] damage."
+min_level = 1
+
+[[option.modifier]]
+amounts = [0.5]
+bonus_type = "Stacking"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]

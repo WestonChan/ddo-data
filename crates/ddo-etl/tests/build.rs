@@ -91,6 +91,8 @@ fn socket_option_sets_follow_their_free_to_play_carriers_patron() {
 #[test]
 fn the_transitional_reader_keeps_no_set_for_a_removed_socket() {
     let db = fixture::database(|root| {
+        std::fs::remove_file(root.join("packs/shared/sockets/crafting-nearly-finished/celestial-emerald-ring.toml"))
+            .unwrap();
         let path = root.join("packs/unsourced/gear/celestial-emerald-ring.toml");
         let mut ring: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
         ring["socket"]

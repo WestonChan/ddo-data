@@ -1,0 +1,89 @@
+label = "upgrade: tier 2"
+name = "Epic Ring of the Stalker"
+
+[[option]]
+name = "Ghostly, Insightful Deception +4, Seeker 10 and a Colorless augment slot"
+description = """
+Ghostly: Equipping this item causes you to become partially incorporeal.
+Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy
+attacks have a 10% chance to miss you due to incorporeality. You receive a +5
+Enhancement bonus to your Hide and Move Silently skills.
+Insightful Deception +4: +4 Insight bonus to hit and +6 to damage for any hit
+that would qualify as a sneak attack.
+Seeker +10: Provides a +10 Enhancement bonus to confirm critical hits, and a
++10 Enhancement bonus to critical hit damage (before multipliers are applied).
+Adds a Colorless augment slot."""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Incorporeality"
+value = 10
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Hide and Move Silently"
+value = 5
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Sneak Attack Hit"
+value = 4
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Sneak Attack Damage"
+value = 6
+
+[[option.grant]]
+slot = "colorless"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Equipment"
+effect = "Incorporeality"
+effect_type = "Incorporeality"
+targets = ["All"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Hide and Move Silently"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]

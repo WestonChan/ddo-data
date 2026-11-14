@@ -1,0 +1,10 @@
+label = "crafting: nearly finished"
+name = "Baz'Morath, the Curator of Decay"
+
+[[option]]
+name = "Purple Augment Slot"
+description = "Adds a Purple Augment slot to your weapon"
+min_level = 1
+
+[[option.grant]]
+slot = "purple"
