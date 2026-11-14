@@ -6,7 +6,7 @@ use rusqlite::Connection;
 use std::collections::BTreeMap;
 use std::path::Path;
 
-const EXPIRED_SINCE: &str = "since < date(?1, '-30 days')";
+const EXPIRED_SINCE: &str = "since < date(?1, '-1 year')";
 pub const PRUNE_REDIRECTS_COMMAND: &str = "cargo run -p ddo-etl -- prune-redirects --data data";
 
 pub fn redirect_violations(db: &Connection) -> Result<Vec<String>> {
@@ -85,7 +85,7 @@ pub fn redirect_expiry_violations(db: &Connection, today: Option<&str>) -> Resul
         let (reason, remedy) = if future {
             ("is in the future", "correct the date".to_string())
         } else {
-            ("is older than 30 days", format!("prune expired rows with `{PRUNE_REDIRECTS_COMMAND}`"))
+            ("is older than one year", format!("prune expired rows with `{PRUNE_REDIRECTS_COMMAND}`"))
         };
         violations.push(format!("redirects {kind} {slug:?}: since {since} {reason} (today {today}); {remedy}"));
     }

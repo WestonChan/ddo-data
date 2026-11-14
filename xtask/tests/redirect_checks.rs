@@ -158,3 +158,23 @@ fn deployed_addresses_follow_unique_kept_names() {
         }
     }
 }
+
+#[test]
+fn a_thirty_one_day_redirect_passes_with_and_without_a_deployed_database() {
+    let folder = tempfile::tempdir().unwrap();
+    let root = folder.path().join("data");
+    exported_fixture(&root);
+    let deployed = build(&root);
+    let target: String =
+        deployed.query_row("SELECT slug FROM items ORDER BY slug LIMIT 1", [], |row| row.get(0)).unwrap();
+    std::fs::write(
+        root.join("redirects.toml"),
+        format!("[[redirect]]\nkind='items'\nfrom='former-item'\nto={target:?}\nsince='2026-10-01'\n"),
+    )
+    .unwrap();
+    let current = build(&root);
+    for previous in [None, Some(&deployed)] {
+        let violations = redirect_check_violations(&current, previous, Some("2026-11-01")).unwrap();
+        assert!(violations.is_empty(), "{violations:?}");
+    }
+}

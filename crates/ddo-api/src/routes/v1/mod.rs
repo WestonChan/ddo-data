@@ -41,7 +41,7 @@ use utoipa_axum::router::OpenApiRouter;
                        Redirects carry the data cache policy and no `ETag`. `/v1/version` reports the current commit and carries `Cache-Control: no-cache`, so every use \
                        revalidates it. Error responses (every 4xx and 5xx, 429 included) carry \
                        `Cache-Control: no-store` and no `ETag`.\n\n\
-                       **Shapes.** Entities are addressed by slugs unique within their kind. Effects, groups and stats share one slug space. Numeric ids remain accepted. Renamed slugs redirect with 308 for 30 days. Every list returns \
+                       **Shapes.** Entities are addressed by slugs unique within their kind. Effects, groups and stats share one slug space. Numeric ids remain accepted. Renamed slugs redirect with 308 for one year. Every list returns \
                        `{ total, limit, offset, <name>: [...] }`, and detail routes return an entity with its related collections. \
                        Booleans are JSON booleans, absent values are `null`, and unknown slugs or ids return 404.\n\n\
                        **Query parameters.** Different filters are AND-ed. On `/v1/items`, repeat `slot`, `category`, \

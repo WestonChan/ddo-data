@@ -100,9 +100,12 @@ fn expiry_reports_redirects_at_exact_boundaries() {
     std::fs::write(root.join("redirects.toml"), redirect("items", "former", &target, "2026-10-01")).unwrap();
     let mut built = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(&root, &mut built).unwrap();
-    for (today, reason) in
-        [("2026-10-31", None), ("2026-11-01", Some("older than 30 days")), ("2026-09-30", Some("future"))]
-    {
+    for (today, reason) in [
+        ("2026-11-01", None),
+        ("2027-10-01", None),
+        ("2027-10-02", Some("older than one year")),
+        ("2026-09-30", Some("future")),
+    ] {
         let violations = ddo_etl::tree::redirects::redirect_expiry_violations(&built, Some(today)).unwrap();
         if let Some(reason) = reason {
             assert_eq!(violations.len(), 1);
@@ -193,15 +196,15 @@ fn invalid_redirects_name_both_sides_and_collect_independent_violations() {
 }
 
 #[test]
-fn pruning_keeps_day_thirty_and_future_rows_and_uses_export_bytes() {
+fn pruning_keeps_one_year_and_future_rows_and_uses_export_bytes() {
     let folder = tempfile::tempdir().unwrap();
     let root = folder.path().join("data");
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let original = common::copy_fixture_data(&fixtures, &root);
     let target: String =
         original.query_row("SELECT slug FROM items ORDER BY slug LIMIT 1", [], |row| row.get(0)).unwrap();
-    let contents = redirect("items", "day-thirty", &target, "2026-10-02")
-        + &redirect("items", "day-thirty-one", &target, "2026-10-01")
+    let contents = redirect("items", "one-year", &target, "2025-11-01")
+        + &redirect("items", "older-than-one-year", &target, "2025-10-31")
         + &redirect("items", "future", &target, "2026-11-02");
     std::fs::write(root.join("redirects.toml"), contents).unwrap();
     let before = ddo_etl::tree::data_file_bytes(&root).unwrap();
@@ -220,8 +223,8 @@ fn pruning_keeps_day_thirty_and_future_rows_and_uses_export_bytes() {
         }
     }
     let contents = std::fs::read_to_string(root.join("redirects.toml")).unwrap();
-    assert!(contents.contains("day-thirty") && contents.contains("future"));
-    assert!(!contents.contains("day-thirty-one"));
+    assert!(contents.contains("one-year") && contents.contains("future"));
+    assert!(!contents.contains("older-than-one-year"));
     let mut built = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(&root, &mut built).unwrap();
     let exported = folder.path().join("exported");
