@@ -1486,8 +1486,7 @@ CREATE TABLE IF NOT EXISTS crafting_systems (
     variant TEXT,
     name    TEXT    NOT NULL UNIQUE,
     page    TEXT    NOT NULL,                          -- the ddowiki page read
-    pack_id INTEGER REFERENCES adventure_packs(id),
-    npc     TEXT                                       -- the crafting NPC or station, free text
+    pack_id INTEGER REFERENCES adventure_packs(id)
 );
 
 CREATE TABLE IF NOT EXISTS crafting_system_families (

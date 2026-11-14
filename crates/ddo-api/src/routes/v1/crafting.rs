@@ -27,7 +27,7 @@ const INGREDIENT_USES: &str = "WITH ingredient_uses(ingredient_id,system_id) AS 
 )";
 
 const CRAFTING_SYSTEM_COLUMNS_AND_JOINS: &str = "s.id, s.name, s.page, p.name AS pack,
-        COALESCE((SELECT station.name || COALESCE(', ' || station.place,'') FROM crafting_system_stations link JOIN crafting_stations station ON station.id=link.station_id WHERE link.system_id=s.id ORDER BY link.sort_order LIMIT 1),s.npc) AS npc,
+        (SELECT station.name || COALESCE(', ' || station.place,'') FROM crafting_system_stations link JOIN crafting_stations station ON station.id=link.station_id WHERE link.system_id=s.id ORDER BY link.sort_order LIMIT 1) AS npc,
         (SELECT COUNT(*) FROM ingredient_uses i WHERE i.system_id = s.id) AS ingredient_count,
         (SELECT COUNT(*) FROM crafting_recipes r WHERE r.system_id = s.id) AS recipe_count
    FROM crafting_systems s LEFT JOIN adventure_packs p ON p.id = s.pack_id";

@@ -151,7 +151,6 @@ fn crafting_twin_preserves_steps_lines_modifiers_costs_and_recipe_links() {
 fn crafting_twin_preserves_stations_and_all_unlock_owners() {
     let wiki = authored_wiki("INSERT INTO crafting_stations (id,slug,name,kind,sort_order) VALUES (900001,'fixture-interface','Fixture Interface','interface',0);
         INSERT INTO crafting_system_stations (system_id,station_id,sort_order,note) SELECT id,900001,0,'Shared interface' FROM crafting_systems WHERE name='Catalyst Crafting';
-        UPDATE crafting_systems SET npc=NULL WHERE name='Catalyst Crafting';
         INSERT INTO crafting_unlocks (station_id,sort_order,kind,text) VALUES (900001,0,'other','Open the interface.');
         INSERT INTO crafting_unlocks (system_id,sort_order,kind,value,text) SELECT id,0,'level',10,'Requires level 10.' FROM crafting_systems WHERE name='Catalyst Crafting';
         INSERT INTO crafting_recipes (system_id,sort_order,tier,option) SELECT id,0,'any','Gated recipe' FROM crafting_systems WHERE name='Catalyst Crafting';
@@ -557,7 +556,6 @@ fn reader_emits_crafting_systems_with_their_ingredients_and_recipes() {
     assert_eq!(system.name, "Heroic Green Steel");
     assert_eq!(system.wiki_url, "https://ddowiki.com/page/Green_Steel_items");
     assert_eq!(system.families, vec!["Greensteel_Heroic".to_string()]);
-    assert!(system.npc.is_none());
     assert_eq!(system.stations[0].name, "Altar of Invasion");
     assert!(system.pack.is_none());
     assert!(system.ingredients.is_empty());
@@ -664,14 +662,14 @@ fn merges_crafting_systems_ingredients_and_recipes() {
         (report.wiki_crafting_system_count, report.wiki_crafting_recipe_count, report.wiki_crafting_ingredient_count),
         (13, 23, 13)
     );
-    let (name, page, pack, npc): (String, String, Option<i64>, Option<String>) = db
-        .query_row("SELECT name, page, pack_id, npc FROM crafting_systems WHERE name = 'Heroic Green Steel'", [], |r| {
-            Ok((r.get(0)?, r.get(1)?, r.get(2)?, r.get(3)?))
+    let (name, page, pack): (String, String, Option<i64>) = db
+        .query_row("SELECT name, page, pack_id FROM crafting_systems WHERE name = 'Heroic Green Steel'", [], |r| {
+            Ok((r.get(0)?, r.get(1)?, r.get(2)?))
         })
         .unwrap();
     assert_eq!(
-        (name.as_str(), page.as_str(), pack, npc.as_deref()),
-        ("Heroic Green Steel", "https://ddowiki.com/page/Green_Steel_items", None, None)
+        (name.as_str(), page.as_str(), pack),
+        ("Heroic Green Steel", "https://ddowiki.com/page/Green_Steel_items", None)
     );
     assert_eq!(string_column(&db, "SELECT family FROM crafting_system_families WHERE system_id=(SELECT id FROM crafting_systems WHERE name='Heroic Green Steel')"), ["Greensteel_Heroic"]);
     assert_eq!(

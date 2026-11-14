@@ -7,7 +7,6 @@ pub struct CraftingSystem {
     pub wiki_url: String,
     pub pack: Option<String>,
     pub families: Vec<String>,
-    pub npc: Option<String>,
     pub ingredients: Vec<CraftingIngredient>,
     pub recipes: Vec<CraftingRecipe>,
     pub stations: Vec<CraftingSystemStation>,

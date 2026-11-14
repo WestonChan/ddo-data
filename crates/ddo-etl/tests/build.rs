@@ -163,8 +163,7 @@ fn shared_station_keeps_its_ingredient_unlock_once() {
         fixture::append_to_file(root.join("packs/shared/crafting/stations.toml"),"[[row]]\nname='Shared Forge'\nkind='device'\nplace='Test Hall'\ncitation=[]\n[[row.unlock]]\nkind='kept_item'\ncrafting_ingredient='Test Key'\ntext='Keep the key.'\n");
         for name in ["catalyst-crafting", "test-upgrade-altar"] {
             let path = root.join(format!("packs/shared/crafting/{name}/crafting.toml"));
-            let mut system: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
-            system.as_table_mut().unwrap().remove("npc");
+            let system: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
             std::fs::write(path, format!("{}\n[[station]]\nname='Shared Forge'\n", toml::to_string(&system).unwrap()))
                 .unwrap();
         }
@@ -207,8 +206,7 @@ fn unqualified_and_explicit_crafting_references_keep_their_variants() {
         }
         fixture::append_to_file(root.join("packs/shared/crafting/stations.toml"), stations);
         let system = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
-        let mut record: toml::Value = toml::from_str(&std::fs::read_to_string(&system).unwrap()).unwrap();
-        record.as_table_mut().unwrap().remove("npc");
+        let record: toml::Value = toml::from_str(&std::fs::read_to_string(&system).unwrap()).unwrap();
         std::fs::write(system, format!("{}\n{recipes}", toml::to_string(&record).unwrap())).unwrap();
         let item = root.join("packs/unsourced/gear/celestial-emerald-ring.toml");
         let mut record: toml::Value = toml::from_str(&std::fs::read_to_string(&item).unwrap()).unwrap();
@@ -241,8 +239,7 @@ fn qualified_station_and_ingredient_references_select_the_named_variant() {
             .unwrap();
         }
         let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
-        let mut system: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
-        system.as_table_mut().unwrap().remove("npc");
+        let system: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
         std::fs::write(path,format!("{}\n[[station]]\nname='Test Forge'\nvariant='tower'\n[[recipe]]\noption='Heroic key'\ntier='heroic'\n[[recipe.ingredient]]\ningredient='Test Key'\nvariant='heroic'\nquantity=1\n[[recipe]]\noption='Legendary key'\ntier='legendary'\n[[recipe.ingredient]]\ningredient='Test Key'\nvariant='legendary'\nquantity=2\n",toml::to_string(&system).unwrap())).unwrap();
     });
     let place: String = db
@@ -408,12 +405,7 @@ fn crafting_station_fixture() -> Connection {
             [("catalyst-crafting", "Catalyst station note"), ("test-upgrade-altar", "Upgrade station note")]
         {
             let path = root.join(format!("packs/shared/crafting/{system}/crafting.toml"));
-            let original = std::fs::read_to_string(&path)
-                .unwrap()
-                .lines()
-                .filter(|line| !line.starts_with("npc = "))
-                .collect::<Vec<_>>()
-                .join("\n");
+            let original = std::fs::read_to_string(&path).unwrap();
             let gates = if system == "catalyst-crafting" {
                 "\n[[unlock]]\nkind='level'\nvalue=10\ntext='Requires level 10.'\n[[recipe]]\noption='Gated recipe'\ntier='any'\n[[recipe.unlock]]\nkind='crafting_level'\nvalue=20\ntext='Requires crafting level 20.'\n"
             } else {

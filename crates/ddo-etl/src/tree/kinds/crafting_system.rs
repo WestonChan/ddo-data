@@ -312,8 +312,6 @@ database_record! {
         fields {
             name: String => name,
             #[serde(default, skip_serializing_if = "Option::is_none")]
-            npc: Option<String> => npc,
-            #[serde(default, skip_serializing_if = "Option::is_none")]
             pack: Option<String> => pack_id [optional_reference "adventure_packs"],
             page: String => page,
         }
@@ -363,7 +361,6 @@ impl CraftingSystemFile {
         {
             let (system_id, station) = row?;
             let system = files.get_mut(&system_id).context("station link has no system")?;
-            system.npc = None;
             system.station.push(station);
         }
         let mut steps = db.prepare(&format!(
@@ -519,11 +516,6 @@ impl CraftingSystemFile {
         ids: &mut super::super::ids::StableIds,
     ) -> anyhow::Result<i64> {
         let identity = super::super::slug(&self.name);
-        anyhow::ensure!(
-            self.npc.is_none() || self.station.is_empty(),
-            "{}: npc and station links cannot occur together",
-            path.display()
-        );
         let id = ids.issue("crafting_systems", &identity, path)?;
         self.insert(db, id, &identity)?;
         for (position, step) in self.step.iter().enumerate() {

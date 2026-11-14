@@ -15,6 +15,22 @@ fn crafting_row_error(rows: &str) -> String {
 }
 
 #[test]
+fn crafting_system_files_reject_the_removed_npc_field() {
+    let path = "packs/shared/crafting/catalyst-crafting/crafting.toml";
+    let error = fixture::data_build_error(|root| {
+        let file = root.join(path);
+        let mut system: toml::Value = toml::from_str(&std::fs::read_to_string(&file).unwrap()).unwrap();
+        system.as_table_mut().unwrap().remove("station");
+        system.as_table_mut().unwrap().insert("npc".into(), "Fixture trader".into());
+        std::fs::write(file, toml::to_string(&system).unwrap()).unwrap();
+    });
+    assert!(
+        error.contains(path) && error.contains("unknown field") && error.contains("npc"),
+        "expected npc rejection naming {path}, got {error:?}"
+    );
+}
+
+#[test]
 fn recipe_costs_cannot_repeat_a_step_ingredient_or_item() {
     for reference in ["ingredient='Thread of Fate'", "item=\"Acrobat's Ring\""] {
         for step_tier in ["epic", "any"] {
@@ -183,8 +199,7 @@ fn station_reference_error(stations: &str, reference: &str) -> String {
     fixture::data_build_error(|root| {
         fixture::append_to_file(root.join("packs/shared/crafting/stations.toml"), stations);
         let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
-        let mut file: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
-        file.as_table_mut().unwrap().remove("npc");
+        let file: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
         std::fs::write(path, format!("{}\n[[station]]\n{reference}\n", toml::to_string(&file).unwrap())).unwrap();
     })
 }
@@ -229,16 +244,6 @@ fn a_system_naming_a_station_the_vocabulary_lacks_is_rejected_with_nearest_names
     let error =
         station_reference_error("[[row]]\nname='Test Forge'\nkind='interface'\ncitation=[]\n", "name='Test Forg'");
     assert!(error.contains("Test Forge") && error.contains("nearest"), "{error}");
-}
-
-#[test]
-fn a_crafting_file_with_npc_and_station_links_is_rejected() {
-    let error = fixture::data_build_error(|root| {
-        let path = root.join(CRAFTING);
-        let original = std::fs::read_to_string(&path).unwrap();
-        std::fs::write(path, format!("npc='Legacy Keeper'\n{original}")).unwrap();
-    });
-    assert!(error.contains("npc and station links cannot occur together"), "{error}");
 }
 
 #[test]

@@ -2246,8 +2246,7 @@ fn crafting_file_and_xml_builds_preserve_the_same_authored_rows() {
         )
         .unwrap();
         let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
-        let mut system: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
-        system.as_table_mut().unwrap().remove("npc");
+        let system: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
         std::fs::write(path,format!("{}\n[[station]]\nname='Test Altar Keeper'\nnote='Use this keeper.'\n[[unlock]]\nkind='kept_item'\ncrafting_ingredient='Thread of Fate'\ntext='Keep the thread.'\n[[step]]\nname='Create'\nis_random=true\n[[step.effect]]\neffect='Constitution'\nbonus_type='Enhancement'\nvalue=10\nequipment_slot='Off Hand'\n[[step.modifier]]\neffect_type='Weapon_BaseDamage'\namounts=[0.5]\n[[step.cost]]\ntier='heroic'\nitem=\"Acrobat's Ring\"\nquantity=2\n[[step.cost]]\ntier='legendary'\ningredient='Thread of Fate'\nquantity=3\n[[recipe]]\noption='Create thread'\nstep='Create'\ntier='heroic'\nyields_ingredient='Thread of Fate'\n[[recipe.unlock]]\nkind='crafting_level'\nvalue=20\ntext='Requires crafting level 20.'\n",toml::to_string(&system).unwrap())).unwrap();
         let path = root.join("packs/shared/crafting/test-upgrade-altar/crafting.toml");
         let original = std::fs::read_to_string(&path).unwrap();

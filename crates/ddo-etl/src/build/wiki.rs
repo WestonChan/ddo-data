@@ -194,11 +194,10 @@ pub(super) fn write_wiki_crafting_systems(transaction: &Transaction, wiki_overri
     }
     for crafting_system in &wiki_overrides.crafting_systems {
         transaction.execute(
-            "INSERT INTO crafting_systems (name, page, npc, slug, id) VALUES (?1, ?2, ?3, ?4, ?5)",
+            "INSERT INTO crafting_systems (name, page, slug, id) VALUES (?1, ?2, ?3, ?4)",
             params![
                 crafting_system.name,
                 crafting_system.wiki_url,
-                crafting_system.npc,
                 crate::tree::xml_entity_slug("crafting_systems", None, &crafting_system.name, None),
                 crate::tree::xml_overlay_id(
                     "crafting_systems",

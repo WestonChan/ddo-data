@@ -945,12 +945,6 @@
     "name": {
       "type": "string"
     },
-    "npc": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
     "pack": {
       "type": [
         "string",
@@ -1003,7 +997,6 @@
     "id",
     "slug",
     "name",
-    "npc",
     "pack_id",
     "page"
   ],
