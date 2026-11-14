@@ -281,8 +281,6 @@ database_record! {
             #[serde(default, skip_serializing_if = "Option::is_none")]
             note: Option<String> => note,
             option: String => option,
-            #[serde(default, skip_serializing_if = "Option::is_none")]
-            slot: Option<String> => slot_id [optional_reference "augment_slot_types" "label"],
             tier: String => tier,
         }
         projected {
@@ -433,10 +431,7 @@ impl CraftingSystemFile {
         for row in recipes.query_map([], |row| {
             Ok((row.get::<_, i64>("system_id")?, row.get::<_, i64>("id")?, CraftingSystemRecipe::from_row(row)?))
         })? {
-            let (system_id, id, mut recipe) = row?;
-            if recipe.step.is_some() {
-                recipe.slot = None;
-            }
+            let (system_id, id, recipe) = row?;
             let system = files.get_mut(&system_id).context("crafting recipe has no system")?;
             recipe_locations.insert(id, (system_id, system.recipe.len()));
             system.recipe.push(recipe);
@@ -590,11 +585,6 @@ impl CraftingSystemFile {
             }
         }
         for (position, recipe) in self.recipe.iter().enumerate() {
-            anyhow::ensure!(
-                self.step.is_empty() || recipe.slot.is_none(),
-                "{}: a recipe cannot name slot in a file that declares steps",
-                path.display()
-            );
             let step_id = recipe
                 .step
                 .as_ref()
@@ -643,12 +633,6 @@ impl CraftingSystemFile {
                     position as i64,
                 )?;
                 count += 1;
-            }
-            if let Some(step_id) = step_id {
-                db.execute(
-                    "UPDATE crafting_recipes SET slot_id=(SELECT slot_id FROM crafting_steps WHERE id=?1) WHERE id=?2",
-                    rusqlite::params![step_id, recipe_id],
-                )?;
             }
             count += 1;
             for (position, output) in recipe.augment.iter().enumerate() {

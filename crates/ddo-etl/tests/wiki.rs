@@ -603,8 +603,8 @@ fn build_fails_naming_an_augment_absent_from_the_systems_families() {
 #[test]
 fn build_fails_naming_an_unknown_slot_label() {
     let wiki = crafting_wiki(|systems| {
-        let recipes = &mut crafting_system(systems, "Heroic Green Steel").recipes;
-        recipes[0].slot = Some("crafting: accessory invasions".into());
+        let steps = &mut crafting_system(systems, "Heroic Green Steel").steps;
+        steps[0].slot = Some("crafting: accessory invasions".into());
     });
     let error = build_report_with(&wiki).unwrap_err();
     assert!(error.contains("Heroic Green Steel") && error.contains("crafting: accessory invasions"), "{error}");
@@ -640,7 +640,7 @@ fn recipe_rows(db: &Connection) -> Vec<RecipeRow> {
     let mut statement = db
         .prepare(
             "SELECT r.tier, t.label, r.option, r.note, r.sort_order FROM crafting_recipes r
-               JOIN crafting_systems s ON s.id = r.system_id LEFT JOIN augment_slot_types t ON t.id = r.slot_id WHERE s.name='Heroic Green Steel' ORDER BY r.sort_order",
+               JOIN crafting_systems s ON s.id = r.system_id LEFT JOIN crafting_steps step ON step.id=r.step_id LEFT JOIN augment_slot_types t ON t.id = step.slot_id WHERE s.name='Heroic Green Steel' ORDER BY r.sort_order",
         )
         .unwrap();
     statement

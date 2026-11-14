@@ -609,7 +609,6 @@ fn crafting_steps_build_from_the_file_and_derive_recipe_sockets() {
             .unwrap(),
         1
     );
-    assert_eq!(db.query_row("SELECT COUNT(*) FROM crafting_recipes r JOIN crafting_steps s ON s.id=r.step_id WHERE r.slot_id IS NOT s.slot_id",[],|row|row.get::<_,i64>(0)).unwrap(),0);
 }
 
 #[test]

@@ -207,11 +207,6 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "an item never repeats a candidate bonus on its non-colour sockets; 28 real items await ddo-data#72",
         OffenderQuery::Built(items_do_not_carry_craftable_bonuses),
     ).showing_every_offender(),
-    IntegrityCheck::hard(
-        "crafting_recipe_sockets_match_steps",
-        "a recipe's transitional socket agrees with its step's socket",
-        OffenderQuery::Sql("SELECT r.option,r.id,s.name FROM crafting_recipes r JOIN crafting_steps s ON s.id=r.step_id WHERE r.slot_id IS NOT s.slot_id"),
-    ),
     IntegrityCheck::warn(
         "crafting_recipe_augments_fit_their_socket",
         "yielded augments fit the recipe's socket or a mirror of it",
@@ -945,7 +940,7 @@ fn crafting_recipe_augments_fit_their_socket(db: &Connection, _options: &Integri
         SELECT r.option,r.id,a.name || ': ' || t.label
         FROM crafting_recipe_augments link JOIN crafting_recipes r ON r.id=link.recipe_id
         JOIN augments a ON a.id=link.augment_id LEFT JOIN crafting_steps s ON s.id=r.step_id
-        JOIN augment_slot_types t ON t.id=COALESCE(s.slot_id,r.slot_id)
+        JOIN augment_slot_types t ON t.id=s.slot_id
         WHERE NOT EXISTS (SELECT 1 FROM augment_slots fits WHERE fits.augment_id=a.id AND fits.slot_id=t.id)
           AND NOT EXISTS (SELECT 1 FROM mirrors m JOIN augment_slots fits ON fits.slot_id=m.mirror_id
                           WHERE m.step_id=s.id AND fits.augment_id=a.id)

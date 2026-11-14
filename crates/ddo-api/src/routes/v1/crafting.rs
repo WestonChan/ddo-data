@@ -122,7 +122,7 @@ pub(super) fn recipes_by_id(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64
     let mut recipes = BTreeMap::new();
     for mut recipe in json_rows(db, &format!("SELECT r.id,r.tier,r.option,r.note,step.name AS step,step.consumed_outputs,t.label AS slot,g.label AS grants_slot,r.grants_slot_id,
         ingredient.name AS yields_ingredient,ingredient.id AS yields_ingredient_id,ingredient.slug AS yields_ingredient_slug
-        FROM crafting_recipes r LEFT JOIN crafting_steps step ON step.id=r.step_id LEFT JOIN augment_slot_types t ON t.id=COALESCE(step.slot_id,r.slot_id)
+        FROM crafting_recipes r LEFT JOIN crafting_steps step ON step.id=r.step_id LEFT JOIN augment_slot_types t ON t.id=step.slot_id
         LEFT JOIN augment_slot_types g ON g.id=r.grants_slot_id LEFT JOIN crafting_ingredients ingredient ON ingredient.id=r.yields_ingredient_id WHERE r.id IN ({}) ORDER BY r.sort_order",sql_integer_list(ids)),[])? {
         let id = recipe["id"].as_i64().unwrap();
         let mut recipe_costs = costs.remove(&id).unwrap_or_default();

@@ -88,7 +88,6 @@ pub struct CraftingRecipe {
     pub step: Option<String>,
     pub yields_ingredient: Option<String>,
     pub yields_variant: Option<String>,
-    pub slot: Option<String>,
     pub option: String,
     pub augments: Vec<String>,
     pub note: Option<String>,

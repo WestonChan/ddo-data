@@ -2472,7 +2472,6 @@ fn import_with_merged_socket_labels(adoption: HisAdoption) -> MergedSocketLabelI
         step: Some("crafting: reviewed tier 1".into()),
         yields_ingredient: None,
         yields_variant: None,
-        slot: None,
         option: "Reviewed socket grant".into(),
         augments: vec![],
         note: None,
@@ -2543,7 +2542,7 @@ fn merged_socket_labels_follow_the_writer_and_have_no_import_delta() {
         assert_eq!(steps, ["crafting: reviewed tier 1", "crafting: reviewed tier 2"]);
         let labels = db.prepare("SELECT s.label FROM item_augment_slots l JOIN items i ON i.id=l.item_id JOIN augment_slot_types s ON s.id=l.slot_id WHERE i.name='Battle Axe of the Oozing Hunger' ORDER BY l.sort_order").unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<Result<Vec<_>, _>>().unwrap();
         assert_eq!(labels, ["crafting: reviewed tier 1", "crafting: reviewed tier 2"]);
-        assert_eq!(db.query_row("SELECT COUNT(*) FROM crafting_recipes r JOIN augment_slot_types s ON s.id=r.slot_id JOIN augment_slot_types g ON g.id=r.grants_slot_id WHERE s.label='crafting: reviewed tier 1' AND g.label='crafting: reviewed tier 2'", [], |row| row.get::<_, i64>(0)).unwrap(), import.recipe_count);
+        assert_eq!(db.query_row("SELECT COUNT(*) FROM crafting_recipes r JOIN crafting_steps step ON step.id=r.step_id JOIN augment_slot_types s ON s.id=step.slot_id JOIN augment_slot_types g ON g.id=r.grants_slot_id WHERE s.label='crafting: reviewed tier 1' AND g.label='crafting: reviewed tier 2'", [], |row| row.get::<_, i64>(0)).unwrap(), import.recipe_count);
         let sireth_labels = db
             .prepare("SELECT s.label FROM item_augment_slots l JOIN items i ON i.id=l.item_id JOIN augment_slot_types s ON s.id=l.slot_id WHERE i.name='Sireth, Spear of the Sky' AND s.label LIKE 'crafting: %' ORDER BY l.sort_order")
             .unwrap()

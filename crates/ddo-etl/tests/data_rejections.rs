@@ -31,6 +31,20 @@ fn crafting_system_files_reject_the_removed_npc_field() {
 }
 
 #[test]
+fn crafting_recipe_files_reject_the_removed_slot_field() {
+    let path = "packs/shared/crafting/former-recipe-socket/crafting.toml";
+    let error = fixture::data_build_error(|root| {
+        let file = root.join(path);
+        std::fs::create_dir_all(file.parent().unwrap()).unwrap();
+        std::fs::write(file, "name='Former recipe socket'\npage='https://ddowiki.com/page/Test'\ncitation=[]\n[[recipe]]\noption='Former recipe socket'\ntier='any'\nslot='blue'\n").unwrap();
+    });
+    assert!(
+        error.contains(path) && error.contains("unknown field") && error.contains("slot"),
+        "expected recipe slot rejection, got {error:?}"
+    );
+}
+
+#[test]
 fn recipe_costs_cannot_repeat_a_step_ingredient_or_item() {
     for reference in ["ingredient='Thread of Fate'", "item=\"Acrobat's Ring\""] {
         for step_tier in ["epic", "any"] {
@@ -273,13 +287,6 @@ fn an_unused_shared_ingredient_is_rejected_with_its_file() {
         std::fs::write(directory.join("unused-key.toml"), "name='Unused Key'\ntier='any'\ncitation=[]\n").unwrap();
     });
     assert!(error.contains("unused-key.toml") && error.contains("no using system"), "{error}");
-}
-
-#[test]
-fn a_recipe_with_slot_in_a_file_that_declares_steps_is_rejected() {
-    let error =
-        fixture::data_build_error(edited(CRAFTING, "step = \"Invasion\"", "slot = \"crafting: accessory invasion\""));
-    assert!(error.contains(CRAFTING) && error.contains("cannot name slot"), "{error}");
 }
 
 #[test]

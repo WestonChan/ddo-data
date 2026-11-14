@@ -2630,7 +2630,6 @@ pub(super) fn rename_socket_label(transaction: &Transaction, slot_type_id: i64, 
             ("socket_option_grants", "slot_id"),
             ("augment_socket_grants", "slot_id"),
             ("crafting_steps", "slot_id"),
-            ("crafting_recipes", "slot_id"),
             ("crafting_recipes", "grants_slot_id"),
         ] {
             transaction.execute(

@@ -1572,7 +1572,6 @@ CREATE TABLE IF NOT EXISTS crafting_recipes (
     id             INTEGER PRIMARY KEY,
     system_id      INTEGER NOT NULL REFERENCES crafting_systems(id) ON DELETE CASCADE,
     tier           TEXT    NOT NULL CHECK (tier {crafting_tier}),
-    slot_id        INTEGER REFERENCES augment_slot_types(id),   -- the socket the row's augments fill
     step_id INTEGER REFERENCES crafting_steps(id),
     yields_ingredient_id INTEGER REFERENCES crafting_ingredients(id),
     grants_slot_id INTEGER REFERENCES augment_slot_types(id),   -- the socket the row adds to the item

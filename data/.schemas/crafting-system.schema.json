@@ -328,13 +328,6 @@
           },
           "type": "array"
         },
-        "slot": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "x-reference-kind": "augment_slot_types"
-        },
         "step": {
           "type": [
             "string",
@@ -379,7 +372,6 @@
         "grants_slot_id",
         "note",
         "option",
-        "slot_id",
         "tier"
       ],
       "x-table": "crafting_recipes"

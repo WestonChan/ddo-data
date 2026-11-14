@@ -99,7 +99,6 @@ pub(super) fn omit_unresolved_previous_facts(
         for recipe in &mut system.recipes {
             recipe.unlocks.retain(|unlock| references.has_unlock_references(unlock));
             recipe.cost.retain(|cost| cost.item.as_deref().is_none_or(|name| references.contains("items", name)));
-            references.retain_known_name("augment_slot_types", &mut recipe.slot);
             references.retain_known_name("augment_slot_types", &mut recipe.grants_slot);
             recipe.augments.retain(|name| references.contains("augments", name));
         }

@@ -344,16 +344,6 @@ fn insert_crafting_recipe(
             )
         })
         .transpose()?;
-    let slot_type_id = recipe
-        .slot
-        .as_deref()
-        .map(|label| slot_type_id_labelled(transaction, references, "slot", label))
-        .transpose()?;
-    let slot_type_id = match step_id {
-        Some(id) => transaction
-            .query_row("SELECT slot_id FROM crafting_steps WHERE id=?1", [id], |row| row.get::<_, Option<i64>>(0))?,
-        None => slot_type_id,
-    };
     let yielded_ingredient = recipe
         .yields_ingredient
         .as_deref()
@@ -367,12 +357,11 @@ fn insert_crafting_recipe(
         .map(|label| slot_type_id_labelled(transaction, references, "grants_slot", label))
         .transpose()?;
     transaction.execute(
-        "INSERT INTO crafting_recipes (system_id, tier, slot_id, grants_slot_id, option, note, focus_path, sort_order,step_id,yields_ingredient_id)
-         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8,?9,?10)",
+        "INSERT INTO crafting_recipes (system_id, tier, grants_slot_id, option, note, focus_path, sort_order,step_id,yields_ingredient_id)
+         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8,?9)",
         params![
             system_id,
             recipe.tier,
-            slot_type_id,
             granted_slot_type_id,
             recipe.option,
             recipe.note,
