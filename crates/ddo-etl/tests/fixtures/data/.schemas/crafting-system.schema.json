@@ -240,51 +240,6 @@
       ],
       "x-table": "crafting_system_families"
     },
-    "CraftingSystemIngredient": {
-      "additionalProperties": false,
-      "properties": {
-        "bind": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "citation": {
-          "items": {
-            "$ref": "#/$defs/Citation"
-          },
-          "type": "array"
-        },
-        "drop_location": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "name": {
-          "type": "string"
-        },
-        "tier": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "name",
-        "tier"
-      ],
-      "type": "object",
-      "x-columns": [
-        "id",
-        "slug",
-        "system_id",
-        "sort_order",
-        "name",
-        "bind",
-        "source",
-        "tier"
-      ],
-      "x-table": "crafting_ingredients"
-    },
     "CraftingSystemRecipe": {
       "additionalProperties": false,
       "properties": {
@@ -432,12 +387,6 @@
         "quantity": {
           "format": "int64",
           "type": "integer"
-        },
-        "tier": {
-          "type": [
-            "string",
-            "null"
-          ]
         },
         "variant": {
           "type": [
@@ -925,12 +874,6 @@
     "family": {
       "items": {
         "$ref": "#/$defs/CraftingSystemFamily"
-      },
-      "type": "array"
-    },
-    "ingredient": {
-      "items": {
-        "$ref": "#/$defs/CraftingSystemIngredient"
       },
       "type": "array"
     },

@@ -19,8 +19,7 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
 }
 
 const INGREDIENT_USES: &str = "WITH ingredient_uses(ingredient_id,system_id) AS (
-    SELECT id,system_id FROM crafting_ingredients WHERE system_id IS NOT NULL
-    UNION SELECT cost.ingredient_id,recipe.system_id FROM crafting_recipe_ingredients cost JOIN crafting_recipes recipe ON recipe.id=cost.recipe_id WHERE cost.ingredient_id IS NOT NULL
+    SELECT cost.ingredient_id,recipe.system_id FROM crafting_recipe_ingredients cost JOIN crafting_recipes recipe ON recipe.id=cost.recipe_id WHERE cost.ingredient_id IS NOT NULL
     UNION SELECT cost.ingredient_id,step.system_id FROM crafting_step_costs cost JOIN crafting_steps step ON step.id=cost.step_id WHERE cost.ingredient_id IS NOT NULL
     UNION SELECT yields_ingredient_id,system_id FROM crafting_recipes WHERE yields_ingredient_id IS NOT NULL
     UNION SELECT gate.crafting_ingredient_id,COALESCE(gate.system_id,recipe.system_id,station.system_id) FROM crafting_unlocks gate LEFT JOIN crafting_recipes recipe ON recipe.id=gate.recipe_id LEFT JOIN crafting_system_stations station ON station.station_id=gate.station_id WHERE gate.crafting_ingredient_id IS NOT NULL

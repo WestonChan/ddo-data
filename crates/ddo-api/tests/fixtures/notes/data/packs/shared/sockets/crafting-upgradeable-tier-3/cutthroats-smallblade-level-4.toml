@@ -1,0 +1,19 @@
+label = "crafting: upgradeable tier 3"
+name = "Cutthroat's Smallblade (level 4)"
+
+[[option]]
+name = "Adds Bleed and Red Augment Slot"
+description = "Bleed: This weapon is cruelly sharp and will do an additional 1 to 8 damage to targets that are vulnerable to bleeding."
+min_level = 4
+
+[[option.grant]]
+slot = "red"
+
+[[option.modifier]]
+bonus_type = "Enhancement"
+dice_damage = "Bleeding"
+dice_number = [1]
+dice_sides = [8]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]

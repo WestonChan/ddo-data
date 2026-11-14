@@ -3551,7 +3551,11 @@ async fn aliased_titles_agree_across_every_effect_owner() {
             for (directory, content) in [
                 (
                     "gear",
-                    format!("name = {name:?}\nslot = 'Ring'\nminimum_level = 8\nitem_category = 'Jewelry'\n[[effect]]\nname = 'Improved Deception'\n{link}\n[[socket]]\nslot = 'upgrade: tier 2'\n[[socket.option]]\nname = {alias:?}\n[[socket.option.effect]]\neffect = 'Improved Deception'\n{link}"),
+                    format!("name = {name:?}\nslot = 'Ring'\nminimum_level = 8\nitem_category = 'Jewelry'\n[[effect]]\nname = 'Improved Deception'\n{link}\n[[socket]]\nslot = 'upgrade: tier 2'\nset = {name:?}\n"),
+                ),
+                (
+                    "sockets/upgrade-tier-2",
+                    format!("name = {name:?}\nlabel = 'upgrade: tier 2'\n[[option]]\nname = {alias:?}\n[[option.effect]]\neffect = 'Improved Deception'\n{link}"),
                 ),
                 (
                     "augments",

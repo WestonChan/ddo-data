@@ -28,37 +28,11 @@ name = "Slicing"
 
 [[socket]]
 slot = "crafting: upgradeable tier 2"
-
-[[socket.option]]
-name = "+2 Enhancement Bonus"
-description = "+2 Enhancement Bonus: +2 enhancement bonus to attack and damage rolls."
-min_level = 4
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [2]
-bonus_type = "Enhancement"
-effect_type = "Weapon_Enchantment"
+set = "Cutthroat's Smallblade (level 4)"
 
 [[socket]]
 slot = "crafting: upgradeable tier 3"
-
-[[socket.option]]
-name = "Adds Bleed and Red Augment Slot"
-description = "Bleed: This weapon is cruelly sharp and will do an additional 1 to 8 damage to targets that are vulnerable to bleeding."
-min_level = 4
-
-[[socket.option.grant]]
-slot = "red"
-
-[[socket.option.modifier]]
-bonus_type = "Enhancement"
-dice_damage = "Bleeding"
-dice_number = [1]
-dice_sides = [8]
-effect_type = "WeaponOtherDamageBonus"
-extra_types = ["WeaponOtherDamageBonusCritical"]
-targets = ["All"]
+set = "Cutthroat's Smallblade (level 4)"
 
 [[source]]
 kind = "event"

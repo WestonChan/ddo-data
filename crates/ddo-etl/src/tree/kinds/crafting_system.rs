@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 pub(crate) enum CraftingUnlockOwner {
     System(i64),
     Station(i64),
-    Recipe { id: i64, system_id: i64 },
+    Recipe(i64),
 }
 
 impl CraftingUnlockOwner {
@@ -24,7 +24,7 @@ impl CraftingUnlockOwner {
 
     fn recipe_id(&self) -> Option<i64> {
         match self {
-            Self::Recipe { id, .. } => Some(*id),
+            Self::Recipe(id) => Some(*id),
             _ => None,
         }
     }
@@ -70,10 +70,6 @@ impl CraftingUnlock {
         position: i64,
     ) -> anyhow::Result<()> {
         use anyhow::Context;
-        let ingredient_system = match owner {
-            CraftingUnlockOwner::System(id) | CraftingUnlockOwner::Recipe { system_id: id, .. } => Some(id),
-            CraftingUnlockOwner::Station(_) => None,
-        };
         let item = self
             .item
             .as_deref()
@@ -82,9 +78,7 @@ impl CraftingUnlock {
         let ingredient = self
             .crafting_ingredient
             .as_deref()
-            .map(|name| {
-                crate::tree::crafting::ingredient_id(db, ingredient_system, name, self.variant.as_deref(), None)
-            })
+            .map(|name| crate::tree::crafting::ingredient_id(db, name, self.variant.as_deref()))
             .transpose()?;
         self.insert(db, item, ingredient, owner, None, position)
             .with_context(|| format!("unlock {:?}: {:?}", self.kind, self.text))?;
@@ -191,8 +185,6 @@ database_record! {
         projected {
             #[serde(default, skip_serializing_if = "Option::is_none")]
             variant: Option<String> => "COALESCE((SELECT variant FROM crafting_ingredients WHERE id=crafting_recipe_ingredients.ingredient_id),(SELECT variant FROM items WHERE id=crafting_recipe_ingredients.item_id))",
-            #[serde(default, skip_serializing_if = "Option::is_none")]
-            tier: Option<String> => "(SELECT tier FROM crafting_ingredients WHERE id = crafting_recipe_ingredients.ingredient_id AND (SELECT COUNT(*) FROM crafting_ingredients matching WHERE matching.system_id = crafting_ingredients.system_id AND matching.name = crafting_ingredients.name) > 1)",
         }
     }
 }
@@ -225,26 +217,6 @@ database_record! {
         keys { system_id: i64 }
         fields {
             family: String => family,
-        }
-    }
-}
-
-database_record! {
-    #[derive(Debug, Serialize, Deserialize, JsonSchema)]
-    #[serde(deny_unknown_fields)]
-    pub(crate) struct CraftingSystemIngredient in "crafting_ingredients" {
-        keys { id: i64, slug: &str, system_id: i64, sort_order: i64 }
-        fields {
-            name: String => name,
-            #[serde(default, skip_serializing_if = "Option::is_none")]
-            bind: Option<String> => bind,
-            #[serde(default, skip_serializing_if = "Option::is_none")]
-            drop_location: Option<String> => source,
-            tier: String => tier,
-        }
-        attached {
-            #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            citation: Vec<crate::tree::Citation>,
         }
     }
 }
@@ -322,8 +294,6 @@ database_record! {
             step: Vec<CraftingStep>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             family: Vec<CraftingSystemFamily>,
-            #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            ingredient: Vec<CraftingSystemIngredient>,
             #[serde(default, skip_serializing_if = "Vec::is_empty")]
             removed: Vec<super::super::RemovedEntry>,
             citation: Vec<super::super::Citation>,
@@ -408,20 +378,6 @@ impl CraftingSystemFile {
         {
             let (id, record) = row?;
             files.get_mut(&id).context("crafting family has no system")?.family.push(record);
-        }
-        let mut select = db.prepare(&format!(
-            "SELECT {} FROM crafting_ingredients WHERE system_id IS NOT NULL ORDER BY sort_order, rowid",
-            CraftingSystemIngredient::select_columns()
-        ))?;
-        for row in select.query_map([], |row| {
-            Ok((row.get::<_, i64>("system_id")?, {
-                let mut ingredient = CraftingSystemIngredient::from_row(row)?;
-                ingredient.attach_annotations(annotations, row.get("id")?);
-                ingredient
-            }))
-        })? {
-            let (id, record) = row?;
-            files.get_mut(&id).context("crafting ingredient has no system")?.ingredient.push(record);
         }
         let mut recipes = db.prepare(&format!(
             "SELECT {} FROM crafting_recipes ORDER BY sort_order, rowid",
@@ -520,16 +476,6 @@ impl CraftingSystemFile {
         for family in &self.family {
             family.insert(db, id)?;
         }
-        for (position, ingredient) in self.ingredient.iter().enumerate() {
-            let ingredient_slug = format!(
-                "{}-{}-{}",
-                identity,
-                super::super::slug(&ingredient.name),
-                super::super::slug(&ingredient.tier)
-            );
-            let ingredient_id = ids.issue("crafting_ingredients", &ingredient_slug, path)?;
-            ingredient.insert(db, ingredient_id, &ingredient_slug, id, position as i64)?;
-        }
         Ok(id)
     }
 
@@ -572,11 +518,9 @@ impl CraftingSystemFile {
             for cost in &step.cost {
                 let (ingredient_id, item_id) = crate::tree::crafting::cost_references(
                     db,
-                    id,
                     cost.ingredient.as_deref(),
                     cost.item.as_deref(),
                     cost.variant.as_deref(),
-                    None,
                 )?;
                 let position = cost_positions.entry(&cost.tier).or_insert(0_i64);
                 cost.insert(db, ingredient_id, item_id, step_id, *position)?;
@@ -609,9 +553,7 @@ impl CraftingSystemFile {
             let yielded_ingredient = recipe
                 .yields_ingredient
                 .as_deref()
-                .map(|name| {
-                    crate::tree::crafting::ingredient_id(db, Some(id), name, recipe.yields_variant.as_deref(), None)
-                })
+                .map(|name| crate::tree::crafting::ingredient_id(db, name, recipe.yields_variant.as_deref()))
                 .transpose()?;
             recipe.insert(db, yielded_ingredient, None, id, position as i64, step_id)?;
             let recipe_id = db.last_insert_rowid();
@@ -627,11 +569,7 @@ impl CraftingSystemFile {
                 count += 1;
             }
             for (position, unlock) in recipe.unlock.iter().enumerate() {
-                unlock.write_unlock(
-                    db,
-                    CraftingUnlockOwner::Recipe { id: recipe_id, system_id: id },
-                    position as i64,
-                )?;
+                unlock.write_unlock(db, CraftingUnlockOwner::Recipe(recipe_id), position as i64)?;
                 count += 1;
             }
             count += 1;
@@ -662,11 +600,9 @@ impl CraftingSystemFile {
             for (position, cost) in recipe.ingredient.iter().enumerate() {
                 let (ingredient_id, item_id) = crate::tree::crafting::cost_references(
                     db,
-                    id,
                     cost.ingredient.as_deref(),
                     cost.item.as_deref(),
                     cost.variant.as_deref(),
-                    cost.tier.as_deref(),
                 )?;
                 cost.insert(db, ingredient_id, item_id, recipe_id, position as i64)?;
                 count += 1;

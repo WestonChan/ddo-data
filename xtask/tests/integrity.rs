@@ -2041,11 +2041,6 @@ fn injected_violations() -> Vec<InjectedViolation> {
             "123456",
         ),
         violation(
-            "redirects_agree_with_current_slugs",
-            "INSERT INTO retired_slugs (kind, slug, since, reason) VALUES ('items', '123456', '2026-10-01', 'Retired numeric slug');",
-            "123456",
-        ),
-        violation(
             "source_references_exist",
             "UPDATE quest_drops SET owner_id = -1 WHERE id = (SELECT MIN(id) FROM quest_drops);",
             "quest source",

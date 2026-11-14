@@ -1,19 +1,6 @@
 use std::path::{Path, PathBuf};
 
-pub(crate) fn write_overlapping_owners(root: &Path, true_owner: &str) -> PathBuf {
-    for owner in ["foo", "foo-bar"] {
-        let path = root.join(format!("packs/shared/crafting/{owner}/crafting.toml"));
-        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
-        let ingredient = if owner == true_owner {
-            format!(
-                "\n[[ingredient]]\nname = {:?}\ntier = \"heroic\"\n",
-                if owner == "foo" { "Bar Baz" } else { "Baz" }
-            )
-        } else {
-            String::new()
-        };
-        std::fs::write(path, format!("name = {owner:?}\npage = \"https://ddowiki.com/page/Foo\"\n[[citation]]\nurl = \"https://ddowiki.com/page/Foo\"\nread = \"2026-10-01\"\n{ingredient}")).unwrap();
-    }
+pub(crate) fn write_overlapping_enhancements(root: &Path, true_owner: &str) -> PathBuf {
     let tree_path = root.join("characters/enhancements/kensei/tree.toml");
     let mut tree: toml::Value = toml::from_str(&std::fs::read_to_string(&tree_path).unwrap()).unwrap();
     let enhancements = tree["enhancement"].as_array_mut().unwrap();

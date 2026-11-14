@@ -45,6 +45,28 @@ fn crafting_recipe_files_reject_the_removed_slot_field() {
 }
 
 #[test]
+fn crafting_system_files_reject_owned_ingredient_arrays() {
+    let error = crafting_row_error("[[ingredient]]\nname='Former owned ingredient'\ntier='any'\n");
+    assert!(
+        error.contains("packs/shared/crafting/catalyst-crafting/crafting.toml")
+            && error.contains("unknown field")
+            && error.contains("ingredient"),
+        "expected ingredient array rejection, got {error:?}"
+    );
+}
+
+#[test]
+fn recipe_costs_reject_the_legacy_ingredient_tier() {
+    let error = crafting_row_error("[[recipe]]\noption='Former ingredient qualifier'\ntier='heroic'\n[[recipe.ingredient]]\ningredient='Small Shard of Power'\ntier='heroic'\nquantity=1\n");
+    assert!(
+        error.contains("packs/shared/crafting/catalyst-crafting/crafting.toml")
+            && error.contains("unknown field")
+            && error.contains("tier"),
+        "expected ingredient tier rejection, got {error:?}"
+    );
+}
+
+#[test]
 fn recipe_costs_cannot_repeat_a_step_ingredient_or_item() {
     for reference in ["ingredient='Thread of Fate'", "item=\"Acrobat's Ring\""] {
         for step_tier in ["epic", "any"] {
@@ -476,8 +498,12 @@ fn structural_rejections_fail_the_data_build_naming_their_file_once() {
         ("a cost naming an undeclared ingredient", CRAFTING, Box::new(edited(CRAFTING, "ingredient = \"Small Shard of Power\"", "ingredient = \"Undeclared Shard\""))),
         (
             "an ingredient declared twice",
-            CRAFTING,
-            Box::new(|root| fixture::append_to_file(root.join(CRAFTING), "[[ingredient]]\nname='Duplicate Test Ingredient'\ntier='heroic'\n[[ingredient]]\nname='Duplicate Test Ingredient'\ntier='heroic'\n")),
+            "packs/shared/crafting/ingredients/small-focus-of-earth.toml",
+            Box::new(|root| {
+                let destination = root.join("packs/shared/crafting/ingredients/small-focus-of-earth.toml");
+                std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+                std::fs::copy(root.join("packs/shared/crafting/heroic-green-steel/ingredients/small-focus-of-earth.toml"), destination).unwrap();
+            }),
         ),
         (
             "a vendor listing an item twice",
@@ -700,7 +726,6 @@ fn effect_aliases_validate_names_slugs_templates_and_link_ownership() {
         ("Combat Grace", "%b1 Combat Grace +{1}", "Sheltering", "Combat Grace", "", "has no alias"),
         ("Combat Grace", "%b1 Combat Grace {1} %v1", target, "Combat Grace", "", "unconverted amount placeholder"),
         ("Combat Grace", "%b1 Combat Grace +{1}", target, "Combat Grace", "[[redirect]]\nkind = 'effects'\nfrom = 'combat-grace'\nto = 'doublestrike-and-doubleshot'\nsince = '2026-10-23'\n", "redirect"),
-        ("Combat Grace", "%b1 Combat Grace +{1}", target, "Combat Grace", "[[retired]]\nkind = 'effects'\nslug = 'combat-grace'\nreason = 'Reserved old route'\nsince = '2026-10-23'\n", "retired"),
     ] {
         let error = check(name, template, linked, chosen, extra);
         if !error.contains(expected) {
@@ -839,4 +864,16 @@ fn an_unresolved_reference_fails_the_build_naming_its_file() {
     assert!(message.contains("the-lost-seekers.toml"), "{message}");
     assert!(message.contains("unknown quest \"A Quest Nobody Wrote\", expected "), "{message}");
     assert!(message.contains("; nearest: "), "{message}");
+}
+
+#[test]
+fn redirect_files_reject_retirement_records() {
+    let error = fixture::data_build_error(|root| {
+        std::fs::write(
+            root.join("redirects.toml"),
+            "[[retired]]\nkind='items'\nslug='removed-item'\nsince='2026-11-14'\nreason='Removed fixture'\n",
+        )
+        .unwrap();
+    });
+    assert!(error.contains("redirects.toml") && error.contains("unknown field `retired`"), "{error:?}");
 }

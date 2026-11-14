@@ -305,7 +305,7 @@ pub fn scalar_text(value: &SqlValue) -> String {
 fn identity_qualifiers(table: &str) -> &'static [&'static str] {
     match table {
         "augments" => &["family", "min_level", "description"],
-        "crafting_ingredients" => &["system_id", "tier"],
+        "crafting_ingredients" => &["variant"],
         "crafting_steps" => &["system_id"],
         "socket_options" => &["set_id", "option_order"],
         "socket_option_sets" => &["slot_id", "variant"],

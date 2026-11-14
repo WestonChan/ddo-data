@@ -47,7 +47,7 @@ pub(crate) use kinds::insert_xml_vendor_currencies;
 pub(crate) use kinds::socket_option_set::SocketOption;
 use kinds::UpstreamCommitFile;
 pub(crate) use kinds::{CraftingUnlockOwner, CraftingUnlockRecord};
-pub use kinds::{EffectBonus, ExceptionsFile, PackException, QuestPackException, Redirect, RetiredSlug};
+pub use kinds::{EffectBonus, ExceptionsFile, PackException, QuestPackException, Redirect};
 pub(crate) use layout::qualified_slug;
 use layout::*;
 pub use layout::{pack_exceptions, DataFilePaths};
@@ -521,47 +521,9 @@ mod tests {
         assert_eq!(record_file_bytes(&fresh_a), record_file_bytes(&fresh_b));
         let canonical_files = record_file_bytes(&fresh_a);
         let committed_files = record_file_bytes(&fixtures.join("data"));
+        assert_eq!(committed_files.keys().collect::<Vec<_>>(), canonical_files.keys().collect::<Vec<_>>());
         for (path, committed) in &committed_files {
-            let exported = canonical_files.get(path).unwrap_or_else(|| panic!("missing exported {}", path.display()));
-            let text = String::from_utf8_lossy(committed);
-            if text.contains("[[socket.option]]") || text.contains("[[ingredient]]") {
-                let without_transitional_arrays = |bytes: &[u8]| {
-                    let mut record: toml::Value = toml::from_str(std::str::from_utf8(bytes).unwrap()).unwrap();
-                    let fields = record.as_table_mut().unwrap();
-                    fields.remove("ingredient");
-                    if let Some(sockets) = fields.get_mut("socket").and_then(toml::Value::as_array_mut) {
-                        for socket in sockets {
-                            for field in ["option", "set", "set_variant"] {
-                                socket.as_table_mut().unwrap().remove(field);
-                            }
-                        }
-                    }
-                    if let Some(notes) = fields.get_mut("ddobuilder_correction").and_then(toml::Value::as_array_mut) {
-                        notes.retain(|note| {
-                            !matches!(note["kind"].as_str(), Some("socket_option" | "socket_option_bonus"))
-                        });
-                        if notes.is_empty() {
-                            fields.remove("ddobuilder_correction");
-                        }
-                    }
-                    record
-                };
-                assert_eq!(
-                    without_transitional_arrays(committed),
-                    without_transitional_arrays(exported),
-                    "{}",
-                    path.display()
-                );
-            } else {
-                assert_eq!(committed, exported, "{}", path.display());
-            }
-        }
-        for path in canonical_files.keys().filter(|path| !committed_files.contains_key(*path)) {
-            assert!(
-                path.components().any(|component| component.as_os_str() == "sockets"),
-                "unexpected exported {}",
-                path.display()
-            );
+            assert_eq!(committed, &canonical_files[path], "{}", path.display());
         }
         std::fs::remove_dir_all(fresh_exports).unwrap();
         assert!(!stale_file.exists());

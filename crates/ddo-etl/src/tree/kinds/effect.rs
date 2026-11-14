@@ -118,17 +118,16 @@ impl EffectAlias {
         groupings: &crate::groupings::Groupings,
     ) -> Result<()> {
         let mut statement = db.prepare(&format!(
-            "WITH redirect_rows AS (SELECT {} FROM redirects), retired_rows AS (SELECT {} FROM retired_slugs)
+            "WITH redirect_rows AS (SELECT {} FROM redirects)
              SELECT a.effect_id, a.name, a.slug, a.verbose_name_template, e.name,
                     named.name, named.is_stat, routed.name,
                     EXISTS (SELECT 1 FROM redirect_rows r WHERE r.kind = 'effects' AND r.from_slug = a.slug),
-                    EXISTS (SELECT 1 FROM retired_rows r WHERE r.kind = 'effects' AND r.slug = a.slug), e.is_stat
+                    e.is_stat
                FROM effect_aliases a JOIN effects e ON e.id = a.effect_id
                LEFT JOIN effects named ON named.name = a.name
                LEFT JOIN effects routed ON routed.slug = a.slug
               ORDER BY e.name, a.sort_order",
             super::redirects::Redirect::select_columns(),
-            super::redirects::RetiredSlug::select_columns(),
         ))?;
         let aliases = statement
             .query_map([], |row| {
@@ -143,23 +142,11 @@ impl EffectAlias {
                     row.get::<_, Option<String>>(7)?,
                     row.get::<_, bool>(8)?,
                     row.get::<_, bool>(9)?,
-                    row.get::<_, bool>(10)?,
                 ))
             })?
             .collect::<rusqlite::Result<Vec<_>>>()?;
-        for (
-            effect_id,
-            name,
-            alias_slug,
-            template,
-            owner,
-            named,
-            named_is_stat,
-            routed,
-            redirected,
-            retired,
-            owner_is_stat,
-        ) in aliases
+        for (effect_id, name, alias_slug, template, owner, named, named_is_stat, routed, redirected, owner_is_stat) in
+            aliases
         {
             let effect = groupings.effect_named(&owner).context("alias owner is missing")?;
             let member_name = named_is_stat == Some(true)
@@ -176,7 +163,6 @@ impl EffectAlias {
                     "effect {owner:?} alias {name:?} slug {alias_slug:?} collides with effect {routed:?}"
                 );
                 ensure!(!redirected, "effect {owner:?} alias {name:?} slug {alias_slug:?} collides with a redirect");
-                ensure!(!retired, "effect {owner:?} alias {name:?} slug {alias_slug:?} collides with a retired slug");
             }
             if let Some(template) = template {
                 crate::build::validate_templates(

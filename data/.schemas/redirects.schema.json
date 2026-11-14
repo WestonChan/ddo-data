@@ -69,37 +69,6 @@
         "since"
       ],
       "x-table": "redirects"
-    },
-    "RetiredSlug": {
-      "additionalProperties": false,
-      "properties": {
-        "kind": {
-          "$ref": "#/$defs/EntityKind"
-        },
-        "reason": {
-          "type": "string"
-        },
-        "since": {
-          "type": "string"
-        },
-        "slug": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "kind",
-        "slug",
-        "since",
-        "reason"
-      ],
-      "type": "object",
-      "x-columns": [
-        "kind",
-        "slug",
-        "since",
-        "reason"
-      ],
-      "x-table": "retired_slugs"
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -109,13 +78,6 @@
       "default": [],
       "items": {
         "$ref": "#/$defs/Redirect"
-      },
-      "type": "array"
-    },
-    "retired": {
-      "default": [],
-      "items": {
-        "$ref": "#/$defs/RetiredSlug"
       },
       "type": "array"
     }

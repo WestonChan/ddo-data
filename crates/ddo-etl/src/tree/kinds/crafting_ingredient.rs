@@ -41,10 +41,8 @@ impl CraftingIngredientFile {
         db: &Connection,
         annotations: &crate::tree::annotations::EntityAnnotations,
     ) -> Result<BTreeMap<i64, Self>> {
-        let mut query = db.prepare(&format!(
-            "SELECT {} FROM crafting_ingredients WHERE system_id IS NULL ORDER BY id",
-            Self::select_columns()
-        ))?;
+        let mut query =
+            db.prepare(&format!("SELECT {} FROM crafting_ingredients ORDER BY id", Self::select_columns()))?;
         let ingredients = query
             .query_map([], |row| {
                 let id = row.get::<_, i64>("id")?;

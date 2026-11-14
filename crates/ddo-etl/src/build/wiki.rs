@@ -257,13 +257,6 @@ fn insert_crafting_system_contents(
             params![system_id, family],
         )?;
     }
-    for (sort_order, ingredient) in crafting_system.ingredients.iter().enumerate() {
-        transaction.execute(
-            "INSERT INTO crafting_ingredients (system_id, sort_order, name, tier, bind, source, slug) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
-            params![system_id, sort_order as i64, ingredient.name, ingredient.tier, ingredient.bind, ingredient.source, format!("{}-{}-{}", crate::tree::slug(&crafting_system.name), crate::tree::slug(&ingredient.name), crate::tree::slug(&ingredient.tier))],
-        )?;
-        report.wiki_crafting_ingredient_count += 1;
-    }
     for (position, unlock) in crafting_system.unlocks.iter().enumerate() {
         unlock_record(unlock).write_unlock(
             transaction,
@@ -272,7 +265,7 @@ fn insert_crafting_system_contents(
         )?;
     }
     for (position, step) in crafting_system.steps.iter().enumerate() {
-        insert_crafting_step(transaction, references, crafting_system, system_id, step, position, effects)?;
+        insert_crafting_step(transaction, references, system_id, step, position, effects)?;
     }
     for (sort_order, recipe) in crafting_system.recipes.iter().enumerate() {
         insert_crafting_recipe(
@@ -347,9 +340,7 @@ fn insert_crafting_recipe(
     let yielded_ingredient = recipe
         .yields_ingredient
         .as_deref()
-        .map(|name| {
-            crate::tree::ingredient_id(transaction, Some(system_id), name, recipe.yields_variant.as_deref(), None)
-        })
+        .map(|name| crate::tree::ingredient_id(transaction, name, recipe.yields_variant.as_deref()))
         .transpose()?;
     let granted_slot_type_id = recipe
         .grants_slot
@@ -395,7 +386,7 @@ fn insert_crafting_recipe(
     for (position, unlock) in recipe.unlocks.iter().enumerate() {
         unlock_record(unlock).write_unlock(
             transaction,
-            crate::tree::CraftingUnlockOwner::Recipe { id: recipe_id, system_id },
+            crate::tree::CraftingUnlockOwner::Recipe(recipe_id),
             position as i64,
         )?;
     }
@@ -417,8 +408,7 @@ fn insert_crafting_recipe(
         }
     }
     for (sort_order, cost) in recipe.cost.iter().enumerate() {
-        let (ingredient_id, item_id) =
-            crafting_cost_references(transaction, crafting_system, system_id, &recipe.tier, cost)?;
+        let (ingredient_id, item_id) = crafting_cost_references(transaction, cost)?;
         transaction.execute(
             "INSERT INTO crafting_recipe_ingredients (recipe_id, ingredient_id, sort_order, quantity, item_id) VALUES (?1, ?2, ?3, ?4, ?5)",
             params![
@@ -436,31 +426,14 @@ fn insert_crafting_recipe(
 
 fn crafting_cost_references(
     transaction: &Transaction,
-    system: &CraftingSystem,
-    system_id: i64,
-    tier: &str,
     cost: &crate::wiki::IngredientCost,
 ) -> Result<(Option<i64>, Option<i64>)> {
-    let legacy_tier = cost
-        .ingredient
-        .as_deref()
-        .filter(|name| system.ingredients.iter().any(|ingredient| ingredient.name == *name))
-        .map(|name| system.ingredient_for(tier, name).map(|ingredient| ingredient.tier.as_str()))
-        .transpose()?;
-    crate::tree::cost_references(
-        transaction,
-        system_id,
-        cost.ingredient.as_deref(),
-        cost.item.as_deref(),
-        cost.variant.as_deref(),
-        legacy_tier,
-    )
+    crate::tree::cost_references(transaction, cost.ingredient.as_deref(), cost.item.as_deref(), cost.variant.as_deref())
 }
 
 fn insert_crafting_step(
     transaction: &Transaction,
     references: &OverlayReferences,
-    system: &CraftingSystem,
     system_id: i64,
     step: &crate::wiki::CraftingStep,
     position: usize,
@@ -511,8 +484,7 @@ fn insert_crafting_step(
     }
     let mut positions = std::collections::BTreeMap::new();
     for cost in &step.costs {
-        let (ingredient_id, item_id) =
-            crafting_cost_references(transaction, system, system_id, &cost.tier, &cost.cost)?;
+        let (ingredient_id, item_id) = crafting_cost_references(transaction, &cost.cost)?;
         let position = positions.entry(&cost.tier).or_insert(0_i64);
         transaction.execute("INSERT INTO crafting_step_costs (step_id,tier,sort_order,ingredient_id,item_id,quantity) VALUES (?1,?2,?3,?4,?5,?6)",params![step_id,cost.tier,*position,ingredient_id,item_id,cost.cost.quantity])?;
         *position += 1;

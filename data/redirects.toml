@@ -1,5 +1,3 @@
-retired = []
-
 [[redirect]]
 kind = "augment-slot-types"
 from = "crafting-primary-upgrade"

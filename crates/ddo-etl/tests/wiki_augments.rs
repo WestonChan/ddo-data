@@ -283,9 +283,6 @@ url = "https://ddowiki.com/page/Test_Named_Forge"
 read = "2026-10-01"
 [[family]]
 family = "Named"
-[[ingredient]]
-name = "Test Token"
-tier = "any"
 [[recipe]]
 tier = "legendary"
 option = "Test Gem"
@@ -298,6 +295,10 @@ quantity = 1
 "#,
         )
         .unwrap();
+        let ingredients = root.join("packs/shared/crafting/test-named-forge/ingredients");
+        std::fs::create_dir_all(&ingredients).unwrap();
+        std::fs::write(ingredients.join("test-token.toml"), "name = 'Test Token'\ntier = 'any'\ncitation = []\n")
+            .unwrap();
     });
     let wiki = WikiOverrides::from_database(&ours).unwrap();
     let (db, _) = built_db_with(&wiki).unwrap();

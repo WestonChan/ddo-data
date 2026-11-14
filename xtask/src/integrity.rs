@@ -2837,7 +2837,7 @@ fn empty_tables(db: &Connection, options: &IntegrityOptions) -> Result<Findings>
             notes.push("allowed empty: effect_aliases: aliases are optional; zero aliases is valid".to_string());
             continue;
         }
-        if matches!(table_name.as_str(), "redirects" | "retired_slugs") {
+        if table_name == "redirects" {
             continue;
         }
         let row_count: i64 = db.query_row(&format!("SELECT COUNT(*) FROM \"{table_name}\""), [], |row| row.get(0))?;

@@ -558,7 +558,6 @@ fn reader_emits_crafting_systems_with_their_ingredients_and_recipes() {
     assert_eq!(system.families, vec!["Greensteel_Heroic".to_string()]);
     assert_eq!(system.stations[0].name, "Altar of Invasion");
     assert!(system.pack.is_none());
-    assert!(system.ingredients.is_empty());
     assert_eq!(
         wiki.crafting_ingredients
             .iter()

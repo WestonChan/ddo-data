@@ -599,14 +599,7 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         .prepare("SELECT id,slug FROM items")?
         .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)))?
         .collect::<rusqlite::Result<BTreeMap<_, _>>>()?;
-    let mut option_lists = Vec::new();
     let mut set_options = BTreeMap::new();
-    let item_paths = entity_locations
-        .iter()
-        .filter(|(_, kind, _, _)| *kind == "items")
-        .map(|(path, _, _, id)| (*id, path.as_path()))
-        .collect::<BTreeMap<_, _>>();
-    let mut derived_set_locations = BTreeMap::new();
     for (path, file, id) in &inserted_files {
         match file {
             SourceFile::SocketOptionSet(file) => {
@@ -618,38 +611,8 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
             SourceFile::Item(file) => {
                 let id = id.context("item file has no identity")?;
                 file.insert_sockets(&transaction, path, id)?;
-                for (position, socket) in file.socket.iter().enumerate() {
-                    if !socket.option.is_empty() {
-                        option_lists.push(crate::build::SocketOptionList {
-                            label: socket.slot.clone(),
-                            options: socket.option.clone(),
-                            item_name: file.name.clone(),
-                            socket: (id, position as i64),
-                            item_slug: item_slugs[&id].clone(),
-                        });
-                    }
-                }
             }
             _ => {}
-        }
-    }
-    for group in crate::build::group_socket_options_into_sets(option_lists)? {
-        let id = stable_ids.issue("socket_option_sets", &group.slug, root)?;
-        transaction.execute("INSERT INTO socket_option_sets(id,slug,name,variant,slot_id) VALUES(?1,?2,?3,?4,(SELECT id FROM augment_slot_types WHERE label=?5))",rusqlite::params![id,group.slug,group.name,group.variant,group.label])?;
-        let carrier = group
-            .sockets
-            .iter()
-            .min_by_key(|(item, position)| (&item_slugs[item], position))
-            .context("a derived set has a carrier")?
-            .0;
-        let path = item_paths[&carrier];
-        derived_set_locations.insert(("socket_option_sets", id), path);
-        set_options.insert(group.slug, (id, group.options, path));
-        for (item, position) in group.sockets {
-            transaction.execute(
-                "UPDATE item_augment_slots SET option_set_id=?1 WHERE item_id=?2 AND sort_order=?3",
-                rusqlite::params![id, item, position],
-            )?;
         }
     }
     for (id, options, path) in set_options.values() {
@@ -945,9 +908,8 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
     )?;
     let socket_options = crate::build::SocketOptionTargets::from_database(&transaction)?;
     kinds::effect::EffectAlias::write_validated_slugs(&transaction, &groupings)?;
-    let mut effect_locations =
+    let effect_locations =
         entity_locations.iter().map(|(path, kind, _, id)| ((*kind, *id), path.as_path())).collect::<BTreeMap<_, _>>();
-    effect_locations.extend(derived_set_locations);
     kinds::effect::EffectAlias::validate_type_omissions(&transaction, &effect_locations)?;
     kinds::effect::EffectAlias::validate_links(&transaction, &effect_locations)?;
     let set_ids = transaction

@@ -48,24 +48,6 @@ pub fn redirect_violations(db: &Connection) -> Result<Vec<String>> {
             conflicting_entities.push((format!("redirect {kind} {from:?} -> {to:?}: from is current"), *identity));
         }
     }
-    let authored = RedirectsFile::from_rows(db)?;
-    for retired in &authored.retired {
-        let kind = retired.kind.as_str();
-        if !retired.slug.is_empty() && retired.slug.bytes().all(|byte| byte.is_ascii_digit()) {
-            violations
-                .push(format!("retired {kind} {:?} ({:?}): slug must not be all digits", retired.slug, retired.reason));
-        }
-        if let Some(identity) = current.get(&(retired.kind.table_name(), retired.slug.as_str())) {
-            conflicting_entities
-                .push((format!("retired {kind} {:?} ({:?}) is current", retired.slug, retired.reason), *identity));
-        }
-        if let Some(to) = targets.get(&(kind, retired.slug.as_str())) {
-            violations.push(format!(
-                "{kind} {:?} is both redirected to {to:?} and retired ({:?})",
-                retired.slug, retired.reason
-            ));
-        }
-    }
     if !conflicting_entities.is_empty() {
         let paths = super::DataFilePaths::from_database(db)?;
         for (message, identity) in conflicting_entities {
@@ -90,19 +72,22 @@ fn redirect_check_date(db: &Connection, today: Option<&str>) -> Result<String> {
 pub fn redirect_expiry_violations(db: &Connection, today: Option<&str>) -> Result<Vec<String>> {
     let today = redirect_check_date(db, today)?;
     let mut violations = Vec::new();
-    for (table, column) in [("redirects", "from_slug"), ("retired_slugs", "slug")] {
-        let mut select = db.prepare(&format!("SELECT kind, {column}, since, since > ?1 FROM {table} WHERE {EXPIRED_SINCE} OR since > ?1 ORDER BY kind, {column}"))?;
-        for row in select.query_map([&today], |row| {
-            Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?, row.get::<_, bool>(3)?))
-        })? {
-            let (kind, slug, since, future) = row?;
-            let (reason, remedy) = if future {
-                ("is in the future", "correct the date".to_string())
-            } else {
-                ("is older than 30 days", format!("prune expired rows with `{PRUNE_REDIRECTS_COMMAND}`"))
-            };
-            violations.push(format!("{table} {kind} {slug:?}: since {since} {reason} (today {today}); {remedy}"));
-        }
+    let mut select = db.prepare(&format!(
+        "WITH redirect_rows AS (SELECT {} FROM redirects)
+         SELECT kind, from_slug, since, since > ?1 FROM redirect_rows
+         WHERE {EXPIRED_SINCE} OR since > ?1 ORDER BY kind, from_slug",
+        super::kinds::redirects::Redirect::select_columns(),
+    ))?;
+    for row in select.query_map([&today], |row| {
+        Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?, row.get::<_, bool>(3)?))
+    })? {
+        let (kind, slug, since, future) = row?;
+        let (reason, remedy) = if future {
+            ("is in the future", "correct the date".to_string())
+        } else {
+            ("is older than 30 days", format!("prune expired rows with `{PRUNE_REDIRECTS_COMMAND}`"))
+        };
+        violations.push(format!("redirects {kind} {slug:?}: since {since} {reason} (today {today}); {remedy}"));
     }
     Ok(violations)
 }
@@ -117,10 +102,7 @@ pub fn prune_redirects(root: &Path, today: Option<&str>) -> Result<usize> {
     db.execute_batch(ddo_model::ddl())?;
     file.write_redirects(&db)?;
     let today = redirect_check_date(&db, today)?;
-    let mut pruned = 0;
-    for table in ["redirects", "retired_slugs"] {
-        pruned += db.execute(&format!("DELETE FROM {table} WHERE {EXPIRED_SINCE}"), [&today])?;
-    }
+    let pruned = db.execute(&format!("DELETE FROM redirects WHERE {EXPIRED_SINCE}"), [&today])?;
     let file = RedirectsFile::from_rows(&db)?;
     super::write_data_file(&path, &toml::to_string_pretty(&file)?)?;
     Ok(pruned)

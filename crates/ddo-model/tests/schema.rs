@@ -266,23 +266,46 @@ fn quests_carry_no_duration_and_no_xp_table_exists() {
 }
 
 #[test]
-fn crafting_tables_accept_only_the_four_crafting_tiers_and_one_ingredient_per_name_and_tier() {
+fn ingredient_names_and_variants_are_unique_without_an_owner() {
+    for variant in [None, Some("Heroic")] {
+        let db = fresh_db();
+        db.execute(
+            "INSERT INTO crafting_ingredients (name,variant,tier,slug) VALUES ('Crystal',?1,'any','first-crystal')",
+            [variant],
+        )
+        .unwrap();
+        let duplicate = db.execute(
+            "INSERT INTO crafting_ingredients (name,variant,tier,slug) VALUES ('Crystal',?1,'heroic','second-crystal')",
+            [variant],
+        );
+        assert!(duplicate.is_err(), "duplicate ingredient name and variant accepted: {variant:?}");
+        assert!(duplicate.unwrap_err().to_string().contains("UNIQUE"));
+        db.execute("INSERT INTO crafting_ingredients (name,variant,tier,slug) VALUES ('Crystal','Legendary','legendary','legendary-crystal')", []).unwrap();
+    }
+}
+
+#[test]
+fn crafting_tables_accept_only_the_four_crafting_tiers() {
     let db = fresh_db();
     db.execute("INSERT INTO crafting_systems (id, name, page, slug) VALUES (1, 'Green Steel', 'p', 'green-steel')", [])
         .unwrap();
     for tier in ["heroic", "epic", "legendary", "any"] {
-        db.execute("INSERT INTO crafting_ingredients (system_id, name, tier, slug) VALUES (1, 'Shard', ?1, 'green-steel-shard-' || ?1)", [tier]).unwrap();
+        db.execute(
+            "INSERT INTO crafting_ingredients (name, tier, slug) VALUES ('Shard ' || ?1, ?1, 'shard-' || ?1)",
+            [tier],
+        )
+        .unwrap();
         db.execute("INSERT INTO crafting_recipes (system_id, tier, option, sort_order) VALUES (1, ?1, 'x', 0)", [tier])
             .unwrap();
     }
     assert!(db
-        .execute("INSERT INTO crafting_ingredients (system_id, name, tier, slug) VALUES (1, 'Shard', 'heroic', 'green-steel-shard-heroic')", [])
-        .is_err());
-    assert!(db
         .execute(
-            "INSERT INTO crafting_ingredients (system_id, name, tier, slug) VALUES (1, 'Gem', 'mythic', 'gem')",
+            "INSERT INTO crafting_ingredients (name, tier, slug) VALUES ('Shard heroic', 'heroic', 'shard-heroic')",
             []
         )
+        .is_err());
+    assert!(db
+        .execute("INSERT INTO crafting_ingredients (name, tier, slug) VALUES ('Gem', 'mythic', 'gem')", [])
         .is_err());
     assert!(db
         .execute("INSERT INTO crafting_recipes (system_id, tier, option, sort_order) VALUES (1, 'mythic', 'x', 0)", [])
@@ -299,7 +322,7 @@ fn crafting_schema_db() -> Connection {
         INSERT INTO augment_slot_types (id, slug, label, family, variant) VALUES (1, 'tier-1', 'Tier 1', 'crafting', 'tier 1'), (2, 'tier-2', 'Tier 2', 'crafting', 'tier 2');
         INSERT INTO equipment_slots (id, name, slug, sort_order, category) VALUES (1, 'Off Hand', 'off-hand', 0, 'weapon');
         INSERT INTO items (id, name, slug, slot_id, item_category, wiki_url) VALUES (1, 'Orb', 'orb', 1, 'Weapon', 'https://ddowiki.com/page/Item:Orb');
-        INSERT INTO crafting_ingredients (id, system_id, name, slug, tier) VALUES (1, 1, 'Ingot', 'ingot', 'epic');
+        INSERT INTO crafting_ingredients (id, name, slug, tier) VALUES (1, 'Ingot', 'ingot', 'epic');
         INSERT INTO crafting_recipes (id, system_id, tier, option, sort_order) VALUES (1, 1, 'epic', 'Upgrade', 0);
         INSERT INTO effects (id, name, slug, verbose_name_template) VALUES (1, 'Orb Bonus', 'orb-bonus', 'Orb Bonus');
         INSERT INTO augments (id, name, slug, family) VALUES (1, 'Choice', 'choice', 'Thunderforged');

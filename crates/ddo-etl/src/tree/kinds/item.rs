@@ -1,5 +1,4 @@
 use super::super::file_types::*;
-use super::socket_option_set::SocketOption;
 use crate::tree::tables::Modifier;
 use anyhow::{ensure, Context, Result};
 use rusqlite::Connection;
@@ -96,10 +95,6 @@ database_record! {
         projected {
             #[serde(default, skip_serializing_if = "Option::is_none")]
             set_variant: Option<String> => "(SELECT variant FROM socket_option_sets WHERE id=item_augment_slots.option_set_id)",
-        }
-        attached {
-            #[serde(default, skip_serializing_if = "Vec::is_empty")]
-            option: Vec<SocketOption>,
         }
     }
 }
@@ -338,12 +333,6 @@ impl ItemFile {
 
     pub(in crate::tree) fn insert_sockets(&self, db: &Connection, path: &Path, id: i64) -> Result<usize> {
         for (position, socket) in self.socket.iter().enumerate() {
-            ensure!(
-                socket.option_set.is_none() || socket.option.is_empty(),
-                "{}: socket {:?} cannot carry both set and option rows",
-                path.display(),
-                socket.slot
-            );
             ensure!(
                 socket.option_set.is_some() || socket.set_variant.is_none(),
                 "{}: socket set_variant requires set",

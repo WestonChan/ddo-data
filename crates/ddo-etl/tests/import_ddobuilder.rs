@@ -2384,7 +2384,6 @@ fn overlay_catalog_identity_survives_insertion_order() {
     let mut system = wiki.crafting_systems[0].clone();
     system.name = "Ritual Table".into();
     system.families.clear();
-    system.ingredients.clear();
     system.recipes.clear();
     wiki.crafting_systems.push(system);
     for reversed in [false, true] {

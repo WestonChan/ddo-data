@@ -1,0 +1,13 @@
+label = "crafting: upgradeable tier 2"
+name = "Cutthroat's Smallblade (level 4)"
+
+[[option]]
+name = "+2 Enhancement Bonus"
+description = "+2 Enhancement Bonus: +2 enhancement bonus to attack and damage rolls."
+min_level = 4
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"

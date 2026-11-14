@@ -2,18 +2,13 @@ use anyhow::{Context, Result};
 use ddo_api::entity_slugs::resolve_entity_slug;
 use ddo_model::enums::EntityKind;
 use rusqlite::Connection;
-use std::collections::BTreeSet;
+use std::collections::BTreeMap;
 
-fn current_slugs(db: &Connection) -> Result<BTreeSet<(String, String)>> {
-    let mut slugs = BTreeSet::new();
-    let mut statement = db.prepare("SELECT kind, slug FROM entity_identity")?;
-    for row in statement.query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?)))? {
-        let (table, slug) = row?;
-        let kind = EntityKind::from_table_name(&table)
-            .with_context(|| format!("unknown entity identity kind {table:?} for {slug:?}"))?;
-        slugs.insert((kind.as_str().to_string(), slug));
-    }
-    Ok(slugs)
+fn slugs_for_unique_names(db: &Connection) -> Result<BTreeMap<(String, String), String>> {
+    db.prepare("SELECT kind,name,MIN(slug) FROM entity_identity GROUP BY kind,name HAVING COUNT(*)=1")?
+        .query_map([], |row| Ok(((row.get(0)?, row.get(1)?), row.get(2)?)))?
+        .collect::<rusqlite::Result<_>>()
+        .map_err(Into::into)
 }
 
 pub fn redirect_check_violations(
@@ -25,36 +20,18 @@ pub fn redirect_check_violations(
     let Some(deployed) = deployed else {
         return Ok(violations);
     };
-    let current = current_slugs(db)?;
-    let declared = db
-        .prepare("SELECT kind, from_slug FROM served_redirects UNION SELECT kind, slug FROM retired_slugs")?
-        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?)))?
-        .collect::<rusqlite::Result<BTreeSet<_>>>()?;
-    let mut exempt = declared.clone();
-    for (child_kind, owner_kind, foreign_key) in [
-        (EntityKind::EnhancementSelection, EntityKind::Enhancement, "enhancement_id"),
-        (EntityKind::CraftingIngredient, EntityKind::CraftingSystem, "system_id"),
-    ] {
-        let mut statement = deployed.prepare(&format!("SELECT child.slug, owner.slug FROM {} child JOIN entity_identity owner ON owner.kind = ?1 AND owner.entity_id = child.{foreign_key}", child_kind.table_name()))?;
-        for row in statement
-            .query_map([owner_kind.table_name()], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?)))?
-        {
-            let (child, owner) = row?;
-            if declared.contains(&(owner_kind.as_str().to_string(), owner)) {
-                exempt.insert((child_kind.as_str().to_string(), child));
-            }
+    let current = slugs_for_unique_names(db)?;
+    for ((table, name), previous_slug) in slugs_for_unique_names(deployed)? {
+        let Some(current_slug) = current.get(&(table.clone(), name.clone())) else {
+            continue;
+        };
+        if current_slug == &previous_slug {
+            continue;
         }
-    }
-    for slug in deployed
-        .prepare("SELECT slug FROM stances WHERE owner_kind <> 'standalone'")?
-        .query_map([], |row| row.get::<_, String>(0))?
-    {
-        exempt.insert((EntityKind::Stance.as_str().to_string(), slug?));
-    }
-    for (kind, slug) in current_slugs(deployed)?.difference(&current) {
-        let entity_kind = EntityKind::parse(kind).with_context(|| format!("unknown served entity kind {kind:?}"))?;
-        if !exempt.contains(&(kind.clone(), slug.clone())) && resolve_entity_slug(db, entity_kind, slug)?.is_none() {
-            violations.push(format!("{kind} {slug:?} was served by the deployed database but is missing; declare a redirect or retired row in data/redirects.toml"));
+        let kind = EntityKind::from_table_name(&table)
+            .with_context(|| format!("unknown entity identity kind {table:?} for {previous_slug:?}"))?;
+        if resolve_entity_slug(db, kind, &previous_slug)?.is_none_or(|resolved| resolved.slug != *current_slug) {
+            violations.push(format!("{} {name:?} kept its name but changed its served slug from {previous_slug:?} to {current_slug:?}; declare a redirect in data/redirects.toml", kind.as_str()));
         }
     }
     Ok(violations)

@@ -5,9 +5,6 @@ use xtask::redirect_checks::redirect_check_violations;
 #[path = "../../crates/ddo-api/tests/common/mod.rs"]
 mod common;
 
-#[path = "../../crates/ddo-api/tests/common/overlapping_owners.rs"]
-mod overlapping_owners;
-
 fn build(root: &Path) -> Connection {
     let mut db = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(root, &mut db).unwrap();
@@ -25,7 +22,7 @@ fn owned_stance_changes_need_no_redirect() {
     let root = folder.path().join("data");
     exported_fixture(&root);
     let deployed = build(&root);
-    deployed.execute_batch("DROP VIEW served_redirects; DROP TABLE redirects; DROP TABLE retired_slugs;").unwrap();
+    deployed.execute_batch("DROP VIEW served_redirects; DROP TABLE redirects;").unwrap();
     let path = walkdir::WalkDir::new(root.join("characters"))
         .into_iter()
         .map(Result::unwrap)
@@ -56,81 +53,6 @@ fn owned_stance_changes_need_no_redirect() {
     };
     assert_eq!(owned_slugs(&deployed).difference(&owned_slugs(&current)).count(), 1);
     assert!(redirect_check_violations(&current, Some(&deployed), Some("2026-10-31")).unwrap().is_empty());
-}
-
-#[test]
-fn schema_37_child_exemptions_follow_foreign_keys_not_slug_prefixes() {
-    for true_owner in ["foo", "foo-bar"] {
-        for declared_owner in ["foo", "foo-bar"] {
-            for disposition in ["redirect", "retired"] {
-                let folder = tempfile::tempdir().unwrap();
-                let root = folder.path().join("data");
-                exported_fixture(&root);
-                let tree_path = overlapping_owners::write_overlapping_owners(&root, true_owner);
-                let deployed = build(&root);
-                deployed
-                    .execute_batch("DROP VIEW served_redirects; DROP TABLE redirects; DROP TABLE retired_slugs;")
-                    .unwrap();
-                for owner in ["foo", "foo-bar"] {
-                    let directory = root.join(format!("packs/shared/crafting/{owner}"));
-                    let path = directory.join("crafting.toml");
-                    let mut system: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
-                    system.as_table_mut().unwrap().remove("ingredient");
-                    if owner == declared_owner {
-                        if disposition == "retired" {
-                            std::fs::remove_dir_all(directory).unwrap();
-                            continue;
-                        }
-                        system["name"] = format!("renamed-{owner}").into();
-                        let renamed = directory.with_file_name(format!("renamed-{owner}"));
-                        std::fs::rename(directory, &renamed).unwrap();
-                        std::fs::write(renamed.join("crafting.toml"), toml::to_string_pretty(&system).unwrap())
-                            .unwrap();
-                    } else {
-                        std::fs::write(path, toml::to_string_pretty(&system).unwrap()).unwrap();
-                    }
-                }
-                let mut tree: toml::Value = toml::from_str(&std::fs::read_to_string(&tree_path).unwrap()).unwrap();
-                let enhancements = tree["enhancement"].as_array_mut().unwrap();
-                if disposition == "retired" {
-                    enhancements.retain(|enhancement| enhancement["name"].as_str() != Some(declared_owner));
-                }
-                for enhancement in enhancements {
-                    if matches!(enhancement["name"].as_str(), Some("foo" | "foo-bar")) {
-                        enhancement.as_table_mut().unwrap().remove("selection");
-                        if enhancement["name"].as_str() == Some(declared_owner) {
-                            enhancement["name"] = format!("renamed-{declared_owner}").into();
-                            enhancement["internal_name"] = format!("renamed-{declared_owner}").into();
-                        }
-                    }
-                }
-                std::fs::write(tree_path, toml::to_string_pretty(&tree).unwrap()).unwrap();
-                let declarations = ["crafting-systems", "enhancements"].map(|kind| {
-                    if disposition == "redirect" {
-                        format!("[[redirect]]\nkind = {kind:?}\nfrom = {declared_owner:?}\nto = \"renamed-{declared_owner}\"\nsince = '2026-10-01'\n")
-                    } else {
-                        format!("[[retired]]\nkind = {kind:?}\nslug = {declared_owner:?}\nsince = '2026-10-01'\nreason = 'Retired owner'\n")
-                    }
-                }).join("\n");
-                std::fs::write(root.join("redirects.toml"), declarations).unwrap();
-                let current = build(&root);
-                let violations = redirect_check_violations(&current, Some(&deployed), Some("2026-10-31")).unwrap();
-                if true_owner == declared_owner {
-                    assert!(violations.is_empty(), "{true_owner} {disposition}: {violations:?}");
-                } else {
-                    assert_eq!(violations.len(), 2, "{true_owner} {declared_owner} {disposition}: {violations:?}");
-                    for kind in ["enhancement-selections", "crafting-ingredients"] {
-                        assert!(
-                            violations
-                                .iter()
-                                .any(|violation| violation.contains(kind) && violation.contains("foo-bar-baz")),
-                            "{violations:?}"
-                        );
-                    }
-                }
-            }
-        }
-    }
 }
 
 #[test]
@@ -171,75 +93,68 @@ fn a_previously_served_effect_slug_can_become_a_permanent_alias() {
     std::fs::write(canonical_path, canonical).unwrap();
     let current = build(&root);
     let violations = redirect_check_violations(&current, Some(&deployed), Some("2026-10-31")).unwrap();
-    assert_eq!(violations.len(), 1, "{violations:?}");
-    assert!(violations[0].contains("effects") && violations[0].contains("previous-title"), "{violations:?}");
+    assert!(violations.is_empty(), "{violations:?}");
 }
 
 #[test]
-fn vanished_slug_requires_a_redirect_or_retirement_against_schema_37() {
-    let folder = tempfile::tempdir().unwrap();
-    let root = folder.path().join("data");
-    exported_fixture(&root);
-    let gear = root.join("packs/unsourced/gear");
-    std::fs::create_dir_all(&gear).unwrap();
-    let old_file = gear.join("vanished-fixture.toml");
-    let contents = "name = 'Vanished fixture'\nslot = 'Feet'\nitem_category = 'Clothing'\nwiki_url = 'https://ddowiki.com/page/Item:Vanished_fixture'\nminimum_level = 1\n";
-    std::fs::write(&old_file, contents).unwrap();
-    let deployed = build(&root);
-    deployed.execute_batch("DROP VIEW served_redirects; DROP TABLE redirects; DROP TABLE retired_slugs;").unwrap();
-    std::fs::remove_file(old_file).unwrap();
-    let current_file = gear.join("current-fixture.toml");
-    std::fs::write(&current_file, contents.replace("Vanished fixture", "Current fixture")).unwrap();
-    let current = build(&root);
-    let violations = redirect_check_violations(&current, Some(&deployed), Some("2026-10-31")).unwrap();
-    assert_eq!(violations.len(), 1, "{violations:?}");
-    assert!(violations[0].contains("items") && violations[0].contains("vanished-fixture"));
-    let current_path = folder.path().join("current.db");
-    let deployed_path = folder.path().join("deployed.db");
-    current.execute("VACUUM INTO ?1", [current_path.to_str().unwrap()]).unwrap();
-    deployed.execute("VACUUM INTO ?1", [deployed_path.to_str().unwrap()]).unwrap();
-    let output = std::process::Command::new(env!("CARGO_BIN_EXE_xtask"))
-        .args([
-            "check-redirects",
-            "--db",
-            current_path.to_str().unwrap(),
-            "--deployed",
-            deployed_path.to_str().unwrap(),
-            "--today",
-            "2026-10-31",
-        ])
-        .output()
-        .unwrap();
-    assert!(!output.status.success());
-    let error = String::from_utf8(output.stderr).unwrap();
-    assert!(error.contains("items") && error.contains("vanished-fixture"), "{error}");
-    std::fs::write(
-        root.join("redirects.toml"),
-        "[[redirect]]\nkind = 'items'\nfrom = 'vanished-fixture'\nto = 'current-fixture'\nsince = '2026-10-01'\n",
-    )
-    .unwrap();
-    let current = build(&root);
-    assert!(redirect_check_violations(&current, Some(&deployed), Some("2026-10-31")).unwrap().is_empty());
-    for today in ["2026-09-30", "2026-11-01"] {
-        let violations = redirect_check_violations(&current, None, Some(today)).unwrap();
-        assert_eq!(violations.len(), 1);
-        assert!(violations[0].contains("vanished-fixture"));
-        assert_eq!(violations[0].contains("prune-redirects"), today == "2026-11-01");
-        assert_eq!(violations[0].contains("correct the date"), today == "2026-09-30");
-    }
-    std::fs::remove_file(current_file).unwrap();
-    std::fs::write(
-        root.join("redirects.toml"),
-        "[[retired]]\nkind = 'items'\nslug = 'vanished-fixture'\nsince = '2026-10-01'\nreason = 'Retired fixture'\n",
-    )
-    .unwrap();
-    let current = build(&root);
-    assert!(redirect_check_violations(&current, Some(&deployed), Some("2026-10-31")).unwrap().is_empty());
-    for today in ["2026-09-30", "2026-11-01"] {
-        let violations = redirect_check_violations(&current, None, Some(today)).unwrap();
-        assert_eq!(violations.len(), 1);
-        assert!(violations[0].contains("vanished-fixture"));
-        assert_eq!(violations[0].contains("prune-redirects"), today == "2026-11-01");
-        assert_eq!(violations[0].contains("correct the date"), today == "2026-09-30");
+fn deployed_addresses_follow_unique_kept_names() {
+    for (previous_variants, current_variants, current_name, redirected, expected) in [
+        (vec![None], vec![Some("New")], "Address fixture", false, 1),
+        (vec![None], vec![Some("New")], "Address fixture", true, 0),
+        (vec![None], vec![Some("New")], "Renamed fixture", false, 0),
+        (vec![None], vec![], "Address fixture", false, 0),
+        (vec![None, Some("Old")], vec![Some("New")], "Address fixture", false, 0),
+        (vec![None], vec![Some("New"), Some("Other")], "Address fixture", false, 0),
+    ] {
+        let folder = tempfile::tempdir().unwrap();
+        let root = folder.path().join("data");
+        exported_fixture(&root);
+        let write_ingredients = |name: &str, variants: &[Option<&str>]| {
+            let system = root.join("packs/shared/crafting/address-checks");
+            std::fs::create_dir_all(system.join("ingredients")).unwrap();
+            let mut recipes =
+                String::from("name='Address checks'\npage='https://ddowiki.com/page/Address_checks'\ncitation=[]\n");
+            for (position, variant) in variants.iter().enumerate() {
+                recipes.push_str(&format!("[[recipe]]\noption='Recipe {position}'\ntier='any'\n[[recipe.ingredient]]\ningredient={name:?}\nquantity=1\n"));
+                if let Some(variant) = variant {
+                    recipes.push_str(&format!("variant={variant:?}\n"));
+                }
+            }
+            std::fs::write(system.join("crafting.toml"), recipes).unwrap();
+            variants
+                .iter()
+                .map(|variant| {
+                    let slug = ddo_model::identity::slug(
+                        &variant.map_or_else(|| name.to_string(), |variant| format!("{name} ({variant})")),
+                    );
+                    let path = system.join(format!("ingredients/{slug}.toml"));
+                    let variant = variant.map_or(String::new(), |variant| format!("variant={variant:?}\n"));
+                    std::fs::write(&path, format!("name={name:?}\n{variant}tier='any'\ncitation=[]\n")).unwrap();
+                    path
+                })
+                .collect::<Vec<_>>()
+        };
+        let previous = write_ingredients("Address fixture", &previous_variants);
+        let deployed = build(&root);
+        for path in previous {
+            std::fs::remove_file(path).unwrap();
+        }
+        write_ingredients(current_name, &current_variants);
+        if redirected {
+            std::fs::write(root.join("redirects.toml"), "[[redirect]]\nkind='crafting-ingredients'\nfrom='address-fixture'\nto='address-fixture-new'\nsince='2026-10-01'\n").unwrap();
+        }
+        let current = build(&root);
+        let violations = redirect_check_violations(&current, Some(&deployed), Some("2026-10-31")).unwrap();
+        assert_eq!(
+            violations.len(),
+            expected,
+            "{previous_variants:?} -> {current_name} {current_variants:?}, redirected={redirected}: {violations:?}"
+        );
+        if expected != 0 {
+            assert!(
+                violations[0].contains("crafting-ingredients") && violations[0].contains("address-fixture"),
+                "{violations:?}"
+            );
+        }
     }
 }

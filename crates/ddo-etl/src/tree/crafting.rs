@@ -77,27 +77,8 @@ pub(crate) fn recipe_focus_path(note: &str) -> Option<String> {
         .map(|(page_code, _)| page_code.to_string())
 }
 
-pub(crate) fn ingredient_id(
-    db: &Connection,
-    system_id: Option<i64>,
-    name: &str,
-    variant: Option<&str>,
-    tier: Option<&str>,
-) -> Result<i64> {
-    let mut query=db.prepare_cached("SELECT id,variant,tier FROM crafting_ingredients WHERE name=?1 AND (system_id=?2 OR system_id IS NULL) AND (?3 IS NULL OR variant=?3) AND (?4 IS NULL OR tier=?4)")?;
-    let mut matches = query
-        .query_map(params![name, system_id, variant, tier], |row| {
-            Ok((row.get::<_, i64>(0)?, row.get::<_, Option<String>>(1)?, row.get::<_, String>(2)?))
-        })?
-        .collect::<rusqlite::Result<Vec<_>>>()?;
-    prefer_unqualified(&mut matches, variant, |row| row.1.as_deref());
-    ensure!(
-        matches.len() == 1,
-        "ingredient {name:?} matched {} rows: {:?}; specify its variant or legacy tier when ambiguous",
-        matches.len(),
-        matches.iter().map(|(_, variant, tier)| (variant, tier)).collect::<Vec<_>>()
-    );
-    Ok(matches[0].0)
+pub(crate) fn ingredient_id(db: &Connection, name: &str, variant: Option<&str>) -> Result<i64> {
+    qualified_reference_id(db, "crafting_ingredients", name, variant)
 }
 
 pub(crate) fn qualified_reference_id(
@@ -123,15 +104,13 @@ pub(crate) fn qualified_reference_id(
 
 pub(crate) fn cost_references(
     db: &Connection,
-    system_id: i64,
     ingredient: Option<&str>,
     item: Option<&str>,
     variant: Option<&str>,
-    tier: Option<&str>,
 ) -> Result<(Option<i64>, Option<i64>)> {
     ensure!(ingredient.is_some() != item.is_some(), "a cost row must name exactly one ingredient or item");
     Ok(match (ingredient, item) {
-        (Some(name), None) => (Some(ingredient_id(db, Some(system_id), name, variant, tier)?), None),
+        (Some(name), None) => (Some(ingredient_id(db, name, variant)?), None),
         (None, Some(name)) => (None, Some(qualified_reference_id(db, "items", name, variant)?)),
         _ => unreachable!("validated cost reference"),
     })

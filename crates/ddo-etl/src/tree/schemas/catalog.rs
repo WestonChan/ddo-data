@@ -159,11 +159,6 @@ impl Catalog {
                             variant,
                         ),
                         "enhancement_selections" | "stances" => ddo_model::identity::nested_slug(owner_slug, name),
-                        "crafting_ingredients" if !owner_slug.is_empty() => format!(
-                            "{owner_slug}-{}-{}",
-                            slug(name),
-                            slug(fields.get("tier").and_then(toml::Value::as_str).unwrap_or_default())
-                        ),
                         "augment_slot_types" => slug(name),
                         "socket_option_sets" => crate::tree::socket_option_set_slug(
                             fields.get("label").and_then(toml::Value::as_str).unwrap_or_default(),

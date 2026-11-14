@@ -289,19 +289,6 @@ pub(crate) fn assign_xml_entity_slugs(db: &Connection) -> Result<()> {
         let identity = format!("{enhancement_slug}-{}", slug(&name));
         db.execute("UPDATE enhancement_selections SET slug = ?1 WHERE id = ?2", rusqlite::params![identity, id])?;
     }
-    let mut ingredients = db.prepare(
-        "SELECT i.id, s.slug, i.name, i.tier FROM crafting_ingredients i
-         JOIN crafting_systems s ON s.id = i.system_id ORDER BY i.id",
-    )?;
-    let ingredient_rows = ingredients
-        .query_map([], |row| {
-            Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?, row.get::<_, String>(3)?))
-        })?
-        .collect::<rusqlite::Result<Vec<_>>>()?;
-    for (id, system_slug, name, tier) in ingredient_rows {
-        let identity = format!("{system_slug}-{}-{}", slug(&name), slug(&tier));
-        db.execute("UPDATE crafting_ingredients SET slug = ?1 WHERE id = ?2", rusqlite::params![identity, id])?;
-    }
     for table in NAMED_ENTITY_TABLES {
         let missing: i64 =
             db.query_row(&format!("SELECT COUNT(*) FROM {table} WHERE slug IS NULL"), [], |row| row.get(0))?;

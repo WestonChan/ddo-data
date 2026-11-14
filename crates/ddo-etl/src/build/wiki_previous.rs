@@ -51,10 +51,7 @@ pub(super) fn omit_unresolved_previous_facts(
     known.extend(wiki.items.iter().map(|item| ("items".into(), item.name.clone())));
     known.extend(wiki.augments.iter().map(|augment| ("augments".into(), augment.name.clone())));
     known.extend(
-        wiki.crafting_ingredients
-            .iter()
-            .chain(wiki.crafting_systems.iter().flat_map(|system| &system.ingredients))
-            .map(|ingredient| ("crafting_ingredients".into(), ingredient.name.clone())),
+        wiki.crafting_ingredients.iter().map(|ingredient| ("crafting_ingredients".into(), ingredient.name.clone())),
     );
     let mut references = PreviousReferences { known, early };
     wiki.quests.retain(|quest| {

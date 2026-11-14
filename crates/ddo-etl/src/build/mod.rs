@@ -16,7 +16,7 @@ pub use modifiers::{stat_links_at_routed_types, StatLinkRoute};
 mod quest_series;
 mod sets;
 mod socket_option_sets;
-pub(crate) use socket_option_sets::{group_socket_options_into_sets, SocketOptionList};
+pub(crate) use socket_option_sets::SocketOptionList;
 pub use socket_option_sets::{ExistingSocketOptionSets, CARRIERLESS_SOCKET_OPTION_SETS};
 mod trees_spells;
 mod vendors_and_events;

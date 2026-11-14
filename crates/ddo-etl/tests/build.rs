@@ -89,8 +89,8 @@ fn socket_option_sets_follow_their_free_to_play_carriers_patron() {
 }
 
 #[test]
-fn the_transitional_reader_keeps_no_set_for_a_removed_socket() {
-    let db = fixture::database(|root| {
+fn gear_files_reject_per_item_socket_options() {
+    let error = fixture::data_build_error(|root| {
         let set_path = root.join("packs/shared/sockets/crafting-nearly-finished/celestial-emerald-ring.toml");
         let option_set: toml::Value = toml::from_str(&std::fs::read_to_string(&set_path).unwrap()).unwrap();
         let path = root.join("packs/unsourced/gear/celestial-emerald-ring.toml");
@@ -113,25 +113,11 @@ fn the_transitional_reader_keeps_no_set_for_a_removed_socket() {
         });
         std::fs::write(system_path, toml::to_string(&system).unwrap()).unwrap();
         std::fs::write(&path, toml::to_string(&ring).unwrap()).unwrap();
-        let mut before = Connection::open_in_memory().unwrap();
-        ddo_etl::tree::build_from_data(root, &mut before).unwrap();
-        assert_eq!(count(&before, "SELECT COUNT(*) FROM socket_option_sets WHERE name='Celestial Emerald Ring'"), 1);
-        assert_eq!(count(&before, "SELECT COUNT(*) FROM socket_options o JOIN socket_option_sets s ON s.id=o.set_id WHERE s.name='Celestial Emerald Ring'"), 3);
-        ring["socket"]
-            .as_array_mut()
-            .unwrap()
-            .retain(|socket| socket["slot"].as_str() != Some("crafting: nearly finished"));
-        let note: toml::Value = toml::from_str("kind='item_socket'\nfield='remove'\nqualifier='socket \"crafting: nearly finished\"'\nupstream=0\nreason='Remove the socket.'\nin_game=true\nread='2026-11-11'").unwrap();
-        ring.as_table_mut()
-            .unwrap()
-            .entry("ddobuilder_correction")
-            .or_insert(toml::Value::Array(vec![]))
-            .as_array_mut()
-            .unwrap()
-            .push(note);
-        std::fs::write(path, toml::to_string(&ring).unwrap()).unwrap();
     });
-    assert_eq!(count(&db, "SELECT COUNT(*) FROM socket_option_sets WHERE name='Celestial Emerald Ring'"), 0);
+    assert!(
+        error.contains("packs/unsourced/gear/celestial-emerald-ring.toml") && error.contains("unknown field `option`"),
+        "{error:?}"
+    );
 }
 
 #[test]
@@ -429,7 +415,15 @@ fn shared_ingredient_files_are_used_by_several_systems() {
             std::fs::write(path,format!("{original}\n[[recipe]]\noption='Shared ingredient recipe'\ntier='any'\n[[recipe.ingredient]]\ningredient='Shared Test Thread'\nquantity=3\n")).unwrap();
         }
     });
-    assert_eq!(db.query_row("SELECT COUNT(*) FROM crafting_ingredients WHERE name='Shared Test Thread' AND system_id IS NULL AND slug='shared-test-thread'",[],|row|row.get::<_,i64>(0)).unwrap(),1);
+    assert_eq!(
+        db.query_row(
+            "SELECT COUNT(*) FROM crafting_ingredients WHERE name='Shared Test Thread' AND slug='shared-test-thread'",
+            [],
+            |row| row.get::<_, i64>(0)
+        )
+        .unwrap(),
+        1
+    );
     assert_eq!(db.query_row("SELECT COUNT(DISTINCT r.system_id) FROM crafting_recipe_ingredients c JOIN crafting_recipes r ON r.id=c.recipe_id JOIN crafting_ingredients i ON i.id=c.ingredient_id WHERE i.name='Shared Test Thread'",[],|row|row.get::<_,i64>(0)).unwrap(),2);
 }
 

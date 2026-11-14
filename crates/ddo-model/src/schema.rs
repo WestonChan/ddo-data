@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 49;
+pub const SCHEMA_VERSION: i64 = 50;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -222,24 +222,12 @@ CREATE TABLE IF NOT EXISTS redirects (
     PRIMARY KEY (kind, from_slug)
 );
 
-CREATE TABLE IF NOT EXISTS retired_slugs (
-    kind TEXT NOT NULL CHECK (kind {entity_kind}),
-    slug TEXT NOT NULL CHECK (length(slug) > 0),
-    since TEXT NOT NULL CHECK (since GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]' AND date(since, '+0 days') IS since),
-    reason TEXT NOT NULL CHECK (length(trim(reason)) > 0),
-    PRIMARY KEY (kind, slug)
-);
-
 CREATE VIEW IF NOT EXISTS served_redirects AS
 SELECT kind, from_slug, to_slug, since FROM redirects
 UNION ALL
 SELECT 'enhancement-selections', r.from_slug || substr(child.slug, length(owner.slug) + 1), child.slug, r.since
 FROM redirects r JOIN enhancements owner ON r.kind = 'enhancements' AND owner.slug = r.to_slug
-JOIN enhancement_selections child ON child.enhancement_id = owner.id
-UNION ALL
-SELECT 'crafting-ingredients', r.from_slug || substr(child.slug, length(owner.slug) + 1), child.slug, r.since
-FROM redirects r JOIN crafting_systems owner ON r.kind = 'crafting-systems' AND owner.slug = r.to_slug
-JOIN crafting_ingredients child ON child.system_id = owner.id;
+JOIN enhancement_selections child ON child.enhancement_id = owner.id;
 
 -- Seed tables ----------------------------------------------------------------
 
@@ -1558,14 +1546,13 @@ CREATE TABLE IF NOT EXISTS crafting_ingredients (
     id        INTEGER PRIMARY KEY,
     slug TEXT NOT NULL UNIQUE,
     variant TEXT,
-    system_id INTEGER REFERENCES crafting_systems(id) ON DELETE CASCADE,
-    sort_order INTEGER NOT NULL DEFAULT 0,
     name      TEXT    NOT NULL,
     tier      TEXT    NOT NULL CHECK (tier {crafting_tier}),
     bind      TEXT,                                    -- as the wiki writes it
-    source    TEXT,                                    -- where it drops, free text
-    UNIQUE (system_id, name, tier)
+    source    TEXT                                     -- where it drops, free text
 );
+CREATE UNIQUE INDEX IF NOT EXISTS idx_crafting_ingredients_name_variant
+    ON crafting_ingredients(name, COALESCE(variant, ''));
 
 -- One row of a wiki recipe table: what `option` costs and the augments or socket it yields.
 CREATE TABLE IF NOT EXISTS crafting_recipes (

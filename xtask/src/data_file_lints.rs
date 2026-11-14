@@ -1,19 +1,18 @@
 use anyhow::{bail, Context};
 use ddo_etl::corrections::CorrectionValue;
-use ddo_etl::tree::{AppliedCorrection, Citation, EntityIdentity, PackException, Redirect, RemovedEntry, RetiredSlug};
+use ddo_etl::tree::{AppliedCorrection, Citation, EntityIdentity, PackException, Redirect, RemovedEntry};
 use ra_ap_rustc_lexer::{tokenize, FrontmatterAllowed, LiteralKind, TokenKind};
 use std::collections::BTreeSet;
 use std::path::{Path, PathBuf};
 use walkdir::WalkDir;
 
-const ANNOTATION_TABLES: [&str; 7] = [
+const ANNOTATION_TABLES: [&str; 6] = [
     PackException::TABLE,
     AppliedCorrection::TABLE,
     Citation::TABLE,
     RemovedEntry::TABLE,
     EntityIdentity::TABLE,
     Redirect::TABLE,
-    RetiredSlug::TABLE,
 ];
 
 const DECLARED_ANNOTATION_TABLES: [&str; 3] = [AppliedCorrection::TABLE, Citation::TABLE, RemovedEntry::TABLE];

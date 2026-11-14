@@ -489,7 +489,7 @@ impl ExportLayout {
             let (ingredient, system) = row?;
             ingredient_systems.entry(ingredient).or_default().insert(system);
         }
-        let mut ingredients = db.prepare("SELECT id,slug,name FROM crafting_ingredients WHERE system_id IS NULL")?;
+        let mut ingredients = db.prepare("SELECT id,slug,name FROM crafting_ingredients")?;
         for row in ingredients
             .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))?
         {
@@ -791,7 +791,6 @@ pub(super) const FIXED_DATA_FILES: &[(&str, &str)] = &[
     ("item_materials", "effects/item-materials.toml"),
     ("optional_buffs", "characters/optional-buffs.toml"),
     ("redirects", "redirects.toml"),
-    ("retired_slugs", "redirects.toml"),
     ("source_aliases", "upstream/source-aliases.toml"),
     ("stances", "characters/stances.toml"),
     ("triggers", "effects/triggers.toml"),
