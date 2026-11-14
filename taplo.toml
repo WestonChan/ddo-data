@@ -55,7 +55,8 @@ path = "data/.schemas/crafting-system.schema.json"
 include = [
     "data/packs/*/crafting/*/ingredients/*.toml",
     "data/packs/free-to-play/*/crafting/*/ingredients/*.toml",
-    "data/packs/shared/crafting/ingredients/*.toml",
+    "data/packs/*/crafting/ingredients/*.toml",
+    "data/packs/free-to-play/*/crafting/ingredients/*.toml",
 ]
 
 [rule.schema]

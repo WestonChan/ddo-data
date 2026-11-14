@@ -37,11 +37,6 @@ kind = "pack"
 pack = "The Temple of Elemental Evil"
 text = "Ownership of or temporary access to this pack is required to use the Sealed Altar crafting system, because the Globes of Slime come from it."
 
-[[unlock]]
-kind = "level"
-value = 11
-text = "Level 11 or higher."
-
 [[step]]
 name = "Item upgrade"
 

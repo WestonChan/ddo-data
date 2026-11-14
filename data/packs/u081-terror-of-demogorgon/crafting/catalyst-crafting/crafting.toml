@@ -11,11 +11,6 @@ kind = "pack"
 pack = "Terror of Demogorgon"
 text = "Access to the Terror of Demogorgon expansion is still required to use the Catalysts, which are Unbound and tradeable."
 
-[[unlock]]
-kind = "level"
-value = 11
-text = "Level 11 or higher; the crafted items are ML11 (heroic) or ML35 (legendary)."
-
 [[step]]
 name = "Item upgrade"
 

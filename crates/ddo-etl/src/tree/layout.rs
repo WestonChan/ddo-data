@@ -163,18 +163,14 @@ fn narrowest_folder(
 ) -> Result<PathBuf> {
     match placement {
         FolderPlacement::SocketOptionSet { items, label } => {
-            let packs = items.iter().map(|id| pack_folder(&paths[&("items".into(), *id)])).collect::<BTreeSet<_>>();
-            let pack = if packs.len() == 1 && packs.first().unwrap() != Path::new("packs/unsourced") {
-                packs.first().unwrap().clone()
-            } else {
-                PathBuf::from("packs/shared")
-            };
+            let pack = common_pack_folder(items.iter().map(|id| &paths[&("items".into(), *id)]));
             Ok(pack.join("sockets").join(slug(label)))
         }
         FolderPlacement::CraftingIngredient(systems) => Ok(if systems.len() == 1 {
             paths[&("crafting_systems".into(), *systems.first().unwrap())].parent().unwrap().join("ingredients")
         } else {
-            PathBuf::from("packs/shared/crafting/ingredients")
+            common_pack_folder(systems.iter().map(|id| &paths[&("crafting_systems".into(), *id)]))
+                .join("crafting/ingredients")
         }),
         FolderPlacement::Pack(name) => Ok(folders[name].clone()),
         FolderPlacement::Quest { pack, patron, identity } => {
@@ -297,6 +293,15 @@ fn narrowest_folder(
             PathBuf::from("characters").join(kind)
         }),
         FolderPlacement::Effect(kind) => Ok(PathBuf::from("effects").join(kind)),
+    }
+}
+
+fn common_pack_folder<'a>(paths: impl Iterator<Item = &'a PathBuf>) -> PathBuf {
+    let packs = paths.map(|path| pack_folder(path)).collect::<BTreeSet<_>>();
+    if packs.len() == 1 && packs.first().unwrap() != Path::new("packs/unsourced") {
+        packs.first().unwrap().clone()
+    } else {
+        PathBuf::from("packs/shared")
     }
 }
 
@@ -951,6 +956,35 @@ impl DataFilePaths {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn ingredients_used_by_multiple_systems_share_the_narrowest_pack() {
+        for (first_pack, second_pack, expected) in [
+            ("u039-first", "u040-second", "packs/shared/crafting/ingredients"),
+            ("unsourced", "unsourced", "packs/shared/crafting/ingredients"),
+            ("u039-first", "u039-first", "packs/u039-first/crafting/ingredients"),
+        ] {
+            let paths = BTreeMap::from([
+                (
+                    ("crafting_systems".into(), 1),
+                    PathBuf::from(format!("packs/{first_pack}/crafting/first/crafting.toml")),
+                ),
+                (
+                    ("crafting_systems".into(), 2),
+                    PathBuf::from(format!("packs/{second_pack}/crafting/second/crafting.toml")),
+                ),
+            ]);
+            let folder = narrowest_folder(
+                FolderPlacement::CraftingIngredient(&BTreeSet::from([1, 2])),
+                &BTreeMap::new(),
+                &paths,
+                &toml::from_str("").unwrap(),
+                &[],
+            )
+            .unwrap();
+            assert_eq!(folder, Path::new(expected), "{first_pack}, {second_pack}");
+        }
+    }
 
     #[test]
     fn filigree_sets_keep_all_members_together_and_resolve_existing_aliases() {
