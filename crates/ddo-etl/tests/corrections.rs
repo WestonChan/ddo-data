@@ -1692,7 +1692,7 @@ fn socket_option_targets_are_loaded_once_for_one_and_fifty_owners() {
 }
 
 #[test]
-fn shared_option_corrections_keep_every_carriers_source() {
+fn item_file_option_corrections_belong_on_the_set_file() {
     let source = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data");
     let root = tempfile::tempdir().unwrap();
     for entry in
@@ -1724,54 +1724,15 @@ fn shared_option_corrections_keep_every_carriers_source() {
     }
     std::fs::write(set_path, toml::to_string(&option_set).unwrap()).unwrap();
     let mut db = Connection::open_in_memory().unwrap();
-    ddo_etl::tree::build_from_data(root.path(), &mut db).unwrap();
-    let gauntlets_slug: String = db.query_row("SELECT s.slug FROM socket_option_sets s JOIN item_augment_slots l ON l.option_set_id=s.id JOIN items i ON i.id=l.item_id WHERE i.name='Gauntlets of Eternity'", [], |row| row.get(0)).unwrap();
-    let correction_owner: String = db
-        .query_row(
-            "SELECT name FROM corrections WHERE name=?1 AND kind='socket_option_bonus' AND field='lines'",
-            [&gauntlets_slug],
-            |row| row.get(0),
-        )
-        .unwrap();
-    assert_eq!(correction_owner, gauntlets_slug);
-    let lines = db.prepare("SELECT e.name,l.value FROM socket_option_effects l JOIN effects e ON e.id=l.effect_id JOIN socket_options o ON o.id=l.option_id JOIN socket_option_sets s ON s.id=o.set_id WHERE s.slug=?1 AND e.name IN ('Heal','Repair') ORDER BY e.name").unwrap().query_map([&gauntlets_slug], |row|Ok((row.get::<_,String>(0)?,row.get::<_,i64>(1)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
-    assert_eq!(lines, [("Heal".into(), 15), ("Repair".into(), 15)]);
-    let slug = "crafting-variant-shield-of-morning-level-17";
-    let sources: Vec<String> = db
-        .prepare("SELECT source FROM corrections WHERE name=?1 AND kind='socket_option_bonus' AND field='lines'")
-        .unwrap()
-        .query_map([slug], |row| row.get(0))
-        .unwrap()
-        .collect::<rusqlite::Result<_>>()
-        .unwrap();
-    assert_eq!(sources, ["https://ddowiki.com/page/Item:Shield_of_Morning_(level_17)"]);
-    let count: i64 = db.query_row("SELECT COUNT(*) FROM citations c JOIN socket_option_sets s ON s.id=c.owner_id WHERE c.owner_kind='socket_option_sets' AND s.slug=?1 AND c.field='option' AND c.note='Preserved from Shield of Morning (Level 18).' AND c.url='https://ddowiki.com/page/Item:Shield_of_Morning_(level_18)'", [slug], |row| row.get(0)).unwrap();
-    assert_eq!(count, 1);
-    let path = root
-        .path()
-        .join("packs/u019-shadowfell-conspiracy/quests/breaking-the-ranks/gear/shield-of-morning-level-18.toml");
-    let original = std::fs::read_to_string(&path).unwrap();
-    std::fs::write(&path, original.replace("R13 confirms", "A disagreeing reason confirms")).unwrap();
-    let error = format!(
-        "{:#}",
-        ddo_etl::tree::build_from_data(root.path(), &mut Connection::open_in_memory().unwrap()).unwrap_err()
-    );
-    for expected in ["conflicting notes", "shield-of-morning-level-17.toml", "shield-of-morning-level-18.toml"] {
+    let error = format!("{:#}", ddo_etl::tree::build_from_data(root.path(), &mut db).map(|_| ()).unwrap_err());
+    for expected in [
+        "shield-of-morning-level-17.toml",
+        "shield-of-morning-level-18.toml",
+        "shield-of-morning-level-19.toml",
+        "socket option correction belongs on the set file",
+    ] {
         assert!(error.contains(expected), "{error}");
     }
-    let exported = tempfile::tempdir().unwrap();
-    ddo_etl::tree::export_database(&db, exported.path()).unwrap();
-    ddo_etl::tree::schemas::validate_source_fields(exported.path()).unwrap();
-    ddo_etl::tree::export_database(&db, root.path()).unwrap();
-    let ring_path = root.path().join(
-        "packs/u012-vaults-of-the-artificers/crafting/vaults-of-the-artificers/gear/ring-of-the-stalker-level-11.toml",
-    );
-    let ring = std::fs::read_to_string(&ring_path).unwrap();
-    assert!(!ring.contains("set_variant"), "{ring}");
-    let mut rebuilt = Connection::open_in_memory().unwrap();
-    ddo_etl::tree::build_from_data(root.path(), &mut rebuilt).unwrap();
-    ddo_etl::tree::export_database(&rebuilt, root.path()).unwrap();
-    assert_eq!(std::fs::read_to_string(ring_path).unwrap(), ring);
 }
 
 #[test]

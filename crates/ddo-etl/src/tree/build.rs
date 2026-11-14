@@ -595,10 +595,6 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
     let mut removals_by_file = Vec::new();
     let mut tier_descriptions = BTreeMap::new();
     let mut primary_set_by_item = BTreeMap::new();
-    let item_slugs = transaction
-        .prepare("SELECT id,slug FROM items")?
-        .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)))?
-        .collect::<rusqlite::Result<BTreeMap<_, _>>>()?;
     let mut set_options = BTreeMap::new();
     for (path, file, id) in &inserted_files {
         match file {
@@ -622,7 +618,6 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
             }
         }
     }
-    let mut legacy_option_carriers = BTreeMap::new();
     for (path, file, id) in inserted_files {
         let mut correction_notes_to_insert = Vec::<(String, DdobuilderCorrection)>::new();
         let mut removed_entries_to_insert = Vec::<RemovedEntry>::new();
@@ -640,36 +635,14 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                         }
                     }
                     file.insert_sources(&transaction, id, &quest_epic_names, &source_aliases)?;
-                    for mut note in file.ddobuilder_correction.iter().cloned() {
-                        let mut correction = correction_notes::correction_for_note(&note, &file.name)?;
-                        if correction.targets_socket_option() {
-                            legacy_option_carriers.insert(path, (item_slugs[&id].clone(), file.name.clone()));
-                            let socket =
-                                correction.socket.as_deref().context("legacy option correction needs its socket")?;
-                            let option =
-                                correction.option.as_deref().context("legacy option correction needs its option")?;
-                            let mut query = transaction.prepare("SELECT DISTINCT sets.slug FROM item_augment_slots socket JOIN augment_slot_types label ON label.id=socket.slot_id JOIN socket_option_sets sets ON sets.id=socket.option_set_id JOIN socket_options choice ON choice.set_id=sets.id WHERE socket.item_id=?1 AND label.label=?2 AND choice.name=?3")?;
-                            let matches = query
-                                .query_map(rusqlite::params![id, socket, option], |row| row.get::<_, String>(0))?
-                                .collect::<rusqlite::Result<Vec<_>>>()?;
-                            ensure!(
-                                matches.len() == 1,
-                                "{}: legacy option correction {:?} matched {} sets",
-                                path.display(),
-                                option,
-                                matches.len()
-                            );
-                            correction.socket = None;
-                            if correction.kind == ddo_model::enums::CorrectionKind::Item {
-                                correction.kind = ddo_model::enums::CorrectionKind::SocketOption;
-                                note.kind = correction.kind;
-                            }
-                            note.qualifier = correction.qualifier();
-                            note.original_name = None;
-                            correction_notes_to_insert.push((matches[0].clone(), note));
-                        } else {
-                            correction_notes_to_insert.push((file.name.clone(), note));
-                        }
+                    for note in file.ddobuilder_correction.iter().cloned() {
+                        let correction = correction_notes::correction_for_note(&note, &file.name)?;
+                        ensure!(
+                            !correction.targets_socket_option(),
+                            "{}: socket option correction belongs on the set file",
+                            path.display()
+                        );
+                        correction_notes_to_insert.push((file.name.clone(), note));
                     }
                     removed_entries_to_insert.extend(file.removed.iter().cloned());
                 }
@@ -912,20 +885,13 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
         entity_locations.iter().map(|(path, kind, _, id)| ((*kind, *id), path.as_path())).collect::<BTreeMap<_, _>>();
     kinds::effect::EffectAlias::validate_type_omissions(&transaction, &effect_locations)?;
     kinds::effect::EffectAlias::validate_links(&transaction, &effect_locations)?;
-    let set_ids = transaction
-        .prepare("SELECT slug,id FROM socket_option_sets")?
-        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?)))?
-        .collect::<rusqlite::Result<BTreeMap<_, _>>>()?;
-    let mut preserved_option_citations = BTreeMap::<_, Citation>::new();
     let mut recorded_notes =
         BTreeMap::<_, (&PathBuf, (String, String, String, crate::AnnotationSource, String))>::new();
     let mut ordered_notes = notes_by_file
         .into_iter()
         .flat_map(|(path, notes)| notes.into_iter().map(move |(entity_name, note)| (path, entity_name, note)))
         .collect::<Vec<_>>();
-    ordered_notes.sort_by(|left, right| {
-        legacy_option_carriers.get(left.0).cmp(&legacy_option_carriers.get(right.0)).then_with(|| left.0.cmp(right.0))
-    });
+    ordered_notes.sort_by(|left, right| left.0.cmp(right.0));
     for (path, entity_name, note) in ordered_notes {
         (|| -> Result<()> {
             let correction_name = if let Some(original_name) = &note.original_name {
@@ -963,20 +929,8 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
             let evidence =
                 (from_value.clone(), to_value.clone(), note.reason.clone(), note.source.clone(), note.read.clone());
             if let Some((previous_path, previous)) = recorded_notes.get(&key) {
-                let merges_carrier_sources = matches!(
-                    note.kind,
-                    ddo_model::enums::CorrectionKind::SocketOption
-                        | ddo_model::enums::CorrectionKind::SocketOptionBonus
-                ) && legacy_option_carriers.contains_key(previous_path)
-                    && legacy_option_carriers.contains_key(path)
-                    && *previous_path != path;
                 ensure!(
-                    (previous == &evidence
-                        || (merges_carrier_sources
-                            && previous.0 == evidence.0
-                            && previous.1 == evidence.1
-                            && previous.2 == evidence.2))
-                        && (note.field != "lines" || *previous_path != path),
+                    previous == &evidence && (note.field != "lines" || *previous_path != path),
                     "{} {:?}.{} has conflicting notes in {} and {}",
                     note.kind,
                     correction_name,
@@ -984,20 +938,6 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
                     previous_path.display(),
                     path.display()
                 );
-                if merges_carrier_sources && (previous.3 != evidence.3 || previous.4 != evidence.4) {
-                    let citation_key = (set_ids[&correction_name], note.source.page_url().map(str::to_string));
-                    if preserved_option_citations.get(&citation_key).is_none_or(|previous| previous.read < note.read) {
-                        preserved_option_citations.insert(
-                            citation_key,
-                            Citation {
-                                field: serde_json::from_value(serde_json::json!("option"))?,
-                                source: note.source.clone(),
-                                read: note.read.clone(),
-                                note: Some(format!("Preserved from {}.", legacy_option_carriers[path].1)),
-                            },
-                        );
-                    }
-                }
                 return Ok(());
             }
             recorded_notes.insert(key, (path, evidence));
@@ -1016,9 +956,6 @@ pub fn build_from_data(root: &Path, db: &mut Connection) -> Result<DatasetFileRe
             Ok(())
         })()
         .with_context(|| format!("{}: correction note", path.display()))?;
-    }
-    for ((set_id, _), citation) in preserved_option_citations {
-        citation.insert(&transaction, "socket_option_sets", set_id)?;
     }
     for (path, removed) in
         removals_by_file.into_iter().flat_map(|(path, entries)| entries.into_iter().map(move |entry| (path, entry)))
