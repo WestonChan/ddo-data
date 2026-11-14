@@ -32,6 +32,8 @@ pub use annotations::{
 };
 pub(crate) use build::referenced_data_icons;
 pub use build::{build_from_data, rederive_data_build_tables};
+pub(crate) use crafting::reject_repeated_step_costs;
+pub use crafting::RECIPE_COSTS_REPEATING_STEP_COSTS;
 pub(crate) use crafting::{
     cost_references, ingredient_id, qualified_reference_id, recipe_focus_path, recipe_set_option_id_if_set_exists,
     socket_option_set_slug,

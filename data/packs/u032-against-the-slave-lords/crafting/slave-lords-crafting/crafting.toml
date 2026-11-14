@@ -1633,18 +1633,6 @@ step = "Augment slot addition"
 ingredient = "Staff Splinter"
 quantity = 20
 
-[[recipe.ingredient]]
-ingredient = "Broken Shackle"
-quantity = 20
-
-[[recipe.ingredient]]
-ingredient = "Chain Links"
-quantity = 20
-
-[[recipe.ingredient]]
-ingredient = "Broken Collar"
-quantity = 20
-
 [[recipe]]
 note = "Adds a Colorless augment slot to the item; no augment counterpart."
 option = "Colorless Augment Slot"
@@ -1655,18 +1643,6 @@ step = "Augment slot addition"
 ingredient = "Legendary Staff Splinter"
 quantity = 50
 
-[[recipe.ingredient]]
-ingredient = "Legendary Broken Shackle"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Chain Links"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Broken Collar"
-quantity = 50
-
 [[recipe]]
 note = "Adds a Blue augment slot to the item; no augment counterpart."
 option = "Blue Augment Slot"
@@ -1675,18 +1651,6 @@ step = "Augment slot addition"
 
 [[recipe.ingredient]]
 ingredient = "Staff Splinter"
-quantity = 20
-
-[[recipe.ingredient]]
-ingredient = "Broken Shackle"
-quantity = 20
-
-[[recipe.ingredient]]
-ingredient = "Chain Links"
-quantity = 20
-
-[[recipe.ingredient]]
-ingredient = "Broken Collar"
 quantity = 20
 
 [[recipe]]
@@ -1699,18 +1663,6 @@ step = "Augment slot addition"
 ingredient = "Legendary Staff Splinter"
 quantity = 50
 
-[[recipe.ingredient]]
-ingredient = "Legendary Broken Shackle"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Chain Links"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Broken Collar"
-quantity = 50
-
 [[recipe]]
 note = "Adds a Yellow augment slot to the item; no augment counterpart."
 option = "Yellow Augment Slot"
@@ -1721,18 +1673,6 @@ step = "Augment slot addition"
 ingredient = "Staff Splinter"
 quantity = 20
 
-[[recipe.ingredient]]
-ingredient = "Broken Shackle"
-quantity = 20
-
-[[recipe.ingredient]]
-ingredient = "Chain Links"
-quantity = 20
-
-[[recipe.ingredient]]
-ingredient = "Broken Collar"
-quantity = 20
-
 [[recipe]]
 note = "Adds a Yellow augment slot to the item; no augment counterpart."
 option = "Yellow Augment Slot"
@@ -1741,18 +1681,6 @@ step = "Augment slot addition"
 
 [[recipe.ingredient]]
 ingredient = "Legendary Staff Splinter"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Broken Shackle"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Chain Links"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Broken Collar"
 quantity = 50
 
 [[recipe]]
@@ -1765,18 +1693,6 @@ step = "Augment slot addition"
 ingredient = "Staff Splinter"
 quantity = 30
 
-[[recipe.ingredient]]
-ingredient = "Broken Shackle"
-quantity = 20
-
-[[recipe.ingredient]]
-ingredient = "Chain Links"
-quantity = 20
-
-[[recipe.ingredient]]
-ingredient = "Broken Collar"
-quantity = 20
-
 [[recipe]]
 note = "Adds a Green augment slot to the item; no augment counterpart."
 option = "Green Augment Slot"
@@ -1786,18 +1702,6 @@ step = "Augment slot addition"
 [[recipe.ingredient]]
 ingredient = "Legendary Staff Splinter"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Legendary Broken Shackle"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Chain Links"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Broken Collar"
-quantity = 50
 
 [[recipe]]
 option = "Slave Lord's Might"

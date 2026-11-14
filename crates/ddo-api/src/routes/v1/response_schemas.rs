@@ -465,8 +465,18 @@ pub(crate) struct SocketCandidatesResponse {
     pub(crate) option_sets: Vec<SocketOptionSetRow>,
 }
 
+fn schema_cost_line_from_step() -> RefOr<Schema> {
+    described_schema::<bool>("Whether this cost line is charged by the crafting step.")
+}
+
+fn schema_cost_entirely_from_step() -> RefOr<Schema> {
+    described_schema::<bool>("True when the cost is nonempty and every line is charged by the crafting step.")
+}
+
 #[derive(utoipa::ToSchema)]
 pub(crate) struct CraftingCost {
+    #[schema(schema_with = schema_cost_line_from_step)]
+    pub(crate) from_step: bool,
     pub(crate) ingredient: Option<String>,
     pub(crate) ingredient_id: Option<i64>,
     pub(crate) ingredient_slug: Option<String>,
@@ -481,6 +491,7 @@ pub(crate) struct CraftingCost {
 pub(crate) struct AugmentsDetailResponseCraftingEntry {
     pub(crate) consumed_outputs: Option<i64>,
     pub(crate) step: Option<String>,
+    #[schema(schema_with = schema_cost_entirely_from_step)]
     pub(crate) cost_from_step: bool,
     pub(crate) cost: Vec<CraftingCost>,
     pub(crate) option: String,
@@ -772,6 +783,7 @@ pub(crate) struct CraftingSystemsDetailResponseRecipesEntryAugmentsEntry {
 pub(crate) struct CraftingSystemsDetailResponseRecipesEntry {
     pub(crate) consumed_outputs: Option<i64>,
     pub(crate) step: Option<String>,
+    #[schema(schema_with = schema_cost_entirely_from_step)]
     pub(crate) cost_from_step: bool,
     pub(crate) yields_ingredient: Option<String>,
     pub(crate) yields_ingredient_id: Option<i64>,

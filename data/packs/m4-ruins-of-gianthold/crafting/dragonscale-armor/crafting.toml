@@ -180,22 +180,6 @@ step = "Flawless Dragonscale armor"
 ingredient = "Flawless Black Dragon Scale"
 quantity = 20
 
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 10
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 10
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 10
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
-
 [[recipe]]
 note = """
 At the Master Scalesmiths; yields one of Flawless Blue Dragonscale Robe, Flawless Blue Dragonhide Armor, Flawless Blue Dragonscale Armor, Flawless Blue Dragonplate Armor, Flawless Blue Dragonscale Docent. ML 25, +7 Enhancement Bonus instead of +6: Draconic Mind, Spell Penetration III, Spell Lore VI, Potency +80, Electric Resistance +40, Blue Augment Slot. The set bonus pairs it with the Helm of the Blue Dragon (levels 23-25). Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart.
@@ -209,22 +193,6 @@ step = "Flawless Dragonscale armor"
 ingredient = "Flawless Blue Dragon Scale"
 quantity = 20
 
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 10
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 10
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 10
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
-
 [[recipe]]
 note = """
 At the Master Scalesmiths; yields one of Flawless White Dragonscale Robe, Flawless White Dragonhide Armor, Flawless White Dragonscale Armor, Flawless White Dragonplate Armor, Flawless White Dragonscale Docent. ML 25, +7 Enhancement Bonus instead of +6: Draconic Resilience, Fortification +100%, Protection +7, Shield +6, Cold Resistance +40, Blue Augment Slot. The set bonus pairs it with the Helm of the White Dragon (levels 23-25). Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart.
@@ -237,19 +205,3 @@ step = "Flawless Dragonscale armor"
 [[recipe.ingredient]]
 ingredient = "Flawless White Dragon Scale"
 quantity = 20
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 10
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 10
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 10
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3

@@ -695,6 +695,7 @@ impl CraftingSystemFile {
                 cost.insert(db, ingredient_id, item_id, recipe_id, position as i64)?;
                 count += 1;
             }
+            crate::tree::reject_repeated_step_costs(db, recipe_id)?;
         }
         Ok(count)
     }

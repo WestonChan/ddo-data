@@ -88,14 +88,6 @@ name = "Essence of the Cloak of Strahd"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "The Invisible Cloak of Strahd"
 quantity = 1
 
@@ -111,14 +103,6 @@ step = "Essence augment"
 [[recipe.augment]]
 name = "Essence of the Nullscale Armor"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "Nullscale Armor"
@@ -138,14 +122,6 @@ name = "Essence of the Epic Litany of the Dead"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Epic Litany of the Dead"
 quantity = 1
 
@@ -163,14 +139,6 @@ step = "Essence augment"
 [[recipe.augment]]
 name = "Essence of Constellation, Broken and Reforged"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "The Broken Blade of Constellation"
@@ -194,14 +162,6 @@ name = "Essence of The Masque"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "The Masque"
 quantity = 1
 
@@ -217,14 +177,6 @@ step = "Essence augment"
 [[recipe.augment]]
 name = "Essence of the Cobalt Guard"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "Cobalt Guard"
@@ -244,14 +196,6 @@ name = "Essence of the Cracked Core"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Cracked Core"
 quantity = 1
 
@@ -267,14 +211,6 @@ step = "Essence augment"
 [[recipe.augment]]
 name = "Essence of Dark Diversion"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "Dark Diversion"
@@ -294,14 +230,6 @@ name = "Essence of the Spear of the Mournlands"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Spear of the Mournlands"
 quantity = 1
 
@@ -317,14 +245,6 @@ step = "Essence augment"
 [[recipe.augment]]
 name = "Essence of the Champion of the Twins"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "Champion of the Twins"
@@ -344,14 +264,6 @@ name = "Essence of Ultimatum"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Ultimatum"
 quantity = 1
 
@@ -369,14 +281,6 @@ name = "Essence of the Dethek Runestone"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Dethek Runestone"
 quantity = 1
 
@@ -392,14 +296,6 @@ step = "Essence augment"
 [[recipe.augment]]
 name = "Essence of Pomura's Memento"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "Pomura's Memento"

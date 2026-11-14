@@ -62,10 +62,6 @@ step = "Zhentarim Attuned"
 item = "Lantern Ring"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Black Stone"
-quantity = 150
-
 [[recipe]]
 grants_slot = "orange"
 note = "Upgrades Libram of Silver Magic (Orb; +8 Orb Bonus, Insightful Potency +10, Insightful Spell Lore I, Intelligence +10, Charisma +10, Spellcraft +20, Zhentarim Attuned): loses +8 Orb Bonus, Insightful Spell Lore I, Intelligence +10, Charisma +10, gains +11 Orb Bonus, Insightful Spell Lore II, Intelligence +11, Charisma +11, Orange Augment Slot. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21."
@@ -76,10 +72,6 @@ step = "Zhentarim Attuned"
 [[recipe.ingredient]]
 item = "Libram of Silver Magic"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Black Stone"
-quantity = 150
 
 [[recipe]]
 grants_slot = "green"
@@ -92,10 +84,6 @@ step = "Zhentarim Attuned"
 item = "Magestar"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Black Stone"
-quantity = 150
-
 [[recipe]]
 grants_slot = "green"
 note = "Upgrades Manual of Stealthy Pilfering (Trinket; Good Luck +2, Dexterity Skills - Exceptional Bonus +4, Intelligence Skills - Exceptional Bonus +4, Open Lock +20, Disable Device +20, Spot +20, Use Magic Device +3, Zhentarim Attuned): loses Good Luck +2, Dexterity Skills - Exceptional Bonus +4, Intelligence Skills - Exceptional Bonus +4, Use Magic Device +3, gains Good Luck +3, Dexterity Skills - Exceptional Bonus +6, Intelligence Skills - Exceptional Bonus +6, Use Magic Device +5, Green Augment Slot. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21."
@@ -107,10 +95,6 @@ step = "Zhentarim Attuned"
 item = "Manual of Stealthy Pilfering"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Black Stone"
-quantity = 150
-
 [[recipe]]
 note = "Upgrades Necklace of Mystic Eidolons (Necklace; Eidolon Summons, Ghostly, Deathblock, Insightful Constitution +3, Insightful Dexterity +3, Green Augment Slot, Zhentarim Attuned): loses Eidolon Summons, Insightful Constitution +3, Insightful Dexterity +3, gains Eidolon Summons cooldown reduced to 80 seconds, Insightful Constitution +4, Insightful Dexterity +4, Augment Summoning. The item changes from Bind on Equip to Bound to Character. Introduced in Update 21. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Necklace of Mystic Eidolons upgrade"
@@ -120,10 +104,6 @@ step = "Zhentarim Attuned"
 [[recipe.ingredient]]
 item = "Necklace of Mystic Eidolons"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Black Stone"
-quantity = 150
 
 [[recipe]]
 grants_slot = "purple"
@@ -135,7 +115,3 @@ step = "Zhentarim Attuned"
 [[recipe.ingredient]]
 item = "Purple Dragon Shield"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Black Stone"
-quantity = 150

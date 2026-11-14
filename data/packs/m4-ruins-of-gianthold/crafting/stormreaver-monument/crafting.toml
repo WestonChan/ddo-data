@@ -180,10 +180,6 @@ step = "Upgradeable Item"
 item = "Amulet of the Stormreaver"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Seal of the Stormreaver"
-quantity = 1
-
 [[recipe]]
 note = "Upgrades Cloudburst (Greatsword; Shocking Burst, Cloudburst) in place: gains Lightning Strike. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Cloudburst upgrade"
@@ -192,10 +188,6 @@ step = "Upgradeable Item"
 
 [[recipe.ingredient]]
 item = "Cloudburst"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Seal of the Stormreaver"
 quantity = 1
 
 [[recipe]]
@@ -208,10 +200,6 @@ step = "Upgradeable Item (Stormreaver)"
 item = "Dreamspitter"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Seal of the Stormreaver"
-quantity = 1
-
 [[recipe]]
 note = "Upgrades Gauntlets of Eternity (Gloves; Heal +13, Repair +13, Devotion +60, Healing Lore V, Eternal Faith) in place: loses Heal +13, Repair +13, Devotion +60, gains Heal +15, Repair +15, Devotion +72. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Gauntlets of Eternity upgrade"
@@ -220,10 +208,6 @@ step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
 item = "Gauntlets of Eternity"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Seal of the Stormreaver"
 quantity = 1
 
 [[recipe]]
@@ -236,10 +220,6 @@ step = "Upgradeable Item (Stormreaver)"
 item = "Head of Good Fortune"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Seal of the Stormreaver"
-quantity = 1
-
 [[recipe]]
 note = "Upgrades Madstone Boots (Boots; Dexterity +4, Potency +48, Striding +20%, Madstone Rage (1 Charge), unlisted Madstone Reaction) in place: loses Dexterity +4, Potency +48, Striding +20%, gains Dexterity +6, Potency +52, Striding +30%. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Madstone Boots upgrade"
@@ -248,10 +228,6 @@ step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
 item = "Madstone Boots"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Seal of the Stormreaver"
 quantity = 1
 
 [[recipe]]
@@ -264,10 +240,6 @@ step = "Upgradeable Item (Stormreaver)"
 item = "Madstone Shield"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Seal of the Stormreaver"
-quantity = 1
-
 [[recipe]]
 note = "Upgrades Ring of Lies (Ring; Charisma +6, Diplomacy +10, Bluff +10, Haggle +10, Perform +10, Deception, hidden effect increasing all threat by 15%) in place: loses Deception, gains Improved Deception, Exceptional Charisma Skills +2. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Ring of Lies upgrade"
@@ -276,10 +248,6 @@ step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
 item = "Ring of Lies"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Seal of the Stormreaver"
 quantity = 1
 
 [[recipe]]
@@ -292,10 +260,6 @@ step = "Upgradeable Item (Stormreaver)"
 item = "Stormreaver's Napkin"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Seal of the Stormreaver"
-quantity = 1
-
 [[recipe]]
 note = "Upgrades Tenderizer (Morningstar; Increased base dice 1d10, Adamantine, Impact, Stunning +10, Bleed, Maladroit) in place: gains Spikes, Bone Breaking. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Tenderizer upgrade"
@@ -304,10 +268,6 @@ step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
 item = "Tenderizer"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Seal of the Stormreaver"
 quantity = 1
 
 [[recipe]]
@@ -320,10 +280,6 @@ step = "Upgradeable Item (Stormreaver)"
 item = "Treason"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Seal of the Stormreaver"
-quantity = 1
-
 [[recipe]]
 note = "Upgrades Ventilated Bracers (Bracers; Armor Bonus +6, Enhanced Disable Device +3, Enhanced Open Lock +3, Air Guard) in place: loses Armor Bonus +6, Enhanced Disable Device +3, Enhanced Open Lock +3, gains Armor Bonus +7, Enhanced Disable Device +5, Enhanced Open Lock +5. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Ventilated Bracers upgrade"
@@ -332,10 +288,6 @@ step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
 item = "Ventilated Bracers"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Seal of the Stormreaver"
 quantity = 1
 
 [[recipe]]
@@ -351,22 +303,6 @@ step = "Attuned by Heroism: Tier 1"
 item = "Braisingstar"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 6
-
 [[recipe]]
 note = """
 The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
@@ -379,22 +315,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Dreampiercer"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 6
 
 [[recipe]]
 note = """
@@ -409,22 +329,6 @@ step = "Attuned by Heroism: Tier 1"
 item = "Rebellion"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 6
-
 [[recipe]]
 note = """
 The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus; The Reaver's Quest. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
@@ -437,22 +341,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Skybreaker, Hand of the Stormreaver"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 6
 
 [[recipe]]
 grants_slot = "yellow"
@@ -468,22 +356,6 @@ step = "Attuned by Heroism: Tier 1"
 item = "Gauntlets of Immortality"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 6
-
 [[recipe]]
 grants_slot = "yellow"
 note = """
@@ -497,22 +369,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Halcyon Boots"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 6
 
 [[recipe]]
 grants_slot = "yellow"
@@ -528,22 +384,6 @@ step = "Attuned by Heroism: Tier 1"
 item = "Idol of Fortune"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 6
-
 [[recipe]]
 grants_slot = "yellow"
 note = """
@@ -557,22 +397,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Pendant of the Stormreaver"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 6
 
 [[recipe]]
 grants_slot = "yellow"
@@ -588,22 +412,6 @@ step = "Attuned by Heroism: Tier 1"
 item = "Ring of Deceit"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 6
-
 [[recipe]]
 grants_slot = "yellow"
 note = """
@@ -617,22 +425,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Stormreaver's Tablecloth"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 6
 
 [[recipe]]
 grants_slot = "yellow"
@@ -648,22 +440,6 @@ step = "Attuned by Heroism: Tier 1"
 item = "Ventilated Armbands"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 6
-
 [[recipe]]
 note = """
 The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Shield Bonus +20 becomes +21, DR 15/- becomes DR 16/-, +7 Enhancement Bonus becomes +8. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
@@ -676,22 +452,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Madstone Aegis"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 6
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 6
 
 [[recipe]]
 note = """
@@ -706,22 +466,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Braisingstar"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 9
-
 [[recipe]]
 note = """
 The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Greater Good becomes Supreme Good. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
@@ -734,22 +478,6 @@ step = "Attuned by Heroism: Tier 2"
 [[recipe.ingredient]]
 item = "Dreampiercer"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 9
 
 [[recipe]]
 grants_slot = "colorless"
@@ -765,22 +493,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Gauntlets of Immortality"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 9
-
 [[recipe]]
 grants_slot = "colorless"
 note = """
@@ -794,22 +506,6 @@ step = "Attuned by Heroism: Tier 2"
 [[recipe.ingredient]]
 item = "Halcyon Boots"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 9
 
 [[recipe]]
 grants_slot = "colorless"
@@ -825,22 +521,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Ring of Deceit"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 9
-
 [[recipe]]
 note = """
 The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Good Luck +3. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
@@ -853,22 +533,6 @@ step = "Attuned by Heroism: Tier 2"
 [[recipe.ingredient]]
 item = "Idol of Fortune"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 9
 
 [[recipe]]
 grants_slot = "blue"
@@ -884,22 +548,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Madstone Aegis"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 9
-
 [[recipe]]
 note = """
 The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Electric Resistance +50. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
@@ -912,22 +560,6 @@ step = "Attuned by Heroism: Tier 2"
 [[recipe.ingredient]]
 item = "Pendant of the Stormreaver"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 9
 
 [[recipe]]
 grants_slot = "red"
@@ -943,22 +575,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Skybreaker, Hand of the Stormreaver"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 9
-
 [[recipe]]
 note = """
 The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Spell Penetration III. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
@@ -972,22 +588,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Stormreaver's Tablecloth"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 9
-
 [[recipe]]
 note = """
 The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Immunity to Air Elemental Knockdown. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
@@ -1000,19 +600,3 @@ step = "Attuned by Heroism: Tier 2"
 [[recipe.ingredient]]
 item = "Ventilated Armbands"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
-
-[[recipe.ingredient]]
-ingredient = "Restored Giant Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Elven Relic"
-quantity = 9
-
-[[recipe.ingredient]]
-ingredient = "Restored Dragon Relic"
-quantity = 9

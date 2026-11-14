@@ -2905,14 +2905,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Clothing/jewelry effect for Air/Dominion/Ethereal, applied with an Imbued Shard of Power. The cost is the page's full step list: one Shavarath Low Energy Cell with the Shard of Power and manufactured ingredients to make the Imbued Shard of Power, and a second cell to apply it to the item."
 option = "Lightning Lore III"
@@ -2935,14 +2927,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Earth/Dominion/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Corrosion (66)"
@@ -2960,14 +2944,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Earth/Dominion/Ethereal, applied with an Imbued Shard of Power."
@@ -2991,14 +2967,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Fire/Dominion/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Combustion (66)"
@@ -3016,14 +2984,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Fire/Dominion/Ethereal, applied with an Imbued Shard of Power."
@@ -3047,14 +3007,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Water/Dominion/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Glaciation (66)"
@@ -3072,14 +3024,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Water/Dominion/Ethereal, applied with an Imbued Shard of Power."
@@ -3103,14 +3047,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Negative/Dominion/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Nullification (66)"
@@ -3128,14 +3064,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Negative/Dominion/Ethereal, applied with an Imbued Shard of Power."
@@ -3159,14 +3087,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Positive/Dominion/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Devotion (66)"
@@ -3184,14 +3104,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Positive/Dominion/Ethereal, applied with an Imbued Shard of Power."
@@ -3215,14 +3127,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Air/Dominion/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Shock"
@@ -3240,14 +3144,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Air/Dominion/Material, applied with an Imbued Shard of Power."
@@ -3271,14 +3167,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Earth/Dominion/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Acid"
@@ -3296,14 +3184,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Earth/Dominion/Material, applied with an Imbued Shard of Power."
@@ -3327,14 +3207,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Fire/Dominion/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Flaming"
@@ -3352,14 +3224,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Fire/Dominion/Material, applied with an Imbued Shard of Power."
@@ -3383,14 +3247,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Water/Dominion/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Frost"
@@ -3408,14 +3264,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Water/Dominion/Material, applied with an Imbued Shard of Power."
@@ -3439,14 +3287,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Negative/Dominion/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Unholy"
@@ -3464,14 +3304,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Negative/Dominion/Material, applied with an Imbued Shard of Power."
@@ -3495,14 +3327,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Positive/Dominion/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Holy"
@@ -3520,14 +3344,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Positive/Dominion/Material, applied with an Imbued Shard of Power."
@@ -3551,14 +3367,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Air/Escalation/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "+6 Charisma"
@@ -3576,14 +3384,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Air/Escalation/Ethereal, applied with an Imbued Shard of Power."
@@ -3619,14 +3419,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Earth/Escalation/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "+6 Wisdom"
@@ -3644,14 +3436,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Earth/Escalation/Ethereal, applied with an Imbued Shard of Power."
@@ -3687,14 +3471,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Fire/Escalation/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "+6 Intelligence"
@@ -3712,14 +3488,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Fire/Escalation/Ethereal, applied with an Imbued Shard of Power."
@@ -3755,14 +3523,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Water/Escalation/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "+6 Wisdom"
@@ -3780,14 +3540,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Water/Escalation/Ethereal, applied with an Imbued Shard of Power."
@@ -3823,14 +3575,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Negative/Escalation/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "+6 Intelligence"
@@ -3848,14 +3592,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Negative/Escalation/Ethereal, applied with an Imbued Shard of Power."
@@ -3891,14 +3627,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Positive/Escalation/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "+6 Charisma"
@@ -3916,14 +3644,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Positive/Escalation/Ethereal, applied with an Imbued Shard of Power."
@@ -3959,14 +3679,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Air/Escalation/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "+6 Dexterity"
@@ -3984,14 +3696,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Air/Escalation/Material, applied with an Imbued Shard of Power."
@@ -4027,14 +3731,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Earth/Escalation/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "+6 Constitution"
@@ -4052,14 +3748,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Earth/Escalation/Material, applied with an Imbued Shard of Power."
@@ -4095,14 +3783,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Fire/Escalation/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "+6 Dexterity"
@@ -4120,14 +3800,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Fire/Escalation/Material, applied with an Imbued Shard of Power."
@@ -4163,14 +3835,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Water/Escalation/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "+6 Strength"
@@ -4188,14 +3852,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Water/Escalation/Material, applied with an Imbued Shard of Power."
@@ -4231,14 +3887,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Negative/Escalation/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "+6 Strength"
@@ -4256,14 +3904,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Negative/Escalation/Material, applied with an Imbued Shard of Power."
@@ -4299,14 +3939,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Positive/Escalation/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "+6 Constitution"
@@ -4324,14 +3956,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Positive/Escalation/Material, applied with an Imbued Shard of Power."
@@ -4367,14 +3991,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Air/Opposition/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Heightened Awareness 1"
@@ -4392,14 +4008,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Air/Opposition/Ethereal, applied with an Imbued Shard of Power."
@@ -4433,14 +4041,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Earth/Opposition/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Heightened Awareness 1"
@@ -4458,14 +4058,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Earth/Opposition/Ethereal, applied with an Imbued Shard of Power."
@@ -4499,14 +4091,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Fire/Opposition/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Heightened Awareness 1"
@@ -4524,14 +4108,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Fire/Opposition/Ethereal, applied with an Imbued Shard of Power."
@@ -4565,14 +4141,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Water/Opposition/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Heightened Awareness 1"
@@ -4590,14 +4158,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Water/Opposition/Ethereal, applied with an Imbued Shard of Power."
@@ -4631,14 +4191,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Negative/Opposition/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Heightened Awareness 1"
@@ -4656,14 +4208,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Negative/Opposition/Ethereal, applied with an Imbued Shard of Power."
@@ -4697,14 +4241,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Positive/Opposition/Ethereal, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "Heightened Awareness 1"
@@ -4722,14 +4258,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Positive/Opposition/Ethereal, applied with an Imbued Shard of Power."
@@ -4763,14 +4291,6 @@ quantity = 1
 ingredient = "Diluted Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Air/Opposition/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "10% Electrical Absorption"
@@ -4788,14 +4308,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Air/Opposition/Material, applied with an Imbued Shard of Power."
@@ -4819,14 +4331,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Earth/Opposition/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "10% Acid Absorption"
@@ -4844,14 +4348,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Earth/Opposition/Material, applied with an Imbued Shard of Power."
@@ -4875,14 +4371,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Fire/Opposition/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "10% Fire Absorption"
@@ -4900,14 +4388,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Fire/Opposition/Material, applied with an Imbued Shard of Power."
@@ -4931,14 +4411,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Water/Opposition/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "10% Cold Absorption"
@@ -4956,14 +4428,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Water/Opposition/Material, applied with an Imbued Shard of Power."
@@ -4987,14 +4451,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Negative/Opposition/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "15% Negative Energy Absorption"
@@ -5012,14 +4468,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Negative/Opposition/Material, applied with an Imbued Shard of Power."
@@ -5043,14 +4491,6 @@ quantity = 1
 ingredient = "Diluted Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Positive/Opposition/Material, applied with an Imbued Shard of Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Invasion - NYI for this socket, so the row links no augment."
 option = "10% Healing Amplification"
@@ -5068,14 +4508,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Positive/Opposition/Material, applied with an Imbued Shard of Power."
@@ -5098,14 +4530,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Diluted Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Low Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = """
@@ -5433,14 +4857,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Clothing/jewelry effect for Air/Dominion/Ethereal, applied with an Imbued Shard of Great Power. The cost is the page's full step list: one Shavarath Medium Energy Cell with the Shard of Great Power and manufactured ingredients to make the Imbued Shard of Great Power, and a second cell to apply it to the item."
 option = "Lightning Lore IV"
@@ -5463,14 +4879,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Earth/Dominion/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Corrosion (72)"
@@ -5488,14 +4896,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Earth/Dominion/Ethereal, applied with an Imbued Shard of Great Power."
@@ -5519,14 +4919,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Fire/Dominion/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Combustion (72)"
@@ -5544,14 +4936,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Fire/Dominion/Ethereal, applied with an Imbued Shard of Great Power."
@@ -5575,14 +4959,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Water/Dominion/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Glaciation (72)"
@@ -5600,14 +4976,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Water/Dominion/Ethereal, applied with an Imbued Shard of Great Power."
@@ -5631,14 +4999,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Negative/Dominion/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Nullification (72)"
@@ -5656,14 +5016,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Negative/Dominion/Ethereal, applied with an Imbued Shard of Great Power."
@@ -5687,14 +5039,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Positive/Dominion/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Devotion (72)"
@@ -5712,14 +5056,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Positive/Dominion/Ethereal, applied with an Imbued Shard of Great Power."
@@ -5743,14 +5079,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Air/Dominion/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Shocking Burst"
@@ -5768,14 +5096,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Air/Dominion/Material, applied with an Imbued Shard of Great Power."
@@ -5799,14 +5119,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Earth/Dominion/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Acid Burst"
@@ -5824,14 +5136,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Earth/Dominion/Material, applied with an Imbued Shard of Great Power."
@@ -5855,14 +5159,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Fire/Dominion/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Flaming Burst"
@@ -5880,14 +5176,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Fire/Dominion/Material, applied with an Imbued Shard of Great Power."
@@ -5911,14 +5199,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Water/Dominion/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Icy Burst"
@@ -5936,14 +5216,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Water/Dominion/Material, applied with an Imbued Shard of Great Power."
@@ -5967,14 +5239,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Negative/Dominion/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Evil Burst"
@@ -5992,14 +5256,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Negative/Dominion/Material, applied with an Imbued Shard of Great Power."
@@ -6023,14 +5279,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Positive/Dominion/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Good Burst"
@@ -6048,14 +5296,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Positive/Dominion/Material, applied with an Imbued Shard of Great Power."
@@ -6079,14 +5319,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Air/Escalation/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Exceptional Charisma +1"
@@ -6104,14 +5336,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Air/Escalation/Ethereal, applied with an Imbued Shard of Great Power."
@@ -6147,14 +5371,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Earth/Escalation/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Exceptional Wisdom +1"
@@ -6172,14 +5388,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Earth/Escalation/Ethereal, applied with an Imbued Shard of Great Power."
@@ -6215,14 +5423,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Fire/Escalation/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Exceptional Intelligence +1"
@@ -6240,14 +5440,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Fire/Escalation/Ethereal, applied with an Imbued Shard of Great Power."
@@ -6283,14 +5475,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Water/Escalation/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Exceptional Wisdom +1"
@@ -6308,14 +5492,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Water/Escalation/Ethereal, applied with an Imbued Shard of Great Power."
@@ -6351,14 +5527,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Negative/Escalation/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Exceptional Intelligence +1"
@@ -6376,14 +5544,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Negative/Escalation/Ethereal, applied with an Imbued Shard of Great Power."
@@ -6419,14 +5579,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Positive/Escalation/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Exceptional Charisma +1"
@@ -6444,14 +5596,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Positive/Escalation/Ethereal, applied with an Imbued Shard of Great Power."
@@ -6487,14 +5631,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Air/Escalation/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Exceptional Dexterity +1"
@@ -6512,14 +5648,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Air/Escalation/Material, applied with an Imbued Shard of Great Power."
@@ -6555,14 +5683,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Earth/Escalation/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Exceptional Constitution +1"
@@ -6580,14 +5700,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Earth/Escalation/Material, applied with an Imbued Shard of Great Power."
@@ -6623,14 +5735,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Fire/Escalation/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Exceptional Dexterity +1"
@@ -6648,14 +5752,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Fire/Escalation/Material, applied with an Imbued Shard of Great Power."
@@ -6691,14 +5787,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Water/Escalation/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Exceptional Strength +1"
@@ -6716,14 +5804,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Water/Escalation/Material, applied with an Imbued Shard of Great Power."
@@ -6759,14 +5839,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Negative/Escalation/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Exceptional Strength +1"
@@ -6784,14 +5856,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Negative/Escalation/Material, applied with an Imbued Shard of Great Power."
@@ -6827,14 +5891,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Positive/Escalation/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "Exceptional Constitution +1"
@@ -6852,14 +5908,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Positive/Escalation/Material, applied with an Imbued Shard of Great Power."
@@ -6895,14 +5943,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Air/Opposition/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "+2 AC (Insight Bonus)"
@@ -6920,14 +5960,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Air/Opposition/Ethereal, applied with an Imbued Shard of Great Power."
@@ -6961,14 +5993,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Earth/Opposition/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "+2 AC (Insight Bonus)"
@@ -6986,14 +6010,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Earth/Opposition/Ethereal, applied with an Imbued Shard of Great Power."
@@ -7027,14 +6043,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Fire/Opposition/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "+2 AC (Insight Bonus)"
@@ -7052,14 +6060,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Fire/Opposition/Ethereal, applied with an Imbued Shard of Great Power."
@@ -7093,14 +6093,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Water/Opposition/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "+2 AC (Insight Bonus)"
@@ -7118,14 +6110,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Water/Opposition/Ethereal, applied with an Imbued Shard of Great Power."
@@ -7159,14 +6143,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Negative/Opposition/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "+2 AC (Insight Bonus)"
@@ -7184,14 +6160,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Negative/Opposition/Ethereal, applied with an Imbued Shard of Great Power."
@@ -7225,14 +6193,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Positive/Opposition/Ethereal, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "+2 AC (Insight Bonus)"
@@ -7250,14 +6210,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Ethereal Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Positive/Opposition/Ethereal, applied with an Imbued Shard of Great Power."
@@ -7291,14 +6243,6 @@ quantity = 1
 ingredient = "Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Air/Opposition/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "15% Electrical Absorption"
@@ -7316,14 +6260,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Air/Opposition/Material, applied with an Imbued Shard of Great Power."
@@ -7347,14 +6283,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Earth/Opposition/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "15% Acid Absorption"
@@ -7372,14 +6300,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Earth/Opposition/Material, applied with an Imbued Shard of Great Power."
@@ -7403,14 +6323,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Fire/Opposition/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "15% Fire Absorption"
@@ -7428,14 +6340,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Fire/Opposition/Material, applied with an Imbued Shard of Great Power."
@@ -7459,14 +6363,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Water/Opposition/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "15% Cold Absorption"
@@ -7484,14 +6380,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Water/Opposition/Material, applied with an Imbued Shard of Great Power."
@@ -7515,14 +6403,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Negative/Opposition/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "20% Negative Energy Absorption"
@@ -7540,14 +6420,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Negative/Opposition/Material, applied with an Imbued Shard of Great Power."
@@ -7571,14 +6443,6 @@ quantity = 1
 ingredient = "Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
-
 [[recipe]]
 note = "Weapon effect for Positive/Opposition/Material, applied with an Imbued Shard of Great Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Subjugation - NYI for this socket, so the row links no augment."
 option = "+20% Healing Amplification"
@@ -7596,14 +6460,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 note = "Clothing/jewelry effect for Positive/Opposition/Material, applied with an Imbued Shard of Great Power."
@@ -7626,14 +6482,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Material Essence"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Great Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath Medium Energy Cell"
-quantity = 2
 
 [[recipe]]
 focus_path = "Invasion Air / Subjugation Air"
@@ -8357,14 +7205,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Clothing/jewelry effect for Air/Dominion/Ethereal, applied with an Imbued Shard of Supreme Power. The cost is the page's full step list: one Shavarath High Energy Cell with the Shard of Supreme Power and manufactured ingredients to make the Imbued Shard of Supreme Power; applying it to the item takes no further cell."
 option = "Lightning Lore V"
@@ -8387,14 +7227,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Earth/Dominion/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Corrosion +72"
@@ -8411,14 +7243,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -8443,14 +7267,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Fire/Dominion/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Combustion +72"
@@ -8467,14 +7283,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -8499,14 +7307,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Water/Dominion/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Glaciation +72"
@@ -8523,14 +7323,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -8555,14 +7347,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Negative/Dominion/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Nullification +72"
@@ -8579,14 +7363,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -8611,14 +7387,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Positive/Dominion/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Devotion +72"
@@ -8635,14 +7403,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -8667,14 +7427,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Air/Dominion/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Shocking Blast"
@@ -8691,14 +7443,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -8723,14 +7467,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Earth/Dominion/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Acid Blast"
@@ -8747,14 +7483,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -8779,14 +7507,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Fire/Dominion/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Flaming Blast"
@@ -8803,14 +7523,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -8835,14 +7547,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Water/Dominion/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Icy Blast"
@@ -8859,14 +7563,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -8891,14 +7587,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Negative/Dominion/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Evil Blast"
@@ -8915,14 +7603,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -8947,14 +7627,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Positive/Dominion/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Good Blast"
@@ -8971,14 +7643,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9003,14 +7667,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Air/Escalation/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Insightful Charisma +2"
@@ -9027,14 +7683,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9071,14 +7719,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Earth/Escalation/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Insightful Wisdom +2"
@@ -9095,14 +7735,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9139,14 +7771,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Fire/Escalation/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Insightful Intelligence +2"
@@ -9163,14 +7787,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9207,14 +7823,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Water/Escalation/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Insightful Wisdom +2"
@@ -9231,14 +7839,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9275,14 +7875,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Negative/Escalation/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Insightful Intelligence +2"
@@ -9299,14 +7891,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9343,14 +7927,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Positive/Escalation/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Insightful Charisma +2"
@@ -9367,14 +7943,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9411,14 +7979,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Air/Escalation/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Insightful Dexterity +2"
@@ -9435,14 +7995,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9479,14 +8031,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Earth/Escalation/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Insightful Constitution +2"
@@ -9503,14 +8047,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9547,14 +8083,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Fire/Escalation/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Insightful Dexterity +2"
@@ -9571,14 +8099,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9615,14 +8135,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Water/Escalation/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Insightful Strength +2"
@@ -9639,14 +8151,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9683,14 +8187,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Negative/Escalation/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Insightful Strength +2"
@@ -9707,14 +8203,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9751,14 +8239,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Positive/Escalation/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "Insightful Constitution +2"
@@ -9775,14 +8255,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9819,14 +8291,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Air/Opposition/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "+4 AC (Insight Bonus)"
@@ -9843,14 +8307,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9885,14 +8341,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Earth/Opposition/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "+4 AC (Insight Bonus)"
@@ -9909,14 +8357,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -9951,14 +8391,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Fire/Opposition/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "+4 AC (Insight Bonus)"
@@ -9975,14 +8407,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -10017,14 +8441,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Water/Opposition/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "+4 AC (Insight Bonus)"
@@ -10041,14 +8457,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -10083,14 +8491,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Negative/Opposition/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "+4 AC (Insight Bonus)"
@@ -10107,14 +8507,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -10149,14 +8541,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Positive/Opposition/Ethereal, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "+4 AC (Insight Bonus)"
@@ -10173,14 +8557,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Ethereal Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -10215,14 +8591,6 @@ quantity = 1
 ingredient = "Pure Ethereal Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Air/Opposition/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "20% Electrical Absorption"
@@ -10239,14 +8607,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -10271,14 +8631,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Earth/Opposition/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "20% Acid Absorption"
@@ -10295,14 +8647,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -10327,14 +8671,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Fire/Opposition/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "20% Fire Absorption"
@@ -10351,14 +8687,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -10383,14 +8711,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Water/Opposition/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "20% Cold Absorption"
@@ -10407,14 +8727,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -10439,14 +8751,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Negative/Opposition/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "30% Negative Energy Absorption"
@@ -10463,14 +8767,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -10495,14 +8791,6 @@ quantity = 1
 ingredient = "Pure Material Essence"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
-quantity = 1
-
 [[recipe]]
 note = "Weapon effect for Positive/Opposition/Material, applied with an Imbued Shard of Supreme Power. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Devastation - NYI for this socket, so the row links no augment."
 option = "30% Healing Amplification"
@@ -10519,14 +8807,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]
@@ -10549,14 +8829,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pure Material Essence"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shard of Supreme Power"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Shavarath High Energy Cell"
 quantity = 1
 
 [[recipe]]

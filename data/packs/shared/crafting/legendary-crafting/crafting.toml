@@ -59,10 +59,6 @@ ingredient = "Vault Key"
 quantity = 100
 
 [[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
-[[recipe.ingredient]]
 ingredient = "Thread of Fate"
 quantity = 250
 
@@ -80,10 +76,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Winter's Wrath into Legendary Winter's Wrath (Eternal wand, ML 30). The Epic Crafting page does not list Epic Winter's Wrath, so the pack ingredient is not named. Maetrim has no Legendary Winter's Wrath. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Winter's Wrath"
@@ -93,10 +85,6 @@ step = "Legendary upgrade"
 [[recipe.ingredient]]
 ingredient = "Epic item"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Ironweave Robe into Legendary Ironweave Robe (Clothing, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
@@ -111,10 +99,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -134,10 +118,6 @@ quantity = 1
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Red Dragonscale Robe into Legendary Red Dragonscale Robe (Clothing, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Red Dragonscale Robe"
@@ -151,10 +131,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -174,10 +150,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Ship-Mage's Attire into Legendary Ship-Mage's Attire (Clothing, ML 30); Sinister Secret of Saltmarsh item. Also drops from The Final Enemy end chest. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Ship-Mage's Attire"
@@ -191,10 +163,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Saltmeadow Hay"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Dockworker's Outfit into Legendary Dockworker's Outfit (Clothing, ML 30); Sinister Secret of Saltmarsh item. Also drops from Under the Cover of Darkness end chest. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
@@ -210,10 +178,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Robe of Fire into Legendary Robe of Fire (Clothing, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Robe of Fire"
@@ -227,10 +191,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Vulkoorim Dervish Robe into Legendary Vulkoorim Dervish Robe (Clothing, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -246,10 +206,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Kundarak Delving Suit into Legendary Kundarak Delving Suit (Light Armor, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Kundarak Delving Suit"
@@ -263,10 +219,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -286,10 +238,6 @@ quantity = 1
 ingredient = "Crystallized Spiderweb"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Red Dragonhide Armor into Legendary Red Dragonhide Armor (Light Armor, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Red Dragonhide Armor"
@@ -303,10 +251,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -326,10 +270,6 @@ quantity = 1
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Smuggler's Gear into Legendary Smuggler's Gear (Light Armor, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Smuggler's Gear"
@@ -344,10 +284,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Demon Scale Armor into Legendary Demon Scale Armor (Light Armor, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Demon Scale Armor"
@@ -361,10 +297,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -385,10 +317,6 @@ ingredient = "Desert Sand Crystal"
 quantity = 100
 
 [[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
-[[recipe.ingredient]]
 ingredient = "Thread of Fate"
 quantity = 250
 
@@ -406,10 +334,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Silken Mail into Legendary Silken Mail (Light Armor, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Silken Mail"
@@ -423,10 +347,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Tourney Armor into Legendary Tourney Armor (Light Armor, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -442,10 +362,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Vulkoorim Fighting Leathers into Legendary Vulkoorim Fighting Leathers (Light Armor, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Vulkoorim Fighting Leathers"
@@ -460,10 +376,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Infested Armor into Legendary Infested Chainmail (Light Armor, ML 30); The Chronoscope raid item. The page names Epic Infested Armor as its source, though Epic Crafting also lists an Epic Infested Scalemail. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Infested Chainmail"
@@ -477,10 +389,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -501,10 +409,6 @@ ingredient = "Vault Key"
 quantity = 100
 
 [[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
-[[recipe.ingredient]]
 ingredient = "Thread of Fate"
 quantity = 250
 
@@ -522,10 +426,6 @@ quantity = 1
 ingredient = "Crystallized Spiderweb"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Deneith Heavy Chain into Legendary Deneith Heavy Chain (Medium Armor, ML 30); Sentinels of Stormreach item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Deneith Heavy Chain"
@@ -539,10 +439,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Medal of House Deneith"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Stinkpelt's Hide into Legendary Stinkpelt's Hide (Medium Armor, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -558,10 +454,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Privateer's Leathers into Legendary Privateer's Leathers (Medium Armor, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Privateer's Leathers"
@@ -576,10 +468,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Infested Armor into Legendary Infested Scalemail (Medium Armor, ML 30); The Chronoscope raid item. The page names Epic Infested Armor as its source, not Epic Infested Scalemail. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Infested Scalemail"
@@ -593,10 +481,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -616,10 +500,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Full Plate of the Ringleader into Legendary Full Plate of the Ringleader (Heavy Armor, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Full Plate of the Ringleader"
@@ -634,10 +514,6 @@ quantity = 1
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Infested Armor into Legendary Infested Armor (Heavy Armor, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Infested Armor"
@@ -651,10 +527,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -675,10 +547,6 @@ ingredient = "Vault Key"
 quantity = 100
 
 [[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
-[[recipe.ingredient]]
 ingredient = "Thread of Fate"
 quantity = 250
 
@@ -695,10 +563,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -718,10 +582,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Vambraces of Inner Light into Legendary Vambraces of Inner Light (Heavy Armor, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Vambraces of Inner Light"
@@ -736,10 +596,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Red Dragonscale Docent into Legendary Red Dragonscale Docent (Docent, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Red Dragonscale Docent"
@@ -753,10 +609,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -776,10 +628,6 @@ quantity = 1
 ingredient = "Crystallized Spiderweb"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Blademark's Docent into Legendary Blademark's Docent (Docent, ML 30); Sentinels of Stormreach item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Blademark's Docent"
@@ -794,10 +642,6 @@ quantity = 1
 ingredient = "Medal of House Deneith"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Docent of Grace into Legendary Docent of Grace (Docent, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Docent of Grace"
@@ -811,10 +655,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -834,10 +674,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Chimera's Fang into Legendary Chimera's Fang (Bastard Sword, ML 30); Sentinels of Stormreach item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Chimera's Fang"
@@ -851,10 +687,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Medal of House Deneith"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Templar's Retribution into Legendary Templar's Retribution (Bastard Sword, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
@@ -870,10 +702,6 @@ quantity = 1
 ingredient = "Crystallized Spiderweb"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Unkor's Cleaver into Legendary Unkor's Cleaver (Battle Axe, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Unkor's Cleaver"
@@ -887,10 +715,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Belt of Myriad Pockets into Legendary Belt of Myriad Pockets (Belt, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
@@ -906,10 +730,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Snakeskin Belt into Legendary Snakeskin Belt (Belt, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Snakeskin Belt"
@@ -924,10 +744,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Belt of the Black Abishai into Legendary Belt of the Black Abishai (Belt, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Belt of the Black Abishai"
@@ -941,10 +757,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -965,10 +777,6 @@ ingredient = "Fractured Sliver of Time"
 quantity = 100
 
 [[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
-[[recipe.ingredient]]
 ingredient = "Thread of Fate"
 quantity = 250
 
@@ -985,10 +793,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1009,10 +813,6 @@ ingredient = "Fractured Sliver of Time"
 quantity = 100
 
 [[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
-[[recipe.ingredient]]
 ingredient = "Thread of Fate"
 quantity = 250
 
@@ -1029,10 +829,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1053,10 +849,6 @@ ingredient = "Desert Sand Crystal"
 quantity = 100
 
 [[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
-[[recipe.ingredient]]
 ingredient = "Thread of Fate"
 quantity = 250
 
@@ -1074,10 +866,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Belt of the Mroranon into Legendary Belt of the Mroranon (Belt, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Belt of the Mroranon"
@@ -1091,10 +879,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1114,10 +898,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Sparksoles into Legendary Sparksoles (Boots, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Sparksoles"
@@ -1132,10 +912,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Boots of Corrosion into Legendary Boots of Corrosion (Boots, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Boots of Corrosion"
@@ -1149,10 +925,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1172,10 +944,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Boots of the Mire into Legendary Boots of the Mire (Boots, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Boots of the Mire"
@@ -1190,10 +958,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Kundarak Delving Boots into Legendary Kundarak Delving Boots (Boots, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Kundarak Delving Boots"
@@ -1207,10 +971,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1230,10 +990,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Dustless Boots into Legendary Dustless Boots (Boots, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Dustless Boots"
@@ -1247,10 +1003,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Saltiron Bracer into Legendary Saltiron Bracer (Bracers, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
@@ -1266,10 +1018,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Driftwood Bracers into Legendary Driftwood Bracers (Bracers, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Driftwood Bracers"
@@ -1284,10 +1032,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Scorched Bracers into Legendary Scorched Bracers (Bracers, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Scorched Bracers"
@@ -1301,10 +1045,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1324,10 +1064,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Jidz-Tet'ka into Legendary Jidz-Tet'ka (Bracers, ML 30); Sentinels of Stormreach item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Jidz-Tet'ka"
@@ -1342,10 +1078,6 @@ quantity = 1
 ingredient = "Medal of House Deneith"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Kundarak Warding Bracers into Legendary Kundarak Warding Bracers (Bracers, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Kundarak Warding Bracers"
@@ -1359,10 +1091,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1382,10 +1110,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Bracers of Deftness into Legendary Bracers of Deftness (Bracers, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Bracers of Deftness"
@@ -1400,10 +1124,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Bracers of the Demon's Consort into Legendary Bracers of the Demon's Consort (Bracers, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Bracers of the Demon's Consort"
@@ -1417,10 +1137,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1440,10 +1156,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Marshreed Cloak into Legendary Marshreed Cloak (Cloak, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Marshreed Cloak"
@@ -1457,10 +1169,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Saltmeadow Hay"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Sailcloth Cloak into Legendary Sailcloth Cloak (Cloak, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
@@ -1476,10 +1184,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Envenomed Cloak into Legendary Envenomed Cloak (Cloak, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Envenomed Cloak"
@@ -1493,10 +1197,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1516,10 +1216,6 @@ quantity = 1
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Cloak of the Silver Concord into Legendary Cloak of the Silver Concord (Cloak, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Cloak of the Silver Concord"
@@ -1533,10 +1229,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1556,10 +1248,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Cloak of the Zephyr into Legendary Cloak of the Zephyr (Cloak, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Cloak of the Zephyr"
@@ -1573,10 +1261,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1596,10 +1280,6 @@ quantity = 1
 ingredient = "Crystallized Spiderweb"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Goldcursed Dagger into Legendary Goldcursed Dagger (Dagger, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Goldcursed Dagger"
@@ -1613,10 +1293,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Saltmeadow Hay"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Phiarlan Spy Dagger into Legendary Phiarlan Spy Dagger (Dagger, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
@@ -1632,10 +1308,6 @@ quantity = 1
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Ancient Vulkoorim Dagger into Legendary Ancient Vulkoorim Dagger (Dagger, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Ancient Vulkoorim Dagger"
@@ -1649,10 +1321,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Bejeweled Letter Opener into Legendary Bejeweled Letter Opener (Dagger, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -1668,10 +1336,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Flint into Legendary Flint (Dagger, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Flint"
@@ -1685,10 +1349,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Splintermast into Legendary Splintermast (Dart, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
@@ -1704,10 +1364,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Templar's Justice into Legendary Templar's Justice (Dwarven War Axe, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Templar's Justice"
@@ -1721,10 +1377,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Crystallized Spiderweb"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Xuum into Legendary Xuum (Falchion, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -1740,10 +1392,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Gloves of the Tinkerer into Legendary Gloves of the Tinkerer (Gloves, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Gloves of the Tinkerer"
@@ -1757,10 +1405,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Saltmeadow Hay"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Cinderfingers into Legendary Cinderfingers (Gloves, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
@@ -1776,10 +1420,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Charged Gauntlets into Legendary Charged Gauntlets (Gloves, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Charged Gauntlets"
@@ -1793,10 +1433,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1816,10 +1452,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Raven's Talons into Legendary Raven's Talons (Gloves, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Raven's Talons"
@@ -1834,10 +1466,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Bramble-Casters into Legendary Bramble-Casters (Gloves, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Bramble-Casters"
@@ -1851,10 +1479,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1874,10 +1498,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Gloves of the Falcon into Legendary Gloves of the Falcon (Gloves, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Gloves of the Falcon"
@@ -1892,10 +1512,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Ruby Encrusted Gauntlets into Legendary Ruby Encrusted Gauntlets (Gloves, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Ruby Encrusted Gauntlets"
@@ -1909,10 +1525,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1932,10 +1544,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Amethyst Loupe into Legendary Amethyst Loupe (Goggles, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Amethyst Loupe"
@@ -1950,10 +1558,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Goggles of Time-Sensing into Legendary Goggles of Time-Sensing (Goggles, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Goggles of Time-Sensing"
@@ -1967,10 +1571,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -1991,10 +1591,6 @@ ingredient = "Vault Key"
 quantity = 100
 
 [[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
-[[recipe.ingredient]]
 ingredient = "Thread of Fate"
 quantity = 250
 
@@ -2012,10 +1608,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Sandstorm Glasses into Legendary Sandstorm Glasses (Goggles, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Sandstorm Glasses"
@@ -2029,10 +1621,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Spectacles of Spirit Sight into Legendary Spectacles of Spirit Sight (Goggles, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -2048,10 +1636,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Hellstroke Great Axe into Legendary Hellstroke Great Axe (Great Axe, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Hellstroke Great Axe"
@@ -2065,10 +1649,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -2088,10 +1668,6 @@ quantity = 1
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Greatclub of the Scrag into Legendary Greatclub of the Scrag (Great Club, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Greatclub of the Scrag"
@@ -2105,10 +1681,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Whirlwind into Legendary Whirlwind (Great Sword, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -2124,10 +1696,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Crocodile Maw into Legendary Crocodile Maw (Handwrap, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Crocodile Maw"
@@ -2142,10 +1710,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Storm into Legendary Storm (Heavy Crossbow, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Storm"
@@ -2159,10 +1723,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -2182,10 +1742,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Helm of the Red Dragon into Legendary Helm of the Red Dragon (Helmet, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Helm of the Red Dragon"
@@ -2199,10 +1755,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -2222,10 +1774,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Smuggler's Cap into Legendary Smuggler's Cap (Helmet, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Smuggler's Cap"
@@ -2240,10 +1788,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Helm of Frost into Legendary Helm of Frost (Helmet, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Helm of Frost"
@@ -2257,10 +1801,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -2280,10 +1820,6 @@ quantity = 1
 ingredient = "Crystallized Spiderweb"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Sacred Helm into Legendary Sacred Helm (Helmet, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Sacred Helm"
@@ -2297,10 +1833,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Mask of Tragedy into Legendary Mask of Tragedy (Helmet, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
@@ -2316,10 +1848,6 @@ quantity = 1
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Spiked Turban into Legendary Spiked Turban (Helmet, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Spiked Turban"
@@ -2334,10 +1862,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Shining Crest of St. Markus into Legendary Shining Crest of St. Markus (Helmet, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Shining Crest of St. Markus"
@@ -2351,10 +1875,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -2374,10 +1894,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Big Top into Legendary Big Top (Helmet, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Big Top"
@@ -2391,10 +1907,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Mask of Comedy into Legendary Mask of Comedy (Helmet, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
@@ -2410,10 +1922,6 @@ quantity = 1
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Elder's Cap into Legendary Elder's Cap (Helmet, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Elder's Cap"
@@ -2427,10 +1935,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Chimera's Crown into Legendary Chimera's Crown (Helmet, ML 30); Sentinels of Stormreach item. A separate item in Maetrim's data; no augment counterpart."
@@ -2446,10 +1950,6 @@ quantity = 1
 ingredient = "Medal of House Deneith"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Helm of the Mroranon into Legendary Helm of the Mroranon (Helmet, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Helm of the Mroranon"
@@ -2463,10 +1963,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -2487,10 +1983,6 @@ ingredient = "Desert Sand Crystal"
 quantity = 100
 
 [[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
-[[recipe.ingredient]]
 ingredient = "Thread of Fate"
 quantity = 250
 
@@ -2508,10 +2000,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Midnight Greetings into Legendary Midnight Greetings (Kukri, ML 30); Sentinels of Stormreach item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Midnight Greetings"
@@ -2526,10 +2014,6 @@ quantity = 1
 ingredient = "Medal of House Deneith"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Green Blade into Legendary Green Blade (Kukri, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Green Blade"
@@ -2543,10 +2027,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -2566,10 +2046,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Ward of Undeath into Legendary Ward of Undeath (Large shield, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Ward of Undeath"
@@ -2583,10 +2059,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Coronation Shield into Legendary Coronation Shield (Large shield, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -2602,10 +2074,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Saltiron Targe into Legendary Saltiron Targe (Large shield, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Saltiron Targe"
@@ -2620,10 +2088,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Kundarak Warding Shield into Legendary Kundarak Warding Shield (Large shield, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Kundarak Warding Shield"
@@ -2637,10 +2101,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -2660,10 +2120,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Bow of the Silver Flame into Legendary Bow of the Silver Flame (Long Bow, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Bow of the Silver Flame"
@@ -2677,10 +2133,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Crystallized Spiderweb"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Bow of the Elements (Air) into Legendary Bow of the Elements (Air) (Long Bow, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -2696,10 +2148,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Thornlord into Legendary Thornlord (Long Bow, ML 30); Sands of Menechtarun item. The Epic version has a base critical threat range of 19-20; the Legendary version does not. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Thornlord"
@@ -2714,10 +2162,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Timeblade into Legendary Timeblade (Long Sword, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Timeblade"
@@ -2731,10 +2175,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -2754,10 +2194,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Fury of the Flame into Legendary Fury of the Flame (Maul, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Fury of the Flame"
@@ -2772,10 +2208,6 @@ quantity = 1
 ingredient = "Crystallized Spiderweb"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Hammer of Life into Legendary Hammer of Life (Maul, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Hammer of Life"
@@ -2789,10 +2221,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -2812,10 +2240,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Anchorchain into Legendary Anchorchain (Necklace, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Anchorchain"
@@ -2830,10 +2254,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Azure Necklace of Prophecy into Legendary Azure Necklace of Prophecy (Necklace, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Azure Necklace of Prophecy"
@@ -2847,10 +2267,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -2870,10 +2286,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Crimson Necklace of Prophecy into Legendary Crimson Necklace of Prophecy (Necklace, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Crimson Necklace of Prophecy"
@@ -2887,10 +2299,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -2910,10 +2318,6 @@ quantity = 1
 ingredient = "Crystallized Spiderweb"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Grim's Bracelet into Legendary Grim's Bracelet (Necklace, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Grim's Bracelet"
@@ -2927,10 +2331,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Necklace of Venom into Legendary Necklace of Venom (Necklace, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
@@ -2946,10 +2346,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Shaman's Beads into Legendary Shaman's Beads (Necklace, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Shaman's Beads"
@@ -2963,10 +2359,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Shimmering Pendant into Legendary Shimmering Pendant (Necklace, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
@@ -2982,10 +2374,6 @@ quantity = 1
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Silver Necklace of Prophecy into Legendary Silver Necklace of Prophecy (Necklace, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Silver Necklace of Prophecy"
@@ -2999,10 +2387,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -3022,10 +2406,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Adherent's Pendant into Legendary Adherent's Pendant (Necklace, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Adherent's Pendant"
@@ -3039,10 +2419,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Hyena Claw Necklace into Legendary Hyena Claw Necklace (Necklace, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -3058,10 +2434,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Siren's Charm into Legendary Siren's Charm (Necklace, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Siren's Charm"
@@ -3075,10 +2447,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Hruvayah's Medallion into Legendary Hruvayah's Medallion (Necklace, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -3094,10 +2462,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Torc of Prince Raiyum-de II into Legendary Torc of Prince Raiyum-de II (Necklace, ML 30); Sands of Menechtarun raid item. Can also be used in Catalyst Crafting to make Legendary Torc of the Lords of the Abyss. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Torc of Prince Raiyum-de II"
@@ -3111,10 +2475,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -3134,10 +2494,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Wolf Whistle into Legendary Wolf Whistle (Necklace, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Wolf Whistle"
@@ -3152,10 +2508,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Pendant of the Blue Abishai into Legendary Pendant of the Blue Abishai (Necklace, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Pendant of the Blue Abishai"
@@ -3169,10 +2521,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -3193,10 +2541,6 @@ ingredient = "Fractured Sliver of Time"
 quantity = 100
 
 [[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
-[[recipe.ingredient]]
 ingredient = "Thread of Fate"
 quantity = 250
 
@@ -3213,10 +2557,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -3237,10 +2577,6 @@ ingredient = "Fractured Sliver of Time"
 quantity = 100
 
 [[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
-[[recipe.ingredient]]
 ingredient = "Thread of Fate"
 quantity = 250
 
@@ -3257,10 +2593,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -3280,10 +2612,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Luminous Truth into Legendary Luminous Truth (Quarterstaff, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Luminous Truth"
@@ -3297,10 +2625,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Crystallized Spiderweb"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Souleater into Legendary Souleater (Quarterstaff, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
@@ -3316,10 +2640,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Staff of Nat Gann into Legendary Staff of Nat Gann (Quarterstaff, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Staff of Nat Gann"
@@ -3333,10 +2653,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -3356,10 +2672,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Staff of Arcane Power into Legendary Staff of Arcane Power (Quarterstaff, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Staff of Arcane Power"
@@ -3373,10 +2685,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -3396,10 +2704,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Tinder into Legendary Tinder (Quarterstaff, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Tinder"
@@ -3413,10 +2717,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Elyd Edge into Legendary Elyd Edge (Rapier, ML 30); Sentinels of Stormreach item. A separate item in Maetrim's data; no augment counterpart."
@@ -3432,10 +2732,6 @@ quantity = 1
 ingredient = "Medal of House Deneith"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Duelist's Epee into Legendary Duelist's Epee (Rapier, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Duelist's Epee"
@@ -3450,10 +2746,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Hellfire Crossbow into Legendary Hellfire Crossbow (Repeating Heavy Crossbow, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Hellfire Crossbow"
@@ -3467,10 +2759,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -3490,10 +2778,6 @@ quantity = 1
 ingredient = "Crystallized Spiderweb"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Doublecross Bow into Legendary Doublecross Bow (Repeating Light Crossbow, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Doublecross Bow"
@@ -3507,10 +2791,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Crystallized Spiderweb"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Salt-Pearl Ring into Legendary Salt-Pearl Ring (Ring, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
@@ -3526,10 +2806,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Ethereal Ring into Legendary Ethereal Ring (Ring, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Ethereal Ring"
@@ -3543,10 +2819,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Saltmeadow Hay"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Ring of the Mire into Legendary Ring of the Mire (Ring, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
@@ -3562,10 +2834,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Seal of the Earth into Legendary Seal of the Earth (Ring, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Seal of the Earth"
@@ -3580,10 +2848,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Ring of the Silver Concord into Legendary Ring of the Silver Concord (Ring, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Ring of the Silver Concord"
@@ -3597,10 +2861,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -3620,10 +2880,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Sacred Band into Legendary Sacred Band (Ring, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Sacred Band"
@@ -3637,10 +2893,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Shaman's Band into Legendary Shaman's Band (Ring, ML 30); The Red Fens item. A separate item in Maetrim's data; no augment counterpart."
@@ -3656,10 +2908,6 @@ quantity = 1
 ingredient = "Glowing Fen Mushroom"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Ring of Baphomet into Legendary Ring of Baphomet (Ring, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Ring of Baphomet"
@@ -3673,10 +2921,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Ring of Spell Storing into Legendary Ring of Spell Storing (Ring, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -3692,10 +2936,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Diabolist's Ring into Legendary Diabolist's Ring (Ring, ML 30); The Chronoscope raid item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Diabolist's Ring"
@@ -3709,10 +2949,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -3733,10 +2969,6 @@ ingredient = "Fractured Sliver of Time"
 quantity = 100
 
 [[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
-[[recipe.ingredient]]
 ingredient = "Thread of Fate"
 quantity = 250
 
@@ -3753,10 +2985,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -3777,10 +3005,6 @@ ingredient = "Fractured Sliver of Time"
 quantity = 100
 
 [[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
-[[recipe.ingredient]]
 ingredient = "Thread of Fate"
 quantity = 250
 
@@ -3797,10 +3021,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -3821,10 +3041,6 @@ ingredient = "Fractured Sliver of Time"
 quantity = 100
 
 [[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
-[[recipe.ingredient]]
 ingredient = "Thread of Fate"
 quantity = 250
 
@@ -3842,10 +3058,6 @@ quantity = 1
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Kron'zek's Cruelty into Legendary Kron'zek's Cruelty (Scimitar, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Kron'zek's Cruelty"
@@ -3859,10 +3071,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Cruel Nobility into Legendary Cruel Nobility (Scimitar, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
@@ -3878,10 +3086,6 @@ quantity = 1
 ingredient = "Crystallized Spiderweb"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Mirage into Legendary Mirage (Scimitar, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Mirage"
@@ -3895,10 +3099,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Collapsible Shortbow into Legendary Collapsible Shortbow (Short Bow, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -3914,10 +3114,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Envenomed Blade into Legendary Envenomed Blade (Short Sword, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Envenomed Blade"
@@ -3931,10 +3127,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Crystallized Spiderweb"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Garos' Malice into Legendary Garos' Malice (Short Sword, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
@@ -3950,10 +3142,6 @@ quantity = 1
 ingredient = "Crystallized Spiderweb"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Sting into Legendary Sting (Short Sword, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Sting"
@@ -3967,10 +3155,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Zephyr into Legendary Zephyr (Short Sword, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -3986,10 +3170,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Smash 'n Grabber into Legendary Smash 'n Grabber (Small shield, ML 30); Sinister Secret of Saltmarsh item. The page notes Riposte and Parrying do not stack. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Smash 'n Grabber"
@@ -4003,10 +3183,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Saltmeadow Hay"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Weathered Targe into Legendary Weathered Targe (Small shield, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -4022,10 +3198,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Noxious Fang into Legendary Noxious Fang (Throwing Dagger, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Noxious Fang"
@@ -4039,10 +3211,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Skull of the Sea into Legendary Skull of the Sea (Tower shield, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
@@ -4058,10 +3226,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Templar's Bulwark into Legendary Templar's Bulwark (Tower shield, ML 30); Web of Chaos item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Templar's Bulwark"
@@ -4075,10 +3239,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Crystallized Spiderweb"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Crocodile Tooth into Legendary Crocodile Tooth (Trinket, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
@@ -4094,10 +3254,6 @@ quantity = 1
 ingredient = "Saltmeadow Hay"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Silver Pocketwatch into Legendary Silver Pocketwatch (Trinket, ML 30); Sinister Secret of Saltmarsh item. The Legendary quest or raid can drop it directly. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Silver Pocketwatch"
@@ -4111,10 +3267,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Saltmeadow Hay"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe]]
 note = "Upgrades Epic Dusk Heart into Legendary Dusk Heart (Trinket, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
@@ -4130,10 +3282,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Shard of Vollun into Legendary Shard of Vollun (Trinket, ML 30); Sands of Menechtarun item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Shard of Vollun"
@@ -4148,10 +3296,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Pouch of Jerky into Legendary Pouch of Jerky (Trinket, ML 30); Sands of Menechtarun raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Pouch of Jerky"
@@ -4165,10 +3309,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Desert Sand Crystal"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -4188,10 +3328,6 @@ quantity = 1
 ingredient = "Desert Sand Crystal"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Brawn's Spirits into Legendary Brawn's Spirits (Trinket, ML 30); Phiarlan Carnival item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Brawn's Spirits"
@@ -4206,10 +3342,6 @@ quantity = 1
 ingredient = "Scrap of Patterned Cloth"
 quantity = 100
 
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
-
 [[recipe]]
 note = "Upgrades Epic Dragon's Eye into Legendary Dragon's Eye (Trinket, ML 30); Vault of Night raid item. A separate item in Maetrim's data; no augment counterpart."
 option = "Legendary Dragon's Eye"
@@ -4223,10 +3355,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Vault Key"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"
@@ -4245,10 +3373,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Fractured Sliver of Time"
 quantity = 100
-
-[[recipe.ingredient]]
-ingredient = "Star Fragment"
-quantity = 5
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"

@@ -1220,22 +1220,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -1258,22 +1242,6 @@ step = "Miserable (weapon)"
 name = "Miserable Chill (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -1300,22 +1268,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -1338,22 +1290,6 @@ step = "Miserable (weapon)"
 name = "Miserable Acid (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -1380,22 +1316,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -1418,22 +1338,6 @@ step = "Miserable (weapon)"
 name = "Miserable Shadows (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -1460,22 +1364,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -1498,22 +1386,6 @@ step = "Miserable (weapon)"
 name = "Miserable Arcana: Cold (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -1540,22 +1412,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -1578,22 +1434,6 @@ step = "Miserable (weapon)"
 name = "Miserable Arcana: Fire (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -1620,22 +1460,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -1658,22 +1482,6 @@ step = "Miserable (weapon)"
 name = "Miserable Arcana: Light (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -1700,22 +1508,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -1738,22 +1530,6 @@ step = "Miserable (weapon)"
 name = "Miserable Arcana: Positive (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -1780,22 +1556,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -1818,22 +1578,6 @@ step = "Miserable (weapon)"
 name = "Miserable Arcana: Sonic (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -1861,22 +1605,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -1899,22 +1627,6 @@ step = "Miserable (weapon)"
 name = "Miserable Maiming (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -1941,22 +1653,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -1979,22 +1675,6 @@ step = "Miserable (weapon)"
 name = "Miserable Monstrous Humanoid Bane (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -2021,22 +1701,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -2059,22 +1723,6 @@ step = "Miserable (weapon)"
 name = "Miserable Vermin Bane (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -2101,22 +1749,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -2130,22 +1762,6 @@ step = "Woeful (weapon)"
 name = "Woeful Flames (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
@@ -2163,22 +1779,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
 quantity = 50
 
@@ -2192,22 +1792,6 @@ step = "Woeful (weapon)"
 name = "Woeful Sparks (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
@@ -2225,22 +1809,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
 quantity = 50
 
@@ -2256,22 +1824,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
 quantity = 50
 
@@ -2285,22 +1837,6 @@ step = "Woeful (weapon)"
 name = "Woeful Shadows (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
@@ -3227,22 +2763,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -3265,22 +2785,6 @@ step = "Miserable (accessory)"
 name = "Miserable Magical Resistance Rating (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -3307,22 +2811,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -3345,22 +2833,6 @@ step = "Miserable (accessory)"
 name = "Miserable Trip (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -3387,22 +2859,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -3425,22 +2881,6 @@ step = "Miserable (accessory)"
 name = "Miserable Assassinate (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -3467,22 +2907,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -3505,22 +2929,6 @@ step = "Miserable (accessory)"
 name = "Miserable Acid Spell Crit Damage (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -3547,22 +2955,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -3585,22 +2977,6 @@ step = "Miserable (accessory)"
 name = "Miserable Electric Spell Crit Damage (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -3627,22 +3003,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -3665,22 +3025,6 @@ step = "Miserable (accessory)"
 name = "Miserable Force Spell Crit Damage (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -3707,22 +3051,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -3745,22 +3073,6 @@ step = "Miserable (accessory)"
 name = "Miserable Negative Spell Crit Damage (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -3787,22 +3099,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -3825,22 +3121,6 @@ step = "Miserable (accessory)"
 name = "Miserable Repair Spell Crit Damage (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
@@ -3867,22 +3147,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Wire"
 quantity = 100
 
@@ -3905,22 +3169,6 @@ step = "Woeful (accessory)"
 name = "Woeful Resistance (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
@@ -3947,22 +3195,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
 quantity = 50
 
@@ -3985,22 +3217,6 @@ step = "Woeful (accessory)"
 name = "Woeful Relentless Fury (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
@@ -4027,22 +3243,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
 quantity = 50
 
@@ -4065,22 +3265,6 @@ step = "Woeful (accessory)"
 name = "Woeful Wizardry (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
@@ -4107,22 +3291,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
 quantity = 50
 
@@ -4145,22 +3313,6 @@ step = "Woeful (accessory)"
 name = "Woeful Sacred DCs (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
@@ -4318,22 +3470,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
 quantity = 50
 
@@ -4347,22 +3483,6 @@ step = "Miserable (weapon)"
 name = "Miserable Planar (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
@@ -4380,22 +3500,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
 quantity = 50
 
@@ -4409,22 +3513,6 @@ step = "Miserable (weapon)"
 name = "Miserable Cold Spell Crit Chance (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
@@ -4442,22 +3530,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
 quantity = 50
 
@@ -4471,22 +3543,6 @@ step = "Miserable (weapon)"
 name = "Miserable Fire Spell Crit Chance (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
@@ -4504,22 +3560,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
 quantity = 50
 
@@ -4533,22 +3573,6 @@ step = "Miserable (weapon)"
 name = "Miserable Light Spell Crit Chance (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
@@ -4566,22 +3590,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
 quantity = 50
 
@@ -4595,22 +3603,6 @@ step = "Miserable (weapon)"
 name = "Miserable Positive Spell Crit Chance (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
@@ -4628,22 +3620,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
 quantity = 50
 
@@ -4657,22 +3633,6 @@ step = "Miserable (weapon)"
 name = "Miserable Sonic Spell Crit Chance (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
@@ -4690,22 +3650,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
 quantity = 50
 
@@ -4719,22 +3663,6 @@ step = "Miserable (accessory)"
 name = "Miserable Force Absorption (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
@@ -4752,22 +3680,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Transformer"
 quantity = 50
 
@@ -4781,22 +3693,6 @@ step = "Woeful (weapon)"
 name = "Woeful Exceptional Spell Focus Mastery (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
@@ -4814,22 +3710,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
 quantity = 50
 
@@ -4843,22 +3723,6 @@ step = "Woeful (weapon)"
 name = "Woeful Shadow (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
@@ -4876,22 +3740,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
 quantity = 50
 
@@ -4905,22 +3753,6 @@ step = "Woeful (weapon)"
 name = "Woeful Frostbite (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
@@ -4938,22 +3770,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
 quantity = 50
 
@@ -4967,22 +3783,6 @@ step = "Woeful (weapon)"
 name = "Woeful Acidburn (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
@@ -5000,22 +3800,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
 quantity = 50
 
@@ -5029,22 +3813,6 @@ step = "Woeful (weapon)"
 name = "Woeful Venom (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
@@ -5062,22 +3830,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
 quantity = 50
 
@@ -5091,22 +3843,6 @@ step = "Woeful (accessory)"
 name = "Woeful Acid Spell Crit Chance (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
@@ -5124,22 +3860,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
 quantity = 50
 
@@ -5153,22 +3873,6 @@ step = "Woeful (accessory)"
 name = "Woeful Electric Spell Crit Chance (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
@@ -5186,22 +3890,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
 quantity = 50
 
@@ -5215,22 +3903,6 @@ step = "Woeful (accessory)"
 name = "Woeful Force Spell Crit Chance (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
@@ -5248,22 +3920,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
 quantity = 50
 
@@ -5277,22 +3933,6 @@ step = "Woeful (accessory)"
 name = "Woeful Negative Spell Crit Chance (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
@@ -5310,22 +3950,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
 quantity = 50
 
@@ -5339,22 +3963,6 @@ step = "Woeful (accessory)"
 name = "Woeful Repair Spell Crit Chance (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
@@ -5372,22 +3980,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
 quantity = 50
 
@@ -5401,22 +3993,6 @@ step = "Woeful (accessory)"
 name = "Woeful Quality Seeker (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
@@ -5434,22 +4010,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
 quantity = 50
 
@@ -5463,22 +4023,6 @@ step = "Woeful (accessory)"
 name = "Woeful Strength of Purpose (Legendary)"
 family = "Lamordia_Legendary"
 level = 34
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
@@ -5496,22 +4040,6 @@ family = "Lamordia_Legendary"
 level = 34
 
 [[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 50
-
-[[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"
 quantity = 50
 
@@ -5523,22 +4051,6 @@ Crafted at the Wicked workbench (raid Relentless or Ludendorf Wax Museum). Same 
 option = "Legendary Cataclysmic weapon or shield"
 tier = "legendary"
 step = "Weapon creation"
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Alternator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Conductor"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Insulator"
-quantity = 25
-
-[[recipe.ingredient]]
-ingredient = "Legendary Bleak Resistor"
-quantity = 25
 
 [[recipe.ingredient]]
 ingredient = "Legendary Bleak Memento"

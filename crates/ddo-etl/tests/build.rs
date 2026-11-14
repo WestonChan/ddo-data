@@ -541,7 +541,7 @@ fn a_step_cost_on_tier_any_applies_to_every_grade() {
 }
 
 #[test]
-fn step_costs_apply_to_recipes_without_their_own_and_overrides_stand() {
+fn step_costs_add_to_each_recipes_own_lines() {
     let db = fixture::database(|root| {
         let path = root.join("packs/shared/crafting/heroic-green-steel/crafting.toml");
         let mut file: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
@@ -551,6 +551,10 @@ fn step_costs_apply_to_recipes_without_their_own_and_overrides_stand() {
             row.remove("slot");
             row.insert("step".into(), toml::Value::String("Invasion".into()));
         }
+        recipes[0]["ingredient"]
+            .as_array_mut()
+            .unwrap()
+            .retain(|cost| cost["ingredient"].as_str() != Some("Small Shard of Power"));
         recipes[1].as_table_mut().unwrap().remove("ingredient");
         std::fs::remove_file(
             root.join("packs/shared/crafting/heroic-green-steel/ingredients/small-focus-of-fire.toml"),
@@ -566,7 +570,17 @@ fn step_costs_apply_to_recipes_without_their_own_and_overrides_stand() {
         [("heroic".into(), "Small Shard of Power".into(), 10), ("legendary".into(), "Shroud Commendation".into(), 20)]
     );
     assert_eq!(db.query_row("SELECT COUNT(*) FROM crafting_recipe_ingredients c JOIN crafting_recipes r ON r.id=c.recipe_id WHERE r.option='Minor Fire Guard'",[],|row|row.get::<_,i64>(0)).unwrap(),0);
-    assert_eq!(db.query_row("SELECT SUM(c.quantity) FROM crafting_recipe_ingredients c JOIN crafting_recipes r ON r.id=c.recipe_id WHERE r.option='+5 Fortitude Save'",[],|row|row.get::<_,i64>(0)).unwrap(),2);
+    assert_eq!(db.query_row("SELECT SUM(c.quantity) FROM crafting_recipe_ingredients c JOIN crafting_recipes r ON r.id=c.recipe_id WHERE r.option='+5 Fortitude Save'",[],|row|row.get::<_,i64>(0)).unwrap(),1);
+    let effective = db.prepare("SELECT r.option,i.name,c.quantity,c.from_step FROM crafting_recipe_effective_costs c JOIN crafting_recipes r ON r.id=c.recipe_id JOIN crafting_ingredients i ON i.id=c.ingredient_id WHERE r.option IN ('+5 Fortitude Save','Minor Fire Guard') ORDER BY r.option,c.from_step,c.sort_order").unwrap()
+        .query_map([],|row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,i64>(2)?,row.get::<_,bool>(3)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        effective,
+        [
+            ("+5 Fortitude Save".into(), "Small Focus of Earth".into(), 1, false),
+            ("+5 Fortitude Save".into(), "Small Shard of Power".into(), 10, true),
+            ("Minor Fire Guard".into(), "Small Shard of Power".into(), 10, true),
+        ]
+    );
 }
 
 #[test]

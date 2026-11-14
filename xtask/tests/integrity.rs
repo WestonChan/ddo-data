@@ -1901,13 +1901,13 @@ fn crafting_bonus_checks_respect_amounts_equipment_scope_and_colour_sockets() {
 }
 
 #[test]
-fn step_cost_comparison_uses_grade_references_and_total_quantities_not_row_order() {
+fn step_cost_overlap_uses_grade_and_identity_regardless_of_quantity_or_order() {
     let scratch = tempfile::tempdir().unwrap();
     let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
     db.execute_batch("INSERT INTO crafting_recipe_ingredients (recipe_id,sort_order,ingredient_id,item_id,quantity) SELECT r.id,100-c.sort_order,c.ingredient_id,c.item_id,c.quantity FROM crafting_recipes r JOIN crafting_step_costs c ON c.step_id=r.step_id AND c.tier=r.tier WHERE r.option='Blinding Fear';").unwrap();
     for (change, repeats) in [
         ("SELECT 1;", true),
-        ("UPDATE crafting_recipe_ingredients SET quantity=quantity+1 WHERE recipe_id=(SELECT id FROM crafting_recipes WHERE option='Blinding Fear');", false),
+        ("UPDATE crafting_recipe_ingredients SET quantity=quantity+1 WHERE recipe_id=(SELECT id FROM crafting_recipes WHERE option='Blinding Fear');", true),
         ("UPDATE crafting_recipe_ingredients SET quantity=quantity-1 WHERE recipe_id=(SELECT id FROM crafting_recipes WHERE option='Blinding Fear');", true),
         ("UPDATE crafting_recipes SET tier='heroic' WHERE option='Blinding Fear';", false),
         ("UPDATE crafting_recipes SET tier='epic' WHERE option='Blinding Fear'; UPDATE crafting_recipe_ingredients SET ingredient_id=NULL,item_id=(SELECT id FROM items WHERE name='Thunder-Forged Orb') WHERE recipe_id=(SELECT id FROM crafting_recipes WHERE option='Blinding Fear');", false),

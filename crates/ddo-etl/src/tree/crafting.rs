@@ -1,6 +1,27 @@
 use anyhow::{ensure, Context, Result};
 use rusqlite::{params, Connection, OptionalExtension};
 
+pub const RECIPE_COSTS_REPEATING_STEP_COSTS: &str = "SELECT recipe.option AS name,recipe.id AS id,
+    step.name || ': ' || recipe.tier || ': ' || COALESCE(ingredient.name,item.name) AS detail
+    FROM crafting_recipe_ingredients own
+    JOIN crafting_recipe_step_costs shared ON shared.recipe_id=own.recipe_id
+        AND (shared.ingredient_id=own.ingredient_id OR shared.item_id=own.item_id)
+    JOIN crafting_recipes recipe ON recipe.id=own.recipe_id
+    JOIN crafting_steps step ON step.id=recipe.step_id
+    LEFT JOIN crafting_ingredients ingredient ON ingredient.id=own.ingredient_id
+    LEFT JOIN items item ON item.id=own.item_id";
+
+pub(crate) fn reject_repeated_step_costs(db: &Connection, recipe_id: i64) -> Result<()> {
+    let repeated = db
+        .prepare_cached(&format!("SELECT name,detail FROM ({RECIPE_COSTS_REPEATING_STEP_COSTS}) WHERE id=?1"))?
+        .query_row([recipe_id], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?)))
+        .optional()?;
+    if let Some((recipe, detail)) = repeated {
+        anyhow::bail!("recipe {recipe:?} has an own cost already charged by step {detail}");
+    }
+    Ok(())
+}
+
 fn prefer_unqualified<T>(matches: &mut Vec<T>, variant: Option<&str>, row_variant: impl Fn(&T) -> Option<&str>) {
     if variant.is_none() && matches.iter().any(|row| row_variant(row).is_none()) {
         matches.retain(|row| row_variant(row).is_none());

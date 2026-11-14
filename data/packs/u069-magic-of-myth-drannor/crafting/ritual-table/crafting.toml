@@ -122,10 +122,6 @@ step = "Item upgrade"
 ingredient = "Legendary Weapon of the Golden Age"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
-
 [[recipe]]
 note = "Upgrades Legendary Echo of the Warblade into Reflection of the Warblade. A separate item in Maetrim's data; no augment counterpart."
 option = "Reflection of the Warblade"
@@ -135,10 +131,6 @@ step = "Item upgrade"
 [[recipe.ingredient]]
 item = "Legendary Echo of the Warblade"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
 
 [[recipe.ingredient]]
 ingredient = "Sigil of the Warblade"
@@ -155,10 +147,6 @@ item = "Legendary Echo of the Artblade"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
-
-[[recipe.ingredient]]
 ingredient = "Sigil of the Artblade"
 quantity = 1
 
@@ -171,10 +159,6 @@ step = "Item upgrade"
 [[recipe.ingredient]]
 item = "Legendary Echo of the Crownblade"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
 
 [[recipe.ingredient]]
 ingredient = "Sigil of the Crownblade"
@@ -191,10 +175,6 @@ item = "Legendary Docent of the Artblade"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
-
-[[recipe.ingredient]]
 ingredient = "Sigil of the Artblade"
 quantity = 1
 
@@ -207,10 +187,6 @@ step = "Item upgrade"
 [[recipe.ingredient]]
 item = "Legendary Heavy Armor of the Artblade"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
 
 [[recipe.ingredient]]
 ingredient = "Sigil of the Artblade"
@@ -227,10 +203,6 @@ item = "Legendary Medium Armor of the Artblade"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
-
-[[recipe.ingredient]]
 ingredient = "Sigil of the Artblade"
 quantity = 1
 
@@ -243,10 +215,6 @@ step = "Item upgrade"
 [[recipe.ingredient]]
 item = "Legendary Light Armor of the Artblade"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
 
 [[recipe.ingredient]]
 ingredient = "Sigil of the Artblade"
@@ -263,10 +231,6 @@ item = "Legendary Outfit of the Artblade"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
-
-[[recipe.ingredient]]
 ingredient = "Sigil of the Artblade"
 quantity = 1
 
@@ -279,10 +243,6 @@ step = "Item upgrade"
 [[recipe.ingredient]]
 item = "Legendary Robe of the Artblade"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
 
 [[recipe.ingredient]]
 ingredient = "Sigil of the Artblade"
@@ -299,10 +259,6 @@ item = "Legendary Docent of the Warblade"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
-
-[[recipe.ingredient]]
 ingredient = "Sigil of the Warblade"
 quantity = 1
 
@@ -315,10 +271,6 @@ step = "Item upgrade"
 [[recipe.ingredient]]
 item = "Legendary Heavy Armor of the Warblade"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
 
 [[recipe.ingredient]]
 ingredient = "Sigil of the Warblade"
@@ -335,10 +287,6 @@ item = "Legendary Medium Armor of the Warblade"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
-
-[[recipe.ingredient]]
 ingredient = "Sigil of the Warblade"
 quantity = 1
 
@@ -351,10 +299,6 @@ step = "Item upgrade"
 [[recipe.ingredient]]
 item = "Legendary Light Armor of the Warblade"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
 
 [[recipe.ingredient]]
 ingredient = "Sigil of the Warblade"
@@ -371,10 +315,6 @@ item = "Legendary Outfit of the Warblade"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
-
-[[recipe.ingredient]]
 ingredient = "Sigil of the Warblade"
 quantity = 1
 
@@ -387,10 +327,6 @@ step = "Item upgrade"
 [[recipe.ingredient]]
 item = "Legendary Robe of the Warblade"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
 
 [[recipe.ingredient]]
 ingredient = "Sigil of the Warblade"
@@ -407,10 +343,6 @@ item = "Legendary Docent of the Crownblade"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
-
-[[recipe.ingredient]]
 ingredient = "Sigil of the Crownblade"
 quantity = 1
 
@@ -423,10 +355,6 @@ step = "Item upgrade"
 [[recipe.ingredient]]
 item = "Legendary Heavy Armor of the Crownblade"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
 
 [[recipe.ingredient]]
 ingredient = "Sigil of the Crownblade"
@@ -443,10 +371,6 @@ item = "Legendary Medium Armor of the Crownblade"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
-
-[[recipe.ingredient]]
 ingredient = "Sigil of the Crownblade"
 quantity = 1
 
@@ -459,10 +383,6 @@ step = "Item upgrade"
 [[recipe.ingredient]]
 item = "Legendary Light Armor of the Crownblade"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
 
 [[recipe.ingredient]]
 ingredient = "Sigil of the Crownblade"
@@ -479,10 +399,6 @@ item = "Legendary Outfit of the Crownblade"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
-
-[[recipe.ingredient]]
 ingredient = "Sigil of the Crownblade"
 quantity = 1
 
@@ -495,10 +411,6 @@ step = "Item upgrade"
 [[recipe.ingredient]]
 item = "Legendary Robe of the Crownblade"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 120
 
 [[recipe.ingredient]]
 ingredient = "Sigil of the Crownblade"
@@ -519,10 +431,6 @@ level = 32
 ingredient = "Sealed in Fire weapon"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 20
-
 [[recipe]]
 note = "Removes any effect the Ritual Table added before and adds Legendary Ash. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
 option = "Legendary Ash (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
@@ -537,10 +445,6 @@ level = 32
 [[recipe.ingredient]]
 ingredient = "Sealed in Fire weapon"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 20
 
 [[recipe]]
 note = "Removes any effect the Ritual Table added before and adds Legendary Vacuum. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
@@ -557,10 +461,6 @@ level = 32
 ingredient = "Sealed in Fire weapon"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 20
-
 [[recipe]]
 note = "Removes any effect the Ritual Table added before and adds Legendary Ooze. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
 option = "Legendary Ooze (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
@@ -575,10 +475,6 @@ level = 32
 [[recipe.ingredient]]
 ingredient = "Sealed in Fire weapon"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 20
 
 [[recipe]]
 note = "Removes any effect the Ritual Table added before and adds Legendary Salt. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
@@ -595,10 +491,6 @@ level = 32
 ingredient = "Sealed in Fire weapon"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 20
-
 [[recipe]]
 note = "Removes any effect the Ritual Table added before and adds Legendary Affirmation. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
 option = "Legendary Affirmation (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
@@ -613,10 +505,6 @@ level = 32
 [[recipe.ingredient]]
 ingredient = "Sealed in Fire weapon"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 20
 
 [[recipe]]
 note = """
@@ -720,7 +608,3 @@ level = 32
 [[recipe.ingredient]]
 ingredient = "Sealed in Undeath item"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Barrier Fragment"
-quantity = 20

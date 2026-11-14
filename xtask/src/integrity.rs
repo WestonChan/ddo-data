@@ -196,8 +196,8 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::hard(
         "recipe_costs_do_not_repeat_their_step_costs",
-        "a recipe's own cost differs from its step's cost for that grade",
-        OffenderQuery::Sql("WITH own_cost AS (SELECT recipe_id,ingredient_id,item_id,SUM(quantity) quantity FROM crafting_recipe_ingredients GROUP BY recipe_id,ingredient_id,item_id), step_cost AS (SELECT recipe_id,ingredient_id,item_id,SUM(quantity) quantity FROM crafting_recipe_step_costs GROUP BY recipe_id,ingredient_id,item_id) SELECT r.option,r.id,s.name || ': ' || r.tier FROM crafting_recipes r JOIN crafting_steps s ON s.id=r.step_id WHERE EXISTS (SELECT 1 FROM own_cost c WHERE c.recipe_id=r.id) AND NOT EXISTS (SELECT ingredient_id,item_id,quantity FROM own_cost WHERE recipe_id=r.id EXCEPT SELECT ingredient_id,item_id,quantity FROM step_cost WHERE recipe_id=r.id) AND NOT EXISTS (SELECT ingredient_id,item_id,quantity FROM step_cost WHERE recipe_id=r.id EXCEPT SELECT ingredient_id,item_id,quantity FROM own_cost WHERE recipe_id=r.id) ORDER BY r.option"),
+        "no recipe line repeats an ingredient or item charged by its step at that grade",
+        OffenderQuery::Sql(ddo_etl::tree::RECIPE_COSTS_REPEATING_STEP_COSTS),
     ),
     IntegrityCheck::hard(
         "step_base_lines_scope_consistently",

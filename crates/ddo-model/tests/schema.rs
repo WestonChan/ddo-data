@@ -362,7 +362,7 @@ fn crafting_step_costs_are_one_set_per_grade() {
 }
 
 #[test]
-fn crafting_cost_views_resolve_overrides_exact_tiers_and_any_fallbacks() {
+fn crafting_cost_views_add_own_lines_to_exact_tiers_and_any_fallbacks() {
     let db = crafting_schema_db();
     db.execute_batch(
         "UPDATE crafting_recipes SET step_id=1 WHERE id=1;
@@ -390,13 +390,14 @@ fn crafting_cost_views_resolve_overrides_exact_tiers_and_any_fallbacks() {
             (4, 0, Some(1), None, "epic".into(), 60),
         ]
     );
-    let effective = db.prepare("SELECT recipe_id,sort_order,ingredient_id,item_id,tier,quantity,from_step FROM crafting_recipe_effective_costs ORDER BY recipe_id,sort_order").unwrap()
+    let effective = db.prepare("SELECT recipe_id,sort_order,ingredient_id,item_id,tier,quantity,from_step FROM crafting_recipe_effective_costs ORDER BY recipe_id,from_step,sort_order").unwrap()
         .query_map([], |row| Ok((row.get::<_,i64>(0)?,row.get::<_,i64>(1)?,row.get::<_,Option<i64>>(2)?,row.get::<_,Option<i64>>(3)?,row.get::<_,String>(4)?,row.get::<_,i64>(5)?,row.get::<_,i64>(6)?))).unwrap()
         .collect::<rusqlite::Result<Vec<_>>>().unwrap();
     assert_eq!(
         effective,
         [
             (1, 0, None, Some(1), "epic".into(), 7, 0),
+            (1, 0, Some(1), None, "epic".into(), 60, 1),
             (2, 0, Some(1), None, "heroic".into(), 11, 1),
             (3, 0, Some(1), None, "legendary".into(), 3, 1),
             (3, 1, None, Some(1), "legendary".into(), 2, 1),

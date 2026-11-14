@@ -110,19 +110,7 @@ name = "Unleash the Fire"
 level = 32
 
 [[recipe.ingredient]]
-ingredient = "Burning Planar Scrap"
-quantity = 120
-
-[[recipe.ingredient]]
-ingredient = "Legendary Esoteric Relic"
-quantity = 30
-
-[[recipe.ingredient]]
 ingredient = "Legendary Black Dust of Vile Darkness"
-quantity = 12
-
-[[recipe.ingredient]]
-ingredient = "Legendary Golden Dust of Vile Darkness"
 quantity = 12
 
 [[recipe]]
@@ -136,19 +124,7 @@ name = "Unleash the Lightning"
 level = 32
 
 [[recipe.ingredient]]
-ingredient = "Burning Planar Scrap"
-quantity = 120
-
-[[recipe.ingredient]]
-ingredient = "Legendary Esoteric Relic"
-quantity = 30
-
-[[recipe.ingredient]]
 ingredient = "Legendary Gray Dust of Vile Darkness"
-quantity = 12
-
-[[recipe.ingredient]]
-ingredient = "Legendary Golden Dust of Vile Darkness"
 quantity = 12
 
 [[recipe]]
@@ -162,17 +138,5 @@ name = "Unleash the Resistance"
 level = 32
 
 [[recipe.ingredient]]
-ingredient = "Burning Planar Scrap"
-quantity = 120
-
-[[recipe.ingredient]]
-ingredient = "Legendary Esoteric Relic"
-quantity = 30
-
-[[recipe.ingredient]]
 ingredient = "Legendary Crimson Dust of Vile Darkness"
-quantity = 12
-
-[[recipe.ingredient]]
-ingredient = "Legendary Golden Dust of Vile Darkness"
 quantity = 12

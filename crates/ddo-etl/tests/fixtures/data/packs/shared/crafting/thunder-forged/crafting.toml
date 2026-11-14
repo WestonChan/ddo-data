@@ -155,17 +155,9 @@ name = "Blinding Fear"
 level = 24
 
 [[recipe]]
-option = "Tier 1 override"
+option = "Tier 1 additional cost"
 tier = "epic"
 step = "Tier 1"
-
-[[recipe.ingredient]]
-ingredient = "Thunder-Forged Dwarven Ingot"
-quantity = 61
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 45
 
 [[recipe.ingredient]]
 ingredient = "Thread of Fate"

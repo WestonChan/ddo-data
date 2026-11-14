@@ -30,11 +30,6 @@ variant = "Guild ship"
 name = "Nearly Finished"
 slot = "crafting: nearly finished"
 
-[[step.cost]]
-tier = "any"
-ingredient = "Lesser Cannith Power Cell"
-quantity = 1
-
 [[step]]
 name = "Almost There"
 slot = "crafting: almost there"
@@ -1651,19 +1646,11 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Reforged Glowing Ingot"
 quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Reforged Dense Ingot"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe]]
@@ -1679,19 +1666,11 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Reforged Glowing Ingot"
 quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Reforged Dense Ingot"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe]]
@@ -1707,19 +1686,11 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Reforged Glowing Ingot"
 quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Reforged Dense Ingot"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe]]
@@ -1735,19 +1706,11 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Reforged Glowing Ingot"
 quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Reforged Dense Ingot"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe]]
@@ -1763,19 +1726,11 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Reforged Glowing Ingot"
 quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Reforged Dense Ingot"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe]]
@@ -1791,19 +1746,11 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Reforged Glowing Ingot"
 quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Reforged Dense Ingot"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe]]
@@ -2104,15 +2051,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2156,15 +2095,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2208,15 +2139,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2260,15 +2183,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2312,15 +2227,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2364,15 +2271,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2416,15 +2315,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2468,15 +2359,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2520,15 +2403,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2572,15 +2447,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2624,15 +2491,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2676,15 +2535,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2731,15 +2582,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2754,15 +2597,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2777,15 +2612,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2800,15 +2627,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2823,15 +2642,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2846,15 +2657,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2869,15 +2672,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2892,15 +2687,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -2983,15 +2770,7 @@ tier = "legendary"
 step = "Almost There"
 
 [[recipe.ingredient]]
-ingredient = "Dampening Alloy"
-quantity = 1
-
-[[recipe.ingredient]]
 ingredient = "Caustic Compound"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Stabilizing Compound"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -3673,6 +3452,10 @@ option = "Tinker's Set"
 tier = "any"
 step = "Nearly Finished"
 
+[[recipe.ingredient]]
+ingredient = "Lesser Cannith Power Cell"
+quantity = 1
+
 [[recipe]]
 note = """
 Secrets of the Artificers pack. Completing the Nearly Finished recipe on both Magewright's Cloak and Magewright's Spectacles at a Cannith Reforging Station unlocks the set bonus: Spell Focus Mastery (+1 to all spell DCs); Magewright's Quick Wits (chance of a 10-second +12 Alchemical bonus to Universal Spell Power each time the wearer is hit by a physical attack). Standard non-stacking effects unless stated; the items become Bound to Character. The page gives no cost or tier.
@@ -3681,6 +3464,10 @@ Awaken Set Bonus on each of Magewright's Cloak and Magewright's Spectacles (two 
 option = "Magewright's Set"
 tier = "any"
 step = "Nearly Finished"
+
+[[recipe.ingredient]]
+ingredient = "Lesser Cannith Power Cell"
+quantity = 1
 
 [[recipe]]
 note = """
@@ -3691,6 +3478,10 @@ option = "Fabricator's Set"
 tier = "any"
 step = "Nearly Finished"
 
+[[recipe.ingredient]]
+ingredient = "Lesser Cannith Power Cell"
+quantity = 1
+
 [[recipe]]
 note = """
 Secrets of the Artificers pack. Completing the Nearly Finished recipe on both Alchemist's Crown and Alchemist's Pendant at a Cannith Reforging Station unlocks the set bonus: Empower, Maximize and Empower Healing metamagic cost 2 fewer spell points each; -10% spell cost between 50% and 25% HP, -20% between 25% and 10%, -30% below 10%. Standard non-stacking effects unless stated; the items become Bound to Character. The page gives no cost or tier.
@@ -3699,3 +3490,7 @@ Awaken Set Bonus on each of Alchemist's Pendant and Alchemist's Crown (two recip
 option = "Alchemist's Set"
 tier = "any"
 step = "Nearly Finished"
+
+[[recipe.ingredient]]
+ingredient = "Lesser Cannith Power Cell"
+quantity = 1

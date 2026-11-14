@@ -321,10 +321,6 @@ step = "Ioun Stone upgrade"
 item = "Dark Blue Ioun Stone"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
-quantity = 1
-
 [[recipe]]
 note = """
 Upgrades Deep Red Ioun Stone (drag it onto the crafting menu): loses Dexterity +2, gains Dexterity +6, Dexterity Skills - Exceptional Bonus +2. The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Deep Red Ioun Stone (unsuppressed); no augment counterpart.
@@ -336,10 +332,6 @@ step = "Ioun Stone upgrade"
 
 [[recipe.ingredient]]
 item = "Deep Red Ioun Stone"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
 quantity = 1
 
 [[recipe]]
@@ -355,10 +347,6 @@ step = "Ioun Stone upgrade"
 item = "Dusty Rose Ioun Stone"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
-quantity = 1
-
 [[recipe]]
 note = """
 Upgrades Incandescent Blue Ioun Stone (drag it onto the crafting menu): loses Wisdom +2, gains Wisdom +6, Wisdom Skills - Exceptional Bonus +2. The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Incandescent Blue Ioun Stone (unsuppressed); no augment counterpart.
@@ -370,10 +358,6 @@ step = "Ioun Stone upgrade"
 
 [[recipe.ingredient]]
 item = "Incandescent Blue Ioun Stone"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
 quantity = 1
 
 [[recipe]]
@@ -389,10 +373,6 @@ step = "Ioun Stone upgrade"
 item = "Pale Blue Ioun Stone"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
-quantity = 1
-
 [[recipe]]
 note = """
 Upgrades Pale Lavender Ioun Stone (drag it onto the crafting menu): loses Spell Absorption, 20 Charges, No Recharges, gains Spell Absorption, 50 Charges (Recharged/Day: 15). The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Pale Lavender Ioun Stone (unsuppressed); no augment counterpart. Old Pale Lavender stones without the Suppressed Power effect can still be upgraded; other old stones without it cannot.
@@ -404,10 +384,6 @@ step = "Ioun Stone upgrade"
 
 [[recipe.ingredient]]
 item = "Pale Lavender Ioun Stone"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
 quantity = 1
 
 [[recipe]]
@@ -423,10 +399,6 @@ step = "Ioun Stone upgrade"
 item = "Pink and Green Ioun Stone"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
-quantity = 1
-
 [[recipe]]
 note = """
 Upgrades Pink Ioun Stone (drag it onto the crafting menu): loses Constitution +2, gains Constitution +6, Constitution Skills - Exceptional Bonus +2. The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Pink Ioun Stone (unsuppressed); no augment counterpart.
@@ -438,10 +410,6 @@ step = "Ioun Stone upgrade"
 
 [[recipe.ingredient]]
 item = "Pink Ioun Stone"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
 quantity = 1
 
 [[recipe]]
@@ -457,10 +425,6 @@ step = "Ioun Stone upgrade"
 item = "Scarlet and Blue Ioun Stone"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
-quantity = 1
-
 [[recipe]]
 note = """
 Upgrades Vibrant Purple Ioun Stone (drag it onto the crafting menu): loses Power III, gains Archmagi, Spell Penetration III. The result is ML 5 and Bound to Character on Acquire; the Dreamforge window wrongly says the level rises much higher. Maetrim holds the result as the separate item Vibrant Purple Ioun Stone (unsuppressed); no augment counterpart.
@@ -472,10 +436,6 @@ step = "Ioun Stone upgrade"
 
 [[recipe.ingredient]]
 item = "Vibrant Purple Ioun Stone"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
 quantity = 1
 
 [[recipe]]
@@ -491,10 +451,6 @@ step = "Suppressed Power"
 item = "Death's Touch"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
-quantity = 1
-
 [[recipe]]
 note = """
 Unlocks the Suppressed Power of Dream Edge (Kama; +5 Enhancement Bonus, Maiming, Aligned, Bodyfeeder, Random Effect, Suppressed Power): gains Lesser Vampirism. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim holds the unlocked effects as an item-specific option on this socket, not in an augment family.
@@ -506,10 +462,6 @@ step = "Suppressed Power"
 
 [[recipe.ingredient]]
 item = "Dream Edge"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
 quantity = 1
 
 [[recipe]]
@@ -525,10 +477,6 @@ step = "Suppressed Power"
 item = "Elocator's Habiliment"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
-quantity = 1
-
 [[recipe]]
 note = """
 Unlocks the Suppressed Power of Gloves of Titan's Grip (Gloves; Titan's Grip (3 Charges, Recharged/Day: 1), Strength +6, Suppressed Power): gains Reconstruction +84, Repair Lore V, Repair Systems. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay.
@@ -540,10 +488,6 @@ step = "Suppressed Power"
 
 [[recipe.ingredient]]
 item = "Gloves of Titan's Grip"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
 quantity = 1
 
 [[recipe]]
@@ -559,10 +503,6 @@ step = "Suppressed Power"
 item = "Light and Darkness"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
-quantity = 1
-
 [[recipe]]
 note = """
 Unlocks the Suppressed Power of Quorforged Docent of Battle (Docent; +5 Enhancement Bonus, Construct Fortification (10%), Constitution +6, Improved False Life, Will Save -2, Suppressed Power): loses Improved False Life, gains Superior False Life, Vitality +20. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim holds the unlocked effects as an item-specific option on this socket, not in an augment family.
@@ -574,10 +514,6 @@ step = "Suppressed Power"
 
 [[recipe.ingredient]]
 item = "Quorforged Docent of Battle"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
 quantity = 1
 
 [[recipe]]
@@ -593,10 +529,6 @@ step = "Suppressed Power"
 item = "Rahl's Might"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
-quantity = 1
-
 [[recipe]]
 note = """
 Unlocks the Suppressed Power of Regalia of the Phoenix (Robe; Greater Inferno (3 Charges, Recharged/Day: 3), Evocation Focus I, Combustion +78, Fire Lore III, Feather Falling, Suppressed Power): loses Evocation Focus I, Fire Lore III, gains Evocation Focus II, Fire Lore V. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay.
@@ -608,10 +540,6 @@ step = "Suppressed Power"
 
 [[recipe.ingredient]]
 item = "Regalia of the Phoenix"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
 quantity = 1
 
 [[recipe]]
@@ -627,10 +555,6 @@ step = "Suppressed Power"
 item = "Terror"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
-quantity = 1
-
 [[recipe]]
 note = """
 Unlocks the Suppressed Power of Dreamspitter (Quarterstaff; +5 Enhancement Bonus, Greater Evil Outsider Bane, Life Stealing, Enchantment Focus II, Upgradeable Item (Stormreaver), Suppressed Power): gains Holy. Upgraded items become Bound to Character on Acquire; existing Stone of Change rituals stay. Maetrim holds the unlocked effects as an item-specific option on this socket, not in an augment family.
@@ -642,8 +566,4 @@ step = "Suppressed Power"
 
 [[recipe.ingredient]]
 item = "Dreamspitter"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Crystal Disc of Dreams"
 quantity = 1

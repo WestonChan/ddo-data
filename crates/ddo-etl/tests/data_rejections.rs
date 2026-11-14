@@ -15,6 +15,24 @@ fn crafting_row_error(rows: &str) -> String {
 }
 
 #[test]
+fn recipe_costs_cannot_repeat_a_step_ingredient_or_item() {
+    for reference in ["ingredient='Thread of Fate'", "item=\"Acrobat's Ring\""] {
+        for step_tier in ["epic", "any"] {
+            for quantity in [1, 2] {
+                let error = crafting_row_error(&format!(
+                    "[[step]]\nname='Shared cost'\n[[step.cost]]\ntier='{step_tier}'\n{reference}\nquantity=1\n[[recipe]]\noption='Repeated cost'\ntier='epic'\nstep='Shared cost'\n[[recipe.ingredient]]\n{reference}\nquantity={quantity}\n"
+                ));
+                assert!(
+                    error.contains("packs/shared/crafting/catalyst-crafting/crafting.toml"),
+                    "expected a rejection naming the crafting file, got {error:?}"
+                );
+                assert!(error.contains("Repeated cost") && error.contains("already charged by step"), "{error}");
+            }
+        }
+    }
+}
+
+#[test]
 fn item_socket_label_notes_require_one_present_socket_with_a_changed_label() {
     let path = "packs/unsourced/gear/celestial-emerald-ring.toml";
     for (option, ambiguous, expected) in [

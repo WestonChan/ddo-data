@@ -88,10 +88,6 @@ step = "Item upgrade"
 ingredient = "Dampened Item"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Token of Vulkoor"
-quantity = 1
-
 [[recipe]]
 note = """
 Cleanses Dampened Shatterbow (drops in The Claw of Vulkoor: Dampened, +1 Enhancement Bonus, Screaming, Construct Bane, Move Silently -5, ML 7, Unbound) into Shatterbow (+3 Enhancement Bonus, Reverberating 2, Construct Bane 2, Armor-Piercing 7%, ML 7, Bound to Account on Acquire, Exclusive). The upgraded item is a separate item in Maetrim's data; introduced in Update 6. No augment counterpart.
@@ -103,10 +99,6 @@ step = "Item upgrade"
 
 [[recipe.ingredient]]
 ingredient = "Dampened Item"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Token of Vulkoor"
 quantity = 1
 
 [[recipe]]
@@ -122,10 +114,6 @@ step = "Item upgrade"
 ingredient = "Dampened Item"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Token of Vulkoor"
-quantity = 1
-
 [[recipe]]
 note = """
 Cleanses Dampened Frozen Plate (drops in Into the Deep: +3 Enhancement Bonus, Dampened, ML 6, Bound to Account on Acquire) into Frozen Plate (+4 Enhancement Bonus, Physical Sheltering +10, Cold Absorption +17%, Cold Resistance +15, Ice Guard II, ML 6, Bound to Account on Acquire). The upgraded item is a separate item in Maetrim's data; introduced in Update 6. No augment counterpart.
@@ -139,10 +127,6 @@ step = "Item upgrade"
 ingredient = "Dampened Item"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Token of Vulkoor"
-quantity = 1
-
 [[recipe]]
 note = """
 Cleanses Dampened Greatclub of the Scrag (drops in Into the Deep: [1d10], Dampened, +2 Enhancement Bonus, True Chaos, Cold Touch, Regeneration, ML 7, Bound to Character on Equip) into Greatclub of the Scrag ([1d10], +3 Enhancement Bonus, Anarchic 2, Chilling 2, Regeneration, ML 7, Bound to Account on Acquire). The upgraded item is a separate item in Maetrim's data; introduced in Update 6. No augment counterpart.
@@ -154,10 +138,6 @@ step = "Item upgrade"
 
 [[recipe.ingredient]]
 ingredient = "Dampened Item"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Token of Vulkoor"
 quantity = 1
 
 [[recipe]]

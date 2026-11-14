@@ -114,10 +114,6 @@ step = "Attuned by Heroism: Tier 1"
 item = "Agony, the Knife in the Dark"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Agony, the Knife in the Dark: Attuned by Heroism Tier 2"
@@ -128,10 +124,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Agony, the Knife in the Dark"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Hemorrhaging becomes Phlebotomizing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Agony, the Knife in the Dark: Attuned by Heroism Tier 3"
@@ -141,10 +133,6 @@ step = "Attuned by Heroism: Tier 3"
 [[recipe.ingredient]]
 item = "Agony, the Knife in the Dark"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
 
 [[recipe]]
 grants_slot = "red"
@@ -157,10 +145,6 @@ step = "Attuned by Heroism: Tier 4"
 item = "Agony, the Knife in the Dark"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 10
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Antipode, Fist of the Horizon: Attuned by Heroism Tier 1"
@@ -170,10 +154,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Antipode, Fist of the Horizon"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
 
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
@@ -185,10 +165,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Antipode, Fist of the Horizon"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Antipode, Fist of the Horizon: Attuned by Heroism Tier 3"
@@ -198,10 +174,6 @@ step = "Attuned by Heroism: Tier 3"
 [[recipe.ingredient]]
 item = "Antipode, Fist of the Horizon"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
 
 [[recipe]]
 grants_slot = "red"
@@ -214,10 +186,6 @@ step = "Attuned by Heroism: Tier 4"
 item = "Antipode, Fist of the Horizon"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 10
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Balizarde, Protector of the King: Attuned by Heroism Tier 1"
@@ -227,10 +195,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Balizarde, Protector of the King"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
 
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
@@ -242,10 +206,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Balizarde, Protector of the King"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Hemorrhaging becomes Phlebotomizing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Balizarde, Protector of the King: Attuned by Heroism Tier 3"
@@ -255,10 +215,6 @@ step = "Attuned by Heroism: Tier 3"
 [[recipe.ingredient]]
 item = "Balizarde, Protector of the King"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
 
 [[recipe]]
 grants_slot = "red"
@@ -271,10 +227,6 @@ step = "Attuned by Heroism: Tier 4"
 item = "Balizarde, Protector of the King"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 10
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Breach, The Dividing Blade: Attuned by Heroism Tier 1"
@@ -284,10 +236,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Breach, The Dividing Blade"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
 
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
@@ -299,10 +247,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Breach, The Dividing Blade"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Shrieking becomes Wailing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Breach, The Dividing Blade: Attuned by Heroism Tier 3"
@@ -312,10 +256,6 @@ step = "Attuned by Heroism: Tier 3"
 [[recipe.ingredient]]
 item = "Breach, The Dividing Blade"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
 
 [[recipe]]
 grants_slot = "red"
@@ -328,10 +268,6 @@ step = "Attuned by Heroism: Tier 4"
 item = "Breach, The Dividing Blade"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 10
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Celestia, Brightest Star of Day: Attuned by Heroism Tier 1"
@@ -341,10 +277,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Celestia, Brightest Star of Day"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
 
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
@@ -356,10 +288,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Celestia, Brightest Star of Day"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds Banishing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Celestia, Brightest Star of Day: Attuned by Heroism Tier 3"
@@ -369,10 +297,6 @@ step = "Attuned by Heroism: Tier 3"
 [[recipe.ingredient]]
 item = "Celestia, Brightest Star of Day"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
 
 [[recipe]]
 grants_slot = "green"
@@ -385,10 +309,6 @@ step = "Attuned by Heroism: Tier 4"
 item = "Celestia, Brightest Star of Day"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 10
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Cleaver, Hewer of Suffering: Attuned by Heroism Tier 1"
@@ -398,10 +318,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Cleaver, Hewer of Suffering"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
 
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
@@ -413,10 +329,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Cleaver, Hewer of Suffering"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Hemorrhaging becomes Phlebotomizing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Cleaver, Hewer of Suffering: Attuned by Heroism Tier 3"
@@ -426,10 +338,6 @@ step = "Attuned by Heroism: Tier 3"
 [[recipe.ingredient]]
 item = "Cleaver, Hewer of Suffering"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
 
 [[recipe]]
 grants_slot = "red"
@@ -442,10 +350,6 @@ step = "Attuned by Heroism: Tier 4"
 item = "Cleaver, Hewer of Suffering"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 10
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Mornh, Hammer of the Mountains: Attuned by Heroism Tier 1"
@@ -455,10 +359,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Mornh, Hammer of the Mountains"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
 
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
@@ -470,10 +370,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Mornh, Hammer of the Mountains"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Mornh, Hammer of the Mountains: Attuned by Heroism Tier 3"
@@ -483,10 +379,6 @@ step = "Attuned by Heroism: Tier 3"
 [[recipe.ingredient]]
 item = "Mornh, Hammer of the Mountains"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
 
 [[recipe]]
 grants_slot = "red"
@@ -499,10 +391,6 @@ step = "Attuned by Heroism: Tier 4"
 item = "Mornh, Hammer of the Mountains"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 10
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Needle, Quill-slinger: Attuned by Heroism Tier 1"
@@ -512,10 +400,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Needle, Quill-slinger"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
 
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
@@ -527,10 +411,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Needle, Quill-slinger"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Hemorrhaging becomes Phlebotomizing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Needle, Quill-slinger: Attuned by Heroism Tier 3"
@@ -540,10 +420,6 @@ step = "Attuned by Heroism: Tier 3"
 [[recipe.ingredient]]
 item = "Needle, Quill-slinger"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
 
 [[recipe]]
 grants_slot = "red"
@@ -556,10 +432,6 @@ step = "Attuned by Heroism: Tier 4"
 item = "Needle, Quill-slinger"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 10
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Nightmare, the Fallen Moon: Attuned by Heroism Tier 1"
@@ -569,10 +441,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Nightmare, the Fallen Moon"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
 
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
@@ -584,10 +452,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Nightmare, the Fallen Moon"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Nightmare, the Fallen Moon: Attuned by Heroism Tier 3"
@@ -597,10 +461,6 @@ step = "Attuned by Heroism: Tier 3"
 [[recipe.ingredient]]
 item = "Nightmare, the Fallen Moon"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
 
 [[recipe]]
 grants_slot = "red"
@@ -613,10 +473,6 @@ step = "Attuned by Heroism: Tier 4"
 item = "Nightmare, the Fallen Moon"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 10
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Pinion, Cloud-piercer: Attuned by Heroism Tier 1"
@@ -626,10 +482,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Pinion, Cloud-piercer"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
 
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
@@ -641,10 +493,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Pinion, Cloud-piercer"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Shrieking becomes Wailing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Pinion, Cloud-piercer: Attuned by Heroism Tier 3"
@@ -654,10 +502,6 @@ step = "Attuned by Heroism: Tier 3"
 [[recipe.ingredient]]
 item = "Pinion, Cloud-piercer"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
 
 [[recipe]]
 grants_slot = "red"
@@ -670,10 +514,6 @@ step = "Attuned by Heroism: Tier 4"
 item = "Pinion, Cloud-piercer"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 10
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Sireth, Spear of the Sky: Attuned by Heroism Tier 1"
@@ -683,10 +523,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Sireth, Spear of the Sky"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
 
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
@@ -698,10 +534,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Sireth, Spear of the Sky"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Sireth, Spear of the Sky: Attuned by Heroism Tier 3"
@@ -711,10 +543,6 @@ step = "Attuned by Heroism: Tier 3"
 [[recipe.ingredient]]
 item = "Sireth, Spear of the Sky"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
 
 [[recipe]]
 grants_slot = "red"
@@ -727,10 +555,6 @@ step = "Attuned by Heroism: Tier 4"
 item = "Sireth, Spear of the Sky"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 10
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Tinah, Sword of the Sea: Attuned by Heroism Tier 1"
@@ -740,10 +564,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Tinah, Sword of the Sea"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
 
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
@@ -755,10 +575,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Tinah, Sword of the Sea"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Tinah, Sword of the Sea: Attuned by Heroism Tier 3"
@@ -768,10 +584,6 @@ step = "Attuned by Heroism: Tier 3"
 [[recipe.ingredient]]
 item = "Tinah, Sword of the Sea"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
 
 [[recipe]]
 grants_slot = "red"
@@ -784,10 +596,6 @@ step = "Attuned by Heroism: Tier 4"
 item = "Tinah, Sword of the Sea"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 10
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Twilight, Element of Magic: Attuned by Heroism Tier 1"
@@ -797,10 +605,6 @@ step = "Attuned by Heroism: Tier 1"
 [[recipe.ingredient]]
 item = "Twilight, Element of Magic"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 3
 
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
@@ -812,10 +616,6 @@ step = "Attuned by Heroism: Tier 2"
 item = "Twilight, Element of Magic"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 5
-
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds one +120 Spell Power of choice (Combustion, Glaciation, Corrosion, Magnetism, Nullification, Devotion, Radiance). Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Twilight, Element of Magic: Attuned by Heroism Tier 3"
@@ -825,10 +625,6 @@ step = "Attuned by Heroism: Tier 3"
 [[recipe.ingredient]]
 item = "Twilight, Element of Magic"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 7
 
 [[recipe]]
 grants_slot = "red"
@@ -840,10 +636,6 @@ step = "Attuned by Heroism: Tier 4"
 [[recipe.ingredient]]
 item = "Twilight, Element of Magic"
 quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Heroism"
-quantity = 10
 
 [[recipe]]
 note = """

@@ -45,13 +45,16 @@ fn previous_xml_omits_later_item_costs_and_unlocks_but_current_xml_is_strict() {
     let ours = fixture::database(|root| {
         let original = std::fs::read_to_string(root.join("packs/free-to-play/gear/acrobats-ring.toml")).unwrap();
         let mut item: toml::Value = toml::from_str(&original).unwrap();
-        item["name"] = "Later Ring".into();
         item.as_table_mut().unwrap().remove("source");
         item.as_table_mut().unwrap().remove("drop_location");
-        std::fs::write(root.join("packs/unsourced/gear/later-ring.toml"), toml::to_string(&item).unwrap()).unwrap();
+        for name in ["Later Ring", "Later Recipe Ring"] {
+            item["name"] = name.into();
+            let path = root.join(format!("packs/unsourced/gear/{}.toml", ddo_etl::tree::slug(name)));
+            std::fs::write(path, toml::to_string(&item).unwrap()).unwrap();
+        }
         let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
         let original = std::fs::read_to_string(&path).unwrap();
-        std::fs::write(path,format!("{original}\n[[unlock]]\nkind='kept_item'\nitem='Later Ring'\ntext='Wear the later ring.'\n[[step]]\nname='Later upgrade'\n[[step.cost]]\ntier='any'\nitem='Later Ring'\nquantity=1\n[[recipe]]\noption='Later recipe'\nstep='Later upgrade'\ntier='any'\n[[recipe.ingredient]]\nitem='Later Ring'\nquantity=2\n[[recipe.unlock]]\nkind='kept_item'\nitem='Later Ring'\ntext='Keep the later ring.'\n")).unwrap();
+        std::fs::write(path,format!("{original}\n[[unlock]]\nkind='kept_item'\nitem='Later Ring'\ntext='Wear the later ring.'\n[[step]]\nname='Later upgrade'\n[[step.cost]]\ntier='any'\nitem='Later Ring'\nquantity=1\n[[recipe]]\noption='Later recipe'\nstep='Later upgrade'\ntier='any'\n[[recipe.ingredient]]\nitem='Later Recipe Ring'\nquantity=2\n[[recipe.unlock]]\nkind='kept_item'\nitem='Later Ring'\ntext='Keep the later ring.'\n")).unwrap();
         let path = root.join("packs/shared/crafting/stations.toml");
         let original = std::fs::read_to_string(&path).unwrap();
         std::fs::write(

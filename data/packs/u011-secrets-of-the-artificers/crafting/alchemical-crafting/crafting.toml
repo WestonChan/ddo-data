@@ -879,10 +879,6 @@ quantity = 1
 ingredient = "Glowing Ingot"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Cannith Power Cell"
-quantity = 1
-
 [[recipe]]
 note = "Cannith Reforging Station: reforge the prototype weapon or shield; it becomes Bound to Account and ML14. The page cautions that Cold Iron and Silver share a recipe, as do Crystal and Flametouched Iron."
 option = "Reforge Item (Byeshk)"
@@ -903,10 +899,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Dense Ingot"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Cannith Power Cell"
 quantity = 1
 
 [[recipe]]
@@ -931,10 +923,6 @@ quantity = 1
 ingredient = "Pliable Ingot"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Cannith Power Cell"
-quantity = 1
-
 [[recipe]]
 note = "Cannith Reforging Station: reforge the prototype weapon or shield; it becomes Bound to Account and ML14. The page cautions that Cold Iron and Silver share a recipe, as do Crystal and Flametouched Iron."
 option = "Reforge Item (Crystal)"
@@ -955,10 +943,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Dense Ingot"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Cannith Power Cell"
 quantity = 1
 
 [[recipe]]
@@ -983,10 +967,6 @@ quantity = 1
 ingredient = "Dense Ingot"
 quantity = 1
 
-[[recipe.ingredient]]
-ingredient = "Cannith Power Cell"
-quantity = 1
-
 [[recipe]]
 note = "Cannith Reforging Station: reforge the prototype weapon or shield; it becomes Bound to Account and ML14. The page cautions that Cold Iron and Silver share a recipe, as do Crystal and Flametouched Iron."
 option = "Reforge Item (Silver)"
@@ -1007,10 +987,6 @@ quantity = 1
 
 [[recipe.ingredient]]
 ingredient = "Pliable Ingot"
-quantity = 1
-
-[[recipe.ingredient]]
-ingredient = "Cannith Power Cell"
 quantity = 1
 
 [[recipe]]

@@ -3812,39 +3812,47 @@ async fn step_costs_are_served_in_grade_order() {
 }
 
 #[tokio::test]
-async fn a_step_cost_on_tier_any_applies_to_every_grade() {
+async fn recipe_costs_add_own_lines_before_the_steps_applicable_grade() {
     let state = fixture_state_with_data_edits("any-step-cost", |root| {
         let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
         let mut contents = std::fs::read_to_string(&path).unwrap();
         contents.push_str("\n[[step]]\nname='Any cost'\n[[step.cost]]\ntier='any'\ningredient='Thread of Fate'\nquantity=1\n[[step.cost]]\ntier='any'\ningredient='Small Shard of Power'\nquantity=2\n[[step.cost]]\ntier='epic'\ningredient='Thread of Fate'\nquantity=3\n");
         for tier in ["heroic", "epic", "legendary", "any"] {
             contents.push_str(&format!("[[recipe]]\noption='{tier} default'\nstep='Any cost'\ntier='{tier}'\n"));
-            contents.push_str(&format!("[[recipe]]\noption='{tier} override'\nstep='Any cost'\ntier='{tier}'\n[[recipe.ingredient]]\ningredient='Thread of Fate'\nquantity=4\n"));
+            contents.push_str(&format!("[[recipe]]\noption='{tier} addition'\nstep='Any cost'\ntier='{tier}'\n[[recipe.ingredient]]\nitem=\"Acrobat's Ring\"\nquantity=4\n"));
         }
         std::fs::write(path, contents).unwrap();
     });
     let (status, _, system) = get_from(state, "/v1/crafting-systems/catalyst-crafting").await;
     assert_eq!(status, StatusCode::OK);
     for tier in ["heroic", "epic", "legendary", "any"] {
-        for overridden in [false, true] {
-            let option = format!("{tier} {}", if overridden { "override" } else { "default" });
+        for has_own_cost in [false, true] {
+            let option = format!("{tier} {}", if has_own_cost { "addition" } else { "default" });
             let recipe =
                 system["recipes"].as_array().unwrap().iter().find(|recipe| recipe["option"] == option).unwrap();
             let actual = recipe["cost"]
                 .as_array()
                 .unwrap()
                 .iter()
-                .map(|cost| (cost["ingredient"].as_str().unwrap(), cost["quantity"].as_i64().unwrap()))
+                .map(|cost| {
+                    (
+                        cost["ingredient"].as_str().or_else(|| cost["item"].as_str()).unwrap(),
+                        cost["quantity"].as_i64().unwrap(),
+                        cost["from_step"].as_bool(),
+                    )
+                })
                 .collect::<Vec<_>>();
-            let expected = if overridden {
-                vec![("Thread of Fate", 4)]
-            } else if tier == "epic" {
-                vec![("Thread of Fate", 3)]
+            let mut expected = Vec::new();
+            if has_own_cost {
+                expected.push(("Acrobat's Ring", 4, Some(false)));
+            }
+            if tier == "epic" {
+                expected.push(("Thread of Fate", 3, Some(true)));
             } else {
-                vec![("Thread of Fate", 1), ("Small Shard of Power", 2)]
-            };
+                expected.extend([("Thread of Fate", 1, Some(true)), ("Small Shard of Power", 2, Some(true))]);
+            }
             assert_eq!(actual, expected, "{option}");
-            assert_eq!(recipe["cost_from_step"], !overridden);
+            assert_eq!(recipe["cost_from_step"], !has_own_cost);
         }
     }
 }
@@ -4153,10 +4161,10 @@ async fn augments_filter_by_the_crafting_system_that_yields_them() {
     assert_eq!(empty["total"], 0);
 }
 
-fn ingredient_cost_reference(ingredients: &[Value], name: &str, tier: &str, quantity: i64) -> Value {
+fn own_ingredient_cost_reference(ingredients: &[Value], name: &str, tier: &str, quantity: i64) -> Value {
     let ingredient = ingredients.iter().find(|ingredient| ingredient["name"] == name).unwrap();
     serde_json::json!({"ingredient":name,"ingredient_id":ingredient["id"],"ingredient_slug":ingredient["slug"],
-        "item":null,"item_id":null,"item_slug":null,"tier":tier,"quantity":quantity})
+        "item":null,"item_id":null,"item_slug":null,"tier":tier,"quantity":quantity,"from_step":false})
 }
 
 #[tokio::test]
@@ -4193,8 +4201,8 @@ async fn crafting_system_detail_carries_ingredients_and_recipes_with_augments_an
     assert_eq!(
         fortitude["cost"],
         serde_json::json!([
-            ingredient_cost_reference(ingredients, "Small Shard of Power", "heroic", 1),
-            ingredient_cost_reference(ingredients, "Small Focus of Earth", "heroic", 1)
+            own_ingredient_cost_reference(ingredients, "Small Shard of Power", "heroic", 1),
+            own_ingredient_cost_reference(ingredients, "Small Focus of Earth", "heroic", 1)
         ])
     );
     let cleanse = &recipes[2];
@@ -4243,8 +4251,8 @@ async fn augment_detail_lists_the_crafting_recipes_that_yield_it() {
             "tier": "heroic",
             "option": "Minor Fire Guard",
             "cost": [
-                ingredient_cost_reference(ingredients,"Small Shard of Power","heroic",1),
-                ingredient_cost_reference(ingredients,"Small Focus of Fire","heroic",1)
+                own_ingredient_cost_reference(ingredients,"Small Shard of Power","heroic",1),
+                own_ingredient_cost_reference(ingredients,"Small Focus of Fire","heroic",1)
             ]
         }])
     );
@@ -4273,8 +4281,8 @@ async fn augment_list_rows_carry_the_crafting_recipes_that_yield_them() {
                 "tier": "heroic",
                 "option": "+5 Fortitude Save",
                 "cost": [
-                    ingredient_cost_reference(ingredients,"Small Shard of Power","heroic",1),
-                    ingredient_cost_reference(ingredients,"Small Focus of Earth","heroic",1)
+                    own_ingredient_cost_reference(ingredients,"Small Shard of Power","heroic",1),
+                    own_ingredient_cost_reference(ingredients,"Small Focus of Earth","heroic",1)
                 ]
             }])
         );

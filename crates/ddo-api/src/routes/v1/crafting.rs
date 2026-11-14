@@ -66,7 +66,7 @@ pub(super) fn steps_by_id(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64, 
     let scopes = json_rows(db, &format!("SELECT e.step_id,e.sort_order,s.name AS equipment_slot FROM crafting_step_effects e LEFT JOIN equipment_slots s ON s.id=e.equipment_slot_id WHERE e.step_id IN ({})", sql_integer_list(ids)), [])?
         .into_iter().map(|row| ((row["step_id"].as_i64().unwrap(),row["sort_order"].as_i64().unwrap()),row["equipment_slot"].clone())).collect::<BTreeMap<_,_>>();
     let mut modifiers = modifiers_for_owners(db, "crafting_step", ids)?;
-    let mut costs = grouped_rows(db, ids, &format!("SELECT cost.step_id AS owner_id,cost.tier AS grade,{COST_COLUMNS} FROM crafting_step_costs cost LEFT JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id LEFT JOIN items item ON item.id=cost.item_id WHERE cost.step_id IN ({{ids}}) ORDER BY cost.step_id,cost.sort_order"))?;
+    let mut costs = grouped_rows(db, ids, &format!("SELECT cost.step_id AS owner_id,1 AS from_step,cost.tier AS grade,{COST_COLUMNS} FROM crafting_step_costs cost LEFT JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id LEFT JOIN items item ON item.id=cost.item_id WHERE cost.step_id IN ({{ids}}) ORDER BY cost.step_id,cost.sort_order"))?;
     let mut steps = BTreeMap::new();
     for mut step in json_rows(
         db,
@@ -94,6 +94,7 @@ pub(super) fn steps_by_id(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64, 
         let mut grades = BTreeMap::<String, Vec<Value>>::new();
         for mut cost in costs.remove(&id).unwrap_or_default() {
             let grade = cost.as_object_mut().unwrap().remove("grade").unwrap().as_str().unwrap().to_string();
+            convert_to_booleans(&mut cost, &["from_step"]);
             grades.entry(grade).or_default().push(cost);
         }
         step["costs"] = Value::Array(
@@ -114,7 +115,7 @@ pub(super) fn steps_by_id(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64, 
 
 pub(super) fn recipes_by_id(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64, Value>, ApiError> {
     let sockets = sockets_by_id(db)?;
-    let mut costs = grouped_rows(db, ids, &format!("SELECT cost.recipe_id AS owner_id,cost.from_step,{COST_COLUMNS} FROM crafting_recipe_effective_costs cost LEFT JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id LEFT JOIN items item ON item.id=cost.item_id WHERE cost.recipe_id IN ({{ids}}) ORDER BY cost.recipe_id,cost.sort_order"))?;
+    let mut costs = grouped_rows(db, ids, &format!("SELECT cost.recipe_id AS owner_id,cost.from_step,{COST_COLUMNS} FROM crafting_recipe_effective_costs cost LEFT JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id LEFT JOIN items item ON item.id=cost.item_id WHERE cost.recipe_id IN ({{ids}}) ORDER BY cost.recipe_id,cost.from_step,cost.sort_order"))?;
     let mut augments = grouped_rows(db, ids, "SELECT link.recipe_id AS owner_id,a.id,a.slug,a.name,a.min_level FROM crafting_recipe_augments link JOIN augments a ON a.id=link.augment_id WHERE link.recipe_id IN ({ids}) ORDER BY link.recipe_id,link.sort_order")?;
     let mut options = grouped_rows(db, ids, "SELECT link.recipe_id AS owner_id,s.name AS 'set',s.id AS set_id,s.slug AS set_slug,o.name FROM crafting_recipe_set_options link JOIN socket_options o ON o.id=link.option_id JOIN socket_option_sets s ON s.id=o.set_id WHERE link.recipe_id IN ({ids}) ORDER BY link.recipe_id,s.slug,o.option_order")?;
     let mut unlocks = unlocks_for(db, "recipe_id", ids)?;
@@ -125,8 +126,8 @@ pub(super) fn recipes_by_id(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64
         LEFT JOIN augment_slot_types g ON g.id=r.grants_slot_id LEFT JOIN crafting_ingredients ingredient ON ingredient.id=r.yields_ingredient_id WHERE r.id IN ({}) ORDER BY r.sort_order",sql_integer_list(ids)),[])? {
         let id = recipe["id"].as_i64().unwrap();
         let mut recipe_costs = costs.remove(&id).unwrap_or_default();
-        recipe["cost_from_step"] = Value::Bool(recipe_costs.first().is_some_and(|cost| cost["from_step"]==1));
-        for cost in &mut recipe_costs { cost.as_object_mut().unwrap().remove("from_step"); }
+        recipe["cost_from_step"] = Value::Bool(!recipe_costs.is_empty() && recipe_costs.iter().all(|cost| cost["from_step"]==1));
+        for cost in &mut recipe_costs { convert_to_booleans(cost, &["from_step"]); }
         recipe["cost"] = Value::Array(recipe_costs);
         recipe["augments"] = Value::Array(augments.remove(&id).unwrap_or_default());
         recipe["set_options"] = Value::Array(options.remove(&id).unwrap_or_default());

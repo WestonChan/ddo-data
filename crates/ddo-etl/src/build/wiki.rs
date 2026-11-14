@@ -442,6 +442,7 @@ fn insert_crafting_recipe(
             ],
         )?;
     }
+    crate::tree::reject_repeated_step_costs(transaction, recipe_id)?;
     Ok(())
 }
 

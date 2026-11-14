@@ -1618,8 +1618,7 @@ SELECT cost.recipe_id, cost.sort_order, cost.ingredient_id, cost.item_id, recipe
 FROM crafting_recipe_ingredients cost JOIN crafting_recipes recipe ON recipe.id = cost.recipe_id
 UNION ALL
 SELECT cost.recipe_id, cost.sort_order, cost.ingredient_id, cost.item_id, cost.tier, cost.quantity, 1
-FROM crafting_recipe_step_costs cost
-WHERE NOT EXISTS (SELECT 1 FROM crafting_recipe_ingredients own WHERE own.recipe_id = cost.recipe_id);
+FROM crafting_recipe_step_costs cost;
 
 CREATE TABLE IF NOT EXISTS crafting_unlocks (
     id INTEGER PRIMARY KEY,

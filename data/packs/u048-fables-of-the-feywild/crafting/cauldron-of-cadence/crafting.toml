@@ -143,14 +143,6 @@ name = "Alluring Elocution"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Tattered Scrolls of the Broken One"
 quantity = 1
 
@@ -166,14 +158,6 @@ step = "Set augment"
 [[recipe.augment]]
 name = "Arcane Barrier"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "Mantle of Escher"
@@ -193,14 +177,6 @@ name = "Arcane Guardian"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Citadel's Gaze"
 quantity = 1
 
@@ -216,14 +192,6 @@ step = "Set augment"
 [[recipe.augment]]
 name = "Bold Tactician"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "Page Regalia: Exiled Tactica"
@@ -243,14 +211,6 @@ name = "Brutal Blows"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Mail of the Mroranon"
 quantity = 1
 
@@ -266,14 +226,6 @@ step = "Set augment"
 [[recipe.augment]]
 name = "Cruel Cut"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "The Family's Blessing"
@@ -293,14 +245,6 @@ name = "Cunning Impact"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Strange Tidings"
 quantity = 1
 
@@ -316,14 +260,6 @@ step = "Set augment"
 [[recipe.augment]]
 name = "Dusk Raider"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "Coat of Van Richten"
@@ -343,14 +279,6 @@ name = "Esoterica"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Cloak of the Mountain"
 quantity = 1
 
@@ -366,14 +294,6 @@ step = "Set augment"
 [[recipe.augment]]
 name = "Imbued Infusion"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "Kelas' Volatile Mixture"
@@ -393,14 +313,6 @@ name = "Legendary Bulwark"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "The Stablestone"
 quantity = 1
 
@@ -416,14 +328,6 @@ step = "Set augment"
 [[recipe.augment]]
 name = "Paragon Guard"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "Platemail of Strahd"
@@ -443,14 +347,6 @@ name = "Perfect Silence"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Vestments of Ravenloft"
 quantity = 1
 
@@ -466,14 +362,6 @@ step = "Set augment"
 [[recipe.augment]]
 name = "Piercing Mind"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "Staggershockers"
@@ -493,14 +381,6 @@ name = "Quickblade"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Guided Sight"
 quantity = 1
 
@@ -516,14 +396,6 @@ step = "Set augment"
 [[recipe.augment]]
 name = "Subtle Blade"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "Page Regalia: Unsanctioned Arcana"
@@ -543,14 +415,6 @@ name = "Touch of Power"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Attunement's Gaze"
 quantity = 1
 
@@ -566,14 +430,6 @@ step = "Set augment"
 [[recipe.augment]]
 name = "Tough Shields"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "Dumathoin's Bracers"
@@ -593,14 +449,6 @@ name = "Truthful Blow"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Helm of the Final Watcher"
 quantity = 1
 
@@ -618,14 +466,6 @@ name = "Visions of the Beyond"
 level = 30
 
 [[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
-
-[[recipe.ingredient]]
 item = "Crystalline Gauntlets"
 quantity = 1
 
@@ -641,14 +481,6 @@ step = "Set augment"
 [[recipe.augment]]
 name = "Wild Fortitude"
 level = 30
-
-[[recipe.ingredient]]
-ingredient = "Thread of Fate"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Empty Soul Vessel"
-quantity = 1
 
 [[recipe.ingredient]]
 item = "Quori-Infused Core"
