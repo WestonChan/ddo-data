@@ -41,6 +41,24 @@ fn fixture_wiki() -> WikiOverrides {
 }
 
 #[test]
+fn xml_crafting_rejects_a_recipe_line_already_charged_by_its_step() {
+    let ours = fixture::database(|_| {});
+    let inserted = ours
+        .execute(
+            "INSERT INTO crafting_recipe_ingredients (recipe_id, sort_order, ingredient_id, item_id, quantity)
+         SELECT r.id, c.sort_order, c.ingredient_id, c.item_id, c.quantity
+         FROM crafting_recipes r JOIN crafting_step_costs c ON c.step_id = r.step_id AND c.tier = r.tier
+         WHERE r.option = 'Blinding Fear'",
+            [],
+        )
+        .unwrap();
+    assert!(inserted > 0);
+    let wiki = WikiOverrides::from_database(&ours).unwrap();
+    let error = build_report_with(&wiki).unwrap_err();
+    assert!(error.contains("Blinding Fear") && error.contains("already charged by step"), "{error}");
+}
+
+#[test]
 fn previous_xml_omits_later_item_costs_and_unlocks_but_current_xml_is_strict() {
     let ours = fixture::database(|root| {
         let original = std::fs::read_to_string(root.join("packs/free-to-play/gear/acrobats-ring.toml")).unwrap();

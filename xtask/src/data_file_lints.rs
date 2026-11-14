@@ -2,7 +2,8 @@ use anyhow::{bail, Context};
 use ddo_etl::corrections::CorrectionValue;
 use ddo_etl::tree::{AppliedCorrection, Citation, EntityIdentity, PackException, Redirect, RemovedEntry, RetiredSlug};
 use ra_ap_rustc_lexer::{tokenize, FrontmatterAllowed, LiteralKind, TokenKind};
-use std::path::Path;
+use std::collections::BTreeSet;
+use std::path::{Path, PathBuf};
 use walkdir::WalkDir;
 
 const ANNOTATION_TABLES: [&str; 7] = [
@@ -20,6 +21,7 @@ const DECLARED_ANNOTATION_TABLES: [&str; 3] = [AppliedCorrection::TABLE, Citatio
 pub fn deny_test_file_basename_lookups(roots: &[&Path]) -> anyhow::Result<()> {
     let mut findings = Vec::new();
     for root in roots {
+        let test_files = declared_test_files(root)?;
         for entry in WalkDir::new(root) {
             let entry = entry?;
             let path = entry.path();
@@ -27,8 +29,9 @@ pub fn deny_test_file_basename_lookups(roots: &[&Path]) -> anyhow::Result<()> {
                 continue;
             }
             let source = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
-            let is_integration_test = path.components().any(|part| part.as_os_str() == "tests");
-            for offset in basename_lookup_offsets(&source, is_integration_test) {
+            let is_test_file = path.strip_prefix(root)?.starts_with("tests") || test_files.contains(path);
+            let tokens = code_tokens(&source);
+            for offset in basename_lookup_offsets(&tokens, test_code_start(&tokens, is_test_file)) {
                 let line = source[..offset].matches('\n').count() + 1;
                 findings.push(format!(
                     "{}:{line}: test input selected by basename; join the exact path instead",
@@ -44,9 +47,9 @@ pub fn deny_test_file_basename_lookups(roots: &[&Path]) -> anyhow::Result<()> {
     Ok(())
 }
 
-fn basename_lookup_offsets(source: &str, is_integration_test: bool) -> Vec<usize> {
+fn code_tokens(source: &str) -> Vec<(usize, &str)> {
     let mut position = 0;
-    let tokens: Vec<_> = tokenize(source, FrontmatterAllowed::No)
+    tokenize(source, FrontmatterAllowed::No)
         .filter_map(|token| {
             let start = position;
             position += token.len as usize;
@@ -56,22 +59,104 @@ fn basename_lookup_offsets(source: &str, is_integration_test: bool) -> Vec<usize
             ))
             .then_some((start, &source[start..position]))
         })
-        .collect();
-    let test_start = if is_integration_test {
+        .collect()
+}
+
+fn is_test_attribute(tokens: &[(usize, &str)]) -> bool {
+    tokens.iter().map(|token| token.1).eq(["#", "[", "cfg", "(", "test", ")", "]"])
+}
+
+fn test_code_start(tokens: &[(usize, &str)], is_test_file: bool) -> usize {
+    if is_test_file {
         0
     } else {
-        tokens
-            .windows(7)
-            .find(|attribute| attribute.iter().map(|token| token.1).eq(["#", "[", "cfg", "(", "test", ")", "]"]))
-            .map_or(source.len(), |attribute| attribute[0].0)
-    };
+        tokens.windows(7).find(|attribute| is_test_attribute(attribute)).map_or(usize::MAX, |attribute| attribute[0].0)
+    }
+}
+
+fn declared_test_files(root: &Path) -> anyhow::Result<BTreeSet<PathBuf>> {
+    let mut test_files = BTreeSet::new();
+    for entry in WalkDir::new(root) {
+        let entry = entry?;
+        let path = entry.path();
+        if path.extension().is_none_or(|extension| extension != "rs") {
+            continue;
+        }
+        let source = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
+        let tokens = code_tokens(&source);
+        for declaration in tokens.windows(10) {
+            if !is_test_attribute(&declaration[..7]) || declaration[7].1 != "mod" || declaration[9].1 != ";" {
+                continue;
+            }
+            let parent = path.parent().expect("a source file has a parent");
+            let stem = path.file_stem().expect("a source file has a stem");
+            let module_root = if ["lib", "main", "mod"].iter().any(|name| stem == *name) {
+                parent.to_path_buf()
+            } else {
+                parent.join(stem)
+            };
+            let module = module_root.join(declaration[8].1.trim_start_matches("r#"));
+            test_files.insert(module.with_extension("rs"));
+            if module.is_dir() {
+                for descendant in WalkDir::new(&module) {
+                    test_files.insert(descendant?.into_path());
+                }
+            }
+        }
+    }
+    Ok(test_files)
+}
+
+fn selects_one_entry(tokens: &[(usize, &str)]) -> bool {
+    if tokens.len() < 3 || tokens[0].1 != "." {
+        return false;
+    }
+    match tokens[1].1 {
+        "next" | "last" | "nth" => tokens[2].1 == "(",
+        "take" => tokens.get(2..5).is_some_and(|call| call.iter().map(|token| token.1).eq(["(", "1", ")"])),
+        "collect" => {
+            let Some(open) = tokens.iter().position(|token| token.1 == "(") else {
+                return false;
+            };
+            tokens.get(open + 1..open + 3).is_some_and(|call| call[0].1 == ")" && call[1].1 == "[")
+        }
+        _ => false,
+    }
+}
+
+fn basename_predicate(tokens: &[(usize, &str)]) -> bool {
+    tokens.windows(4).any(|call| {
+        if call[0].1 != "." || call[2].1 != "(" {
+            return false;
+        }
+        match call[1].1.trim_start_matches("r#") {
+            "file_name" | "file_stem" => call[3].1 == ")",
+            "ends_with" => {
+                let literal = call[3].1;
+                let Some(opening) = literal.find('"') else {
+                    return false;
+                };
+                let Some(closing) = literal.rfind('"').filter(|&closing| closing > opening) else {
+                    return false;
+                };
+                let content = &literal[opening + 1..closing];
+                let decoded =
+                    if literal.starts_with('r') { Some(content.to_owned()) } else { decoded_string_content(content) };
+                decoded.is_some_and(|name| !name.is_empty() && !name.contains(['/', '\\']))
+            }
+            _ => false,
+        }
+    })
+}
+
+fn basename_lookup_offsets(tokens: &[(usize, &str)], test_start: usize) -> Vec<usize> {
     let mut offsets = Vec::new();
     for (index, call) in tokens.windows(3).enumerate() {
         let method = call[1].1.trim_start_matches("r#");
         if call[0].0 < test_start
             || call[0].1 != "."
             || call[2].1 != "("
-            || !matches!(method, "find" | "find_map" | "rfind" | "filter" | "filter_map")
+            || !matches!(method, "find" | "find_map" | "rfind" | "position" | "filter" | "filter_map" | "skip_while")
         {
             continue;
         }
@@ -86,19 +171,10 @@ fn basename_lookup_offsets(source: &str, is_integration_test: bool) -> Vec<usize
         }) else {
             continue;
         };
-        if matches!(method, "filter" | "filter_map")
-            && !tokens.get(end + 1..end + 4).is_some_and(|next| {
-                next[0].1 == "." && matches!(next[1].1, "next" | "last" | "nth") && next[2].1 == "("
-            })
-        {
+        if matches!(method, "filter" | "filter_map" | "skip_while") && !selects_one_entry(&tokens[end + 1..]) {
             continue;
         }
-        if tokens[index + 3..end].windows(4).any(|name| {
-            name[0].1 == "."
-                && matches!(name[1].1.trim_start_matches("r#"), "file_name" | "file_stem")
-                && name[2].1 == "("
-                && name[3].1 == ")"
-        }) {
+        if basename_predicate(&tokens[index + 3..end]) {
             offsets.push(call[0].0);
         }
     }
@@ -376,6 +452,7 @@ pub fn deny_citation_field_reads(roots: &[&Path]) -> anyhow::Result<()> {
 }
 
 pub fn deny_unlisted_records(tree_root: &Path) -> anyhow::Result<()> {
+    let test_files = declared_test_files(tree_root)?;
     let registry_path = tree_root.join("schemas.rs");
     let registry =
         std::fs::read_to_string(&registry_path).with_context(|| format!("reading {}", registry_path.display()))?;
@@ -388,18 +465,9 @@ pub fn deny_unlisted_records(tree_root: &Path) -> anyhow::Result<()> {
             continue;
         }
         let source = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
-        let production = source.split("#[cfg(test)]").next().unwrap_or(&source);
-        let tokens = tokenize(production, FrontmatterAllowed::No).scan(0, |offset, token| {
-            let start = *offset;
-            *offset += token.len as usize;
-            Some((token.kind, &production[start..*offset]))
-        });
-        let code: Vec<&str> = tokens
-            .filter(|(kind, _)| {
-                !matches!(kind, TokenKind::Whitespace | TokenKind::LineComment { .. } | TokenKind::BlockComment { .. })
-            })
-            .map(|(_, text)| text)
-            .collect();
+        let tokens = code_tokens(&source);
+        let test_start = test_code_start(&tokens, test_files.contains(path));
+        let code: Vec<_> = tokens.iter().take_while(|token| token.0 < test_start).map(|token| token.1).collect();
         for window in code.windows(4) {
             if window[0] == "struct" && window[2] == "in" && !registry.contains(&format!("::{},", window[1])) {
                 findings.push(format!(
@@ -522,6 +590,11 @@ mod tests {
             "walk.find(|entry| entry.path().file_stem().is_some_and(|stem| stem == name))",
             "walk.find_map(|entry| (entry.file_name() == name).then(|| entry.path()))",
             "walk.rfind(|entry| entry.file_name() == name)",
+            r#"walk.find(|entry| entry.path().ends_with("item.toml"))"#,
+            "walk.filter(|entry| entry.file_name() == name).collect::<Vec<_>>()[0]",
+            "walk.filter(|entry| entry.file_name() == name).take(1)",
+            "walk.skip_while(|entry| entry.file_name() != name).next()",
+            "walk.position(|entry| entry.file_name() == name)",
             "walk.filter(|entry| entry.file_name() == name).next()",
             "walk.filter_map(|entry| (entry.file_name() == name).then_some(entry)).next()",
             "walk\n.find(\n|entry| entry\n.file_name() == name\n)",
@@ -542,6 +615,7 @@ mod tests {
             "walk.map(|entry| entry.file_name()).collect::<Vec<_>>()",
             "rows.find(|row| row.file_name == name)",
             "walk.find(|entry| entry.path() == expected_path)",
+            r#"walk.find(|entry| entry.path().ends_with("gear/item.toml"))"#,
             "r#\"walk.find(|entry| entry.file_name() == name)\"#",
         ] {
             std::fs::write(&path, format!("fn input() {{ {expression} }}")).unwrap();
@@ -554,6 +628,43 @@ mod tests {
         deny_test_file_basename_lookups(&[folder.path()]).unwrap();
         std::fs::write(&unit_path, format!("#[cfg(test)]\nmod tests {{ {lookup} }}")).unwrap();
         assert!(deny_test_file_basename_lookups(&[folder.path()]).unwrap_err().to_string().contains("unit.rs:2"));
+    }
+
+    #[test]
+    fn checkout_ancestors_do_not_make_production_files_tests() {
+        let folder = tempfile::tempdir().unwrap();
+        let crate_root = folder.path().join("tests/project");
+        std::fs::create_dir_all(crate_root.join("src")).unwrap();
+        std::fs::write(crate_root.join("src/lib.rs"), "fn input() { walk.find(|entry| entry.file_name() == name); }")
+            .unwrap();
+        deny_test_file_basename_lookups(&[&crate_root]).unwrap();
+    }
+
+    #[test]
+    fn declared_test_modules_are_scanned_without_repeating_the_attribute() {
+        let folder = tempfile::tempdir().unwrap();
+        let module_root = folder.path().join("src/delta");
+        std::fs::create_dir_all(&module_root).unwrap();
+        std::fs::write(module_root.join("mod.rs"), "#[cfg(test)] mod tests;\n#[cfg(test)] mod merge_tests;").unwrap();
+        for module in ["tests", "merge_tests"] {
+            std::fs::write(
+                module_root.join(format!("{module}.rs")),
+                "fn input() { walk.find(|entry| entry.file_name() == name); }",
+            )
+            .unwrap();
+        }
+        let error = deny_test_file_basename_lookups(&[folder.path()]).unwrap_err().to_string();
+        assert!(error.contains("delta/tests.rs:1") && error.contains("delta/merge_tests.rs:1"), "{error}");
+    }
+
+    #[test]
+    fn test_records_are_excluded_from_the_registry_lint() {
+        let folder = tempfile::tempdir().unwrap();
+        std::fs::write(folder.path().join("schemas.rs"), "declared_records! {}").unwrap();
+        std::fs::write(folder.path().join("mod.rs"), "#[cfg(test)] mod examples;").unwrap();
+        std::fs::write(folder.path().join("examples.rs"), "database_record! { pub struct Example in \"things\" {} }")
+            .unwrap();
+        deny_unlisted_records(folder.path()).unwrap();
     }
 
     #[test]
