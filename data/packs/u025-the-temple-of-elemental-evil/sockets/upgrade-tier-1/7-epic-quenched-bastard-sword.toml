@@ -1,0 +1,45 @@
+label = "upgrade: tier 1"
+name = "+7 Epic Quenched Bastard Sword"
+
+[[option]]
+name = "Greater Maiming and Greater Freezing Gale"
+description = """
+Greater Maiming: This weapon has a twisted haft or grip and spikes along its blade,
+head, or point. Whenever you score a critical hit with this weapon it deals an
+amount of extra untyped damage depending on its critical multiplier:
+x2 - 8 to 48, x3 - 12 to 72, x4 - 16 to 96.
+Greater Freezing Gale: This weapon is imbued with a frigid wrath. On an attack
+roll of 20 which is confirmed as a critical hit this freezing power will be
+released, dealing damage to the target and all enemies near it for 30d3 + 90
+cold damage. A successful Reflex save (DC 90) reduces this by half."""
+min_level = 7
+
+[[option.modifier]]
+bonus_type = "Enhancement"
+dice_number = [
+    0,
+    0,
+    8,
+    12,
+    16,
+    20,
+]
+dice_sides = [
+    0,
+    0,
+    6,
+    6,
+    6,
+    6,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[option.modifier]]
+bonus_type = "Enhancement"
+dice_bonus = [90]
+dice_damage = "Cold"
+dice_number = [30]
+dice_sides = [3]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]

@@ -1,0 +1,11 @@
+label = "crafting: attuned by heroism: tier 4"
+name = "Agony, the Knife in the Dark"
+
+[[option]]
+name = "Red Augment Slot"
+description = "Adds a Red augment slot to this weapon."
+icon = "Heroism"
+min_level = 23
+
+[[option.grant]]
+slot = "red"

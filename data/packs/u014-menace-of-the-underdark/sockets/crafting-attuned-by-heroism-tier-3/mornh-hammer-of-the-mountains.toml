@@ -1,0 +1,16 @@
+label = "crafting: attuned by heroism: tier 3"
+name = "Mornh, Hammer of the Mountains"
+
+[[option]]
+name = "Adds +0.5[W]"
+description = "Adds +0.5 weapon dice multiplier"
+icon = "Heroism"
+min_level = 23
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Enhancement"
+display_name = "Better Offhanded"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]

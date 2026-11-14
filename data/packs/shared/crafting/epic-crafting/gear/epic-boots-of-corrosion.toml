@@ -1,0 +1,44 @@
+name = "Epic Boots of Corrosion"
+description = """
+These boots are filled with caustic, entropic power. They appear to have almost
+fallen apart from containing such energy."""
+drop_location = "Epic version of Boots of Corrosion"
+icon = "Boots_14b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 20
+slot = "Feet"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Disintegration Guard"
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

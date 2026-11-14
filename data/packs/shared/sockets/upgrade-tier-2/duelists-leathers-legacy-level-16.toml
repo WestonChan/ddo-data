@@ -1,0 +1,20 @@
+label = "upgrade: tier 2"
+name = "Duelist's Leathers (legacy) (level 16)"
+
+[[option]]
+name = "+5 Enhancement Bonus"
+description = "+5 Enhancement Bonus: +5 Enhancement bonus to Armor Class."
+icon = "Upgrade"
+min_level = 16
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+value = 5
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+effect_type = "ACBonus"

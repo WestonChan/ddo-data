@@ -10,6 +10,12 @@ material = "Steel"
 minimum_level = 33
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Weaponry_of_the_Golden_Age"
+read = "2026-11-04"
+note = "The page: rare drops in Magic of Myth Drannor quests (no quest or chest named) and turned in two-for-one at the Daventhorns. The data's drop_location reads: rare drop in any end chest."
+
 [[dr_bypass]]
 bypass = "Magic"
 
@@ -56,6 +62,10 @@ is_rare = true
 kind = "adventure_pack"
 loot_type = "chest"
 name = "Magic of Myth Drannor"
+
+[[source]]
+kind = "crafting_system"
+name = "Weaponry of the Golden Age"
 
 [[weapon]]
 attack_modifier = "Strength"

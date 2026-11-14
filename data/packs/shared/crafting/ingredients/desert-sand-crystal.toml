@@ -1,0 +1,9 @@
+name = "Desert Sand Crystal"
+tier = "any"
+bind = "Bound to Account on Acquire"
+drop_location = "Epic Sands of Menechtarun quests"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Desert_Sand_Crystal"
+read = "2026-11-04"
+note = "Examine screenshot (420px-Desert_Sand_Crystal.png) viewed: 'Bound To Account', 'Binds to Account on Acquire'. Typed infobox: raw material used in crafting, Bind Bound to Account on Acquire, Drops from 'Epic Sands of Menechtarun quests'. Used in: Altar of Epic Rituals, Altar of Legendary Rituals; 'Maximum Stack Size: 1000'. Tip: 100 Desert Sand Crystals purchase Star Fragments. The data's per-system text 'Sands of Menechtarun (Update 1) quest end chests in moderate amounts; replaces the pre-Update 50 seals and shards' is Epic Crafting prose; the item page says only 'Epic Sands of Menechtarun quests'."

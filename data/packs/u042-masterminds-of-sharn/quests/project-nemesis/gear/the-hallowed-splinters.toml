@@ -33,39 +33,15 @@ name = "Blunted Ammunition"
 
 [[socket]]
 slot = "crafting: nearly finished"
-
-[[socket.option]]
-name = "Purple Augment Slot"
-description = "Adds a Purple Augment Slot"
-
-[[socket.option.grant]]
-slot = "purple"
+set = "Constellation, Cursed Blade"
 
 [[socket]]
 slot = "crafting: almost there"
-
-[[socket.option]]
-name = "Conjure Radiant Bolt"
-description = """
-Creates a copy of The Everstar in your inventory. This is destroyed on logging out.
-Celestial Explosion: This weapon blazes with the eternal fury at the heart of a
-sun. Occasionally, this power comes to the surface, unleashing a nova of light
-deals (sic) severe light damage to the enemy struck and surrounding foes."""
+set = "The Hallowed Splinters"
 
 [[socket]]
 slot = "crafting: finishing touch"
-
-[[socket.option]]
-name = "Completed Weapon"
-description = "This item is fully completed, and as a result deals an additional 0.5[W] damage."
-min_level = 1
-
-[[socket.option.modifier]]
-amounts = [0.5]
-bonus_type = "Stacking"
-effect_type = "Weapon_BaseDamage"
-is_item_specific = true
-targets = ["All"]
+set = "Baz'Morath, the Curator of Decay"
 
 [[socket]]
 slot = "red"

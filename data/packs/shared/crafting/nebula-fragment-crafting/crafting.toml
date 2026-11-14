@@ -1,6 +1,60 @@
 name = "Nebula Fragment Crafting"
-npc = "Lahar in The Twelve: present a Nebula Fragment to receive the Star Fragments: Frame quest; the completed Frame (Bound to Account, not consumed, shareable through the bank) must be in the inventory to open his Perfected Crafting interface"
 page = "https://ddowiki.com/page/Item:Nebula_Fragment"
+
+[[station]]
+name = "Lahar"
+note = "Perfected Crafting interface, opened by the completed Star Fragments: Frame ('Show the complete frame to Lahar to open an interface that allows you to upgrade legendary items to the perfected minor artifacts')."
+
+[[unlock]]
+kind = "pack"
+pack = "Sentinels of Stormreach"
+text = "Access to this pack is needed to collect the Green Shard; all eight shards are needed to complete the Frame"
+
+[[unlock]]
+kind = "pack"
+pack = "The Red Fens"
+text = "Access to this pack is needed to collect the Teal Shard; all eight shards are needed to complete the Frame"
+
+[[unlock]]
+kind = "pack"
+pack = "Devil Assault"
+text = "Access to this pack is needed to collect the Orange Shard; all eight shards are needed to complete the Frame"
+
+[[unlock]]
+kind = "pack"
+pack = "Vault of Night"
+text = "Access to this pack is needed to collect the Blue Shard (page writes 'The Vault of Night'); all eight shards are needed to complete the Frame"
+
+[[unlock]]
+kind = "pack"
+pack = "Phiarlan Carnival"
+text = "Access to this pack is needed to collect the Yellow Shard; all eight shards are needed to complete the Frame"
+
+[[unlock]]
+kind = "pack"
+pack = "Sinister Secret of Saltmarsh"
+text = "Access to this pack is needed to collect the Red Shard; all eight shards are needed to complete the Frame"
+
+[[unlock]]
+kind = "other"
+text = "The wiki lists the pack 'Sands of Menechtarun' as needed for the Pink Shard (Sands of Menechtarun wilderness); all eight shards are needed to complete the Frame"
+
+[[unlock]]
+kind = "other"
+text = "The wiki lists the pack 'Web of Chaos' as needed for the Purple Shard (The Spinner of Shadows, 'a Free to Play pack'); all eight shards are needed to complete the Frame"
+
+[[step]]
+name = "Perfected crafting"
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Nebula Fragment"
+quantity = 1
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Thread of Fate"
+quantity = 500
 
 [[ingredient]]
 name = "Nebula Fragment"
@@ -9,68 +63,60 @@ drop_location = "Very rare drop from Legendary chests in Sinister Secret of Salt
 tier = "legendary"
 
 [[ingredient]]
-name = "Thread of Fate"
-tier = "legendary"
-
-[[ingredient]]
 name = "Legendary base item"
 drop_location = "The Legendary Crafting version of the item"
 tier = "legendary"
 
-[[ingredient]]
-name = "Desert Sand Crystal"
-drop_location = "Sands of Menechtarun pack-specific component"
-tier = "legendary"
-
-[[ingredient]]
-name = "Vault Key"
-drop_location = "Vault of Night pack-specific component"
-tier = "legendary"
-
-[[ingredient]]
-name = "Medal of House Deneith"
-drop_location = "Sentinels of Stormreach pack-specific component"
-tier = "legendary"
-
-[[ingredient]]
-name = "Scrap of Patterned Cloth"
-drop_location = "Phiarlan Carnival pack-specific component"
-tier = "legendary"
-
-[[ingredient]]
-name = "Glowing Fen Mushroom"
-drop_location = "The Red Fens pack-specific component"
-tier = "legendary"
-
-[[ingredient]]
-name = "Fractured Sliver of Time"
-drop_location = "The Chronoscope pack-specific component"
-tier = "legendary"
-
-[[ingredient]]
-name = "Crystallized Spiderweb"
-drop_location = "Web of Chaos pack-specific component"
-tier = "legendary"
-
-[[ingredient]]
-name = "Saltmeadow Hay"
-drop_location = "Sinister Secret of Saltmarsh pack-specific component"
-tier = "legendary"
-
-[[ingredient]]
-name = "Star Fragments: Frame"
-bind = "Bound to Account"
-drop_location = "From Lahar's quest; completed by clicking 8 Star Shrines with it in the inventory: Red (Saltmarsh wilderness, south of the Final Enemy entrance), Orange (The Chronoscope, Rusty Nail inn behind the weapon and wand dealers' counter), Yellow (Partycrashers, front lobby by the guest list), Green (Storm the Beaches, on the warship), Teal (Into the Deep, bottom right corner), Blue (Plane of Night, island below the main platform, bring Feather Fall), Purple (The Spinner of Shadows, in the lava), Pink (Sands of Menechtarun wilderness, south-west of the Chains of Flame entrance). Needs Sands of Menechtarun, Sentinels of Stormreach, The Red Fens, Devil Assault, The Vault of Night, Phiarlan Carnival, Sinister Secret of Saltmarsh and Web of Chaos (free to play); all but the Red Shard work with VIP"
-tier = "legendary"
-
 [[citation]]
 url = "https://ddowiki.com/page/Item:Nebula_Fragment"
-read = "2026-09-29"
+read = "2026-11-04"
+note = "Whole page read: examination panel, the Lahar process (Nebula Fragment -> quest and Star Fragments: Frame -> 8 Shards of Power -> Perfected Crafting interface), what the upgrade consumes (Legendary base item, Nebula Fragment, 500 Threads of Fate, 250 pack-specific components), the eight packs needed, and the table of the 15 Perfected items (ML 30, all Bound to Character on Acquire, four also Exclusive, Acquired: 'Lahar, Turn in Nebula Fragment', up to 4 filigree slots). Screenshots: Nebula_Fragment.png shows Bound To Account, Binds to Account on Acquire, base value 100; Star_Fragments_Frame.png (empty frame) shows Bound To Account, Binds to Account on Acquire, Unique item capacity 0 / 8; Star_Fragments_Frame_Completed.jpg shows 'Bound to Account (from Acquisition)', capacity 8 / 8, base value 800. The page does not say which pack-specific component each Perfected item takes; it states only '250 pack-specific components'. No level is stated in the body."
+
+[[citation]]
+field = "pack"
+url = "https://ddowiki.com/page/Item:Nebula_Fragment"
+read = "2026-11-12"
+note = "The Item:Nebula_Fragment page (read 2026-11-04) says all eight locations where Shards of Power drop must be reachable, only one being free, so several adventure packs or expansions are all needed. The earlier rows name six: Sentinels of Stormreach, The Red Fens, Devil Assault, Vault of Night, Phiarlan Carnival and Sinister Secret of Saltmarsh. The Lahar station is in The Twelve."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Item:Nebula_Fragment"
+read = "2026-11-04"
+note = """
+Pure step: no socket label. Lahar's 'Perfected Crafting interface' upgrades a Legendary item into the Perfected minor artifact.
+
+'This consumes: Legendary base item / Nebula Fragment / 500 Threads of Fate / 250 pack-specific components'. The shared part is 1 Nebula Fragment and 500 Threads of Fate (the page writes 'Threads of Fate'). Each recipe adds its Legendary base item (an item cost, x1) and 250 of one pack-specific component; the survey rows give each recipe a component the page does not name per item (see not stated). The survey rows otherwise match."""
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Item:Nebula_Fragment"
+read = "2026-11-04"
+note = "Side effects of every Perfected item: it is a Minor Artifact (cannot be equipped if another is worn); as a new item it does not inherit Mythic or Reaper bonuses, or Deck of Many Curses effects, from the item it was made from; up to 4 filigree slots."
+
+[[citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Item:Nebula_Fragment"
+read = "2026-11-04"
+note = """
+Page: 'you must have access to all eight locations in which Shards of Power drop, only one of which is free to access - you will need to own the following adventure packs/expansions'. Every shard except the Red Shard can be reached with a VIP account; a Guest Pass allows temporary access.
+
+Written as other because the survey has no adventure pack named 'Sands of Menechtarun'; the survey links the quest 'Sands of Menechtarun' to the pack 'Demon Sands'. Not guessed: unresolved, for the maintainer.
+
+Written as other because the survey has no adventure pack named 'Web of Chaos'; the survey links the quest 'The Spinner of Shadows' to the pack 'Free to Play'. Not guessed: unresolved, for the maintainer."""
+
+[[citation]]
+url = "https://ddowiki.com/page/Lahar"
+read = "2026-11-04"
+note = "Whole page read: Lahar <Epic Vendor>, Earth Elemental, 'The Twelve, southwest of the tower-end of the bridge, near the Altar of Epic Rituals'; the Nebula Fragment paragraph ('If you have a Nebula Fragment, Lahar will bestow a quest on you ... the fragment must be in your inventory, not in a bag'). Only a photo of the NPC (Lahar.jpg), no screenshot of the Perfected interface."
 
 [[recipe]]
-note = "Upgrades the Legendary Jidz-Tet'ka into Perfected Jidz-Tet'ka (Bracers), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sentinels of Stormreach components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
+note = """
+Upgrades the Legendary Jidz-Tet'ka into Perfected Jidz-Tet'ka (Bracers), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sentinels of Stormreach components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart.
+
+Side effects of every Perfected item: it is a Minor Artifact (cannot be equipped if another is worn); as a new item it does not inherit Mythic or Reaper bonuses, or Deck of Many Curses effects, from the item it was made from; up to 4 filigree slots."""
 option = "Perfected Jidz-Tet'ka"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"
@@ -92,6 +138,7 @@ quantity = 250
 note = "Upgrades the Legendary Bracers of the Demon's Consort into Perfected Bracers of the Demon's Consort (Bracers), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sands of Menechtarun components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
 option = "Perfected Bracers of the Demon's Consort"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"
@@ -113,6 +160,7 @@ quantity = 250
 note = "Upgrades the Legendary Cinderfingers into Perfected Cinderfingers (Gloves), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sinister Secret of Saltmarsh components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
 option = "Perfected Cinderfingers"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"
@@ -134,6 +182,7 @@ quantity = 250
 note = "Upgrades the Legendary Charged Gauntlets into Perfected Charged Gauntlets (Gloves), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses The Chronoscope components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
 option = "Perfected Charged Gauntlets"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"
@@ -155,6 +204,7 @@ quantity = 250
 note = "Upgrades the Legendary Goggles of Time-Sensing into Perfected Goggles of Time-Sensing (Goggles), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses The Chronoscope components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
 option = "Perfected Goggles of Time-Sensing"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"
@@ -176,6 +226,7 @@ quantity = 250
 note = "Upgrades the Legendary Darkstorm Helm into Perfected Darkstorm Helm (Helmet), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Web of Chaos components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
 option = "Perfected Darkstorm Helm"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"
@@ -197,6 +248,7 @@ quantity = 250
 note = "Upgrades the Legendary Helm of the Red Dragon into Perfected Helm of the Red Dragon (Helmet), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Vault of Night components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
 option = "Perfected Helm of the Red Dragon"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"
@@ -218,6 +270,7 @@ quantity = 250
 note = "Upgrades the Legendary Golden Guile into Perfected Golden Guile (Necklace), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Web of Chaos components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
 option = "Perfected Golden Guile"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"
@@ -239,6 +292,7 @@ quantity = 250
 note = "Upgrades the Legendary Twisted Talisman into Perfected Twisted Talisman (Necklace), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses The Red Fens components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
 option = "Perfected Twisted Talisman"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"
@@ -260,6 +314,7 @@ quantity = 250
 note = "Upgrades the Legendary Torc of Prince Raiyum-de II into Perfected Torc of Prince Raiyum-de II (Necklace), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sands of Menechtarun components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
 option = "Perfected Torc of Prince Raiyum-de II"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"
@@ -281,6 +336,7 @@ quantity = 250
 note = "Upgrades the Legendary Vulkoorim Pendant into Perfected Vulkoorim Pendant (Necklace), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sands of Menechtarun components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
 option = "Perfected Vulkoorim Pendant"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"
@@ -302,6 +358,7 @@ quantity = 250
 note = "Upgrades the Legendary Ring of Elemental Essence into Perfected Ring of Elemental Essence (Ring), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Phiarlan Carnival components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
 option = "Perfected Ring of Elemental Essence"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"
@@ -323,6 +380,7 @@ quantity = 250
 note = "Upgrades the Legendary Salt-Pearl Ring into Perfected Salt-Pearl Ring (Ring), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sinister Secret of Saltmarsh components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
 option = "Perfected Salt-Pearl Ring"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"
@@ -344,6 +402,7 @@ quantity = 250
 note = "Upgrades the Legendary Dragon's Eye into Perfected Dragon's Eye (Trinket), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Vault of Night components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
 option = "Perfected Dragon's Eye"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"
@@ -365,6 +424,7 @@ quantity = 250
 note = "Upgrades the Legendary Bloodstone into Perfected Bloodstone (Trinket), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sands of Menechtarun components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart."
 option = "Perfected Bloodstone"
 tier = "legendary"
+step = "Perfected crafting"
 
 [[recipe.ingredient]]
 ingredient = "Legendary base item"

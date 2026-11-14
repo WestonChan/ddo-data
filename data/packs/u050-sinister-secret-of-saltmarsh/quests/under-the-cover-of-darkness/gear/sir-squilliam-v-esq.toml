@@ -8,6 +8,12 @@ material = "Gem"
 minimum_level = 30
 slot = "Runearm"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: "Legendary version of Sir Squilliam IV, Esq."; no drop shown (the data has a drop in Under the Cover of Darkness: verification request).'
+
 [[effect]]
 name = "Maximum Charge Tier V"
 
@@ -55,6 +61,10 @@ slot = "green"
 
 [[socket]]
 slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"
 
 [[source]]
 chest = "end chest, or legendary version of sir squilliam iv, esq"

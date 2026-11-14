@@ -1,0 +1,62 @@
+label = "crafting: variant ability"
+name = "Resplendant Fury"
+
+[[option]]
+name = "Insightful Charisma +3"
+description = "+3 Insight bonus to Charisma"
+icon = "Variant"
+min_level = 15
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Charisma"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[option]]
+name = "Insightful Intelligence +3"
+description = "+3 Insight bonus to Intelligence"
+icon = "Variant"
+min_level = 15
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[option]]
+name = "Insightful Wisdom +3"
+description = "+3 Insight bonus to Wisdom"
+icon = "Variant"
+min_level = 15
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Wisdom"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]

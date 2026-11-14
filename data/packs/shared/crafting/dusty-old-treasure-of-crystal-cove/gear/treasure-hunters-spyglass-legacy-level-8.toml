@@ -1,0 +1,68 @@
+name = "Treasure Hunter's Spyglass (legacy) (level 8)"
+description = """
+A tool such as this is a great aid to the treasure-seeking pirate, for it allows
+him or her to locate small details, find secret passages and notice any traps
+that might be lurking along the way."""
+drop_location = "Treasure of Crystal Cove, Turn in 650 Copper Doubloon 375 Silver Doubloon 20 Stolen Amber at Dusty Old Treasure of Crystal Cove"
+icon = "Trinket_17"
+is_legacy = true
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 8
+slot = "Trinket"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page lists the box as holding the old (tiered) versions of this line (or the trinkets) bought at Dusty Old Treasure of Crystal Cove; the data Location text agrees. Its price rows are event_reward rows only for the Cavalry Plate line and the Lesser trinkets."
+
+[[clickie]]
+name = "Detect Secret Doors"
+clickie = "Detect Secret Doors"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 1
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Detect Secret Doors"]
+
+[[ddobuilder_correction]]
+kind = "item_bonus"
+field = "add"
+reason = "R6-4 row 79: both tier-1 and tier-2 screenshots and the typed list show the missing Use Magic Device +1 Competence line. Existing upgrade lines stay unchanged."
+url = "https://ddowiki.com/page/Item:Treasure_Hunter%27s_Spyglass_(legacy)_(level_8)"
+read = "2026-10-23"
+qualifier = "Use Magic Device / Competence"
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Treasure Hunter's Spyglass (legacy) (level 8)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Treasure Hunter's Spyglass (legacy) (level 8)"
+
+[[source]]
+kind = "crafting_system"
+name = "Dusty Old Treasure of Crystal Cove"

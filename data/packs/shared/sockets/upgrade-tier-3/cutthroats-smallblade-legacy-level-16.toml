@@ -1,0 +1,25 @@
+label = "upgrade: tier 3"
+name = "Cutthroat's Smallblade (legacy) (level 16)"
+
+[[option]]
+name = "Adds Corrosive Salt and Doublestrike 6%"
+description = """
+Corrosive Salt: This weapon stores a caustic, insatiable power deep within. When
+this weapon is used, this power can come to the surface in the form of a noxious,
+corrosive salt that dissolves all substances.
+Doublestrike 6%: Passive: 6% Enhancement bonus to Doublestrike. (Doublestrike is
+a chance to score an additional hit with a melee attack.)"""
+icon = "Upgrade"
+min_level = 16
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+value = 6
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+effect_type = "Doublestrike"

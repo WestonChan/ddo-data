@@ -1,0 +1,50 @@
+label = "upgrade: tier 1"
+name = "+7 Combustion Epic Scorched Bastard Sword"
+
+[[option]]
+name = "Spell Penetration VI and Riposte XII"
+description = """
++6 Equipment bonus to Spell Penetration.
+Riposte XII: When Missed by an attack: Deals 12 to 48 damage to your attacker.
+Passive: +6 Insight bonus to Armor Class, +6 Insight bonus to Fortitude, Reflex,
+and Will Saving Throws."""
+min_level = 7
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+value = 6
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Armor Class"
+value = 6
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Saving Throws"
+value = 6
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]

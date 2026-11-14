@@ -1,0 +1,19 @@
+label = "crafting: upgradeable item (black abbot)"
+name = "Purging the Pantheon"
+
+[[option]]
+name = "Quell 5 Charges and Fortification 100%"
+icon = "BlackAbbot"
+min_level = 13
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Fortification"
+value = 100
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Enhancement"
+effect = "Fortification"
+effect_type = "Fortification"

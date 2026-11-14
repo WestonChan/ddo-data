@@ -1,0 +1,11 @@
+label = "upgrade: tier 3"
+name = "Epic Ring of the Buccaneer (legacy) (level 24)"
+
+[[option]]
+name = "Adds a Green augment slot"
+description = "Adds a Green augment slot to this item"
+icon = "Upgrade"
+min_level = 24
+
+[[option.grant]]
+slot = "green"

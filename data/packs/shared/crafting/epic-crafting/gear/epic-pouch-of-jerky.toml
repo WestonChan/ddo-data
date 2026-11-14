@@ -1,0 +1,61 @@
+name = "Epic Pouch of Jerky"
+description = """
+This leather pouch contains many shreds of dried meat. It's probably best that
+you don't ask what kind of meat."""
+drop_location = "Epic version of Pouch of Jerky"
+icon = "Trinket_33a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 20
+slot = "Trinket"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[clickie]]
+name = "Jerky"
+clickie = "Jerky"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 38
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 17
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Jerky"]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

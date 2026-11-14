@@ -1,0 +1,52 @@
+name = "Epic Sword of Shadow"
+accepts_sentience = true
+description = """
+This great sword was forged inside the Vault of Night itself. The essence of
+Shadow has seeped into this sword granting it exceptional death-dealing abilities."""
+drop_location = "Epic version of Sword of Shadow"
+enhancement_bonus = 10
+icon = "Greatsword_2"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Adamantine"
+minimum_level = 20
+slot = "Main Hand"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Great Sword"

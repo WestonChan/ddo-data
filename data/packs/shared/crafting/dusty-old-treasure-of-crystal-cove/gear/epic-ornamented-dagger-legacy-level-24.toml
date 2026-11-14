@@ -1,0 +1,89 @@
+name = "Epic Ornamented Dagger (legacy) (level 24)"
+accepts_sentience = true
+description = """
+A dagger set with precious gems, each of which are enchanted with spell-enhancing
+magic. Most likely it was seized from nobles by a band of pirates as part of
+their pillaging."""
+drop_location = "Treasure of Crystal Cove, Turn in at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 6
+icon = "Dagger_2d"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Steel"
+minimum_level = 24
+slot = "Main Hand"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page lists the box as holding the old (tiered) versions of this line (or the trinkets) bought at Dusty Old Treasure of Crystal Cove; the data Location text agrees. Its price rows are event_reward rows only for the Cavalry Plate line and the Lesser trinkets."
+
+[[clickie]]
+name = "Lesser Maximize"
+clickie = "Lesser Maximize"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 18
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 72
+
+[[effect]]
+name = "Efficient Metamagic - Maximize II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Spell Lore VII"
+bonus_type = "Equipment"
+value = 7
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Lesser Maximize"]
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Epic Ornamented Dagger (legacy) (level 24)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Epic Ornamented Dagger (legacy) (level 24)"
+
+[[source]]
+kind = "crafting_system"
+name = "Dusty Old Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.5
+handedness = "One-handed"
+weapon_type = "Dagger"

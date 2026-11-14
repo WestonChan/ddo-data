@@ -1,17 +1,59 @@
 name = "Sealed Altar"
-npc = "Sealed Altar, upstairs in Gravenhollow; invisible until you stand at the furthest south point of the upper floor (near the glowing green spike) for ten seconds"
 pack = "Terror of Demogorgon"
 page = "https://ddowiki.com/page/Sealed_Altar"
 
-[[ingredient]]
-name = "Abyssal Gem"
-drop_location = "Terror of Demogorgon"
-tier = "heroic"
+[[station]]
+name = "Sealed Altar"
+note = "Introduced in Update 81. All equipment crafted here is Bound to Character on Acquire (the tables list some as Bound to Account)."
 
-[[ingredient]]
-name = "Legendary Abyssal Gem"
-drop_location = "Terror of Demogorgon"
+[[station]]
+name = "Fetid Cauldron"
+note = """
+Combines the Globes of Slime into the two Slime Emblem halves, then the halves into the Slime Emblem that opens the altar.
+
+Makes Top of the Slime Emblem.
+
+Makes Bottom of the Slime Emblem.
+
+Makes Slime Emblem."""
+
+[[unlock]]
+kind = "pack"
+pack = "Terror of Demogorgon"
+text = "Ownership of Terror of Demogorgon is required (Gravenhollow, Abyssal Gems, the Black Globe of Slime); the page's parenthetical lists it first."
+
+[[unlock]]
+kind = "pack"
+pack = "Menace of the Underdark"
+text = "Ownership of or temporary access to this pack is required to use the Sealed Altar crafting system, because the Globes of Slime come from it (the page's own parenthetical)."
+
+[[unlock]]
+kind = "pack"
+pack = "White Plume Mountain and Other Tales"
+text = "Ownership of or temporary access to this pack is required to use the Sealed Altar crafting system, because the Globes of Slime come from it (the page's own parenthetical)."
+
+[[unlock]]
+kind = "pack"
+pack = "The Temple of Elemental Evil"
+text = "Ownership of or temporary access to this pack is required to use the Sealed Altar crafting system, because the Globes of Slime come from it (the page's own parenthetical)."
+
+[[unlock]]
+kind = "level"
+value = 11
+text = "Listed under 'Level 11+' in the page's crafting navigation box."
+
+[[step]]
+name = "Item upgrade"
+
+[[step.cost]]
+tier = "heroic"
+ingredient = "Abyssal Gem"
+quantity = 50
+
+[[step.cost]]
 tier = "legendary"
+ingredient = "Legendary Abyssal Gem"
+quantity = 50
 
 [[ingredient]]
 name = "Black Globe of Slime"
@@ -63,64 +105,77 @@ tier = "any"
 
 [[citation]]
 url = "https://ddowiki.com/page/Sealed_Altar"
-read = "2026-09-29"
+read = "2026-11-04"
+note = "Page read in full (prose and the two item tables, heroic and legendary). No in-game screenshots on the page, so every row is typed_only. Not stated: crafting levels, favor, a quest gate. The tables describe three shapes (Shields, Sceptre, Other weapons) and the page gives the item name only as the label <Type> of the Oozing Hunger."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Sealed_Altar"
+read = "2026-11-04"
+note = """
+Pure step: no socket label. A Duergarcraft item and Abyssal Gems become the Oozing Hunger item of its shape, heroic or legendary. The three Slime Emblem recipes make the kept key, not an item, and are not listed here (they are this file's [[ingredient_recipe]] rows). Added 2026-11-13 by the orchestrator from the reader's own rows, with no new read, under the reader brief's rule that a system with no socketed step gets one pure step named for what it does (amendment Revision 13e).
+
+All three heroic shapes (Shields, Sceptre, Other weapons) take 50 Abyssal Gems plus the corresponding heroic Duergarcraft item. That item differs per output type and is each recipe's own item cost, not expressible once on the step.
+
+Page: 50 Legendary Abyssal Gems plus the corresponding Legendary Duergarcraft item (per output type). Note the contrast with Catalyst Crafting, whose legendary recipes take 5."""
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Sealed_Altar"
+read = "2026-11-04"
+note = """
+Globe sources the page gives: Black, Saga reward list of Terror of Demogorgon (Heroic) / (Legendary); Green, The Temple of Elemental Evil: Lower Temple Complex, Living Pool's chest; Gold, The Underdark (Menace of the Underdark), northern shrine after slaying Digestive Slimes. These stay drop text; no quest link is written.
+
+Globe sources the page gives: Blue, Durk's Got A Secret, Muck's second chest; Gray, White Plume Mountain, Huge Black Pudding's chest; Pink, The Pit, Avatar of Juiblex's second chest.
+
+Page: combine the top and bottom to get the Slime Emblem. The Emblem is the kept key."""
+
+[[citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Sealed_Altar"
+read = "2026-11-04"
 
 [[recipe]]
 note = "All recipe facts are on this page. Introduced in Update 81; the page says all equipment crafted here is Bound to Character on Acquire, though its tables list some items as Bound to Account. Upgrades the corresponding heroic Duergarcraft item into a new item: 1.50[W], Bound to Account on Acquire, +5 Enhancement Bonus, Acid Blast 3, Insightful Shield Bashing +4, Acidic 3, Destructive Acid +2, Red Augment Slot. Needs a Slime Emblem in inventory, which is not consumed. A new item, not an augment; Maetrim has no augment family for this system."
 option = "<Type> of the Oozing Hunger (Shields)"
 tier = "heroic"
-
-[[recipe.ingredient]]
-ingredient = "Abyssal Gem"
-quantity = 50
+step = "Item upgrade"
 
 [[recipe]]
 note = "Upgrades the corresponding heroic Duergarcraft item into a new item: 1.50[1d6], Bound to Account on Acquire, +5 Enhancement Bonus, Potency +49, Blighted Lore +12%, Insightful Acid Intensity +7%, Acid Intensity +12%, Red Augment Slot. Needs a Slime Emblem in inventory, which is not consumed. A new item, not an augment; Maetrim has no augment family for this system."
 option = "<Type> of the Oozing Hunger (Sceptre)"
 tier = "heroic"
-
-[[recipe.ingredient]]
-ingredient = "Abyssal Gem"
-quantity = 50
+step = "Item upgrade"
 
 [[recipe]]
 note = "Upgrades the corresponding heroic Duergarcraft item into a new item: 1.50[W], Bound to Account on Acquire, +5 Enhancement Bonus, Acid Blast 3, Slime, Acidic 3, Destructive Acid +2, Red Augment Slot. Needs a Slime Emblem in inventory, which is not consumed. A new item, not an augment; Maetrim has no augment family for this system."
 option = "<Type> of the Oozing Hunger (Other weapons)"
 tier = "heroic"
-
-[[recipe.ingredient]]
-ingredient = "Abyssal Gem"
-quantity = 50
+step = "Item upgrade"
 
 [[recipe]]
 note = "Upgrades the corresponding Legendary Duergarcraft item into a new item: 6[W], Bound to Account on Acquire, +16 Enhancement Bonus, Lingering Acidic Burn, Insightful Shield Bashing +11, Acidic 7, Destructive Acid +7, Orange Augment Slot, Purple Augment Slot. Needs a Slime Emblem in inventory, which is not consumed. A new item, not an augment; Maetrim has no augment family for this system."
 option = "Legendary <Type> of the Oozing Hunger (Shields)"
 tier = "legendary"
-
-[[recipe.ingredient]]
-ingredient = "Legendary Abyssal Gem"
-quantity = 50
+step = "Item upgrade"
 
 [[recipe]]
 note = "Upgrades the corresponding Legendary Duergarcraft item into a new item: 6[1d6+3], Bound to Character on Acquire, +16 Enhancement Bonus, Lingering Acidic Burn, Blighted Lore +25%, Insightful Acid Intensity +14%, Acid Intensity +25%, Orange Augment Slot, Purple Augment Slot. Needs a Slime Emblem in inventory, which is not consumed. A new item, not an augment; Maetrim has no augment family for this system."
 option = "Legendary <Type> of the Oozing Hunger (Sceptre)"
 tier = "legendary"
-
-[[recipe.ingredient]]
-ingredient = "Legendary Abyssal Gem"
-quantity = 50
+step = "Item upgrade"
 
 [[recipe]]
 note = "Upgrades the corresponding Legendary Duergarcraft item into a new item: 6[W], Bound to Character on Acquire, +16 Enhancement Bonus, Lingering Acidic Burn, Legendary Slime, Acidic 7, Destructive Acid +7, Orange Augment Slot, Purple Augment Slot. Needs a Slime Emblem in inventory, which is not consumed. A new item, not an augment; Maetrim has no augment family for this system."
 option = "Legendary <Type> of the Oozing Hunger (Other weapons)"
 tier = "legendary"
-
-[[recipe.ingredient]]
-ingredient = "Legendary Abyssal Gem"
-quantity = 50
+step = "Item upgrade"
 
 [[recipe]]
-note = "Made at the Fetid Cauldron in Gravenhollow, next to the Stoneaxe brothers; a Slime Emblem part, no augment counterpart."
+note = """
+Made at the Fetid Cauldron in Gravenhollow, next to the Stoneaxe brothers; a Slime Emblem part, no augment counterpart.
+
+At the Fetid Cauldron."""
 option = "Top of the Slime Emblem"
 tier = "any"
 
@@ -137,7 +192,10 @@ ingredient = "Gold Globe of Slime"
 quantity = 1
 
 [[recipe]]
-note = "Made at the Fetid Cauldron; a Slime Emblem part, no augment counterpart."
+note = """
+Made at the Fetid Cauldron; a Slime Emblem part, no augment counterpart.
+
+At the Fetid Cauldron."""
 option = "Bottom of the Slime Emblem"
 tier = "any"
 
@@ -154,7 +212,10 @@ ingredient = "Pink Globe of Slime"
 quantity = 1
 
 [[recipe]]
-note = "Made at the Fetid Cauldron; opens the Sealed Altar and persists through Reincarnation (can pass through the Account Bank; discarding it means reflagging). No augment counterpart. Using the altar needs Terror of Demogorgon plus access to Menace of the Underdark, White Plume Mountain and Other Tales, and The Temple of Elemental Evil."
+note = """
+Made at the Fetid Cauldron; opens the Sealed Altar and persists through Reincarnation (can pass through the Account Bank; discarding it means reflagging). No augment counterpart. Using the altar needs Terror of Demogorgon plus access to Menace of the Underdark, White Plume Mountain and Other Tales, and The Temple of Elemental Evil.
+
+At the Fetid Cauldron."""
 option = "Slime Emblem"
 tier = "any"
 

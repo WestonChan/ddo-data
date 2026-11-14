@@ -1,0 +1,58 @@
+name = "Epic Mask of Comedy"
+description = """
+A mask crafted for and used by the actors of Livewood Theater. It represents
+happiness and high spirits, and is invested with magic to match."""
+drop_location = "Epic version of Mask of Comedy"
+icon = "Helmet_33b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Head"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[clickie]]
+name = "Good Hope"
+clickie = "Good Hope"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 73
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Good Hope"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

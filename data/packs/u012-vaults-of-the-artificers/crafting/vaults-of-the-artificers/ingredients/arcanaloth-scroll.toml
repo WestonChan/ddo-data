@@ -1,0 +1,8 @@
+name = "Arcanaloth Scroll"
+tier = "heroic"
+bind = "Bound to Account"
+drop_location = "Extraplanar Mining: Labor Shortage (L14-20)"
+
+[[citation]]
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
+read = "2026-11-04"

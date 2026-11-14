@@ -1,0 +1,38 @@
+name = "Greater Cunning Trinket"
+description = """
+Pirates have keen minds that allow them to outsmart their foes. This trinket
+gives you boosts to the effectiveness of your spells."""
+drop_location = "Treasure of Crystal Cove, Turn in Cunning Trinket (and other ingredients) at Dusty Old Treasure of Crystal Cove"
+icon = "Trinket_69"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 4
+slot = "Trinket"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page lists the box as holding the old (tiered) versions of this line (or the trinkets) bought at Dusty Old Treasure of Crystal Cove; the data Location text agrees. Its price rows are event_reward rows only for the Cavalry Plate line and the Lesser trinkets."
+
+[[effect]]
+name = "Pirate Cleverness"
+bonus_type = "Pirate"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Efficient Metamagic - Maximize I"
+bonus_type = "Equipment"
+
+[[source]]
+kind = "crafting_system"
+name = "Dusty Old Treasure of Crystal Cove"

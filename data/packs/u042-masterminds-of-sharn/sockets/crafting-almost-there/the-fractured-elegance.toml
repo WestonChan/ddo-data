@@ -1,0 +1,13 @@
+label = "crafting: almost there"
+name = "The Fractured Elegance"
+
+[[option]]
+name = "Sovereign Vorpal"
+description = "Sovereign Vorpal: Passive: +0.5[W] damage dice. On Vorpal Hit: If your target has fewer than 3000 Hit Points, they are instantly slain. If your target has above 3000 Hit Points, they take 300 damage."
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]

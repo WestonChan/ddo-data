@@ -1,0 +1,162 @@
+label = "crafting: variant"
+name = "Shield of Morning (Level 17)"
+
+[[option]]
+name = "Axeblock IV"
+description = """
+Axeblock IV: Passive: Reduces physical damage taken by 8, except from Bludgeoning
+or Piercing weapons. (Damage Reduction: 8/Pierce, Bludgeon)"""
+icon = "Variant"
+min_level = 17
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus = "Not Set"
+effect_type = "DR"
+targets = [
+    "Pierce",
+    "Bludgeon",
+]
+
+[[option]]
+name = "Bashing IV"
+description = """
+Bashing IV: On Shield Bash: +2d4 Bludgeoning damage.
+On Melee Hit: +4% Chance to automatically hit your enemy with a Shield Bash attack."""
+icon = "Variant"
+min_level = 17
+
+[[option]]
+name = "Deathblock IV"
+description = """
+Deathblock IV: Passive: 12% Enhancement Bonus to Negative Energy Absorption.
+In addition, you are immune to magical effects that can cause instant death."""
+icon = "Variant"
+min_level = 17
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Negative Absorption"
+value = 12
+
+[[option.modifier]]
+bonus_type = "Equipment"
+effect_type = "Immunity"
+targets = ["Death Effects"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Enhancement"
+effect = "Negative Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Negative"]
+
+[[option]]
+name = "Hammerblock IV"
+description = """
+Hammerblock IV: Passive: Reduces physical damage taken by 8, except from Piercing
+or Slashing weapons. (Damage Reduction: 8/Slash, Pierce)"""
+icon = "Variant"
+min_level = 17
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus = "Not Set"
+effect_type = "DR"
+targets = [
+    "Pierce",
+    "Slash",
+]
+
+[[option]]
+name = "Riposte IV"
+description = """
+Riposte IV: When Missed by an attack: Deals 4 to 16 damage to your attacker.
+Passive: +2 Insight bonus to Armor Class, +2 Insight bonus to Fortitude, Reflex,
+and Will Saving Throws."""
+icon = "Variant"
+min_level = 17
+
+[[option.effect]]
+effect = "Riposte IV"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+targets = ["All"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[option]]
+name = "Spearblock IV"
+description = """
+Spearblock IV: Passive: Reduces physical damage taken by 8, except from Bludgeoning
+or Slashing weapons. (Damage Reduction: 8/Slash, Bludgeon)"""
+icon = "Variant"
+min_level = 17
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus = "Not Set"
+effect_type = "DR"
+targets = [
+    "Bludgeon",
+    "Slash",
+]
+
+[[option]]
+name = "Vitality +20"
+description = "Vitality +20: Passive: +20 Vitality bonus to Hit Points."
+icon = "Variant"
+min_level = 17
+
+[[option.effect]]
+bonus_type = "Vitality"
+effect = "Hit Points"
+value = 20
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Vitality"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [
+    ["Armor Class"],
+    ["Saving Throws"],
+]
+reason = "R13 confirms that this choice is the named Riposte IV enchantment, including its existing passive bonuses and proc where present."
+url = "https://ddowiki.com/page/Item:Shield_of_Morning_(level_17)"
+read = "2026-10-26"
+qualifier = 'option "Riposte IV", Armor Class, Saving Throws / Insight'
+
+[[citation]]
+field = "option"
+url = "https://ddowiki.com/page/Item:Shield_of_Morning_(level_18)"
+read = "2026-10-26"
+note = "Preserved from Shield of Morning (Level 18)."
+
+[[citation]]
+field = "option"
+url = "https://ddowiki.com/page/Item:Shield_of_Morning_(level_19)"
+read = "2026-10-26"
+note = "Preserved from Shield of Morning (Level 19)."

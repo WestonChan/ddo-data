@@ -1,0 +1,53 @@
+name = "Epic Golden Guile"
+description = """
+A necklace worn by a Rakshasa with links and a charm made of pure gold. It seems
+to increase the wearer's ability to convince others of what he or she wants
+them to believe, even making it possible to distract enemies in the midst of
+a battle."""
+drop_location = "Epic version of Golden Guile"
+icon = "Necklace_1d"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Neck"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Has a perfected version (nebula fragment crafting).'
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 17
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 8
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

@@ -1,0 +1,8 @@
+name = "Shield Guardian Gyroscopes"
+tier = "any"
+drop_location = "Dropped by the Masterminds of Sharn quests (found in chests in the various quests); used at the Cannith Melting Station"
+
+[[citation]]
+url = "https://ddowiki.com/page/Syranian_Forged_Weaponry"
+read = "2026-11-04"
+note = "Data holds this ingredient only under Alchemical Crafting and Syranian Forged Weaponry; Nearly Finished's page also uses it in its Materials-required column but the data has no Nearly Finished ingredient row for it. No Item: page was found and no bind line is stated on any page read, so the bind is left out. Syranian Forged Weaponry lists it as one of the four 'New Cannith parts' (old costs 910 Worker Drone Actuators, 810 Worker Drone Platings, 455 Shield Guardian Cores, 405 Shield Guardian Gyroscopes before Update 42 Patch 1; now 45 each in the total); Nearly Finished's 'Materials required' column uses the same name, and its prose says those ingredients 'can be found in chests in the various quests' of the Masterminds of Sharn expansion; Alchemical Crafting says Update 42 'recipes also use additional ingredients dropping in Masterminds of Sharn quests'. Alchemical Crafting's own raw-ingredient table does not list this part, though the data lists Alchemical Crafting's Melting Station recipe as using it (the Melting Station popups show '5 Shield Guardian Gyroscopes'). One ingredient for all three systems."

@@ -1,0 +1,9 @@
+name = "Blue Dragon Scale"
+tier = "heroic"
+bind = "Unbound"
+drop_location = "Gianthold Tor blue dragon chest"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Blue_Dragon_Scale"
+read = "2026-11-04"
+note = "Examine image (Item_Blue_Dragon_Scale.jpg) viewed: no bind line. Matches Dragonscale Armor's 'Module 4; Gianthold Tor'."

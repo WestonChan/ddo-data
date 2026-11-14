@@ -1,0 +1,57 @@
+name = "Ratkiller (legacy) (level 12)"
+description = """
+This hammer is well-worn and appears to have been used in the past to exterminate
+pests aboard pirate vessels. It's a surprisingly strong weapon for such a mundane
+task and would probably be useful in battle as well."""
+drop_location = "Treasure of Crystal Cove, Turn in 800 Copper Doubloon 400 Silver Doubloon 25 Stolen Amethyst at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 3
+icon = "Maul_3"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Maul"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page lists the box as holding the old (tiered) versions of this line (or the trinkets) bought at Dusty Old Treasure of Crystal Cove; the data Location text agrees. Its price rows are event_reward rows only for the Cavalry Plate line and the Lesser trinkets."
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Animal Bane"
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Cutthroat's Smallblade (legacy) (level 12)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Ratkiller (legacy) (level 12)"
+
+[[source]]
+kind = "crafting_system"
+name = "Dusty Old Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Maul"

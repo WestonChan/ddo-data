@@ -29,15 +29,7 @@ bonus_type = "Enhancement"
 
 [[socket]]
 slot = "crafting: upgradeable item (black abbot)"
-
-[[socket.option]]
-name = "Adds Blinding Embers"
-description = """
-Blinding Embers: This weapon sheds tiny embers that can impair a creatures sight.
-If you roll a 20 when attacking and confirm the critical hit, the target will
-become blinded by a burst of fiery sparks."""
-icon = "BlackAbbot"
-min_level = 14
+set = "Unwavering Ardency"
 
 [[source]]
 chest = "raid warded chest"

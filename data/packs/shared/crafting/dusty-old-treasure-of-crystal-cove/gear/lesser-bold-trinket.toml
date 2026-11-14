@@ -1,0 +1,25 @@
+name = "Lesser Bold Trinket"
+description = """
+A pirate is courageous and leaps into battle without fear. This trinket gives
+you boosts to the damage of your attacks."""
+drop_location = "Treasure of Crystal Cove, Turn in at Dusty Old Treasure of Crystal Cove"
+icon = "Trinket_62"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 4
+slot = "Trinket"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page lists the box as holding the old (tiered) versions of this line (or the trinkets) bought at Dusty Old Treasure of Crystal Cove; the data Location text agrees. Its price rows are event_reward rows only for the Cavalry Plate line and the Lesser trinkets."
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 1
+
+[[source]]
+kind = "crafting_system"
+name = "Dusty Old Treasure of Crystal Cove"

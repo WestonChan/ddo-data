@@ -16,6 +16,12 @@ armor_check_penalty = -3
 armor_type = "Heavy"
 max_dex_bonus = 2
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-11-04"
+note = "Page table 'Shadowscale Armor / Base items' (Robe, Outfit, Light, Medium, Heavy, Docent; ML 26; Bound to Character on Acquire). The mapping of Light/Medium/Heavy to Dragonhide/Dragonscale/Dragonplate is the survey's, not the page's."
+
 [[clickie]]
 name = "Shadow Phase"
 clickie = "Shadow Phase"

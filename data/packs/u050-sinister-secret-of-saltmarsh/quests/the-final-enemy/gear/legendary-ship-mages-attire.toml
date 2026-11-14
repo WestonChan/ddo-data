@@ -14,6 +14,12 @@ slot = "Body"
 [[armor]]
 armor_type = "Cloth"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: "The Final Enemy, end chest, or Legendary version of Epic ...".'
+
 [[effect]]
 name = "Ghostly"
 
@@ -40,6 +46,10 @@ slot = "blue"
 
 [[socket]]
 slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"
 
 [[source]]
 chest = "end chest, or legendary version of epic ship-mage's attire"

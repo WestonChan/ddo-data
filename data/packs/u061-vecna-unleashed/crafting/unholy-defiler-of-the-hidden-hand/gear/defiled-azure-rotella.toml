@@ -17,6 +17,12 @@ damage_reduction = 9
 max_dex_bonus = 0
 shield_bonus = 12
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Unholy_Defiler_of_the_Hidden_Hand"
+read = "2026-11-04"
+note = "Listed in the page's crafted items table as the product of the upgrade; the page shows no drop. The data's drop text says 'defiled version of Azure Buckler'; the page's base item for this row is Azure Rotella."
+
 [[dr_bypass]]
 bypass = "Bludgeon"
 

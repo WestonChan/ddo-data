@@ -1,0 +1,56 @@
+label = "crafting: nearly finished"
+name = "Legendary Concentrated Chaos"
+
+[[option]]
+name = "Quality Intelligence +3"
+description = "+3 Quality bonus to Intelligence"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Quality"
+effect = "Intelligence"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[option]]
+name = "Quality Wisdom +3"
+description = "+3 Quality bonus to Wisdom"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Quality"
+effect = "Wisdom"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[option]]
+name = "Quality Charisma +3"
+description = "+3 Quality bonus to Charisma"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Quality"
+effect = "Charisma"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]

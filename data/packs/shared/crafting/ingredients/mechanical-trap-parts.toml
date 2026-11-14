@@ -1,0 +1,8 @@
+name = "Mechanical Trap Parts"
+tier = "any"
+drop_location = "From disabled trap Control Panels whose traps are mechanical (spikes, blades); needs the Trapmaking feat"
+
+[[citation]]
+url = "https://ddowiki.com/page/Thieves%27_Tools"
+read = "2026-11-04"
+note = "Shared in place (amendment Revision 13l, 2026-11-13): one row at the tip, owned by Trapmaking; also used by Thieves' Tools Construction and Handwraps to Collar Conversion, whose reader rows name it from the page cited here (new/thieves-tools-construction.toml, a [[system]] row). Nothing is merged. Tier, and bind and drop_text where present, are the tip row's, word for word."

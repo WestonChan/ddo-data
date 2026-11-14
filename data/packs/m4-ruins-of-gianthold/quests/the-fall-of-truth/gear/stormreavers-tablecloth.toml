@@ -28,36 +28,11 @@ value = 2
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 1"
-
-[[socket.option]]
-name = "Yellow Augment Slot"
-description = "Add a Yellow augment slot to this item"
-icon = "Heroism"
-min_level = 25
-
-[[socket.option.grant]]
-slot = "yellow"
+set = "Idol of Fortune"
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 2"
-
-[[socket.option]]
-name = "Adds Spell Penetration III"
-description = "Spell Penetration III: Passive: +3 Equipment bonus to Spell Penetration checks."
-icon = "Heroism"
-min_level = 25
-
-[[socket.option.effect]]
-bonus_type = "Equipment"
-effect = "Spell Penetration"
-value = 3
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [3]
-bonus_type = "Equipment"
-effect = "Spell Penetration"
-effect_type = "SpellPenetrationBonus"
+set = "Stormreaver's Tablecloth"
 
 [[source]]
 chest = "raid warded chest"

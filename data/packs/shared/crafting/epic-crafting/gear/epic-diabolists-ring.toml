@@ -1,0 +1,49 @@
+name = "Epic Diabolist's Ring"
+description = """
+Professor Tremas' ring, taken off the battlefield from within the Market Tent.
+It still retains some of his diabolical power."""
+drop_location = "Epic version of Diabolist's Ring"
+icon = "Ring_26c"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 20
+slot = "Ring"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 97
+
+[[effect]]
+name = "Improved Demonic Shield"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

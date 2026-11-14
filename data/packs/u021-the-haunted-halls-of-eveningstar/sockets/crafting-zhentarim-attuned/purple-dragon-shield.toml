@@ -1,0 +1,68 @@
+label = "crafting: zhentarim attuned"
+name = "Purple Dragon Shield"
+
+[[option]]
+name = "Adds +8 Orb Bonus and a Purple Augment slot"
+description = """
++8 Orb Bonus: While this orb is equipped and you are actively blocking, you gain
+a +8 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and
+Sonic resistances.
+Adds a Purple Augment slot"""
+icon = "Upgrade"
+min_level = 26
+
+[[option.effect]]
+bonus_type = "Orb"
+effect = "Orb Bonus"
+value = 8
+
+[[option.grant]]
+slot = "purple"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Orb"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[option.modifier.requirement]]
+items = ["Blocking"]
+req_type = "Stance"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Orb"
+effect = "Elemental Resistance"
+effect_type = "EnergyResistance"
+targets = [
+    "Acid",
+    "Cold",
+    "Fire",
+    "Electric",
+    "Sonic",
+]
+
+[[option.modifier.requirement]]
+items = ["Blocking"]
+req_type = "Stance"
+
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [
+    ["Saving Throws"],
+    [
+    "Fire Resistance",
+    "Cold Resistance",
+    "Electric Resistance",
+    "Acid Resistance",
+    "Sonic Resistance",
+],
+]
+reason = "R5-3: the upgraded screenshot gives one +8 Orb Bonus line for saving throws and all five elemental resistances."
+url = "https://ddowiki.com/page/Item:Purple_Dragon_Shield"
+read = "2026-10-23"
+qualifier = 'option "Adds +8 Orb Bonus and a Purple Augment slot", Fire Resistance, Cold Resistance, Electric Resistance, Acid Resistance, Sonic Resistance, Saving Throws / Orb'

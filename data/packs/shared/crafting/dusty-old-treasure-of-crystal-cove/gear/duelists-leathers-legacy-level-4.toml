@@ -1,0 +1,47 @@
+name = "Duelist's Leathers (legacy) (level 4)"
+description = """
+When pirates who prefer light blades in battle need armor, this is the kind
+of item they will put their money on- a lightweight vest of leather or hide
+that allows plenty of stylish movement in combat."""
+drop_location = "Treasure of Crystal Cove, Turn in 500 Copper Doubloon 250 Silver Doubloon 15 Stolen Alabaster at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 1
+icon = "LightArmor_1b"
+is_legacy = true
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 3
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page lists the box as holding the old (tiered) versions of this line (or the trinkets) bought at Dusty Old Treasure of Crystal Cove; the data Location text agrees. Its price rows are event_reward rows only for the Cavalry Plate line and the Lesser trinkets."
+
+[[effect]]
+name = "Feat: Mobility"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 5
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Duelist's Leathers (legacy) (level 4)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Duelist's Leathers (legacy) (level 4)"
+
+[[source]]
+kind = "crafting_system"
+name = "Dusty Old Treasure of Crystal Cove"

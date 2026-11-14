@@ -1,0 +1,33 @@
+name = "Blasting Chime (Level 3)"
+description = """
+A small set of chimes that greatly amplifies any sonic energy channeled through
+it."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Trinket_26"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 3
+slot = "Trinket"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot/Other"
+read = "2026-11-04"
+note = "Created at the Vaults challenge barter (Challenge Barter System Rewards); not a drop."
+
+[[effect]]
+name = "Weaken Construct"
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 54
+
+[[source]]
+kind = "crafting_system"
+name = "Vaults of the Artificers"

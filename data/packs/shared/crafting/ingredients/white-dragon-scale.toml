@@ -1,0 +1,9 @@
+name = "White Dragon Scale"
+tier = "heroic"
+bind = "Unbound"
+drop_location = "Gianthold Tor white dragon chest (30% drop rate on Normal, Hard and Elite); Prey on the Hunter optional dragon chest (20% drop rate on Normal, Hard and Elite)"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:White_Dragon_Scale"
+read = "2026-11-04"
+note = "Examine image (Item_White_Dragon_Scale.jpg) viewed: no bind line. Matches Dragonscale Armor's 'Module 4; Gianthold Tor, Prey on the Hunter'."

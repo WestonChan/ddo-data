@@ -1,0 +1,53 @@
+name = "Treasure of Crystal Cove Hat Upgrades"
+page = "https://ddowiki.com/page/Euphonia%27s_Hat_Box"
+
+[[station]]
+name = "Euphonia's Hat Box"
+
+[[step]]
+name = "Enchantable: Adventuring Bonus"
+slot = "crafting: enchantable: adventuring bonus"
+
+[[step]]
+name = "Enchantable: Crystal Rush"
+slot = "crafting: enchantable: crystal rush"
+
+[[step]]
+name = "Enchantable: Skilled Seaman"
+slot = "crafting: enchantable: skilled seaman"
+
+[[citation]]
+url = "https://ddowiki.com/page/Euphonia%27s_Hat_Box"
+read = "2026-11-12"
+note = """
+Euphonia's Hat Box is one of the crafting interfaces of the Treasure of Crystal Cove event, used exclusively for purchasing and upgrading Pirate Hats: the six hats (Swabby's Kerchief to Dread Admiral's Tricorne) are bought for doubloons and bound to character, and each hat takes any of four upgrade lines (Scallawag's Luck, Crystal Rush/Kobold Buffs, Adventuring Bonus, Skilled Seaman) for doubloons and, at the higher tiers, dragonshards. The legacy Cove gear is at Dusty Old Treasure of Crystal Cove and the old-to-new conversion at Conversions of Crystal Cove (both named on the page); other new Cove loot is at Euphonia's Barter Box. The page states no level, favor, quest or key needed beyond the event being active.
+
+Whole page read (overview, available hats, the four upgrade-line tables); the window screenshot https://images.ddowiki.com/Euphonia%27s_Hat_Box_UI.png was also opened and looked at (title EUPHONIA'S HAT BOX; no access text). Rows written only for the system, its station and the event-only gate; the hats, upgrade lines and costs on the page are not recorded here."""
+
+[[citation]]
+field = "pack"
+url = "https://ddowiki.com/page/Smuggler%27s_Rest"
+read = "2026-11-12"
+note = "Euphonia's Hat Box is on the ship in Smuggler's Rest, which the Smuggler's Rest page calls part of the Treasure of Crystal Cove event; neither it nor the Hat Box page names an adventure pack. The event is the gate."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Euphonia%27s_Hat_Box"
+read = "2026-11-04"
+note = """
+Item:Admiral's_Tricorne lists the enchantment lines 'Treasure of Crystal Cove Hat Upgrades', 'Enchantable: Crystal Rush', 'Enchantable: Adventuring Bonus' and 'Enchantable: Skilled Seaman' (tooltip: 'This hat can be enchanted to bestow one of various benefits useful in general adventuring. Adventuring effects may change the minimum level of this item.') and 'Upgradeable? Euphonia's Hat Box'. The Euphonia's Hat Box page calls the hat box 'one of the crafting interfaces' of the Treasure of Crystal Cove event, used exclusively for buying and upgrading Pirate Hats; the Adventuring Bonus line is a standard item enchantment (Ability, Fortification, False Life, Wizardry and so on) bought in tiers with dragonshards and doubloons. Proposed owner: a NEW system named as the item's own first line, 'Treasure of Crystal Cove Hat Upgrades', station Euphonia's Hat Box (device, Smuggler's Rest, event-only), steps = the three Enchantable lines plus the Scallawag's Luck tiers (not a socket label). If the Crystal Cove upgrades reader settles on one event system, merge there; not decided here. Only the Admiral's Tricorne item page and the Hat Box page were read; the other four hats' own pages were not, but the Hat Box page says every hat can be upgraded in all four lines and names the same six hats plus The Admiral of Bling (no longer easily available, upgrade lines not stated for it).
+
+Same basis as 'crafting: enchantable: adventuring bonus'. Item tooltip: 'This hat can be enchanted to bestow one of various benefits to nearby kobolds in Crystal Cove.' The Hat Box page calls the line Crystal Rush (aka Kobold Buffs): four auras (Defensive, Entropic, Haste, Healing), four levels each, bought with dragonshards and doubloons.
+
+Same basis as 'crafting: enchantable: adventuring bonus'. Item tooltip: 'This hat can be enchanted to grant a bonus to one skill. You can have one skill bonus on a hat at a time, but can replace it with a different choice. Skill effects may change the minimum level of this item.' The Hat Box page: a skill bonus in any one skill except Spellcraft or Use Magical Device, which sets a minimum level for the hat."""
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Item:Admiral%27s_Tricorne"
+read = "2026-11-04"
+note = """
+Item:Admiral's_Tricorne lists the enchantment lines 'Treasure of Crystal Cove Hat Upgrades', 'Enchantable: Crystal Rush', 'Enchantable: Adventuring Bonus' and 'Enchantable: Skilled Seaman' (tooltip: 'This hat can be enchanted to bestow one of various benefits useful in general adventuring. Adventuring effects may change the minimum level of this item.') and 'Upgradeable? Euphonia's Hat Box'. The Euphonia's Hat Box page calls the hat box 'one of the crafting interfaces' of the Treasure of Crystal Cove event, used exclusively for buying and upgrading Pirate Hats; the Adventuring Bonus line is a standard item enchantment (Ability, Fortification, False Life, Wizardry and so on) bought in tiers with dragonshards and doubloons. Proposed owner: a NEW system named as the item's own first line, 'Treasure of Crystal Cove Hat Upgrades', station Euphonia's Hat Box (device, Smuggler's Rest, event-only), steps = the three Enchantable lines plus the Scallawag's Luck tiers (not a socket label). If the Crystal Cove upgrades reader settles on one event system, merge there; not decided here. Only the Admiral's Tricorne item page and the Hat Box page were read; the other four hats' own pages were not, but the Hat Box page says every hat can be upgraded in all four lines and names the same six hats plus The Admiral of Bling (no longer easily available, upgrade lines not stated for it).
+
+Same basis as 'crafting: enchantable: adventuring bonus'. Item tooltip: 'This hat can be enchanted to bestow one of various benefits to nearby kobolds in Crystal Cove.' The Hat Box page calls the line Crystal Rush (aka Kobold Buffs): four auras (Defensive, Entropic, Haste, Healing), four levels each, bought with dragonshards and doubloons.
+
+Same basis as 'crafting: enchantable: adventuring bonus'. Item tooltip: 'This hat can be enchanted to grant a bonus to one skill. You can have one skill bonus on a hat at a time, but can replace it with a different choice. Skill effects may change the minimum level of this item.' The Hat Box page: a skill bonus in any one skill except Spellcraft or Use Magical Device, which sets a minimum level for the hat."""

@@ -31,45 +31,23 @@ name = "Resistance"
 bonus_type = "Resistance"
 value = 1
 
-[[socket]]
-slot = "crafting: upgradeable tier 2"
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "remove"
+upstream = 0
+reason = "The item page has an empty Upgradeable? row and a typed Enchantments list of +2 Enhancement Bonus, Life Shield, False Life +12, DR 10/Chaotic, Resistance +3, Blue Augment Slot; the in-game screenshot (420px-Cavalry_Plate_(level_4).png) shows the same lines (plus the Augments: line with the empty slot) and no Upgradeable - Tier line. The data file carries crafting: upgradeable tier 2 and tier 3 sockets."
+url = "https://ddowiki.com/page/Item:Cavalry_Plate_(level_4)"
+read = "2026-11-04"
+qualifier = 'socket "upgrade: tier 2"'
 
-[[socket.option]]
-name = "+1 Enhancement Bonus -> +2 Enhancement Bonus"
-description = "+2 Enhancement Bonus: This item has been magically enhanced. Armor with this quality gains a +2 Enhancement bonus to AC."
-min_level = 4
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Armor Class"
-value = 2
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [2]
-bonus_type = "Enhancement"
-effect = "Armor Class"
-effect_type = "ACBonus"
-
-[[socket]]
-slot = "crafting: upgradeable tier 3"
-
-[[socket.option]]
-name = "Lesser False Life -> False Life"
-description = "False Life +10: +10 Enhancement bonus to hit points."
-min_level = 4
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "False Life"
-value = 10
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [10]
-bonus_type = "Enhancement"
-effect = "False Life"
-effect_type = "FalseLife"
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "remove"
+upstream = 0
+reason = "The item page has an empty Upgradeable? row and a typed Enchantments list of +2 Enhancement Bonus, Life Shield, False Life +12, DR 10/Chaotic, Resistance +3, Blue Augment Slot; the in-game screenshot (420px-Cavalry_Plate_(level_4).png) shows the same lines (plus the Augments: line with the empty slot) and no Upgradeable - Tier line. The data file carries crafting: upgradeable tier 2 and tier 3 sockets."
+url = "https://ddowiki.com/page/Item:Cavalry_Plate_(level_4)"
+read = "2026-11-04"
+qualifier = 'socket "upgrade: tier 3"'
 
 [[source]]
 kind = "event"

@@ -1,0 +1,9 @@
+name = "Legendary Black Dust of Vile Darkness"
+tier = "legendary"
+bind = "Bound to Account on Acquire"
+drop_location = "Taken in Hand, hidden chest"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Legendary_Black_Dust_of_Vile_Darkness"
+read = "2026-11-04"
+note = "Examine screenshot (420px-Legendary_Black_Dust_of_Vile_Darkness.png) viewed: 'Bound to Account (from Acquisition)', 'This dust radiates corruption and evil'. Typed infobox: Bind Bound to Account on Acquire, Drops from 'Taken in Hand, hidden chest', 'Used in: Unholy Defiler of the Hidden Hand' (the page does not name the Esoteric Table). One item, no non-legendary version on the wiki. The data's texts add room detail ('second main room, behind barrels' and the like) that the item page does not state: the page says only the quest and 'hidden chest'."

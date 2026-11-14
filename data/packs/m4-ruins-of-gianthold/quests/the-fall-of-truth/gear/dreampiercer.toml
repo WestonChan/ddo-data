@@ -43,40 +43,11 @@ value = 3
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 1"
-
-[[socket.option]]
-name = "+8 Enhancement Bonus"
-description = "+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls."
-icon = "Heroism"
-min_level = 25
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [8]
-bonus_type = "Enhancement"
-effect_type = "Weapon_Enchantment"
+set = "Dreampiercer"
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 2"
-
-[[socket.option]]
-name = "Supreme Good"
-description = "Phlebotomizing: This weapon is wickedly sharp and will do an additional 3 to 24 damage to targets that are vulnerable to bleeding."
-icon = "Heroism"
-min_level = 25
-
-[[socket.option.modifier]]
-bonus_type = "Stacking"
-dice_damage = "Good"
-dice_number = [3]
-dice_sides = [6]
-effect_type = "WeaponOtherDamageBonus"
-extra_types = ["WeaponOtherDamageBonusCritical"]
-targets = ["All"]
-
-[[socket.option.modifier.requirement]]
-items = ["Non-Good"]
-req_type = "EnemyType"
+set = "Dreampiercer"
 
 [[socket]]
 slot = "red"

@@ -1,0 +1,9 @@
+name = "Epic Arcanaloth Scroll"
+tier = "epic"
+bind = "Bound to Account"
+drop_location = "Epic version of the challenge, L21-25 (Extraplanar Mining: Labor Shortage)"
+
+[[citation]]
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
+read = "2026-11-04"
+note = "Epic name read in the Reward Payout column of the main Vaults of the Artificers page (typed) and in the item pages' icon file names (Icon_Ingredient_CannithChallenge_Epic...)."

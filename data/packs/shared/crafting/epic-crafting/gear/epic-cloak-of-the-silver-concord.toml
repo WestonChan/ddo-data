@@ -1,0 +1,41 @@
+name = "Epic Cloak of the Silver Concord"
+description = "This magical cloak is a gift to a very select few of the Aurum inner circles."
+drop_location = "Epic version of Cloak of the Silver Concord"
+icon = "Cloak_17b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Back"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 8
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

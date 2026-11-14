@@ -28,27 +28,11 @@ name = "Eternal Faith"
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 1"
-
-[[socket.option]]
-name = "Adds a Yellow Augment Slot"
-description = "Adds a Yellow augment slot."
-icon = "Heroism"
-min_level = 25
-
-[[socket.option.grant]]
-slot = "yellow"
+set = "Gauntlets of Immortality"
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 2"
-
-[[socket.option]]
-name = "Adds a Colorless Augment Slot"
-description = "Adds a Colorless augment slot."
-icon = "Heroism"
-min_level = 25
-
-[[socket.option.grant]]
-slot = "colorless"
+set = "Gauntlets of Immortality"
 
 [[source]]
 chest = "raid warded chest"

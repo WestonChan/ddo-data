@@ -1,0 +1,9 @@
+name = "Lesser Cannith Power Cell"
+tier = "heroic"
+bind = "Unbound"
+drop_location = "Quest and raid end chests within the area; used at the Cannith Reforging Station"
+
+[[citation]]
+url = "https://ddowiki.com/page/Cannith_Reforging_Station"
+read = "2026-11-04"
+note = "Shared in place (amendment Revision 13l, 2026-11-13): one row at the tip, owned by Alchemical Crafting; also used by Nearly Finished, whose reader rows name it from the page cited here (nearly-finished.toml, a [[citation]] row). Nothing is merged. Tier, and bind and drop_text where present, are the tip row's, word for word."

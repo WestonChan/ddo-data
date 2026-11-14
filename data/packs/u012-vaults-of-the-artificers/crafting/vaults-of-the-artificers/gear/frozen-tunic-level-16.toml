@@ -1,0 +1,59 @@
+name = "Frozen Tunic (Level 16)"
+description = """
+This tunic shimmers like frost and is filled with a powerful freezing energy.
+It will invest your attacks with an icy edge, as well as boosting the power
+of your ice-related magic. A bound Water Elemental fuels this item."""
+drop_location = "Vaults of the Artificers, Crafted from various challenge ingredients"
+icon = "Cloth_16a"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot/Armor"
+read = "2026-11-04"
+note = "Created at the Vaults challenge barter (Challenge Barter System Rewards); not a drop."
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 6
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 96
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Lesser Freezing Ice"
+
+[[effect]]
+name = "Fire Shield (Cold)"
+
+[[effect]]
+name = "Enhanced Ki"
+bonus_type = "Enhancement"
+value = 1
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Frozen Tunic (Level 16)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Frozen Tunic (Level 16)"
+
+[[source]]
+kind = "crafting_system"
+name = "Vaults of the Artificers"

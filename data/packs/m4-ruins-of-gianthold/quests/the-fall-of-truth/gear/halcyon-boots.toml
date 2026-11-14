@@ -32,27 +32,11 @@ value = 80
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 1"
-
-[[socket.option]]
-name = "Yellow Augment Slot"
-description = "Add a Yellow augment slot to this item"
-icon = "Heroism"
-min_level = 27
-
-[[socket.option.grant]]
-slot = "yellow"
+set = "Halcyon Boots"
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 2"
-
-[[socket.option]]
-name = "Colorless Augment Slot"
-description = "Add a Colorless augment slot to this item"
-icon = "Heroism"
-min_level = 25
-
-[[socket.option.grant]]
-slot = "colorless"
+set = "Halcyon Boots"
 
 [[source]]
 chest = "raid warded chest"

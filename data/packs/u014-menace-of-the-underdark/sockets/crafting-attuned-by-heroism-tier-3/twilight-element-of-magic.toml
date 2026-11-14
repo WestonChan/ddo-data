@@ -1,0 +1,144 @@
+label = "crafting: attuned by heroism: tier 3"
+name = "Twilight, Element of Magic"
+
+[[option]]
+name = "Combustion +120"
+description = "Combustion +120: Passive: +120 Equipment bonus to Fire Spell Power."
+icon = "Heroism"
+min_level = 23
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 120
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[option]]
+name = "Glaciation +120"
+description = "Glaciation +120: Passive: +120 Equipment bonus to Cold Spell Power."
+icon = "Heroism"
+min_level = 23
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+value = 120
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[option]]
+name = "Corrosion +120"
+description = "Corrosion +120: Passive: +120 Equipment bonus to Acid Spell Power."
+icon = "Heroism"
+min_level = 23
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+value = 120
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[option]]
+name = "Magnetism +120"
+description = "Magnetism +120: Passive: +120 Equipment bonus to Electric Spell Power."
+icon = "Heroism"
+min_level = 23
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 120
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[option]]
+name = "Nullification +120"
+description = "Nullification +120: Passive: +120 Equipment bonus to Negative and Poison Spell Power."
+icon = "Heroism"
+min_level = 23
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Nullification"
+value = 120
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Equipment"
+effect = "Nullification"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[option]]
+name = "Devotion +120"
+description = "Devotion +120: Passive: +120 Equipment bonus to Positive Spell Power."
+icon = "Heroism"
+min_level = 23
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Positive Spell Power"
+value = 120
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Equipment"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[option]]
+name = "Radiance +120"
+description = "Radiance +120: Passive: +120 Equipment bonus to Light and Alignment Spell Power."
+icon = "Heroism"
+min_level = 23
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Radiance"
+value = 120
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Equipment"
+effect = "Radiance"
+effect_type = "SpellPower"
+targets = [
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Light/Alignment",
+]

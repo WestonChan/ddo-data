@@ -284,24 +284,15 @@ mod tests {
     #[test]
     fn a_gem_of_many_facets_sized_option_list_builds_with_a_short_slug() {
         #[derive(serde::Deserialize)]
-        struct ItemSockets {
-            socket: Vec<ItemSocket>,
-        }
-        #[derive(serde::Deserialize)]
-        struct ItemSocket {
-            slot: String,
-            #[serde(default)]
-            option: Vec<SocketOption>,
-        }
-        #[derive(serde::Deserialize)]
         struct ExportedSet {
             name: String,
             option: Vec<SocketOption>,
         }
-        let item: ItemSockets =
-            toml::from_str(include_str!("../../../../data/packs/m6-devil-assault/gear/gem-of-many-facets.toml"))
-                .unwrap();
-        let expected = item.socket.into_iter().find(|socket| socket.slot == "crafting: set bonus 1").unwrap().option;
+        let source: ExportedSet = toml::from_str(include_str!(
+            "../../../../data/packs/shared/sockets/crafting-set-bonus-1/epic-gem-of-many-facets.toml"
+        ))
+        .unwrap();
+        let expected = source.option;
         assert_eq!(expected.len(), 27);
         let mut db = rusqlite::Connection::open_in_memory().unwrap();
         let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");

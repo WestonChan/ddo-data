@@ -1,0 +1,95 @@
+label = "crafting: variant"
+name = "Shadowmail (Level 24)"
+
+[[option]]
+name = "Combustion +114"
+description = "Combustion +114: Passive: +114 Equipment bonus to Fire Spell Power."
+min_level = 24
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 114
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [114]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[option]]
+name = "Corrosion +114"
+description = "Corrosion +114: Passive: +114 Equipment bonus to Acid Spell Power."
+min_level = 24
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+value = 114
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [114]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[option]]
+name = "Glaciation +114"
+description = "Glaciation +114: Passive: +114 Equipment bonus to Cold Spell Power."
+min_level = 24
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+value = 114
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [114]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[option]]
+name = "Impulse +114"
+description = "Impulse +114: Passive: +114 Equipment bonus to Force, Untyped, Slashing, Piercing, and Bludgeoning Spell Power."
+min_level = 24
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Force Spell Power"
+value = 114
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [114]
+bonus_type = "Equipment"
+effect = "Force Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Untyped",
+]
+
+[[option]]
+name = "Magnetism +114"
+description = "Magnetism +114: Passive: +114 Equipment bonus to Electric Spell Power."
+min_level = 24
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 114
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [114]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]

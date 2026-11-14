@@ -1,0 +1,24 @@
+label = "upgrade: tier 3"
+name = "Brigand's Cutlass (legacy) (level 8)"
+
+[[option]]
+name = "Adds True Chaos"
+description = """
+True Chaos: This weapon is infused with the power of True Chaos. It does an
+additional 1 to 6 damage to non-chaotic targets and can only be wielded by
+Chaotic-aligned characters."""
+icon = "Upgrade"
+min_level = 8
+
+[[option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Untyped"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[option.modifier.requirement]]
+items = ["Non-Chaotic"]
+req_type = "EnemyType"

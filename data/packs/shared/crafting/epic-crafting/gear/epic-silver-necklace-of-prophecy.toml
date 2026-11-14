@@ -1,0 +1,43 @@
+name = "Epic Silver Necklace of Prophecy"
+description = """
+This glittering necklace is rumored to contain important hints of the draconic
+prophecy. They rarely fall in the hands of non-dragon kind."""
+drop_location = "Epic version of Silver Necklace of Prophecy"
+icon = "Necklace_13c"
+item_category = "Jewelry"
+material = "Mithral"
+minimum_level = 20
+slot = "Neck"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

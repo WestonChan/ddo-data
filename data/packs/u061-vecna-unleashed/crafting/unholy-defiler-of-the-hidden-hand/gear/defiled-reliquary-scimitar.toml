@@ -9,6 +9,12 @@ material = "Steel"
 minimum_level = 18
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Defiled_Reliquary_Weaponry"
+read = "2026-11-04"
+note = "Defiled Reliquary Weaponry: 'they never drop in the wild'; made at the Unholy Defiler by converting its Shining Reliquary weapon. The data's drop text says 'defiled version of Shining Reliquary Warhammer'; the page converts Shining Reliquary <Weapon> into Defiled Reliquary <Weapon> of the same type, and lists Scimitar and Warhammer as separate weapons, so the base should be the Shining Reliquary Scimitar."
+
 [[dr_bypass]]
 bypass = "Evil"
 

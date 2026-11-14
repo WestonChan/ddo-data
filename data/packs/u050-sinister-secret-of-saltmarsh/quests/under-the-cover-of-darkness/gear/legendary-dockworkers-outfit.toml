@@ -12,6 +12,12 @@ slot = "Body"
 [[armor]]
 armor_type = "Cloth"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: "Under the Cover of Darkness, end chest, or Legendary version of Epic ...".'
+
 [[effect]]
 name = "Fortification"
 bonus_type = "Enhancement"
@@ -37,6 +43,10 @@ slot = "blue"
 
 [[socket]]
 slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"
 
 [[source]]
 chest = "end chest, or legendary version of epic dockworker's outfit"

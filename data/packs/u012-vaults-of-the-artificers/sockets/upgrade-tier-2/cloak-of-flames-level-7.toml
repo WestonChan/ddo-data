@@ -1,0 +1,35 @@
+label = "upgrade: tier 2"
+name = "Cloak of Flames (level 7)"
+
+[[option]]
+name = "Combustion +74, Fire Lore +11%"
+description = """
+Combustion +74: Passive: +74 Equipment bonus to Fire Spell Power.
+Fire Lore +11: Passive: Your Fire spells gain a 11% Equipment bonus to their chance to critical hit."""
+min_level = 7
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 74
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+value = 11
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [74]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+effect_type = "SpellLore"
+targets = ["Fire"]

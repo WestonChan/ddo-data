@@ -10,6 +10,11 @@ material = "Cloth"
 minimum_level = 29
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Syranian_Forged_Weaponry"
+read = "2026-11-04"
+
 [[dr_bypass]]
 bypass = "Adamantine"
 

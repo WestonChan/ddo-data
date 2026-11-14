@@ -10,6 +10,12 @@ material = "Leather"
 minimum_level = 31
 slot = "Hands"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Cauldron_of_Sora_Katra"
+read = "2026-11-04"
+note = "Result row of the recipe table (Item: page link); the wiki shows no direct drop for it."
+
 [[effect]]
 name = "Strength"
 bonus_type = "Enhancement"

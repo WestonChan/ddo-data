@@ -7,6 +7,12 @@ material = "Gold"
 minimum_level = 30
 slot = "Wrists"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: "What Sleeps Below, end chest, or Legendary version of Epic ...".'
+
 [[effect]]
 name = "Strength"
 bonus_type = "Insight"
@@ -32,6 +38,10 @@ slot = "green"
 
 [[socket]]
 slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"
 
 [[source]]
 chest = "end chest, or legendary version of epic saltiron bracer"

@@ -57,46 +57,11 @@ read = "2026-10-23"
 
 [[socket]]
 slot = "upgrade: tier 2"
-
-[[socket.option]]
-name = "+7 Enhancement Bonus, Doublestrike 7%"
-description = "+7 Enhancement Bonus: +7 enhancement bonus to attack and damage rolls."
-icon = "Upgrade"
-min_level = 24
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Doublestrike"
-value = 7
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [7]
-bonus_type = "Enhancement"
-effect_type = "Weapon_Enchantment"
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [7]
-bonus_type = "Enhancement"
-effect = "Doublestrike"
-effect_type = "Doublestrike"
+set = "Epic Cutthroat's Smallblade (level 24)"
 
 [[socket]]
 slot = "upgrade: tier 3"
-
-[[socket.option]]
-name = "Adds Corrosive Salt and a Red augment slot"
-description = """
-Corrosive Salt: This weapon stores a caustic, insatiable power deep within.
-When this weapon is used, this power can come to the surface in the form of a
-noxious, corrosive salt that dissolves all substances.
-Adds a Red augment slot to this item"""
-icon = "Upgrade"
-min_level = 24
-
-[[socket.option.grant]]
-slot = "red"
+set = "Epic Cutthroat's Smallblade (level 24)"
 
 [[source]]
 kind = "event"

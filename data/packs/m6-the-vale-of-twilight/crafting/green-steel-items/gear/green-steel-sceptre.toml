@@ -9,6 +9,12 @@ material = "Steel"
 minimum_level = 12
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Altar_of_Fecundity_-_Manufactured_Ingredient_Recipes"
+read = "2026-11-04"
+note = "Listed as a recipe result on the Altar of Fecundity manufactured-ingredient page; no direct drop stated. Spelling settled in round 2: the examine screenshot on Item:Green_Steel_Sceptre (https://images.ddowiki.com/thumb/Green_Steel_Sceptre.png/420px-Green_Steel_Sceptre.png) reads '+5 Green Steel Sceptre', and the item page is titled Green Steel Sceptre; only the typed recipe table and the item page's Tips line say Scepter."
+
 [[dr_bypass]]
 bypass = "Bludgeon"
 

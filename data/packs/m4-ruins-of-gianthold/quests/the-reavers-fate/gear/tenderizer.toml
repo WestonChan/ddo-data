@@ -39,33 +39,7 @@ name = "Maladroit"
 
 [[socket]]
 slot = "crafting: upgradeable item (stormreaver)"
-
-[[socket.option]]
-name = "Adds Bone Breaking and Spikes"
-description = """
-Bone Breaking: Critical hits by this weapon deal an extra 1 to 6 points of Dexterity
-damage by shattering the bones of its target.
-Spikes: The sharp spikes on this item deal an additional 1 to 6 Piercing damage
-when used to strike an enemy."""
-icon = "Stormreaver"
-min_level = 14
-
-[[socket.option.modifier]]
-bonus_type = "Equipment"
-dice_damage = "Dexterity"
-dice_number = [1]
-dice_sides = [6]
-effect_type = "WeaponOtherDamageBonusCritical"
-targets = ["All"]
-
-[[socket.option.modifier]]
-bonus_type = "Equipment"
-dice_damage = "Pierce"
-dice_number = [1]
-dice_sides = [6]
-effect_type = "WeaponOtherDamageBonus"
-extra_types = ["WeaponOtherDamageBonusCritical"]
-targets = ["All"]
+set = "Tenderizer"
 
 [[source]]
 chest = "raid warded chest"

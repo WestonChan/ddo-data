@@ -1,0 +1,9 @@
+name = "Abyssal Gem"
+tier = "heroic"
+bind = "Bound to Account on Acquire"
+drop_location = "Terror of Demogorgon"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Abyssal_Gems"
+read = "2026-11-04"
+note = "One item page for all three systems (Item:Abyssal_Gem redirects to Item:Abyssal_Gems): Bind BtA on Acquire, Drops from Terror of Demogorgon, Used in Catalyst Crafting. The wiki and tooltip name is plural 'Abyssal Gems'; our name is singular. The data rows say 'Terror of Demogorgon end chests' for two systems; the page says only 'Terror of Demogorgon'. The page's examine image was not viewed."

@@ -1,0 +1,50 @@
+name = "Dragontouched Shroud"
+description = """
+This robe is embroidered with several ancient draconic runes that appear to
+be dormant. Perhaps untold powers could be awakened if a power source can be
+found."""
+drop_location = "Dragontouched Armor, Turn in 50 Draconic Runes (requires completion of Stealer of Souls)"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-11-04"
+note = "Armor Types list: given by Vorace for 50 Draconic Runes (not a drop)."
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 6
+
+[[effect]]
+name = "Dragontouched"
+
+[[ddobuilder_correction]]
+kind = "item"
+field = "drop_location"
+upstream = "Dragontouched Armor, Turn in 50 Draconic Runes &amp; Complete the quest Stealer of Souls"
+reason = "Bought from Vorace for 50 Draconic Runes (the Robe type). ML16, armor bonus +6."
+url = "https://ddowiki.com/page/Item:Dragontouched_Armor"
+read = "2026-11-12"
+
+[[socket]]
+slot = "crafting: eldritch rune"
+
+[[socket]]
+slot = "crafting: tempest rune"
+
+[[socket]]
+slot = "crafting: sovereign rune"
+
+[[source]]
+kind = "crafting_system"
+name = "Dragontouched Armor"

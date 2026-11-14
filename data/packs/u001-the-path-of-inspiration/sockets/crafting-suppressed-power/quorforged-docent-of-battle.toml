@@ -1,0 +1,34 @@
+label = "crafting: suppressed power"
+name = "Quorforged Docent of Battle"
+
+[[option]]
+name = "Adds Superior False Life and Vitality +20"
+description = """
+Superior False Life: This item grants the wearer +40 maximum health.
+Vitality +20: Passive: +20 Vitality bonus to Hit Points."""
+icon = "Upgrade"
+min_level = 18
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Hit Points"
+value = 40
+
+[[option.effect]]
+bonus_type = "Vitality"
+effect = "Hit Points"
+value = 20
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Vitality"
+effect = "Hit Points"
+effect_type = "Hitpoints"

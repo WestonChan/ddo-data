@@ -11,6 +11,12 @@ material = "Steel"
 minimum_level = 14
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Tome_of_Untold_Legends"
+read = "2026-11-04"
+note = "Reward list table: 'Acquired: Tome of Untold Legends, Turn in completed Tome: Binding', ML 14, Bound to Character on Acquire. Not a drop. Weapon effects upgraded in Update 17."
+
 [[dr_bypass]]
 bypass = "Chaotic"
 

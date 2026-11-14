@@ -1,0 +1,36 @@
+label = "upgrade: tier 2"
+name = "Blasting Chime (Level 7)"
+
+[[option]]
+name = "Resonance +74, Sonic Lore +11% and Sonic Guard +3"
+description = """
+Resonance +74: Passive: +74 Equipment bonus to Sonic Spell Power.
+Sonic Lore +11: Passive: Your Sonic spells gain a 11% Equipment bonus to their chance to critical hit.
+Sonic Guard +3: Chance to deal 3d8 Sonic damage when hit."""
+min_level = 7
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+value = 74
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Sonic Spell Lore"
+value = 11
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [74]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Equipment"
+effect = "Sonic Spell Lore"
+effect_type = "SpellLore"
+targets = ["Sonic"]

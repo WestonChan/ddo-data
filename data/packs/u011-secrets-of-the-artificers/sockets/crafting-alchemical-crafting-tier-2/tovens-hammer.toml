@@ -1,0 +1,10 @@
+label = "crafting: alchemical crafting tier 2"
+name = "Toven's Hammer"
+
+[[option]]
+name = "Adds Transform Kinetic Energy2"
+description = """
+Transform Kinetic Energy: Each time you are hit in melee combat there is a chance
+that the energy of the blow will be converted into Spell Points."""
+icon = "Upgrade"
+min_level = 19

@@ -1,0 +1,80 @@
+label = "crafting: variant ability"
+name = "Seal of House Szind"
+
+[[option]]
+name = "Charisma +7"
+description = "Charisma +7: This item makes the wearer have more flair, granting a +7 enhancement bonus to Charisma."
+icon = "Variant"
+min_level = 21
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Charisma"
+value = 7
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[option]]
+name = "Insightful Charisma +2"
+description = "+2 Insight bonus to Charisma"
+icon = "Variant"
+min_level = 21
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Charisma"
+value = 2
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[option]]
+name = "Intelligence +7"
+description = "Intelligence +7: This item focuses the power of the wearer's mind, granting a +7 enhancement bonus to Intelligence."
+icon = "Variant"
+min_level = 21
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 7
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[option]]
+name = "Insightful Intelligence +2"
+description = "+2 Insight bonus to Intelligence"
+icon = "Variant"
+min_level = 21
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 2
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]

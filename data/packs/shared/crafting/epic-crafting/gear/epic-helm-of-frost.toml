@@ -1,0 +1,59 @@
+name = "Epic Helm of Frost"
+description = """
+This helm has a chill about it and is cold where it touches your skin. Nevertheless
+it will protect you from harmful cold magic, and allows you to release some
+of that energy against foes."""
+drop_location = "Epic version of Helm of Frost"
+icon = "Helmet_10c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Head"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[clickie]]
+name = "Polar Ray"
+clickie = "Polar Ray"
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Polar Ray"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

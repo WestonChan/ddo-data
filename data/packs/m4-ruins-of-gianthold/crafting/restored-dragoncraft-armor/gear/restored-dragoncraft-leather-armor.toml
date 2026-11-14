@@ -1,0 +1,43 @@
+name = "Restored Dragoncraft Leather Armor"
+description = """
+Leather armor imbued with ancient draconic magic, for the rare humanoids that
+they favor favored."""
+drop_location = "Dragoncraft Armor, Turn in 10 Restored Dragon Relics"
+enhancement_bonus = 6
+icon = "LightArmor_1"
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 7
+armor_type = "Light"
+max_dex_bonus = 14
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Restored_Dragoncraft_Armor"
+read = "2026-11-04"
+note = "Turned in at Sangefar for 10 Restored Dragon Relics. The data currently sources this item to the older system Dragoncraft Armor (its drop_location reads 'Dragoncraft Armor, Turn in 10 Restored Dragon Relics' and the file sits under that system), while the wiki has this separate page."
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 7
+
+[[effect]]
+name = "Shield Bonus"
+bonus_type = "Shield"
+value = 6
+
+[[source]]
+kind = "crafting_system"
+name = "Restored Dragoncraft Armor"

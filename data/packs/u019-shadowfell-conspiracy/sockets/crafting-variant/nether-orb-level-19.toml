@@ -1,0 +1,97 @@
+label = "crafting: variant"
+name = "Nether Orb (Level 19)"
+
+[[option]]
+name = "Evocation Focus III"
+description = "Evocation Focus III: +3 Equipment bonus to the DC of Evocation spells."
+icon = "Variant"
+min_level = 19
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[option]]
+name = "Conjuration Focus III"
+description = "Conjuration Focus III: +3 Equipment bonus to the DC of Conjuration spells."
+icon = "Variant"
+min_level = 19
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Conjuration Focus"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Equipment"
+effect = "Conjuration Focus"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[option]]
+name = "Enchantment Focus III"
+description = "Enchantment Focus III: +3 Equipment bonus to the DC of Enchantment spells."
+icon = "Variant"
+min_level = 19
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Enchantment Focus"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Equipment"
+effect = "Enchantment Focus"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[option]]
+name = "Necromancy Focus III"
+description = "Necromancy Focus III: +3 Equipment bonus to the DC of Necromancy spells."
+icon = "Variant"
+min_level = 19
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Necromancy Focus"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Equipment"
+effect = "Necromancy Focus"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[option]]
+name = "Transmutation Focus III"
+description = "Transmutation Focus III: +3 Equipment bonus to the DC of Transmutation spells."
+icon = "Variant"
+min_level = 19
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Transmutation Focus"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Equipment"
+effect = "Transmutation Focus"
+effect_type = "SpellDC"
+targets = ["Transmutation"]

@@ -18,6 +18,12 @@ armor_bonus = -3
 armor_type = "Docent"
 mithral_body = 7
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-11-04"
+note = "Armor Types list: given by Vorace for 50 Draconic Runes (not a drop). The data's drop text says 'End reward'; the page lists the Docent among the armors bought with 50 Draconic Runes."
+
 [[effect]]
 name = "Construct Fortification (10%)"
 bonus_type = "Insight"

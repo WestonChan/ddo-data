@@ -1,0 +1,59 @@
+name = "Epic Darkstorm Helm"
+description = """
+Helms such as this, forged from some dark and glittering metal, are worn by
+drow spellcasters both arcane and divine to heighten the power of their spells.
+This helm can channel enough energy to start a brief thunderstorm."""
+drop_location = "Epic version of Darkstorm Helm"
+icon = "Helmet_11a"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 20
+slot = "Head"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Has a perfected version (nebula fragment crafting).'
+
+[[clickie]]
+name = "Call Lightning Storm"
+clickie = "Call Lightning Storm"
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 111
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Call Lightning Storm"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

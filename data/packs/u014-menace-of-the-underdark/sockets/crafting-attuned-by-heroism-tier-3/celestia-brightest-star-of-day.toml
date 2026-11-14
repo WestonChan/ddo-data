@@ -1,0 +1,21 @@
+label = "crafting: attuned by heroism: tier 3"
+name = "Celestia, Brightest Star of Day"
+
+[[option]]
+name = "Adds Banishing"
+description = "Banishing: On Hit: 4 to 24 Bane damage to Outsiders. On Vorpal Hit: If an outsider struck by this weapon has fewer than 1000 Hit Points, it is instantly slain. If the outsider has above 1000 Hit Points, it takes 100 damage."
+icon = "Heroism"
+min_level = 23
+
+[[option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[option.modifier.requirement]]
+items = ["Outsider"]
+req_type = "EnemyType"

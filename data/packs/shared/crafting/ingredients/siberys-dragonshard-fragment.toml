@@ -1,0 +1,9 @@
+name = "Siberys Dragonshard Fragment"
+tier = "any"
+bind = "Unbound"
+drop_location = "Chests, Breakables"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Siberys_Dragonshard_Fragment"
+read = "2026-11-04"
+note = "Examine screenshot (Siberys_Dragonshard_Fragment.png) viewed: no bind line, 'Ingredient Type'-style raw material, Base Value 1 (consistent with Unbound). Typed infobox: Bind Unbound, 'Drops from: Chests, Breakables', 'Used in: Essence Crafting, Siberys Dragonshard Combiner, Stone of Change'. Trapmaking is NOT named by the page (Essence Crafting is, a system whose steps are already decided). The page says that from Update 56 Siberys Dragonshard Fragments replaced Khyber Dragonshard Fragments as the ingredient used to bind items in the Stone of Change; Stone of Change conversions: 100 fragments for a Flawed Siberys Dragonshard, 1,000 Imperfect, 10,000 Siberys, 100,000 Exceptional, 1,000,000 Flawless. One item."

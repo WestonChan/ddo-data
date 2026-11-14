@@ -7,6 +7,12 @@ material = "Steel"
 minimum_level = 26
 slot = "Back"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items"
+read = "2026-11-04"
+note = "Listed among the 48 known blanks on the main page (links to Item:Legendary_Green_Steel_Weave_Cloak); crafted at the Altar of Fecundity for 100 Codex Runes and 100 Commendations of Valor; the page shows no direct drop. The data holds no quest or pack drop for it either."
+
 [[socket]]
 slot = "crafting: equipment tier 1"
 

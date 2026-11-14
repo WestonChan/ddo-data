@@ -25,60 +25,7 @@ value2 = 17
 
 [[socket]]
 slot = "crafting: nearly finished"
-
-[[socket.option]]
-name = "+3 Quality Strength"
-description = "+3 Quality bonus to Strength"
-min_level = 1
-
-[[socket.option.effect]]
-bonus_type = "Quality"
-effect = "Strength"
-value = 3
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [3]
-bonus_type = "Quality"
-effect = "Strength"
-effect_type = "AbilityBonus"
-targets = ["Strength"]
-
-[[socket.option]]
-name = "+3 Quality Dexterity"
-description = "+3 Quality bonus to Dexterity"
-min_level = 1
-
-[[socket.option.effect]]
-bonus_type = "Quality"
-effect = "Dexterity"
-value = 3
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [3]
-bonus_type = "Quality"
-effect = "Dexterity"
-effect_type = "AbilityBonus"
-targets = ["Dexterity"]
-
-[[socket.option]]
-name = "+3 Quality Wisdom"
-description = "+3 Quality bonus to Wisdom"
-min_level = 1
-
-[[socket.option.effect]]
-bonus_type = "Quality"
-effect = "Wisdom"
-value = 3
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [3]
-bonus_type = "Quality"
-effect = "Wisdom"
-effect_type = "AbilityBonus"
-targets = ["Wisdom"]
+set = "The Cornerstone Champion"
 
 [[socket]]
 slot = "yellow"

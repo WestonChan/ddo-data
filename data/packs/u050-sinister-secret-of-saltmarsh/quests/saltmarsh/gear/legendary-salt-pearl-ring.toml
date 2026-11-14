@@ -7,6 +7,12 @@ material = "Platinum"
 minimum_level = 30
 slot = "Ring"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: "Saltmarsh, rare encounter chests, or Legendary version of Epic Salt-Pearl Ring". Drop text for a wilderness area, not a quest link (the data links it to the quest-list entry Saltmarsh).'
+
 [[effect]]
 name = "Charisma"
 bonus_type = "Insight"
@@ -32,6 +38,10 @@ slot = "green"
 
 [[socket]]
 slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"
 
 [[source]]
 chest = "rare encounter chests, or legendary version of epic salt-pearl ring"

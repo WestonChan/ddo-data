@@ -1,0 +1,9 @@
+label = "crafting: nearly finished"
+name = "Constellation, Cursed Blade"
+
+[[option]]
+name = "Purple Augment Slot"
+description = "Adds a Purple Augment Slot"
+
+[[option.grant]]
+slot = "purple"

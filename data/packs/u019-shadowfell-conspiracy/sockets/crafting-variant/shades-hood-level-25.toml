@@ -1,0 +1,92 @@
+label = "crafting: variant"
+name = "Shade's Hood (Level 25)"
+
+[[option]]
+name = "Acid Resistance +40"
+description = "Acid Resistance +40: Passive: +40 Enhancement bonus to your Acid Resistance."
+min_level = 14
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Acid Resistance"
+value = 40
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "Acid Resistance"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[option]]
+name = "Cold Resistance +40"
+description = "Cold Resistance +40: Passive: +40 Enhancement bonus to your Cold Resistance."
+min_level = 14
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+value = 40
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[option]]
+name = "Fire Resistance +40"
+description = "Fire Resistance +40: Passive: +40 Enhancement bonus to your Fire Resistance."
+min_level = 14
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+value = 40
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[option]]
+name = "Electric Resistance +40"
+description = "Electric Resistance +40: Passive: +40 Enhancement bonus to your Electric Resistance."
+min_level = 14
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Electric Resistance"
+value = 40
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "Electric Resistance"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[option]]
+name = "Sonic Resistance +40"
+description = "Sonic Resistance +40: Passive: +40 Enhancement bonus to your Sonic Resistance."
+min_level = 14
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Sonic Resistance"
+value = 40
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "Sonic Resistance"
+effect_type = "EnergyResistance"
+targets = ["Sonic"]

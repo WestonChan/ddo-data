@@ -22,60 +22,7 @@ value = 16
 
 [[socket]]
 slot = "crafting: nearly finished"
-
-[[socket.option]]
-name = "+8 Strength"
-description = "+8 Enhancement bonus to Strength"
-min_level = 15
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Strength"
-value = 8
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [8]
-bonus_type = "Enhancement"
-effect = "Strength"
-effect_type = "AbilityBonus"
-targets = ["Strength"]
-
-[[socket.option]]
-name = "+8 Intelligence"
-description = "+8 Enhancement bonus to Intelligence"
-min_level = 15
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Intelligence"
-value = 8
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [8]
-bonus_type = "Enhancement"
-effect = "Intelligence"
-effect_type = "AbilityBonus"
-targets = ["Intelligence"]
-
-[[socket.option]]
-name = "+8 Charisma"
-description = "+8 Enhancement bonus to Charisma"
-min_level = 15
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Charisma"
-value = 8
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [8]
-bonus_type = "Enhancement"
-effect = "Charisma"
-effect_type = "AbilityBonus"
-targets = ["Charisma"]
+set = "Celestial Amethyst Ring"
 
 [[socket]]
 slot = "green"

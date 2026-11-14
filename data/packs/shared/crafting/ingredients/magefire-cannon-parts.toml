@@ -1,0 +1,9 @@
+name = "Magefire Cannon Parts"
+tier = "any"
+bind = "Unbound"
+drop_location = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests (distributed by a mechanic similar to the Altar of Insanity ingredients); also found in chests in the Masterminds of Sharn quests. Used at the Cannith Melting Station"
+
+[[citation]]
+url = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-11-04"
+note = "Data holds this ingredient only under Alchemical Crafting and Syranian Forged Weaponry; Nearly Finished's page also uses it in its Materials-required column but the data has no Nearly Finished ingredient row for it. No Item: page exists (Item:Magefire_Cannon_Parts is a 404). Alchemical Crafting's raw-ingredient table lists Magefire Cannon Parts with Bind Status 'Unbound', 'Mob kills within the zone [1]' (note [1]: 'Distributed by similar mechanic to the Altar of Insanity ingredients') and Used at Cannith Melting Station. The Cannith Melting Station page's Ingredient Equivalencies table says the enemy-dropped ingredient is the same thing as the Melting Station recipe's 'Pile of Magefire Cannon Parts' (icon Pile_of_Magefire_Cannon_Parts.jpg); its popups read '5 Magefire Cannon Parts'. Syranian Forged Weaponry and Nearly Finished use the name 'Magefire Cannon Parts' unchanged, so it is one ingredient for all three systems. Nearly Finished adds that the 'Materials required' column ingredients 'can be found in chests in the various quests'. No screenshot of a tooltip exists on these pages (only recipe icons)."

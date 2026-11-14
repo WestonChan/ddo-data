@@ -1,0 +1,24 @@
+label = "crafting: upgradeable item (black abbot)"
+name = "Noxious Embers"
+
+[[option]]
+name = "Lesser maximize get 5 charges and Spell Lore VI"
+description = """
+Lesser Maximize: 5 / Day
+Spell Lore VI: Passive: All of your spells gain a 6% Equipment bonus to their
+chance to critical hit."""
+icon = "BlackAbbot"
+min_level = 13
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Universal Spell Lore"
+value = 6
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Equipment"
+effect = "Universal Spell Lore"
+effect_type = "SpellLore"
+targets = ["All"]

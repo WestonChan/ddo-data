@@ -1,0 +1,20 @@
+label = "upgrade: tier 3"
+name = "Cavalry Plate (legacy) (level 12)"
+
+[[option]]
+name = "Adds Greater False Life"
+description = "Greater False Life: This item grants the wearer +30 maximum health."
+icon = "Upgrade"
+min_level = 12
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "False Life"
+value = 30
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect = "False Life"
+effect_type = "FalseLife"

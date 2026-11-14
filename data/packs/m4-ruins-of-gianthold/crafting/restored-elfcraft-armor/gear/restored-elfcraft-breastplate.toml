@@ -1,0 +1,44 @@
+name = "Restored Elfcraft Breastplate"
+description = "A breastplate imbued with the magic of the ancient giant empire's elven slaves."
+drop_location = "Elfcraft Armor, Turn in 10 Restored Elven Relics"
+enhancement_bonus = 6
+icon = "MediumArmor_1"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 14
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Restored_Elfcraft_Armor"
+read = "2026-11-04"
+note = "Turned in at Hoorunoe for 10 Restored Elven Relics. The data currently sources this item to the older system Elfcraft Armor (its drop_location reads 'Elfcraft Armor, Turn in 10 Restored Elven Relics' and the file sits under that system), while the wiki has this separate page."
+
+[[effect]]
+name = "Spell Penetration III"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Spell Lore VI"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 72
+
+[[effect]]
+name = "Mithral"
+
+[[source]]
+kind = "crafting_system"
+name = "Restored Elfcraft Armor"

@@ -1,0 +1,19 @@
+label = "crafting: attuned by heroism: tier 3"
+name = "Agony, the Knife in the Dark"
+
+[[option]]
+name = "Phlebotomizing"
+description = """
+Phlebotomizing: This weapon is wickedly sharp and will do an additional 3d8 damage
+to targets that are vulnerable to bleeding."""
+icon = "Heroism"
+min_level = 23
+
+[[option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Unknown"
+dice_number = [1]
+dice_sides = [8]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]

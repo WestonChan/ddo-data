@@ -1,0 +1,9 @@
+name = "Commendation of Valor"
+tier = "any"
+bind = "Bound to Character on Acquire"
+drop_location = "End rewards of epic quests on difficulties higher than Casual (no quest ransack XP penalty); the amount is Multiplier x (QuestLevel - 17), multiplier 2 Epic Normal, 3 Epic Hard, 5 Epic Elite. They can also drop in raid and rare encounter chests in the related areas (Thunder-Forged and Legendary Green Steel areas)"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Commendation_of_Valor"
+read = "2026-11-04"
+note = "One item, introduced in Update 20, shared by both systems; the page names no separate legendary version and states 'CoV are also used as an ingredient to create Thunder-Forged and Legendary Green Steel items, and can drop in raid and rare encounter chests in the related areas'. The examine screenshot (320px-Item_Commendation_of_Valor.png) was viewed at low resolution: 'Bound to Character', 'Minimum Level: 1', 'Binds to Character on Acquire'; the typed page says 'Bound to Character'. The data's two texts ('Epic quest end rewards; Raid Side Chests (11-18?); Rare Encounter Chests, The Ruins of Thunderholme (Rare Drop: 0-14?). Used for the base item and Tiers 1-3' and 'Various quest end rewards') are other pages' prose; the Item page does not mention the Thunderholme chests or raid side chests by name. The maximum commendation stack size is 99,999 per slot; claimed (reward-list) commendations do not auto-stack."

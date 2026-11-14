@@ -20,6 +20,12 @@ shield_bonus = 6
 url = "https://ddowiki.com/page/Item:Enhanced_Guardian_of_Stormreach_Shield_%28round%29"
 read = "2026-09-30"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Item:Enhanced_Guardian_of_Stormreach_Shield_(round)"
+read = "2026-11-04"
+note = "Made at the Stone of Change by combining Battered Guardian Shield (round) (the treasure effects) with Guardian of Stormreach Shield (round) (the appearance); not a drop. The Stone of Change page itself does not list this combination, and the data has no recipe row for it (the 17 recipes are dragonshards, binding and attuning, rituals, ham oil and Token of the Twelve)."
+
 [[dr_bypass]]
 bypass = "Bludgeon"
 

@@ -19,6 +19,12 @@ damage_reduction = 10
 max_dex_bonus = 0
 shield_bonus = 11
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Shield_of_Legend"
+read = "2026-11-04"
+note = "Reward List table: 'Acquired: Shield of Legend, Turn in completed Shield: Frame', ML 14, Bound to Character on Acquire. Not a drop. The page notes the shield effects were upgraded in Update 14 and 17 (Arrondi also 18)."
+
 [[dr_bypass]]
 bypass = "Bludgeon"
 

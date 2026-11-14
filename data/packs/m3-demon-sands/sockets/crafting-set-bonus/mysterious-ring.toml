@@ -1,0 +1,34 @@
+label = "crafting: set bonus"
+name = "Mysterious Ring"
+
+[[option]]
+name = "The Desert's Starless Nights"
+description = "The Desert's Starless Nights"
+min_level = 5
+
+[[option.set]]
+set = "The Desert's Starless Nights"
+
+[[option]]
+name = "The Desert's Burning Sun"
+description = "The Desert's Burning Sun"
+min_level = 5
+
+[[option.set]]
+set = "The Desert's Burning Sun"
+
+[[option]]
+name = "The Desert's Biting Sands"
+description = "The Desert's Biting Sands"
+min_level = 5
+
+[[option.set]]
+set = "The Desert's Biting Sands"
+
+[[option]]
+name = "The Desert's Writhing Storm"
+description = "The Desert's Writhing Storm"
+min_level = 5
+
+[[option.set]]
+set = "The Desert's Writhing Storm"

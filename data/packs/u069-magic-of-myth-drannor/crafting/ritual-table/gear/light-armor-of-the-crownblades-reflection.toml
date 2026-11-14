@@ -17,6 +17,12 @@ armor_bonus = 35
 armor_type = "Light"
 max_dex_bonus = 20
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Ritual_Table"
+read = "2026-11-04"
+note = "Row of 'Armor of the Blade's Reflection': made from the matching Legendary armor, 120 Barrier Fragments and its Sigil."
+
 [[effect]]
 name = "Equipped Healing Amplification"
 bonus_type = "Equipment"

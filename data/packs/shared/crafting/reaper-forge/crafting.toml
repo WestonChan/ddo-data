@@ -1,6 +1,111 @@
 name = "Reaper Forge"
-npc = "Raven Queen Augur, Eberron Hall of Heroes (introduced in Update 52)"
 page = "https://ddowiki.com/page/Reaper_Forge"
+
+[[station]]
+name = "Reaper Forge"
+note = """
+Opened by talking to Raven Queen Augur in the Eberron Hall of Heroes; introduced in Update 52.
+
+Makes Deconstruct a reaper-bonus item."""
+
+[[step]]
+name = "Reaper Goggles Enchantment"
+slot = "crafting: reaper goggles"
+
+[[step.cost]]
+tier = "any"
+ingredient = "Fragment of Reaper Power"
+quantity = 75
+
+[[step]]
+name = "Reaper Helmet Enchantment"
+slot = "crafting: reaper helmet"
+
+[[step.cost]]
+tier = "any"
+ingredient = "Fragment of Reaper Power"
+quantity = 75
+
+[[step]]
+name = "Reaper Necklace Enchantment"
+slot = "crafting: reaper necklace"
+
+[[step.cost]]
+tier = "any"
+ingredient = "Fragment of Reaper Power"
+quantity = 75
+
+[[step]]
+name = "Reaper Cloak Enchantment"
+slot = "crafting: reaper cloak"
+
+[[step.cost]]
+tier = "any"
+ingredient = "Fragment of Reaper Power"
+quantity = 75
+
+[[step]]
+name = "Reaper Belt Enchantment"
+slot = "crafting: reaper belt"
+
+[[step.cost]]
+tier = "any"
+ingredient = "Fragment of Reaper Power"
+quantity = 75
+
+[[step]]
+name = "Reaper Gloves Enchantment"
+slot = "crafting: reaper gloves"
+
+[[step.cost]]
+tier = "any"
+ingredient = "Fragment of Reaper Power"
+quantity = 75
+
+[[step]]
+name = "Reaper Boots Enchantment"
+slot = "crafting: reaper boot"
+
+[[step.cost]]
+tier = "any"
+ingredient = "Fragment of Reaper Power"
+quantity = 75
+
+[[step]]
+name = "Reaper Bracers Enchantment"
+slot = "crafting: reaper bracers"
+
+[[step.cost]]
+tier = "any"
+ingredient = "Fragment of Reaper Power"
+quantity = 75
+
+[[step]]
+name = "Reaper Armor Enchantment"
+slot = "crafting: reaper armor"
+
+[[step.cost]]
+tier = "any"
+ingredient = "Fragment of Reaper Power"
+quantity = 75
+
+[[step]]
+name = "Reaper Shield Enchantment"
+slot = "crafting: reaper shield"
+
+[[step.cost]]
+tier = "any"
+ingredient = "Fragment of Reaper Power"
+quantity = 75
+
+[[step]]
+name = "Reaper Ring Boost"
+slot = "crafting: reaper ring"
+
+[[step.cost]]
+tier = "any"
+ingredient = "Fragment of Reaper Power"
+quantity = 75
 
 [[family]]
 family = "Reaper"
@@ -12,205 +117,251 @@ tier = "any"
 
 [[citation]]
 url = "https://ddowiki.com/page/Reaper_Forge"
-read = "2026-09-29"
+read = "2026-11-04"
+note = "Whole page read. Typed text for every recipe and gate. The forge UI screenshot (Reaper_forge.png) shows the Fragment of Reaper Power deconstruct list only; Item_with_reaper_helmet_enchantment.png was not opened. No gate for reaching the forge beyond talking to Raven Queen Augur; no level or pack gate is stated (the Level 1+ navbox heading is a category list, not a gate). The page lists no output items."
+
+[[citation]]
+field = "pack"
+url = "https://ddowiki.com/page/Hall_of_Heroes"
+read = "2026-11-12"
+note = "The Reaper Forge is in the Eberron Hall of Heroes. The Hall of Heroes page says everyone can enter the Halls of Heroes, which provide basic amenities to all characters; the Reaper Forge page names no pack."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-11-04"
+note = """
+Page: any slot-specific bonus costs 75 fragments; checked against all 1 recipe(s) at the step
+
+Page: any slot-specific bonus costs 75 fragments; checked against all 4 recipe(s) at the step
+
+Four options (1) to (4) at one socket; the page says all four are called Reaper Ring Boost in game"""
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-11-04"
+note = "Input is one item carrying a reaper bonus (not an ingredient row); yields 1 fragment for a generic bonus, 1 or 5 for a slot-specific one (choose 5). No Reaper Experience needed. ML1-2 items and wands and throwing weapons cannot be deconstructed."
+
+[[citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-11-04"
 
 [[recipe]]
-note = "All recipe facts are on this page. Destroying an item with a reaper bonus yields Fragments of Reaper Power: 1 for a generic bonus, 1 or 5 for a slot-specific one (choose 5). Needs no Reaper Experience; ML1-2 items, wands and throwing weapons cannot be deconstructed. The generic bonuses (+3 Reaper Bonus to Melee, Ranged and Spell Power; +3 PRR; +3 MRR) appear on any named item from Reaper chests and cannot be crafted, so Maetrim's +3 Melee/Ranged and Spell Power, +3 PRR and +3 MRR augments have no recipe here."
+note = """
+All recipe facts are on this page. Destroying an item with a reaper bonus yields Fragments of Reaper Power: 1 for a generic bonus, 1 or 5 for a slot-specific one (choose 5). Needs no Reaper Experience; ML1-2 items, wands and throwing weapons cannot be deconstructed. The generic bonuses (+3 Reaper Bonus to Melee, Ranged and Spell Power; +3 PRR; +3 MRR) appear on any named item from Reaper chests and cannot be crafted, so Maetrim's +3 Melee/Ranged and Spell Power, +3 PRR and +3 MRR augments have no recipe here.
+
+At the Reaper Forge."""
 option = "Deconstruct a reaper-bonus item"
 tier = "any"
 
 [[recipe]]
 note = "+1 Reaper Bonus to attack and +1 to Spell Penetration. Imprinted on an item of the matching slot with no existing reaper bonus; needs 2,500,000 Reaper Experience (50 Reaper Points)."
 option = "Reaper Goggles Enchantment"
-slot = "crafting: reaper goggles"
 tier = "any"
+step = "Reaper Goggles Enchantment"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 2500000
+text = "2,500,000 Reaper Experience (at least 50 Reaper Points) to imprint a slot-specific bonus; the gate applies to applying, not to deconstructing"
 
 [[recipe.augment]]
 name = "+1 Attack and Spell Penetration"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Fragment of Reaper Power"
-quantity = 75
-
 [[recipe]]
 note = "+2 Reaper Bonus to all Ability Scores; added before Update 52, unlike the other slot-specific bonuses. Imprinted on an item of the matching slot with no existing reaper bonus; needs 2,500,000 Reaper Experience (50 Reaper Points)."
 option = "Reaper Helmet Enchantment"
-slot = "crafting: reaper helmet"
 tier = "any"
+step = "Reaper Helmet Enchantment"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 2500000
+text = "2,500,000 Reaper Experience (at least 50 Reaper Points) to imprint a slot-specific bonus; the gate applies to applying, not to deconstructing"
 
 [[recipe.augment]]
 name = "+2 Reaper Ability Scores"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Fragment of Reaper Power"
-quantity = 75
-
 [[recipe]]
 note = "+2 Reaper Bonus to melee/ranged/spell power and +2 PRR/MRR; Maetrim's augment name carries only the power half. Imprinted on an item of the matching slot with no existing reaper bonus; needs 2,500,000 Reaper Experience (50 Reaper Points)."
 option = "Reaper Necklace Enchantment"
-slot = "crafting: reaper necklace"
 tier = "any"
+step = "Reaper Necklace Enchantment"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 2500000
+text = "2,500,000 Reaper Experience (at least 50 Reaper Points) to imprint a slot-specific bonus; the gate applies to applying, not to deconstructing"
 
 [[recipe.augment]]
 name = "+2 Melee/Ranged and Spell Power"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Fragment of Reaper Power"
-quantity = 75
-
 [[recipe]]
 note = "+1 Reaper Bonus to Dodge and Dodge Cap. Imprinted on an item of the matching slot with no existing reaper bonus; needs 2,500,000 Reaper Experience (50 Reaper Points)."
 option = "Reaper Cloak Enchantment"
-slot = "crafting: reaper cloak"
 tier = "any"
+step = "Reaper Cloak Enchantment"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 2500000
+text = "2,500,000 Reaper Experience (at least 50 Reaper Points) to imprint a slot-specific bonus; the gate applies to applying, not to deconstructing"
 
 [[recipe.augment]]
 name = "+1 Dodge and Dodge Cap"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Fragment of Reaper Power"
-quantity = 75
-
 [[recipe]]
 note = "+10 Reaper Bonus to hit points, and +3 PRR. Imprinted on an item of the matching slot with no existing reaper bonus; needs 2,500,000 Reaper Experience (50 Reaper Points)."
 option = "Reaper Belt Enchantment"
-slot = "crafting: reaper belt"
 tier = "any"
+step = "Reaper Belt Enchantment"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 2500000
+text = "2,500,000 Reaper Experience (at least 50 Reaper Points) to imprint a slot-specific bonus; the gate applies to applying, not to deconstructing"
 
 [[recipe.augment]]
 name = "+10 Reaper Bonus to hit points, and +3 PRR"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Fragment of Reaper Power"
-quantity = 75
-
 [[recipe]]
 note = "+1 Reaper Bonus to all skills and +3 PRR. Imprinted on an item of the matching slot with no existing reaper bonus; needs 2,500,000 Reaper Experience (50 Reaper Points)."
 option = "Reaper Gloves Enchantment"
-slot = "crafting: reaper gloves"
 tier = "any"
+step = "Reaper Gloves Enchantment"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 2500000
+text = "2,500,000 Reaper Experience (at least 50 Reaper Points) to imprint a slot-specific bonus; the gate applies to applying, not to deconstructing"
 
 [[recipe.augment]]
 name = "+1 Reaper Bonus to all skills and +3 PRR"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Fragment of Reaper Power"
-quantity = 75
-
 [[recipe]]
 note = "+5 Reaper Bonus to PRR/MRR. Imprinted on an item of the matching slot with no existing reaper bonus; needs 2,500,000 Reaper Experience (50 Reaper Points)."
 option = "Reaper Boots Enchantment"
-slot = "crafting: reaper boot"
 tier = "any"
+step = "Reaper Boots Enchantment"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 2500000
+text = "2,500,000 Reaper Experience (at least 50 Reaper Points) to imprint a slot-specific bonus; the gate applies to applying, not to deconstructing"
 
 [[recipe.augment]]
 name = "+5 Reaper Bonus to PRR/MRR"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Fragment of Reaper Power"
-quantity = 75
-
 [[recipe]]
 note = "+1 Reaper Bonus to saves and +3 MRR. Imprinted on an item of the matching slot with no existing reaper bonus; needs 2,500,000 Reaper Experience (50 Reaper Points)."
 option = "Reaper Bracers Enchantment"
-slot = "crafting: reaper bracers"
 tier = "any"
+step = "Reaper Bracers Enchantment"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 2500000
+text = "2,500,000 Reaper Experience (at least 50 Reaper Points) to imprint a slot-specific bonus; the gate applies to applying, not to deconstructing"
 
 [[recipe.augment]]
 name = "+1 Reaper Bonus to saves and +3 MRR"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Fragment of Reaper Power"
-quantity = 75
-
 [[recipe]]
 note = "+5% Reaper Bonus to AC and +3 PRR. Imprinted on an item of the matching slot with no existing reaper bonus; needs 2,500,000 Reaper Experience (50 Reaper Points)."
 option = "Reaper Armor Enchantment"
-slot = "crafting: reaper armor"
 tier = "any"
+step = "Reaper Armor Enchantment"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 2500000
+text = "2,500,000 Reaper Experience (at least 50 Reaper Points) to imprint a slot-specific bonus; the gate applies to applying, not to deconstructing"
 
 [[recipe.augment]]
 name = "+5% Reaper Bonus to AC and +3 PRR"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Fragment of Reaper Power"
-quantity = 75
-
 [[recipe]]
 note = "+25% Reaper Bonus to Fortification and +3 PRR. Imprinted on an item of the matching slot with no existing reaper bonus; needs 2,500,000 Reaper Experience (50 Reaper Points)."
 option = "Reaper Shield Enchantment"
-slot = "crafting: reaper shield"
 tier = "any"
+step = "Reaper Shield Enchantment"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 2500000
+text = "2,500,000 Reaper Experience (at least 50 Reaper Points) to imprint a slot-specific bonus; the gate applies to applying, not to deconstructing"
 
 [[recipe.augment]]
 name = "+25% Reaper Bonus to Fortification and +3 PRR"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Fragment of Reaper Power"
-quantity = 75
-
 [[recipe]]
 note = "+1 Reaper Bonus to Spell, Tactical, and Assassinate DCs; in game every ring option is called Reaper Ring Boost. Imprinted on an item of the matching slot with no existing reaper bonus; needs 2,500,000 Reaper Experience (50 Reaper Points)."
 option = "Reaper Ring Boost (1)"
-slot = "crafting: reaper ring"
 tier = "any"
+step = "Reaper Ring Boost"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 2500000
+text = "2,500,000 Reaper Experience (at least 50 Reaper Points) to imprint a slot-specific bonus; the gate applies to applying, not to deconstructing"
 
 [[recipe.augment]]
 name = "+1 Reaper Bonus to Spell, Tactical, and Assassinate DCs"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Fragment of Reaper Power"
-quantity = 75
-
 [[recipe]]
 note = "+10 Reaper Bonus to Universal Spell Power. Imprinted on an item of the matching slot with no existing reaper bonus; needs 2,500,000 Reaper Experience (50 Reaper Points)."
 option = "Reaper Ring Boost (2)"
-slot = "crafting: reaper ring"
 tier = "any"
+step = "Reaper Ring Boost"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 2500000
+text = "2,500,000 Reaper Experience (at least 50 Reaper Points) to imprint a slot-specific bonus; the gate applies to applying, not to deconstructing"
 
 [[recipe.augment]]
 name = "+10 Reaper Bonus to Universal Spell Power"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Fragment of Reaper Power"
-quantity = 75
-
 [[recipe]]
 note = "+5 Reaper Bonus to Melee / Ranged Power. Imprinted on an item of the matching slot with no existing reaper bonus; needs 2,500,000 Reaper Experience (50 Reaper Points)."
 option = "Reaper Ring Boost (3)"
-slot = "crafting: reaper ring"
 tier = "any"
+step = "Reaper Ring Boost"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 2500000
+text = "2,500,000 Reaper Experience (at least 50 Reaper Points) to imprint a slot-specific bonus; the gate applies to applying, not to deconstructing"
 
 [[recipe.augment]]
 name = "+5 Reaper Bonus to Melee / Ranged Power"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Fragment of Reaper Power"
-quantity = 75
-
 [[recipe]]
 note = "+3% Reaper Bonus to Spell Cost Reduction, +3 MRR. Imprinted on an item of the matching slot with no existing reaper bonus; needs 2,500,000 Reaper Experience (50 Reaper Points)."
 option = "Reaper Ring Boost (4)"
-slot = "crafting: reaper ring"
 tier = "any"
+step = "Reaper Ring Boost"
+
+[[recipe.unlock]]
+kind = "reaper_experience"
+value = 2500000
+text = "2,500,000 Reaper Experience (at least 50 Reaper Points) to imprint a slot-specific bonus; the gate applies to applying, not to deconstructing"
 
 [[recipe.augment]]
 name = "+3% Reaper Bonus to Spell Cost Reduction, +3 MRR"
 level = 1
-
-[[recipe.ingredient]]
-ingredient = "Fragment of Reaper Power"
-quantity = 75

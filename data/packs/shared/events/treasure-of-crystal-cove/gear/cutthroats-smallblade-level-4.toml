@@ -26,39 +26,23 @@ value = 3
 [[effect]]
 name = "Slicing"
 
-[[socket]]
-slot = "crafting: upgradeable tier 2"
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "remove"
+upstream = 0
+reason = "The item page has an empty Upgradeable? row and a typed Enchantments list of +2 Enhancement Bonus, Bleeding 2, Doublestrike 4%, Hide +6, Move Silently +6, Red Augment Slot; the in-game screenshot (420px-Cutthroat's_Smallblade_(level_4).png) shows the same lines (Enhancement Bonus, Bleeding, Doublestrike, Hide, Move Silently, the empty Red Augment slot) and no Upgradeable - Tier line. The data file carries crafting: upgradeable tier 2 and tier 3 sockets."
+url = "https://ddowiki.com/page/Item:Cutthroat's_Smallblade_(level_4)"
+read = "2026-11-04"
+qualifier = 'socket "upgrade: tier 2"'
 
-[[socket.option]]
-name = "+2 Enhancement Bonus"
-description = "+2 Enhancement Bonus: +2 enhancement bonus to attack and damage rolls."
-min_level = 4
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [2]
-bonus_type = "Enhancement"
-effect_type = "Weapon_Enchantment"
-
-[[socket]]
-slot = "crafting: upgradeable tier 3"
-
-[[socket.option]]
-name = "Adds Bleed and Red Augment Slot"
-description = "Bleed: This weapon is cruelly sharp and will do an additional 1 to 8 damage to targets that are vulnerable to bleeding."
-min_level = 4
-
-[[socket.option.grant]]
-slot = "red"
-
-[[socket.option.modifier]]
-bonus_type = "Enhancement"
-dice_damage = "Bleeding"
-dice_number = [1]
-dice_sides = [8]
-effect_type = "WeaponOtherDamageBonus"
-extra_types = ["WeaponOtherDamageBonusCritical"]
-targets = ["All"]
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "remove"
+upstream = 0
+reason = "The item page has an empty Upgradeable? row and a typed Enchantments list of +2 Enhancement Bonus, Bleeding 2, Doublestrike 4%, Hide +6, Move Silently +6, Red Augment Slot; the in-game screenshot (420px-Cutthroat's_Smallblade_(level_4).png) shows the same lines (Enhancement Bonus, Bleeding, Doublestrike, Hide, Move Silently, the empty Red Augment slot) and no Upgradeable - Tier line. The data file carries crafting: upgradeable tier 2 and tier 3 sockets."
+url = "https://ddowiki.com/page/Item:Cutthroat's_Smallblade_(level_4)"
+read = "2026-11-04"
+qualifier = 'socket "upgrade: tier 3"'
 
 [[source]]
 kind = "event"

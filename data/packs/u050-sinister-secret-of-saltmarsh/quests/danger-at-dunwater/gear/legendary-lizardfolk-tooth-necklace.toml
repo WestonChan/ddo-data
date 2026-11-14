@@ -7,6 +7,12 @@ material = "Leather"
 minimum_level = 30
 slot = "Neck"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: "Danger at Dunwater, end chest, or Legendary version of Epic ...".'
+
 [[effect]]
 name = "Strength"
 bonus_type = "Enhancement"
@@ -35,6 +41,10 @@ slot = "green"
 
 [[socket]]
 slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"
 
 [[source]]
 chest = "end chest, or legendary version of epic lizardfolk tooth necklace"

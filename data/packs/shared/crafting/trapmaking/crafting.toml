@@ -1,11 +1,20 @@
 name = "Trapmaking"
-npc = "Device Workstation, ground level of the House Cannith Enclave; also a guild airship amenity at guild level 30 (24 Gold Seal). Needs the Trapmaking feat (auto-granted to level 4 Rogues and Artificers and level 3 Dark Hunters)"
 page = "https://ddowiki.com/page/Trapmaking"
 
-[[ingredient]]
-name = "Mechanical Trap Parts"
-drop_location = "From disabled trap Control Panels whose traps are mechanical (spikes, blades); needs the Trapmaking feat"
-tier = "any"
+[[station]]
+name = "Device Workstation"
+note = "The page calls them the Free Agents' Device Workstations."
+variant = "House Cannith Enclave"
+
+[[station]]
+name = "Device Workstation"
+note = "Guild Airship page calls the amenity 'Trap Workstation'."
+variant = "Guild Airship"
+
+[[unlock]]
+kind = "feat"
+feat = "Trapmaking"
+text = "The feat lets you scavenge Trap Parts from disabled Control Panels (the only source of parts) and place and arm the crafted mines. The page does not say the workstation itself checks the feat. Auto-granted to level 4 Rogues and Artificers and level 3 Dark Hunters; a level 1 Rogue or Artificer can take it with Skill Focus (Disable Device), Nimble Fingers or Least Dragonmark of Making."
 
 [[ingredient]]
 name = "<Elemental> Trap Parts"
@@ -15,15 +24,6 @@ tier = "any"
 [[ingredient]]
 name = "Magical Trap Parts"
 drop_location = "From disabled Control Panels of poison and spell traps; needs the Trapmaking feat"
-tier = "any"
-
-[[ingredient]]
-name = "Siberys Dragonshard Fragment"
-drop_location = "Chests and collectables"
-tier = "any"
-
-[[ingredient]]
-name = "Magic Item Essence"
 tier = "any"
 
 [[ingredient]]
@@ -58,7 +58,24 @@ tier = "any"
 
 [[citation]]
 url = "https://ddowiki.com/page/Trapmaking"
-read = "2026-09-29"
+read = "2026-11-04"
+note = "Whole page read. All 15 recipe rows' costs match the data files. Typed text only (the page's images are the Device Workstation, the feat icon and a grenade). The page gives no socket labels, so no labels and no step costs, and no output items (traps and grenades are consumables). Scroll ingredients are grouped lists on the page (Level 1/2/3 trap scroll rows are the data's grouping, not item names). The page says the Free Agents' Device Workstations are where parts are used."
+
+[[citation]]
+field = "pack"
+url = "https://ddowiki.com/page/Device_Workstation"
+read = "2026-11-12"
+note = "Its Device Workstations stand in House Cannith Enclave, Eveningstar, Sharn - Cliffside Docks District and an optional guild airship amenity (Device Workstation page); none of those pages names a pack and the Trapmaking page states none. The system is gated by the Trapmaking feat, not a pack (see its unlock rows)."
+
+[[citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Trapmaking"
+read = "2026-11-04"
+
+[[citation]]
+url = "https://ddowiki.com/page/Guild_Airship"
+read = "2026-11-04"
+note = "Available Contracts row: Device Workstation Contract, Large, Gold Seal 24 (Cost AS 30), Standard 30 (Cost PP 492.9), description 'Trap Workstation: allows you to craft traps, grenades, and various other rogue friendly devices'."
 
 [[recipe]]
 note = "Mine. Yields 15 Noisemakers, which make a small noise after several seconds to lure creatures. Level 2 to use. A consumable, no augment counterpart."

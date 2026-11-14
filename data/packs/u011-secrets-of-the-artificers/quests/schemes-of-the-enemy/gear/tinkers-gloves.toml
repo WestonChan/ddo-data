@@ -38,15 +38,7 @@ read = "2026-10-02"
 
 [[socket]]
 slot = "crafting: nearly finished"
-
-[[socket.option]]
-name = "Tinker's Finesse"
-description = "Adds the Tinker's Finesse set bonus"
-icon = "Heroism"
-min_level = 18
-
-[[socket.option.set]]
-set = "Tinker's Finesse"
+set = "Tinker's Gloves"
 
 [[source]]
 chest = "whitefang 's chest, some end chests"

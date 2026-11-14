@@ -1,0 +1,44 @@
+name = "Epic Driftwood Bracers"
+description = "Occasionally, sea and time align to create something both functional and elegant."
+drop_location = "Epic version of Driftwood Bracers"
+icon = "Bracers_19a"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 20
+slot = "Wrists"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 195
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

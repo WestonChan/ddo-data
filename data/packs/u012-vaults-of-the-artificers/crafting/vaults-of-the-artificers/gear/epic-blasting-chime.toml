@@ -1,0 +1,52 @@
+name = "Epic Blasting Chime"
+description = """
+A small set of chimes that greatly amplifies any sonic energy channeled through
+it."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Trinket_26"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 20
+slot = "Trinket"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot/Other"
+read = "2026-11-04"
+note = "Created at the Vaults challenge barter (Challenge Barter System Rewards); not a drop."
+
+[[effect]]
+name = "Weaken Construct Defense"
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Cacophonic Guard"
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 110
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Anthem"
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Epic Blasting Chime"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Epic Blasting Chime"
+
+[[source]]
+kind = "crafting_system"
+name = "Vaults of the Artificers"

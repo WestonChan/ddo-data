@@ -1,0 +1,56 @@
+label = "crafting: nearly finished"
+name = "Celestial Topaz Ring"
+
+[[option]]
+name = "+8 Intelligence"
+description = "+8 Enhancement bonus to Intelligence"
+min_level = 15
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[option]]
+name = "+8 Wisdom"
+description = "+8 Enhancement bonus to Wisdom"
+min_level = 15
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[option]]
+name = "+8 Charisma"
+description = "+8 Enhancement bonus to Charisma"
+min_level = 15
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Charisma"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]

@@ -1,0 +1,58 @@
+name = "Legendary Kundarak Delving Suit"
+description = """
+This armor is Kundarak-forged and useful for exploring (and infiltrating) secure
+spaces."""
+drop_location = "Legendary version of Epic Kundarak Delving Suit"
+enhancement_bonus = 15
+icon = "LightArmor_9b"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_bonus = 9
+armor_type = "Light"
+max_dex_bonus = 13
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: crafted only ("Legendary version of Epic ...").'
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 11
+value2 = 17
+
+[[effect]]
+name = "Search"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Spot"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"

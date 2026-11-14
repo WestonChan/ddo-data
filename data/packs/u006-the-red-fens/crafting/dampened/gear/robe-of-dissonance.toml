@@ -15,6 +15,12 @@ slot = "Body"
 [[armor]]
 armor_type = "Cloth"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dampened"
+read = "2026-11-04"
+note = "Upgrade row Altar of Vulkoor, from the Dampened Robe of Dissonance that drops in Fathom the Depths. The cleansed version appears in the item table only as the Altar of Vulkoor upgrade; the data holds no drop for it."
+
 [[effect]]
 name = "Resonance"
 bonus_type = "Equipment"

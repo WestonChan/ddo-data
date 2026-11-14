@@ -1,0 +1,57 @@
+label = "crafting: nearly finished"
+name = "Titan Control Matrix"
+
+[[option]]
+name = "Intelligence +14"
+description = "+14 Enhancement bonus to Intelligence"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 14
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[option]]
+name = "Insightful Intelligence +6"
+description = "+6 Insight bonus to Intelligence"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 6
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[option]]
+name = "Quality Intelligence +3"
+description = "+3 Quality bonus to Intelligence"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Quality"
+effect = "Intelligence"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]

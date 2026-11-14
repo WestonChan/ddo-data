@@ -1,0 +1,10 @@
+label = "crafting: suppressed power"
+name = "Dream Edge"
+
+[[option]]
+name = "Adds Lesser Vampirism"
+description = """
+Lesser Vampirism: This weapon drains a tiny portion of the target's life force
+whenever it does damage. Note: provides 1 hp of healing per hit."""
+icon = "Upgrade"
+min_level = 18

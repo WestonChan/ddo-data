@@ -1,0 +1,10 @@
+label = "crafting: nearly finished"
+name = "Fabricator's Bracers"
+
+[[option]]
+name = "Fabricator's Ingenuity"
+description = "Adds the Fabricator's Ingenuity set bonus to this item."
+min_level = 18
+
+[[option.set]]
+set = "Fabricator's Ingenuity"

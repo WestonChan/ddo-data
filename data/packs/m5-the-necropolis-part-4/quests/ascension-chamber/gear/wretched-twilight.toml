@@ -28,47 +28,7 @@ value2 = 6
 
 [[socket]]
 slot = "crafting: upgradeable item"
-
-[[socket.option]]
-name = "Void Lore V and Sneak Attack Bonus +5"
-description = """
-Upgrades Sneak Attack from 4/6 to 5/8
-Adds Void Lore V: Passive: Your Negative Energy and Poison spells gain a 15% Equipment
-bonus to their chance to critical hit."""
-min_level = 13
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Sneak Attack Hit"
-value = 5
-
-[[socket.option.effect]]
-bonus_type = "Equipment"
-effect = "Void Lore"
-value = 15
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [5]
-bonus_type = "Enhancement"
-effect = "Sneak Attack Hit"
-effect_type = "SneakAttackAttack"
-
-[[socket.option.modifier]]
-amounts = [8]
-bonus_type = "Enhancement"
-effect_type = "SneakAttackDamage"
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [15]
-bonus_type = "Equipment"
-effect = "Void Lore"
-effect_type = "SpellLore"
-targets = [
-    "Negative",
-    "Poison",
-]
+set = "Wretched Twilight"
 
 [[source]]
 chest = "raid warded chest"

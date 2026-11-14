@@ -1,0 +1,10 @@
+name = "Stolen Amber"
+tier = "any"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Cavalry_Plate"
+read = "2026-11-04"
+note = """
+Collectable of the event; the page names the column headers (Copper Doubloon, Silver Doubloon, Golden Doubloon, Gem, Green Dragonshard) and the gem name comes from the item's Location text in the data and the Cavalry Plate line page. Stack size, bind and drop text not read (Treasure_of_Crystal_Cove/Collectables not opened).
+
+Event collectable used as a cost here; the same thing is a [[new_currency]] row in treasure-of-crystal-cove-event.toml (see the verification request). Bind and drop text not read."""

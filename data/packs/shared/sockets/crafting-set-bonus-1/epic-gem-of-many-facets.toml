@@ -1,0 +1,245 @@
+label = "crafting: set bonus 1"
+name = "Epic Gem of Many Facets"
+
+[[option]]
+name = "Might of the Abishai"
+description = "Might of the Abishai"
+icon = "MightOfTheAbishai"
+min_level = 5
+
+[[option.set]]
+set = "Might of the Abishai"
+
+[[option]]
+name = "Menechtarun Scavenger"
+description = "Menechtarun Scavenger"
+icon = "Menechtarun"
+min_level = 5
+
+[[option.set]]
+set = "Menechtarun Scavenger"
+
+[[option]]
+name = "The Desert's Burning Sun"
+description = "The Desert's Burning Sun"
+icon = "Menechtarun"
+min_level = 5
+
+[[option.set]]
+set = "The Desert's Burning Sun"
+
+[[option]]
+name = "The Desert's Starless Nights"
+description = "The Desert's Starless Nights"
+icon = "Menechtarun"
+min_level = 5
+
+[[option.set]]
+set = "The Desert's Starless Nights"
+
+[[option]]
+name = "Vulkoor's Chosen"
+description = "Vulkoor's Chosen"
+icon = "Menechtarun"
+min_level = 5
+
+[[option.set]]
+set = "Vulkoor's Chosen"
+
+[[option]]
+name = "Oasis of Morality"
+description = "Oasis of Morality"
+icon = "Menechtarun"
+min_level = 5
+
+[[option.set]]
+set = "Oasis of Morality"
+
+[[option]]
+name = "The Desert's Biting Sands"
+description = "The Desert's Biting Sands"
+icon = "Menechtarun"
+min_level = 5
+
+[[option.set]]
+set = "The Desert's Biting Sands"
+
+[[option]]
+name = "The Desert's Writhing Storm"
+description = "The Desert's Writhing Storm"
+icon = "Menechtarun"
+min_level = 5
+
+[[option.set]]
+set = "The Desert's Writhing Storm"
+
+[[option]]
+name = "Windlasher's Ferocity"
+description = "Windlasher's Ferocity"
+icon = "Menechtarun"
+min_level = 5
+
+[[option.set]]
+set = "Windlasher's Ferocity"
+
+[[option]]
+name = "Epic Might of the Abishai"
+description = "Epic Might of the Abishai"
+icon = "MightOfTheAbishai"
+min_level = 20
+
+[[option.set]]
+set = "Epic Might of the Abishai"
+
+[[option]]
+name = "Epic Menechtarun Scavenger"
+description = "Epic Menechtarun Scavenger"
+icon = "Menechtarun"
+min_level = 20
+
+[[option.set]]
+set = "Epic Menechtarun Scavenger"
+
+[[option]]
+name = "The Epic Desert's Starless Nights"
+description = "The Epic Desert's Starless Nights"
+icon = "Menechtarun"
+min_level = 20
+
+[[option.set]]
+set = "The Epic Desert's Starless Nights"
+
+[[option]]
+name = "Epic Vulkoor's Chosen"
+description = "Epic Vulkoor's Chosen"
+icon = "Menechtarun"
+min_level = 20
+
+[[option.set]]
+set = "Epic Vulkoor's Chosen"
+
+[[option]]
+name = "Epic Oasis of Morality"
+description = "Epic Oasis of Morality"
+icon = "Menechtarun"
+min_level = 20
+
+[[option.set]]
+set = "Epic Oasis of Morality"
+
+[[option]]
+name = "The Epic Desert's Biting Sands"
+description = "The Epic Desert's Biting Sands"
+icon = "Menechtarun"
+min_level = 20
+
+[[option.set]]
+set = "The Epic Desert's Biting Sands"
+
+[[option]]
+name = "The Epic Desert's Writhing Storm"
+description = "The Epic Desert's Writhing Storm"
+icon = "Menechtarun"
+min_level = 20
+
+[[option.set]]
+set = "The Epic Desert's Writhing Storm"
+
+[[option]]
+name = "The Epic Desert's Burning Sun"
+description = "The Epic Desert's Burning Sun"
+icon = "Menechtarun"
+min_level = 20
+
+[[option.set]]
+set = "The Epic Desert's Burning Sun"
+
+[[option]]
+name = "Epic Windlasher's Ferocity"
+description = "Epic Windlasher's Ferocity"
+icon = "Menechtarun"
+min_level = 20
+
+[[option.set]]
+set = "Epic Windlasher's Ferocity"
+
+[[option]]
+name = "Legendary Might of the Abishai"
+description = "Legendary Might of the Abishai"
+icon = "MightOfTheAbishai"
+min_level = 30
+
+[[option.set]]
+set = "Legendary Might of the Abishai"
+
+[[option]]
+name = "Legendary Menechtarun Scavenger"
+description = "Legendary Menechtarun Scavenger"
+icon = "Menechtarun"
+min_level = 30
+
+[[option.set]]
+set = "Legendary Menechtarun Scavenger"
+
+[[option]]
+name = "The Legendary Desert's Starless Nights"
+description = "The Legendary Desert's Starless Nights"
+icon = "Menechtarun"
+min_level = 30
+
+[[option.set]]
+set = "The Legendary Desert's Starless Nights"
+
+[[option]]
+name = "Legendary Vulkoor's Chosen"
+description = "Legendary Vulkoor's Chosen"
+icon = "Menechtarun"
+min_level = 30
+
+[[option.set]]
+set = "Legendary Vulkoor's Chosen"
+
+[[option]]
+name = "Legendary Oasis of Morality"
+description = "Legendary Oasis of Morality"
+icon = "Menechtarun"
+min_level = 30
+
+[[option.set]]
+set = "Legendary Oasis of Morality"
+
+[[option]]
+name = "The Legendary Desert's Biting Sands"
+description = "The Legendary Desert's Biting Sands"
+icon = "Menechtarun"
+min_level = 30
+
+[[option.set]]
+set = "The Legendary Desert's Biting Sands"
+
+[[option]]
+name = "The Legendary Desert's Writhing Storm"
+description = "The Legendary Desert's Writhing Storm"
+icon = "Menechtarun"
+min_level = 30
+
+[[option.set]]
+set = "The Legendary Desert's Writhing Storm"
+
+[[option]]
+name = "The Legendary Desert's Burning Sun"
+description = "The Legendary Desert's Burning Sun"
+icon = "Menechtarun"
+min_level = 30
+
+[[option.set]]
+set = "The Legendary Desert's Burning Sun"
+
+[[option]]
+name = "Legendary Windlasher's Ferocity"
+description = "Legendary Windlasher's Ferocity"
+icon = "Menechtarun"
+min_level = 30
+
+[[option.set]]
+set = "Legendary Windlasher's Ferocity"

@@ -1,0 +1,69 @@
+label = "upgrade: tier 2"
+name = "Spare Hand (Level 11)"
+
+[[option]]
+name = "Riposte +3, Disable Device +15 and Open Lock +15"
+description = """
+Disable Device +15: Passive: +15 Competence bonus to the Disable Device skill.
+Open Lock +15: Passive: +15 Competence bonus to the Open Lock skill."""
+icon = "Upgrade"
+min_level = 11
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Armor Class"
+value = 3
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Saving Throws"
+value = 3
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Disable Device"
+value = 15
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Open Lock"
+value = 15
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [[
+    "Disable Device",
+    "Open Lock",
+]]
+reason = 'The page lists these enchantments as separate lines. screenshot: "Disable Device +15: +15 Competence bonus to Disable Device." / "Open Lock +15: +15 Competence bonus to Open Lock." / typed: "Disable Device +15: Passive: +15 Competence bonus to the Disable Device skill." / "Open Lock +15: …"'
+url = "https://ddowiki.com/page/Item:Spare_Hand"
+read = "2026-10-23"
+qualifier = 'option "Riposte +3, Disable Device +15 and Open Lock +15", Disable Device, Open Lock / Competence'

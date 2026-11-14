@@ -1,7 +1,36 @@
 name = "Ritual Table"
-npc = "Ritual Table in a side room of the raid Threats Old and New (Outskirts of Myth Drannor; introduced in Update 69); accessible only after completing the raid"
 pack = "Magic of Myth Drannor"
 page = "https://ddowiki.com/page/Ritual_Table"
+
+[[station]]
+name = "Ritual Table"
+note = "Turns legendary Golden Age weapons into Weapons of the Undying Age, Legendary Echo/armor of the Blades into Reflections, and rewrites the Sealed in Fire and Sealed in Undeath effects, all with Barrier Fragments"
+
+[[step]]
+name = "Item upgrade"
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Barrier Fragment"
+quantity = 120
+
+[[step]]
+name = "Sealed in Fire"
+slot = "crafting: sealed in fire"
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Barrier Fragment"
+quantity = 20
+
+[[step]]
+name = "Sealed in Undeath"
+slot = "crafting: sealed in undeath"
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Barrier Fragment"
+quantity = 20
 
 [[family]]
 family = "SealedInFire"
@@ -35,90 +64,6 @@ drop_location = "The Legendary Golden Age weapon matching the Undying Age weapon
 tier = "legendary"
 
 [[ingredient]]
-name = "Legendary Echo of the Warblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Echo of the Artblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Echo of the Crownblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Docent of the Artblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Heavy Armor of the Artblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Medium Armor of the Artblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Light Armor of the Artblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Outfit of the Artblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Robe of the Artblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Docent of the Warblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Heavy Armor of the Warblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Medium Armor of the Warblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Light Armor of the Warblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Outfit of the Warblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Robe of the Warblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Docent of the Crownblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Heavy Armor of the Crownblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Medium Armor of the Crownblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Light Armor of the Crownblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Outfit of the Crownblade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Robe of the Crownblade"
-tier = "legendary"
-
-[[ingredient]]
 name = "Sealed in Fire weapon"
 drop_location = "Weaponry of the Undying Age or Threats Old and New raid weapons"
 tier = "legendary"
@@ -137,12 +82,41 @@ read = "2026-10-05"
 
 [[citation]]
 url = "https://ddowiki.com/page/Ritual_Table"
-read = "2026-09-29"
+read = "2026-11-04"
+note = "Whole page read: intro (Update 69, Magic of Myth Drannor, device in a side room of the raid Threats Old and New, reachable only after completing the raid), the four crafting materials (Barrier Fragment, Sigils of the Crownblade, Warblade and Artblade; all from the raid's end chest, the Sigils rare), and the tables: Weaponry of the Undying Age, Reflections of the Blades (3 rows), Armor of the Blade's Reflection (18 rows), Sealed in Fire weapon upgrades (6 effects, one cost), Sealed in Undeath clothing/jewelry upgrades (1 row). Not stated: level, favor, pack, feat; the names of the individual Weapons of the Undying Age (one generic row)."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Ritual_Table"
+read = "2026-11-04"
+note = """
+Pure step: Weaponry of the Undying Age (one generic recipe covering 50 weapons), Reflections of the Blades (3 echoes) and Armor of the Blade's Reflection (18 armors). No socket label.
+
+Six effect rows (Legendary Dust, Ash, Vacuum, Ooze, Salt, Affirmation) for Sealed in Fire weapons; the table's first two rows carry a shared cost cell spanning all six.
+
+One row: choose one of Strength, Constitution, Dexterity, Intelligence, Wisdom or Charisma at +15, Insightful +7 or Quality +3.
+
+120 Barrier Fragments on the Undying Age row and on every one of the 21 Reflection rows (3 + 18). Differing parts stay on the recipe: the consumed item (the corresponding Legendary Weapon of the Golden Age, or the Legendary Echo/armor) and, on the 21 Reflection rows only, one Sigil of that blade (the page shows no count, taken as 1).
+
+20 Barrier Fragments for all six effects (one cost cell spanning the table) plus any Sealed in Fire weapon from Weaponry of the Undying Age or the Threats Old and New raid, which is the item being rewritten, not a fixed item.
+
+20 Barrier Fragments plus a Sealed in Undeath item (the item being rewritten).
+
+The page's section 'Sealed in Fire weapon upgrades' rewrites the effect of Sealed in Fire weapons (Weaponry of the Undying Age or Threats Old and New raid weapons) with six effects (Legendary Dust, Ash, Vacuum, Ooze, Salt, Affirmation), each removing any previous Ritual Table effect. Step name is the wiki's wording; the in-game wording was not seen.
+
+The page's section 'Sealed in Undeath clothing / jewelry upgrades' has one row, 'Ability bonus (Raid Threats Old and New Equipment)', that removes any previous Ritual Table effect and adds one ability bonus of choice. Step name is the wiki's wording; the in-game wording was not seen."""
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Ritual_Table"
+read = "2026-11-04"
+note = "Added: select one of: Strength +15, Constitution +15, Dexterity +15, Intelligence +15, Wisdom +15, Charisma +15, Insightful Strength/Constitution/Dexterity/Intelligence/Wisdom/Charisma +7, Quality Strength/Constitution/Dexterity/Intelligence/Wisdom/Charisma +3."
 
 [[recipe]]
 note = "Turns the corresponding Legendary Weapon of the Golden Age into its Weapon of the Undying Age. A separate item in Maetrim's data; no augment counterpart."
 option = "Any Weapon of the Undying Age (including the caster longswords)"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
 ingredient = "Legendary Weapon of the Golden Age"
@@ -156,9 +130,10 @@ quantity = 120
 note = "Upgrades Legendary Echo of the Warblade into Reflection of the Warblade. A separate item in Maetrim's data; no augment counterpart."
 option = "Reflection of the Warblade"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Echo of the Warblade"
+item = "Legendary Echo of the Warblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -173,9 +148,10 @@ quantity = 1
 note = "Upgrades Legendary Echo of the Artblade into Reflection of the Artblade. A separate item in Maetrim's data; no augment counterpart."
 option = "Reflection of the Artblade"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Echo of the Artblade"
+item = "Legendary Echo of the Artblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -190,9 +166,10 @@ quantity = 1
 note = "Upgrades Legendary Echo of the Crownblade into Reflection of the Crownblade. A separate item in Maetrim's data; no augment counterpart."
 option = "Reflection of the Crownblade"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Echo of the Crownblade"
+item = "Legendary Echo of the Crownblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -207,9 +184,10 @@ quantity = 1
 note = "Upgrades Legendary Docent of the Artblade into Docent of the Artblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Docent of the Artblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Docent of the Artblade"
+item = "Legendary Docent of the Artblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -224,9 +202,10 @@ quantity = 1
 note = "Upgrades Legendary Heavy Armor of the Artblade into Heavy Armor of the Artblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Heavy Armor of the Artblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Heavy Armor of the Artblade"
+item = "Legendary Heavy Armor of the Artblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -241,9 +220,10 @@ quantity = 1
 note = "Upgrades Legendary Medium Armor of the Artblade into Medium Armor of the Artblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Medium Armor of the Artblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Medium Armor of the Artblade"
+item = "Legendary Medium Armor of the Artblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -258,9 +238,10 @@ quantity = 1
 note = "Upgrades Legendary Light Armor of the Artblade into Light Armor of the Artblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Light Armor of the Artblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Light Armor of the Artblade"
+item = "Legendary Light Armor of the Artblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -275,9 +256,10 @@ quantity = 1
 note = "Upgrades Legendary Outfit of the Artblade into Outfit of the Artblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Outfit of the Artblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Outfit of the Artblade"
+item = "Legendary Outfit of the Artblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -292,9 +274,10 @@ quantity = 1
 note = "Upgrades Legendary Robe of the Artblade into Robe of the Artblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Robe of the Artblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Robe of the Artblade"
+item = "Legendary Robe of the Artblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -309,9 +292,10 @@ quantity = 1
 note = "Upgrades Legendary Docent of the Warblade into Docent of the Warblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Docent of the Warblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Docent of the Warblade"
+item = "Legendary Docent of the Warblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -326,9 +310,10 @@ quantity = 1
 note = "Upgrades Legendary Heavy Armor of the Warblade into Heavy Armor of the Warblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Heavy Armor of the Warblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Heavy Armor of the Warblade"
+item = "Legendary Heavy Armor of the Warblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -343,9 +328,10 @@ quantity = 1
 note = "Upgrades Legendary Medium Armor of the Warblade into Medium Armor of the Warblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Medium Armor of the Warblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Medium Armor of the Warblade"
+item = "Legendary Medium Armor of the Warblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -360,9 +346,10 @@ quantity = 1
 note = "Upgrades Legendary Light Armor of the Warblade into Light Armor of the Warblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Light Armor of the Warblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Light Armor of the Warblade"
+item = "Legendary Light Armor of the Warblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -377,9 +364,10 @@ quantity = 1
 note = "Upgrades Legendary Outfit of the Warblade into Outfit of the Warblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Outfit of the Warblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Outfit of the Warblade"
+item = "Legendary Outfit of the Warblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -394,9 +382,10 @@ quantity = 1
 note = "Upgrades Legendary Robe of the Warblade into Robe of the Warblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Robe of the Warblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Robe of the Warblade"
+item = "Legendary Robe of the Warblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -411,9 +400,10 @@ quantity = 1
 note = "Upgrades Legendary Docent of the Crownblade into Docent of the Crownblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Docent of the Crownblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Docent of the Crownblade"
+item = "Legendary Docent of the Crownblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -428,9 +418,10 @@ quantity = 1
 note = "Upgrades Legendary Heavy Armor of the Crownblade into Heavy Armor of the Crownblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Heavy Armor of the Crownblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Heavy Armor of the Crownblade"
+item = "Legendary Heavy Armor of the Crownblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -445,9 +436,10 @@ quantity = 1
 note = "Upgrades Legendary Medium Armor of the Crownblade into Medium Armor of the Crownblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Medium Armor of the Crownblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Medium Armor of the Crownblade"
+item = "Legendary Medium Armor of the Crownblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -462,9 +454,10 @@ quantity = 1
 note = "Upgrades Legendary Light Armor of the Crownblade into Light Armor of the Crownblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Light Armor of the Crownblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Light Armor of the Crownblade"
+item = "Legendary Light Armor of the Crownblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -479,9 +472,10 @@ quantity = 1
 note = "Upgrades Legendary Outfit of the Crownblade into Outfit of the Crownblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Outfit of the Crownblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Outfit of the Crownblade"
+item = "Legendary Outfit of the Crownblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -496,9 +490,10 @@ quantity = 1
 note = "Upgrades Legendary Robe of the Crownblade into Robe of the Crownblade's Reflection. A separate item in Maetrim's data; no augment counterpart."
 option = "Robe of the Crownblade's Reflection"
 tier = "legendary"
+step = "Item upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Legendary Robe of the Crownblade"
+item = "Legendary Robe of the Crownblade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -512,8 +507,8 @@ quantity = 1
 [[recipe]]
 note = "Removes any effect the Ritual Table added before and adds Legendary Dust. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
 option = "Legendary Dust (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
-slot = "crafting: sealed in fire"
 tier = "legendary"
+step = "Sealed in Fire"
 
 [[recipe.augment]]
 name = "Legendary Dust"
@@ -531,8 +526,8 @@ quantity = 20
 [[recipe]]
 note = "Removes any effect the Ritual Table added before and adds Legendary Ash. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
 option = "Legendary Ash (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
-slot = "crafting: sealed in fire"
 tier = "legendary"
+step = "Sealed in Fire"
 
 [[recipe.augment]]
 name = "Legendary Ash"
@@ -550,8 +545,8 @@ quantity = 20
 [[recipe]]
 note = "Removes any effect the Ritual Table added before and adds Legendary Vacuum. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
 option = "Legendary Vacuum (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
-slot = "crafting: sealed in fire"
 tier = "legendary"
+step = "Sealed in Fire"
 
 [[recipe.augment]]
 name = "Legendary Vacuum"
@@ -569,8 +564,8 @@ quantity = 20
 [[recipe]]
 note = "Removes any effect the Ritual Table added before and adds Legendary Ooze. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
 option = "Legendary Ooze (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
-slot = "crafting: sealed in fire"
 tier = "legendary"
+step = "Sealed in Fire"
 
 [[recipe.augment]]
 name = "Legendary Ooze"
@@ -588,8 +583,8 @@ quantity = 20
 [[recipe]]
 note = "Removes any effect the Ritual Table added before and adds Legendary Salt. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
 option = "Legendary Salt (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
-slot = "crafting: sealed in fire"
 tier = "legendary"
+step = "Sealed in Fire"
 
 [[recipe.augment]]
 name = "Legendary Salt"
@@ -607,8 +602,8 @@ quantity = 20
 [[recipe]]
 note = "Removes any effect the Ritual Table added before and adds Legendary Affirmation. The page gives one cost for all six rows. Maetrim's Sealed in Fire augments also fit the Sealed in Mist socket."
 option = "Legendary Affirmation (Weaponry of the Undying Age) (Threats Old and New raid weapons)"
-slot = "crafting: sealed in fire"
 tier = "legendary"
+step = "Sealed in Fire"
 
 [[recipe.augment]]
 name = "Legendary Affirmation"
@@ -624,10 +619,13 @@ ingredient = "Barrier Fragment"
 quantity = 20
 
 [[recipe]]
-note = "Removes any effect the Ritual Table added before and adds one ability bonus of choice: +15, Insightful +7 or Quality +3 to any ability. Maetrim's Sealed in Undeath augments also fit the Sealed in Gloom socket."
+note = """
+Removes any effect the Ritual Table added before and adds one ability bonus of choice: +15, Insightful +7 or Quality +3 to any ability. Maetrim's Sealed in Undeath augments also fit the Sealed in Gloom socket.
+
+Added: select one of: Strength +15, Constitution +15, Dexterity +15, Intelligence +15, Wisdom +15, Charisma +15, Insightful Strength/Constitution/Dexterity/Intelligence/Wisdom/Charisma +7, Quality Strength/Constitution/Dexterity/Intelligence/Wisdom/Charisma +3."""
 option = "Ability bonus (Raid Threats Old and New Equipment)"
-slot = "crafting: sealed in undeath"
 tier = "legendary"
+step = "Sealed in Undeath"
 
 [[recipe.augment]]
 name = "Strength +15"

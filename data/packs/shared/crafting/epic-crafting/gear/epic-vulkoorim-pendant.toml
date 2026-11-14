@@ -1,0 +1,47 @@
+name = "Epic Vulkoorim Pendant"
+description = "A golden chain holds a carved jade scorpion."
+drop_location = "Epic version of Vulkoorim Pendant"
+icon = "Necklace_4e"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Neck"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Has a perfected version (nebula fragment crafting).'
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

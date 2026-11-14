@@ -1,0 +1,56 @@
+label = "crafting: nearly finished"
+name = "Legendary Cloak of Balance"
+
+[[option]]
+name = "+3 Quality Strength"
+description = "+3 Quality bonus to Strength"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Quality"
+effect = "Strength"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[option]]
+name = "+3 Quality Dexterity"
+description = "+3 Quality bonus to Dexterity"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Quality"
+effect = "Dexterity"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[option]]
+name = "+3 Quality Constitution"
+description = "+3 Quality bonus to Constitution"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Quality"
+effect = "Constitution"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]

@@ -1,0 +1,59 @@
+name = "Epic Ruby Encrusted Gauntlets"
+description = "These ruby-encrusted gauntlets shine with a feverish glow."
+drop_location = "Epic version of Ruby Encrusted Gauntlets"
+icon = "Gloves_8f"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Hands"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[clickie]]
+name = "Meteor Swarm"
+clickie = "Meteor Swarm"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 111
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    17,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Meteor Swarm"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

@@ -41,25 +41,7 @@ targets = ["Harm"]
 
 [[socket]]
 slot = "crafting: upgradeable item"
-
-[[socket.option]]
-name = "Harm - 5 Charges per day, Incite 30%"
-description = """
-Harm upgrades to 5 charges per day.
-Incite +30: +30% Enhancement bonus to increased threat generation from melee damage"""
-min_level = 13
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Melee Threat Generation"
-value = 30
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [30]
-bonus_type = "Enhancement"
-effect = "Melee Threat Generation"
-effect_type = "ThreatBonusMelee"
+set = "Circle of Hatred"
 
 [[source]]
 chest = "raid warded chest"

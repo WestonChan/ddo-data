@@ -11,6 +11,12 @@ slot = "Body"
 [[armor]]
 armor_type = "Cloth"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-11-04"
+note = "Page section 'Cormyrian Dragon Armors purchase' sells it at Mikrom Sum for ingredients. The page shows no drop of this item."
+
 [[effect]]
 name = "Armor Bonus"
 bonus_type = "Armor"

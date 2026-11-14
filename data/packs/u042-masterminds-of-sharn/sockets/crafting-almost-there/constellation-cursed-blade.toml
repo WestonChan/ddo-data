@@ -1,0 +1,11 @@
+label = "crafting: almost there"
+name = "Constellation, Cursed Blade"
+
+[[option]]
+name = "Fetters of Unreality"
+description = """
+Fetters of Unreality: This weapon is cruel and deadly, and leaves behind wounds
+that affect both the body and the soul. This weapon has a chance to inflict
+multiple stacks of Vulnerable.
+Vulnerable: You take 1% more damage for 3 seconds. This effect stacks up to 20
+times, and loses one stack on expiration."""

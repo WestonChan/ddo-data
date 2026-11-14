@@ -33,30 +33,7 @@ targets = ["Turn the Page"]
 
 [[socket]]
 slot = "crafting: upgradeable item (black abbot)"
-
-[[socket.option]]
-name = "Taint of Evil"
-description = """
-Taint of Evil: Good aligned characters equipping this item suffer a temporary negative
-level until the item is removed."""
-icon = "BlackAbbot"
-min_level = 13
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [1]
-bonus_type = "Equipment"
-effect_type = "NegativeLevel"
-
-[[socket.option.modifier.requirement]]
-items = ["Good"]
-req_type = "AlignmentType"
-
-[[socket.option]]
-name = "Removes Taint of Evil"
-description = "This item has been cleansed of its taint."
-icon = "BlackAbbot"
-min_level = 13
+set = "Litany of the Dead"
 
 [[source]]
 chest = "warded chest"

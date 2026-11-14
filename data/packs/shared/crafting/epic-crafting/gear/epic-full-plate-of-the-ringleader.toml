@@ -1,0 +1,49 @@
+name = "Epic Full Plate of the Ringleader"
+description = """
+A brilliant and gaudy set of armor that makes its wearer the center of attention.
+It is made from surprisingly durable materials."""
+drop_location = "Epic version of Full Plate of the Ringleader"
+enhancement_bonus = 6
+icon = "HeavyArmor_1e"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 20
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[effect]]
+name = "DR 15/-"
+
+[[effect]]
+name = "Command"
+bonus_type = "Insight"
+value = 5
+value2 = -6
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Radiance Guard"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

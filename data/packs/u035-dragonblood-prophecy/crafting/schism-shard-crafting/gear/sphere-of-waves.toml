@@ -9,6 +9,11 @@ material = "Ice"
 minimum_level = 28
 slot = "Off Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Schism_Shard_Crafting"
+read = "2026-11-04"
+
 [[dr_bypass]]
 bypass = "Magic"
 

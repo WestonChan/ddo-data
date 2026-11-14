@@ -9,6 +9,12 @@ material = "Steel"
 minimum_level = 8
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Calamitous_Weaponry"
+read = "2026-11-04"
+note = "Calamitous Weaponry page: found as random loot in the expansion pack or crafted at the Viktranium Experiment crafting workbenches. No quest or chest is named, so no quest link."
+
 [[dr_bypass]]
 bypass = "Bludgeon"
 

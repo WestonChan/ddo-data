@@ -37,43 +37,23 @@ value = 5
 [[effect]]
 name = "Mithral"
 
-[[socket]]
-slot = "crafting: upgradeable tier 2"
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "remove"
+upstream = 0
+reason = "The item page has an empty Upgradeable? row and a typed Enchantments list of +6 Enhancement Bonus, Improved Demonic Shield, False Life +36, DR 15/Chaotic, Resistance +8, Blue Augment Slot; the in-game screenshot (420px-Epic_Cavalry_Plate_(level_20).png) shows the same lines (plus the Augments: line with the empty slot) and no Upgradeable - Tier line. The data file carries crafting: upgradeable tier 2 and tier 3 sockets."
+url = "https://ddowiki.com/page/Item:Epic_Cavalry_Plate_(level_20)"
+read = "2026-11-04"
+qualifier = 'socket "upgrade: tier 2"'
 
-[[socket.option]]
-name = "Greater False Life -> Superior False life"
-description = "Superior False Life: This item grants the wearer +40 maximum health."
-min_level = 20
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "False Life"
-value = 40
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [40]
-bonus_type = "Enhancement"
-effect = "False Life"
-effect_type = "FalseLife"
-
-[[socket]]
-slot = "crafting: upgradeable tier 3"
-
-[[socket.option]]
-name = "DR 3/Chaotic -> DR 5/Chaotic, Adds a Blue Augment Slot"
-description = "DR Damage Reduction 5/Chaotic: Reduces physical damage by 5, except from Chaotic attacks."
-min_level = 20
-
-[[socket.option.grant]]
-slot = "blue"
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [5]
-bonus_type = "Enhancement"
-effect_type = "DR"
-targets = ["Chaotic"]
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "remove"
+upstream = 0
+reason = "The item page has an empty Upgradeable? row and a typed Enchantments list of +6 Enhancement Bonus, Improved Demonic Shield, False Life +36, DR 15/Chaotic, Resistance +8, Blue Augment Slot; the in-game screenshot (420px-Epic_Cavalry_Plate_(level_20).png) shows the same lines (plus the Augments: line with the empty slot) and no Upgradeable - Tier line. The data file carries crafting: upgradeable tier 2 and tier 3 sockets."
+url = "https://ddowiki.com/page/Item:Epic_Cavalry_Plate_(level_20)"
+read = "2026-11-04"
+qualifier = 'socket "upgrade: tier 3"'
 
 [[source]]
 kind = "event"

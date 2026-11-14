@@ -1,0 +1,51 @@
+name = "Bracers of Wind (level 15)"
+description = """
+Bracers empowered by a bound Air Elemental. They surround you with a windy aura
+that deflects missiles occasionally, makes you harder to hit, and boosts the
+power of your electric spells."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Bracers_10"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 15
+slot = "Wrists"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot/Other"
+read = "2026-11-04"
+note = "Created at the Vaults challenge barter (Challenge Barter System Rewards); not a drop."
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 96
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Air Guard"
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Bracers of Wind (level 15)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Bracers of Wind (level 15)"
+
+[[source]]
+kind = "crafting_system"
+name = "Vaults of the Artificers"

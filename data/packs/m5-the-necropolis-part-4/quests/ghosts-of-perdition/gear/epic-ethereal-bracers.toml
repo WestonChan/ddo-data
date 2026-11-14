@@ -37,36 +37,11 @@ name = "Feather Falling"
 
 [[socket]]
 slot = "crafting: upgradeable - primary augment"
-
-[[socket.option]]
-name = "Blue Augment Slot"
-description = "Add a Blue augment slot to this item"
-icon = "Heroism"
-min_level = 27
-
-[[socket.option.grant]]
-slot = "blue"
-
-[[socket.option]]
-name = "Yellow Augment Slot"
-description = "Add a Yellow augment slot to this item"
-icon = "Heroism"
-min_level = 27
-
-[[socket.option.grant]]
-slot = "yellow"
+set = "Emerald Twilight"
 
 [[socket]]
 slot = "crafting: upgradeable - secondary augment"
-
-[[socket.option]]
-name = "Green Augment Slot"
-description = "Add a Green augment slot to this item"
-icon = "Heroism"
-min_level = 27
-
-[[socket.option.grant]]
-slot = "green"
+set = "Emerald Twilight"
 
 [[source]]
 chest = "end chest"

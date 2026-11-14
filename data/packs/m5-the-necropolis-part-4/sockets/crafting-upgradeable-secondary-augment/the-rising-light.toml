@@ -1,0 +1,29 @@
+label = "crafting: upgradeable - secondary augment"
+name = "The Rising Light"
+
+[[option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[option.grant]]
+slot = "green"
+
+[[option]]
+name = "Orange Augment Slot"
+description = "Add an Orange augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[option.grant]]
+slot = "orange"
+
+[[option]]
+name = "Purple Augment Slot"
+description = "Add a Purple augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[option.grant]]
+slot = "purple"

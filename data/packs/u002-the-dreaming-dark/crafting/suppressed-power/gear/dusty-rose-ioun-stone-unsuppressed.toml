@@ -7,6 +7,12 @@ material = "Gem"
 minimum_level = 5
 slot = "Trinket"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dreamforge"
+read = "2026-11-04"
+note = "Result of the 'Dusty Rose Ioun Stone' row of the Ioun Stone upgrades table (merge with a Crystal Disc of Dreams). The page does not name the upgraded stone as a separate item or show a direct drop for it; the page does say the old stones drop in The Dreaming Dark ('1 of the 10 types will always appear in the end rewards list every 3 completions')."
+
 [[effect]]
 name = "Protection"
 bonus_type = "Deflection"

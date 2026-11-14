@@ -1,0 +1,39 @@
+label = "crafting: suppressed power"
+name = "Terror"
+
+[[option]]
+name = "Adds intimidate +15 and Deception"
+description = """
+Intimidate +15: Passive: +15 Competence bonus to the Intimidate skill.
+Deception: This weapon is hard to focus upon and thus provides a +3 Enhancement
+bonus to Bluff checks. In addition, Deception weapons have a small chance to
+envelop the target in darkness, making them vulnerable to sneak attacks for a
+short time."""
+icon = "Upgrade"
+min_level = 18
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Intimidate"
+value = 15
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Bluff"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Competence"
+effect = "Intimidate"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Bluff"
+effect_type = "SkillBonus"
+targets = ["Bluff"]

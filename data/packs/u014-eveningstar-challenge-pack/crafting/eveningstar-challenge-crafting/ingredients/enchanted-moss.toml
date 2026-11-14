@@ -1,0 +1,9 @@
+name = "Enchanted Moss"
+tier = "any"
+bind = "Bound to Account"
+drop_location = "Dryad Grove: The Great Tree (levels 15-30): 1 per 4.1 score"
+
+[[citation]]
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-04"
+note = "Bound to Account since Update 19 (the page). The Copper Thumbs icon file is IngIcon_ESChallenge_CopperThumb; the page's Payout column names it Copper Thumbs. Icon files: IngIcon_ESChallenge_*."

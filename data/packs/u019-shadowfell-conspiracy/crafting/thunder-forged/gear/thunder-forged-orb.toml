@@ -8,6 +8,12 @@ material = "Adamantine"
 minimum_level = 22
 slot = "Off Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-11-04"
+note = "The page never names the Orb; support is 'All weapon types available' and the Orb Bonus lines. No drop source on any page read."
+
 [[dr_bypass]]
 bypass = "Adamantine"
 

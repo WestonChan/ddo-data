@@ -1,0 +1,27 @@
+label = "crafting: variant"
+name = "Sacrificial Dagger"
+
+[[option]]
+name = "Constitution Poison, Virulent"
+description = """
+Constitution Poison, Virulent: The deadly poison coating this weapon deals one
+point of constitution damage every time it strikes an enemy, and an additional
+1 to 6 points of constitution damage when it scores a critical hit. Some creatures
+may be immune or resistant to ability damage."""
+icon = "Variant"
+min_level = 20
+
+[[option.modifier]]
+bonus_type = "Equipment"
+dice_bonus = [1]
+dice_damage = "Constitution"
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Constitution"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]

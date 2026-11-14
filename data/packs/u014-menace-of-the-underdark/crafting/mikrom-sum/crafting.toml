@@ -1,29 +1,59 @@
 name = "Mikrom Sum"
-npc = "Mikrom Sum, Purple Dragon Knight patron vendor in north-central Eveningstar next to Battlemaster Dint; every upgrade and purchase needs Oversword status (375 Purple Dragon Knights favor)"
 pack = "Menace of the Underdark"
 page = "https://ddowiki.com/page/Mikrom_Sum"
 
-[[ingredient]]
-name = "Commendation of Heroism"
-tier = "epic"
+[[station]]
+name = "Mikrom Sum"
+note = "Upgrades Caught in the Web weapons and the Menace of the Underdark named armors, and sells the Cormyrian Dragon Armors for ingredients"
 
-[[ingredient]]
-name = "Commendation: Purple Dragon Knights"
-drop_location = "Commendation collectables from Menace of the Underdark quests"
-tier = "epic"
+[[unlock]]
+kind = "favor"
+patron = "Purple Dragon Knights"
+value = 375
+text = "Upgrading and purchasing the named items requires 'Oversword' status (375 points) on Purple Dragon Knights patron favor"
 
-[[ingredient]]
-name = "Commendation: War Wizards"
-drop_location = "Commendation collectables from Menace of the Underdark quests"
+[[step]]
+name = "Attuned by Heroism: Tier 1"
+slot = "crafting: attuned by heroism: tier 1"
+
+[[step.cost]]
 tier = "epic"
+ingredient = "Commendation of Heroism"
+quantity = 3
+
+[[step]]
+name = "Attuned by Heroism: Tier 2"
+slot = "crafting: attuned by heroism: tier 2"
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Commendation of Heroism"
+quantity = 5
+
+[[step]]
+name = "Attuned by Heroism: Tier 3"
+slot = "crafting: attuned by heroism: tier 3"
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Commendation of Heroism"
+quantity = 7
+
+[[step]]
+name = "Attuned by Heroism: Tier 4"
+slot = "crafting: attuned by heroism: tier 4"
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Commendation of Heroism"
+quantity = 10
+
+[[step]]
+name = "Armor upgrade"
+slot = "crafting: upgrade"
 
 [[ingredient]]
 name = "Commendation: Clerics of Amaunator"
-drop_location = "Commendation collectables from Menace of the Underdark quests"
-tier = "epic"
-
-[[ingredient]]
-name = "Commendation: Druids of the King's Forest"
 drop_location = "Commendation collectables from Menace of the Underdark quests"
 tier = "epic"
 
@@ -32,121 +62,56 @@ name = "Commendation: Villagers of Eveningstar"
 drop_location = "Commendation collectables from Menace of the Underdark quests"
 tier = "epic"
 
-[[ingredient]]
-name = "Flawless Red Dragon Scale"
-tier = "epic"
-
-[[ingredient]]
-name = "Flawless Green Dragon Scale"
-tier = "epic"
-
-[[ingredient]]
-name = "Agony, the Knife in the Dark"
-drop_location = "Caught in the Web raid loot"
-tier = "epic"
-
-[[ingredient]]
-name = "Antipode, Fist of the Horizon"
-drop_location = "Caught in the Web raid loot"
-tier = "epic"
-
-[[ingredient]]
-name = "Balizarde, Protector of the King"
-drop_location = "Caught in the Web raid loot"
-tier = "epic"
-
-[[ingredient]]
-name = "Breach, The Dividing Blade"
-drop_location = "Caught in the Web raid loot"
-tier = "epic"
-
-[[ingredient]]
-name = "Celestia, Brightest Star of Day"
-drop_location = "Caught in the Web raid loot"
-tier = "epic"
-
-[[ingredient]]
-name = "Cleaver, Hewer of Suffering"
-drop_location = "Caught in the Web raid loot"
-tier = "epic"
-
-[[ingredient]]
-name = "Mornh, Hammer of the Mountains"
-drop_location = "Caught in the Web raid loot"
-tier = "epic"
-
-[[ingredient]]
-name = "Needle, Quill-slinger"
-drop_location = "Caught in the Web raid loot"
-tier = "epic"
-
-[[ingredient]]
-name = "Nightmare, the Fallen Moon"
-drop_location = "Caught in the Web raid loot"
-tier = "epic"
-
-[[ingredient]]
-name = "Pinion, Cloud-piercer"
-drop_location = "Caught in the Web raid loot"
-tier = "epic"
-
-[[ingredient]]
-name = "Sireth, Spear of the Sky"
-drop_location = "Caught in the Web raid loot"
-tier = "epic"
-
-[[ingredient]]
-name = "Tinah, Sword of the Sea"
-drop_location = "Caught in the Web raid loot"
-tier = "epic"
-
-[[ingredient]]
-name = "Twilight, Element of Magic"
-drop_location = "Caught in the Web raid loot"
-tier = "epic"
-
-[[ingredient]]
-name = "Stone Heart"
-drop_location = "Named armor from Trial by Fury, The Deal and the Demon or Reclaiming the Rift"
-tier = "epic"
-
-[[ingredient]]
-name = "Terrorweb Chitin Breastplate"
-drop_location = "Named armor from Trial by Fury, The Deal and the Demon or Reclaiming the Rift"
-tier = "epic"
-
-[[ingredient]]
-name = "Spidersilk Robes"
-drop_location = "Named armor from Trial by Fury, The Deal and the Demon or Reclaiming the Rift"
-tier = "epic"
-
-[[ingredient]]
-name = "Spider-spun Caparison"
-drop_location = "Named armor from Trial by Fury, The Deal and the Demon or Reclaiming the Rift"
-tier = "epic"
-
-[[ingredient]]
-name = "Hide of the Goristro"
-drop_location = "Named armor from Trial by Fury, The Deal and the Demon or Reclaiming the Rift"
-tier = "epic"
-
-[[ingredient]]
-name = "Embrace of the Spider Queen"
-drop_location = "Named armor from Trial by Fury, The Deal and the Demon or Reclaiming the Rift"
-tier = "epic"
-
 [[citation]]
 url = "https://ddowiki.com/page/Mikrom_Sum"
-read = "2026-09-29"
+read = "2026-11-04"
+note = "Whole page read: NPC infobox, Usage, Attuned to Heroism upgrade, Caught in the Web Item Upgrades table (Tiers 1 to 4), Cormyrian Dragon Armors purchase table (10 rows), Armor upgrades table (5 sets). The page states a favor gate and no level, pack, quest or feat gate; the nav template's 'Level 22+' group is a navigation listing, not a stated gate."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-11-04"
+note = """
+Caught in the Web raid weapons only. Table says 'All Caught in the Web raid items'.
+
+Caught in the Web raid weapons only. 13 weapons listed, each with its own effect.
+
+Caught in the Web raid weapons only. Twelve weapons add a Red Augment Slot; Celestia adds a Green Augment Slot.
+
+Page heading 'Armor upgrades': the named armors (Stone Heart, Terrorweb Chitin Breastplate, Spidersilk Robes, Spider-spun Caparison, Hide of the Goristro, Embrace of the Spider Queen) become part of the Eveningstar Commendation item sets. The page gives no step name; 'Armor Upgrade' follows its heading.
+
+Plus the weapon itself x1 per recipe (an item cost). Cell is one cost over all thirteen weapons; matches Maetrim's thirteen rows.
+
+Always 15 of one faction Commendation plus the armor itself x1; the faction is set by the upgrade: Amaunator's Blessing = Clerics of Amaunator, Battle Arcanist = War Wizards, Way of the Sun Soul = Villagers of Eveningstar, Woodsman's Guile = Druids of the King's Forest, Knight's Loyalty = Purple Dragon Knights. So the quantity is uniform (15) but the ingredient differs per set. Matches Maetrim's eleven rows.
+
+Page: 'When an item is first upgraded, Attuned to Heroism becomes Attuned by Heroism: Tier 1'. Caught in the Web weapon upgrade tier. Shared with the Stormreaver Monument, where Tier 1 effects differ per Fall of Truth item; here Tier 1 for every Caught in the Web item is 'Adds Planar Conflux'.
+
+Caught in the Web weapon upgrade tier. Shared with the Stormreaver Monument; here Tier 2 for every Caught in the Web item is '+7 enhancement bonus becomes +8'.
+
+Caught in the Web weapon upgrade tier. Used by Mikrom Sum only.
+
+Sockets of the six named armors the 'Armor upgrades' table upgrades with Commendations. The label is used by Mikrom Sum only."""
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-11-04"
+note = """Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
+
+[[citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-11-04"
+note = "Infobox Notes: 'one is able to upgrade and purchase various named items by spending ingredients gathered from Menace of the Underdark quests. However, all of these require Oversword status (375 points) on Purple Dragon Knights patron favor.' Applies to every upgrade and purchase the page lists."
 
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Agony, the Knife in the Dark: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Agony, the Knife in the Dark"
+item = "Agony, the Knife in the Dark"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -156,11 +121,11 @@ quantity = 3
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Agony, the Knife in the Dark: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Agony, the Knife in the Dark"
+item = "Agony, the Knife in the Dark"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -170,11 +135,11 @@ quantity = 5
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Hemorrhaging becomes Phlebotomizing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Agony, the Knife in the Dark: Attuned by Heroism Tier 3"
-slot = "crafting: attuned by heroism: tier 3"
 tier = "epic"
+step = "Attuned by Heroism: Tier 3"
 
 [[recipe.ingredient]]
-ingredient = "Agony, the Knife in the Dark"
+item = "Agony, the Knife in the Dark"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -185,11 +150,11 @@ quantity = 7
 grants_slot = "red"
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
 option = "Agony, the Knife in the Dark: Attuned by Heroism Tier 4"
-slot = "crafting: attuned by heroism: tier 4"
 tier = "epic"
+step = "Attuned by Heroism: Tier 4"
 
 [[recipe.ingredient]]
-ingredient = "Agony, the Knife in the Dark"
+item = "Agony, the Knife in the Dark"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -199,11 +164,11 @@ quantity = 10
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Antipode, Fist of the Horizon: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Antipode, Fist of the Horizon"
+item = "Antipode, Fist of the Horizon"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -213,11 +178,11 @@ quantity = 3
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Antipode, Fist of the Horizon: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Antipode, Fist of the Horizon"
+item = "Antipode, Fist of the Horizon"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -227,11 +192,11 @@ quantity = 5
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Antipode, Fist of the Horizon: Attuned by Heroism Tier 3"
-slot = "crafting: attuned by heroism: tier 3"
 tier = "epic"
+step = "Attuned by Heroism: Tier 3"
 
 [[recipe.ingredient]]
-ingredient = "Antipode, Fist of the Horizon"
+item = "Antipode, Fist of the Horizon"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -242,11 +207,11 @@ quantity = 7
 grants_slot = "red"
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
 option = "Antipode, Fist of the Horizon: Attuned by Heroism Tier 4"
-slot = "crafting: attuned by heroism: tier 4"
 tier = "epic"
+step = "Attuned by Heroism: Tier 4"
 
 [[recipe.ingredient]]
-ingredient = "Antipode, Fist of the Horizon"
+item = "Antipode, Fist of the Horizon"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -256,11 +221,11 @@ quantity = 10
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Balizarde, Protector of the King: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Balizarde, Protector of the King"
+item = "Balizarde, Protector of the King"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -270,11 +235,11 @@ quantity = 3
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Balizarde, Protector of the King: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Balizarde, Protector of the King"
+item = "Balizarde, Protector of the King"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -284,11 +249,11 @@ quantity = 5
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Hemorrhaging becomes Phlebotomizing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Balizarde, Protector of the King: Attuned by Heroism Tier 3"
-slot = "crafting: attuned by heroism: tier 3"
 tier = "epic"
+step = "Attuned by Heroism: Tier 3"
 
 [[recipe.ingredient]]
-ingredient = "Balizarde, Protector of the King"
+item = "Balizarde, Protector of the King"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -299,11 +264,11 @@ quantity = 7
 grants_slot = "red"
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
 option = "Balizarde, Protector of the King: Attuned by Heroism Tier 4"
-slot = "crafting: attuned by heroism: tier 4"
 tier = "epic"
+step = "Attuned by Heroism: Tier 4"
 
 [[recipe.ingredient]]
-ingredient = "Balizarde, Protector of the King"
+item = "Balizarde, Protector of the King"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -313,11 +278,11 @@ quantity = 10
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Breach, The Dividing Blade: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Breach, The Dividing Blade"
+item = "Breach, The Dividing Blade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -327,11 +292,11 @@ quantity = 3
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Breach, The Dividing Blade: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Breach, The Dividing Blade"
+item = "Breach, The Dividing Blade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -341,11 +306,11 @@ quantity = 5
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Shrieking becomes Wailing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Breach, The Dividing Blade: Attuned by Heroism Tier 3"
-slot = "crafting: attuned by heroism: tier 3"
 tier = "epic"
+step = "Attuned by Heroism: Tier 3"
 
 [[recipe.ingredient]]
-ingredient = "Breach, The Dividing Blade"
+item = "Breach, The Dividing Blade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -356,11 +321,11 @@ quantity = 7
 grants_slot = "red"
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
 option = "Breach, The Dividing Blade: Attuned by Heroism Tier 4"
-slot = "crafting: attuned by heroism: tier 4"
 tier = "epic"
+step = "Attuned by Heroism: Tier 4"
 
 [[recipe.ingredient]]
-ingredient = "Breach, The Dividing Blade"
+item = "Breach, The Dividing Blade"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -370,11 +335,11 @@ quantity = 10
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Celestia, Brightest Star of Day: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Celestia, Brightest Star of Day"
+item = "Celestia, Brightest Star of Day"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -384,11 +349,11 @@ quantity = 3
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Celestia, Brightest Star of Day: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Celestia, Brightest Star of Day"
+item = "Celestia, Brightest Star of Day"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -398,11 +363,11 @@ quantity = 5
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds Banishing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Celestia, Brightest Star of Day: Attuned by Heroism Tier 3"
-slot = "crafting: attuned by heroism: tier 3"
 tier = "epic"
+step = "Attuned by Heroism: Tier 3"
 
 [[recipe.ingredient]]
-ingredient = "Celestia, Brightest Star of Day"
+item = "Celestia, Brightest Star of Day"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -413,11 +378,11 @@ quantity = 7
 grants_slot = "green"
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Green Augment Slot."
 option = "Celestia, Brightest Star of Day: Attuned by Heroism Tier 4"
-slot = "crafting: attuned by heroism: tier 4"
 tier = "epic"
+step = "Attuned by Heroism: Tier 4"
 
 [[recipe.ingredient]]
-ingredient = "Celestia, Brightest Star of Day"
+item = "Celestia, Brightest Star of Day"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -427,11 +392,11 @@ quantity = 10
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Cleaver, Hewer of Suffering: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Cleaver, Hewer of Suffering"
+item = "Cleaver, Hewer of Suffering"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -441,11 +406,11 @@ quantity = 3
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Cleaver, Hewer of Suffering: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Cleaver, Hewer of Suffering"
+item = "Cleaver, Hewer of Suffering"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -455,11 +420,11 @@ quantity = 5
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Hemorrhaging becomes Phlebotomizing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Cleaver, Hewer of Suffering: Attuned by Heroism Tier 3"
-slot = "crafting: attuned by heroism: tier 3"
 tier = "epic"
+step = "Attuned by Heroism: Tier 3"
 
 [[recipe.ingredient]]
-ingredient = "Cleaver, Hewer of Suffering"
+item = "Cleaver, Hewer of Suffering"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -470,11 +435,11 @@ quantity = 7
 grants_slot = "red"
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
 option = "Cleaver, Hewer of Suffering: Attuned by Heroism Tier 4"
-slot = "crafting: attuned by heroism: tier 4"
 tier = "epic"
+step = "Attuned by Heroism: Tier 4"
 
 [[recipe.ingredient]]
-ingredient = "Cleaver, Hewer of Suffering"
+item = "Cleaver, Hewer of Suffering"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -484,11 +449,11 @@ quantity = 10
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Mornh, Hammer of the Mountains: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Mornh, Hammer of the Mountains"
+item = "Mornh, Hammer of the Mountains"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -498,11 +463,11 @@ quantity = 3
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Mornh, Hammer of the Mountains: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Mornh, Hammer of the Mountains"
+item = "Mornh, Hammer of the Mountains"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -512,11 +477,11 @@ quantity = 5
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Mornh, Hammer of the Mountains: Attuned by Heroism Tier 3"
-slot = "crafting: attuned by heroism: tier 3"
 tier = "epic"
+step = "Attuned by Heroism: Tier 3"
 
 [[recipe.ingredient]]
-ingredient = "Mornh, Hammer of the Mountains"
+item = "Mornh, Hammer of the Mountains"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -527,11 +492,11 @@ quantity = 7
 grants_slot = "red"
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
 option = "Mornh, Hammer of the Mountains: Attuned by Heroism Tier 4"
-slot = "crafting: attuned by heroism: tier 4"
 tier = "epic"
+step = "Attuned by Heroism: Tier 4"
 
 [[recipe.ingredient]]
-ingredient = "Mornh, Hammer of the Mountains"
+item = "Mornh, Hammer of the Mountains"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -541,11 +506,11 @@ quantity = 10
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Needle, Quill-slinger: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Needle, Quill-slinger"
+item = "Needle, Quill-slinger"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -555,11 +520,11 @@ quantity = 3
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Needle, Quill-slinger: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Needle, Quill-slinger"
+item = "Needle, Quill-slinger"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -569,11 +534,11 @@ quantity = 5
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Hemorrhaging becomes Phlebotomizing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Needle, Quill-slinger: Attuned by Heroism Tier 3"
-slot = "crafting: attuned by heroism: tier 3"
 tier = "epic"
+step = "Attuned by Heroism: Tier 3"
 
 [[recipe.ingredient]]
-ingredient = "Needle, Quill-slinger"
+item = "Needle, Quill-slinger"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -584,11 +549,11 @@ quantity = 7
 grants_slot = "red"
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
 option = "Needle, Quill-slinger: Attuned by Heroism Tier 4"
-slot = "crafting: attuned by heroism: tier 4"
 tier = "epic"
+step = "Attuned by Heroism: Tier 4"
 
 [[recipe.ingredient]]
-ingredient = "Needle, Quill-slinger"
+item = "Needle, Quill-slinger"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -598,11 +563,11 @@ quantity = 10
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Nightmare, the Fallen Moon: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Nightmare, the Fallen Moon"
+item = "Nightmare, the Fallen Moon"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -612,11 +577,11 @@ quantity = 3
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Nightmare, the Fallen Moon: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Nightmare, the Fallen Moon"
+item = "Nightmare, the Fallen Moon"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -626,11 +591,11 @@ quantity = 5
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Nightmare, the Fallen Moon: Attuned by Heroism Tier 3"
-slot = "crafting: attuned by heroism: tier 3"
 tier = "epic"
+step = "Attuned by Heroism: Tier 3"
 
 [[recipe.ingredient]]
-ingredient = "Nightmare, the Fallen Moon"
+item = "Nightmare, the Fallen Moon"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -641,11 +606,11 @@ quantity = 7
 grants_slot = "red"
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
 option = "Nightmare, the Fallen Moon: Attuned by Heroism Tier 4"
-slot = "crafting: attuned by heroism: tier 4"
 tier = "epic"
+step = "Attuned by Heroism: Tier 4"
 
 [[recipe.ingredient]]
-ingredient = "Nightmare, the Fallen Moon"
+item = "Nightmare, the Fallen Moon"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -655,11 +620,11 @@ quantity = 10
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Pinion, Cloud-piercer: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Pinion, Cloud-piercer"
+item = "Pinion, Cloud-piercer"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -669,11 +634,11 @@ quantity = 3
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Pinion, Cloud-piercer: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Pinion, Cloud-piercer"
+item = "Pinion, Cloud-piercer"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -683,11 +648,11 @@ quantity = 5
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Shrieking becomes Wailing. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Pinion, Cloud-piercer: Attuned by Heroism Tier 3"
-slot = "crafting: attuned by heroism: tier 3"
 tier = "epic"
+step = "Attuned by Heroism: Tier 3"
 
 [[recipe.ingredient]]
-ingredient = "Pinion, Cloud-piercer"
+item = "Pinion, Cloud-piercer"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -698,11 +663,11 @@ quantity = 7
 grants_slot = "red"
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
 option = "Pinion, Cloud-piercer: Attuned by Heroism Tier 4"
-slot = "crafting: attuned by heroism: tier 4"
 tier = "epic"
+step = "Attuned by Heroism: Tier 4"
 
 [[recipe.ingredient]]
-ingredient = "Pinion, Cloud-piercer"
+item = "Pinion, Cloud-piercer"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -712,11 +677,11 @@ quantity = 10
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Sireth, Spear of the Sky: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Sireth, Spear of the Sky"
+item = "Sireth, Spear of the Sky"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -726,11 +691,11 @@ quantity = 3
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Sireth, Spear of the Sky: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Sireth, Spear of the Sky"
+item = "Sireth, Spear of the Sky"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -740,11 +705,11 @@ quantity = 5
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Sireth, Spear of the Sky: Attuned by Heroism Tier 3"
-slot = "crafting: attuned by heroism: tier 3"
 tier = "epic"
+step = "Attuned by Heroism: Tier 3"
 
 [[recipe.ingredient]]
-ingredient = "Sireth, Spear of the Sky"
+item = "Sireth, Spear of the Sky"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -755,11 +720,11 @@ quantity = 7
 grants_slot = "red"
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
 option = "Sireth, Spear of the Sky: Attuned by Heroism Tier 4"
-slot = "crafting: attuned by heroism: tier 4"
 tier = "epic"
+step = "Attuned by Heroism: Tier 4"
 
 [[recipe.ingredient]]
-ingredient = "Sireth, Spear of the Sky"
+item = "Sireth, Spear of the Sky"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -769,11 +734,11 @@ quantity = 10
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Tinah, Sword of the Sea: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Tinah, Sword of the Sea"
+item = "Tinah, Sword of the Sea"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -783,11 +748,11 @@ quantity = 3
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Tinah, Sword of the Sea: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Tinah, Sword of the Sea"
+item = "Tinah, Sword of the Sea"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -797,11 +762,11 @@ quantity = 5
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds +0.5 weapon dice multiplier. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Tinah, Sword of the Sea: Attuned by Heroism Tier 3"
-slot = "crafting: attuned by heroism: tier 3"
 tier = "epic"
+step = "Attuned by Heroism: Tier 3"
 
 [[recipe.ingredient]]
-ingredient = "Tinah, Sword of the Sea"
+item = "Tinah, Sword of the Sea"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -812,11 +777,11 @@ quantity = 7
 grants_slot = "red"
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
 option = "Tinah, Sword of the Sea: Attuned by Heroism Tier 4"
-slot = "crafting: attuned by heroism: tier 4"
 tier = "epic"
+step = "Attuned by Heroism: Tier 4"
 
 [[recipe.ingredient]]
-ingredient = "Tinah, Sword of the Sea"
+item = "Tinah, Sword of the Sea"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -826,11 +791,11 @@ quantity = 10
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 1: Adds Planar Conflux. Upgraded items keep their binding (unbound items stay tradeable) and their Mythic and Reaper bonuses; on the first upgrade Attuned to Heroism becomes Attuned by Heroism: Tier 1. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Twilight, Element of Magic: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Twilight, Element of Magic"
+item = "Twilight, Element of Magic"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -840,11 +805,11 @@ quantity = 3
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 2: +7 enhancement bonus becomes +8 enhancement bonus. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Twilight, Element of Magic: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Twilight, Element of Magic"
+item = "Twilight, Element of Magic"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -854,11 +819,11 @@ quantity = 5
 [[recipe]]
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 3: Adds one +120 Spell Power of choice (Combustion, Glaciation, Corrosion, Magnetism, Nullification, Devotion, Radiance). Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
 option = "Twilight, Element of Magic: Attuned by Heroism Tier 3"
-slot = "crafting: attuned by heroism: tier 3"
 tier = "epic"
+step = "Attuned by Heroism: Tier 3"
 
 [[recipe.ingredient]]
-ingredient = "Twilight, Element of Magic"
+item = "Twilight, Element of Magic"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -869,11 +834,11 @@ quantity = 7
 grants_slot = "red"
 note = "Caught in the Web weapon upgrade, Attuned by Heroism: Tier 4: Adds a Red Augment Slot."
 option = "Twilight, Element of Magic: Attuned by Heroism Tier 4"
-slot = "crafting: attuned by heroism: tier 4"
 tier = "epic"
+step = "Attuned by Heroism: Tier 4"
 
 [[recipe.ingredient]]
-ingredient = "Twilight, Element of Magic"
+item = "Twilight, Element of Magic"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -881,7 +846,10 @@ ingredient = "Commendation of Heroism"
 quantity = 10
 
 [[recipe]]
-note = "Purchase of Cormyrian Red Dragonplate Armor (Heavy); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+note = """
+Purchase of Cormyrian Red Dragonplate Armor (Heavy); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
 option = "Cormyrian Red Dragonplate Armor"
 tier = "epic"
 
@@ -902,7 +870,10 @@ ingredient = "Commendation of Heroism"
 quantity = 3
 
 [[recipe]]
-note = "Purchase of Cormyrian Red Dragonscale Armor (Medium); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+note = """
+Purchase of Cormyrian Red Dragonscale Armor (Medium); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
 option = "Cormyrian Red Dragonscale Armor"
 tier = "epic"
 
@@ -923,7 +894,10 @@ ingredient = "Commendation of Heroism"
 quantity = 3
 
 [[recipe]]
-note = "Purchase of Cormyrian Red Dragonhide Armor (Light); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+note = """
+Purchase of Cormyrian Red Dragonhide Armor (Light); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
 option = "Cormyrian Red Dragonhide Armor"
 tier = "epic"
 
@@ -944,7 +918,10 @@ ingredient = "Commendation of Heroism"
 quantity = 3
 
 [[recipe]]
-note = "Purchase of Cormyrian Red Dragonscale Robe (Robe); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+note = """
+Purchase of Cormyrian Red Dragonscale Robe (Robe); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
 option = "Cormyrian Red Dragonscale Robe"
 tier = "epic"
 
@@ -965,7 +942,10 @@ ingredient = "Commendation of Heroism"
 quantity = 3
 
 [[recipe]]
-note = "Purchase of Cormyrian Red Dragonscale Docent (Docent); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+note = """
+Purchase of Cormyrian Red Dragonscale Docent (Docent); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
 option = "Cormyrian Red Dragonscale Docent"
 tier = "epic"
 
@@ -986,7 +966,10 @@ ingredient = "Commendation of Heroism"
 quantity = 3
 
 [[recipe]]
-note = "Purchase of Cormyrian Green Dragonplate Armor (Heavy); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+note = """
+Purchase of Cormyrian Green Dragonplate Armor (Heavy); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
 option = "Cormyrian Green Dragonplate Armor"
 tier = "epic"
 
@@ -1007,7 +990,10 @@ ingredient = "Commendation of Heroism"
 quantity = 3
 
 [[recipe]]
-note = "Purchase of Cormyrian Green Dragonscale Armor (Medium); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+note = """
+Purchase of Cormyrian Green Dragonscale Armor (Medium); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
 option = "Cormyrian Green Dragonscale Armor"
 tier = "epic"
 
@@ -1028,7 +1014,10 @@ ingredient = "Commendation of Heroism"
 quantity = 3
 
 [[recipe]]
-note = "Purchase of Cormyrian Green Dragonhide Armor (Light); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+note = """
+Purchase of Cormyrian Green Dragonhide Armor (Light); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
 option = "Cormyrian Green Dragonhide Armor"
 tier = "epic"
 
@@ -1049,7 +1038,10 @@ ingredient = "Commendation of Heroism"
 quantity = 3
 
 [[recipe]]
-note = "Purchase of Cormyrian Green Dragonscale Robe (Robe); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+note = """
+Purchase of Cormyrian Green Dragonscale Robe (Robe); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
 option = "Cormyrian Green Dragonscale Robe"
 tier = "epic"
 
@@ -1070,7 +1062,10 @@ ingredient = "Commendation of Heroism"
 quantity = 3
 
 [[recipe]]
-note = "Purchase of Cormyrian Green Dragonscale Docent (Docent); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards)."
+note = """
+Purchase of Cormyrian Green Dragonscale Docent (Docent); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
 option = "Cormyrian Green Dragonscale Docent"
 tier = "epic"
 
@@ -1093,11 +1088,11 @@ quantity = 3
 [[recipe]]
 note = "Upgrades Stone Heart to join the Eveningstar Commendation item set Amaunator's Blessing, gaining Amaunator's Blessing. Maetrim holds the set as an option on this socket."
 option = "Amaunator's Blessing: Stone Heart"
-slot = "crafting: upgrade"
 tier = "epic"
+step = "Armor upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Stone Heart"
+item = "Stone Heart"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -1107,11 +1102,11 @@ quantity = 15
 [[recipe]]
 note = "Upgrades Terrorweb Chitin Breastplate to join the Eveningstar Commendation item set Amaunator's Blessing, gaining Amaunator's Blessing. Maetrim holds the set as an option on this socket."
 option = "Amaunator's Blessing: Terrorweb Chitin Breastplate"
-slot = "crafting: upgrade"
 tier = "epic"
+step = "Armor upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Terrorweb Chitin Breastplate"
+item = "Terrorweb Chitin Breastplate"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -1121,11 +1116,11 @@ quantity = 15
 [[recipe]]
 note = "Upgrades Stone Heart to join the Eveningstar Commendation item set Battle Arcanist, gaining Battle Arcanist. Maetrim holds the set as an option on this socket."
 option = "Battle Arcanist: Stone Heart"
-slot = "crafting: upgrade"
 tier = "epic"
+step = "Armor upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Stone Heart"
+item = "Stone Heart"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -1135,11 +1130,11 @@ quantity = 15
 [[recipe]]
 note = "Upgrades Spidersilk Robes to join the Eveningstar Commendation item set Battle Arcanist, gaining Battle Arcanist."
 option = "Battle Arcanist: Spidersilk Robes"
-slot = "crafting: upgrade"
 tier = "epic"
+step = "Armor upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Spidersilk Robes"
+item = "Spidersilk Robes"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -1149,11 +1144,11 @@ quantity = 15
 [[recipe]]
 note = "Upgrades Stone Heart to join the Eveningstar Commendation item set Way of the Sun Soul, gaining Way of the Sun Soul. Maetrim holds the set as an option on this socket."
 option = "Way of the Sun Soul: Stone Heart"
-slot = "crafting: upgrade"
 tier = "epic"
+step = "Armor upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Stone Heart"
+item = "Stone Heart"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -1163,11 +1158,11 @@ quantity = 15
 [[recipe]]
 note = "Upgrades Spider-spun Caparison to join the Eveningstar Commendation item set Way of the Sun Soul, gaining Way of the Sun Soul."
 option = "Way of the Sun Soul: Spider-spun Caparison"
-slot = "crafting: upgrade"
 tier = "epic"
+step = "Armor upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Spider-spun Caparison"
+item = "Spider-spun Caparison"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -1177,11 +1172,11 @@ quantity = 15
 [[recipe]]
 note = "Upgrades Stone Heart to join the Eveningstar Commendation item set Woodsman's Guile, gaining Woodsman's Guile. Maetrim holds the set as an option on this socket."
 option = "Woodsman's Guile: Stone Heart"
-slot = "crafting: upgrade"
 tier = "epic"
+step = "Armor upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Stone Heart"
+item = "Stone Heart"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -1191,11 +1186,11 @@ quantity = 15
 [[recipe]]
 note = "Upgrades Hide of the Goristro to join the Eveningstar Commendation item set Woodsman's Guile, gaining Woodsman's Guile."
 option = "Woodsman's Guile: Hide of the Goristro"
-slot = "crafting: upgrade"
 tier = "epic"
+step = "Armor upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Hide of the Goristro"
+item = "Hide of the Goristro"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -1205,11 +1200,11 @@ quantity = 15
 [[recipe]]
 note = "Upgrades Stone Heart to join the Eveningstar Commendation item set Knight's Loyalty, gaining Knight's Loyalty. Maetrim holds the set as an option on this socket."
 option = "Knight's Loyalty: Stone Heart"
-slot = "crafting: upgrade"
 tier = "epic"
+step = "Armor upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Stone Heart"
+item = "Stone Heart"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -1219,11 +1214,11 @@ quantity = 15
 [[recipe]]
 note = "Upgrades Terrorweb Chitin Breastplate to join the Eveningstar Commendation item set Knight's Loyalty, gaining Knight's Loyalty. Maetrim holds the set as an option on this socket."
 option = "Knight's Loyalty: Terrorweb Chitin Breastplate"
-slot = "crafting: upgrade"
 tier = "epic"
+step = "Armor upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Terrorweb Chitin Breastplate"
+item = "Terrorweb Chitin Breastplate"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -1233,11 +1228,11 @@ quantity = 15
 [[recipe]]
 note = "Upgrades Embrace of the Spider Queen to join the Eveningstar Commendation item set Knight's Loyalty, gaining Knight's Loyalty."
 option = "Knight's Loyalty: Embrace of the Spider Queen"
-slot = "crafting: upgrade"
 tier = "epic"
+step = "Armor upgrade"
 
 [[recipe.ingredient]]
-ingredient = "Embrace of the Spider Queen"
+item = "Embrace of the Spider Queen"
 quantity = 1
 
 [[recipe.ingredient]]

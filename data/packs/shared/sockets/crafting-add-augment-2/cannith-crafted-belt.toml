@@ -1,0 +1,58 @@
+label = "crafting: add augment 2"
+name = "Cannith Crafted Belt"
+
+[[option]]
+name = "Adds a Colorless augment slot"
+description = "Adds a Colorless augment slot to this item"
+min_level = 5
+
+[[option.grant]]
+slot = "colorless"
+
+[[option]]
+name = "Adds a Red augment slot"
+description = "Adds a Red augment slot to this item"
+min_level = 5
+
+[[option.grant]]
+slot = "red"
+
+[[option]]
+name = "Adds a Blue augment slot"
+description = "Adds a Blue augment slot to this item"
+min_level = 5
+
+[[option.grant]]
+slot = "blue"
+
+[[option]]
+name = "Adds a Yellow augment slot"
+description = "Adds a Yellow augment slot to this item"
+min_level = 5
+
+[[option.grant]]
+slot = "yellow"
+
+[[option]]
+name = "Adds a Purple augment slot"
+description = "Adds a Purple augment slot to this item"
+min_level = 5
+
+[[option.grant]]
+slot = "purple"
+
+[[option]]
+name = "Adds a Orange augment slot"
+description = "Adds a Orange augment slot to this item"
+min_level = 5
+
+[[option.grant]]
+slot = "orange"
+
+[[option]]
+name = "Adds a Green augment slot"
+description = "Adds a Green augment slot to this item"
+min_level = 5
+
+[[option.grant]]
+slot = "green"

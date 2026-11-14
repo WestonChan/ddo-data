@@ -1,0 +1,56 @@
+label = "crafting: nearly finished"
+name = "Cloak of Balance"
+
+[[option]]
+name = "+1 Quality Strength"
+description = "+1 Quality bonus to Strength"
+min_level = 17
+
+[[option.effect]]
+bonus_type = "Quality"
+effect = "Strength"
+value = 1
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Quality"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[option]]
+name = "+1 Quality Dexterity"
+description = "+1 Quality bonus to Dexterity"
+min_level = 17
+
+[[option.effect]]
+bonus_type = "Quality"
+effect = "Dexterity"
+value = 1
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Quality"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[option]]
+name = "+1 Quality Constitution"
+description = "+1 Quality bonus to Constitution"
+min_level = 17
+
+[[option.effect]]
+bonus_type = "Quality"
+effect = "Constitution"
+value = 1
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Quality"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]

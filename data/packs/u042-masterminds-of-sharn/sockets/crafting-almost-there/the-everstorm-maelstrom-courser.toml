@@ -1,0 +1,10 @@
+label = "crafting: almost there"
+name = "The Everstorm, Maelstrom Courser"
+
+[[option]]
+name = "Utter Disintegration"
+description = """
+Utter Disintegration: This weapon has a dark, insidious power deep within.
+Occasionally, this power lashes out violently at enemies and attempts to
+disintegrate them. This disintegrate is incredibly powerful, and will utterly
+destroy weaker foes."""

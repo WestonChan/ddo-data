@@ -1,0 +1,61 @@
+name = "Epic Ring of Master Artifice"
+description = """
+A ring said to have been worn by a legendary artificer. Using it, he was able
+to take things that seemed beyond repair and make them good as new."""
+drop_location = "Vaults of the Artificers, from exchanged challenge rewards or upgraded from level 16 version"
+icon = "Ring_22"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 20
+slot = "Ring"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot/Other"
+read = "2026-11-04"
+note = "Created at the Vaults challenge barter (Challenge Barter System Rewards); not a drop."
+
+[[clickie]]
+name = "Reconstruct"
+clickie = "Reconstruct"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 192
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 110
+
+[[effect]]
+name = "Repair Spell Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Greater Auto-Repair"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Reconstruct"]
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Epic Ring of Master Artifice"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Epic Ring of Master Artifice"
+
+[[source]]
+kind = "crafting_system"
+name = "Vaults of the Artificers"

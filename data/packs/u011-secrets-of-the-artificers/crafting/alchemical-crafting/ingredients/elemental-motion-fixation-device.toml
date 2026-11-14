@@ -1,0 +1,9 @@
+name = "Elemental Motion Fixation Device"
+tier = "any"
+bind = "Bound to Character on Acquire"
+drop_location = "The Lord of Blades, optional chest 'Grudge Maker'"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Toven%27s_Hammer"
+read = "2026-11-04"
+note = "The page writes 'BtCoA'. Used at the Cannith Reforging Station for Complete Toven's Hammer. Not an ingredient or item in the data."

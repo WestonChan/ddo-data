@@ -9,6 +9,12 @@ material = "Leather"
 minimum_level = 30
 slot = "Wrists"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: "The Chronoscope (Legendary), end chest, or Legendary version of Epic ..."; the Legendary raid is the drop source.'
+
 [[clickie]]
 name = "Fire Storm"
 clickie = "Fire Storm"
@@ -46,6 +52,10 @@ targets = ["Fire Storm"]
 
 [[socket]]
 slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"
 
 [[source]]
 chest = "end chest, or legendary version of epic scorched bracers"

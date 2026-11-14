@@ -1707,6 +1707,27 @@ fn shared_option_corrections_keep_every_carriers_source() {
         std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
         std::fs::copy(entry.path(), destination).unwrap();
     }
+    let set_path =
+        root.path().join("packs/u019-shadowfell-conspiracy/sockets/crafting-variant/shield-of-morning-level-17.toml");
+    let mut option_set: toml::Value = toml::from_str(&std::fs::read_to_string(&set_path).unwrap()).unwrap();
+    let notes = option_set.as_table_mut().unwrap().remove("ddobuilder_correction").unwrap();
+    option_set.as_table_mut().unwrap().remove("citation");
+    for level in [17, 18, 19] {
+        let path = root.path().join(format!(
+            "packs/u019-shadowfell-conspiracy/quests/breaking-the-ranks/gear/shield-of-morning-level-{level}.toml"
+        ));
+        let mut carrier: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+        let mut carrier_notes = notes.clone();
+        for note in carrier_notes.as_array_mut().unwrap() {
+            note["qualifier"] =
+                format!("socket {:?}, {}", option_set["label"].as_str().unwrap(), note["qualifier"].as_str().unwrap())
+                    .into();
+            note["url"] = format!("https://ddowiki.com/page/Item:Shield_of_Morning_(level_{level})").into();
+        }
+        carrier.as_table_mut().unwrap().insert("ddobuilder_correction".into(), carrier_notes);
+        std::fs::write(path, toml::to_string(&carrier).unwrap()).unwrap();
+    }
+    std::fs::write(set_path, toml::to_string(&option_set).unwrap()).unwrap();
     let mut db = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(root.path(), &mut db).unwrap();
     let gauntlets_slug: String = db.query_row("SELECT s.slug FROM socket_option_sets s JOIN item_augment_slots l ON l.option_set_id=s.id JOIN items i ON i.id=l.item_id WHERE i.name='Gauntlets of Eternity'", [], |row| row.get(0)).unwrap();

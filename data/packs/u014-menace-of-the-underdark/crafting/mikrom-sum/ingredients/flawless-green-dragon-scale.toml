@@ -1,0 +1,9 @@
+name = "Flawless Green Dragon Scale"
+tier = "epic"
+bind = "Unbound"
+drop_location = "Don't Drink the Water end chest; The King's Forest Green Dragon encounter"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Flawless_Green_Dragon_Scale"
+read = "2026-11-04"
+note = "Examine image (Flawless_Green_Dragon_Scale.png) viewed: 'Ingredient Type: Dragon Scale', no bind line. Dragonscale Armor's text 'Update 14 (Menace of the Underdark); ...' matches; Mikrom Sum's row had no drop text."

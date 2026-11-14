@@ -1,0 +1,49 @@
+name = "Legendary Vulkoorim Dervish Robe"
+description = """
+The Vulkoorim Dervish use silk robes to cover their Drow bodies from the baking
+heat of the desert."""
+drop_location = "Legendary version of Epic Vulkoorim Dervish Robe"
+enhancement_bonus = 15
+icon = "Cloth_1e"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: crafted only ("Legendary version of Epic ...").'
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 146
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Efficient Metamagic - Maximize II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Efficient Metamagic - Intensify II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Utter Disintegration"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"

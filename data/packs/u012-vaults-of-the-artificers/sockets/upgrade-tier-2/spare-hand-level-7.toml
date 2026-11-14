@@ -1,0 +1,42 @@
+label = "upgrade: tier 2"
+name = "Spare Hand (Level 7)"
+
+[[option]]
+name = "Disable Device +11 and Open Lock +11"
+description = """
+Disable Device +11: Passive: +11 Competence bonus to the Disable Device skill.
+Open Lock +11: Passive: +11 Competence bonus to the Open Lock skill."""
+icon = "Upgrade"
+min_level = 7
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Disable Device"
+value = 11
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Open Lock"
+value = 11
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [[
+    "Disable Device",
+    "Open Lock",
+]]
+reason = 'The page lists these enchantments as separate lines. screenshot: "Disable Device +11: +11 Competence bonus to Disable Device." / "Open Lock +11: +11 Competence bonus to Open Lock." / typed: "Disable Device +11: Passive: +11 Competence bonus to the Disable Device skill." / "Open Lock +11: …"'
+url = "https://ddowiki.com/page/Item:Spare_Hand"
+read = "2026-10-23"
+qualifier = 'option "Disable Device +11 and Open Lock +11", Disable Device, Open Lock / Competence'

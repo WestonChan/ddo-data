@@ -11,6 +11,12 @@ material = "Gold"
 minimum_level = 30
 slot = "Neck"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Item:Nebula_Fragment"
+read = "2026-11-04"
+note = "Page table 'Nebula Fragment rewards': Acquired 'Lahar, Turn in Nebula Fragment', ML 30, Bound to Character on Acquire; made by upgrading the Legendary base item at Lahar, not a drop."
+
 [[clickie]]
 name = "Blood Sacrifice"
 clickie = "Blood Sacrifice"

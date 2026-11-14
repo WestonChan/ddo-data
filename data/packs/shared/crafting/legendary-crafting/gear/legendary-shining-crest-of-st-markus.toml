@@ -1,0 +1,47 @@
+name = "Legendary Shining Crest of St. Markus"
+description = """
+A circlet of pure silver, wearable only by the virtuous souls that would risk
+their own lives to combat the forces of darkness."""
+drop_location = "Legendary version of Epic Shining Crest of St. Markus"
+icon = "Helmet_18a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Head"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: crafted only ("Legendary version of Epic ...").'
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Silver Flame Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Power of the Silver Flame"
+bonus_type = "Equipment"
+value = 151
+
+[[effect]]
+name = "Light Absorption"
+bonus_type = "Enhancement"
+value = 23
+
+[[effect]]
+name = "Legendary Brilliance Guard"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"

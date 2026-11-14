@@ -1,7 +1,96 @@
 name = "Thunder-Forged"
-npc = "Magma Forge, in the lower area of The Ruins of Thunderholme; a fast travel NPC in The Thunder Peaks public area takes you there once you have defeated the Dragon Emissary (Sarva Bellistrae), flagging for the Temple of the Deathwyrm raid"
 pack = "Shadowfell Conspiracy"
 page = "https://ddowiki.com/page/Thunder-Forged"
+
+[[station]]
+name = "Magma Forge"
+note = "Makes Thunder-Forged weapons (Tier 0-3) and Shadowscale Armor; every recipe table is on the Thunder-Forged page"
+
+[[unlock]]
+kind = "pack"
+pack = "Shadow Under Thunderholme"
+text = "The Ruins of Thunderholme, where the Magma Forge stands, requires access to the adventure pack Shadow Under Thunderholme"
+
+[[step]]
+name = "Tier 0"
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Thunder-Forged Dwarven Ingot"
+quantity = 20
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Commendation of Valor"
+quantity = 15
+
+[[step]]
+name = "Shadowscale Armor base"
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Shadow Dragon Scale"
+quantity = 50
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Commendation of Valor"
+quantity = 240
+
+[[step]]
+name = "Shadowscale Armor flawless upgrade"
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Shadow Dragon Scale"
+quantity = 50
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Commendation of Valor"
+quantity = 240
+
+[[step]]
+name = "Flawless version upgrade (Cloth)"
+slot = "crafting: shadow cloth variant"
+
+[[step]]
+name = "Flawless version upgrade (Light)"
+slot = "crafting: shadow light variant"
+
+[[step]]
+name = "Flawless version upgrade (Medium)"
+slot = "crafting: shadow medium variant"
+
+[[step]]
+name = "Flawless version upgrade (Heavy)"
+slot = "crafting: shadow heavy variant"
+
+[[step]]
+name = "Flawless version upgrade (Docent)"
+slot = "crafting: shadow docent variant"
+
+[[step]]
+name = "Tier 1"
+slot = "crafting: thunderforged tier 1"
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Thunder-Forged Dwarven Ingot"
+quantity = 60
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Commendation of Valor"
+quantity = 45
+
+[[step]]
+name = "Tier 2"
+slot = "crafting: thunderforged tier 2"
+
+[[step]]
+name = "Tier 3"
+slot = "crafting: thunderforged tier 3"
 
 [[family]]
 family = "Thunderforged"
@@ -10,12 +99,6 @@ family = "Thunderforged"
 name = "Thunder-Forged Dwarven Ingot"
 bind = "Unbound"
 drop_location = "Main Raid Chest, Fire on Thunder Peak and Temple of the Deathwyrm (14-26); Side Raid Chests, Fire on Thunder Peak and Temple of the Deathwyrm (Rare Drop: 0-3?); Rare Encounter Chests, The Ruins of Thunderholme (0-10?). Used for the base item and Tiers 1-3"
-tier = "epic"
-
-[[ingredient]]
-name = "Commendation of Valor"
-bind = "Bound to Character on Acquire"
-drop_location = "Epic quest end rewards; Raid Side Chests (11-18?); Rare Encounter Chests, The Ruins of Thunderholme (Rare Drop: 0-14?). Used for the base item and Tiers 1-3"
 tier = "epic"
 
 [[ingredient]]
@@ -44,110 +127,128 @@ tier = "epic"
 
 [[citation]]
 url = "https://ddowiki.com/page/Thunder-Forged"
-read = "2026-09-29"
+read = "2026-11-04"
+note = "Every recipe table, the ingredient table, the Tier 0 and Shadowscale base-item tables and the weapon and armor base-property lists were read. No in-game screenshot of any crafted item is on the page (only Crafting_MagmaForge.png, the forge). The page states no level, favor, pack, feat or crafting-level gate for the system; the nav template's 'Level 22+' group is a navigation listing, not a stated gate."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-11-04"
+note = """
+Page heading 'Creating base items'; the item says 'Thunder-Forged (Tier 0)'
+
+Page heading 'Shadowscale Armor / Base items': Robe, Outfit, Light, Medium, Heavy, Docent, ML 26, all Bound to Character on Acquire
+
+Page heading 'Flawless version upgrade', ML 28; each option adds a Green Augment Slot plus its own lines; compatibility by armor type is in the table (Shadow Caster and Shadow Disciple: all five armor types; Killer: not cloth; Striker: Medium, Heavy, Docent; Guardian: Heavy, Docent; Construct: Docent)
+
+One recipe
+
+Both cells are one rowspan over all six options
+
+Only Commendation of Valor x240 is shared by all eleven options. Ingots 320 (nine options) or 720 (the two augment slots); Fire and Shadow Dragon Scale per option: Blessing 75 fire + 25 shadow, Edge 25 fire + 75 shadow, 2nd Degree Burns and Wrath of Flames 100 fire, Paralyzing Fear and Wrath of Shadows 100 shadow, Focus, School Focus and Spell Penetration 50 fire + 50 shadow, slots none. The survey rows match the page exactly.
+
+Ingot x800 and Commendation x600 are shared by all 25 options. Group 1 (7 options: Ice Storm, 3rd Degree Burns, Crippling Flames, Leg Breaker, Mind Breaker, Dwarvencraft Acid Lore, Dwarvencraft Healing Lore) adds Fire Dragon Scale 200 + Shadow Dragon Phlogiston 30; group 2 (8 options, Eternal Chilling Darkness to Dwarvencraft Kinetic Lore) adds Shadow Dragon Scale 200 + Shadow Dragon Phlogiston 30; group 3 (10 options, Eternal Scorching Light to Dwarvencraft Repair Lore) adds Shadow Dragon Scale 200 + Fire Dragon Phlogiston 30. Group 1 pairing Fire scale with Shadow phlogiston is what the page's cells say (the rowspan is 7 on the 200 and 30 cells, and the columns are Fire Scale and Shadow Phlogiston by header icon); the survey rows match.
+
+Header icons are Shadow Dragon Scale and Commendation of Valor; one recipe row covers every armor type
+
+One cost cell over the six options
+
+The Thunder-Forged page's 'Flawless version upgrade' (ML 28, Shadowscale Armor; 'You can only choose one upgrade') table has a Compatibility column per armor type: Cloth, Light, Medium, Heavy, Docent, over six options (Shadow Caster, Disciple, Killer, Striker, Guardian, Construct), each also adding a Green Augment Slot. The Cloth column ticks Caster and Disciple only, and those are the two augments carrying the Cloth label in the data. The data's six Shadow augments list exactly the five 'shadow <type> variant' labels the table's ticks give: Caster and Disciple all five (Cloth, Light, Medium, Heavy, Docent), Killer all but Cloth, Striker Medium/Heavy/Docent (Docent needs Mithral or Adamantine Body), Guardian Heavy/Docent (Docent needs Adamantine Body), Construct Docent only; the labels are therefore the armor-type variants of one step, one label per armor type. No item page names the sockets, so the step name is the wiki's heading 'Flawless version upgrade' plus the armor type; the game's own wording is unconfirmed. This splits the round-1 step 'Shadowscale Armor flawless upgrade' (slot none) into five steps, or keeps one step and gives its recipes a compatibility per variant: a shape decision for the orchestrator (verification request below). Cloth covers the Shadowscale Robe and Outfit, Light the Dragonhide, Medium the Dragonscale, Heavy the Dragonplate.
+
+Same table as 'crafting: shadow cloth variant', Light column: options Shadow Caster, Shadow Disciple and Shadow Killer carry it in the data; the page's Light column ticks Caster, Disciple, Killer only.
+
+Same table, Medium column: Shadow Caster, Disciple, Killer and Striker (the four augments carrying the label in the data; Striker's footnote 3 is a Docent condition, not Medium).
+
+Same table, Heavy column: Shadow Caster, Disciple, Killer, Striker and Guardian (the five augments carrying the label in the data).
+
+Same table, Docent column: all six options (the six augments carry the label in the data). Footnotes: Shadow Striker on a Docent requires Mithral Body or Adamantine Body; Shadow Guardian on a Docent requires Adamantine Body.
+
+Page section 'Tier 1 upgrade ML 24'; item text 'Thunder-Forged (Tier 1)'
+
+Page section 'Tier 2 upgrade ML 26'; the Green and Purple Augment Slot recipes are options of this step and grant a socket (grants_slot green / purple)
+
+Page section 'Tier 3 upgrade ML 28'"""
+
+[[citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/The_Ruins_of_Thunderholme"
+read = "2026-11-04"
+
+[[citation]]
+url = "https://ddowiki.com/page/Magma_Forge"
+read = "2026-11-04"
+note = "Station page: location, a fast-travel NPC condition (disagrees with the Thunder-Forged page, see the verification note below), recipes link back to Thunder-Forged."
+
+[[citation]]
+url = "https://ddowiki.com/page/Ingrith_Icefell"
+read = "2026-11-04"
+note = "Quotes the guide's in-game dialogue: after killing Sarva Bellistrae alone she offers the Forge. This settles the unlock conflict."
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Ruins_of_Thunderholme"
+read = "2026-11-04"
+note = "Area page: 'Requires access to adventure pack: Shadow Under Thunderholme'; the Emissary mission is the flag for Temple of the Deathwyrm and Dagan's for Fire on Thunder Peak; 'the Magma Forge can be found in the lower sections of the mountain'."
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Thunder_Peaks"
+read = "2026-11-04"
+note = "Lists Ingrith Icefell as the free guide to both raid entrances and the forge; names the quest givers for the two flagging missions. States no flag condition itself."
 
 [[recipe]]
 note = "All recipe tables are on this page; the linked Thunder-Forged_weapons page is a weapon damage chart with no recipes. Creates the ML22 Tier 0 weapon (+9 Enhancement, Metalline, an Orange augment slot), any weapon type; no augment counterpart."
 option = "Thunder-Forged (Tier 0) base weapon"
 tier = "epic"
-
-[[recipe.ingredient]]
-ingredient = "Thunder-Forged Dwarven Ingot"
-quantity = 20
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 15
+step = "Tier 0"
 
 [[recipe]]
 option = "Blinding Fear"
-slot = "crafting: thunderforged tier 1"
 tier = "epic"
+step = "Tier 1"
 
 [[recipe.augment]]
 name = "Blinding Fear"
 level = 24
 
-[[recipe.ingredient]]
-ingredient = "Thunder-Forged Dwarven Ingot"
-quantity = 60
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 45
-
 [[recipe]]
 option = "1st Degree Burns"
-slot = "crafting: thunderforged tier 1"
 tier = "epic"
+step = "Tier 1"
 
 [[recipe.augment]]
 name = "1st Degree Burns"
 level = 24
 
-[[recipe.ingredient]]
-ingredient = "Thunder-Forged Dwarven Ingot"
-quantity = 60
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 45
-
 [[recipe]]
 option = "Touch of Flames"
-slot = "crafting: thunderforged tier 1"
 tier = "epic"
+step = "Tier 1"
 
 [[recipe.augment]]
 name = "Touch of Flames"
 level = 24
 
-[[recipe.ingredient]]
-ingredient = "Thunder-Forged Dwarven Ingot"
-quantity = 60
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 45
-
 [[recipe]]
 option = "Touch of Shadows"
-slot = "crafting: thunderforged tier 1"
 tier = "epic"
+step = "Tier 1"
 
 [[recipe.augment]]
 name = "Touch of Shadows"
 level = 24
 
-[[recipe.ingredient]]
-ingredient = "Thunder-Forged Dwarven Ingot"
-quantity = 60
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 45
-
 [[recipe]]
 option = "Dwarvencraft Potency"
-slot = "crafting: thunderforged tier 1"
 tier = "epic"
+step = "Tier 1"
 
 [[recipe.augment]]
 name = "Dwarvencraft Potency"
 level = 24
 
-[[recipe.ingredient]]
-ingredient = "Thunder-Forged Dwarven Ingot"
-quantity = 60
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 45
-
 [[recipe]]
 option = "Dwarvencraft <Spell-Power Type>"
-slot = "crafting: thunderforged tier 1"
 tier = "epic"
+step = "Tier 1"
 
 [[recipe.augment]]
 name = "Dwarvencraft Combustion"
@@ -189,18 +290,10 @@ level = 24
 name = "Dwarvencraft Resonance"
 level = 24
 
-[[recipe.ingredient]]
-ingredient = "Thunder-Forged Dwarven Ingot"
-quantity = 60
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 45
-
 [[recipe]]
 option = "Dragon's Blessing"
-slot = "crafting: thunderforged tier 2"
 tier = "epic"
+step = "Tier 2"
 
 [[recipe.augment]]
 name = "Dragon's Blessing"
@@ -224,8 +317,8 @@ quantity = 25
 
 [[recipe]]
 option = "Dragon's Edge"
-slot = "crafting: thunderforged tier 2"
 tier = "epic"
+step = "Tier 2"
 
 [[recipe.augment]]
 name = "Dragon's Edge"
@@ -249,8 +342,8 @@ quantity = 75
 
 [[recipe]]
 option = "2nd Degree Burns"
-slot = "crafting: thunderforged tier 2"
 tier = "epic"
+step = "Tier 2"
 
 [[recipe.augment]]
 name = "2nd Degree Burns"
@@ -270,8 +363,8 @@ quantity = 100
 
 [[recipe]]
 option = "Wrath of Flames"
-slot = "crafting: thunderforged tier 2"
 tier = "epic"
+step = "Tier 2"
 
 [[recipe.augment]]
 name = "Wrath of Flames"
@@ -291,8 +384,8 @@ quantity = 100
 
 [[recipe]]
 option = "Paralyzing Fear"
-slot = "crafting: thunderforged tier 2"
 tier = "epic"
+step = "Tier 2"
 
 [[recipe.augment]]
 name = "Paralyzing Fear"
@@ -312,8 +405,8 @@ quantity = 100
 
 [[recipe]]
 option = "Wrath of Shadows"
-slot = "crafting: thunderforged tier 2"
 tier = "epic"
+step = "Tier 2"
 
 [[recipe.augment]]
 name = "Wrath of Shadows"
@@ -333,8 +426,8 @@ quantity = 100
 
 [[recipe]]
 option = "Dwarvencraft Focus"
-slot = "crafting: thunderforged tier 2"
 tier = "epic"
+step = "Tier 2"
 
 [[recipe.augment]]
 name = "Dwarvencraft Focus"
@@ -358,8 +451,8 @@ quantity = 50
 
 [[recipe]]
 option = "Dwarvencraft <Spell-school> Focus"
-slot = "crafting: thunderforged tier 2"
 tier = "epic"
+step = "Tier 2"
 
 [[recipe.augment]]
 name = "Dwarvencraft Abjuration Focus"
@@ -407,8 +500,8 @@ quantity = 50
 
 [[recipe]]
 option = "Dwarvencraft Spell Penetration"
-slot = "crafting: thunderforged tier 2"
 tier = "epic"
+step = "Tier 2"
 
 [[recipe.augment]]
 name = "Dwarvencraft Spell Penetration"
@@ -434,8 +527,8 @@ quantity = 50
 grants_slot = "green"
 note = "The page notes a Tier 2 augment slot excludes every other Tier 2 effect and the other slot."
 option = "Green Augment Slot"
-slot = "crafting: thunderforged tier 2"
 tier = "epic"
+step = "Tier 2"
 
 [[recipe.augment]]
 name = "Green Augment Slot"
@@ -453,8 +546,8 @@ quantity = 240
 grants_slot = "purple"
 note = "The page notes a Tier 2 augment slot excludes every other Tier 2 effect and the other slot."
 option = "Purple Augment Slot"
-slot = "crafting: thunderforged tier 2"
 tier = "epic"
+step = "Tier 2"
 
 [[recipe.augment]]
 name = "Purple Augment Slot"
@@ -470,8 +563,8 @@ quantity = 240
 
 [[recipe]]
 option = "Ice Storm"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Ice Storm"
@@ -495,8 +588,8 @@ quantity = 30
 
 [[recipe]]
 option = "3rd Degree Burns"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "3rd Degree Burns"
@@ -520,8 +613,8 @@ quantity = 30
 
 [[recipe]]
 option = "Crippling Flames"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Crippling Flames"
@@ -545,8 +638,8 @@ quantity = 30
 
 [[recipe]]
 option = "Leg Breaker"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Leg Breaker"
@@ -570,8 +663,8 @@ quantity = 30
 
 [[recipe]]
 option = "Mind Breaker"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Mind Breaker"
@@ -595,8 +688,8 @@ quantity = 30
 
 [[recipe]]
 option = "Dwarvencraft Acid Lore"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Dwarvencraft Acid Lore"
@@ -620,8 +713,8 @@ quantity = 30
 
 [[recipe]]
 option = "Dwarvencraft Healing Lore"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Dwarvencraft Healing Lore"
@@ -645,8 +738,8 @@ quantity = 30
 
 [[recipe]]
 option = "Eternal Chilling Darkness"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Eternal Chilling Darkness"
@@ -670,8 +763,8 @@ quantity = 30
 
 [[recipe]]
 option = "Acid Storm"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Acid Storm"
@@ -695,8 +788,8 @@ quantity = 30
 
 [[recipe]]
 option = "Mortal Fear"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Mortal Fear"
@@ -720,8 +813,8 @@ quantity = 30
 
 [[recipe]]
 option = "Body Breaker"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Body Breaker"
@@ -745,8 +838,8 @@ quantity = 30
 
 [[recipe]]
 option = "Dwarvencraft Lore"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Dwarvencraft Lore"
@@ -770,8 +863,8 @@ quantity = 30
 
 [[recipe]]
 option = "Dwarvencraft Void Lore"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Dwarvencraft Void Lore"
@@ -795,8 +888,8 @@ quantity = 30
 
 [[recipe]]
 option = "Dwarvencraft Ice Lore"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Dwarvencraft Ice Lore"
@@ -820,8 +913,8 @@ quantity = 30
 
 [[recipe]]
 option = "Dwarvencraft Kinetic Lore"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Dwarvencraft Kinetic Lore"
@@ -845,8 +938,8 @@ quantity = 30
 
 [[recipe]]
 option = "Eternal Scorching Light"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Eternal Scorching Light"
@@ -870,8 +963,8 @@ quantity = 30
 
 [[recipe]]
 option = "Fire Storm"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Fire Storm"
@@ -895,8 +988,8 @@ quantity = 30
 
 [[recipe]]
 option = "Lightning Storm"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Lightning Storm"
@@ -920,8 +1013,8 @@ quantity = 30
 
 [[recipe]]
 option = "Burning Emptiness"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Burning Emptiness"
@@ -945,8 +1038,8 @@ quantity = 30
 
 [[recipe]]
 option = "Draconic Reinvigoration"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Draconic Reinvigoration"
@@ -970,8 +1063,8 @@ quantity = 30
 
 [[recipe]]
 option = "Dwarvencraft Fire Lore"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Dwarvencraft Fire Lore"
@@ -995,8 +1088,8 @@ quantity = 30
 
 [[recipe]]
 option = "Dwarvencraft Radiance Lore"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Dwarvencraft Radiance Lore"
@@ -1020,8 +1113,8 @@ quantity = 30
 
 [[recipe]]
 option = "Dwarvencraft Sonic Lore"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Dwarvencraft Sonic Lore"
@@ -1045,8 +1138,8 @@ quantity = 30
 
 [[recipe]]
 option = "Dwarvencraft Lightning Lore"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Dwarvencraft Lightning Lore"
@@ -1070,8 +1163,8 @@ quantity = 30
 
 [[recipe]]
 option = "Dwarvencraft Repair Lore"
-slot = "crafting: thunderforged tier 3"
 tier = "epic"
+step = "Tier 3"
 
 [[recipe.augment]]
 name = "Dwarvencraft Repair Lore"
@@ -1097,119 +1190,70 @@ quantity = 30
 note = "Creates the ML26 Flawed Shadowscale robe, outfit, light, medium or heavy armor or docent (+11 Enhancement, Deathblock, Fortification +130%, Ghostly, a Blue augment slot, From The Shadows); no augment counterpart."
 option = "Flawed Shadowscale Armor (base item)"
 tier = "epic"
-
-[[recipe.ingredient]]
-ingredient = "Shadow Dragon Scale"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 240
+step = "Shadowscale Armor base"
 
 [[recipe]]
 grants_slot = "green"
 note = "Flawless (ML28) upgrade, one choice per armor; compatible with cloth, light, medium, heavy and docent. Every choice also adds a Green augment slot."
 option = "Shadow Caster"
 tier = "epic"
+step = "Shadowscale Armor flawless upgrade"
 
 [[recipe.augment]]
 name = "Shadow Caster - +3 Profane Concentration, +1 Profane Spell DCs"
 level = 26
-
-[[recipe.ingredient]]
-ingredient = "Shadow Dragon Scale"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 240
 
 [[recipe]]
 grants_slot = "green"
 note = "Flawless (ML28) upgrade, one choice per armor; compatible with cloth, light, medium, heavy and docent. Every choice also adds a Green augment slot."
 option = "Shadow Disciple"
 tier = "epic"
+step = "Shadowscale Armor flawless upgrade"
 
 [[recipe.augment]]
 name = "Shadow Disciple - +3 Profane Concentration, +1 Profane tactics DCs"
 level = 26
-
-[[recipe.ingredient]]
-ingredient = "Shadow Dragon Scale"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 240
 
 [[recipe]]
 grants_slot = "green"
 note = "Flawless (ML28) upgrade, one choice per armor; compatible with light, medium, heavy and docent. Every choice also adds a Green augment slot."
 option = "Shadow Killer"
 tier = "epic"
+step = "Shadowscale Armor flawless upgrade"
 
 [[recipe.augment]]
 name = "Shadow Killer - +2d6 Profane Sneak Attack, +1 Profane Reflex save"
 level = 26
-
-[[recipe.ingredient]]
-ingredient = "Shadow Dragon Scale"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 240
 
 [[recipe]]
 grants_slot = "green"
 note = "Flawless (ML28) upgrade, one choice per armor; compatible with medium, heavy and docent (docent requires Mithral Body or Adamantine Body). Every choice also adds a Green augment slot."
 option = "Shadow Striker"
 tier = "epic"
+step = "Shadowscale Armor flawless upgrade"
 
 [[recipe.augment]]
 name = "Shadow Striker - +3% Profane bonus to Doublestrike, Melee Alacrity 15%, Ranged Alacrity 20%"
 level = 26
-
-[[recipe.ingredient]]
-ingredient = "Shadow Dragon Scale"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 240
 
 [[recipe]]
 grants_slot = "green"
 note = "Flawless (ML28) upgrade, one choice per armor; compatible with heavy and docent (docent requires Adamantine Body). Every choice also adds a Green augment slot."
 option = "Shadow Guardian"
 tier = "epic"
+step = "Shadowscale Armor flawless upgrade"
 
 [[recipe.augment]]
 name = "Shadow Guardian - DR 30/Epic, DR 60/Epic while below 75% health"
 level = 26
-
-[[recipe.ingredient]]
-ingredient = "Shadow Dragon Scale"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 240
 
 [[recipe]]
 grants_slot = "green"
 note = "Flawless (ML28) upgrade, one choice per armor; compatible with docent. Every choice also adds a Green augment slot."
 option = "Shadow Construct"
 tier = "epic"
+step = "Shadowscale Armor flawless upgrade"
 
 [[recipe.augment]]
 name = "Shadow Construct - +10 Profane Repair Amplification"
 level = 26
-
-[[recipe.ingredient]]
-ingredient = "Shadow Dragon Scale"
-quantity = 50
-
-[[recipe.ingredient]]
-ingredient = "Commendation of Valor"
-quantity = 240

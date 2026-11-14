@@ -1,0 +1,11 @@
+label = "crafting: nearly finished"
+name = "Tinker's Gloves"
+
+[[option]]
+name = "Tinker's Finesse"
+description = "Adds the Tinker's Finesse set bonus"
+icon = "Heroism"
+min_level = 18
+
+[[option.set]]
+set = "Tinker's Finesse"

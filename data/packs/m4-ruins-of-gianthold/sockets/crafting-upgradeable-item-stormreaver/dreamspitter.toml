@@ -1,0 +1,43 @@
+label = "crafting: upgradeable item (stormreaver)"
+name = "Dreamspitter"
+
+[[option]]
+name = "Adds Force Burst"
+description = """
+Force Burst: This weapon is humming with magical force, and does 1 to 6 force
+damage each hit. Critical hits deal an additional 1 to 10 force damage for
+weapons with a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30
+for a x4 multiplier."""
+icon = "Stormreaver"
+min_level = 14
+
+[[option.modifier]]
+bonus = "Not Set"
+dice_damage = "Force"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[option.modifier]]
+amount_type = "CriticalDice"
+bonus_type = "Stacking"
+dice_damage = "Force"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]

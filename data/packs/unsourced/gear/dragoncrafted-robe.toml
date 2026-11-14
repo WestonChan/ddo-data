@@ -1,0 +1,38 @@
+name = "Dragoncrafted Robe"
+description = """
+An ancient robe imbued with the power of dragons for the rare humanoids that
+they favored."""
+drop_location = "Dragoncraft Armor, Turn in 10 Ancient Dragon Relics"
+icon = "Cloth_1c"
+is_legacy = true
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 4
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Wizardry III"
+bonus_type = "Enhancement"
+value = 75
+
+[[ddobuilder_correction]]
+kind = "item"
+field = "is_legacy"
+upstream = false
+reason = "The wiki says it is no longer available for purchase; examples still exist in game."
+url = "https://ddowiki.com/page/Dragoncraft_Armor"
+read = "2026-11-03"

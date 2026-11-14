@@ -1,0 +1,55 @@
+label = "upgrade: tier 2"
+name = "Ring of Master Artifice (Level 7)"
+
+[[option]]
+name = "Wizardry 107, Reconstruction 74, Repair Lore 11"
+description = """
+Wizardry +107: +107 Enhancement bonus to spell points.
+Reconstruction +74: Passive: +74 Equipment bonus to Repair and Rust Spell Power.
+Repair Lore +11: Passive: Your Repair and Rust spells gain a 11% Equipment bonus
+to their chance to critical hit."""
+min_level = 7
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+value = 107
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Repair Spell Power"
+value = 74
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Repair Spell Lore"
+value = 11
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [107]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [74]
+bonus_type = "Equipment"
+effect = "Repair Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Equipment"
+effect = "Repair Spell Lore"
+effect_type = "SpellLore"
+targets = [
+    "Repair",
+    "Rust",
+]

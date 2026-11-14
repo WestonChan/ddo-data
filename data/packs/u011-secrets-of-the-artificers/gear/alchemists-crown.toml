@@ -51,12 +51,4 @@ qualifier = 'effect "Radiance"'
 
 [[socket]]
 slot = "crafting: nearly finished"
-
-[[socket.option]]
-name = "Alchemist's Lore"
-description = "Upgrades the item to include the Alchemist's Lore set bonus"
-icon = "AlchemistsLore"
-min_level = 18
-
-[[socket.option.set]]
-set = "Alchemist's Lore"
+set = "Alchemist's Crown"

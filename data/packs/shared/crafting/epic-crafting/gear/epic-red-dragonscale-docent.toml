@@ -1,0 +1,71 @@
+name = "Epic Red Dragonscale Docent"
+description = """
+This docent was forged from the scales of the Red Dragon, Velah. This suit of
+armor can be repaired by a smith knowledgable in blue dragonscale repair techniques."""
+drop_location = "Epic Crafting, Turn in at the Altar of Epic Rituals"
+enhancement_bonus = 6
+icon = "Docent_4"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 20
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 21
+armor_bonus = -2
+armor_type = "Docent"
+mithral_body = 10
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Item:Shard_of_the_Red_Dragon"
+read = "2026-11-12"
+note = "Read by the orchestrator on 2026-11-12 in the built-in browser (image file name confirmed 2026-11-13). Image: the page's in-game examination panel (Shard_of_the_Red_Dragon.png, shown as 420px-Shard_of_the_Red_Dragon.png) reads 'This dragonshard contains the secrets of Epic Red Dragonscale crafting. Bring this to the Altar of Epic Rituals in the Twelve to convert it into a Dragonscale Armor of the type of your choice.' The image states the station and the product; it does not name the five armor types, give quantities or say whether the armor also drops. Typed text on the same page: 'Drops from: Plane of Night, Raid warded End Chest' and 'Used in: Altar of Epic Rituals'; its Tips list Shard of the Red Dragon, 50 Vault Key, 5 Greater Token of the Twelve and 20 Flawless Red Dragon Scales 'to create one of the following': Epic Red Dragonhide Armor, Epic Red Dragonplate Armor, Epic Red Dragonscale Armor, Epic Red Dragonscale Docent, Epic Red Dragonscale Robe. Plane of Night page (typed): the Epic warded chest list names 21 items, ending with Epic Helm of the Red Dragon, and no Epic Red armor; its loot footer lists Flawless Red Dragon Scale and Shard of the Red Dragon as Epic Difficulty only. So the armor is crafted only, not a drop. Altar of Epic Rituals page (typed): 'The altar is located in the Twelve next to Lahar'; it is the Epic Crafting device. Epic Crafting page (typed): 'Exception: there is no Heroic base item for Epic Red Dragonscale Armor which requires additional ingredients.' Update 50 Release Notes (typed): 'Epic items are obtained in the Altar of Epic Rituals'; the notes do not name these armors or the shard. Legendary Crafting table (typed): each Legendary Red armor is the 'Legendary version of Epic Red ...' of the same name. The in-game tooltip images on Item:Epic_Red_Dragonscale_Armor and Item:Legendary_Red_Dragonscale_Armor were looked at and are silent on how the armor is made. Not named on the Epic Crafting page; named in the shard page's Tips and on the Dragonscale Armor page's Altar of Epic Rituals row ('Epic Red Dragonscale Armors ML20'). It has no recipe of its own name: the recipe 'Epic Red Dragonscale Armor' yields any one of the five."
+
+[[effect]]
+name = "Eternal Fire"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Fire Guard II"
+
+[[effect]]
+name = "Incineration Guard"
+
+[[effect]]
+name = "Construct Fortification (10%)"
+bonus_type = "Insight"
+
+[[ddobuilder_correction]]
+kind = "item"
+field = "drop_location"
+upstream = "Vault of Night"
+reason = "Same turn-in"
+url = "https://ddowiki.com/page/Dragonscale_Armor"
+read = "2026-11-12"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

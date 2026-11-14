@@ -33,42 +33,15 @@ slot = "red"
 
 [[socket]]
 slot = "crafting: nearly finished"
-
-[[socket.option]]
-name = "Purple Augment Slot"
-description = "Adds a Purple Augment Slot"
-
-[[socket.option.grant]]
-slot = "purple"
+set = "Constellation, Cursed Blade"
 
 [[socket]]
 slot = "crafting: almost there"
-
-[[socket.option]]
-name = "Sovereign Vorpal"
-description = "Sovereign Vorpal: Passive: +0.5[W] damage dice. On Vorpal Hit: If your target has fewer than 3000 Hit Points, they are instantly slain. If your target has above 3000 Hit Points, they take 300 damage."
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [0.5]
-bonus_type = "Enhancement"
-effect_type = "Weapon_BaseDamage"
-targets = ["All"]
+set = "The Fractured Elegance"
 
 [[socket]]
 slot = "crafting: finishing touch"
-
-[[socket.option]]
-name = "Completed Weapon"
-description = "This item is fully completed, and as a result deals an additional 0.5[W] damage."
-min_level = 1
-
-[[socket.option.modifier]]
-amounts = [0.5]
-bonus_type = "Stacking"
-effect_type = "Weapon_BaseDamage"
-is_item_specific = true
-targets = ["All"]
+set = "Baz'Morath, the Curator of Decay"
 
 [[source]]
 chest = "end chest"

@@ -1,0 +1,47 @@
+name = "Legendary Ring of Venom"
+description = """
+Drow assassins say this ring is infused with Vulkoor's subtle poisons. Wearing
+it will make one's attacks deft and lethal."""
+drop_location = "Legendary version of Epic Ring of Venom"
+icon = "Ring_13a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 30
+slot = "Ring"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: crafted only ("Legendary version of Epic ...").'
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 11
+value2 = 17
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 45
+
+[[effect]]
+name = "Poison Resistance"
+bonus_type = "Enhancement"
+value = 51
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"

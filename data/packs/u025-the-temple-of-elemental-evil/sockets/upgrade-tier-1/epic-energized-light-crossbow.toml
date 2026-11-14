@@ -1,0 +1,19 @@
+label = "upgrade: tier 1"
+name = "Epic Energized Light Crossbow"
+
+[[option]]
+name = "Exceptional Seeker +5 and Crippling"
+description = """
+Exceptional Seeker +5: Provides a +5 Insight bonus to confirm critical hits, and
+a +5 Insight bonus to critical hit damage (before multipliers are applied).
+Crippling: A crippling weapon is infused with binding power so that when a target
+is critically hit their movement is slowed by half.
+Note: Real slowdown is only 25%"""
+min_level = 26
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]

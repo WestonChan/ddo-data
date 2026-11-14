@@ -25,37 +25,11 @@ name = "Thunderstruck"
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 1"
-
-[[socket.option]]
-name = "Adds a Yellow Augment Slot"
-description = "Adds a Yellow Augment Slot"
-icon = "Heroism"
-min_level = 25
-
-[[socket.option.grant]]
-slot = "yellow"
+set = "Pendant of the Stormreaver"
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 2"
-
-[[socket.option]]
-name = "Adds Electric Resistance +50"
-description = "Electric Resistance +50: Passive: +50 Enhancement bonus to your Electric Resistance."
-icon = "Heroism"
-min_level = 25
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Electric Resistance"
-value = 50
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [50]
-bonus_type = "Enhancement"
-effect = "Electric Resistance"
-effect_type = "EnergyResistance"
-targets = ["Electric"]
+set = "Pendant of the Stormreaver"
 
 [[source]]
 chest = "warded chest"

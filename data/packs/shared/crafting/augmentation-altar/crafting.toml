@@ -1,6 +1,27 @@
 name = "Augmentation Altar"
-npc = "Augmentation Altar inside the Temple of Silith-tar in the raid Den of Vipers (introduced in Update 72)"
 page = "https://ddowiki.com/page/Augmentation_Altar"
+
+[[station]]
+name = "Augmentation Altar"
+note = "Rewrites the Legendary Dust/Ash/Vacuum/Ooze/Salt/Affirmation or ability-bonus effect on Den of Vipers raid gear with Hydra Scales"
+
+[[step]]
+name = "Sealed in Mist"
+slot = "crafting: sealed in mist"
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Hydra Scale"
+quantity = 20
+
+[[step]]
+name = "Sealed in Gloom"
+slot = "crafting: sealed in gloom"
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Hydra Scale"
+quantity = 20
 
 [[family]]
 family = "SealedInFire"
@@ -25,13 +46,43 @@ tier = "legendary"
 
 [[citation]]
 url = "https://ddowiki.com/page/Augmentation_Altar"
-read = "2026-09-29"
+read = "2026-11-04"
+note = "Whole page read: introduced in Update 72; the Altar is in the raid Den of Vipers inside the Temple of Silith-tar and upgrades loot from that raid; upgrades require Hydra Scales from the end and optional chests of the raid; one table of 7 rows (six weapon effects and one ability-bonus row). Not stated: level, favor, pack, feat, or any quest or raid-completion gate on the Altar (unlike the Ritual Table page, it does not say the Altar is locked until the raid is done). No item ingredient or crafted item is named: the page speaks of 'Sealed in Mist item' and 'Sealed in Gloom item' generically."
+
+[[citation]]
+field = "pack"
+url = "https://ddowiki.com/page/Den_of_Vipers"
+read = "2026-11-12"
+note = "The Augmentation Altar is inside the Temple of Silith-tar in the Den of Vipers raid (Augmentation Altar page, read 2026-11-04). The Den of Vipers page's infobox says Purchase: Free to Play, no flagging required, and the raid is entered from the Hall of Heroes, which everyone can enter."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Augmentation_Altar"
+read = "2026-11-04"
+note = """
+Six weapon effects on 'Raid Den of Vipers Weapons'; the cost cell spans all six rows.
+
+One ability-bonus row on 'Raid Den of Vipers Equipment'.
+
+One cost cell for the six weapon rows: a Sealed in Mist item (the item being rewritten, not a fixed item) and 20 Hydra Scales. The page does not label the grade; the effects are the Legendary effects.
+
+A Sealed in Gloom item (the item being rewritten) and 20 Hydra Scales.
+
+The page's cost cell for the six weapon effects reads 'Sealed in Mist item, 20 Hydra Scales'. Step name is the wiki's wording of the item kind; the in-game socket text was not seen.
+
+The page's cost cell for the ability-bonus row reads 'Sealed in Gloom item, 20 Hydra Scales'. Step name is the wiki's wording of the item kind; the in-game socket text was not seen."""
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Augmentation_Altar"
+read = "2026-11-04"
+note = "Added: select one of Strength, Constitution, Dexterity, Intelligence, Wisdom or Charisma at +15, Insightful +7 or Quality +3 (18 choices)."
 
 [[recipe]]
 note = "Removes any effect the Augmentation Altar added before and adds Legendary Dust; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
 option = "Legendary Dust (Raid Den of Vipers Weapons)"
-slot = "crafting: sealed in mist"
 tier = "legendary"
+step = "Sealed in Mist"
 
 [[recipe.augment]]
 name = "Legendary Dust"
@@ -49,8 +100,8 @@ quantity = 20
 [[recipe]]
 note = "Removes any effect the Augmentation Altar added before and adds Legendary Ash; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
 option = "Legendary Ash (Raid Den of Vipers Weapons)"
-slot = "crafting: sealed in mist"
 tier = "legendary"
+step = "Sealed in Mist"
 
 [[recipe.augment]]
 name = "Legendary Ash"
@@ -68,8 +119,8 @@ quantity = 20
 [[recipe]]
 note = "Removes any effect the Augmentation Altar added before and adds Legendary Vacuum; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
 option = "Legendary Vacuum (Raid Den of Vipers Weapons)"
-slot = "crafting: sealed in mist"
 tier = "legendary"
+step = "Sealed in Mist"
 
 [[recipe.augment]]
 name = "Legendary Vacuum"
@@ -87,8 +138,8 @@ quantity = 20
 [[recipe]]
 note = "Removes any effect the Augmentation Altar added before and adds Legendary Ooze; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
 option = "Legendary Ooze (Raid Den of Vipers Weapons)"
-slot = "crafting: sealed in mist"
 tier = "legendary"
+step = "Sealed in Mist"
 
 [[recipe.augment]]
 name = "Legendary Ooze"
@@ -106,8 +157,8 @@ quantity = 20
 [[recipe]]
 note = "Removes any effect the Augmentation Altar added before and adds Legendary Salt; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
 option = "Legendary Salt (Raid Den of Vipers Weapons)"
-slot = "crafting: sealed in mist"
 tier = "legendary"
+step = "Sealed in Mist"
 
 [[recipe.augment]]
 name = "Legendary Salt"
@@ -125,8 +176,8 @@ quantity = 20
 [[recipe]]
 note = "Removes any effect the Augmentation Altar added before and adds Legendary Affirmation; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
 option = "Legendary Affirmation (Raid Den of Vipers Weapons)"
-slot = "crafting: sealed in mist"
 tier = "legendary"
+step = "Sealed in Mist"
 
 [[recipe.augment]]
 name = "Legendary Affirmation"
@@ -142,10 +193,13 @@ ingredient = "Hydra Scale"
 quantity = 20
 
 [[recipe]]
-note = "Removes any effect the Augmentation Altar added before and adds one ability bonus of choice: +15, Insightful +7 or Quality +3 to any ability."
+note = """
+Removes any effect the Augmentation Altar added before and adds one ability bonus of choice: +15, Insightful +7 or Quality +3 to any ability.
+
+Added: select one of Strength, Constitution, Dexterity, Intelligence, Wisdom or Charisma at +15, Insightful +7 or Quality +3 (18 choices)."""
 option = "Ability bonus (Raid Den of Vipers Equipment)"
-slot = "crafting: sealed in gloom"
 tier = "legendary"
+step = "Sealed in Gloom"
 
 [[recipe.augment]]
 name = "Strength +15"

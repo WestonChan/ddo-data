@@ -1,0 +1,60 @@
+name = "Treasure Hunter's Spyglass (legacy) (level 12)"
+description = """
+A tool such as this is a great aid to the treasure-seeking pirate, for it allows
+him or her to locate small details, find secret passages and notice any traps
+that might be lurking along the way."""
+drop_location = "Treasure of Crystal Cove, Turn in 800 Copper Doubloon 400 Silver Doubloon 25 Stolen Topaz at Dusty Old Treasure of Crystal Cove"
+icon = "Trinket_17"
+is_legacy = true
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 12
+slot = "Trinket"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page lists the box as holding the old (tiered) versions of this line (or the trinkets) bought at Dusty Old Treasure of Crystal Cove; the data Location text agrees. Its price rows are event_reward rows only for the Cavalry Plate line and the Lesser trinkets."
+
+[[clickie]]
+name = "Detect Secret Doors"
+clickie = "Detect Secret Doors"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 1
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Detect Secret Doors"]
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Treasure Hunter's Spyglass (legacy) (level 12)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Treasure Hunter's Spyglass (legacy) (level 12)"
+
+[[source]]
+kind = "crafting_system"
+name = "Dusty Old Treasure of Crystal Cove"

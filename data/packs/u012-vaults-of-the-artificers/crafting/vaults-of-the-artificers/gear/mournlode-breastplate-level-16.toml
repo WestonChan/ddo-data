@@ -1,0 +1,70 @@
+name = "Mournlode Breastplate (level 16)"
+description = """
+Metal armor constructed from valuable purple Mournlode crystal is imbued with
+a protective, almost holy power. Undead are seared by it, and it protects the
+wearer from evil."""
+drop_location = "Vaults of the Artificers, Turn in Various Cannith challenge ingredients"
+enhancement_bonus = 4
+icon = "MediumArmor_1"
+item_category = "Armor"
+item_type = "Medium"
+material = "Magesteel"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 15
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 5
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot/Armor"
+read = "2026-11-04"
+note = "Created at the Vaults challenge barter (Challenge Barter System Rewards); not a drop."
+
+[[clickie]]
+name = "Negative Energy Absorption"
+clickie = "Negative Energy Absorption"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 6
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Undead Guard"
+
+[[effect]]
+name = "Protection from Evil"
+bonus_type = "Deflection"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    10,
+    10,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Negative Energy Absorption"]
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Mournlode Breastplate (level 16)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Mournlode Breastplate (level 16)"
+
+[[source]]
+kind = "crafting_system"
+name = "Vaults of the Artificers"

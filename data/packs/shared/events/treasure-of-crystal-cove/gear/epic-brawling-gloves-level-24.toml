@@ -28,57 +28,11 @@ value2 = 6
 
 [[socket]]
 slot = "upgrade: tier 2"
-
-[[socket.option]]
-name = "Strength +8"
-description = "Strength +8: This item gives the wearer the power of Ogre Strength, granting a +8 enhancement bonus to Strength."
-icon = "Upgrade"
-min_level = 24
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Strength"
-value = 8
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [8]
-bonus_type = "Enhancement"
-effect = "Strength"
-effect_type = "AbilityBonus"
-targets = ["Strength"]
+set = "Epic Brawling Gloves (level 24)"
 
 [[socket]]
 slot = "upgrade: tier 3"
-
-[[socket.option]]
-name = "Sneak Attack Bonus +5, Adds a Yellow augment slot"
-description = """
-Sneak Attack Bonus +5: Provides a +5 to attack bonus and a +8 to damage for any
-attack that would qualify as a Sneak Attack, even if the wielder is not a Rogue.
-Adds a Yellow augment slot to this item"""
-icon = "Upgrade"
-min_level = 24
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Sneak Attack Hit"
-value = 5
-
-[[socket.option.grant]]
-slot = "yellow"
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [5]
-bonus_type = "Enhancement"
-effect = "Sneak Attack Hit"
-effect_type = "SneakAttackAttack"
-
-[[socket.option.modifier]]
-amounts = [8]
-bonus_type = "Enhancement"
-effect_type = "SneakAttackDamage"
+set = "Epic Brawling Gloves (level 24)"
 
 [[source]]
 kind = "event"

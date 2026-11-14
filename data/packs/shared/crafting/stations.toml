@@ -1,0 +1,1432 @@
+[[row]]
+name = "Dagni d'Kundarak"
+kind = "npc"
+place = "The Red Fens"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Dampened"
+read = "2026-11-04"
+note = "Pearl Collector: turn in a single Golden Swamp Pearl for a Token of Vulkoor. Golden Swamp Pearls come from Colossal Clams throughout The Red Fens wilderness and quests."
+
+[[row]]
+name = "Euphonia's Hat Box"
+kind = "device"
+place = "On the ship in Smuggler's Rest, to the right of Euphonia Teles and her Barter Box"
+
+[[row.unlock]]
+kind = "other"
+text = "Available only while the Treasure of Crystal Cove event is active (the page: the hat box is located on the ship in the Smuggler's Rest 'while the event is active'). The page states no level, favor, quest or key."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Euphonia%27s_Hat_Box"
+read = "2026-11-12"
+note = "The page calls it one of the crafting interfaces that appear similar to open chests; it stands in the world, so kind is device as for Dusty Old Treasure of Crystal Cove. The page has two images: a picture of the box (no text) and an in-game screenshot of its window (https://images.ddowiki.com/Euphonia%27s_Hat_Box_UI.png), which was opened and looked at: the window title reads EUPHONIA'S HAT BOX (confirming the name), page 1 of 11 lists Swabby's Kerchief at 500 copper doubloons, Freebooter's Bandana at 1000 and Corsair's Skullcap, with a Your Ingredients area and a Trade button. The screenshot shows nothing about where the box stands or when it is available, so the place and the event-only availability stay typed text."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Euphonia%27s_Hat_Box"
+read = "2026-11-12"
+
+[[row]]
+name = "Altar of Devastation"
+variant = "Guild Airship"
+kind = "device"
+place = "Guild Airship Green Steel Crafting Hall"
+
+[[row.unlock]]
+kind = "guild_amenity"
+value = 40
+text = """Guild level 40: the Green Steel Crafting Hall (State Room, 200,000 platinum) holds the Altars of Fecundity, Invasion, Subjugation and Devastation. The level 70 (Gold Seal 56) on this altar's own page belongs to the older per-altar contract, which the Guild Airship page marks "Obsoleted post-U22 by Green Steel Crafting Hall"."""
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Altar_of_Devastation"
+read = "2026-11-04"
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Guild_Airship"
+read = "2026-11-04"
+
+[[row]]
+name = "Altar of Devastation"
+variant = "The Shroud"
+kind = "device"
+place = "The Shroud raid, Phase 5 - The Challenge of the Lost Moon"
+
+[[row.unlock]]
+kind = "raid_flagging"
+quest = "The Shroud"
+text = "Flagged for The Shroud (The Thirteenth Eclipse) by completing the 5 pre-raid Vale quests"
+
+[[row.unlock]]
+kind = "other"
+text = "The character must not be on the Shroud timer to use the altar"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Altar_of_Devastation"
+read = "2026-11-04"
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Green_Steel_items"
+read = "2026-11-04"
+
+[[row]]
+name = "Altar of Epic Rituals"
+kind = "device"
+place = "The Twelve, outside the Tower of the Twelve to the south by south-west"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Dampened"
+read = "2026-11-04"
+note = "Same station as in epic-crafting.toml: epic upgrades of the Dampened items."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = "Converts heroic items into epic items; the upgrade creates a new item, so Mythic boosts and slotted augments are wiped."
+
+[[row]]
+name = "Altar of Fecundity"
+variant = "Guild Airship"
+kind = "device"
+place = "Guild Airship with a Green Steel Crafting Hall"
+
+[[row.unlock]]
+kind = "guild_amenity"
+value = 40
+text = "Guild level 40: the Green Steel Crafting Hall (State Room, 200,000 platinum) holds the Altars of Fecundity, Invasion, Subjugation and Devastation."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Altar_of_Fecundity"
+read = "2026-11-04"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Active"
+read = "2026-11-04"
+note = "Same station and variants as in green-steel-items.toml. The Active page: augment recipes can be obtained from the Altar of Fecundity in Meridia and in Guild Airships, but this device does not convert raw ingredients to manufactured ones."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Guild_Airship"
+read = "2026-11-04"
+
+[[row]]
+name = "Altar of Fecundity"
+variant = "Meridia"
+kind = "device"
+place = "Meridia, in the central pit (the Eldritch Chamber) of the main building"
+
+[[row.unlock]]
+kind = "quest"
+quest = "Let Sleeping Dust Lie"
+text = "One of the 5 prerequisite Vale quests; its end chest gives a Shavarath Stone, needed for the Shavarath Signet Stone every blank requires"
+
+[[row.unlock]]
+kind = "quest"
+quest = "Rainbow in the Dark"
+text = "One of the 5 prerequisite Vale quests; its end chest gives a Shavarath Stone, needed for the Shavarath Signet Stone every blank requires"
+
+[[row.unlock]]
+kind = "quest"
+quest = "Ritual Sacrifice"
+text = "One of the 5 prerequisite Vale quests; its end chest gives a Shavarath Stone, needed for the Shavarath Signet Stone every blank requires"
+
+[[row.unlock]]
+kind = "quest"
+quest = "Running with the Devils"
+text = "One of the 5 prerequisite Vale quests; its end chest gives a Shavarath Stone, needed for the Shavarath Signet Stone every blank requires"
+
+[[row.unlock]]
+kind = "quest"
+quest = "The Coalescence Chamber"
+text = "One of the 5 prerequisite Vale quests; its end chest gives a Shavarath Stone, needed for the Shavarath Signet Stone every blank requires"
+
+[[row.unlock]]
+kind = "other"
+text = "Valairea Satnarine's quest Eldritch Device Tutorial opens access to the Altar of Fecundity; 'Eldritch Device Tutorial' is not a quest in the survey data"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Altar_of_Fecundity"
+read = "2026-11-04"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Active"
+read = "2026-11-04"
+note = "Same station and variants as in green-steel-items.toml. The Active page: augment recipes can be obtained from the Altar of Fecundity in Meridia and in Guild Airships, but this device does not convert raw ingredients to manufactured ones."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Green_Steel_items"
+read = "2026-11-04"
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Green_Steel_item_crafting_steps"
+read = "2026-11-04"
+
+[[row]]
+name = "Altar of Insanity"
+kind = "device"
+place = "Hall of the Planes, Tower of the Twelve (south from the tower entrance, purple Door icon; the altar is on the right)"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Altar_of_Insanity"
+read = "2026-11-04"
+
+[[row]]
+name = "Altar of Invasion"
+variant = "Guild Airship"
+kind = "device"
+place = "Guild Airship Green Steel Crafting Hall (includes all of the altars)"
+
+[[row.unlock]]
+kind = "guild_amenity"
+value = 40
+text = """Guild level 40: the Green Steel Crafting Hall (State Room, 200,000 platinum) holds the Altars of Fecundity, Invasion, Subjugation and Devastation. The level 50 (Gold Seal 40) on this altar's own page belongs to the older per-altar contract, which the Guild Airship page marks "Obsoleted post-U22 by Green Steel Crafting Hall"."""
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Altar_of_Invasion"
+read = "2026-11-04"
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Guild_Airship"
+read = "2026-11-04"
+
+[[row]]
+name = "Altar of Invasion"
+variant = "The Shroud"
+kind = "device"
+place = "The Shroud raid, Phase 1 - The Challenge of the Waning Moons"
+
+[[row.unlock]]
+kind = "raid_flagging"
+quest = "The Shroud"
+text = "Flagged for The Shroud (The Thirteenth Eclipse) by completing the 5 pre-raid Vale quests"
+
+[[row.unlock]]
+kind = "other"
+text = "The character must not be on the Shroud timer to use the altar"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Altar_of_Invasion"
+read = "2026-11-04"
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Green_Steel_items"
+read = "2026-11-04"
+
+[[row]]
+name = "Altar of Legendary Rituals"
+kind = "device"
+place = "The Twelve"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Dampened"
+read = "2026-11-04"
+note = "Same station as in legendary-crafting.toml: legendary upgrades of the Dampened items (all but the wand)."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Page: Star Fragments "can also be purchased from the Altar of Legendary Rituals at an exchange rate of 100 pack ingredients (except Saltmeadow Hay) to one Star Fragment".'
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Intro: "Legendary Crafting is an expansion of the revamped Epic Crafting system using the Altar of Legendary Rituals in The Twelve", introduced in Update 50. The Epic Crafting page places the Epic devices outside the Tower of the Twelve to the south by south-west; this page gives no finer location.'
+
+[[row]]
+name = "Altar of Subjugation"
+variant = "Devil Battlefield"
+kind = "device"
+place = "Devil Battlefield, to the east of the zone-in point"
+
+[[row.unlock]]
+kind = "pack"
+pack = "The Devils of Shavarath"
+text = "Access to the Devils of Shavarath adventure pack"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Altar_of_Subjugation"
+read = "2026-11-04"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Incredible_Potential"
+read = "2026-11-04"
+note = 'Same station and variant as in green-steel-items.toml. This page: "in the Altar of Subjugation (The Shroud part 3 or Devil Battlefield)".'
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Green_Steel_items"
+read = "2026-11-04"
+
+[[row]]
+name = "Altar of Subjugation"
+variant = "Guild Airship"
+kind = "device"
+place = "Guild Airship Green Steel Crafting Hall"
+
+[[row.unlock]]
+kind = "guild_amenity"
+value = 40
+text = """Guild level 40: the Green Steel Crafting Hall (State Room, 200,000 platinum) holds the Altars of Fecundity, Invasion, Subjugation and Devastation. The level 60 (Gold Seal 48) on this altar's own page belongs to the older per-altar contract, which the Guild Airship page marks "Obsoleted post-U22 by Green Steel Crafting Hall"."""
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Altar_of_Subjugation"
+read = "2026-11-04"
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Guild_Airship"
+read = "2026-11-04"
+
+[[row]]
+name = "Altar of Subjugation"
+variant = "The Shroud"
+kind = "device"
+place = "The Shroud raid, part 3: The Challenge of the Waxing Moons"
+
+[[row.unlock]]
+kind = "raid_flagging"
+quest = "The Shroud"
+text = "Flagged for The Shroud (The Thirteenth Eclipse) by completing the 5 pre-raid Vale quests"
+
+[[row.unlock]]
+kind = "other"
+text = "The character must not be on the Shroud timer to use the altar"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Altar_of_Subjugation"
+read = "2026-11-04"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Incredible_Potential"
+read = "2026-11-04"
+note = 'Same station and variant as in green-steel-items.toml. This page: "in the Altar of Subjugation (The Shroud part 3 or Devil Battlefield)".'
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Green_Steel_items"
+read = "2026-11-04"
+
+[[row]]
+name = "Altar of Vulkoor"
+kind = "device"
+place = "The Red Fens, in the Raveneye Refugee Camp"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Dampened"
+read = "2026-11-04"
+note = "Page: used to remove the Dampened effect from items and upgrade them by combining them with a Token of Vulkoor; a preview of the available upgrades is not provided. An altar to Vulkoor, the scorpion god of many Drow; introduced in Update 6."
+
+[[row]]
+name = "Arcton Greenwort"
+kind = "npc"
+place = "Eveningstar"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Eveningstar"
+read = "2026-11-12"
+note = "The Eveningstar Commendations page's Trader List gives 'Arcton Greenwort - Druid' and gives no place; the place text is from the Eveningstar page. The Eveningstar page lists him under Traders & Brokers, Commendation traders, as the Druid Trader; no more exact spot is given on either page."
+
+[[row]]
+name = "Augmentation Altar"
+kind = "device"
+place = "Temple of Silith-tar in the raid Den of Vipers"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Augmentation_Altar"
+read = "2026-11-04"
+note = "Page: 'found in the raid Den of Vipers, inside the Temple of Silith-tar'. Introduced in Update 72."
+
+[[row]]
+name = "Bilk Howland"
+kind = "npc"
+place = "Upper Necropolis, The Necropolis"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Tome_of_Untold_Legends"
+read = "2026-11-04"
+note = "'To obtain the quest and a Tome:Binding talk to Bilk Howland at the Upper Necropolis, The Necropolis.' He also takes the completed Tome and gives the weapon."
+
+[[row]]
+name = "Cannith Binding Station"
+variant = "Eldritch Site Prime"
+kind = "device"
+place = "Eldritch Site Prime"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-11-04"
+note = "Named on the Alchemical Crafting page only; the Binding Station page does not list it. The Alchemical page also says crafting devices are available in the Sharn docks, but the Binding Station page lists no Sharn station."
+
+[[row]]
+name = "Cannith Binding Station"
+variant = "Research Facility"
+kind = "device"
+place = "The Research Facility, the raid adventure area off the Cannith Manufactury"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Cannith_Binding_Station"
+read = "2026-11-04"
+
+[[row]]
+name = "Cannith Melting Station"
+variant = "Guild ship"
+kind = "device"
+place = "Guild ship amenity"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Cannith_Melting_Station"
+read = "2026-11-04"
+note = "The page says it is also available as an amenity for guild ships; the Guild Airship page names no such amenity (see the verification request)."
+
+[[row]]
+name = "Cannith Melting Station"
+variant = "House Cannith Manufactury"
+kind = "device"
+place = "Just inside the entrance of House Cannith Manufactury"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Cannith_Melting_Station"
+read = "2026-11-04"
+note = "Added in Update 11."
+
+[[row]]
+name = "Cannith Melting Station"
+variant = "Sharn - Cliffside Docks District"
+kind = "device"
+place = "Sharn - Cliffside Docks District"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Cannith_Melting_Station"
+read = "2026-11-04"
+note = """
+The Syranian Forged Weaponry page calls the Sharn station 'Lower Docks of Sharn'.
+
+Cannith Melting Station page: a second station stands in Sharn - Cliffside Docks District (the first is in House Cannith Manufactury, and it is also a guild ship amenity). The Syranian page calls the Sharn place 'Lower Docks of Sharn'; the Melting page and the Rayne Cloud page both say Cliffside Docks District, so that wins. The station is Alchemical Crafting's, written there with all its variants."""
+
+[[row]]
+name = "Cannith Reforging Station"
+variant = "Toven's Workshop"
+kind = "device"
+place = "Toven's Workshop"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-11-04"
+note = "Named on the Alchemical Crafting page only."
+
+[[row]]
+name = "Cannith Reforging Station"
+variant = "Artificer Workshops"
+kind = "device"
+place = "Just inside the entrance of the Artificer Workshops, the raid adventure area off the Cannith Manufactury"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Cannith_Reforging_Station"
+read = "2026-11-04"
+note = """
+The page says it may be labelled 'Cannith Forging Station' in game.
+
+The page says it may be labeled 'Cannith Forging Station'. Also in alchemical-crafting.toml."""
+
+[[row]]
+name = "Cannith Reforging Station"
+variant = "Sharn - Cliffside Docks District"
+kind = "device"
+place = "Sharn - Cliffside Docks District"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Cannith_Reforging_Station"
+read = "2026-11-04"
+note = "'A second Cannith Reforging Station can be found in Sharn - Cliffside Docks District.' Also in alchemical-crafting.toml."
+
+[[row]]
+name = "Cannith Repurposing Station"
+kind = "device"
+place = "Morgrave University - Upper Commons"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Lost_Purpose"
+read = "2026-11-04"
+note = "From the manual: 'This machine was created to restore items suffering from Lost Purpose.' You may select a new purpose (set bonus) for an item; bringing it back later and choosing another erases the old one."
+
+[[row]]
+name = "Cauldron of Cadence"
+kind = "device"
+place = "The Feywild, reached through the Hut from Beyond on the north side of the docks in Stormreach Harbor"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Cauldron_of_Cadence"
+read = "2026-11-04"
+note = "Cauldron page: enter the Hut from Beyond and choose 'Journey to the Feywild through the Hut from Beyond'. The Ferrocrystal Weaponry page words it as the Cauldron 'in the Hut from Beyond in the Harbor' (see verification request)."
+
+[[row]]
+name = "Cauldron of Sora Katra"
+kind = "device"
+place = "Lordsmarch Plaza, southwest corner, south of the palace entrance"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Cauldron_of_Sora_Katra"
+read = "2026-11-04"
+note = "The window lists every recipe; dragging an item into the lower-left field filters the list to recipes using it, and a keyword search also works."
+
+[[row]]
+name = "Challenge Traders"
+kind = "npc"
+place = "House Cannith Enclave, central courtyard, just north of the House Cannith Crafting Hall"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Challenges"
+read = "2026-11-13"
+note = """Read by the orchestrator on 2026-11-13 (typed text; no screenshot on the page shows the barter). The Challenges page, reached from the Crafting page's Challenges section, says the challenge ingredients "are then used to purchase and upgrade items from Challenge Traders (found in the central courtyard of the House Cannith Enclave, just north of the House Cannith Crafting Hall, and also scattered around the village of Eveningstar.)" and "All items are obtained using the new Barter UI in the House Cannith Enclave. A complete list is available, see: Vaults of the Artificers loot." The page names the group, not the individual traders. The traders in Eveningstar belong to the Eveningstar challenge system (new/eveningstar-challenge-crafting.toml). The Vaults loot page, its main page and the House Cannith Enclave page name no trader (reader pass 2026-11-13)."""
+
+[[row]]
+name = "Deck of Many Curses"
+kind = "interface"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-11-04"
+
+[[row]]
+name = "Device Workstation"
+variant = "Eveningstar"
+kind = "device"
+place = "Eveningstar, behind the rogue trainer"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Device_Workstation"
+read = "2026-11-04"
+note = "New variant: not in trapmaking.toml. The page has three screenshots of the device (House Cannith, Eveningstar, Sharn Docks), pictures of the stations only."
+
+[[row]]
+name = "Device Workstation"
+variant = "Guild Airship"
+kind = "device"
+place = "Guild airship cargo hold, as the Device Workstation Contract amenity (Large)"
+
+[[row.unlock]]
+kind = "guild_amenity"
+value = 24
+text = "Gold Seal airship: guild level 24; Large amenity; Cost (AS) 30"
+
+[[row.unlock]]
+kind = "guild_amenity"
+value = 30
+text = "Standard airship: guild level 30; Large amenity; Cost (PP) 492.9. The Trapmaking page states it as guild level 30 (24 Gold Seal)."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Device_Workstation"
+read = "2026-11-04"
+note = "Same variant as trapmaking.toml. The page has three screenshots of the device (House Cannith, Eveningstar, Sharn Docks), pictures of the stations only. The Device Workstation page's Locations list calls it an 'Optional Guild Airship Amenity'; the place text is the one trapmaking.toml's row for the same station carries (from the Trapmaking page), and the contract and guild levels are on trapmaking.toml's unlock rows from the Guild Airship page."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Trapmaking"
+read = "2026-11-04"
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Guild_Airship"
+read = "2026-11-04"
+
+[[row]]
+name = "Device Workstation"
+variant = "House Cannith Enclave"
+kind = "device"
+place = "House Cannith Enclave, just northeast of the Bar (The Burnished Bull)"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Device_Workstation"
+read = "2026-11-04"
+note = "Same variant as trapmaking.toml. The page has three screenshots of the device (House Cannith, Eveningstar, Sharn Docks), pictures of the stations only."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Trapmaking"
+read = "2026-11-04"
+note = "The Trapmaking page places the workstations on the ground level of the House Cannith Enclave; the place is as the Device Workstation page gives it (new/rune-arm-reset.toml)."
+
+[[row]]
+name = "Device Workstation"
+variant = "Sharn Cliffside Docks"
+kind = "device"
+place = "City of Sharn, Cliffside Docks District, right of the forge station"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Device_Workstation"
+read = "2026-11-04"
+note = "New variant: not in trapmaking.toml. The page has three screenshots of the device (House Cannith, Eveningstar, Sharn Docks), pictures of the stations only."
+
+[[row]]
+name = "Dragontouched Eldritch Altar"
+kind = "device"
+place = "Reaver's Refuge, in Vorace's room beside him"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-11-04"
+note = "'Go to the place where Vorace is and there will be 3 altars: Eldritch, Tempest and Sovereign.' The page's chat-log lines print this altar's name."
+
+[[row]]
+name = "Dragontouched Sovereign Altar"
+kind = "device"
+place = "Reaver's Refuge, in Vorace's room beside him"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-11-04"
+note = "'Go to the place where Vorace is and there will be 3 altars: Eldritch, Tempest and Sovereign.' The page's chat-log lines print this altar's name."
+
+[[row]]
+name = "Dragontouched Tempest Altar"
+kind = "device"
+place = "Reaver's Refuge, in Vorace's room beside him"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-11-04"
+note = "'Go to the place where Vorace is and there will be 3 altars: Eldritch, Tempest and Sovereign.' The page's chat-log lines name the 'Dragontouched Eldritch Altar' and 'Dragontouched Sovereign Altar'; the Tempest altar's full name is not printed (this spelling follows the pattern)."
+
+[[row]]
+name = "Dreamforge"
+kind = "device"
+place = "Final room of The Dreaming Dark, after The Devourer of Dreams is defeated"
+
+[[row.unlock]]
+kind = "quest"
+quest = "The Dreaming Dark"
+text = "Characters must complete The Dreaming Dark each time they wish to access this station (each visit); the forcefields keep players from switching to alt characters to use it."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Dreamforge"
+read = "2026-11-04"
+note = "Page: 'a crafting station located at the end of The Dreaming Dark quest'; 'Location: Final room in The Dreaming Dark quest after The Devourer of Dreams has been defeated'. Forcefields remain in place, preventing players from switching to alt characters to use it. Its list interface previews the available upgrades."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Dreamforge"
+read = "2026-11-04"
+
+[[row]]
+name = "Duergar Completion Forge"
+kind = "device"
+place = "Gravenhollow"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-11-04"
+note = "Page: 'upgrade items from the Terror of Demogorgon expansion with an extra enchantment from a small list at the Duergar Completion Forge in Gravenhollow.' No finer location is given."
+
+[[row]]
+name = "Dusty Old Treasure of Crystal Cove"
+kind = "device"
+place = "Rook's Gambit tavern, Smuggler's Rest, hidden behind barrels in a corner"
+
+[[row.unlock]]
+kind = "other"
+text = "Accessible during the Treasure of Crystal Cove event. The page states no level, favor, quest or key."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page calls it Dusty Old Treasure and the chest; the Flask note says NE corner. Not Euphonia's Barter Box, which sells the new versions."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+
+[[row]]
+name = "Esoteric Table"
+kind = "device"
+place = "Entrance of the quest Fire Over Morgrave, Morgrave University - Upper Commons"
+quest = "Fire Over Morgrave"
+
+[[row.unlock]]
+kind = "other"
+text = "Locked during the Fire Over Morgrave fight; usable before the raid starts or after it is completed"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Esoteric_Table"
+read = "2026-11-04"
+note = "Added in Update 61 with Vecna Unleashed. Usable before the raid starts or after it completes; locked during the fight."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Esoteric_Table"
+read = "2026-11-04"
+
+[[row]]
+name = "Fetid Cauldron"
+kind = "device"
+place = "Gravenhollow, next to the Stoneaxe brothers"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Sealed_Altar"
+read = "2026-11-04"
+
+[[row]]
+name = "Fountain of Necrotic Might"
+kind = "device"
+place = "Upper Necropolis"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Fountain_of_Necrotic_Might"
+read = "2026-11-04"
+note = "Page: 'a crafting device located in Upper Necropolis. There are two of them. One is to the right when you zone in from the Lower Necropolis. The other is located near the quest givers for the Litany of the Dead Part 4 quests.' Both are in the same area, so one station row with no variant."
+
+[[row]]
+name = "Garvon"
+kind = "npc"
+place = "Forsaken Temple, just inside the entrance of the quest Slave Pits of the Undercity (Part 1), safely before any challenging encounter"
+quest = "Slave Pits of the Undercity"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Slave_Lords_Crafting"
+read = "2026-11-04"
+note = "Garvon <Armorer and Outfitter>. Two barter options: exchange ingredients for gems, and use gems to upgrade items. The barter list is the Heroic or the Legendary (page says Epic) one according to which version of the instance you are in."
+
+[[row]]
+name = "Gerad Poplar"
+kind = "npc"
+place = "Eveningstar, just southwest of the main square"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-04"
+note = "The page lists Gerad Poplar (Level 16) as the trader for the level 16 versions."
+
+[[row]]
+name = "Hoorunoe"
+kind = "npc"
+place = "Gianthold"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Restored_Elfcraft_Armor"
+read = "2026-11-04"
+note = "The page links Hoorunoe and Gianthold; it gives no place within the town. The same NPC serves the older Elfcraft Armor (the data's npc field reads Hoorunoe, Gianthold)."
+
+[[row]]
+name = "Horatin"
+kind = "npc"
+place = "Gianthold"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Restored_Giantcraft_Armor"
+read = "2026-11-04"
+note = "The page links Horatin and Gianthold; it gives no place within the town. The same NPC serves the older Giantcraft Armor (the data's npc field reads Horatin, Gianthold)."
+
+[[row]]
+name = "Item Crafting Device"
+variant = "Eveningstar"
+kind = "device"
+place = "Eveningstar Crafting Hall in Eveningstar"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Essence_Crafting"
+read = "2026-11-12"
+note = "The Essence Crafting page, Steps: craft all the shards onto the item 'at an Item Crafting Device'. The Essence Crafting page lists 'The Eveningstar Crafting Hall in Eveningstar' and its History says Update 79 made Essence Crafting available in Eveningstar. The Eveningstar Crafting Hall page itself was not opened. Same variant name as the Device Workstation rows. Which devices stand in which hall is read from two statements, not from a per-hall device list: the Essence Crafting page says all four halls are places where Essence Crafting activities are performed and names the three devices of the steps, and the Crafting Hall page says the public halls hold 2 complete sets of altars. No more exact spot is given: the Essence Crafting page lists the hall, and its section on the Eveningstar page has no text."
+
+[[row]]
+name = "Item Crafting Device"
+variant = "Guild Airship"
+kind = "device"
+place = "Essence Crafting Hall amenity on a Guild Airship"
+
+[[row.unlock]]
+kind = "guild_amenity"
+value = 41
+text = "Guild Airship page, amenity table: Cannith Crafting Hall, State Room, guild level 41, cost 125 Astral Shards (no platinum cost). Its description lists the Item Deconstructor, the four Crafting Devices (bound and unbound shards, bound and unbound items) and Jannice d'Cannith (Cannith crafting vendor). The Crafting Hall page says an airship can purchase and install the Essence Crafting amenity."
+
+[[row.unlock]]
+kind = "other"
+text = "Only Guild members, or those in their Party who they invite to the ship, have access to these facilities (the Crafting Hall page, on the amenity)."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Crafting_Hall"
+read = "2026-11-12"
+note = "The Essence Crafting page, Steps: craft all the shards onto the item 'at an Item Crafting Device'. The Essence Crafting page lists 'The Essence Crafting Hall amenity on a Guild Airship'; the Crafting Hall page says a Guild Airship can purchase and install an Essence Crafting station amenity. Same variant name as the Device Workstation rows. Which devices stand in which hall is read from two statements, not from a per-hall device list: the Essence Crafting page says all four halls are places where Essence Crafting activities are performed and names the three devices of the steps, and the Crafting Hall page says the public halls hold 2 complete sets of altars. The Crafting Hall page says the airship amenity has the altars and the vendor only, with no bank, auctioneer or tutorial."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Guild_Airship"
+read = "2026-11-12"
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Crafting_Hall"
+read = "2026-11-12"
+
+[[row]]
+name = "Item Crafting Device"
+variant = "House Cannith Enclave"
+kind = "device"
+place = "House Cannith Enclave, the House Cannith Crafting Hall in the upper (eastern) area of the enclave (2 complete sets of altars, one set in each wing)"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Crafting_Hall"
+read = "2026-11-12"
+note = "The Essence Crafting page, Steps: craft all the shards onto the item 'at an Item Crafting Device'. The Crafting Hall page: the other of the two public Crafting Halls (greeter Willman d'Cannith, no tutorial). The Essence Crafting page lists it as 'The House Cannith Crafting Hall located in the House Cannith Enclave'. Same variant name as the Device Workstation rows. Which devices stand in which hall is read from two statements, not from a per-hall device list: the Essence Crafting page says all four halls are places where Essence Crafting activities are performed and names the three devices of the steps, and the Crafting Hall page says the public halls hold 2 complete sets of altars."
+
+[[row]]
+name = "Item Crafting Device"
+variant = "House Kundarak Enclave"
+kind = "device"
+place = "House Kundarak Enclave, the Crafting Hall in the extreme southwest of the enclave (2 complete sets of altars, one set in each wing)"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Crafting_Hall"
+read = "2026-11-12"
+note = "The Essence Crafting page, Steps: craft all the shards onto the item 'at an Item Crafting Device'. The Crafting Hall page: one of two Crafting Halls in the public areas, nearly identical to the House Cannith one; only this one's greeter (Maker) offers the crafting tutorial. The Essence Crafting page lists it as 'The Crafting Hall located in the House Kundarak Enclave'. Which devices stand in which hall is read from two statements, not from a per-hall device list: the Essence Crafting page says all four halls are places where Essence Crafting activities are performed and names the three devices of the steps, and the Crafting Hall page says the public halls hold 2 complete sets of altars."
+
+[[row]]
+name = "Item Deconstruction Device"
+variant = "Eveningstar"
+kind = "device"
+place = "Eveningstar Crafting Hall in Eveningstar"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Essence_Crafting"
+read = "2026-11-12"
+note = "The Essence Crafting page, Steps: disjunct an item 'at the Item Deconstruction Device'; the page's Deconstruction and Components sections also dissolve items into Magic Item Essences in a Deconstructor. The Essence Crafting page lists 'The Eveningstar Crafting Hall in Eveningstar' and its History says Update 79 made Essence Crafting available in Eveningstar. The Eveningstar Crafting Hall page itself was not opened. Same variant name as the Device Workstation rows. Which devices stand in which hall is read from two statements, not from a per-hall device list: the Essence Crafting page says all four halls are places where Essence Crafting activities are performed and names the three devices of the steps, and the Crafting Hall page says the public halls hold 2 complete sets of altars. No more exact spot is given: the Essence Crafting page lists the hall, and its section on the Eveningstar page has no text."
+
+[[row]]
+name = "Item Deconstruction Device"
+variant = "Guild Airship"
+kind = "device"
+place = "Essence Crafting Hall amenity on a Guild Airship"
+
+[[row.unlock]]
+kind = "guild_amenity"
+value = 41
+text = "Guild Airship page, amenity table: Cannith Crafting Hall, State Room, guild level 41, cost 125 Astral Shards (no platinum cost). Its description lists the Item Deconstructor, the four Crafting Devices (bound and unbound shards, bound and unbound items) and Jannice d'Cannith (Cannith crafting vendor). The Crafting Hall page says an airship can purchase and install the Essence Crafting amenity."
+
+[[row.unlock]]
+kind = "other"
+text = "Only Guild members, or those in their Party who they invite to the ship, have access to these facilities (the Crafting Hall page, on the amenity)."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Crafting_Hall"
+read = "2026-11-12"
+note = "The Essence Crafting page, Steps: disjunct an item 'at the Item Deconstruction Device'; the page's Deconstruction and Components sections also dissolve items into Magic Item Essences in a Deconstructor. The Essence Crafting page lists 'The Essence Crafting Hall amenity on a Guild Airship'; the Crafting Hall page says a Guild Airship can purchase and install an Essence Crafting station amenity. Same variant name as the Device Workstation rows. Which devices stand in which hall is read from two statements, not from a per-hall device list: the Essence Crafting page says all four halls are places where Essence Crafting activities are performed and names the three devices of the steps, and the Crafting Hall page says the public halls hold 2 complete sets of altars. The Crafting Hall page says the airship amenity has the altars and the vendor only, with no bank, auctioneer or tutorial."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Guild_Airship"
+read = "2026-11-12"
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Crafting_Hall"
+read = "2026-11-12"
+
+[[row]]
+name = "Item Deconstruction Device"
+variant = "House Cannith Enclave"
+kind = "device"
+place = "House Cannith Enclave, the House Cannith Crafting Hall in the upper (eastern) area of the enclave (2 complete sets of altars, one set in each wing)"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Crafting_Hall"
+read = "2026-11-12"
+note = "The Essence Crafting page, Steps: disjunct an item 'at the Item Deconstruction Device'; the page's Deconstruction and Components sections also dissolve items into Magic Item Essences in a Deconstructor. The Crafting Hall page: the other of the two public Crafting Halls (greeter Willman d'Cannith, no tutorial). The Essence Crafting page lists it as 'The House Cannith Crafting Hall located in the House Cannith Enclave'. Same variant name as the Device Workstation rows. Which devices stand in which hall is read from two statements, not from a per-hall device list: the Essence Crafting page says all four halls are places where Essence Crafting activities are performed and names the three devices of the steps, and the Crafting Hall page says the public halls hold 2 complete sets of altars."
+
+[[row]]
+name = "Item Deconstruction Device"
+variant = "House Kundarak Enclave"
+kind = "device"
+place = "House Kundarak Enclave, the Crafting Hall in the extreme southwest of the enclave (2 complete sets of altars, one set in each wing)"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Crafting_Hall"
+read = "2026-11-12"
+note = "The Essence Crafting page, Steps: disjunct an item 'at the Item Deconstruction Device'; the page's Deconstruction and Components sections also dissolve items into Magic Item Essences in a Deconstructor. The Crafting Hall page: one of two Crafting Halls in the public areas, nearly identical to the House Cannith one; only this one's greeter (Maker) offers the crafting tutorial. The Essence Crafting page lists it as 'The Crafting Hall located in the House Kundarak Enclave'. Which devices stand in which hall is read from two statements, not from a per-hall device list: the Essence Crafting page says all four halls are places where Essence Crafting activities are performed and names the three devices of the steps, and the Crafting Hall page says the public halls hold 2 complete sets of altars."
+
+[[row]]
+name = "Kroth Mak"
+kind = "npc"
+place = "Eveningstar, just southwest of the main square"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-04"
+note = "The page lists Kroth Mak (Level 24) as the trader for the level 24 versions."
+
+[[row]]
+name = "Lahar"
+kind = "npc"
+place = "The Twelve, southwest of the tower-end of the bridge, near the Altar of Epic Rituals"
+
+[[row.unlock]]
+kind = "kept_item"
+crafting_ingredient = "Star Fragments: Frame"
+text = "The completed Frame (8 of 8 Shards of Power; Bound to Account from acquisition) must be in the inventory to open the Perfected Crafting interface; it is not consumed and can be passed between characters through the shared bank"
+
+[[row.unlock]]
+kind = "other"
+text = "Lahar gives the quest and the empty Frame when a Nebula Fragment (in the inventory, not in a bag) is shown to him; the Frame must then be in the inventory while the 8 Star Shrines (Shards of Power) are clicked: Red (Saltmarsh wilderness, south of the Final Enemy entrance), Orange (The Chronoscope, Rusty Nail inn behind the weapon and wand dealers' counter), Yellow (Partycrashers, front lobby by the guest list), Green (Storm the Beaches, on the warship), Teal (Into the Deep, bottom right corner), Blue (Plane of Night, island below the main platform, bring Feather Fall), Purple (The Spinner of Shadows, in the lava), Pink (Sands of Menechtarun wilderness, south-west of the Chains of Flame entrance)"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = "Epic Trader (augments and hearts of wood for Tokens of the Twelve) and the Seal Scroll Shard Cruncher (turns pre-Update 50 scrolls, seals and shards into pack ingredients). The Epic Crafting page places Lahar outside the Tower of the Twelve to the south by south-west; the place is as the Lahar page gives it (nebula-fragment-crafting.toml)."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Lahar"
+read = "2026-11-04"
+note = "Lahar <Epic Vendor> offers two interfaces (the Seal Scroll Shard Cruncher and the Epic Trader) and, with the completed Frame in the inventory, the Perfected Crafting interface of this system."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Item:Nebula_Fragment"
+read = "2026-11-04"
+note = """
+Page: 'The completed frame is BtA and is not consumed. It must be in your inventory to access Lahar's Perfected Crafting interface.' Screenshot Star_Fragments_Frame_Completed.jpg shows 'Bound to Account (from Acquisition)', unique item capacity 8 / 8.
+
+Carries the link to the kept_item row above. The page says a Nebula Fragment is needed only to receive the Frame and to craft, not to collect the shards."""
+
+[[row]]
+name = "Legacy Altar of Epic Rituals"
+kind = "device"
+place = "The Twelve, outside the Tower of the Twelve to the south by south-west"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = "Creates old-version epic items from a Scroll/Seal/Shard set and base item, and converts an old legacy epic item into a new blank version (Mythic/Reaper bonuses, rituals, augments, curses and Sentient Jewels must be removed first). Not part of the data's recipes."
+
+[[row]]
+name = "Legendary Altar of Devastation"
+kind = "device"
+place = "The Codex and the Shroud raid, at the end of part 5"
+quest = "The Codex and the Shroud"
+
+[[row.unlock]]
+kind = "raid_flagging"
+quest = "The Codex and the Shroud"
+text = 'Main page: "Tier 1 and Tier 2 ingredients to be found in flagging quests (To Curse the Sky and Creeping Death)". The page names those two quests as the flagging quests and states no further requirement.'
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_3"
+read = "2026-11-04"
+note = 'Page: "All the recipes listed here are used at the Legendary Altar of Devastation at the end of part 5 of The Codex and the Shroud." No wiki page of its own was read for the altar; no Guild Airship version is mentioned for the legendary altars.'
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items"
+read = "2026-11-04"
+
+[[row]]
+name = "Legendary Altar of Invasion"
+kind = "device"
+place = "The Codex and the Shroud raid, at the end of part 1"
+quest = "The Codex and the Shroud"
+
+[[row.unlock]]
+kind = "raid_flagging"
+quest = "The Codex and the Shroud"
+text = 'Main page: "Tier 1 and Tier 2 ingredients to be found in flagging quests (To Curse the Sky and Creeping Death)". The page names those two quests as the flagging quests and states no further requirement.'
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-11-04"
+note = 'Page: "All the recipes listed here are used at the Legendary Altar of Invasion at the end of part 1 of The Codex and the Shroud." No wiki page of its own was read for the altar; no Guild Airship version is mentioned for the legendary altars.'
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items"
+read = "2026-11-04"
+
+[[row]]
+name = "Legendary Altar of Subjugation"
+kind = "device"
+place = "The Codex and the Shroud raid, at the end of part 2"
+quest = "The Codex and the Shroud"
+
+[[row.unlock]]
+kind = "raid_flagging"
+quest = "The Codex and the Shroud"
+text = 'Main page: "Tier 1 and Tier 2 ingredients to be found in flagging quests (To Curse the Sky and Creeping Death)". The page names those two quests as the flagging quests and states no further requirement.'
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_2"
+read = "2026-11-04"
+note = 'Page: "All the recipes listed here are used at the Legendary Altar of Subjugation at the end of part 2 of The Codex and the Shroud." No wiki page of its own was read for the altar; no Guild Airship version is mentioned for the legendary altars.'
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items"
+read = "2026-11-04"
+
+[[row]]
+name = "Lorani Thallam"
+kind = "npc"
+place = "Eveningstar, just southwest of the main square"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-04"
+note = "The page lists Lorani Thallam (Level 20) as the trader for the level 20 versions."
+
+[[row]]
+name = "Magma Forge"
+kind = "device"
+place = "The Ruins of Thunderholme, lower area (Thunderholme, Shadow Under Thunderholme)"
+
+[[row.unlock]]
+kind = "raid_flagging"
+quest = "Temple of the Deathwyrm"
+text = "Defeat the Cult of the Dragon Emissary (Sarva Bellistrae) in The Ruins of Thunderholme, which flags you for the Temple of the Deathwyrm raid; the free guide Ingrith Icefell in The Thunder Peaks then takes you to the forge (no Astral Shard needed)"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Magma_Forge"
+read = "2026-11-04"
+note = "World view screenshot Crafting_MagmaForge.png confirms the in-game name 'Magma Forge'. Also creates Shadowscale Armor."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-11-04"
+
+[[row]]
+name = "Master Scalesmiths"
+kind = "npc"
+place = "Gianthold (city)"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Gianthold"
+read = "2026-11-04"
+note = "The Dragonscale page names the turn-in 'Master Scalesmiths' and links it to Gianthold; the Gianthold NPC list names three: Regnak (Master Black Scalesmith), Armec Orem (Master Blue Scalesmith), Rukts (Master White Scalesmith). The Attuned to Heroism page calls them 'Mastercraft Scalesmiths' (no such article)."
+
+[[row]]
+name = "Mikrom Sum"
+kind = "npc"
+place = "Eveningstar, north-central area, next to Battlemaster Dint (the Purple Dragon Knights patron representative)"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-11-04"
+note = "Infobox: 'Mikrom Sum <Purple Dragon Knight Patron Vendor>', Human, Purple Dragon Knight, Male; Location: Eveningstar, north-central area, next to Battlemaster Dint."
+
+[[row]]
+name = "Racella Unary"
+kind = "npc"
+place = "Upper Necropolis, The Necropolis"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Shield_of_Legend"
+read = "2026-11-04"
+note = "'To obtain the quest and a Shield: Frame talk to Racella Unary at the Upper Necropolis The Necropolis.' She also takes the completed Frame and gives the shield."
+
+[[row]]
+name = "Rayne Cloud"
+kind = "npc"
+place = "Sharn - Cliffside Docks District, sitting on a crate between the Cannith Melting Station and Syranian Weapons"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Rayne_Cloud"
+read = "2026-11-04"
+note = "Rayne Cloud page: halfling female freelance smith; 'will exchange your alloys and compounds from the Cannith Melting Station for Syranian Weapons'. The page has one photo of her (Rayne_Cloud.jpg), no examine screenshot. The Syranian page says only 'Docks district'."
+
+[[row]]
+name = "Reaper Forge"
+kind = "device"
+place = "Eberron Hall of Heroes"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-11-04"
+
+[[row]]
+name = "Relton Trapalo"
+kind = "npc"
+place = "Eveningstar"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Eveningstar"
+read = "2026-11-12"
+note = "The Eveningstar Commendations page's Trader List gives 'Relton Trapalo - War Wizard' and gives no place; the place text is from the Eveningstar page. The Eveningstar page lists him under Traders & Brokers, Commendation traders, as the War Wizard Trader; no more exact spot is given on either page."
+
+[[row]]
+name = "Ritual Table"
+kind = "device"
+place = "Side room of the raid Threats Old and New, in the Outskirts of Myth Drannor"
+
+[[row.unlock]]
+kind = "quest"
+quest = "Threats Old and New"
+text = "The Table is in a side room of the raid and is only accessible after completing the raid; the raid's entrance locks when it starts."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Ritual_Table"
+read = "2026-11-04"
+note = "Introduced in Update 69 with Magic of Myth Drannor. The raid entrance locks at the start of the raid, but the Table is only accessible after completing it."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Ritual_Table"
+read = "2026-11-04"
+
+[[row]]
+name = "Rosella Daventhorn"
+kind = "npc"
+place = "Outskirts of Myth Drannor"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Weaponry_of_the_Golden_Age"
+read = "2026-11-04"
+note = "The page: speak to Rosella Daventhorn in the Outskirts of Myth Drannor for the legendary weapons."
+
+[[row]]
+name = "Sangefar"
+kind = "npc"
+place = "Gianthold"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Restored_Dragoncraft_Armor"
+read = "2026-11-04"
+note = "The page links Sangefar and Gianthold; it gives no place within the town. The same NPC serves the older Dragoncraft Armor (the data's npc field reads Sangefar, Gianthold)."
+
+[[row]]
+name = "Sealed Altar"
+kind = "device"
+place = "Gravenhollow, upstairs"
+
+[[row.unlock]]
+kind = "kept_item"
+crafting_ingredient = "Slime Emblem"
+text = "A Slime Emblem must be in the inventory to open the crafting interface; it is not consumed, persists through Reincarnation, can pass between characters through the Account Bank, and must be re-flagged if discarded. The page names the combined Slime Emblem, not the two halves. No ingredient row named Slime Emblem exists yet (see new_ingredient below)."
+
+[[row.unlock]]
+kind = "other"
+text = "The altar is invisible and cannot be interacted with at first: standing at the furthest south point of the upper floor (near the glowing green spike) for ten seconds spawns it temporarily."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Sealed_Altar"
+read = "2026-11-04"
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Sealed_Altar"
+read = "2026-11-04"
+note = "Reveal condition; sits beside the typed kept_item row."
+
+[[row]]
+name = "Shard Crafting Device"
+variant = "Eveningstar"
+kind = "device"
+place = "Eveningstar Crafting Hall in Eveningstar"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Essence_Crafting"
+read = "2026-11-12"
+note = "The Essence Crafting page, Steps: craft a Minimum Level shard and effect shards 'at a Shard (Bound or Unbound) Crafting Device', and 'Use a Bound crafting station for Bound-to-Account shards, or an Unbound station for Unbound shards'; its leveling tips say to go back and forth between both devices. So a Bound and an Unbound device stand together; the page gives no separate wiki names for them, so they are one station row here. The Essence Crafting page lists 'The Eveningstar Crafting Hall in Eveningstar' and its History says Update 79 made Essence Crafting available in Eveningstar. The Eveningstar Crafting Hall page itself was not opened. Same variant name as the Device Workstation rows. Which devices stand in which hall is read from two statements, not from a per-hall device list: the Essence Crafting page says all four halls are places where Essence Crafting activities are performed and names the three devices of the steps, and the Crafting Hall page says the public halls hold 2 complete sets of altars. No more exact spot is given: the Essence Crafting page lists the hall, and its section on the Eveningstar page has no text."
+
+[[row]]
+name = "Shard Crafting Device"
+variant = "Guild Airship"
+kind = "device"
+place = "Essence Crafting Hall amenity on a Guild Airship"
+
+[[row.unlock]]
+kind = "guild_amenity"
+value = 41
+text = "Guild Airship page, amenity table: Cannith Crafting Hall, State Room, guild level 41, cost 125 Astral Shards (no platinum cost). Its description lists the Item Deconstructor, the four Crafting Devices (bound and unbound shards, bound and unbound items) and Jannice d'Cannith (Cannith crafting vendor). The Crafting Hall page says an airship can purchase and install the Essence Crafting amenity."
+
+[[row.unlock]]
+kind = "other"
+text = "Only Guild members, or those in their Party who they invite to the ship, have access to these facilities (the Crafting Hall page, on the amenity)."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Crafting_Hall"
+read = "2026-11-12"
+note = "The Essence Crafting page, Steps: craft a Minimum Level shard and effect shards 'at a Shard (Bound or Unbound) Crafting Device', and 'Use a Bound crafting station for Bound-to-Account shards, or an Unbound station for Unbound shards'; its leveling tips say to go back and forth between both devices. So a Bound and an Unbound device stand together; the page gives no separate wiki names for them, so they are one station row here. The Essence Crafting page lists 'The Essence Crafting Hall amenity on a Guild Airship'; the Crafting Hall page says a Guild Airship can purchase and install an Essence Crafting station amenity. Same variant name as the Device Workstation rows. Which devices stand in which hall is read from two statements, not from a per-hall device list: the Essence Crafting page says all four halls are places where Essence Crafting activities are performed and names the three devices of the steps, and the Crafting Hall page says the public halls hold 2 complete sets of altars. The Crafting Hall page says the airship amenity has the altars and the vendor only, with no bank, auctioneer or tutorial."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Guild_Airship"
+read = "2026-11-12"
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Crafting_Hall"
+read = "2026-11-12"
+
+[[row]]
+name = "Shard Crafting Device"
+variant = "House Cannith Enclave"
+kind = "device"
+place = "House Cannith Enclave, the House Cannith Crafting Hall in the upper (eastern) area of the enclave (2 complete sets of altars, one set in each wing)"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Crafting_Hall"
+read = "2026-11-12"
+note = "The Essence Crafting page, Steps: craft a Minimum Level shard and effect shards 'at a Shard (Bound or Unbound) Crafting Device', and 'Use a Bound crafting station for Bound-to-Account shards, or an Unbound station for Unbound shards'; its leveling tips say to go back and forth between both devices. So a Bound and an Unbound device stand together; the page gives no separate wiki names for them, so they are one station row here. The Crafting Hall page: the other of the two public Crafting Halls (greeter Willman d'Cannith, no tutorial). The Essence Crafting page lists it as 'The House Cannith Crafting Hall located in the House Cannith Enclave'. Same variant name as the Device Workstation rows. Which devices stand in which hall is read from two statements, not from a per-hall device list: the Essence Crafting page says all four halls are places where Essence Crafting activities are performed and names the three devices of the steps, and the Crafting Hall page says the public halls hold 2 complete sets of altars."
+
+[[row]]
+name = "Shard Crafting Device"
+variant = "House Kundarak Enclave"
+kind = "device"
+place = "House Kundarak Enclave, the Crafting Hall in the extreme southwest of the enclave (2 complete sets of altars, one set in each wing)"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Crafting_Hall"
+read = "2026-11-12"
+note = "The Essence Crafting page, Steps: craft a Minimum Level shard and effect shards 'at a Shard (Bound or Unbound) Crafting Device', and 'Use a Bound crafting station for Bound-to-Account shards, or an Unbound station for Unbound shards'; its leveling tips say to go back and forth between both devices. So a Bound and an Unbound device stand together; the page gives no separate wiki names for them, so they are one station row here. The Crafting Hall page: one of two Crafting Halls in the public areas, nearly identical to the House Cannith one; only this one's greeter (Maker) offers the crafting tutorial. The Essence Crafting page lists it as 'The Crafting Hall located in the House Kundarak Enclave'. Which devices stand in which hall is read from two statements, not from a per-hall device list: the Essence Crafting page says all four halls are places where Essence Crafting activities are performed and names the three devices of the steps, and the Crafting Hall page says the public halls hold 2 complete sets of altars."
+
+[[row]]
+name = "Sharpened Bone"
+kind = "npc"
+place = "Village of Tanaroa, near the hireling vendor"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Sharpened_Bone"
+read = "2026-11-04"
+note = "Tabaxi; his barter window creates the Isle of Dread augments and the Dinosaur Bone weapons; augments are slotted through the Augment Item UI."
+
+[[row]]
+name = "Siberys Dragonshard Combiner"
+kind = "npc"
+place = "House Jorasco Enclave"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Stone_of_Change"
+read = "2026-11-04"
+
+[[row]]
+name = "Soulforge"
+kind = "device"
+place = "Eberron Hall of Heroes, lower level, first room, south-west corner"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Soulforge"
+read = "2026-11-04"
+note = "Page: 'Soulforge is a crafting device located in the Eberron Hall of Heroes' and 'the Soulforge altar in the Hall of Heroes (lower level, first room, SW corner)'. Photo Soulforge.jpg is of the altar."
+
+[[row]]
+name = "Stone of Change"
+variant = "Guild Airship"
+kind = "device"
+place = "Guild airship cargo hold, as the Stone of Change Contract amenity (Large)"
+
+[[row.unlock]]
+kind = "guild_amenity"
+value = 32
+text = "Gold Seal airship: guild level 32; Large amenity; Cost (AS) 40"
+
+[[row.unlock]]
+kind = "guild_amenity"
+value = 40
+text = "Standard airship: guild level 40; Large amenity; Cost (PP) 1,011.9"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Stone_of_Change"
+read = "2026-11-04"
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Guild_Airship"
+read = "2026-11-04"
+
+[[row]]
+name = "Stone of Change"
+variant = "The Marketplace"
+kind = "device"
+place = "Outside The Marketplace Bank"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Stone_of_Change"
+read = "2026-11-04"
+
+[[row]]
+name = "Stone of Change"
+variant = "The Twelve"
+kind = "device"
+place = "Just to the right of the entrance to the tower of The Twelve"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Stone_of_Change"
+read = "2026-11-04"
+
+[[row]]
+name = "Stormreaver Monument"
+kind = "device"
+place = "Gianthold, south-west corner of the camp, west of the mailbox"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-11-04"
+note = "Page: 'Location: Gianthold in the south west corner of camp, west of the mailbox.' Its list interface previews the available upgrades. StormreaverMonument.jpg is a photo of the stone altar. The page also states that Flawless Dragonscale Armor can be upgraded here (see the cross-system note in the summary; this page gives no recipe table for it)."
+
+[[row]]
+name = "Strange Catalyst Forge"
+kind = "device"
+place = "Gravenhollow"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Catalyst_Crafting"
+read = "2026-11-04"
+
+[[row]]
+name = "Tellie Scavelman"
+kind = "npc"
+place = "Eveningstar"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Eveningstar"
+read = "2026-11-12"
+note = "The Eveningstar Commendations page's Trader List gives 'Tellie Scavelman - Village' and gives no place; the place text is from the Eveningstar page. The Eveningstar page lists her under Traders & Brokers, Commendation traders, as the Villager Trader; no more exact spot is given on either page."
+
+[[row]]
+name = "Toregar Falmon"
+kind = "npc"
+place = "Eveningstar"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Eveningstar"
+read = "2026-11-12"
+note = "Spelling conflict between pages: the Eveningstar Commendations page (Trader List, and its link /page/Toregar_Falmon) writes 'Toregar Falmon - Purple Dragon Knights'; the Eveningstar page writes 'Torgar Falmon <Purple Dragon Knight Trader>'. Name kept as the Commendations page has it, as briefed; not resolved here. The place text is from the Eveningstar page. The Eveningstar page lists him under Traders & Brokers, Commendation traders, as the Purple Dragon Knight Trader; no more exact spot is given on either page."
+
+[[row]]
+name = "Unholy Defiler of the Hidden Hand"
+kind = "device"
+place = "Morgrave University - Upper Commons, in the rafters above Steps Obliss (jump on the barrels in the nearby tavern to reach it)"
+
+[[row.unlock]]
+kind = "kept_item"
+item = "Steps' Lenses of Seein' Hidden Hand Secrets"
+text = "Must be worn: the device 'can be only seen/used if you wear Steps' Lenses of Seein' Hidden Hand Secrets'"
+
+[[row.unlock]]
+kind = "other"
+text = "Steps Obliss gives the lenses after speaking to him on a total of 14 consecutive days on one character (Morgrave University - Upper Commons)"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Unholy_Defiler_of_the_Hidden_Hand"
+read = "2026-11-04"
+note = "'The Unholy Defiler of the Hidden Hand is a Crafting device introduced in Update 61.' It can only be seen and used while wearing Steps' Lenses of Seein' Hidden Hand Secrets."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Unholy_Defiler_of_the_Hidden_Hand"
+read = "2026-11-04"
+note = """
+The Defiled Reliquary Weaponry page says 'once they have a copy of Steps' Lenses ... allowing them to see the altar'.
+
+Page: 'Speak to Steps Obliss to acquire the goggles (this needs to be done on a total of 14 consecutive days on one character.)' Steps Obliss is not a crafting station."""
+
+[[row]]
+name = "Valanice Daventhorn"
+kind = "npc"
+place = "Outskirts of Myth Drannor"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Weaponry_of_the_Golden_Age"
+read = "2026-11-04"
+note = "The page: speak to Valanice Daventhorn in the Outskirts of Myth Drannor for the heroic weapons."
+
+[[row]]
+name = "Varron Tertius"
+kind = "npc"
+place = "The Gatekeepers' Grove"
+
+[[row.unlock]]
+kind = "quest"
+quest = "Killing Time"
+text = "You have to complete Killing Time to speak with Varron and view the crafting recipes."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Varron_Tertius"
+read = "2026-11-04"
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Schism_Shard_Crafting"
+read = "2026-11-04"
+
+[[row]]
+name = "Viktranium Experiment crafting workbench"
+kind = "device"
+place = "Ludendorf City Hall (Chill of Ravenloft public area); two workbenches, one for the Heroic system and one for the Legendary system"
+
+[[row.unlock]]
+kind = "quest"
+quest = "The Body Snatchers"
+text = "Ludendorf City Hall is reached by completing the intro quest The Body Snatchers (its end portal leads to the Land of Lamordia, then north to City Hall); afterwards the House Jorasco entrance and Expanded Teleport clickies reach it"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-11-04"
+note = "The pages say 'the Viktranium Experiment crafting workbenches in Ludendorf City Hall' (Calamitous Weaponry) and 'workbenches in Ludendorf City Hall (one workbench each for the Heroic and Legendary systems)'. No page gives a proper name for the workbench itself, so this name is the pages' own phrase."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Ludendorf_City_Hall"
+read = "2026-11-04"
+
+[[row]]
+name = "Vorace"
+kind = "npc"
+place = "Reaver's Refuge, across from the Stormreaver, across the bridge in the room with the mailbox and crafting devices"
+
+[[row.unlock]]
+kind = "quest"
+quest = "Stealer of Souls"
+text = "You must have completed Stealer of Souls to spend Draconic Runes; Vorace will only talk to you once you have completed it once"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-11-04"
+note = "Step 2: 'Talk to Vorace, he's across from the Stormreaver in Reaver's Refuge (across the bridge, in the room with the mailbox and crafting devices).' He also sells Dragonshard Essences for Draconic Runes (50 Eberron, 25 Siberys, 25 Khyber)."
+
+[[row.citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-11-04"
+note = "Page Step 1 and the tip under it."
+
+[[row]]
+name = "Wicked Viktranium Experiment Crafting workbench"
+variant = "Ludendorf Wax Museum"
+kind = "device"
+place = "Ludendorf Wax Museum in the Land of Lamordia wilderness, at the location matching the raid entrance"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-11-04"
+note = "Page bug note: the Wax Museum doors cannot be clicked open; target the door and press the interact key."
+
+[[row]]
+name = "Wicked Viktranium Experiment Crafting workbench"
+variant = "Relentless raid entrance"
+kind = "device"
+place = "Inside the raid Relentless, to the left through the door at the entrance; usable before the wax statues activate"
+quest = "Relentless"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-11-04"
+note = "The Viktranium page heads it 'Wicked Viktranium Experiment Crafting' and calls it a separate crafting machine; the Cataclysmic Weaponry page calls it the Wicked Viktranium Experiment Crafting workbench."
+
+[[row]]
+name = "Wilkan Drome"
+kind = "npc"
+place = "Eveningstar"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Eveningstar"
+read = "2026-11-12"
+note = "The Eveningstar Commendations page's Trader List gives 'Wilkan Drome - Clerics of Amaunator' and gives no place; the place text is from the Eveningstar page. The Eveningstar page lists him under Traders & Brokers, Commendation traders, as the Cleric Trader; no more exact spot is given on either page."
+
+[[row]]
+name = "Zhentarim Improvement"
+kind = "interface"
+
+[[row.citation]]
+url = "https://images.ddowiki.com/Zhentarim_Improvement_UI.jpg"
+read = "2026-11-04"
+note = "Page: 'Location: Double-Click on Black Stone(s) while in the character's inventory.' The UI screenshot is titled 'ZHENTARIM IMPROVEMENT'. An inventory window with no world place."

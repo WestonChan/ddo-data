@@ -15,6 +15,12 @@ armor_bonus = 10
 armor_type = "Light"
 max_dex_bonus = 19
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-11-04"
+note = "Page table 'Flawless version upgrade' (ML 28) lists five armor types (Cloth, Light, Medium, Heavy, Docent) but only two Flawless items exist in the data; the other three would be missing items, listed not invented. The page does not say the upgrade yields a separate item."
+
 [[clickie]]
 name = "Shadow Phase"
 clickie = "Shadow Phase"

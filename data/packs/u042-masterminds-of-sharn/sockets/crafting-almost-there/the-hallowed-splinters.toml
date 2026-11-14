@@ -1,0 +1,10 @@
+label = "crafting: almost there"
+name = "The Hallowed Splinters"
+
+[[option]]
+name = "Conjure Radiant Bolt"
+description = """
+Creates a copy of The Everstar in your inventory. This is destroyed on logging out.
+Celestial Explosion: This weapon blazes with the eternal fury at the heart of a
+sun. Occasionally, this power comes to the surface, unleashing a nova of light
+deals (sic) severe light damage to the enemy struck and surrounding foes."""

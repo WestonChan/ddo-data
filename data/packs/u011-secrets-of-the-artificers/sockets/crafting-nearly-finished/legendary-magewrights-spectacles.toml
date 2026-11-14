@@ -1,0 +1,57 @@
+label = "crafting: nearly finished"
+name = "Legendary Magewright's Spectacles"
+
+[[option]]
+name = "+13 Intelligence"
+description = "+13 Enhancement bonus to Intelligence"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 13
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[option]]
+name = "+6 Insightful Intelligence"
+description = "+6 Insight bonus to Intelligence"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 6
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[option]]
+name = "+3 Quality Intelligence"
+description = "+3 Quality bonus to Intelligence"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Quality"
+effect = "Intelligence"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]

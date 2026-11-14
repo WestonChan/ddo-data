@@ -60,49 +60,11 @@ targets = ["Lesser Maximize"]
 
 [[socket]]
 slot = "upgrade: tier 2"
-
-[[socket.option]]
-name = "Adds Spell Lore VIII"
-description = "Spell Lore VIII: Passive: All of your spells gain a 8% Equipment bonus to their chance to critical hit."
-icon = "Upgrade"
-min_level = 24
-
-[[socket.option.effect]]
-bonus_type = "Equipment"
-effect = "Universal Spell Lore"
-value = 8
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [8]
-bonus_type = "Equipment"
-effect = "Universal Spell Lore"
-effect_type = "SpellLore"
-targets = ["All"]
+set = "Epic Ornamented Dagger (legacy) (level 24)"
 
 [[socket]]
 slot = "upgrade: tier 3"
-
-[[socket.option]]
-name = "Potency 76 and a Orange Augment slot"
-description = "Adds a Orange augment slot to this item"
-icon = "Upgrade"
-min_level = 24
-
-[[socket.option.effect]]
-bonus_type = "Equipment"
-effect = "Potency"
-value = 76
-
-[[socket.option.grant]]
-slot = "orange"
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [76]
-bonus_type = "Equipment"
-effect = "Potency"
-effect_type = "UniversalSpellPower"
+set = "Epic Ornamented Dagger (level 24)"
 
 [[source]]
 kind = "event"

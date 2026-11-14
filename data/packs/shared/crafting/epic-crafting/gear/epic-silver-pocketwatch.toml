@@ -1,0 +1,44 @@
+name = "Epic Silver Pocketwatch"
+description = """
+Whenever you try to set this watch back to the current time in Saltmarsh, it
+winds itself back to where it was."""
+drop_location = "Epic version of Silver Pocketwatch"
+icon = "Trinket_14b"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 20
+slot = "Trinket"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Linguistics 10%"
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 11
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

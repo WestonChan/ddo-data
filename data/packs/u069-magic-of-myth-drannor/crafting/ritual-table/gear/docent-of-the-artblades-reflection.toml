@@ -18,6 +18,12 @@ armor_bonus = -9
 armor_type = "Docent"
 mithral_body = 15
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Ritual_Table"
+read = "2026-11-04"
+note = "Row of 'Armor of the Blade's Reflection': made from the matching Legendary armor, 120 Barrier Fragments and its Sigil."
+
 [[effect]]
 name = "Magical Sheltering"
 bonus_type = "Enhancement"

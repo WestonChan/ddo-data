@@ -1,0 +1,40 @@
+label = "crafting: upgradeable item"
+name = "Energized Leather Armor"
+
+[[option]]
+name = "Adds Dusk, Fortification +75% and a Green augment slot."
+description = """
+Dusk: Equipping this item engulfs you in twilight shadows. Attacks from enemies
+have a 10% chance to miss you due to concealment.
+Fortification +75%: +75% Enhancement bonus to reduced chance of taking critical
+damage on a critical hit.
+Adds a Green Augment slot."""
+icon = "Upgrade"
+min_level = 7
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Displacement"
+value = 10
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Fortification"
+value = 75
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Displacement"
+effect_type = "Displacement"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [75]
+bonus_type = "Enhancement"
+effect = "Fortification"
+effect_type = "Fortification"

@@ -1,0 +1,70 @@
+name = "Epic Cutthroat's Smallblade (legacy) (level 24)"
+description = """
+When a cutlass is simply too big for the job, a pirate will turn instead to
+a trusty smallblade. This one is serrated and quite adept at inflicting painful
+wounds on living creatures."""
+drop_location = "Treasure of Crystal Cove, Turn in 1000 Silver Doubloon 500 Golden Doubloon 40 Stolen Opal at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 6
+icon = "Shortsword_3"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Steel"
+minimum_level = 24
+slot = "Main Hand"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page lists the box as holding the old (tiered) versions of this line (or the trinkets) bought at Dusty Old Treasure of Crystal Cove; the data Location text agrees. Its price rows are event_reward rows only for the Cavalry Plate line and the Lesser trinkets."
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Slicing"
+
+[[effect]]
+name = "Bleed"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 17
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Epic Cutthroat's Smallblade (legacy) (level 24)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Epic Cutthroat's Smallblade (legacy) (level 20)"
+
+[[source]]
+kind = "crafting_system"
+name = "Dusty Old Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 2.5
+handedness = "One-handed"
+weapon_type = "Shortsword"

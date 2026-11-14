@@ -26,61 +26,7 @@ value = 283
 
 [[socket]]
 slot = "crafting: nearly finished"
-
-[[socket.option]]
-name = "+13 Wisdom"
-description = "+13 Enhancement bonus to Wisdom"
-min_level = 29
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Wisdom"
-value = 13
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [13]
-bonus_type = "Enhancement"
-effect = "Wisdom"
-effect_type = "AbilityBonus"
-targets = ["Wisdom"]
-
-[[socket.option]]
-name = "+6 Insightful Wisdom"
-description = "+6 Insightful bonus to Wisdom"
-min_level = 29
-
-[[socket.option.effect]]
-bonus_type = "Insight"
-effect = "Wisdom"
-value = 6
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [6]
-bonus = "Insightful"
-bonus_type = "Insight"
-effect = "Wisdom"
-effect_type = "AbilityBonus"
-targets = ["Wisdom"]
-
-[[socket.option]]
-name = "+3 Quality Wisdom"
-description = "+3 Quality bonus to Wisdom"
-min_level = 29
-
-[[socket.option.effect]]
-bonus_type = "Quality"
-effect = "Wisdom"
-value = 3
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [3]
-bonus_type = "Quality"
-effect = "Wisdom"
-effect_type = "AbilityBonus"
-targets = ["Wisdom"]
+set = "Legendary Alchemist's Crown"
 
 [[socket]]
 slot = "green"

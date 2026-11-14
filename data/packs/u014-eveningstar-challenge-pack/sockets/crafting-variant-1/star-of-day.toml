@@ -1,0 +1,30 @@
+label = "crafting: variant 1"
+name = "Star of Day"
+
+[[option]]
+name = "Fiery Detonation"
+description = """
+Fiery Detonation: This weapon is imbued with a fiery wrath. On an attack roll
+of 20 which is confirmed as a critical hit this burning power will be released,
+dealing damage to the target and all enemies near it for 15d6 fire damage.
+A successful Fortitude save (DC 39) reduces this by half."""
+icon = "Variant"
+min_level = 20
+
+[[option]]
+name = "Radiance"
+description = """
+Radiance: This weapon is imbued with a brilliant, radiant power that deals an
+additional 4 to 24 points of light damage and blinds the target on a successful
+critical hit."""
+icon = "Variant"
+min_level = 20
+
+[[option.modifier]]
+bonus = "Not Set"
+dice_damage = "Light"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]

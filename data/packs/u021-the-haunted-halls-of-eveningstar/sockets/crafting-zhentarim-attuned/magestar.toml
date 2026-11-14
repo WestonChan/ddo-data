@@ -1,0 +1,13 @@
+label = "crafting: zhentarim attuned"
+name = "Magestar"
+
+[[option]]
+name = "Magestar Absorption increases to 10 charges and adds a Green augment slot"
+description = """
+Magestar Absorption: This effect absorbs harmful spells targeted at the wearer.
+Adds a Green augment slot"""
+icon = "Upgrade"
+min_level = 26
+
+[[option.grant]]
+slot = "green"

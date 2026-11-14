@@ -1,0 +1,9 @@
+name = "Saltmeadow Hay"
+tier = "any"
+bind = "Bound to Account on Acquire"
+drop_location = "Saltmarsh quests and wilderness encounter chests"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Saltmeadow_Hay"
+read = "2026-11-04"
+note = "Examine screenshot (420px-Saltmeadow_Hay.png) viewed: 'Bound To Account', 'Binds to Account on Acquire'. Typed infobox: Bind Bound to Account on Acquire, Maximum Stack Size 1000, Base Value 1gp (the screenshot's Base Value reads 100, the typed line says 1gp), 'Drops from: Saltmarsh quests and wilderness encounter chests', 'Used in: Altar of Epic Rituals, Altar of Legendary Rituals'. Tip: unlike the other pack ingredients these cannot be used to purchase Star Fragments. This is the one pack ingredient the Star Fragment page excludes from its 100-for-1 trade-in. The data's text mentions 'Saltmarsh wilderness rare encounter chests'; the page says 'wilderness encounter chests' without 'rare'."

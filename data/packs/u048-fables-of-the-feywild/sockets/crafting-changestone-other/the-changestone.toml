@@ -1,0 +1,85 @@
+label = "crafting: changestone other"
+name = "The Changestone"
+
+[[option]]
+name = "Speed +30%"
+description = "This item increases your speed giving you a +30% Enhancement bonus to Movement Speed and a +15% bonus to Attack Speed."
+icon = "Diamond"
+min_level = 1
+
+[[option.effect]]
+effect = "Speed"
+value = 30
+value2 = 15
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [30]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Melee and Ranged Attack Speed"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[option]]
+name = "Insightful Deadly +5"
+description = "Insightful bonus to damage"
+icon = "Diamond"
+min_level = 1
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Damage Bonus"
+value = 5
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Damage Bonus"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[option]]
+name = "Insightful Accuracy +9"
+description = "Insightful bonus to attack"
+icon = "Diamond"
+min_level = 1
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Accuracy"
+value = 9
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Accuracy"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [
+    ["Movement Speed"],
+    [
+    "Melee Attack Speed",
+    "Ranged Attack Speed",
+],
+]
+reason = "R5-4: one Speed +30% line grants 30% Enhancement movement speed and 15% Enhancement attack speed."
+url = "https://ddowiki.com/page/Item:The_Changestone"
+read = "2026-10-23"
+qualifier = 'option "Speed +30%", Movement Speed, Melee Attack Speed, Ranged Attack Speed / Enhancement'

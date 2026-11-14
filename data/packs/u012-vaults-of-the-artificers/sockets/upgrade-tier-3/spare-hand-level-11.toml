@@ -1,0 +1,46 @@
+label = "upgrade: tier 3"
+name = "Spare Hand (Level 11)"
+
+[[option]]
+name = "Disable Device +16, Open Lock +16 and a Green Augment Slot"
+description = """
+Disable Device +16: Passive: +16 Competence bonus to the Disable Device skill.
+Open Lock +16: Passive: +16 Competence bonus to the Open Lock skill.
+Adds a Green augment slot to this item"""
+icon = "Upgrade"
+min_level = 11
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Disable Device"
+value = 16
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Open Lock"
+value = 16
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "lines"
+upstream = [[
+    "Disable Device",
+    "Open Lock",
+]]
+reason = 'The page lists these enchantments as separate lines. screenshot: "Disable Device +16: +16 Competence bonus to Disable Device." / "Open Lock +16: +16 Competence bonus to Open Lock." / typed: "Disable Device +16: Passive: +16 Competence bonus to the Disable Device skill." / "Open Lock +16: Passive: +16 Competence bonus to the Open Lock skill."'
+url = "https://ddowiki.com/page/Item:Spare_Hand"
+read = "2026-10-23"
+qualifier = 'option "Disable Device +16, Open Lock +16 and a Green Augment Slot", Disable Device, Open Lock / Competence'

@@ -1,7 +1,23 @@
 name = "Tome of Untold Legends"
-npc = "Bilk Howland, Upper Necropolis, The Necropolis (level 10 minimum; gather the 8 Tome pages into a Tome: Binding and turn it in)"
 pack = "The Necropolis, Part 4"
 page = "https://ddowiki.com/page/Tome_of_Untold_Legends"
+
+[[station]]
+name = "Bilk Howland"
+note = "Gives the Tome: Binding and quest, and takes the completed Tome for a weapon from the reward list."
+
+[[unlock]]
+kind = "level"
+value = 10
+text = "You must be at least level 10 to get the quest and the Tome: Binding from Bilk Howland"
+
+[[step]]
+name = "Weapon turn-in"
+
+[[step.cost]]
+tier = "any"
+ingredient = "Tome: Binding"
+quantity = 1
 
 [[ingredient]]
 name = "Tome: Binding"
@@ -51,76 +67,68 @@ tier = "any"
 
 [[citation]]
 url = "https://ddowiki.com/page/Tome_of_Untold_Legends"
-read = "2026-10-02"
+read = "2026-11-04"
+note = "Whole page read: the Tome: Binding section, the numbered list of where each page drops most often, the Reward list (eight weapons, ML 14, Bound to Character on Acquire, 'Acquired: Tome of Untold Legends, Turn in completed Tome: Binding', all with a 1.5[W] multiplier), eight page sections (flavor text, Collector Bilk Howland, Located in Upper Necropolis, Commonly and Randomly drop locations). The page shows no 'Requires access to adventure pack' box, only the 'Litany of the Dead Part 4 item containers' navigation box (the Shield of Legend page does show the pack line). The page's two drop-location lists disagree for Legend II to V, VII and VIII (see the verification request). The Update 13 note says every Orchard of the Macabre chest that could drop Sigil Frame pieces, Tapestries, Tome pages or Shield fragments can now drop any of them."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Tome_of_Untold_Legends"
+read = "2026-11-04"
+note = """
+Pure step: no socket label. A completed Tome: Binding is turned in for one weapon of the player's choice.
+
+'Turn in a completed Tome (8 pieces) to Bilk Howland and receive a weapon from the list.' One cost for all eight weapons; the survey rows match."""
+
+[[citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Tome_of_Untold_Legends"
+read = "2026-11-04"
+note = "Body text: 'You must be at least level 10.'"
 
 [[recipe]]
 note = "produces Skiver (Dagger, ML 14, Bound to Character on Acquire)"
 option = "Skiver"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Tome: Binding"
-quantity = 1
+step = "Weapon turn-in"
 
 [[recipe]]
 note = "produces Sever (Dwarven War Axe, ML 14, Bound to Character on Acquire)"
 option = "Sever"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Tome: Binding"
-quantity = 1
+step = "Weapon turn-in"
 
 [[recipe]]
 note = "produces Phosphor (Heavy Mace, ML 14, Bound to Character on Acquire)"
 option = "Phosphor"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Tome: Binding"
-quantity = 1
+step = "Weapon turn-in"
 
 [[recipe]]
 note = "produces Deathnip (Heavy Pick, ML 14, Bound to Character on Acquire)"
 option = "Deathnip"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Tome: Binding"
-quantity = 1
+step = "Weapon turn-in"
 
 [[recipe]]
 note = "produces Twinblade (Bastard Sword, ML 14, Bound to Character on Acquire)"
 option = "Twinblade"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Tome: Binding"
-quantity = 1
+step = "Weapon turn-in"
 
 [[recipe]]
 note = "produces Coronation (Morningstar, ML 14, Bound to Character on Acquire)"
 option = "Coronation"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Tome: Binding"
-quantity = 1
+step = "Weapon turn-in"
 
 [[recipe]]
 note = "produces Razorend (Short Sword, ML 14, Bound to Character on Acquire)"
 option = "Razorend"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Tome: Binding"
-quantity = 1
+step = "Weapon turn-in"
 
 [[recipe]]
 note = "produces Serrulae (Battle Axe, ML 14, Bound to Character on Acquire)"
 option = "Serrulae"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Tome: Binding"
-quantity = 1
+step = "Weapon turn-in"

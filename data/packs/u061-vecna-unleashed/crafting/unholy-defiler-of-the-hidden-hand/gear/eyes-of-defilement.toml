@@ -10,6 +10,12 @@ material = "Steel"
 minimum_level = 32
 slot = "Goggles"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Unholy_Defiler_of_the_Hidden_Hand"
+read = "2026-11-04"
+note = "Listed in the page's crafted items table as the product of the upgrade; the page shows no drop."
+
 [[effect]]
 name = "Wisdom"
 bonus_type = "Quality"

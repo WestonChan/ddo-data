@@ -10,6 +10,12 @@ material = "Wood"
 minimum_level = 30
 slot = "Off Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: "Down You Go, end chest, or Legendary version of Epic ...".'
+
 [[effect]]
 name = "Orb Bonus"
 bonus_type = "Orb"
@@ -42,6 +48,10 @@ qualifier = "Elemental Resistance / null"
 
 [[socket]]
 slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"
 
 [[source]]
 chest = "end chest, or legendary version of epic immaculate globe"

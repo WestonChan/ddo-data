@@ -1,0 +1,65 @@
+name = "Epic Splintermast"
+accepts_sentience = true
+description = "This broken shard of a wrecked ship seeks out enemies to take its revenge."
+drop_location = "Epic version of Splintermast"
+enhancement_bonus = 6
+icon = "Dart_1c"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Wood"
+minimum_level = 20
+slot = "Main Hand"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Bleeding 4"
+
+[[effect]]
+name = "Tidal 4"
+
+[[effect]]
+name = "Crushing Wave"
+
+[[effect]]
+name = "Ghostbane 4"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Corrosive Salt"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Thrown"
+weapon_type = "Dart"

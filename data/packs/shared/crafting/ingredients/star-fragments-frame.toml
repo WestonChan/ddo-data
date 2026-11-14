@@ -1,0 +1,9 @@
+name = "Star Fragments: Frame"
+tier = "legendary"
+bind = "Bound to Account"
+drop_location = "From Lahar's quest; completed by clicking 8 Star Shrines with it in the inventory: Red (Saltmarsh wilderness, south of the Final Enemy entrance), Orange (The Chronoscope, Rusty Nail inn behind the weapon and wand dealers' counter), Yellow (Partycrashers, front lobby by the guest list), Green (Storm the Beaches, on the warship), Teal (Into the Deep, bottom right corner), Blue (Plane of Night, island below the main platform, bring Feather Fall), Purple (The Spinner of Shadows, in the lava), Pink (Sands of Menechtarun wilderness, south-west of the Chains of Flame entrance). Needs Sands of Menechtarun, Sentinels of Stormreach, The Red Fens, Devil Assault, The Vault of Night, Phiarlan Carnival, Sinister Secret of Saltmarsh and Web of Chaos (free to play); all but the Red Shard work with VIP"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Nebula_Fragment"
+read = "2026-11-04"
+note = "Shared in place (amendment Revision 13l, 2026-11-13): one row at the tip, owned by Nebula Fragment Crafting; also used by the station Lahar's unlock, whose reader rows name it from the page cited here (nebula-fragment-crafting.toml, a [[citation]] row). Nothing is merged. Tier, and bind and drop_text where present, are the tip row's, word for word."

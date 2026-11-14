@@ -1,0 +1,61 @@
+label = "upgrade: tier 2"
+name = "Epic Bracers of Wind"
+
+[[option]]
+name = "Magnetism 116, Lightning Lore 17%, Dodge 10% and a Colorless Augment slot"
+description = """
+Magnetism +116: Passive: +116 Equipment bonus to Electricity Spell Power.
+Lightning Lore +17: Passive: Your Electricity spells gain a 17% Equipment bonus to their chance to
+critical hit.
+Dodge +10%: +10% Enhancement bonus to Dodge."""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 116
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+value = 17
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Dodge"
+value = 10
+
+[[option.grant]]
+slot = "colorless"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [116]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus = "Not Equipment"
+effect = "Electric Spell Lore"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[ddobuilder_correction]]
+kind = "socket_option_bonus"
+field = "bonus_type"
+reason = "The wiki's Tier 2 upgrade raises the bracers' Lightning Lore +16% to +17%, the Equipment bonus his own option description names; his effect's bonus is Not Equipment."
+url = "https://ddowiki.com/page/Item:Epic_Bracers_of_Wind"
+read = "2026-10-02"
+qualifier = 'option "Magnetism 116, Lightning Lore 17%, Dodge 10% and a Colorless Augment slot", Electric Spell Lore / null'

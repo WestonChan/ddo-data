@@ -1,0 +1,116 @@
+label = "crafting: changestone ability"
+name = "The Changestone"
+
+[[option]]
+name = "Strength +13"
+description = "Enhancement bonus to Strength"
+icon = "Diamond"
+min_level = 1
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 13
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[option]]
+name = "Intelligence +13"
+description = "Enhancement bonus to Intelligence"
+icon = "Diamond"
+min_level = 1
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 13
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[option]]
+name = "Dexterity +13"
+description = "Enhancement bonus to Dexterity"
+icon = "Diamond"
+min_level = 1
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 13
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[option]]
+name = "Constitution +13"
+description = "Enhancement bonus to Constitution"
+icon = "Diamond"
+min_level = 1
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 13
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[option]]
+name = "Wisdom +13"
+description = "Enhancement bonus to Wisdom"
+icon = "Diamond"
+min_level = 1
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 13
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[option]]
+name = "Charisma +13"
+description = "Enhancement bonus to Charisma"
+icon = "Diamond"
+min_level = 1
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Charisma"
+value = 13
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]

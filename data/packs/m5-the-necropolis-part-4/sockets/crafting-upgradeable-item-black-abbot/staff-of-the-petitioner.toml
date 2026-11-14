@@ -1,0 +1,34 @@
+label = "crafting: upgradeable item (black abbot)"
+name = "Staff of the Petitioner"
+
+[[option]]
+name = "Adds Potency +48 and Spellcasting Implement +15"
+description = """
+Potency +48: Passive: +48 Equipment bonus to each Spell Power.
+Spellcasting Implement +15: Passive: +15 Implement bonus to Universal Spell Power."""
+icon = "BlackAbbot"
+min_level = 14
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Potency"
+value = 48
+
+[[option.effect]]
+bonus_type = "Implement"
+effect = "Spellcasting Implement"
+value = 15
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [48]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "UniversalSpellPower"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Implement"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"

@@ -1,0 +1,250 @@
+label = "crafting: variant"
+name = "Stolen Necklace (Level 25)"
+
+[[option]]
+name = "Accuracy IX"
+description = "Accuracy IX: Passive: +9 Competence bonus to attack rolls"
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Accuracy"
+value = 9
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Competence"
+effect = "Accuracy"
+effect_type = "Weapon_Attack"
+
+[[option]]
+name = "Natural Armor +9"
+description = "Natural Armor +9: Passive: +9 Natural Armor Bonus to Armor Class."
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Resistance"
+effect = "Natural Armor Bonus"
+value = 9
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Resistance"
+effect = "Natural Armor Bonus"
+effect_type = "NaturalArmor"
+
+[[option]]
+name = "Resistance +9"
+description = "Resistance +9: Passive: +9 Resistance bonus to Fortitude, Reflex, and Will Saving Throws."
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Resistance"
+effect = "Resistance"
+value = 9
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+
+[[option]]
+name = "Wizardry IX"
+description = "Wizardry IX: This item grants the wearer +225 maximum spell points. Sorcerers and Favored Souls gain up to double spell points from items"
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+value = 225
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [225]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[option]]
+name = "Bluff +19"
+description = "Bluff +19: Passive: +19 Competence bonus to the Bluff skill."
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Bluff"
+value = 19
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Bluff"
+effect_type = "SkillBonus"
+targets = ["Bluff"]
+
+[[option]]
+name = "Concentration +19"
+description = "Concentration +19: Passive: +19 Competence bonus to the Concentration skill."
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Concentration"
+value = 19
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Concentration"
+effect_type = "SkillBonus"
+targets = ["Concentration"]
+
+[[option]]
+name = "Diplomacy +19"
+description = "Diplomacy +19: Passive: +19 Competence bonus to the Diplomacy skill."
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Diplomacy"
+value = 19
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Diplomacy"
+effect_type = "SkillBonus"
+targets = ["Diplomacy"]
+
+[[option]]
+name = "Haggle +19"
+description = "Haggle +19: Passive: +19 Competence bonus to the Haggle skill."
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Haggle"
+value = 19
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Haggle"
+effect_type = "SkillBonus"
+targets = ["Haggle"]
+
+[[option]]
+name = "Heal +19"
+description = "Heal +19: Passive: +19 Competence bonus to the Heal skill."
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Heal"
+value = 19
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Heal"
+effect_type = "SkillBonus"
+targets = ["Heal"]
+
+[[option]]
+name = "Intimidate +19"
+description = "Intimidate +19: Passive: +19 Competence bonus to the Intimidate skill."
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Intimidate"
+value = 19
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Intimidate"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[option]]
+name = "Listen +19"
+description = "Listen +19: Passive: +19 Competence bonus to the Listen skill."
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Listen"
+value = 19
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Listen"
+effect_type = "SkillBonus"
+targets = ["Listen"]
+
+[[option]]
+name = "Search +19"
+description = "Search +19: Passive: +19 Competence bonus to the Search skill."
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Search"
+value = 19
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Search"
+effect_type = "SkillBonus"
+targets = ["Search"]
+
+[[option]]
+name = "Spellcraft +19"
+description = "Spellcraft +19: Passive: +19 Competence bonus to the Spellcraft skill."
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Spellcraft"
+value = 19
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Spellcraft"
+effect_type = "SkillBonus"
+targets = ["Spellcraft"]
+
+[[option]]
+name = "Spot +19"
+description = "Spot +19: Passive: +19 Competence bonus to the Spot skill."
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Spot"
+value = 19
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Spot"
+effect_type = "SkillBonus"
+targets = ["Spot"]

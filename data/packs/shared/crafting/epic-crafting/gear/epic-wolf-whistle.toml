@@ -1,0 +1,61 @@
+name = "Epic Wolf Whistle"
+description = """
+A molded metal whistle that can charm non-magical canine creatures with blasts
+of ultrasonic sound."""
+drop_location = "Epic version of Wolf Whistle"
+icon = "Necklace_2b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Neck"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[clickie]]
+name = "Summon Epic Thaarak Hound"
+clickie = "Summon Epic Thaarak Hound"
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Listen"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 9
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 8
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Summon Epic Thaarak Hound"]
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

@@ -1,0 +1,49 @@
+name = "Epic Ring of Elemental Essence"
+description = """
+This ring seems very ancient, and is set with numerous colored gems that pulse
+with elemental power. It will enhance the effectiveness of many kinds of offensive
+magic."""
+drop_location = "Epic version of Ring of Elemental Essence"
+icon = "Ring_10d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 20
+slot = "Ring"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Has a perfected version (nebula fragment crafting).'
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 195
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

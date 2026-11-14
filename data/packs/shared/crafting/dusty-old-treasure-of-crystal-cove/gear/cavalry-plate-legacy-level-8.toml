@@ -1,0 +1,52 @@
+name = "Cavalry Plate (legacy) (level 8)"
+description = """
+High-seas pirates plundered this richly-decorated plate mail from naval cavalry
+officers. Although it did not suit the pirates well, a fighter looking for
+better protection may benefit from it."""
+drop_location = "Treasure of Crystal Cove, Turn in 650 Copper Doubloon 375 Silver Doubloon 20 Stolen Amber at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 2
+icon = "HeavyArmor_1a"
+is_legacy = true
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 12
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page lists the box as holding the old (tiered) versions of this line (or the trinkets) bought at Dusty Old Treasure of Crystal Cove; the data Location text agrees. Its price rows are event_reward rows only for the Cavalry Plate line and the Lesser trinkets."
+
+[[effect]]
+name = "Life Shield"
+
+[[effect]]
+name = "False Life"
+bonus_type = "False Life"
+value = 10
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 2
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Cavalry Plate (legacy) (level 8)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Cavalry Plate (legacy) (level 8)"
+
+[[source]]
+kind = "crafting_system"
+name = "Dusty Old Treasure of Crystal Cove"

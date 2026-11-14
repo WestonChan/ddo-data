@@ -1,0 +1,23 @@
+label = "upgrade: tier 2"
+name = "Epic Brawling Gloves (legacy) (level 24)"
+
+[[option]]
+name = "Strength +8"
+description = """
+Strength +8: This item gives the wearer the power of Ogre Strength, granting a
++8 Enhancement bonus to Strength."""
+icon = "Upgrade"
+min_level = 24
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]

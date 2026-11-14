@@ -9,6 +9,12 @@ material = "Adamantine"
 minimum_level = 22
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-11-04"
+note = "Created at the Magma Forge as the Tier 0 base item ('All weapon types available'); no drop source on any page read."
+
 [[dr_bypass]]
 bypass = "Adamantine"
 

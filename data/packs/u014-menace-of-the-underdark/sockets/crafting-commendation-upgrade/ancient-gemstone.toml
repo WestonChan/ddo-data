@@ -1,0 +1,42 @@
+label = "crafting: commendation upgrade"
+name = "Ancient Gemstone"
+
+[[option]]
+name = "Amaunator's Blessing"
+description = "Adds the Amaunator's Blessing set bonus to this item"
+min_level = 20
+
+[[option.set]]
+set = "Amaunator's Blessing"
+
+[[option]]
+name = "Battle Arcanist"
+description = "Adds the Battle Arcanist set bonus to this item"
+min_level = 20
+
+[[option.set]]
+set = "Battle Arcanist"
+
+[[option]]
+name = "Knight's Loyalty"
+description = "Adds the Knight's Loyalty set bonus to this item"
+min_level = 20
+
+[[option.set]]
+set = "Knight's Loyalty"
+
+[[option]]
+name = "Way of the Sun Soul"
+description = "Adds the Way of the Sun Soul set bonus to this item"
+min_level = 20
+
+[[option.set]]
+set = "Way of the Sun Soul"
+
+[[option]]
+name = "Woodsman's Guile"
+description = "Adds the Woodsman's Guile set bonus to this item"
+min_level = 20
+
+[[option.set]]
+set = "Woodsman's Guile"

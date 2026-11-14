@@ -1,0 +1,9 @@
+name = "Restored Elven Relic"
+tier = "epic"
+bind = "Unbound"
+drop_location = "Return to Cabal for One, Epic The Crucible, Epic Feast or Famine, Ruins of Gianthold (epic) Random Encounter and persistent chests"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Restored_Elven_Relic"
+read = "2026-11-04"
+note = "Examine screenshot (420px-Restored_Elven_Relic.png) viewed: 'Ingredient Type: Relic', no bind line (consistent with Unbound). Typed infobox: Bind Unbound, Base Value 1cp, 'Used in: Trade-in with Gianthold NPCs: for various armors with the Elfcraft Apprentice Hoorunoe; for augments with Broag Umber (level 20) or Agate Twistiron (level 24)'. The page names the elvencraft armour trade-in with Elfcraft Apprentice Hoorunoe, not Dragonscale Armor or Stormreaver Monument; the data's two systems are the ones that consume it. One item for both systems."

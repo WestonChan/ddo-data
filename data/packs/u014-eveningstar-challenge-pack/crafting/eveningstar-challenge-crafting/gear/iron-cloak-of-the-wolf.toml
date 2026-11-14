@@ -1,0 +1,49 @@
+name = "Iron Cloak of the Wolf"
+description = """
+The interior of this cloak is reinforced with a lightweight chainmail mesh,
+providing extra protection while retaining ease of movement."""
+drop_location = "Eveningstar Challenge Crafting, Turn in various ingredients"
+icon = "Cloak_3a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 16
+slot = "Back"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-04"
+note = "Bought with challenge ingredients from the Eveningstar traders; also the page notes completed randomly generated named challenge items drop rarely from the challenges' chests and the dragon in the Underdark, which are not these cloaks."
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Exceptional"
+value = 3
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Accuracy"
+alias = "Attack Bonus"
+bonus_type = "Competence"
+value = 2
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Enhancement"
+value = 20
+
+[[ddobuilder_correction]]
+kind = "item"
+field = "drop_location"
+upstream = "Eveningstar Challenge Pack, Turn in various ingredients"
+reason = "200, 1000, 400, 400 of the four ingredients; ML16"
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-12"
+
+[[source]]
+kind = "crafting_system"
+name = "Eveningstar Challenge Crafting"

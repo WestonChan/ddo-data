@@ -1,0 +1,57 @@
+name = "Eveningstar Commendations"
+page = "https://ddowiki.com/page/Eveningstar_Commendations"
+
+[[station]]
+name = "Arcton Greenwort"
+note = "Trades the Druids of the King's Forest Commendation list, including Ancient Gemstone Docent Upgrade: Woodsman's Guile Set Bonus for 5 Druids of the King's Forest Commendations."
+
+[[station]]
+name = "Relton Trapalo"
+note = "Trades the War Wizards Commendation list, including Ancient Gemstone Docent Upgrade: Battle Arcanist for 5 War Wizards Commendations."
+
+[[station]]
+name = "Tellie Scavelman"
+note = "Trades the Villagers of Eveningstar Commendation list, including Ancient Gemstone Docent Upgrade: Way of the Sun Soul for 5 Villagers of Eveningstar Commendations."
+
+[[station]]
+name = "Toregar Falmon"
+note = "Trades the Purple Dragon Knights Commendation list, including Ancient Gemstone Docent Upgrade: Knight's Loyalty for 5 Purple Dragon Knights Commendations."
+
+[[station]]
+name = "Wilkan Drome"
+note = "Trades the Clerics of Amaunator Commendation list, including Ancient Gemstone Docent Upgrade: Amaunator's Blessing for 5 Clerics of Amaunator Commendations."
+
+[[step]]
+name = "Ancient Gemstone Docent Upgrade"
+slot = "crafting: commendation upgrade"
+
+[[citation]]
+url = "https://ddowiki.com/page/Eveningstar_Commendations"
+read = "2026-11-12"
+note = """
+Five faction traders in Eveningstar each trade their own Commendation (Clerics of Amaunator, Druids of the King's Forest, Purple Dragon Knights, Villagers of Eveningstar, War Wizards) for gear in tiers of 15, 10, 5 and 1 commendations. Confirmed from the page: the five Ancient Gemstone Docent Upgrade trades each cost 5 of the matching commendation and are marked [ML:20,BtCoA]: Amaunator's Blessing (Clerics), Woodsman's Guile Set Bonus (Druids; the page writes this one 'Ancient Gemstone - Docent Upgrade: Woodsman's Guile Set Bonus'), Knight's Loyalty (Purple Dragon Knights), Way of the Sun Soul (Villagers), Battle Arcanist (War Wizards). The page also says any trader will trade 3 of their commendations for 1 of the other types. The page ties the commendations only to The High Road and The King's Forest ('These ingredients are found in The High Road and The King's Forest'); it names no adventure pack, so there is no pack key. It states no favor, level, quest or key needed to trade, so there is no unlock row (not stated, which is not the same as no requirement).
+
+Whole page read: the Trader List (five traders), the five trade lists and the 3-for-1 note. No in-game screenshot on the page (only 10px tooltip icons). The page gives no place for any trader, no adventure pack and no unlock requirement."""
+
+[[citation]]
+field = "pack"
+url = "https://ddowiki.com/page/The_High_Road"
+read = "2026-11-12"
+note = "The five traders stand in Eveningstar (a public area). The commendations drop in The High Road (the page says 'Requires access to adventure pack: The High Road of Shadows') and The King's Forest (the page says 'Requires access to expansion pack: Menace of the Underdark'), as the Eveningstar Commendations page ties them to those two zones (read 2026-11-12). Each commendation's own zone was not matched."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Eveningstar_Commendations"
+read = "2026-11-04"
+note = "Item:Ancient_Gemstone (Warforged docent, ML 20, The Lost Thread end chest / Menace of the Underdark: The Darkening chain reward) lists 'Upgrades: 5 Commendation: <faction> adds <set>' (Clerics of Amaunator: Amaunator's Blessing, Druids of the King's Forest: Woodsman's Guile, Purple Dragon Knights: Knight's Loyalty, Villagers of Eveningstar: Way of the Sun Soul, War Wizards: Battle Arcanist) and 'Upgradeable? Eveningstar Commendations Traders'. The Eveningstar Commendations page lists the same five trades as 'Ancient Gemstone Docent Upgrade: <set>' for 5 of the matching commendation at each of the five faction traders (Arcton Greenwort, Relton Trapalo, Tellie Scavelman, Toregar Falmon, Wilkan Drome), no favor stated. Only Ancient Gemstone carries this label in the data. The owner is a proposed NEW system 'Eveningstar Commendations' (the traders, a page of barter lists whose only item upgrades are these five rows); the alternative is Mikrom Sum's 'Armor upgrade' step (also commendations to a set bonus, but 15 commendations plus favor at Mikrom Sum and on different armors, none of which is the Ancient Gemstone). Not merged with Mikrom Sum's 'crafting: upgrade' label."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Item:Ancient_Gemstone"
+read = "2026-11-04"
+note = "Item:Ancient_Gemstone (Warforged docent, ML 20, The Lost Thread end chest / Menace of the Underdark: The Darkening chain reward) lists 'Upgrades: 5 Commendation: <faction> adds <set>' (Clerics of Amaunator: Amaunator's Blessing, Druids of the King's Forest: Woodsman's Guile, Purple Dragon Knights: Knight's Loyalty, Villagers of Eveningstar: Way of the Sun Soul, War Wizards: Battle Arcanist) and 'Upgradeable? Eveningstar Commendations Traders'. The Eveningstar Commendations page lists the same five trades as 'Ancient Gemstone Docent Upgrade: <set>' for 5 of the matching commendation at each of the five faction traders (Arcton Greenwort, Relton Trapalo, Tellie Scavelman, Toregar Falmon, Wilkan Drome), no favor stated. Only Ancient Gemstone carries this label in the data. The owner is a proposed NEW system 'Eveningstar Commendations' (the traders, a page of barter lists whose only item upgrades are these five rows); the alternative is Mikrom Sum's 'Armor upgrade' step (also commendations to a set bonus, but 15 commendations plus favor at Mikrom Sum and on different armors, none of which is the Ancient Gemstone). Not merged with Mikrom Sum's 'crafting: upgrade' label."
+
+[[citation]]
+url = "https://ddowiki.com/page/Eveningstar"
+read = "2026-11-12"
+note = "Read for the traders' place: Notable NPCs, Traders & Brokers, Commendation traders lists the five traders as Tellie Scavelman (Villager Trader), Wilkan Drome (Cleric Trader), Arcton Greenwort (Druid Trader), Torgar Falmon (Purple Dragon Knight Trader), Relton Trapalo (War Wizard Trader) with no spot for any of them. The page's only images are a map, a loading screen and a saga picture, none of which show the traders."

@@ -24,63 +24,7 @@ value = 35
 
 [[socket]]
 slot = "crafting: nearly finished"
-
-[[socket.option]]
-name = "+6 Insightful Strength"
-description = "+6 Insight bonus to Strength"
-min_level = 29
-
-[[socket.option.effect]]
-bonus_type = "Insight"
-effect = "Strength"
-value = 6
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [6]
-bonus = "Insightful"
-bonus_type = "Insight"
-effect = "Strength"
-effect_type = "AbilityBonus"
-targets = ["Strength"]
-
-[[socket.option]]
-name = "+6 Insightful Dexterity"
-description = "+6 Insight bonus to Dexterity"
-min_level = 29
-
-[[socket.option.effect]]
-bonus_type = "Insight"
-effect = "Dexterity"
-value = 6
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [6]
-bonus = "Insightful"
-bonus_type = "Insight"
-effect = "Dexterity"
-effect_type = "AbilityBonus"
-targets = ["Dexterity"]
-
-[[socket.option]]
-name = "+6 Insightful Intelligence"
-description = "+6 Insight bonus to Intelligence"
-min_level = 29
-
-[[socket.option.effect]]
-bonus_type = "Insight"
-effect = "Intelligence"
-value = 6
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [6]
-bonus = "Insightful"
-bonus_type = "Insight"
-effect = "Intelligence"
-effect_type = "AbilityBonus"
-targets = ["Intelligence"]
+set = "Silver Dragonscale Capelet"
 
 [[socket]]
 slot = "green"

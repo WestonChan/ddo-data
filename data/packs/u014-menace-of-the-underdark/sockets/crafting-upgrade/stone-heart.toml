@@ -1,0 +1,47 @@
+label = "crafting: upgrade"
+name = "Stone Heart"
+
+[[option]]
+name = "Adds Amaunator's Blessing Set bonus"
+description = "Adds the Amaunator's Blessing Set bonus"
+icon = "AmaunatorsBlessing"
+min_level = 22
+
+[[option.set]]
+set = "Amaunator's Blessing"
+
+[[option]]
+name = "Adds Woodsman's Guile Set bonus"
+description = "Adds Woodsman's Guile Set bonus"
+icon = "WoodsmansGuile"
+min_level = 22
+
+[[option.set]]
+set = "Woodsman's Guile"
+
+[[option]]
+name = "Adds Knight's Loyalty Set bonus"
+description = "Adds the Knight's Loyalty Set bonus"
+icon = "KnightsLoyalty"
+min_level = 22
+
+[[option.set]]
+set = "Knight's Loyalty"
+
+[[option]]
+name = "Adds the Way of the Sun Soul Set bonus"
+description = "Adds the Way of the Sun Soul Set bonus"
+icon = "WayOfTheSunSoul"
+min_level = 22
+
+[[option.set]]
+set = "Way of the Sun Soul"
+
+[[option]]
+name = "Adds the Battle Arcanist Set bonus"
+description = "Adds the Battle Arcanist Set bonus"
+icon = "BattleArcanist"
+min_level = 22
+
+[[option.set]]
+set = "Battle Arcanist"

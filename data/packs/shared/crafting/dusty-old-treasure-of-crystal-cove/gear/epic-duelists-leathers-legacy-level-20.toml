@@ -1,0 +1,72 @@
+name = "Epic Duelist's Leathers (legacy) (level 20)"
+description = """
+When pirates who prefer light blades in battle need armor, this is the kind
+of item they will put their money on- a lightweight vest of leather or hide
+that allows plenty of stylish movement in combat."""
+drop_location = "Treasure of Crystal Cove, Turn in 1200 Copper Doubloon 600 Silver Doubloon 35 Stolen Diamond at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 6
+icon = "LightArmor_1b"
+is_legacy = true
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 7
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 18
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page lists the box as holding the old (tiered) versions of this line (or the trinkets) bought at Dusty Old Treasure of Crystal Cove; the data Location text agrees. Its price rows are event_reward rows only for the Cavalry Plate line and the Lesser trinkets."
+
+[[effect]]
+name = "Feat: Mobility"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Superior Nimbleness"
+bonus_type = "Stacking"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Accuracy"
+alias = "Attack Bonus"
+bonus_type = "Competence"
+value = 2
+
+[[verification_request]]
+question = "Does the stored Max Dex 18 already include Superior Nimbleness's +4, so a future stat calculation must not add it again?"
+assumed = "Max Dex remains 18 with the Superior Nimbleness effect. No Maximum Dexterity Bonus row is currently granted by that effect."
+raised = "2026-11-01"
+
+[[verification_request.source]]
+says = 'R16b tier-1 screenshot: "Max Dex Bonus: 18" and "Superior Nimbleness ... maximum Dexterity bonus 4 higher than normal". Tier 3 shows 20 with Epic Nimbleness (+6). Screenshot: https://images.ddowiki.com/Epic_Duelist%27s_Leathers.png; https://images.ddowiki.com/Epic_Duelist%27s_Leathers_%28Level_20%29_%28Tier_3%29.png'
+url = "https://ddowiki.com/page/Item:Epic_Duelist%27s_Leathers_(legacy)_(level_20)"
+read = "2026-10-31"
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Epic Duelist's Leathers (legacy) (level 20)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Epic Duelist's Leathers (legacy) (level 20)"
+
+[[source]]
+kind = "crafting_system"
+name = "Dusty Old Treasure of Crystal Cove"

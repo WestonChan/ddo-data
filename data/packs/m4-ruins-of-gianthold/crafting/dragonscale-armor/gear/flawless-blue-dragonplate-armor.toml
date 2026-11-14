@@ -1,0 +1,57 @@
+name = "Flawless Blue Dragonplate Armor"
+description = "Flawless plate armor forged from scales of a blue dragon."
+drop_location = "Blue Dragonscale Armor"
+enhancement_bonus = 7
+icon = "HeavyArmor_10"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Blue Dragonscale"
+minimum_level = 25
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 25
+armor_check_penalty = -3
+armor_type = "Heavy"
+max_dex_bonus = 2
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dragonscale_Armor"
+read = "2026-11-04"
+note = "Page turn-in table: made at the Master Scalesmiths from 20 Flawless scales of its colour, 10 each of the three Relics and 3 Commendations of Heroism (not a drop)."
+
+[[effect]]
+name = "Spell Penetration III"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Spell Lore VI"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 80
+
+[[effect]]
+name = "Superior Lightning Resistance"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+set = "Dreampiercer"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+set = "Flawless Blue Dragonhide Armor"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Dragonscale Armor"

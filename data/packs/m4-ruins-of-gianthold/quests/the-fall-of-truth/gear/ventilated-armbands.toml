@@ -30,33 +30,11 @@ value = 5
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 1"
-
-[[socket.option]]
-name = "Yellow Augment Slot"
-description = "Adds a Yellow augment slot to this weapon."
-icon = "Heroism"
-min_level = 25
-
-[[socket.option.grant]]
-slot = "yellow"
+set = "Ventilated Armbands"
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 2"
-
-[[socket.option]]
-name = "Adds Whirlwind Ward"
-description = """
-Whirlwind Ward: This effect renders you immune to being knocked down by an Air
-Elemental's whirlwind. However, it does not prevent you from being knocked back
-or away from touching the Air Elemental."""
-icon = "Heroism"
-min_level = 25
-
-[[socket.option.modifier]]
-amount_type = "NotNeeded"
-bonus = "Not Set"
-effect_type = "Immunity"
-targets = ["Air Elemental Knock Down"]
+set = "Ventilated Armbands"
 
 [[source]]
 chest = "raid warded chest"

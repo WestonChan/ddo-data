@@ -1,0 +1,42 @@
+name = "Epic Envenomed Cloak"
+description = """
+A cloak with spikes that have been steeped in a dangerous poison. Enemies that
+attack the wearer may be subject to the effects of the venom that coats the
+cloak's barbs."""
+drop_location = "Epic version of Envenomed Cloak"
+icon = "Cloak_7c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Back"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[effect]]
+name = "Greater Poison Guard"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 8
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

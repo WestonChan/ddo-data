@@ -1,0 +1,21 @@
+label = "upgrade: tier 3"
+name = "Duelist's Leathers (legacy) (level 4)"
+
+[[option]]
+name = "Adds Balance +7"
+description = "Balance +7: Passive: +7 Competence bonus to the Balance skill."
+icon = "Upgrade"
+min_level = 4
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Balance"
+value = 7
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Competence"
+effect = "Balance"
+effect_type = "SkillBonus"
+targets = ["Balance"]

@@ -1,0 +1,255 @@
+name = "Dragonscale Armor"
+pack = "Ruins of Gianthold"
+page = "https://ddowiki.com/page/Dragonscale_Armor"
+
+[[station]]
+name = "Master Scalesmiths"
+note = "Heroic Dragonscale armors (20 heroic scales of the colour) and the three Flawless armors (20 Flawless scales, 10 each of the three Relics, 3 Commendations of Heroism)."
+
+[[station]]
+name = "Stormreaver Monument"
+note = "Upgrades the Flawless armors' Attuned by Heroism Tier 1 and Tier 2 (Attuned to Heroism page); no cost stated for the armors. Station as in stormreaver-monument.toml."
+
+[[step]]
+name = "Dragonscale armor"
+
+[[step]]
+name = "Flawless Dragonscale armor"
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Restored Dragon Relic"
+quantity = 10
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Restored Giant Relic"
+quantity = 10
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Restored Elven Relic"
+quantity = 10
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Commendation of Heroism"
+quantity = 3
+
+[[step]]
+name = "Attuned by Heroism: Tier 1"
+slot = "crafting: attuned by heroism: tier 1"
+
+[[step]]
+name = "Attuned by Heroism: Tier 2"
+slot = "crafting: attuned by heroism: tier 2"
+
+[[ingredient]]
+name = "Flawless Black Dragon Scale"
+drop_location = "Update 17; Gianthold Tor (epic only)"
+tier = "epic"
+
+[[ingredient]]
+name = "Flawless Blue Dragon Scale"
+drop_location = "Update 17; Gianthold Tor (epic only)"
+tier = "epic"
+
+[[ingredient]]
+name = "Flawless White Dragon Scale"
+drop_location = "Update 17; Gianthold Tor (epic only)"
+tier = "epic"
+
+[[citation]]
+url = "https://ddowiki.com/page/Dragonscale_Armor"
+read = "2026-11-04"
+note = "Whole page read: armor types (Robe Armor Bonus +8; Dragonhide leather 3 base armor +5; Dragonscale scalemail 6 +5; Dragonplate full plate 9 +5; Docent Adamantine +17, Mithral +8, Composite +3; 'Dragonscale outfits do not exist'), the scale drop table, the turn-in table (Master Scalesmiths heroic 20 scales; Flawless 20 Flawless scales, 10 Restored Dragon, 10 Giant, 10 Elven Relics, 3 Commendations of Heroism; Altar of Epic Rituals Epic Red; Mikrom Sum (requires 375 Purple Dragon Knights favor) Cormyrian Red and Green), set bonuses (Draconic Ferocity, Mind, Resilience with the Helm of each colour, levels 23-25). All nine recipe costs and the stat lines match the data. Update 14 made the enhancements uniform across armor types. No level or pack gate is stated (the Level 14+ box is the wiki's grouping). The page does not mention the Attuned by Heroism upgrades or the Stormreaver Monument. The Cormyrian rows give 15 Commendations: Druids of the King's Forest (Red) and 15 Commendations: War Wizards (Green) as the second commendation, which the Mikrom Sum page words per armor type."
+
+[[citation]]
+field = "pack"
+url = "https://ddowiki.com/page/Gianthold"
+read = "2026-11-12"
+note = "The Master Scalesmiths stand in Gianthold city, and the Gianthold page says 'Requires access to adventure pack: Ruins of Gianthold'. No Epic Red or Cormyrian recipe, station or output is listed under this system: the Epic Red armors are Epic Crafting's (made at the Altar of Epic Rituals) and the Cormyrian armors are Mikrom Sum's."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Dragonscale_Armor"
+read = "2026-11-04"
+note = """
+Pure step: no socket label. Heroic Black, Blue and White armors at the Master Scalesmiths (ML 14). Each recipe yields one of five armor types (Robe, Dragonhide, Dragonscale, Dragonplate, Docent) of its colour.
+
+Pure step: no socket label. Flawless Black, Blue and White armors at the Master Scalesmiths (ML 25, +7 enhancement). Each recipe yields one of five armor types (Robe, Dragonhide, Dragonscale, Dragonplate, Docent) of its colour.
+
+Each recipe costs 20 heroic Dragon Scales of its colour (Black Dragon Scale, Blue Dragon Scale, White Dragon Scale), nothing else; the colour differs, so no ingredient is shared. The survey rows match.
+
+Shared part; each recipe adds 20 of its Flawless Black, Blue or White Dragon Scale. The survey rows match."""
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Attuned_to_Heroism"
+read = "2026-11-04"
+note = """
+Proposed: no recipe in the data prices it. Flawless Black, Blue and White armors (15 items): Tier 1 turns +7 Enhancement Bonus into +8. Upgradable at the Stormreaver Monument (and 'Mastercraft Scalesmiths'); 'Upgrading requires Commendations of Heroism', no quantity stated on any page read. The label also has verdicts under Stormreaver Monument and Mikrom Sum.
+
+Proposed: no recipe in the data prices it. Flawless armors, by colour: Black Armor-Piercing 15% -> 20%; Blue Spell Lore VI -> IX; White Protection +7 -> +8 and Shield +6 -> +8 (the data's socket options match: Armor Piercing 20%, Spell Lore IX, Protection +8 and Shield +8, five items each)."""
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Dragonscale_Armor"
+read = "2026-11-04"
+note = """
+Set bonus Draconic Ferocity with the Helm of the Black Dragon (levels 23-25): +3% artifact bonus to Doublestrike and +2 artifact bonus to Hit and Damage with ranged and thrown weapons. Flawless armors have +7 enhancement where the others have +6 (Robe: Armor Bonus).
+
+Set bonus Draconic Mind with the Helm of the Blue Dragon (levels 23-25): +15 artifact bonus to Universal Spell Power.
+
+Set bonus Draconic Resilience with the Helm of the White Dragon (levels 23-25): +50 artifact bonus to Hit Points."""
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Item:Flawless_Black_Dragonscale_Armor"
+read = "2026-11-04"
+note = """
+The 15 Flawless Black, Blue and White armors carry it; the item pages list 'Attuned by Heroism: Tier 1: +7 Enhancement Bonus -> +8 Enhancement Bonus'. The label also has verdicts under Stormreaver Monument and Mikrom Sum; see the verification request on which system owns the armors' sockets.
+
+The same 15 armors; the item pages list a per-colour Tier 2 change (Black Armor-Piercing 15% -> 20%, Blue Spell Lore VI -> IX, White Protection +7 -> +8 and Shield +6 -> +8)."""
+
+[[citation]]
+url = "https://ddowiki.com/page/Gianthold"
+read = "2026-11-04"
+note = "Searched the city page for the Master Scalesmiths: NPC list gives Regnak - Master Black Scalesmith, Armec Orem - Master Blue Scalesmith, Rukts - Master White Scalesmith, in Gianthold (city, reached from Thaden the Farshifter after the quest The Reaver's Bane at level 10). No finer location is given."
+
+[[citation]]
+url = "https://ddowiki.com/page/Attuned_to_Heroism"
+read = "2026-11-04"
+note = "Whole page read: Attuned to Heroism is a base upgradeable item; 'Upgrading requires Commendations of Heroism'; the 40 items with it, including the 15 Flawless Black, Blue and White Dragonscale armors; Tier 1 and Tier 2 lists: 'Black/Blue/White Flawless Dragonscale Armors - Upgradable by Mastercraft Scalesmiths, Stormreaver Monument'. No cost quantity and no Tier 3 or 4 on the armors."
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Flawless_Black_Dragonscale_Armor"
+read = "2026-11-04"
+note = "Item page read (Flawless Black Dragonscale Armor, ML 25, Bound to Character on Acquire): Enchantments list with 'Attuned by Heroism: Tier 1: +7 Enhancement Bonus -> +8 Enhancement Bonus' and 'Attuned by Heroism: Tier 2: Armor-Piercing 15% -> Armor-Piercing 20%'; Upgradeable? Attuned to Heroism; Notes 'Turn-in' list as on the Dragonscale page. No upgrade cost stated."
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Flawless_Blue_Dragonscale_Armor"
+read = "2026-11-04"
+note = "Item page read (Flawless Blue Dragonscale Armor): Tier 1 +7 -> +8 Enhancement Bonus; Tier 2 Spell Lore VI -> Spell Lore IX. No upgrade cost stated."
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Flawless_White_Dragonscale_Armor"
+read = "2026-11-04"
+note = "Item page read (Flawless White Dragonscale Armor): Tier 1 +7 -> +8 Enhancement Bonus; Tier 2 Protection +7 -> +8 and Shield +6 -> +8. No upgrade cost stated."
+
+[[recipe]]
+note = "At the Master Scalesmiths; yields one of Black Dragonscale Robe, Black Dragonhide Armor, Black Dragonscale Armor, Black Dragonplate Armor, Black Dragonscale Docent. ML 14: Haste Guard, Armor-Piercing 10%, Relentless Fury, Acid Resistance +30. Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart."
+option = "Black Dragon Scale Armors"
+tier = "heroic"
+step = "Dragonscale armor"
+
+[[recipe.ingredient]]
+ingredient = "Black Dragon Scale"
+quantity = 20
+
+[[recipe]]
+note = "At the Master Scalesmiths; yields one of Blue Dragonscale Robe, Blue Dragonhide Armor, Blue Dragonscale Armor, Blue Dragonplate Armor, Blue Dragonscale Docent. ML 14: Spell Penetration II, Spell Lore VI, Potency +52, Electric Resistance +30. Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart."
+option = "Blue Dragon Scale Armors"
+tier = "heroic"
+step = "Dragonscale armor"
+
+[[recipe.ingredient]]
+ingredient = "Blue Dragon Scale"
+quantity = 20
+
+[[recipe]]
+note = "At the Master Scalesmiths; yields one of White Dragonscale Robe, White Dragonhide Armor, White Dragonscale Armor, White Dragonplate Armor, White Dragonscale Docent. ML 14: Fortification +100%, Protection +5, Shield +4, Cold Resistance +30. Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart."
+option = "White Dragon Scale Armors"
+tier = "heroic"
+step = "Dragonscale armor"
+
+[[recipe.ingredient]]
+ingredient = "White Dragon Scale"
+quantity = 20
+
+[[recipe]]
+note = """
+At the Master Scalesmiths; yields one of Flawless Black Dragonscale Robe, Flawless Black Dragonhide Armor, Flawless Black Dragonscale Armor, Flawless Black Dragonplate Armor, Flawless Black Dragonscale Docent. ML 25, +7 Enhancement Bonus instead of +6: Draconic Ferocity, Haste Guard, Armor-Piercing 15%, Relentless Fury, Acid Resistance +40, Blue Augment Slot. The set bonus pairs it with the Helm of the Black Dragon (levels 23-25). Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart.
+
+Set bonus Draconic Ferocity with the Helm of the Black Dragon (levels 23-25): +3% artifact bonus to Doublestrike and +2 artifact bonus to Hit and Damage with ranged and thrown weapons. Flawless armors have +7 enhancement where the others have +6 (Robe: Armor Bonus)."""
+option = "Flawless Black Dragon Scale Armors"
+tier = "epic"
+step = "Flawless Dragonscale armor"
+
+[[recipe.ingredient]]
+ingredient = "Flawless Black Dragon Scale"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Restored Dragon Relic"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Restored Giant Relic"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Restored Elven Relic"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Commendation of Heroism"
+quantity = 3
+
+[[recipe]]
+note = """
+At the Master Scalesmiths; yields one of Flawless Blue Dragonscale Robe, Flawless Blue Dragonhide Armor, Flawless Blue Dragonscale Armor, Flawless Blue Dragonplate Armor, Flawless Blue Dragonscale Docent. ML 25, +7 Enhancement Bonus instead of +6: Draconic Mind, Spell Penetration III, Spell Lore VI, Potency +80, Electric Resistance +40, Blue Augment Slot. The set bonus pairs it with the Helm of the Blue Dragon (levels 23-25). Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart.
+
+Set bonus Draconic Mind with the Helm of the Blue Dragon (levels 23-25): +15 artifact bonus to Universal Spell Power."""
+option = "Flawless Blue Dragon Scale Armors"
+tier = "epic"
+step = "Flawless Dragonscale armor"
+
+[[recipe.ingredient]]
+ingredient = "Flawless Blue Dragon Scale"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Restored Dragon Relic"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Restored Giant Relic"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Restored Elven Relic"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Commendation of Heroism"
+quantity = 3
+
+[[recipe]]
+note = """
+At the Master Scalesmiths; yields one of Flawless White Dragonscale Robe, Flawless White Dragonhide Armor, Flawless White Dragonscale Armor, Flawless White Dragonplate Armor, Flawless White Dragonscale Docent. ML 25, +7 Enhancement Bonus instead of +6: Draconic Resilience, Fortification +100%, Protection +7, Shield +6, Cold Resistance +40, Blue Augment Slot. The set bonus pairs it with the Helm of the White Dragon (levels 23-25). Update 14 made the enhancements uniform across the armor types (robe Armor Bonus +8; leather 3, scalemail 6, full plate 9 base armor with +5 enhancement; docent). The results are separate items in Maetrim's data; no augment counterpart.
+
+Set bonus Draconic Resilience with the Helm of the White Dragon (levels 23-25): +50 artifact bonus to Hit Points."""
+option = "Flawless White Dragon Scale Armors"
+tier = "epic"
+step = "Flawless Dragonscale armor"
+
+[[recipe.ingredient]]
+ingredient = "Flawless White Dragon Scale"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Restored Dragon Relic"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Restored Giant Relic"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Restored Elven Relic"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Commendation of Heroism"
+quantity = 3

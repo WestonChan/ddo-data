@@ -1,0 +1,116 @@
+name = "Thieves' Tools Construction"
+page = "https://ddowiki.com/page/Thieves%27_Tools"
+
+[[station]]
+name = "Device Workstation"
+variant = "House Cannith Enclave"
+
+[[station]]
+name = "Device Workstation"
+variant = "Guild Airship"
+
+[[station]]
+name = "Device Workstation"
+variant = "Eveningstar"
+
+[[station]]
+name = "Device Workstation"
+variant = "Sharn Cliffside Docks"
+
+[[step]]
+name = "Thieves' Tools construction"
+
+[[citation]]
+url = "https://ddowiki.com/page/Thieves%27_Tools"
+read = "2026-11-04"
+note = """
+Device Workstation use: Mechanical Trap Parts plus a +N weapon make a stack of 50 +N Thieves' Tools (the system is the Construction section of the Thieves' Tools page; the Device Workstation page names it as a use).
+
+Construction section read in full (five recipes) plus the sources section. Typed only. Thieves' Tools are consumable stacks and have no item file, so no output rows."""
+
+[[citation]]
+field = "pack"
+url = "https://ddowiki.com/page/Device_Workstation"
+read = "2026-11-12"
+note = "Uses the Device Workstation (House Cannith Enclave, Eveningstar, Sharn - Cliffside Docks District, optional guild airship amenity); the Device Workstation page names no pack."
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Thieves%27_Tools"
+read = "2026-11-04"
+note = """
+Combine 10 Mechanical Trap Parts and a +1 weapon (consumed) in a Device Workstation to create a set of 50 +1 Thieves' Tools. The consumed weapon is any weapon with that enhancement bonus; +6 and greater weapons cannot be used.
+
+Combine 25 Mechanical Trap Parts and a +2 weapon (consumed) in a Device Workstation to create a set of 50 +2 Thieves' Tools. The consumed weapon is any weapon with that enhancement bonus; +6 and greater weapons cannot be used.
+
+Combine 50 Mechanical Trap Parts and a +3 weapon (consumed) in a Device Workstation to create a set of 50 +3 Thieves' Tools. The consumed weapon is any weapon with that enhancement bonus; +6 and greater weapons cannot be used.
+
+Combine 75 Mechanical Trap Parts and a +4 weapon (consumed) in a Device Workstation to create a set of 50 +4 Thieves' Tools. The consumed weapon is any weapon with that enhancement bonus; +6 and greater weapons cannot be used.
+
+Combine 100 Mechanical Trap Parts and a +5 weapon (consumed) in a Device Workstation to create a set of 50 +5 Thieves' Tools. The consumed weapon is any weapon with that enhancement bonus; +6 and greater weapons cannot be used.
+
+The Trapmaking feat is not required to make Thieves' Tools; a character without it must get the Mechanical Trap Parts from another character (page statement)."""
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Thieves%27_Tools"
+read = "2026-11-04"
+note = "Mechanical Trap Parts 10, 25, 50, 75, 100 for +1 to +5; the consumed weapon (a +N weapon) is on the recipe note."
+
+[[citation]]
+url = "https://ddowiki.com/page/Device_Workstation"
+read = "2026-11-04"
+note = "Whole page read: the four uses (Trapmaking, Thieves' Tools, Handwraps to Collars, Clearing Cannith Crafted enchantments from a Rune Arm) and the three locations plus the optional guild airship amenity. No costs or level gates on this page."
+
+[[recipe]]
+note = """
+Combine 10 Mechanical Trap Parts and a +1 weapon (consumed) in a Device Workstation to create a set of 50 +1 Thieves' Tools. The consumed weapon is any weapon with that enhancement bonus; +6 and greater weapons cannot be used.
+
+The Trapmaking feat is not required to make Thieves' Tools; a character without it must get the Mechanical Trap Parts from another character (page statement)."""
+option = "+1 Thieves' Tools"
+tier = "any"
+step = "Thieves' Tools construction"
+
+[[recipe.ingredient]]
+ingredient = "Mechanical Trap Parts"
+quantity = 10
+
+[[recipe]]
+note = "Combine 25 Mechanical Trap Parts and a +2 weapon (consumed) in a Device Workstation to create a set of 50 +2 Thieves' Tools. The consumed weapon is any weapon with that enhancement bonus; +6 and greater weapons cannot be used."
+option = "+2 Thieves' Tools"
+tier = "any"
+step = "Thieves' Tools construction"
+
+[[recipe.ingredient]]
+ingredient = "Mechanical Trap Parts"
+quantity = 25
+
+[[recipe]]
+note = "Combine 50 Mechanical Trap Parts and a +3 weapon (consumed) in a Device Workstation to create a set of 50 +3 Thieves' Tools. The consumed weapon is any weapon with that enhancement bonus; +6 and greater weapons cannot be used."
+option = "+3 Thieves' Tools"
+tier = "any"
+step = "Thieves' Tools construction"
+
+[[recipe.ingredient]]
+ingredient = "Mechanical Trap Parts"
+quantity = 50
+
+[[recipe]]
+note = "Combine 75 Mechanical Trap Parts and a +4 weapon (consumed) in a Device Workstation to create a set of 50 +4 Thieves' Tools. The consumed weapon is any weapon with that enhancement bonus; +6 and greater weapons cannot be used."
+option = "+4 Thieves' Tools"
+tier = "any"
+step = "Thieves' Tools construction"
+
+[[recipe.ingredient]]
+ingredient = "Mechanical Trap Parts"
+quantity = 75
+
+[[recipe]]
+note = "Combine 100 Mechanical Trap Parts and a +5 weapon (consumed) in a Device Workstation to create a set of 50 +5 Thieves' Tools. The consumed weapon is any weapon with that enhancement bonus; +6 and greater weapons cannot be used."
+option = "+5 Thieves' Tools"
+tier = "any"
+step = "Thieves' Tools construction"
+
+[[recipe.ingredient]]
+ingredient = "Mechanical Trap Parts"
+quantity = 100

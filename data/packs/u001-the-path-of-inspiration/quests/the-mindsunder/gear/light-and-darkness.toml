@@ -60,21 +60,7 @@ name = "Mithral"
 
 [[socket]]
 slot = "crafting: suppressed power"
-
-[[socket.option]]
-name = "Adds DR 5/Epic, Bashing"
-description = """
-Damage Reduction 5/Epic: Reduces physical damage by 5, except from Epic aligned attacks.
-Bashing: This shield does an additional 1 to 6 damage when used to shield bash."""
-icon = "Upgrade"
-min_level = 18
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [5]
-bonus = "Not Set"
-effect_type = "DR"
-targets = ["Epic"]
+set = "Light and Darkness"
 
 [[source]]
 chest = "disc locked optional end chest"

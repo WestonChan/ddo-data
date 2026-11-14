@@ -1,0 +1,59 @@
+label = "crafting: nearly finished"
+name = "The Legendary Shattered Onyx"
+
+[[option]]
+name = "Insightful Intelligence +6"
+description = "Insightful Intelligence +6: This item focuses the power of the wearer's mind, granting a +6 insight bonus to Intelligence."
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 6
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[option]]
+name = "Insightful Wisdom +6"
+description = "Insightful Wisdom +6: This item makes the wearer more in tune with her surroundings, granting a +6 insight bonus to Wisdom."
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Wisdom"
+value = 6
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[option]]
+name = "Insightful Charisma +6"
+description = "Insightful Charisma +6: This item makes the wearer have more flair, granting a +6 insight bonus to Charisma."
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Charisma"
+value = 6
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]

@@ -2,6 +2,22 @@ name = "Deck of Many Curses"
 pack = "Illithid Invasion"
 page = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
 
+[[station]]
+name = "Deck of Many Curses"
+note = """
+Used from the inventory: the Deck (made by turning in 12 each of Accursed, Uncanny, Otherworldly and Forbidden Cards) places one permanent random curse on an item. The page names no crafting device.
+
+Makes Deck of Many Curses."""
+
+[[step]]
+name = "Deck Curse"
+slot = "crafting: deck curse"
+
+[[step.cost]]
+tier = "any"
+ingredient = "Deck of Many Curses"
+quantity = 1
+
 [[family]]
 family = "DeckOfManyCurses"
 
@@ -42,10 +58,29 @@ tier = "any"
 
 [[citation]]
 url = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
-read = "2026-09-29"
+read = "2026-11-04"
+note = "Whole page read. The 93 curses on the page match the data's 93 curse recipes by name, and every rarity matches; every curse costs one Deck, the Deck costs 12 each of the four cards, and Remove a curse costs one Card of Curse Cleansing, as in the data. Typed text only: the item screenshot (Deck_of_Many_Curses.png) was not opened. Card drop text matches the data (primary quest per card, saga rows, Festivult). Card of Curse Cleansing: the page says extremely rare and gives no source. No level, pack or favor gate is stated for turning in cards or using the Deck (Minimum Level: 1 is the item's)."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-11-04"
+note = """
+One Deck per curse; all 93 curse recipes cost one Deck in the data and the page states a Deck places one curse.
+
+A random pool: you cannot choose which curse the Deck places; the step is random and the 93 curses are its outcomes, some more likely than others (the page notes uneven rates). The page gives no name for the step."""
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-11-04"
+note = "Page: turn-in of 12 each; the Deck is Bound to Account on Acquire, stack size 1. The survey has no items row named Deck of Many Curses."
 
 [[recipe]]
-note = "All recipe facts are on this page. Turning in the cards creates the Deck, which places one permanent, random, positive curse (a Fortune bonus) on an item; you cannot choose the curse. Eligible: named, random and crafted items; ineligible: augments, cosmetics, wands, scrolls, quivers and ammunition, so a character can wear at most 14 curses (13 with a two-handed weapon). Curses do not change binding or minimum level; Fortune bonuses to the same statistic do not stack. Upgrades that recreate the item (Epic Crafting, the Altar of Epic Rituals) remove the curse. The curse rows below are the possible outcomes, each costing one Deck."
+note = """
+All recipe facts are on this page. Turning in the cards creates the Deck, which places one permanent, random, positive curse (a Fortune bonus) on an item; you cannot choose the curse. Eligible: named, random and crafted items; ineligible: augments, cosmetics, wands, scrolls, quivers and ammunition, so a character can wear at most 14 curses (13 with a two-handed weapon). Curses do not change binding or minimum level; Fortune bonuses to the same statistic do not stack. Upgrades that recreate the item (Epic Crafting, the Altar of Epic Rituals) remove the curse. The curse rows below are the possible outcomes, each costing one Deck.
+
+At the Deck of Many Curses."""
 option = "Deck of Many Curses"
 tier = "any"
 
@@ -68,1300 +103,928 @@ quantity = 12
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Strength; rarity Common."
 option = "Curse of Minor Strength"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Strength"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Strength; rarity Uncommon."
 option = "Curse of Major Strength"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Strength"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Dexterity; rarity Common."
 option = "Curse of Minor Dexterity"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Dexterity"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Dexterity; rarity Uncommon."
 option = "Curse of Major Dexterity"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Dexterity"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Constitution; rarity Common."
 option = "Curse of Minor Constitution"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Constitution"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Constitution; rarity Uncommon."
 option = "Curse of Major Constitution"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Constitution"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Intelligence; rarity Common."
 option = "Curse of Minor Intelligence"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Intelligence"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Intelligence; rarity Uncommon."
 option = "Curse of Major Intelligence"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Intelligence"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Wisdom; rarity Common."
 option = "Curse of Minor Wisdom"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Wisdom"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Wisdom; rarity Uncommon."
 option = "Curse of Major Wisdom"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Wisdom"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Charisma; rarity Common."
 option = "Curse of Minor Charisma"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Charisma"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Charisma; rarity Uncommon."
 option = "Curse of Major Charisma"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Charisma"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Fortitude Saving Throws; rarity Common."
 option = "Curse of Minor Fortitude"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Fortitude"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Fortitude Saving Throws; rarity Uncommon."
 option = "Curse of Major Fortitude"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Fortitude"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Reflex Saving Throws; rarity Common."
 option = "Curse of Minor Reflexes"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Reflexes"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Reflex Saving Throws; rarity Uncommon."
 option = "Curse of Major Reflexes"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Reflexes"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Will Saving Throws; rarity Common."
 option = "Curse of Minor Will"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Will"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Will Saving Throws; rarity Uncommon."
 option = "Curse of Major Will"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Will"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Physical Resistance Rating; rarity Common."
 option = "Curse of Minor Sheltering"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Sheltering"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +5 Fortune Bonus to Physical Resistance Rating; rarity Uncommon."
 option = "Curse of Major Sheltering"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Sheltering"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Magical Resistance Rating; rarity Common."
 option = "Curse of Minor Warding"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Warding"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +5 Fortune Bonus to Magical Resistance Rating; rarity Uncommon."
 option = "Curse of Major Warding"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Warding"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Attack and Damage; rarity Common."
 option = "Curse of Minor Prowess"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Prowess"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Attack and Damage; rarity Uncommon."
 option = "Curse of Major Prowess"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Prowess"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Ranged Power; rarity Common."
 option = "Curse of Minor Archery"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Archery"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +5 Fortune Bonus to Ranged Power; rarity Uncommon."
 option = "Curse of Major Archery"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Archery"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Melee Power; rarity Common."
 option = "Curse of the Minor Combatant"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Minor Combatant"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +5 Fortune Bonus to Melee Power; rarity Uncommon."
 option = "Curse of the Major Combatant"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Major Combatant"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Tactical Feat DCs; rarity Common."
 option = "Curse of the Minor Tactician"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Minor Tactician"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Tactical Feat DCs; rarity Uncommon."
 option = "Curse of the Major Tactician"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Major Tactician"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Assassinate DCs; rarity Common."
 option = "Curse of the Minor Assassin"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Minor Assassin"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Assassinate DCs; rarity Uncommon."
 option = "Curse of the Major Assassin"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Major Assassin"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Sneak Attack Dice; rarity Common."
 option = "Curse of Minor Betrayal"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Betrayal"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Sneak Attack Dice; rarity Uncommon."
 option = "Curse of Major Betrayal"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Betrayal"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Imbue Dice; rarity Uncommon."
 option = "Curse of Minor Imbuement"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Imbuement"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Imbue Dice; rarity Rare."
 option = "Curse of Major Imbuement"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Imbuement"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +4 Fortune Bonus to Universal Spell Power; rarity Common."
 option = "Curse of Minor Spellwork"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Spellwork"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +10 Fortune Bonus to Universal Spell Power; rarity Uncommon."
 option = "Curse of Major Spellwork"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Spellwork"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Breath Attack DCs; rarity Common."
 option = "Curse of Minor Breath"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Breath"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Breath Attack DCs; rarity Uncommon."
 option = "Curse of Major Breath"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Breath"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Rune Arm DCs; rarity Common."
 option = "Curse of Minor Technica"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Technica"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Rune Arm DCs; rarity Uncommon."
 option = "Curse of Major Technica"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Technica"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Search and Spot; rarity Common."
 option = "Curse of Minor Perception"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Perception"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Search and Spot; rarity Uncommon."
 option = "Curse of Major Perception"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Perception"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Open Lock and Disable Device; rarity Common."
 option = "Curse of Minor Mechanics"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Mechanics"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Open Lock and Disable Device; rarity Uncommon."
 option = "Curse of Major Mechanics"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Mechanics"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Hide and Move Silently; rarity Common."
 option = "Curse of Minor Obscurity"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Obscurity"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Hide and Move Silently; rarity Uncommon."
 option = "Curse of Major Obscurity"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Obscurity"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Spellcraft and Concentration; rarity Common."
 option = "Curse of Minor Arcana"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Arcana"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Spellcraft and Concentration; rarity Uncommon."
 option = "Curse of Major Arcana"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Arcana"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Heal and Repair; rarity Common."
 option = "Curse of Minor Renewal"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Renewal"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Heal and Repair; rarity Uncommon."
 option = "Curse of Major Renewal"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Renewal"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; The power of some effects on this item has been increased as if it were one level higher; rarity Uncommon."
 option = "Curse of Minor Masterworks"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Minor Masterworks"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; The power of some effects on this item has been increased as if it were two levels higher; rarity Rare."
 option = "Curse of Major Masterworks"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Major Masterworks"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Strength, Dexterity, and Constitution; rarity Uncommon."
 option = "Curse of the Power of Body"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Power of Body"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Intelligence, Wisdom, and Charisma; rarity Uncommon."
 option = "Curse of the Power of Mind"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Power of Mind"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Abjuration DCs; rarity Common."
 option = "Curse of the Abjurer"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Abjurer"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Conjuration DCs; rarity Common."
 option = "Curse of the Conjurer"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Conjurer"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Enchantment DCs; rarity Common."
 option = "Curse of the Enchanter"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Enchanter"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Evocation DCs; rarity Common."
 option = "Curse of the Evoker"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Evoker"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Illusion DCs; rarity Common."
 option = "Curse of the Illusionist"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Illusionist"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Necromancy DCs; rarity Common."
 option = "Curse of the Necromancer"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Necromancer"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Transmutation DCs; rarity Common."
 option = "Curse of the Transmuter"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Transmuter"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +5 Fortune Bonus to Acid Spell Power, +1% Fortune Bonus to Acid Absorption, +3 Fortune Bonus to Acid Resistance; rarity Uncommon."
 option = "Curse of the Caustic One"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Caustic One"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +5 Fortune Bonus to Electric Spell Power, +1% Fortune Bonus to Electric Absorption, +3 Fortune Bonus to Electric Resistance; rarity Uncommon."
 option = "Curse of the Voltaic Way"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Voltaic Way"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +5 Fortune Bonus to Cold Spell Power, +1% Fortune Bonus to Cold Absorption, +3 Fortune Bonus to Cold Resistance; rarity Uncommon."
 option = "Curse of the Icebreaker"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Icebreaker"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +5 Fortune Bonus to Fire Spell Power, +1% Fortune Bonus to Fire Absorption, +3 Fortune Bonus to Fire Resistance; rarity Uncommon."
 option = "Curse of the Flametouched"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Flametouched"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2% Fortune Bonus to Spell Crit Damage; rarity Rare."
 option = "Curse of Uncontrollable Energy"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Uncontrollable Energy"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +1 Fortune Bonus to Pact Dice; rarity Uncommon."
 option = "Curse of the Pact"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Pact"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; If the item is a weapon, it is always considered a Favored Weapon. Additionally, +4 Fortune Bonus to PRR, +1% Fortune Bonus to Acid, Cold, and Electricity Absorption, and +1 Fortune Bonus to Saves vs. Spells; rarity Rare."
 option = "Curse of Divine Fortune"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Divine Fortune"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; This item is now worth 10,000 Sentient XP and its sale value has increased by 100,000 Platinum. Note: This particular curse is slightly detrimental on a Bound item from Essence Crafting, which cannot be sold or fed to a Sentient Weapon, and will have its repair costs drastically increased; rarity Rare."
 option = "Curse of the Sentient's Meal"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Sentient's Meal"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2% Fortune Bonus to Damage vs. Helpless targets; rarity Rare."
 option = "Curse of Cruelty"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Cruelty"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2% Fortune Bonus to Dodge Cap, +2 Fortune Bonus to Maximum Dexterity Bonus of equipped armor; rarity Rare."
 option = "Curse of Intangibility"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Intangibility"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +3% Fortune Bonus to Rune Arm Charge Rate, -3% Fortune Bonus to Rune Arm Cooldown Rate, +3 Fortune Bonus to Repair Amplification; rarity Rare."
 option = "Curse of the Mechanical Marvel"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Mechanical Marvel"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2% Fortune Bonus to Maximum Hit Points, +3% Fortune Bonus to Armor Class; rarity Rare."
 option = "Curse of the Unstoppable One"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Unstoppable One"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; While under the effects of any Action Boost, you gain a +6 Fortune Bonus to Strength; rarity Rare."
 option = "Curse of Unparalleled Might"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Unparalleled Might"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +5% Fortune Bonus to Strikethrough, +2% Fortune Bonus to Offhand Strike Chance, +2% Fortune Bonus to Doublestrike and Doubleshot; rarity Rare."
 option = "Curse of Weapon's Touch"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Weapon's Touch"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Bluff; rarity Misc."
 option = "Curse of Charming Presence"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Charming Presence"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Intimidate; rarity Misc."
 option = "Curse of the Anger's Heart"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Anger's Heart"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Perform, +1 Bard Song; rarity Misc."
 option = "Curse of the Unending Song"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Unending Song"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Swim, Water Breathing; rarity Misc."
 option = "Curse of the Depths"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Depths"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Spot, True Seeing; rarity Misc."
 option = "Curse of the Visionary"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Visionary"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; Deathblock; rarity Misc."
 option = "Curse of the Shadowtouched"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Shadowtouched"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; Feather Falling, Cosmetic Butterflies; rarity Misc."
 option = "Curse of Butterflies"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Butterflies"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; Fear Immunity, Cosmetic Fireflies; rarity Misc."
 option = "Curse of the Forest's Embrace"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Forest's Embrace"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; Your pets and summoned creatures gain a +1 Fortune Bonus to all Ability Scores; rarity Misc."
 option = "Curse of the Commander"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Commander"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; This item is now immune to item damage; rarity Misc."
 option = "Curse of the Unbreakable"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Unbreakable"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +5% Fortune Bonus to Dodge Bypass; rarity Rare."
 option = "Curse of Future Sight"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Future Sight"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; Your Inspire Courage grants you and your allies an additional +1 Fortune bonus to Attack, Damage, Saves versus Fear, and an additional +3 Fortune bonus to Universal Spell Power; rarity Rare."
 option = "Curse of the Winding Dirge"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Winding Dirge"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2 Fortune Bonus to Critical Confirmation and Critical Damage; rarity Rare."
 option = "Curse of the Merciless"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Merciless"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; +2% Fortune Bonus to MRR Cap; rarity Rare."
 option = "Curse of the Unfeeling"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of the Unfeeling"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Random outcome; Ghost Touch; rarity Rare."
 option = "Curse of Ghostly Haunting"
-slot = "crafting: deck curse"
 tier = "any"
+step = "Deck Curse"
 
 [[recipe.augment]]
 name = "Curse of Ghostly Haunting"
 level = 1
 
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
-
 [[recipe]]
 note = "Introduced in Update 66, appearing on items with multiple curses. Has no effect. No augment counterpart in Maetrim's DeckOfManyCurses family."
 option = "Curse of the Overloaded"
-slot = "crafting: deck curse"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Deck of Many Curses"
-quantity = 1
+step = "Deck Curse"
 
 [[recipe]]
 note = "A Card of Curse Cleansing removes an item's existing curse; no augment counterpart."

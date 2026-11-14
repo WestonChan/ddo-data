@@ -24,60 +24,7 @@ value = 2
 
 [[socket]]
 slot = "crafting: nearly finished"
-
-[[socket.option]]
-name = "+13 Constitution"
-description = "+13 Enhancement bonus to Constitution"
-min_level = 29
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Constitution"
-value = 13
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [13]
-bonus_type = "Enhancement"
-effect = "Constitution"
-effect_type = "AbilityBonus"
-targets = ["Constitution"]
-
-[[socket.option]]
-name = "+13 Dexterity"
-description = "+13 Enhancement bonus to Dexterity"
-min_level = 29
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Dexterity"
-value = 13
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [13]
-bonus_type = "Enhancement"
-effect = "Dexterity"
-effect_type = "AbilityBonus"
-targets = ["Dexterity"]
-
-[[socket.option]]
-name = "+13 Intelligence"
-description = "+13 Enhancement bonus to Intelligence"
-min_level = 29
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Intelligence"
-value = 13
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [13]
-bonus_type = "Enhancement"
-effect = "Intelligence"
-effect_type = "AbilityBonus"
-targets = ["Intelligence"]
+set = "Legendary Celestial Sapphire Ring"
 
 [[socket]]
 slot = "yellow"

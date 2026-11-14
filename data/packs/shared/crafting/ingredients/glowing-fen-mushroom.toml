@@ -1,0 +1,9 @@
+name = "Glowing Fen Mushroom"
+tier = "any"
+bind = "Bound to Account on Acquire"
+drop_location = "Epic The Red Fens quests end chests"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Glowing_Fen_Mushroom"
+read = "2026-11-04"
+note = "Examine screenshot (420px-Glowing_Fen_Mushroom.png) viewed: 'Bound To Account', 'Binds to Account on Acquire'. Typed infobox: raw material used in crafting, Bind Bound to Account on Acquire, Drops from 'Epic The Red Fens quests end chests'. The item page's 'Used in' line names only Epic Crafting and Legendary Crafting (the tip: 'Altars of Epic and Legendary Rituals near Lahar to upgrade The Red Fens items'); it does not mention Dampened, which the data lists twice (epic and legendary rows). There is no maximum-stack line on this page. The same item serves every grade (no separate Legendary page). The data's text 'The Red Fens (Update 6) quest end chests in moderate amounts' is Epic Crafting prose."

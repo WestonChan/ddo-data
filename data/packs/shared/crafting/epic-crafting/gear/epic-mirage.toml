@@ -1,0 +1,63 @@
+name = "Epic Mirage"
+accepts_sentience = true
+description = "The blade of this scimitar shimmers in and out of focus."
+drop_location = "Epic version of Mirage"
+enhancement_bonus = 6
+icon = "Scimitar_14a"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 17
+
+[[effect]]
+name = "Ethereal"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 7
+value2 = 11
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Improved Cursespewing"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 5
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

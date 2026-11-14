@@ -1,0 +1,11 @@
+label = "crafting: upgradeable - secondary augment"
+name = "Epic Deific Diadem"
+
+[[option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 26
+
+[[option.grant]]
+slot = "green"

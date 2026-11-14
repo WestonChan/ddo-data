@@ -1,0 +1,22 @@
+label = "crafting: attuned by heroism: tier 2"
+name = "Idol of Fortune"
+
+[[option]]
+name = "Good Luck +3"
+description = "Good Luck +3: This item gives a +3 Luck bonus to all saves and skill checks."
+icon = "Heroism"
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Luck"
+effect = "Saving Throws"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Luck"
+effect = "Saving Throws"
+effect_type = "SkillBonus"
+extra_types = ["SaveBonus"]
+targets = ["All"]

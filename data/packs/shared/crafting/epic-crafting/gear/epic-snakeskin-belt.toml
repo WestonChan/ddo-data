@@ -1,0 +1,45 @@
+name = "Epic Snakeskin Belt"
+description = "The fangs on this belt buckle are a little sharper than they need to be."
+drop_location = "Epic version of Snakeskin Belt"
+icon = "Belt_14a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 20
+slot = "Waist"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Underwater Action"
+
+[[effect]]
+name = "Swim like a Fish"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

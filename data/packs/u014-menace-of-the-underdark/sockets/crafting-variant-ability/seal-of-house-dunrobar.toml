@@ -1,0 +1,80 @@
+label = "crafting: variant ability"
+name = "Seal of House Dun'Robar"
+
+[[option]]
+name = "Constitution +7"
+description = "Constitution +7: This item gives the wearer improved health, granting a +7 enhancement bonus to Constitution."
+icon = "Variant"
+min_level = 21
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 7
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[option]]
+name = "Insightful Constitution +2"
+description = "+2 Insight bonus to Constitution"
+icon = "Variant"
+min_level = 21
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Constitution"
+value = 2
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[option]]
+name = "Strength +7"
+description = "Strength +7: This item gives the wearer the power of Ogre Strength, granting a +7 enhancement bonus to Strength."
+icon = "Variant"
+min_level = 21
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 7
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[option]]
+name = "Insightful Strength +2"
+description = "+2 Insight bonus to Strength"
+icon = "Variant"
+min_level = 21
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Strength"
+value = 2
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]

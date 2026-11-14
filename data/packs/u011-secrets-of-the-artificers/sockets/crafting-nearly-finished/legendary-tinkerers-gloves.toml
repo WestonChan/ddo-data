@@ -1,0 +1,57 @@
+label = "crafting: nearly finished"
+name = "Legendary Tinkerer's Gloves"
+
+[[option]]
+name = "+13 Dexterity"
+description = "+13 Enhancement bonus to Dexterity"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 13
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[option]]
+name = "+6 Insightful Dexterity"
+description = "+6 Insight bonus to Dexterity"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Dexterity"
+value = 6
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[option]]
+name = "+3 Quality Dexterity"
+description = "+3 Quality bonus to Dexterity"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Quality"
+effect = "Dexterity"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]

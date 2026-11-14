@@ -1,0 +1,18 @@
+label = "crafting: almost there"
+name = "Untold, Crack in the Sky"
+
+[[option]]
+name = "Armor-Piercing +21%"
+description = "Armor-Piercing - 21%: Passive: +21% Enhancement bonus to Fortification Bypass."
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+value = 21
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [21]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"

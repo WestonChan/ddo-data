@@ -1,0 +1,26 @@
+label = "crafting: upgradeable item (black abbot)"
+name = "Litany of the Dead"
+
+[[option]]
+name = "Taint of Evil"
+description = """
+Taint of Evil: Good aligned characters equipping this item suffer a temporary negative
+level until the item is removed."""
+icon = "BlackAbbot"
+min_level = 13
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect_type = "NegativeLevel"
+
+[[option.modifier.requirement]]
+items = ["Good"]
+req_type = "AlignmentType"
+
+[[option]]
+name = "Removes Taint of Evil"
+description = "This item has been cleansed of its taint."
+icon = "BlackAbbot"
+min_level = 13

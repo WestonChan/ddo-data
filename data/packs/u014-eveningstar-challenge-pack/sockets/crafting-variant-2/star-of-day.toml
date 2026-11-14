@@ -1,0 +1,138 @@
+label = "crafting: variant 2"
+name = "Star of Day"
+
+[[option]]
+name = "Disruption"
+description = """
+Disruption: On Hit: 4 to 24 Bane damage to Undead.
+On Vorpal Hit: If an undead struck by this weapon has fewer than 1000 Hit Points,
+it is instantly slain. If the undead has above 1000 Hit Points, it takes 100 damage."""
+icon = "Variant"
+min_level = 20
+
+[[option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[option.modifier.requirement]]
+items = ["Undead"]
+req_type = "EnemyType"
+
+[[option]]
+name = "Flaming Burst"
+description = """
+Flaming Burst: This weapon is sheathed in fire, and deals 1 to 6 fire damage
+each hit. Critical hits deal an additional 1 to 10 fire damage for weapons with
+a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier."""
+icon = "Variant"
+min_level = 20
+
+[[option.modifier]]
+bonus = "Not Set"
+dice_damage = "Fire"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[option.modifier]]
+amount_type = "CriticalDice"
+bonus_type = "Stacking"
+dice_damage = "Fire"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[option]]
+name = "Greater Good"
+description = """
+Greater Good: This weapon is infused with the ultimate power of Good. It does an
+additional 2 to 12 damage to non-good targets and can only be wielded by
+Good-aligned characters."""
+icon = "Variant"
+min_level = 20
+
+[[option.modifier]]
+bonus_type = "Stacking"
+dice_damage = "Good"
+dice_number = [2]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[option.modifier.requirement]]
+items = ["Non-Good"]
+req_type = "EnemyType"
+
+[[option]]
+name = "Holy Burst"
+description = """
+Holy Burst: A holy weapon is imbued with holy power. This power makes the weapon
+good-aligned and thus bypasses the corresponding damage reduction. It deals an
+extra 2 to 12 points of damage against all of evil alignment and an extra 3 to
+18 on a critical for weapons with a x2 critical multiplier, 4 to 24 for a x3
+multiplier, and 5 to 30 for a x4 multiplier."""
+icon = "Variant"
+min_level = 20
+
+[[option.modifier]]
+bonus = "Not Set"
+dice_damage = "Good"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[option.modifier.requirement]]
+items = ["Evil"]
+req_type = "EnemyType"
+
+[[option.modifier]]
+amount_type = "CriticalDice"
+bonus_type = "Stacking"
+dice_damage = "Good"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[option.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "DRBypass"
+value = "Good"

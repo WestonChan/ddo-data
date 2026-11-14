@@ -1,0 +1,57 @@
+name = "Epic Cavalry Plate (legacy) (level 20)"
+description = """
+High-seas pirates plundered this richly-decorated plate mail from naval cavalry
+officers. Although it did not suit the pirates well, a fighter looking for
+better protection may benefit from it."""
+drop_location = "Treasure of Crystal Cove, Turn in 1200 Copper Doubloon 600 Silver Doubloon 35 Stolen Diamond at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 6
+icon = "MediumArmor_9a"
+is_legacy = true
+item_category = "Armor"
+item_type = "Medium"
+material = "Mithral"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 20
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page lists the box as holding the old (tiered) versions of this line (or the trinkets) bought at Dusty Old Treasure of Crystal Cove; the data Location text agrees. Its price rows are event_reward rows only for the Cavalry Plate line and the Lesser trinkets."
+
+[[effect]]
+name = "Demonic Shield"
+
+[[effect]]
+name = "Greater False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "DR 3/Chaotic"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 5
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Epic Cavalry Plate (legacy) (level 20)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Epic Cavalry Plate (legacy) (level 20)"
+
+[[source]]
+kind = "crafting_system"
+name = "Dusty Old Treasure of Crystal Cove"

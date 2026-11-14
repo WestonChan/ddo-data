@@ -1,0 +1,44 @@
+name = "Epic Salt-Pearl Ring"
+description = "This ring features a singular pearl encrusted with bitter salt."
+drop_location = "Epic version of Salt-Pearl Ring"
+icon = "Ring_21d"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 20
+slot = "Ring"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Has a perfected version (nebula fragment crafting).'
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

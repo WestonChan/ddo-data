@@ -10,6 +10,11 @@ material = "Steel"
 minimum_level = 28
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Schism_Shard_Crafting"
+read = "2026-11-04"
+
 [[dr_bypass]]
 bypass = "Bludgeon"
 

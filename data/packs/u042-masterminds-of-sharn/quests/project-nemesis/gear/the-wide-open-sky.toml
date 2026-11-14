@@ -30,65 +30,15 @@ name = "Coruscating 6"
 
 [[socket]]
 slot = "crafting: nearly finished"
-
-[[socket.option]]
-name = "Purple Augment Slot"
-description = "Adds a Purple Augment Slot"
-
-[[socket.option.grant]]
-slot = "purple"
+set = "Constellation, Cursed Blade"
 
 [[socket]]
 slot = "crafting: almost there"
-
-[[socket.option]]
-name = "Aligned"
-description = """
-Aligned: This weapon transmutes into a form that is able to bypass any alignment
-based Damage Reduction. (Chaotic, Good, Evil, Lawful)"""
-
-[[socket.option.modifier]]
-amount_type = "NotNeeded"
-bonus_type = "Equipment"
-effect_type = "DRBypass"
-targets = ["All"]
-value = "Chaotic"
-
-[[socket.option.modifier]]
-amount_type = "NotNeeded"
-bonus_type = "Equipment"
-effect_type = "DRBypass"
-targets = ["All"]
-value = "Evil"
-
-[[socket.option.modifier]]
-amount_type = "NotNeeded"
-bonus_type = "Equipment"
-effect_type = "DRBypass"
-targets = ["All"]
-value = "Good"
-
-[[socket.option.modifier]]
-amount_type = "NotNeeded"
-bonus_type = "Equipment"
-effect_type = "DRBypass"
-targets = ["All"]
-value = "Lawful"
+set = "The Wide Open Sky"
 
 [[socket]]
 slot = "crafting: finishing touch"
-
-[[socket.option]]
-name = "Completed Weapon"
-description = "This item is fully completed, and as a result deals an additional 0.5[W] damage."
-min_level = 1
-
-[[socket.option.modifier]]
-amounts = [0.5]
-bonus_type = "Stacking"
-effect_type = "Weapon_BaseDamage"
-is_item_specific = true
-targets = ["All"]
+set = "Baz'Morath, the Curator of Decay"
 
 [[socket]]
 slot = "red"

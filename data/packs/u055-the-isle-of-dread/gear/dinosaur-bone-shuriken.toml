@@ -10,6 +10,12 @@ material = "Bone"
 minimum_level = 31
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-11-04"
+note = "Page: crafted at Sharpened Bone for 25 of each of four fossils, and 'may also be found in the Wilderness'; the blanks come from Isle of Dread quests, wilderness encounters, The Mountain Keeper's chest in the raid and the Sharpened Bone trader. No single quest is named, so no quest link. The data has no crafting-output row for this system today."
+
 [[dr_bypass]]
 bypass = "Magic"
 
@@ -42,6 +48,10 @@ chest = "any chest"
 kind = "adventure_pack"
 loot_type = "chest"
 name = "The Isle of Dread"
+
+[[source]]
+kind = "crafting_system"
+name = "Dinosaur Bone crafting"
 
 [[weapon]]
 attack_modifier = "Dexterity"

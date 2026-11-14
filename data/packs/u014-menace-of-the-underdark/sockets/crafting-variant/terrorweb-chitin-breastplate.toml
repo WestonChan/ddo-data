@@ -1,0 +1,113 @@
+label = "crafting: variant"
+name = "Terrorweb Chitin Breastplate"
+
+[[option]]
+name = "+8 Strength"
+description = "+8 Enhancement bonus to Strength"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[option]]
+name = "Insightful Strength +3"
+description = "+3 Insightful bonus to Strength"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Strength"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[option]]
+name = "+8 Constitution"
+description = "+8 Enhancement bonus to Constitution"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[option]]
+name = "Insightful Constitution +3"
+description = "+3 Insightful bonus to Constitution"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Constitution"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[option]]
+name = "+8 Wisdom"
+description = "+8 Enhancement bonus to Wisdom"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[option]]
+name = "Insightful Wisdom +3"
+description = "+3 Insightful bonus to Wisdom"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Wisdom"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]

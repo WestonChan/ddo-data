@@ -1,0 +1,42 @@
+name = "Dragoncraft Leather Armor"
+description = """
+Leather armor imbued with ancient draconic magic, for the rare few humanoids
+that they favored."""
+drop_location = "Dragoncraft Armor, Turn in 10 Ancient Dragon Relics"
+enhancement_bonus = 4
+icon = "LightArmor_1"
+is_legacy = true
+item_category = "Armor"
+item_type = "Light"
+material = "Feyleather"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 75
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[effect]]
+name = "Shield Bonus"
+bonus_type = "Shield"
+value = 4
+
+[[ddobuilder_correction]]
+kind = "item"
+field = "is_legacy"
+upstream = false
+reason = "The wiki says it is no longer available for purchase; examples still exist in game."
+url = "https://ddowiki.com/page/Dragoncraft_Armor"
+read = "2026-11-03"

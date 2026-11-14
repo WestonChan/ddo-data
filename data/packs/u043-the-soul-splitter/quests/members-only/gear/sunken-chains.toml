@@ -24,60 +24,7 @@ value = 9
 
 [[socket]]
 slot = "crafting: nearly finished"
-
-[[socket.option]]
-name = "Quality Strength +1"
-description = "Quality Strength +1: This item gives the wearer the power of Ogre Strength, granting a +1 quality bonus to Strength."
-min_level = 17
-
-[[socket.option.effect]]
-bonus_type = "Quality"
-effect = "Strength"
-value = 1
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [1]
-bonus_type = "Quality"
-effect = "Strength"
-effect_type = "AbilityBonus"
-targets = ["Strength"]
-
-[[socket.option]]
-name = "Quality Dexterity +1"
-description = "Quality Dexterity +1: This item makes the wearer more nimble and dexterous, granting a +1 quality bonus to Dexterity."
-min_level = 17
-
-[[socket.option.effect]]
-bonus_type = "Quality"
-effect = "Dexterity"
-value = 1
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [1]
-bonus_type = "Quality"
-effect = "Dexterity"
-effect_type = "AbilityBonus"
-targets = ["Dexterity"]
-
-[[socket.option]]
-name = "Quality Intelligence +1"
-description = "Quality Intelligence +1: This item focuses the power of the wearer's mind, granting a +1 quality bonus to Intelligence."
-min_level = 17
-
-[[socket.option.effect]]
-bonus_type = "Quality"
-effect = "Intelligence"
-value = 1
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [1]
-bonus_type = "Quality"
-effect = "Intelligence"
-effect_type = "AbilityBonus"
-targets = ["Intelligence"]
+set = "Sunken Chains"
 
 [[socket]]
 slot = "green"

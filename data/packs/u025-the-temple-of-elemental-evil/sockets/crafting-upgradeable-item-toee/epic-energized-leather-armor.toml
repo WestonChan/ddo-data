@@ -1,0 +1,44 @@
+label = "crafting: upgradeable item (toee)"
+name = "Epic Energized Leather Armor"
+
+[[option]]
+name = "Adds Lesser Displacement, Fortification +150%, Green Augment and Set bonus"
+description = """
+Lesser Displacement: Equipping this item causes light to distort around you.
+Attacks from enemies have a 25% chance to miss you due to concealment.
+Fortification +150%: +150% Enhancement bonus to reduced chance of taking critical
+damage on a critical hit.
+Adds a Green Augment slot
+Adds the Epic Elemental Evil Set bonus"""
+icon = "TOEE"
+min_level = 26
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Displacement"
+value = 25
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Fortification"
+value = 150
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Equipment"
+effect = "Displacement"
+effect_type = "Displacement"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Enhancement"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[option.set]]
+set = "Epic Elemental Evil Set"

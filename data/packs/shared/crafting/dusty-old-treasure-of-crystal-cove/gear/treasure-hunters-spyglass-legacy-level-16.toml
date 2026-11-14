@@ -1,0 +1,48 @@
+name = "Treasure Hunter's Spyglass (legacy) (level 16)"
+description = """
+A tool such as this is a great aid to the treasure-seeking pirate, for it allows
+him or her to locate small details, find secret passages and notice any traps
+that might be lurking along the way."""
+drop_location = "Treasure of Crystal Cove, Turn in 1000 Copper Doubloon 500 Silver Doubloon 30 Stolen Sapphire at Dusty Old Treasure of Crystal Cove"
+icon = "Trinket_17"
+is_legacy = true
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 16
+slot = "Trinket"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page lists the box as holding the old (tiered) versions of this line (or the trinkets) bought at Dusty Old Treasure of Crystal Cove; the data Location text agrees. Its price rows are event_reward rows only for the Cavalry Plate line and the Lesser trinkets."
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 3
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Treasure Hunter's Spyglass (legacy) (level 16)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Treasure Hunter's Spyglass (legacy) (level 16)"
+
+[[source]]
+kind = "crafting_system"
+name = "Dusty Old Treasure of Crystal Cove"

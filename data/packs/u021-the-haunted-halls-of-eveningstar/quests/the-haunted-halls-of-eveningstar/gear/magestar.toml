@@ -27,17 +27,7 @@ targets = ["Magestar Absorption"]
 
 [[socket]]
 slot = "crafting: zhentarim attuned"
-
-[[socket.option]]
-name = "Magestar Absorption increases to 10 charges and adds a Green augment slot"
-description = """
-Magestar Absorption: This effect absorbs harmful spells targeted at the wearer.
-Adds a Green augment slot"""
-icon = "Upgrade"
-min_level = 26
-
-[[socket.option.grant]]
-slot = "green"
+set = "Magestar"
 
 [[source]]
 chest = "ancient mummy 's, dragon 's or whisper 's chest"

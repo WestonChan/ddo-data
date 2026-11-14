@@ -1,0 +1,11 @@
+label = "crafting: attuned by heroism: tier 4"
+name = "Celestia, Brightest Star of Day"
+
+[[option]]
+name = "Red Augment Slot"
+description = "Adds a Green augment slot to this weapon."
+icon = "Heroism"
+min_level = 23
+
+[[option.grant]]
+slot = "green"

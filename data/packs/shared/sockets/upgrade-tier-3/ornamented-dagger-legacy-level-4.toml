@@ -1,0 +1,21 @@
+label = "upgrade: tier 3"
+name = "Ornamented Dagger (legacy) (level 4)"
+
+[[option]]
+name = "Combustion +48"
+description = "Combustion +48: Passive: +48 Equipment bonus to Fire Spell Power."
+icon = "Upgrade"
+min_level = 4
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 48
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [48]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]

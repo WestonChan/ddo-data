@@ -1,0 +1,46 @@
+name = "Adamantine Cloak of the Dragon"
+description = """
+This cloak has threads of magically-conductive enchanted iron wire woven into
+it."""
+drop_location = "Eveningstar Challenge Crafting, Turn in various ingredients"
+icon = "Cloak_12"
+item_category = "Clothing"
+material = "Adamantine"
+minimum_level = 24
+slot = "Back"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-04"
+note = "Bought with challenge ingredients from the Eveningstar traders; also the page notes completed randomly generated named challenge items drop rarely from the challenges' chests and the dragon in the Underdark, which are not these cloaks."
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 18
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 76
+
+[[effect]]
+name = "Spell Focus II"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Stealth Strike"
+
+[[ddobuilder_correction]]
+kind = "item"
+field = "drop_location"
+upstream = "Eveningstar Challenge Pack, Turn in various ingredients"
+reason = "400, 200, 400, 400 plus a Mithral Cloak (of the Dragon); cumulative 1200, 600, 1200, 1200; ML24"
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-12"
+
+[[source]]
+kind = "crafting_system"
+name = "Eveningstar Challenge Crafting"

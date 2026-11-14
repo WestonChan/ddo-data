@@ -1,0 +1,621 @@
+name = "Eveningstar Challenge Crafting"
+pack = "Eveningstar Challenge Pack"
+page = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+
+[[station]]
+name = "Gerad Poplar"
+note = "Trades the level 16 versions."
+
+[[station]]
+name = "Lorani Thallam"
+note = "Trades the level 20 versions."
+
+[[station]]
+name = "Kroth Mak"
+note = "Trades the level 24 versions."
+
+[[unlock]]
+kind = "pack"
+pack = "Eveningstar Challenge Pack"
+text = "The page states 'Requires access to adventure pack: Eveningstar Challenge Pack' (695 Points; free to VIP; included with Menace of the Underdark). The challenges are partially free to play: one free universal challenge token per day from the challenge token vendor in the House Cannith Enclave or Eveningstar."
+
+[[step]]
+name = "Cormyrian item exchange"
+is_random = true
+
+[[step]]
+name = "Cloak exchange"
+
+[[citation]]
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-04"
+note = """
+The page calls it exchanging challenge ingredients for rewards. The Cormyrian weapons, armor, robes, shields, staves and throwers are semi-randomly generated (the effects are random; the turn-in only picks the item type and level); the nine cloaks are fixed named items. The Item Deconstruction section: dragging an item into the Barter Box and selecting Cormyrian Armament Exchange destroys it and returns 37% to 46% of the purchase materials (observed).
+
+Whole page read: the challenge table (6 challenges, one ingredient each, from the icon names IngIcon_ESChallenge_*), the item-type price table (18 cells, the ingredient identities read from icon files and tooltips) and the cloak table (9 cloaks, base and cumulative costs), the Cormyrian item description sections and Item Deconstruction. No screenshots on the page: typed only."""
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-04"
+note = """
+Semi-random generated item of the chosen type at ML 16; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 16 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier.
+
+Semi-random generated item of the chosen type at ML 20; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 20 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier.
+
+Semi-random generated item of the chosen type at ML 24; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 24 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier.
+
+ML 16 cloak (Bear type). Base cloak. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2.
+
+ML 20 cloak (Bear type). Consumes the previous cloak: Iron Cloak of the Bear (the page lists the cloak icon as an ingredient); the cumulative cost column totals the lower tiers. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2.
+
+ML 24 cloak (Bear type). Consumes the previous cloak: Mithral Cloak of the Bear (the page lists the cloak icon as an ingredient); the cumulative cost column totals the lower tiers. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2.
+
+ML 16 cloak (Wolf type). Base cloak. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2.
+
+ML 20 cloak (Wolf type). Consumes the previous cloak: Iron Cloak of the Wolf (the page lists the cloak icon as an ingredient); the cumulative cost column totals the lower tiers. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2.
+
+ML 24 cloak (Wolf type). Consumes the previous cloak: Mithral Cloak of the Wolf (the page lists the cloak icon as an ingredient); the cumulative cost column totals the lower tiers. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2.
+
+ML 16 cloak (Dragon type). Base cloak. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2.
+
+ML 20 cloak (Dragon type). Consumes the previous cloak: Iron Cloak of the Dragon (the page lists the cloak icon as an ingredient); the cumulative cost column totals the lower tiers. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2.
+
+ML 24 cloak (Dragon type). Consumes the previous cloak: Mithral Cloak of the Dragon (the page lists the cloak icon as an ingredient); the cumulative cost column totals the lower tiers. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2."""
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-04"
+note = "Cost differs by reward type (and cloak type); the same cost applies at levels 16, 20 and 24 for the Cormyrian items, so the recipe carries it."
+
+[[citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-04"
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 16; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 16 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian melee weapons / War Wizard's Staff (level 16)"
+tier = "heroic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 100
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 100
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 20; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 20 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian melee weapons / War Wizard's Staff (level 20)"
+tier = "heroic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 100
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 100
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 24; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 24 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian melee weapons / War Wizard's Staff (level 24)"
+tier = "epic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 100
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 100
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 16; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 16 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Spelltouched throwing weapons / Crossbows (level 16)"
+tier = "heroic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 100
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 20; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 20 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Spelltouched throwing weapons / Crossbows (level 20)"
+tier = "heroic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 100
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 24; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 24 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Spelltouched throwing weapons / Crossbows (level 24)"
+tier = "epic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 100
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 16; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 16 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian bows (level 16)"
+tier = "heroic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 100
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 20; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 20 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian bows (level 20)"
+tier = "heroic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 100
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 24; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 24 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian bows (level 24)"
+tier = "epic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 100
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 16; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 16 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian armors (level 16)"
+tier = "heroic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 100
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 20; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 20 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian armors (level 20)"
+tier = "heroic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 100
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 24; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 24 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian armors (level 24)"
+tier = "epic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 100
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 16; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 16 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian robes (level 16)"
+tier = "heroic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 100
+
+[[recipe.ingredient]]
+ingredient = "Copper Thumbs"
+quantity = 250
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 400
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 20; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 20 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian robes (level 20)"
+tier = "heroic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 100
+
+[[recipe.ingredient]]
+ingredient = "Copper Thumbs"
+quantity = 250
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 400
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 24; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 24 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian robes (level 24)"
+tier = "epic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 100
+
+[[recipe.ingredient]]
+ingredient = "Copper Thumbs"
+quantity = 250
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 400
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 16; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 16 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian shields (level 16)"
+tier = "heroic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 100
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 100
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 20; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 20 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian shields (level 20)"
+tier = "heroic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 100
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 100
+
+[[recipe]]
+note = "Semi-random generated item of the chosen type at ML 24; the effects are random. The page prices the level 16, 20 and 24 versions the same. Traded with the level 24 trader. The tier follows the ML (above 20 is epic level); the page does not state a tier."
+option = "Cormyrian shields (level 24)"
+tier = "epic"
+step = "Cormyrian item exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 100
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 100
+
+[[recipe]]
+note = "ML 16 cloak (Bear type). Base cloak. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2."
+option = "Iron Cloak of the Bear"
+tier = "heroic"
+step = "Cloak exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 800
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 400
+
+[[recipe]]
+note = "ML 20 cloak (Bear type). Consumes the previous cloak: Iron Cloak of the Bear (the page lists the cloak icon as an ingredient); the cumulative cost column totals the lower tiers. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2."
+option = "Mithral Cloak of the Bear"
+tier = "heroic"
+step = "Cloak exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 800
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 400
+
+[[recipe.ingredient]]
+item = "Iron Cloak of the Bear"
+quantity = 1
+
+[[recipe]]
+note = "ML 24 cloak (Bear type). Consumes the previous cloak: Mithral Cloak of the Bear (the page lists the cloak icon as an ingredient); the cumulative cost column totals the lower tiers. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2."
+option = "Adamantine Cloak of the Bear"
+tier = "epic"
+step = "Cloak exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Silver Falcons"
+quantity = 800
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 400
+
+[[recipe.ingredient]]
+item = "Mithral Cloak of the Bear"
+quantity = 1
+
+[[recipe]]
+note = "ML 16 cloak (Wolf type). Base cloak. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2."
+option = "Iron Cloak of the Wolf"
+tier = "heroic"
+step = "Cloak exchange"
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Copper Thumbs"
+quantity = 1000
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 400
+
+[[recipe]]
+note = "ML 20 cloak (Wolf type). Consumes the previous cloak: Iron Cloak of the Wolf (the page lists the cloak icon as an ingredient); the cumulative cost column totals the lower tiers. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2."
+option = "Mithral Cloak of the Wolf"
+tier = "heroic"
+step = "Cloak exchange"
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Copper Thumbs"
+quantity = 1000
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 400
+
+[[recipe.ingredient]]
+item = "Iron Cloak of the Wolf"
+quantity = 1
+
+[[recipe]]
+note = "ML 24 cloak (Wolf type). Consumes the previous cloak: Mithral Cloak of the Wolf (the page lists the cloak icon as an ingredient); the cumulative cost column totals the lower tiers. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2."
+option = "Adamantine Cloak of the Wolf"
+tier = "epic"
+step = "Cloak exchange"
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Copper Thumbs"
+quantity = 1000
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 400
+
+[[recipe.ingredient]]
+item = "Mithral Cloak of the Wolf"
+quantity = 1
+
+[[recipe]]
+note = "ML 16 cloak (Dragon type). Base cloak. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2."
+option = "Iron Cloak of the Dragon"
+tier = "heroic"
+step = "Cloak exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 400
+
+[[recipe]]
+note = "ML 20 cloak (Dragon type). Consumes the previous cloak: Iron Cloak of the Dragon (the page lists the cloak icon as an ingredient); the cumulative cost column totals the lower tiers. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2."
+option = "Mithral Cloak of the Dragon"
+tier = "heroic"
+step = "Cloak exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 400
+
+[[recipe.ingredient]]
+item = "Iron Cloak of the Dragon"
+quantity = 1
+
+[[recipe]]
+note = "ML 24 cloak (Dragon type). Consumes the previous cloak: Mithral Cloak of the Dragon (the page lists the cloak icon as an ingredient); the cumulative cost column totals the lower tiers. Added in Update 15; the Level 20 and 24 prices were cut in Update 19 Patch 2."
+option = "Adamantine Cloak of the Dragon"
+tier = "epic"
+step = "Cloak exchange"
+
+[[recipe.ingredient]]
+ingredient = "Golden Lion"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Platinum Tricrowns"
+quantity = 200
+
+[[recipe.ingredient]]
+ingredient = "Enchanted Moss"
+quantity = 400
+
+[[recipe.ingredient]]
+ingredient = "Fey Toadstool"
+quantity = 400
+
+[[recipe.ingredient]]
+item = "Mithral Cloak of the Dragon"
+quantity = 1

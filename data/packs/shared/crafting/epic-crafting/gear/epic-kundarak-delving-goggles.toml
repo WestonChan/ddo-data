@@ -1,0 +1,46 @@
+name = "Epic Kundarak Delving Goggles"
+description = """
+These goggles are Kundarak-forged and useful for exploring (and infiltrating)
+secure spaces."""
+drop_location = "Epic version of Kundarak Delving Goggles"
+icon = "Goggles_11b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Goggles"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 17
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

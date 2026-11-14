@@ -1,0 +1,35 @@
+name = "Giantcraft Robe"
+description = "A fine silk robe imbued with the magic of the ancient giant empire."
+drop_location = "Giantcraft Armor, Turn in 10 Ancient Giant Relics"
+icon = "Cloth_1e"
+is_legacy = true
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 5
+
+[[effect]]
+name = "Haste Guard"
+
+[[effect]]
+name = "Vengeful"
+
+[[effect]]
+name = "Relentless Fury"
+
+[[ddobuilder_correction]]
+kind = "item"
+field = "is_legacy"
+upstream = false
+reason = "The wiki says it is no longer available for purchase; examples still exist in game."
+url = "https://ddowiki.com/page/Giantcraft_Armor"
+read = "2026-11-03"

@@ -1,0 +1,46 @@
+name = "Iron Cloak of the Bear"
+description = "Lined with plates of steel, this bearskin cloak is a formidable protection."
+drop_location = "Eveningstar Challenge Crafting, Turn in various ingredients"
+icon = "Cloak_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 16
+slot = "Back"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-04"
+note = "Bought with challenge ingredients from the Eveningstar traders; also the page notes completed randomly generated named challenge items drop rarely from the challenges' chests and the dragon in the Underdark, which are not these cloaks."
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 20
+
+[[ddobuilder_correction]]
+kind = "item"
+field = "drop_location"
+upstream = "Eveningstar Challenge Pack, Turn in various ingredients"
+reason = "400 + 800 + 400 + 400 of the four challenge ingredients (icons Ring of Fire, Fight to the Finish, Great Tree, Defenseless, in that order); ML16"
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-12"
+
+[[source]]
+kind = "crafting_system"
+name = "Eveningstar Challenge Crafting"

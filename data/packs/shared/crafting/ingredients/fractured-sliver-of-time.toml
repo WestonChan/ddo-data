@@ -1,0 +1,9 @@
+name = "Fractured Sliver of Time"
+tier = "any"
+bind = "Bound to Account on Acquire"
+drop_location = "The Chronoscope, chests; Devil Assault (quest), end chest"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Fractured_Sliver_of_Time"
+read = "2026-11-04"
+note = "Examine screenshot (420px-Fractured_Sliver_of_Time.png) viewed: 'Bound To Account', 'Binds to Account on Acquire'. Typed infobox: Bind Bound to Account on Acquire, Maximum Stack Size 1000, 'Drops from: The Chronoscope, chests; Devil Assault (quest), end chest', 'Used in: Altar of Epic Rituals and Altar of Legendary Rituals to upgrade The Chronoscope items'; tip 100 Fractured Slivers of Time purchase a Star Fragment. One item serves the Epic and the Legendary recipes (no separate Legendary page). The data's text ('The Chronoscope (Update 7) quest end chests in moderate amounts; replaces the pre-Update 50 seals and shards') is Epic Crafting prose."

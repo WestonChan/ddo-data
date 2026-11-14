@@ -1,0 +1,37 @@
+label = "upgrade: tier 3"
+name = "Epic Blasting Chime"
+
+[[option]]
+name = "Upgrades Sonic Lore to 18% and Resonance to 122 and a Green augment slot"
+description = "Adds a Purple augment slot to this item"
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Sonic Spell Lore"
+value = 18
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+value = 122
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [18]
+bonus_type = "Equipment"
+effect = "Sonic Spell Lore"
+effect_type = "SpellLore"
+targets = ["Sonic"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [122]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+effect_type = "SpellPower"
+targets = ["Sonic"]

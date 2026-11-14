@@ -43,44 +43,11 @@ value = 3
 
 [[socket]]
 slot = "upgrade: tier 2"
-
-[[socket.option]]
-name = "+5 Enhancement Bonus"
-description = "+7 Enhancement Bonus: +7 enhancement bonus to attack and damage rolls."
-icon = "Upgrade"
-min_level = 24
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [7]
-bonus_type = "Enhancement"
-effect_type = "Weapon_Enchantment"
+set = "Epic Duelist's Leathers (level 24)"
 
 [[socket]]
 slot = "upgrade: tier 3"
-
-[[socket.option]]
-name = "Dodge 10% and Adds a Blue augment slot"
-description = """
-Dodge +10%: +10% Enhancement bonus to Dodge.
-Adds a Blue augment slot to this item"""
-icon = "Upgrade"
-min_level = 24
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Dodge"
-value = 10
-
-[[socket.option.grant]]
-slot = "blue"
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [10]
-bonus_type = "Enhancement"
-effect = "Dodge"
-effect_type = "DodgeBonus"
+set = "Epic Duelist's Leathers (level 24)"
 
 [[source]]
 kind = "event"

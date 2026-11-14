@@ -13,6 +13,12 @@ material = "Cold Iron"
 minimum_level = 30
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: "The Chronoscope (Legendary), end chest, or Legendary version of Epic ..."; the Legendary raid is the drop source.'
+
 [[dr_bypass]]
 bypass = "Cold"
 
@@ -46,6 +52,10 @@ slot = "red"
 
 [[socket]]
 slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"
 
 [[source]]
 chest = "end chest, or legendary version of epic hellstroke great axe"

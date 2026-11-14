@@ -38,59 +38,19 @@ value = 6
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 1"
-
-[[socket.option]]
-name = "Planar Conflux"
-description = """
-Planar Conflux: When this item is equipped at the same time as a Planar Focus,
-you will gain set bonuses based on the Planar Focus that you have equipped."""
-icon = "Heroism"
-min_level = 23
+set = "Agony, the Knife in the Dark"
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 2"
-
-[[socket.option]]
-name = "+8 Enhancement Bonus"
-description = "+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls."
-icon = "Heroism"
-min_level = 23
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [8]
-bonus_type = "Enhancement"
-effect_type = "Weapon_Enchantment"
+set = "Agony, the Knife in the Dark"
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 3"
-
-[[socket.option]]
-name = "Wailing"
-description = "Wailing: Shrieking weapons emit a haunting wail whenever they are used to make a successful attack. This wail deals an additional 3 to 18 sonic damage."
-icon = "Heroism"
-min_level = 23
-
-[[socket.option.modifier]]
-bonus_type = "Equipment"
-dice_damage = "Sonic"
-dice_number = [1]
-dice_sides = [6]
-effect_type = "WeaponOtherDamageBonus"
-extra_types = ["WeaponOtherDamageBonusCritical"]
-targets = ["All"]
+set = "Breach, The Dividing Blade"
 
 [[socket]]
 slot = "crafting: attuned by heroism: tier 4"
-
-[[socket.option]]
-name = "Red Augment Slot"
-description = "Adds a Red augment slot to this weapon."
-icon = "Heroism"
-min_level = 23
-
-[[socket.option.grant]]
-slot = "red"
+set = "Agony, the Knife in the Dark"
 
 [[source]]
 chest = "end chest"

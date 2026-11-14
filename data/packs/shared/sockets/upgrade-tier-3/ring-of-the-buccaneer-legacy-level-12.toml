@@ -1,0 +1,22 @@
+label = "upgrade: tier 3"
+name = "Ring of the Buccaneer (legacy) (level 12)"
+
+[[option]]
+name = "Becomes Dexterity +5"
+description = """
+Dexterity +5: This item makes the wearer more nimble and dexterous, granting a +5
+Enhancement bonus to Dexterity."""
+min_level = 12
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 5
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]

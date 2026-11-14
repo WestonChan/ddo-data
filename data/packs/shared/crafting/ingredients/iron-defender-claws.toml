@@ -1,0 +1,9 @@
+name = "Iron Defender Claws"
+tier = "any"
+bind = "Unbound"
+drop_location = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests (distributed by a mechanic similar to the Altar of Insanity ingredients); also found in chests in the Masterminds of Sharn quests. Used at the Cannith Melting Station"
+
+[[citation]]
+url = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-11-04"
+note = "Data holds this ingredient only under Alchemical Crafting and Syranian Forged Weaponry; Nearly Finished's page also uses it in its Materials-required column but the data has no Nearly Finished ingredient row for it. No Item: page exists (Item:Iron_Defender_Claws is a 404). Alchemical Crafting's raw-ingredient table lists Iron Defender Claws with Bind Status 'Unbound', 'Mob kills within the zone [1]' (note [1]: 'Distributed by similar mechanic to the Altar of Insanity ingredients') and Used at Cannith Melting Station. The Cannith Melting Station page's Ingredient Equivalencies table says the enemy-dropped ingredient is the same thing as the Melting Station recipe's 'Pair of Iron Defender Rivets (Claws)' (icon Pair_of_Iron_Defender_Rivets.jpg); its popups read '5 Iron Defender Claws'. Syranian Forged Weaponry and Nearly Finished use the name 'Iron Defender Claws' unchanged, so it is one ingredient for all three systems. Nearly Finished adds that the 'Materials required' column ingredients 'can be found in chests in the various quests'. No screenshot of a tooltip exists on these pages (only recipe icons)."

@@ -1,0 +1,9 @@
+name = "Slime Emblem"
+tier = "any"
+bind = "Bound to Account on Acquire"
+drop_location = "Made at the Fetid Cauldron from the Top and Bottom of the Slime Emblem"
+
+[[citation]]
+url = "https://ddowiki.com/page/Sealed_Altar"
+read = "2026-11-04"
+note = "Needed for the kept_item unlock; the data holds Slime Emblem only as a recipe option, not as an ingredient. The halves already exist as ingredient rows."

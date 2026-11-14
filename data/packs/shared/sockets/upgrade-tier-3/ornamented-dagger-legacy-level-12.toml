@@ -1,0 +1,21 @@
+label = "upgrade: tier 3"
+name = "Ornamented Dagger (legacy) (level 12)"
+
+[[option]]
+name = "Potency +44"
+description = "Potency +44: Passive: +44 Equipment bonus to each Spell Power."
+icon = "Upgrade"
+min_level = 12
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Potency"
+value = 44
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [44]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "SpellPower"
+targets = ["All"]

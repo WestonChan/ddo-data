@@ -1,7 +1,48 @@
 name = "Esoteric Table"
-npc = "Esoteric Table at the entrance of Fire Over Morgrave, Morgrave University - Upper Commons (introduced in Update 61); usable before the raid starts or after it completes, locked during the fight; speak to Geth to enter (level 20 or higher)"
 pack = "Vecna Unleashed"
 page = "https://ddowiki.com/page/Esoteric_Table"
+
+[[station]]
+name = "Esoteric Table"
+note = "The only station the page names; it makes every recipe (weapon Tier 1 and Tier 2 upgrades; shield recipes unknown)."
+
+[[unlock]]
+kind = "level"
+value = 20
+text = "'Speak to Geth to enter the raid (note that you must be at least level 20)'; stated for entering the raid, whose entrance holds the table, so it is written at the system; the page does not say a lower-level character cannot reach the table some other way"
+
+[[step]]
+name = "Tier 1"
+slot = "crafting: planar searing"
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Burning Planar Scrap"
+quantity = 20
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Legendary Esoteric Relic"
+quantity = 20
+
+[[step]]
+name = "Tier 2"
+slot = "crafting: leashed power"
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Burning Planar Scrap"
+quantity = 120
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Legendary Esoteric Relic"
+quantity = 30
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Legendary Golden Dust of Vile Darkness"
+quantity = 12
 
 [[family]]
 family = "PlanarSearing"
@@ -11,76 +52,58 @@ name = "Burning Planar Scrap"
 drop_location = "Fire Over Morgrave end chests"
 tier = "legendary"
 
-[[ingredient]]
-name = "Legendary Esoteric Relic"
-drop_location = "Vecna Unleashed end chests"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Gray Dust of Vile Darkness"
-drop_location = "Vecna Denied (Belanatharis Dragon second chest)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Black Dust of Vile Darkness"
-drop_location = "Taken in Hand (second main room, behind barrels)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Crimson Dust of Vile Darkness"
-drop_location = "The Evil We Know (underneath Conch optional)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Golden Dust of Vile Darkness"
-drop_location = "The Hand and the Eyes (north of the final shrine), part of Grip of the Hidden Hand"
-tier = "legendary"
-
 [[citation]]
 url = "https://ddowiki.com/page/Esoteric_Table"
-read = "2026-09-29"
+read = "2026-11-04"
+note = "Whole page read: intro, ingredients, the Tier 1 table (2 upgrades, one shared cost) and the Tier 2 table (3 upgrades). All 5 recipes and their costs match the data. The page states: the table is in the entrance of the quest Fire Over Morgrave (Morgrave University - Upper Commons), usable before the raid starts or after it is completed, locked during the fight; speak to Geth to enter the raid and 'you must be at least level 20'; it upgrades legendary weapons and shields from Vecna Unleashed quests including the Fire Over Morgrave raid loot; dev comments say it is meant to work with certain shields but the shield recipes are not shown and are unknown (Legendary Defiled shields are not affected). It states no pack, favor or feat gate; the 'Level 32' nav grouping is the wiki's own."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Esoteric_Table"
+read = "2026-11-04"
+note = """
+Both Tier 1 upgrades add Leashed Power (Tier 2) and Warp Souls (-1 Will, AC, Fortification, stacks 10 times). Warp the Unholy removes Taint of Evil, Warp the Seared removes Planar Searing; the data gives both recipes the 'planar searing' label.
+
+Each Unleash upgrade removes the other two Unleashed effects. Shield recipes are not shown on the table.
+
+One cost cell over both Tier 1 rows.
+
+Common part of all three Unleash upgrades. Each recipe adds 12 of one more dust of its own: Unleash the Fire = Legendary Black Dust of Vile Darkness, Unleash the Lightning = Legendary Gray Dust, Unleash the Resistance = Legendary Crimson Dust.
+
+Page section 'Tier 1': the two upgrades remove Planar Searing (raid weapons) or Taint of Evil (Defiled weapons) and add Leashed Power (Tier 2) and Warp Souls. The slot is the one the Fire Over Morgrave weapons start with (Planar Searing).
+
+Page section 'Tier 2': the three Unleash upgrades replace Leashed Power (Tier 2) with Unleashed Inferno, Storm or Resistance."""
+
+[[citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Esoteric_Table"
+read = "2026-11-04"
 
 [[recipe]]
 note = "Tier 1. Removes Taint of Evil; adds Leashed Power (Tier 2) and Warp Souls (-1 Will, AC and Fortification, stacks 10 times). The page gives one cost for both Tier 1 rows."
 option = "Warp the Unholy (Truly Vile Weapon - Legendary Defiled Reliquary Weaponry)"
-slot = "crafting: planar searing"
 tier = "legendary"
+step = "Tier 1"
 
 [[recipe.augment]]
 name = "Warp the Unholy"
 level = 32
 
-[[recipe.ingredient]]
-ingredient = "Burning Planar Scrap"
-quantity = 20
-
-[[recipe.ingredient]]
-ingredient = "Legendary Esoteric Relic"
-quantity = 20
-
 [[recipe]]
 note = "Tier 1. Removes Planar Searing; adds Leashed Power (Tier 2) and Warp Souls (-1 Will, AC and Fortification, stacks 10 times). The page gives one cost for both Tier 1 rows."
 option = "Warp the Seared (Object Seared - Raid weapons Fire Over Morgrave)"
-slot = "crafting: planar searing"
 tier = "legendary"
+step = "Tier 1"
 
 [[recipe.augment]]
 name = "Warp the Seared"
 level = 32
 
-[[recipe.ingredient]]
-ingredient = "Burning Planar Scrap"
-quantity = 20
-
-[[recipe.ingredient]]
-ingredient = "Legendary Esoteric Relic"
-quantity = 20
-
 [[recipe]]
 note = "Tier 2. Removes Unleashed Storm and Unleashed Resistance; adds Unleashed Inferno (small chance of 10d440 fire damage plus a DC 110 Fortitude save against knockdown). Dev comments say the table should also work on certain shields, but the shield recipes are not shown on the altar and are unknown."
 option = "Unleash the Fire"
-slot = "crafting: leashed power"
 tier = "legendary"
+step = "Tier 2"
 
 [[recipe.augment]]
 name = "Unleash the Fire"
@@ -105,8 +128,8 @@ quantity = 12
 [[recipe]]
 note = "Tier 2. Removes Unleashed Inferno and Unleashed Resistance; adds Unleashed Storm (small chance of 10d440 electric damage plus a DC 110 Fortitude save against paralysis). Dev comments say the table should also work on certain shields, but the shield recipes are not shown on the altar and are unknown."
 option = "Unleash the Lightning"
-slot = "crafting: leashed power"
 tier = "legendary"
+step = "Tier 2"
 
 [[recipe.augment]]
 name = "Unleash the Lightning"
@@ -131,8 +154,8 @@ quantity = 12
 [[recipe]]
 note = "Tier 2. Removes Unleashed Inferno and Unleashed Storm; adds Unleashed Resistance (20 competence resistance and +5% profane absorption to fire and electric). Dev comments say the table should also work on certain shields, but the shield recipes are not shown on the altar and are unknown."
 option = "Unleash the Resistance"
-slot = "crafting: leashed power"
 tier = "legendary"
+step = "Tier 2"
 
 [[recipe.augment]]
 name = "Unleash the Resistance"

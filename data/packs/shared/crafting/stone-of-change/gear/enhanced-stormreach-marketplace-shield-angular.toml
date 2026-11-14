@@ -20,6 +20,12 @@ shield_bonus = 6
 url = "https://ddowiki.com/page/Item:Enhanced_Stormreach_Marketplace_Shield_%28angular%29"
 read = "2026-09-30"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Item:Enhanced_Stormreach_Marketplace_Shield_(angular)"
+read = "2026-11-04"
+note = "Made at the Stone of Change by combining Battered Marketplace Shield (angular) (the treasure effects) with Stormreach Marketplace Shield (angular) (the appearance); not a drop. The Stone of Change page itself does not list this combination, and the data has no recipe row for it (the 17 recipes are dragonshards, binding and attuning, rituals, ham oil and Token of the Twelve)."
+
 [[dr_bypass]]
 bypass = "Bludgeon"
 

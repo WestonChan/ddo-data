@@ -1,0 +1,11 @@
+label = "upgrade: tier 3"
+name = "Epic Cavalry Plate (legacy) (level 24)"
+
+[[option]]
+name = "Adds a Blue augment slot"
+description = "Adds a Blue augment slot to this item"
+icon = "Upgrade"
+min_level = 24
+
+[[option.grant]]
+slot = "blue"

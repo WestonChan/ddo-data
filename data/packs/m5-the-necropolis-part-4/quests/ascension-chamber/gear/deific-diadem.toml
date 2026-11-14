@@ -34,27 +34,7 @@ targets = ["Lesser Heighten"]
 
 [[socket]]
 slot = "crafting: upgradeable item (black abbot)"
-
-[[socket.option]]
-name = "Adds Evocation Focus +2 and Increases Lesser Height Charges to 5"
-description = """
-Evocation Focus +2: +2 Equipment bonus to the DC of Evocation spells.
-Increases Lesser Height Charges to 5 (NOT MODELLED)"""
-icon = "BlackAbbot"
-min_level = 13
-
-[[socket.option.effect]]
-bonus_type = "Equipment"
-effect = "Evocation Focus"
-value = 2
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [2]
-bonus_type = "Equipment"
-effect = "Evocation Focus"
-effect_type = "SpellDC"
-targets = ["Evocation"]
+set = "Deific Diadem"
 
 [[source]]
 chest = "raid warded chest"

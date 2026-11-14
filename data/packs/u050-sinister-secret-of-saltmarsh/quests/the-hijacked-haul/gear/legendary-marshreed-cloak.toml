@@ -9,6 +9,12 @@ material = "Cloth"
 minimum_level = 30
 slot = "Back"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: "The Hijacked Haul, end chest, or Legendary version of Epic ...".'
+
 [[clickie]]
 name = "Camouflage"
 clickie = "Camouflage"
@@ -49,6 +55,10 @@ slot = "green"
 
 [[socket]]
 slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"
 
 [[source]]
 chest = "end chest, or legendary version of epic marshreed cloak"

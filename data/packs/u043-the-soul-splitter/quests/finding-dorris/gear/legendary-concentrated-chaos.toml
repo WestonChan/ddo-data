@@ -30,60 +30,7 @@ value = 22
 
 [[socket]]
 slot = "crafting: nearly finished"
-
-[[socket.option]]
-name = "Quality Intelligence +3"
-description = "+3 Quality bonus to Intelligence"
-min_level = 29
-
-[[socket.option.effect]]
-bonus_type = "Quality"
-effect = "Intelligence"
-value = 3
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [3]
-bonus_type = "Quality"
-effect = "Intelligence"
-effect_type = "AbilityBonus"
-targets = ["Intelligence"]
-
-[[socket.option]]
-name = "Quality Wisdom +3"
-description = "+3 Quality bonus to Wisdom"
-min_level = 29
-
-[[socket.option.effect]]
-bonus_type = "Quality"
-effect = "Wisdom"
-value = 3
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [3]
-bonus_type = "Quality"
-effect = "Wisdom"
-effect_type = "AbilityBonus"
-targets = ["Wisdom"]
-
-[[socket.option]]
-name = "Quality Charisma +3"
-description = "+3 Quality bonus to Charisma"
-min_level = 29
-
-[[socket.option.effect]]
-bonus_type = "Quality"
-effect = "Charisma"
-value = 3
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [3]
-bonus_type = "Quality"
-effect = "Charisma"
-effect_type = "AbilityBonus"
-targets = ["Charisma"]
+set = "Legendary Concentrated Chaos"
 
 [[socket]]
 slot = "purple"

@@ -1,0 +1,79 @@
+name = "Restored Giantcraft Armor"
+pack = "Ruins of Gianthold"
+page = "https://ddowiki.com/page/Restored_Giantcraft_Armor"
+
+[[station]]
+name = "Horatin"
+
+[[step]]
+name = "Armor exchange"
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Restored Giant Relic"
+quantity = 10
+
+[[citation]]
+url = "https://ddowiki.com/page/Restored_Giantcraft_Armor"
+read = "2026-11-04"
+note = """
+Turn in 10 Restored Giant Relics to Horatin for a piece of armor (all ML 23, bound to character on equip). The page is a short stub of prose: no tables, no screenshots.
+
+Whole page read: relic source prose ('Restored Giant Relics can be obtained by completing Epic Gianthold quests; at the end of the chain you are offered 4 of each type of Restored Relic in the chain rewards list' and a chance to loot one or more at the end of each quest), the turn-in sentence, the five armor varieties and the shared properties. No gate (level, favor, quest) is stated for the trade; the page does not name the chain. Typed only."""
+
+[[citation]]
+field = "pack"
+url = "https://ddowiki.com/page/Gianthold"
+read = "2026-11-12"
+note = "The turn-in NPC Horatin stands in Gianthold city, and the Gianthold page says 'Requires access to adventure pack: Ruins of Gianthold'."
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Restored_Giantcraft_Armor"
+read = "2026-11-04"
+note = """
+Breastplate: AC 20, MDB 6, ACP 2, SF 25%. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less.
+
+Leather Armor: AC 13, MDB 14, SF 15%. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less.
+
+Plate Armor: AC 26, MDB 1, ACP 4, SF 35%. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less.
+
+Robe: AC 9. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less.
+
+Docent: Adamantine Body +20, Mithral Body +9. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less."""
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Restored_Giantcraft_Armor"
+read = "2026-11-04"
+note = "10 Restored Giant Relic for every armor type (breastplate, leather armor, plate armor, robe, docent)."
+
+[[recipe]]
+note = "Breastplate: AC 20, MDB 6, ACP 2, SF 25%. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less."
+option = "Restored Giantcraft Breastplate"
+tier = "epic"
+step = "Armor exchange"
+
+[[recipe]]
+note = "Leather Armor: AC 13, MDB 14, SF 15%. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less."
+option = "Restored Giantcraft Leather Armor"
+tier = "epic"
+step = "Armor exchange"
+
+[[recipe]]
+note = "Plate Armor: AC 26, MDB 1, ACP 4, SF 35%. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less."
+option = "Restored Giantcraft Plate Armor"
+tier = "epic"
+step = "Armor exchange"
+
+[[recipe]]
+note = "Robe: AC 9. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less."
+option = "Restored Giantcraft Robe"
+tier = "epic"
+step = "Armor exchange"
+
+[[recipe]]
+note = "Docent: Adamantine Body +20, Mithral Body +9. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less."
+option = "Restored Giantcraft Docent"
+tier = "epic"
+step = "Armor exchange"

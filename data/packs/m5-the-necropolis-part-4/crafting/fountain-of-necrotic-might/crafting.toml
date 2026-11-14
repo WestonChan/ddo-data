@@ -1,7 +1,46 @@
 name = "Fountain of Necrotic Might"
-npc = "Fountain of Necrotic Might, Upper Necropolis: one to the right on zoning in from the Lower Necropolis, one near the Litany of the Dead Part 4 quest givers; its list interface previews the upgrades"
 pack = "The Necropolis, Part 4"
 page = "https://ddowiki.com/page/Fountain_of_Necrotic_Might"
+
+[[station]]
+name = "Fountain of Necrotic Might"
+note = "Two devices in Upper Necropolis; the list interface previews the upgrades"
+
+[[step]]
+name = "Upgradeable Item"
+slot = "crafting: upgradeable item"
+
+[[step.cost]]
+tier = "heroic"
+ingredient = "Seal of the Black Abbot"
+quantity = 1
+
+[[step]]
+name = "Upgradeable Item (Black Abbot)"
+slot = "crafting: upgradeable item (black abbot)"
+
+[[step.cost]]
+tier = "heroic"
+ingredient = "Seal of the Black Abbot"
+quantity = 1
+
+[[step]]
+name = "Upgradeable - Primary Augment"
+slot = "crafting: upgradeable - primary augment"
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Epic Tapestry Shred"
+quantity = 120
+
+[[step]]
+name = "Upgradeable - Secondary Augment"
+slot = "crafting: upgradeable - secondary augment"
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Masterwork Tapestry Shred"
+quantity = 120
 
 [[ingredient]]
 name = "Seal of the Black Abbot"
@@ -30,77 +69,47 @@ name = "Update 23 Epic Necropolis item"
 drop_location = "Update 23 epic items from Necropolis Part 4 quests and the raid, marked Upgradable - Primary/Secondary Augment"
 tier = "epic"
 
-[[ingredient]]
-name = "Breeze"
-drop_location = "Ascension Chamber named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Circle of Hatred"
-drop_location = "Ascension Chamber named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Deific Diadem"
-drop_location = "Ascension Chamber named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Enduring Conviction"
-drop_location = "Ascension Chamber named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Litany of the Dead"
-drop_location = "Ascension Chamber named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Noxious Embers"
-drop_location = "Ascension Chamber named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Purging the Pantheon"
-drop_location = "Ascension Chamber named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Quiver of Alacrity"
-drop_location = "Ascension Chamber named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shroud of the Abbot"
-drop_location = "Ascension Chamber named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Staff of the Petitioner"
-drop_location = "Ascension Chamber named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Unwavering Ardency"
-drop_location = "Ascension Chamber named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Vile Blasphemy"
-drop_location = "Ascension Chamber named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Wretched Twilight"
-drop_location = "Ascension Chamber named loot"
-tier = "heroic"
-
 [[citation]]
 url = "https://ddowiki.com/page/Fountain_of_Necrotic_Might"
-read = "2026-09-29"
+read = "2026-11-04"
+note = "Whole page read: overview (Update 12 heroic upgrades, Update 23 epic augment slots), ingredients, the 13-item upgrade table, the bug note and the Quiver of Alacrity note. The page states no level, favor, pack, quest or feat gate. It gives no drop source for Epic Tapestry Shred or Masterwork Tapestry Shred or Shred of Tapestry."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Fountain_of_Necrotic_Might"
+read = "2026-11-04"
+note = """
+Heroic Ascension Chamber upgrade with one Seal of the Black Abbot.
+
+Same heroic upgrade; nine items. The page shows one upgrade kind for all thirteen items.
+
+Update 23 epic Necropolis Part 4 items; the wiki writes it 'Upgradable - Primary/Secondary Augment' (see verification request).
+
+As above.
+
+Page: 'Place a seal and the named item in the Fountain'; plus the item x1. Same for all thirteen items; matches Maetrim's rows.
+
+Plus one Update 23 epic Necropolis item. One recipe.
+
+Breeze, Circle of Hatred, Enduring Conviction and Wretched Twilight are Ascension Chamber items upgraded here. The label is shared with Stormreaver Monument (Amulet of the Stormreaver, Cloudburst) and ToEE armor sockets; this verdict is for the Fountain only.
+
+Nine Ascension Chamber items upgraded here; the label is used by the Fountain only.
+
+Page: Update 23 epic items 'Upgradable - Primary/Secondary Augment' take an added augment slot for 120 Epic Tapestry Shreds (primary augment); slot colour follows the normal item-type rules (armor and accessories cannot get Orange, Red or Purple).
+
+Same section: 120 Masterwork Tapestry Shreds (secondary augment)."""
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Fountain_of_Necrotic_Might"
+read = "2026-11-04"
+note = "Most earlier versions of the items convert to the Update 12 upgradeable versions by inserting the item and 5 Shreds of Tapestry (matches Maetrim's x5). The new version is not always an upgrade over the old; exclusive items are destroyed and leave an 'essence' in the ingredient bag that must be re-inserted. Upgrading the Quiver of Alacrity from the old version destroys the ammunition inside; upgrading to the 30% striding version does not. Game bug: for items with clicky charges except Litany of the Dead and Purging the Pantheon, the altar claims more charges than are gained (the missing amount equals the base amount)."
 
 [[recipe]]
-note = "Changes most earlier versions into the Update 12 upgradeable version; the new version is not necessarily better. An exclusive item is destroyed into an essence of the item in the ingredient bag, which must be placed back in the fountain to get the new version. Converting the old Quiver of Alacrity destroys any arrows or bolts in it. Adds the upgrade socket, which Maetrim models on the items already."
+note = """
+Changes most earlier versions into the Update 12 upgradeable version; the new version is not necessarily better. An exclusive item is destroyed into an essence of the item in the ingredient bag, which must be placed back in the fountain to get the new version. Converting the old Quiver of Alacrity destroys any arrows or bolts in it. Adds the upgrade socket, which Maetrim models on the items already.
+
+Most earlier versions of the items convert to the Update 12 upgradeable versions by inserting the item and 5 Shreds of Tapestry (matches Maetrim's x5). The new version is not always an upgrade over the old; exclusive items are destroyed and leave an 'essence' in the ingredient bag that must be re-inserted. Upgrading the Quiver of Alacrity from the old version destroys the ammunition inside; upgrading to the 30% striding version does not. Game bug: for items with clicky charges except Litany of the Dead and Purging the Pantheon, the altar claims more charges than are gained (the missing amount equals the base amount)."""
 option = "Convert to the Update 12 upgradeable version"
 tier = "heroic"
 
@@ -115,11 +124,11 @@ quantity = 5
 [[recipe]]
 note = "Upgrades Breeze (Quarterstaff; 1d10 damage, 19-20/x2 crit, Screaming, Roaring, Telekinetic, Slicing Winds, Dexterity bonus used for to hit and damage) in place: loses Telekinetic, gains Greater Telekinetic, Greater Sirocco. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Breeze upgrade"
-slot = "crafting: upgradeable item"
 tier = "heroic"
+step = "Upgradeable Item"
 
 [[recipe.ingredient]]
-ingredient = "Breeze"
+item = "Breeze"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -129,11 +138,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Circle of Hatred (Ring; Harm (3 Charges), Intimidate +15, Resistance +5, Incite +20) in place: loses Harm (3 Charges, 3/day), Incite +20, gains Harm (5 Charges, 5/day), Incite +30. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family. The page reports a bug: the altar claims more extra charges than the item gains (the shortfall equals the base amount)."
 option = "Circle of Hatred upgrade"
-slot = "crafting: upgradeable item"
 tier = "heroic"
+step = "Upgradeable Item"
 
 [[recipe.ingredient]]
-ingredient = "Circle of Hatred"
+item = "Circle of Hatred"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -143,11 +152,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Deific Diadem (Helm; Lesser Heighten (3 Charges), Wisdom +6, Intelligence +6) in place: loses Lesser Heighten (3 Charges), gains Lesser Heighten (5 Charges), Evocation Focus +2. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family. The page reports a bug: the altar claims more extra charges than the item gains (the shortfall equals the base amount)."
 option = "Deific Diadem upgrade"
-slot = "crafting: upgradeable item (black abbot)"
 tier = "heroic"
+step = "Upgradeable Item (Black Abbot)"
 
 [[recipe.ingredient]]
-ingredient = "Deific Diadem"
+item = "Deific Diadem"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -157,11 +166,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Enduring Conviction (Longsword; Absolute Law, Greater Good, Evil Outsider Bane, requires Good alignment or UMD 30 (no need to be Lawful)) in place: loses Evil Outsider Bane, gains Greater Evil Outsider Bane. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Enduring Conviction upgrade"
-slot = "crafting: upgradeable item"
 tier = "heroic"
+step = "Upgradeable Item"
 
 [[recipe.ingredient]]
-ingredient = "Enduring Conviction"
+item = "Enduring Conviction"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -171,11 +180,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Litany of the Dead (Trinket; Turn the Page (3 Charges), Taint of Evil, Litany of the Dead - Ability Bonus, Litany of the Dead - Combat Bonus) in place: loses Taint of Evil. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Litany of the Dead upgrade"
-slot = "crafting: upgradeable item (black abbot)"
 tier = "heroic"
+step = "Upgradeable Item (Black Abbot)"
 
 [[recipe.ingredient]]
-ingredient = "Litany of the Dead"
+item = "Litany of the Dead"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -185,11 +194,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Noxious Embers (Necklace; Lesser Maximize (3 Charges), Combustion +78, Efficient Metamagic - Enlarge I, Spell Lore III) in place: loses Lesser Maximize (3 Charges), Spell Lore III, gains Lesser Maximize (5 Charges), Spell Lore VI. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family. The page reports a bug: the altar claims more extra charges than the item gains (the shortfall equals the base amount)."
 option = "Noxious Embers upgrade"
-slot = "crafting: upgradeable item (black abbot)"
 tier = "heroic"
+step = "Upgradeable Item (Black Abbot)"
 
 [[recipe.ingredient]]
-ingredient = "Noxious Embers"
+item = "Noxious Embers"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -199,11 +208,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Purging the Pantheon (Belt; Fortification +75%, Protection +5, Quell (3 Charges), Exclusive) in place: loses Fortification +75%, Quell (3 Charges), gains Fortification +100%, Quell (5 Charges). Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Purging the Pantheon upgrade"
-slot = "crafting: upgradeable item (black abbot)"
 tier = "heroic"
+step = "Upgradeable Item (Black Abbot)"
 
 [[recipe.ingredient]]
-ingredient = "Purging the Pantheon"
+item = "Purging the Pantheon"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -213,11 +222,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Quiver of Alacrity (Quiver; Ranged Alacrity 10%, Capacity 1,500 / 3 Slot) in place: gains Striding +30%. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family. Upgrading to the Striding version keeps the quiver's contents."
 option = "Quiver of Alacrity upgrade"
-slot = "crafting: upgradeable item (black abbot)"
 tier = "heroic"
+step = "Upgradeable Item (Black Abbot)"
 
 [[recipe.ingredient]]
-ingredient = "Quiver of Alacrity"
+item = "Quiver of Alacrity"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -227,11 +236,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Shroud of the Abbot (Robe; Armor Bonus +4, Natural Armor +4, Boon of Undeath, Void Lore V, Lightning Lore V, Light Resistance +20) in place: loses Light Resistance +20, gains Light Resistance +30, Lesser Arcane Augmentation IX. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Shroud of the Abbot upgrade"
-slot = "crafting: upgradeable item (black abbot)"
 tier = "heroic"
+step = "Upgradeable Item (Black Abbot)"
 
 [[recipe.ingredient]]
-ingredient = "Shroud of the Abbot"
+item = "Shroud of the Abbot"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -241,11 +250,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Staff of the Petitioner (Quarterstaff; Power Store, Enchantment Focus +2, Necromancy Focus +2, Constitution Skills - Exceptional Bonus +5, Spell Penetration III) in place: gains Potency +48, Spellcasting Implement +15. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Staff of the Petitioner upgrade"
-slot = "crafting: upgradeable item (black abbot)"
 tier = "heroic"
+step = "Upgradeable Item (Black Abbot)"
 
 [[recipe.ingredient]]
-ingredient = "Staff of the Petitioner"
+item = "Staff of the Petitioner"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -255,11 +264,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Unwavering Ardency (Longbow; 2d12+3 damage, 19-20/x3 crit, Immunity to Fear, Flaming Burst, Smoke Screen) in place: gains Blinding Embers. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Unwavering Ardency upgrade"
-slot = "crafting: upgradeable item (black abbot)"
 tier = "heroic"
+step = "Upgradeable Item (Black Abbot)"
 
 [[recipe.ingredient]]
-ingredient = "Unwavering Ardency"
+item = "Unwavering Ardency"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -269,11 +278,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Vile Blasphemy (Gloves; Power Drain (1 Charge), Dexterity +6, Use Magic Device +3) in place: loses Power Drain (1 Charge), gains Power Drain (3 Charges), Greater Dispelling Guard. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family. The page reports a bug: the altar claims more extra charges than the item gains (the shortfall equals the base amount)."
 option = "Vile Blasphemy upgrade"
-slot = "crafting: upgradeable item (black abbot)"
 tier = "heroic"
+step = "Upgradeable Item (Black Abbot)"
 
 [[recipe.ingredient]]
-ingredient = "Vile Blasphemy"
+item = "Vile Blasphemy"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -283,11 +292,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Wretched Twilight (Cloak; Ghostly, Nullification +72, Stealth Strike, Sneak Attack Bonus +4) in place: loses Sneak Attack Bonus +4, gains Sneak Attack Bonus +5, Void Lore V. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Wretched Twilight upgrade"
-slot = "crafting: upgradeable item"
 tier = "heroic"
+step = "Upgradeable Item"
 
 [[recipe.ingredient]]
-ingredient = "Wretched Twilight"
+item = "Wretched Twilight"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -297,8 +306,8 @@ quantity = 1
 [[recipe]]
 note = "Adds an Augment Slot to the item (Update 23); the color follows the usual item-type limits (armor and accessories cannot take Orange, Red or Purple), so the page names no single color."
 option = "Upgradeable - Primary Augment"
-slot = "crafting: upgradeable - primary augment"
 tier = "epic"
+step = "Upgradeable - Primary Augment"
 
 [[recipe.ingredient]]
 ingredient = "Update 23 Epic Necropolis item"
@@ -311,8 +320,8 @@ quantity = 120
 [[recipe]]
 note = "Adds a second Augment Slot to the item (Update 23); the color follows the usual item-type limits."
 option = "Upgradeable - Secondary Augment"
-slot = "crafting: upgradeable - secondary augment"
 tier = "epic"
+step = "Upgradeable - Secondary Augment"
 
 [[recipe.ingredient]]
 ingredient = "Update 23 Epic Necropolis item"

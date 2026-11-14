@@ -39,51 +39,7 @@ value = 10
 
 [[socket]]
 slot = "crafting: upgradeable item (stormreaver)"
-
-[[socket.option]]
-name = "Adds Sneak Attack Bonus +4 and Armor Piercing 15%"
-description = """
-Sneak Attack Bonus +4: Provides a +4 to attack bonus and a +6 to damage for any
-attack that would qualify as a Sneak Attack, even if the wielder is not a Rogue.
-Armor-Piercing - 15%: Passive: +15% Enhancement bonus to Fortification Bypass."""
-icon = "Stormreaver"
-min_level = 26
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Sneak Attack Hit"
-value = 4
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Sneak Attack Damage"
-value = 6
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Fortification Bypass"
-value = 15
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [4]
-bonus_type = "Enhancement"
-effect = "Sneak Attack Hit"
-effect_type = "SneakAttackAttack"
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [6]
-bonus_type = "Enhancement"
-effect = "Sneak Attack Damage"
-effect_type = "SneakAttackDamage"
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [15]
-bonus_type = "Enhancement"
-effect = "Fortification Bypass"
-effect_type = "FortificationBypass"
+set = "Treason"
 
 [[source]]
 chest = "raid warded chest"

@@ -1,0 +1,8 @@
+name = "Energizing Alloy"
+tier = "any"
+drop_location = "Claimed as rewards for the Masterminds of Sharn sagas (2 Heroic, 2 Epic), or made at a Cannith Melting Station by combining ingredients (the Reforged ingots and other Melting Station products)"
+
+[[citation]]
+url = "https://ddowiki.com/page/Nearly_Finished"
+read = "2026-11-04"
+note = "No Item: page exists and no bind is stated, so bind is left out. Nearly Finished's table: 'Ingredients listed under the Cost column can be claimed as rewards for the sagas (2 Heroic, 2 Epic) associated with the Masterminds of Sharn quests, or can be created by combining ingredients listed under the Materials required column at a Cannith Melting Station' (the Cost column holds this item). The Cannith Melting Station page lists it as an Item Created (icon recipe) and its popups read '1 Energizing Alloys'. Used in: Syranian stage 2 and Nearly Finished costs. Item:Caustic_Compound redirected to the Nearly Finished page in round 1, so the wiki has no item page for this family. One ingredient across the Alchemical, Syranian and Nearly Finished recipes (the Nearly Finished page's Epic column is the Legendary version of the item being upgraded, not a different ingredient). The Alchemical Crafting page's ingredient table does not list it (it lists only the raw parts)."

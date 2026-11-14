@@ -1,0 +1,15 @@
+label = "crafting: attuned by heroism: tier 3"
+name = "Tinah, Sword of the Sea"
+
+[[option]]
+name = "+0.5[W] Weapon Dice"
+description = "Adds 0.5[W} to the weapons base damage multiplier"
+icon = "Heroism"
+min_level = 23
+
+[[option.modifier]]
+amounts = [0.5]
+bonus_type = "Stacking"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]

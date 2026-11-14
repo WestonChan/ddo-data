@@ -35,25 +35,7 @@ name = "Evil Outsider Bane"
 
 [[socket]]
 slot = "crafting: upgradeable item"
-
-[[socket.option]]
-name = "Greater Evil Outsider Bane"
-description = "Greater Evil Outsider Bane: A bane weapon excels at attacking one type or subtype of creature. Against Evil Outsiders, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe."
-icon = "Upgrade"
-min_level = 14
-
-[[socket.option.modifier]]
-bonus_type = "Equipment"
-dice_damage = "Bane"
-dice_number = [3]
-dice_sides = [6]
-effect_type = "WeaponOtherDamageBonus"
-extra_types = ["WeaponOtherDamageBonusCritical"]
-targets = ["All"]
-
-[[socket.option.modifier.requirement]]
-items = ["Evil Outsider"]
-req_type = "EnemyType"
+set = "Enduring Conviction"
 
 [[source]]
 chest = "end chest"

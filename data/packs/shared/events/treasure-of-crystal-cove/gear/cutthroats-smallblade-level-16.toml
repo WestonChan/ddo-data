@@ -39,6 +39,24 @@ name = "Move Silently"
 bonus_type = "Competence"
 value = 16
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "remove"
+upstream = 0
+reason = "The item page has an empty Upgradeable? row and a typed Enchantments list of +5 Enhancement Bonus, Bleeding 4, Doublestrike 9%, Hide +16, Move Silently +16, Red Augment Slot; the in-game screenshot (420px-Cutthroat's_Smallblade_(level_16).png) shows the same lines (Enhancement Bonus, Bleeding, Doublestrike, Hide, Move Silently, the empty Red Augment slot) and no Upgradeable - Tier line. The data file carries crafting: upgradeable tier 2 and tier 3 sockets."
+url = "https://ddowiki.com/page/Item:Cutthroat's_Smallblade_(level_16)"
+read = "2026-11-04"
+qualifier = 'socket "upgrade: tier 2"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "remove"
+upstream = 0
+reason = "The item page has an empty Upgradeable? row and a typed Enchantments list of +5 Enhancement Bonus, Bleeding 4, Doublestrike 9%, Hide +16, Move Silently +16, Red Augment Slot; the in-game screenshot (420px-Cutthroat's_Smallblade_(level_16).png) shows the same lines (Enhancement Bonus, Bleeding, Doublestrike, Hide, Move Silently, the empty Red Augment slot) and no Upgradeable - Tier line. The data file carries crafting: upgradeable tier 2 and tier 3 sockets."
+url = "https://ddowiki.com/page/Item:Cutthroat's_Smallblade_(level_16)"
+read = "2026-11-04"
+qualifier = 'socket "upgrade: tier 3"'
+
 [[verification_request]]
 question = "Which enchantments, values and augment slots belong to the current level 16 version? This record still contains legacy-version data and needs a whole-item rewrite."
 assumed = "The file holds the legacy version's data."
@@ -53,48 +71,6 @@ read = "2026-10-23"
 says = "The current-version screenshot confirms the updated enchantments and Red augment slot."
 url = "https://images.ddowiki.com/Cutthroat%27s_Smallblade_%28level_16%29.png"
 read = "2026-10-23"
-
-[[socket]]
-slot = "crafting: upgradeable tier 2"
-
-[[socket.option]]
-name = "+5 Enhancement Bonus"
-description = "+5 Enhancement Bonus: +5 enhancement bonus to attack and damage rolls."
-min_level = 16
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [4]
-bonus_type = "Enhancement"
-effect_type = "Weapon_Enchantment"
-
-[[socket]]
-slot = "crafting: upgradeable tier 3"
-
-[[socket.option]]
-name = "Adds Doublestrike 6%, Corrosive Salt and Red Augment Slot"
-description = """
-Doublestrike 6%: Passive: 6% Enhancement bonus to Doublestrike. Doublestrike is
-a chance to score an additional hit with a melee attack.
-Corrosive Salt: This weapon stores a caustic, insatiable power deep within. When this weapon is used,
-this power can come to the surface in the form of a noxious, corrosive salt that dissolves all substances."""
-min_level = 16
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Doublestrike"
-value = 6
-
-[[socket.option.grant]]
-slot = "red"
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [6]
-bonus_type = "Enhancement"
-effect = "Doublestrike"
-effect_type = "Doublestrike"
-targets = ["All"]
 
 [[source]]
 kind = "event"

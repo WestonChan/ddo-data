@@ -1043,7 +1043,7 @@ mod tests {
     #[test]
     fn reader_keeps_a_written_item_typed() {
         let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");
-        let path = root.join("packs/unsourced/gear/sir-squilliam-iv-esq.toml");
+        let path = root.join("packs/shared/crafting/epic-crafting/gear/sir-squilliam-iv-esq.toml");
         let contents = std::fs::read_to_string(&path).unwrap();
         let SourceFile::Item(item) = read_file(&root, &path, &contents).unwrap() else {
             panic!("item path read as another kind");
@@ -1129,7 +1129,7 @@ mod tests {
     #[test]
     fn explicit_false_defaults_are_rejected_but_evidence_is_preserved() {
         let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");
-        let path = root.join("packs/unsourced/gear/sir-squilliam-iv-esq.toml");
+        let path = root.join("packs/shared/crafting/epic-crafting/gear/sir-squilliam-iv-esq.toml");
         let contents = std::fs::read_to_string(&path).unwrap();
         for field in ["is_legacy", "accepts_sentience", "is_minor_artifact"] {
             let error = read_file(&root, &path, &format!("{field} = false\n{contents}")).unwrap_err().to_string();

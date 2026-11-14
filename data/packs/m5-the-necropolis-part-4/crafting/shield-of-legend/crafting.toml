@@ -1,7 +1,28 @@
 name = "Shield of Legend"
-npc = "Racella Unary, Upper Necropolis, The Necropolis (level 10 minimum; gather the 8 Shield Fragments into a Shield: Frame and turn it in)"
 pack = "The Necropolis, Part 4"
 page = "https://ddowiki.com/page/Shield_of_Legend"
+
+[[station]]
+name = "Racella Unary"
+note = "Gives the Shield: Frame and quest, and takes the completed Frame for a shield from the reward list."
+
+[[unlock]]
+kind = "pack"
+pack = "The Necropolis, Part 4"
+text = "Requires access to adventure pack: The Necropolis, Part 4"
+
+[[unlock]]
+kind = "level"
+value = 10
+text = "You must be level 10 to get the quest and the Frame from Racella Unary"
+
+[[step]]
+name = "Shield turn-in"
+
+[[step.cost]]
+tier = "any"
+ingredient = "Shield: Frame"
+quantity = 1
 
 [[ingredient]]
 name = "Shield: Frame"
@@ -51,67 +72,65 @@ tier = "any"
 
 [[citation]]
 url = "https://ddowiki.com/page/Shield_of_Legend"
-read = "2026-10-02"
+read = "2026-11-04"
+note = "Whole page read: pack box ('Requires access to adventure pack: The Necropolis, Part 4'), Shield: Frame section, drop table of the 8 fragments, Reward List (seven shields, all ML 14 and Bound to Character on Acquire, 'Acquired: Shield of Legend, Turn in completed Shield: Frame'), the fragment sections (Uncommon, Collector Racella Unary, Located in Upper Necropolis, The Necropolis). Matches the data: 8 fragments and where each drops mainly, 7 shields, one Frame each. Screenshots: ShieldFrame_complete.jpg shows the 8-slot Frame; Shield_Fragment_One.png shows only the description. The page also lists 'Seal of the Black Abbot' as a bullet under the Reward List heading (see the verification request)."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Shield_of_Legend"
+read = "2026-11-04"
+note = """
+Pure step: no socket label. A completed Shield: Frame is turned in for one shield of the player's choice.
+
+'Turn in a completed Shield: Frame (8 Fragments) to Racella Unary and receive a shield from the list.' One cost for all seven shields; the survey rows match."""
+
+[[citation]]
+field = "unlock"
+url = "https://ddowiki.com/page/Shield_of_Legend"
+read = "2026-11-04"
+note = """
+The page's infobox line.
+
+Body text: 'You must be level 10.'"""
 
 [[recipe]]
 note = "produces Adherence (Tower shield, ML 14, Bound to Character on Acquire)"
 option = "Adherence"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Shield: Frame"
-quantity = 1
+step = "Shield turn-in"
 
 [[recipe]]
 note = "produces Bijio (Large shield, ML 14, Bound to Character on Acquire)"
 option = "Bijio"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Shield: Frame"
-quantity = 1
+step = "Shield turn-in"
 
 [[recipe]]
 note = "produces Death's Door (Large shield, ML 14, Bound to Character on Acquire)"
 option = "Death's Door"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Shield: Frame"
-quantity = 1
+step = "Shield turn-in"
 
 [[recipe]]
 note = "produces Fanion (Large shield, ML 14, Bound to Character on Acquire)"
 option = "Fanion"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Shield: Frame"
-quantity = 1
+step = "Shield turn-in"
 
 [[recipe]]
 note = "produces Sorrel (Large shield, ML 14, Bound to Character on Acquire)"
 option = "Sorrel"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Shield: Frame"
-quantity = 1
+step = "Shield turn-in"
 
 [[recipe]]
 note = "produces Talon (Large shield, ML 14, Bound to Character on Acquire)"
 option = "Talon"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Shield: Frame"
-quantity = 1
+step = "Shield turn-in"
 
 [[recipe]]
 note = "produces Arrondi (Large shield, ML 14, Bound to Character on Acquire)"
 option = "Arrondi"
 tier = "any"
-
-[[recipe.ingredient]]
-ingredient = "Shield: Frame"
-quantity = 1
+step = "Shield turn-in"

@@ -1,0 +1,44 @@
+label = "upgrade: tier 1"
+name = "+3 Smoldering Bastard Sword"
+
+[[option]]
+name = "Maiming and Fiery Detonation"
+description = """
+Maiming: This weapon has a twisted haft or grip and spikes along its blade,
+head, or point. Whenever you score a critical hit with this weapon it deals an
+amount of extra untyped damage depending on its critical multiplier: x2 - 1 to 6,
+x3 - 2 to 12, x4 - 3 to 18.
+Fiery Detonation: This weapon is imbued with a fiery wrath. On an attack roll of 20
+which is confirmed as a critical hit this burning power will be released, dealing
+damage to the target and all enemies near it for 15d6 fire damage. A successful
+Fortitude save (DC 39) reduces this by half."""
+min_level = 7
+
+[[option.modifier]]
+bonus_type = "Enhancement"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    6,
+    6,
+    6,
+    6,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[option.modifier]]
+bonus_type = "Enhancement"
+dice_damage = "Fire"
+dice_number = [15]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]

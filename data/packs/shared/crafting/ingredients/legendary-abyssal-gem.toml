@@ -1,0 +1,9 @@
+name = "Legendary Abyssal Gem"
+tier = "legendary"
+bind = "Bound to Account on Acquire"
+drop_location = "Terror of Demogorgon"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Legendary_Abyssal_Gems"
+read = "2026-11-04"
+note = "A separate item from the heroic Abyssal Gems (its own page, same bind and drop text). Not a variant of the heroic row: the names already differ. Plural in the wiki and tooltip. Examine image not viewed."

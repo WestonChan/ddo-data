@@ -1,0 +1,43 @@
+name = "Epic Ring of the Green Abishai"
+description = "This ring seems to be attuned to elemental power."
+drop_location = "Epic version of Ring of the Green Abishai"
+icon = "Ring_7h"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 20
+slot = "Ring"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Insight"
+value = 55
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Quality"
+value = 27
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Improved Metamagic"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

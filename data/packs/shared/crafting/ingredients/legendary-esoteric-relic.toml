@@ -1,0 +1,9 @@
+name = "Legendary Esoteric Relic"
+tier = "legendary"
+bind = "Bound to Account on Acquire"
+drop_location = "Vecna Unleashed, any end chest"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Legendary_Esoteric_Relic"
+read = "2026-11-04"
+note = "Examine screenshot (420px-Legendary_Esoteric_Relic.png) viewed: 'Bound to Account (from Acquisition)'. Typed infobox: Bind Bound to Account on Acquire, 'Used in: Weapon trades with Steps Obliss, Esoteric Table upgrades for Defiled items and Fire Over Morgrave loot, buying augments from Randall Lyric'. The page is the Legendary Esoteric Relic itself (the wiki names a 'Legendary' item; no plain Esoteric Relic page was read). Lost Purpose is not named by the page's Used-in line; the Esoteric Table is. One item for both systems; the Esoteric Table's 'Vecna Unleashed end chests' text matches."

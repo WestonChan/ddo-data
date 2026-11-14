@@ -10,6 +10,12 @@ material = "Leather"
 minimum_level = 30
 slot = "Back"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: "The Chronoscope (Legendary), end chest, or Legendary version of Epic ..."; the Legendary raid is the drop source.'
+
 [[effect]]
 name = "Greater Poison Guard"
 
@@ -30,6 +36,10 @@ value = 11
 
 [[socket]]
 slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"
 
 [[source]]
 chest = "end chest, or legendary version of epic envenomed cloak"

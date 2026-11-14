@@ -1,0 +1,23 @@
+label = "upgrade: tier 2"
+name = "Epic Ring of the Buccaneer (legacy) (level 20)"
+
+[[option]]
+name = "Dexterity +7"
+description = """
+Dexterity +7: This item makes the wearer more nimble and dexterous, granting a
++7 enhancement bonus to Dexterity."""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 7
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]

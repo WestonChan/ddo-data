@@ -1,0 +1,34 @@
+name = "Giantcraft Leather Armor"
+description = "Leather armor imbued with the magic of the ancient giant empire."
+drop_location = "Giantcraft Armor, Turn in 10 Ancient Giant Relics"
+enhancement_bonus = 4
+icon = "LightArmor_1"
+is_legacy = true
+item_category = "Armor"
+item_type = "Light"
+material = "Feyleather"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Haste Guard"
+
+[[effect]]
+name = "Vengeful"
+
+[[effect]]
+name = "Relentless Fury"
+
+[[ddobuilder_correction]]
+kind = "item"
+field = "is_legacy"
+upstream = false
+reason = "The wiki says it is no longer available for purchase; examples still exist in game."
+url = "https://ddowiki.com/page/Giantcraft_Armor"
+read = "2026-11-03"

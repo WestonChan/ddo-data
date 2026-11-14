@@ -1,7 +1,79 @@
 name = "Stormreaver Monument"
-npc = "Stormreaver Monument, southwest corner of the Gianthold camp, west of the mailbox; its list interface previews the upgrades"
 pack = "Ruins of Gianthold"
 page = "https://ddowiki.com/page/Stormreaver_Monument"
+
+[[station]]
+name = "Stormreaver Monument"
+note = """
+Upgrades The Reaver's Fate named loot (heroic), The Fall of Truth named loot (epic, Attuned by Heroism tiers 1 and 2), and trades dragon scales for Seals; its list interface previews the upgrades
+
+Makes Seal of the Stormreaver."""
+
+[[step]]
+name = "Upgradeable Item"
+slot = "crafting: upgradeable item"
+
+[[step.cost]]
+tier = "heroic"
+ingredient = "Seal of the Stormreaver"
+quantity = 1
+
+[[step]]
+name = "Upgradeable Item (Stormreaver)"
+slot = "crafting: upgradeable item (stormreaver)"
+
+[[step.cost]]
+tier = "heroic"
+ingredient = "Seal of the Stormreaver"
+quantity = 1
+
+[[step]]
+name = "Attuned by Heroism: Tier 1"
+slot = "crafting: attuned by heroism: tier 1"
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Commendation of Heroism"
+quantity = 5
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Restored Giant Relic"
+quantity = 6
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Restored Elven Relic"
+quantity = 6
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Restored Dragon Relic"
+quantity = 6
+
+[[step]]
+name = "Attuned by Heroism: Tier 2"
+slot = "crafting: attuned by heroism: tier 2"
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Commendation of Heroism"
+quantity = 7
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Restored Giant Relic"
+quantity = 9
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Restored Elven Relic"
+quantity = 9
+
+[[step.cost]]
+tier = "epic"
+ingredient = "Restored Dragon Relic"
+quantity = 9
 
 [[ingredient]]
 name = "Seal of the Stormreaver"
@@ -10,164 +82,67 @@ drop_location = "The Reaver's Fate warded chest on Hard or Elite; or traded at t
 tier = "heroic"
 
 [[ingredient]]
-name = "Black Dragon Scale"
-tier = "heroic"
-
-[[ingredient]]
-name = "Blue Dragon Scale"
-tier = "heroic"
-
-[[ingredient]]
-name = "White Dragon Scale"
-tier = "heroic"
-
-[[ingredient]]
 name = "Restored Giant, Elven or Dragon Relic"
 drop_location = "The relic type depends on the item being unlocked"
 tier = "heroic"
 
-[[ingredient]]
-name = "Commendation of Heroism"
-tier = "epic"
-
-[[ingredient]]
-name = "Restored Giant Relic"
-tier = "epic"
-
-[[ingredient]]
-name = "Restored Elven Relic"
-tier = "epic"
-
-[[ingredient]]
-name = "Restored Dragon Relic"
-tier = "epic"
-
-[[ingredient]]
-name = "Amulet of the Stormreaver"
-drop_location = "The Reaver's Fate named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Cloudburst"
-drop_location = "The Reaver's Fate named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Dreamspitter"
-drop_location = "The Reaver's Fate named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Gauntlets of Eternity"
-drop_location = "The Reaver's Fate named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Head of Good Fortune"
-drop_location = "The Reaver's Fate named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Madstone Boots"
-drop_location = "The Reaver's Fate named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Madstone Shield"
-drop_location = "The Reaver's Fate named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Ring of Lies"
-drop_location = "The Reaver's Fate named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Stormreaver's Napkin"
-drop_location = "The Reaver's Fate named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Tenderizer"
-drop_location = "The Reaver's Fate named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Treason"
-drop_location = "The Reaver's Fate named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Ventilated Bracers"
-drop_location = "The Reaver's Fate named loot"
-tier = "heroic"
-
-[[ingredient]]
-name = "Braisingstar"
-drop_location = "The Fall of Truth named loot; Epic Normal items upgrade twice, Epic Hard once (to Tier 2), Epic Elite drop fully upgraded"
-tier = "epic"
-
-[[ingredient]]
-name = "Dreampiercer"
-drop_location = "The Fall of Truth named loot; Epic Normal items upgrade twice, Epic Hard once (to Tier 2), Epic Elite drop fully upgraded"
-tier = "epic"
-
-[[ingredient]]
-name = "Rebellion"
-drop_location = "The Fall of Truth named loot; Epic Normal items upgrade twice, Epic Hard once (to Tier 2), Epic Elite drop fully upgraded"
-tier = "epic"
-
-[[ingredient]]
-name = "Skybreaker, Hand of the Stormreaver"
-drop_location = "The Fall of Truth named loot; Epic Normal items upgrade twice, Epic Hard once (to Tier 2), Epic Elite drop fully upgraded"
-tier = "epic"
-
-[[ingredient]]
-name = "Gauntlets of Immortality"
-drop_location = "The Fall of Truth named loot; Epic Normal items upgrade twice, Epic Hard once (to Tier 2), Epic Elite drop fully upgraded"
-tier = "epic"
-
-[[ingredient]]
-name = "Halcyon Boots"
-drop_location = "The Fall of Truth named loot; Epic Normal items upgrade twice, Epic Hard once (to Tier 2), Epic Elite drop fully upgraded"
-tier = "epic"
-
-[[ingredient]]
-name = "Idol of Fortune"
-drop_location = "The Fall of Truth named loot; Epic Normal items upgrade twice, Epic Hard once (to Tier 2), Epic Elite drop fully upgraded"
-tier = "epic"
-
-[[ingredient]]
-name = "Pendant of the Stormreaver"
-drop_location = "The Fall of Truth named loot; Epic Normal items upgrade twice, Epic Hard once (to Tier 2), Epic Elite drop fully upgraded"
-tier = "epic"
-
-[[ingredient]]
-name = "Ring of Deceit"
-drop_location = "The Fall of Truth named loot; Epic Normal items upgrade twice, Epic Hard once (to Tier 2), Epic Elite drop fully upgraded"
-tier = "epic"
-
-[[ingredient]]
-name = "Stormreaver's Tablecloth"
-drop_location = "The Fall of Truth named loot; Epic Normal items upgrade twice, Epic Hard once (to Tier 2), Epic Elite drop fully upgraded"
-tier = "epic"
-
-[[ingredient]]
-name = "Ventilated Armbands"
-drop_location = "The Fall of Truth named loot; Epic Normal items upgrade twice, Epic Hard once (to Tier 2), Epic Elite drop fully upgraded"
-tier = "epic"
-
-[[ingredient]]
-name = "Madstone Aegis"
-drop_location = "The Fall of Truth named loot; Epic Normal items upgrade twice, Epic Hard once (to Tier 2), Epic Elite drop fully upgraded"
-tier = "epic"
-
 [[citation]]
 url = "https://ddowiki.com/page/Stormreaver_Monument"
-read = "2026-09-29"
+read = "2026-11-04"
+note = "Whole page read: overview (Update 12, 12 Patch 3, 17, 18), location, the Seal section, the heroic upgrade table (12 items), The Fall of Truth tier table (Tier 1 and Tier 2). No level, favor, pack, feat or quest gate is stated for the monument. The page does not give the quantity of Seals per upgrade as a number ('Place the seals and the named items'); Maetrim's x1 is kept and not contradicted. The page does not name a step for the heroic upgrade."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-11-04"
+note = """
+Heroic upgrade of The Reaver's Fate named loot with one Seal. The wiki gives the upgrade no step name; the game's socket label reads 'Upgradeable Item'. Maetrim puts Amulet of the Stormreaver and Cloudburst on this shared label and the other ten on the '(stormreaver)' label, although the page shows one upgrade kind with one cost for all twelve (see label conflict).
+
+Same heroic upgrade as the step above; ten items. Name taken from the label, the page names no step.
+
+Page table 'Attuned by Heroism: Tier 1' under The Fall of Truth (Update 17). 12 items: Braisingstar, Dreampiercer, Rebellion, Skybreaker, Hand of the Stormreaver, Madstone Aegis and the seven yellow-slot items (Gauntlets of Immortality, Halcyon Boots, Idol of Fortune, Pendant of the Stormreaver, Ring of Deceit, Stormreaver's Tablecloth, Ventilated Armbands).
+
+Page table 'Attuned by Heroism: Tier 2' under The Fall of Truth. 11 items; Tier 2 effects differ per item (Conflagrating, Supreme Good, Colorless/Blue/Red slots, Good Luck +3, Electric Resistance +50, Spell Penetration III, Immunity to Air Elemental Knockdown). Skybreaker adds a Red slot and The Reaver's Fate; Madstone Aegis and Pendant etc. as in Maetrim's rows.
+
+Plus the named item itself (x1 per recipe, an item cost). The page says to 'place the seals and the named items in the Monument' and gives no number; the same cost holds for all twelve heroic upgrades in the table. Upgrading does not remove a Deck of Many Curses curse.
+
+As for the other heroic step.
+
+One cost cell over all four effect groups of the Tier 1 table; plus the item itself x1. Matches Maetrim's twelve rows. The page's '5 - 12 Commendations of Heroism depending on difficulty' is 5 (Tier 1) + 7 (Tier 2).
+
+One cost cell over all Tier 2 effect groups; plus the item itself x1. Matches Maetrim's eleven rows.
+
+Amulet of the Stormreaver and Cloudburst are heroic Reaver's Fate items upgraded with a Seal. The label is shared with the Fountain of Necrotic Might (Breeze, Circle of Hatred, Enduring Conviction, Wretched Twilight) and with ToEE armor sockets; this verdict is for Stormreaver only and does not decide the others.
+
+Ten heroic Reaver's Fate items upgraded with a Seal. Used by Stormreaver Monument only (Dreamspitter's socket is on this label, and Dreamspitter is also upgraded at the Dreamforge by the 'crafting: suppressed power' label).
+
+Page table 'Attuned by Heroism: Tier 1' (The Fall of Truth items). Shared with Mikrom Sum, where the same label means Caught in the Web weapons: Adds Planar Conflux. Here the Tier 1 effects differ per item (+7 to +8 enhancement, or a Yellow slot).
+
+Page table 'Attuned by Heroism: Tier 2' (The Fall of Truth items). Shared with Mikrom Sum, where Tier 2 for every Caught in the Web weapon is +7 enhancement becomes +8; here Tier 2 effects differ per item."""
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-11-04"
+note = """
+Update 18: 'Trade 20 Black Dragon Scales, 20 Blue Dragon Scales, 20 White Dragon Scales at the Stormreaver Monument' (page cost table 'Seal of the Stormreaver | 20 Black | 20 Blue | 20 White'). Yields one Seal (quantity not stated). The Seal is Bound to Account (screenshot SealoftheStormreaver.jpg) and can sit in an ingredients bag; it also drops from The Reaver's Fate warded chest on Hard or Elite difficulty.
+
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'.
+
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics.
+
+Update 12 Patch 3: raid items from the Reaver or Abbot raids obtained before Update 12 can be unlocked to add the upgrade option. Process requires 5 giant, elven or dragon relics (the type depends on the item). Dreamspitter keeps its Suppressed or Unsuppressed status; old versions with neither status gain no suppressed power and keep their binding. Stone of Change rituals persist. Quantity x5 matches Maetrim's row."""
+
+[[citation]]
+url = "https://images.ddowiki.com/SealoftheStormreaver.jpg"
+read = "2026-11-04"
+note = "In-game examine window of the Seal of the Stormreaver: 'Bound To Account', 'Binds to Account on Acquire', 'Ingredient Type: valuable item that can be exchanged for goods if brought to a Challenge Trader', stores as an ingredient; text says to bring it to the Monument in Gianthold with a loot item from the Stormreaver raid. Base value 2,000. Matches the data's Bound to Account."
 
 [[recipe]]
-note = "Trade added in Update 18; a crafting ingredient, no augment counterpart."
+note = """
+Trade added in Update 18; a crafting ingredient, no augment counterpart.
+
+At the Stormreaver Monument."""
 option = "Seal of the Stormreaver"
 tier = "heroic"
 
@@ -184,7 +159,10 @@ ingredient = "White Dragon Scale"
 quantity = 20
 
 [[recipe]]
-note = "Since Update 12 Patch 3, Reaver or Abbot raid items obtained before Update 12 can be unlocked to add the upgrade option; relic type depends on the item. Dreamspitter keeps its Suppressed or Unsuppressed status; old versions with neither status gain no suppressed power and keep their binding. Stone of Change rituals persist. Adds the upgrade socket, which Maetrim models on the items already."
+note = """
+Since Update 12 Patch 3, Reaver or Abbot raid items obtained before Update 12 can be unlocked to add the upgrade option; relic type depends on the item. Dreamspitter keeps its Suppressed or Unsuppressed status; old versions with neither status gain no suppressed power and keep their binding. Stone of Change rituals persist. Adds the upgrade socket, which Maetrim models on the items already.
+
+Update 12 Patch 3: raid items from the Reaver or Abbot raids obtained before Update 12 can be unlocked to add the upgrade option. Process requires 5 giant, elven or dragon relics (the type depends on the item). Dreamspitter keeps its Suppressed or Unsuppressed status; old versions with neither status gain no suppressed power and keep their binding. Stone of Change rituals persist. Quantity x5 matches Maetrim's row."""
 option = "Unlock a pre-Update 12 raid item"
 tier = "heroic"
 
@@ -195,11 +173,11 @@ quantity = 5
 [[recipe]]
 note = "Upgrades Amulet of the Stormreaver (Necklace; Protection +4, Electric Resistance +30, Chain Lightning (3 Charges)) in place: loses Protection +4, Electric Resistance +30, gains Protection +5, Electric Resistance +40. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Amulet of the Stormreaver upgrade"
-slot = "crafting: upgradeable item"
 tier = "heroic"
+step = "Upgradeable Item"
 
 [[recipe.ingredient]]
-ingredient = "Amulet of the Stormreaver"
+item = "Amulet of the Stormreaver"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -209,11 +187,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Cloudburst (Greatsword; Shocking Burst, Cloudburst) in place: gains Lightning Strike. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Cloudburst upgrade"
-slot = "crafting: upgradeable item"
 tier = "heroic"
+step = "Upgradeable Item"
 
 [[recipe.ingredient]]
-ingredient = "Cloudburst"
+item = "Cloudburst"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -223,11 +201,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Dreamspitter (Quarterstaff; Greater Evil Outsider Bane, Enchantment Focus +2, Life Stealing, Suppressed Power Holy) in place: gains Force Burst. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Dreamspitter upgrade"
-slot = "crafting: upgradeable item (stormreaver)"
 tier = "heroic"
+step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
-ingredient = "Dreamspitter"
+item = "Dreamspitter"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -237,11 +215,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Gauntlets of Eternity (Gloves; Heal +13, Repair +13, Devotion +60, Healing Lore V, Eternal Faith) in place: loses Heal +13, Repair +13, Devotion +60, gains Heal +15, Repair +15, Devotion +72. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Gauntlets of Eternity upgrade"
-slot = "crafting: upgradeable item (stormreaver)"
 tier = "heroic"
+step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
-ingredient = "Gauntlets of Eternity"
+item = "Gauntlets of Eternity"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -251,11 +229,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Head of Good Fortune (Trinket; Good Luck +2, Fortification +75%) in place: loses Fortification +75%, gains Fortification +100%, Dodge +4%. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Head of Good Fortune upgrade"
-slot = "crafting: upgradeable item (stormreaver)"
 tier = "heroic"
+step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
-ingredient = "Head of Good Fortune"
+item = "Head of Good Fortune"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -265,11 +243,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Madstone Boots (Boots; Dexterity +4, Potency +48, Striding +20%, Madstone Rage (1 Charge), unlisted Madstone Reaction) in place: loses Dexterity +4, Potency +48, Striding +20%, gains Dexterity +6, Potency +52, Striding +30%. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Madstone Boots upgrade"
-slot = "crafting: upgradeable item (stormreaver)"
 tier = "heroic"
+step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
-ingredient = "Madstone Boots"
+item = "Madstone Boots"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -279,11 +257,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Madstone Shield (Tower shield; Shield Proficiency: Tower Shields) in place: gains Improved Bashing, Shield Bashing 10%. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Madstone Shield upgrade"
-slot = "crafting: upgradeable item (stormreaver)"
 tier = "heroic"
+step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
-ingredient = "Madstone Shield"
+item = "Madstone Shield"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -293,11 +271,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Ring of Lies (Ring; Charisma +6, Diplomacy +10, Bluff +10, Haggle +10, Perform +10, Deception, hidden effect increasing all threat by 15%) in place: loses Deception, gains Improved Deception, Exceptional Charisma Skills +2. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Ring of Lies upgrade"
-slot = "crafting: upgradeable item (stormreaver)"
 tier = "heroic"
+step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
-ingredient = "Ring of Lies"
+item = "Ring of Lies"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -307,11 +285,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Stormreaver's Napkin (Cloak; Intelligence +6, Spell Focus Mastery +1) in place: gains Spell Penetration II. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12."
 option = "Stormreaver's Napkin upgrade"
-slot = "crafting: upgradeable item (stormreaver)"
 tier = "heroic"
+step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
-ingredient = "Stormreaver's Napkin"
+item = "Stormreaver's Napkin"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -321,11 +299,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Tenderizer (Morningstar; Increased base dice 1d10, Adamantine, Impact, Stunning +10, Bleed, Maladroit) in place: gains Spikes, Bone Breaking. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Tenderizer upgrade"
-slot = "crafting: upgradeable item (stormreaver)"
 tier = "heroic"
+step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
-ingredient = "Tenderizer"
+item = "Tenderizer"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -335,11 +313,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Treason (Shortsword; Expanded Threat Range 18-20 / x2, Sneak Attack Bonus +3, Deception, Treason, Armor-Piercing 10%, uses Dex or Str mod for attack and damage, whichever is highest) in place: loses Sneak Attack Bonus +3, Armor-Piercing 10%, gains Sneak Attack Bonus +4, Armor-Piercing 15%. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Treason upgrade"
-slot = "crafting: upgradeable item (stormreaver)"
 tier = "heroic"
+step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
-ingredient = "Treason"
+item = "Treason"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -349,11 +327,11 @@ quantity = 1
 [[recipe]]
 note = "Upgrades Ventilated Bracers (Bracers; Armor Bonus +6, Enhanced Disable Device +3, Enhanced Open Lock +3, Air Guard) in place: loses Armor Bonus +6, Enhanced Disable Device +3, Enhanced Open Lock +3, gains Armor Bonus +7, Enhanced Disable Device +5, Enhanced Open Lock +5. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Ventilated Bracers upgrade"
-slot = "crafting: upgradeable item (stormreaver)"
 tier = "heroic"
+step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
-ingredient = "Ventilated Bracers"
+item = "Ventilated Bracers"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -361,13 +339,16 @@ ingredient = "Seal of the Stormreaver"
 quantity = 1
 
 [[recipe]]
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
 option = "Braisingstar: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Braisingstar"
+item = "Braisingstar"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -387,13 +368,16 @@ ingredient = "Restored Dragon Relic"
 quantity = 6
 
 [[recipe]]
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
 option = "Dreampiercer: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Dreampiercer"
+item = "Dreampiercer"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -413,13 +397,16 @@ ingredient = "Restored Dragon Relic"
 quantity = 6
 
 [[recipe]]
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
 option = "Rebellion: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Rebellion"
+item = "Rebellion"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -439,13 +426,16 @@ ingredient = "Restored Dragon Relic"
 quantity = 6
 
 [[recipe]]
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus; The Reaver's Quest. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus; The Reaver's Quest. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
 option = "Skybreaker, Hand of the Stormreaver: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Skybreaker, Hand of the Stormreaver"
+item = "Skybreaker, Hand of the Stormreaver"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -466,13 +456,16 @@ quantity = 6
 
 [[recipe]]
 grants_slot = "yellow"
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
 option = "Gauntlets of Immortality: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Gauntlets of Immortality"
+item = "Gauntlets of Immortality"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -493,13 +486,16 @@ quantity = 6
 
 [[recipe]]
 grants_slot = "yellow"
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
 option = "Halcyon Boots: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Halcyon Boots"
+item = "Halcyon Boots"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -520,13 +516,16 @@ quantity = 6
 
 [[recipe]]
 grants_slot = "yellow"
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
 option = "Idol of Fortune: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Idol of Fortune"
+item = "Idol of Fortune"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -547,13 +546,16 @@ quantity = 6
 
 [[recipe]]
 grants_slot = "yellow"
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
 option = "Pendant of the Stormreaver: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Pendant of the Stormreaver"
+item = "Pendant of the Stormreaver"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -574,13 +576,16 @@ quantity = 6
 
 [[recipe]]
 grants_slot = "yellow"
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
 option = "Ring of Deceit: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Ring of Deceit"
+item = "Ring of Deceit"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -601,13 +606,16 @@ quantity = 6
 
 [[recipe]]
 grants_slot = "yellow"
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
 option = "Stormreaver's Tablecloth: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Stormreaver's Tablecloth"
+item = "Stormreaver's Tablecloth"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -628,13 +636,16 @@ quantity = 6
 
 [[recipe]]
 grants_slot = "yellow"
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
 option = "Ventilated Armbands: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Ventilated Armbands"
+item = "Ventilated Armbands"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -654,13 +665,16 @@ ingredient = "Restored Dragon Relic"
 quantity = 6
 
 [[recipe]]
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Shield Bonus +20 becomes +21, DR 15/- becomes DR 16/-, +7 Enhancement Bonus becomes +8. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Shield Bonus +20 becomes +21, DR 15/- becomes DR 16/-, +7 Enhancement Bonus becomes +8. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
 option = "Madstone Aegis: Attuned by Heroism Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
 tier = "epic"
+step = "Attuned by Heroism: Tier 1"
 
 [[recipe.ingredient]]
-ingredient = "Madstone Aegis"
+item = "Madstone Aegis"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -680,13 +694,16 @@ ingredient = "Restored Dragon Relic"
 quantity = 6
 
 [[recipe]]
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Blazing becomes Conflagrating. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Blazing becomes Conflagrating. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Braisingstar: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Braisingstar"
+item = "Braisingstar"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -706,13 +723,16 @@ ingredient = "Restored Dragon Relic"
 quantity = 9
 
 [[recipe]]
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Greater Good becomes Supreme Good. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Greater Good becomes Supreme Good. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Dreampiercer: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Dreampiercer"
+item = "Dreampiercer"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -733,13 +753,16 @@ quantity = 9
 
 [[recipe]]
 grants_slot = "colorless"
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Colorless Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Colorless Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Gauntlets of Immortality: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Gauntlets of Immortality"
+item = "Gauntlets of Immortality"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -760,13 +783,16 @@ quantity = 9
 
 [[recipe]]
 grants_slot = "colorless"
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Colorless Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Colorless Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Halcyon Boots: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Halcyon Boots"
+item = "Halcyon Boots"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -787,13 +813,16 @@ quantity = 9
 
 [[recipe]]
 grants_slot = "colorless"
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Colorless Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Colorless Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Ring of Deceit: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Ring of Deceit"
+item = "Ring of Deceit"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -813,13 +842,16 @@ ingredient = "Restored Dragon Relic"
 quantity = 9
 
 [[recipe]]
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Good Luck +3. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Good Luck +3. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Idol of Fortune: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Idol of Fortune"
+item = "Idol of Fortune"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -840,13 +872,16 @@ quantity = 9
 
 [[recipe]]
 grants_slot = "blue"
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Blue Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Blue Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Madstone Aegis: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Madstone Aegis"
+item = "Madstone Aegis"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -866,13 +901,16 @@ ingredient = "Restored Dragon Relic"
 quantity = 9
 
 [[recipe]]
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Electric Resistance +50. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Electric Resistance +50. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Pendant of the Stormreaver: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Pendant of the Stormreaver"
+item = "Pendant of the Stormreaver"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -893,13 +931,16 @@ quantity = 9
 
 [[recipe]]
 grants_slot = "red"
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Red Augment Slot and The Reaver's Fate. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Red Augment Slot and The Reaver's Fate. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Skybreaker, Hand of the Stormreaver: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Skybreaker, Hand of the Stormreaver"
+item = "Skybreaker, Hand of the Stormreaver"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -919,13 +960,16 @@ ingredient = "Restored Dragon Relic"
 quantity = 9
 
 [[recipe]]
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Spell Penetration III. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Spell Penetration III. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Stormreaver's Tablecloth: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Stormreaver's Tablecloth"
+item = "Stormreaver's Tablecloth"
 quantity = 1
 
 [[recipe.ingredient]]
@@ -945,13 +989,16 @@ ingredient = "Restored Dragon Relic"
 quantity = 9
 
 [[recipe]]
-note = "The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Immunity to Air Elemental Knockdown. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket."
+note = """
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Immunity to Air Elemental Knockdown. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Ventilated Armbands: Attuned by Heroism Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
 tier = "epic"
+step = "Attuned by Heroism: Tier 2"
 
 [[recipe.ingredient]]
-ingredient = "Ventilated Armbands"
+item = "Ventilated Armbands"
 quantity = 1
 
 [[recipe.ingredient]]

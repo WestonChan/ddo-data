@@ -1,0 +1,9 @@
+name = "Restored Giant Relic"
+tier = "epic"
+bind = "Unbound"
+drop_location = "Return to Madstone Crater, Epic The Maze of Madness, Epic Trial by Fire, Ruins of Gianthold (epic) Random Encounter and persistent chests"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Restored_Giant_Relic"
+read = "2026-11-04"
+note = "Examine screenshot (420px-Restored_Giant_Relic.png) viewed: 'Ingredient Type: Relic', no bind line (consistent with Unbound). Typed infobox: Bind Unbound, Base Value 1cp, 'Used in: Trade-in with Gianthold NPCs: for various armors with the Giantcraft Apprentice Horatin; for augments with Broag Umber (level 20) or Agate Twistiron (level 24)'. The page names the giantcraft armour trade-in with Giantcraft Apprentice Horatin, not Dragonscale Armor or Stormreaver Monument; the data's two systems are the ones that consume it. One item for both systems."

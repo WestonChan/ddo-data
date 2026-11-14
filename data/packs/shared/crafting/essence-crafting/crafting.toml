@@ -1,0 +1,346 @@
+name = "Essence Crafting"
+page = "https://ddowiki.com/page/Essence_Crafting"
+
+[[station]]
+name = "Item Deconstruction Device"
+variant = "House Kundarak Enclave"
+
+[[station]]
+name = "Item Deconstruction Device"
+variant = "House Cannith Enclave"
+
+[[station]]
+name = "Item Deconstruction Device"
+variant = "Guild Airship"
+
+[[station]]
+name = "Item Deconstruction Device"
+variant = "Eveningstar"
+
+[[station]]
+name = "Shard Crafting Device"
+variant = "House Kundarak Enclave"
+
+[[station]]
+name = "Shard Crafting Device"
+variant = "House Cannith Enclave"
+
+[[station]]
+name = "Shard Crafting Device"
+variant = "Guild Airship"
+
+[[station]]
+name = "Shard Crafting Device"
+variant = "Eveningstar"
+
+[[station]]
+name = "Item Crafting Device"
+variant = "House Kundarak Enclave"
+
+[[station]]
+name = "Item Crafting Device"
+variant = "House Cannith Enclave"
+
+[[station]]
+name = "Item Crafting Device"
+variant = "Guild Airship"
+
+[[station]]
+name = "Item Crafting Device"
+variant = "Eveningstar"
+
+[[step]]
+name = "add augment 1"
+slot = "crafting: add augment 1"
+
+[[step]]
+name = "add augment 2"
+slot = "crafting: add augment 2"
+
+[[step]]
+name = "cannith armor ac bonus"
+slot = "crafting: cannith armor ac bonus"
+
+[[step]]
+name = "cannith armor check penalty"
+slot = "crafting: cannith armor check penalty"
+
+[[step]]
+name = "cannith armor enhancement"
+slot = "crafting: cannith armor enhancement"
+
+[[step]]
+name = "cannith armor extra"
+slot = "crafting: cannith armor extra"
+
+[[step]]
+name = "cannith armor max dex/dodge bonus"
+slot = "crafting: cannith armor max dex/dodge bonus"
+
+[[step]]
+name = "cannith armor prefix"
+slot = "crafting: cannith armor prefix"
+
+[[step]]
+name = "cannith armor suffix"
+slot = "crafting: cannith armor suffix"
+
+[[step]]
+name = "cannith belt extra"
+slot = "crafting: cannith belt extra"
+
+[[step]]
+name = "cannith belt prefix"
+slot = "crafting: cannith belt prefix"
+
+[[step]]
+name = "cannith belt suffix"
+slot = "crafting: cannith belt suffix"
+
+[[step]]
+name = "cannith boots extra"
+slot = "crafting: cannith boots extra"
+
+[[step]]
+name = "cannith boots prefix"
+slot = "crafting: cannith boots prefix"
+
+[[step]]
+name = "cannith boots suffix"
+slot = "crafting: cannith boots suffix"
+
+[[step]]
+name = "cannith bracers extra"
+slot = "crafting: cannith bracers extra"
+
+[[step]]
+name = "cannith bracers prefix"
+slot = "crafting: cannith bracers prefix"
+
+[[step]]
+name = "cannith bracers suffix"
+slot = "crafting: cannith bracers suffix"
+
+[[step]]
+name = "cannith cloak extra"
+slot = "crafting: cannith cloak extra"
+
+[[step]]
+name = "cannith cloak prefix"
+slot = "crafting: cannith cloak prefix"
+
+[[step]]
+name = "cannith cloak suffix"
+slot = "crafting: cannith cloak suffix"
+
+[[step]]
+name = "cannith gloves extra"
+slot = "crafting: cannith gloves extra"
+
+[[step]]
+name = "cannith gloves prefix"
+slot = "crafting: cannith gloves prefix"
+
+[[step]]
+name = "cannith gloves suffix"
+slot = "crafting: cannith gloves suffix"
+
+[[step]]
+name = "cannith goggles extra"
+slot = "crafting: cannith goggles extra"
+
+[[step]]
+name = "cannith goggles prefix"
+slot = "crafting: cannith goggles prefix"
+
+[[step]]
+name = "cannith goggles suffix"
+slot = "crafting: cannith goggles suffix"
+
+[[step]]
+name = "cannith handwraps prefix"
+slot = "crafting: cannith handwraps prefix"
+
+[[step]]
+name = "cannith helmet extra"
+slot = "crafting: cannith helmet extra"
+
+[[step]]
+name = "cannith helmet prefix"
+slot = "crafting: cannith helmet prefix"
+
+[[step]]
+name = "cannith helmet suffix"
+slot = "crafting: cannith helmet suffix"
+
+[[step]]
+name = "cannith melee extra"
+slot = "crafting: cannith melee extra"
+
+[[step]]
+name = "cannith melee prefix"
+slot = "crafting: cannith melee prefix"
+
+[[step]]
+name = "cannith melee suffix"
+slot = "crafting: cannith melee suffix"
+
+[[step]]
+name = "cannith necklace extra"
+slot = "crafting: cannith necklace extra"
+
+[[step]]
+name = "cannith necklace prefix"
+slot = "crafting: cannith necklace prefix"
+
+[[step]]
+name = "cannith necklace suffix"
+slot = "crafting: cannith necklace suffix"
+
+[[step]]
+name = "cannith orb enhancement"
+slot = "crafting: cannith orb enhancement"
+
+[[step]]
+name = "cannith orb extra"
+slot = "crafting: cannith orb extra"
+
+[[step]]
+name = "cannith orb prefix"
+slot = "crafting: cannith orb prefix"
+
+[[step]]
+name = "cannith orb spell casting implement"
+slot = "crafting: cannith orb spell casting implement"
+
+[[step]]
+name = "cannith orb suffix"
+slot = "crafting: cannith orb suffix"
+
+[[step]]
+name = "cannith ranged extra"
+slot = "crafting: cannith ranged extra"
+
+[[step]]
+name = "cannith ranged prefix"
+slot = "crafting: cannith ranged prefix"
+
+[[step]]
+name = "cannith ranged suffix"
+slot = "crafting: cannith ranged suffix"
+
+[[step]]
+name = "cannith ring extra"
+slot = "crafting: cannith ring extra"
+
+[[step]]
+name = "cannith ring prefix"
+slot = "crafting: cannith ring prefix"
+
+[[step]]
+name = "cannith ring suffix"
+slot = "crafting: cannith ring suffix"
+
+[[step]]
+name = "cannith rune arm extra"
+slot = "crafting: cannith rune arm extra"
+
+[[step]]
+name = "cannith rune arm prefix"
+slot = "crafting: cannith rune arm prefix"
+
+[[step]]
+name = "cannith rune arm suffix"
+slot = "crafting: cannith rune arm suffix"
+
+[[step]]
+name = "cannith shield ac bonus"
+slot = "crafting: cannith shield ac bonus"
+
+[[step]]
+name = "cannith shield arcane spell failure"
+slot = "crafting: cannith shield arcane spell failure"
+
+[[step]]
+name = "cannith shield enhancement"
+slot = "crafting: cannith shield enhancement"
+
+[[step]]
+name = "cannith shield extra"
+slot = "crafting: cannith shield extra"
+
+[[step]]
+name = "cannith shield prefix"
+slot = "crafting: cannith shield prefix"
+
+[[step]]
+name = "cannith shield suffix"
+slot = "crafting: cannith shield suffix"
+
+[[step]]
+name = "cannith shield weapon base damage"
+slot = "crafting: cannith shield weapon base damage"
+
+[[step]]
+name = "cannith thrown extra"
+slot = "crafting: cannith thrown extra"
+
+[[step]]
+name = "cannith thrown prefix"
+slot = "crafting: cannith thrown prefix"
+
+[[step]]
+name = "cannith thrown suffix"
+slot = "crafting: cannith thrown suffix"
+
+[[step]]
+name = "cannith tower shield max dex bonus"
+slot = "crafting: cannith tower shield max dex bonus"
+
+[[step]]
+name = "cannith trinket extra"
+slot = "crafting: cannith trinket extra"
+
+[[step]]
+name = "cannith trinket prefix"
+slot = "crafting: cannith trinket prefix"
+
+[[step]]
+name = "cannith trinket suffix"
+slot = "crafting: cannith trinket suffix"
+
+[[step]]
+name = "cannith weapon extra"
+slot = "crafting: cannith weapon extra"
+
+[[step]]
+name = "cannith weapon prefix"
+slot = "crafting: cannith weapon prefix"
+
+[[step]]
+name = "cannith weapon suffix"
+slot = "crafting: cannith weapon suffix"
+
+[[citation]]
+url = "https://ddowiki.com/page/Essence_Crafting"
+read = "2026-11-12"
+note = """
+The wiki page is titled Essence Crafting and the address Cannith_Crafting redirects to it ('Redirected from Cannith Crafting'); the system was introduced under the name Cannith Crafting in Update 9 and renamed Essence Crafting in Update 79, and the page says older guides still call it Cannith Crafting. It lets players build fully customized weapons, shields, armor, jewelry and clothing: disjunct an item, craft a Minimum Level shard, craft effect shards, then apply the shards at an item crafting device. The page states no free-to-play, adventure pack, level, favor or quest requirement for using it, so there is no system-level unlock row (not stated, which is not the same as no requirement). Not gates: the Essence Crafting Tutorial (Fabricators Guild Tutorial) is offered with a reward but the page does not require it, and 50 House Cannith Favor is only said to make some crafting experience elixirs and success boosters buyable. Recipes, essences, shards, crafting levels and enchantments are not recorded here (ddo-data#71).
+
+Read: History, Locations (four halls), Steps (the devices), Components, Crafting Experience and its leveling tips; a keyword search of the rest of the page found no free-to-play, pack, level or favor requirement for access. The only image is a picture of the House Kundarak Crafting Hall; no in-game screenshot shows a fact recorded here. Recipe, collectable and enchantment tables not read (ddo-data#71)."""
+
+[[citation]]
+field = "pack"
+url = "https://ddowiki.com/page/Eveningstar"
+read = "2026-11-12"
+note = "Its devices stand in the public Crafting Halls of House Kundarak Enclave, House Cannith Enclave and Eveningstar and in the Guild Airship's Cannith Crafting Hall amenity (guild level 41). The Essence Crafting page names no pack, and the Eveningstar page describes reaching Eveningstar by routes that need no pack (Hall of Heroes passport, a key from Purple Dragon Knights favor, Gatekeeper's Grove portals)."
+
+[[citation]]
+url = "https://ddowiki.com/page/Cannith_Crafting"
+read = "2026-11-12"
+note = "Loaded as given; the wiki redirected it to https://ddowiki.com/page/Essence_Crafting (the next citation, which is the page that was read)."
+
+[[citation]]
+url = "https://ddowiki.com/page/Crafting_Hall"
+read = "2026-11-12"
+note = "Whole page read (about 1,600 characters): the two public Crafting Halls (southwest of the House Kundarak Enclave, upper eastern area of the House Cannith Enclave), their points of interest, the greeter NPCs and the Guild Airship amenity. No image on the page."

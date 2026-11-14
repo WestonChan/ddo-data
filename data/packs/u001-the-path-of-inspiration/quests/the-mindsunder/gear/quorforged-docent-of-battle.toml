@@ -41,38 +41,7 @@ value = -2
 
 [[socket]]
 slot = "crafting: suppressed power"
-
-[[socket.option]]
-name = "Adds Superior False Life and Vitality +20"
-description = """
-Superior False Life: This item grants the wearer +40 maximum health.
-Vitality +20: Passive: +20 Vitality bonus to Hit Points."""
-icon = "Upgrade"
-min_level = 18
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Hit Points"
-value = 40
-
-[[socket.option.effect]]
-bonus_type = "Vitality"
-effect = "Hit Points"
-value = 20
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [40]
-bonus_type = "Enhancement"
-effect = "Hit Points"
-effect_type = "Hitpoints"
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [20]
-bonus_type = "Vitality"
-effect = "Hit Points"
-effect_type = "Hitpoints"
+set = "Quorforged Docent of Battle"
 
 [[source]]
 chest = "disc locked optional end chest"

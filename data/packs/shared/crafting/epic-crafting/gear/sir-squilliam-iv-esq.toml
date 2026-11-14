@@ -1,0 +1,68 @@
+name = "Sir Squilliam IV, Esq."
+description = "The son of the most distinguished of the Runearms."
+drop_location = "Epic version of Sir Squilliam III, Esq."
+icon = "RuneArm_5c"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 20
+slot = "Runearm"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Natural Armor Bonus"
+bonus_type = "Natural Armor"
+value = 9
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 28
+
+[[effect]]
+name = "Crushing Wave"
+
+[[effect]]
+name = "Rune Arm Imbue - Tidal Shot VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Salt Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

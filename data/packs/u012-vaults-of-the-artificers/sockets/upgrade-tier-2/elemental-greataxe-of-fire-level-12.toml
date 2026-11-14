@@ -1,0 +1,28 @@
+label = "upgrade: tier 2"
+name = "Elemental Greataxe of Fire (level 12)"
+
+[[option]]
+name = "+4 Enhancement Bonus and Cold Resistance 24"
+description = """
++4 Enhancement Bonus: +4 Enhancement bonus to attack and damage rolls.
+Cold Resistance +24: Passive: +24 Enhancement bonus to your Cold Resistance."""
+min_level = 12
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+value = 24
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [24]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+effect_type = "EnergyResistance"
+targets = ["Cold"]

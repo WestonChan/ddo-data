@@ -1,0 +1,9 @@
+name = "Scrap of Patterned Cloth"
+tier = "any"
+bind = "Bound to Account on Acquire"
+drop_location = "Epic Phiarlan Carnival quests"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Scrap_of_Patterned_Cloth"
+read = "2026-11-04"
+note = "Examine screenshot (420px-Scrap_of_Patterned_Cloth.png) viewed: 'Bound To Account', 'Binds to Account on Acquire'. Typed infobox: raw material used in crafting, Bind Bound to Account on Acquire, Maximum Stack Size 1000, 'Used in: Altar of Epic Rituals, Altar of Legendary Rituals'. Tip: 100 Scraps of Patterned Cloth purchase Star Fragments. The data's text 'Phiarlan Carnival (Update 5) quest end chests in moderate amounts; replaces the pre-Update 50 seals and shards' is Epic Crafting prose."

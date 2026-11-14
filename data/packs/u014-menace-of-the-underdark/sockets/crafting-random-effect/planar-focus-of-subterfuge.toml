@@ -1,0 +1,113 @@
+label = "crafting: random effect"
+name = "Planar Focus of Subterfuge"
+
+[[option]]
+name = "+8 Intelligence"
+description = "+8 Intelligence"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[option]]
+name = "+8 Dexterity"
+description = "+8 Dexterity"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[option]]
+name = "+8 Wisdom"
+description = "+8 Wisdom"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[option]]
+name = "Insightful Intelligence +3"
+description = "+3 Insightful Intelligence"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[option]]
+name = "Insightful Wisdom +3"
+description = "+3 Insightful Wisdom"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Wisdom"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[option]]
+name = "Insightful Dexterity +3"
+description = "+3 Insightful Dexterity"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Dexterity"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]

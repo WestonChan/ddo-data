@@ -21,64 +21,11 @@ name = "Fire Vulnerability"
 
 [[socket]]
 slot = "upgrade: tier 1"
-
-[[socket.option]]
-name = "Exceptional Seeker +5 and Crippling"
-description = """
-Exceptional Seeker +5: Provides a +5 Insight bonus to confirm critical hits, and
-a +5 Insight bonus to critical hit damage (before multipliers are applied).
-Crippling: A crippling weapon is infused with binding power so that when a target
-is critically hit their movement is slowed by half.
-Note: Real slowdown is only 25%"""
-min_level = 26
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [5]
-bonus_type = "Enhancement"
-effect_type = "Weapon_AttackAndDamageCritical"
-targets = ["All"]
+set = "Epic Energized Light Crossbow"
 
 [[socket]]
 slot = "upgrade: tier 2"
-
-[[socket.option]]
-name = "Greater Flaming Blast, Purple Augment slot and Set Bonus."
-description = """
-Greater Flaming Blast: A flaming blast weapon is sheathed in fire.
-Critical hits with this weapon deal an additional 4 to 40 fire damage for weapons
-with a x2 critical multiplier, 6 to 60 for a x3 critical multiplier, and 8 to 80
-for a x4 multiplier. Additionally, if you roll a 20 when attacking and confirm
-the critical hit, the weapon blasts your target, doing 6 to 36 more fire damage."""
-min_level = 26
-
-[[socket.option.grant]]
-slot = "purple"
-
-[[socket.option.modifier]]
-bonus_type = "Enhancement"
-dice_damage = "Fire"
-dice_number = [
-    0,
-    0,
-    4,
-    6,
-    8,
-    10,
-]
-dice_sides = [
-    0,
-    0,
-    10,
-    10,
-    10,
-    10,
-]
-effect_type = "WeaponOtherDamageBonusCritical"
-targets = ["All"]
-
-[[socket.option.set]]
-set = "Epic Elemental Evil Set"
+set = "Epic Smoldering Light Crossbow"
 
 [[weapon]]
 attack_modifier = "Dexterity"

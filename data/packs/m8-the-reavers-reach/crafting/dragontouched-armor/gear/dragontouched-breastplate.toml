@@ -1,0 +1,50 @@
+name = "Dragontouched Breastplate"
+description = """
+This breastplate is etched with several ancient draconic runes that appear to
+be dormant. Perhaps untold powers can be awakened if a power source could be
+found."""
+drop_location = "Dragontouched Armor, Turn in 50 Draconic Runes (requires completion of Stealer of Souls)"
+enhancement_bonus = 5
+icon = "MediumArmor_1a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Dragontouched"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 12
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 5
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-11-04"
+note = "Armor Types list: given by Vorace for 50 Draconic Runes (not a drop)."
+
+[[effect]]
+name = "Dragontouched"
+
+[[ddobuilder_correction]]
+kind = "item"
+field = "drop_location"
+upstream = "Dragontouched Armor, Turn in 50 Draconic Runes &amp; Complete the quest Stealer of Souls"
+reason = "Bought from Vorace for 50 Draconic Runes. ML16, armor bonus +17."
+url = "https://ddowiki.com/page/Item:Dragontouched_Armor"
+read = "2026-11-12"
+
+[[socket]]
+slot = "crafting: eldritch rune"
+
+[[socket]]
+slot = "crafting: tempest rune"
+
+[[socket]]
+slot = "crafting: sovereign rune"
+
+[[source]]
+kind = "crafting_system"
+name = "Dragontouched Armor"

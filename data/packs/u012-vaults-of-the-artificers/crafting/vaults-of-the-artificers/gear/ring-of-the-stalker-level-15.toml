@@ -1,0 +1,54 @@
+name = "Ring of the Stalker (Level 15)"
+description = """
+A bound Invisible Stalker makes this ring a dangerous asset for anyone striking
+their enemies from the shadows."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Ring_24"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 15
+slot = "Ring"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot/Other"
+read = "2026-11-04"
+note = "Created at the Vaults challenge barter (Challenge Barter System Rewards); not a drop."
+
+[[effect]]
+name = "Manslayer"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 3
+value2 = 4
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Ethereal"
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 2"
+reason = "Maetrim labels both sockets tier 2. Screenshots: Tier 2 shows the same lines as Tier 1; 'Upgradeable - Tier 3' shows Seeker +9 and the Green Augment Slot."
+url = "https://ddowiki.com/page/Item:Ring_of_the_Stalker"
+read = "2026-11-10"
+qualifier = 'option "Seeker +9 and a Green Augment Slot"'
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Ring of the Stalker (Level 15)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Ring of the Stalker (Level 15)"
+
+[[source]]
+kind = "crafting_system"
+name = "Vaults of the Artificers"

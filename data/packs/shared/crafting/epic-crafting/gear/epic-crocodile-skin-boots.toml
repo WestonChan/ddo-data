@@ -1,0 +1,47 @@
+name = "Epic Crocodile Skin Boots"
+description = """
+Sturdy waterproof boots for the adventurer who doesn't mind the risk involved
+in obtaining the materials."""
+drop_location = "Epic version of Crocodile Skin Boots"
+icon = "Boots_11a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 20
+slot = "Feet"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Acidic Reaping"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

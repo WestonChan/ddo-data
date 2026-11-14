@@ -1,0 +1,51 @@
+name = "Epic Cloak of Flames"
+description = """
+Imbued with the power of a bound Fire Elemental, this smooth cloak of crimson
+fabric absorbs harmful flames and makes your fire spells stronger."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Cloak_15"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Back"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot/Other"
+read = "2026-11-04"
+note = "Created at the Vaults challenge barter (Challenge Barter System Rewards); not a drop."
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 110
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Fire Shield (Hot)"
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Epic Cloak of Flames"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Epic Cloak of Flames"
+
+[[source]]
+kind = "crafting_system"
+name = "Vaults of the Artificers"

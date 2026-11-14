@@ -26,35 +26,28 @@ name = "Combat Mastery"
 bonus_type = "Quality"
 value = 3
 
-[[socket]]
-slot = "crafting: against the slave lords set bonus"
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "remove"
+upstream = 0
+reason = """Examine screenshot 420px-Legendary_Executioner's_Helm.png (orchestrator, 2026-11-13) shows 'Minimum Level: 28' and the line 'Against the Slave Lords Set Bonus: An Against the Slave Lords Set Bonus can be applied to this item.'; nothing on the page says it takes the heroic set. Maetrim's file puts it on the option set that grants the heroic set bonuses; by its level it takes the Legendary slot. Typed text on the Slave Lords Crafting page (read by the orchestrator 2026-11-13): "Named items also count toward set bonuses (once they are specifically upgraded to do so)." and "Slavers' Named items will have a much shorter list of options, as you can only add a Set Bonus or Mythic Bonus to a named item."; the Shattered Symbol's gem purchase is "Set Bonus" with no separate entry for named items. So the named item takes the same set bonus gem, from the same ingredients, as a crafted item of its grade (maintainer, 2026-11-13: "if material/augments and ingredients are the same then make it the same slot")."""
+url = "https://ddowiki.com/page/Item:Legendary_Executioner%27s_Helm"
+read = "2026-11-13"
+qualifier = 'socket "crafting: against the slave lords set bonus"'
 
-[[socket.option]]
-name = "Adds the Slave Lord's Might Set bonus"
-icon = "SlavelordsMight"
-min_level = 8
-
-[[socket.option.set]]
-set = "Slavelords Might"
-
-[[socket.option]]
-name = "Adds the Slave Lord's Sorcery Set bonus"
-icon = "SlavelordsSorcery"
-min_level = 8
-
-[[socket.option.set]]
-set = "Slavelords Sorcery"
-
-[[socket.option]]
-name = "Adds the Slave Lord's Endurance Set bonus"
-icon = "SlavelordsEndurance"
-min_level = 8
-
-[[socket.option.set]]
-set = "Slavelords Endurance"
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "add"
+reason = """Examine screenshot 420px-Legendary_Executioner's_Helm.png (orchestrator, 2026-11-13) shows 'Minimum Level: 28' and the line 'Against the Slave Lords Set Bonus: An Against the Slave Lords Set Bonus can be applied to this item.'; nothing on the page says it takes the heroic set. Maetrim's file puts it on the option set that grants the heroic set bonuses; by its level it takes the Legendary slot. Typed text on the Slave Lords Crafting page (read by the orchestrator 2026-11-13): "Named items also count toward set bonuses (once they are specifically upgraded to do so)." and "Slavers' Named items will have a much shorter list of options, as you can only add a Set Bonus or Mythic Bonus to a named item."; the Shattered Symbol's gem purchase is "Set Bonus" with no separate entry for named items. So the named item takes the same set bonus gem, from the same ingredients, as a crafted item of its grade (maintainer, 2026-11-13: "if material/augments and ingredients are the same then make it the same slot")."""
+url = "https://ddowiki.com/page/Item:Legendary_Executioner%27s_Helm"
+read = "2026-11-13"
+qualifier = "crafting: legendary slavelords set bonus"
 
 [[socket]]
 slot = "green"
+
+[[socket]]
+slot = "crafting: legendary slavelords set bonus"
 
 [[source]]
 chest = "end chest"

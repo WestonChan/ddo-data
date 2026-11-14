@@ -28,37 +28,11 @@ value2 = 6
 
 [[socket]]
 slot = "upgrade: tier 2"
-
-[[socket.option]]
-name = "Strength +7"
-description = "Strength +7: This item gives the wearer the power of Ogre Strength, granting a +7 enhancement bonus to Strength."
-icon = "Upgrade"
-min_level = 20
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Strength"
-value = 7
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [7]
-bonus_type = "Enhancement"
-effect = "Strength"
-effect_type = "AbilityBonus"
-targets = ["Strength"]
+set = "Epic Brawling Gloves (level 20)"
 
 [[socket]]
 slot = "upgrade: tier 3"
-
-[[socket.option]]
-name = "Adds a Yellow augment slot"
-description = "Adds a Yellow augment slot to this item"
-icon = "Upgrade"
-min_level = 20
-
-[[socket.option.grant]]
-slot = "yellow"
+set = "Epic Brawling Gloves (legacy) (level 20)"
 
 [[source]]
 kind = "event"

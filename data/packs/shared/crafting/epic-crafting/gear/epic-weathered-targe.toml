@@ -1,0 +1,76 @@
+name = "Epic Weathered Targe"
+description = """
+This ancient, worn shield is crafted from densewood. Despite its age and exposure
+to the elements, it still provides excellent protection."""
+drop_location = "Epic version of Weathered Targe"
+enhancement_bonus = 6
+icon = "Shield_8c"
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Densewood"
+minimum_level = 20
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 11
+max_dex_bonus = 0
+shield_bonus = 11
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Natural Armor Bonus"
+bonus_type = "Natural Armor"
+value = 9
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 11
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Densewood"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Off-hand"
+weapon_type = "Small Shield"

@@ -1,0 +1,9 @@
+name = "Commendation: Purple Dragon Knights"
+tier = "epic"
+bind = "Bound to Account on Acquire"
+drop_location = "Found in The High Road and The King's Forest (Eveningstar Commendations page: 'These ingredients are found in The High Road and The King's Forest'); the item page itself names no quest, only that the token is earned by helping the faction within the King's Forest"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Commendation:_Purple_Dragon_Knights"
+read = "2026-11-04"
+note = "Examine screenshot (420px-Commendation_Purple_Dragon_Knights.png) viewed at low resolution: 'Bound To Account', 'Ingredient Type: This is a valuable item that can be exchanged for goods if brought to a Challenge Trader', 'Binds to Account on Acquire'. Typed infobox: Minimum Level 1, Binding Bound to Account on Acquire, Located in Eveningstar, Turn-In Toregar Falmon <Purple Dragon Knight Trader>. The item page lists no drop source; the Eveningstar Commendations page (https://ddowiki.com/page/Eveningstar_Commendations, read the same day) says these ingredients are found in The High Road and The King's Forest, which narrows the data's 'Commendation collectables from Menace of the Underdark quests' to those two quests. Any trader trades 3 of its commendations for 1 of another type. Five faction commendations exist (Clerics of Amaunator, Druids of the King's Forest, Purple Dragon Knights, Villagers of Eveningstar, War Wizards); Clerics of Amaunator and Villagers of Eveningstar are not on the shared-names list. The page does not state the epic tier."

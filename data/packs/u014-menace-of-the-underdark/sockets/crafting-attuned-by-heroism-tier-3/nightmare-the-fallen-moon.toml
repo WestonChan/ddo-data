@@ -1,0 +1,15 @@
+label = "crafting: attuned by heroism: tier 3"
+name = "Nightmare, the Fallen Moon"
+
+[[option]]
+name = "Adds +0.5[W] Dice Multiplier"
+description = "Adds +0.5[W] Dice Multiplier"
+icon = "Heroism"
+min_level = 23
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]

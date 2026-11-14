@@ -1,0 +1,33 @@
+label = "upgrade: tier 2"
+name = "Ring of the Stalker (Level 7)"
+
+[[option]]
+name = "Insightful Deception +2"
+description = "Insightful Deception +2: +2 Insight bonus to hit and +3 to damage for any hit that would qualify as a sneak attack."
+min_level = 7
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Sneak Attack Hit"
+value = 2
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Sneak Attack Damage"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"

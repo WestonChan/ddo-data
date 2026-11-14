@@ -1,0 +1,21 @@
+label = "upgrade: tier 2"
+name = "Ornamented Dagger (legacy) (level 4)"
+
+[[option]]
+name = "Glaciation +48"
+description = "Glaciation +48: Passive: +48 Equipment bonus to Cold Spell Power."
+icon = "Upgrade"
+min_level = 4
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+value = 48
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [48]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]

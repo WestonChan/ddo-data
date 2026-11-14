@@ -1,0 +1,9 @@
+name = "Black Dragon Scale"
+tier = "heroic"
+bind = "Unbound"
+drop_location = "Gianthold Tor black dragon chest; Mired in Kobolds black dragon chest"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Black_Dragon_Scale"
+read = "2026-11-04"
+note = "Examine image (Item_Black_Dragon_Scale.jpg) viewed: no bind line, consistent with Unbound. Typed infobox: Bind Unbound. Stormreaver Monument's row had no drop text; Dragonscale Armor's 'Module 4; Gianthold Tor, Mired in Kobolds' matches."

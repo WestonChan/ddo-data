@@ -1,0 +1,57 @@
+label = "crafting: nearly finished"
+name = "Legendary Fabricator's Gauntlets"
+
+[[option]]
+name = "+13 Strength"
+description = "+13 Enhancement bonus to Strength"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 13
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[option]]
+name = "+6 Insightful Strength"
+description = "+6 Insight bonus to Strength"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Strength"
+value = 6
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[option]]
+name = "+3 Quality Strength"
+description = "+3 Quality bonus to Strength"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Quality"
+effect = "Strength"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]

@@ -17,6 +17,12 @@ damage_reduction = 20
 max_dex_bonus = 0
 shield_bonus = 35
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Sealed_Altar"
+read = "2026-11-04"
+note = "The page shows only the <Type> of the Oozing Hunger label (heroic) or Legendary <Type> of the Oozing Hunger; each output is that label with the type filled in, shown as crafted with no drop."
+
 [[dr_bypass]]
 bypass = "Bludgeon"
 

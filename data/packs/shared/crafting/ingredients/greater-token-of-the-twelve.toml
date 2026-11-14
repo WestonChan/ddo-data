@@ -1,0 +1,9 @@
+name = "Greater Token of the Twelve"
+tier = "epic"
+bind = "Bound to Account"
+drop_location = "Epic end-chest rewards from the Epic raids of Eberron: The Chronoscope, Plane of Night and Zawabi's Revenge. Epic Normal has a decent chance, Epic Hard a high chance, Epic Elite always rewards one (select raids two). No fragments. One Commendation of Heroism converts to one Greater Token at Lahar"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Token_of_the_Twelve"
+read = "2026-11-04"
+note = "Item:Greater_Token_of_the_Twelve is a redirect to the section '#Greater_Token_of_the_Twelve' of Item:Token_of_the_Twelve (one combined page for Fragments, Tokens and Greater Tokens). The section says 'Bind: Bound to Account', 'Weight: 0.01 lbs'; the page's only examine images are the 2013 token icons (Item_EpicTokens.jpg, EpicToken.jpg), not a Greater Token tooltip, so this row is typed-only. It is one item that is distinct from the plain Token of the Twelve (1 Greater Token converts to 1 Token at Lahar). Uses stated: 5 for a +1 Exceptional Stat augment at Lahar; 5 for The Master's Gift with a Voice of the Master and a Mantle of the Worldshaper at the Legacy Altar of Epic Rituals; 5 as part of the cost to upgrade raid items at the Altar of Epic Rituals. The data's Epic Crafting text 'Needed only for raid items' matches the third use. Stone of Change is not named by this section."

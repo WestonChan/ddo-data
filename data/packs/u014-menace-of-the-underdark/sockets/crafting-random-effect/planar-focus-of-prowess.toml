@@ -1,0 +1,113 @@
+label = "crafting: random effect"
+name = "Planar Focus of Prowess"
+
+[[option]]
+name = "+8 Strength"
+description = "+8 Strength"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[option]]
+name = "+8 Dexterity"
+description = "+8 Dexterity"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[option]]
+name = "+8 Constitution"
+description = "+8 Constitution"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[option]]
+name = "Insightful Constitution +3"
+description = "+3 Insightful Constitution"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Constitution"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[option]]
+name = "Insightful Dexterity +3"
+description = "+3 Insightful Dexterity"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Dexterity"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[option]]
+name = "Insightful Strength +3"
+description = "+3 Insightful Strength"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Strength"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]

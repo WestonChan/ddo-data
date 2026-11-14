@@ -1,0 +1,61 @@
+name = "Ring of Master Artifice (Level 11)"
+description = """
+A ring said to have been worn by a legendary artificer. Using it, he was able
+to take things that seemed beyond repair and make them good as new."""
+drop_location = "Vaults of the Artificers, from exchanged challenge rewards or upgraded from level 8 version"
+icon = "Ring_22"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 11
+slot = "Ring"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot/Other"
+read = "2026-11-04"
+note = "Created at the Vaults challenge barter (Challenge Barter System Rewards); not a drop."
+
+[[clickie]]
+name = "Repair Moderate Damage"
+clickie = "Repair Moderate Damage"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 126
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 82
+
+[[effect]]
+name = "Repair Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Improved Auto-Repair"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Repair Moderate Damage"]
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Ring of Master Artifice (Level 11)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Ring of Master Artifice (Level 11)"
+
+[[source]]
+kind = "crafting_system"
+name = "Vaults of the Artificers"

@@ -18,6 +18,12 @@ armor_check_penalty = -5
 armor_type = "Heavy"
 max_dex_bonus = 6
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Ritual_Table"
+read = "2026-11-04"
+note = "Row of 'Armor of the Blade's Reflection': made from the matching Legendary armor, 120 Barrier Fragments and its Sigil."
+
 [[effect]]
 name = "Accuracy"
 bonus_type = "Competence"

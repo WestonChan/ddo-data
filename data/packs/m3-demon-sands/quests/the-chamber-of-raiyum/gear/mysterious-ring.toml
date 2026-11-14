@@ -21,38 +21,7 @@ slot = "crafting: cannith ring extra"
 
 [[socket]]
 slot = "crafting: set bonus"
-
-[[socket.option]]
-name = "The Desert's Starless Nights"
-description = "The Desert's Starless Nights"
-min_level = 5
-
-[[socket.option.set]]
-set = "The Desert's Starless Nights"
-
-[[socket.option]]
-name = "The Desert's Burning Sun"
-description = "The Desert's Burning Sun"
-min_level = 5
-
-[[socket.option.set]]
-set = "The Desert's Burning Sun"
-
-[[socket.option]]
-name = "The Desert's Biting Sands"
-description = "The Desert's Biting Sands"
-min_level = 5
-
-[[socket.option.set]]
-set = "The Desert's Biting Sands"
-
-[[socket.option]]
-name = "The Desert's Writhing Storm"
-description = "The Desert's Writhing Storm"
-min_level = 5
-
-[[socket.option.set]]
-set = "The Desert's Writhing Storm"
+set = "Mysterious Ring"
 
 [[socket]]
 slot = "yellow"

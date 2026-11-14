@@ -1,0 +1,60 @@
+name = "Epic Calomel Rapier"
+accepts_sentience = true
+description = """
+A weapon crafted from durable white Calomel ore is always sheathed in condensed
+water droplets. It is particularly effective against dragons and fiery creatures."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 5
+icon = "Rapier_6"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot/Weapons"
+read = "2026-11-04"
+note = "Created at the Vaults challenge barter (Challenge Barter System Rewards); not a drop."
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Dragon Bane 4"
+
+[[effect]]
+name = "Tidal Burst"
+
+[[effect]]
+name = "Crushing Wave"
+
+[[effect]]
+name = "Corrosive Salt"
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Epic Calomel Banded Heavy Repeater"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Epic Calomel Banded Heavy Repeater"
+
+[[source]]
+kind = "crafting_system"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Rapier"

@@ -1,0 +1,9 @@
+name = "Thread of Fate"
+tier = "legendary"
+bind = "Bound to Account on Acquire"
+drop_location = "Found in the end chests of Legendary raids, regardless of tier; not passable in-chest; the amount varies per raid and difficulty (for example Defiler of the Just 10/12/14, Killing Time 20/24/28, Threats Old and New 29x2/32x2/35x2 on Normal/Hard/Elite-Reaper)"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Thread_of_Fate"
+read = "2026-11-04"
+note = "Name settled: the in-game tooltip (examine screenshot on the page, viewed) reads 'Thread of Fate' (singular), 'Minimum Level: 1', 'Bound to Account (from Acquisition)', 'Double-Click to trade these for powerful rewards!'. 'Threads of Fate' is the plural in wiki prose (Nearly Finished, Alchemical Crafting, the Legendary Crafting intro) and the stack name; the Legendary Crafting ingredient table writes '250 Thread of Fate'. It is ONE ingredient: Nearly Finished's 'Threads of Fate' row and the five other systems' 'Thread of Fate' rows should all be 'Thread of Fate'. The page says 'introduced in Update 41' as an end-game raid currency; stacks go to the Green Bag up to 10,000; used at the Barter Window, Nearly Finished, Altar of Legendary Rituals, Lahar, Soulforge. The bind line is the screenshot's; the typed page text says 'Threads of Fate are Bound to Account on Acquire'."

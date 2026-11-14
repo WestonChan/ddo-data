@@ -1,0 +1,25 @@
+label = "upgrade: tier 3"
+name = "Epic Duelist's Leathers (legacy) (level 24)"
+
+[[option]]
+name = "Dodge 10% and a Blue Augment Slot"
+description = """
+Dodge +10%: +10% Enhancement bonus to Dodge.
+Adds a Blue Augment Slot."""
+icon = "Upgrade"
+min_level = 24
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Dodge"
+value = 10
+
+[[option.grant]]
+slot = "blue"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "DodgeBonus"

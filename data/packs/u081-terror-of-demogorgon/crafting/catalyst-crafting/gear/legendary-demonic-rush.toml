@@ -7,6 +7,12 @@ material = "Leather"
 minimum_level = 35
 slot = "Feet"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Catalyst_Crafting"
+read = "2026-11-04"
+note = "Named in the page's Heroic variant / Legendary variant columns; no drop shown."
+
 [[effect]]
 name = "Speed"
 value = 30

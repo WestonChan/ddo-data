@@ -1,0 +1,40 @@
+name = "Brawling Gloves (legacy) (level 12)"
+description = """
+Some pirates prefer to brawl with their bare hands. These strength-enhancing
+gloves are perfect for their fighting style."""
+drop_location = "Treasure of Crystal Cove, Turn in at Dusty Old Treasure of Crystal Cove"
+icon = "Gloves_6"
+is_legacy = true
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 12
+slot = "Hands"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page lists the box as holding the old (tiered) versions of this line (or the trinkets) bought at Dusty Old Treasure of Crystal Cove; the data Location text agrees. Its price rows are event_reward rows only for the Cavalry Plate line and the Lesser trinkets."
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Spike-Studded"
+
+[[effect]]
+name = "Glass Jaw Strike"
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Brawling Gloves (legacy) (level 12)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Brawling Gloves (legacy) (level 12)"
+
+[[source]]
+kind = "crafting_system"
+name = "Dusty Old Treasure of Crystal Cove"

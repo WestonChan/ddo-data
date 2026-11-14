@@ -1,0 +1,133 @@
+name = "Handwraps to Collar Conversion"
+page = "https://ddowiki.com/page/Collar"
+
+[[station]]
+name = "Device Workstation"
+variant = "House Cannith Enclave"
+
+[[station]]
+name = "Device Workstation"
+variant = "Guild Airship"
+
+[[station]]
+name = "Device Workstation"
+variant = "Eveningstar"
+
+[[station]]
+name = "Device Workstation"
+variant = "Sharn Cliffside Docks"
+
+[[step]]
+name = "Collar conversion"
+
+[[citation]]
+url = "https://ddowiki.com/page/Collar"
+read = "2026-11-04"
+note = """
+Device Workstation use: converting handwraps into a companion Collar for Iron Defender and wolf companions.
+
+Read the lead, the Converting handwraps section and the Crafting collars section (the page redirects to Companion Collar). The named collars table and the bugs sections were not read, so the collar items are not listed as outputs; screenshots show a converted collar (typed only otherwise)."""
+
+[[citation]]
+field = "pack"
+url = "https://ddowiki.com/page/Device_Workstation"
+read = "2026-11-12"
+note = "Uses the Device Workstation, which stands in House Cannith Enclave, Eveningstar, Sharn - Cliffside Docks District and an optional guild airship amenity; the Device Workstation page names no pack. The wrapped item (Handwraps) and the Collar were not checked for a pack."
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Collar"
+read = "2026-11-04"
+note = """
+Convert a set of handwraps (random loot, Named or Crafted) whose total enhancement bonus is +1 to +3 into a Collar. The handwraps are consumed into an identical Collar.
+
+Convert a set of handwraps (random loot, Named or Crafted) whose total enhancement bonus is +4 to +6 into a Collar. The handwraps are consumed into an identical Collar.
+
+Convert a set of handwraps (random loot, Named or Crafted) whose total enhancement bonus is +7 to +9 into a Collar. The handwraps are consumed into an identical Collar.
+
+Convert a set of handwraps (random loot, Named or Crafted) whose total enhancement bonus is +10 to +12 into a Collar. The handwraps are consumed into an identical Collar.
+
+Convert a set of handwraps (random loot, Named or Crafted) whose total enhancement bonus is +13 or more into a Collar. The handwraps are consumed into an identical Collar.
+
+Alternative recipe that works on any set of handwraps.
+
+The Trapmaking feat is not required. The resulting collar is Bound to Character on Acquire; crafted BtA handwraps converted to collars keep BtA. Once converted, nothing can be added to it at an Essence Crafting altar. Essence Crafting does not itself craft collars: convert Essence crafted handwraps instead."""
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Collar"
+read = "2026-11-04"
+note = "Trap parts scale with the handwraps enhancement bonus: +1 to +3 10, +4 to +6 25, +7 to +9 50, +10 to +12 75, +13 or more 100; the alternative recipe is 10 Magic Item Essences for any handwraps."
+
+[[citation]]
+url = "https://ddowiki.com/page/Device_Workstation"
+read = "2026-11-04"
+note = "Whole page read: the four uses (Trapmaking, Thieves' Tools, Handwraps to Collars, Clearing Cannith Crafted enchantments from a Rune Arm) and the three locations plus the optional guild airship amenity. No costs or level gates on this page."
+
+[[citation]]
+url = "https://ddowiki.com/page/Companion_Collar"
+read = "2026-11-04"
+note = "Read the Named collars table (7 collars: Starter Module, Fangs of the Wild Hunt, Thrall of the Fire Temple, Hound of the Night, and the Epic and Legendary versions) and the Converting handwraps and Crafting collars text again. All seven exist in items. Items that are collars in the data but not in this table: Dream Collar, Legendary Dream Collar, Jorgundal's Collar (Level 12, 13, 14, 23, 24, 25 and historic), Pyrefang's Collar, Legendary Pyrefang's Collar. Typed; the page shows no screenshots of the named collars."
+
+[[recipe]]
+note = """
+Convert a set of handwraps (random loot, Named or Crafted) whose total enhancement bonus is +1 to +3 into a Collar. The handwraps are consumed into an identical Collar.
+
+The Trapmaking feat is not required. The resulting collar is Bound to Character on Acquire; crafted BtA handwraps converted to collars keep BtA. Once converted, nothing can be added to it at an Essence Crafting altar. Essence Crafting does not itself craft collars: convert Essence crafted handwraps instead."""
+option = "Handwraps +1 to +3"
+tier = "any"
+step = "Collar conversion"
+
+[[recipe.ingredient]]
+ingredient = "Mechanical Trap Parts"
+quantity = 10
+
+[[recipe]]
+note = "Convert a set of handwraps (random loot, Named or Crafted) whose total enhancement bonus is +4 to +6 into a Collar. The handwraps are consumed into an identical Collar."
+option = "Handwraps +4 to +6"
+tier = "any"
+step = "Collar conversion"
+
+[[recipe.ingredient]]
+ingredient = "Mechanical Trap Parts"
+quantity = 25
+
+[[recipe]]
+note = "Convert a set of handwraps (random loot, Named or Crafted) whose total enhancement bonus is +7 to +9 into a Collar. The handwraps are consumed into an identical Collar."
+option = "Handwraps +7 to +9"
+tier = "any"
+step = "Collar conversion"
+
+[[recipe.ingredient]]
+ingredient = "Mechanical Trap Parts"
+quantity = 50
+
+[[recipe]]
+note = "Convert a set of handwraps (random loot, Named or Crafted) whose total enhancement bonus is +10 to +12 into a Collar. The handwraps are consumed into an identical Collar."
+option = "Handwraps +10 to +12"
+tier = "any"
+step = "Collar conversion"
+
+[[recipe.ingredient]]
+ingredient = "Mechanical Trap Parts"
+quantity = 75
+
+[[recipe]]
+note = "Convert a set of handwraps (random loot, Named or Crafted) whose total enhancement bonus is +13 or more into a Collar. The handwraps are consumed into an identical Collar."
+option = "Handwraps +13 or more"
+tier = "any"
+step = "Collar conversion"
+
+[[recipe.ingredient]]
+ingredient = "Mechanical Trap Parts"
+quantity = 100
+
+[[recipe]]
+note = "Alternative recipe that works on any set of handwraps."
+option = "Handwraps (any bonus), Magic Item Essence"
+tier = "any"
+step = "Collar conversion"
+
+[[recipe.ingredient]]
+ingredient = "Magic Item Essence"
+quantity = 10

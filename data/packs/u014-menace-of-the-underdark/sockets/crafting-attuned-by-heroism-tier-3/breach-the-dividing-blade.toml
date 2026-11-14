@@ -1,0 +1,17 @@
+label = "crafting: attuned by heroism: tier 3"
+name = "Breach, The Dividing Blade"
+
+[[option]]
+name = "Wailing"
+description = "Wailing: Shrieking weapons emit a haunting wail whenever they are used to make a successful attack. This wail deals an additional 3 to 18 sonic damage."
+icon = "Heroism"
+min_level = 23
+
+[[option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Sonic"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]

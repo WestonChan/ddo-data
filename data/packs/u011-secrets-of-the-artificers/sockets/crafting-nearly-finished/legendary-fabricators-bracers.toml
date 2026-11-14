@@ -1,0 +1,57 @@
+label = "crafting: nearly finished"
+name = "Legendary Fabricator's Bracers"
+
+[[option]]
+name = "+13 Constitution"
+description = "+13 Enhancement bonus to Constitution"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 13
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[option]]
+name = "+6 Insightful Constitution"
+description = "+6 Insight bonus to Constitution"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Constitution"
+value = 6
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[option]]
+name = "+3 Quality Constitution"
+description = "+3 Quality bonus to Constitution"
+min_level = 29
+
+[[option.effect]]
+bonus_type = "Quality"
+effect = "Constitution"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]

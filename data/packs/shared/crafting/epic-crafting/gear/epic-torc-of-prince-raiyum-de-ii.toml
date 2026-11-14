@@ -1,0 +1,44 @@
+name = "Epic Torc of Prince Raiyum-de II"
+description = """
+An enterprising young lad with a gift from enchanting, Prince Raiyum-de created
+this golden torc to aid in his studies."""
+drop_location = "Epic version of Torc of Prince Raiyum-de II"
+icon = "Necklace_18a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 20
+slot = "Neck"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra); has a perfected version (nebula fragment crafting).'
+
+[[effect]]
+name = "Transform Kinetic Energy"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 195
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

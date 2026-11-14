@@ -1,0 +1,71 @@
+name = "Epic Xuum"
+accepts_sentience = true
+description = "This oversized falchion is a prized possession of Vorvand Darkfur."
+drop_location = "Epic version of Xuum"
+enhancement_bonus = 6
+icon = "Falchion_1n"
+item_category = "Weapon"
+item_type = "Falchion"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 20
+
+[[effect]]
+name = "Magma Surge"
+
+[[effect]]
+name = "Flaming Blast 4"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Incineration Guard"
+
+[[effect]]
+name = "Greater Incineration"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Falchion"

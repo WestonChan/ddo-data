@@ -53,11 +53,6 @@ variant = "add augment 2"
 
 [[row]]
 family = "crafting"
-label = "crafting: against the slave lords set bonus"
-variant = "against the slave lords set bonus"
-
-[[row]]
-family = "crafting"
 label = "crafting: alchemical crafting tier 1"
 variant = "alchemical crafting tier 1"
 
@@ -483,21 +478,45 @@ variant = "cannith weapon suffix"
 family = "crafting"
 label = "crafting: changestone ability"
 variant = "changestone ability"
+not_crafting_reason = "Proposed, from the item page only: The Changestone is a random trinket whose enchantments are 'one of the following' lists (a drop from The Dryad and the Demigod); the Stone of Change page does not name these labels and the item page does not describe the sockets. The wiki says the trade-in menu entry is not what you get, a random changestone is."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Item:The_Changestone"
+read = "2026-11-04"
+note = "Proposed, from the item page only: The Changestone is a random trinket whose enchantments are 'one of the following' lists (a drop from The Dryad and the Demigod); the Stone of Change page does not name these labels and the item page does not describe the sockets. The wiki says the trade-in menu entry is not what you get, a random changestone is."
 
 [[row]]
 family = "crafting"
 label = "crafting: changestone damage"
 variant = "changestone damage"
+not_crafting_reason = "Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Item:The_Changestone"
+read = "2026-11-04"
+note = "Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."
 
 [[row]]
 family = "crafting"
 label = "crafting: changestone option"
 variant = "changestone option"
+not_crafting_reason = "Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Item:The_Changestone"
+read = "2026-11-04"
+note = "Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."
 
 [[row]]
 family = "crafting"
 label = "crafting: changestone other"
 variant = "changestone other"
+not_crafting_reason = "Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Item:The_Changestone"
+read = "2026-11-04"
+note = "Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."
 
 [[row]]
 family = "crafting"
@@ -633,6 +652,7 @@ variant = "lost purpose"
 family = "crafting"
 label = "crafting: mythic"
 variant = "mythic"
+not_crafting_reason = "A random roll of one effect per drop, not a crafting choice; modelled by ddo-data#76."
 
 [[row]]
 family = "crafting"
@@ -706,203 +726,237 @@ variant = "planar searing"
 
 [[row]]
 family = "crafting"
-label = "crafting: primary upgrade"
-variant = "primary upgrade"
-
-[[row]]
-family = "crafting"
 label = "crafting: random armor extra"
 variant = "random armor extra"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random armor prefix"
 variant = "random armor prefix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random armor suffix"
 variant = "random armor suffix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random belt extra"
 variant = "random belt extra"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random belt prefix"
 variant = "random belt prefix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random belt suffix"
 variant = "random belt suffix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random boots extra"
 variant = "random boots extra"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random boots prefix"
 variant = "random boots prefix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random boots suffix"
 variant = "random boots suffix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random bracers extra"
 variant = "random bracers extra"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random bracers prefix"
 variant = "random bracers prefix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random bracers suffix"
 variant = "random bracers suffix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random cloak extra"
 variant = "random cloak extra"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random cloak prefix"
 variant = "random cloak prefix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random cloak suffix"
 variant = "random cloak suffix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random effect"
 variant = "random effect"
+not_crafting_reason = "A random roll of one effect per drop, not a crafting choice; modelled by ddo-data#76."
 
 [[row]]
 family = "crafting"
 label = "crafting: random effect 1"
 variant = "random effect 1"
+not_crafting_reason = "A random roll of one effect per drop, not a crafting choice; modelled by ddo-data#76."
 
 [[row]]
 family = "crafting"
 label = "crafting: random effect 2"
 variant = "random effect 2"
+not_crafting_reason = "A random roll of one effect per drop, not a crafting choice; modelled by ddo-data#76."
 
 [[row]]
 family = "crafting"
 label = "crafting: random gloves extra"
 variant = "random gloves extra"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random gloves prefix"
 variant = "random gloves prefix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random gloves suffix"
 variant = "random gloves suffix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random goggles extra"
 variant = "random goggles extra"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random goggles prefix"
 variant = "random goggles prefix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random goggles suffix"
 variant = "random goggles suffix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random helmet extra"
 variant = "random helmet extra"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random helmet prefix"
 variant = "random helmet prefix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random helmet suffix"
 variant = "random helmet suffix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random necklace extra"
 variant = "random necklace extra"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random necklace prefix"
 variant = "random necklace prefix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random necklace suffix"
 variant = "random necklace suffix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random ring extra"
 variant = "random ring extra"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random ring prefix"
 variant = "random ring prefix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random ring suffix"
 variant = "random ring suffix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random shield extra"
 variant = "random shield extra"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random shield prefix"
 variant = "random shield prefix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random shield suffix"
 variant = "random shield suffix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random weapon extra"
 variant = "random weapon extra"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random weapon prefix"
 variant = "random weapon prefix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
 label = "crafting: random weapon suffix"
 variant = "random weapon suffix"
+not_crafting_reason = "The random loot generator's enchantment slot, not a crafting system."
 
 [[row]]
 family = "crafting"
@@ -963,11 +1017,23 @@ variant = "reaper shield"
 family = "crafting"
 label = "crafting: reaper trinket"
 variant = "reaper trinket"
+not_crafting_reason = "No recipe: the page lists no slot-specific bonus for a trinket; only the three generic bonuses (+3 Melee, Ranged and Spell Power; +3 PRR; +3 MRR) fit it, and the page says these cannot be crafted at the forge and must be found naturally"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-11-04"
+note = "No recipe: the page lists no slot-specific bonus for a trinket; only the three generic bonuses (+3 Melee, Ranged and Spell Power; +3 PRR; +3 MRR) fit it, and the page says these cannot be crafted at the forge and must be found naturally"
 
 [[row]]
 family = "crafting"
 label = "crafting: reaper weapon"
 variant = "reaper weapon"
+not_crafting_reason = "No recipe: the page lists no slot-specific bonus for a weapon; only the three generic bonuses fit it, and the page says these cannot be crafted at the forge and must be found naturally"
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-11-04"
+note = "No recipe: the page lists no slot-specific bonus for a weapon; only the three generic bonuses fit it, and the page says these cannot be crafted at the forge and must be found naturally"
 
 [[row]]
 family = "crafting"
@@ -991,23 +1057,36 @@ variant = "sealed in undeath"
 
 [[row]]
 family = "crafting"
-label = "crafting: secondary upgrade"
-variant = "secondary upgrade"
-
-[[row]]
-family = "crafting"
 label = "crafting: set bonus"
 variant = "set bonus"
+not_crafting_reason = "In the data this label is on Mysterious Ring (ML 11, The Chamber of Raiyum), not on the Gem of Many Facets. The item page lists 'One of the following sets, at random: The Desert's Biting Sands / Burning Sun / Starless Nights / Writhing Storm' and, since Update 55, one random Menechtarun set bonus plus a Yellow augment slot; the ring is upgraded through Essence Crafting (its prefix/suffix/extra sockets), but the set bonus is a random result, not a crafting choice. Same decision as the 'crafting: random ...' labels."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Item:Mysterious_Ring"
+read = "2026-11-04"
+note = "In the data this label is on Mysterious Ring (ML 11, The Chamber of Raiyum), not on the Gem of Many Facets. The item page lists 'One of the following sets, at random: The Desert's Biting Sands / Burning Sun / Starless Nights / Writhing Storm' and, since Update 55, one random Menechtarun set bonus plus a Yellow augment slot; the ring is upgraded through Essence Crafting (its prefix/suffix/extra sockets), but the set bonus is a random result, not a crafting choice. Same decision as the 'crafting: random ...' labels."
 
 [[row]]
 family = "crafting"
 label = "crafting: set bonus 1"
 variant = "set bonus 1"
+not_crafting_reason = "Gem of Many Facets lists 'Random set 1 (from Red Fens or Vault of Night)': the game rolls a pair of set bonuses when the gem is acquired or upgraded, and the tip says 'Unlike the epic version, you cannot re-select the set bonuses at an altar' (the base gem cannot be rerolled at all). Epic Gem of Many Facets has the same 'Random set 1 (from Epic Vault of Night or Epic Red Fens)' and the tip 'You can reroll the sets for free at Legacy Altar of Epic Rituals (this destroys all augments, adamantine rituals, Curses or Essence Crafting enhancements)'; the Legendary gem rerolls for 100 Threads of Fate at the Altar of Legendary Rituals (Legendary Crafting page, round 1). The player never chooses the set, so it is a random result; a reroll is a service of the altar, not a step. The label is carried by the Gem, the Epic Gem and the Legendary Gem."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Item:Gem_of_Many_Facets"
+read = "2026-11-04"
+note = "Gem of Many Facets lists 'Random set 1 (from Red Fens or Vault of Night)': the game rolls a pair of set bonuses when the gem is acquired or upgraded, and the tip says 'Unlike the epic version, you cannot re-select the set bonuses at an altar' (the base gem cannot be rerolled at all). Epic Gem of Many Facets has the same 'Random set 1 (from Epic Vault of Night or Epic Red Fens)' and the tip 'You can reroll the sets for free at Legacy Altar of Epic Rituals (this destroys all augments, adamantine rituals, Curses or Essence Crafting enhancements)'; the Legendary gem rerolls for 100 Threads of Fate at the Altar of Legendary Rituals (Legendary Crafting page, round 1). The player never chooses the set, so it is a random result; a reroll is a service of the altar, not a step. The label is carried by the Gem, the Epic Gem and the Legendary Gem."
 
 [[row]]
 family = "crafting"
 label = "crafting: set bonus 2"
 variant = "set bonus 2"
+not_crafting_reason = "Gem of Many Facets lists 'Random set 2 (from Chronoscope or Sands of Menechtarun)', the second random pair half; same basis as 'crafting: set bonus 1' (the Epic gem: 'Random set 2 (from Epic Chronoscope or Epic Sands of Menechtarun)')."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Item:Gem_of_Many_Facets"
+read = "2026-11-04"
+note = "Gem of Many Facets lists 'Random set 2 (from Chronoscope or Sands of Menechtarun)', the second random pair half; same basis as 'crafting: set bonus 1' (the Epic gem: 'Random set 2 (from Epic Chronoscope or Epic Sands of Menechtarun)')."
 
 [[row]]
 family = "crafting"
@@ -1104,10 +1183,26 @@ family = "crafting"
 label = "crafting: upgradeable - primary augment"
 variant = "upgradeable - primary augment"
 
+[[row.ddobuilder_correction]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: primary upgrade"
+reason = "Maetrim's second spelling of the Fountain of Necrotic Might upgrade labels, carried by this item only. Screenshot: 'Upgradeable - Primary Augment: This item can be upgraded to contain a Yellow, Blue or Red (weapons and shields only) augment. Bring this item to the Fountain of Necrotic Might outside the Black Mausoleum and combine it with Epic Tapestry Shreds to upgrade the item.' and 'Upgradeable - Secondary Augment: This item can be upgraded to contain a Green, Orange (weapons and shields only) or Purple (weapons and shields only) augment. Bring this item to the Fountain of Necrotic Might outside the Black Mausoleum and combine it with Masterwork Tapestry Shreds to upgrade the item.' These are the names of the labels the other Necropolis Part 4 items already use."
+url = "https://ddowiki.com/page/Item:Circle_of_Malevolence"
+read = "2026-11-13"
+
 [[row]]
 family = "crafting"
 label = "crafting: upgradeable - secondary augment"
 variant = "upgradeable - secondary augment"
+
+[[row.ddobuilder_correction]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: secondary upgrade"
+reason = "Maetrim's second spelling of the Fountain of Necrotic Might upgrade labels, carried by this item only. Screenshot: 'Upgradeable - Primary Augment: This item can be upgraded to contain a Yellow, Blue or Red (weapons and shields only) augment. Bring this item to the Fountain of Necrotic Might outside the Black Mausoleum and combine it with Epic Tapestry Shreds to upgrade the item.' and 'Upgradeable - Secondary Augment: This item can be upgraded to contain a Green, Orange (weapons and shields only) or Purple (weapons and shields only) augment. Bring this item to the Fountain of Necrotic Might outside the Black Mausoleum and combine it with Masterwork Tapestry Shreds to upgrade the item.' These are the names of the labels the other Necropolis Part 4 items already use."
+url = "https://ddowiki.com/page/Item:Circle_of_Malevolence"
+read = "2026-11-13"
 
 [[row]]
 family = "crafting"
@@ -1136,57 +1231,42 @@ variant = "upgradeable item (stormreaver)"
 family = "crafting"
 label = "crafting: upgradeable item (toee)"
 variant = "upgradeable item (toee)"
+not_crafting_reason = "ToEE crafting was largely discontinued in Update 56; base items and ingredients no longer drop."
 
-[[row]]
-family = "crafting"
-label = "crafting: upgradeable tier 2"
-variant = "upgradeable tier 2"
-
-[[row.ddobuilder_correction]]
-kind = "socket_label"
-field = "name"
-upstream = "crafting: upgradeable - tier 2"
-reason = "One upgrade tier spelled two ways in his files; the wiki names it Tier 2, and his other items use Upgradeable Tier 2."
-url = "https://ddowiki.com/page/Cavalry_Plate"
-read = "2026-09-30"
-
-[[row]]
-family = "crafting"
-label = "crafting: upgradeable tier 3"
-variant = "upgradeable tier 3"
-
-[[row.ddobuilder_correction]]
-kind = "socket_label"
-field = "name"
-upstream = "crafting: upgradeable - tier 3"
-reason = "One upgrade tier spelled two ways in his files; the wiki names it Tier 3, and his other items use Upgradeable Tier 3."
-url = "https://ddowiki.com/page/Cavalry_Plate"
-read = "2026-09-30"
+[[row.citation]]
+url = "https://ddowiki.com/page/ToEE_Crafting"
+read = "2026-11-04"
+note = "ToEE crafting was largely discontinued in Update 56; base items and ingredients no longer drop."
 
 [[row]]
 family = "crafting"
 label = "crafting: variant"
 variant = "variant"
+not_crafting_reason = "A random roll of one effect per drop, not a crafting choice; modelled by ddo-data#76."
 
 [[row]]
 family = "crafting"
 label = "crafting: variant 1"
 variant = "variant 1"
+not_crafting_reason = "A random roll of one effect per drop, not a crafting choice; modelled by ddo-data#76."
 
 [[row]]
 family = "crafting"
 label = "crafting: variant 2"
 variant = "variant 2"
+not_crafting_reason = "A random roll of one effect per drop, not a crafting choice; modelled by ddo-data#76."
 
 [[row]]
 family = "crafting"
 label = "crafting: variant ability"
 variant = "variant ability"
+not_crafting_reason = "A random roll of one effect per drop, not a crafting choice; modelled by ddo-data#76."
 
 [[row]]
 family = "crafting"
 label = "crafting: variant combat"
 variant = "variant combat"
+not_crafting_reason = "A random roll of one effect per drop, not a crafting choice; modelled by ddo-data#76."
 
 [[row]]
 family = "crafting"
@@ -1231,24 +1311,48 @@ family = "dino"
 label = "isle of dread: artifact claw (accessory)"
 qualifier = "accessory"
 variant = "artifact claw"
+not_crafting_reason = 'The Minor Artifact form of the Isle of Dread: Claw Slot (Accessory). It has no step of its own: the Dinosaur Bone crafting step "Claw (accessory)" fills it with the same recipes, and some of its augments are a stronger Minor Artifact version.'
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Item:Dinosaur_Bone_Belt"
+read = "2026-11-04"
+note = """The data's 'isle of dread: artifact claw (accessory)' label is the Minor Artifact copy of the slot type; the data's recipe notes already say each recipe yields the regular and the Minor Artifact augment. The reader's verdict of 2026-11-04, kept: VERDICT: the same step as 'isle of dread: claw (accessory)', one step under two labels. The Dinosaur Bone Belt screenshot and typed list show the Minor Artifact accessories (Belt, Boots, Bracers, Gloves, Necklace, Ring) with 'Isle of Dread: Claw Slot (Accessory)', exactly as the Helmet and Cloak; the system page's slot table lists the same four accessory slots for both and has one 'Claw (Accessory)' recipe table, whose augments are slotted in either (the effect is slightly larger in a Minor Artifact, per the page's undocumented-bonus notes). Recast 2026-11-13 by the orchestrator (amendment Revision 13g): the label gets no step of its own; step was "Claw (accessory)"."""
 
 [[row]]
 family = "dino"
 label = "isle of dread: artifact fang (accessory)"
 qualifier = "accessory"
 variant = "artifact fang"
+not_crafting_reason = 'The Minor Artifact form of the Isle of Dread: Fang Slot (Accessory). It has no step of its own: the Dinosaur Bone crafting step "Fang (accessory)" fills it with the same recipes, and some of its augments are a stronger Minor Artifact version.'
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Item:Dinosaur_Bone_Belt"
+read = "2026-11-04"
+note = """The data's 'isle of dread: artifact fang (accessory)' label is the Minor Artifact copy of the slot type; the data's recipe notes already say each recipe yields the regular and the Minor Artifact augment. The reader's verdict of 2026-11-04, kept: VERDICT: the same step as 'isle of dread: fang (accessory)', one step under two labels. The Dinosaur Bone Belt screenshot and typed list show the Minor Artifact accessories (Belt, Boots, Bracers, Gloves, Necklace, Ring) with 'Isle of Dread: Fang Slot (Accessory)', exactly as the Helmet and Cloak; the system page's slot table lists the same four accessory slots for both and has one 'Fang (Accessory)' recipe table, whose augments are slotted in either (the effect is slightly larger in a Minor Artifact, per the page's undocumented-bonus notes). Recast 2026-11-13 by the orchestrator (amendment Revision 13g): the label gets no step of its own; step was "Fang (accessory)"."""
 
 [[row]]
 family = "dino"
 label = "isle of dread: artifact horn (accessory)"
 qualifier = "accessory"
 variant = "artifact horn"
+not_crafting_reason = 'The Minor Artifact form of the Isle of Dread: Horn Slot (Accessory). It has no step of its own: the Dinosaur Bone crafting step "Horn (accessory)" fills it with the same recipes, and some of its augments are a stronger Minor Artifact version.'
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Item:Dinosaur_Bone_Belt"
+read = "2026-11-04"
+note = """The data's 'isle of dread: artifact horn (accessory)' label is the Minor Artifact copy of the slot type; the data's recipe notes already say each recipe yields the regular and the Minor Artifact augment. The reader's verdict of 2026-11-04, kept: VERDICT: the same step as 'isle of dread: horn (accessory)', one step under two labels. The Dinosaur Bone Belt screenshot and typed list show the Minor Artifact accessories (Belt, Boots, Bracers, Gloves, Necklace, Ring) with 'Isle of Dread: Horn Slot (Accessory)', exactly as the Helmet and Cloak; the system page's slot table lists the same four accessory slots for both and has one 'Horn (Accessory)' recipe table, whose augments are slotted in either (the effect is slightly larger in a Minor Artifact, per the page's undocumented-bonus notes). Recast 2026-11-13 by the orchestrator (amendment Revision 13g): the label gets no step of its own; step was "Horn (accessory)"."""
 
 [[row]]
 family = "dino"
 label = "isle of dread: artifact scale (accessory)"
 qualifier = "accessory"
 variant = "artifact scale"
+not_crafting_reason = 'The Minor Artifact form of the Isle of Dread: Scale Slot (Accessory). It has no step of its own: the Dinosaur Bone crafting step "Scale (accessory)" fills it with the same recipes, and some of its augments are a stronger Minor Artifact version.'
+
+[[row.citation]]
+url = "https://ddowiki.com/page/Item:Dinosaur_Bone_Belt"
+read = "2026-11-04"
+note = """The data's 'isle of dread: artifact scale (accessory)' label is the Minor Artifact copy of the slot type; the data's recipe notes already say each recipe yields the regular and the Minor Artifact augment. The reader's verdict of 2026-11-04, kept: VERDICT: the same step as 'isle of dread: scale (accessory)', one step under two labels. The Dinosaur Bone Belt screenshot and typed list show the Minor Artifact accessories (Belt, Boots, Bracers, Gloves, Necklace, Ring) with 'Isle of Dread: Scale Slot (Accessory)', exactly as the Helmet and Cloak; the system page's slot table lists the same four accessory slots for both and has one 'Scale (Accessory)' recipe table, whose augments are slotted in either (the effect is slightly larger in a Minor Artifact, per the page's undocumented-bonus notes). Recast 2026-11-13 by the orchestrator (amendment Revision 13g): the label gets no step of its own; step was "Scale (accessory)"."""
 
 [[row]]
 family = "dino"
@@ -1404,16 +1508,44 @@ variant = "sun"
 family = "upgrade"
 label = "upgrade: tier 1"
 variant = "tier 1"
+not_crafting_reason = "ToEE crafting was largely discontinued in Update 56; base items and ingredients no longer drop."
+
+[[row.citation]]
+url = "https://ddowiki.com/page/ToEE_Crafting"
+read = "2026-11-04"
+note = "ToEE crafting was largely discontinued in Update 56; base items and ingredients no longer drop."
 
 [[row]]
 family = "upgrade"
 label = "upgrade: tier 2"
 variant = "tier 2"
 
+[[row.ddobuilder_correction]]
+kind = "socket_label"
+field = "name"
+upstream = [
+    "crafting: upgradeable - tier 2",
+    "crafting: upgradeable tier 2",
+]
+reason = "One upgrade tier Maetrim's files spell three ways; the examine window names it Upgradeable - Tier 2 and other Cove and Vaults items use Tier 2."
+url = "https://ddowiki.com/page/Item:Ring_of_the_Stalker"
+read = "2026-11-10"
+
 [[row]]
 family = "upgrade"
 label = "upgrade: tier 3"
 variant = "tier 3"
+
+[[row.ddobuilder_correction]]
+kind = "socket_label"
+field = "name"
+upstream = [
+    "crafting: upgradeable - tier 3",
+    "crafting: upgradeable tier 3",
+]
+reason = "One upgrade tier Maetrim's files spell three ways; the examine window names it Upgradeable - Tier 3 and other Cove and Vaults items use Tier 3."
+url = "https://ddowiki.com/page/Item:Ring_of_the_Stalker"
+read = "2026-11-10"
 
 [[row]]
 family = "standard"

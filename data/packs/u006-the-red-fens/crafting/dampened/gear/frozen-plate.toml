@@ -19,6 +19,12 @@ armor_check_penalty = -5
 armor_type = "Heavy"
 max_dex_bonus = 1
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dampened"
+read = "2026-11-04"
+note = "Upgrade row Altar of Vulkoor, from the Dampened Frozen Plate that drops in Into the Deep. The cleansed version appears in the item table only as the Altar of Vulkoor upgrade; the data holds no drop for it."
+
 [[effect]]
 name = "Physical Sheltering"
 bonus_type = "Enhancement"

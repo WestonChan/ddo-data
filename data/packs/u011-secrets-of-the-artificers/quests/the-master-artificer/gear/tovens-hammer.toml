@@ -44,39 +44,11 @@ targets = [
 
 [[socket]]
 slot = "crafting: alchemical crafting tier 1"
-
-[[socket.option]]
-name = "Adds Insightful Intelligence +2"
-description = """
-Insightful Intelligence +2: This item focuses the power of the wearer's mind,
-granting a +2 insight bonus to Intelligence."""
-icon = "Upgrade"
-min_level = 19
-
-[[socket.option.effect]]
-bonus_type = "Insight"
-effect = "Intelligence"
-value = 2
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [2]
-bonus = "Insightful"
-bonus_type = "Insight"
-effect = "Intelligence"
-effect_type = "AbilityBonus"
-targets = ["Intelligence"]
+set = "Toven's Hammer"
 
 [[socket]]
 slot = "crafting: alchemical crafting tier 2"
-
-[[socket.option]]
-name = "Adds Transform Kinetic Energy2"
-description = """
-Transform Kinetic Energy: Each time you are hit in melee combat there is a chance
-that the energy of the blow will be converted into Spell Points."""
-icon = "Upgrade"
-min_level = 19
+set = "Toven's Hammer"
 
 [[source]]
 chest = "rightside end chest"

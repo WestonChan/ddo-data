@@ -1,0 +1,49 @@
+name = "Epic Shard of Vollun"
+description = """
+A shard of the ancient Vollun gemstone. Even this fragment stores fantastic
+amounts of arcane energy."""
+drop_location = "Epic version of Shard of Vollun"
+icon = "Trinket_1"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 20
+slot = "Trinket"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Insight"
+value = 55
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Insight"
+value = 55
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Insight"
+value = 55
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 195
+
+[[effect]]
+name = "Hidden Effect - Radiance Guard"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

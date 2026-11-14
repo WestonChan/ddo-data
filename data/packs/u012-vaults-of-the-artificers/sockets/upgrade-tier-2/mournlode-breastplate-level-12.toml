@@ -1,0 +1,42 @@
+label = "upgrade: tier 2"
+name = "Mournlode Breastplate (level 12)"
+
+[[option]]
+name = "+4 Enhancement Bonus and Undead Guard 3"
+description = """
++4 Enhancement Bonus: +4 Enhancement bonus to Armor Class.
+Protection +6: Passive: +6 Deflection bonus to Armor Class.
+Resistance +6: Passive: +6 Resistance bonus to Fortitude, Reflex, and Will Saving Throws."""
+icon = "Upgrade"
+min_level = 12
+
+[[option.effect]]
+bonus_type = "Deflection"
+effect = "Protection"
+value = 6
+
+[[option.effect]]
+bonus_type = "Resistance"
+effect = "Resistance"
+value = 6
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]

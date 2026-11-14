@@ -1,0 +1,67 @@
+name = "Epic Brawn's Spirits"
+description = """
+A powerful draught of the giant Brawn's spirits. One swig will give you great
+battle prowess and allow you to intimidate your foes, but it does make you
+a bit addle-brained."""
+drop_location = "Epic version of Brawn's Spirits"
+icon = "Trinket_27a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 20
+slot = "Trinket"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[clickie]]
+name = "Rage"
+clickie = "Rage"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 91
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Curse of Foolishness"
+bonus_type = "Penalty"
+
+[[effect]]
+name = "Curse of Dullness"
+bonus_type = "Penalty"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Rage"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

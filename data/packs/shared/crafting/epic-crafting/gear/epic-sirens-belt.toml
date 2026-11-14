@@ -1,0 +1,46 @@
+name = "Epic Siren's Belt"
+description = """
+This rare belt is enchanted with the protective magic of a water spirit and
+is capable of defending the wearer from harm."""
+drop_location = "Epic version of Siren's Belt"
+icon = "Belt_11a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Waist"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 9
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 8
+
+[[effect]]
+name = "Shield Bonus"
+bonus_type = "Shield"
+value = 9
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

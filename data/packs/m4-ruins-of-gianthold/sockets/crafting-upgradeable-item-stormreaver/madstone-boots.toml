@@ -1,0 +1,48 @@
+label = "crafting: upgradeable item (stormreaver)"
+name = "Madstone Boots"
+
+[[option]]
+name = "Dexterity +6, Potency +52, Striding 30%"
+description = """
+Dexterity +6: This item makes the wearer more nimble and dexterous, granting a +6 enhancement bonus to Dexterity.
+Potency +52: Passive: +52 Equipment bonus to each Spell Power.
+Striding +30%: Makes the wearer more fleet of foot, giving a 30% bonus to run speed."""
+icon = "Stormreaver"
+min_level = 13
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 6
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Potency"
+value = 52
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+value = 30
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [52]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "UniversalSpellPower"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"

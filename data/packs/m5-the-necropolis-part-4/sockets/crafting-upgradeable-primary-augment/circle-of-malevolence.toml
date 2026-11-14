@@ -1,0 +1,18 @@
+label = "crafting: upgradeable - primary augment"
+name = "Circle of Malevolence"
+
+[[option]]
+name = "Blue Augment Slot"
+description = "Adds a Blue Augment Slot"
+min_level = 26
+
+[[option.grant]]
+slot = "blue"
+
+[[option]]
+name = "Yellow Augment Slot"
+description = "Adds a Yellow Augment Slot"
+min_level = 26
+
+[[option.grant]]
+slot = "yellow"

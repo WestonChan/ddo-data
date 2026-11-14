@@ -1,0 +1,58 @@
+name = "Elemental Longbow of Earth (level 8)"
+description = """
+This longbow is part of a mass-produced line of House Cannith weapons with elementals
+bound to them. This one is infused with earth and deals acid damage as a result."""
+drop_location = "Vaults of the Artificers, Crafted from various challenge ingredients"
+enhancement_bonus = 2
+icon = "Longbow_6a"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 8
+slot = "Main Hand"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot/Weapons"
+read = "2026-11-04"
+note = "Created at the Vaults challenge barter (Challenge Barter System Rewards); not a drop."
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Acid"
+
+[[effect]]
+name = "Acid Arrow"
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 18
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Elemental Longbow of Earth (level 8)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Elemental Longbow of Earth (level 8)"
+
+[[source]]
+kind = "crafting_system"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

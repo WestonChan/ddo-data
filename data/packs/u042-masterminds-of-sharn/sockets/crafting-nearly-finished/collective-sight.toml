@@ -1,0 +1,116 @@
+label = "crafting: nearly finished"
+name = "Collective Sight"
+
+[[option]]
+name = "+8 Strength"
+description = "+8 Enhancement bonus to Strength"
+icon = "Strength"
+min_level = 15
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[option]]
+name = "+8 Dexterity"
+description = "+8 Enhancement bonus to Dexterity"
+icon = "Dexterity"
+min_level = 15
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[option]]
+name = "+8 Constitution"
+description = "+8 Enhancement bonus to Constitution"
+icon = "Constitution"
+min_level = 15
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[option]]
+name = "+8 Intelligence"
+description = "+8 Enhancement bonus to Intelligence"
+icon = "Intelligence"
+min_level = 15
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[option]]
+name = "+8 Wisdom"
+description = "+8 Enhancement bonus to Wisdom"
+icon = "Wisdom"
+min_level = 15
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[option]]
+name = "+8 Charisma"
+description = "+8 Enhancement bonus to Charisma"
+icon = "Charisma"
+min_level = 15
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Charisma"
+value = 8
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]

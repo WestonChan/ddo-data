@@ -1,0 +1,49 @@
+label = "upgrade: tier 3"
+name = "Epic Mournlode Breastplate"
+
+[[option]]
+name = "Protection +9, Resistance +9, Negative Absorption 30%, Adds a Green augment slot"
+description = "Adds a Purple augment slot to this item"
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Deflection"
+effect = "Protection"
+value = 9
+
+[[option.effect]]
+bonus_type = "Resistance"
+effect = "Resistance"
+value = 9
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Negative Absorption"
+value = 30
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect = "Negative Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Negative"]

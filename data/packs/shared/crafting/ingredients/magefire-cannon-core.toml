@@ -1,0 +1,9 @@
+name = "Magefire Cannon Core"
+tier = "any"
+bind = "Unbound"
+drop_location = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests (distributed by a mechanic similar to the Altar of Insanity ingredients); also found in chests in the Masterminds of Sharn quests. Used at the Cannith Melting Station"
+
+[[citation]]
+url = "https://ddowiki.com/page/Cannith_Melting_Station"
+read = "2026-11-04"
+note = "Data holds this ingredient only under Alchemical Crafting and Syranian Forged Weaponry; Nearly Finished's page also uses it in its Materials-required column but the data has no Nearly Finished ingredient row for it. Name settled: 'Magefire Cannon Core' (singular) and 'Magefire Cannon Cores' are one ingredient. The Cannith Melting Station page's Ingredient Equivalencies table lists a single 'Magefire Cannon Core' (name in recipes: 'Magefire Cannon Core', icon Magefire_Cannon_Core_1.jpg), the Alchemical Crafting raw-ingredient table lists 'Magefire Cannon Core' (Bind Unbound), and the Melting Station recipe popups read '1 Magefire Cannon Core' for one and '5 Magefire Cannon Cores' for five: the plural is the stack form, as '5 Magefire Cannon Parts' is for Parts. Syranian Forged Weaponry and Nearly Finished write the plural in their totals. Both Item:Magefire_Cannon_Core and Item:Magefire_Cannon_Cores are 404s (no item page), so the in-game tooltip name could not be read; the singular is the name the wiki's ingredient tables and the one-count popup use. The data's two names (Alchemical 'Magefire Cannon Core', Syranian 'Magefire Cannon Cores') should become one 'Magefire Cannon Core'. Nearly Finished's data row, if any, uses the plural."

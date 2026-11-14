@@ -35,16 +35,7 @@ targets = ["power Drain"]
 
 [[socket]]
 slot = "crafting: upgradeable item (black abbot)"
-
-[[socket.option]]
-name = "Power Drain is now 3 charges and adds Greater Dispelling Guard"
-description = """
-Greater Dispelling Guard: This item is infused with a power that purges out the
-magical energies of those that strike the wearer. When the wearer is hit in melee
-it will apply a Greater Dispel Magic effect to the attacker, stripping away its
-protective spells."""
-icon = "BlackAbbot"
-min_level = 13
+set = "Vile Blasphemy"
 
 [[source]]
 chest = "raid warded chest"

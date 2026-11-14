@@ -51,34 +51,12 @@ effect_type = "ItemClickie"
 targets = ["Improved Harm"]
 
 [[socket]]
-slot = "crafting: primary upgrade"
-
-[[socket.option]]
-name = "Blue Augment Slot"
-description = "Adds a Blue Augment Slot"
-min_level = 26
-
-[[socket.option.grant]]
-slot = "blue"
-
-[[socket.option]]
-name = "Yellow Augment Slot"
-description = "Adds a Yellow Augment Slot"
-min_level = 26
-
-[[socket.option.grant]]
-slot = "yellow"
+slot = "crafting: upgradeable - primary augment"
+set = "Circle of Malevolence"
 
 [[socket]]
-slot = "crafting: secondary upgrade"
-
-[[socket.option]]
-name = "Green Augment Slot"
-description = "Adds a Green Augment Slot"
-min_level = 26
-
-[[socket.option.grant]]
-slot = "green"
+slot = "crafting: upgradeable - secondary augment"
+set = "Circle of Malevolence"
 
 [[source]]
 chest = "warded chest"

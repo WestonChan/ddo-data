@@ -28,62 +28,9 @@ value = 3
 [[effect]]
 name = "Air Guard"
 
-[[ddobuilder_correction]]
-kind = "socket_option_bonus"
-field = "lines"
-upstream = [[
-    "Disable Device",
-    "Open Lock",
-]]
-reason = """The page lists these enchantments as separate lines. Screenshot: "Enhanced Open Lock +5: Provides a +5 enhancement bonus to the wearer's Open Lock skill." / "Enhanced Disable Device +5: Provides a +5 enhancement bonus to the wearer's Disable Device skill." Typed: "Enhanced Disable Device +3 → Enhanced Disable Device +5" (tooltip "Enhanced Disable Device +5: Passive: +5 Enhancement bonus to the Disable Device skill."); "Enhanced Open Lock +3 → Enhanced Open Lock +5" (tooltip "Enhanced Open Lock +5: Passive: +5 Enhancement bonus to the Open Lock skill.")"""
-url = "https://ddowiki.com/page/Item:Ventilated_Bracers"
-read = "2026-10-23"
-qualifier = 'socket "crafting: upgradeable item (stormreaver)", option "Armor Bonus +7, Enhance Disable Device +5 and Enhanced Open Lock +5", Disable Device, Open Lock / Enhancement'
-
 [[socket]]
 slot = "crafting: upgradeable item (stormreaver)"
-
-[[socket.option]]
-name = "Armor Bonus +7, Enhance Disable Device +5 and Enhanced Open Lock +5"
-description = """
-Armor Bonus +7: This item surrounds the wearer with an invisible but tangible field
-of force, granting +7 armor bonus to AC, just as though he were wearing armor.
-Enhanced Disable Device +5: Passive: +5 Enhancement bonus to the Disable Device skill.
-Enhanced Open Lock +5: Passive: +5 Enhancement bonus to the Open Lock skill."""
-icon = "Stormreaver"
-min_level = 13
-
-[[socket.option.effect]]
-bonus_type = "Armor"
-effect = "Armor Bonus"
-value = 7
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Disable Device"
-value = 5
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Open Lock"
-value = 5
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [7]
-bonus_type = "Armor"
-effect = "Armor Class"
-effect_type = "ACBonus"
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [5]
-bonus_type = "Enhancement"
-effect_type = "SkillBonus"
-targets = [
-    "Disable Device",
-    "Open Lock",
-]
+set = "Ventilated Bracers"
 
 [[source]]
 chest = "raid warded chest"

@@ -1,0 +1,8 @@
+name = "Jeweled Goblet"
+tier = "heroic"
+bind = "Bound to Account"
+drop_location = "Dr. Rushmore's Mansion: Picture Portals (L15-20)"
+
+[[citation]]
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
+read = "2026-11-04"

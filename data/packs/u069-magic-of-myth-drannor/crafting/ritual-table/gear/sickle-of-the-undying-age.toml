@@ -10,6 +10,12 @@ material = "Steel"
 minimum_level = 33
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Ritual_Table"
+read = "2026-11-04"
+note = "Covered by the page's single generic row 'Any Weapon of the Undying Age (including the caster longswords)': the corresponding Legendary Weapon of the Golden Age plus 120 Barrier Fragments. The page does not name the individual weapons (they live on Weaponry_of_the_Undying_Age, not read) and shows no direct drop."
+
 [[dr_bypass]]
 bypass = "Magic"
 

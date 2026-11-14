@@ -1,0 +1,23 @@
+label = "crafting: upgrade"
+name = "Terrorweb Chitin Breastplate"
+
+[[option]]
+name = "Adds Amaunator's Blessing"
+description = """
+Amaunator's Blessing: When all three items from the set are equipped, you will
+gain a 10% Enhancement discount to the Spell Point cost of all your spells."""
+min_level = 22
+
+[[option.set]]
+set = "Amaunator's Blessing"
+
+[[option]]
+name = "Adds Knight's Loyalty"
+description = """
+Knight's Loyalty: When all three items from the set are equipped, you will gain
+a +3 artifact bonus to your To-Hit and Damage rolls, and a +3 Insight bonus to
+Natural Armor."""
+min_level = 22
+
+[[option.set]]
+set = "Knight's Loyalty"

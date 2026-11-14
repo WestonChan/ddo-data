@@ -1,0 +1,58 @@
+name = "Epic Mask of Tragedy"
+description = """
+A mask crafted for and used by the actors of Livewood Theater. It represents
+sadness and misfortune, and is invested with magic to match."""
+drop_location = "Epic version of Mask of Tragedy"
+icon = "Helmet_34"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Head"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[clickie]]
+name = "Crushing Despair"
+clickie = "Crushing Despair"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 73
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Crushing Despair"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

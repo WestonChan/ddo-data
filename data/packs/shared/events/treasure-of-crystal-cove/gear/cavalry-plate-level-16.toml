@@ -37,40 +37,23 @@ value = 4
 [[effect]]
 name = "Mithral"
 
-[[socket]]
-slot = "crafting: upgradeable tier 2"
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "remove"
+upstream = 0
+reason = "The item page has an empty Upgradeable? row and a typed Enchantments list of +5 Enhancement Bonus, Life Shield, False Life +30, DR 14/Chaotic, Resistance +6, Blue Augment Slot; the in-game screenshot (420px-Cavalry_Plate_(level_16).png) shows the same lines (plus the Augments: line with the empty slot) and no Upgradeable - Tier line. The data file carries crafting: upgradeable tier 2 and tier 3 sockets."
+url = "https://ddowiki.com/page/Item:Cavalry_Plate_(level_16)"
+read = "2026-11-04"
+qualifier = 'socket "upgrade: tier 2"'
 
-[[socket.option]]
-name = "+4 Enhancement Bonus -> +5 Enhancement Bonus"
-description = "+5 Enhancement Bonus: This item has been magically enhanced. Armor with this quality gains a +5 Enhancement bonus to AC."
-min_level = 16
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Armor Class"
-value = 5
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [5]
-bonus_type = "Enhancement"
-effect = "Armor Class"
-effect_type = "ACBonus"
-
-[[socket]]
-slot = "crafting: upgradeable tier 3"
-
-[[socket.option]]
-name = "DR 2/Chaotic -> DR 3/Chaotic"
-description = "DR Damage Reduction 3/Chaotic: Reduces physical damage by 3, except from Chaotic attacks."
-min_level = 16
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [3]
-bonus_type = "Enhancement"
-effect_type = "DR"
-targets = ["Chaotic"]
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "remove"
+upstream = 0
+reason = "The item page has an empty Upgradeable? row and a typed Enchantments list of +5 Enhancement Bonus, Life Shield, False Life +30, DR 14/Chaotic, Resistance +6, Blue Augment Slot; the in-game screenshot (420px-Cavalry_Plate_(level_16).png) shows the same lines (plus the Augments: line with the empty slot) and no Upgradeable - Tier line. The data file carries crafting: upgradeable tier 2 and tier 3 sockets."
+url = "https://ddowiki.com/page/Item:Cavalry_Plate_(level_16)"
+read = "2026-11-04"
+qualifier = 'socket "upgrade: tier 3"'
 
 [[source]]
 kind = "event"

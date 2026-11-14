@@ -1,0 +1,57 @@
+name = "Epic Skullduggery Cap"
+description = "When shady work is the order of the evening, a light cap can be essential."
+drop_location = "Epic version of Skullduggery Cap"
+icon = "Helmet_1d"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 20
+slot = "Head"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[clickie]]
+name = "Death Ward, Mass"
+spell = "Death Ward, Mass"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Insight"
+value = 55
+
+[[effect]]
+name = "Trap the Soul Guard"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Death Ward, Mass"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

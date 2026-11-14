@@ -10,6 +10,12 @@ material = "Flametouched Iron"
 minimum_level = 30
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: "Danger at Dunwater, end chest, or Legendary version of Epic ...".'
+
 [[dr_bypass]]
 bypass = "Evil"
 
@@ -38,6 +44,10 @@ slot = "red"
 
 [[socket]]
 slot = "orange"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"
 
 [[source]]
 chest = "end chest, or legendary version of epic scalegouger"

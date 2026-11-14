@@ -1,0 +1,16 @@
+label = "crafting: upgradeable item (stormreaver)"
+name = "Madstone Shield"
+
+[[option]]
+name = "Adds Improved Bashing, Adds Shield Bashing +10%"
+description = """
+Improved Bashing: This shield does an additional 2 to 12 damage when used to shield bash.
+Shield Bashing +10%: +10% Enhancement bonus to your chance of a Secondary Shield
+Bash. This stacks with bonuses granted by any relevant feats."""
+min_level = 14
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Shield"
+effect_type = "SecondaryShieldBash"

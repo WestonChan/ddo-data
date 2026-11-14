@@ -25,14 +25,7 @@ name = "Cloudburst"
 
 [[socket]]
 slot = "crafting: upgradeable item"
-
-[[socket.option]]
-name = "Lightning Strike"
-description = """
-Lightning Strike: This weapon stores the power of a volatile thunderstorm deep
-within. Occasionally, this dynamic power comes to the surface, devastating
-enemies with a massive lightning strike."""
-min_level = 14
+set = "Cloudburst"
 
 [[source]]
 chest = "raid warded chest"

@@ -1,0 +1,44 @@
+name = "Epic Shining Crest of St. Markus"
+description = """
+A circlet of pure silver, wearable only by the virtuous souls that would risk
+their own lives to combat the forces of darkness."""
+drop_location = "Epic version of Shining Crest of St. Markus"
+icon = "Helmet_18a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Head"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Silver Flame Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Power of the Silver Flame"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Light Absorption"
+bonus_type = "Enhancement"
+value = 18
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

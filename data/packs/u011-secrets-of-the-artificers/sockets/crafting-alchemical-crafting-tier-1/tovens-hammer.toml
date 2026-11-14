@@ -1,0 +1,24 @@
+label = "crafting: alchemical crafting tier 1"
+name = "Toven's Hammer"
+
+[[option]]
+name = "Adds Insightful Intelligence +2"
+description = """
+Insightful Intelligence +2: This item focuses the power of the wearer's mind,
+granting a +2 insight bonus to Intelligence."""
+icon = "Upgrade"
+min_level = 19
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 2
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]

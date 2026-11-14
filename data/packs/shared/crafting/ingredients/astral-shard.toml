@@ -1,0 +1,8 @@
+name = "Astral Shard"
+tier = "any"
+drop_location = "Currency, account-wide. Won from Daily Dice; earned by selling items on the Shard Exchange; earned by killing monsters from the Monster Manual (Volumes III and IV); found rarely in chests (page says needs verification); purchased with DDO Points from the DDO Store"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Astral_Shard"
+read = "2026-11-04"
+note = "A currency page (introduced Update 16 Patch 1), not an examine panel, so there is no bind line or screenshot; the wiki says shards are account-wide and cannot be traded directly except via the Shard Exchange. One currency shared by both systems."

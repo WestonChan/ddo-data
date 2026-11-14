@@ -1,0 +1,642 @@
+name = "Weaponry of the Golden Age"
+pack = "Magic of Myth Drannor"
+page = "https://ddowiki.com/page/Weaponry_of_the_Golden_Age"
+
+[[station]]
+name = "Valanice Daventhorn"
+
+[[station]]
+name = "Rosella Daventhorn"
+
+[[step]]
+name = "Heroic weapon exchange"
+consumed_outputs = 2
+
+[[step]]
+name = "Legendary weapon exchange"
+consumed_outputs = 2
+
+[[citation]]
+url = "https://ddowiki.com/page/Weaponry_of_the_Golden_Age"
+read = "2026-11-04"
+note = """
+Weapons released with Update 69, rare drops in Magic of Myth Drannor quests; any two Golden Age weapons may be turned in for a weapon of your choice (Valanice Daventhorn for heroic weapons, Rosella Daventhorn for legendary weapons). The similarly named Shields of the Golden Age may not be traded or obtained this way. The pack is Magic of Myth Drannor as the page names the drops; it states no pack requirement for the trade.
+
+Whole page read: lead, the enchantment lists (heroic ML13, legendary ML33, caster longswords), the 40 standard weapons and 10 sceptre line weapons each with a Legendary Variant. No images on the page. Typed only. Shields of the Golden Age (8 data items) are excluded by the page. Not stated: any level, favor or pack gate on the trade; which quests drop the weapons."""
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Weaponry_of_the_Golden_Age"
+read = "2026-11-04"
+note = """
+Any two of these weapons (the page lists them as the heroic Standard Weapons and the Sceptre Line); a pool cost, not a fixed item.
+
+Any two of these weapons (the page lists them as the legendary Standard Weapons and the Sceptre Line); a pool cost, not a fixed item.
+
+Two Golden Age weapons of any kind (page: any two Golden Age weapons) for one weapon of your choice; the page does not say whether the two must be of the same version as the one chosen."""
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Weaponry_of_the_Golden_Age"
+read = "2026-11-04"
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Bastard Sword of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Battle Axe of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Club of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Dagger of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Dart of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Dwarven Waraxe of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Falchion of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Great Crossbow of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Greataxe of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Greatclub of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Greatsword of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Hand Axe of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Handwraps of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Heavy Crossbow of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Heavy Mace of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Heavy Pick of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Kama of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Khopesh of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Kukri of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Light Crossbow of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Light Hammer of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Light Mace of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Light Pick of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Longbow of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Longsword of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Maul of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Morningstar of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Quarterstaff of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Rapier of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Repeating Heavy Crossbow of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Repeating Light Crossbow of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Scimitar of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Shortbow of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Shortsword of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Shuriken of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Sickle of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Throwing Axe of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Throwing Dagger of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Throwing Hammer of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Warhammer of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Blessed Longsword of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Booming Longsword of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Burning Longsword of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Caustic Longsword of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Deathly Longsword of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Freezing Longsword of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Gleaming Longsword of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Kinetic Longsword of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Mending Longsword of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Shocking Longsword of the Golden Age"
+tier = "heroic"
+step = "Heroic weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Bastard Sword of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Battle Axe of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Club of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Dagger of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Dart of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Dwarven Waraxe of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Falchion of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Great Crossbow of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Greataxe of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Greatclub of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Greatsword of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Hand Axe of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Handwraps of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Heavy Crossbow of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Heavy Mace of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Heavy Pick of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Kama of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Khopesh of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Kukri of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Light Crossbow of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Light Hammer of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Light Mace of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Light Pick of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Longbow of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Longsword of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Maul of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Morningstar of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Quarterstaff of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Rapier of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Repeating Heavy Crossbow of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Repeating Light Crossbow of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Scimitar of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Shortbow of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Shortsword of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Shuriken of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Sickle of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Throwing Axe of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Throwing Dagger of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Throwing Hammer of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Warhammer of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Blessed Longsword of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Booming Longsword of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Burning Longsword of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Caustic Longsword of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Deathly Longsword of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Freezing Longsword of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Gleaming Longsword of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Kinetic Longsword of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Mending Longsword of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"
+
+[[recipe]]
+note = "Weapon of your choice from the list; costs any two Golden Age weapons (see the step's item_cost_pool)."
+option = "Legendary Shocking Longsword of the Golden Age"
+tier = "legendary"
+step = "Legendary weapon exchange"

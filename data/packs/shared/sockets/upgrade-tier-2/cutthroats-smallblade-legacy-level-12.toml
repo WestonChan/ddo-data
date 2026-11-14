@@ -1,0 +1,14 @@
+label = "upgrade: tier 2"
+name = "Cutthroat's Smallblade (legacy) (level 12)"
+
+[[option]]
+name = "+4 Enhancement Bonus"
+description = "+4 Enhancement Bonus: +4 Enhancement bonus to attack and damage rolls."
+icon = "Upgrade"
+min_level = 12
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"

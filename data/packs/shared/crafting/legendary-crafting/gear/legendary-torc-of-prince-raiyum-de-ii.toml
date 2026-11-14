@@ -1,0 +1,44 @@
+name = "Legendary Torc of Prince Raiyum-de II"
+description = """
+An enterprising young lad with a gift for enchanting, Prince Raiyum-de created
+this golden torc to aid in his studies."""
+drop_location = "Legendary version of Epic Torc of Prince Raiyum-de II"
+icon = "Necklace_18a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 30
+slot = "Neck"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: crafted only ("Legendary version of Epic ...").'
+
+[[effect]]
+name = "Transform Kinetic Energy"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 291
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"

@@ -1,0 +1,56 @@
+name = "Calomel Banded Heavy Repeater (level 16)"
+description = """
+The white Calomel ore bands on the lath of this crossbow are always sheathed
+in condensed water droplets. It is particularly effective against dragons and
+fiery creatures."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 4
+icon = "RepeatingHeavyCrossbow_7"
+item_category = "Weapon"
+item_type = "Repeating Heavy Crossbow"
+material = "Wood"
+minimum_level = 16
+slot = "Main Hand"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot/Weapons"
+read = "2026-11-04"
+note = "Created at the Vaults challenge barter (Challenge Barter System Rewards); not a drop. The wiki names the family Calomel Repeating Crossbow and its footnote says L4 and L8 are Light Repeaters, L12 and above Heavy Repeaters; the Repeating Crossbow page links Calomel_Banded_Light_Repeater_(Level_4), _(Level_8), Calomel_Banded_Heavy_Repeater_(Level_12), _(Level_16) and Epic_Calomel_Banded_Heavy_Repeater, so the data names match (the data spells level in lower case)."
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Dragon Bane 4"
+
+[[effect]]
+name = "Tidal Burst"
+
+[[effect]]
+name = "Crushing Wave"
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Calomel Banded Heavy Repeater (level 16)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Calomel Banded Heavy Repeater (level 16)"
+
+[[source]]
+kind = "crafting_system"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 2.2
+handedness = "Two-handed"
+weapon_type = "Repeating Heavy Crossbow"

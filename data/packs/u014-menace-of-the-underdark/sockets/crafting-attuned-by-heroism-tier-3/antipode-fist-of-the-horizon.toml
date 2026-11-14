@@ -1,0 +1,15 @@
+label = "crafting: attuned by heroism: tier 3"
+name = "Antipode, Fist of the Horizon"
+
+[[option]]
+name = "Adds 0.5[W] Base Damage"
+description = "Adds 0.5[W] to the base damage of this weapon."
+icon = "Heroism"
+min_level = 23
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Equipment"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]

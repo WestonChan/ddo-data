@@ -1,0 +1,40 @@
+label = "upgrade: tier 2"
+name = "Epic Smoldering Light Crossbow"
+
+[[option]]
+name = "Greater Flaming Blast, Purple Augment slot and Set Bonus."
+description = """
+Greater Flaming Blast: A flaming blast weapon is sheathed in fire.
+Critical hits with this weapon deal an additional 4 to 40 fire damage for weapons
+with a x2 critical multiplier, 6 to 60 for a x3 critical multiplier, and 8 to 80
+for a x4 multiplier. Additionally, if you roll a 20 when attacking and confirm
+the critical hit, the weapon blasts your target, doing 6 to 36 more fire damage."""
+min_level = 26
+
+[[option.grant]]
+slot = "purple"
+
+[[option.modifier]]
+bonus_type = "Enhancement"
+dice_damage = "Fire"
+dice_number = [
+    0,
+    0,
+    4,
+    6,
+    8,
+    10,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[option.set]]
+set = "Epic Elemental Evil Set"

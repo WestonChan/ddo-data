@@ -1,0 +1,47 @@
+name = "Epic Helm of the Mroranon"
+description = """
+This powerful helm is an ancient keepsake of the Mroranon Clan of the Ironroot
+Mountains."""
+drop_location = "Epic version of Helm of the Mroranon"
+icon = "Helmet_7a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 20
+slot = "Head"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 91
+
+[[effect]]
+name = "Command"
+bonus_type = "Insight"
+value = 5
+value2 = -6
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

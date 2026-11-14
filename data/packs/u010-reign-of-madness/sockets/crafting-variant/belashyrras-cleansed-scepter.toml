@@ -1,0 +1,195 @@
+label = "crafting: variant"
+name = "Belashyrra's Cleansed Scepter"
+
+[[option]]
+name = "Spellcasting Implement +15, Radiance +84, Greater Regeneration"
+description = """
+Spellcasting Implement +15: Passive: +15 Implement bonus to Universal spell power.
+Radiance +84: +84 Equipment bonus to Light and Alignment spell power."""
+min_level = 16
+
+[[option.effect]]
+bonus_type = "Implement"
+effect = "Spellcasting Implement"
+value = 15
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Light Spell Power"
+value = 84
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Implement"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [84]
+bonus_type = "Equipment"
+effect = "Light Spell Power"
+effect_type = "SpellPower"
+targets = ["Light/Alignment"]
+
+[[option]]
+name = "Spellcasting Implement +15, Combustion +84, Fire Lore V"
+description = """
+Spellcasting Implement +15: Passive: +15 Implement bonus to Universal spell power.
+Combustion +84: +84 Equipment bonus to Fire spell power.
+Fire Lore V: Passive: Your Fire spells gain a 15% Equipment bonus to their chance to critical hit."""
+min_level = 16
+
+[[option.effect]]
+bonus_type = "Implement"
+effect = "Spellcasting Implement"
+value = 15
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 84
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+value = 15
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Implement"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [84]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[option]]
+name = "Spellcasting Implement +15, Glaciation +84, Ice Lore V"
+description = """
+Spellcasting Implement +15: Passive: +15 Implement bonus to Universal spell power.
+Glaciation +84: +84 Equipment bonus to Cold spell power.
+Ice Lore V: Passive: Your Cold spells gain a 15% Equipment bonus to their chance to critical hit."""
+min_level = 16
+
+[[option.effect]]
+bonus_type = "Implement"
+effect = "Spellcasting Implement"
+value = 15
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+value = 84
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+value = 15
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Implement"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [84]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+effect_type = "SpellLore"
+targets = ["Cold"]
+
+[[option]]
+name = "Evocation Focus +2, Kinetic Lore V"
+description = """
+Evocation Focus +2: +2 Equipment bonus to the DC of Evocation spells.
+Kinetic Lore V: Passive: Your Force, Physical and Untyped spells gain a +15%
+Equipment bonus to their chance to critical hit."""
+min_level = 16
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+value = 2
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Force Spell Lore"
+value = 15
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Force Spell Lore"
+effect_type = "SpellLore"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[option]]
+name = "Necromancy Focus +2, Kinetic Lore V"
+description = """
+Necromancy Focus +2: +2 Equipment bonus to the DC of Necromancy spells.
+Void Lore V: Passive: Your Negative Energy and Poison spells gain a +15% Equipment
+bonus to their chance to critical hit."""
+min_level = 16
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Necromancy Focus"
+value = 2
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Equipment"
+effect = "Necromancy Focus"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect_type = "SpellLore"
+targets = [
+    "Negative",
+    "poison",
+]

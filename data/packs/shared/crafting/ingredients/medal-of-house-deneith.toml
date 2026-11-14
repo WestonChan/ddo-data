@@ -1,0 +1,9 @@
+name = "Medal of House Deneith"
+tier = "any"
+bind = "Bound to Account on Acquire"
+drop_location = "Epic Sentinels of Stormreach quests"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Medal_of_House_Deneith"
+read = "2026-11-04"
+note = "Examine screenshot (420px-Medal_of_House_Deneith.png) viewed: 'Bound To Account', 'Binds to Account on Acquire'. Typed infobox: raw material used in crafting, Bind Bound to Account on Acquire, Drops from 'Epic Sentinels of Stormreach quests'. Used in: Altar of Epic Rituals, Altar of Legendary Rituals; 'Maximum Stack Size: 1000'. Tip: 100 Medals of House Deneith purchase Star Fragments. The data's text 'Sentinels of Stormreach (Update 4) quest end chests in moderate amounts; replaces the pre-Update 50 seals and shards' is Epic Crafting prose."

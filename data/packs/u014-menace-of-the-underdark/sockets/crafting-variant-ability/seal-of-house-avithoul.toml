@@ -1,0 +1,80 @@
+label = "crafting: variant ability"
+name = "Seal of House Avithoul"
+
+[[option]]
+name = "Dexterity +7"
+description = "Dexterity +7: This item makes the wearer more nimble and dexterous, granting a +7 enhancement bonus to Dexterity."
+icon = "Variant"
+min_level = 21
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 7
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[option]]
+name = "Insightful Dexterity +2"
+description = "+2 Insight bonus to Dexterity"
+icon = "Variant"
+min_level = 21
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Dexterity"
+value = 2
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[option]]
+name = "Wisdom +7"
+description = "Wisdom +7: This item makes the wearer more in tune with her surroundings, granting a +7 enhancement bonus to Wisdom."
+icon = "Variant"
+min_level = 21
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 7
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[option]]
+name = "Insightful Wisdom +2"
+description = "+2 Insight bonus to Wisdom"
+icon = "Variant"
+min_level = 21
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Wisdom"
+value = 2
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]

@@ -1,0 +1,41 @@
+name = "Epic Kundarak Delving Boots"
+description = """
+These boots are Kundarak-forged and useful for exploring (and infiltrating)
+secure spaces."""
+drop_location = "Epic version of Kundarak Delving Boots"
+icon = "Boots_6c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Feet"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Exceptional Nimble Skills Bonus"
+bonus_type = "Exceptional"
+value = 8
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

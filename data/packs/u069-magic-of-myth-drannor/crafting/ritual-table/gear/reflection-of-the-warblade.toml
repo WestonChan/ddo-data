@@ -12,6 +12,12 @@ material = "Steel"
 minimum_level = 33
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Ritual_Table"
+read = "2026-11-04"
+note = "Row of 'Reflections of the Blades': made from the Legendary Echo of that blade, 120 Barrier Fragments and its Sigil."
+
 [[dr_bypass]]
 bypass = "Magic"
 

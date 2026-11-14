@@ -1,0 +1,37 @@
+label = "upgrade: tier 2"
+name = "Rock Boots (level 7)"
+
+[[option]]
+name = "Corrosion +74 and Acid Lore +11%"
+description = """
+Corrosion +74: Passive: +74 Equipment bonus to Acid Spell Power.
+Acid Lore +11: Passive: Your Acid spells gain a 11% Equipment bonus to their chance
+to critical hit."""
+icon = "Upgrade"
+min_level = 7
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+value = 74
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+value = 11
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [74]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+effect_type = "SpellLore"
+targets = ["Acid"]

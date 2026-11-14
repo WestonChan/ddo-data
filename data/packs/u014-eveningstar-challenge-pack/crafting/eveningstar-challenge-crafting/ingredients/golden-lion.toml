@@ -1,0 +1,9 @@
+name = "Golden Lion"
+tier = "any"
+bind = "Bound to Account"
+drop_location = "Underdark Arena: Ring of Fire (levels 15-30): 0.25 times score"
+
+[[citation]]
+url = "https://ddowiki.com/page/Eveningstar_Challenge_Pack"
+read = "2026-11-04"
+note = "Bound to Account since Update 19 (the page). The Copper Thumbs icon file is IngIcon_ESChallenge_CopperThumb; the page's Payout column names it Copper Thumbs. Icon files: IngIcon_ESChallenge_*."

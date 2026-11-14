@@ -1,0 +1,32 @@
+label = "upgrade: tier 2"
+name = "Epic Calomel Banded Heavy Repeater"
+
+[[option]]
+name = "+6 Enhancement Bonus, Dragon Bane 5 and a Colorless augment slot"
+description = """
++6 Enhancement Bonus: +6 Enhancement bonus to attack and damage rolls.
+Dragon Bane 5: This weapon is attuned specifically to disrupt those with
+draconic blood, dealing an additional 5d10 bane damage vs. Dragons."""
+min_level = 20
+
+[[option.grant]]
+slot = "colorless"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[option.modifier]]
+bonus = "Not Set"
+dice_damage = "Bane"
+dice_number = [5]
+dice_sides = [10]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[option.modifier.requirement]]
+items = ["Dragon"]
+req_type = "EnemyType"

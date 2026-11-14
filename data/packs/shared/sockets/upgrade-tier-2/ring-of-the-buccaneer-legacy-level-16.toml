@@ -1,0 +1,19 @@
+label = "upgrade: tier 2"
+name = "Ring of the Buccaneer (legacy) (level 16)"
+
+[[option]]
+name = "Adds Protection +4"
+description = "Protection +4: Passive: +4 Deflection bonus to Armor Class."
+min_level = 16
+
+[[option.effect]]
+bonus_type = "Deflection"
+effect = "Protection"
+value = 4
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"

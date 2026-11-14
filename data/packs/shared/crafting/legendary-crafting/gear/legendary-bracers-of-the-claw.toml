@@ -1,0 +1,46 @@
+name = "Legendary Bracers of the Claw"
+description = """
+Drow warriors don these bracers before combat and are granted great power in
+battle. They claim the bracers are infused with Vulkoor's wrath."""
+drop_location = "Legendary version of Epic Bracers of the Claw"
+icon = "Bracers_3d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Wrists"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: crafted only ("Legendary version of Epic ...").'
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 146
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 51
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"

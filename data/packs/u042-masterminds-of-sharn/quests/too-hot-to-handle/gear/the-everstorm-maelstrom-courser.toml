@@ -27,39 +27,15 @@ name = "Screeching 14"
 
 [[socket]]
 slot = "crafting: nearly finished"
-
-[[socket.option]]
-name = "Purple Augment Slot"
-description = "Adds a Purple Augment Slot"
-
-[[socket.option.grant]]
-slot = "purple"
+set = "Constellation, Cursed Blade"
 
 [[socket]]
 slot = "crafting: almost there"
-
-[[socket.option]]
-name = "Utter Disintegration"
-description = """
-Utter Disintegration: This weapon has a dark, insidious power deep within.
-Occasionally, this power lashes out violently at enemies and attempts to
-disintegrate them. This disintegrate is incredibly powerful, and will utterly
-destroy weaker foes."""
+set = "The Everstorm, Maelstrom Courser"
 
 [[socket]]
 slot = "crafting: finishing touch"
-
-[[socket.option]]
-name = "Completed Weapon"
-description = "This item is fully completed, and as a result deals an additional 0.5[W] damage."
-min_level = 1
-
-[[socket.option.modifier]]
-amounts = [0.5]
-bonus_type = "Stacking"
-effect_type = "Weapon_BaseDamage"
-is_item_specific = true
-targets = ["All"]
+set = "Baz'Morath, the Curator of Decay"
 
 [[source]]
 chest = "end chest"

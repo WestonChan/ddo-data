@@ -12,6 +12,12 @@ material = "Crystal"
 minimum_level = 29
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Ferrocrystal_Weaponry"
+read = "2026-11-04"
+note = "Ferrocrystal_Weaponry (Item: link, legendary ML29): found as random loot in the Fables of the Feywild expansion pack or crafted from 20 Chunks at the Cauldron of Cadence. The page names no quest or chest for the loot. Wiki names the pair 'Ferrocrystal Repeating Light Crossbow/Legendary Variant'."
+
 [[dr_bypass]]
 bypass = "Cold"
 

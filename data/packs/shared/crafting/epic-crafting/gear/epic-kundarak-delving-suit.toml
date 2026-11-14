@@ -1,0 +1,59 @@
+name = "Epic Kundarak Delving Suit"
+description = """
+This armor is Kundarak-forged and useful for exploring (and infiltrating) secure
+spaces."""
+drop_location = "Epic version of Kundarak Delving Suit"
+enhancement_bonus = 6
+icon = "LightArmor_9e"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_bonus = 9
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 13
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 7
+value2 = 11
+
+[[effect]]
+name = "Search"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Spot"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 9
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

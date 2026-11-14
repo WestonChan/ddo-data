@@ -1,0 +1,11 @@
+label = "crafting: upgradeable - secondary augment"
+name = "Emerald Twilight"
+
+[[option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[option.grant]]
+slot = "green"

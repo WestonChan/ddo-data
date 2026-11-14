@@ -1,0 +1,59 @@
+name = "Epic Cape of the Roc"
+description = """
+This elaborate garment is decorated with images of black-feathered rocs, giant
+birds rumored to live in far-off lands."""
+drop_location = "Epic version of Cape of the Roc"
+icon = "Cloak_3"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 20
+slot = "Back"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item.'
+
+[[clickie]]
+name = "Roc's Strength"
+clickie = "Roc's Strength"
+
+[[effect]]
+name = "Feather Falling"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    8,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Roc's Strength"]
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

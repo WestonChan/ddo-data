@@ -1,0 +1,23 @@
+label = "upgrade: tier 3"
+name = "Brawling Gloves (legacy) (level 12)"
+
+[[option]]
+name = "Strength +5"
+description = """
+Strength +5: This item gives the wearer the power of Ogre Strength, granting
+a +5 enhancement bonus to Strength."""
+icon = "Upgrade"
+min_level = 12
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 5
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]

@@ -1,0 +1,23 @@
+label = "crafting: nearly finished"
+name = "Magewright's Cloak"
+
+[[option]]
+name = "Adds Magewrite's Expertise"
+description = """
+Magewright's Expertise: Spell Focus I: +1 to DCs for all spells.
+Magewright's Quick Wits: Chance to gain a 10 second buff of +12 Alchemical bonus
+to Universal Spell Power each time the wearer is hit by a physical attack."""
+min_level = 18
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Spell DCs"
+value = 1
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]

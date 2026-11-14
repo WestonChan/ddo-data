@@ -16,6 +16,12 @@ armor_check_penalty = -5
 armor_type = "Heavy"
 max_dex_bonus = 6
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Legendary_Crafting"
+read = "2026-11-04"
+note = 'Acquired column: "The Hijacked Haul, end chest, or Legendary version of Epic ...".'
+
 [[effect]]
 name = "Fortification"
 bonus_type = "Enhancement"
@@ -38,6 +44,10 @@ value = 13
 
 [[socket]]
 slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Crafting"
 
 [[source]]
 chest = "end chest, or legendary version of epic saltiron plate"

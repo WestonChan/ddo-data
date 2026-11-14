@@ -1,0 +1,39 @@
+label = "upgrade: tier 1"
+name = "Energized Club"
+
+[[option]]
+name = "Adds Maiming and Electric Storm"
+description = """
+Maiming: This weapon has a twisted haft or grip and spikes along its blade,
+head, or point. Whenever you score a critical hit with this weapon it deals an
+amount of extra untyped damage depending on its critical multiplier: x2 - 1 to 6,
+x3 - 2 to 12, x4 - 3 to 18.
+Electric Storm: This weapon is imbued with an electrifying wrath. On an attack
+roll of 20 which is confirmed as a critical hit this power will be released,
+dealing damage to the target and all enemies near it for 15d6 electric damage.
+A successful Reflex save (DC 39) reduces this by half."""
+icon = "Upgrade"
+min_level = 7
+
+[[option.modifier]]
+amount_type = "CriticalDice"
+bonus_type = "Stacking"
+dice_damage = "Untyped"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    6,
+    6,
+    6,
+    6,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]

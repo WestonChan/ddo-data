@@ -1,10 +1,69 @@
 name = "Stone of Change"
-npc = "Stone of Change, an Eldritch Device: outside The Marketplace Bank; just right of the entrance to the tower of The Twelve; Guild Airship amenity (Stone of Change Contract, Gold Seal lv 32 and Standard lv 40)"
 page = "https://ddowiki.com/page/Stone_of_Change"
 
-[[ingredient]]
-name = "Siberys Dragonshard Fragment"
-tier = "any"
+[[station]]
+name = "Stone of Change"
+note = """
+Serves every recipe on the page.
+
+Makes Flawed Siberys Dragonshard.
+
+Makes Imperfect Siberys Dragonshard.
+
+Makes Siberys Dragonshard.
+
+Makes Exceptional Siberys Dragonshard.
+
+Makes Flawless Siberys Dragonshard.
+
+Makes Token of the Twelve.
+
+Makes Concentrated Tasty Ham Oil."""
+variant = "The Marketplace"
+
+[[station]]
+name = "Stone of Change"
+note = """
+Serves every recipe on the page.
+
+Makes Flawed Siberys Dragonshard.
+
+Makes Imperfect Siberys Dragonshard.
+
+Makes Siberys Dragonshard.
+
+Makes Exceptional Siberys Dragonshard.
+
+Makes Flawless Siberys Dragonshard.
+
+Makes Token of the Twelve.
+
+Makes Concentrated Tasty Ham Oil."""
+variant = "The Twelve"
+
+[[station]]
+name = "Stone of Change"
+note = """
+Serves every recipe on the page.
+
+Makes Flawed Siberys Dragonshard.
+
+Makes Imperfect Siberys Dragonshard.
+
+Makes Siberys Dragonshard.
+
+Makes Exceptional Siberys Dragonshard.
+
+Makes Flawless Siberys Dragonshard.
+
+Makes Token of the Twelve.
+
+Makes Concentrated Tasty Ham Oil."""
+variant = "Guild Airship"
+
+[[station]]
+name = "Siberys Dragonshard Combiner"
+note = "Serves only the five dragonshard combinations (Flawed, Imperfect, Siberys, Exceptional, Flawless Siberys Dragonshard). Fred opens it through the dialog option 'May I exchange some Dragonshards before we begin?'; barter interface, as of Update 61. Same costs as the Stone of Change."
 
 [[ingredient]]
 name = "Flawed Siberys Dragonshard"
@@ -100,16 +159,77 @@ tier = "any"
 name = "Tasty Ham"
 tier = "any"
 
-[[ingredient]]
-name = "Greater Token of the Twelve"
-tier = "any"
-
 [[citation]]
 url = "https://ddowiki.com/page/Stone_of_Change"
-read = "2026-09-29"
+read = "2026-11-04"
+note = "Whole page read. Costs of all 17 recipe rows (5 dragonshard combinations, binding and attuning, 5 Adamantine rituals, 5 Eldritch rituals, ham oil, Token of the Twelve) match the data files; no differences. The page has no socket labels, so no labels or step costs. The page does not mention the six Enhanced Marketplace/Guardian/Phiarlan shields that the data lists as outputs (no output verdict written). The page photo (Stone_of_Change.jpg) was not opened; everything is typed text. No level or pack gate is stated."
+
+[[citation]]
+field = "pack"
+url = "https://ddowiki.com/page/The_Marketplace"
+read = "2026-11-12"
+note = "Its stations are in The Marketplace, The Twelve and a guild airship amenity. The Marketplace page calls it a large area with free and pay-to-play quests, and neither it nor The Twelve names a pack for the area. The Siberys Dragonshard Combiner in House Jorasco Enclave was not checked for a pack."
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Stone_of_Change"
+read = "2026-11-04"
+note = """
+Also at the Siberys Dragonshard Combiner. Some combinations run in 10x bulk (1000 fragments give 10 Flawed). Stacks up to 10,000 can be placed but are processed one batch at a time. The Stone will not combine Khyber Dragonshard Fragments (Updates 50 and 56).
+
+Also at the Siberys Dragonshard Combiner.
+
+Also at the Siberys Dragonshard Combiner. The survey database has no ingredient row named Flawless Siberys Dragonshard and no item row either, so there is nothing yet to yield.
+
+Page section Epic Crafting. The survey has a heroic Token of the Twelve ingredient row in another system; this system's recipe yields an item the survey does not hold as an items row.
+
+Page section Meat Smithing. A consumable; the survey has neither an ingredient row nor an items row named Concentrated Tasty Ham Oil."""
+
+[[citation]]
+url = "https://ddowiki.com/page/Siberys_Dragonshard_Combiner"
+read = "2026-11-04"
+note = "Whole page read; UI screenshot (Siberys_Dragonshard_Combiner_UI.jpg) viewed: it shows the Flawed, Imperfect and Siberys Dragonshard barter entries. The page gives no place for Fred; the place comes from the Stone of Change page."
+
+[[citation]]
+url = "https://ddowiki.com/page/Guild_Airship"
+read = "2026-11-04"
+note = "Available Contracts table read (header: Type, Size, Req. Level (Gold Seal), Cost (AS), Req. Level (Standard), Cost (PP), Useful post-U22, Description). Stone of Change Contract row: Large, 32, 40, 40, 1,011.9, Yes, Stone of Change."
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Enhanced_Stormreach_Marketplace_Shield_(angular)"
+read = "2026-11-04"
+note = "Item page read: Binding Bound to Character on Acquire, Location 'Stone of Change, Battered Marketplace Shield (angular) + Stormreach Marketplace Shield (angular)', Tips 'Created by placing Battered Marketplace Shield (angular) and Stormreach Marketplace Shield (angular) into the Stone of Change', category Stone of Change loot. No drop is shown."
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Enhanced_Stormreach_Marketplace_Shield_(round)"
+read = "2026-11-04"
+note = "Item page read: Binding Bound to Character on Acquire, Location 'Stone of Change, Battered Marketplace Shield (round) + Stormreach Marketplace Shield (round)', Tips 'Created by placing Battered Marketplace Shield (round) and Stormreach Marketplace Shield (round) into the Stone of Change', category Stone of Change loot. No drop is shown."
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Enhanced_Guardian_of_Stormreach_Shield_(angular)"
+read = "2026-11-04"
+note = "Item page read: Binding Bound to Character on Acquire, Location 'Stone of Change, Battered Guardian Shield (angular) + Guardian of Stormreach Shield (angular)', Tips 'Created by placing Battered Guardian Shield (angular) and Guardian of Stormreach Shield (angular) into the Stone of Change', category Stone of Change loot. No drop is shown."
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Enhanced_Guardian_of_Stormreach_Shield_(round)"
+read = "2026-11-04"
+note = "Item page read: Binding Bound to Character on Acquire, Location 'Stone of Change, Battered Guardian Shield (round) + Guardian of Stormreach Shield (round)', Tips 'Created by placing Battered Guardian Shield (round) and Guardian of Stormreach Shield (round) into the Stone of Change', category Stone of Change loot. No drop is shown."
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Enhanced_Phiarlan_Veil_Shield_(angular)"
+read = "2026-11-04"
+note = "Item page read: Binding Bound to Character on Acquire, Location 'Stone of Change, Battered Phiarlan Shield (angular) + Phiarlan Veil Shield (angular)', Tips 'Created by placing Battered Phiarlan Shield (angular) and Phiarlan Veil Shield (angular) into the Stone of Change', category Stone of Change loot. No drop is shown."
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Enhanced_Phiarlan_Veil_Shield_(round)"
+read = "2026-11-04"
+note = "Item page read: Binding Bound to Character on Acquire, Location 'Stone of Change, Battered Phiarlan Shield (round) + Phiarlan Veil Shield (round)', Tips 'Created by placing Battered Phiarlan Shield (round) and Phiarlan Veil Shield (round) into the Stone of Change', category Stone of Change loot. No drop is shown."
 
 [[recipe]]
-note = "Dragonshard combination, no augment counterpart. Stacks of up to 10,000 shards can be placed but are transmuted one batch at a time; some combinations work in 10x bulk (1000 fragments give 10 Flawed shards). Since Update 61 Fred in the House Jorasco Enclave converts Siberys shards and fragments by barter. Since Updates 50 and 56 the Stone will not combine Khyber Dragonshard Fragments."
+note = """
+Dragonshard combination, no augment counterpart. Stacks of up to 10,000 shards can be placed but are transmuted one batch at a time; some combinations work in 10x bulk (1000 fragments give 10 Flawed shards). Since Update 61 Fred in the House Jorasco Enclave converts Siberys shards and fragments by barter. Since Updates 50 and 56 the Stone will not combine Khyber Dragonshard Fragments.
+
+At the Stone of Change."""
 option = "Flawed Siberys Dragonshard"
 tier = "any"
 
@@ -118,7 +238,10 @@ ingredient = "Siberys Dragonshard Fragment"
 quantity = 100
 
 [[recipe]]
-note = "Dragonshard combination, no augment counterpart."
+note = """
+Dragonshard combination, no augment counterpart.
+
+At the Stone of Change."""
 option = "Imperfect Siberys Dragonshard"
 tier = "any"
 
@@ -127,7 +250,10 @@ ingredient = "Flawed Siberys Dragonshard"
 quantity = 10
 
 [[recipe]]
-note = "Dragonshard combination, no augment counterpart."
+note = """
+Dragonshard combination, no augment counterpart.
+
+At the Stone of Change."""
 option = "Siberys Dragonshard"
 tier = "any"
 
@@ -136,7 +262,10 @@ ingredient = "Imperfect Siberys Dragonshard"
 quantity = 10
 
 [[recipe]]
-note = "Dragonshard combination, no augment counterpart."
+note = """
+Dragonshard combination, no augment counterpart.
+
+At the Stone of Change."""
 option = "Exceptional Siberys Dragonshard"
 tier = "any"
 
@@ -145,7 +274,10 @@ ingredient = "Siberys Dragonshard"
 quantity = 10
 
 [[recipe]]
-note = "Dragonshard combination, no augment counterpart."
+note = """
+Dragonshard combination, no augment counterpart.
+
+At the Stone of Change."""
 option = "Flawless Siberys Dragonshard"
 tier = "any"
 
@@ -337,7 +469,10 @@ ingredient = "Funerary Token"
 quantity = 22
 
 [[recipe]]
-note = "Meat Smithing; a consumable, no augment counterpart."
+note = """
+Meat Smithing; a consumable, no augment counterpart.
+
+At the Stone of Change."""
 option = "Concentrated Tasty Ham Oil"
 tier = "any"
 
@@ -346,7 +481,10 @@ ingredient = "Tasty Ham"
 quantity = 1
 
 [[recipe]]
-note = "Epic Crafting ingredient conversion, no augment counterpart."
+note = """
+Epic Crafting ingredient conversion, no augment counterpart.
+
+At the Stone of Change."""
 option = "Token of the Twelve"
 tier = "any"
 

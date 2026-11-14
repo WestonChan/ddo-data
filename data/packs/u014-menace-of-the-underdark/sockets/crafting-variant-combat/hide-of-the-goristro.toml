@@ -1,0 +1,72 @@
+label = "crafting: variant combat"
+name = "Hide of the Goristro"
+
+[[option]]
+name = "Shatter +10"
+description = "Shatter +10: This effect gives a +10 Enhancement bonus to the DC to resist the character's Sunder and Improved Sunder attempts."
+icon = "Variant"
+min_level = 22
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Shatter"]
+
+[[option]]
+name = "Stunning +10"
+description = "Stunning +10: +10 Enhancement bonus to the DC of character's Stunning Blow and Stunning Fist attempts."
+icon = "Variant"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Stun DC"
+value = 10
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Stun DC"
+effect_type = "TacticalDC"
+targets = ["Stun"]
+
+[[option]]
+name = "Vertigo +10"
+description = "Vertigo +10: This effect gives a +10 Enhancement bonus to the DC to resist the character's Trip and Improved Trip attempts."
+icon = "Variant"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Trip DC"
+value = 10
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Trip DC"
+effect_type = "TacticalDC"
+targets = ["Vertigo"]
+
+[[option]]
+name = "Tendon Slice +10"
+description = "Tendon Slice +10: On Hit: 10% chance to slow target's movement by 50% for 6 seconds."
+icon = "Variant"
+min_level = 22
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Trip DC"
+value = 10
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Trip DC"
+effect_type = "TacticalDC"
+targets = ["Vertigo"]

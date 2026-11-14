@@ -1,0 +1,45 @@
+name = "Epic Gem of Many Facets"
+description = """
+From this chain hangs a gem that is very finely cut, giving it countless glittering
+faces. It can take the place of various other items for the purpose of activating
+certain set bonuses."""
+drop_location = "Epic version of Gem of Many Facets"
+icon = "Trinket_29a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 20
+slot = "Trinket"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Epic_Gem_of_Many_Facets"
+read = "2026-10-17"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[socket]]
+slot = "crafting: set bonus 1"
+set = "Epic Gem of Many Facets"
+
+[[socket]]
+slot = "crafting: set bonus 2"
+set = "Epic Gem of Many Facets"
+
+[[socket]]
+slot = "crafting: cannith trinket prefix"
+
+[[socket]]
+slot = "crafting: cannith trinket suffix"
+
+[[socket]]
+slot = "crafting: cannith trinket extra"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

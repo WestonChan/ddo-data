@@ -1,0 +1,65 @@
+name = "Elemental Khopesh of Water (level 16)"
+description = """
+This khopesh is part of a mass-produced line of the House Cannith weapons with
+elementals bound to them. This one is infused with water and deals cold damage
+as a result."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 4
+icon = "Khopesh_9"
+item_category = "Weapon"
+item_type = "Khopesh"
+material = "Steel"
+minimum_level = 16
+slot = "Main Hand"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot/Weapons"
+read = "2026-11-04"
+note = "Created at the Vaults challenge barter (Challenge Barter System Rewards); not a drop."
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Icy Burst"
+
+[[effect]]
+name = "Paralyzing"
+
+[[effect]]
+name = "Crushing Wave"
+
+[[effect]]
+name = "Slowburst"
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Elemental Khopesh of Water (level 16)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Elemental Khopesh of Water (level 16)"
+
+[[source]]
+kind = "crafting_system"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "One-handed"
+weapon_type = "Khopesh"

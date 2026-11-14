@@ -1,7 +1,36 @@
 name = "Cauldron of Cadence"
-npc = 'Cauldron of Cadence in The Feywild, reached through the Hut from Beyond on the north side of the Stormreach Harbor docks (choose "Journey to the Feywild through the Hut from Beyond")'
 pack = "Fables of the Feywild"
 page = "https://ddowiki.com/page/Cauldron_of_Cadence"
+
+[[station]]
+name = "Cauldron of Cadence"
+note = "Turns Chunks of Ferrocrystal into Ferrocrystal Weaponry and consumes a Thread of Fate stack, an Empty Soul Vessel and a named legendary item into a Set Augment"
+
+[[step]]
+name = "Ferrocrystal weaponry"
+
+[[step.cost]]
+tier = "heroic"
+ingredient = "Chunk of Ferrocrystal"
+quantity = 20
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Legendary Chunk of Ferrocrystal"
+quantity = 20
+
+[[step]]
+name = "Set augment"
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Thread of Fate"
+quantity = 50
+
+[[step.cost]]
+tier = "legendary"
+ingredient = "Empty Soul Vessel"
+quantity = 1
 
 [[family]]
 family = "Named"
@@ -16,145 +45,98 @@ name = "Legendary Chunk of Ferrocrystal"
 drop_location = "Chests in The Feywild wilderness area and quests"
 tier = "legendary"
 
-[[ingredient]]
-name = "Thread of Fate"
-tier = "legendary"
-
-[[ingredient]]
-name = "Empty Soul Vessel"
-tier = "legendary"
-
-[[ingredient]]
-name = "Tattered Scrolls of the Broken One"
-drop_location = "Too Hot to Handle"
-tier = "legendary"
-
-[[ingredient]]
-name = "Mantle of Escher"
-drop_location = "The Curse of Strahd"
-tier = "legendary"
-
-[[ingredient]]
-name = "Citadel's Gaze"
-drop_location = "Too Hot to Handle"
-tier = "legendary"
-
-[[ingredient]]
-name = "Page Regalia: Exiled Tactica"
-drop_location = "Fire Over Morgrave"
-tier = "legendary"
-
-[[ingredient]]
-name = "Mail of the Mroranon"
-drop_location = "Killing Time"
-tier = "legendary"
-
-[[ingredient]]
-name = "The Family's Blessing"
-drop_location = "Project Nemesis"
-tier = "legendary"
-
-[[ingredient]]
-name = "Strange Tidings"
-drop_location = "Defiler of the Just"
-tier = "legendary"
-
-[[ingredient]]
-name = "Coat of Van Richten"
-drop_location = "The Curse of Strahd"
-tier = "legendary"
-
-[[ingredient]]
-name = "Cloak of the Mountain"
-drop_location = "Killing Time"
-tier = "legendary"
-
-[[ingredient]]
-name = "Kelas' Volatile Mixture"
-drop_location = "Skeletons in the Closet"
-tier = "legendary"
-
-[[ingredient]]
-name = "The Stablestone"
-drop_location = "Hunt or Be Hunted"
-tier = "legendary"
-
-[[ingredient]]
-name = "Platemail of Strahd"
-drop_location = "The Curse of Strahd"
-tier = "legendary"
-
-[[ingredient]]
-name = "Vestments of Ravenloft"
-drop_location = "Old Baba's Hut"
-tier = "legendary"
-
-[[ingredient]]
-name = "Staggershockers"
-drop_location = "Project Nemesis"
-tier = "legendary"
-
-[[ingredient]]
-name = "Guided Sight"
-drop_location = "Riding the Storm Out"
-tier = "legendary"
-
-[[ingredient]]
-name = "Page Regalia: Unsanctioned Arcana"
-drop_location = "Fire Over Morgrave"
-tier = "legendary"
-
-[[ingredient]]
-name = "Attunement's Gaze"
-drop_location = "Project Nemesis"
-tier = "legendary"
-
-[[ingredient]]
-name = "Dumathoin's Bracers"
-drop_location = "Temple of the Deathwyrm"
-tier = "legendary"
-
-[[ingredient]]
-name = "Helm of the Final Watcher"
-drop_location = "Project Nemesis"
-tier = "legendary"
-
-[[ingredient]]
-name = "Crystalline Gauntlets"
-drop_location = "Too Hot to Handle"
-tier = "legendary"
-
-[[ingredient]]
-name = "Quori-Infused Core"
-drop_location = "Legendary Lord of Blades"
-tier = "legendary"
-
 [[citation]]
 url = "https://ddowiki.com/page/Cauldron_of_Cadence"
-read = "2026-09-29"
+read = "2026-11-04"
+note = "Whole page read: intro (device for Ferrocrystal Weaponry and Set Augments, reached through the Hut from Beyond), the Ferrocrystal Weaponry paragraph (20 Chunks or Legendary Chunks, ML5 heroic and ML29 legendary), the Set augments paragraph and the 21-row table (Set Augment, Color, ML, Items to Consume, Set bonus effect, item drop sites). Not stated: any level, favor, pack, quest or feat gate; the quantity of the Empty Soul Vessel (shown without a number, taken as 1)."
+
+[[citation]]
+field = "step"
+url = "https://ddowiki.com/page/Cauldron_of_Cadence"
+read = "2026-11-04"
+note = """
+Pure step: turn in 20 Chunks (heroic ML5 weapon) or 20 Legendary Chunks (ML29 weapon) and receive one of the weapons; the page does not say the result is chosen or random (the Ferrocrystal Weaponry page says 'craft these weapons via turning in 20 Chunks'). The weapon list is on the Ferrocrystal Weaponry page.
+
+Pure step: 21 level 30 Set Augments, all Colorless, each from one named legendary raid item. No socket label.
+
+Page: 'turning in 20 Chunks of Ferrocrystal'; the same on the Ferrocrystal Weaponry page. The page names one recipe kind, so the cost is uniform.
+
+Page: 'turning in 20 ... Legendary Chunks of Ferrocrystal'.
+
+Items to Consume column: 'Thread of Fate x 50' and 'Empty Soul Vessel' (no count shown, taken as 1) on all 21 rows, plus the one named legendary item, which differs per recipe and stays on the recipe."""
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Cauldron_of_Cadence"
+read = "2026-11-04"
+note = """
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact Bonus to Charisma. The consumed item drops in Too Hot to Handle. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +30 Magical Resistance Rating Cap. The consumed item drops in The Curse of Strahd. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +30 Artifact bonus to MRR. The consumed item drops in Too Hot to Handle. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to Tactical DCs. The consumed item drops in Fire Over Morgrave. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to Strength. The consumed item drops in Killing Time. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +15% Artifact bonus to damage vs the Helpless. The consumed item drops in Project Nemesis. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to Dexterity. The consumed item drops in Defiler of the Just. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +15 Artifact Bonus to Melee and Ranged Power. The consumed item drops in The Curse of Strahd. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact Bonus to all Spell DCs. The consumed item drops in Killing Time. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to bonus Imbue Dice. The consumed item drops in Skeletons in the Closet. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +10% Legendary bonus to Maximum Hit Points. The consumed item drops in Hunt or Be Hunted. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +15% Artifact Bonus to Armor Class. The consumed item drops in The Curse of Strahd. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact Bonus to Sneak Attack Dice. The consumed item drops in Old Baba's Hut. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to Intelligence. The consumed item drops in Project Nemesis. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +15% Artifact bonus to Doublestrike and Doubleshot. The consumed item drops in Riding the Storm Out. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to Assassinate DCs. The consumed item drops in Fire Over Morgrave. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +25 Artifact bonus to each Spell Power. The consumed item drops in Project Nemesis. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +30 Artifact bonus to Physical Resistance Rating. The consumed item drops in Temple of the Deathwyrm. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +30% Artifact bonus to Fortification Bypass. The consumed item drops in Project Nemesis. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to Wisdom. The consumed item drops in Too Hot to Handle. The augment's set bonus overrides the item's own set bonus when slotted in a set item.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to Constitution. The consumed item drops in Legendary Lord of Blades. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
+
+[[citation]]
+url = "https://ddowiki.com/page/Ferrocrystal_Weaponry"
+read = "2026-11-04"
+note = "Whole page read: release in Update 48, random loot in the expansion pack or crafted by turning in 20 Chunks of Ferrocrystal / Legendary Chunks of Ferrocrystal at the Cauldron of Cadence, the heroic ML5 and legendary ML29 stat lines, and the 42 weapon pairs with Item: links for both variants. No tables, no screenshots."
 
 [[recipe]]
 note = "Yields a Ferrocrystal weapon crafted at ML 5; most bypass the DR of Feywild creatures and every standard weapon type exists. A named weapon, not an augment; no augment counterpart."
 option = "Ferrocrystal Weaponry"
 tier = "heroic"
-
-[[recipe.ingredient]]
-ingredient = "Chunk of Ferrocrystal"
-quantity = 20
+step = "Ferrocrystal weaponry"
 
 [[recipe]]
 note = "Yields a Ferrocrystal weapon crafted at ML 29. A named weapon, not an augment; no augment counterpart."
 option = "Legendary Ferrocrystal Weaponry"
 tier = "legendary"
-
-[[recipe.ingredient]]
-ingredient = "Legendary Chunk of Ferrocrystal"
-quantity = 20
+step = "Ferrocrystal weaponry"
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact Bonus to Charisma. Consumes Tattered Scrolls of the Broken One (drops in Too Hot to Handle). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact Bonus to Charisma. Consumes Tattered Scrolls of the Broken One (drops in Too Hot to Handle). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact Bonus to Charisma. The consumed item drops in Too Hot to Handle. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Alluring Elocution"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Alluring Elocution"
@@ -169,13 +151,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Tattered Scrolls of the Broken One"
+item = "Tattered Scrolls of the Broken One"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +30 Magical Resistance Rating Cap. Consumes Mantle of Escher (drops in The Curse of Strahd). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +30 Magical Resistance Rating Cap. Consumes Mantle of Escher (drops in The Curse of Strahd). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +30 Magical Resistance Rating Cap. The consumed item drops in The Curse of Strahd. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Arcane Barrier"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Arcane Barrier"
@@ -190,13 +176,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Mantle of Escher"
+item = "Mantle of Escher"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +30 Artifact bonus to MRR. Consumes Citadel's Gaze (drops in Too Hot to Handle). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +30 Artifact bonus to MRR. Consumes Citadel's Gaze (drops in Too Hot to Handle). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +30 Artifact bonus to MRR. The consumed item drops in Too Hot to Handle. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Arcane Guardian"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Arcane Guardian"
@@ -211,13 +201,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Citadel's Gaze"
+item = "Citadel's Gaze"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to Tactical DCs. Consumes Page Regalia: Exiled Tactica (drops in Fire Over Morgrave). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to Tactical DCs. Consumes Page Regalia: Exiled Tactica (drops in Fire Over Morgrave). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to Tactical DCs. The consumed item drops in Fire Over Morgrave. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Bold Tactician"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Bold Tactician"
@@ -232,13 +226,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Page Regalia: Exiled Tactica"
+item = "Page Regalia: Exiled Tactica"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to Strength. Consumes Mail of the Mroranon (drops in Killing Time). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to Strength. Consumes Mail of the Mroranon (drops in Killing Time). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to Strength. The consumed item drops in Killing Time. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Brutal Blows"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Brutal Blows"
@@ -253,13 +251,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Mail of the Mroranon"
+item = "Mail of the Mroranon"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +15% Artifact bonus to damage vs the Helpless. Consumes The Family's Blessing (drops in Project Nemesis). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +15% Artifact bonus to damage vs the Helpless. Consumes The Family's Blessing (drops in Project Nemesis). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +15% Artifact bonus to damage vs the Helpless. The consumed item drops in Project Nemesis. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Cruel Cut"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Cruel Cut"
@@ -274,13 +276,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "The Family's Blessing"
+item = "The Family's Blessing"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to Dexterity. Consumes Strange Tidings (drops in Defiler of the Just). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to Dexterity. Consumes Strange Tidings (drops in Defiler of the Just). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to Dexterity. The consumed item drops in Defiler of the Just. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Cunning Impact"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Cunning Impact"
@@ -295,13 +301,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Strange Tidings"
+item = "Strange Tidings"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +15 Artifact Bonus to Melee and Ranged Power. Consumes Coat of Van Richten (drops in The Curse of Strahd). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +15 Artifact Bonus to Melee and Ranged Power. Consumes Coat of Van Richten (drops in The Curse of Strahd). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +15 Artifact Bonus to Melee and Ranged Power. The consumed item drops in The Curse of Strahd. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Dusk Raider"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Dusk Raider"
@@ -316,13 +326,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Coat of Van Richten"
+item = "Coat of Van Richten"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact Bonus to all Spell DCs. Consumes Cloak of the Mountain (drops in Killing Time). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact Bonus to all Spell DCs. Consumes Cloak of the Mountain (drops in Killing Time). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact Bonus to all Spell DCs. The consumed item drops in Killing Time. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Esoterica"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Esoterica"
@@ -337,13 +351,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Cloak of the Mountain"
+item = "Cloak of the Mountain"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to bonus Imbue Dice. Consumes Kelas' Volatile Mixture (drops in Skeletons in the Closet). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to bonus Imbue Dice. Consumes Kelas' Volatile Mixture (drops in Skeletons in the Closet). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to bonus Imbue Dice. The consumed item drops in Skeletons in the Closet. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Imbued Infusion"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Imbued Infusion"
@@ -358,13 +376,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Kelas' Volatile Mixture"
+item = "Kelas' Volatile Mixture"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +10% Legendary bonus to Maximum Hit Points. Consumes The Stablestone (drops in Hunt or Be Hunted). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +10% Legendary bonus to Maximum Hit Points. Consumes The Stablestone (drops in Hunt or Be Hunted). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +10% Legendary bonus to Maximum Hit Points. The consumed item drops in Hunt or Be Hunted. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Legendary Bulwark"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Legendary Bulwark"
@@ -379,13 +401,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "The Stablestone"
+item = "The Stablestone"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +15% Artifact Bonus to Armor Class. Consumes Platemail of Strahd (drops in The Curse of Strahd). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +15% Artifact Bonus to Armor Class. Consumes Platemail of Strahd (drops in The Curse of Strahd). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +15% Artifact Bonus to Armor Class. The consumed item drops in The Curse of Strahd. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Paragon Guard"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Paragon Guard"
@@ -400,13 +426,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Platemail of Strahd"
+item = "Platemail of Strahd"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact Bonus to Sneak Attack Dice. Consumes Vestments of Ravenloft (drops in Old Baba's Hut). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact Bonus to Sneak Attack Dice. Consumes Vestments of Ravenloft (drops in Old Baba's Hut). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact Bonus to Sneak Attack Dice. The consumed item drops in Old Baba's Hut. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Perfect Silence"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Perfect Silence"
@@ -421,13 +451,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Vestments of Ravenloft"
+item = "Vestments of Ravenloft"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to Intelligence. Consumes Staggershockers (drops in Project Nemesis). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to Intelligence. Consumes Staggershockers (drops in Project Nemesis). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to Intelligence. The consumed item drops in Project Nemesis. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Piercing Mind"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Piercing Mind"
@@ -442,13 +476,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Staggershockers"
+item = "Staggershockers"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +15% Artifact bonus to Doublestrike and Doubleshot. Consumes Guided Sight (drops in Riding the Storm Out). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +15% Artifact bonus to Doublestrike and Doubleshot. Consumes Guided Sight (drops in Riding the Storm Out). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +15% Artifact bonus to Doublestrike and Doubleshot. The consumed item drops in Riding the Storm Out. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Quickblade"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Quickblade"
@@ -463,13 +501,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Guided Sight"
+item = "Guided Sight"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to Assassinate DCs. Consumes Page Regalia: Unsanctioned Arcana (drops in Fire Over Morgrave). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to Assassinate DCs. Consumes Page Regalia: Unsanctioned Arcana (drops in Fire Over Morgrave). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to Assassinate DCs. The consumed item drops in Fire Over Morgrave. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Subtle Blade"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Subtle Blade"
@@ -484,13 +526,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Page Regalia: Unsanctioned Arcana"
+item = "Page Regalia: Unsanctioned Arcana"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +25 Artifact bonus to Universal Spell Power. Consumes Attunement's Gaze (drops in Project Nemesis). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +25 Artifact bonus to Universal Spell Power. Consumes Attunement's Gaze (drops in Project Nemesis). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +25 Artifact bonus to each Spell Power. The consumed item drops in Project Nemesis. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Touch of Power"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Touch of Power"
@@ -505,13 +551,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Attunement's Gaze"
+item = "Attunement's Gaze"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +30 Artifact bonus to Physical Resistance Rating. Consumes Dumathoin's Bracers (drops in Temple of the Deathwyrm). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +30 Artifact bonus to Physical Resistance Rating. Consumes Dumathoin's Bracers (drops in Temple of the Deathwyrm). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +30 Artifact bonus to Physical Resistance Rating. The consumed item drops in Temple of the Deathwyrm. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Tough Shields"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Tough Shields"
@@ -526,13 +576,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Dumathoin's Bracers"
+item = "Dumathoin's Bracers"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +30% Artifact bonus to Fortification Bypass. Consumes Helm of the Final Watcher (drops in Project Nemesis). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +30% Artifact bonus to Fortification Bypass. Consumes Helm of the Final Watcher (drops in Project Nemesis). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +30% Artifact bonus to Fortification Bypass. The consumed item drops in Project Nemesis. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Truthful Blow"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Truthful Blow"
@@ -547,13 +601,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Helm of the Final Watcher"
+item = "Helm of the Final Watcher"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to Wisdom. Consumes Crystalline Gauntlets (drops in Too Hot to Handle). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to Wisdom. Consumes Crystalline Gauntlets (drops in Too Hot to Handle). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to Wisdom. The consumed item drops in Too Hot to Handle. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Visions of the Beyond"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Visions of the Beyond"
@@ -568,13 +626,17 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Crystalline Gauntlets"
+item = "Crystalline Gauntlets"
 quantity = 1
 
 [[recipe]]
-note = "Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to Constitution. Consumes Quori-Infused Core (drops in Legendary Lord of Blades). Slotted into a set item, the augment set bonus overrides the item's own set bonus."
+note = """
+Colorless, ML 30, fits any augment color. 3 Pieces Equipped: +3 Artifact bonus to Constitution. Consumes Quori-Infused Core (drops in Legendary Lord of Blades). Slotted into a set item, the augment set bonus overrides the item's own set bonus.
+
+Colorless, ML 30; slots in any augment colour. Set bonus effect: 3 Pieces Equipped: +3 Artifact bonus to Constitution. The consumed item drops in Legendary Lord of Blades. The augment's set bonus overrides the item's own set bonus when slotted in a set item."""
 option = "Set Augment: Wild Fortitude"
 tier = "legendary"
+step = "Set augment"
 
 [[recipe.augment]]
 name = "Wild Fortitude"
@@ -589,5 +651,5 @@ ingredient = "Empty Soul Vessel"
 quantity = 1
 
 [[recipe.ingredient]]
-ingredient = "Quori-Infused Core"
+item = "Quori-Infused Core"
 quantity = 1

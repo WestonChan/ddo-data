@@ -1,0 +1,44 @@
+name = "Epic Pendant of the Green Abishai"
+description = "This necklace seems to be attuned to elemental power."
+drop_location = "Epic version of Pendant of the Green Abishai"
+icon = "Necklace_13f"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 20
+slot = "Neck"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Epic_Crafting"
+read = "2026-11-04"
+note = 'Row of the "List of items created via Epic Crafting"; made at the Altar of Epic Rituals from its heroic version; the page shows no direct drop of the Epic item. Raid item (5 greater token of the twelve extra).'
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Poison Absorption"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 15
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "crafting_system"
+name = "Epic Crafting"

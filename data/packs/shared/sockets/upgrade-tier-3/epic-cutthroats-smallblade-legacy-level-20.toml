@@ -1,0 +1,15 @@
+label = "upgrade: tier 3"
+name = "Epic Cutthroat's Smallblade (legacy) (level 20)"
+
+[[option]]
+name = "Adds Corrosive Salt and a Red Augment Slot"
+description = """
+Corrosive Salt: This weapon stores a caustic, insatiable power deep within. When
+this weapon is used, this power can come to the surface in the form of a noxious,
+corrosive salt that dissolves all substances.
+Adds a Red Augment Slot."""
+icon = "Upgrade"
+min_level = 20
+
+[[option.grant]]
+slot = "red"

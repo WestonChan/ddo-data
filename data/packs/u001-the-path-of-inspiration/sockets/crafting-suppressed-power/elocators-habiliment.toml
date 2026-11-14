@@ -1,0 +1,23 @@
+label = "crafting: suppressed power"
+name = "Elocator's Habiliment"
+
+[[option]]
+name = "Adds Greater Nimbleness"
+description = """
+Greater Nimbleness: This suit of armor looks much less restrictive than others
+of its type. A suit of armor that has this property has a maximum Dexterity
+bonus 2 higher than normal, and its armor check penalty is reduced by 4."""
+icon = "Upgrade"
+min_level = 18
+
+[[option.effect]]
+bonus_type = "Stacking"
+effect = "Armor Check Penalty"
+value = -4
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [-4]
+bonus_type = "Stacking"
+effect = "Armor Check Penalty"
+effect_type = "ArmorCheckPenalty"

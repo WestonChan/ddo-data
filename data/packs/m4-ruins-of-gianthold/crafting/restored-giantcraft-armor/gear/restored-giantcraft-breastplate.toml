@@ -1,0 +1,41 @@
+name = "Restored Giantcraft Breastplate"
+description = "A breastplate imbued with the magic of the ancient giant empire."
+drop_location = "Giantcraft Armor, Turn in 10 Restored Giant Relics"
+enhancement_bonus = 6
+icon = "MediumArmor_1"
+item_category = "Armor"
+item_type = "Medium"
+material = "Adamantine"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 14
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 6
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Restored_Giantcraft_Armor"
+read = "2026-11-04"
+note = "Turned in at Horatin for 10 Restored Giant Relics. The data currently sources this item to the older system Giantcraft Armor (its drop_location reads 'Giantcraft Armor, Turn in 10 Restored Giant Relics' and the file sits under that system), while the wiki has this separate page."
+
+[[effect]]
+name = "Haste Guard"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Relentless Fury"
+
+[[effect]]
+name = "Adamantine"
+
+[[source]]
+kind = "crafting_system"
+name = "Restored Giantcraft Armor"

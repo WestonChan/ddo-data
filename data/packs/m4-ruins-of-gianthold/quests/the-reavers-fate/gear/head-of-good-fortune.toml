@@ -22,41 +22,7 @@ value = 75
 
 [[socket]]
 slot = "crafting: upgradeable item (stormreaver)"
-
-[[socket.option]]
-name = "Fortification +100% and Dodge +4%"
-description = """
-Fortification +100%: This suit of armor or shield produces a magical force that
-protects vital areas of the wearer much more effectively. When a critical hit
-or sneak attack is scored on the wearer, there is a 100% chance that the critical
-hit or sneak attack is negated and damage is instead rolled normally.
-Dodge +4%: +4% Enhancement bonus to Dodge."""
-icon = "Stormreaver"
-min_level = 13
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Dodge"
-value = 4
-
-[[socket.option.effect]]
-bonus_type = "Enhancement"
-effect = "Fortification"
-value = 100
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [4]
-bonus_type = "Enhancement"
-effect = "Dodge"
-effect_type = "DodgeBonus"
-
-[[socket.option.modifier]]
-amount_type = "Simple"
-amounts = [100]
-bonus_type = "Enhancement"
-effect = "Fortification"
-effect_type = "Fortification"
+set = "Head of Good Fortune"
 
 [[source]]
 chest = "raid warded chest"

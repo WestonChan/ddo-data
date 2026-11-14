@@ -1,0 +1,9 @@
+name = "Vault Key"
+tier = "any"
+bind = "Bound to Account on Acquire"
+drop_location = "Epic The Vault of Night quests"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Vault_Key"
+read = "2026-11-04"
+note = "One item; NO legendary version exists. Item:Legendary_Vault_Key is a 404 ('We don't currently have an article'), and the Legendary Crafting page's Legendary Item Upgrade column prices 100 'Vault Key' (and 50 Vault Key in the Epic column, 250 in the Perfected Minor Artifact column) with the same name. Item page (examine image 420px-Vault_Key.png viewed by the round-1 reader: Bound to Account, Binds to Account on Acquire): 'Drops from: Epic The Vault of Night quests'; used in Altar of Epic Rituals and Altar of Legendary Rituals; tip 'This ingredient can be used at the Altar of Epic Rituals and Altar of Legendary Rituals near Lahar to upgrade The Vault of Night items. 100 Vault Keys can be used to purchase Star Fragments.' The data's per-system source texts ('The Vault of Night (Update 3) quest end chests in moderate amounts; replaces the pre-Update 50 seals and shards' etc.) are Epic Crafting / Legendary Crafting prose, not the item page's. The tier is 'any' because the single item serves Epic (Dragonscale, Epic Crafting) and Legendary (Nebula, Legendary Crafting) recipes."

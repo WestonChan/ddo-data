@@ -1,0 +1,7 @@
+label = "crafting: enchantable: adventuring bonus"
+name = "Admiral's Tricorne"
+
+[[option]]
+name = "No Info in the Wiki"
+description = "No info in the wiki on what options for this item"
+min_level = 1

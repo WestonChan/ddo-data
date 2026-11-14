@@ -12,6 +12,12 @@ material = "Wood"
 minimum_level = 7
 slot = "Main Hand"
 
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dampened"
+read = "2026-11-04"
+note = "Upgrade row Altar of Vulkoor, from the Dampened Shatterbow that drops in The Claw of Vulkoor. The cleansed version appears in the item table only as the Altar of Vulkoor upgrade; the data holds no drop for it."
+
 [[dr_bypass]]
 bypass = "Magic"
 

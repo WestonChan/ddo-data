@@ -1,0 +1,11 @@
+label = "crafting: attuned by heroism: tier 2"
+name = "Gauntlets of Immortality"
+
+[[option]]
+name = "Adds a Colorless Augment Slot"
+description = "Adds a Colorless augment slot."
+icon = "Heroism"
+min_level = 25
+
+[[option.grant]]
+slot = "colorless"

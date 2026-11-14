@@ -1,0 +1,11 @@
+label = "crafting: attuned by heroism: tier 1"
+name = "Pendant of the Stormreaver"
+
+[[option]]
+name = "Adds a Yellow Augment Slot"
+description = "Adds a Yellow Augment Slot"
+icon = "Heroism"
+min_level = 25
+
+[[option.grant]]
+slot = "yellow"

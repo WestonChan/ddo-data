@@ -1,0 +1,52 @@
+name = "Epic Ring of the Buccaneer (legacy) (level 24)"
+description = """
+This ring is coveted by many who travel by sea for its ability to make one more
+dexterous, and better able to survive the perils of the ocean."""
+drop_location = "Treasure of Crystal Cove, Turn in various ingredients at Dusty Old Treasure of Crystal Cove"
+icon = "Ring_34b"
+is_legacy = true
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 24
+slot = "Ring"
+
+[[citation]]
+field = "source"
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+note = "The page lists the box as holding the old (tiered) versions of this line (or the trinkets) bought at Dusty Old Treasure of Crystal Cove; the data Location text agrees. Its price rows are event_reward rows only for the Cavalry Plate line and the Lesser trinkets."
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Underwater Action"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 1
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 6
+
+[[socket]]
+slot = "upgrade: tier 2"
+set = "Epic Ring of the Buccaneer (legacy) (level 24)"
+
+[[socket]]
+slot = "upgrade: tier 3"
+set = "Epic Ring of the Buccaneer (legacy) (level 24)"
+
+[[source]]
+kind = "crafting_system"
+name = "Dusty Old Treasure of Crystal Cove"
