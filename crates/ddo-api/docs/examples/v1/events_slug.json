@@ -1,6 +1,6 @@
 {
   "id": 8961972439086940,
-  "item_count": 245,
+  "item_count": 158,
   "items": [
     {
       "id": 6544891769940383,
@@ -11,20 +11,20 @@
       "slug": "admirals-tricorne"
     },
     {
-      "id": 254916629310653,
-      "is_rare": false,
-      "minimum_level": 4,
-      "name": "Bold Trinket",
-      "slot": "Trinket",
-      "slug": "bold-trinket"
-    },
-    {
-      "id": 2665625202905077,
+      "id": 408542816349026,
       "is_rare": false,
       "minimum_level": 12,
-      "name": "Brawling Gloves (legacy) (level 12)",
+      "name": "Brawling Gloves (level 12)",
       "slot": "Hands",
-      "slug": "brawling-gloves-legacy-level-12"
+      "slug": "brawling-gloves-level-12"
+    },
+    {
+      "id": 404144769836182,
+      "is_rare": false,
+      "minimum_level": 16,
+      "name": "Brawling Gloves (level 16)",
+      "slot": "Hands",
+      "slug": "brawling-gloves-level-16"
     }
   ],
   "name": "Treasure of Crystal Cove",

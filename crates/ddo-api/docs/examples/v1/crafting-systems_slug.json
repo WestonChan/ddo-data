@@ -8,31 +8,31 @@
   "ingredients": [
     {
       "bind": "Unbound",
-      "id": 3846156687207629,
+      "id": 4270561921186966,
       "name": "Broken Collar",
-      "slug": "slave-lords-crafting-broken-collar-heroic",
+      "slug": "broken-collar",
       "source": "Part 3, Assault on the Aerie of the Slave Lords",
       "tier": "heroic"
     },
     {
       "bind": "Unbound",
-      "id": 6663960991195802,
+      "id": 6633144142108437,
       "name": "Broken Shackle",
-      "slug": "slave-lords-crafting-broken-shackle-heroic",
+      "slug": "broken-shackle",
       "source": "Part 1, Slave Pits of the Undercity",
       "tier": "heroic"
     },
     {
       "bind": "Unbound",
-      "id": 5149190598083635,
+      "id": 5660664548441160,
       "name": "Chain Links",
-      "slug": "slave-lords-crafting-chain-links-heroic",
+      "slug": "chain-links",
       "source": "Part 2, Secret of the Slavers' Stockade",
       "tier": "heroic"
     }
   ],
   "name": "Slave Lords Crafting",
-  "npc": "Garvon <Armorer and Outfitter>, in the Forsaken Temple just inside the Slave Pits of the Undercity entrance",
+  "npc": "Garvon, Forsaken Temple, just inside the entrance of the quest Slave Pits of the Undercity (Part 1), safely before any challenging encounter",
   "pack": "Against the Slave Lords",
   "page": "https://ddowiki.com/page/Slave_Lords_Crafting",
   "recipe_count": 74,
@@ -61,9 +61,10 @@
       "consumed_outputs": null,
       "cost": [
         {
+          "from_step": true,
           "ingredient": "Broken Shackle",
-          "ingredient_id": 6663960991195802,
-          "ingredient_slug": "slave-lords-crafting-broken-shackle-heroic",
+          "ingredient_id": 6633144142108437,
+          "ingredient_slug": "broken-shackle",
           "item": null,
           "item_id": null,
           "item_slug": null,
@@ -71,14 +72,14 @@
           "tier": "heroic"
         }
       ],
-      "cost_from_step": false,
+      "cost_from_step": true,
       "grants_slot": null,
       "grants_sockets": [],
       "note": null,
       "option": "Attributes +5",
       "set_options": [],
       "slot": "crafting: slavelords prefix",
-      "step": null,
+      "step": "Prefix",
       "tier": "heroic",
       "unlocks": [],
       "yields_ingredient": null,
@@ -109,9 +110,10 @@
       "consumed_outputs": null,
       "cost": [
         {
+          "from_step": true,
           "ingredient": "Legendary Broken Shackle",
-          "ingredient_id": 7264227654339788,
-          "ingredient_slug": "slave-lords-crafting-legendary-broken-shackle-legendary",
+          "ingredient_id": 8411953115316319,
+          "ingredient_slug": "legendary-broken-shackle",
           "item": null,
           "item_id": null,
           "item_slug": null,
@@ -119,14 +121,14 @@
           "tier": "legendary"
         }
       ],
-      "cost_from_step": false,
+      "cost_from_step": true,
       "grants_slot": null,
       "grants_sockets": [],
       "note": null,
       "option": "Attributes +13",
       "set_options": [],
       "slot": "crafting: legendary slavelords prefix",
-      "step": null,
+      "step": "Legendary prefix",
       "tier": "legendary",
       "unlocks": [],
       "yields_ingredient": null,
@@ -145,9 +147,10 @@
       "consumed_outputs": null,
       "cost": [
         {
+          "from_step": true,
           "ingredient": "Broken Shackle",
-          "ingredient_id": 6663960991195802,
-          "ingredient_slug": "slave-lords-crafting-broken-shackle-heroic",
+          "ingredient_id": 6633144142108437,
+          "ingredient_slug": "broken-shackle",
           "item": null,
           "item_id": null,
           "item_slug": null,
@@ -155,14 +158,14 @@
           "tier": "heroic"
         }
       ],
-      "cost_from_step": false,
+      "cost_from_step": true,
       "grants_slot": null,
       "grants_sockets": [],
       "note": null,
       "option": "False Life +18",
       "set_options": [],
       "slot": "crafting: slavelords prefix",
-      "step": null,
+      "step": "Prefix",
       "tier": "heroic",
       "unlocks": [],
       "yields_ingredient": null,
@@ -171,7 +174,145 @@
     }
   ],
   "slug": "slave-lords-crafting",
-  "stations": [],
-  "steps": [],
-  "unlocks": []
+  "stations": [
+    {
+      "id": 7530181056419905,
+      "kind": "npc",
+      "name": "Garvon",
+      "note": "Every recipe is a barter at Garvon.",
+      "place": "Forsaken Temple, just inside the entrance of the quest Slave Pits of the Undercity (Part 1), safely before any challenging encounter",
+      "quest": "Slave Pits of the Undercity",
+      "quest_id": 1041641391033341,
+      "quest_slug": "slave-pits-of-the-undercity",
+      "slug": "garvon",
+      "unlocks": [],
+      "variant": null
+    }
+  ],
+  "steps": [
+    {
+      "consumed_outputs": null,
+      "costs": [
+        {
+          "cost": [
+            {
+              "from_step": true,
+              "ingredient": "Broken Shackle",
+              "ingredient_id": 6633144142108437,
+              "ingredient_slug": "broken-shackle",
+              "item": null,
+              "item_id": null,
+              "item_slug": null,
+              "quantity": 50,
+              "tier": "heroic"
+            }
+          ],
+          "tier": "heroic"
+        }
+      ],
+      "effects": [],
+      "is_random": false,
+      "modifiers": [],
+      "name": "Prefix",
+      "socket": {
+        "family": "crafting",
+        "label": "crafting: slavelords prefix",
+        "qualifier": null,
+        "slot_type_id": 7007181783026516,
+        "slot_type_slug": "crafting-slavelords-prefix",
+        "variant": "slavelords prefix"
+      }
+    },
+    {
+      "consumed_outputs": null,
+      "costs": [
+        {
+          "cost": [
+            {
+              "from_step": true,
+              "ingredient": "Chain Links",
+              "ingredient_id": 5660664548441160,
+              "ingredient_slug": "chain-links",
+              "item": null,
+              "item_id": null,
+              "item_slug": null,
+              "quantity": 50,
+              "tier": "heroic"
+            }
+          ],
+          "tier": "heroic"
+        }
+      ],
+      "effects": [],
+      "is_random": false,
+      "modifiers": [],
+      "name": "Suffix",
+      "socket": {
+        "family": "crafting",
+        "label": "crafting: slavelords suffix",
+        "qualifier": null,
+        "slot_type_id": 1299806156584721,
+        "slot_type_slug": "crafting-slavelords-suffix",
+        "variant": "slavelords suffix"
+      }
+    },
+    {
+      "consumed_outputs": null,
+      "costs": [
+        {
+          "cost": [
+            {
+              "from_step": true,
+              "ingredient": "Broken Collar",
+              "ingredient_id": 4270561921186966,
+              "ingredient_slug": "broken-collar",
+              "item": null,
+              "item_id": null,
+              "item_slug": null,
+              "quantity": 50,
+              "tier": "heroic"
+            }
+          ],
+          "tier": "heroic"
+        }
+      ],
+      "effects": [],
+      "is_random": false,
+      "modifiers": [],
+      "name": "Extra",
+      "socket": {
+        "family": "crafting",
+        "label": "crafting: slavelords extra",
+        "qualifier": null,
+        "slot_type_id": 7061206037721211,
+        "slot_type_slug": "crafting-slavelords-extra",
+        "variant": "slavelords extra"
+      }
+    }
+  ],
+  "unlocks": [
+    {
+      "crafting_ingredient": null,
+      "crafting_ingredient_id": null,
+      "crafting_ingredient_slug": null,
+      "feat": null,
+      "feat_id": null,
+      "feat_slug": null,
+      "item": null,
+      "item_id": null,
+      "item_slug": null,
+      "kind": "pack",
+      "pack": "Against the Slave Lords",
+      "pack_id": 275316373364250,
+      "pack_slug": "against-the-slave-lords",
+      "patron": null,
+      "patron_id": null,
+      "patron_slug": null,
+      "quest": null,
+      "quest_id": null,
+      "quest_slug": null,
+      "text": "Requires access to adventure pack: Against the Slave Lords; the base items are Bound to Account on Acquire and need the pack to craft",
+      "value": null
+    }
+  ]
 }

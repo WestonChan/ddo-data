@@ -1871,7 +1871,7 @@ fn crafted_items_can_keep_pack_chests_with_a_turn_in_alternative() {
 }
 
 #[test]
-fn crafting_fill_allowance_requires_an_explicit_empty_step_table() {
+fn crafting_checks_remain_active_when_empty_steps_are_allowed() {
     let scratch = tempfile::tempdir().unwrap();
     let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
     let mut options = fixture_options();
@@ -1889,7 +1889,7 @@ fn crafting_fill_allowance_requires_an_explicit_empty_step_table() {
     let allowed = integrity_report(&db, &options).unwrap();
     let required = integrity_report(&db, &fixture_options()).unwrap();
     for name in checks {
-        assert_eq!(allowed.outcome(name).unwrap().status, CheckStatus::Skipped, "{name}");
+        assert_ne!(allowed.outcome(name).unwrap().status, CheckStatus::Skipped, "{name}");
         assert_ne!(required.outcome(name).unwrap().status, CheckStatus::Skipped, "{name}");
     }
 }

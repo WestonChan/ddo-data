@@ -125,7 +125,14 @@ fn has_reader_commentary(text: &str) -> bool {
 fn crafting_text_has_no_reader_commentary(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let mut statement = db.prepare(CRAFTING_SERVED_TEXT)?;
     let rows = statement.query_map([], |row| {
-        Ok((Offender { name: row.get(0)?, id: row.get(1)?, detail: row.get(2)? }, row.get::<_, String>(3)?))
+        Ok((
+            Offender {
+                name: row.get::<_, Option<String>>(0)?.unwrap_or_default(),
+                id: row.get(1)?,
+                detail: row.get(2)?,
+            },
+            row.get::<_, String>(3)?,
+        ))
     })?;
     let mut offenders = Vec::new();
     for row in rows {
@@ -641,7 +648,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     IntegrityCheck::warn(
         "items_with_a_source_but_no_pack",
         "non-legacy items with a quest, quest chain, saga, adventure pack, challenge, crafting system or vendor \
-         source but no adventure pack reached through any source; fill missing source pack links in the wiki data",
+         source but no adventure pack reached through any source; missing source pack links await WestonChan/ddo-data#83",
         OffenderQuery::Built(items_with_a_source_but_no_pack),
     ),
     IntegrityCheck::warn(
@@ -878,7 +885,8 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     IntegrityCheck::warn(
         "quests_without_loot",
         "quests (not challenges) with no sources row; the database does not mark wilderness areas, so any among them \
-         are listed too. The top packs are listed",
+         are listed too. Older offenders await WestonChan/ddo-data#17's cleanup; quests whose only loot is a crafting ingredient, \
+         such as Stealer of Souls, await WestonChan/ddo-data#83. The top packs are listed",
         OffenderQuery::Sql(
             "SELECT q.name, q.id, COALESCE(p.name, '(no pack)') FROM quests q \
              LEFT JOIN adventure_packs p ON p.id = q.pack_id WHERE q.is_challenge = 0 \
@@ -2945,19 +2953,6 @@ fn unreferenced_stats(db: &Connection, _options: &IntegrityOptions) -> Result<Fi
 }
 
 fn findings_of(check: &IntegrityCheck, db: &Connection, options: &IntegrityOptions) -> Result<Findings> {
-    if matches!(
-        check.name,
-        "crafting_systems_have_stations"
-            | "socket_labels_are_owned_or_declared_not_crafting"
-            | "crafting_ingredients_are_not_items"
-    ) && options.allowed_empty_tables.iter().any(|table| table == "crafting_steps")
-        && !db.query_row("SELECT EXISTS (SELECT 1 FROM crafting_steps)", [], |row| row.get::<_, bool>(0))?
-    {
-        return Ok(Findings {
-            offenders: None,
-            notes: vec!["awaiting the crafting fill; explicitly allowed empty crafting_steps".into()],
-        });
-    }
     match check.offender_query {
         OffenderQuery::Sql(sql) => Ok(Findings { offenders: Some(offenders_from_sql(db, sql)?), notes: Vec::new() }),
         OffenderQuery::Built(build_findings) => build_findings(db, options),
@@ -3086,6 +3081,25 @@ pub fn integrity_report(db: &Connection, options: &IntegrityOptions) -> Result<I
     let outcomes =
         INTEGRITY_CHECKS.iter().map(|check| outcome_of(check, db, options)).collect::<Result<Vec<CheckOutcome>>>()?;
     Ok(IntegrityReport { outcomes })
+}
+
+#[cfg(test)]
+mod commentary_tests {
+    use super::*;
+
+    #[test]
+    fn commentary_reports_keep_working_when_an_owner_is_absent() {
+        let db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        db.pragma_update(None, "foreign_keys", false).unwrap();
+        db.execute("INSERT INTO crafting_unlocks (system_id,sort_order,kind,value,text) VALUES (1,0,'level',1,'The page says level one.')", []).unwrap();
+        let findings =
+            crafting_text_has_no_reader_commentary(&db, &IntegrityOptions { allowed_empty_tables: vec![] }).unwrap();
+        let offenders = findings.offenders.unwrap();
+        assert_eq!(offenders.len(), 1);
+        assert_eq!(offenders[0].name, "");
+        assert_eq!(offenders[0].detail, "crafting_unlocks.text: The page says level one.");
+    }
 }
 
 #[cfg(test)]

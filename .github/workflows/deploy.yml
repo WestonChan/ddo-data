@@ -92,9 +92,9 @@ jobs:
           check "sources WHERE kind = 'quest' AND augment_id IS NOT NULL" 500
           check sources 5800
           check "sources WHERE kind = 'adventure_pack'" 380
-          check crafting_systems 35
-          check crafting_recipes 2500
-          check crafting_ingredients 600
+          check crafting_systems 45
+          check crafting_recipes 3000
+          check crafting_ingredients 350
           check crafting_recipe_augments 1100
           echo "wiki_items: $(sqlite3 ddo.db "SELECT COUNT(*) FROM items WHERE provenance = 'wiki'")"
           echo "wiki_quests: $(sqlite3 ddo.db "SELECT COUNT(*) FROM quests WHERE provenance = 'wiki'")"
@@ -106,13 +106,7 @@ jobs:
           cargo run --release -q -p xtask -- check-db ddo.db \
             --allow-empty-table vendors \
             --allow-empty-table events \
-            --allow-empty-table crafting_steps \
-            --allow-empty-table crafting_step_effects \
-            --allow-empty-table crafting_step_costs \
-            --allow-empty-table crafting_stations \
-            --allow-empty-table crafting_system_stations \
-            --allow-empty-table crafting_unlocks \
-            --allow-empty-table crafting_recipe_set_options
+            --allow-empty-table crafting_step_effects
 
       - name: Validate every API response against its schema
         if: steps.compare.outputs.changed == 'true'
