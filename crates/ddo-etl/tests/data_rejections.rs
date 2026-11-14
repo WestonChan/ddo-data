@@ -473,15 +473,10 @@ fn structural_rejections_fail_the_data_build_naming_their_file_once() {
 
 #[test]
 fn effect_replacement_requires_the_owner_to_link_the_qualified_destination() {
-    let file = "packs/m5-the-necropolis-part-4/gear/epic-ethereal-bracers.toml";
+    let file = "packs/chill-of-ravenloft/quests/ghosts-of-perdition/gear/epic-ethereal-bracers.toml";
     for destination in ["Riposte IX", "Strength"] {
         let error = fixture::data_build_error(|root| {
-            let path = walkdir::WalkDir::new(root)
-                .into_iter()
-                .map(Result::unwrap)
-                .find(|entry| entry.file_name() == "epic-ethereal-bracers.toml")
-                .unwrap()
-                .into_path();
+            let path = root.join(file);
             let original = std::fs::read_to_string(&path).unwrap();
             std::fs::write(path, format!("{original}\n[[ddobuilder_correction]]\nkind = 'item_effect'\nfield = 'effect'\nqualifier = '{destination}'\nupstream = 'Riposte V'\nreason = 'Fixture effect replacement.'\nurl = 'https://ddowiki.com/page/Riposte'\nread = '2026-10-23'\n")).unwrap();
         });

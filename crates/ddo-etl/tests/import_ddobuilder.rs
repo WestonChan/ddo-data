@@ -957,12 +957,7 @@ fn a_data_build_rejects_an_add_governed_by_the_same_owners_split() {
     let world = ImportWorld::with_sources(fixture::grouping_cases(), corrections, WikiOverrides::default(), |source| {
         fixture::write_reaper_augment(source, None)
     });
-    let file = walkdir::WalkDir::new(&world.options.data_dir)
-        .into_iter()
-        .map(Result::unwrap)
-        .find(|entry| entry.file_name() == "2-melee-ranged-and-spell-power.toml")
-        .unwrap()
-        .into_path();
+    let file = world.options.data_dir.join("packs/shared/augments/reaper/2-melee-ranged-and-spell-power.toml");
     let original = std::fs::read_to_string(&file).unwrap();
     let note = "\n[[ddobuilder_correction]]\nkind = 'augment_bonus'\nfield = 'add'\nqualifier = 'Melee Power / Reaper'\nreason = 'The cited bonus is absent upstream.'\nurl = 'https://ddowiki.com/page/Reaper_Forge'\nread = '2026-10-29'\n";
     std::fs::write(&file, format!("{original}{note}")).unwrap();
@@ -1053,12 +1048,7 @@ fn a_two_slot_merge_import_updates_only_the_changed_slot() {
     let report = import_ddobuilder(&world.options).unwrap();
     assert!(!report.has_conflicts(), "{report}");
     assert_eq!(fixture::swiftness_links(&world.database()), [("Speed".into(), Some(25), Some(15))]);
-    let path = walkdir::WalkDir::new(&world.options.data_dir)
-        .into_iter()
-        .map(Result::unwrap)
-        .find(|entry| entry.file_name() == "topaz-of-swiftness.toml")
-        .unwrap()
-        .into_path();
+    let path = world.options.data_dir.join("packs/shared/augments/topaz/topaz-of-swiftness.toml");
     let original = std::fs::read_to_string(&path).unwrap();
     assert!(original.contains("value2 = 15"));
     std::fs::write(&path, original.replace("value2 = 15\n", "")).unwrap();
@@ -1327,12 +1317,7 @@ fn a_merge_import_reports_a_missing_member_and_keeps_the_correction() {
 #[test]
 fn verification_requests_remain_ours_through_import_and_export() {
     let world = ImportWorld::new(Corrections::default());
-    let path = walkdir::WalkDir::new(&world.options.data_dir)
-        .into_iter()
-        .map(Result::unwrap)
-        .find(|entry| entry.file_name() == "tree.toml")
-        .unwrap()
-        .into_path();
+    let path = world.options.data_dir.join("characters/enhancements/bombardier/tree.toml");
     let original = std::fs::read_to_string(&path).unwrap();
     let request = "\n[[verification_request]]\nquestion = 'Is this tree current?'\nassumed = 'The recorded tree'\nraised = '2026-10-23'\n[[verification_request.source]]\nurl = 'https://ddowiki.com/page/Enhancements'\nread = '2026-10-23'\nsays = 'The typed tree'\n[[verification_request.source]]\nin_game = true\nread = '2026-10-23'\nsays = 'The observed tree'\n";
     std::fs::write(&path, format!("{original}{request}")).unwrap();

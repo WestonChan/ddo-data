@@ -967,12 +967,7 @@ fn stat_set_splits_need_no_upstream_effect_definition() {
     assert!(result.is_err(), "overlapping split corrections must fail");
     let message = result.err().unwrap();
     assert!(message.contains("overlapping split corrections"), "{message}");
-    let path = walkdir::WalkDir::new(exported.path())
-        .into_iter()
-        .map(Result::unwrap)
-        .find(|entry| entry.file_name() == "curse-of-intangibility.toml")
-        .unwrap()
-        .into_path();
+    let path = exported.path().join("packs/shared/augments/curseofintangibility/curse-of-intangibility.toml");
     let original = std::fs::read_to_string(&path).unwrap();
     let parsed: toml::Value = toml::from_str(&original).unwrap();
     let mut annotated = parsed.clone();
@@ -1768,12 +1763,9 @@ fn shared_option_corrections_keep_every_carriers_source() {
     ddo_etl::tree::export_database(&db, exported.path()).unwrap();
     ddo_etl::tree::schemas::validate_source_fields(exported.path()).unwrap();
     ddo_etl::tree::export_database(&db, root.path()).unwrap();
-    let ring_path = walkdir::WalkDir::new(root.path())
-        .into_iter()
-        .map(Result::unwrap)
-        .find(|entry| entry.file_name() == "ring-of-the-stalker-level-11.toml")
-        .unwrap()
-        .into_path();
+    let ring_path = root.path().join(
+        "packs/u012-vaults-of-the-artificers/crafting/vaults-of-the-artificers/gear/ring-of-the-stalker-level-11.toml",
+    );
     let ring = std::fs::read_to_string(&ring_path).unwrap();
     assert!(!ring.contains("set_variant"), "{ring}");
     let mut rebuilt = Connection::open_in_memory().unwrap();
@@ -2605,12 +2597,7 @@ fn a_lines_split_preserves_the_default_and_follows_value_changes() {
     let mut rebuilt = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(exported.path(), &mut rebuilt).unwrap();
     assert_eq!(recorded_corrections(&normalized), recorded_corrections(&rebuilt));
-    let path = walkdir::WalkDir::new(exported.path())
-        .into_iter()
-        .map(Result::unwrap)
-        .find(|entry| entry.file_name() == "woeful-shadow-legendary.toml")
-        .unwrap()
-        .into_path();
+    let path = exported.path().join("packs/shared/augments/woefulshadow/woeful-shadow-legendary.toml");
     let contents = std::fs::read_to_string(&path).unwrap();
     std::fs::write(&path, contents.replace("name = \"Doubleshot\"", "name = \"Ranged Power\"")).unwrap();
     let error =

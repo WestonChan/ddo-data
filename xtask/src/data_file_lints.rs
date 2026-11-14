@@ -17,6 +17,94 @@ const ANNOTATION_TABLES: [&str; 7] = [
 
 const DECLARED_ANNOTATION_TABLES: [&str; 3] = [AppliedCorrection::TABLE, Citation::TABLE, RemovedEntry::TABLE];
 
+pub fn deny_test_file_basename_lookups(roots: &[&Path]) -> anyhow::Result<()> {
+    let mut findings = Vec::new();
+    for root in roots {
+        for entry in WalkDir::new(root) {
+            let entry = entry?;
+            let path = entry.path();
+            if path.extension().is_none_or(|extension| extension != "rs") {
+                continue;
+            }
+            let source = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
+            let is_integration_test = path.components().any(|part| part.as_os_str() == "tests");
+            for offset in basename_lookup_offsets(&source, is_integration_test) {
+                let line = source[..offset].matches('\n').count() + 1;
+                findings.push(format!(
+                    "{}:{line}: test input selected by basename; join the exact path instead",
+                    path.display()
+                ));
+            }
+        }
+    }
+    findings.sort();
+    if !findings.is_empty() {
+        bail!("{}", findings.join("\n"));
+    }
+    Ok(())
+}
+
+fn basename_lookup_offsets(source: &str, is_integration_test: bool) -> Vec<usize> {
+    let mut position = 0;
+    let tokens: Vec<_> = tokenize(source, FrontmatterAllowed::No)
+        .filter_map(|token| {
+            let start = position;
+            position += token.len as usize;
+            (!matches!(
+                token.kind,
+                TokenKind::Whitespace | TokenKind::LineComment { .. } | TokenKind::BlockComment { .. }
+            ))
+            .then_some((start, &source[start..position]))
+        })
+        .collect();
+    let test_start = if is_integration_test {
+        0
+    } else {
+        tokens
+            .windows(7)
+            .find(|attribute| attribute.iter().map(|token| token.1).eq(["#", "[", "cfg", "(", "test", ")", "]"]))
+            .map_or(source.len(), |attribute| attribute[0].0)
+    };
+    let mut offsets = Vec::new();
+    for (index, call) in tokens.windows(3).enumerate() {
+        let method = call[1].1.trim_start_matches("r#");
+        if call[0].0 < test_start
+            || call[0].1 != "."
+            || call[2].1 != "("
+            || !matches!(method, "find" | "find_map" | "rfind" | "filter" | "filter_map")
+        {
+            continue;
+        }
+        let mut depth = 1;
+        let Some(end) = (index + 3..tokens.len()).find(|&cursor| {
+            match tokens[cursor].1 {
+                "(" => depth += 1,
+                ")" => depth -= 1,
+                _ => {}
+            }
+            depth == 0
+        }) else {
+            continue;
+        };
+        if matches!(method, "filter" | "filter_map")
+            && !tokens.get(end + 1..end + 4).is_some_and(|next| {
+                next[0].1 == "." && matches!(next[1].1, "next" | "last" | "nth") && next[2].1 == "("
+            })
+        {
+            continue;
+        }
+        if tokens[index + 3..end].windows(4).any(|name| {
+            name[0].1 == "."
+                && matches!(name[1].1.trim_start_matches("r#"), "file_name" | "file_stem")
+                && name[2].1 == "("
+                && name[3].1 == ")"
+        }) {
+            offsets.push(call[0].0);
+        }
+    }
+    offsets
+}
+
 pub fn deny_missing_target_literals(roots: &[&Path]) -> anyhow::Result<()> {
     let missing_target = CorrectionValue::missing_target();
     let marker = missing_target.as_text().expect("a missing target is text");
@@ -419,6 +507,54 @@ pub fn deny_generic_file_mappers(root: &Path) -> anyhow::Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_file_lookups_require_exact_paths() {
+        let folder = tempfile::tempdir().unwrap();
+        let test_root = folder.path().join("tests");
+        std::fs::create_dir_all(&test_root).unwrap();
+        let path = test_root.join("lookup.rs");
+        let mut missed = Vec::new();
+        for expression in [
+            "walk.find(|entry| entry.file_name() == name)",
+            "walk.find(|entry| name == entry.file_name())",
+            "walk.find(|entry| { entry.file_name().to_str() == Some(name) })",
+            "walk.find(|entry| entry.path().file_stem().is_some_and(|stem| stem == name))",
+            "walk.find_map(|entry| (entry.file_name() == name).then(|| entry.path()))",
+            "walk.rfind(|entry| entry.file_name() == name)",
+            "walk.filter(|entry| entry.file_name() == name).next()",
+            "walk.filter_map(|entry| (entry.file_name() == name).then_some(entry)).next()",
+            "walk\n.find(\n|entry| entry\n.file_name() == name\n)",
+        ] {
+            std::fs::write(&path, format!("fn input() {{\n{expression}\n}}\n")).unwrap();
+            match deny_test_file_basename_lookups(&[folder.path()]) {
+                Ok(()) => missed.push(expression),
+                Err(error) => {
+                    let message = error.to_string();
+                    assert!(message.contains("lookup.rs:") && message.contains("join the exact path"), "{message}");
+                }
+            }
+        }
+        assert!(missed.is_empty(), "unreported basename lookups:\n{}", missed.join("\n"));
+        for expression in [
+            "root.join(\"packs/shared/gear/item.toml\")",
+            "walk.filter(|entry| entry.file_name() != excluded).collect::<Vec<_>>()",
+            "walk.map(|entry| entry.file_name()).collect::<Vec<_>>()",
+            "rows.find(|row| row.file_name == name)",
+            "walk.find(|entry| entry.path() == expected_path)",
+            "r#\"walk.find(|entry| entry.file_name() == name)\"#",
+        ] {
+            std::fs::write(&path, format!("fn input() {{ {expression} }}")).unwrap();
+            deny_test_file_basename_lookups(&[folder.path()]).unwrap();
+        }
+        std::fs::remove_file(path).unwrap();
+        let unit_path = folder.path().join("unit.rs");
+        let lookup = "fn input() { walk.find(|entry| entry.file_name() == name); }";
+        std::fs::write(&unit_path, lookup).unwrap();
+        deny_test_file_basename_lookups(&[folder.path()]).unwrap();
+        std::fs::write(&unit_path, format!("#[cfg(test)]\nmod tests {{ {lookup} }}")).unwrap();
+        assert!(deny_test_file_basename_lookups(&[folder.path()]).unwrap_err().to_string().contains("unit.rs:2"));
+    }
 
     #[test]
     fn missing_target_literals_belong_to_the_declaring_module() {

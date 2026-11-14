@@ -125,6 +125,12 @@ enum Task {
 fn main() -> Result<()> {
     match Cli::parse().command {
         Task::Lint => {
+            xtask::data_file_lints::deny_test_file_basename_lookups(&[
+                &workspace_root().join("crates/ddo-model"),
+                &workspace_root().join("crates/ddo-etl"),
+                &workspace_root().join("crates/ddo-api"),
+                &workspace_root().join("xtask"),
+            ])?;
             xtask::data_file_lints::deny_missing_target_literals(&[
                 &workspace_root().join("crates/ddo-model/src"),
                 &workspace_root().join("crates/ddo-etl/src"),

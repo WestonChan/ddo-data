@@ -141,24 +141,22 @@ fn assert_colliding_augment_variants_export(db: &Connection, scenario: &str) {
     ddo_etl::tree::export_database(db, &output).unwrap();
     let mut select = db
         .prepare(
-            "SELECT name, slug, variant FROM augments WHERE name IN ('Storm''s Bulwark', 'Storms Bulwark') ORDER BY id",
+            "SELECT id, name, slug, variant FROM augments WHERE name IN ('Storm''s Bulwark', 'Storms Bulwark') ORDER BY id",
         )
         .unwrap();
     let rows = select
-        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))
+        .query_map([], |row| {
+            Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?, row.get::<_, String>(3)?))
+        })
         .unwrap()
         .collect::<rusqlite::Result<Vec<_>>>()
         .unwrap();
     assert_eq!(rows.len(), 2);
-    for (name, slug, variant) in rows {
+    let paths = ddo_etl::tree::DataFilePaths::from_database(db).unwrap();
+    for (id, name, slug, variant) in rows {
         assert!(!variant.is_empty());
         assert_eq!(slug, format!("{}-{}", ddo_etl::tree::slug(&name), ddo_etl::tree::slug(&variant)));
-        let path = walkdir::WalkDir::new(&output)
-            .into_iter()
-            .map(Result::unwrap)
-            .find(|entry| entry.path().file_stem().is_some_and(|stem| stem == slug.as_str()))
-            .unwrap()
-            .into_path();
+        let path = output.join(paths.path("augments", id).unwrap());
         let file: toml::Value = toml::from_str(&std::fs::read_to_string(path).unwrap()).unwrap();
         assert_eq!(file["variant"].as_str(), Some(variant.as_str()));
     }

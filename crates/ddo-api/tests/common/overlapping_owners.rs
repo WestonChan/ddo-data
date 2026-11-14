@@ -14,15 +14,7 @@ pub(crate) fn write_overlapping_owners(root: &Path, true_owner: &str) -> PathBuf
         };
         std::fs::write(path, format!("name = {owner:?}\npage = \"https://ddowiki.com/page/Foo\"\n[[citation]]\nurl = \"https://ddowiki.com/page/Foo\"\nread = \"2026-10-01\"\n{ingredient}")).unwrap();
     }
-    let tree_path = walkdir::WalkDir::new(root.join("characters/enhancements"))
-        .into_iter()
-        .map(Result::unwrap)
-        .find(|entry| {
-            entry.file_name() == "tree.toml"
-                && std::fs::read_to_string(entry.path()).unwrap().contains("[[enhancement.selection]]")
-        })
-        .unwrap()
-        .into_path();
+    let tree_path = root.join("characters/enhancements/kensei/tree.toml");
     let mut tree: toml::Value = toml::from_str(&std::fs::read_to_string(&tree_path).unwrap()).unwrap();
     let enhancements = tree["enhancement"].as_array_mut().unwrap();
     let template = enhancements.iter().find(|enhancement| enhancement.get("selection").is_some()).unwrap().clone();
