@@ -15,6 +15,47 @@ const PACK_QUEST_OVERLAP_SQL: &str =
      LIMIT 1";
 
 #[test]
+fn commentary_markers_match_words_without_rejecting_game_names() {
+    let scratch = tempfile::tempdir().unwrap();
+    let db = Connection::open(fixture_db_copy_in(scratch.path())).unwrap();
+    let mut mismatches = Vec::new();
+    for (table, column, text, expected) in [
+        ("crafting_unlocks", "text", "You must have completed Turn the Page to use the station.", CheckStatus::Passed),
+        ("augment_slot_types", "not_crafting_reason", "Ruby of Force/Untyped Spell Power", CheckStatus::Passed),
+        ("crafting_ingredients", "source", "Dropped by the Surveyor in the Harbor", CheckStatus::Passed),
+        ("crafting_unlocks", "text", "The page does not say which altar.", CheckStatus::Failed),
+        ("crafting_unlocks", "text", "Page says the altar is in the Twelve.", CheckStatus::Failed),
+        ("crafting_unlocks", "text", "Page box: requires the pack.", CheckStatus::Failed),
+        ("crafting_unlocks", "text", "Main page body: minimum level 26.", CheckStatus::Failed),
+        ("crafting_unlocks", "text", "The survey rows match.", CheckStatus::Failed),
+        ("crafting_unlocks", "text", "In the data this label is on one ring.", CheckStatus::Failed),
+        ("crafting_unlocks", "text", "Not a station for the data's rows.", CheckStatus::Failed),
+        ("crafting_unlocks", "text", "Level unclear (verification request).", CheckStatus::Failed),
+        ("crafting_unlocks", "text", "Proposed, from the item page only.", CheckStatus::Failed),
+        ("crafting_unlocks", "text", "Station as in stormreaver-monument.toml.", CheckStatus::Failed),
+        ("crafting_unlocks", "text", "Costs from the table (typed).", CheckStatus::Failed),
+        ("crafting_unlocks", "text", "Cost of the level step not stated.", CheckStatus::Failed),
+        ("crafting_unlocks", "text", "The wiki does not say which.", CheckStatus::Failed),
+        ("crafting_unlocks", "text", "Presumably makes a Sovereign Rune.", CheckStatus::Failed),
+        ("crafting_unlocks", "text", "The reader saw no screenshot.", CheckStatus::Failed),
+    ] {
+        db.execute_batch("SAVEPOINT commentary_probe").unwrap();
+        assert_eq!(
+            db.execute(&format!("UPDATE {table} SET {column}=?1 WHERE id=(SELECT MIN(id) FROM {table})"), [text])
+                .unwrap(),
+            1
+        );
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("crafting_text_has_no_reader_commentary").unwrap();
+        if outcome.status != expected {
+            mismatches.push(format!("{text:?}: expected {expected:?}, found {:?}", outcome.status));
+        }
+        db.execute_batch("ROLLBACK TO commentary_probe; RELEASE commentary_probe").unwrap();
+    }
+    assert!(mismatches.is_empty(), "{}", mismatches.join("\n"));
+}
+
+#[test]
 fn a_kept_set_file_without_its_socket_fails_the_carrier_check() {
     let scratch = tempfile::tempdir().unwrap();
     let tree = scratch.path().join("data");

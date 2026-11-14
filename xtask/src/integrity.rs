@@ -61,12 +61,26 @@ static EFFECT_OWNER_LINKS: std::sync::LazyLock<Vec<(&str, &str)>> =
 
 const REPEATED_LINE_WORD_ALLOWANCES: &[&str] = &[];
 
-const CRAFTING_TEXT_WITH_READER_COMMENTARY: &str = "
-    WITH commentary_markers(marker) AS (
-        VALUES ('the page'), ('page says'), ('page box'), ('main page'), ('survey'),
-               ('the data'), ('data''s'), ('verification request'), ('proposed'), ('.toml'),
-               ('typed'), ('not stated'), ('does not say'), ('presumably'), ('reader')
-    ), served_text(name, id, field, value) AS (
+const READER_COMMENTARY_MARKERS: &[&str] = &[
+    "the page",
+    "page says",
+    "page box",
+    "main page",
+    "survey",
+    "the data",
+    "data's",
+    "verification request",
+    "proposed",
+    ".toml",
+    "typed",
+    "not stated",
+    "does not say",
+    "presumably",
+    "reader",
+];
+
+const CRAFTING_SERVED_TEXT: &str = "
+    WITH served_text(name, id, field, value) AS (
         SELECT COALESCE(s.name, t.name, r.option), u.id, 'crafting_unlocks.text', u.text
         FROM crafting_unlocks u
         LEFT JOIN crafting_systems s ON s.id=u.system_id
@@ -90,9 +104,38 @@ const CRAFTING_TEXT_WITH_READER_COMMENTARY: &str = "
         SELECT name || COALESCE(' (' || variant || ')', ''), id, 'crafting_ingredients.source', source
         FROM crafting_ingredients
     )
-    SELECT name, id, field || ': ' || value FROM served_text
-    WHERE EXISTS (SELECT 1 FROM commentary_markers WHERE instr(lower(value), marker)>0)
+    SELECT name, id, field || ': ' || value, value FROM served_text
+    WHERE value IS NOT NULL
     ORDER BY name, id, field";
+
+fn has_reader_commentary(text: &str) -> bool {
+    let folded = text.to_ascii_lowercase();
+    READER_COMMENTARY_MARKERS.iter().any(|marker| {
+        folded.match_indices(marker).any(|(start, _)| {
+            let end = start + marker.len();
+            (marker != &"the page" || text[start..end].chars().nth(4) == Some('p'))
+                && (!marker.starts_with(char::is_alphabetic)
+                    || text[..start].chars().next_back().is_none_or(|letter| !letter.is_alphabetic()))
+                && (!marker.ends_with(char::is_alphabetic)
+                    || text[end..].chars().next().is_none_or(|letter| !letter.is_alphabetic()))
+        })
+    })
+}
+
+fn crafting_text_has_no_reader_commentary(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let mut statement = db.prepare(CRAFTING_SERVED_TEXT)?;
+    let rows = statement.query_map([], |row| {
+        Ok((Offender { name: row.get(0)?, id: row.get(1)?, detail: row.get(2)? }, row.get::<_, String>(3)?))
+    })?;
+    let mut offenders = Vec::new();
+    for row in rows {
+        let (offender, text) = row?;
+        if has_reader_commentary(&text) {
+            offenders.push(offender);
+        }
+    }
+    Ok(Findings { offenders: Some(offenders), notes: vec![] })
+}
 
 impl IntegrityCheck {
     const fn hard(name: &'static str, description: &'static str, offender_query: OffenderQuery) -> Self {
@@ -231,7 +274,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "crafting_text_has_no_reader_commentary",
         "unlock text, station-link notes, label reasons, station places, step names and ingredient sources \
          contain no reader commentary; put source quotations and research notes in citations",
-        OffenderQuery::Sql(CRAFTING_TEXT_WITH_READER_COMMENTARY),
+        OffenderQuery::Built(crafting_text_has_no_reader_commentary),
     ).showing_every_offender(),
     IntegrityCheck::hard(
         "step_base_lines_scope_consistently",
