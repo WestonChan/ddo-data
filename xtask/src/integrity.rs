@@ -210,7 +210,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     ),
     IntegrityCheck::hard(
         "redirects_agree_with_current_slugs",
-        "redirects target current slugs without collisions, chains or retired current entities",
+        "redirects target current slugs without collisions or chains",
         OffenderQuery::Built(redirect_findings),
     ),
     IntegrityCheck::hard(
