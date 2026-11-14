@@ -91,10 +91,32 @@ fn socket_option_sets_follow_their_free_to_play_carriers_patron() {
 #[test]
 fn the_transitional_reader_keeps_no_set_for_a_removed_socket() {
     let db = fixture::database(|root| {
-        std::fs::remove_file(root.join("packs/shared/sockets/crafting-nearly-finished/celestial-emerald-ring.toml"))
-            .unwrap();
+        let set_path = root.join("packs/shared/sockets/crafting-nearly-finished/celestial-emerald-ring.toml");
+        let option_set: toml::Value = toml::from_str(&std::fs::read_to_string(&set_path).unwrap()).unwrap();
         let path = root.join("packs/unsourced/gear/celestial-emerald-ring.toml");
         let mut ring: toml::Value = toml::from_str(&std::fs::read_to_string(&path).unwrap()).unwrap();
+        let socket = ring["socket"]
+            .as_array_mut()
+            .unwrap()
+            .iter_mut()
+            .find(|socket| socket["slot"].as_str() == Some("crafting: nearly finished"))
+            .unwrap()
+            .as_table_mut()
+            .unwrap();
+        socket.remove("set");
+        socket.insert("option".into(), option_set["option"].clone());
+        std::fs::remove_file(set_path).unwrap();
+        let system_path = root.join("packs/shared/crafting/test-upgrade-altar/crafting.toml");
+        let mut system: toml::Value = toml::from_str(&std::fs::read_to_string(&system_path).unwrap()).unwrap();
+        system["recipe"].as_array_mut().unwrap().retain(|recipe| {
+            recipe.get("set_option").is_none_or(|options| !options.to_string().contains("Celestial Emerald Ring"))
+        });
+        std::fs::write(system_path, toml::to_string(&system).unwrap()).unwrap();
+        std::fs::write(&path, toml::to_string(&ring).unwrap()).unwrap();
+        let mut before = Connection::open_in_memory().unwrap();
+        ddo_etl::tree::build_from_data(root, &mut before).unwrap();
+        assert_eq!(count(&before, "SELECT COUNT(*) FROM socket_option_sets WHERE name='Celestial Emerald Ring'"), 1);
+        assert_eq!(count(&before, "SELECT COUNT(*) FROM socket_options o JOIN socket_option_sets s ON s.id=o.set_id WHERE s.name='Celestial Emerald Ring'"), 3);
         ring["socket"]
             .as_array_mut()
             .unwrap()
@@ -107,12 +129,6 @@ fn the_transitional_reader_keeps_no_set_for_a_removed_socket() {
             .as_array_mut()
             .unwrap()
             .push(note);
-        let system_path = root.join("packs/shared/crafting/test-upgrade-altar/crafting.toml");
-        let mut system: toml::Value = toml::from_str(&std::fs::read_to_string(&system_path).unwrap()).unwrap();
-        system["recipe"].as_array_mut().unwrap().retain(|recipe| {
-            recipe.get("set_option").is_none_or(|options| !options.to_string().contains("Celestial Emerald Ring"))
-        });
-        std::fs::write(system_path, toml::to_string(&system).unwrap()).unwrap();
         std::fs::write(path, toml::to_string(&ring).unwrap()).unwrap();
     });
     assert_eq!(count(&db, "SELECT COUNT(*) FROM socket_option_sets WHERE name='Celestial Emerald Ring'"), 0);
