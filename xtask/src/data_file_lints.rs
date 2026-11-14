@@ -284,6 +284,48 @@ fn decoded_string_content(content: &str) -> Option<String> {
     Some(decoded)
 }
 
+pub fn deny_copied_ingredient_uses(roots: &[&Path]) -> anyhow::Result<()> {
+    let fragment = ["selectyields_ingredient_id,system_id", "fromcrafting_recipes"].concat();
+    let mut findings = Vec::new();
+    for root in roots {
+        for entry in WalkDir::new(root) {
+            let entry = entry?;
+            let path = entry.path();
+            if path.extension().is_none_or(|extension| extension != "rs") || path.ends_with("ddo-model/src/schema.rs") {
+                continue;
+            }
+            let source = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
+            for (offset, token) in code_tokens(&source) {
+                let Some(opening) = token.find('"') else { continue };
+                let closing = token.rfind('"').unwrap();
+                if opening == closing {
+                    continue;
+                }
+                let content = &token[opening + 1..closing];
+                let decoded = if token.starts_with('r') || token.starts_with("br") {
+                    Some(content.to_owned())
+                } else {
+                    decoded_string_content(content)
+                };
+                let Some(decoded) = decoded else { continue };
+                let compact = decoded.chars().filter(|letter| !letter.is_whitespace()).collect::<String>();
+                if compact.to_ascii_lowercase().contains(&fragment) {
+                    let line = source[..offset].matches('\n').count() + 1;
+                    findings.push(format!(
+                        "{}:{line}: use ddo_model::schema::CRAFTING_INGREDIENT_USES instead of copying its query",
+                        path.display()
+                    ));
+                }
+            }
+        }
+    }
+    findings.sort();
+    if !findings.is_empty() {
+        bail!("{}", findings.join("\n"));
+    }
+    Ok(())
+}
+
 pub fn deny_copied_step_cost_fallbacks(roots: &[&Path]) -> anyhow::Result<()> {
     let mut findings = Vec::new();
     for root in roots {
@@ -574,6 +616,21 @@ pub fn deny_generic_file_mappers(root: &Path) -> anyhow::Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn ingredient_use_queries_belong_to_the_model() {
+        let folder = tempfile::tempdir().unwrap();
+        let copied = folder.path().join("copied.rs");
+        let source = format!("const QUERY: &str = r#\"{}\"#;", ddo_model::schema::CRAFTING_INGREDIENT_USES);
+        std::fs::write(&copied, &source).unwrap();
+        let error = deny_copied_ingredient_uses(&[folder.path()]).unwrap_err().to_string();
+        assert!(error.contains("copied.rs:") && error.contains("CRAFTING_INGREDIENT_USES"), "{error}");
+        std::fs::remove_file(copied).unwrap();
+        let declaring = folder.path().join("ddo-model/src/schema.rs");
+        std::fs::create_dir_all(declaring.parent().unwrap()).unwrap();
+        std::fs::write(declaring, source).unwrap();
+        deny_copied_ingredient_uses(&[folder.path()]).unwrap();
+    }
 
     #[test]
     fn test_file_lookups_require_exact_paths() {

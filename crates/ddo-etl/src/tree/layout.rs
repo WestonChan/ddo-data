@@ -486,10 +486,7 @@ impl ExportLayout {
             }
         }
         let mut ingredient_systems = BTreeMap::<i64, BTreeSet<i64>>::new();
-        let mut uses=db.prepare("SELECT cost.ingredient_id,recipe.system_id FROM crafting_recipe_ingredients cost JOIN crafting_recipes recipe ON recipe.id=cost.recipe_id WHERE cost.ingredient_id IS NOT NULL
-            UNION SELECT cost.ingredient_id,step.system_id FROM crafting_step_costs cost JOIN crafting_steps step ON step.id=cost.step_id WHERE cost.ingredient_id IS NOT NULL
-            UNION SELECT yields_ingredient_id,system_id FROM crafting_recipes WHERE yields_ingredient_id IS NOT NULL
-            UNION SELECT gate.crafting_ingredient_id,COALESCE(gate.system_id,recipe.system_id,station.system_id) FROM crafting_unlocks gate LEFT JOIN crafting_recipes recipe ON recipe.id=gate.recipe_id LEFT JOIN crafting_system_stations station ON station.station_id=gate.station_id WHERE gate.crafting_ingredient_id IS NOT NULL AND COALESCE(gate.system_id,recipe.system_id,station.system_id) IS NOT NULL")?;
+        let mut uses = db.prepare(ddo_model::schema::CRAFTING_INGREDIENT_USES)?;
         for row in uses.query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, i64>(1)?)))? {
             let (ingredient, system) = row?;
             ingredient_systems.entry(ingredient).or_default().insert(system);

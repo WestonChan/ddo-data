@@ -18,12 +18,9 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(crafting_systems)).routes(routes!(crafting_system_detail))
 }
 
-const INGREDIENT_USES: &str = "WITH ingredient_uses(ingredient_id,system_id) AS (
-    SELECT cost.ingredient_id,recipe.system_id FROM crafting_recipe_ingredients cost JOIN crafting_recipes recipe ON recipe.id=cost.recipe_id WHERE cost.ingredient_id IS NOT NULL
-    UNION SELECT cost.ingredient_id,step.system_id FROM crafting_step_costs cost JOIN crafting_steps step ON step.id=cost.step_id WHERE cost.ingredient_id IS NOT NULL
-    UNION SELECT yields_ingredient_id,system_id FROM crafting_recipes WHERE yields_ingredient_id IS NOT NULL
-    UNION SELECT gate.crafting_ingredient_id,COALESCE(gate.system_id,recipe.system_id,station.system_id) FROM crafting_unlocks gate LEFT JOIN crafting_recipes recipe ON recipe.id=gate.recipe_id LEFT JOIN crafting_system_stations station ON station.station_id=gate.station_id WHERE gate.crafting_ingredient_id IS NOT NULL
-)";
+static INGREDIENT_USES: std::sync::LazyLock<String> = std::sync::LazyLock::new(|| {
+    format!("WITH ingredient_uses(ingredient_id,system_id) AS ({})", ddo_model::schema::CRAFTING_INGREDIENT_USES)
+});
 
 const CRAFTING_SYSTEM_COLUMNS_AND_JOINS: &str = "s.id, s.name, s.page, p.name AS pack,
         (SELECT station.name || COALESCE(', ' || station.place,'') FROM crafting_system_stations link JOIN crafting_stations station ON station.id=link.station_id WHERE link.system_id=s.id ORDER BY link.sort_order LIMIT 1) AS npc,
@@ -188,7 +185,8 @@ async fn crafting_systems(
 ) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
-            let select_sql = format!("{INGREDIENT_USES} SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS}");
+            let ingredient_uses = INGREDIENT_USES.as_str();
+            let select_sql = format!("{ingredient_uses} SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS}");
             let mut page =
                 paged_rows(db, &select_sql, &query, "listed.name", "listed.name", CRAFTING_SYSTEMS_SORT_FIELDS)?;
             for row in &mut page.rows {
@@ -217,12 +215,13 @@ async fn crafting_system_detail(
 ) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
+            let ingredient_uses = INGREDIENT_USES.as_str();
             let mut crafting_system =
-                json_row(db, &format!("{INGREDIENT_USES} SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS} WHERE s.id = ?1"), [id])?;
+                json_row(db, &format!("{ingredient_uses} SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS} WHERE s.id = ?1"), [id])?;
             attach_augment_families(db, &mut crafting_system)?;
             crafting_system["ingredients"] = Value::Array(json_rows(
                 db,
-                &format!("{INGREDIENT_USES} SELECT id, name, tier, bind, source FROM crafting_ingredients WHERE id IN (SELECT ingredient_id FROM ingredient_uses WHERE system_id = ?1) ORDER BY name"),
+                &format!("{ingredient_uses} SELECT id, name, tier, bind, source FROM crafting_ingredients WHERE id IN (SELECT ingredient_id FROM ingredient_uses WHERE system_id = ?1) ORDER BY name"),
                 [id],
             )?);
             let recipe_ids = json_rows(db,"SELECT id FROM crafting_recipes WHERE system_id=?1 ORDER BY sort_order",[id])?.iter().filter_map(|row| row["id"].as_i64()).collect::<Vec<_>>();
