@@ -1,0 +1,5 @@
+name = "Greater Cannith Power Cell"
+tier = "heroic"
+bind = "Unbound"
+drop_location = "Quest and raid end chests within the area; used at the Cannith Binding Station"
+citation = []

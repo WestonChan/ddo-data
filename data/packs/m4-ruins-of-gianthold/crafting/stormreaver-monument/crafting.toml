@@ -75,17 +75,6 @@ tier = "epic"
 ingredient = "Restored Dragon Relic"
 quantity = 9
 
-[[ingredient]]
-name = "Seal of the Stormreaver"
-bind = "Bound to Account"
-drop_location = "The Reaver's Fate warded chest on Hard or Elite; or traded at the Monument for 20 each of Black, Blue and White Dragon Scales (Update 18). Stores in an ingredients bag"
-tier = "heroic"
-
-[[ingredient]]
-name = "Restored Giant, Elven or Dragon Relic"
-drop_location = "The relic type depends on the item being unlocked"
-tier = "heroic"
-
 [[citation]]
 url = "https://ddowiki.com/page/Stormreaver_Monument"
 read = "2026-11-04"
@@ -160,9 +149,9 @@ quantity = 20
 
 [[recipe]]
 note = """
-Since Update 12 Patch 3, Reaver or Abbot raid items obtained before Update 12 can be unlocked to add the upgrade option; relic type depends on the item. Dreamspitter keeps its Suppressed or Unsuppressed status; old versions with neither status gain no suppressed power and keep their binding. Stone of Change rituals persist. Adds the upgrade socket, which Maetrim models on the items already.
+Since Update 12 Patch 3, Reaver or Abbot raid items obtained before Update 12 can be unlocked to add the upgrade option; relic type depends on the item. Dreamspitter keeps its Suppressed or Unsuppressed status; old versions with neither status gain no suppressed power and keep their binding. Stone of Change rituals persist. Adds the upgrade socket.
 
-Update 12 Patch 3: raid items from the Reaver or Abbot raids obtained before Update 12 can be unlocked to add the upgrade option. Process requires 5 giant, elven or dragon relics (the type depends on the item). Dreamspitter keeps its Suppressed or Unsuppressed status; old versions with neither status gain no suppressed power and keep their binding. Stone of Change rituals persist. Quantity x5 matches Maetrim's row."""
+Update 12 Patch 3: raid items from the Reaver or Abbot raids obtained before Update 12 can be unlocked to add the upgrade option. Process requires 5 giant, elven or dragon relics (the type depends on the item). Dreamspitter keeps its Suppressed or Unsuppressed status; old versions with neither status gain no suppressed power and keep their binding. Stone of Change rituals persist."""
 option = "Unlock a pre-Update 12 raid item"
 tier = "heroic"
 
@@ -292,9 +281,9 @@ quantity = 1
 
 [[recipe]]
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
 
-The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The total is 5 to 12 Commendations of Heroism, depending on the difficulty the item was obtained on."""
 option = "Braisingstar: Attuned by Heroism Tier 1"
 tier = "epic"
 step = "Attuned by Heroism: Tier 1"
@@ -305,9 +294,9 @@ quantity = 1
 
 [[recipe]]
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
 
-The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The total is 5 to 12 Commendations of Heroism, depending on the difficulty the item was obtained on."""
 option = "Dreampiercer: Attuned by Heroism Tier 1"
 tier = "epic"
 step = "Attuned by Heroism: Tier 1"
@@ -318,9 +307,9 @@ quantity = 1
 
 [[recipe]]
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
 
-The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The total is 5 to 12 Commendations of Heroism, depending on the difficulty the item was obtained on."""
 option = "Rebellion: Attuned by Heroism Tier 1"
 tier = "epic"
 step = "Attuned by Heroism: Tier 1"
@@ -331,9 +320,9 @@ quantity = 1
 
 [[recipe]]
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus; The Reaver's Quest. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: +7 enhancement bonus becomes +8 enhancement bonus; The Reaver's Quest. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
 
-The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The total is 5 to 12 Commendations of Heroism, depending on the difficulty the item was obtained on."""
 option = "Skybreaker, Hand of the Stormreaver: Attuned by Heroism Tier 1"
 tier = "epic"
 step = "Attuned by Heroism: Tier 1"
@@ -345,9 +334,9 @@ quantity = 1
 [[recipe]]
 grants_slot = "yellow"
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
 
-The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The total is 5 to 12 Commendations of Heroism, depending on the difficulty the item was obtained on."""
 option = "Gauntlets of Immortality: Attuned by Heroism Tier 1"
 tier = "epic"
 step = "Attuned by Heroism: Tier 1"
@@ -359,9 +348,9 @@ quantity = 1
 [[recipe]]
 grants_slot = "yellow"
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
 
-The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The total is 5 to 12 Commendations of Heroism, depending on the difficulty the item was obtained on."""
 option = "Halcyon Boots: Attuned by Heroism Tier 1"
 tier = "epic"
 step = "Attuned by Heroism: Tier 1"
@@ -373,9 +362,9 @@ quantity = 1
 [[recipe]]
 grants_slot = "yellow"
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
 
-The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The total is 5 to 12 Commendations of Heroism, depending on the difficulty the item was obtained on."""
 option = "Idol of Fortune: Attuned by Heroism Tier 1"
 tier = "epic"
 step = "Attuned by Heroism: Tier 1"
@@ -387,9 +376,9 @@ quantity = 1
 [[recipe]]
 grants_slot = "yellow"
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
 
-The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The total is 5 to 12 Commendations of Heroism, depending on the difficulty the item was obtained on."""
 option = "Pendant of the Stormreaver: Attuned by Heroism Tier 1"
 tier = "epic"
 step = "Attuned by Heroism: Tier 1"
@@ -401,9 +390,9 @@ quantity = 1
 [[recipe]]
 grants_slot = "yellow"
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
 
-The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The total is 5 to 12 Commendations of Heroism, depending on the difficulty the item was obtained on."""
 option = "Ring of Deceit: Attuned by Heroism Tier 1"
 tier = "epic"
 step = "Attuned by Heroism: Tier 1"
@@ -415,9 +404,9 @@ quantity = 1
 [[recipe]]
 grants_slot = "yellow"
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
 
-The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The total is 5 to 12 Commendations of Heroism, depending on the difficulty the item was obtained on."""
 option = "Stormreaver's Tablecloth: Attuned by Heroism Tier 1"
 tier = "epic"
 step = "Attuned by Heroism: Tier 1"
@@ -429,9 +418,9 @@ quantity = 1
 [[recipe]]
 grants_slot = "yellow"
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Adds a Yellow Augment Slot. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
 
-The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The total is 5 to 12 Commendations of Heroism, depending on the difficulty the item was obtained on."""
 option = "Ventilated Armbands: Attuned by Heroism Tier 1"
 tier = "epic"
 step = "Attuned by Heroism: Tier 1"
@@ -442,9 +431,9 @@ quantity = 1
 
 [[recipe]]
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Shield Bonus +20 becomes +21, DR 15/- becomes DR 16/-, +7 Enhancement Bonus becomes +8. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 1: Shield Bonus +20 becomes +21, DR 15/- becomes DR 16/-, +7 Enhancement Bonus becomes +8. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
 
-The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The page's overview gives the total as '5 - 12 Commendations of Heroism, actual amount depends on the difficulty the item was obtain[ed]'."""
+The Fall of Truth items. Epic Normal items can be upgraded twice (Tier 1 for 5 Commendations of Heroism, then Tier 2 for 7). Epic Hard items drop already at Tier 1 and can be upgraded once, to Tier 2, for 7 Commendations of Heroism. Epic Elite items drop fully upgraded. The total is 5 to 12 Commendations of Heroism, depending on the difficulty the item was obtained on."""
 option = "Madstone Aegis: Attuned by Heroism Tier 1"
 tier = "epic"
 step = "Attuned by Heroism: Tier 1"
@@ -455,9 +444,9 @@ quantity = 1
 
 [[recipe]]
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Blazing becomes Conflagrating. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Blazing becomes Conflagrating. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
 
-Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Braisingstar: Attuned by Heroism Tier 2"
 tier = "epic"
 step = "Attuned by Heroism: Tier 2"
@@ -468,9 +457,9 @@ quantity = 1
 
 [[recipe]]
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Greater Good becomes Supreme Good. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Greater Good becomes Supreme Good. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
 
-Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Dreampiercer: Attuned by Heroism Tier 2"
 tier = "epic"
 step = "Attuned by Heroism: Tier 2"
@@ -482,9 +471,9 @@ quantity = 1
 [[recipe]]
 grants_slot = "colorless"
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Colorless Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Colorless Augment Slot. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
 
-Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Gauntlets of Immortality: Attuned by Heroism Tier 2"
 tier = "epic"
 step = "Attuned by Heroism: Tier 2"
@@ -496,9 +485,9 @@ quantity = 1
 [[recipe]]
 grants_slot = "colorless"
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Colorless Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Colorless Augment Slot. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
 
-Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Halcyon Boots: Attuned by Heroism Tier 2"
 tier = "epic"
 step = "Attuned by Heroism: Tier 2"
@@ -510,9 +499,9 @@ quantity = 1
 [[recipe]]
 grants_slot = "colorless"
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Colorless Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Colorless Augment Slot. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
 
-Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Ring of Deceit: Attuned by Heroism Tier 2"
 tier = "epic"
 step = "Attuned by Heroism: Tier 2"
@@ -523,9 +512,9 @@ quantity = 1
 
 [[recipe]]
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Good Luck +3. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Good Luck +3. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
 
-Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Idol of Fortune: Attuned by Heroism Tier 2"
 tier = "epic"
 step = "Attuned by Heroism: Tier 2"
@@ -537,9 +526,9 @@ quantity = 1
 [[recipe]]
 grants_slot = "blue"
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Blue Augment Slot. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Blue Augment Slot. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
 
-Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Madstone Aegis: Attuned by Heroism Tier 2"
 tier = "epic"
 step = "Attuned by Heroism: Tier 2"
@@ -550,9 +539,9 @@ quantity = 1
 
 [[recipe]]
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Electric Resistance +50. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Electric Resistance +50. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
 
-Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Pendant of the Stormreaver: Attuned by Heroism Tier 2"
 tier = "epic"
 step = "Attuned by Heroism: Tier 2"
@@ -564,9 +553,9 @@ quantity = 1
 [[recipe]]
 grants_slot = "red"
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Red Augment Slot and The Reaver's Fate. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds a Red Augment Slot and The Reaver's Fate. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from.
 
-Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Skybreaker, Hand of the Stormreaver: Attuned by Heroism Tier 2"
 tier = "epic"
 step = "Attuned by Heroism: Tier 2"
@@ -577,9 +566,9 @@ quantity = 1
 
 [[recipe]]
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Spell Penetration III. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Spell Penetration III. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
 
-Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Stormreaver's Tablecloth: Attuned by Heroism Tier 2"
 tier = "epic"
 step = "Attuned by Heroism: Tier 2"
@@ -590,9 +579,9 @@ quantity = 1
 
 [[recipe]]
 note = """
-The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Immunity to Air Elemental Knockdown. The page's overview says the cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
+The Fall of Truth upgrade (Update 17), Attuned by Heroism: Tier 2: Adds Immunity to Air Elemental Knockdown. The cost is 5 to 12 Commendations of Heroism depending on the difficulty the item came from. Changes the item's own effects; Maetrim holds them as an item-specific option on this socket.
 
-Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost cell on the page: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
+Epic Normal items need Tier 1 first (5 Commendations), then Tier 2 (7). Epic Hard items are bought at Tier 2 only (7 Commendations of Heroism). Epic Elite items drop with both upgrades already applied. Cost: 7 Commendations of Heroism and 9 each of Restored Giant, Elven and Dragon Relics."""
 option = "Ventilated Armbands: Attuned by Heroism Tier 2"
 tier = "epic"
 step = "Attuned by Heroism: Tier 2"

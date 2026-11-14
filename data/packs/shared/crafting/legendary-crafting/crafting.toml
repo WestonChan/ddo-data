@@ -13,11 +13,6 @@ tier = "legendary"
 ingredient = "Star Fragment"
 quantity = 5
 
-[[ingredient]]
-name = "Epic item"
-drop_location = "The ML 20 Epic version from Epic Crafting"
-tier = "legendary"
-
 [[citation]]
 url = "https://ddowiki.com/page/Legendary_Crafting"
 read = "2026-11-04"
@@ -3382,7 +3377,7 @@ quantity = 250
 note = """
 Rerolls the set bonuses of Legendary Gem of Many Facets at the Altar of Legendary Rituals. No augment counterpart.
 
-The Acquired column of Legendary Gem of Many Facets: "You can reroll the set bonuses for 100 Threads of Fate at the Altar of Legendary Rituals". A service, not an item; no output row."""
+You can reroll the set bonuses for 100 Threads of Fate at the Altar of Legendary Rituals. A service, not an item."""
 option = "Reroll Legendary Gem of Many Facets set bonuses"
 tier = "legendary"
 

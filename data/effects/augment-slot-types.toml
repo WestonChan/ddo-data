@@ -478,7 +478,7 @@ variant = "cannith weapon suffix"
 family = "crafting"
 label = "crafting: changestone ability"
 variant = "changestone ability"
-not_crafting_reason = "Proposed, from the item page only: The Changestone is a random trinket whose enchantments are 'one of the following' lists (a drop from The Dryad and the Demigod); the Stone of Change page does not name these labels and the item page does not describe the sockets. The wiki says the trade-in menu entry is not what you get, a random changestone is."
+not_crafting_reason = "A random roll of one effect per drop, not a crafting choice; modelled by ddo-data#76."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Item:The_Changestone"
@@ -489,34 +489,43 @@ note = "Proposed, from the item page only: The Changestone is a random trinket w
 family = "crafting"
 label = "crafting: changestone damage"
 variant = "changestone damage"
-not_crafting_reason = "Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."
+not_crafting_reason = "A random roll of one effect per drop, not a crafting choice; modelled by ddo-data#76."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Item:The_Changestone"
 read = "2026-11-04"
-note = "Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."
+note = """
+Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named).
+
+Proposed, on the same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."""
 
 [[row]]
 family = "crafting"
 label = "crafting: changestone option"
 variant = "changestone option"
-not_crafting_reason = "Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."
+not_crafting_reason = "A random roll of one effect per drop, not a crafting choice; modelled by ddo-data#76."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Item:The_Changestone"
 read = "2026-11-04"
-note = "Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."
+note = """
+Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named).
+
+Proposed, on the same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."""
 
 [[row]]
 family = "crafting"
 label = "crafting: changestone other"
 variant = "changestone other"
-not_crafting_reason = "Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."
+not_crafting_reason = "A random roll of one effect per drop, not a crafting choice; modelled by ddo-data#76."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Item:The_Changestone"
 read = "2026-11-04"
-note = "Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."
+note = """
+Proposed, same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named).
+
+Proposed, on the same basis as crafting: changestone ability (random trinket The Changestone; no crafting system named)."""
 
 [[row]]
 family = "crafting"
@@ -1017,7 +1026,7 @@ variant = "reaper shield"
 family = "crafting"
 label = "crafting: reaper trinket"
 variant = "reaper trinket"
-not_crafting_reason = "No recipe: the page lists no slot-specific bonus for a trinket; only the three generic bonuses (+3 Melee, Ranged and Spell Power; +3 PRR; +3 MRR) fit it, and the page says these cannot be crafted at the forge and must be found naturally"
+not_crafting_reason = "No recipe: the Reaper Forge has no slot-specific bonus for a trinket; only the three generic bonuses (+3 Melee, Ranged and Spell Power; +3 PRR; +3 MRR) fit it, and these cannot be crafted at the forge and must be found naturally"
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Reaper_Forge"
@@ -1028,7 +1037,7 @@ note = "No recipe: the page lists no slot-specific bonus for a trinket; only the
 family = "crafting"
 label = "crafting: reaper weapon"
 variant = "reaper weapon"
-not_crafting_reason = "No recipe: the page lists no slot-specific bonus for a weapon; only the three generic bonuses fit it, and the page says these cannot be crafted at the forge and must be found naturally"
+not_crafting_reason = "No recipe: the Reaper Forge has no slot-specific bonus for a weapon; only the three generic bonuses fit it, and these cannot be crafted at the forge and must be found naturally"
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Reaper_Forge"
@@ -1059,34 +1068,43 @@ variant = "sealed in undeath"
 family = "crafting"
 label = "crafting: set bonus"
 variant = "set bonus"
-not_crafting_reason = "In the data this label is on Mysterious Ring (ML 11, The Chamber of Raiyum), not on the Gem of Many Facets. The item page lists 'One of the following sets, at random: The Desert's Biting Sands / Burning Sun / Starless Nights / Writhing Storm' and, since Update 55, one random Menechtarun set bonus plus a Yellow augment slot; the ring is upgraded through Essence Crafting (its prefix/suffix/extra sockets), but the set bonus is a random result, not a crafting choice. Same decision as the 'crafting: random ...' labels."
+not_crafting_reason = "A random roll of one set bonus per drop, not a crafting choice; modelled by ddo-data#76."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Item:Mysterious_Ring"
 read = "2026-11-04"
-note = "In the data this label is on Mysterious Ring (ML 11, The Chamber of Raiyum), not on the Gem of Many Facets. The item page lists 'One of the following sets, at random: The Desert's Biting Sands / Burning Sun / Starless Nights / Writhing Storm' and, since Update 55, one random Menechtarun set bonus plus a Yellow augment slot; the ring is upgraded through Essence Crafting (its prefix/suffix/extra sockets), but the set bonus is a random result, not a crafting choice. Same decision as the 'crafting: random ...' labels."
+note = """
+In the data this label is on Mysterious Ring (ML 11, The Chamber of Raiyum), not on the Gem of Many Facets. The item page lists 'One of the following sets, at random: The Desert's Biting Sands / Burning Sun / Starless Nights / Writhing Storm' and, since Update 55, one random Menechtarun set bonus plus a Yellow augment slot; the ring is upgraded through Essence Crafting (its prefix/suffix/extra sockets), but the set bonus is a random result, not a crafting choice. Same decision as the 'crafting: random ...' labels.
+
+The label is on Mysterious Ring (ML 11, The Chamber of Raiyum), not on the Gem of Many Facets. The item page lists 'One of the following sets, at random: The Desert's Biting Sands / Burning Sun / Starless Nights / Writhing Storm' and, since Update 55, one random Menechtarun set bonus plus a Yellow augment slot; the ring is upgraded through Essence Crafting (its prefix/suffix/extra sockets), but the set bonus is a random result, not a crafting choice. Same decision as the 'crafting: random ...' labels."""
 
 [[row]]
 family = "crafting"
 label = "crafting: set bonus 1"
 variant = "set bonus 1"
-not_crafting_reason = "Gem of Many Facets lists 'Random set 1 (from Red Fens or Vault of Night)': the game rolls a pair of set bonuses when the gem is acquired or upgraded, and the tip says 'Unlike the epic version, you cannot re-select the set bonuses at an altar' (the base gem cannot be rerolled at all). Epic Gem of Many Facets has the same 'Random set 1 (from Epic Vault of Night or Epic Red Fens)' and the tip 'You can reroll the sets for free at Legacy Altar of Epic Rituals (this destroys all augments, adamantine rituals, Curses or Essence Crafting enhancements)'; the Legendary gem rerolls for 100 Threads of Fate at the Altar of Legendary Rituals (Legendary Crafting page, round 1). The player never chooses the set, so it is a random result; a reroll is a service of the altar, not a step. The label is carried by the Gem, the Epic Gem and the Legendary Gem."
+not_crafting_reason = "A random roll, not a crafting choice: the game rolls the Gem of Many Facets' first set bonus (from Red Fens or Vault of Night; the Epic gem's from Epic Vault of Night or Epic Red Fens) when the gem is acquired or upgraded. The base gem cannot be rerolled; the Epic gem rerolls for free at the Legacy Altar of Epic Rituals (this destroys all augments, adamantine rituals, Curses and Essence Crafting enhancements) and the Legendary gem for 100 Threads of Fate at the Altar of Legendary Rituals. A reroll is a service of the altar, not a step."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Item:Gem_of_Many_Facets"
 read = "2026-11-04"
-note = "Gem of Many Facets lists 'Random set 1 (from Red Fens or Vault of Night)': the game rolls a pair of set bonuses when the gem is acquired or upgraded, and the tip says 'Unlike the epic version, you cannot re-select the set bonuses at an altar' (the base gem cannot be rerolled at all). Epic Gem of Many Facets has the same 'Random set 1 (from Epic Vault of Night or Epic Red Fens)' and the tip 'You can reroll the sets for free at Legacy Altar of Epic Rituals (this destroys all augments, adamantine rituals, Curses or Essence Crafting enhancements)'; the Legendary gem rerolls for 100 Threads of Fate at the Altar of Legendary Rituals (Legendary Crafting page, round 1). The player never chooses the set, so it is a random result; a reroll is a service of the altar, not a step. The label is carried by the Gem, the Epic Gem and the Legendary Gem."
+note = """
+Gem of Many Facets lists 'Random set 1 (from Red Fens or Vault of Night)': the game rolls a pair of set bonuses when the gem is acquired or upgraded, and the tip says 'Unlike the epic version, you cannot re-select the set bonuses at an altar' (the base gem cannot be rerolled at all). Epic Gem of Many Facets has the same 'Random set 1 (from Epic Vault of Night or Epic Red Fens)' and the tip 'You can reroll the sets for free at Legacy Altar of Epic Rituals (this destroys all augments, adamantine rituals, Curses or Essence Crafting enhancements)'; the Legendary gem rerolls for 100 Threads of Fate at the Altar of Legendary Rituals (Legendary Crafting page, round 1). The player never chooses the set, so it is a random result; a reroll is a service of the altar, not a step. The label is carried by the Gem, the Epic Gem and the Legendary Gem.
+
+Gem of Many Facets lists 'Random set 1 (from Red Fens or Vault of Night)' and the tip 'Unlike the epic version, you cannot re-select the set bonuses at an altar'. Epic Gem of Many Facets has 'Random set 1 (from Epic Vault of Night or Epic Red Fens)' and the tip 'You can reroll the sets for free at Legacy Altar of Epic Rituals (this destroys all augments, adamantine rituals, Curses or Essence Crafting enhancements)'; the Legendary gem's reroll for 100 Threads of Fate is on the Legendary Crafting page. The label is carried by the Gem, the Epic Gem and the Legendary Gem."""
 
 [[row]]
 family = "crafting"
 label = "crafting: set bonus 2"
 variant = "set bonus 2"
-not_crafting_reason = "Gem of Many Facets lists 'Random set 2 (from Chronoscope or Sands of Menechtarun)', the second random pair half; same basis as 'crafting: set bonus 1' (the Epic gem: 'Random set 2 (from Epic Chronoscope or Epic Sands of Menechtarun)')."
+not_crafting_reason = "A random roll, not a crafting choice: the Gem of Many Facets' second set bonus (from Chronoscope or Sands of Menechtarun; the Epic gem's from Epic Chronoscope or Epic Sands of Menechtarun), rolled and rerolled like the first."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Item:Gem_of_Many_Facets"
 read = "2026-11-04"
-note = "Gem of Many Facets lists 'Random set 2 (from Chronoscope or Sands of Menechtarun)', the second random pair half; same basis as 'crafting: set bonus 1' (the Epic gem: 'Random set 2 (from Epic Chronoscope or Epic Sands of Menechtarun)')."
+note = """
+Gem of Many Facets lists 'Random set 2 (from Chronoscope or Sands of Menechtarun)', the second random pair half; same basis as 'crafting: set bonus 1' (the Epic gem: 'Random set 2 (from Epic Chronoscope or Epic Sands of Menechtarun)').
+
+Gem of Many Facets lists 'Random set 2 (from Chronoscope or Sands of Menechtarun)'; the Epic gem 'Random set 2 (from Epic Chronoscope or Epic Sands of Menechtarun)'. Same basis as 'crafting: set bonus 1'."""
 
 [[row]]
 family = "crafting"

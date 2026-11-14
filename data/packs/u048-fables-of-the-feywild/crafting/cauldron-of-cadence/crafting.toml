@@ -35,16 +35,6 @@ quantity = 1
 [[family]]
 family = "Named"
 
-[[ingredient]]
-name = "Chunk of Ferrocrystal"
-drop_location = "Chests in The Feywild wilderness area and quests"
-tier = "heroic"
-
-[[ingredient]]
-name = "Legendary Chunk of Ferrocrystal"
-drop_location = "Chests in The Feywild wilderness area and quests"
-tier = "legendary"
-
 [[citation]]
 url = "https://ddowiki.com/page/Cauldron_of_Cadence"
 read = "2026-11-04"

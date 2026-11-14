@@ -3,12 +3,12 @@ page = "https://ddowiki.com/page/Incredible_Potential"
 
 [[station]]
 name = "Altar of Subjugation"
-note = "Combines the ring, 9 Shavarath War Trophies and an Imbued Shard of Great Power; the Guild Airship variant is not mentioned on this page"
+note = "Combines the ring, 9 Shavarath War Trophies and an Imbued Shard of Great Power"
 variant = "The Shroud"
 
 [[station]]
 name = "Altar of Subjugation"
-note = "Combines the ring, 9 Shavarath War Trophies and an Imbued Shard of Great Power; the Guild Airship variant is not mentioned on this page"
+note = "Combines the ring, 9 Shavarath War Trophies and an Imbued Shard of Great Power"
 variant = "Devil Battlefield"
 
 [[step]]
@@ -28,20 +28,13 @@ quantity = 9
 [[family]]
 family = "IncrediblePotential"
 
-[[ingredient]]
-name = "Shavarath War Trophy"
-drop_location = "The ring's text calls them Shavarath War Trophies; the recipe text calls them Shavarath Trophies of War; the page gives no drop location"
-tier = "heroic"
-
-[[ingredient]]
-name = "Imbued Shard of Great Power"
-drop_location = "Created at the Altar of Subjugation from a focus, a gem and an essence of the types each recipe names"
-tier = "heroic"
-
 [[citation]]
 url = "https://ddowiki.com/page/Incredible_Potential"
 read = "2026-11-04"
-note = "Whole page. Not stated: level, favor, pack, feat, a Guild Airship use, the drop source of the War Trophies, or the Tower of Despair ring names. Notes: Burst effects apply to unarmed attacks only and do not stack with identical handwraps; 20% Negative Energy Absorption does not protect against level drain; the +2 stats are Insight bonuses since Update 14. Table order matches the data's 36 recipes."
+note = """
+Whole page. Not stated: level, favor, pack, feat, a Guild Airship use, the drop source of the War Trophies, or the Tower of Despair ring names. Notes: Burst effects apply to unarmed attacks only and do not stack with identical handwraps; 20% Negative Energy Absorption does not protect against level drain; the +2 stats are Insight bonuses since Update 14. Table order matches the data's 36 recipes.
+
+The Guild Airship variant of the altar is not mentioned on this page."""
 
 [[citation]]
 field = "pack"

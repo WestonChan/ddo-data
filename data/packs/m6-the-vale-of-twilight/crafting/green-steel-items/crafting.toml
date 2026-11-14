@@ -277,7 +277,7 @@ variant = "Guild Airship"
 [[unlock]]
 kind = "pack"
 pack = "The Vale of Twilight"
-text = "Access to the Vale of Twilight adventure pack (bought in the DDO Store, or VIP)"
+text = "Requires access to adventure pack: The Vale of Twilight (bought in the DDO Store, or VIP)"
 
 [[unlock]]
 kind = "favor"
@@ -384,434 +384,6 @@ slot = "crafting: weapon aspect"
 [[family]]
 family = "Greensteel_Heroic"
 
-[[ingredient]]
-name = "Bitterscrub Fungus"
-drop_location = "Chest loot in The Vale of Twilight adventure area and quests within the area: Running with the Devils, Ritual Sacrifice"
-tier = "heroic"
-
-[[ingredient]]
-name = "Chipmunk Funk"
-drop_location = "Chest loot in The Vale of Twilight adventure area and quests within the area: Let Sleeping Dust Lie, The Coalescence Chamber"
-tier = "heroic"
-
-[[ingredient]]
-name = "Glistening Pebbles"
-drop_location = "Chest loot in The Vale of Twilight adventure area and quests within the area: Running with the Devils, Rainbow in the Dark"
-tier = "heroic"
-
-[[ingredient]]
-name = "Green Briar Twigs"
-drop_location = "Chest loot in The Vale of Twilight adventure area and quests within the area: Rainbow in the Dark, The Coalescence Chamber"
-tier = "heroic"
-
-[[ingredient]]
-name = "Lammanian Lily Petals"
-drop_location = "Chest loot in The Vale of Twilight adventure area and quests within the area: The Vale of Twilight adventure area, Ritual Sacrifice"
-tier = "heroic"
-
-[[ingredient]]
-name = "Locust Husk"
-drop_location = "Chest loot in The Vale of Twilight adventure area and quests within the area: The Vale of Twilight adventure area, Let Sleeping Dust Lie"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shavarath Stone of Might"
-drop_location = "Ritual Sacrifice"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shavarath Stone of Battle"
-drop_location = "Running with the Devils"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shavarath Stone of Strategy"
-drop_location = "Let Sleeping Dust Lie"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shavarath Stone of Victory"
-drop_location = "The Coalescence Chamber"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shavarath Stone of Foresight"
-drop_location = "Rainbow in the Dark"
-tier = "heroic"
-
-[[ingredient]]
-name = "Eberron Energy Cell"
-drop_location = "Vendor next to the Altar of Fecundity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Medium Splintered Horn"
-drop_location = "The Shroud phase 2 and 3"
-tier = "heroic"
-
-[[ingredient]]
-name = "Large Splintered Horn"
-drop_location = "The Shroud phase 4 and 5"
-tier = "heroic"
-
-[[ingredient]]
-name = "Ore of Travail"
-drop_location = "Made at the Altar of Fecundity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Filament of Toil"
-drop_location = "Made at the Altar of Fecundity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Wondrous Balm"
-drop_location = "Made at the Altar of Fecundity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Wondrous Oil"
-drop_location = "Made at the Altar of Fecundity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Wondrous Jewel"
-drop_location = "Made at the Altar of Fecundity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Wondrous Scarab"
-drop_location = "Made at the Altar of Fecundity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Red Taper"
-drop_location = "Made at the Altar of Fecundity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Yellow Taper"
-drop_location = "Made at the Altar of Fecundity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Green Taper"
-drop_location = "Made at the Altar of Fecundity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Blue Taper"
-drop_location = "Made at the Altar of Fecundity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Violet Taper"
-drop_location = "Made at the Altar of Fecundity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shavarath Signet Stone"
-drop_location = "Made at the Altar of Fecundity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Small Glowing Arrowhead"
-drop_location = "The Shroud phase 1 and 2 chests; also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Small Gnawed Bone"
-drop_location = "The Shroud phase 1 and 2 chests; also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Small Length of Infernal Chain"
-drop_location = "The Shroud phase 1 and 2 chests; also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Small Devil Scales"
-drop_location = "The Shroud phase 1 and 2 chests; also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Small Twisted Shrapnel"
-drop_location = "The Shroud phase 1 and 2 chests; also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Small Sulfurous Stone"
-drop_location = "The Shroud phase 1 and 2 chests; also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shavarath Low Energy Cell"
-drop_location = "The Shroud phase 1 and 2 chests; also the phase 3 vendor next to the altar"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shard of Power"
-bind = "Bound to Character"
-drop_location = "The Shroud phase 1 and 2 chests; also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Medium Glowing Arrowhead"
-drop_location = "The Shroud phase 3 chests (optional and end chests); also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Medium Gnawed Bone"
-drop_location = "The Shroud phase 3 chests (optional and end chests); also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Medium Length of Infernal Chain"
-drop_location = "The Shroud phase 3 chests (optional and end chests); also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Medium Devil Scales"
-drop_location = "The Shroud phase 3 chests (optional and end chests); also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Medium Twisted Shrapnel"
-drop_location = "The Shroud phase 3 chests (optional and end chests); also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Medium Sulfurous Stone"
-drop_location = "The Shroud phase 3 chests (optional and end chests); also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Depleted Shavarath Medium Energy Cell"
-drop_location = "The Shroud phase 3 chests (optional and end chests); also the phase 3 vendor next to the altar"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shavarath Medium Energy Cell"
-drop_location = "The Shroud phase 3 chests (optional and end chests)"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shard of Great Power"
-bind = "Bound to Character"
-drop_location = "The Shroud phase 3 chests (optional and end chests); also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Large Glowing Arrowhead"
-drop_location = "The Shroud phase 4 and 5 chests; also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Large Gnawed Bone"
-drop_location = "The Shroud phase 4 and 5 chests; also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Large Length of Infernal Chain"
-drop_location = "The Shroud phase 4 and 5 chests; also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Large Devil Scales"
-drop_location = "The Shroud phase 4 and 5 chests; also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Large Twisted Shrapnel"
-drop_location = "The Shroud phase 4 and 5 chests; also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Large Sulfurous Stone"
-drop_location = "The Shroud phase 4 and 5 chests; also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Depleted Shavarath High Energy Cell"
-drop_location = "The Shroud phase 4 and 5 chests; also the phase 3 vendor next to the altar"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shavarath High Energy Cell"
-drop_location = "The Shroud phase 4 and 5 chests"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shard of Supreme Power"
-bind = "Bound to Character"
-drop_location = "The Shroud phase 4 and 5 chests; also Devil Assault on Elite or Epic"
-tier = "heroic"
-
-[[ingredient]]
-name = "Inferior Focus of Air"
-drop_location = "Made at the Altar of Invasion"
-tier = "heroic"
-
-[[ingredient]]
-name = "Inferior Focus of Earth"
-drop_location = "Made at the Altar of Invasion"
-tier = "heroic"
-
-[[ingredient]]
-name = "Inferior Focus of Fire"
-drop_location = "Made at the Altar of Invasion"
-tier = "heroic"
-
-[[ingredient]]
-name = "Inferior Focus of Water"
-drop_location = "Made at the Altar of Invasion"
-tier = "heroic"
-
-[[ingredient]]
-name = "Inferior Focus of Negative Energy"
-drop_location = "Made at the Altar of Invasion"
-tier = "heroic"
-
-[[ingredient]]
-name = "Inferior Focus of Positive Energy"
-drop_location = "Made at the Altar of Invasion"
-tier = "heroic"
-
-[[ingredient]]
-name = "Cloudy Gem of Dominion"
-drop_location = "Made at the Altar of Invasion"
-tier = "heroic"
-
-[[ingredient]]
-name = "Cloudy Gem of Opposition"
-drop_location = "Made at the Altar of Invasion"
-tier = "heroic"
-
-[[ingredient]]
-name = "Cloudy Gem of Escalation"
-drop_location = "Made at the Altar of Invasion"
-tier = "heroic"
-
-[[ingredient]]
-name = "Diluted Ethereal Essence"
-drop_location = "Made at the Altar of Invasion"
-tier = "heroic"
-
-[[ingredient]]
-name = "Diluted Material Essence"
-drop_location = "Made at the Altar of Invasion"
-tier = "heroic"
-
-[[ingredient]]
-name = "Focus of Air"
-drop_location = "Made at the Altar of Subjugation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Focus of Earth"
-drop_location = "Made at the Altar of Subjugation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Focus of Fire"
-drop_location = "Made at the Altar of Subjugation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Focus of Water"
-drop_location = "Made at the Altar of Subjugation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Focus of Negative Energy"
-drop_location = "Made at the Altar of Subjugation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Focus of Positive Energy"
-drop_location = "Made at the Altar of Subjugation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Gem of Dominion"
-drop_location = "Made at the Altar of Subjugation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Gem of Opposition"
-drop_location = "Made at the Altar of Subjugation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Gem of Escalation"
-drop_location = "Made at the Altar of Subjugation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Ethereal Essence"
-drop_location = "Made at the Altar of Subjugation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Material Essence"
-drop_location = "Made at the Altar of Subjugation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Superior Focus of Air"
-drop_location = "Made at the Altar of Devastation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Superior Focus of Earth"
-drop_location = "Made at the Altar of Devastation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Superior Focus of Fire"
-drop_location = "Made at the Altar of Devastation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Superior Focus of Water"
-drop_location = "Made at the Altar of Devastation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Superior Focus of Negative Energy"
-drop_location = "Made at the Altar of Devastation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Superior Focus of Positive Energy"
-drop_location = "Made at the Altar of Devastation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Flawless Gem of Domination"
-drop_location = "Made at the Altar of Devastation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Flawless Gem of Opposition"
-drop_location = "Made at the Altar of Devastation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Flawless Gem of Escalation"
-drop_location = "Made at the Altar of Devastation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Pure Ethereal Essence"
-drop_location = "Made at the Altar of Devastation"
-tier = "heroic"
-
-[[ingredient]]
-name = "Pure Material Essence"
-drop_location = "Made at the Altar of Devastation"
-tier = "heroic"
-
 [[citation]]
 url = "https://ddowiki.com/page/Green_Steel_items"
 read = "2026-11-04"
@@ -863,7 +435,9 @@ read = "2026-11-04"
 note = """
 Raw Ingredient matrix row; crafting-steps Step #2 says combine 4 raw ingredients with an Eberron Energy Cell, so 1 of each. Same recipe at the Meridia and Guild Airship variants. The survey already holds this as a null-slot recipe.
 
-Bottom row of the Raw Ingredient table and crafting-steps Step #1: five different Shavarath Stones, no energy cell. Each stone comes from the end chest of one pre-raid Vale quest."""
+Bottom row of the Raw Ingredient table and crafting-steps Step #1: five different Shavarath Stones, no energy cell. Each stone comes from the end chest of one pre-raid Vale quest.
+
+The raw ingredient matrix lists each ingredient once, without a count; the crafting steps say to combine 4 raw ingredients with an energy cell, so 1 of each."""
 
 [[citation]]
 field = "recipe"
@@ -919,7 +493,9 @@ Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power
 
 Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Water'+ Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads Positive + Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads Positive + Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence.
+
+The page says it is believed that both shards of a dual-affinity shard must share Gem and Essence; it does not state it as fact."""
 
 [[citation]]
 field = "unlock"
@@ -1006,9 +582,18 @@ url = "https://ddowiki.com/page/Guild_Airship"
 read = "2026-11-04"
 note = "Round 2: amenity tables only. Green Steel Crafting Hall: State Room, guild level 40, 200,000 platinum, holds the four altars; the three per-altar contracts (Gold Seal 40/48/56, Standard 50/60/70) are marked obsolete post-U22."
 
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Green_Steel_item_crafting_steps"
+read = "2026-11-04"
+note = """
+Also consumes one weapon (destroyed) whose listed value is +6 to +10 (Step #1 of the Subjugation list; the overview says +6 or higher). The row shape cannot name a consumed weapon of a given plus value. Depleted cells are the ones found or bought; the page does not name the device that does the recharge beyond listing it under the Subjugation phase.
+
+Also consumes one weapon (destroyed) whose listed value is +8 to +10 (Step #1 of the Devastation list; the overview says +8 or higher). Not expressible as a cost row."""
+
 [[recipe]]
 note = """
-Recipes read from the sub-pages Green_Steel_crafting_recipes (index), Altar_of_Fecundity_-_Raw_Ingredient_Recipes, Altar_of_Fecundity_-_Manufactured_Ingredient_Recipes, Altar_of_Invasion, Altar_of_Invasion_-_Raw_Ingredient_Recipes, Altar_of_Invasion_-_Manufactured_Ingredient_Recipes, Altar_of_Subjugation_-_Raw_Ingredient_Recipes, Altar_of_Subjugation_-_Manufactured_Ingredient_Recipes, Altar_of_Devastation_-_Raw_Ingredient_Recipes and Altar_of_Devastation_-_Manufactured_Ingredient_Recipes; ingredient sources from Raw_Green_Steel_ingredients and Ingredient. Altar of Fecundity: makes the manufactured ingredient Ore of Travail; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Ore of Travail; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Ore of Travail"
@@ -1036,7 +621,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Altar of Fecundity: makes the manufactured ingredient Filament of Toil; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Filament of Toil; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Filament of Toil"
@@ -1064,7 +649,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Altar of Fecundity: makes the manufactured ingredient Wondrous Balm; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Wondrous Balm; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Wondrous Balm #1"
@@ -1092,7 +677,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Altar of Fecundity: makes the manufactured ingredient Wondrous Balm; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Wondrous Balm; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Wondrous Balm #2"
@@ -1120,7 +705,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Altar of Fecundity: makes the manufactured ingredient Wondrous Oil; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Wondrous Oil; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Wondrous Oil #1"
@@ -1148,7 +733,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Altar of Fecundity: makes the manufactured ingredient Wondrous Oil; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Wondrous Oil; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Wondrous Oil #2"
@@ -1176,7 +761,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Altar of Fecundity: makes the manufactured ingredient Wondrous Jewel; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Wondrous Jewel; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Wondrous Jewel #1"
@@ -1204,7 +789,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Altar of Fecundity: makes the manufactured ingredient Wondrous Jewel; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Wondrous Jewel; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Wondrous Jewel #2"
@@ -1232,7 +817,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Altar of Fecundity: makes the manufactured ingredient Wondrous Scarab; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Wondrous Scarab; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Wondrous Scarab #1"
@@ -1260,7 +845,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Altar of Fecundity: makes the manufactured ingredient Wondrous Scarab; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Wondrous Scarab; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Wondrous Scarab #2"
@@ -1288,7 +873,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Altar of Fecundity: makes the manufactured ingredient Red Taper; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Red Taper; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Red Taper"
@@ -1316,7 +901,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Altar of Fecundity: makes the manufactured ingredient Yellow Taper; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Yellow Taper; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Yellow Taper"
@@ -1344,7 +929,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Altar of Fecundity: makes the manufactured ingredient Green Taper; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Green Taper; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Green Taper"
@@ -1372,7 +957,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Altar of Fecundity: makes the manufactured ingredient Blue Taper; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Blue Taper; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Blue Taper"
@@ -1400,7 +985,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Altar of Fecundity: makes the manufactured ingredient Violet Taper; no augment counterpart. The page's matrix lists each ingredient once, without a count.
+Altar of Fecundity: makes the manufactured ingredient Violet Taper; no augment counterpart.
 
 At the Altar of Fecundity."""
 option = "Violet Taper"
@@ -8871,7 +8456,7 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Air and Water at Invasion and Subjugation (in either order) and the Devastation focus Air + Water via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Air'+ Water, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Air + Water, with Air dominant."""
 option = "Aspect of Ice II: Freezing Ice"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -8880,7 +8465,7 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Air and Positive at Invasion and Subjugation (in either order) and the Devastation focus Air + Positive via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Air'+ Positive, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Air + Positive, with Air dominant."""
 option = "Aspect of Lightning II: Lightning Strike"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -8889,7 +8474,7 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Air and Negative at Invasion and Subjugation (in either order) and the Devastation focus Air + Negative via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Air'+ Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Air + Negative, with Air dominant."""
 option = "Aspect of Vacuum II: Trap the Soul"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -8898,7 +8483,7 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Fire and Water at Invasion and Subjugation (in either order) and the Devastation focus Earth + Air via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Earth'+ Air, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Earth + Air, with Earth dominant."""
 option = "Tempered II: Elemental Mastery"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -8907,7 +8492,7 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Earth and Positive at Invasion and Subjugation (in either order) and the Devastation focus Earth + Positive via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Earth'+ Positive, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Earth + Positive, with Earth dominant."""
 option = "Aspect of Mineral II: Metalline, Keen/Impact, Slicing, Mineral"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -8916,7 +8501,7 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Earth and Negative at Invasion and Subjugation (in either order) and the Devastation focus Earth + Negative via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Earth'+ Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Earth + Negative, with Earth dominant."""
 option = "Aspect of Dust II: Disintegration"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -8925,9 +8510,9 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Air and Fire at Invasion and Subjugation (in either order) and the Devastation focus Fire + Air via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Fire'+ Air, quotes marking the dominant focus. The page believes both shards must share Gem and Essence.
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Fire + Air, with Fire dominant.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Fire'+ Air, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Fire + Air, with Fire dominant."""
 option = "Aspect of Smoke II: Smoke Screen"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -8936,7 +8521,7 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Earth and Fire at Invasion and Subjugation (in either order) and the Devastation focus Fire + Earth via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Fire'+ Earth, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Fire + Earth, with Fire dominant."""
 option = "Aspect of Magma II: Magma Surge"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -8945,7 +8530,7 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Fire and Positive at Invasion and Subjugation (in either order) and the Devastation focus Fire + Positive via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Fire'+ Positive, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Fire + Positive, with Fire dominant."""
 option = "Aspect of Radiance II: Radiance"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -8954,7 +8539,7 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Fire and Negative at Invasion and Subjugation (in either order) and the Devastation focus Fire + Negative via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Fire'+ Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Fire + Negative, with Fire dominant."""
 option = "Aspect of Ash II: Enervation"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -8963,7 +8548,7 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Earth and Water at Invasion and Subjugation (in either order) and the Devastation focus Water + Earth via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Water'+ Earth, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Water + Earth, with Water dominant."""
 option = "Aspect of Ooze II: Sundering Ooze"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -8972,7 +8557,7 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Air and Earth at Invasion and Subjugation (in either order) and the Devastation focus Water + Fire via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Water'+ Fire, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Water + Fire, with Water dominant."""
 option = "Balance of Land and Sky II: Elemental Mastery"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -8981,7 +8566,7 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Water and Positive at Invasion and Subjugation (in either order) and the Devastation focus Water + Positive via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Water'+ Positive, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Water + Positive, with Water dominant."""
 option = "Aspect of Steam II: Steam"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -8990,7 +8575,7 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Water and Negative at Invasion and Subjugation (in either order) and the Devastation focus Water + Negative via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Water'+ Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Water + Negative, with Water dominant."""
 option = "Aspect of Salt II: Corrosive Salt"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -8999,9 +8584,9 @@ step = "Tier 3 aspect (weapon)"
 note = """
 Weapon additional effect the Altar of Devastation adds for foci Negative and Positive at Invasion and Subjugation (in either order) and the Devastation focus Positive + Negative via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own. Maetrim's Greensteel_Heroic carries only the placeholder Weapon Aspect - NYI for this socket, so the row links no augment.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads Positive + Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence.
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Positive + Negative.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads Positive + Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Positive + Negative."""
 option = "Existential Stalemate II: Concordant Opposition"
 tier = "heroic"
 step = "Tier 3 aspect (weapon)"
@@ -9070,7 +8655,7 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Air and Water at Invasion and Subjugation (in either order) and the Devastation focus Air + Water via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Air'+ Water, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Air + Water, with Air dominant."""
 option = "Aspect of Ice II: Freezing Ice Guard"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9083,7 +8668,7 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Air and Positive at Invasion and Subjugation (in either order) and the Devastation focus Air + Positive via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Air'+ Positive, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Air + Positive, with Air dominant."""
 option = "Aspect of Lightning II: Lightning Storm Guard"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9096,7 +8681,7 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Air and Negative at Invasion and Subjugation (in either order) and the Devastation focus Air + Negative via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Air'+ Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Air + Negative, with Air dominant."""
 option = "Aspect of Vacuum II: Trap the Soul Guard"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9109,7 +8694,7 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Fire and Water at Invasion and Subjugation (in either order) and the Devastation focus Earth + Air via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Earth'+ Air, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Earth + Air, with Earth dominant."""
 option = "Tempered II: Elemental Mastery Guard"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9122,7 +8707,7 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Earth and Positive at Invasion and Subjugation (in either order) and the Devastation focus Earth + Positive via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Earth'+ Positive, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Earth + Positive, with Earth dominant."""
 option = "Aspect of Mineral II: Protection +5, Fortification +100%"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9135,7 +8720,7 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Earth and Negative at Invasion and Subjugation (in either order) and the Devastation focus Earth + Negative via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Earth'+ Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Earth + Negative, with Earth dominant."""
 option = "Aspect of Dust II: Disintegration Guard"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9148,9 +8733,9 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Air and Fire at Invasion and Subjugation (in either order) and the Devastation focus Fire + Air via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Fire'+ Air, quotes marking the dominant focus. The page believes both shards must share Gem and Essence.
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Fire + Air, with Fire dominant.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Fire'+ Air, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Fire + Air, with Fire dominant."""
 option = "Aspect of Smoke II: Smoke Screen"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9163,7 +8748,7 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Earth and Fire at Invasion and Subjugation (in either order) and the Devastation focus Fire + Earth via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Fire'+ Earth, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Fire + Earth, with Fire dominant."""
 option = "Aspect of Magma II: Magma Surge Guard"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9176,7 +8761,7 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Fire and Positive at Invasion and Subjugation (in either order) and the Devastation focus Fire + Positive via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Fire'+ Positive, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Fire + Positive, with Fire dominant."""
 option = "Aspect of Radiance II: Radiance Guard"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9189,7 +8774,7 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Fire and Negative at Invasion and Subjugation (in either order) and the Devastation focus Fire + Negative via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Fire'+ Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Fire + Negative, with Fire dominant."""
 option = "Aspect of Ash II: Enervation Guard"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9202,7 +8787,7 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Earth and Water at Invasion and Subjugation (in either order) and the Devastation focus Water + Earth via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Water'+ Earth, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Water + Earth, with Water dominant."""
 option = "Aspect of Ooze II: Sundering Ooze Guard"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9215,7 +8800,7 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Air and Earth at Invasion and Subjugation (in either order) and the Devastation focus Water + Fire via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Water'+ Fire, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Water + Fire, with Water dominant."""
 option = "Balance of Land and Sky II: Elemental Mastery Guard"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9228,7 +8813,7 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Water and Positive at Invasion and Subjugation (in either order) and the Devastation focus Water + Positive via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Water'+ Positive, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Water + Positive, with Water dominant."""
 option = "Aspect of Steam II: Steam Guard"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9241,7 +8826,7 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Water and Negative at Invasion and Subjugation (in either order) and the Devastation focus Water + Negative via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads 'Water'+ Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Water + Negative, with Water dominant."""
 option = "Aspect of Salt II: Corrosive Salt Guard"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9254,9 +8839,9 @@ level = 11
 note = """
 Clothing/jewelry additional effect the Altar of Devastation adds for foci Negative and Positive at Invasion and Subjugation (in either order) and the Devastation focus Positive + Negative via a Dual-Affinity Shard of Supreme Power (two Imbued Shards of Supreme Power with the same gem and essence, combined with a Shavarath High Energy Cell); it comes with the Devastation upgrade and has no cost of its own.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads Positive + Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence.
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Positive + Negative.
 
-Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation Altar Focus column reads Positive + Negative, quotes marking the dominant focus. The page believes both shards must share Gem and Essence."""
+Mixed-element aspect: reached with a dual-affinity Imbued Shard of Supreme Power (two differently imbued shards combined at the Altar of Devastation); the Devastation focus is Positive + Negative."""
 option = "Existential Stalemate II: Concordant Opposition"
 tier = "heroic"
 step = "Tier 3 aspect (accessory)"
@@ -9264,3 +8849,23 @@ step = "Tier 3 aspect (accessory)"
 [[recipe.augment]]
 name = "Existential Stalemate II"
 level = 11
+
+[[recipe]]
+yields_ingredient = "Shavarath Medium Energy Cell"
+note = "Also consumes one weapon (destroyed) whose listed value is +6 to +10 (Step #1 of the Subjugation list; the overview says +6 or higher). The row shape cannot name a consumed weapon of a given plus value. Depleted cells are the ones found or bought; the page does not name the device that does the recharge beyond listing it under the Subjugation phase."
+option = "Shavarath Medium Energy Cell (recharge)"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Depleted Shavarath Medium Energy Cell"
+quantity = 1
+
+[[recipe]]
+yields_ingredient = "Shavarath High Energy Cell"
+note = "Also consumes one weapon (destroyed) whose listed value is +8 to +10 (Step #1 of the Devastation list; the overview says +8 or higher). Not expressible as a cost row."
+option = "Shavarath High Energy Cell (recharge)"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Depleted Shavarath High Energy Cell"
+quantity = 1

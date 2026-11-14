@@ -1,0 +1,5 @@
+name = "Gold Globe of Slime"
+tier = "any"
+bind = "Bound to Account on Acquire"
+drop_location = "The Underdark, northern shrine after slaying Digestive Slimes"
+citation = []

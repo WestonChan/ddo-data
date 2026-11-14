@@ -251,7 +251,9 @@ Upgrades Epic Treasure Hunter's Spyglass (legacy) (level 20) from Tier 2 in plac
 
 Upgrades Epic Treasure Hunter's Spyglass (legacy) (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair.
 
-Upgrades Epic Treasure Hunter's Spyglass (legacy) (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair."""
+Upgrades Epic Treasure Hunter's Spyglass (legacy) (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair.
+
+Brawling Gloves: the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) shows empty Tier 2 and Tier 3 cost lines, so the Greater trinket of Tier 3 is not stated and no trinket cost is written. The Dusty page says each line uses another Greater trinket at Tier 3. Brigand's Cutlass: costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table. Cutthroat's Smallblade: the line page has no tiered table. Costs follow the structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; only level 4 and the Greater Nimble Trinket are stated, on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2). Treasure Hunter's Spyglass: costs from the Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 follow the Dusty matrix structure with the line's gem pair."""
 
 [[citation]]
 field = "recipe"
@@ -563,7 +565,9 @@ read = "2026-11-04"
 note = """
 Upgrades Glass Cannon (legacy) (tier 1) to Tier 2. The tiers are separate items. Costs from the Glass Cannon table: columns are headed Gold, Silver, Dragonshards, Gems, Item and the row cells follow that order (Tier 2 and 3: 750 in the Gold column, 800 or 1,000 in the Dragonshards column); the Tier 3 row lists only the Tier 2 item, no trinket.
 
-Upgrades Glass Cannon (legacy) (tier 2) to Tier 3. The tiers are separate items. Costs from the Glass Cannon table: columns are headed Gold, Silver, Dragonshards, Gems, Item and the row cells follow that order (Tier 2 and 3: 750 in the Gold column, 800 or 1,000 in the Dragonshards column); the Tier 3 row lists only the Tier 2 item, no trinket."""
+Upgrades Glass Cannon (legacy) (tier 2) to Tier 3. The tiers are separate items. Costs from the Glass Cannon table: columns are headed Gold, Silver, Dragonshards, Gems, Item and the row cells follow that order (Tier 2 and 3: 750 in the Gold column, 800 or 1,000 in the Dragonshards column); the Tier 3 row lists only the Tier 2 item, no trinket.
+
+Glass Cannon: the tiered table is headed Gold, Silver, Dragonshards, Gems, Item and has no Copper column; the row cells follow that order and carry no icons (Tier 2 and 3: 750 in the Gold column, 800 or 1,000 in the Dragonshards column). The Tier 3 row lists only the Tier 2 item, no trinket."""
 
 [[citation]]
 field = "step"
@@ -720,7 +724,7 @@ read = "2026-11-04"
 note = "Current item page read with its in-game screenshot viewed: no upgrade line, Upgradeable? row empty."
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (legacy) (level 4) from Tier 1 in place (the page lists the Tier 1 item as the consumed item)."
+note = "Upgrades Cavalry Plate (legacy) (level 4) from Tier 1 in place."
 option = "Cavalry Plate (legacy) (level 4) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -742,7 +746,7 @@ ingredient = "Stolen Pyrite"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (legacy) (level 4) from Tier 2 in place (the page lists the Tier 2 item and a Greater Stalwart Trinket)."
+note = "Upgrades Cavalry Plate (legacy) (level 4) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Cavalry Plate (legacy) (level 4) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -768,7 +772,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (level 4) from Tier 1 in place (the page lists the Tier 1 item as the consumed item)."
+note = "Upgrades Cavalry Plate (level 4) from Tier 1 in place."
 option = "Cavalry Plate (level 4) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -786,7 +790,7 @@ ingredient = "Stolen Pyrite"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (level 4) from Tier 2 in place (the page lists the Tier 2 item and a Greater Stalwart Trinket)."
+note = "Upgrades Cavalry Plate (level 4) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Cavalry Plate (level 4) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -808,7 +812,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (legacy) (level 8) from Tier 1 in place (the page lists the Tier 1 item as the consumed item)."
+note = "Upgrades Cavalry Plate (legacy) (level 8) from Tier 1 in place."
 option = "Cavalry Plate (legacy) (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -830,7 +834,7 @@ ingredient = "Stolen Obsidian"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (legacy) (level 8) from Tier 2 in place (the page lists the Tier 2 item and a Greater Stalwart Trinket)."
+note = "Upgrades Cavalry Plate (legacy) (level 8) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Cavalry Plate (legacy) (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -856,7 +860,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (level 8) from Tier 1 in place (the page lists the Tier 1 item as the consumed item)."
+note = "Upgrades Cavalry Plate (level 8) from Tier 1 in place."
 option = "Cavalry Plate (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -874,7 +878,7 @@ ingredient = "Stolen Obsidian"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (level 8) from Tier 2 in place (the page lists the Tier 2 item and a Greater Stalwart Trinket)."
+note = "Upgrades Cavalry Plate (level 8) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Cavalry Plate (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -896,7 +900,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (legacy) (level 12) from Tier 1 in place (the page lists the Tier 1 item as the consumed item)."
+note = "Upgrades Cavalry Plate (legacy) (level 12) from Tier 1 in place."
 option = "Cavalry Plate (legacy) (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -918,7 +922,7 @@ ingredient = "Stolen Topaz"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (legacy) (level 12) from Tier 2 in place (the page lists the Tier 2 item and a Greater Stalwart Trinket)."
+note = "Upgrades Cavalry Plate (legacy) (level 12) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Cavalry Plate (legacy) (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -944,7 +948,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (level 12) from Tier 1 in place (the page lists the Tier 1 item as the consumed item)."
+note = "Upgrades Cavalry Plate (level 12) from Tier 1 in place."
 option = "Cavalry Plate (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -962,7 +966,7 @@ ingredient = "Stolen Topaz"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (level 12) from Tier 2 in place (the page lists the Tier 2 item and a Greater Stalwart Trinket)."
+note = "Upgrades Cavalry Plate (level 12) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Cavalry Plate (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -984,7 +988,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (legacy) (level 16) from Tier 1 in place (the page lists the Tier 1 item as the consumed item)."
+note = "Upgrades Cavalry Plate (legacy) (level 16) from Tier 1 in place."
 option = "Cavalry Plate (legacy) (level 16) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -1006,7 +1010,7 @@ ingredient = "Stolen Sapphire"
 quantity = 60
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (legacy) (level 16) from Tier 2 in place (the page lists the Tier 2 item and a Greater Stalwart Trinket)."
+note = "Upgrades Cavalry Plate (legacy) (level 16) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Cavalry Plate (legacy) (level 16) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -1032,7 +1036,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (level 16) from Tier 1 in place (the page lists the Tier 1 item as the consumed item)."
+note = "Upgrades Cavalry Plate (level 16) from Tier 1 in place."
 option = "Cavalry Plate (level 16) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -1050,7 +1054,7 @@ ingredient = "Stolen Sapphire"
 quantity = 60
 
 [[recipe]]
-note = "Upgrades Cavalry Plate (level 16) from Tier 2 in place (the page lists the Tier 2 item and a Greater Stalwart Trinket)."
+note = "Upgrades Cavalry Plate (level 16) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Cavalry Plate (level 16) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -1072,7 +1076,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Cavalry Plate (legacy) (level 20) from Tier 1 in place (the page lists the Tier 1 item as the consumed item)."
+note = "Upgrades Epic Cavalry Plate (legacy) (level 20) from Tier 1 in place."
 option = "Epic Cavalry Plate (legacy) (level 20) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -1094,7 +1098,7 @@ ingredient = "Stolen Emerald"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Cavalry Plate (legacy) (level 20) from Tier 2 in place (the page lists the Tier 2 item and a Greater Stalwart Trinket)."
+note = "Upgrades Epic Cavalry Plate (legacy) (level 20) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Epic Cavalry Plate (legacy) (level 20) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -1120,7 +1124,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Cavalry Plate (level 20) from Tier 1 in place (the page lists the Tier 1 item as the consumed item)."
+note = "Upgrades Epic Cavalry Plate (level 20) from Tier 1 in place."
 option = "Epic Cavalry Plate (level 20) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -1138,7 +1142,7 @@ ingredient = "Stolen Emerald"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Cavalry Plate (level 20) from Tier 2 in place (the page lists the Tier 2 item and a Greater Stalwart Trinket)."
+note = "Upgrades Epic Cavalry Plate (level 20) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Epic Cavalry Plate (level 20) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -1160,7 +1164,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Cavalry Plate (legacy) (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item)."
+note = "Upgrades Epic Cavalry Plate (legacy) (level 24) from Tier 1 in place."
 option = "Epic Cavalry Plate (legacy) (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -1182,7 +1186,7 @@ ingredient = "Stolen Opal"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Cavalry Plate (legacy) (level 24) from Tier 2 in place (the page lists the Tier 2 item and a Greater Stalwart Trinket)."
+note = "Upgrades Epic Cavalry Plate (legacy) (level 24) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Epic Cavalry Plate (legacy) (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -1208,7 +1212,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Cavalry Plate (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item)."
+note = "Upgrades Epic Cavalry Plate (level 24) from Tier 1 in place."
 option = "Epic Cavalry Plate (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -1226,7 +1230,7 @@ ingredient = "Stolen Opal"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Cavalry Plate (level 24) from Tier 2 in place (the page lists the Tier 2 item and a Greater Stalwart Trinket)."
+note = "Upgrades Epic Cavalry Plate (level 24) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Epic Cavalry Plate (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -1248,7 +1252,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the Legacy Version table: consumes Cavalry Plate (legacy) (level 4) and yields Cavalry Plate (legacy) (level 8) at Tier 1 (the page and the Dusty page: a level upgrade only gives the base version)."
+note = "Level upgrade: consumes Cavalry Plate (legacy) (level 4) and yields Cavalry Plate (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version)."
 option = "Cavalry Plate (legacy) (level 8) from Cavalry Plate (legacy) (level 4)"
 tier = "heroic"
 step = "Level upgrade"
@@ -1270,7 +1274,7 @@ item = "Cavalry Plate (legacy) (level 4)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the Legacy Version table: consumes Cavalry Plate (legacy) (level 8) and yields Cavalry Plate (legacy) (level 12) at Tier 1 (the page and the Dusty page: a level upgrade only gives the base version)."
+note = "Level upgrade: consumes Cavalry Plate (legacy) (level 8) and yields Cavalry Plate (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version)."
 option = "Cavalry Plate (legacy) (level 12) from Cavalry Plate (legacy) (level 8)"
 tier = "heroic"
 step = "Level upgrade"
@@ -1292,7 +1296,7 @@ item = "Cavalry Plate (legacy) (level 8)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the Legacy Version table: consumes Cavalry Plate (legacy) (level 12) and yields Cavalry Plate (legacy) (level 16) at Tier 1 (the page and the Dusty page: a level upgrade only gives the base version)."
+note = "Level upgrade: consumes Cavalry Plate (legacy) (level 12) and yields Cavalry Plate (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version)."
 option = "Cavalry Plate (legacy) (level 16) from Cavalry Plate (legacy) (level 12)"
 tier = "heroic"
 step = "Level upgrade"
@@ -1314,7 +1318,7 @@ item = "Cavalry Plate (legacy) (level 12)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the Legacy Version table: consumes Cavalry Plate (legacy) (level 16) and yields Epic Cavalry Plate (legacy) (level 20) at Tier 1 (the page and the Dusty page: a level upgrade only gives the base version)."
+note = "Level upgrade: consumes Cavalry Plate (legacy) (level 16) and yields Epic Cavalry Plate (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version)."
 option = "Epic Cavalry Plate (legacy) (level 20) from Cavalry Plate (legacy) (level 16)"
 tier = "epic"
 step = "Level upgrade"
@@ -1336,7 +1340,7 @@ item = "Cavalry Plate (legacy) (level 16)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the Legacy Version table: consumes Epic Cavalry Plate (legacy) (level 20) and yields Epic Cavalry Plate (legacy) (level 24) at Tier 1 (the page and the Dusty page: a level upgrade only gives the base version)."
+note = "Level upgrade: consumes Epic Cavalry Plate (legacy) (level 20) and yields Epic Cavalry Plate (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version)."
 option = "Epic Cavalry Plate (legacy) (level 24) from Epic Cavalry Plate (legacy) (level 20)"
 tier = "epic"
 step = "Level upgrade"
@@ -1566,7 +1570,7 @@ item = "Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (legacy) (level 12) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (legacy) (level 12) from Tier 1 in place."
 option = "Brigand's Cutlass (legacy) (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -1588,7 +1592,7 @@ ingredient = "Stolen Topaz"
 quantity = 40
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (legacy) (level 12) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (legacy) (level 12) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Brigand's Cutlass (legacy) (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -1614,7 +1618,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (legacy) (level 16) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (legacy) (level 16) from Tier 1 in place."
 option = "Brigand's Cutlass (legacy) (level 16) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -1636,7 +1640,7 @@ ingredient = "Stolen Sapphire"
 quantity = 45
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (legacy) (level 16) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (legacy) (level 16) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Brigand's Cutlass (legacy) (level 16) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -1662,7 +1666,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (legacy) (level 4) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (legacy) (level 4) from Tier 1 in place."
 option = "Brigand's Cutlass (legacy) (level 4) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -1684,7 +1688,7 @@ ingredient = "Stolen Alabaster"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (legacy) (level 4) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (legacy) (level 4) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Brigand's Cutlass (legacy) (level 4) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -1710,7 +1714,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (legacy) (level 8) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (legacy) (level 8) from Tier 1 in place."
 option = "Brigand's Cutlass (legacy) (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -1732,7 +1736,7 @@ ingredient = "Stolen Amber"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (legacy) (level 8) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (legacy) (level 8) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Brigand's Cutlass (legacy) (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -1758,7 +1762,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (level 12)(pre-U39) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (level 12)(pre-U39) from Tier 1 in place."
 option = "Brigand's Cutlass (level 12)(pre-U39) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -1780,7 +1784,7 @@ ingredient = "Stolen Topaz"
 quantity = 40
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (level 12)(pre-U39) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (level 12)(pre-U39) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Brigand's Cutlass (level 12)(pre-U39) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -1806,7 +1810,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (level 16)(pre-U39) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (level 16)(pre-U39) from Tier 1 in place."
 option = "Brigand's Cutlass (level 16)(pre-U39) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -1828,7 +1832,7 @@ ingredient = "Stolen Sapphire"
 quantity = 45
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (level 16)(pre-U39) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (level 16)(pre-U39) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Brigand's Cutlass (level 16)(pre-U39) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -1854,7 +1858,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (level 4)(pre-U39) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (level 4)(pre-U39) from Tier 1 in place."
 option = "Brigand's Cutlass (level 4)(pre-U39) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -1876,7 +1880,7 @@ ingredient = "Stolen Alabaster"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (level 4)(pre-U39) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (level 4)(pre-U39) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Brigand's Cutlass (level 4)(pre-U39) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -1902,7 +1906,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (level 8)(pre-U39) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (level 8)(pre-U39) from Tier 1 in place."
 option = "Brigand's Cutlass (level 8)(pre-U39) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -1924,7 +1928,7 @@ ingredient = "Stolen Amber"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Brigand's Cutlass (level 8)(pre-U39) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Brigand's Cutlass (level 8)(pre-U39) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Brigand's Cutlass (level 8)(pre-U39) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -1950,7 +1954,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Brigand's Cutlass (legacy) (level 20) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Epic Brigand's Cutlass (legacy) (level 20) from Tier 1 in place."
 option = "Epic Brigand's Cutlass (legacy) (level 20) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -1972,7 +1976,7 @@ ingredient = "Stolen Diamond"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Brigand's Cutlass (legacy) (level 20) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Epic Brigand's Cutlass (legacy) (level 20) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Epic Brigand's Cutlass (legacy) (level 20) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -1998,7 +2002,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Brigand's Cutlass (legacy) (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Epic Brigand's Cutlass (legacy) (level 24) from Tier 1 in place."
 option = "Epic Brigand's Cutlass (legacy) (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -2020,7 +2024,7 @@ ingredient = "Stolen Malachite"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Brigand's Cutlass (legacy) (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Epic Brigand's Cutlass (legacy) (level 24) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Epic Brigand's Cutlass (legacy) (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -2046,7 +2050,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Brigand's Cutlass (level 20)(pre-U39) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Epic Brigand's Cutlass (level 20)(pre-U39) from Tier 1 in place."
 option = "Epic Brigand's Cutlass (level 20)(pre-U39) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -2068,7 +2072,7 @@ ingredient = "Stolen Diamond"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Brigand's Cutlass (level 20)(pre-U39) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Epic Brigand's Cutlass (level 20)(pre-U39) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Epic Brigand's Cutlass (level 20)(pre-U39) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -2094,7 +2098,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Brigand's Cutlass (level 24)(pre-U39) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Epic Brigand's Cutlass (level 24)(pre-U39) from Tier 1 in place."
 option = "Epic Brigand's Cutlass (level 24)(pre-U39) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -2116,7 +2120,7 @@ ingredient = "Stolen Malachite"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Brigand's Cutlass (level 24)(pre-U39) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the Dusty page's Brigand's Cutlass upgrade matrix (shown in the page as a table of images; the level 24 row is text), read from a screenshot of the matrix; the Item:Brigand's_Cutlass page has no tiered table."
+note = "Upgrades Epic Brigand's Cutlass (level 24)(pre-U39) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Epic Brigand's Cutlass (level 24)(pre-U39) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -2142,7 +2146,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Brigand's Cutlass (legacy) (level 4) and yields Brigand's Cutlass (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Brigand's Cutlass (legacy) (level 4) and yields Brigand's Cutlass (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Brigand's Cutlass (legacy) (level 8) from Brigand's Cutlass (legacy) (level 4)"
 tier = "heroic"
 step = "Level upgrade"
@@ -2164,7 +2168,7 @@ item = "Brigand's Cutlass (legacy) (level 4)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Brigand's Cutlass (legacy) (level 8) and yields Brigand's Cutlass (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Brigand's Cutlass (legacy) (level 8) and yields Brigand's Cutlass (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Brigand's Cutlass (legacy) (level 12) from Brigand's Cutlass (legacy) (level 8)"
 tier = "heroic"
 step = "Level upgrade"
@@ -2186,7 +2190,7 @@ item = "Brigand's Cutlass (legacy) (level 8)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Brigand's Cutlass (legacy) (level 12) and yields Brigand's Cutlass (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Brigand's Cutlass (legacy) (level 12) and yields Brigand's Cutlass (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Brigand's Cutlass (legacy) (level 16) from Brigand's Cutlass (legacy) (level 12)"
 tier = "heroic"
 step = "Level upgrade"
@@ -2208,7 +2212,7 @@ item = "Brigand's Cutlass (legacy) (level 12)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Brigand's Cutlass (legacy) (level 16) and yields Epic Brigand's Cutlass (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Brigand's Cutlass (legacy) (level 16) and yields Epic Brigand's Cutlass (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Brigand's Cutlass (legacy) (level 20) from Brigand's Cutlass (legacy) (level 16)"
 tier = "epic"
 step = "Level upgrade"
@@ -2230,7 +2234,7 @@ item = "Brigand's Cutlass (legacy) (level 16)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Epic Brigand's Cutlass (legacy) (level 20) and yields Epic Brigand's Cutlass (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Epic Brigand's Cutlass (legacy) (level 20) and yields Epic Brigand's Cutlass (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Brigand's Cutlass (legacy) (level 24) from Epic Brigand's Cutlass (legacy) (level 20)"
 tier = "epic"
 step = "Level upgrade"
@@ -2252,7 +2256,7 @@ item = "Epic Brigand's Cutlass (legacy) (level 20)"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (legacy) (level 12) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (legacy) (level 12) from Tier 1 in place."
 option = "Cutthroat's Smallblade (legacy) (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -2274,7 +2278,7 @@ ingredient = "Stolen Topaz"
 quantity = 40
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (legacy) (level 12) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (legacy) (level 12) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Cutthroat's Smallblade (legacy) (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -2300,7 +2304,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (legacy) (level 16) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (legacy) (level 16) from Tier 1 in place."
 option = "Cutthroat's Smallblade (legacy) (level 16) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -2322,7 +2326,7 @@ ingredient = "Stolen Sapphire"
 quantity = 45
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (legacy) (level 16) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (legacy) (level 16) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Cutthroat's Smallblade (legacy) (level 16) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -2348,7 +2352,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (legacy) (level 4) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (legacy) (level 4) from Tier 1 in place."
 option = "Cutthroat's Smallblade (legacy) (level 4) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -2370,7 +2374,7 @@ ingredient = "Stolen Alabaster"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (legacy) (level 4) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (legacy) (level 4) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Cutthroat's Smallblade (legacy) (level 4) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -2396,7 +2400,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (legacy) (level 8) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (legacy) (level 8) from Tier 1 in place."
 option = "Cutthroat's Smallblade (legacy) (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -2418,7 +2422,7 @@ ingredient = "Stolen Amber"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (legacy) (level 8) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (legacy) (level 8) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Cutthroat's Smallblade (legacy) (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -2444,7 +2448,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (level 12) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (level 12) from Tier 1 in place."
 option = "Cutthroat's Smallblade (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -2462,7 +2466,7 @@ ingredient = "Stolen Topaz"
 quantity = 40
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (level 12) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (level 12) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Cutthroat's Smallblade (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -2484,7 +2488,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (level 16) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (level 16) from Tier 1 in place."
 option = "Cutthroat's Smallblade (level 16) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -2502,7 +2506,7 @@ ingredient = "Stolen Sapphire"
 quantity = 45
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (level 16) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (level 16) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Cutthroat's Smallblade (level 16) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -2524,7 +2528,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (level 4) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (level 4) from Tier 1 in place."
 option = "Cutthroat's Smallblade (level 4) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -2542,7 +2546,7 @@ ingredient = "Stolen Alabaster"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (level 4) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (level 4) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Cutthroat's Smallblade (level 4) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -2564,7 +2568,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (level 8) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (level 8) from Tier 1 in place."
 option = "Cutthroat's Smallblade (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -2582,7 +2586,7 @@ ingredient = "Stolen Amber"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Cutthroat's Smallblade (level 8) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Cutthroat's Smallblade (level 8) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Cutthroat's Smallblade (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -2604,7 +2608,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Cutthroat's Smallblade (legacy) (level 20) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Epic Cutthroat's Smallblade (legacy) (level 20) from Tier 1 in place."
 option = "Epic Cutthroat's Smallblade (legacy) (level 20) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -2626,7 +2630,7 @@ ingredient = "Stolen Diamond"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Cutthroat's Smallblade (legacy) (level 20) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Epic Cutthroat's Smallblade (legacy) (level 20) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Epic Cutthroat's Smallblade (legacy) (level 20) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -2652,7 +2656,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Cutthroat's Smallblade (legacy) (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Epic Cutthroat's Smallblade (legacy) (level 24) from Tier 1 in place."
 option = "Epic Cutthroat's Smallblade (legacy) (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -2674,7 +2678,7 @@ ingredient = "Stolen Malachite"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Cutthroat's Smallblade (legacy) (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Epic Cutthroat's Smallblade (legacy) (level 24) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Epic Cutthroat's Smallblade (legacy) (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -2700,7 +2704,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Cutthroat's Smallblade (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Epic Cutthroat's Smallblade (level 24) from Tier 1 in place."
 option = "Epic Cutthroat's Smallblade (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -2722,7 +2726,7 @@ ingredient = "Stolen Malachite"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Cutthroat's Smallblade (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from structure of the Dusty page's upgrade matrix (the line page has no tiered table) with the gem pair of the line's own level upgrade table; level 4 and the Greater Nimble Trinket are stated on Item:Cutthroat's_Smallblade_(legacy)_(level_4) (Tips: 15 Stolen Pyrite, 30 Stolen Alabaster, 100 Green Dragonshard for Tier 2)."
+note = "Upgrades Epic Cutthroat's Smallblade (level 24) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Epic Cutthroat's Smallblade (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -2748,7 +2752,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Cutthroat's Smallblade (legacy) (level 4) and yields Cutthroat's Smallblade (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Cutthroat's Smallblade (legacy) (level 4) and yields Cutthroat's Smallblade (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Cutthroat's Smallblade (legacy) (level 8) from Cutthroat's Smallblade (legacy) (level 4)"
 tier = "heroic"
 step = "Level upgrade"
@@ -2770,7 +2774,7 @@ item = "Cutthroat's Smallblade (legacy) (level 4)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Cutthroat's Smallblade (legacy) (level 8) and yields Cutthroat's Smallblade (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Cutthroat's Smallblade (legacy) (level 8) and yields Cutthroat's Smallblade (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Cutthroat's Smallblade (legacy) (level 12) from Cutthroat's Smallblade (legacy) (level 8)"
 tier = "heroic"
 step = "Level upgrade"
@@ -2792,7 +2796,7 @@ item = "Cutthroat's Smallblade (legacy) (level 8)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Cutthroat's Smallblade (legacy) (level 12) and yields Cutthroat's Smallblade (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Cutthroat's Smallblade (legacy) (level 12) and yields Cutthroat's Smallblade (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Cutthroat's Smallblade (legacy) (level 16) from Cutthroat's Smallblade (legacy) (level 12)"
 tier = "heroic"
 step = "Level upgrade"
@@ -2814,7 +2818,7 @@ item = "Cutthroat's Smallblade (legacy) (level 12)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Cutthroat's Smallblade (legacy) (level 16) and yields Epic Cutthroat's Smallblade (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Cutthroat's Smallblade (legacy) (level 16) and yields Epic Cutthroat's Smallblade (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Cutthroat's Smallblade (legacy) (level 20) from Cutthroat's Smallblade (legacy) (level 16)"
 tier = "epic"
 step = "Level upgrade"
@@ -2836,7 +2840,7 @@ item = "Cutthroat's Smallblade (legacy) (level 16)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Epic Cutthroat's Smallblade (legacy) (level 20) and yields Epic Cutthroat's Smallblade (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Epic Cutthroat's Smallblade (legacy) (level 20) and yields Epic Cutthroat's Smallblade (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Cutthroat's Smallblade (legacy) (level 24) from Epic Cutthroat's Smallblade (legacy) (level 20)"
 tier = "epic"
 step = "Level upgrade"
@@ -2858,7 +2862,7 @@ item = "Epic Cutthroat's Smallblade (legacy) (level 20)"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Ornamented Dagger (legacy) (level 20) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ornamented Dagger (legacy) (level 20) from Tier 1 in place."
 option = "Epic Ornamented Dagger (legacy) (level 20) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -2880,7 +2884,7 @@ ingredient = "Stolen Emerald"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Ornamented Dagger (legacy) (level 20) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ornamented Dagger (legacy) (level 20) from Tier 2 in place; also consumes a Greater Cunning Trinket."
 option = "Epic Ornamented Dagger (legacy) (level 20) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -2906,7 +2910,7 @@ item = "Greater Cunning Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Ornamented Dagger (legacy) (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ornamented Dagger (legacy) (level 24) from Tier 1 in place."
 option = "Epic Ornamented Dagger (legacy) (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -2928,7 +2932,7 @@ ingredient = "Stolen Opal"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Ornamented Dagger (legacy) (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ornamented Dagger (legacy) (level 24) from Tier 2 in place; also consumes a Greater Cunning Trinket."
 option = "Epic Ornamented Dagger (legacy) (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -2954,7 +2958,7 @@ item = "Greater Cunning Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Ornamented Dagger (level 20) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ornamented Dagger (level 20) from Tier 1 in place."
 option = "Epic Ornamented Dagger (level 20) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -2976,7 +2980,7 @@ ingredient = "Stolen Emerald"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Ornamented Dagger (level 20) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ornamented Dagger (level 20) from Tier 2 in place; also consumes a Greater Cunning Trinket."
 option = "Epic Ornamented Dagger (level 20) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3002,7 +3006,7 @@ item = "Greater Cunning Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Ornamented Dagger (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ornamented Dagger (level 24) from Tier 1 in place."
 option = "Epic Ornamented Dagger (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -3024,7 +3028,7 @@ ingredient = "Stolen Opal"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Ornamented Dagger (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ornamented Dagger (level 24) from Tier 2 in place; also consumes a Greater Cunning Trinket."
 option = "Epic Ornamented Dagger (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3050,7 +3054,7 @@ item = "Greater Cunning Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Ornamented Dagger (legacy) (level 12) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ornamented Dagger (legacy) (level 12) from Tier 1 in place."
 option = "Ornamented Dagger (legacy) (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -3072,7 +3076,7 @@ ingredient = "Stolen Amethyst"
 quantity = 40
 
 [[recipe]]
-note = "Upgrades Ornamented Dagger (legacy) (level 12) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ornamented Dagger (legacy) (level 12) from Tier 2 in place; also consumes a Greater Cunning Trinket."
 option = "Ornamented Dagger (legacy) (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -3098,7 +3102,7 @@ item = "Greater Cunning Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Ornamented Dagger (legacy) (level 16) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ornamented Dagger (legacy) (level 16) from Tier 1 in place."
 option = "Ornamented Dagger (legacy) (level 16) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -3120,7 +3124,7 @@ ingredient = "Stolen Ruby"
 quantity = 45
 
 [[recipe]]
-note = "Upgrades Ornamented Dagger (legacy) (level 16) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ornamented Dagger (legacy) (level 16) from Tier 2 in place; also consumes a Greater Cunning Trinket."
 option = "Ornamented Dagger (legacy) (level 16) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -3146,7 +3150,7 @@ item = "Greater Cunning Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Ornamented Dagger (legacy) (level 4) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ornamented Dagger (legacy) (level 4) from Tier 1 in place."
 option = "Ornamented Dagger (legacy) (level 4) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -3168,7 +3172,7 @@ ingredient = "Stolen Pyrite"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Ornamented Dagger (legacy) (level 4) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ornamented Dagger (legacy) (level 4) from Tier 2 in place; also consumes a Greater Cunning Trinket."
 option = "Ornamented Dagger (legacy) (level 4) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -3194,7 +3198,7 @@ item = "Greater Cunning Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Ornamented Dagger (legacy) (level 8) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ornamented Dagger (legacy) (level 8) from Tier 1 in place."
 option = "Ornamented Dagger (legacy) (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -3216,7 +3220,7 @@ ingredient = "Stolen Obsidian"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Ornamented Dagger (legacy) (level 8) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ornamented Dagger (legacy) (level 8) from Tier 2 in place; also consumes a Greater Cunning Trinket."
 option = "Ornamented Dagger (legacy) (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -3242,7 +3246,7 @@ item = "Greater Cunning Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Ornamented Dagger (legacy) (level 4) and yields Ornamented Dagger (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Ornamented Dagger (legacy) (level 4) and yields Ornamented Dagger (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Ornamented Dagger (legacy) (level 8) from Ornamented Dagger (legacy) (level 4)"
 tier = "heroic"
 step = "Level upgrade"
@@ -3264,7 +3268,7 @@ item = "Ornamented Dagger (legacy) (level 4)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Ornamented Dagger (legacy) (level 8) and yields Ornamented Dagger (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Ornamented Dagger (legacy) (level 8) and yields Ornamented Dagger (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Ornamented Dagger (legacy) (level 12) from Ornamented Dagger (legacy) (level 8)"
 tier = "heroic"
 step = "Level upgrade"
@@ -3286,7 +3290,7 @@ item = "Ornamented Dagger (legacy) (level 8)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Ornamented Dagger (legacy) (level 12) and yields Ornamented Dagger (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Ornamented Dagger (legacy) (level 12) and yields Ornamented Dagger (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Ornamented Dagger (legacy) (level 16) from Ornamented Dagger (legacy) (level 12)"
 tier = "heroic"
 step = "Level upgrade"
@@ -3308,7 +3312,7 @@ item = "Ornamented Dagger (legacy) (level 12)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Ornamented Dagger (legacy) (level 16) and yields Epic Ornamented Dagger (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Ornamented Dagger (legacy) (level 16) and yields Epic Ornamented Dagger (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Ornamented Dagger (legacy) (level 20) from Ornamented Dagger (legacy) (level 16)"
 tier = "epic"
 step = "Level upgrade"
@@ -3330,7 +3334,7 @@ item = "Ornamented Dagger (legacy) (level 16)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Epic Ornamented Dagger (legacy) (level 20) and yields Epic Ornamented Dagger (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Epic Ornamented Dagger (legacy) (level 20) and yields Epic Ornamented Dagger (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Ornamented Dagger (legacy) (level 24) from Epic Ornamented Dagger (legacy) (level 20)"
 tier = "epic"
 step = "Level upgrade"
@@ -3352,7 +3356,7 @@ item = "Epic Ornamented Dagger (legacy) (level 20)"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Ratkiller (legacy) (level 20) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ratkiller (legacy) (level 20) from Tier 1 in place."
 option = "Epic Ratkiller (legacy) (level 20) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -3374,7 +3378,7 @@ ingredient = "Stolen Diamond"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Ratkiller (legacy) (level 20) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ratkiller (legacy) (level 20) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Epic Ratkiller (legacy) (level 20) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3400,7 +3404,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Ratkiller (legacy) (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ratkiller (legacy) (level 24) from Tier 1 in place."
 option = "Epic Ratkiller (legacy) (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -3422,7 +3426,7 @@ ingredient = "Stolen Malachite"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Ratkiller (legacy) (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ratkiller (legacy) (level 24) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Epic Ratkiller (legacy) (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3448,7 +3452,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Ratkiller (legacy) (level 12) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ratkiller (legacy) (level 12) from Tier 1 in place."
 option = "Ratkiller (legacy) (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -3470,7 +3474,7 @@ ingredient = "Stolen Topaz"
 quantity = 40
 
 [[recipe]]
-note = "Upgrades Ratkiller (legacy) (level 12) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ratkiller (legacy) (level 12) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Ratkiller (legacy) (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -3496,7 +3500,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Ratkiller (legacy) (level 16) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ratkiller (legacy) (level 16) from Tier 1 in place."
 option = "Ratkiller (legacy) (level 16) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -3518,7 +3522,7 @@ ingredient = "Stolen Sapphire"
 quantity = 45
 
 [[recipe]]
-note = "Upgrades Ratkiller (legacy) (level 16) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ratkiller (legacy) (level 16) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Ratkiller (legacy) (level 16) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -3544,7 +3548,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Ratkiller (legacy) (level 4) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ratkiller (legacy) (level 4) from Tier 1 in place."
 option = "Ratkiller (legacy) (level 4) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -3566,7 +3570,7 @@ ingredient = "Stolen Alabaster"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Ratkiller (legacy) (level 4) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ratkiller (legacy) (level 4) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Ratkiller (legacy) (level 4) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -3592,7 +3596,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Ratkiller (legacy) (level 8) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ratkiller (legacy) (level 8) from Tier 1 in place."
 option = "Ratkiller (legacy) (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -3614,7 +3618,7 @@ ingredient = "Stolen Amber"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Ratkiller (legacy) (level 8) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Bold Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ratkiller (legacy) (level 8) from Tier 2 in place; also consumes a Greater Bold Trinket."
 option = "Ratkiller (legacy) (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -3640,7 +3644,7 @@ item = "Greater Bold Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Ratkiller (legacy) (level 4) and yields Ratkiller (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Ratkiller (legacy) (level 4) and yields Ratkiller (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Ratkiller (legacy) (level 8) from Ratkiller (legacy) (level 4)"
 tier = "heroic"
 step = "Level upgrade"
@@ -3662,7 +3666,7 @@ item = "Ratkiller (legacy) (level 4)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Ratkiller (legacy) (level 8) and yields Ratkiller (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Ratkiller (legacy) (level 8) and yields Ratkiller (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Ratkiller (legacy) (level 12) from Ratkiller (legacy) (level 8)"
 tier = "heroic"
 step = "Level upgrade"
@@ -3684,7 +3688,7 @@ item = "Ratkiller (legacy) (level 8)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Ratkiller (legacy) (level 12) and yields Ratkiller (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Ratkiller (legacy) (level 12) and yields Ratkiller (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Ratkiller (legacy) (level 16) from Ratkiller (legacy) (level 12)"
 tier = "heroic"
 step = "Level upgrade"
@@ -3706,7 +3710,7 @@ item = "Ratkiller (legacy) (level 12)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Ratkiller (legacy) (level 16) and yields Epic Ratkiller (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Ratkiller (legacy) (level 16) and yields Epic Ratkiller (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Ratkiller (legacy) (level 20) from Ratkiller (legacy) (level 16)"
 tier = "epic"
 step = "Level upgrade"
@@ -3728,7 +3732,7 @@ item = "Ratkiller (legacy) (level 16)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Epic Ratkiller (legacy) (level 20) and yields Epic Ratkiller (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Epic Ratkiller (legacy) (level 20) and yields Epic Ratkiller (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Ratkiller (legacy) (level 24) from Epic Ratkiller (legacy) (level 20)"
 tier = "epic"
 step = "Level upgrade"
@@ -3750,7 +3754,7 @@ item = "Epic Ratkiller (legacy) (level 20)"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Swashbuckler (legacy) (level 4) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Swashbuckler (legacy) (level 4) from Tier 1 in place."
 option = "Swashbuckler (legacy) (level 4) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -3768,7 +3772,7 @@ ingredient = "Stolen Pyrite"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Swashbuckler (legacy) (level 4) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Swashbuckler (legacy) (level 4) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Swashbuckler (legacy) (level 4) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -3790,7 +3794,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Swashbuckler (legacy) (level 8) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Swashbuckler (legacy) (level 8) from Tier 1 in place."
 option = "Swashbuckler (legacy) (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -3808,7 +3812,7 @@ ingredient = "Stolen Obsidian"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Swashbuckler (legacy) (level 8) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Swashbuckler (legacy) (level 8) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Swashbuckler (legacy) (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -3830,7 +3834,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Swashbuckler (legacy) (level 12) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Swashbuckler (legacy) (level 12) from Tier 1 in place."
 option = "Swashbuckler (legacy) (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -3848,7 +3852,7 @@ ingredient = "Stolen Amethyst"
 quantity = 40
 
 [[recipe]]
-note = "Upgrades Swashbuckler (legacy) (level 12) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Swashbuckler (legacy) (level 12) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Swashbuckler (legacy) (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -3870,7 +3874,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Swashbuckler (legacy) (level 16) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Swashbuckler (legacy) (level 16) from Tier 1 in place."
 option = "Swashbuckler (legacy) (level 16) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -3888,7 +3892,7 @@ ingredient = "Stolen Ruby"
 quantity = 45
 
 [[recipe]]
-note = "Upgrades Swashbuckler (legacy) (level 16) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Swashbuckler (legacy) (level 16) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Swashbuckler (legacy) (level 16) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -3910,7 +3914,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Swashbuckler (legacy) (level 20) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Swashbuckler (legacy) (level 20) from Tier 1 in place."
 option = "Epic Swashbuckler (legacy) (level 20) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -3928,7 +3932,7 @@ ingredient = "Stolen Emerald"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Swashbuckler (legacy) (level 20) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Swashbuckler (legacy) (level 20) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Epic Swashbuckler (legacy) (level 20) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3950,7 +3954,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Swashbuckler (legacy) (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Swashbuckler (legacy) (level 24) from Tier 1 in place."
 option = "Epic Swashbuckler (legacy) (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -3968,7 +3972,7 @@ ingredient = "Stolen Opal"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Swashbuckler (legacy) (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Swashbuckler (legacy) (level 24) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Epic Swashbuckler (legacy) (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3990,7 +3994,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Swashbuckler (legacy) (level 4) and yields Swashbuckler (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Swashbuckler (legacy) (level 4) and yields Swashbuckler (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Swashbuckler (legacy) (level 8) from Swashbuckler (legacy) (level 4)"
 tier = "heroic"
 step = "Level upgrade"
@@ -4012,7 +4016,7 @@ item = "Swashbuckler (legacy) (level 4)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Swashbuckler (legacy) (level 8) and yields Swashbuckler (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Swashbuckler (legacy) (level 8) and yields Swashbuckler (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Swashbuckler (legacy) (level 12) from Swashbuckler (legacy) (level 8)"
 tier = "heroic"
 step = "Level upgrade"
@@ -4034,7 +4038,7 @@ item = "Swashbuckler (legacy) (level 8)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Swashbuckler (legacy) (level 12) and yields Swashbuckler (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Swashbuckler (legacy) (level 12) and yields Swashbuckler (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Swashbuckler (legacy) (level 16) from Swashbuckler (legacy) (level 12)"
 tier = "heroic"
 step = "Level upgrade"
@@ -4056,7 +4060,7 @@ item = "Swashbuckler (legacy) (level 12)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Swashbuckler (legacy) (level 16) and yields Epic Swashbuckler (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Swashbuckler (legacy) (level 16) and yields Epic Swashbuckler (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Swashbuckler (legacy) (level 20) from Swashbuckler (legacy) (level 16)"
 tier = "epic"
 step = "Level upgrade"
@@ -4078,7 +4082,7 @@ item = "Swashbuckler (legacy) (level 16)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Epic Swashbuckler (legacy) (level 20) and yields Epic Swashbuckler (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Epic Swashbuckler (legacy) (level 20) and yields Epic Swashbuckler (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Swashbuckler (legacy) (level 24) from Epic Swashbuckler (legacy) (level 20)"
 tier = "epic"
 step = "Level upgrade"
@@ -4100,7 +4104,7 @@ item = "Epic Swashbuckler (legacy) (level 20)"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Duelist's Leathers (legacy) (level 12) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Duelist's Leathers (legacy) (level 12) from Tier 1 in place."
 option = "Duelist's Leathers (legacy) (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -4122,7 +4126,7 @@ ingredient = "Stolen Amethyst"
 quantity = 40
 
 [[recipe]]
-note = "Upgrades Duelist's Leathers (legacy) (level 12) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Duelist's Leathers (legacy) (level 12) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Duelist's Leathers (legacy) (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -4148,7 +4152,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Duelist's Leathers (legacy) (level 16) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Duelist's Leathers (legacy) (level 16) from Tier 1 in place."
 option = "Duelist's Leathers (legacy) (level 16) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -4170,7 +4174,7 @@ ingredient = "Stolen Ruby"
 quantity = 45
 
 [[recipe]]
-note = "Upgrades Duelist's Leathers (legacy) (level 16) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Duelist's Leathers (legacy) (level 16) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Duelist's Leathers (legacy) (level 16) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -4196,7 +4200,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Duelist's Leathers (legacy) (level 4) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Duelist's Leathers (legacy) (level 4) from Tier 1 in place."
 option = "Duelist's Leathers (legacy) (level 4) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -4218,7 +4222,7 @@ ingredient = "Stolen Pyrite"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Duelist's Leathers (legacy) (level 4) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Duelist's Leathers (legacy) (level 4) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Duelist's Leathers (legacy) (level 4) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -4244,7 +4248,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Duelist's Leathers (legacy) (level 8) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Duelist's Leathers (legacy) (level 8) from Tier 1 in place."
 option = "Duelist's Leathers (legacy) (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -4266,7 +4270,7 @@ ingredient = "Stolen Obsidian"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Duelist's Leathers (legacy) (level 8) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Duelist's Leathers (legacy) (level 8) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Duelist's Leathers (legacy) (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -4292,7 +4296,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Duelist's Leathers (legacy) (level 20) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Duelist's Leathers (legacy) (level 20) from Tier 1 in place."
 option = "Epic Duelist's Leathers (legacy) (level 20) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -4314,7 +4318,7 @@ ingredient = "Stolen Emerald"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Duelist's Leathers (legacy) (level 20) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Duelist's Leathers (legacy) (level 20) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Epic Duelist's Leathers (legacy) (level 20) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -4340,7 +4344,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Duelist's Leathers (legacy) (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Duelist's Leathers (legacy) (level 24) from Tier 1 in place."
 option = "Epic Duelist's Leathers (legacy) (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -4362,7 +4366,7 @@ ingredient = "Stolen Opal"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Duelist's Leathers (legacy) (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Duelist's Leathers (legacy) (level 24) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Epic Duelist's Leathers (legacy) (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -4388,7 +4392,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Duelist's Leathers (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Duelist's Leathers (level 24) from Tier 1 in place."
 option = "Epic Duelist's Leathers (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -4410,7 +4414,7 @@ ingredient = "Stolen Opal"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Duelist's Leathers (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Nimble Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Duelist's Leathers (level 24) from Tier 2 in place; also consumes a Greater Nimble Trinket."
 option = "Epic Duelist's Leathers (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -4436,7 +4440,7 @@ item = "Greater Nimble Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Duelist's Leathers (legacy) (level 4) and yields Duelist's Leathers (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Duelist's Leathers (legacy) (level 4) and yields Duelist's Leathers (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Duelist's Leathers (legacy) (level 8) from Duelist's Leathers (legacy) (level 4)"
 tier = "heroic"
 step = "Level upgrade"
@@ -4458,7 +4462,7 @@ item = "Duelist's Leathers (legacy) (level 4)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Duelist's Leathers (legacy) (level 8) and yields Duelist's Leathers (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Duelist's Leathers (legacy) (level 8) and yields Duelist's Leathers (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Duelist's Leathers (legacy) (level 12) from Duelist's Leathers (legacy) (level 8)"
 tier = "heroic"
 step = "Level upgrade"
@@ -4480,7 +4484,7 @@ item = "Duelist's Leathers (legacy) (level 8)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Duelist's Leathers (legacy) (level 12) and yields Duelist's Leathers (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Duelist's Leathers (legacy) (level 12) and yields Duelist's Leathers (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Duelist's Leathers (legacy) (level 16) from Duelist's Leathers (legacy) (level 12)"
 tier = "heroic"
 step = "Level upgrade"
@@ -4502,7 +4506,7 @@ item = "Duelist's Leathers (legacy) (level 12)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Duelist's Leathers (legacy) (level 16) and yields Epic Duelist's Leathers (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Duelist's Leathers (legacy) (level 16) and yields Epic Duelist's Leathers (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Duelist's Leathers (legacy) (level 20) from Duelist's Leathers (legacy) (level 16)"
 tier = "epic"
 step = "Level upgrade"
@@ -4524,7 +4528,7 @@ item = "Duelist's Leathers (legacy) (level 16)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Epic Duelist's Leathers (legacy) (level 20) and yields Epic Duelist's Leathers (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Epic Duelist's Leathers (legacy) (level 20) and yields Epic Duelist's Leathers (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Duelist's Leathers (legacy) (level 24) from Epic Duelist's Leathers (legacy) (level 20)"
 tier = "epic"
 step = "Level upgrade"
@@ -4546,7 +4550,7 @@ item = "Epic Duelist's Leathers (legacy) (level 20)"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Brawling Gloves (legacy) (level 12) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Brawling Gloves (legacy) (level 12) from Tier 1 in place."
 option = "Brawling Gloves (legacy) (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -4568,7 +4572,7 @@ ingredient = "Stolen Topaz"
 quantity = 40
 
 [[recipe]]
-note = "Upgrades Brawling Gloves (legacy) (level 12) from Tier 2 in place (the page lists the Tier 2 item as the consumed item); the Tier 3 trinket is not stated for this line, so no trinket cost is written. Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Brawling Gloves (legacy) (level 12) from Tier 2 in place."
 option = "Brawling Gloves (legacy) (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -4590,7 +4594,7 @@ ingredient = "Stolen Topaz"
 quantity = 60
 
 [[recipe]]
-note = "Upgrades Brawling Gloves (legacy) (level 16) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Brawling Gloves (legacy) (level 16) from Tier 1 in place."
 option = "Brawling Gloves (legacy) (level 16) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -4612,7 +4616,7 @@ ingredient = "Stolen Sapphire"
 quantity = 45
 
 [[recipe]]
-note = "Upgrades Brawling Gloves (legacy) (level 16) from Tier 2 in place (the page lists the Tier 2 item as the consumed item); the Tier 3 trinket is not stated for this line, so no trinket cost is written. Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Brawling Gloves (legacy) (level 16) from Tier 2 in place."
 option = "Brawling Gloves (legacy) (level 16) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -4634,7 +4638,7 @@ ingredient = "Stolen Sapphire"
 quantity = 70
 
 [[recipe]]
-note = "Upgrades Brawling Gloves (legacy) (level 4) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Brawling Gloves (legacy) (level 4) from Tier 1 in place."
 option = "Brawling Gloves (legacy) (level 4) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -4656,7 +4660,7 @@ ingredient = "Stolen Alabaster"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Brawling Gloves (legacy) (level 4) from Tier 2 in place (the page lists the Tier 2 item as the consumed item); the Tier 3 trinket is not stated for this line, so no trinket cost is written. Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Brawling Gloves (legacy) (level 4) from Tier 2 in place."
 option = "Brawling Gloves (legacy) (level 4) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -4678,7 +4682,7 @@ ingredient = "Stolen Alabaster"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Brawling Gloves (legacy) (level 8) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Brawling Gloves (legacy) (level 8) from Tier 1 in place."
 option = "Brawling Gloves (legacy) (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -4700,7 +4704,7 @@ ingredient = "Stolen Amber"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Brawling Gloves (legacy) (level 8) from Tier 2 in place (the page lists the Tier 2 item as the consumed item); the Tier 3 trinket is not stated for this line, so no trinket cost is written. Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Brawling Gloves (legacy) (level 8) from Tier 2 in place."
 option = "Brawling Gloves (legacy) (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -4722,7 +4726,7 @@ ingredient = "Stolen Amber"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Brawling Gloves (legacy) (level 20) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Epic Brawling Gloves (legacy) (level 20) from Tier 1 in place."
 option = "Epic Brawling Gloves (legacy) (level 20) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -4744,7 +4748,7 @@ ingredient = "Stolen Diamond"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Brawling Gloves (legacy) (level 20) from Tier 2 in place (the page lists the Tier 2 item as the consumed item); the Tier 3 trinket is not stated for this line, so no trinket cost is written. Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Epic Brawling Gloves (legacy) (level 20) from Tier 2 in place."
 option = "Epic Brawling Gloves (legacy) (level 20) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -4766,7 +4770,7 @@ ingredient = "Stolen Diamond"
 quantity = 80
 
 [[recipe]]
-note = "Upgrades Epic Brawling Gloves (legacy) (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Epic Brawling Gloves (legacy) (level 24) from Tier 1 in place."
 option = "Epic Brawling Gloves (legacy) (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -4788,7 +4792,7 @@ ingredient = "Stolen Malachite"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Brawling Gloves (legacy) (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item); the Tier 3 trinket is not stated for this line, so no trinket cost is written. Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Epic Brawling Gloves (legacy) (level 24) from Tier 2 in place."
 option = "Epic Brawling Gloves (legacy) (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -4810,7 +4814,7 @@ ingredient = "Stolen Malachite"
 quantity = 90
 
 [[recipe]]
-note = "Upgrades Epic Brawling Gloves (level 20) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Epic Brawling Gloves (level 20) from Tier 1 in place."
 option = "Epic Brawling Gloves (level 20) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -4832,7 +4836,7 @@ ingredient = "Stolen Diamond"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Brawling Gloves (level 20) from Tier 2 in place (the page lists the Tier 2 item as the consumed item); the Tier 3 trinket is not stated for this line, so no trinket cost is written. Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Epic Brawling Gloves (level 20) from Tier 2 in place."
 option = "Epic Brawling Gloves (level 20) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -4854,7 +4858,7 @@ ingredient = "Stolen Diamond"
 quantity = 80
 
 [[recipe]]
-note = "Upgrades Epic Brawling Gloves (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Epic Brawling Gloves (level 24) from Tier 1 in place."
 option = "Epic Brawling Gloves (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -4876,7 +4880,7 @@ ingredient = "Stolen Malachite"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Brawling Gloves (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item); the Tier 3 trinket is not stated for this line, so no trinket cost is written. Costs from structure of the Dusty page's upgrade matrix with the gem pair of the line's own level upgrade table; the line page has no tiered table and Item:Brawling_Gloves_(legacy)_(level_4) lists no tier costs, so the trinket of Tier 3 is not stated and no trinket cost is written."
+note = "Upgrades Epic Brawling Gloves (level 24) from Tier 2 in place."
 option = "Epic Brawling Gloves (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -4898,7 +4902,7 @@ ingredient = "Stolen Malachite"
 quantity = 90
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Brawling Gloves (legacy) (level 4) and yields Brawling Gloves (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Brawling Gloves (legacy) (level 4) and yields Brawling Gloves (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Brawling Gloves (legacy) (level 8) from Brawling Gloves (legacy) (level 4)"
 tier = "heroic"
 step = "Level upgrade"
@@ -4920,7 +4924,7 @@ item = "Brawling Gloves (legacy) (level 4)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Brawling Gloves (legacy) (level 8) and yields Brawling Gloves (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Brawling Gloves (legacy) (level 8) and yields Brawling Gloves (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Brawling Gloves (legacy) (level 12) from Brawling Gloves (legacy) (level 8)"
 tier = "heroic"
 step = "Level upgrade"
@@ -4942,7 +4946,7 @@ item = "Brawling Gloves (legacy) (level 8)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Brawling Gloves (legacy) (level 12) and yields Brawling Gloves (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Brawling Gloves (legacy) (level 12) and yields Brawling Gloves (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Brawling Gloves (legacy) (level 16) from Brawling Gloves (legacy) (level 12)"
 tier = "heroic"
 step = "Level upgrade"
@@ -4964,7 +4968,7 @@ item = "Brawling Gloves (legacy) (level 12)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Brawling Gloves (legacy) (level 16) and yields Epic Brawling Gloves (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Brawling Gloves (legacy) (level 16) and yields Epic Brawling Gloves (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Brawling Gloves (legacy) (level 20) from Brawling Gloves (legacy) (level 16)"
 tier = "epic"
 step = "Level upgrade"
@@ -4986,7 +4990,7 @@ item = "Brawling Gloves (legacy) (level 16)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Epic Brawling Gloves (legacy) (level 20) and yields Epic Brawling Gloves (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Epic Brawling Gloves (legacy) (level 20) and yields Epic Brawling Gloves (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Brawling Gloves (legacy) (level 24) from Epic Brawling Gloves (legacy) (level 20)"
 tier = "epic"
 step = "Level upgrade"
@@ -5008,7 +5012,7 @@ item = "Epic Brawling Gloves (legacy) (level 20)"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Ring of the Buccaneer (legacy) (level 20) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ring of the Buccaneer (legacy) (level 20) from Tier 1 in place."
 option = "Epic Ring of the Buccaneer (legacy) (level 20) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -5030,7 +5034,7 @@ ingredient = "Stolen Diamond"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Ring of the Buccaneer (legacy) (level 20) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Stalwart Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ring of the Buccaneer (legacy) (level 20) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Epic Ring of the Buccaneer (legacy) (level 20) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -5056,7 +5060,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Ring of the Buccaneer (legacy) (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ring of the Buccaneer (legacy) (level 24) from Tier 1 in place."
 option = "Epic Ring of the Buccaneer (legacy) (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -5078,7 +5082,7 @@ ingredient = "Stolen Malachite"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Ring of the Buccaneer (legacy) (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Stalwart Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Epic Ring of the Buccaneer (legacy) (level 24) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Epic Ring of the Buccaneer (legacy) (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -5104,7 +5108,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Ring of the Buccaneer (legacy) (level 12) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ring of the Buccaneer (legacy) (level 12) from Tier 1 in place."
 option = "Ring of the Buccaneer (legacy) (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -5126,7 +5130,7 @@ ingredient = "Stolen Topaz"
 quantity = 40
 
 [[recipe]]
-note = "Upgrades Ring of the Buccaneer (legacy) (level 12) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Stalwart Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ring of the Buccaneer (legacy) (level 12) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Ring of the Buccaneer (legacy) (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -5152,7 +5156,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Ring of the Buccaneer (legacy) (level 16) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ring of the Buccaneer (legacy) (level 16) from Tier 1 in place."
 option = "Ring of the Buccaneer (legacy) (level 16) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -5174,7 +5178,7 @@ ingredient = "Stolen Sapphire"
 quantity = 45
 
 [[recipe]]
-note = "Upgrades Ring of the Buccaneer (legacy) (level 16) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Stalwart Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ring of the Buccaneer (legacy) (level 16) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Ring of the Buccaneer (legacy) (level 16) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -5200,7 +5204,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Ring of the Buccaneer (legacy) (level 4) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ring of the Buccaneer (legacy) (level 4) from Tier 1 in place."
 option = "Ring of the Buccaneer (legacy) (level 4) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -5222,7 +5226,7 @@ ingredient = "Stolen Alabaster"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Ring of the Buccaneer (legacy) (level 4) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Stalwart Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ring of the Buccaneer (legacy) (level 4) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Ring of the Buccaneer (legacy) (level 4) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -5248,7 +5252,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Ring of the Buccaneer (legacy) (level 8) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ring of the Buccaneer (legacy) (level 8) from Tier 1 in place."
 option = "Ring of the Buccaneer (legacy) (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -5270,7 +5274,7 @@ ingredient = "Stolen Amber"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Ring of the Buccaneer (legacy) (level 8) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Stalwart Trinket. Costs from the line page's tiered version table (typed)."
+note = "Upgrades Ring of the Buccaneer (legacy) (level 8) from Tier 2 in place; also consumes a Greater Stalwart Trinket."
 option = "Ring of the Buccaneer (legacy) (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -5296,7 +5300,7 @@ item = "Greater Stalwart Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Ring of the Buccaneer (legacy) (level 4) and yields Ring of the Buccaneer (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Ring of the Buccaneer (legacy) (level 4) and yields Ring of the Buccaneer (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Ring of the Buccaneer (legacy) (level 8) from Ring of the Buccaneer (legacy) (level 4)"
 tier = "heroic"
 step = "Level upgrade"
@@ -5318,7 +5322,7 @@ item = "Ring of the Buccaneer (legacy) (level 4)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Ring of the Buccaneer (legacy) (level 8) and yields Ring of the Buccaneer (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Ring of the Buccaneer (legacy) (level 8) and yields Ring of the Buccaneer (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Ring of the Buccaneer (legacy) (level 12) from Ring of the Buccaneer (legacy) (level 8)"
 tier = "heroic"
 step = "Level upgrade"
@@ -5340,7 +5344,7 @@ item = "Ring of the Buccaneer (legacy) (level 8)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Ring of the Buccaneer (legacy) (level 12) and yields Ring of the Buccaneer (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Ring of the Buccaneer (legacy) (level 12) and yields Ring of the Buccaneer (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Ring of the Buccaneer (legacy) (level 16) from Ring of the Buccaneer (legacy) (level 12)"
 tier = "heroic"
 step = "Level upgrade"
@@ -5362,7 +5366,7 @@ item = "Ring of the Buccaneer (legacy) (level 12)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Ring of the Buccaneer (legacy) (level 16) and yields Epic Ring of the Buccaneer (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Ring of the Buccaneer (legacy) (level 16) and yields Epic Ring of the Buccaneer (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Ring of the Buccaneer (legacy) (level 20) from Ring of the Buccaneer (legacy) (level 16)"
 tier = "epic"
 step = "Level upgrade"
@@ -5384,7 +5388,7 @@ item = "Ring of the Buccaneer (legacy) (level 16)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Epic Ring of the Buccaneer (legacy) (level 20) and yields Epic Ring of the Buccaneer (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Epic Ring of the Buccaneer (legacy) (level 20) and yields Epic Ring of the Buccaneer (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Ring of the Buccaneer (legacy) (level 24) from Epic Ring of the Buccaneer (legacy) (level 20)"
 tier = "epic"
 step = "Level upgrade"
@@ -5406,7 +5410,7 @@ item = "Epic Ring of the Buccaneer (legacy) (level 20)"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Treasure Hunter's Spyglass (legacy) (level 20) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair."
+note = "Upgrades Epic Treasure Hunter's Spyglass (legacy) (level 20) from Tier 1 in place."
 option = "Epic Treasure Hunter's Spyglass (legacy) (level 20) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -5428,7 +5432,7 @@ ingredient = "Stolen Emerald"
 quantity = 50
 
 [[recipe]]
-note = "Upgrades Epic Treasure Hunter's Spyglass (legacy) (level 20) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair."
+note = "Upgrades Epic Treasure Hunter's Spyglass (legacy) (level 20) from Tier 2 in place; also consumes a Greater Cunning Trinket."
 option = "Epic Treasure Hunter's Spyglass (legacy) (level 20) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -5454,7 +5458,7 @@ item = "Greater Cunning Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Epic Treasure Hunter's Spyglass (legacy) (level 24) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair."
+note = "Upgrades Epic Treasure Hunter's Spyglass (legacy) (level 24) from Tier 1 in place."
 option = "Epic Treasure Hunter's Spyglass (legacy) (level 24) Tier 2"
 tier = "epic"
 step = "Tier 2"
@@ -5476,7 +5480,7 @@ ingredient = "Stolen Opal"
 quantity = 55
 
 [[recipe]]
-note = "Upgrades Epic Treasure Hunter's Spyglass (legacy) (level 24) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair."
+note = "Upgrades Epic Treasure Hunter's Spyglass (legacy) (level 24) from Tier 2 in place; also consumes a Greater Cunning Trinket."
 option = "Epic Treasure Hunter's Spyglass (legacy) (level 24) Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -5502,7 +5506,7 @@ item = "Greater Cunning Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 12) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair."
+note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 12) from Tier 1 in place."
 option = "Treasure Hunter's Spyglass (legacy) (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -5524,7 +5528,7 @@ ingredient = "Stolen Amethyst"
 quantity = 40
 
 [[recipe]]
-note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 12) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair."
+note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 12) from Tier 2 in place; also consumes a Greater Cunning Trinket."
 option = "Treasure Hunter's Spyglass (legacy) (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -5550,7 +5554,7 @@ item = "Greater Cunning Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 16) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair."
+note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 16) from Tier 1 in place."
 option = "Treasure Hunter's Spyglass (legacy) (level 16) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -5572,7 +5576,7 @@ ingredient = "Stolen Ruby"
 quantity = 45
 
 [[recipe]]
-note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 16) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair."
+note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 16) from Tier 2 in place; also consumes a Greater Cunning Trinket."
 option = "Treasure Hunter's Spyglass (legacy) (level 16) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -5598,7 +5602,7 @@ item = "Greater Cunning Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 4) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair."
+note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 4) from Tier 1 in place."
 option = "Treasure Hunter's Spyglass (legacy) (level 4) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -5620,7 +5624,7 @@ ingredient = "Stolen Pyrite"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 4) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair."
+note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 4) from Tier 2 in place; also consumes a Greater Cunning Trinket."
 option = "Treasure Hunter's Spyglass (legacy) (level 4) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -5646,7 +5650,7 @@ item = "Greater Cunning Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 8) from Tier 1 in place (the page lists the Tier 1 item as the consumed item). Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair."
+note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 8) from Tier 1 in place."
 option = "Treasure Hunter's Spyglass (legacy) (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -5668,7 +5672,7 @@ ingredient = "Stolen Obsidian"
 quantity = 30
 
 [[recipe]]
-note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 8) from Tier 2 in place (the page lists the Tier 2 item as the consumed item) and a Greater Cunning Trinket. Costs from Tips on each legacy item page (levels 4 to 16, with the tier 2 and tier 3 costs and the Greater Cunning Trinket); levels 20 and 24 by the Dusty matrix structure with the line's gem pair."
+note = "Upgrades Treasure Hunter's Spyglass (legacy) (level 8) from Tier 2 in place; also consumes a Greater Cunning Trinket."
 option = "Treasure Hunter's Spyglass (legacy) (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -5694,7 +5698,7 @@ item = "Greater Cunning Trinket"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Treasure Hunter's Spyglass (legacy) (level 4) and yields Treasure Hunter's Spyglass (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Treasure Hunter's Spyglass (legacy) (level 4) and yields Treasure Hunter's Spyglass (legacy) (level 8) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Treasure Hunter's Spyglass (legacy) (level 8) from Treasure Hunter's Spyglass (legacy) (level 4)"
 tier = "heroic"
 step = "Level upgrade"
@@ -5716,7 +5720,7 @@ item = "Treasure Hunter's Spyglass (legacy) (level 4)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Treasure Hunter's Spyglass (legacy) (level 8) and yields Treasure Hunter's Spyglass (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Treasure Hunter's Spyglass (legacy) (level 8) and yields Treasure Hunter's Spyglass (legacy) (level 12) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Treasure Hunter's Spyglass (legacy) (level 12) from Treasure Hunter's Spyglass (legacy) (level 8)"
 tier = "heroic"
 step = "Level upgrade"
@@ -5738,7 +5742,7 @@ item = "Treasure Hunter's Spyglass (legacy) (level 8)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Treasure Hunter's Spyglass (legacy) (level 12) and yields Treasure Hunter's Spyglass (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Treasure Hunter's Spyglass (legacy) (level 12) and yields Treasure Hunter's Spyglass (legacy) (level 16) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Treasure Hunter's Spyglass (legacy) (level 16) from Treasure Hunter's Spyglass (legacy) (level 12)"
 tier = "heroic"
 step = "Level upgrade"
@@ -5760,7 +5764,7 @@ item = "Treasure Hunter's Spyglass (legacy) (level 12)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Treasure Hunter's Spyglass (legacy) (level 16) and yields Epic Treasure Hunter's Spyglass (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Treasure Hunter's Spyglass (legacy) (level 16) and yields Epic Treasure Hunter's Spyglass (legacy) (level 20) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Treasure Hunter's Spyglass (legacy) (level 20) from Treasure Hunter's Spyglass (legacy) (level 16)"
 tier = "epic"
 step = "Level upgrade"
@@ -5782,7 +5786,7 @@ item = "Treasure Hunter's Spyglass (legacy) (level 16)"
 quantity = 1
 
 [[recipe]]
-note = "Inter-level upgrade recipe of the line page's table: consumes Epic Treasure Hunter's Spyglass (legacy) (level 20) and yields Epic Treasure Hunter's Spyglass (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
+note = "Level upgrade: consumes Epic Treasure Hunter's Spyglass (legacy) (level 20) and yields Epic Treasure Hunter's Spyglass (legacy) (level 24) at Tier 1 (a level upgrade only gives the base version). The gem is the line's own initial-buy gem of the target level."
 option = "Epic Treasure Hunter's Spyglass (legacy) (level 24) from Epic Treasure Hunter's Spyglass (legacy) (level 20)"
 tier = "epic"
 step = "Level upgrade"
@@ -5804,7 +5808,7 @@ item = "Epic Treasure Hunter's Spyglass (legacy) (level 20)"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Glass Cannon (legacy) (tier 1) to Tier 2. The tiers are separate items. Costs from the Glass Cannon table: columns are headed Gold, Silver, Dragonshards, Gems, Item and the row cells follow that order (Tier 2 and 3: 750 in the Gold column, 800 or 1,000 in the Dragonshards column); the Tier 3 row lists only the Tier 2 item, no trinket."
+note = "Upgrades Glass Cannon (legacy) (tier 1) to Tier 2. The tiers are separate items. Tier 3 consumes only the Tier 2 item, no trinket."
 option = "Glass Cannon (legacy) (tier 2)"
 tier = "epic"
 step = "Tier 2"
@@ -5830,7 +5834,7 @@ item = "Glass Cannon (legacy) (tier 1)"
 quantity = 1
 
 [[recipe]]
-note = "Upgrades Glass Cannon (legacy) (tier 2) to Tier 3. The tiers are separate items. Costs from the Glass Cannon table: columns are headed Gold, Silver, Dragonshards, Gems, Item and the row cells follow that order (Tier 2 and 3: 750 in the Gold column, 800 or 1,000 in the Dragonshards column); the Tier 3 row lists only the Tier 2 item, no trinket."
+note = "Upgrades Glass Cannon (legacy) (tier 2) to Tier 3. The tiers are separate items. Tier 3 consumes only the Tier 2 item, no trinket."
 option = "Glass Cannon (legacy) (tier 3)"
 tier = "epic"
 step = "Tier 3"

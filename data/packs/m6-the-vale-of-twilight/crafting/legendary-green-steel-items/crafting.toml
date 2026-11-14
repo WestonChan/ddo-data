@@ -98,7 +98,7 @@ Makes Immortal's Heart."""
 [[unlock]]
 kind = "level"
 value = 26
-text = """Main page body: "Legendary Green Steel (abbreviated LGS) is a crafting system introduced in Update 29. Minimum level 26." The page does not say whether 26 gates the altars or the crafted items' minimum level (verification request)."""
+text = "Minimum level 26."
 
 [[step]]
 name = "Green Steel Tier 1 Equipment Slot"
@@ -130,291 +130,6 @@ slot = "crafting: greensteel weapon active"
 
 [[family]]
 family = "Greensteel_Legendary"
-
-[[ingredient]]
-name = "Codex Rune"
-bind = "Bound to Account"
-drop_location = "To Curse the Sky and Creeping Death end chests; The Codex and the Shroud part 5 chests"
-tier = "legendary"
-
-[[ingredient]]
-name = "Immortal's Heart"
-bind = "Bound to Account"
-drop_location = "Purchased at the Legendary Altar of Devastation for 2,500 Codex Runes"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Small Glowing Arrowhead"
-bind = "Bound to Account"
-drop_location = "To Curse the Sky and Creeping Death end chests; The Codex and the Shroud part 1, 2, 3 and 5 chests; Tempest Rune and Xorian Rune trade-in; DDO Store (75 each)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Small Gnawed Bone"
-bind = "Bound to Account"
-drop_location = "To Curse the Sky and Creeping Death end chests; The Codex and the Shroud part 1, 2, 3 and 5 chests; Tempest Rune and Xorian Rune trade-in; DDO Store (75 each)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Small Length of Infernal Chain"
-bind = "Bound to Account"
-drop_location = "To Curse the Sky and Creeping Death end chests; The Codex and the Shroud part 1, 2, 3 and 5 chests; Tempest Rune and Xorian Rune trade-in; DDO Store (75 each)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Small Devil Scales"
-bind = "Bound to Account"
-drop_location = "To Curse the Sky and Creeping Death end chests; The Codex and the Shroud part 1, 2, 3 and 5 chests; Tempest Rune and Xorian Rune trade-in; DDO Store (75 each)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Small Twisted Shrapnel"
-bind = "Bound to Account"
-drop_location = "To Curse the Sky and Creeping Death end chests; The Codex and the Shroud part 1, 2, 3 and 5 chests; Tempest Rune and Xorian Rune trade-in; DDO Store (75 each)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Small Sulfurous Stone"
-bind = "Bound to Account"
-drop_location = "To Curse the Sky and Creeping Death end chests; The Codex and the Shroud part 1, 2, 3 and 5 chests; Tempest Rune and Xorian Rune trade-in; DDO Store (75 each)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Medium Glowing Arrowhead"
-bind = "Bound to Account"
-drop_location = "To Curse the Sky and Creeping Death end chests; The Codex and the Shroud part 3, 4 and 5 chests; Tempest Rune and Xorian Rune trade-in; DDO Store (95 each)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Medium Gnawed Bone"
-bind = "Bound to Account"
-drop_location = "To Curse the Sky and Creeping Death end chests; The Codex and the Shroud part 3, 4 and 5 chests; Tempest Rune and Xorian Rune trade-in; DDO Store (95 each)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Medium Length of Infernal Chain"
-bind = "Bound to Account"
-drop_location = "To Curse the Sky and Creeping Death end chests; The Codex and the Shroud part 3, 4 and 5 chests; Tempest Rune and Xorian Rune trade-in; DDO Store (95 each)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Medium Devil Scales"
-bind = "Bound to Account"
-drop_location = "To Curse the Sky and Creeping Death end chests; The Codex and the Shroud part 3, 4 and 5 chests; Tempest Rune and Xorian Rune trade-in; DDO Store (95 each)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Medium Twisted Shrapnel"
-bind = "Bound to Account"
-drop_location = "To Curse the Sky and Creeping Death end chests; The Codex and the Shroud part 3, 4 and 5 chests; Tempest Rune and Xorian Rune trade-in; DDO Store (95 each)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Medium Sulfurous Stone"
-bind = "Bound to Account"
-drop_location = "To Curse the Sky and Creeping Death end chests; The Codex and the Shroud part 3, 4 and 5 chests; Tempest Rune and Xorian Rune trade-in; DDO Store (95 each)"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Large Glowing Arrowhead"
-bind = "Bound to Account"
-drop_location = "Legendary Shroud part 5 end chest"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Large Gnawed Bone"
-bind = "Bound to Account"
-drop_location = "Legendary Shroud part 5 end chest"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Large Length of Infernal Chain"
-bind = "Bound to Account"
-drop_location = "Legendary Shroud part 5 end chest"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Large Devil Scales"
-bind = "Bound to Account"
-drop_location = "Legendary Shroud part 5 end chest"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Large Twisted Shrapnel"
-bind = "Bound to Account"
-drop_location = "Legendary Shroud part 5 end chest"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Large Sulfurous Stone"
-bind = "Bound to Account"
-drop_location = "Legendary Shroud part 5 end chest"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Inferior Focus of Air"
-drop_location = "Made at the Legendary Altar of Invasion"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Inferior Focus of Earth"
-drop_location = "Made at the Legendary Altar of Invasion"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Inferior Focus of Fire"
-drop_location = "Made at the Legendary Altar of Invasion"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Inferior Focus of Water"
-drop_location = "Made at the Legendary Altar of Invasion"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Inferior Focus of Negative Energy"
-drop_location = "Made at the Legendary Altar of Invasion"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Inferior Focus of Positive Energy"
-drop_location = "Made at the Legendary Altar of Invasion"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Cloudy Gem of Dominion"
-drop_location = "Made at the Legendary Altar of Invasion"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Cloudy Gem of Escalation"
-drop_location = "Made at the Legendary Altar of Invasion"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Cloudy Gem of Opposition"
-drop_location = "Made at the Legendary Altar of Invasion"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Diluted Ethereal Essence"
-drop_location = "Made at the Legendary Altar of Invasion"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Diluted Material Essence"
-drop_location = "Made at the Legendary Altar of Invasion"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Focus of Air"
-drop_location = "Made at the Legendary Altar of Subjugation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Focus of Earth"
-drop_location = "Made at the Legendary Altar of Subjugation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Focus of Fire"
-drop_location = "Made at the Legendary Altar of Subjugation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Focus of Water"
-drop_location = "Made at the Legendary Altar of Subjugation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Focus of Negative Energy"
-drop_location = "Made at the Legendary Altar of Subjugation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Focus of Positive Energy"
-drop_location = "Made at the Legendary Altar of Subjugation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Gem of Dominion"
-drop_location = "Made at the Legendary Altar of Subjugation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Gem of Escalation"
-drop_location = "Made at the Legendary Altar of Subjugation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Gem of Opposition"
-drop_location = "Made at the Legendary Altar of Subjugation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Ethereal Essence"
-drop_location = "Made at the Legendary Altar of Subjugation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Material Essence"
-drop_location = "Made at the Legendary Altar of Subjugation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Superior Focus of Air"
-drop_location = "Made at the Legendary Altar of Devastation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Superior Focus of Earth"
-drop_location = "Made at the Legendary Altar of Devastation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Superior Focus of Fire"
-drop_location = "Made at the Legendary Altar of Devastation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Superior Focus of Water"
-drop_location = "Made at the Legendary Altar of Devastation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Superior Focus of Negative Energy"
-drop_location = "Made at the Legendary Altar of Devastation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Superior Focus of Positive Energy"
-drop_location = "Made at the Legendary Altar of Devastation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Flawless Gem of Dominion"
-drop_location = "Made at the Legendary Altar of Devastation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Flawless Gem of Escalation"
-drop_location = "Made at the Legendary Altar of Devastation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Flawless Gem of Opposition"
-drop_location = "Made at the Legendary Altar of Devastation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Pure Ethereal Essence"
-drop_location = "Made at the Legendary Altar of Devastation"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Pure Material Essence"
-drop_location = "Made at the Legendary Altar of Devastation"
-tier = "legendary"
 
 [[citation]]
 url = "https://ddowiki.com/page/Legendary_Green_Steel_items"
@@ -500,6 +215,7 @@ Altar of Fecundity: 100 Codex Runes and 100 Commendations of Valor per blank; 48
 field = "unlock"
 url = "https://ddowiki.com/page/Legendary_Green_Steel_items"
 read = "2026-11-04"
+note = """Main page body: "Legendary Green Steel (abbreviated LGS) is a crafting system introduced in Update 29. Minimum level 26." The page does not say whether 26 gates the altars or is the crafted items' minimum level."""
 
 [[citation]]
 field = "step"
@@ -539,7 +255,7 @@ note = "Active page, whole: 40 clicky augment recipes (ingredients with counts, 
 
 [[recipe]]
 note = """
-Recipes read from the sub-pages Legendary_Green_Steel_items/Tier_1, Legendary_Green_Steel_items/Tier_2, Legendary_Green_Steel_items/Tier_3 and Legendary_Green_Steel_items/Active; ingredients and the blank and Immortal's Heart costs from the main page. Altar of Fecundity: crafts any Legendary Green Steel base item (weapons, and belt, bracers, goggles, helm, necklace, weave boots, cloak and gloves); an item rather than an augment, Bound to Character on Acquire.
+Altar of Fecundity: crafts any Legendary Green Steel base item (weapons, and belt, bracers, goggles, helm, necklace, weave boots, cloak and gloves); an item rather than an augment, Bound to Character on Acquire.
 
 Altar of Fecundity: 100 Codex Runes and 100 Commendations of Valor per blank; 48 base items (weapons all 4.2[W], plus Belt, Bracers, Goggles, Helm, Necklace, Weave Boots, Weave Cloak and Weave Gloves; no armor, shield, orb or rune arm); Bound to Character on Acquire."""
 option = "Legendary Green Steel blank"
@@ -554,6 +270,7 @@ ingredient = "Commendation of Valor"
 quantity = 100
 
 [[recipe]]
+yields_ingredient = "Immortal's Heart"
 note = """
 Purchased at the Legendary Altar of Devastation; fills an item's Fangs of Shavarath slot to cleanse the Legendary Taint of Shavarath. No augment counterpart.
 

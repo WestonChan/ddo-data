@@ -26,51 +26,6 @@ Makes Legendary Mark of Sheshka."""
 [[step]]
 name = "Item upgrade"
 
-[[ingredient]]
-name = "Mark of Rhesh Turakbar"
-drop_location = "In-quest chests: Assault on Summerfield; or 25 Astral Shards in the device UI"
-tier = "heroic"
-
-[[ingredient]]
-name = "Mark of Bal Molesh"
-drop_location = "In-quest chests: Undermine and Siegebreaker; also Commander Darmon Kosh's end reward list for the whole Attack on Stormreach chain (not guaranteed, guaranteed every 3 completions); or 25 Astral Shards in the device UI"
-tier = "heroic"
-
-[[ingredient]]
-name = "Mark of Tzaryan Rrac"
-drop_location = "In-quest chests: Siegebreaker; or 25 Astral Shards in the device UI"
-tier = "heroic"
-
-[[ingredient]]
-name = "Mark of Sheshka"
-drop_location = "In-quest chests: Blockade Buster; or 25 Astral Shards in the device UI"
-tier = "heroic"
-
-[[ingredient]]
-name = "Legendary Mark of Rhesh Turakbar"
-drop_location = "In-quest chests: Assault on Summerfield; or 25 Astral Shards in the device UI"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Mark of Bal Molesh"
-drop_location = "In-quest chests: Undermine and Siegebreaker; also Commander Darmon Kosh's end reward list for the whole Attack on Stormreach chain (not guaranteed, guaranteed every 3 completions); or 25 Astral Shards in the device UI"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Mark of Tzaryan Rrac"
-drop_location = "In-quest chests: Siegebreaker; or 25 Astral Shards in the device UI"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Mark of Sheshka"
-drop_location = "In-quest chests: Blockade Buster; or 25 Astral Shards in the device UI"
-tier = "legendary"
-
-[[ingredient]]
-name = "Mark of Rhesh Turakbar"
-drop_location = "Named without the Legendary prefix as the second mark of Legendary Crippling Fury Shortsword in the page's recipe table; every other legendary row uses Legendary Marks, so this may be a wiki typo"
-tier = "legendary"
-
 [[citation]]
 url = "https://ddowiki.com/page/Cauldron_of_Sora_Katra"
 read = "2026-11-04"
@@ -206,7 +161,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Mark of Rhesh Turakbar"
 quantity = 1
-tier = "heroic"
 
 [[recipe]]
 note = "Fusible upgrade: Blade of Fury gains the effect of the Malleable Hooked Blade (adds Maiming) and becomes Maiming Fury Shortsword. With two Marks the Blade of Fury splits into two shortswords instead of one greatsword. The result is a separate item in Maetrim's data; no augment counterpart."
@@ -381,7 +335,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Mark of Rhesh Turakbar"
 quantity = 1
-tier = "heroic"
 
 [[recipe]]
 note = "Malleable upgrade: Gnollish War Bow gains the effect of the Fusible Rocksplitter (adds Destructive (Destruction)) and becomes Destructive War Bow. The result is a separate item in Maetrim's data; no augment counterpart."
@@ -454,7 +407,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Mark of Rhesh Turakbar"
 quantity = 1
-tier = "heroic"
 
 [[recipe]]
 note = "Malleable upgrade: Hooked Blade gains the effect of the Fusible Rocksplitter (adds Destructive (Destruction)) and becomes Destructive Hooked Blade. The result is a separate item in Maetrim's data; no augment counterpart."
@@ -527,7 +479,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Mark of Rhesh Turakbar"
 quantity = 1
-tier = "heroic"
 
 [[recipe]]
 note = "Malleable upgrade: Ogrish War Axe gains the effect of the Fusible Rocksplitter (adds Destructive (Destruction)) and becomes Destructive War Axe. The result is a separate item in Maetrim's data; no augment counterpart."
@@ -582,7 +533,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Mark of Rhesh Turakbar"
 quantity = 1
-tier = "heroic"
 
 [[recipe]]
 note = "Fusible upgrade: Rocksplitter gains the effect of the Malleable Hooked Blade (adds Maiming) and becomes Maiming Rocksplitter. The result is a separate item in Maetrim's data; no augment counterpart."
@@ -601,7 +551,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Mark of Rhesh Turakbar"
 quantity = 1
-tier = "heroic"
 
 [[recipe]]
 note = "Fusible upgrade: Rocksplitter gains the effect of the Malleable Ogrish War Axe (adds Vengeful) and becomes Vengeful Rocksplitter. The result is a separate item in Maetrim's data; no augment counterpart."
@@ -620,7 +569,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Mark of Rhesh Turakbar"
 quantity = 1
-tier = "heroic"
 
 [[recipe]]
 note = "Fusible upgrade: Rocksplitter gains the effect of the Malleable Staff of the Shadow (adds Lesser Vampirism) and becomes Vampiric Rocksplitter. The result is a separate item in Maetrim's data; no augment counterpart."
@@ -639,7 +587,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Mark of Rhesh Turakbar"
 quantity = 1
-tier = "heroic"
 
 [[recipe]]
 note = "Malleable upgrade: Staff of the Shadow gains the effect of the Fusible Blade of Fury (adds Infectious (Demon Fever)) and becomes Infectious Shadow Staff. The result is a separate item in Maetrim's data; no augment counterpart."
@@ -676,7 +623,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Mark of Rhesh Turakbar"
 quantity = 1
-tier = "heroic"
 
 [[recipe]]
 note = "Malleable upgrade: Staff of the Shadow gains the effect of the Fusible Rocksplitter (adds Destructive (Destruction)) and becomes Destructive Shadow Staff. The result is a separate item in Maetrim's data; no augment counterpart."
@@ -853,7 +799,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Mark of Rhesh Turakbar"
 quantity = 1
-tier = "heroic"
 
 [[recipe.ingredient]]
 ingredient = "Mark of Bal Molesh"
@@ -1000,7 +945,6 @@ quantity = 1
 [[recipe.ingredient]]
 ingredient = "Mark of Rhesh Turakbar"
 quantity = 1
-tier = "legendary"
 
 [[recipe]]
 note = "Fusible upgrade: Legendary Blade of Fury gains the effect of the Malleable Legendary Hooked Blade (adds Maiming) and becomes Legendary Maiming Fury Shortsword. With two Marks the Blade of Fury splits into two shortswords instead of one greatsword. The result is a separate item in Maetrim's data; no augment counterpart."

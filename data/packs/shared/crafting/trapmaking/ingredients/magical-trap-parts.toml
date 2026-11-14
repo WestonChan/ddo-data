@@ -1,0 +1,4 @@
+name = "Magical Trap Parts"
+tier = "any"
+drop_location = "From disabled Control Panels of poison and spell traps; needs the Trapmaking feat"
+citation = []

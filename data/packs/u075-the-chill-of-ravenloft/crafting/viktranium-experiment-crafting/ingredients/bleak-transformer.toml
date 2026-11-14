@@ -1,0 +1,5 @@
+name = "Bleak Transformer"
+tier = "heroic"
+bind = "Bound to Account on Acquire"
+drop_location = "The raid and special wilderness encounters"
+citation = []

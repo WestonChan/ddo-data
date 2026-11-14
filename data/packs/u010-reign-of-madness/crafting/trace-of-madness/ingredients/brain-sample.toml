@@ -1,0 +1,5 @@
+name = "Brain Sample"
+tier = "any"
+bind = "Bound to Account"
+drop_location = "Any appropriate Reign of Madness enemy (Update 10); added to the ingredient bag automatically when you or a party member kills it"
+citation = []

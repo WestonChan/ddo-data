@@ -1,0 +1,5 @@
+name = "Legendary Bleak Memento"
+tier = "legendary"
+bind = "Bound to Account on Acquire"
+drop_location = "The raid Relentless only; Legendary only"
+citation = []

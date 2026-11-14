@@ -4,7 +4,7 @@ page = "https://ddowiki.com/page/Zhentarim_Attuned"
 
 [[station]]
 name = "Zhentarim Improvement"
-note = "Opened by double-clicking a Black Stone in the inventory; the page says double-clicking a Black Stone previews the available upgrades"
+note = "Opened by double-clicking a Black Stone in the inventory, which previews the available upgrades"
 
 [[step]]
 name = "Zhentarim Attuned"
@@ -14,12 +14,6 @@ slot = "crafting: zhentarim attuned"
 tier = "epic"
 ingredient = "Black Stone"
 quantity = 150
-
-[[ingredient]]
-name = "Black Stone"
-bind = "Unbound"
-drop_location = "The Haunted Halls of Eveningstar chests; stores in an ingredients bag"
-tier = "epic"
 
 [[citation]]
 url = "https://ddowiki.com/page/Zhentarim_Attuned"

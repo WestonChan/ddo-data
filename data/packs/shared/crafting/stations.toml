@@ -15,7 +15,7 @@ place = "On the ship in Smuggler's Rest, to the right of Euphonia Teles and her 
 
 [[row.unlock]]
 kind = "other"
-text = "Available only while the Treasure of Crystal Cove event is active (the page: the hat box is located on the ship in the Smuggler's Rest 'while the event is active'). The page states no level, favor, quest or key."
+text = "Available only while the Treasure of Crystal Cove event is active; the hat box is on the ship in the Smuggler's Rest."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Euphonia%27s_Hat_Box"
@@ -26,6 +26,7 @@ note = "The page calls it one of the crafting interfaces that appear similar to 
 field = "unlock"
 url = "https://ddowiki.com/page/Euphonia%27s_Hat_Box"
 read = "2026-11-12"
+note = "The page: the hat box is located on the ship in the Smuggler's Rest 'while the event is active'. The page states no level, favor, quest or key."
 
 [[row]]
 name = "Altar of Devastation"
@@ -36,7 +37,7 @@ place = "Guild Airship Green Steel Crafting Hall"
 [[row.unlock]]
 kind = "guild_amenity"
 value = 40
-text = """Guild level 40: the Green Steel Crafting Hall (State Room, 200,000 platinum) holds the Altars of Fecundity, Invasion, Subjugation and Devastation. The level 70 (Gold Seal 56) on this altar's own page belongs to the older per-altar contract, which the Guild Airship page marks "Obsoleted post-U22 by Green Steel Crafting Hall"."""
+text = "Guild level 40: the Green Steel Crafting Hall (State Room, 200,000 platinum) holds the Altars of Fecundity, Invasion, Subjugation and Devastation."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Altar_of_Devastation"
@@ -46,6 +47,7 @@ read = "2026-11-04"
 field = "unlock"
 url = "https://ddowiki.com/page/Guild_Airship"
 read = "2026-11-04"
+note = 'The level 70 (Gold Seal 56) on the Altar of Devastation page belongs to the older per-altar contract, which the Guild Airship page marks "Obsoleted post-U22 by Green Steel Crafting Hall".'
 
 [[row]]
 name = "Altar of Devastation"
@@ -144,7 +146,7 @@ text = "One of the 5 prerequisite Vale quests; its end chest gives a Shavarath S
 
 [[row.unlock]]
 kind = "other"
-text = "Valairea Satnarine's quest Eldritch Device Tutorial opens access to the Altar of Fecundity; 'Eldritch Device Tutorial' is not a quest in the survey data"
+text = "Valairea Satnarine's quest Eldritch Device Tutorial opens access to the Altar of Fecundity"
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Altar_of_Fecundity"
@@ -164,6 +166,7 @@ read = "2026-11-04"
 field = "unlock"
 url = "https://ddowiki.com/page/Green_Steel_item_crafting_steps"
 read = "2026-11-04"
+note = "'Eldritch Device Tutorial' is not a quest in our data, so the unlock is kind other with no quest link."
 
 [[row]]
 name = "Altar of Insanity"
@@ -183,7 +186,7 @@ place = "Guild Airship Green Steel Crafting Hall (includes all of the altars)"
 [[row.unlock]]
 kind = "guild_amenity"
 value = 40
-text = """Guild level 40: the Green Steel Crafting Hall (State Room, 200,000 platinum) holds the Altars of Fecundity, Invasion, Subjugation and Devastation. The level 50 (Gold Seal 40) on this altar's own page belongs to the older per-altar contract, which the Guild Airship page marks "Obsoleted post-U22 by Green Steel Crafting Hall"."""
+text = "Guild level 40: the Green Steel Crafting Hall (State Room, 200,000 platinum) holds the Altars of Fecundity, Invasion, Subjugation and Devastation."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Altar_of_Invasion"
@@ -193,6 +196,7 @@ read = "2026-11-04"
 field = "unlock"
 url = "https://ddowiki.com/page/Guild_Airship"
 read = "2026-11-04"
+note = 'The level 50 (Gold Seal 40) on the Altar of Invasion page belongs to the older per-altar contract, which the Guild Airship page marks "Obsoleted post-U22 by Green Steel Crafting Hall".'
 
 [[row]]
 name = "Altar of Invasion"
@@ -247,7 +251,7 @@ place = "Devil Battlefield, to the east of the zone-in point"
 [[row.unlock]]
 kind = "pack"
 pack = "The Devils of Shavarath"
-text = "Access to the Devils of Shavarath adventure pack"
+text = "Requires access to adventure pack: The Devils of Shavarath"
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Altar_of_Subjugation"
@@ -272,7 +276,7 @@ place = "Guild Airship Green Steel Crafting Hall"
 [[row.unlock]]
 kind = "guild_amenity"
 value = 40
-text = """Guild level 40: the Green Steel Crafting Hall (State Room, 200,000 platinum) holds the Altars of Fecundity, Invasion, Subjugation and Devastation. The level 60 (Gold Seal 48) on this altar's own page belongs to the older per-altar contract, which the Guild Airship page marks "Obsoleted post-U22 by Green Steel Crafting Hall"."""
+text = "Guild level 40: the Green Steel Crafting Hall (State Room, 200,000 platinum) holds the Altars of Fecundity, Invasion, Subjugation and Devastation."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Altar_of_Subjugation"
@@ -282,6 +286,7 @@ read = "2026-11-04"
 field = "unlock"
 url = "https://ddowiki.com/page/Guild_Airship"
 read = "2026-11-04"
+note = 'The level 60 (Gold Seal 48) on the Altar of Subjugation page belongs to the older per-altar contract, which the Guild Airship page marks "Obsoleted post-U22 by Green Steel Crafting Hall".'
 
 [[row]]
 name = "Altar of Subjugation"
@@ -518,7 +523,7 @@ text = "Gold Seal airship: guild level 24; Large amenity; Cost (AS) 30"
 [[row.unlock]]
 kind = "guild_amenity"
 value = 30
-text = "Standard airship: guild level 30; Large amenity; Cost (PP) 492.9. The Trapmaking page states it as guild level 30 (24 Gold Seal)."
+text = "Standard airship: guild level 30; Large amenity; Cost (PP) 492.9"
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Device_Workstation"
@@ -533,6 +538,7 @@ read = "2026-11-04"
 field = "unlock"
 url = "https://ddowiki.com/page/Guild_Airship"
 read = "2026-11-04"
+note = "The Trapmaking page states it as guild level 30 (24 Gold Seal), agreeing with the Guild Airship table."
 
 [[row]]
 name = "Device Workstation"
@@ -628,7 +634,7 @@ place = "Rook's Gambit tavern, Smuggler's Rest, hidden behind barrels in a corne
 
 [[row.unlock]]
 kind = "other"
-text = "Accessible during the Treasure of Crystal Cove event. The page states no level, favor, quest or key."
+text = "Accessible during the Treasure of Crystal Cove event."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
@@ -639,6 +645,7 @@ note = "The page calls it Dusty Old Treasure and the chest; the Flask note says 
 field = "unlock"
 url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
 read = "2026-11-04"
+note = "The page states no level, favor, quest or key."
 
 [[row]]
 name = "Esoteric Table"
@@ -740,11 +747,11 @@ place = "Essence Crafting Hall amenity on a Guild Airship"
 [[row.unlock]]
 kind = "guild_amenity"
 value = 41
-text = "Guild Airship page, amenity table: Cannith Crafting Hall, State Room, guild level 41, cost 125 Astral Shards (no platinum cost). Its description lists the Item Deconstructor, the four Crafting Devices (bound and unbound shards, bound and unbound items) and Jannice d'Cannith (Cannith crafting vendor). The Crafting Hall page says an airship can purchase and install the Essence Crafting amenity."
+text = "Guild level 41: the Cannith Crafting Hall (State Room, 125 Astral Shards, no platinum cost) holds the Item Deconstructor, the four Crafting Devices (bound and unbound shards, bound and unbound items) and Jannice d'Cannith (Cannith crafting vendor)."
 
 [[row.unlock]]
 kind = "other"
-text = "Only Guild members, or those in their Party who they invite to the ship, have access to these facilities (the Crafting Hall page, on the amenity)."
+text = "Only Guild members, or those in their Party who they invite to the ship, have access to these facilities."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Crafting_Hall"
@@ -755,6 +762,7 @@ note = "The Essence Crafting page, Steps: craft all the shards onto the item 'at
 field = "unlock"
 url = "https://ddowiki.com/page/Guild_Airship"
 read = "2026-11-12"
+note = "Guild Airship page, amenity table: Cannith Crafting Hall, State Room, guild level 41, cost 125 Astral Shards (no platinum cost). The Crafting Hall page says an airship can purchase and install the Essence Crafting amenity."
 
 [[row.citation]]
 field = "unlock"
@@ -803,11 +811,11 @@ place = "Essence Crafting Hall amenity on a Guild Airship"
 [[row.unlock]]
 kind = "guild_amenity"
 value = 41
-text = "Guild Airship page, amenity table: Cannith Crafting Hall, State Room, guild level 41, cost 125 Astral Shards (no platinum cost). Its description lists the Item Deconstructor, the four Crafting Devices (bound and unbound shards, bound and unbound items) and Jannice d'Cannith (Cannith crafting vendor). The Crafting Hall page says an airship can purchase and install the Essence Crafting amenity."
+text = "Guild level 41: the Cannith Crafting Hall (State Room, 125 Astral Shards, no platinum cost) holds the Item Deconstructor, the four Crafting Devices (bound and unbound shards, bound and unbound items) and Jannice d'Cannith (Cannith crafting vendor)."
 
 [[row.unlock]]
 kind = "other"
-text = "Only Guild members, or those in their Party who they invite to the ship, have access to these facilities (the Crafting Hall page, on the amenity)."
+text = "Only Guild members, or those in their Party who they invite to the ship, have access to these facilities."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Crafting_Hall"
@@ -818,6 +826,7 @@ note = "The Essence Crafting page, Steps: disjunct an item 'at the Item Deconstr
 field = "unlock"
 url = "https://ddowiki.com/page/Guild_Airship"
 read = "2026-11-12"
+note = "Guild Airship page, amenity table: Cannith Crafting Hall, State Room, guild level 41, cost 125 Astral Shards (no platinum cost). The Crafting Hall page says an airship can purchase and install the Essence Crafting amenity."
 
 [[row.citation]]
 field = "unlock"
@@ -908,7 +917,7 @@ quest = "The Codex and the Shroud"
 [[row.unlock]]
 kind = "raid_flagging"
 quest = "The Codex and the Shroud"
-text = 'Main page: "Tier 1 and Tier 2 ingredients to be found in flagging quests (To Curse the Sky and Creeping Death)". The page names those two quests as the flagging quests and states no further requirement.'
+text = "The flagging quests are To Curse the Sky and Creeping Death."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_3"
@@ -919,6 +928,7 @@ note = 'Page: "All the recipes listed here are used at the Legendary Altar of De
 field = "unlock"
 url = "https://ddowiki.com/page/Legendary_Green_Steel_items"
 read = "2026-11-04"
+note = 'Main page: "Tier 1 and Tier 2 ingredients to be found in flagging quests (To Curse the Sky and Creeping Death)". The page names those two quests as the flagging quests and states no further requirement.'
 
 [[row]]
 name = "Legendary Altar of Invasion"
@@ -929,7 +939,7 @@ quest = "The Codex and the Shroud"
 [[row.unlock]]
 kind = "raid_flagging"
 quest = "The Codex and the Shroud"
-text = 'Main page: "Tier 1 and Tier 2 ingredients to be found in flagging quests (To Curse the Sky and Creeping Death)". The page names those two quests as the flagging quests and states no further requirement.'
+text = "The flagging quests are To Curse the Sky and Creeping Death."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
@@ -940,6 +950,7 @@ note = 'Page: "All the recipes listed here are used at the Legendary Altar of In
 field = "unlock"
 url = "https://ddowiki.com/page/Legendary_Green_Steel_items"
 read = "2026-11-04"
+note = 'Main page: "Tier 1 and Tier 2 ingredients to be found in flagging quests (To Curse the Sky and Creeping Death)". The page names those two quests as the flagging quests and states no further requirement.'
 
 [[row]]
 name = "Legendary Altar of Subjugation"
@@ -950,7 +961,7 @@ quest = "The Codex and the Shroud"
 [[row.unlock]]
 kind = "raid_flagging"
 quest = "The Codex and the Shroud"
-text = 'Main page: "Tier 1 and Tier 2 ingredients to be found in flagging quests (To Curse the Sky and Creeping Death)". The page names those two quests as the flagging quests and states no further requirement.'
+text = "The flagging quests are To Curse the Sky and Creeping Death."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_2"
@@ -961,6 +972,7 @@ note = 'Page: "All the recipes listed here are used at the Legendary Altar of Su
 field = "unlock"
 url = "https://ddowiki.com/page/Legendary_Green_Steel_items"
 read = "2026-11-04"
+note = 'Main page: "Tier 1 and Tier 2 ingredients to be found in flagging quests (To Curse the Sky and Creeping Death)". The page names those two quests as the flagging quests and states no further requirement.'
 
 [[row]]
 name = "Lorani Thallam"
@@ -1099,7 +1111,7 @@ place = "Gravenhollow, upstairs"
 [[row.unlock]]
 kind = "kept_item"
 crafting_ingredient = "Slime Emblem"
-text = "A Slime Emblem must be in the inventory to open the crafting interface; it is not consumed, persists through Reincarnation, can pass between characters through the Account Bank, and must be re-flagged if discarded. The page names the combined Slime Emblem, not the two halves. No ingredient row named Slime Emblem exists yet (see new_ingredient below)."
+text = "A Slime Emblem must be in the inventory to open the crafting interface; it is not consumed, persists through Reincarnation, can pass between characters through the Account Bank, and must be re-flagged if discarded."
 
 [[row.unlock]]
 kind = "other"
@@ -1113,7 +1125,10 @@ read = "2026-11-04"
 field = "unlock"
 url = "https://ddowiki.com/page/Sealed_Altar"
 read = "2026-11-04"
-note = "Reveal condition; sits beside the typed kept_item row."
+note = """
+Reveal condition; sits beside the typed kept_item row.
+
+The page names the combined Slime Emblem, not the two halves."""
 
 [[row]]
 name = "Shard Crafting Device"
@@ -1135,11 +1150,11 @@ place = "Essence Crafting Hall amenity on a Guild Airship"
 [[row.unlock]]
 kind = "guild_amenity"
 value = 41
-text = "Guild Airship page, amenity table: Cannith Crafting Hall, State Room, guild level 41, cost 125 Astral Shards (no platinum cost). Its description lists the Item Deconstructor, the four Crafting Devices (bound and unbound shards, bound and unbound items) and Jannice d'Cannith (Cannith crafting vendor). The Crafting Hall page says an airship can purchase and install the Essence Crafting amenity."
+text = "Guild level 41: the Cannith Crafting Hall (State Room, 125 Astral Shards, no platinum cost) holds the Item Deconstructor, the four Crafting Devices (bound and unbound shards, bound and unbound items) and Jannice d'Cannith (Cannith crafting vendor)."
 
 [[row.unlock]]
 kind = "other"
-text = "Only Guild members, or those in their Party who they invite to the ship, have access to these facilities (the Crafting Hall page, on the amenity)."
+text = "Only Guild members, or those in their Party who they invite to the ship, have access to these facilities."
 
 [[row.citation]]
 url = "https://ddowiki.com/page/Crafting_Hall"
@@ -1150,6 +1165,7 @@ note = "The Essence Crafting page, Steps: craft a Minimum Level shard and effect
 field = "unlock"
 url = "https://ddowiki.com/page/Guild_Airship"
 read = "2026-11-12"
+note = "Guild Airship page, amenity table: Cannith Crafting Hall, State Room, guild level 41, cost 125 Astral Shards (no platinum cost). The Crafting Hall page says an airship can purchase and install the Essence Crafting amenity."
 
 [[row.citation]]
 field = "unlock"

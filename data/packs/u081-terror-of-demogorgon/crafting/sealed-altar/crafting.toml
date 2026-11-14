@@ -4,7 +4,7 @@ page = "https://ddowiki.com/page/Sealed_Altar"
 
 [[station]]
 name = "Sealed Altar"
-note = "Introduced in Update 81. All equipment crafted here is Bound to Character on Acquire (the tables list some as Bound to Account)."
+note = "Introduced in Update 81. All equipment crafted here is Bound to Character on Acquire."
 
 [[station]]
 name = "Fetid Cauldron"
@@ -20,27 +20,27 @@ Makes Slime Emblem."""
 [[unlock]]
 kind = "pack"
 pack = "Terror of Demogorgon"
-text = "Ownership of Terror of Demogorgon is required (Gravenhollow, Abyssal Gems, the Black Globe of Slime); the page's parenthetical lists it first."
+text = "Ownership of Terror of Demogorgon is required (Gravenhollow, Abyssal Gems, the Black Globe of Slime)."
 
 [[unlock]]
 kind = "pack"
 pack = "Menace of the Underdark"
-text = "Ownership of or temporary access to this pack is required to use the Sealed Altar crafting system, because the Globes of Slime come from it (the page's own parenthetical)."
+text = "Ownership of or temporary access to this pack is required to use the Sealed Altar crafting system, because the Globes of Slime come from it."
 
 [[unlock]]
 kind = "pack"
 pack = "White Plume Mountain and Other Tales"
-text = "Ownership of or temporary access to this pack is required to use the Sealed Altar crafting system, because the Globes of Slime come from it (the page's own parenthetical)."
+text = "Ownership of or temporary access to this pack is required to use the Sealed Altar crafting system, because the Globes of Slime come from it."
 
 [[unlock]]
 kind = "pack"
 pack = "The Temple of Elemental Evil"
-text = "Ownership of or temporary access to this pack is required to use the Sealed Altar crafting system, because the Globes of Slime come from it (the page's own parenthetical)."
+text = "Ownership of or temporary access to this pack is required to use the Sealed Altar crafting system, because the Globes of Slime come from it."
 
 [[unlock]]
 kind = "level"
 value = 11
-text = "Listed under 'Level 11+' in the page's crafting navigation box."
+text = "Level 11 or higher."
 
 [[step]]
 name = "Item upgrade"
@@ -55,58 +55,13 @@ tier = "legendary"
 ingredient = "Legendary Abyssal Gem"
 quantity = 50
 
-[[ingredient]]
-name = "Black Globe of Slime"
-bind = "Bound to Account on Acquire"
-drop_location = "Terror of Demogorgon (Heroic) / Terror of Demogorgon (Legendary)"
-tier = "any"
-
-[[ingredient]]
-name = "Green Globe of Slime"
-bind = "Bound to Account on Acquire"
-drop_location = "ToEE: Lower Temple Complex, Living Pool's chest"
-tier = "any"
-
-[[ingredient]]
-name = "Gold Globe of Slime"
-bind = "Bound to Account on Acquire"
-drop_location = "The Underdark, northern shrine after slaying Digestive Slimes"
-tier = "any"
-
-[[ingredient]]
-name = "Blue Globe of Slime"
-bind = "Bound to Account on Acquire"
-drop_location = "Durk's Got A Secret, Muck's second chest"
-tier = "any"
-
-[[ingredient]]
-name = "Gray Globe of Slime"
-bind = "Bound to Account on Acquire"
-drop_location = "White Plume Mountain, Huge Black Pudding's chest"
-tier = "any"
-
-[[ingredient]]
-name = "Pink Globe of Slime"
-bind = "Bound to Account on Acquire"
-drop_location = "The Pit, Avatar of Juiblex's second chest"
-tier = "any"
-
-[[ingredient]]
-name = "Top of the Slime Emblem"
-bind = "Bound to Account on Acquire"
-drop_location = "Fetid Cauldron"
-tier = "any"
-
-[[ingredient]]
-name = "Bottom of the Slime Emblem"
-bind = "Bound to Account on Acquire"
-drop_location = "Fetid Cauldron"
-tier = "any"
-
 [[citation]]
 url = "https://ddowiki.com/page/Sealed_Altar"
 read = "2026-11-04"
-note = "Page read in full (prose and the two item tables, heroic and legendary). No in-game screenshots on the page, so every row is typed_only. Not stated: crafting levels, favor, a quest gate. The tables describe three shapes (Shields, Sceptre, Other weapons) and the page gives the item name only as the label <Type> of the Oozing Hunger."
+note = """
+Page read in full (prose and the two item tables, heroic and legendary). No in-game screenshots on the page, so every row is typed_only. Not stated: crafting levels, favor, a quest gate. The tables describe three shapes (Shields, Sceptre, Other weapons) and the page gives the item name only as the label <Type> of the Oozing Hunger.
+
+The page's text says all equipment crafted here is Bound to Character on Acquire; its tables list some items as Bound to Account."""
 
 [[citation]]
 field = "step"
@@ -134,6 +89,7 @@ Page: combine the top and bottom to get the Slime Emblem. The Emblem is the kept
 field = "unlock"
 url = "https://ddowiki.com/page/Sealed_Altar"
 read = "2026-11-04"
+note = "Listed under 'Level 11+' in the page's crafting navigation box; no sentence on the page states a level requirement."
 
 [[recipe]]
 note = "All recipe facts are on this page. Introduced in Update 81; the page says all equipment crafted here is Bound to Character on Acquire, though its tables list some items as Bound to Account. Upgrades the corresponding heroic Duergarcraft item into a new item: 1.50[W], Bound to Account on Acquire, +5 Enhancement Bonus, Acid Blast 3, Insightful Shield Bashing +4, Acidic 3, Destructive Acid +2, Red Augment Slot. Needs a Slime Emblem in inventory, which is not consumed. A new item, not an augment; Maetrim has no augment family for this system."

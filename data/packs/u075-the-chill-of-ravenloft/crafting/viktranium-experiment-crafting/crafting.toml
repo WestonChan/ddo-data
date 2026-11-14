@@ -4,7 +4,7 @@ page = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
 
 [[station]]
 name = "Viktranium Experiment crafting workbench"
-note = "Makes every Heroic and Legendary Lamordia augment on the page's main tables (Melancholic, Dolorous, Miserable and Woeful, weapon, accessory and armor variants) and the Heroic and Legendary Calamitous weapons. Heroic and Legendary recipes are on separate workbenches."
+note = "Makes the Heroic and Legendary Lamordia augments (Melancholic, Dolorous, Miserable and Woeful, weapon, accessory and armor variants) and the Heroic and Legendary Calamitous weapons. Heroic and Legendary recipes are on separate workbenches."
 
 [[station]]
 name = "Wicked Viktranium Experiment Crafting workbench"
@@ -19,7 +19,7 @@ variant = "Ludendorf Wax Museum"
 [[unlock]]
 kind = "pack"
 pack = "The Chill of Ravenloft"
-text = "Page box: requires access to adventure pack The Chill of Ravenloft"
+text = "Requires access to adventure pack: The Chill of Ravenloft"
 
 [[step]]
 name = "Weapon creation"
@@ -525,84 +525,6 @@ family = "Lamordia_Heroic"
 [[family]]
 family = "Lamordia_Legendary"
 
-[[ingredient]]
-name = "Bleak Alternator"
-bind = "Unbound"
-drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
-tier = "heroic"
-
-[[ingredient]]
-name = "Legendary Bleak Alternator"
-bind = "Unbound"
-drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
-tier = "legendary"
-
-[[ingredient]]
-name = "Bleak Conductor"
-bind = "Unbound"
-drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
-tier = "heroic"
-
-[[ingredient]]
-name = "Legendary Bleak Conductor"
-bind = "Unbound"
-drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
-tier = "legendary"
-
-[[ingredient]]
-name = "Bleak Insulator"
-bind = "Unbound"
-drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
-tier = "heroic"
-
-[[ingredient]]
-name = "Legendary Bleak Insulator"
-bind = "Unbound"
-drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
-tier = "legendary"
-
-[[ingredient]]
-name = "Bleak Resistor"
-bind = "Unbound"
-drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
-tier = "heroic"
-
-[[ingredient]]
-name = "Legendary Bleak Resistor"
-bind = "Unbound"
-drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
-tier = "legendary"
-
-[[ingredient]]
-name = "Bleak Wire"
-bind = "Unbound"
-drop_location = "The raid and wilderness encounters"
-tier = "heroic"
-
-[[ingredient]]
-name = "Legendary Bleak Wire"
-bind = "Unbound"
-drop_location = "The raid and wilderness encounters"
-tier = "legendary"
-
-[[ingredient]]
-name = "Bleak Transformer"
-bind = "Bound to Account on Acquire"
-drop_location = "The raid and special wilderness encounters"
-tier = "heroic"
-
-[[ingredient]]
-name = "Legendary Bleak Transformer"
-bind = "Bound to Account on Acquire"
-drop_location = "The raid and special wilderness encounters"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Bleak Memento"
-bind = "Bound to Account on Acquire"
-drop_location = "The raid Relentless only; Legendary only"
-tier = "legendary"
-
 [[citation]]
 url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
 read = "2026-11-04"
@@ -687,7 +609,10 @@ note = "Creates an ML34 Calamitous weapon: +15 Enhancement Bonus, 5.8[W] with +2
 field = "recipe"
 url = "https://ddowiki.com/page/Cataclysmic_Weaponry"
 read = "2026-11-04"
-note = "Crafted at the Wicked workbench (raid Relentless or Ludendorf Wax Museum). Same slots as Legendary Calamitous (Melancholic, Dolorous, Miserable and Woeful weapon, Orange and Purple) and +15 Enhancement Bonus, 5.8[W], but +3 (one-handed) or +6 (two-handed) loaded weapon dice; shields: Buckler +6 loaded dice and +0.2[W] (6[W] total), Small and Large Shield +8 loaded damage dice, Tower Shield +10. Weapons are Bound to Character on Acquire, shields Bound to Account on Acquire (Viktranium page); the Cataclysmic page gives no shield binding. Cost 25 each of the four Legendary Bleak materials plus 25 Legendary Bleak Memento. Crafted ones cannot have Mythic bonuses; chest-looted ones may."
+note = """
+Crafted at the Wicked workbench (raid Relentless or Ludendorf Wax Museum). Same slots as Legendary Calamitous (Melancholic, Dolorous, Miserable and Woeful weapon, Orange and Purple) and +15 Enhancement Bonus, 5.8[W], but +3 (one-handed) or +6 (two-handed) loaded weapon dice; shields: Buckler +6 loaded dice and +0.2[W] (6[W] total), Small and Large Shield +8 loaded damage dice, Tower Shield +10. Weapons are Bound to Character on Acquire, shields Bound to Account on Acquire (Viktranium page); the Cataclysmic page gives no shield binding. Cost 25 each of the four Legendary Bleak materials plus 25 Legendary Bleak Memento. Crafted ones cannot have Mythic bonuses; chest-looted ones may.
+
+The bindings are from the Viktranium Experiment crafting page; the Cataclysmic Weaponry page gives no shield binding."""
 
 [[citation]]
 field = "unlock"
@@ -716,7 +641,7 @@ note = "Whole page read: 40 Legendary Cataclysmic weapons, the Burning Sceptre a
 
 [[recipe]]
 note = """
-All recipe tables are on this page; the linked Calamitous weapons and Cataclysmic weapons and shields pages list the weapons, not recipes. Creates an ML8 Calamitous weapon (+4 Enhancement, 1[W], Vampirism 1, Melancholic, Dolorous and Miserable weapon slots and a Red slot, Bound to Account on Acquire, no Mythic bonuses); no augment counterpart.
+Creates an ML8 Calamitous weapon (+4 Enhancement, 1[W], Vampirism 1, Melancholic, Dolorous and Miserable weapon slots and a Red slot, Bound to Account on Acquire, no Mythic bonuses); no augment counterpart.
 
 Creates an ML8 Calamitous weapon: +4 Enhancement Bonus and 1[W], Vampirism 1 (the Calamitous Sceptre has Quality Mystic Diversion +1% instead), Melancholic, Dolorous and Miserable weapon slots and a Red Augment Slot (thrown weapons also gain Returning). Bound to Account on Acquire, cannot have Mythic bonuses. Cost 5 each of Bleak Alternator, Conductor, Insulator and Resistor."""
 option = "Heroic Calamitous weapon"
@@ -4047,7 +3972,7 @@ quantity = 50
 note = """
 Wicked Viktranium Experiment device in Relentless: creates a Cataclysmic weapon (Bound to Character on Acquire) or shield (Bound to Account on Acquire), a Calamitous weapon with +3/+6 loaded weapon dice; no augment counterpart.
 
-Crafted at the Wicked workbench (raid Relentless or Ludendorf Wax Museum). Same slots as Legendary Calamitous (Melancholic, Dolorous, Miserable and Woeful weapon, Orange and Purple) and +15 Enhancement Bonus, 5.8[W], but +3 (one-handed) or +6 (two-handed) loaded weapon dice; shields: Buckler +6 loaded dice and +0.2[W] (6[W] total), Small and Large Shield +8 loaded damage dice, Tower Shield +10. Weapons are Bound to Character on Acquire, shields Bound to Account on Acquire (Viktranium page); the Cataclysmic page gives no shield binding. Cost 25 each of the four Legendary Bleak materials plus 25 Legendary Bleak Memento. Crafted ones cannot have Mythic bonuses; chest-looted ones may."""
+Crafted at the Wicked workbench (raid Relentless or Ludendorf Wax Museum). Same slots as Legendary Calamitous (Melancholic, Dolorous, Miserable and Woeful weapon, Orange and Purple) and +15 Enhancement Bonus, 5.8[W], but +3 (one-handed) or +6 (two-handed) loaded weapon dice; shields: Buckler +6 loaded dice and +0.2[W] (6[W] total), Small and Large Shield +8 loaded damage dice, Tower Shield +10. Weapons are Bound to Character on Acquire, shields Bound to Account on Acquire. Cost 25 each of the four Legendary Bleak materials plus 25 Legendary Bleak Memento. Crafted ones cannot have Mythic bonuses; chest-looted ones may."""
 option = "Legendary Cataclysmic weapon or shield"
 tier = "legendary"
 step = "Weapon creation"

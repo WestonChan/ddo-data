@@ -14,27 +14,6 @@ text = "Requires access to adventure pack: Dragonblood Prophecy"
 [[step]]
 name = "Item upgrade"
 
-[[ingredient]]
-name = "Schism Shard"
-bind = "Bound to Account on Acquire"
-drop_location = "Killing Time end chest (rare drop), or 500 Time Runes"
-tier = "legendary"
-
-[[ingredient]]
-name = "Sentient Jewel of Wave"
-drop_location = "Must have 0 Sentience XP"
-tier = "legendary"
-
-[[ingredient]]
-name = "Sentient Jewel of Blackrazor"
-drop_location = "Must have 0 Sentience XP"
-tier = "legendary"
-
-[[ingredient]]
-name = "Sentient Jewel of Whelm"
-drop_location = "Must have 0 Sentience XP"
-tier = "legendary"
-
 [[citation]]
 url = "https://ddowiki.com/page/Schism_Shard_Crafting"
 read = "2026-11-04"

@@ -40,42 +40,6 @@ tier = "heroic"
 ingredient = "Crystal Disc of Dreams"
 quantity = 1
 
-[[ingredient]]
-name = "Essence of Horrors"
-bind = "Bound to Account on Acquire (tradeable through the shared chest)"
-drop_location = "End chests of Eye of the Titan, Reclaiming Memories, Raiding the Giants' Vault and Mining for Ancient Secrets; one essence per completion (casual may drop none) until the chest becomes ransacked; the Eye of the Titan chest never ransacks its essence"
-tier = "heroic"
-
-[[ingredient]]
-name = "Essence of Nightmares"
-bind = "Bound to Account on Acquire (tradeable through the shared chest)"
-drop_location = "End chest of Eye of the Titan; one essence per completion (casual may drop none) until the chest becomes ransacked; the Eye of the Titan chest never ransacks its essence"
-tier = "heroic"
-
-[[ingredient]]
-name = "Essence of Phantasms"
-bind = "Bound to Account on Acquire (tradeable through the shared chest)"
-drop_location = "End chest of Reclaiming Memories; one essence per completion (casual may drop none) until the chest becomes ransacked; the Eye of the Titan chest never ransacks its essence"
-tier = "heroic"
-
-[[ingredient]]
-name = "Essence of Torments"
-bind = "Bound to Account on Acquire (tradeable through the shared chest)"
-drop_location = "End chests of Raiding the Giants' Vault and Mining for Ancient Secrets; one essence per completion (casual may drop none) until the chest becomes ransacked; the Eye of the Titan chest never ransacks its essence"
-tier = "heroic"
-
-[[ingredient]]
-name = "Crystal Shard of Dreams"
-bind = "Bound to Account on Acquire"
-drop_location = "End reward of The Dreaming Dark quest"
-tier = "heroic"
-
-[[ingredient]]
-name = "Crystal Disc of Dreams"
-bind = "Bound to Account on Acquire"
-drop_location = "End reward of The Dreaming Dark quest, or 50 Astral Shards at the Dreamforge"
-tier = "heroic"
-
 [[citation]]
 url = "https://ddowiki.com/page/Dreamforge"
 read = "2026-11-04"

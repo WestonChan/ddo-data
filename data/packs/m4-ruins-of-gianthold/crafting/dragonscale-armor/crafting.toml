@@ -8,7 +8,7 @@ note = "Heroic Dragonscale armors (20 heroic scales of the colour) and the three
 
 [[station]]
 name = "Stormreaver Monument"
-note = "Upgrades the Flawless armors' Attuned by Heroism Tier 1 and Tier 2 (Attuned to Heroism page); no cost stated for the armors. Station as in stormreaver-monument.toml."
+note = "Upgrades the Flawless armors' Attuned by Heroism Tier 1 and Tier 2."
 
 [[step]]
 name = "Dragonscale armor"
@@ -43,21 +43,6 @@ slot = "crafting: attuned by heroism: tier 1"
 [[step]]
 name = "Attuned by Heroism: Tier 2"
 slot = "crafting: attuned by heroism: tier 2"
-
-[[ingredient]]
-name = "Flawless Black Dragon Scale"
-drop_location = "Update 17; Gianthold Tor (epic only)"
-tier = "epic"
-
-[[ingredient]]
-name = "Flawless Blue Dragon Scale"
-drop_location = "Update 17; Gianthold Tor (epic only)"
-tier = "epic"
-
-[[ingredient]]
-name = "Flawless White Dragon Scale"
-drop_location = "Update 17; Gianthold Tor (epic only)"
-tier = "epic"
 
 [[citation]]
 url = "https://ddowiki.com/page/Dragonscale_Armor"
@@ -120,7 +105,10 @@ note = "Searched the city page for the Master Scalesmiths: NPC list gives Regnak
 [[citation]]
 url = "https://ddowiki.com/page/Attuned_to_Heroism"
 read = "2026-11-04"
-note = "Whole page read: Attuned to Heroism is a base upgradeable item; 'Upgrading requires Commendations of Heroism'; the 40 items with it, including the 15 Flawless Black, Blue and White Dragonscale armors; Tier 1 and Tier 2 lists: 'Black/Blue/White Flawless Dragonscale Armors - Upgradable by Mastercraft Scalesmiths, Stormreaver Monument'. No cost quantity and no Tier 3 or 4 on the armors."
+note = """
+Whole page read: Attuned to Heroism is a base upgradeable item; 'Upgrading requires Commendations of Heroism'; the 40 items with it, including the 15 Flawless Black, Blue and White Dragonscale armors; Tier 1 and Tier 2 lists: 'Black/Blue/White Flawless Dragonscale Armors - Upgradable by Mastercraft Scalesmiths, Stormreaver Monument'. No cost quantity and no Tier 3 or 4 on the armors.
+
+From the Attuned to Heroism page; it states no cost for the armors."""
 
 [[citation]]
 url = "https://ddowiki.com/page/Item:Flawless_Black_Dragonscale_Armor"

@@ -1,0 +1,5 @@
+name = "Statuette of the Gods"
+tier = "heroic"
+bind = "BtA"
+drop_location = "All parts"
+citation = []

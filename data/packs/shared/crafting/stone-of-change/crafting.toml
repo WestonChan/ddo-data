@@ -4,7 +4,7 @@ page = "https://ddowiki.com/page/Stone_of_Change"
 [[station]]
 name = "Stone of Change"
 note = """
-Serves every recipe on the page.
+Serves every recipe.
 
 Makes Flawed Siberys Dragonshard.
 
@@ -24,7 +24,7 @@ variant = "The Marketplace"
 [[station]]
 name = "Stone of Change"
 note = """
-Serves every recipe on the page.
+Serves every recipe.
 
 Makes Flawed Siberys Dragonshard.
 
@@ -44,7 +44,7 @@ variant = "The Twelve"
 [[station]]
 name = "Stone of Change"
 note = """
-Serves every recipe on the page.
+Serves every recipe.
 
 Makes Flawed Siberys Dragonshard.
 
@@ -64,100 +64,6 @@ variant = "Guild Airship"
 [[station]]
 name = "Siberys Dragonshard Combiner"
 note = "Serves only the five dragonshard combinations (Flawed, Imperfect, Siberys, Exceptional, Flawless Siberys Dragonshard). Fred opens it through the dialog option 'May I exchange some Dragonshards before we begin?'; barter interface, as of Update 61. Same costs as the Stone of Change."
-
-[[ingredient]]
-name = "Flawed Siberys Dragonshard"
-tier = "any"
-
-[[ingredient]]
-name = "Imperfect Siberys Dragonshard"
-tier = "any"
-
-[[ingredient]]
-name = "Siberys Dragonshard"
-tier = "any"
-
-[[ingredient]]
-name = "Exceptional Siberys Dragonshard"
-tier = "any"
-
-[[ingredient]]
-name = "Any Equipable Item"
-tier = "any"
-
-[[ingredient]]
-name = "Any Attuned Item"
-tier = "any"
-
-[[ingredient]]
-name = "Adamantine Ore"
-tier = "any"
-
-[[ingredient]]
-name = "Soul Gem: Essence of Earth"
-drop_location = "Earth elementals of any CR; The Lord of Eyes, Taming the Flames and ToEE: Earth Node contain many"
-tier = "any"
-
-[[ingredient]]
-name = "Any Attuned Armor"
-tier = "any"
-
-[[ingredient]]
-name = "Any Attuned Shield or Orb"
-tier = "any"
-
-[[ingredient]]
-name = "Any Attuned Weapon"
-tier = "any"
-
-[[ingredient]]
-name = "Any Attuned Jewelry"
-drop_location = "Goggles, necklace, ring, bracers or trinket"
-tier = "any"
-
-[[ingredient]]
-name = "String of Prayer Beads"
-tier = "any"
-
-[[ingredient]]
-name = "Vial of Pure Water"
-tier = "any"
-
-[[ingredient]]
-name = "Tome: Prophecies of Khyber"
-tier = "any"
-
-[[ingredient]]
-name = "Silver Flame Hymnal"
-tier = "any"
-
-[[ingredient]]
-name = "Luminescent Dust"
-tier = "any"
-
-[[ingredient]]
-name = "Fragrant Drowshood"
-tier = "any"
-
-[[ingredient]]
-name = "Sparkling Dust"
-tier = "any"
-
-[[ingredient]]
-name = "Deadly Feverblanch"
-tier = "any"
-
-[[ingredient]]
-name = "Lightning-Split Soarwood"
-tier = "any"
-
-[[ingredient]]
-name = "Funerary Token"
-tier = "any"
-
-[[ingredient]]
-name = "Tasty Ham"
-tier = "any"
 
 [[citation]]
 url = "https://ddowiki.com/page/Stone_of_Change"

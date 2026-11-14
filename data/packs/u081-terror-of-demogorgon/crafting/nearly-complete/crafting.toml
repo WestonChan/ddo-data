@@ -4,7 +4,7 @@ page = "https://ddowiki.com/page/Nearly_Complete"
 
 [[station]]
 name = "Duergar Completion Forge"
-note = "Serves every recipe on the page."
+note = "Serves every recipe."
 
 [[step]]
 name = "Ability Score (heroic)"

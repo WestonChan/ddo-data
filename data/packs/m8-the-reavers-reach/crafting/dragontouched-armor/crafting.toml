@@ -12,7 +12,7 @@ note = "Applies an Eldritch Rune to the armor ('Forge'), and makes a Tempest Run
 
 [[station]]
 name = "Dragontouched Tempest Altar"
-note = "Applies a Tempest Rune to the armor; presumably makes a Sovereign Rune from three Tempest Runes (the page gives no chat-log line for that altar)."
+note = "Applies a Tempest Rune to the armor."
 
 [[station]]
 name = "Dragontouched Sovereign Altar"
@@ -104,30 +104,13 @@ family = "Dragontouched_TempestRune"
 [[family]]
 family = "Dragontouched_SovereignRune"
 
-[[ingredient]]
-name = "Draconic Rune"
-drop_location = "1-3 from named chests in Aussircaex's Valley, Soami Gardens, Mount Reysalon and Eerie Forest; 3-11 from end chests in Enter the Kobold, Monastery of the Scorpion and Prey on the Hunter; 50 as the Stealer of Souls end reward. Spending them needs Stealer of Souls complete; Vorace also trades 50 for an Eberron Dragonshard Essence and 25 each for a Siberys or Khyber Dragonshard Essence"
-tier = "heroic"
-
-[[ingredient]]
-name = "Eldritch Rune"
-drop_location = "1-2 from Enter the Kobold; 1-2 from Monastery of the Scorpion; one from Vorace for 50 Draconic Runes. 23 types; identified in the chest since Update 7"
-tier = "heroic"
-
-[[ingredient]]
-name = "Tempest Rune"
-drop_location = "1 from Prey on the Hunter; made from three Eldritch Runes. 24 types"
-tier = "heroic"
-
-[[ingredient]]
-name = "Sovereign Rune"
-drop_location = "1 from Stealer of Souls; made from three Tempest Runes. 33 types"
-tier = "heroic"
-
 [[citation]]
 url = "https://ddowiki.com/page/Dragontouched_Armor"
 read = "2026-11-04"
-note = "Whole page read: pack box ('Requires access to adventure pack: The Reaver's Reach'), Overview, Crafting Steps 1 to 4 (50 Draconic Runes buy an armor from Vorace; Stealer of Souls must be completed to spend Draconic Runes; Vorace sells an Eldritch Rune for 50 Draconic Runes; 3 Eldritch -> 1 Tempest and 3 Tempest -> 1 Sovereign at the altars; shatter a Sovereign Rune with a Draconic Rune for 1-9 runes; forge armor plus a rune at the matching altar), Armor Types (six, ML 16), Rune Properties table (23 Eldritch, 24 Tempest, 33 Sovereign) and set Notes. All 80 rune names and effect lines, all costs and the 6 armor types match the data. The data's note that the in-game skill-rune text says +3 where the page's table says '+6*' is not settled by this page (no footnote text for the asterisk was found). No player level gate is stated (the Level 16+ box is the wiki's grouping; ML 16 belongs to the armors). Editorial comment on the page: the system is mostly obsolete."
+note = """
+Whole page read: pack box ('Requires access to adventure pack: The Reaver's Reach'), Overview, Crafting Steps 1 to 4 (50 Draconic Runes buy an armor from Vorace; Stealer of Souls must be completed to spend Draconic Runes; Vorace sells an Eldritch Rune for 50 Draconic Runes; 3 Eldritch -> 1 Tempest and 3 Tempest -> 1 Sovereign at the altars; shatter a Sovereign Rune with a Draconic Rune for 1-9 runes; forge armor plus a rune at the matching altar), Armor Types (six, ML 16), Rune Properties table (23 Eldritch, 24 Tempest, 33 Sovereign) and set Notes. All 80 rune names and effect lines, all costs and the 6 armor types match the data. The data's note that the in-game skill-rune text says +3 where the page's table says '+6*' is not settled by this page (no footnote text for the asterisk was found). No player level gate is stated (the Level 16+ box is the wiki's grouping; ML 16 belongs to the armors). Editorial comment on the page: the system is mostly obsolete.
+
+Presumably also makes a Sovereign Rune from three Tempest Runes, as the Eldritch Altar makes a Tempest Rune from three Eldritch Runes; the page gives no chat-log line for this altar."""
 
 [[citation]]
 field = "step"
@@ -184,7 +167,7 @@ read = "2026-11-04"
 
 [[recipe]]
 note = """
-All recipe facts are on this page (Dragontouched_Armor redirects to Item:Dragontouched_Armor). Vorace sells the blank for 50 Draconic Runes once Stealer of Souls is complete; all six types are ML16: Plate Armor (armor +22, max Dex +1), Breastplate (+17, max Dex +5), Leather Armor (+11, max Dex +11), Docent (Adamantine +16, Mithral +7, Composite +2, Construct Fortification 10%), Shroud (robe, +6) and Vestments (outfit, +6). The armor takes one rune of each type, in any order, at the matching altar; no augment counterpart.
+Vorace sells the blank for 50 Draconic Runes once Stealer of Souls is complete; all six types are ML16: Plate Armor (armor +22, max Dex +1), Breastplate (+17, max Dex +5), Leather Armor (+11, max Dex +11), Docent (Adamantine +16, Mithral +7, Composite +2, Construct Fortification 10%), Shroud (robe, +6) and Vestments (outfit, +6). The armor takes one rune of each type, in any order, at the matching altar; no augment counterpart.
 
 Six armors, all ML 16: Plate (armor +22, max Dex +1), Breastplate (+17, +5), Leather (+11, +11), Docent (Adamantine +16, Mithral +7, Composite +2, Construct Fortification 10%), Shroud (Robe, +6), Vestments (Outfit, +6)."""
 option = "Dragontouched Armor (blank)"

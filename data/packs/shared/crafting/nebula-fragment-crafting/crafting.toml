@@ -23,7 +23,7 @@ text = "Access to this pack is needed to collect the Orange Shard; all eight sha
 [[unlock]]
 kind = "pack"
 pack = "Vault of Night"
-text = "Access to this pack is needed to collect the Blue Shard (page writes 'The Vault of Night'); all eight shards are needed to complete the Frame"
+text = "Access to this pack is needed to collect the Blue Shard; all eight shards are needed to complete the Frame"
 
 [[unlock]]
 kind = "pack"
@@ -37,11 +37,11 @@ text = "Access to this pack is needed to collect the Red Shard; all eight shards
 
 [[unlock]]
 kind = "other"
-text = "The wiki lists the pack 'Sands of Menechtarun' as needed for the Pink Shard (Sands of Menechtarun wilderness); all eight shards are needed to complete the Frame"
+text = "Access to the pack Sands of Menechtarun is needed to collect the Pink Shard (Sands of Menechtarun wilderness); all eight shards are needed to complete the Frame"
 
 [[unlock]]
 kind = "other"
-text = "The wiki lists the pack 'Web of Chaos' as needed for the Purple Shard (The Spinner of Shadows, 'a Free to Play pack'); all eight shards are needed to complete the Frame"
+text = "Access to the pack Web of Chaos (a Free to Play pack) is needed to collect the Purple Shard (The Spinner of Shadows); all eight shards are needed to complete the Frame"
 
 [[step]]
 name = "Perfected crafting"
@@ -55,17 +55,6 @@ quantity = 1
 tier = "legendary"
 ingredient = "Thread of Fate"
 quantity = 500
-
-[[ingredient]]
-name = "Nebula Fragment"
-bind = "Bound to Account on Acquire"
-drop_location = "Very rare drop from Legendary chests in Sinister Secret of Saltmarsh"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary base item"
-drop_location = "The Legendary Crafting version of the item"
-tier = "legendary"
 
 [[citation]]
 url = "https://ddowiki.com/page/Item:Nebula_Fragment"
@@ -102,7 +91,9 @@ Page: 'you must have access to all eight locations in which Shards of Power drop
 
 Written as other because the survey has no adventure pack named 'Sands of Menechtarun'; the survey links the quest 'Sands of Menechtarun' to the pack 'Demon Sands'. Not guessed: unresolved, for the maintainer.
 
-Written as other because the survey has no adventure pack named 'Web of Chaos'; the survey links the quest 'The Spinner of Shadows' to the pack 'Free to Play'. Not guessed: unresolved, for the maintainer."""
+Written as other because the survey has no adventure pack named 'Web of Chaos'; the survey links the quest 'The Spinner of Shadows' to the pack 'Free to Play'. Not guessed: unresolved, for the maintainer.
+
+The page writes the pack as 'The Vault of Night'. The page lists the pack 'Sands of Menechtarun' for the Pink Shard. Our data has no adventure pack of that name (the Sands of Menechtarun quests sit in the pack 'Demon Sands'), so the unlock is kind other with no pack link. The page lists the pack 'Web of Chaos' for the Purple Shard and calls it 'a Free to Play pack'. Our data has no adventure pack of that name (The Spinner of Shadows is in the pack 'Free to Play'), so the unlock is kind other with no pack link."""
 
 [[citation]]
 url = "https://ddowiki.com/page/Lahar"
@@ -111,7 +102,7 @@ note = "Whole page read: Lahar <Epic Vendor>, Earth Elemental, 'The Twelve, sout
 
 [[recipe]]
 note = """
-Upgrades the Legendary Jidz-Tet'ka into Perfected Jidz-Tet'ka (Bracers), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sentinels of Stormreach components per the Epic Crafting pack table. A separate item in Maetrim's data; no augment counterpart.
+Upgrades the Legendary Jidz-Tet'ka into Perfected Jidz-Tet'ka (Bracers), a minor artifact at ML 30 with up to 4 filigree slots. The Frame must be in the inventory and is not consumed. As a new item it inherits no Mythic, Reaper or Deck of Many Curses effects, and cannot be equipped alongside another minor artifact. Uses Sentinels of Stormreach components. A separate item in Maetrim's data; no augment counterpart.
 
 Side effects of every Perfected item: it is a Minor Artifact (cannot be equipped if another is worn); as a new item it does not inherit Mythic or Reaper bonuses, or Deck of Many Curses effects, from the item it was made from; up to 4 filigree slots."""
 option = "Perfected Jidz-Tet'ka"

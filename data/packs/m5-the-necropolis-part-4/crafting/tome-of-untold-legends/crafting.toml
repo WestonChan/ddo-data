@@ -19,52 +19,6 @@ tier = "any"
 ingredient = "Tome: Binding"
 quantity = 1
 
-[[ingredient]]
-name = "Tome: Binding"
-bind = "Bound to Character"
-drop_location = "Complete set of the 8 Tome: Legend pages"
-tier = "any"
-
-[[ingredient]]
-name = "Tome: Legend I"
-drop_location = "Litany of the Dead, most frequently at Cinnis chest"
-tier = "any"
-
-[[ingredient]]
-name = "Tome: Legend II"
-drop_location = "Litany of the Dead, most frequently at Cholthulzz chest"
-tier = "any"
-
-[[ingredient]]
-name = "Tome: Legend III"
-drop_location = "Litany of the Dead, most frequently at Mentau chest"
-tier = "any"
-
-[[ingredient]]
-name = "Tome: Legend IV"
-drop_location = "Litany of the Dead, most frequently at High Priest of Vol"
-tier = "any"
-
-[[ingredient]]
-name = "Tome: Legend V"
-drop_location = "Litany of the Dead, most frequently at Mentau and Cinnis chest"
-tier = "any"
-
-[[ingredient]]
-name = "Tome: Legend VI"
-drop_location = "Litany of the Dead, most frequently at Cholthulzz and High Priest of Vol chest"
-tier = "any"
-
-[[ingredient]]
-name = "Tome: Legend VII"
-drop_location = "Litany of the Dead, most frequently at Cinnis and Cholthulzz chest"
-tier = "any"
-
-[[ingredient]]
-name = "Tome: Legend VIII"
-drop_location = "Litany of the Dead, most frequently at Mentau and High Priest of Vol chest"
-tier = "any"
-
 [[citation]]
 url = "https://ddowiki.com/page/Tome_of_Untold_Legends"
 read = "2026-11-04"
@@ -84,6 +38,12 @@ field = "unlock"
 url = "https://ddowiki.com/page/Tome_of_Untold_Legends"
 read = "2026-11-04"
 note = "Body text: 'You must be at least level 10.'"
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Tome_of_Untold_Legends"
+read = "2026-11-04"
+note = "The Tome: Binding is a container holding the eight different Tome pages (Legend I to VIII); no station is involved. Bilk Howland gives the empty Tome. The page does not call this a recipe."
 
 [[recipe]]
 note = "produces Skiver (Dagger, ML 14, Bound to Character on Acquire)"
@@ -132,3 +92,41 @@ note = "produces Serrulae (Battle Axe, ML 14, Bound to Character on Acquire)"
 option = "Serrulae"
 tier = "any"
 step = "Weapon turn-in"
+
+[[recipe]]
+yields_ingredient = "Tome: Binding"
+note = "The Tome: Binding is a container holding the eight different Tome pages (Legend I to VIII); no station is involved. Bilk Howland gives the empty Tome. The page does not call this a recipe."
+option = "Tome: Binding"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Tome: Legend I"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Tome: Legend II"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Tome: Legend III"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Tome: Legend IV"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Tome: Legend V"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Tome: Legend VI"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Tome: Legend VII"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Tome: Legend VIII"
+quantity = 1

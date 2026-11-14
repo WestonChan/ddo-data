@@ -26,19 +26,14 @@ Makes Star Fragment from Crystallized Spiderweb."""
 
 [[station]]
 name = "Lahar"
-note = "Epic Trader and Seal Scroll Shard Cruncher; not a recipe station for the data's rows"
+note = "Epic Trader and Seal Scroll Shard Cruncher"
 
 [[station]]
 name = "Legacy Altar of Epic Rituals"
-note = "Old-version epic items; no recipes in the data"
+note = "Old-version epic items"
 
 [[step]]
 name = "Epic upgrade"
-
-[[ingredient]]
-name = "Heroic base item"
-drop_location = "The heroic version of the item being upgraded"
-tier = "epic"
 
 [[citation]]
 url = "https://ddowiki.com/page/Epic_Crafting"
@@ -70,7 +65,10 @@ note = "Page: Star Fragments can be bought at the Altar of Legendary Rituals at 
 field = "recipe"
 url = "https://ddowiki.com/page/Item:Shard_of_the_Red_Dragon"
 read = "2026-11-12"
-note = "Yields one Epic Red Dragonscale armor of the player's choice: Epic Red Dragonhide Armor, Epic Red Dragonplate Armor, Epic Red Dragonscale Armor, Epic Red Dragonscale Docent or Epic Red Dragonscale Robe. The Shard of the Red Dragon's in-game text (examination panel image Shard_of_the_Red_Dragon.png) says to bring it to the Altar of Epic Rituals 'to convert it into a Dragonscale Armor of the type of your choice'; the five type names are from the item page's typed Tips."
+note = """
+Yields one Epic Red Dragonscale armor of the player's choice: Epic Red Dragonhide Armor, Epic Red Dragonplate Armor, Epic Red Dragonscale Armor, Epic Red Dragonscale Docent or Epic Red Dragonscale Robe. The Shard of the Red Dragon's in-game text (examination panel image Shard_of_the_Red_Dragon.png) says to bring it to the Altar of Epic Rituals 'to convert it into a Dragonscale Armor of the type of your choice'; the five type names are from the item page's typed Tips.
+
+The in-game text is the examination panel image Shard_of_the_Red_Dragon.png; the five armor type names are from the item page's typed Tips."""
 
 [[recipe]]
 note = "Upgrades the heroic version into Epic Adherent's Pendant (ML 20) at the Altar of Epic Rituals; Sands of Menechtarun item. A separate item in Maetrim's data, created new (Mythic boosts and slotted augments are wiped); no augment counterpart."
@@ -3324,7 +3322,7 @@ quantity = 50
 note = """
 Vault of Night raid item with no heroic base item, so it takes additional ingredients: Shard of the Red Dragon and 20 Flawless Red Dragon Scales on top of the Vault of Night raid cost.  No augment counterpart.
 
-Yields one Epic Red Dragonscale armor of the player's choice: Epic Red Dragonhide Armor, Epic Red Dragonplate Armor, Epic Red Dragonscale Armor, Epic Red Dragonscale Docent or Epic Red Dragonscale Robe. The Shard of the Red Dragon's in-game text (examination panel image Shard_of_the_Red_Dragon.png) says to bring it to the Altar of Epic Rituals 'to convert it into a Dragonscale Armor of the type of your choice'; the five type names are from the item page's typed Tips."""
+Yields one Epic Red Dragonscale armor of the player's choice: Epic Red Dragonhide Armor, Epic Red Dragonplate Armor, Epic Red Dragonscale Armor, Epic Red Dragonscale Docent or Epic Red Dragonscale Robe. The Shard of the Red Dragon's in-game text says to bring it to the Altar of Epic Rituals 'to convert it into a Dragonscale Armor of the type of your choice'."""
 option = "Epic Red Dragonscale Armor"
 tier = "epic"
 step = "Epic upgrade"

@@ -49,31 +49,31 @@ read = "2026-11-04"
 note = "10 Restored Elven Relic for every armor type (breastplate, leather armor, plate armor, robe, docent)."
 
 [[recipe]]
-note = "Breastplate: AC 20, MDB 6, ACP 2, SF 25%. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less."
+note = "Breastplate: AC 20, MDB 6, ACP 2, SF 25%. The AC includes the +6 enhancement bonus."
 option = "Restored Elfcraft Breastplate"
 tier = "epic"
 step = "Armor exchange"
 
 [[recipe]]
-note = "Leather Armor: AC 13, MDB 14, SF 15%. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less."
+note = "Leather Armor: AC 13, MDB 14, SF 15%. The AC includes the +6 enhancement bonus."
 option = "Restored Elfcraft Leather Armor"
 tier = "epic"
 step = "Armor exchange"
 
 [[recipe]]
-note = "Plate Armor: AC 26, MDB 1, ACP 4, SF 35%. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less."
+note = "Plate Armor: AC 26, MDB 1, ACP 4, SF 35%. The AC includes the +6 enhancement bonus."
 option = "Restored Elfcraft Plate Armor"
 tier = "epic"
 step = "Armor exchange"
 
 [[recipe]]
-note = "Robe: AC 9. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less."
+note = "Robe: AC 9. The AC includes the +6 enhancement bonus."
 option = "Restored Elfcraft Robe"
 tier = "epic"
 step = "Armor exchange"
 
 [[recipe]]
-note = "Docent: Adamantine Body +20, Mithral Body +9. The page's AC includes the +6 enhancement bonus; the data's armor_bonus is 6 less."
+note = "Docent: Adamantine Body +20, Mithral Body +9. The AC includes the +6 enhancement bonus."
 option = "Restored Elfcraft Docent"
 tier = "epic"
 step = "Armor exchange"

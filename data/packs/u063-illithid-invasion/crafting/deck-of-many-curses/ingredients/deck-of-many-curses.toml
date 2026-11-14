@@ -1,0 +1,5 @@
+name = "Deck of Many Curses"
+tier = "any"
+bind = "Bound to Account on Acquire"
+drop_location = "Turned in for 12 each of Accursed, Uncanny, Otherworldly and Forbidden Cards; minimum level 1, base value 10pp, stack size 1"
+citation = []

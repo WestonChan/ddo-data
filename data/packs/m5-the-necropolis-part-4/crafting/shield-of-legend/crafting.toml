@@ -24,52 +24,6 @@ tier = "any"
 ingredient = "Shield: Frame"
 quantity = 1
 
-[[ingredient]]
-name = "Shield: Frame"
-bind = "Bound to Character"
-drop_location = "Complete set of the 8 Shield Fragments"
-tier = "any"
-
-[[ingredient]]
-name = "Shield: Fragment One"
-drop_location = "Litany of the Dead Part 4, mainly at Desecrated Temple of Vol (Marut chest)"
-tier = "any"
-
-[[ingredient]]
-name = "Shield: Fragment Two"
-drop_location = "Litany of the Dead Part 4, mainly at Desecrated Temple of Vol (Marut chest)"
-tier = "any"
-
-[[ingredient]]
-name = "Shield: Fragment Three"
-drop_location = "Litany of the Dead Part 4, mainly at Ghosts of Perdition (Undead wave chest)"
-tier = "any"
-
-[[ingredient]]
-name = "Shield: Fragment Four"
-drop_location = "Litany of the Dead Part 4, mainly at Ghosts of Perdition (Undead wave chest)"
-tier = "any"
-
-[[ingredient]]
-name = "Shield: Fragment Five"
-drop_location = "Litany of the Dead Part 4, mainly at Flesh Maker's Laboratory (Golem wave chest)"
-tier = "any"
-
-[[ingredient]]
-name = "Shield: Fragment Six"
-drop_location = "Litany of the Dead Part 4, mainly at Flesh Maker's Laboratory (Golem wave chest)"
-tier = "any"
-
-[[ingredient]]
-name = "Shield: Fragment Seven"
-drop_location = "Litany of the Dead Part 4, mainly at Inferno of the Damned (Locked Acolyte chest)"
-tier = "any"
-
-[[ingredient]]
-name = "Shield: Fragment Eight"
-drop_location = "Litany of the Dead Part 4, mainly at Inferno of the Damned (Locked Acolyte chest)"
-tier = "any"
-
 [[citation]]
 url = "https://ddowiki.com/page/Shield_of_Legend"
 read = "2026-11-04"
@@ -92,6 +46,12 @@ note = """
 The page's infobox line.
 
 Body text: 'You must be level 10.'"""
+
+[[citation]]
+field = "recipe"
+url = "https://ddowiki.com/page/Shield_of_Legend"
+read = "2026-11-04"
+note = "The Frame is a container with unique item capacity 8: the eight different fragments are placed in it in order (positions 1 to 8, left to right); no station is involved. Racella Unary gives the empty Frame. The page does not call this a recipe. Fragments drop in most chests of all four Necropolis IV quests from Update 13 and in rare chests in the Orchard of the Macabre, mainly: One and Two in Desecrated Temple of Vol (Marut chest), Three and Four in Ghosts of Perdition (Undead wave chest), Five and Six in Flesh Maker's Laboratory (Golem wave chest), Seven and Eight in Inferno of the Damned (Locked Acolyte chest)."
 
 [[recipe]]
 note = "produces Adherence (Tower shield, ML 14, Bound to Character on Acquire)"
@@ -134,3 +94,41 @@ note = "produces Arrondi (Large shield, ML 14, Bound to Character on Acquire)"
 option = "Arrondi"
 tier = "any"
 step = "Shield turn-in"
+
+[[recipe]]
+yields_ingredient = "Shield: Frame"
+note = "The Frame is a container with unique item capacity 8: the eight different fragments are placed in it in order (positions 1 to 8, left to right); no station is involved. Racella Unary gives the empty Frame. The page does not call this a recipe. Fragments drop in most chests of all four Necropolis IV quests from Update 13 and in rare chests in the Orchard of the Macabre, mainly: One and Two in Desecrated Temple of Vol (Marut chest), Three and Four in Ghosts of Perdition (Undead wave chest), Five and Six in Flesh Maker's Laboratory (Golem wave chest), Seven and Eight in Inferno of the Damned (Locked Acolyte chest)."
+option = "Shield: Frame"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Shield: Fragment One"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Shield: Fragment Two"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Shield: Fragment Three"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Shield: Fragment Four"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Shield: Fragment Five"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Shield: Fragment Six"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Shield: Fragment Seven"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Shield: Fragment Eight"
+quantity = 1

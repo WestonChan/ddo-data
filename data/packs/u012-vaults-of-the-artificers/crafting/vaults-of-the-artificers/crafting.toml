@@ -4,12 +4,12 @@ page = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
 
 [[station]]
 name = "Challenge Traders"
-note = "Items are created (Tier 1) and upgraded (Tier 2, Tier 3, and to the next level) through the traders' barter window; the pages do not say whether creating and upgrading use different traders."
+note = "Items are created (Tier 1) and upgraded (Tier 2, Tier 3, and to the next level) through the traders' barter window."
 
 [[unlock]]
 kind = "pack"
 pack = "Vaults of the Artificers"
-text = "The main page states 'Requires access to adventure pack: Vaults of the Artificers'; the challenges have limited Free to Play access without the pack, through one free universal challenge token per day from the challenge token vendor in the House Cannith Enclave or Eveningstar."
+text = "Requires access to adventure pack: Vaults of the Artificers; the challenges have limited Free to Play access without the pack, through one free universal challenge token per day from the challenge token vendor in the House Cannith Enclave or Eveningstar."
 
 [[step]]
 name = "Tier 1"
@@ -152,7 +152,9 @@ Upgrades Spare Hand (Level 15) from Tier 2.
 
 Upgrades Spare Hand (Level 7) from Tier 1.
 
-Upgrades Spare Hand (Level 7) from Tier 2."""
+Upgrades Spare Hand (Level 7) from Tier 2.
+
+The pages do not state what the upgrade to the next level costs. Level 20 Tier 3: the Epic Tokens column holds the icon IngIcon_Token_of_the_Twelve_5. The cell tooltip was read as 5 Tokens of the Twelve on the Mournlode and Calomel item pages only; for the other lines the same count is assumed from the same icon."""
 
 [[citation]]
 field = "recipe"
@@ -231,7 +233,9 @@ Upgrades Epic Elemental Longbow of Earth from Tier 2. Level 20 Tier 3 also consu
 
 Upgrades Epic Elemental Rapier of Air from Tier 1.
 
-Upgrades Epic Elemental Rapier of Air from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."""
+Upgrades Epic Elemental Rapier of Air from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve).
+
+Elemental Greataxe of Fire, Khopesh of Water, Longbow of Earth and Rapier of Air, levels 8 and 12: cost as typed. The tables list the same Level 8 cost for Tier 1, 2 and 3, and Level 12 Tier 2 and 3 amounts of 600; the page carries a warning that its information might be inaccurate."""
 
 [[citation]]
 field = "recipe"
@@ -684,8 +688,13 @@ url = "https://ddowiki.com/page/Item:Calomel_Studded_Handwraps"
 read = "2026-11-04"
 note = "Round 2: loaded through Calomel_Studded_Handwraps; identical to the Falchion table."
 
+[[citation]]
+url = "https://ddowiki.com/page/Challenges"
+read = "2026-11-13"
+note = "The pages do not say whether creating and upgrading use different traders."
+
 [[recipe]]
-note = "Created at the challenge barter; level 11. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 11. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Blasting Chime (Level 11)"
 tier = "heroic"
 step = "Tier 1"
@@ -747,7 +756,7 @@ ingredient = "Illuminated Manuscript"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 15. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 15. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Blasting Chime (Level 15)"
 tier = "heroic"
 step = "Tier 1"
@@ -809,7 +818,7 @@ ingredient = "Illuminated Manuscript"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 3. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 3. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Blasting Chime (Level 3)"
 tier = "heroic"
 step = "Tier 1"
@@ -823,7 +832,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 7. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 7. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Blasting Chime (Level 7)"
 tier = "heroic"
 step = "Tier 1"
@@ -885,7 +894,7 @@ ingredient = "Illuminated Manuscript"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 11. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 11. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Bracers of Wind (level 11)"
 tier = "heroic"
 step = "Tier 1"
@@ -947,7 +956,7 @@ ingredient = "Illuminated Manuscript"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 15. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 15. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Bracers of Wind (level 15)"
 tier = "heroic"
 step = "Tier 1"
@@ -1009,7 +1018,7 @@ ingredient = "Illuminated Manuscript"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 3. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 3. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Bracers of Wind (level 3)"
 tier = "heroic"
 step = "Tier 1"
@@ -1023,7 +1032,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 7. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 7. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Bracers of Wind (level 7)"
 tier = "heroic"
 step = "Tier 1"
@@ -1085,7 +1094,7 @@ ingredient = "Illuminated Manuscript"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Banded Heavy Repeater (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -1103,7 +1112,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Banded Heavy Repeater (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -1121,7 +1130,7 @@ ingredient = "Mephit Wing"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Banded Light Repeater (level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -1135,7 +1144,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Banded Light Repeater (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -1153,7 +1162,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Falchion (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -1171,7 +1180,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Falchion (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -1189,7 +1198,7 @@ ingredient = "Mephit Wing"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Falchion (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -1203,7 +1212,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Falchion (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -1221,7 +1230,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Rapier (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -1239,7 +1248,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Rapier (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -1257,7 +1266,7 @@ ingredient = "Mephit Wing"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Rapier (level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -1271,7 +1280,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Rapier (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -1289,7 +1298,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Scimitar (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -1307,7 +1316,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Scimitar (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -1325,7 +1334,7 @@ ingredient = "Mephit Wing"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Scimitar (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -1339,7 +1348,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Scimitar (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -1357,7 +1366,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Strung Long Bow (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -1375,7 +1384,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Strung Long Bow (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -1393,7 +1402,7 @@ ingredient = "Mephit Wing"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Strung Long Bow (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -1407,7 +1416,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Strung Long Bow (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -1425,7 +1434,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Studded Handwraps (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -1443,7 +1452,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Studded Handwraps (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -1461,7 +1470,7 @@ ingredient = "Mephit Wing"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Studded Handwraps (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -1475,7 +1484,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Calomel Studded Handwraps (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -1493,7 +1502,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 11. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 11. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Cloak of Flames (level 11)"
 tier = "heroic"
 step = "Tier 1"
@@ -1555,7 +1564,7 @@ ingredient = "Mephit Wing"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 15. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 15. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Cloak of Flames (level 15)"
 tier = "heroic"
 step = "Tier 1"
@@ -1617,7 +1626,7 @@ ingredient = "Mephit Wing"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 3. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 3. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Cloak of Flames (level 3)"
 tier = "heroic"
 step = "Tier 1"
@@ -1631,7 +1640,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 7. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 7. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Cloak of Flames (level 7)"
 tier = "heroic"
 step = "Tier 1"
@@ -1693,7 +1702,7 @@ ingredient = "Mephit Wing"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Greataxe of Fire (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -1711,7 +1720,7 @@ ingredient = "Obsidian Arrowhead"
 quantity = 400
 
 [[recipe]]
-note = "Upgrades Elemental Greataxe of Fire (level 12) from Tier 1. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Greataxe of Fire (level 12) from Tier 1."
 option = "Elemental Greataxe of Fire (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -1733,7 +1742,7 @@ ingredient = "Mephit Wing"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Elemental Greataxe of Fire (level 12) from Tier 2. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Greataxe of Fire (level 12) from Tier 2."
 option = "Elemental Greataxe of Fire (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -1755,7 +1764,7 @@ ingredient = "Mephit Wing"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Greataxe of Fire (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -1817,7 +1826,7 @@ ingredient = "Mephit Wing"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Greataxe of Fire (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -1831,7 +1840,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Greataxe of Fire (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -1849,7 +1858,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Upgrades Elemental Greataxe of Fire (level 8) from Tier 1. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Greataxe of Fire (level 8) from Tier 1."
 option = "Elemental Greataxe of Fire (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -1871,7 +1880,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Upgrades Elemental Greataxe of Fire (level 8) from Tier 2. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Greataxe of Fire (level 8) from Tier 2."
 option = "Elemental Greataxe of Fire (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -1893,7 +1902,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Khopesh of Water (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -1911,7 +1920,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Upgrades Elemental Khopesh of Water (level 12) from Tier 1. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Khopesh of Water (level 12) from Tier 1."
 option = "Elemental Khopesh of Water (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -1933,7 +1942,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Upgrades Elemental Khopesh of Water (level 12) from Tier 2. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Khopesh of Water (level 12) from Tier 2."
 option = "Elemental Khopesh of Water (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -1955,7 +1964,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Khopesh of Water (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -2017,7 +2026,7 @@ ingredient = "Enchanted Armor Fragment"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Khopesh of Water (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -2031,7 +2040,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Khopesh of Water (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -2049,7 +2058,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Upgrades Elemental Khopesh of Water (level 8) from Tier 1. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Khopesh of Water (level 8) from Tier 1."
 option = "Elemental Khopesh of Water (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -2071,7 +2080,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Upgrades Elemental Khopesh of Water (level 8) from Tier 2. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Khopesh of Water (level 8) from Tier 2."
 option = "Elemental Khopesh of Water (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -2093,7 +2102,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Longbow of Earth (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -2111,7 +2120,7 @@ ingredient = "Obsidian Arrowhead"
 quantity = 400
 
 [[recipe]]
-note = "Upgrades Elemental Longbow of Earth (level 12) from Tier 1. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Longbow of Earth (level 12) from Tier 1."
 option = "Elemental Longbow of Earth (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -2133,7 +2142,7 @@ ingredient = "Illuminated Manuscript"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Elemental Longbow of Earth (level 12) from Tier 2. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Longbow of Earth (level 12) from Tier 2."
 option = "Elemental Longbow of Earth (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -2155,7 +2164,7 @@ ingredient = "Illuminated Manuscript"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Longbow of Earth (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -2217,7 +2226,7 @@ ingredient = "Enchanted Armor Fragment"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Longbow of Earth (level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -2231,7 +2240,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Longbow of Earth (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -2249,7 +2258,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Upgrades Elemental Longbow of Earth (level 8) from Tier 1. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Longbow of Earth (level 8) from Tier 1."
 option = "Elemental Longbow of Earth (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -2271,7 +2280,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Upgrades Elemental Longbow of Earth (level 8) from Tier 2. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Longbow of Earth (level 8) from Tier 2."
 option = "Elemental Longbow of Earth (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -2293,7 +2302,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Rapier of Air (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -2311,7 +2320,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Upgrades Elemental Rapier of Air (level 12) from Tier 1. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Rapier of Air (level 12) from Tier 1."
 option = "Elemental Rapier of Air (level 12) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -2333,7 +2342,7 @@ ingredient = "Orthon Metal Scrap"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Elemental Rapier of Air (level 12) from Tier 2. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Rapier of Air (level 12) from Tier 2."
 option = "Elemental Rapier of Air (level 12) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -2355,7 +2364,7 @@ ingredient = "Orthon Metal Scrap"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Rapier of Air (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -2417,7 +2426,7 @@ ingredient = "Necromantic Charm"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Rapier of Air (level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -2431,7 +2440,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Elemental Rapier of Air (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -2449,7 +2458,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Upgrades Elemental Rapier of Air (level 8) from Tier 1. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Rapier of Air (level 8) from Tier 1."
 option = "Elemental Rapier of Air (level 8) Tier 2"
 tier = "heroic"
 step = "Tier 2"
@@ -2471,7 +2480,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Upgrades Elemental Rapier of Air (level 8) from Tier 2. Cost as typed; flagged in a verification request."
+note = "Upgrades Elemental Rapier of Air (level 8) from Tier 2."
 option = "Elemental Rapier of Air (level 8) Tier 3"
 tier = "heroic"
 step = "Tier 3"
@@ -2493,7 +2502,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Blasting Chime"
 tier = "epic"
 step = "Tier 1"
@@ -2533,7 +2542,7 @@ ingredient = "Epic Illuminated Manuscript"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Blasting Chime from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Blasting Chime from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Blasting Chime Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -2559,7 +2568,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Bracers of Wind"
 tier = "epic"
 step = "Tier 1"
@@ -2599,7 +2608,7 @@ ingredient = "Epic Illuminated Manuscript"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Bracers of Wind from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Bracers of Wind from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Bracers of Wind Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -2625,7 +2634,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Calomel Banded Heavy Repeater"
 tier = "epic"
 step = "Tier 1"
@@ -2643,7 +2652,7 @@ ingredient = "Jade Scorpion"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Calomel Falchion"
 tier = "epic"
 step = "Tier 1"
@@ -2661,7 +2670,7 @@ ingredient = "Jade Scorpion"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Calomel Long Bow"
 tier = "epic"
 step = "Tier 1"
@@ -2679,7 +2688,7 @@ ingredient = "Jade Scorpion"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Calomel Rapier"
 tier = "epic"
 step = "Tier 1"
@@ -2697,7 +2706,7 @@ ingredient = "Jade Scorpion"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Calomel Scimitar"
 tier = "epic"
 step = "Tier 1"
@@ -2715,7 +2724,7 @@ ingredient = "Jade Scorpion"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Calomel Studded Handwraps"
 tier = "epic"
 step = "Tier 1"
@@ -2733,7 +2742,7 @@ ingredient = "Jade Scorpion"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Cloak of Flames"
 tier = "epic"
 step = "Tier 1"
@@ -2773,7 +2782,7 @@ ingredient = "Epic Mephit Wing"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Cloak of Flames from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Cloak of Flames from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Cloak of Flames Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -2799,7 +2808,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Elemental Greataxe of Fire"
 tier = "epic"
 step = "Tier 1"
@@ -2839,7 +2848,7 @@ ingredient = "Epic Necromantic Charm"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Elemental Greataxe of Fire from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Elemental Greataxe of Fire from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Elemental Greataxe of Fire Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -2865,7 +2874,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Elemental Khopesh of Water"
 tier = "epic"
 step = "Tier 1"
@@ -2905,7 +2914,7 @@ ingredient = "Epic Enchanted Armor Fragment"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Elemental Khopesh of Water from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Elemental Khopesh of Water from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Elemental Khopesh of Water Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -2931,7 +2940,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Elemental Longbow of Earth"
 tier = "epic"
 step = "Tier 1"
@@ -2971,7 +2980,7 @@ ingredient = "Epic Necromantic Charm"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Elemental Longbow of Earth from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Elemental Longbow of Earth from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Elemental Longbow of Earth Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -2997,7 +3006,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Elemental Rapier of Air"
 tier = "epic"
 step = "Tier 1"
@@ -3037,7 +3046,7 @@ ingredient = "Epic Necromantic Charm"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Elemental Rapier of Air from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Elemental Rapier of Air from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Elemental Rapier of Air Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3063,7 +3072,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Frozen Tunic"
 tier = "epic"
 step = "Tier 1"
@@ -3103,7 +3112,7 @@ ingredient = "Epic Necromantic Charm"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Frozen Tunic from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Frozen Tunic from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Frozen Tunic Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3129,7 +3138,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Mournlode Breastplate"
 tier = "epic"
 step = "Tier 1"
@@ -3169,7 +3178,7 @@ ingredient = "Epic Jade Scorpion"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Mournlode Breastplate from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Mournlode Breastplate from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Mournlode Breastplate Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3195,7 +3204,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Mournlode Chain"
 tier = "epic"
 step = "Tier 1"
@@ -3235,7 +3244,7 @@ ingredient = "Epic Jade Scorpion"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Mournlode Chain from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Mournlode Chain from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Mournlode Chain Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3261,7 +3270,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Mournlode Docent"
 tier = "epic"
 step = "Tier 1"
@@ -3301,7 +3310,7 @@ ingredient = "Epic Jade Scorpion"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Mournlode Docent from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Mournlode Docent from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Mournlode Docent Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3327,7 +3336,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Mournlode Fullplate"
 tier = "epic"
 step = "Tier 1"
@@ -3367,7 +3376,7 @@ ingredient = "Epic Jade Scorpion"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Mournlode Fullplate from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Mournlode Fullplate from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Mournlode Fullplate Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3393,7 +3402,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Mournlode Greataxe"
 tier = "epic"
 step = "Tier 1"
@@ -3411,7 +3420,7 @@ ingredient = "Necromantic Charm"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Mournlode Light Mace"
 tier = "epic"
 step = "Tier 1"
@@ -3429,7 +3438,7 @@ ingredient = "Necromantic Charm"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Mournlode Longsword"
 tier = "epic"
 step = "Tier 1"
@@ -3447,7 +3456,7 @@ ingredient = "Necromantic Charm"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Mournlode Maul"
 tier = "epic"
 step = "Tier 1"
@@ -3465,7 +3474,7 @@ ingredient = "Necromantic Charm"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Mournlode Shortsword"
 tier = "epic"
 step = "Tier 1"
@@ -3505,7 +3514,7 @@ ingredient = "Epic Mephit Wing"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Mournlode Shortsword from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Mournlode Shortsword from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Mournlode Shortsword Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3531,7 +3540,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Mournlode Warhammer"
 tier = "epic"
 step = "Tier 1"
@@ -3549,7 +3558,7 @@ ingredient = "Necromantic Charm"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Ring of Master Artifice"
 tier = "epic"
 step = "Tier 1"
@@ -3589,7 +3598,7 @@ ingredient = "Epic Enchanted Armor Fragment"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Ring of Master Artifice from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Ring of Master Artifice from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Ring of Master Artifice Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3615,7 +3624,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Ring of the Stalker"
 tier = "epic"
 step = "Tier 1"
@@ -3655,7 +3664,7 @@ ingredient = "Epic Jade Scorpion"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Ring of the Stalker from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Ring of the Stalker from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Ring of the Stalker Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3681,7 +3690,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Rock Boots"
 tier = "epic"
 step = "Tier 1"
@@ -3721,7 +3730,7 @@ ingredient = "Epic Enchanted Armor Fragment"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Rock Boots from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Rock Boots from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Rock Boots Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3747,7 +3756,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 20. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Epic Spare Hand"
 tier = "epic"
 step = "Tier 1"
@@ -3787,7 +3796,7 @@ ingredient = "Epic Enchanted Armor Fragment"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Spare Hand from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (Epic Tokens column: the icon IngIcon_Token_of_the_Twelve_5; the cell tooltip on the Mournlode and Calomel item pages reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Spare Hand from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Spare Hand Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -3813,7 +3822,7 @@ ingredient = "Token of the Twelve"
 quantity = 5
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Frozen Tunic (Level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -3875,7 +3884,7 @@ ingredient = "Necromantic Charm"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Frozen Tunic (Level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -3937,7 +3946,7 @@ ingredient = "Necromantic Charm"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Frozen Tunic (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -3951,7 +3960,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Frozen Tunic (Level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -4013,7 +4022,7 @@ ingredient = "Necromantic Charm"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Breastplate (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -4075,7 +4084,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Breastplate (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -4137,7 +4146,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Breastplate (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -4151,7 +4160,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Breastplate (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -4213,7 +4222,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Chain (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -4275,7 +4284,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Chain (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -4337,7 +4346,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Chain (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -4351,7 +4360,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Chain (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -4413,7 +4422,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Docent (Level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -4475,7 +4484,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Docent (Level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -4537,7 +4546,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Docent (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -4551,7 +4560,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Docent (Level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -4613,7 +4622,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Fullplate (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -4675,7 +4684,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Fullplate (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -4737,7 +4746,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Fullplate (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -4751,7 +4760,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Fullplate (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -4813,7 +4822,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Greataxe (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -4831,7 +4840,7 @@ ingredient = "Obsidian Arrowhead"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Greataxe (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -4849,7 +4858,7 @@ ingredient = "Illuminated Manuscript"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Greataxe (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -4863,7 +4872,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Greataxe (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -4881,7 +4890,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Light Mace (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -4899,7 +4908,7 @@ ingredient = "Obsidian Arrowhead"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Light Mace (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -4917,7 +4926,7 @@ ingredient = "Illuminated Manuscript"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Light Mace (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -4931,7 +4940,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Light Mace (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -4949,7 +4958,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Longsword (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -4967,7 +4976,7 @@ ingredient = "Obsidian Arrowhead"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Longsword (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -4985,7 +4994,7 @@ ingredient = "Illuminated Manuscript"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Longsword (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -4999,7 +5008,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Longsword (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -5017,7 +5026,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Maul (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -5035,7 +5044,7 @@ ingredient = "Obsidian Arrowhead"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Maul (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -5053,7 +5062,7 @@ ingredient = "Illuminated Manuscript"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Maul (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -5067,7 +5076,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Maul (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -5085,7 +5094,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Shortsword (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -5147,7 +5156,7 @@ ingredient = "Mephit Wing"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Shortsword (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -5209,7 +5218,7 @@ ingredient = "Mephit Wing"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Shortsword (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -5223,7 +5232,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Shortsword (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -5285,7 +5294,7 @@ ingredient = "Mephit Wing"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 12. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Warhammer (level 12)"
 tier = "heroic"
 step = "Tier 1"
@@ -5303,7 +5312,7 @@ ingredient = "Obsidian Arrowhead"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 16. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Warhammer (level 16)"
 tier = "heroic"
 step = "Tier 1"
@@ -5321,7 +5330,7 @@ ingredient = "Illuminated Manuscript"
 quantity = 600
 
 [[recipe]]
-note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 4. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Warhammer (Level 4)"
 tier = "heroic"
 step = "Tier 1"
@@ -5335,7 +5344,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 8. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Mournlode Warhammer (level 8)"
 tier = "heroic"
 step = "Tier 1"
@@ -5353,7 +5362,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 11. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 11. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Ring of Master Artifice (Level 11)"
 tier = "heroic"
 step = "Tier 1"
@@ -5415,7 +5424,7 @@ ingredient = "Enchanted Armor Fragment"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 15. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 15. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Ring of Master Artifice (Level 15)"
 tier = "heroic"
 step = "Tier 1"
@@ -5477,7 +5486,7 @@ ingredient = "Enchanted Armor Fragment"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 3. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 3. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Ring of Master Artifice (Level 3)"
 tier = "heroic"
 step = "Tier 1"
@@ -5491,7 +5500,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 7. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 7. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Ring of Master Artifice (Level 7)"
 tier = "heroic"
 step = "Tier 1"
@@ -5553,7 +5562,7 @@ ingredient = "Enchanted Armor Fragment"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 11. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 11. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Ring of the Stalker (Level 11)"
 tier = "heroic"
 step = "Tier 1"
@@ -5615,7 +5624,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 15. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 15. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Ring of the Stalker (Level 15)"
 tier = "heroic"
 step = "Tier 1"
@@ -5677,7 +5686,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 3. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 3. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Ring of the Stalker (Level 3)"
 tier = "heroic"
 step = "Tier 1"
@@ -5691,7 +5700,7 @@ ingredient = "Antique Coin"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 7. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 7. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Ring of the Stalker (Level 7)"
 tier = "heroic"
 step = "Tier 1"
@@ -5753,7 +5762,7 @@ ingredient = "Jade Scorpion"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 11. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 11. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Rock Boots (Level 11)"
 tier = "heroic"
 step = "Tier 1"
@@ -5815,7 +5824,7 @@ ingredient = "Enchanted Armor Fragment"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 15. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 15. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Rock Boots (Level 15)"
 tier = "heroic"
 step = "Tier 1"
@@ -5877,7 +5886,7 @@ ingredient = "Enchanted Armor Fragment"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 3. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 3. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Rock Boots (level 3)"
 tier = "heroic"
 step = "Tier 1"
@@ -5891,7 +5900,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 7. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 7. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Rock Boots (level 7)"
 tier = "heroic"
 step = "Tier 1"
@@ -5953,7 +5962,7 @@ ingredient = "Enchanted Armor Fragment"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 11. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 11. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Spare Hand (Level 11)"
 tier = "heroic"
 step = "Tier 1"
@@ -6015,7 +6024,7 @@ ingredient = "Enchanted Armor Fragment"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 15. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 15. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Spare Hand (Level 15)"
 tier = "heroic"
 step = "Tier 1"
@@ -6077,7 +6086,7 @@ ingredient = "Enchanted Armor Fragment"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 3. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 3. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Spare Hand (Level 3)"
 tier = "heroic"
 step = "Tier 1"
@@ -6091,7 +6100,7 @@ ingredient = "Crude Talisman"
 quantity = 400
 
 [[recipe]]
-note = "Created at the challenge barter; level 7. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1 (cost of the level step not stated)."
+note = "Created at the challenge barter; level 7. A lower-level item of any tier can instead be upgraded to this level, which resets it to Tier 1."
 option = "Spare Hand (Level 7)"
 tier = "heroic"
 step = "Tier 1"
@@ -6311,7 +6320,7 @@ ingredient = "Epic Enchanted Armor Fragment"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Mournlode Longsword from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (the cell tooltip reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Mournlode Longsword from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Mournlode Longsword Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -6491,7 +6500,7 @@ ingredient = "Epic Enchanted Armor Fragment"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Mournlode Greataxe from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (the cell tooltip reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Mournlode Greataxe from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Mournlode Greataxe Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -6671,7 +6680,7 @@ ingredient = "Epic Mephit Wing"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Mournlode Light Mace from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (the cell tooltip reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Mournlode Light Mace from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Mournlode Light Mace Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -6851,7 +6860,7 @@ ingredient = "Epic Enchanted Armor Fragment"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Mournlode Warhammer from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (the cell tooltip reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Mournlode Warhammer from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Mournlode Warhammer Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -7031,7 +7040,7 @@ ingredient = "Epic Enchanted Armor Fragment"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Mournlode Maul from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (the cell tooltip reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Mournlode Maul from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Mournlode Maul Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -7211,7 +7220,7 @@ ingredient = "Epic Necromantic Charm"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Calomel Falchion from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (the cell tooltip reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Calomel Falchion from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Calomel Falchion Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -7391,7 +7400,7 @@ ingredient = "Epic Necromantic Charm"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Calomel Scimitar from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (the cell tooltip reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Calomel Scimitar from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Calomel Scimitar Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -7571,7 +7580,7 @@ ingredient = "Epic Enchanted Armor Fragment"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Calomel Rapier from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (the cell tooltip reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Calomel Rapier from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Calomel Rapier Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -7751,7 +7760,7 @@ ingredient = "Epic Necromantic Charm"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Calomel Long Bow from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (the cell tooltip reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Calomel Long Bow from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Calomel Long Bow Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -7931,7 +7940,7 @@ ingredient = "Epic Necromantic Charm"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Calomel Studded Handwraps from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (the cell tooltip reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Calomel Studded Handwraps from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Calomel Studded Handwraps Tier 3"
 tier = "epic"
 step = "Tier 3"
@@ -8111,7 +8120,7 @@ ingredient = "Epic Necromantic Charm"
 quantity = 600
 
 [[recipe]]
-note = "Upgrades Epic Calomel Banded Heavy Repeater from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve (the cell tooltip reads 5 Tokens of the Twelve)."
+note = "Upgrades Epic Calomel Banded Heavy Repeater from Tier 2. Level 20 Tier 3 also consumes 5 Tokens of the Twelve."
 option = "Epic Calomel Banded Heavy Repeater Tier 3"
 tier = "epic"
 step = "Tier 3"

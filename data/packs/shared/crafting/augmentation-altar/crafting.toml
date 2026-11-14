@@ -29,21 +29,6 @@ family = "SealedInFire"
 [[family]]
 family = "SealedInUndeath"
 
-[[ingredient]]
-name = "Hydra Scale"
-drop_location = "Den of Vipers end and optional chests"
-tier = "legendary"
-
-[[ingredient]]
-name = "Sealed in Mist item"
-drop_location = "Den of Vipers raid weapons"
-tier = "legendary"
-
-[[ingredient]]
-name = "Sealed in Gloom item"
-drop_location = "Den of Vipers raid equipment"
-tier = "legendary"
-
 [[citation]]
 url = "https://ddowiki.com/page/Augmentation_Altar"
 read = "2026-11-04"

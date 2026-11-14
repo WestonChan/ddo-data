@@ -29,21 +29,6 @@ tier = "heroic"
 ingredient = "Token of Vulkoor"
 quantity = 1
 
-[[ingredient]]
-name = "Golden Swamp Pearl"
-drop_location = "Colossal Clams throughout The Red Fens wilderness and quests"
-tier = "heroic"
-
-[[ingredient]]
-name = "Token of Vulkoor"
-drop_location = "Turn in one Golden Swamp Pearl to Pearl Collector Dagni d'Kundarak in The Red Fens"
-tier = "heroic"
-
-[[ingredient]]
-name = "Dampened Item"
-drop_location = "End chests of The Red Fens quests, more often on higher difficulties; The Last Stand drops none. ML 5 to 7, binding varies"
-tier = "heroic"
-
 [[citation]]
 url = "https://ddowiki.com/page/Dampened"
 read = "2026-11-04"
@@ -73,13 +58,15 @@ Consumes Dampened Robe of Dissonance (item table: base version, dropped in Fatho
 
 Consumes Dampened Frozen Plate (item table: base version, dropped in Into the Deep) plus 1 Token of Vulkoor; gives the cleansed upgrade version. The base item exists in the data as Dampened Frozen Plate.
 
-Consumes Dampened Greatclub of the Scrag (item table: base version, dropped in Into the Deep) plus 1 Token of Vulkoor; gives the cleansed upgrade version. The base item exists in the data as Dampened Greatclub of the Scrag."""
+Consumes Dampened Greatclub of the Scrag (item table: base version, dropped in Into the Deep) plus 1 Token of Vulkoor; gives the cleansed upgrade version. The base item exists in the data as Dampened Greatclub of the Scrag.
+
+Our data has no item named Dampened Cacophonic Verge or its upgrade Cacophonic Verge."""
 
 [[recipe]]
 note = """
 Cleanses Dampened Cacophonic Verge (drops in The Claw of Vulkoor: Sonic Blast, 50 Charges, Dampened, UMD 19, ML 5, Bound to Account on Acquire, Exclusive) into Cacophonic Verge (Sonic Blast, 50 Charges, Sonic Lore +9%, Resonance +59, UMD 23, ML 5, Bound to Character on Acquire, Exclusive). The upgraded item is a separate item in Maetrim's data; introduced in Update 6. No augment counterpart.
 
-Consumes Dampened Cacophonic Verge (item table: base version, dropped in The Claw of Vulkoor) plus 1 Token of Vulkoor; gives the cleansed upgrade version. The data has no item named Dampened Cacophonic Verge or its upgrade Cacophonic Verge."""
+Consumes Dampened Cacophonic Verge (dropped in The Claw of Vulkoor) plus 1 Token of Vulkoor; gives the cleansed upgrade version."""
 option = "Cacophonic Verge (Wand)"
 tier = "heroic"
 step = "Item upgrade"
@@ -92,7 +79,7 @@ quantity = 1
 note = """
 Cleanses Dampened Shatterbow (drops in The Claw of Vulkoor: Dampened, +1 Enhancement Bonus, Screaming, Construct Bane, Move Silently -5, ML 7, Unbound) into Shatterbow (+3 Enhancement Bonus, Reverberating 2, Construct Bane 2, Armor-Piercing 7%, ML 7, Bound to Account on Acquire, Exclusive). The upgraded item is a separate item in Maetrim's data; introduced in Update 6. No augment counterpart.
 
-Consumes Dampened Shatterbow (item table: base version, dropped in The Claw of Vulkoor) plus 1 Token of Vulkoor; gives the cleansed upgrade version. The base item exists in the data as Dampened Shatterbow."""
+Consumes Dampened Shatterbow (dropped in The Claw of Vulkoor) plus 1 Token of Vulkoor; gives the cleansed upgrade version."""
 option = "Shatterbow (Longbow)"
 tier = "heroic"
 step = "Item upgrade"
@@ -105,7 +92,7 @@ quantity = 1
 note = """
 Cleanses Dampened Robe of Dissonance (drops in Fathom the Depths: Dampened, Sonic Resistance +3, Sonic Guard, Resonance +48, Impulse +48, ML 7, Bound to Character on Acquire) into Robe of Dissonance (+3 Enhancement Bonus, Resonance +66, Impulse +66, Sonic Guard, Sonic Resistance +17, ML 7, Bound to Account on Acquire). The upgraded item is a separate item in Maetrim's data; introduced in Update 6. No augment counterpart.
 
-Consumes Dampened Robe of Dissonance (item table: base version, dropped in Fathom the Depths) plus 1 Token of Vulkoor; gives the cleansed upgrade version. The base item exists in the data as Dampened Robe of Dissonance."""
+Consumes Dampened Robe of Dissonance (dropped in Fathom the Depths) plus 1 Token of Vulkoor; gives the cleansed upgrade version."""
 option = "Robe of Dissonance (Robe)"
 tier = "heroic"
 step = "Item upgrade"
@@ -118,7 +105,7 @@ quantity = 1
 note = """
 Cleanses Dampened Frozen Plate (drops in Into the Deep: +3 Enhancement Bonus, Dampened, ML 6, Bound to Account on Acquire) into Frozen Plate (+4 Enhancement Bonus, Physical Sheltering +10, Cold Absorption +17%, Cold Resistance +15, Ice Guard II, ML 6, Bound to Account on Acquire). The upgraded item is a separate item in Maetrim's data; introduced in Update 6. No augment counterpart.
 
-Consumes Dampened Frozen Plate (item table: base version, dropped in Into the Deep) plus 1 Token of Vulkoor; gives the cleansed upgrade version. The base item exists in the data as Dampened Frozen Plate."""
+Consumes Dampened Frozen Plate (dropped in Into the Deep) plus 1 Token of Vulkoor; gives the cleansed upgrade version."""
 option = "Frozen Plate (Full Plate)"
 tier = "heroic"
 step = "Item upgrade"
@@ -131,7 +118,7 @@ quantity = 1
 note = """
 Cleanses Dampened Greatclub of the Scrag (drops in Into the Deep: [1d10], Dampened, +2 Enhancement Bonus, True Chaos, Cold Touch, Regeneration, ML 7, Bound to Character on Equip) into Greatclub of the Scrag ([1d10], +3 Enhancement Bonus, Anarchic 2, Chilling 2, Regeneration, ML 7, Bound to Account on Acquire). The upgraded item is a separate item in Maetrim's data; introduced in Update 6. No augment counterpart.
 
-Consumes Dampened Greatclub of the Scrag (item table: base version, dropped in Into the Deep) plus 1 Token of Vulkoor; gives the cleansed upgrade version. The base item exists in the data as Dampened Greatclub of the Scrag."""
+Consumes Dampened Greatclub of the Scrag (dropped in Into the Deep) plus 1 Token of Vulkoor; gives the cleansed upgrade version."""
 option = "Greatclub of the Scrag (Greatclub)"
 tier = "heroic"
 step = "Item upgrade"

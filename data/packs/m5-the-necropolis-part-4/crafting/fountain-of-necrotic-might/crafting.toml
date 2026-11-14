@@ -42,33 +42,6 @@ tier = "epic"
 ingredient = "Masterwork Tapestry Shred"
 quantity = 120
 
-[[ingredient]]
-name = "Seal of the Black Abbot"
-drop_location = "Ascension Chamber on Hard or Elite"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shred of Tapestry"
-tier = "heroic"
-
-[[ingredient]]
-name = "Pre-Update 12 Ascension Chamber item"
-drop_location = "Earlier versions of Ascension Chamber loot; see Ascension Chamber loot history"
-tier = "heroic"
-
-[[ingredient]]
-name = "Epic Tapestry Shred"
-tier = "epic"
-
-[[ingredient]]
-name = "Masterwork Tapestry Shred"
-tier = "epic"
-
-[[ingredient]]
-name = "Update 23 Epic Necropolis item"
-drop_location = "Update 23 epic items from Necropolis Part 4 quests and the raid, marked Upgradable - Primary/Secondary Augment"
-tier = "epic"
-
 [[citation]]
 url = "https://ddowiki.com/page/Fountain_of_Necrotic_Might"
 read = "2026-11-04"
@@ -107,9 +80,9 @@ note = "Most earlier versions of the items convert to the Update 12 upgradeable 
 
 [[recipe]]
 note = """
-Changes most earlier versions into the Update 12 upgradeable version; the new version is not necessarily better. An exclusive item is destroyed into an essence of the item in the ingredient bag, which must be placed back in the fountain to get the new version. Converting the old Quiver of Alacrity destroys any arrows or bolts in it. Adds the upgrade socket, which Maetrim models on the items already.
+Changes most earlier versions into the Update 12 upgradeable version; the new version is not necessarily better. An exclusive item is destroyed into an essence of the item in the ingredient bag, which must be placed back in the fountain to get the new version. Converting the old Quiver of Alacrity destroys any arrows or bolts in it. Adds the upgrade socket.
 
-Most earlier versions of the items convert to the Update 12 upgradeable versions by inserting the item and 5 Shreds of Tapestry (matches Maetrim's x5). The new version is not always an upgrade over the old; exclusive items are destroyed and leave an 'essence' in the ingredient bag that must be re-inserted. Upgrading the Quiver of Alacrity from the old version destroys the ammunition inside; upgrading to the 30% striding version does not. Game bug: for items with clicky charges except Litany of the Dead and Purging the Pantheon, the altar claims more charges than are gained (the missing amount equals the base amount)."""
+Most earlier versions of the items convert to the Update 12 upgradeable versions by inserting the item and 5 Shreds of Tapestry. The new version is not always an upgrade over the old; exclusive items are destroyed and leave an 'essence' in the ingredient bag that must be re-inserted. Upgrading the Quiver of Alacrity from the old version destroys the ammunition inside; upgrading to the 30% striding version does not. Game bug: for items with clicky charges except Litany of the Dead and Purging the Pantheon, the altar claims more charges than are gained (the missing amount equals the base amount)."""
 option = "Convert to the Update 12 upgradeable version"
 tier = "heroic"
 

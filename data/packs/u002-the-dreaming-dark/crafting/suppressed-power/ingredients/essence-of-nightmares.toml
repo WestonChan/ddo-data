@@ -1,0 +1,5 @@
+name = "Essence of Nightmares"
+tier = "heroic"
+bind = "Bound to Account on Acquire (tradeable through the shared chest)"
+drop_location = "End chest of Eye of the Titan; one essence per completion (casual may drop none) until the chest becomes ransacked; the Eye of the Titan chest never ransacks its essence"
+citation = []

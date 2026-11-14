@@ -4,7 +4,7 @@ page = "https://ddowiki.com/page/Lost_Purpose"
 
 [[station]]
 name = "Cannith Repurposing Station"
-note = "The only station the page names; it makes every recipe."
+note = "Makes every recipe."
 
 [[step]]
 name = "Lost Purpose"
@@ -22,10 +22,6 @@ quantity = 20
 
 [[family]]
 family = "LostPurpose"
-
-[[ingredient]]
-name = "Esoteric Relic"
-tier = "heroic"
 
 [[citation]]
 url = "https://ddowiki.com/page/Lost_Purpose"

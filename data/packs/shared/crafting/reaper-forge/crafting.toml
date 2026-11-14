@@ -110,11 +110,6 @@ quantity = 75
 [[family]]
 family = "Reaper"
 
-[[ingredient]]
-name = "Fragment of Reaper Power"
-drop_location = "Deconstructing items with reaper bonuses at the Reaper Forge; reaper bonuses appear on about 5% of eligible named chest loot on Reaper difficulty"
-tier = "any"
-
 [[citation]]
 url = "https://ddowiki.com/page/Reaper_Forge"
 read = "2026-11-04"
@@ -150,7 +145,7 @@ read = "2026-11-04"
 
 [[recipe]]
 note = """
-All recipe facts are on this page. Destroying an item with a reaper bonus yields Fragments of Reaper Power: 1 for a generic bonus, 1 or 5 for a slot-specific one (choose 5). Needs no Reaper Experience; ML1-2 items, wands and throwing weapons cannot be deconstructed. The generic bonuses (+3 Reaper Bonus to Melee, Ranged and Spell Power; +3 PRR; +3 MRR) appear on any named item from Reaper chests and cannot be crafted, so Maetrim's +3 Melee/Ranged and Spell Power, +3 PRR and +3 MRR augments have no recipe here.
+Destroying an item with a reaper bonus yields Fragments of Reaper Power: 1 for a generic bonus, 1 or 5 for a slot-specific one (choose 5). Needs no Reaper Experience; ML1-2 items, wands and throwing weapons cannot be deconstructed. The generic bonuses (+3 Reaper Bonus to Melee, Ranged and Spell Power; +3 PRR; +3 MRR) appear on any named item from Reaper chests and cannot be crafted, so the +3 Melee/Ranged and Spell Power, +3 PRR and +3 MRR augments have no recipe here.
 
 At the Reaper Forge."""
 option = "Deconstruct a reaper-bonus item"

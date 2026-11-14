@@ -1,3 +1,5 @@
+retired = []
+
 [[redirect]]
 kind = "augment-slot-types"
 from = "crafting-primary-upgrade"
@@ -24,6 +26,12 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "alchemical-crafting-cannith-power-cell-heroic"
+to = "cannith-power-cell"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "alchemical-crafting-caustic-compound-heroic"
 to = "caustic-compound"
 since = "2026-11-13"
@@ -36,9 +44,39 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "alchemical-crafting-dense-ingot-heroic"
+to = "dense-ingot"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "alchemical-crafting-durable-alloy-heroic"
+to = "durable-alloy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "alchemical-crafting-energizing-alloy-heroic"
 to = "energizing-alloy"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "alchemical-crafting-fortified-compound-heroic"
+to = "fortified-compound"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "alchemical-crafting-glowing-ingot-heroic"
+to = "glowing-ingot"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "alchemical-crafting-greater-cannith-power-cell-heroic"
+to = "greater-cannith-power-cell"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -51,6 +89,18 @@ kind = "crafting-ingredients"
 from = "alchemical-crafting-iron-defender-rivets-heroic"
 to = "iron-defender-rivets"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "alchemical-crafting-iron-juggernaut-parts-heroic"
+to = "iron-juggernaut-parts"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "alchemical-crafting-iron-juggernaut-plating-heroic"
+to = "iron-juggernaut-plating"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -69,6 +119,36 @@ kind = "crafting-ingredients"
 from = "alchemical-crafting-magefire-cannon-parts-heroic"
 to = "magefire-cannon-parts"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "alchemical-crafting-mercurial-compound-heroic"
+to = "mercurial-compound"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "alchemical-crafting-metallic-ingot-heroic"
+to = "metallic-ingot"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "alchemical-crafting-pliable-ingot-heroic"
+to = "pliable-ingot"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "alchemical-crafting-quorforged-juggernaut-parts-heroic"
+to = "quorforged-juggernaut-parts"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "alchemical-crafting-quorforged-juggernaut-plating-heroic"
+to = "quorforged-juggernaut-plating"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -102,6 +182,12 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "alchemical-crafting-volatile-alloy-heroic"
+to = "volatile-alloy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "alchemical-crafting-worker-drone-actuators-heroic"
 to = "worker-drone-actuators"
 since = "2026-11-13"
@@ -114,9 +200,63 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "augmentation-altar-hydra-scale-legendary"
+to = "hydra-scale"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "augmentation-altar-sealed-in-gloom-item-legendary"
+to = "sealed-in-gloom-item"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "augmentation-altar-sealed-in-mist-item-legendary"
+to = "sealed-in-mist-item"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "catalyst-crafting-abyssal-catalyst-heroic"
+to = "abyssal-catalyst-heroic"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "catalyst-crafting-abyssal-catalyst-legendary"
+to = "abyssal-catalyst-legendary"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "catalyst-crafting-abyssal-gem-heroic"
 to = "abyssal-gem"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "catalyst-crafting-deep-catalyst-heroic"
+to = "deep-catalyst-heroic"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "catalyst-crafting-deep-catalyst-legendary"
+to = "deep-catalyst-legendary"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "catalyst-crafting-epic-demon-scale-armor-legendary-demon-scale-armor-legendary"
+to = "epic-demon-scale-armor-legendary-demon-scale-armor"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "catalyst-crafting-epic-torc-of-prince-raiyum-de-ii-legendary-torc-of-prince-raiyum-de-ii-legendary"
+to = "epic-torc-of-prince-raiyum-de-ii-legendary-torc-of-prince-raiyum-de-ii"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -126,9 +266,21 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "cauldron-of-cadence-chunk-of-ferrocrystal-heroic"
+to = "chunk-of-ferrocrystal"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "cauldron-of-cadence-empty-soul-vessel-legendary"
 to = "empty-soul-vessel"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "cauldron-of-cadence-legendary-chunk-of-ferrocrystal-legendary"
+to = "legendary-chunk-of-ferrocrystal"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -144,6 +296,66 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "cauldron-of-sora-katra-legendary-mark-of-bal-molesh-legendary"
+to = "legendary-mark-of-bal-molesh"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "cauldron-of-sora-katra-legendary-mark-of-rhesh-turakbar-legendary"
+to = "legendary-mark-of-rhesh-turakbar"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "cauldron-of-sora-katra-legendary-mark-of-sheshka-legendary"
+to = "legendary-mark-of-sheshka"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "cauldron-of-sora-katra-legendary-mark-of-tzaryan-rrac-legendary"
+to = "legendary-mark-of-tzaryan-rrac"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "cauldron-of-sora-katra-mark-of-bal-molesh-heroic"
+to = "mark-of-bal-molesh"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "cauldron-of-sora-katra-mark-of-rhesh-turakbar-heroic"
+to = "mark-of-rhesh-turakbar"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "cauldron-of-sora-katra-mark-of-rhesh-turakbar-legendary"
+to = "mark-of-rhesh-turakbar"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "cauldron-of-sora-katra-mark-of-sheshka-heroic"
+to = "mark-of-sheshka"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "cauldron-of-sora-katra-mark-of-tzaryan-rrac-heroic"
+to = "mark-of-tzaryan-rrac"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "dampened-dampened-item-heroic"
+to = "dampened-item"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "dampened-glowing-fen-mushroom-epic"
 to = "glowing-fen-mushroom"
 since = "2026-11-13"
@@ -156,9 +368,93 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "dampened-golden-swamp-pearl-heroic"
+to = "golden-swamp-pearl"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "dampened-star-fragment-legendary"
 to = "star-fragment"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "dampened-token-of-vulkoor-heroic"
+to = "token-of-vulkoor"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "deck-of-many-curses-accursed-card-any"
+to = "accursed-card"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "deck-of-many-curses-card-of-curse-cleansing-any"
+to = "card-of-curse-cleansing"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "deck-of-many-curses-deck-of-many-curses-any"
+to = "deck-of-many-curses"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "deck-of-many-curses-forbidden-card-any"
+to = "forbidden-card"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "deck-of-many-curses-otherworldly-card-any"
+to = "otherworldly-card"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "deck-of-many-curses-uncanny-card-any"
+to = "uncanny-card"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "dinosaur-bone-crafting-black-pearl-legendary"
+to = "black-pearl"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "dinosaur-bone-crafting-fossilized-ankylosaur-rib-legendary"
+to = "fossilized-ankylosaur-rib"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "dinosaur-bone-crafting-fossilized-pteranodon-vertebrae-legendary"
+to = "fossilized-pteranodon-vertebrae"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "dinosaur-bone-crafting-fossilized-raptor-claw-legendary"
+to = "fossilized-raptor-claw"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "dinosaur-bone-crafting-fossilized-triceratops-horn-legendary"
+to = "fossilized-triceratops-horn"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "dinosaur-bone-crafting-fossilized-tyrannosaurus-tooth-legendary"
+to = "fossilized-tyrannosaurus-tooth"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -198,6 +494,18 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "dragonscale-armor-flawless-black-dragon-scale-epic"
+to = "flawless-black-dragon-scale"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "dragonscale-armor-flawless-blue-dragon-scale-epic"
+to = "flawless-blue-dragon-scale"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "dragonscale-armor-flawless-green-dragon-scale-epic"
 to = "flawless-green-dragon-scale"
 since = "2026-11-13"
@@ -207,6 +515,12 @@ kind = "crafting-ingredients"
 from = "dragonscale-armor-flawless-red-dragon-scale-epic"
 to = "flawless-red-dragon-scale"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "dragonscale-armor-flawless-white-dragon-scale-epic"
+to = "flawless-white-dragon-scale"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -252,6 +566,30 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "dragontouched-armor-draconic-rune-heroic"
+to = "draconic-rune"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "dragontouched-armor-eldritch-rune-heroic"
+to = "eldritch-rune"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "dragontouched-armor-sovereign-rune-heroic"
+to = "sovereign-rune"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "dragontouched-armor-tempest-rune-heroic"
+to = "tempest-rune"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "epic-crafting-crystallized-spiderweb-any"
 to = "crystallized-spiderweb"
 since = "2026-11-13"
@@ -285,6 +623,12 @@ kind = "crafting-ingredients"
 from = "epic-crafting-greater-token-of-the-twelve-epic"
 to = "greater-token-of-the-twelve"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "epic-crafting-heroic-base-item-epic"
+to = "heroic-base-item"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -324,6 +668,12 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "esoteric-table-burning-planar-scrap-legendary"
+to = "burning-planar-scrap"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "esoteric-table-legendary-black-dust-of-vile-darkness-legendary"
 to = "legendary-black-dust-of-vile-darkness"
 since = "2026-11-13"
@@ -354,6 +704,564 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "fountain-of-necrotic-might-epic-tapestry-shred-epic"
+to = "epic-tapestry-shred"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "fountain-of-necrotic-might-masterwork-tapestry-shred-epic"
+to = "masterwork-tapestry-shred"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "fountain-of-necrotic-might-pre-update-12-ascension-chamber-item-heroic"
+to = "pre-update-12-ascension-chamber-item"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "fountain-of-necrotic-might-seal-of-the-black-abbot-heroic"
+to = "seal-of-the-black-abbot"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "fountain-of-necrotic-might-shred-of-tapestry-heroic"
+to = "shred-of-tapestry"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "fountain-of-necrotic-might-update-23-epic-necropolis-item-epic"
+to = "update-23-epic-necropolis-item"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-bitterscrub-fungus-heroic"
+to = "bitterscrub-fungus"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-blue-taper-heroic"
+to = "blue-taper"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-chipmunk-funk-heroic"
+to = "chipmunk-funk"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-cloudy-gem-of-dominion-heroic"
+to = "cloudy-gem-of-dominion"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-cloudy-gem-of-escalation-heroic"
+to = "cloudy-gem-of-escalation"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-cloudy-gem-of-opposition-heroic"
+to = "cloudy-gem-of-opposition"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-depleted-shavarath-high-energy-cell-heroic"
+to = "depleted-shavarath-high-energy-cell"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-depleted-shavarath-medium-energy-cell-heroic"
+to = "depleted-shavarath-medium-energy-cell"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-diluted-ethereal-essence-heroic"
+to = "diluted-ethereal-essence"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-diluted-material-essence-heroic"
+to = "diluted-material-essence"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-eberron-energy-cell-heroic"
+to = "eberron-energy-cell"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-ethereal-essence-heroic"
+to = "ethereal-essence"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-filament-of-toil-heroic"
+to = "filament-of-toil"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-flawless-gem-of-domination-heroic"
+to = "flawless-gem-of-domination"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-flawless-gem-of-escalation-heroic"
+to = "flawless-gem-of-escalation"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-flawless-gem-of-opposition-heroic"
+to = "flawless-gem-of-opposition"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-focus-of-air-heroic"
+to = "focus-of-air"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-focus-of-earth-heroic"
+to = "focus-of-earth"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-focus-of-fire-heroic"
+to = "focus-of-fire"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-focus-of-negative-energy-heroic"
+to = "focus-of-negative-energy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-focus-of-positive-energy-heroic"
+to = "focus-of-positive-energy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-focus-of-water-heroic"
+to = "focus-of-water"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-gem-of-dominion-heroic"
+to = "gem-of-dominion"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-gem-of-escalation-heroic"
+to = "gem-of-escalation"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-gem-of-opposition-heroic"
+to = "gem-of-opposition"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-glistening-pebbles-heroic"
+to = "glistening-pebbles"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-green-briar-twigs-heroic"
+to = "green-briar-twigs"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-green-taper-heroic"
+to = "green-taper"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-inferior-focus-of-air-heroic"
+to = "inferior-focus-of-air"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-inferior-focus-of-earth-heroic"
+to = "inferior-focus-of-earth"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-inferior-focus-of-fire-heroic"
+to = "inferior-focus-of-fire"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-inferior-focus-of-negative-energy-heroic"
+to = "inferior-focus-of-negative-energy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-inferior-focus-of-positive-energy-heroic"
+to = "inferior-focus-of-positive-energy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-inferior-focus-of-water-heroic"
+to = "inferior-focus-of-water"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-lammanian-lily-petals-heroic"
+to = "lammanian-lily-petals"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-large-devil-scales-heroic"
+to = "large-devil-scales"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-large-glowing-arrowhead-heroic"
+to = "large-glowing-arrowhead"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-large-gnawed-bone-heroic"
+to = "large-gnawed-bone"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-large-length-of-infernal-chain-heroic"
+to = "large-length-of-infernal-chain"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-large-splintered-horn-heroic"
+to = "large-splintered-horn"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-large-sulfurous-stone-heroic"
+to = "large-sulfurous-stone"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-large-twisted-shrapnel-heroic"
+to = "large-twisted-shrapnel"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-locust-husk-heroic"
+to = "locust-husk"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-material-essence-heroic"
+to = "material-essence"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-medium-devil-scales-heroic"
+to = "medium-devil-scales"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-medium-glowing-arrowhead-heroic"
+to = "medium-glowing-arrowhead"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-medium-gnawed-bone-heroic"
+to = "medium-gnawed-bone"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-medium-length-of-infernal-chain-heroic"
+to = "medium-length-of-infernal-chain"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-medium-splintered-horn-heroic"
+to = "medium-splintered-horn"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-medium-sulfurous-stone-heroic"
+to = "medium-sulfurous-stone"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-medium-twisted-shrapnel-heroic"
+to = "medium-twisted-shrapnel"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-ore-of-travail-heroic"
+to = "ore-of-travail"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-pure-ethereal-essence-heroic"
+to = "pure-ethereal-essence"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-pure-material-essence-heroic"
+to = "pure-material-essence"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-red-taper-heroic"
+to = "red-taper"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-shard-of-great-power-heroic"
+to = "shard-of-great-power"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-shard-of-power-heroic"
+to = "shard-of-power"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-shard-of-supreme-power-heroic"
+to = "shard-of-supreme-power"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-shavarath-high-energy-cell-heroic"
+to = "shavarath-high-energy-cell"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-shavarath-low-energy-cell-heroic"
+to = "shavarath-low-energy-cell"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-shavarath-medium-energy-cell-heroic"
+to = "shavarath-medium-energy-cell"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-shavarath-signet-stone-heroic"
+to = "shavarath-signet-stone"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-shavarath-stone-of-battle-heroic"
+to = "shavarath-stone-of-battle"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-shavarath-stone-of-foresight-heroic"
+to = "shavarath-stone-of-foresight"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-shavarath-stone-of-might-heroic"
+to = "shavarath-stone-of-might"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-shavarath-stone-of-strategy-heroic"
+to = "shavarath-stone-of-strategy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-shavarath-stone-of-victory-heroic"
+to = "shavarath-stone-of-victory"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-small-devil-scales-heroic"
+to = "small-devil-scales"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-small-glowing-arrowhead-heroic"
+to = "small-glowing-arrowhead"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-small-gnawed-bone-heroic"
+to = "small-gnawed-bone"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-small-length-of-infernal-chain-heroic"
+to = "small-length-of-infernal-chain"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-small-sulfurous-stone-heroic"
+to = "small-sulfurous-stone"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-small-twisted-shrapnel-heroic"
+to = "small-twisted-shrapnel"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-superior-focus-of-air-heroic"
+to = "superior-focus-of-air"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-superior-focus-of-earth-heroic"
+to = "superior-focus-of-earth"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-superior-focus-of-fire-heroic"
+to = "superior-focus-of-fire"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-superior-focus-of-negative-energy-heroic"
+to = "superior-focus-of-negative-energy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-superior-focus-of-positive-energy-heroic"
+to = "superior-focus-of-positive-energy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-superior-focus-of-water-heroic"
+to = "superior-focus-of-water"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-violet-taper-heroic"
+to = "violet-taper"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-wondrous-balm-heroic"
+to = "wondrous-balm"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-wondrous-jewel-heroic"
+to = "wondrous-jewel"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-wondrous-oil-heroic"
+to = "wondrous-oil"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-wondrous-scarab-heroic"
+to = "wondrous-scarab"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "green-steel-items-yellow-taper-heroic"
+to = "yellow-taper"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "incredible-potential-imbued-shard-of-great-power-heroic"
+to = "imbued-shard-of-great-power"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "incredible-potential-shavarath-war-trophy-heroic"
+to = "shavarath-war-trophy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "legendary-crafting-crystallized-spiderweb-legendary"
 to = "crystallized-spiderweb"
 since = "2026-11-13"
@@ -363,6 +1271,12 @@ kind = "crafting-ingredients"
 from = "legendary-crafting-desert-sand-crystal-legendary"
 to = "desert-sand-crystal"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-crafting-epic-item-legendary"
+to = "epic-item"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -414,15 +1328,345 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "legendary-green-steel-items-codex-rune-legendary"
+to = "codex-rune"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "legendary-green-steel-items-commendation-of-valor-legendary"
 to = "commendation-of-valor"
 since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "legendary-green-steel-items-immortals-heart-legendary"
+to = "immortals-heart"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-cloudy-gem-of-dominion-legendary"
+to = "legendary-cloudy-gem-of-dominion"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-cloudy-gem-of-escalation-legendary"
+to = "legendary-cloudy-gem-of-escalation"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-cloudy-gem-of-opposition-legendary"
+to = "legendary-cloudy-gem-of-opposition"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-diluted-ethereal-essence-legendary"
+to = "legendary-diluted-ethereal-essence"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-diluted-material-essence-legendary"
+to = "legendary-diluted-material-essence"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-ethereal-essence-legendary"
+to = "legendary-ethereal-essence"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-flawless-gem-of-dominion-legendary"
+to = "legendary-flawless-gem-of-dominion"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-flawless-gem-of-escalation-legendary"
+to = "legendary-flawless-gem-of-escalation"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-flawless-gem-of-opposition-legendary"
+to = "legendary-flawless-gem-of-opposition"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-focus-of-air-legendary"
+to = "legendary-focus-of-air"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-focus-of-earth-legendary"
+to = "legendary-focus-of-earth"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-focus-of-fire-legendary"
+to = "legendary-focus-of-fire"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-focus-of-negative-energy-legendary"
+to = "legendary-focus-of-negative-energy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-focus-of-positive-energy-legendary"
+to = "legendary-focus-of-positive-energy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-focus-of-water-legendary"
+to = "legendary-focus-of-water"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-gem-of-dominion-legendary"
+to = "legendary-gem-of-dominion"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-gem-of-escalation-legendary"
+to = "legendary-gem-of-escalation"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-gem-of-opposition-legendary"
+to = "legendary-gem-of-opposition"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-inferior-focus-of-air-legendary"
+to = "legendary-inferior-focus-of-air"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-inferior-focus-of-earth-legendary"
+to = "legendary-inferior-focus-of-earth"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-inferior-focus-of-fire-legendary"
+to = "legendary-inferior-focus-of-fire"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-inferior-focus-of-negative-energy-legendary"
+to = "legendary-inferior-focus-of-negative-energy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-inferior-focus-of-positive-energy-legendary"
+to = "legendary-inferior-focus-of-positive-energy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-inferior-focus-of-water-legendary"
+to = "legendary-inferior-focus-of-water"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-large-devil-scales-legendary"
+to = "legendary-large-devil-scales"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-large-glowing-arrowhead-legendary"
+to = "legendary-large-glowing-arrowhead"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-large-gnawed-bone-legendary"
+to = "legendary-large-gnawed-bone"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-large-length-of-infernal-chain-legendary"
+to = "legendary-large-length-of-infernal-chain"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-large-sulfurous-stone-legendary"
+to = "legendary-large-sulfurous-stone"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-large-twisted-shrapnel-legendary"
+to = "legendary-large-twisted-shrapnel"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-material-essence-legendary"
+to = "legendary-material-essence"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-medium-devil-scales-legendary"
+to = "legendary-medium-devil-scales"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-medium-glowing-arrowhead-legendary"
+to = "legendary-medium-glowing-arrowhead"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-medium-gnawed-bone-legendary"
+to = "legendary-medium-gnawed-bone"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-medium-length-of-infernal-chain-legendary"
+to = "legendary-medium-length-of-infernal-chain"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-medium-sulfurous-stone-legendary"
+to = "legendary-medium-sulfurous-stone"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-medium-twisted-shrapnel-legendary"
+to = "legendary-medium-twisted-shrapnel"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-pure-ethereal-essence-legendary"
+to = "legendary-pure-ethereal-essence"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-pure-material-essence-legendary"
+to = "legendary-pure-material-essence"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-small-devil-scales-legendary"
+to = "legendary-small-devil-scales"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-small-glowing-arrowhead-legendary"
+to = "legendary-small-glowing-arrowhead"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-small-gnawed-bone-legendary"
+to = "legendary-small-gnawed-bone"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-small-length-of-infernal-chain-legendary"
+to = "legendary-small-length-of-infernal-chain"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-small-sulfurous-stone-legendary"
+to = "legendary-small-sulfurous-stone"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-small-twisted-shrapnel-legendary"
+to = "legendary-small-twisted-shrapnel"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-superior-focus-of-air-legendary"
+to = "legendary-superior-focus-of-air"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-superior-focus-of-earth-legendary"
+to = "legendary-superior-focus-of-earth"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-superior-focus-of-fire-legendary"
+to = "legendary-superior-focus-of-fire"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-superior-focus-of-negative-energy-legendary"
+to = "legendary-superior-focus-of-negative-energy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-superior-focus-of-positive-energy-legendary"
+to = "legendary-superior-focus-of-positive-energy"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "legendary-green-steel-items-legendary-superior-focus-of-water-legendary"
+to = "legendary-superior-focus-of-water"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "lost-purpose-esoteric-relic-heroic"
+to = "esoteric-relic"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "lost-purpose-legendary-esoteric-relic-legendary"
 to = "legendary-esoteric-relic"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "mikrom-sum-commendation-clerics-of-amaunator-epic"
+to = "commendation-clerics-of-amaunator"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -441,6 +1685,12 @@ kind = "crafting-ingredients"
 from = "mikrom-sum-commendation-purple-dragon-knights-epic"
 to = "commendation-purple-dragon-knights"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "mikrom-sum-commendation-villagers-of-eveningstar-epic"
+to = "commendation-villagers-of-eveningstar"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -492,6 +1742,30 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "nearly-finished-reforged-dense-ingot-any"
+to = "reforged-dense-ingot"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "nearly-finished-reforged-glowing-ingot-any"
+to = "reforged-glowing-ingot"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "nearly-finished-reforged-metallic-ingot-any"
+to = "reforged-metallic-ingot"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "nearly-finished-reforged-pliable-ingot-any"
+to = "reforged-pliable-ingot"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "nearly-finished-stabilizing-compound-any"
 to = "stabilizing-compound"
 since = "2026-11-13"
@@ -528,9 +1802,21 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "nebula-fragment-crafting-legendary-base-item-legendary"
+to = "legendary-base-item"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "nebula-fragment-crafting-medal-of-house-deneith-legendary"
 to = "medal-of-house-deneith"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "nebula-fragment-crafting-nebula-fragment-legendary"
+to = "nebula-fragment"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -564,15 +1850,285 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "reaper-forge-fragment-of-reaper-power-any"
+to = "fragment-of-reaper-power"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "ritual-table-barrier-fragment-legendary"
+to = "barrier-fragment"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "ritual-table-legendary-weapon-of-the-golden-age-legendary"
+to = "legendary-weapon-of-the-golden-age"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "ritual-table-sealed-in-fire-weapon-legendary"
+to = "sealed-in-fire-weapon"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "ritual-table-sealed-in-undeath-item-legendary"
+to = "sealed-in-undeath-item"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "ritual-table-sigil-of-the-artblade-legendary"
+to = "sigil-of-the-artblade"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "ritual-table-sigil-of-the-crownblade-legendary"
+to = "sigil-of-the-crownblade"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "ritual-table-sigil-of-the-warblade-legendary"
+to = "sigil-of-the-warblade"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "schism-shard-crafting-schism-shard-legendary"
+to = "schism-shard"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "schism-shard-crafting-sentient-jewel-of-blackrazor-legendary"
+to = "sentient-jewel-of-blackrazor"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "schism-shard-crafting-sentient-jewel-of-wave-legendary"
+to = "sentient-jewel-of-wave"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "schism-shard-crafting-sentient-jewel-of-whelm-legendary"
+to = "sentient-jewel-of-whelm"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "sealed-altar-abyssal-gem-heroic"
 to = "abyssal-gem"
 since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "sealed-altar-black-globe-of-slime-any"
+to = "black-globe-of-slime"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "sealed-altar-blue-globe-of-slime-any"
+to = "blue-globe-of-slime"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "sealed-altar-bottom-of-the-slime-emblem-any"
+to = "bottom-of-the-slime-emblem"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "sealed-altar-gold-globe-of-slime-any"
+to = "gold-globe-of-slime"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "sealed-altar-gray-globe-of-slime-any"
+to = "gray-globe-of-slime"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "sealed-altar-green-globe-of-slime-any"
+to = "green-globe-of-slime"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "sealed-altar-legendary-abyssal-gem-legendary"
 to = "legendary-abyssal-gem"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "sealed-altar-pink-globe-of-slime-any"
+to = "pink-globe-of-slime"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "sealed-altar-top-of-the-slime-emblem-any"
+to = "top-of-the-slime-emblem"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "shield-of-legend-shield-fragment-eight-any"
+to = "shield-fragment-eight"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "shield-of-legend-shield-fragment-five-any"
+to = "shield-fragment-five"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "shield-of-legend-shield-fragment-four-any"
+to = "shield-fragment-four"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "shield-of-legend-shield-fragment-one-any"
+to = "shield-fragment-one"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "shield-of-legend-shield-fragment-seven-any"
+to = "shield-fragment-seven"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "shield-of-legend-shield-fragment-six-any"
+to = "shield-fragment-six"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "shield-of-legend-shield-fragment-three-any"
+to = "shield-fragment-three"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "shield-of-legend-shield-fragment-two-any"
+to = "shield-fragment-two"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "shield-of-legend-shield-frame-any"
+to = "shield-frame"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-broken-collar-heroic"
+to = "broken-collar"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-broken-shackle-heroic"
+to = "broken-shackle"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-chain-links-heroic"
+to = "chain-links"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-frayed-leather-heroic"
+to = "frayed-leather"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-legendary-broken-collar-legendary"
+to = "legendary-broken-collar"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-legendary-broken-shackle-legendary"
+to = "legendary-broken-shackle"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-legendary-chain-links-legendary"
+to = "legendary-chain-links"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-legendary-frayed-leather-legendary"
+to = "legendary-frayed-leather"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-legendary-shattered-symbol-of-slave-lords-legendary"
+to = "legendary-shattered-symbol-of-slave-lords"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-legendary-slave-masters-bust-legendary"
+to = "legendary-slave-masters-bust"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-legendary-staff-splinter-legendary"
+to = "legendary-staff-splinter"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-legendary-statuette-of-the-gods-legendary"
+to = "legendary-statuette-of-the-gods"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-shattered-symbol-of-the-slave-lords-heroic"
+to = "shattered-symbol-of-the-slave-lords"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-slave-masters-bust-heroic"
+to = "slave-masters-bust"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-staff-splinter-heroic"
+to = "staff-splinter"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "slave-lords-crafting-statuette-of-the-gods-heroic"
+to = "statuette-of-the-gods"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -588,15 +2144,153 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "stone-of-change-adamantine-ore-any"
+to = "adamantine-ore"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-any-attuned-armor-any"
+to = "any-attuned-armor"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-any-attuned-item-any"
+to = "any-attuned-item"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-any-attuned-jewelry-any"
+to = "any-attuned-jewelry"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-any-attuned-shield-or-orb-any"
+to = "any-attuned-shield-or-orb"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-any-attuned-weapon-any"
+to = "any-attuned-weapon"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-any-equipable-item-any"
+to = "any-equipable-item"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-deadly-feverblanch-any"
+to = "deadly-feverblanch"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-exceptional-siberys-dragonshard-any"
+to = "exceptional-siberys-dragonshard"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-flawed-siberys-dragonshard-any"
+to = "flawed-siberys-dragonshard"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-fragrant-drowshood-any"
+to = "fragrant-drowshood"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-funerary-token-any"
+to = "funerary-token"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "stone-of-change-greater-token-of-the-twelve-any"
 to = "greater-token-of-the-twelve"
 since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "stone-of-change-imperfect-siberys-dragonshard-any"
+to = "imperfect-siberys-dragonshard"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-lightning-split-soarwood-any"
+to = "lightning-split-soarwood"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-luminescent-dust-any"
+to = "luminescent-dust"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-siberys-dragonshard-any"
+to = "siberys-dragonshard"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "stone-of-change-siberys-dragonshard-fragment-any"
 to = "siberys-dragonshard-fragment"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-silver-flame-hymnal-any"
+to = "silver-flame-hymnal"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-soul-gem-essence-of-earth-any"
+to = "soul-gem-essence-of-earth"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-sparkling-dust-any"
+to = "sparkling-dust"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-string-of-prayer-beads-any"
+to = "string-of-prayer-beads"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-tasty-ham-any"
+to = "tasty-ham"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-tome-prophecies-of-khyber-any"
+to = "tome-prophecies-of-khyber"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stone-of-change-vial-of-pure-water-any"
+to = "vial-of-pure-water"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -630,9 +2324,21 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "stormreaver-monument-restored-giant-elven-or-dragon-relic-heroic"
+to = "restored-giant-elven-or-dragon-relic"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "stormreaver-monument-restored-giant-relic-epic"
 to = "restored-giant-relic"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "stormreaver-monument-seal-of-the-stormreaver-heroic"
+to = "seal-of-the-stormreaver"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -645,6 +2351,42 @@ kind = "crafting-ingredients"
 from = "suppressed-power-astral-shard-any"
 to = "astral-shard"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "suppressed-power-crystal-disc-of-dreams-heroic"
+to = "crystal-disc-of-dreams"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "suppressed-power-crystal-shard-of-dreams-heroic"
+to = "crystal-shard-of-dreams"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "suppressed-power-essence-of-horrors-heroic"
+to = "essence-of-horrors"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "suppressed-power-essence-of-nightmares-heroic"
+to = "essence-of-nightmares"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "suppressed-power-essence-of-phantasms-heroic"
+to = "essence-of-phantasms"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "suppressed-power-essence-of-torments-heroic"
+to = "essence-of-torments"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -702,9 +2444,159 @@ since = "2026-11-13"
 
 [[redirect]]
 kind = "crafting-ingredients"
+from = "thunder-forged-fire-dragon-phlogiston-epic"
+to = "fire-dragon-phlogiston"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "thunder-forged-fire-dragon-scale-epic"
+to = "fire-dragon-scale"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "thunder-forged-shadow-dragon-phlogiston-epic"
+to = "shadow-dragon-phlogiston"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "thunder-forged-shadow-dragon-scale-epic"
+to = "shadow-dragon-scale"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "thunder-forged-thunder-forged-dwarven-ingot-epic"
+to = "thunder-forged-dwarven-ingot"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "tome-of-untold-legends-tome-binding-any"
+to = "tome-binding"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "tome-of-untold-legends-tome-legend-i-any"
+to = "tome-legend-i"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "tome-of-untold-legends-tome-legend-ii-any"
+to = "tome-legend-ii"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "tome-of-untold-legends-tome-legend-iii-any"
+to = "tome-legend-iii"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "tome-of-untold-legends-tome-legend-iv-any"
+to = "tome-legend-iv"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "tome-of-untold-legends-tome-legend-v-any"
+to = "tome-legend-v"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "tome-of-untold-legends-tome-legend-vi-any"
+to = "tome-legend-vi"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "tome-of-untold-legends-tome-legend-vii-any"
+to = "tome-legend-vii"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "tome-of-untold-legends-tome-legend-viii-any"
+to = "tome-legend-viii"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "trace-of-madness-adhesive-slime-any"
+to = "adhesive-slime"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "trace-of-madness-brain-sample-any"
+to = "brain-sample"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "trace-of-madness-polished-stone-any"
+to = "polished-stone"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "trace-of-madness-trace-of-madness-item-any"
+to = "trace-of-madness-item"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "trace-of-madness-watchers-eye-any"
+to = "watchers-eye"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "trapmaking-crude-vial-any"
+to = "crude-vial"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "trapmaking-elemental-trap-parts-any"
+to = "elemental-trap-parts"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "trapmaking-level-1-trap-scroll-any"
+to = "level-1-trap-scroll"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "trapmaking-level-2-trap-scroll-any"
+to = "level-2-trap-scroll"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "trapmaking-level-3-trap-scroll-any"
+to = "level-3-trap-scroll"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
 from = "trapmaking-magic-item-essence-any"
 to = "magic-item-essence"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "trapmaking-magical-trap-parts-any"
+to = "magical-trap-parts"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -717,6 +2609,42 @@ kind = "crafting-ingredients"
 from = "trapmaking-siberys-dragonshard-fragment-any"
 to = "siberys-dragonshard-fragment"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "trapmaking-simple-vial-any"
+to = "simple-vial"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "trapmaking-unadorned-vial-any"
+to = "unadorned-vial"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "unholy-defiler-of-the-hidden-hand-black-dust-of-vile-darkness-heroic"
+to = "black-dust-of-vile-darkness"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "unholy-defiler-of-the-hidden-hand-crimson-dust-of-vile-darkness-heroic"
+to = "crimson-dust-of-vile-darkness"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "unholy-defiler-of-the-hidden-hand-golden-dust-of-vile-darkness-heroic"
+to = "golden-dust-of-vile-darkness"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "unholy-defiler-of-the-hidden-hand-gray-dust-of-vile-darkness-heroic"
+to = "gray-dust-of-vile-darkness"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "crafting-ingredients"
@@ -741,6 +2669,90 @@ kind = "crafting-ingredients"
 from = "unholy-defiler-of-the-hidden-hand-legendary-gray-dust-of-vile-darkness-legendary"
 to = "legendary-gray-dust-of-vile-darkness"
 since = "2026-11-13"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "viktranium-experiment-crafting-bleak-alternator-heroic"
+to = "bleak-alternator"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "viktranium-experiment-crafting-bleak-conductor-heroic"
+to = "bleak-conductor"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "viktranium-experiment-crafting-bleak-insulator-heroic"
+to = "bleak-insulator"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "viktranium-experiment-crafting-bleak-resistor-heroic"
+to = "bleak-resistor"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "viktranium-experiment-crafting-bleak-transformer-heroic"
+to = "bleak-transformer"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "viktranium-experiment-crafting-bleak-wire-heroic"
+to = "bleak-wire"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "viktranium-experiment-crafting-legendary-bleak-alternator-legendary"
+to = "legendary-bleak-alternator"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "viktranium-experiment-crafting-legendary-bleak-conductor-legendary"
+to = "legendary-bleak-conductor"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "viktranium-experiment-crafting-legendary-bleak-insulator-legendary"
+to = "legendary-bleak-insulator"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "viktranium-experiment-crafting-legendary-bleak-memento-legendary"
+to = "legendary-bleak-memento"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "viktranium-experiment-crafting-legendary-bleak-resistor-legendary"
+to = "legendary-bleak-resistor"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "viktranium-experiment-crafting-legendary-bleak-transformer-legendary"
+to = "legendary-bleak-transformer"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "viktranium-experiment-crafting-legendary-bleak-wire-legendary"
+to = "legendary-bleak-wire"
+since = "2026-11-14"
+
+[[redirect]]
+kind = "crafting-ingredients"
+from = "zhentarim-attuned-black-stone-epic"
+to = "black-stone"
+since = "2026-11-14"
 
 [[redirect]]
 kind = "effects"
@@ -993,1683 +3005,3 @@ kind = "effects"
 from = "you-have-intercession-ward-and-are-immune-to-being-quelled"
 to = "intercession-ward"
 since = "2026-10-26"
-
-[[retired]]
-kind = "augment-slot-types"
-slug = "crafting-against-the-slave-lords-set-bonus"
-since = "2026-11-13"
-reason = "Named Slave Lords items use the crafted set-bonus socket of their grade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-bow-of-sinew-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Bow of Sinew."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-bow-of-sinew-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Bow of Sinew."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-cannith-boots-of-propulsion-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Cannith Boots of Propulsion."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-cannith-boots-of-propulsion-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Cannith Boots of Propulsion."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-cowl-of-the-devotee-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Cowl of the Devotee."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-deaths-door-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Death's Door."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-deaths-door-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Death's Door."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-demon-scale-armor-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Demon Scale Armor."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-bastard-sword-of-the-weapon-master-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Bastard Sword of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-bastard-sword-of-the-weapon-master-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Bastard Sword of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-dagger-of-the-weapon-master-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Dagger of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-dagger-of-the-weapon-master-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Dagger of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-greataxe-of-the-weapon-master-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Greataxe of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-greataxe-of-the-weapon-master-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Greataxe of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-khopesh-of-the-weapon-master-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Khopesh of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-khopesh-of-the-weapon-master-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Khopesh of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-light-mace-of-the-weapon-master-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Light Mace of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-light-mace-of-the-weapon-master-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Light Mace of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-longsword-of-the-weapon-master-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Longsword of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-longsword-of-the-weapon-master-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Longsword of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-maul-of-the-weapon-master-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Maul of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-maul-of-the-weapon-master-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Maul of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-piwafwi-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Piwafwi."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-piwafwi-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Piwafwi."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-quarterstaff-of-the-weapon-master-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Quarterstaff of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-quarterstaff-of-the-weapon-master-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Quarterstaff of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-rapier-of-the-weapon-master-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Rapier of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-rapier-of-the-weapon-master-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Rapier of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-scimitar-of-the-weapon-master-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Scimitar of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-scimitar-of-the-weapon-master-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Scimitar of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-shortsword-of-the-weapon-master-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Shortsword of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-shortsword-of-the-weapon-master-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Shortsword of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-warhammer-of-the-weapon-master-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Warhammer of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-drow-warhammer-of-the-weapon-master-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Drow Warhammer of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-duergar-waraxe-of-the-weapon-master-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Duergar Waraxe of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-duergar-waraxe-of-the-weapon-master-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Duergar Waraxe of the Weapon Master."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-elemental-victory-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Elemental Victory."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-epic-elemental-victory-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Epic Elemental Victory."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-epic-locus-of-vol-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Epic Locus of Vol."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-epic-seraphim-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Epic Seraphim."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-expeditious-boots-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Expeditious Boots."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-expeditious-boots-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Expeditious Boots."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-grazzts-habiliment-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Graz'zt's Habiliment."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-grazzts-habiliment-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Graz'zt's Habiliment."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-hide-of-the-goristro-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Hide of the Goristro."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-hide-of-the-goristro-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Hide of the Goristro."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-insanity-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Insanity."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-insanity-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Insanity."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-lantern-ring-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Lantern Ring."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-lantern-ring-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Lantern Ring."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-legendary-cowl-of-the-devotee-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Cowl of the Devotee."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-legendary-pansophic-circlet-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Pansophic Circlet."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-legendary-planar-compass-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Planar Compass."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-locus-of-vol-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Locus of Vol."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-mantle-of-the-worldshaper-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Mantle of the Worldshaper."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-mantle-of-the-worldshaper-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Mantle of the Worldshaper."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-mucks-doom-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Muck's Doom."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-mucks-doom-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Muck's Doom."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-pansophic-circlet-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Pansophic Circlet."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-planar-compass-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Planar Compass."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-planar-gird-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Planar Gird."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-planar-gird-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Planar Gird."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-royal-guard-mask-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Royal Guard Mask."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-royal-guard-mask-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Royal Guard Mask."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-seraphim-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Seraphim."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-spider-spun-caparison-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Spider-spun Caparison."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-spider-spun-caparison-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Spider-spun Caparison."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-spidersilk-robes-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Spidersilk Robes."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-spidersilk-robes-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Spidersilk Robes."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-staff-of-the-necromancer-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Staff of the Necromancer."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-staff-of-the-necromancer-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Staff of the Necromancer."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-sun-blade-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Sun Blade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-sun-blade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Sun Blade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-the-blood-stone-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item The Blood Stone."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-the-blood-stone-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item The Blood Stone."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-the-mad-lute-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item The Mad Lute."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-the-mad-lute-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item The Mad Lute."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-torc-of-prince-raiyum-de-ii-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Torc of Prince Raiyum-de II."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-ultimatum-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Ultimatum."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-ultimatum-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Ultimatum."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-visor-of-the-flesh-render-guards-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Visor of the Flesh Render Guards."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "catalyst-crafting-visor-of-the-flesh-render-guards-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Visor of the Flesh Render Guards."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-attunements-gaze-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Attunement's Gaze."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-citadels-gaze-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Citadel's Gaze."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-cloak-of-the-mountain-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Cloak of the Mountain."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-coat-of-van-richten-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Coat of Van Richten."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-crystalline-gauntlets-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Crystalline Gauntlets."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-dumathoins-bracers-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Dumathoin's Bracers."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-guided-sight-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Guided Sight."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-helm-of-the-final-watcher-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Helm of the Final Watcher."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-kelas-volatile-mixture-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Kelas' Volatile Mixture."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-mail-of-the-mroranon-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Mail of the Mroranon."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-mantle-of-escher-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Mantle of Escher."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-page-regalia-exiled-tactica-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Page Regalia: Exiled Tactica."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-page-regalia-unsanctioned-arcana-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Page Regalia: Unsanctioned Arcana."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-platemail-of-strahd-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Platemail of Strahd."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-quori-infused-core-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Quori-Infused Core."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-staggershockers-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Staggershockers."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-strange-tidings-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Strange Tidings."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-tattered-scrolls-of-the-broken-one-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Tattered Scrolls of the Broken One."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-the-familys-blessing-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item The Family's Blessing."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-the-stablestone-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item The Stablestone."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-cadence-vestments-of-ravenloft-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Vestments of Ravenloft."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-blade-of-fury-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Blade of Fury."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-bloody-cleaver-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Bloody Cleaver."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-fusible-sceptre-of-combustion-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Fusible Sceptre of Combustion."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-fusible-sceptre-of-corrosion-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Fusible Sceptre of Corrosion."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-fusible-sceptre-of-glaciation-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Fusible Sceptre of Glaciation."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-fusible-sceptre-of-impulse-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Fusible Sceptre of Impulse."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-fusible-sceptre-of-magnetism-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Fusible Sceptre of Magnetism."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-gnollish-war-bow-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Gnollish War Bow."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-hooked-blade-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Hooked Blade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-katras-wit-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Katra's Wit."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-blade-of-fury-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Blade of Fury."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-bloody-cleaver-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Bloody Cleaver."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-fusible-sceptre-of-combustion-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Fusible Sceptre of Combustion."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-fusible-sceptre-of-corrosion-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Fusible Sceptre of Corrosion."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-fusible-sceptre-of-glaciation-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Fusible Sceptre of Glaciation."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-fusible-sceptre-of-impulse-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Fusible Sceptre of Impulse."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-fusible-sceptre-of-magnetism-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Fusible Sceptre of Magnetism."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-gnollish-war-bow-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Gnollish War Bow."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-hooked-blade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Hooked Blade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-katras-wit-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Katra's Wit."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-maenyas-fists-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Maenya's Fists."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-malleable-sceptre-of-devotion-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Malleable Sceptre of Devotion."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-malleable-sceptre-of-nullification-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Malleable Sceptre of Nullification."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-malleable-sceptre-of-radiance-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Malleable Sceptre of Radiance."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-malleable-sceptre-of-reconstruction-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Malleable Sceptre of Reconstruction."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-malleable-sceptre-of-resonation-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Malleable Sceptre of Resonation."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-ogrish-war-axe-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Ogrish War Axe."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-rocksplitter-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Rocksplitter."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-scepter-of-the-fleshweaver-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Scepter of the Fleshweaver."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-scepter-of-the-ogre-magi-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Scepter of the Ogre Magi."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-staff-of-the-shadow-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Staff of the Shadow."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-stonedust-handwraps-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Stonedust Handwraps."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-legendary-terazas-sight-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Teraza's Sight."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-maenyas-fists-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Maenya's Fists."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-malleable-sceptre-of-devotion-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Malleable Sceptre of Devotion."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-malleable-sceptre-of-nullification-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Malleable Sceptre of Nullification."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-malleable-sceptre-of-radiance-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Malleable Sceptre of Radiance."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-malleable-sceptre-of-reconstruction-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Malleable Sceptre of Reconstruction."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-malleable-sceptre-of-resonation-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Malleable Sceptre of Resonation."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-ogrish-war-axe-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Ogrish War Axe."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-rocksplitter-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Rocksplitter."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-scepter-of-the-fleshweaver-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Scepter of the Fleshweaver."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-scepter-of-the-ogre-magi-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Scepter of the Ogre Magi."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-staff-of-the-shadow-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Staff of the Shadow."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-stonedust-handwraps-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Stonedust Handwraps."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "cauldron-of-sora-katra-terazas-sight-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Teraza's Sight."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "dragoncraft-armor-ancient-dragon-relic-any"
-since = "2026-11-13"
-reason = "Dragoncraft Armor is no longer available."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "elfcraft-armor-ancient-elven-relic-any"
-since = "2026-11-13"
-reason = "Elfcraft Armor is no longer available."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "fountain-of-necrotic-might-breeze-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Breeze."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "fountain-of-necrotic-might-circle-of-hatred-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Circle of Hatred."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "fountain-of-necrotic-might-deific-diadem-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Deific Diadem."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "fountain-of-necrotic-might-enduring-conviction-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Enduring Conviction."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "fountain-of-necrotic-might-litany-of-the-dead-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Litany of the Dead."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "fountain-of-necrotic-might-noxious-embers-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Noxious Embers."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "fountain-of-necrotic-might-purging-the-pantheon-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Purging the Pantheon."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "fountain-of-necrotic-might-quiver-of-alacrity-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Quiver of Alacrity."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "fountain-of-necrotic-might-shroud-of-the-abbot-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Shroud of the Abbot."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "fountain-of-necrotic-might-staff-of-the-petitioner-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Staff of the Petitioner."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "fountain-of-necrotic-might-unwavering-ardency-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Unwavering Ardency."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "fountain-of-necrotic-might-vile-blasphemy-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Vile Blasphemy."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "fountain-of-necrotic-might-wretched-twilight-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Wretched Twilight."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "giantcraft-armor-ancient-giant-relic-any"
-since = "2026-11-13"
-reason = "Giantcraft Armor is no longer available."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-agony-the-knife-in-the-dark-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Agony, the Knife in the Dark."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-antipode-fist-of-the-horizon-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Antipode, Fist of the Horizon."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-balizarde-protector-of-the-king-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Balizarde, Protector of the King."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-breach-the-dividing-blade-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Breach, The Dividing Blade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-celestia-brightest-star-of-day-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Celestia, Brightest Star of Day."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-cleaver-hewer-of-suffering-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Cleaver, Hewer of Suffering."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-embrace-of-the-spider-queen-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Embrace of the Spider Queen."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-hide-of-the-goristro-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Hide of the Goristro."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-mornh-hammer-of-the-mountains-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Mornh, Hammer of the Mountains."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-needle-quill-slinger-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Needle, Quill-slinger."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-nightmare-the-fallen-moon-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Nightmare, the Fallen Moon."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-pinion-cloud-piercer-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Pinion, Cloud-piercer."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-sireth-spear-of-the-sky-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Sireth, Spear of the Sky."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-spider-spun-caparison-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Spider-spun Caparison."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-spidersilk-robes-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Spidersilk Robes."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-stone-heart-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Stone Heart."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-terrorweb-chitin-breastplate-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Terrorweb Chitin Breastplate."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-tinah-sword-of-the-sea-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Tinah, Sword of the Sea."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "mikrom-sum-twilight-element-of-magic-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Twilight, Element of Magic."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-docent-of-the-artblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Docent of the Artblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-docent-of-the-crownblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Docent of the Crownblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-docent-of-the-warblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Docent of the Warblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-echo-of-the-artblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Echo of the Artblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-echo-of-the-crownblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Echo of the Crownblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-echo-of-the-warblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Echo of the Warblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-heavy-armor-of-the-artblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Heavy Armor of the Artblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-heavy-armor-of-the-crownblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Heavy Armor of the Crownblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-heavy-armor-of-the-warblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Heavy Armor of the Warblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-light-armor-of-the-artblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Light Armor of the Artblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-light-armor-of-the-crownblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Light Armor of the Crownblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-light-armor-of-the-warblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Light Armor of the Warblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-medium-armor-of-the-artblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Medium Armor of the Artblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-medium-armor-of-the-crownblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Medium Armor of the Crownblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-medium-armor-of-the-warblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Medium Armor of the Warblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-outfit-of-the-artblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Outfit of the Artblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-outfit-of-the-crownblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Outfit of the Crownblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-outfit-of-the-warblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Outfit of the Warblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-robe-of-the-artblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Robe of the Artblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-robe-of-the-crownblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Robe of the Crownblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "ritual-table-legendary-robe-of-the-warblade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Robe of the Warblade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "schism-shard-crafting-epic-leopards-chill-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Epic Leopard's Chill."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "schism-shard-crafting-legendary-echo-of-blackrazor-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Echo of Blackrazor."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "schism-shard-crafting-legendary-echo-of-wave-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Echo of Wave."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "schism-shard-crafting-legendary-echo-of-whelm-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Echo of Whelm."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "schism-shard-crafting-legendary-wave-of-despair-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Wave of Despair."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "schism-shard-crafting-legendary-wave-of-sorrow-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Legendary Wave of Sorrow."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-champion-of-the-twins-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Champion of the Twins."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-cobalt-guard-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Cobalt Guard."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-constellation-cursed-blade-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Constellation, Cursed Blade."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-cracked-core-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Cracked Core."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-dark-diversion-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Dark Diversion."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-dethek-runestone-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Dethek Runestone."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-epic-litany-of-the-dead-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Epic Litany of the Dead."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-nullscale-armor-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Nullscale Armor."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-pomuras-memento-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Pomura's Memento."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-spear-of-the-mournlands-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Spear of the Mournlands."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-the-broken-blade-of-constellation-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item The Broken Blade of Constellation."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-the-invisible-cloak-of-strahd-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item The Invisible Cloak of Strahd."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-the-masque-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item The Masque."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-the-shattered-hilt-of-constellation-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item The Shattered Hilt of Constellation."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "soulforge-ultimatum-legendary"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Ultimatum."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-amulet-of-the-stormreaver-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Amulet of the Stormreaver."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-braisingstar-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Braisingstar."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-cloudburst-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Cloudburst."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-dreampiercer-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Dreampiercer."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-dreamspitter-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Dreamspitter."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-gauntlets-of-eternity-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Gauntlets of Eternity."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-gauntlets-of-immortality-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Gauntlets of Immortality."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-halcyon-boots-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Halcyon Boots."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-head-of-good-fortune-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Head of Good Fortune."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-idol-of-fortune-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Idol of Fortune."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-madstone-aegis-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Madstone Aegis."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-madstone-boots-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Madstone Boots."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-madstone-shield-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Madstone Shield."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-pendant-of-the-stormreaver-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Pendant of the Stormreaver."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-rebellion-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Rebellion."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-ring-of-deceit-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Ring of Deceit."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-ring-of-lies-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Ring of Lies."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-skybreaker-hand-of-the-stormreaver-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Skybreaker, Hand of the Stormreaver."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-stormreavers-napkin-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Stormreaver's Napkin."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-stormreavers-tablecloth-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Stormreaver's Tablecloth."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-tenderizer-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Tenderizer."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-treason-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Treason."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-ventilated-armbands-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Ventilated Armbands."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "stormreaver-monument-ventilated-bracers-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Ventilated Bracers."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-dark-blue-ioun-stone-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Dark Blue Ioun Stone."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-deaths-touch-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Death's Touch."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-deep-red-ioun-stone-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Deep Red Ioun Stone."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-dream-edge-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Dream Edge."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-dreamspitter-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Dreamspitter."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-dusty-rose-ioun-stone-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Dusty Rose Ioun Stone."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-elocators-habiliment-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Elocator's Habiliment."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-gloves-of-titans-grip-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Gloves of Titan's Grip."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-incandescent-blue-ioun-stone-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Incandescent Blue Ioun Stone."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-light-and-darkness-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Light and Darkness."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-pale-blue-ioun-stone-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Pale Blue Ioun Stone."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-pale-lavender-ioun-stone-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Pale Lavender Ioun Stone."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-pink-and-green-ioun-stone-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Pink and Green Ioun Stone."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-pink-ioun-stone-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Pink Ioun Stone."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-quorforged-docent-of-battle-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Quorforged Docent of Battle."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-rahls-might-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Rahl's Might."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-regalia-of-the-phoenix-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Regalia of the Phoenix."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-scarlet-and-blue-ioun-stone-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Scarlet and Blue Ioun Stone."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-terror-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Terror."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "suppressed-power-vibrant-purple-ioun-stone-heroic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Vibrant Purple Ioun Stone."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "zhentarim-attuned-lantern-ring-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Lantern Ring."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "zhentarim-attuned-libram-of-silver-magic-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Libram of Silver Magic."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "zhentarim-attuned-magestar-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Magestar."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "zhentarim-attuned-manual-of-stealthy-pilfering-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Manual of Stealthy Pilfering."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "zhentarim-attuned-necklace-of-mystic-eidolons-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Necklace of Mystic Eidolons."
-
-[[retired]]
-kind = "crafting-ingredients"
-slug = "zhentarim-attuned-purple-dragon-shield-epic"
-since = "2026-11-13"
-reason = "This crafting cost uses the item Purple Dragon Shield."
-
-[[retired]]
-kind = "crafting-systems"
-slug = "dragoncraft-armor"
-since = "2026-11-13"
-reason = "The wiki says this system is no longer available for purchase; Restored armor is a separate system."
-
-[[retired]]
-kind = "crafting-systems"
-slug = "elfcraft-armor"
-since = "2026-11-13"
-reason = "The wiki says this system is no longer available for purchase; Restored armor is a separate system."
-
-[[retired]]
-kind = "crafting-systems"
-slug = "giantcraft-armor"
-since = "2026-11-13"
-reason = "The wiki says this system is no longer available for purchase; Restored armor is a separate system."

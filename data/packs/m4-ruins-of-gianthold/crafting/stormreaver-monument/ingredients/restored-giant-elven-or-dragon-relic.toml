@@ -1,0 +1,4 @@
+name = "Restored Giant, Elven or Dragon Relic"
+tier = "heroic"
+drop_location = "The relic type depends on the item being unlocked"
+citation = []

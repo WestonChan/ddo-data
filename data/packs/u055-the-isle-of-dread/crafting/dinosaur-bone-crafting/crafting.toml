@@ -4,12 +4,12 @@ page = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
 
 [[station]]
 name = "Sharpened Bone"
-note = "The only crafting station the page names: every recipe, both augments and weapons, is a barter at Sharpened Bone."
+note = "Every recipe, both augments and weapons, is a barter at Sharpened Bone."
 
 [[unlock]]
 kind = "pack"
 pack = "The Isle of Dread"
-text = "Page box: requires access to adventure pack The Isle of Dread"
+text = "Requires access to adventure pack: The Isle of Dread"
 
 [[step]]
 name = "Weapon creation"
@@ -336,42 +336,6 @@ quantity = 50
 [[family]]
 family = "DinosaurBone"
 
-[[ingredient]]
-name = "Fossilized Ankylosaur Rib"
-bind = "Unbound"
-drop_location = "Isle of Dread quests and the Isle of Dread wilderness"
-tier = "legendary"
-
-[[ingredient]]
-name = "Fossilized Pteranodon Vertebrae"
-bind = "Unbound"
-drop_location = "Isle of Dread quests and the Isle of Dread wilderness"
-tier = "legendary"
-
-[[ingredient]]
-name = "Fossilized Raptor Claw"
-bind = "Unbound"
-drop_location = "Isle of Dread quests and the Isle of Dread wilderness"
-tier = "legendary"
-
-[[ingredient]]
-name = "Fossilized Triceratops Horn"
-bind = "Unbound"
-drop_location = "Isle of Dread quests and the Isle of Dread wilderness"
-tier = "legendary"
-
-[[ingredient]]
-name = "Fossilized Tyrannosaurus Tooth"
-bind = "Unbound"
-drop_location = "The Isle of Dread wilderness only"
-tier = "legendary"
-
-[[ingredient]]
-name = "Black Pearl"
-bind = "BtA"
-drop_location = "The Isle of Dread raid (Skeletons in the Closet) and special wilderness encounters (Stonejaw, Vixorshal the Deceiver and Zardanarith); also the Draconic Raider's Reward Box"
-tier = "legendary"
-
 [[citation]]
 url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
 read = "2026-11-04"
@@ -451,7 +415,7 @@ note = "Item page and examine screenshot read (420px-Dinosaur_Bone_Belt.png on I
 
 [[recipe]]
 note = """
-All recipe tables are on this page. Creates an ML31 Dinosaur Bone weapon (+15 Enhancement, 5.2[W], Scale, Fang, Claw and Horn weapon slots plus Orange and Purple slots, Bound to Account on Acquire); no augment counterpart. The weapons also drop in the wilderness.
+Creates an ML31 Dinosaur Bone weapon (+15 Enhancement, 5.2[W], Scale, Fang, Claw and Horn weapon slots plus Orange and Purple slots, Bound to Account on Acquire); no augment counterpart. The weapons also drop in the wilderness.
 
 Barter at Sharpened Bone for 25 each of Fossilized Raptor Claws, Triceratops Horns, Pteranodon Vertebrae and Ankylosaur Ribs. The weapons also drop in the wilderness; the blue-border blanks are available from Isle of Dread quests, wilderness encounters, The Mountain Keeper's chest in the raid and the Sharpened Bone trader. Attuned Bone weapons (raid dice +3/+6, Bound to Character, Legendary Dread Isle's Curse set) cannot be crafted and drop only in the raid Skeletons in the Closet."""
 option = "Dinosaur Bone weapon"

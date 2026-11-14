@@ -1,0 +1,4 @@
+name = "<Elemental> Trap Parts"
+tier = "any"
+drop_location = "From disabled trap Control Panels of the matching element: Acid, Cold, Electrical, Fire, Force or Sonic; needs the Trapmaking feat. Unholy and Holy parts drop but have no recipe"
+citation = []

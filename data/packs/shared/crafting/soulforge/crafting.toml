@@ -78,7 +78,7 @@ Green augment, ML 30, Bound to Account; slotted effect Insightful Spell Lore V. 
 note = """
 Transforms the raid item into a Bound to Account ML 30 Yellow augment whose slotted effect is Invisibility Guard.
 
-Yellow augment, ML 30, Bound to Account; slotted effect Invisibility Guard. Item drop site named on the page: Old Baba's Hut."""
+Yellow augment, ML 30, Bound to Account; slotted effect Invisibility Guard. The item drops in Old Baba's Hut."""
 option = "Essence of the Cloak of Strahd"
 tier = "legendary"
 step = "Essence augment"
@@ -95,7 +95,7 @@ quantity = 1
 note = """
 Transforms the raid item into a Bound to Account ML 30 Yellow augment whose slotted effect is Nullmagic Guard.
 
-Yellow augment, ML 30, Bound to Account; slotted effect Nullmagic Guard. Item drop site named on the page: Killing Time."""
+Yellow augment, ML 30, Bound to Account; slotted effect Nullmagic Guard. The item drops in Killing Time."""
 option = "Essence of the Nullscale Armor"
 tier = "legendary"
 step = "Essence augment"
@@ -112,7 +112,7 @@ quantity = 1
 note = """
 Transforms the raid item into a Bound to Account ML 30 Colorless augment whose slotted effect is Litany of the Dead II - Ability Bonus (+2 Profane bonus to all Abilities).
 
-Colorless augment, ML 30, Bound to Account; slotted effect Litany of the Dead II - Ability Bonus. Item drop site named on the page: Mark of Death."""
+Colorless augment, ML 30, Bound to Account; slotted effect Litany of the Dead II - Ability Bonus. The item drops in Mark of Death."""
 option = "Essence of the Epic Litany of the Dead"
 tier = "legendary"
 step = "Essence augment"
@@ -131,7 +131,7 @@ Transforms the raid item into a Bound to Account ML 30 Orange augment whose slot
 
 Pays either with both The Broken Blade of Constellation and The Shattered Hilt of Constellation, or with Constellation, Cursed Blade alone, plus Thread of Fate x 50 and an Empty Soul Vessel.
 
-Orange augment, ML 30, Bound to Account; slotted effect Improved Destruction. Item drop site named on the page: Too Hot to Handle."""
+Orange augment, ML 30, Bound to Account; slotted effect Improved Destruction. The item drops in Too Hot to Handle."""
 option = "Essence of Constellation, Broken and Reforged"
 tier = "legendary"
 step = "Essence augment"
@@ -152,7 +152,7 @@ quantity = 1
 note = """
 Transforms the raid item into a Bound to Account ML 30 Blue augment whose slotted effect is Soundproof.
 
-Blue augment, ML 30, Bound to Account; slotted effect Soundproof. Item drop site named on the page: The Curse of Strahd."""
+Blue augment, ML 30, Bound to Account; slotted effect Soundproof. The item drops in The Curse of Strahd."""
 option = "Essence of The Masque"
 tier = "legendary"
 step = "Essence augment"
@@ -169,7 +169,7 @@ quantity = 1
 note = """
 Transforms the raid item into a Bound to Account ML 30 Purple augment whose slotted effect is Improved Quelling Strikes.
 
-Purple augment, ML 30, Bound to Account; slotted effect Improved Quelling Strikes. Item drop site named on the page: Riding the Storm Out."""
+Purple augment, ML 30, Bound to Account; slotted effect Improved Quelling Strikes. The item drops in Riding the Storm Out."""
 option = "Essence of the Cobalt Guard"
 tier = "legendary"
 step = "Essence augment"
@@ -186,7 +186,7 @@ quantity = 1
 note = """
 Transforms the raid item into a Bound to Account ML 30 Yellow augment whose slotted effect is Alchemical Conservation.
 
-Yellow augment, ML 30, Bound to Account; slotted effect Alchemical Conservation. Item drop site named on the page: Project Nemesis."""
+Yellow augment, ML 30, Bound to Account; slotted effect Alchemical Conservation. The item drops in Project Nemesis."""
 option = "Essence of the Cracked Core"
 tier = "legendary"
 step = "Essence augment"
@@ -203,7 +203,7 @@ quantity = 1
 note = """
 Transforms the raid item into a Bound to Account ML 30 Yellow augment whose slotted effect is Occultation (20% Enhancement bonus to decreased threat from all damage).
 
-Yellow augment, ML 30, Bound to Account; slotted effect Occultation. Item drop site named on the page: Temple of the Deathwyrm."""
+Yellow augment, ML 30, Bound to Account; slotted effect Occultation. The item drops in Temple of the Deathwyrm."""
 option = "Essence of Dark Diversion"
 tier = "legendary"
 step = "Essence augment"
@@ -220,7 +220,7 @@ quantity = 1
 note = """
 Transforms the raid item into a Bound to Account ML 30 Orange augment whose slotted effect is Touch of the Mournlands.
 
-Orange augment, ML 30, Bound to Account; slotted effect Touch of the Mournlands. Item drop site named on the page: Legendary Lord of Blades."""
+Orange augment, ML 30, Bound to Account; slotted effect Touch of the Mournlands. The item drops in Legendary Lord of Blades."""
 option = "Essence of the Spear of the Mournlands"
 tier = "legendary"
 step = "Essence augment"
@@ -237,7 +237,7 @@ quantity = 1
 note = """
 Transforms the raid item into a Bound to Account ML 30 Blue augment whose slotted effect is Healers Bounty.
 
-Blue augment, ML 30, Bound to Account; slotted effect Healers Bounty. Item drop site named on the page: Legendary Vision of Destruction."""
+Blue augment, ML 30, Bound to Account; slotted effect Healers Bounty. The item drops in Legendary Vision of Destruction."""
 option = "Essence of the Champion of the Twins"
 tier = "legendary"
 step = "Essence augment"
@@ -254,7 +254,7 @@ quantity = 1
 note = """
 Transforms the raid item into a Bound to Account ML 30 Green augment whose slotted effect is Petrification Immunity.
 
-Green augment, ML 30, Bound to Account; slotted effect Petrification Immunity. Item drop site named on the page: Defiler of the Just."""
+Green augment, ML 30, Bound to Account; slotted effect Petrification Immunity. The item drops in Defiler of the Just."""
 option = "Essence of Ultimatum"
 tier = "legendary"
 step = "Essence augment"
@@ -271,7 +271,7 @@ quantity = 1
 note = """
 Transforms the raid item into a Bound to Account ML 30 Green augment whose slotted effect is Runic Revitalization.
 
-Green augment, ML 30, Bound to Account; slotted effect Runic Revitalization. Item drop site named on the page: Fire on Thunder Peak."""
+Green augment, ML 30, Bound to Account; slotted effect Runic Revitalization. The item drops in Fire on Thunder Peak."""
 option = "Essence of the Dethek Runestone"
 tier = "legendary"
 step = "Essence augment"
@@ -288,7 +288,7 @@ quantity = 1
 note = """
 Transforms the raid item into a Bound to Account ML 30 Green augment whose slotted effect is Insightful Spell Lore V.
 
-Green augment, ML 30, Bound to Account; slotted effect Insightful Spell Lore V. Item drop site named on the page: Hunt or Be Hunted."""
+Green augment, ML 30, Bound to Account; slotted effect Insightful Spell Lore V. The item drops in Hunt or Be Hunted."""
 option = "Essence of Pomura's Memento"
 tier = "legendary"
 step = "Essence augment"

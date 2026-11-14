@@ -4,12 +4,12 @@ page = "https://ddowiki.com/page/Slave_Lords_Crafting"
 
 [[station]]
 name = "Garvon"
-note = "The only crafting station the page names; every recipe is a barter at Garvon."
+note = "Every recipe is a barter at Garvon."
 
 [[unlock]]
 kind = "pack"
 pack = "Against the Slave Lords"
-text = "Page box: requires access to adventure pack Against the Slave Lords; the base items are Bound to Account on Acquire and need the pack to craft"
+text = "Requires access to adventure pack: Against the Slave Lords; the base items are Bound to Account on Acquire and need the pack to craft"
 
 [[step]]
 name = "Prefix"
@@ -202,102 +202,6 @@ family = "Slavelords_Heroic"
 
 [[family]]
 family = "Slavelords_Legendary"
-
-[[ingredient]]
-name = "Broken Shackle"
-bind = "Unbound"
-drop_location = "Part 1, Slave Pits of the Undercity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Chain Links"
-bind = "Unbound"
-drop_location = "Part 2, Secret of the Slavers' Stockade"
-tier = "heroic"
-
-[[ingredient]]
-name = "Broken Collar"
-bind = "Unbound"
-drop_location = "Part 3, Assault on the Aerie of the Slave Lords"
-tier = "heroic"
-
-[[ingredient]]
-name = "Shattered Symbol of the Slave Lords"
-bind = "BtA"
-drop_location = "Part 1, Slave Pits of the Undercity"
-tier = "heroic"
-
-[[ingredient]]
-name = "Frayed Leather"
-bind = "BtA"
-drop_location = "Part 2, Secret of the Slavers' Stockade"
-tier = "heroic"
-
-[[ingredient]]
-name = "Staff Splinter"
-bind = "BtA"
-drop_location = "Part 3, Assault on the Aerie of the Slave Lords"
-tier = "heroic"
-
-[[ingredient]]
-name = "Statuette of the Gods"
-bind = "BtA"
-drop_location = "All parts"
-tier = "heroic"
-
-[[ingredient]]
-name = "Slave Master's Bust"
-bind = "BtA"
-drop_location = "All parts"
-tier = "heroic"
-
-[[ingredient]]
-name = "Legendary Broken Shackle"
-bind = "Unbound"
-drop_location = "Part 1, Slave Pits of the Undercity"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Chain Links"
-bind = "Unbound"
-drop_location = "Part 2, Secret of the Slavers' Stockade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Broken Collar"
-bind = "Unbound"
-drop_location = "Part 3, Assault on the Aerie of the Slave Lords"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Shattered Symbol of Slave Lords"
-bind = "BtA"
-drop_location = "Part 1, Slave Pits of the Undercity"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Frayed Leather"
-bind = "BtA"
-drop_location = "Part 2, Secret of the Slavers' Stockade"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Staff Splinter"
-bind = "BtA"
-drop_location = "Part 3, Assault on the Aerie of the Slave Lords"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Statuette of the Gods"
-bind = "BtA"
-drop_location = "All parts"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Slave Master's Bust"
-bind = "BtA"
-drop_location = "All parts"
-tier = "legendary"
 
 [[citation]]
 url = "https://ddowiki.com/page/Slave_Lords_Crafting"

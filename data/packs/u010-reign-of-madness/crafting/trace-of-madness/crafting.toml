@@ -4,7 +4,7 @@ page = "https://ddowiki.com/page/Altar_of_Insanity"
 
 [[station]]
 name = "Altar of Insanity"
-note = "The page calls it the crafting device for items with the Trace of Madness attributes."
+note = "The crafting device for items with the Trace of Madness attributes."
 
 [[step]]
 name = "Xoriat Madness"
@@ -12,35 +12,6 @@ slot = "crafting: trace of madness"
 
 [[family]]
 family = "Other"
-
-[[ingredient]]
-name = "Watcher's Eye"
-bind = "Bound to Account"
-drop_location = "Any appropriate Reign of Madness enemy (Update 10); added to the ingredient bag automatically when you or a party member kills it"
-tier = "any"
-
-[[ingredient]]
-name = "Polished Stone"
-bind = "Bound to Account"
-drop_location = "Any appropriate Reign of Madness enemy (Update 10); added to the ingredient bag automatically when you or a party member kills it"
-tier = "any"
-
-[[ingredient]]
-name = "Adhesive Slime"
-bind = "Bound to Account"
-drop_location = "Any appropriate Reign of Madness enemy (Update 10); added to the ingredient bag automatically when you or a party member kills it"
-tier = "any"
-
-[[ingredient]]
-name = "Brain Sample"
-bind = "Bound to Account"
-drop_location = "Any appropriate Reign of Madness enemy (Update 10); added to the ingredient bag automatically when you or a party member kills it"
-tier = "any"
-
-[[ingredient]]
-name = "Trace of Madness item"
-drop_location = "Items with the Trace of Madness trait from Harbinger of Madness, Reign of Madness and Disciples of Rage quests (Updates 9, 10 and 38); ML 14 heroic and ML 29 legendary versions"
-tier = "any"
 
 [[citation]]
 url = "https://ddowiki.com/page/Altar_of_Insanity"

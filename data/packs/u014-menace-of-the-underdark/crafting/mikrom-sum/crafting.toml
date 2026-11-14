@@ -52,16 +52,6 @@ quantity = 10
 name = "Armor upgrade"
 slot = "crafting: upgrade"
 
-[[ingredient]]
-name = "Commendation: Clerics of Amaunator"
-drop_location = "Commendation collectables from Menace of the Underdark quests"
-tier = "epic"
-
-[[ingredient]]
-name = "Commendation: Villagers of Eveningstar"
-drop_location = "Commendation collectables from Menace of the Underdark quests"
-tier = "epic"
-
 [[citation]]
 url = "https://ddowiki.com/page/Mikrom_Sum"
 read = "2026-11-04"
@@ -96,7 +86,10 @@ Sockets of the six named armors the 'Armor upgrades' table upgrades with Commend
 field = "recipe"
 url = "https://ddowiki.com/page/Mikrom_Sum"
 read = "2026-11-04"
-note = """Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
+note = """
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date.
+
+The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards); the Mikrom Sum page's cost by armor type is the one written. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
 
 [[citation]]
 field = "unlock"
@@ -639,9 +632,9 @@ quantity = 1
 
 [[recipe]]
 note = """
-Purchase of Cormyrian Red Dragonplate Armor (Heavy); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+Purchase of Cormyrian Red Dragonplate Armor (Heavy); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart.
 
-Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism."""
 option = "Cormyrian Red Dragonplate Armor"
 tier = "epic"
 
@@ -663,9 +656,9 @@ quantity = 3
 
 [[recipe]]
 note = """
-Purchase of Cormyrian Red Dragonscale Armor (Medium); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+Purchase of Cormyrian Red Dragonscale Armor (Medium); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart.
 
-Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism."""
 option = "Cormyrian Red Dragonscale Armor"
 tier = "epic"
 
@@ -687,9 +680,9 @@ quantity = 3
 
 [[recipe]]
 note = """
-Purchase of Cormyrian Red Dragonhide Armor (Light); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+Purchase of Cormyrian Red Dragonhide Armor (Light); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart.
 
-Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism."""
 option = "Cormyrian Red Dragonhide Armor"
 tier = "epic"
 
@@ -711,9 +704,9 @@ quantity = 3
 
 [[recipe]]
 note = """
-Purchase of Cormyrian Red Dragonscale Robe (Robe); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+Purchase of Cormyrian Red Dragonscale Robe (Robe); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart.
 
-Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism."""
 option = "Cormyrian Red Dragonscale Robe"
 tier = "epic"
 
@@ -735,9 +728,9 @@ quantity = 3
 
 [[recipe]]
 note = """
-Purchase of Cormyrian Red Dragonscale Docent (Docent); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+Purchase of Cormyrian Red Dragonscale Docent (Docent); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart.
 
-Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism."""
 option = "Cormyrian Red Dragonscale Docent"
 tier = "epic"
 
@@ -759,9 +752,9 @@ quantity = 3
 
 [[recipe]]
 note = """
-Purchase of Cormyrian Green Dragonplate Armor (Heavy); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+Purchase of Cormyrian Green Dragonplate Armor (Heavy); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart.
 
-Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism."""
 option = "Cormyrian Green Dragonplate Armor"
 tier = "epic"
 
@@ -783,9 +776,9 @@ quantity = 3
 
 [[recipe]]
 note = """
-Purchase of Cormyrian Green Dragonscale Armor (Medium); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+Purchase of Cormyrian Green Dragonscale Armor (Medium); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart.
 
-Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism."""
 option = "Cormyrian Green Dragonscale Armor"
 tier = "epic"
 
@@ -807,9 +800,9 @@ quantity = 3
 
 [[recipe]]
 note = """
-Purchase of Cormyrian Green Dragonhide Armor (Light); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+Purchase of Cormyrian Green Dragonhide Armor (Light); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart.
 
-Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism."""
 option = "Cormyrian Green Dragonhide Armor"
 tier = "epic"
 
@@ -831,9 +824,9 @@ quantity = 3
 
 [[recipe]]
 note = """
-Purchase of Cormyrian Green Dragonscale Robe (Robe); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+Purchase of Cormyrian Green Dragonscale Robe (Robe); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart.
 
-Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism."""
 option = "Cormyrian Green Dragonscale Robe"
 tier = "epic"
 
@@ -855,9 +848,9 @@ quantity = 3
 
 [[recipe]]
 note = """
-Purchase of Cormyrian Green Dragonscale Docent (Docent); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart. The Dragonscale Armor page gives one cost per color instead (red: Purple Dragon Knights and Druids of the King's Forest; green: Purple Dragon Knights and War Wizards).
+Purchase of Cormyrian Green Dragonscale Docent (Docent); unlike the Vault of Night red dragonscale armors it needs no base armor. A separate item in Maetrim's data; no augment counterpart.
 
-Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism. The page's aside reads "Unlike Red Dragonscale Armors from Update 3 (The Vault of Night epic items), Cormyrian Red Armors don't require corresponding Black/Blue/White base armor." The aside predates Update 50, which refactored the Vault of Night crafting, and four current sources contradict it: the Epic Crafting page, the Dragonscale Armor page's turn-in row, and the Shard of the Red Dragon's Tips and in-game text all give the Epic Red armors four ingredients and no base armor. No page retracts the aside; it is judged stale by its date."""
+Purchase: 20 Flawless Red (or Green) Dragon Scale, 15 Commendation: Purple Dragon Knights (Red) or War Wizards (Green), a second 15 Commendation by armor type (Heavy and Docent: War Wizards for Red / Purple Dragon Knights for Green; Medium: Clerics of Amaunator; Light: Druids of the King's Forest; Robe: Villagers of Eveningstar), and 3 Commendation of Heroism."""
 option = "Cormyrian Green Dragonscale Docent"
 tier = "epic"
 

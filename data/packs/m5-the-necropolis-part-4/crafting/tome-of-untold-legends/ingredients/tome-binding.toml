@@ -1,0 +1,5 @@
+name = "Tome: Binding"
+tier = "any"
+bind = "Bound to Character"
+drop_location = "Complete set of the 8 Tome: Legend pages"
+citation = []

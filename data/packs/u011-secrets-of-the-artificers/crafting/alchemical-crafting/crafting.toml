@@ -81,7 +81,7 @@ variant = "Sharn - Cliffside Docks District"
 [[station]]
 name = "Cannith Melting Station"
 note = """
-The same recipes, if the amenity exists as the page says.
+The same recipes.
 
 Makes Metallic Ingot.
 
@@ -118,7 +118,7 @@ variant = "Guild ship"
 
 [[station]]
 name = "Cannith Reforging Station"
-note = "Heroic material type (Reforge Item) and every Legendary tier (Tier 0 material to Tier 3); also the Toven's Hammer upgrades and Nearly Finished set-bonus awakening (that system's)."
+note = "Heroic material type (Reforge Item) and every Legendary tier (Tier 0 material to Tier 3); also the Toven's Hammer upgrades and the Nearly Finished set-bonus awakenings."
 variant = "Artificer Workshops"
 
 [[station]]
@@ -128,7 +128,7 @@ variant = "Toven's Workshop"
 
 [[station]]
 name = "Cannith Reforging Station"
-note = "The same recipes; the Alchemical page says the Legendary recipes are crafted at the same altars as the Sharn gear."
+note = "The same recipes; the Legendary recipes are crafted at the same altars as the Sharn gear."
 variant = "Sharn - Cliffside Docks District"
 
 [[station]]
@@ -243,82 +243,6 @@ quantity = 1
 
 [[family]]
 family = "Alchemical"
-
-[[ingredient]]
-name = "Iron Juggernaut Parts"
-bind = "Unbound"
-drop_location = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests, distributed like the Altar of Insanity ingredients; used at the Cannith Melting Station; the Melting Station's recipes call it Iron Juggernaut Limb"
-tier = "heroic"
-
-[[ingredient]]
-name = "Iron Juggernaut Plating"
-bind = "Unbound"
-drop_location = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests, distributed like the Altar of Insanity ingredients; used at the Cannith Melting Station; the Melting Station's recipes call it Set of Iron Juggernaut Plating"
-tier = "heroic"
-
-[[ingredient]]
-name = "Quorforged Juggernaut Parts"
-bind = "Unbound"
-drop_location = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests, distributed like the Altar of Insanity ingredients; used at the Cannith Melting Station; the Melting Station's recipes call it Quorforged Juggernaut Limb"
-tier = "heroic"
-
-[[ingredient]]
-name = "Quorforged Juggernaut Plating"
-bind = "Unbound"
-drop_location = "Mob kills within House Cannith Manufactury, the Artificer Workshops, the Research Facility and their quests, distributed like the Altar of Insanity ingredients; used at the Cannith Melting Station; the Melting Station's recipes call it Set of Quorforged Juggernaut Plating"
-tier = "heroic"
-
-[[ingredient]]
-name = "Cannith Power Cell"
-bind = "Unbound"
-drop_location = "Quest and raid end chests within the area; used at the Cannith Reforging Station"
-tier = "heroic"
-
-[[ingredient]]
-name = "Greater Cannith Power Cell"
-bind = "Unbound"
-drop_location = "Quest and raid end chests within the area; used at the Cannith Binding Station"
-tier = "heroic"
-
-[[ingredient]]
-name = "Metallic Ingot"
-drop_location = "Made at the Cannith Melting Station"
-tier = "heroic"
-
-[[ingredient]]
-name = "Dense Ingot"
-drop_location = "Made at the Cannith Melting Station"
-tier = "heroic"
-
-[[ingredient]]
-name = "Pliable Ingot"
-drop_location = "Made at the Cannith Melting Station"
-tier = "heroic"
-
-[[ingredient]]
-name = "Glowing Ingot"
-drop_location = "Made at the Cannith Melting Station"
-tier = "heroic"
-
-[[ingredient]]
-name = "Durable Alloy"
-drop_location = "Made at the Cannith Melting Station"
-tier = "heroic"
-
-[[ingredient]]
-name = "Volatile Alloy"
-drop_location = "Made at the Cannith Melting Station"
-tier = "heroic"
-
-[[ingredient]]
-name = "Fortified Compound"
-drop_location = "Made at the Cannith Melting Station"
-tier = "heroic"
-
-[[ingredient]]
-name = "Mercurial Compound"
-drop_location = "Made at the Cannith Melting Station"
-tier = "heroic"
 
 [[citation]]
 url = "https://ddowiki.com/page/Alchemical_Crafting"
@@ -449,12 +373,17 @@ Cannith Melting Station recipe 'Dampening Alloy'; the page shows the product ico
 
 Cannith Melting Station recipe 'Caustic Compound'; the page shows the product icon of Fortified Compound (named separately in the recipe text, so a distinct ingredient).
 
-Cannith Melting Station recipe 'Stabilizing Compound'; the page shows the product icon of Mercurial Compound (named separately in the recipe text, so a distinct ingredient)."""
+Cannith Melting Station recipe 'Stabilizing Compound'; the page shows the product icon of Mercurial Compound (named separately in the recipe text, so a distinct ingredient).
+
+The Cannith Melting Station page names four recipes Reforged Metallic, Dense, Pliable and Glowing Ingot and shows the plain ingot icons; they are written as making the plain ingots. Reforged Glowing Ingot: the Cannith Melting Station page lists 5 Worker Drone Actuators and 5 Shield Guardian Cores twice each; recorded as 10 of each."""
 
 [[citation]]
 url = "https://ddowiki.com/page/Cannith_Melting_Station"
 read = "2026-11-04"
-note = "Whole page read: location, the Ingredient Equivalencies table and all 16 recipes. All 16 recipes match the data's 16 ingredient-making recipes on item names and counts (Reforged Glowing Ingot lists 5 Worker Drone Actuators and 5 Shield Guardian Cores twice, read as 10 of each, as the data records). The Reforged recipes show the plain ingot icons (Metallic, Dense, Pliable, Glowing); no item page exists for any 'Reforged ... Ingot'."
+note = """
+Whole page read: location, the Ingredient Equivalencies table and all 16 recipes. All 16 recipes match the data's 16 ingredient-making recipes on item names and counts (Reforged Glowing Ingot lists 5 Worker Drone Actuators and 5 Shield Guardian Cores twice, read as 10 of each, as the data records). The Reforged recipes show the plain ingot icons (Metallic, Dense, Pliable, Glowing); no item page exists for any 'Reforged ... Ingot'.
+
+Written from the Cannith Melting Station page, which lists a Guild ship amenity; whether that amenity exists in the game is not confirmed."""
 
 [[citation]]
 url = "https://ddowiki.com/page/Cannith_Reforging_Station"
@@ -483,7 +412,7 @@ note = "No such article: there is no item page for a 'Reforged Metallic Ingot'."
 
 [[recipe]]
 note = """
-Heroic recipes read from the sub-pages Cannith_Melting_Station, Cannith_Reforging_Station and Cannith_Binding_Station; the Legendary costs are on this page. Cannith Melting Station: makes the manufactured ingredient Metallic Ingot; no augment counterpart.
+Cannith Melting Station: makes the manufactured ingredient Metallic Ingot; no augment counterpart.
 
 At the Cannith Melting Station."""
 option = "Metallic Ingot"
@@ -675,7 +604,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Cannith Melting Station: makes the manufactured ingredient Metallic Ingot; no augment counterpart. The page names the recipe Reforged Metallic Ingot and shows the Metallic Ingot icon.
+Cannith Melting Station: makes the manufactured ingredient Metallic Ingot; no augment counterpart. The recipe is named Reforged Metallic Ingot and shows the Metallic Ingot icon.
 
 At the Cannith Melting Station."""
 option = "Reforged Metallic Ingot"
@@ -699,7 +628,7 @@ quantity = 5
 
 [[recipe]]
 note = """
-Cannith Melting Station: makes the manufactured ingredient Dense Ingot; no augment counterpart. The page names the recipe Reforged Dense Ingot and shows the Dense Ingot icon.
+Cannith Melting Station: makes the manufactured ingredient Dense Ingot; no augment counterpart. The recipe is named Reforged Dense Ingot and shows the Dense Ingot icon.
 
 At the Cannith Melting Station."""
 option = "Reforged Dense Ingot"
@@ -723,7 +652,7 @@ quantity = 5
 
 [[recipe]]
 note = """
-Cannith Melting Station: makes the manufactured ingredient Pliable Ingot; no augment counterpart. The page names the recipe Reforged Pliable Ingot and shows the Pliable Ingot icon.
+Cannith Melting Station: makes the manufactured ingredient Pliable Ingot; no augment counterpart. The recipe is named Reforged Pliable Ingot and shows the Pliable Ingot icon.
 
 At the Cannith Melting Station."""
 option = "Reforged Pliable Ingot"
@@ -747,7 +676,7 @@ quantity = 5
 
 [[recipe]]
 note = """
-Cannith Melting Station: makes the manufactured ingredient Glowing Ingot; no augment counterpart. The page names the recipe Reforged Glowing Ingot and shows the Glowing Ingot icon. The page lists 5 Worker Drone Actuators and 5 Shield Guardian Cores twice each; recorded as 10 of each.
+Cannith Melting Station: makes the manufactured ingredient Glowing Ingot; no augment counterpart. The recipe is named Reforged Glowing Ingot and shows the Glowing Ingot icon.
 
 At the Cannith Melting Station."""
 option = "Reforged Glowing Ingot"
@@ -763,7 +692,7 @@ quantity = 10
 
 [[recipe]]
 note = """
-Cannith Melting Station: makes the manufactured ingredient Energizing Alloy; no augment counterpart. The page shows it with the Durable Alloy icon.
+Cannith Melting Station: makes the manufactured ingredient Energizing Alloy; no augment counterpart. It is shown with the Durable Alloy icon.
 
 At the Cannith Melting Station."""
 option = "Energizing Alloy"
@@ -787,7 +716,7 @@ quantity = 5
 
 [[recipe]]
 note = """
-Cannith Melting Station: makes the manufactured ingredient Dampening Alloy; no augment counterpart. The page shows it with the Volatile Alloy icon.
+Cannith Melting Station: makes the manufactured ingredient Dampening Alloy; no augment counterpart. It is shown with the Volatile Alloy icon.
 
 At the Cannith Melting Station."""
 option = "Dampening Alloy"
@@ -811,7 +740,7 @@ quantity = 5
 
 [[recipe]]
 note = """
-Cannith Melting Station: makes the manufactured ingredient Caustic Compound; no augment counterpart. The page shows it with the Fortified Compound icon.
+Cannith Melting Station: makes the manufactured ingredient Caustic Compound; no augment counterpart. It is shown with the Fortified Compound icon.
 
 At the Cannith Melting Station."""
 option = "Caustic Compound"
@@ -835,7 +764,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Cannith Melting Station: makes the manufactured ingredient Stabilizing Compound; no augment counterpart. The page shows it with the Mercurial Compound icon.
+Cannith Melting Station: makes the manufactured ingredient Stabilizing Compound; no augment counterpart. It is shown with the Mercurial Compound icon.
 
 At the Cannith Melting Station."""
 option = "Stabilizing Compound"
@@ -2027,7 +1956,7 @@ name = "Adds Insightful Intelligence +2"
 
 [[recipe]]
 note = """
-Complete Toven's Hammer, at the Cannith Reforging Station. The option name is Maetrim's, with its trailing 2.
+Complete Toven's Hammer, at the Cannith Reforging Station.
 
 Reforging Station recipe: Toven's Hammer + 1 Elemental Motion Fixation Device + 1 Greater Cannith Power Cell; effect applied Transform Kinetic Energy. The device (Bound to Character on Acquire) drops from the optional chest 'Grudge Maker' in The Lord of Blades."""
 option = "Adds Transform Kinetic Energy2"

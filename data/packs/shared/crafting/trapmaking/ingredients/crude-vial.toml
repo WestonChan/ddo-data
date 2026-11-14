@@ -1,0 +1,4 @@
+name = "Crude Vial"
+tier = "any"
+drop_location = "Free Agent vendor only, e.g. Sorvile Smythe"
+citation = []

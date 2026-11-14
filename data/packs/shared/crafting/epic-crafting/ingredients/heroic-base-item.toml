@@ -1,0 +1,4 @@
+name = "Heroic base item"
+tier = "epic"
+drop_location = "The heroic version of the item being upgraded"
+citation = []

@@ -4,12 +4,12 @@ page = "https://ddowiki.com/page/Esoteric_Table"
 
 [[station]]
 name = "Esoteric Table"
-note = "The only station the page names; it makes every recipe (weapon Tier 1 and Tier 2 upgrades; shield recipes unknown)."
+note = "Makes every recipe (weapon Tier 1 and Tier 2 upgrades)."
 
 [[unlock]]
 kind = "level"
 value = 20
-text = "'Speak to Geth to enter the raid (note that you must be at least level 20)'; stated for entering the raid, whose entrance holds the table, so it is written at the system; the page does not say a lower-level character cannot reach the table some other way"
+text = "You must be at least level 20 to enter the raid, whose entrance holds the table."
 
 [[step]]
 name = "Tier 1"
@@ -47,15 +47,13 @@ quantity = 12
 [[family]]
 family = "PlanarSearing"
 
-[[ingredient]]
-name = "Burning Planar Scrap"
-drop_location = "Fire Over Morgrave end chests"
-tier = "legendary"
-
 [[citation]]
 url = "https://ddowiki.com/page/Esoteric_Table"
 read = "2026-11-04"
-note = "Whole page read: intro, ingredients, the Tier 1 table (2 upgrades, one shared cost) and the Tier 2 table (3 upgrades). All 5 recipes and their costs match the data. The page states: the table is in the entrance of the quest Fire Over Morgrave (Morgrave University - Upper Commons), usable before the raid starts or after it is completed, locked during the fight; speak to Geth to enter the raid and 'you must be at least level 20'; it upgrades legendary weapons and shields from Vecna Unleashed quests including the Fire Over Morgrave raid loot; dev comments say it is meant to work with certain shields but the shield recipes are not shown and are unknown (Legendary Defiled shields are not affected). It states no pack, favor or feat gate; the 'Level 32' nav grouping is the wiki's own."
+note = """
+Whole page read: intro, ingredients, the Tier 1 table (2 upgrades, one shared cost) and the Tier 2 table (3 upgrades). All 5 recipes and their costs match the data. The page states: the table is in the entrance of the quest Fire Over Morgrave (Morgrave University - Upper Commons), usable before the raid starts or after it is completed, locked during the fight; speak to Geth to enter the raid and 'you must be at least level 20'; it upgrades legendary weapons and shields from Vecna Unleashed quests including the Fire Over Morgrave raid loot; dev comments say it is meant to work with certain shields but the shield recipes are not shown and are unknown (Legendary Defiled shields are not affected). It states no pack, favor or feat gate; the 'Level 32' nav grouping is the wiki's own.
+
+The only station the page names. The shield recipes are unknown."""
 
 [[citation]]
 field = "step"
@@ -78,6 +76,7 @@ Page section 'Tier 2': the three Unleash upgrades replace Leashed Power (Tier 2)
 field = "unlock"
 url = "https://ddowiki.com/page/Esoteric_Table"
 read = "2026-11-04"
+note = "'Speak to Geth to enter the raid (note that you must be at least level 20)'. Stated for entering the raid, whose entrance holds the table, so it is written at the system. The page does not say a lower-level character cannot reach the table some other way."
 
 [[recipe]]
 note = "Tier 1. Removes Taint of Evil; adds Leashed Power (Tier 2) and Warp Souls (-1 Will, AC and Fortification, stacks 10 times). The page gives one cost for both Tier 1 rows."

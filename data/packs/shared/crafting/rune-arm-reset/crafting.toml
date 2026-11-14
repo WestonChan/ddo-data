@@ -38,7 +38,10 @@ note = "Uses the Device Workstation (House Cannith Enclave, Eveningstar, Sharn -
 field = "recipe"
 url = "https://ddowiki.com/page/Device_Workstation"
 read = "2026-11-04"
-note = "Clears the Cannith Crafted enchantments from a Rune Arm: the Device Workstation page says it completely resets the Rune Arm to factory default and basically returns a brand new rune arm. The Rune Arm page: a craftable rune that has been Cannith Crafted cannot be simply disjuncted and re-crafted, unlike other gear; it must be reset at a Device Workstation first and then disjuncted. No cost is stated."
+note = """
+Clears the Cannith Crafted enchantments from a Rune Arm: the Device Workstation page says it completely resets the Rune Arm to factory default and basically returns a brand new rune arm. The Rune Arm page: a craftable rune that has been Cannith Crafted cannot be simply disjuncted and re-crafted, unlike other gear; it must be reset at a Device Workstation first and then disjuncted. No cost is stated.
+
+The reset is described on the Device Workstation page; the disjunction rule is from the Rune Arm page. No cost is stated on either page."""
 
 [[citation]]
 url = "https://ddowiki.com/page/Rune_Arm"
@@ -46,7 +49,7 @@ read = "2026-11-04"
 note = "Searched for Device Workstation and reset text: one note about disjunction (the rest of the long page is the Rune Arm item table, not read). No cost is stated on either page."
 
 [[recipe]]
-note = "Clears the Cannith Crafted enchantments from a Rune Arm: the Device Workstation page says it completely resets the Rune Arm to factory default and basically returns a brand new rune arm. The Rune Arm page: a craftable rune that has been Cannith Crafted cannot be simply disjuncted and re-crafted, unlike other gear; it must be reset at a Device Workstation first and then disjuncted. No cost is stated."
+note = "Clears the Cannith Crafted enchantments from a Rune Arm: it completely resets the Rune Arm to factory default and basically returns a brand new rune arm. A craftable rune that has been Cannith Crafted cannot be simply disjuncted and re-crafted, unlike other gear; it must be reset at a Device Workstation first and then disjuncted."
 option = "Clear Cannith Crafted enchantments"
 tier = "any"
 step = "Rune Arm reset"

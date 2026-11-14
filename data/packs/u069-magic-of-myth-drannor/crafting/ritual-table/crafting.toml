@@ -38,41 +38,6 @@ family = "SealedInFire"
 [[family]]
 family = "SealedInUndeath"
 
-[[ingredient]]
-name = "Barrier Fragment"
-drop_location = "Threats Old and New end chest"
-tier = "legendary"
-
-[[ingredient]]
-name = "Sigil of the Crownblade"
-drop_location = "Threats Old and New end chest, rare drop"
-tier = "legendary"
-
-[[ingredient]]
-name = "Sigil of the Warblade"
-drop_location = "Threats Old and New end chest, rare drop"
-tier = "legendary"
-
-[[ingredient]]
-name = "Sigil of the Artblade"
-drop_location = "Threats Old and New end chest, rare drop"
-tier = "legendary"
-
-[[ingredient]]
-name = "Legendary Weapon of the Golden Age"
-drop_location = "The Legendary Golden Age weapon matching the Undying Age weapon"
-tier = "legendary"
-
-[[ingredient]]
-name = "Sealed in Fire weapon"
-drop_location = "Weaponry of the Undying Age or Threats Old and New raid weapons"
-tier = "legendary"
-
-[[ingredient]]
-name = "Sealed in Undeath item"
-drop_location = "Threats Old and New raid clothing and jewelry"
-tier = "legendary"
-
 [[removed]]
 kind = "quest"
 name = "Ritual Table"
@@ -508,7 +473,7 @@ quantity = 1
 
 [[recipe]]
 note = """
-Removes any effect the Ritual Table added before and adds one ability bonus of choice: +15, Insightful +7 or Quality +3 to any ability. Maetrim's Sealed in Undeath augments also fit the Sealed in Gloom socket.
+Removes any effect the Ritual Table added before and adds one ability bonus of choice: +15, Insightful +7 or Quality +3 to any ability. Sealed in Undeath augments also fit the Sealed in Gloom socket.
 
 Added: select one of: Strength +15, Constitution +15, Dexterity +15, Intelligence +15, Wisdom +15, Charisma +15, Insightful Strength/Constitution/Dexterity/Intelligence/Wisdom/Charisma +7, Quality Strength/Constitution/Dexterity/Intelligence/Wisdom/Charisma +3."""
 option = "Ability bonus (Raid Threats Old and New Equipment)"

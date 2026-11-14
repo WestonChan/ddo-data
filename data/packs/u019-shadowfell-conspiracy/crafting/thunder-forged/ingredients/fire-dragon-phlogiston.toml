@@ -1,0 +1,5 @@
+name = "Fire Dragon Phlogiston"
+tier = "epic"
+bind = "Bound to Account on Acquire"
+drop_location = "Main Raid Chest, Fire on Thunder Peak (EN: 60%, EH: 80%, EE: 100%). Used for Tier 3; older Lamannia notes and the forge UI call it a Soul"
+citation = []
