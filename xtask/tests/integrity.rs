@@ -1949,6 +1949,36 @@ fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
 fn injected_violations() -> Vec<InjectedViolation> {
     let mut violations = vec![
         violation(
+            "crafting_text_has_no_reader_commentary",
+            "UPDATE crafting_unlocks SET text='The Page says this requirement is typed.' WHERE id=(SELECT MIN(id) FROM crafting_unlocks WHERE system_id=(SELECT id FROM crafting_systems WHERE name='Viktranium Experiment Crafting'));",
+            "Viktranium Experiment Crafting",
+        ),
+        violation(
+            "crafting_text_has_no_reader_commentary",
+            "UPDATE crafting_system_stations SET note='Not stated; ask the reader.' WHERE system_id=(SELECT id FROM crafting_systems WHERE name='Mikrom Sum');",
+            "Mikrom Sum",
+        ),
+        violation(
+            "crafting_text_has_no_reader_commentary",
+            "UPDATE augment_slot_types SET not_crafting_reason='Verification request: confirm this slot.' WHERE label='isle of dread: artifact claw (accessory)';",
+            "isle of dread: artifact claw (accessory)",
+        ),
+        violation(
+            "crafting_text_has_no_reader_commentary",
+            "UPDATE crafting_stations SET place='Main page: this station is in Meridia.' WHERE name='Altar of Fecundity';",
+            "Altar of Fecundity",
+        ),
+        violation(
+            "crafting_text_has_no_reader_commentary",
+            "UPDATE crafting_steps SET name='Proposed Tier 1' WHERE name='Tier 1' AND system_id=(SELECT id FROM crafting_systems WHERE name='Thunder-Forged');",
+            "Thunder-Forged",
+        ),
+        violation(
+            "crafting_text_has_no_reader_commentary",
+            "UPDATE crafting_ingredients SET source='Notes in survey.toml.' WHERE name='Abyssal Gem';",
+            "Abyssal Gem",
+        ),
+        violation(
             "corrections_have_a_target",
             "UPDATE corrections SET from_value=json_quote('no such bonus') WHERE id=(SELECT id FROM corrections WHERE kind='item' AND name='Docent of Defiance' AND field='minimum_level');",
             "Docent of Defiance",

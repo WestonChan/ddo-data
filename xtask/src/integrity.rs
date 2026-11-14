@@ -61,6 +61,39 @@ static EFFECT_OWNER_LINKS: std::sync::LazyLock<Vec<(&str, &str)>> =
 
 const REPEATED_LINE_WORD_ALLOWANCES: &[&str] = &[];
 
+const CRAFTING_TEXT_WITH_READER_COMMENTARY: &str = "
+    WITH commentary_markers(marker) AS (
+        VALUES ('the page'), ('page says'), ('page box'), ('main page'), ('survey'),
+               ('the data'), ('data''s'), ('verification request'), ('proposed'), ('.toml'),
+               ('typed'), ('not stated'), ('does not say'), ('presumably'), ('reader')
+    ), served_text(name, id, field, value) AS (
+        SELECT COALESCE(s.name, t.name, r.option), u.id, 'crafting_unlocks.text', u.text
+        FROM crafting_unlocks u
+        LEFT JOIN crafting_systems s ON s.id=u.system_id
+        LEFT JOIN crafting_stations t ON t.id=u.station_id
+        LEFT JOIN crafting_recipes r ON r.id=u.recipe_id
+        UNION ALL
+        SELECT s.name, s.id,
+               'crafting_system_stations.note (' || t.name || COALESCE(', ' || t.variant, '') || ')', link.note
+        FROM crafting_system_stations link
+        JOIN crafting_systems s ON s.id=link.system_id
+        JOIN crafting_stations t ON t.id=link.station_id
+        UNION ALL
+        SELECT label, id, 'augment_slot_types.not_crafting_reason', not_crafting_reason FROM augment_slot_types
+        UNION ALL
+        SELECT name || COALESCE(' (' || variant || ')', ''), id, 'crafting_stations.place', place
+        FROM crafting_stations
+        UNION ALL
+        SELECT s.name || ': ' || step.name, step.id, 'crafting_steps.name', step.name
+        FROM crafting_steps step JOIN crafting_systems s ON s.id=step.system_id
+        UNION ALL
+        SELECT name || COALESCE(' (' || variant || ')', ''), id, 'crafting_ingredients.source', source
+        FROM crafting_ingredients
+    )
+    SELECT name, id, field || ': ' || value FROM served_text
+    WHERE EXISTS (SELECT 1 FROM commentary_markers WHERE instr(lower(value), marker)>0)
+    ORDER BY name, id, field";
+
 impl IntegrityCheck {
     const fn hard(name: &'static str, description: &'static str, offender_query: OffenderQuery) -> Self {
         Self {
@@ -199,6 +232,12 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "no recipe line repeats an ingredient or item charged by its step at that grade",
         OffenderQuery::Sql(ddo_etl::tree::RECIPE_COSTS_REPEATING_STEP_COSTS),
     ),
+    IntegrityCheck::hard(
+        "crafting_text_has_no_reader_commentary",
+        "unlock text, station-link notes, label reasons, station places, step names and ingredient sources \
+         contain no reader commentary; put source quotations and research notes in citations",
+        OffenderQuery::Sql(CRAFTING_TEXT_WITH_READER_COMMENTARY),
+    ).showing_every_offender(),
     IntegrityCheck::hard(
         "step_base_lines_scope_consistently",
         "a step's base lines are either all equipment-scoped or all unscoped",
