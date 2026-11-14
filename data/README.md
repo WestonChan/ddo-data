@@ -30,7 +30,9 @@ data/
   packs/
     <pack>/pack.toml  exceptions.toml
     <pack>/quests/<quest>/quest.toml + gear/<item>.toml
-    <pack>/crafting/<system>/crafting.toml + gear/<item>.toml + augments/<augment>.toml
+    <pack>/crafting/<system>/crafting.toml + gear/<item>.toml + augments/<augment>.toml + ingredients/<ingredient>.toml
+    <pack>/crafting/ingredients/<ingredient>.toml
+    <pack>/sockets/<label>/<set>.toml
     <pack>/vendors/<vendor>/vendor.toml + gear/<item>.toml
     <pack>/events/<event>/event.toml + gear/<item>.toml
     <pack>/chains/<chain>.toml  sagas/<saga>.toml
@@ -40,6 +42,9 @@ data/
     free-to-play/<patron>/…
     shared/…
     shared/augments/<family>/<augment>.toml
+    shared/crafting/stations.toml
+    shared/crafting/ingredients/<ingredient>.toml
+    shared/sockets/<label>/<set>.toml
     shared/sentient-gems/<gem>.toml
     general/gear/<item>.toml
     unsourced/gear/<item>.toml
@@ -82,6 +87,8 @@ An item otherwise under `packs/unsourced/gear/` can use its version family: stri
 
 Augments whose family belongs to exactly one crafting system follow that system's record into its `augments/` folder. Other augments keep their family grouping at `packs/shared/augments/<family>/<augment>.toml`. Here `family` means Maetrim's augment family, the API's `augments.family`. No crafting record is invented for a family. Every augment file states `family` explicitly, including all crafting outputs; the build never infers it from a folder.
 
+A crafting ingredient and a socket option set each live in the narrowest folder that covers everything using them, chosen by one shared function. An ingredient used by one crafting system sits in that system's `ingredients/`. One used by several systems sits in `<pack>/crafting/ingredients/` when those systems share exactly one pack and that pack is not `unsourced`; otherwise in `packs/shared/crafting/ingredients/`. A socket option set sits in `<pack>/sockets/<label>/` by the items that carry it, under the same rule.
+
 Filigree set files stay whole. Every member's `menu` must resolve to the same pack, using existing adventure-pack entries in `upstream/source-aliases.toml` before exact pack-name comparison. Otherwise the file stays in `packs/shared/filigrees/`. The current split is 26 pack files and 39 shared files; no new alias was added. Sentient gems have no pack and each has a file at `packs/shared/sentient-gems/<gem>.toml`.
 
 `characters/` contains what a character trains or toggles. `effects/` contains stats, effects, stat groups, effect tiers and game vocabularies, including item clickies. `upstream/` contains the recorded commit, exclusions and source aliases used when reading Maetrim's files.
@@ -106,7 +113,7 @@ A stat-wide line-template correction can keep the canonical stat name while disp
 
 Nine `[stat_type_effects]` declarations in the import vocabulary route direct item, augment and socket-option stat links to their named effects after corrections and explicit alias selection. Set and feat links are outside that routing. The HARD `stat_links_at_routed_types` check shares the writer's eligibility rule.
 
-Bonus corrections use `item_bonus`, `augment_bonus`, `set_tier_bonus`, `feat_bonus` or `socket_option_bonus`. A `lines` correction's `upstream` contains one stat-name array per upstream line. One array splits; several arrays merge. The owner file holds the result, and its qualifier names the upstream stat union in canonical order followed by ` / <bonus type>`. Set corrections add `equipped_count <n>, `; socket options live on the item and add `socket "<label>", option "<name>", `. Both option selectors must identify exactly one row. The build validates our partitions, union, values and types; the import checks his original lines and reports missing members as `no such bonus`.
+Bonus corrections use `item_bonus`, `augment_bonus`, `set_tier_bonus`, `feat_bonus` or `socket_option_bonus`. A `lines` correction's `upstream` contains one stat-name array per upstream line. One array splits; several arrays merge. The owner file holds the result, and its qualifier names the upstream stat union in canonical order followed by ` / <bonus type>`. Set corrections add `equipped_count <n>, `. A socket-option correction lives on the socket option set's file and adds `option "<name>", `, which must identify exactly one option; an item file whose correction targets a socket option fails the build, naming the file. `item_socket` corrections (a socket added, removed or relabelled) stay on the item. The build validates our partitions, union, values and types; the import checks his original lines and reports missing members as `no such bonus`.
 
 Default grouping and explicit merges share the slot contract: every target slot receives a value, members reading the same slot agree, and the complete stat sets match. Separate upstream Effects merge only through a cited correction. The two Melancholic Converter augments retain their current lines while mixed-type splits wait for WestonChan/ddo-data#72; check-db rejects an exception whose owner disappears or no longer needs it.
 
@@ -135,9 +142,23 @@ Default-false booleans must be omitted when false; writing `is_legacy = false`, 
 
 `[[source]]` records where an item or augment comes from, using the API's source names. Vendor sources can carry ordered `[[source.price]]` entries with `ingredient` and positive `quantity`; the deprecated served `cost` string is generated from those entries.
 
+## Crafting systems
+
+A crafting system is a folder. Its `crafting.toml` states the system (`name`, `pack`, `page`), then its stations, unlocks, steps and recipes; `gear/`, `augments/` and `ingredients/` beside it hold what it yields and uses. Every fact is stored once and pointed at by name: a station, an ingredient and a socket option set each have one file or row, however many systems, recipes or items use them.
+
+- **Stations** are rows of `packs/shared/crafting/stations.toml`: `name`, an optional `variant`, `kind` (`device`, `npc` or `interface`) and `place`, required unless the kind is `interface`, with their own `[[row.unlock]]` and `[[row.citation]]`. A system links each station it uses with `[[station]]` (`name`, optional `variant`, optional `note`) and has at least one. The served `npc` is derived from the first: its name, then its place.
+- **Unlocks** are `[[unlock]]` rows on a system, a station or a recipe: a `kind` (`quest`, `raid_flagging`, `favor`, `level`, `feat`, `pack`, `kept_item`, `guild_amenity`, `crafting_level`, `reaper_experience` or `other`), the entity that kind names (`quest`, `patron`, `pack`, `feat`), an optional `value`, and `text`. An unlock records a requirement a source states. A heading in a wiki navigation box is not one.
+- **Steps** are `[[step]]` rows with a `name` unique in the system and an optional `slot`, the socket label the step fills. `[[step.cost]]` lines carry `tier` (`heroic`, `epic`, `legendary` or `any`), an `ingredient` or an `item`, and `quantity`. A crafting socket label has a step or, in `effects/augment-slot-types.toml`, a `not_crafting_reason`; never both.
+- **Recipes** are `[[recipe]]` rows: `option`, `tier`, the `step` they belong to, an optional `note`, and `[[recipe.ingredient]]` lines naming an `ingredient` or an `item` with a `quantity`. A recipe's cost is its step's lines for its tier (the lines of that tier, or the `any` lines when the step has none for it) plus its own lines, so a recipe states only what its step does not. A recipe line that repeats one its step charges fails the build. `yields_ingredient` names an ingredient the recipe makes. A recipe that yields augments names a step.
+- **Ingredients** are one file each: `name`, an optional `variant`, `tier`, `bind`, `drop_location`. The slug comes from the name and variant, and no two ingredients share both. A cost line adds `variant` only when the name alone is ambiguous (Abyssal Catalyst and Deep Catalyst have a Legendary variant); a recipe's cost line takes no `tier`, since the ingredient states its own.
+- **Socket option sets** are `<pack>/sockets/<label>/<set>.toml`: `label`, `name`, an optional `variant`, and `[[option]]` rows with `name`, `description`, `icon`, `min_level` and `[[option.effect]]`. A gear file's `[[socket]]` names the label as `slot` and the set as `set` (with `set_variant`). A label is filled by augments or by sets, never both, and every set is carried by at least one item.
+- **Served text** (an unlock's `text`, a station link's `note`, a label's reason, a station's `place`, a step's `name`, an ingredient's `drop_location`) holds what the game or the wiki states, or our reason. How it was read and what is still in doubt go in the `note` of a `[[citation]]`. The HARD check `crafting_text_has_no_reader_commentary` refuses the words that mark research notes in those six fields. Recipe notes are outside it until WestonChan/ddo-data#81.
+
+The build rejects the forms these replaced, naming the file: `[[ingredient]]` on a system, `slot` on a recipe, `npc` on a system, `[[socket.option]]` on an item, a socket-option correction on an item file, `tier` on a recipe's cost line, and `[[retired]]` in `redirects.toml`.
+
 ## Redirects
 
-The API addresses entities by slug, so renaming an entity (or changing its `variant`) changes the slug every link and saved build holds. `redirects.toml` keeps old slugs answering for 30 days. It names slugs, not display names, because the old name no longer exists anywhere else.
+The API addresses entities by slug, so renaming an entity (or changing its `variant`) changes the slug every link and saved build holds. `redirects.toml` keeps old slugs answering for one year. It names slugs, not display names, because the old name no longer exists anywhere else.
 
 ```toml
 [[redirect]]
@@ -147,9 +168,9 @@ to = "legendary-new-name"
 since = "2026-10-20"
 ```
 
-A `[[redirect]]` makes `/v1/<kind>/<from>` answer 308 to `<to>` and lets `from` stand in for `to` in filters. `kind` is the API's route word (`items`, `augments`, `sets`, `quest-chains`, …; kinds with no route use their kebab-case table name). A renamed enhancement tree or crafting system redirects its selections' or ingredients' old slugs too, without rows of their own. An entity deleted for good is a `[[retired]]` row (`kind`, `slug`, `since`, `reason`); its slug answers 404, and the row only tells the deploy check the disappearance was intended. A retired slug is ours, served by the API and now gone with no successor; it is not the `[[removed]]` array on an entity file, which names an upstream duplicate merged into that survivor.
+A `[[redirect]]` makes `/v1/<kind>/<from>` answer 308 to `<to>` and lets `from` stand in for `to` in filters. `kind` is the API's route word (`items`, `augments`, `sets`, `quest-chains`, …; kinds with no route use their kebab-case table name). A renamed enhancement tree redirects its selections' old slugs too, without rows of their own. An entity deleted for good needs no row: its slug answers 404. The file holds redirects only; a `[[retired]]` row fails the build. The `[[removed]]` array on an entity file is a different thing: it names an upstream duplicate merged into that survivor.
 
-The build fails, naming both sides, when a `from` or retired slug is still current, when a `to` is not current (retarget it: redirects never chain), when a slug appears twice or is both redirected and retired, or when a slug is all digits. The deploy compares the build with the live API and fails on any slug it served that is now missing without a row here, so a rename or deletion, by hand or through `import-ddobuilder`, is answered in this file before it lands. Rows expire: `cargo lint` and the deploy fail on a row older than 30 days or dated in the future, and `cargo run -p ddo-etl -- prune-redirects --data data` deletes the expired ones. Builds stored elsewhere (V8, Phase 5) apply the `served_redirects` view as a data migration at the deploy that ships a redirect, so 30 days only has to cover bookmarks and shared links.
+The build fails, naming both sides, when a `from` slug is still current, when a `to` is not current (retarget it: redirects never chain), when a slug appears twice, or when a slug is all digits. The deploy compares the build with the live API and fails when an entity kept its name but is served under a new slug with no redirect here. It compares only names that are unique within their kind on both sides, and it passes an entity that was renamed or deleted, so a rename, by hand or through `import-ddobuilder`, still needs its row written here before it lands. Rows expire: `cargo lint` and the deploy fail on a row older than one year or dated in the future, and `cargo run -p ddo-etl -- prune-redirects --data data` deletes the expired ones. Builds we store are rewritten in the change that renames the slug. A build saved in a browser (V8, Phase 5) applies the redirects issued since its recorded dataset version when it opens, so a redirect has to outlast the time a build sits unopened.
 
 ## Requirement groups
 
