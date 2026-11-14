@@ -250,9 +250,9 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "an item never repeats a candidate bonus on its non-colour sockets; 28 real items await ddo-data#72",
         OffenderQuery::Built(items_do_not_carry_craftable_bonuses),
     ).showing_every_offender(),
-    IntegrityCheck::warn(
+    IntegrityCheck::hard(
         "crafting_recipe_augments_fit_their_socket",
-        "yielded augments fit the recipe's socket or a mirror of it",
+        "a recipe that yields augments names a step, and on a socketed step each yielded augment fits the socket or a mirror of it",
         OffenderQuery::Built(crafting_recipe_augments_fit_their_socket),
     ).showing_every_offender(),
     IntegrityCheck::hard(
@@ -980,13 +980,13 @@ const CRAFTING_SOCKET_MIRRORS: &str = "mirrors AS MATERIALIZED (
 fn crafting_recipe_augments_fit_their_socket(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let sql = format!(
         "WITH {CRAFTING_SOCKET_MIRRORS}
-        SELECT r.option,r.id,a.name || ': ' || t.label
+        SELECT r.option,r.id,a.name || ': ' || COALESCE(t.label, 'recipe has no step')
         FROM crafting_recipe_augments link JOIN crafting_recipes r ON r.id=link.recipe_id
         JOIN augments a ON a.id=link.augment_id LEFT JOIN crafting_steps s ON s.id=r.step_id
-        JOIN augment_slot_types t ON t.id=s.slot_id
-        WHERE NOT EXISTS (SELECT 1 FROM augment_slots fits WHERE fits.augment_id=a.id AND fits.slot_id=t.id)
+        LEFT JOIN augment_slot_types t ON t.id=s.slot_id
+        WHERE s.id IS NULL OR (t.id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM augment_slots fits WHERE fits.augment_id=a.id AND fits.slot_id=t.id)
           AND NOT EXISTS (SELECT 1 FROM mirrors m JOIN augment_slots fits ON fits.slot_id=m.mirror_id
-                          WHERE m.step_id=s.id AND fits.augment_id=a.id)
+                          WHERE m.step_id=s.id AND fits.augment_id=a.id))
         ORDER BY r.option,a.name"
     );
     Ok(Findings { offenders: Some(offenders_from_sql(db, &sql)?), notes: vec![] })

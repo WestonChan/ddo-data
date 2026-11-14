@@ -1735,6 +1735,28 @@ fn violation(check_name: &'static str, injected_sql: &str, offender_name: &'stat
 }
 
 #[test]
+fn augment_yields_require_a_step_and_allow_pure_steps() {
+    let mut mismatches = Vec::new();
+    for (mutation, expected) in [
+        ("UPDATE crafting_recipes SET step_id=NULL WHERE option='Blinding Fear'", CheckStatus::Failed),
+        ("UPDATE augment_slots SET slot_id=(SELECT id FROM augment_slot_types WHERE label='colorless') WHERE augment_id=(SELECT id FROM augments WHERE name='Blinding Fear')", CheckStatus::Failed),
+        ("UPDATE crafting_steps SET slot_id=NULL WHERE id=(SELECT step_id FROM crafting_recipes WHERE option='Blinding Fear')", CheckStatus::Passed),
+    ] {
+        let scratch = tempfile::tempdir().unwrap();
+        let db = Connection::open(fixture_db_copy_with(scratch.path(), mutation)).unwrap();
+        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let outcome = report.outcome("crafting_recipe_augments_fit_their_socket").unwrap();
+        if outcome.status != expected
+            || (expected == CheckStatus::Failed
+                && !outcome.offenders.iter().any(|offender| offender.name == "Blinding Fear"))
+        {
+            mismatches.push(format!("{mutation}: expected {expected:?}, found {outcome}"));
+        }
+    }
+    assert!(mismatches.is_empty(), "{}", mismatches.join("\n"));
+}
+
+#[test]
 fn crafting_mirrors_accept_amount_variants_shared_augments_and_empty_effects() {
     for mutation in [
         "",
