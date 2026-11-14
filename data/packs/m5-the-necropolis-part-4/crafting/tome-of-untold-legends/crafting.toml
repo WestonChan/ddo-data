@@ -43,7 +43,10 @@ note = "Body text: 'You must be at least level 10.'"
 field = "recipe"
 url = "https://ddowiki.com/page/Tome_of_Untold_Legends"
 read = "2026-11-04"
-note = "The Tome: Binding is a container holding the eight different Tome pages (Legend I to VIII); no station is involved. Bilk Howland gives the empty Tome. The page does not call this a recipe."
+note = """
+The Tome: Binding is a container holding the eight different Tome pages (Legend I to VIII); no station is involved. Bilk Howland gives the empty Tome. The page does not call this a recipe.
+
+Tome: Binding: the page does not call filling the Binding a recipe; the eight legends and the Binding are read from its text."""
 
 [[recipe]]
 note = "produces Skiver (Dagger, ML 14, Bound to Character on Acquire)"
@@ -95,7 +98,7 @@ step = "Weapon turn-in"
 
 [[recipe]]
 yields_ingredient = "Tome: Binding"
-note = "The Tome: Binding is a container holding the eight different Tome pages (Legend I to VIII); no station is involved. Bilk Howland gives the empty Tome. The page does not call this a recipe."
+note = "The Tome: Binding is a container holding the eight different Tome pages (Legend I to VIII); no station is involved. Bilk Howland gives the empty Tome."
 option = "Tome: Binding"
 tier = "any"
 

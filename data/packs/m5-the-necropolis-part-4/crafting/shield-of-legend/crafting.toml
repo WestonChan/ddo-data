@@ -51,7 +51,10 @@ Body text: 'You must be level 10.'"""
 field = "recipe"
 url = "https://ddowiki.com/page/Shield_of_Legend"
 read = "2026-11-04"
-note = "The Frame is a container with unique item capacity 8: the eight different fragments are placed in it in order (positions 1 to 8, left to right); no station is involved. Racella Unary gives the empty Frame. The page does not call this a recipe. Fragments drop in most chests of all four Necropolis IV quests from Update 13 and in rare chests in the Orchard of the Macabre, mainly: One and Two in Desecrated Temple of Vol (Marut chest), Three and Four in Ghosts of Perdition (Undead wave chest), Five and Six in Flesh Maker's Laboratory (Golem wave chest), Seven and Eight in Inferno of the Damned (Locked Acolyte chest)."
+note = """
+The Frame is a container with unique item capacity 8: the eight different fragments are placed in it in order (positions 1 to 8, left to right); no station is involved. Racella Unary gives the empty Frame. The page does not call this a recipe. Fragments drop in most chests of all four Necropolis IV quests from Update 13 and in rare chests in the Orchard of the Macabre, mainly: One and Two in Desecrated Temple of Vol (Marut chest), Three and Four in Ghosts of Perdition (Undead wave chest), Five and Six in Flesh Maker's Laboratory (Golem wave chest), Seven and Eight in Inferno of the Damned (Locked Acolyte chest).
+
+Shield: Frame: the page does not call filling the Frame a recipe; the eight fragments and the Frame are read from its text."""
 
 [[recipe]]
 note = "produces Adherence (Tower shield, ML 14, Bound to Character on Acquire)"
@@ -97,7 +100,7 @@ step = "Shield turn-in"
 
 [[recipe]]
 yields_ingredient = "Shield: Frame"
-note = "The Frame is a container with unique item capacity 8: the eight different fragments are placed in it in order (positions 1 to 8, left to right); no station is involved. Racella Unary gives the empty Frame. The page does not call this a recipe. Fragments drop in most chests of all four Necropolis IV quests from Update 13 and in rare chests in the Orchard of the Macabre, mainly: One and Two in Desecrated Temple of Vol (Marut chest), Three and Four in Ghosts of Perdition (Undead wave chest), Five and Six in Flesh Maker's Laboratory (Golem wave chest), Seven and Eight in Inferno of the Damned (Locked Acolyte chest)."
+note = "The Frame is a container with unique item capacity 8: the eight different fragments are placed in it in order (positions 1 to 8, left to right); no station is involved. Racella Unary gives the empty Frame. Fragments drop in most chests of all four Necropolis IV quests from Update 13 and in rare chests in the Orchard of the Macabre, mainly: One and Two in Desecrated Temple of Vol (Marut chest), Three and Four in Ghosts of Perdition (Undead wave chest), Five and Six in Flesh Maker's Laboratory (Golem wave chest), Seven and Eight in Inferno of the Damned (Locked Acolyte chest)."
 option = "Shield: Frame"
 tier = "any"
 

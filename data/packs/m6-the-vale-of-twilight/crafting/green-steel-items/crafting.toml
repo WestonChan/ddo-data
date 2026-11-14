@@ -589,7 +589,9 @@ read = "2026-11-04"
 note = """
 Also consumes one weapon (destroyed) whose listed value is +6 to +10 (Step #1 of the Subjugation list; the overview says +6 or higher). The row shape cannot name a consumed weapon of a given plus value. Depleted cells are the ones found or bought; the page does not name the device that does the recharge beyond listing it under the Subjugation phase.
 
-Also consumes one weapon (destroyed) whose listed value is +8 to +10 (Step #1 of the Devastation list; the overview says +8 or higher). Not expressible as a cost row."""
+Also consumes one weapon (destroyed) whose listed value is +8 to +10 (Step #1 of the Devastation list; the overview says +8 or higher). Not expressible as a cost row.
+
+Energy cell recharges: the weapon value is from Step #1 of the Subjugation list (+6 to +10; the overview says +6 or higher) and of the Devastation list (+8 to +10; the overview says +8 or higher). The page does not name the device that does the Medium recharge beyond listing it under the Subjugation phase. The consumed weapon is in the recipe's note because a cost row cannot name a weapon of a given plus value (WestonChan/ddo-data#83)."""
 
 [[recipe]]
 note = """
@@ -8852,7 +8854,7 @@ level = 11
 
 [[recipe]]
 yields_ingredient = "Shavarath Medium Energy Cell"
-note = "Also consumes one weapon (destroyed) whose listed value is +6 to +10 (Step #1 of the Subjugation list; the overview says +6 or higher). The row shape cannot name a consumed weapon of a given plus value. Depleted cells are the ones found or bought; the page does not name the device that does the recharge beyond listing it under the Subjugation phase."
+note = "Also consumes one weapon (destroyed) whose listed value is +6 to +10. Depleted cells are the ones found or bought."
 option = "Shavarath Medium Energy Cell (recharge)"
 tier = "any"
 
@@ -8862,7 +8864,7 @@ quantity = 1
 
 [[recipe]]
 yields_ingredient = "Shavarath High Energy Cell"
-note = "Also consumes one weapon (destroyed) whose listed value is +8 to +10 (Step #1 of the Devastation list; the overview says +8 or higher). Not expressible as a cost row."
+note = "Also consumes one weapon (destroyed) whose listed value is +8 to +10."
 option = "Shavarath High Energy Cell (recharge)"
 tier = "any"
 
