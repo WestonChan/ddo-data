@@ -10,7 +10,7 @@ use crate::effect_names::{effect_name_search_sql, resolve_effect_name};
 use crate::entity_slugs::{resolve_entity_slug, EntityPath};
 use crate::error::ApiError;
 use crate::query::{
-    declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery, EffectName, VocabularyQueries,
+    declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery, EffectName, VocabularySource,
     EFFECT_NAME_SEARCH,
 };
 use crate::state::AppState;
@@ -533,26 +533,33 @@ async fn weapon_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
     .await
 }
 
-pub(super) static WEAPON_ABILITIES_VOCABULARY: std::sync::LazyLock<VocabularyQueries> =
-    std::sync::LazyLock::new(|| {
-        VocabularyQueries::new(
-            "name",
-            "listed.sort_order",
-            &format!(
-                "SELECT e.id, e.slug, e.name, {} AS sort_order FROM effects e
+pub(super) static WEAPON_ABILITIES_VOCABULARY: std::sync::LazyLock<VocabularySource> =
+    std::sync::LazyLock::new(|| VocabularySource {
+        value_column: "name",
+        default_order: &["sort_order"],
+        values_sql: format!(
+            "SELECT e.id, e.slug, e.name, {} AS sort_order FROM effects e
                  WHERE e.is_stat = 1 AND e.category = 'ability'",
-                ddo_model::stats::ability_sort_order_sql()
-            ),
-            "vocabulary.*, COALESCE(counted.attack_item_count, 0) AS attack_item_count,
-             COALESCE(counted.damage_item_count, 0) AS damage_item_count",
-            "LEFT JOIN (
+            ddo_model::stats::ability_sort_order_sql()
+        ),
+        list_columns: Some(|vocabulary| {
+            format!(
+                "{vocabulary}.*, COALESCE(counted.attack_item_count, 0) AS attack_item_count,
+             COALESCE(counted.damage_item_count, 0) AS damage_item_count"
+            )
+        }),
+        count_joins: Some(|vocabulary| {
+            format!(
+                "LEFT JOIN (
                 SELECT wa.ability,
                     COUNT(DISTINCT wa.item_id) FILTER (WHERE wa.role = 'attack') AS attack_item_count,
                     COUNT(DISTINCT wa.item_id) FILTER (WHERE wa.role = 'damage') AS damage_item_count
                 FROM item_weapon_abilities wa JOIN items i ON i.id = wa.item_id
                 WHERE NOT i.is_legacy GROUP BY wa.ability
-            ) counted ON counted.ability = vocabulary.name",
-        )
+            ) counted ON counted.ability = {vocabulary}.name"
+            )
+        }),
+        ..Default::default()
     });
 
 const WEAPON_ABILITIES_SORT_FIELDS: &[(&str, &str)] = &[
@@ -593,17 +600,23 @@ async fn weapon_abilities(
     .await
 }
 
-pub(super) static ITEM_MATERIALS_VOCABULARY: std::sync::LazyLock<VocabularyQueries> = std::sync::LazyLock::new(|| {
-    VocabularyQueries::new(
-        "name",
-        "listed.sort_order, listed.name",
-        "SELECT id, name, sort_order FROM item_materials",
-        "vocabulary.name, vocabulary.sort_order, COALESCE(counted.item_count, 0) AS item_count",
-        "LEFT JOIN (
+pub(super) static ITEM_MATERIALS_VOCABULARY: std::sync::LazyLock<VocabularySource> =
+    std::sync::LazyLock::new(|| VocabularySource {
+        value_column: "name",
+        default_order: &["sort_order", "name"],
+        values_sql: "SELECT id, name, sort_order FROM item_materials".into(),
+        list_columns: Some(|vocabulary| {
+            format!("{vocabulary}.name, {vocabulary}.sort_order, COALESCE(counted.item_count, 0) AS item_count")
+        }),
+        count_joins: Some(|vocabulary| {
+            format!(
+                "LEFT JOIN (
                 SELECT material_id, COUNT(*) AS item_count FROM items WHERE NOT is_legacy GROUP BY material_id
-            ) counted ON counted.material_id = vocabulary.id",
-    )
-});
+            ) counted ON counted.material_id = {vocabulary}.id"
+            )
+        }),
+        ..Default::default()
+    });
 
 const ITEM_MATERIALS_SORT_FIELDS: &[(&str, &str)] =
     &[("name", "listed.name"), ("sort_order", "listed.sort_order"), ("item_count", "listed.item_count")];
@@ -667,19 +680,23 @@ async fn damage_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
     .await
 }
 
-pub(super) static AUGMENT_SLOT_TYPES_VOCABULARY: std::sync::LazyLock<VocabularyQueries> =
-    std::sync::LazyLock::new(|| {
-        VocabularyQueries::new(
-            "label",
-            "listed.family, listed.label",
-            "SELECT id, slug, label, family, variant, qualifier, not_crafting_reason FROM augment_slot_types",
-            "vocabulary.*, COALESCE(counted.item_count, 0) AS item_count",
-            "LEFT JOIN (
+pub(super) static AUGMENT_SLOT_TYPES_VOCABULARY: std::sync::LazyLock<VocabularySource> =
+    std::sync::LazyLock::new(|| VocabularySource {
+        value_column: "label",
+        default_order: &["family", "label"],
+        values_sql: "SELECT id, slug, label, family, variant, qualifier, not_crafting_reason FROM augment_slot_types"
+            .into(),
+        list_columns: Some(|vocabulary| format!("{vocabulary}.*, COALESCE(counted.item_count, 0) AS item_count")),
+        count_joins: Some(|vocabulary| {
+            format!(
+                "LEFT JOIN (
                 SELECT s.slot_id, COUNT(DISTINCT s.item_id) AS item_count
                 FROM item_augment_slots s JOIN items i ON i.id = s.item_id
                 WHERE NOT i.is_legacy GROUP BY s.slot_id
-            ) counted ON counted.slot_id = vocabulary.id",
-        )
+            ) counted ON counted.slot_id = {vocabulary}.id"
+            )
+        }),
+        ..Default::default()
     });
 
 declare_query_parameters! {
@@ -690,15 +707,12 @@ declare_query_parameters! {
     repeatable: ["family"]
 }
 
-pub(super) static AUGMENT_SLOT_FAMILIES_VOCABULARY: std::sync::LazyLock<VocabularyQueries> =
-    std::sync::LazyLock::new(|| {
-        VocabularyQueries::new(
-            "family",
-            "listed.family",
-            "SELECT DISTINCT family FROM augment_slot_types",
-            "vocabulary.*",
-            "",
-        )
+pub(super) static AUGMENT_SLOT_FAMILIES_VOCABULARY: std::sync::LazyLock<VocabularySource> =
+    std::sync::LazyLock::new(|| VocabularySource {
+        value_column: "family",
+        default_order: &["family"],
+        values_sql: "SELECT DISTINCT family FROM augment_slot_types".into(),
+        ..Default::default()
     });
 
 const AUGMENT_SLOT_TYPES_SORT_FIELDS: &[(&str, &str)] = &[

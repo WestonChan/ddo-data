@@ -4,7 +4,7 @@ use anyhow::{bail, ensure, Context, Result};
 use clap::{Parser, Subcommand};
 use comments::{comments_in, without_comments};
 use std::path::{Path, PathBuf};
-use std::process::{Command, Output};
+use std::process::{Command, Output, Stdio};
 use walkdir::WalkDir;
 use xtask::api_validation::validate_api;
 use xtask::golden_refresh::{golden_merge_changes, golden_sample, merge_golden, SampleRequest};
@@ -343,6 +343,7 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
     let mut failures = Vec::new();
     for (crate_name, test_target, test_name) in [
         ("xtask", &["--bin", "xtask"][..], "contract_guard_tests::contract_guard_requires_a_passing_test"),
+        ("xtask", &["--bin", "xtask"][..], "contract_guard_tests::contract_guard_rejects_a_failing_test"),
         (
             "xtask",
             &["--lib"][..],
@@ -383,9 +384,13 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         (
             "ddo-api",
             &["--lib"][..],
-            "routes::v1::vocabulary_tests::every_value_vocabulary_avoids_correlated_table_scans",
+            "routes::v1::vocabularies::vocabulary_tests::every_value_vocabulary_avoids_correlated_table_scans",
         ),
-        ("ddo-api", &["--lib"][..], "routes::v1::vocabulary_tests::every_value_vocabulary_validates_without_counting"),
+        (
+            "ddo-api",
+            &["--lib"][..],
+            "routes::v1::vocabularies::vocabulary_tests::every_value_vocabulary_validates_without_counting",
+        ),
         ("ddo-api", &["--test", "api"][..], "crafting_detail_query_count_does_not_grow_with_recipes"),
         ("ddo-api", &["--test", "api"][..], "augment_slot_type_detail_query_count_does_not_grow_with_candidates"),
         ("ddo-api", &["--test", "api"][..], "note_queries_do_not_grow_from_one_to_fifty_owners"),
@@ -540,15 +545,16 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         ),
         ("ddo-etl", &["--test", "corrections"][..], "a_socket_label_merge_renames_every_listed_spelling_into_one_row"),
     ] {
+        eprintln!("Checking contract or scale guard: {test_name}");
         let output = Command::new("cargo")
             .args(["test", "-p", crate_name])
             .args(test_target)
             .args([test_name, "--", "--exact"])
+            .stderr(Stdio::inherit())
             .output()
             .with_context(|| format!("checking contract or scale guard: {test_name}"))?;
-        print!("{}", String::from_utf8_lossy(&output.stdout));
-        eprint!("{}", String::from_utf8_lossy(&output.stderr));
         if let Err(error) = contract_guard_result(test_name, &output) {
+            eprint!("{}", String::from_utf8_lossy(&output.stdout));
             failures.push(error.to_string());
         }
     }
@@ -611,7 +617,7 @@ mod contract_guard_tests {
 
     #[test]
     fn contract_guard_requires_a_passing_test() {
-        let passing_test = "comments::tests::ignores_comment_syntax_inside_strings";
+        let passing_test = "contract_guard_tests::passing_guard";
         for (test_name, should_pass) in [(passing_test, true), ("missing_contract_guard", false)] {
             let output = Command::new(std::env::current_exe().unwrap()).args([test_name, "--exact"]).output().unwrap();
             assert_eq!(
@@ -621,5 +627,26 @@ mod contract_guard_tests {
                 String::from_utf8_lossy(&output.stdout)
             );
         }
+    }
+
+    #[test]
+    fn passing_guard() {}
+
+    #[test]
+    #[ignore = "Run only by the failing-exit-status guard test"]
+    fn failing_guard() {
+        panic!("injected contract guard failure");
+    }
+
+    #[test]
+    fn contract_guard_rejects_a_failing_test() {
+        let test_name = "contract_guard_tests::failing_guard";
+        let output =
+            Command::new(std::env::current_exe().unwrap()).args([test_name, "--exact", "--ignored"]).output().unwrap();
+        assert!(!output.status.success(), "the failure probe must fail through the real test harness");
+        assert_eq!(
+            contract_guard_result(test_name, &output).unwrap_err().to_string(),
+            format!("contract or scale guard failed: {test_name}")
+        );
     }
 }
