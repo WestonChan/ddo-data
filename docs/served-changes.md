@@ -1,5 +1,19 @@
 # V9 data files served changes
 
+## Item list filters for abilities, material, sockets and crafting system (2026-11-15)
+
+This closes WestonChan/ddo-data#86 and WestonChan/ddo-data#25. No data file changes; the database gains the `item_weapon_abilities` view over the stored modifier text.
+
+**What a consumer has to handle:**
+- **Item detail.** `weapon.attack_modifier` and `weapon.damage_modifier` (one comma-joined string each) are gone. `weapon.attack_abilities` and `weapon.damage_abilities` are lists in game order (Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma), null where the item states none: Legendary Rapier of the Oozing Hunger serves `["Strength", "Dexterity"]` for both. 3,631 current items state an attack ability and 3,386 a damage ability; 141 weapons state more than one attack ability.
+
+**What is added:**
+- **`/v1/items` parameters** `attack_ability`, `damage_ability`, `material`, `socket` and `crafting_system`, each repeatable. `attack_ability_match`, `damage_ability_match`, `socket_match` and `crafting_system_match` take `all`; `material_match` is a 400, since an item has one material. A value outside the parameter's vocabulary is a 400 that lists the accepted values. `socket` is case-insensitive, and `crafting_system` takes a slug, a redirected slug or a numeric id.
+- **`/v1/weapon-abilities`** (the six abilities, each row with its `attack_item_count` and `damage_item_count`) and **`/v1/item-materials`** (42 materials, each row with its `item_count`).
+- **`item_count`** on every `/v1/augment-slot-types` row (259) and on `/v1/crafting-systems` rows and detail (53). Counts are whole-catalogue and leave out legacy items, so a value used only by legacy items serves 0.
+
+**Not in this change:** binding. Items hold none; WestonChan/ddo-data#89 reads it from the wiki and adds the filter.
+
 ## Redirects last one year (2026-11-15)
 
 This closes WestonChan/ddo-data#65. A redirect row answers for one year, where it answered for 30 days; `check-redirects`, `prune-redirects` and the OpenAPI description follow the one definition. `data/redirects.toml` holds redirects only. Retirement records are gone: a deleted entity's slug answers 404 with no row, and the deploy's slug check now fails only when an entity kept its name but is served under a new slug with no redirect.

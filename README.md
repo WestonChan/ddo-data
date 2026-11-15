@@ -75,7 +75,7 @@ download the whole database once from `/v1/dump.sqlite` rather than paging the l
 |---|---|
 | `/v1/version` | Dataset and schema versions, table counts |
 | `/v1/effects`, `/v1/effects/{id}` | The bonus vocabulary: stats and named effects in one list with `kind`; an effect's bonuses, tier group, damage and carriers (one row per owner, with every line it carries), or a stat's carriers |
-| `/v1/items`, `/v1/items/{id}` | Equipment, filterable by name, slot, category, level, pack, raid, bonus (a stat, a stat with a bonus type, or a named effect), set, repeated keys with `_match`; legacy items (old versions such as "(legacy)" and "(historic)" names, and items that no longer drop) are flagged `is_legacy` and listed only with `include_legacy=true` |
+| `/v1/items`, `/v1/items/{id}` | Equipment, filterable by name, slot, category, level, attack and damage ability, material, socket, pack, crafting system, raid, bonus (a stat, a stat with a bonus type, or a named effect), set, repeated keys with `_match`; legacy items (old versions such as "(legacy)" and "(historic)" names, and items that no longer drop) are flagged `is_legacy` and listed only with `include_legacy=true` |
 | `/v1/augments`, `/v1/augments/{id}` | Augments with the sockets they fit |
 | `/v1/sets`, `/v1/sets/{id}`, `/v1/filigrees`, `/v1/sentient-gems` | Gear sets, filigree sets, filigrees, the sentient gems they slot into |
 | `/v1/feats`, `/v1/feats/{id}` | Feats from the standard list, classes and races |
@@ -86,7 +86,7 @@ download the whole database once from `/v1/dump.sqlite` rather than paging the l
 | `/v1/enhancement-trees`, `/v1/enhancement-trees/{id}` | Trees with every enhancement and selection |
 | `/v1/spells`, `/v1/spells/{id}`, `/v1/clickies` | Spells and item clickies |
 | `/v1/bonus-types` | The bonus types every `bonuses` array uses |
-| `/v1/equipment-slots`, `/v1/weapon-types`, `/v1/damage-types`, `/v1/augment-slot-types` | Item vocabularies, and the valid values for the item and augment filters |
+| `/v1/equipment-slots`, `/v1/weapon-types`, `/v1/damage-types`, `/v1/weapon-abilities`, `/v1/item-materials`, `/v1/augment-slot-types` | Item vocabularies, and the valid values for the item and augment filters; abilities, materials and slot types carry item counts |
 | `/v1/quests`, `/v1/adventure-packs`, `/v1/patrons` | Quests and packs items and augments drop in (each item's `sources`); `/v1/quests` includes challenges (`is_challenge`, `max_level`) |
 | `/v1/dump.sqlite` | The whole database |
 | `/icons/{kind}/{Name}.png` | Icons; `kind` is the image category, such as `items`, `augments`, `feats`, `enhancements`, `stances`, or `sets`, and `Name` is the row's `icon` column |
