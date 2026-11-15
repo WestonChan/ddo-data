@@ -552,6 +552,26 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         ),
     ),
     IntegrityCheck::hard(
+        "weapon_abilities_are_ability_stats",
+        "weapon abilities name ability stats and rejoin in tooltip order to the stored attack and damage text",
+        OffenderQuery::Sql(
+            "WITH stored AS (
+                SELECT item_id, 'attack' AS role, attack_modifier AS modifier FROM item_weapon_stats
+                UNION ALL
+                SELECT item_id, 'damage' AS role, damage_modifier AS modifier FROM item_weapon_stats)
+             SELECT i.name, i.id, wa.role || ' ability: ' || wa.ability
+             FROM item_weapon_abilities wa JOIN items i ON i.id = wa.item_id
+             WHERE NOT EXISTS (SELECT 1 FROM effects e WHERE e.is_stat = 1 AND e.category = 'ability' AND e.name = wa.ability)
+             UNION ALL
+             SELECT i.name, i.id, stored.role || ' abilities do not rejoin to: ' || COALESCE(stored.modifier, 'NULL')
+             FROM stored JOIN items i ON i.id = stored.item_id
+             WHERE stored.modifier IS NOT (
+                 SELECT group_concat(ability, ', ') FROM (
+                     SELECT ability FROM item_weapon_abilities wa
+                     WHERE wa.item_id = stored.item_id AND wa.role = stored.role ORDER BY wa.sort_order))",
+        ),
+    ),
+    IntegrityCheck::hard(
         "raid_loot_only_on_raids",
         "a quest drop with loot type raid comes from a quest that is a raid",
         OffenderQuery::Sql(

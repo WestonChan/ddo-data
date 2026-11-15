@@ -1899,7 +1899,7 @@ pub(crate) struct ItemsDetailResponseVendorsEntry {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemsDetailResponseWeapon {
-    pub(crate) attack_modifier: Option<String>,
+    pub(crate) attack_abilities: Vec<String>,
     pub(crate) base_dice_bonus: Option<i64>,
     pub(crate) base_dice_count: Option<i64>,
     pub(crate) base_dice_sides: Option<i64>,
@@ -1907,7 +1907,7 @@ pub(crate) struct ItemsDetailResponseWeapon {
     pub(crate) critical_multiplier: Option<i64>,
     pub(crate) critical_threat_range: Option<i64>,
     pub(crate) damage: Option<String>,
-    pub(crate) damage_modifier: Option<String>,
+    pub(crate) damage_abilities: Vec<String>,
     pub(crate) damage_multiplier: Option<f64>,
     pub(crate) dr_bypass: Vec<String>,
     pub(crate) handedness: String,

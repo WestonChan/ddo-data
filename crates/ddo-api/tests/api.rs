@@ -1685,6 +1685,46 @@ async fn item_view_defaults_to_summary_and_caps_full_pages() {
 }
 
 #[tokio::test]
+async fn item_detail_weapon_abilities_are_the_split_of_the_stored_modifier_text() {
+    let db_path = fixture_db_path_with_data_edits("weapon-abilities", |root| {
+        let path = root.join("packs/unsourced/gear/alarphons-staff.toml");
+        let item = std::fs::read_to_string(&path).unwrap();
+        assert!(item.contains("attack_modifier = \"Strength\"\n"));
+        assert!(item.contains("damage_modifier = \"Strength\"\n"));
+        let without_abilities =
+            item.replace("attack_modifier = \"Strength\"\n", "").replace("damage_modifier = \"Strength\"\n", "");
+        std::fs::write(path, without_abilities).unwrap();
+    });
+    let db = rusqlite::Connection::open(&db_path).unwrap();
+    let state = AppState::open(&db_path).unwrap();
+    let mut statement = db.prepare("SELECT i.slug, w.attack_modifier, w.damage_modifier FROM item_weapon_stats w JOIN items i ON i.id = w.item_id").unwrap();
+    let weapons = statement
+        .query_map([], |row| {
+            Ok((row.get::<_, String>(0)?, row.get::<_, Option<String>>(1)?, row.get::<_, Option<String>>(2)?))
+        })
+        .unwrap();
+    for stored in weapons {
+        let (slug, attack, damage) = stored.unwrap();
+        let (status, _, item) = get_from(state.clone(), &format!("/v1/items/{slug}")).await;
+        assert_eq!(status, StatusCode::OK);
+        let weapon = item["weapon"].as_object().unwrap();
+        for (role, stored_text) in [("attack", attack), ("damage", damage)] {
+            assert!(!weapon.contains_key(&format!("{role}_modifier")), "{slug}: served {role}_modifier");
+            let abilities = weapon[&format!("{role}_abilities")].as_array().unwrap();
+            assert_eq!(abilities.is_empty(), stored_text.is_none(), "{slug} {role}");
+            assert_eq!(
+                abilities.iter().map(|ability| ability.as_str().unwrap()).collect::<Vec<_>>().join(", "),
+                stored_text.unwrap_or_default(),
+                "{slug} {role}"
+            );
+        }
+        if slug == "thunder-forged-orb" {
+            assert_eq!(weapon["attack_abilities"], serde_json::json!(["Intelligence", "Charisma"]));
+        }
+    }
+}
+
+#[tokio::test]
 async fn full_item_rows_match_the_detail_schema() {
     let (_, _, spec) = get("/v1/openapi.json").await;
     let schemas = spec["components"]["schemas"].as_object().unwrap();

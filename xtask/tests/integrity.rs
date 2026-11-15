@@ -2403,6 +2403,16 @@ fn injected_violations() -> Vec<InjectedViolation> {
              ORDER BY te.tier_id, te.sort_order LIMIT 1;",
             "Kundarak Delving Equipment",
         ),
+        violation(
+            "weapon_abilities_are_ability_stats",
+            "UPDATE item_weapon_stats SET attack_modifier = 'STR' WHERE item_id = (SELECT MIN(item_id) FROM item_weapon_stats);",
+            "",
+        ),
+        violation(
+            "weapon_abilities_are_ability_stats",
+            "UPDATE item_weapon_stats SET damage_modifier = 'Strength,  Dexterity' WHERE item_id = (SELECT MIN(item_id) FROM item_weapon_stats);",
+            "",
+        ),
         violation("tables_not_empty", "DELETE FROM guild_buffs;", "guild_buffs"),
         violation(
             "weapon_and_armor_stats_match_category",

@@ -42,9 +42,15 @@ pub(super) fn item_records(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64,
         ids,
         "SELECT w.item_id AS owner_id, wt.name AS weapon_type, p.name AS proficiency,
         w.handedness, w.damage, w.critical, w.base_dice_count, w.base_dice_sides, w.base_dice_bonus,
-        w.damage_multiplier, w.critical_threat_range, w.critical_multiplier, w.attack_modifier, w.damage_modifier
+        w.damage_multiplier, w.critical_threat_range, w.critical_multiplier
         FROM item_weapon_stats w JOIN weapon_types wt ON wt.id = w.weapon_type_id
         LEFT JOIN weapon_proficiencies p ON p.id = wt.proficiency_id WHERE w.item_id IN ({ids})",
+    )?;
+    let mut abilities = grouped_rows(
+        db,
+        ids,
+        "SELECT item_id AS owner_id, role, ability FROM item_weapon_abilities
+        WHERE item_id IN ({ids}) ORDER BY item_id, role, sort_order",
     )?;
     let mut bypasses = grouped_rows(
         db,
@@ -56,6 +62,16 @@ pub(super) fn item_records(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64,
         let weapon = weapons.remove(item_id).and_then(|mut found| found.pop());
         item["weapon"] = match weapon {
             Some(mut weapon) => {
+                let weapon_abilities = abilities.remove(item_id).unwrap_or_default();
+                for role in ["attack", "damage"] {
+                    weapon[format!("{role}_abilities")] = Value::Array(
+                        weapon_abilities
+                            .iter()
+                            .filter(|row| row["role"] == role)
+                            .map(|row| row["ability"].clone())
+                            .collect(),
+                    );
+                }
                 weapon["dr_bypass"] = Value::Array(
                     bypasses.remove(item_id).unwrap_or_default().into_iter().map(|row| row["bypass"].clone()).collect(),
                 );

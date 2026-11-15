@@ -13,6 +13,17 @@ impl Stat {
     }
 }
 
+pub fn ability_sort_order_sql() -> String {
+    let cases = STATS
+        .iter()
+        .filter(|stat| stat.category == StatCategory::Ability)
+        .enumerate()
+        .map(|(sort_order, stat)| format!("WHEN '{}' THEN {sort_order}", stat.name.replace('\'', "''")))
+        .collect::<Vec<_>>()
+        .join(" ");
+    format!("CASE e.name {cases} END")
+}
+
 pub const STATS: &[Stat] = &[
     Stat { id: 1, name: "Strength", category: StatCategory::Ability },
     Stat { id: 2, name: "Dexterity", category: StatCategory::Ability },

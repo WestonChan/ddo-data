@@ -400,6 +400,15 @@ CREATE TABLE IF NOT EXISTS item_weapon_stats (
     critical              TEXT                        -- computed display string, e.g. '16-20 / x2'
 );
 
+CREATE VIEW IF NOT EXISTS item_weapon_abilities AS
+SELECT w.item_id, 'attack' AS role, ability.key AS sort_order, TRIM(ability.value) AS ability
+FROM item_weapon_stats w, json_each('[' || REPLACE(json_quote(w.attack_modifier), ', ', '","') || ']') ability
+WHERE w.attack_modifier IS NOT NULL
+UNION ALL
+SELECT w.item_id, 'damage' AS role, ability.key AS sort_order, TRIM(ability.value) AS ability
+FROM item_weapon_stats w, json_each('[' || REPLACE(json_quote(w.damage_modifier), ', ', '","') || ']') ability
+WHERE w.damage_modifier IS NOT NULL;
+
 CREATE TABLE IF NOT EXISTS item_dr_bypass (
     item_id INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
     bypass  TEXT    NOT NULL,                         -- <DRBypass>: a damage type or a material
