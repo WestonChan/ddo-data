@@ -1583,8 +1583,11 @@ async fn items_filter_by_material_socket_and_crafting_system() {
         orb
     );
     let system_id = detail["crafting_systems"][0]["id"].as_i64().unwrap();
-    let (status, _, rejected) = get_from(state.clone(), &format!("/v1/items?crafting_system={system_id}")).await;
-    assert_eq!(status, StatusCode::BAD_REQUEST, "{rejected}");
+    let system_slug = detail["crafting_systems"][0]["slug"].as_str().unwrap();
+    assert_eq!(
+        item_ids_matching(&state, &format!("crafting_system={system_id}")).await,
+        item_ids_matching(&state, &format!("crafting_system={system_slug}")).await
+    );
     let query = "attack_ability=Intelligence&damage_ability=Charisma&material=Adamantine&socket=red&crafting_system=thunder-forged";
     assert_eq!(item_ids_matching(&state, query).await, orb);
     assert!(item_ids_matching(&state, &format!("{query}&category=Armor")).await.is_empty());
@@ -3006,7 +3009,10 @@ async fn sample_response_for(path: &str, example: &Value) -> Value {
         let slug = list_rows
             .and_then(|rows| {
                 rows.into_iter()
-                    .find(|row| path != "/v1/effects/{slug}" || row["kind"] == example["kind"])
+                    .find(|row| {
+                        (path != "/v1/effects/{slug}" || row["kind"] == example["kind"])
+                            && (path != "/v1/items/{slug}" || row["category"] == example["category"])
+                    })
                     .and_then(|row| row["slug"].as_str().map(str::to_string))
             })
             .expect("a row to sample");
@@ -3058,6 +3064,25 @@ async fn item_page_examples_show_summary_and_full_views() {
     assert!(summary["items"][0].get("effects").is_none());
     assert!(full["items"][0].get("effects").is_some());
     assert!(examples.get("summary").is_some() && examples.get("full").is_some());
+}
+
+#[tokio::test]
+async fn item_detail_examples_show_weapon_abilities() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    let examples =
+        &spec["paths"]["/v1/items/{slug}"]["get"]["responses"]["200"]["content"]["application/json"]["examples"];
+    let weapon = &examples["weapon"]["value"]["weapon"];
+    for field in ["attack_abilities", "damage_abilities"] {
+        assert!(
+            weapon[field].as_array().is_some_and(|abilities| abilities.len() >= 2),
+            "weapon example lacks multiple {field}"
+        );
+    }
+    assert!(examples["jewelry"]["value"].is_object(), "keep the jewelry detail example");
+    assert!(examples["jewelry"]["value"]["weapon"].is_null());
+    let real = sample_response_for("/v1/items/{slug}", &examples["weapon"]["value"]).await;
+    assert!(real["weapon"].is_object(), "compare the weapon example with a fixture weapon");
+    assert_same_shape("weapon example", weapon, &real["weapon"]);
 }
 
 #[tokio::test]
@@ -3264,8 +3289,12 @@ async fn effect_and_stat_detail_schemas_type_every_backlink_and_rule() {
 #[tokio::test]
 async fn item_and_quest_examples_show_the_quest_chains_they_belong_to() {
     let (_, _, spec) = get("/v1/openapi.json").await;
-    for path in ["/v1/items/{slug}", "/v1/quests/{slug}"] {
-        let example = &spec["paths"][path]["get"]["responses"]["200"]["content"]["application/json"]["example"];
+    for (path, name) in [("/v1/items/{slug}", Some("jewelry")), ("/v1/quests/{slug}", None)] {
+        let content = &spec["paths"][path]["get"]["responses"]["200"]["content"]["application/json"];
+        let example = match name {
+            Some(name) => &content["examples"][name]["value"],
+            None => &content["example"],
+        };
         let chain_count = example["quest_chains"].as_array().map_or(0, Vec::len);
         assert!(chain_count > 0, "GET {path}: example belongs to no quest chain");
     }

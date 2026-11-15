@@ -28,7 +28,10 @@ fn fixture_path() -> &'static PathBuf {
         ddo_etl::tree::build_from_data(&data_dir, &mut original).unwrap();
         let mut redirects = String::new();
         for kind in EntityKind::ALL {
-            let limit = if matches!(kind, EntityKind::Quest | EntityKind::QuestChain | EntityKind::Saga) {
+            let limit = if matches!(
+                kind,
+                EntityKind::Quest | EntityKind::QuestChain | EntityKind::Saga | EntityKind::CraftingSystem
+            ) {
                 ""
             } else {
                 " LIMIT 1"
@@ -115,6 +118,7 @@ async fn item_source_filters_accept_current_former_and_numeric_values_under_any_
         ("quest", EntityKind::Quest, "quest_id"),
         ("quest_chain", EntityKind::QuestChain, "chain_id"),
         ("saga", EntityKind::Saga, "saga_id"),
+        ("crafting_system", EntityKind::CraftingSystem, "crafting_system_id"),
     ] {
         let mut statement = db.prepare(&format!("SELECT id, slug FROM {} e WHERE EXISTS (SELECT 1 FROM sources s WHERE s.{column} = e.id AND s.item_id IS NOT NULL) ORDER BY slug LIMIT 2", kind.table_name())).unwrap();
         let entities = statement

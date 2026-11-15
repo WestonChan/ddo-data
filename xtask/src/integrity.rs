@@ -566,9 +566,8 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
              SELECT i.name, i.id, stored.role || ' abilities do not rejoin to: ' || COALESCE(stored.modifier, 'NULL')
              FROM stored JOIN items i ON i.id = stored.item_id
              WHERE stored.modifier IS NOT (
-                 SELECT group_concat(ability, ', ') FROM (
-                     SELECT ability FROM item_weapon_abilities wa
-                     WHERE wa.item_id = stored.item_id AND wa.role = stored.role ORDER BY wa.sort_order))",
+                 SELECT group_concat(ability, ', ' ORDER BY wa.sort_order) FROM item_weapon_abilities wa
+                 WHERE wa.item_id = stored.item_id AND wa.role = stored.role)",
         ),
     ),
     IntegrityCheck::hard(
@@ -3101,6 +3100,30 @@ pub fn integrity_report(db: &Connection, options: &IntegrityOptions) -> Result<I
     let outcomes =
         INTEGRITY_CHECKS.iter().map(|check| outcome_of(check, db, options)).collect::<Result<Vec<CheckOutcome>>>()?;
     Ok(IntegrityReport { outcomes })
+}
+
+#[cfg(test)]
+mod weapon_ability_tests {
+    use super::*;
+
+    #[test]
+    fn weapon_ability_rejoin_orders_the_aggregate() {
+        let db = Connection::open_in_memory().unwrap();
+        db.execute_batch(ddo_model::ddl()).unwrap();
+        let check = INTEGRITY_CHECKS.iter().find(|check| check.name == "weapon_abilities_are_ability_stats").unwrap();
+        let OffenderQuery::Sql(sql) = check.offender_query else { panic!("expected a SQL integrity check") };
+        let plan = db
+            .prepare(&format!("EXPLAIN QUERY PLAN {sql}"))
+            .unwrap()
+            .query_map([], |row| row.get::<_, String>(3))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert!(
+            plan.iter().any(|step| step.contains("group_concat(ORDER BY)")),
+            "rejoin has no ordered aggregate: {plan:?}"
+        );
+    }
 }
 
 #[cfg(test)]

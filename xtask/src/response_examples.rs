@@ -53,6 +53,7 @@ pub const EXAMPLE_REQUESTS: &[ExampleRequest<'static>] = &[
     sample("items", "/v1/items?q=ring&bonus=Strength&bonus=Charisma&bonus=Manslayer&limit=3"),
     sample("items_full", "/v1/items?view=full&q=ring&bonus=Strength&bonus=Charisma&bonus=Manslayer&limit=2"),
     sample("items_slug", "/v1/items/stolen-necklace-level-25"),
+    sample("items_weapon_slug", "/v1/items/legendary-rapier-of-the-oozing-hunger"),
     sample("augments", "/v1/augments?slot=sun&limit=2"),
     sample("augments_slug", "/v1/augments/solar-gem-of-physical-resistance-rating-heroic"),
     sample("crafting-systems", "/v1/crafting-systems"),

@@ -266,12 +266,12 @@ pub(crate) struct AdventurePacksDetailResponse {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct AugmentSlotTypesPageResponseAugmentSlotTypesEntry {
-    pub(crate) item_count: i64,
-    pub(crate) not_crafting_reason: Option<String>,
-    pub(crate) family: String,
     pub(crate) id: i64,
     pub(crate) slug: String,
+    pub(crate) family: String,
+    pub(crate) item_count: i64,
     pub(crate) label: String,
+    pub(crate) not_crafting_reason: Option<String>,
     pub(crate) qualifier: Option<String>,
     pub(crate) variant: String,
 }
@@ -742,11 +742,11 @@ fn schema_crafting_npc() -> RefOr<Schema> {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct CraftingSystemsPageResponseCraftingSystemsEntry {
-    pub(crate) item_count: i64,
-    pub(crate) families: Vec<String>,
     pub(crate) id: i64,
     pub(crate) slug: String,
+    pub(crate) families: Vec<String>,
     pub(crate) ingredient_count: i64,
+    pub(crate) item_count: i64,
     pub(crate) name: String,
     #[schema(schema_with = schema_crafting_npc)]
     pub(crate) npc: Option<String>,
@@ -804,15 +804,12 @@ pub(crate) struct CraftingSystemsDetailResponseRecipesEntry {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct CraftingSystemsDetailResponse {
-    pub(crate) item_count: i64,
-    pub(crate) steps: Vec<CraftingStepResponse>,
-    pub(crate) stations: Vec<CraftingStationResponse>,
-    pub(crate) unlocks: Vec<CraftingUnlockResponse>,
-    pub(crate) families: Vec<String>,
     pub(crate) id: i64,
     pub(crate) slug: String,
+    pub(crate) families: Vec<String>,
     pub(crate) ingredient_count: i64,
     pub(crate) ingredients: Vec<CraftingSystemsDetailResponseIngredientsEntry>,
+    pub(crate) item_count: i64,
     pub(crate) name: String,
     #[schema(schema_with = schema_crafting_npc)]
     pub(crate) npc: Option<String>,
@@ -820,6 +817,9 @@ pub(crate) struct CraftingSystemsDetailResponse {
     pub(crate) page: String,
     pub(crate) recipe_count: i64,
     pub(crate) recipes: Vec<CraftingSystemsDetailResponseRecipesEntry>,
+    pub(crate) stations: Vec<CraftingStationResponse>,
+    pub(crate) steps: Vec<CraftingStepResponse>,
+    pub(crate) unlocks: Vec<CraftingUnlockResponse>,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -1637,17 +1637,17 @@ pub(crate) struct GuildBuffsPageResponse {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemMaterialsPageResponseItemMaterialsEntry {
+    pub(crate) item_count: i64,
     pub(crate) name: String,
     pub(crate) sort_order: i64,
-    pub(crate) item_count: i64,
 }
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemMaterialsPageResponse {
     pub(crate) item_materials: Vec<ItemMaterialsPageResponseItemMaterialsEntry>,
-    pub(crate) total: i64,
     pub(crate) limit: i64,
     pub(crate) offset: i64,
+    pub(crate) total: i64,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -2602,18 +2602,18 @@ pub(crate) struct VendorsDetailResponse {
 pub(crate) struct WeaponAbilitiesPageResponseWeaponAbilitiesEntry {
     pub(crate) id: i64,
     pub(crate) slug: String,
-    pub(crate) name: String,
-    pub(crate) sort_order: i64,
     pub(crate) attack_item_count: i64,
     pub(crate) damage_item_count: i64,
+    pub(crate) name: String,
+    pub(crate) sort_order: i64,
 }
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct WeaponAbilitiesPageResponse {
-    pub(crate) weapon_abilities: Vec<WeaponAbilitiesPageResponseWeaponAbilitiesEntry>,
-    pub(crate) total: i64,
     pub(crate) limit: i64,
     pub(crate) offset: i64,
+    pub(crate) total: i64,
+    pub(crate) weapon_abilities: Vec<WeaponAbilitiesPageResponseWeaponAbilitiesEntry>,
 }
 
 #[derive(utoipa::ToSchema)]

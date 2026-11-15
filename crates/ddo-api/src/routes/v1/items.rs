@@ -8,7 +8,8 @@ use crate::effect_names::{effect_name_search_sql, resolve_effect_name};
 use crate::entity_slugs::{resolve_entity_slug, EntityPath};
 use crate::error::ApiError;
 use crate::query::{
-    declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery, EffectName, EFFECT_NAME_SEARCH,
+    declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery, EffectName, ValueVocabulary,
+    EFFECT_NAME_SEARCH,
 };
 use crate::state::AppState;
 use axum::extract::State;
@@ -88,13 +89,18 @@ fn entity_filter_ids(
     kind: EntityKind,
     parameter: &str,
     values: &[String],
+    vocabulary: Option<&ValueVocabulary>,
 ) -> Result<Vec<i64>, ApiError> {
     values
         .iter()
         .map(|value| {
-            resolve_entity_slug(db, kind, value)?
-                .map(|entity| entity.id)
-                .ok_or_else(|| ApiError::BadRequest(format!("unknown {parameter} {value:?}")))
+            if let Some(entity) = resolve_entity_slug(db, kind, value)? {
+                return Ok(entity.id);
+            }
+            if let Some(vocabulary) = vocabulary {
+                vocabulary.reject_unknown_values(db, parameter, std::slice::from_ref(value))?;
+            }
+            Err(ApiError::BadRequest(format!("unknown {parameter} {value:?}")))
         })
         .collect()
 }
@@ -174,7 +180,7 @@ declare_list_parameters!(
         ("min_level" = Option<i64>, Query, description = "Minimum item level to include."),
         ("max_level" = Option<i64>, Query, description = "Maximum item level to include."),
         ("pack" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat adventure pack names reached through item sources."),
-        ("crafting_system" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat current slugs from /v1/crafting-systems to match their item outputs; omitted applies no filter."),
+        ("crafting_system" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat current or redirected slugs or numeric ids from /v1/crafting-systems to match their item outputs; omitted applies no filter."),
         ("set" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat set names from /v1/sets to match member items."),
         ("raid" = Option<bool>, Query, description = "Use true to keep items from raid quests."),
         ("rare" = Option<bool>, Query, description = "Use true to keep rare loot from quests or packs."),
@@ -221,7 +227,6 @@ async fn items(
                 ("damage_ability", super::WEAPON_ABILITIES_VOCABULARY, filters.damage_ability.as_slice()),
                 ("material", super::ITEM_MATERIALS_VOCABULARY, filters.material.as_slice()),
                 ("socket", super::AUGMENT_SLOT_TYPES_VOCABULARY, sockets.as_slice()),
-                ("crafting_system", super::CRAFTING_SYSTEMS_VOCABULARY, filters.crafting_system.as_slice()),
             ] {
                 vocabulary.reject_unknown_values(db, parameter, values)?;
             }
@@ -272,9 +277,9 @@ async fn items(
                 &filters.pack, filters.pack_match.as_deref(),
             );
             where_clause.add_repeated_filter(
-                "i.id IN (SELECT d.item_id FROM sources d JOIN crafting_systems cs ON cs.id = d.crafting_system_id WHERE d.kind = 'crafting_system' AND cs.slug IN (?))",
-                "i.id IN (SELECT d.item_id FROM sources d JOIN crafting_systems cs ON cs.id = d.crafting_system_id WHERE d.kind = 'crafting_system' AND cs.slug = ?)",
-                &filters.crafting_system, filters.crafting_system_match.as_deref(),
+                "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'crafting_system' AND d.crafting_system_id IN (?))",
+                "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'crafting_system' AND d.crafting_system_id = ?)",
+                &entity_filter_ids(db, EntityKind::CraftingSystem, "crafting_system", &filters.crafting_system, Some(&super::CRAFTING_SYSTEMS_VOCABULARY))?, filters.crafting_system_match.as_deref(),
             );
             for set_name in &filters.set {
                 let known_set: bool = db.query_row(
@@ -300,17 +305,17 @@ async fn items(
             where_clause.add_repeated_filter(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest' AND d.quest_id IN (?))",
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest' AND d.quest_id = ?)",
-                &entity_filter_ids(db, EntityKind::Quest, "quest", &filters.quest)?, filters.quest_match.as_deref(),
+                &entity_filter_ids(db, EntityKind::Quest, "quest", &filters.quest, None)?, filters.quest_match.as_deref(),
             );
             where_clause.add_repeated_filter(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest_chain' AND d.chain_id IN (?))",
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest_chain' AND d.chain_id = ?)",
-                &entity_filter_ids(db, EntityKind::QuestChain, "quest_chain", &filters.quest_chain)?, filters.quest_chain_match.as_deref(),
+                &entity_filter_ids(db, EntityKind::QuestChain, "quest_chain", &filters.quest_chain, None)?, filters.quest_chain_match.as_deref(),
             );
             where_clause.add_repeated_filter(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id IN (?))",
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id = ?)",
-                &entity_filter_ids(db, EntityKind::Saga, "saga", &filters.saga)?, filters.saga_match.as_deref(),
+                &entity_filter_ids(db, EntityKind::Saga, "saga", &filters.saga, None)?, filters.saga_match.as_deref(),
             );
             let bonus_conditions = filters.bonus.iter().map(|name| {
                 bonus_match_sql(db, &name.0, filters.include_set_bonuses == Some(true))

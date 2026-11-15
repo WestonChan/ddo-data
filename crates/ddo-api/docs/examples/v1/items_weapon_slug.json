@@ -1,0 +1,156 @@
+{
+  "accepts_sentience": true,
+  "adventure_packs": [],
+  "armor": null,
+  "augment_slots": [
+    {
+      "family": "standard",
+      "label": "orange",
+      "option_set_id": null,
+      "option_set_name": null,
+      "option_set_slug": null,
+      "options": [],
+      "qualifier": null,
+      "slot_type_id": 534860821669573,
+      "slot_type_slug": "orange",
+      "sort_order": 0,
+      "variant": "orange"
+    },
+    {
+      "family": "standard",
+      "label": "purple",
+      "option_set_id": null,
+      "option_set_name": null,
+      "option_set_slug": null,
+      "options": [],
+      "qualifier": null,
+      "slot_type_id": 6108986109151029,
+      "slot_type_slug": "purple",
+      "sort_order": 1,
+      "variant": "purple"
+    }
+  ],
+  "category": "Weapon",
+  "challenge_packs": [],
+  "clickies": [],
+  "crafting_systems": [
+    {
+      "id": 1381755449138499,
+      "is_rare": false,
+      "name": "Sealed Altar",
+      "slug": "sealed-altar",
+      "wiki_url": "https://ddowiki.com/page/Sealed_Altar"
+    }
+  ],
+  "description": "An aspect of the Unspeakable.",
+  "drop_location": "Sealed Altar, Turn in Legendary Duergarcraft Rapier and 50 Legendary Abyssal Gems",
+  "effects": [
+    {
+      "bonus_type": null,
+      "bonuses": [],
+      "damage": [],
+      "description": "This weapon splashes acid on your opponents. Your attacks have a high chance to deal very strong Acid damage over time.",
+      "effect_id": 2407753686548178,
+      "effect_slug": "lingering-acidic-burn",
+      "name": "Lingering Acidic Burn",
+      "notes": [],
+      "tier": null,
+      "value": null,
+      "value2": null,
+      "verbose_name": "Lingering Acidic Burn"
+    },
+    {
+      "bonus_type": null,
+      "bonuses": [],
+      "damage": [],
+      "description": "Attacks and offensive spells reduce enemy PRR and MRR by 10 each. This debuff does not stack but refreshes on each hit.",
+      "effect_id": 4506037822048997,
+      "effect_slug": "legendary-slime",
+      "name": "Legendary Slime",
+      "notes": [],
+      "tier": null,
+      "value": null,
+      "value2": null,
+      "verbose_name": "Legendary Slime"
+    },
+    {
+      "bonus_type": null,
+      "bonuses": [],
+      "damage": [],
+      "description": "This effect causes the edges of this weapon to drip with acid, dealing 7d6 Acid damage on each hit.",
+      "effect_id": 1604071338232713,
+      "effect_slug": "acidic-7",
+      "name": "Acidic 7",
+      "notes": [],
+      "tier": null,
+      "value": null,
+      "value2": null,
+      "verbose_name": "Acidic 7"
+    }
+  ],
+  "enhancement_bonus": 16,
+  "events": [],
+  "icon": "Rapier_4b",
+  "id": 8096551071829317,
+  "is_legacy": false,
+  "is_minor_artifact": false,
+  "item_type": "Rapier",
+  "material": "Steel",
+  "minimum_level": 35,
+  "modifiers": [],
+  "name": "Legendary Rapier of the Oozing Hunger",
+  "notes": [],
+  "quest_chains": [],
+  "quests": [],
+  "race_required": null,
+  "sagas": [],
+  "set": null,
+  "set_name": null,
+  "sets": [],
+  "slot": "Main Hand",
+  "slug": "legendary-rapier-of-the-oozing-hunger",
+  "sources": [
+    {
+      "character_level": null,
+      "chest": null,
+      "cost": null,
+      "id": 1381755449138499,
+      "is_rare": false,
+      "kind": "crafting_system",
+      "loot_type": null,
+      "name": "Sealed Altar",
+      "price": [],
+      "slug": "sealed-altar",
+      "tier": null,
+      "wiki_url": "https://ddowiki.com/page/Sealed_Altar"
+    }
+  ],
+  "starter_rewards": [],
+  "vendors": [],
+  "weapon": {
+    "attack_abilities": [
+      "Strength",
+      "Dexterity"
+    ],
+    "base_dice_bonus": 3,
+    "base_dice_count": 1,
+    "base_dice_sides": 6,
+    "critical": "18-20 / x2",
+    "critical_multiplier": 2,
+    "critical_threat_range": 3,
+    "damage": "6[1d6+3] + 16 Magic, Pierce",
+    "damage_abilities": [
+      "Strength",
+      "Dexterity"
+    ],
+    "damage_multiplier": 6.0,
+    "dr_bypass": [
+      "Magic",
+      "Pierce"
+    ],
+    "handedness": "One-handed",
+    "proficiency": "Martial",
+    "weapon_type": "Rapier"
+  },
+  "wiki_url": "https://ddowiki.com/page/Item:Legendary_Rapier_of_the_Oozing_Hunger"
+}
