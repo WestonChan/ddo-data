@@ -39,6 +39,39 @@ macro_rules! declare_query_parameters {
 }
 pub(crate) use declare_query_parameters;
 
+pub(crate) struct ValueVocabulary {
+    pub(crate) parameter: &'static str,
+    pub(crate) select_sql: fn() -> &'static str,
+    pub(crate) value_column: &'static str,
+    pub(crate) default_order: &'static str,
+}
+
+impl ValueVocabulary {
+    pub(crate) fn reject_unknown_values(&self, db: &rusqlite::Connection, values: &[String]) -> Result<(), ApiError> {
+        if values.is_empty() {
+            return Ok(());
+        }
+        let sql = format!(
+            "SELECT listed.{} FROM ({}) listed ORDER BY {}",
+            self.value_column,
+            (self.select_sql)(),
+            self.default_order,
+        );
+        let mut statement = db.prepare_cached(&sql)?;
+        let accepted = statement.query_map([], |row| row.get::<_, String>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
+        for value in values {
+            if !accepted.contains(value) {
+                return Err(ApiError::BadRequest(format!(
+                    "unknown {} {value:?}; accepted values: {}",
+                    self.parameter,
+                    accepted.join(", ")
+                )));
+            }
+        }
+        Ok(())
+    }
+}
+
 #[derive(Default, Deserialize)]
 #[serde(transparent)]
 pub(crate) struct EffectName(pub(crate) String);

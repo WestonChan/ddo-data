@@ -4,7 +4,7 @@ use crate::db::{
 };
 use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
-use crate::query::{declare_list_parameters, ApiQuery};
+use crate::query::{declare_list_parameters, ApiQuery, ValueVocabulary};
 use crate::state::AppState;
 use axum::extract::State;
 use axum::Json;
@@ -22,11 +22,23 @@ static INGREDIENT_USES: std::sync::LazyLock<String> = std::sync::LazyLock::new(|
     format!("WITH ingredient_uses(ingredient_id,system_id) AS ({})", ddo_model::schema::CRAFTING_INGREDIENT_USES)
 });
 
-const CRAFTING_SYSTEM_COLUMNS_AND_JOINS: &str = "s.id, s.name, s.page, p.name AS pack,
+const CRAFTING_SYSTEM_COLUMNS_AND_JOINS: &str = "s.id, s.slug, s.name, s.page, p.name AS pack,
         (SELECT station.name || COALESCE(', ' || station.place,'') FROM crafting_system_stations link JOIN crafting_stations station ON station.id=link.station_id WHERE link.system_id=s.id ORDER BY link.sort_order LIMIT 1) AS npc,
         (SELECT COUNT(*) FROM ingredient_uses i WHERE i.system_id = s.id) AS ingredient_count,
-        (SELECT COUNT(*) FROM crafting_recipes r WHERE r.system_id = s.id) AS recipe_count
+        (SELECT COUNT(*) FROM crafting_recipes r WHERE r.system_id = s.id) AS recipe_count,
+        (SELECT COUNT(DISTINCT output.owner_id) FROM crafting_outputs output JOIN items i ON i.id = output.owner_id
+         WHERE output.crafting_system_id = s.id AND output.owner_kind = 'item' AND NOT i.is_legacy) AS item_count
    FROM crafting_systems s LEFT JOIN adventure_packs p ON p.id = s.pack_id";
+
+static CRAFTING_SYSTEM_SELECT: std::sync::LazyLock<String> =
+    std::sync::LazyLock::new(|| format!("{} SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS}", INGREDIENT_USES.as_str()));
+
+pub(super) const CRAFTING_SYSTEMS_VOCABULARY: ValueVocabulary = ValueVocabulary {
+    parameter: "crafting_system",
+    select_sql: || CRAFTING_SYSTEM_SELECT.as_str(),
+    value_column: "slug",
+    default_order: "listed.name",
+};
 
 fn attach_augment_families(db: &Connection, crafting_system: &mut Value) -> Result<(), ApiError> {
     let system_id = crafting_system["id"].as_i64().unwrap_or(0);
@@ -161,6 +173,7 @@ const CRAFTING_SYSTEMS_SORT_FIELDS: &[(&str, &str)] = &[
     ("pack", "listed.pack"),
     ("ingredient_count", "listed.ingredient_count"),
     ("recipe_count", "listed.recipe_count"),
+    ("item_count", "listed.item_count"),
     ("npc", "npc"),
     ("page", "page"),
 ];
@@ -172,7 +185,7 @@ declare_list_parameters!(CraftingSystemsParameters, CRAFTING_SYSTEMS_SORT_FIELDS
     path = "/v1/crafting-systems",
     tag = "crafting",
     summary = "List crafting systems",
-    description = "Lists crafting systems with their ingredient and recipe counts.",
+    description = "Lists crafting systems with their ingredient, recipe and non-legacy item counts.",
     params(
         CraftingSystemsParameters,
     ),
@@ -185,10 +198,14 @@ async fn crafting_systems(
 ) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
-            let ingredient_uses = INGREDIENT_USES.as_str();
-            let select_sql = format!("{ingredient_uses} SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS}");
-            let mut page =
-                paged_rows(db, &select_sql, &query, "listed.name", "listed.name", CRAFTING_SYSTEMS_SORT_FIELDS)?;
+            let mut page = paged_rows(
+                db,
+                (CRAFTING_SYSTEMS_VOCABULARY.select_sql)(),
+                &query,
+                "listed.name",
+                CRAFTING_SYSTEMS_VOCABULARY.default_order,
+                CRAFTING_SYSTEMS_SORT_FIELDS,
+            )?;
             for row in &mut page.rows {
                 attach_augment_families(db, row)?;
             }
@@ -202,7 +219,7 @@ async fn crafting_systems(
     path = "/v1/crafting-systems/{slug}",
     tag = "crafting",
     summary = "Get a crafting system",
-    description = "Returns crafting stations, unlocks, steps, choices and effective recipe costs.",
+    description = "Returns crafting stations, unlocks, steps, choices and effective recipe costs, with a non-legacy item count.",
     params(("slug" = String, Path, description = "Current entity slug or numeric id from the corresponding list.")),
     responses(
         (status = 200, description = "The system with its ingredients and recipes", body = crate::routes::v1::response_schemas::CraftingSystemsDetailResponse),

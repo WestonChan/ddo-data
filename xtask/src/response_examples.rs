@@ -30,6 +30,8 @@ pub const EXAMPLE_REQUESTS: &[ExampleRequest<'static>] = &[
     sample("effects_slug", "/v1/effects/strength"),
     sample("equipment-slots", "/v1/equipment-slots"),
     sample("weapon-types", "/v1/weapon-types"),
+    sample("weapon-abilities", "/v1/weapon-abilities"),
+    sample("item-materials", "/v1/item-materials"),
     sample("damage-types", "/v1/damage-types"),
     sample("augment-slot-types", "/v1/augment-slot-types"),
     sample("augment-slot-types_slug", "/v1/augment-slot-types/sun"),

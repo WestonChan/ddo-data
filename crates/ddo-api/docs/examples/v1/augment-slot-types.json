@@ -3,6 +3,7 @@
     {
       "family": "crafting",
       "id": 4558741735317796,
+      "item_count": 0,
       "label": "crafting: accessory aspect i",
       "not_crafting_reason": null,
       "qualifier": null,
@@ -12,6 +13,7 @@
     {
       "family": "crafting",
       "id": 4420206011592316,
+      "item_count": 0,
       "label": "crafting: accessory aspect ii",
       "not_crafting_reason": null,
       "qualifier": null,
@@ -21,6 +23,7 @@
     {
       "family": "crafting",
       "id": 173083694621333,
+      "item_count": 0,
       "label": "crafting: accessory devastation",
       "not_crafting_reason": null,
       "qualifier": null,

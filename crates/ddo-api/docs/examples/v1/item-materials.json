@@ -1,0 +1,22 @@
+{
+  "item_materials": [
+    {
+      "item_count": 1,
+      "name": "Acid",
+      "sort_order": 0
+    },
+    {
+      "item_count": 317,
+      "name": "Adamantine",
+      "sort_order": 1
+    },
+    {
+      "item_count": 27,
+      "name": "Black Dragonscale",
+      "sort_order": 2
+    }
+  ],
+  "limit": 100,
+  "offset": 0,
+  "total": 42
+}

@@ -1,0 +1,31 @@
+{
+  "limit": 100,
+  "offset": 0,
+  "total": 6,
+  "weapon_abilities": [
+    {
+      "attack_item_count": 2824,
+      "damage_item_count": 3049,
+      "id": 4051823190149989,
+      "name": "Strength",
+      "slug": "strength",
+      "sort_order": 0
+    },
+    {
+      "attack_item_count": 762,
+      "damage_item_count": 295,
+      "id": 677531331256551,
+      "name": "Dexterity",
+      "slug": "dexterity",
+      "sort_order": 1
+    },
+    {
+      "attack_item_count": 1,
+      "damage_item_count": 1,
+      "id": 2244905796782339,
+      "name": "Constitution",
+      "slug": "constitution",
+      "sort_order": 2
+    }
+  ]
+}

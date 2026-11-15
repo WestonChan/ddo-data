@@ -3105,6 +3105,8 @@ const ALL_LIST_PATHS: &[(&str, &str)] = &[
     ("/v1/augment-slot-types", "augment_slot_types"),
     ("/v1/damage-types", "damage_types"),
     ("/v1/weapon-types", "weapon_types"),
+    ("/v1/weapon-abilities", "weapon_abilities"),
+    ("/v1/item-materials", "item_materials"),
     ("/v1/filigrees", "filigrees"),
     ("/v1/sentient-gems", "sentient_gems"),
     ("/v1/clickies", "clickies"),
@@ -3373,6 +3375,7 @@ fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
         ("slot", _) => "Wrists",
         ("category", _) => "Armor",
         ("source", _) => "standard",
+        ("family", _) => "standard",
         ("view", _) => "full",
         ("bonus", _) => "Strength",
         ("set", _) => "Cooking%20By%20the%20Book",
@@ -3725,6 +3728,112 @@ async fn feat_attacks_carry_cooldown_and_their_bonuses() {
 }
 
 #[tokio::test]
+async fn item_filter_vocabularies_serve_each_value_with_its_non_legacy_item_count() {
+    let (status, _, abilities_page) = get("/v1/weapon-abilities").await;
+    assert_eq!(status, StatusCode::OK, "{abilities_page}");
+    let abilities = abilities_page["weapon_abilities"].as_array().unwrap();
+    let names = abilities.iter().map(|row| row["name"].as_str().unwrap()).collect::<Vec<_>>();
+    let game_order = ddo_model::stats::STATS
+        .iter()
+        .filter(|stat| stat.category == ddo_model::enums::StatCategory::Ability)
+        .map(|stat| stat.name)
+        .collect::<Vec<_>>();
+    assert_eq!(names, game_order);
+    for (sort_order, ability) in abilities.iter().enumerate() {
+        assert_eq!(ability["sort_order"], sort_order);
+    }
+    assert_eq!(abilities[0]["attack_item_count"], 8);
+    assert_eq!(abilities[0]["damage_item_count"], 8);
+    assert_eq!(abilities[1]["attack_item_count"], 5);
+    for ability in [&abilities[3], &abilities[5]] {
+        assert_eq!(ability["attack_item_count"], 1);
+        assert_eq!(ability["damage_item_count"], 1);
+    }
+
+    let (_, _, items_page) = get("/v1/items?limit=10000").await;
+    let mut details = Vec::new();
+    for item in items_page["items"].as_array().unwrap() {
+        let (status, _, detail) = get(&format!("/v1/items/{}", item["slug"].as_str().unwrap())).await;
+        assert_eq!(status, StatusCode::OK, "{detail}");
+        assert_eq!(detail["is_legacy"], false);
+        details.push(detail);
+    }
+    for ability in abilities {
+        for role in ["attack", "damage"] {
+            let count = details
+                .iter()
+                .filter(|item| {
+                    item["weapon"][format!("{role}_abilities")]
+                        .as_array()
+                        .is_some_and(|names| names.contains(&ability["name"]))
+                })
+                .count();
+            assert_eq!(ability[format!("{role}_item_count")], count, "{ability} {role}");
+        }
+    }
+    let (status, _, materials_page) = get("/v1/item-materials?limit=10000").await;
+    assert_eq!(status, StatusCode::OK, "{materials_page}");
+    let materials = materials_page["item_materials"].as_array().unwrap();
+    assert_eq!(materials.iter().find(|row| row["name"] == "Steel").unwrap()["item_count"], 21);
+    for material in materials {
+        assert!(material.get("id").is_none(), "material serves an id: {material}");
+        assert!(material.get("slug").is_none(), "material serves a slug: {material}");
+        let count = details.iter().filter(|item| item["material"] == material["name"]).count();
+        assert_eq!(material["item_count"], count, "{material}");
+    }
+    let (_, _, sockets_page) = get("/v1/augment-slot-types?limit=10000").await;
+    let sockets = sockets_page["augment_slot_types"].as_array().unwrap();
+    for socket in sockets {
+        let count = details
+            .iter()
+            .filter(|item| {
+                item["augment_slots"].as_array().unwrap().iter().any(|slot| slot["label"] == socket["label"])
+            })
+            .count();
+        assert_eq!(socket["item_count"], count, "{socket}");
+    }
+    for families in [vec!["standard"], vec!["standard", "dino"]] {
+        let query =
+            serde_urlencoded::to_string(families.iter().map(|family| ("family", family)).collect::<Vec<_>>()).unwrap();
+        let (status, _, page) = get(&format!("/v1/augment-slot-types?{query}&limit=10000")).await;
+        assert_eq!(status, StatusCode::OK, "{page}");
+        let expected = sockets
+            .iter()
+            .filter(|socket| families.contains(&socket["family"].as_str().unwrap()))
+            .cloned()
+            .collect::<Vec<_>>();
+        assert!(!expected.is_empty());
+        assert_eq!(page["augment_slot_types"], serde_json::json!(expected));
+        assert_eq!(page["total"], expected.len());
+    }
+    let (status, _, unknown) = get("/v1/augment-slot-types?family=unknown").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST);
+    let families =
+        sockets.iter().map(|socket| socket["family"].as_str().unwrap()).collect::<std::collections::BTreeSet<_>>();
+    assert_eq!(
+        unknown["error"],
+        format!("unknown family \"unknown\"; accepted values: {}", families.into_iter().collect::<Vec<_>>().join(", "))
+    );
+
+    let (_, _, systems_page) = get("/v1/crafting-systems?limit=10000").await;
+    for system in systems_page["crafting_systems"].as_array().unwrap() {
+        let count = details
+            .iter()
+            .filter(|item| {
+                item["crafting_systems"].as_array().unwrap().iter().any(|source| source["slug"] == system["slug"])
+            })
+            .count();
+        assert_eq!(system["item_count"], count, "{system}");
+        let (status, _, detail) = get(&format!("/v1/crafting-systems/{}", system["slug"].as_str().unwrap())).await;
+        assert_eq!(status, StatusCode::OK, "{detail}");
+        assert_eq!(detail["item_count"], count, "{system}");
+        if system["slug"] == "thunder-forged" {
+            assert_eq!(count, 1);
+        }
+    }
+}
+
+#[tokio::test]
 async fn crafting_systems_list_their_families_and_counts() {
     let (status, _, json) = get_list_rows("/v1/crafting-systems").await;
     assert_eq!(status, StatusCode::OK);
@@ -3755,6 +3864,7 @@ async fn crafting_systems_list_their_families_and_counts() {
     assert!(crafting_system["pack"].is_null());
     assert_eq!(crafting_system["npc"], "Altar of Invasion, Inside Caught in the Web");
     assert_eq!(crafting_system["families"], serde_json::json!(["Greensteel_Heroic"]));
+    assert_eq!(crafting_system["item_count"], 0);
     assert_eq!(
         (&crafting_system["ingredient_count"], &crafting_system["recipe_count"]),
         (&serde_json::json!(4), &serde_json::json!(3))

@@ -1,11 +1,15 @@
 mod records;
 
-use crate::db::{convert_to_booleans, like_escaped_text, paged_query, paged_table_json, TableListSource, WhereClause};
+use crate::db::{
+    convert_to_booleans, like_escaped_text, paged_query, paged_rows_with_filter, paged_table_json, TableListSource,
+    WhereClause,
+};
 use crate::effect_names::{effect_name_search_sql, resolve_effect_name};
 use crate::entity_slugs::{resolve_entity_slug, EntityPath};
 use crate::error::ApiError;
 use crate::query::{
-    declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery, EffectName, EFFECT_NAME_SEARCH,
+    declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery, EffectName, ValueVocabulary,
+    EFFECT_NAME_SEARCH,
 };
 use crate::state::AppState;
 use axum::extract::State;
@@ -22,6 +26,8 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
         .routes(routes!(item_detail))
         .routes(routes!(equipment_slots))
         .routes(routes!(weapon_types))
+        .routes(routes!(weapon_abilities))
+        .routes(routes!(item_materials))
         .routes(routes!(damage_types))
         .routes(routes!(augment_slot_types))
         .routes(routes!(augment_slot_type_detail))
@@ -464,6 +470,103 @@ async fn weapon_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
     .await
 }
 
+static WEAPON_ABILITIES_SELECT: std::sync::LazyLock<String> = std::sync::LazyLock::new(|| {
+    format!(
+        "SELECT e.id, e.slug, e.name, {} AS sort_order,
+        (SELECT COUNT(DISTINCT wa.item_id) FROM item_weapon_abilities wa JOIN items i ON i.id = wa.item_id
+         WHERE wa.role = 'attack' AND wa.ability = e.name AND NOT i.is_legacy) AS attack_item_count,
+        (SELECT COUNT(DISTINCT wa.item_id) FROM item_weapon_abilities wa JOIN items i ON i.id = wa.item_id
+         WHERE wa.role = 'damage' AND wa.ability = e.name AND NOT i.is_legacy) AS damage_item_count
+        FROM effects e WHERE e.is_stat = 1 AND e.category = 'ability'",
+        ddo_model::stats::ability_sort_order_sql()
+    )
+});
+
+pub(super) const WEAPON_ABILITIES_VOCABULARY: ValueVocabulary = ValueVocabulary {
+    parameter: "attack_ability",
+    select_sql: || WEAPON_ABILITIES_SELECT.as_str(),
+    value_column: "name",
+    default_order: "listed.sort_order",
+};
+
+const WEAPON_ABILITIES_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("slug", "listed.slug"),
+    ("id", "listed.id"),
+    ("sort_order", "listed.sort_order"),
+    ("attack_item_count", "listed.attack_item_count"),
+    ("damage_item_count", "listed.damage_item_count"),
+];
+
+declare_list_parameters!(WeaponAbilitiesParameters, WEAPON_ABILITIES_SORT_FIELDS, "");
+
+#[utoipa::path(
+    get, path = "/v1/weapon-abilities", tag = "items", summary = "List weapon abilities",
+    description = "Lists the six abilities in game order with non-legacy weapon counts for attack and damage.",
+    params(WeaponAbilitiesParameters),
+    responses(
+        (status = 200, description = "The weapon abilities page with attack and damage item counts", body = super::response_schemas::WeaponAbilitiesPageResponse),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
+)]
+async fn weapon_abilities(
+    State(state): State<AppState>,
+    ApiQuery(query, _): ApiQuery,
+) -> Result<Json<Value>, ApiError> {
+    paged_table_json(
+        state,
+        query,
+        TableListSource {
+            select_sql: (WEAPON_ABILITIES_VOCABULARY.select_sql)(),
+            rows_key: "weapon_abilities",
+            name_column: "listed.name",
+            default_order: WEAPON_ABILITIES_VOCABULARY.default_order,
+            sortable_fields: WEAPON_ABILITIES_SORT_FIELDS,
+            flag_columns: &[],
+        },
+    )
+    .await
+}
+
+pub(super) const ITEM_MATERIALS_VOCABULARY: ValueVocabulary = ValueVocabulary {
+    parameter: "material",
+    select_sql: || {
+        "SELECT m.name, m.sort_order,
+        (SELECT COUNT(*) FROM items i WHERE i.material_id = m.id AND NOT i.is_legacy) AS item_count
+        FROM item_materials m"
+    },
+    value_column: "name",
+    default_order: "listed.sort_order, listed.name",
+};
+
+const ITEM_MATERIALS_SORT_FIELDS: &[(&str, &str)] =
+    &[("name", "listed.name"), ("sort_order", "listed.sort_order"), ("item_count", "listed.item_count")];
+
+declare_list_parameters!(ItemMaterialsParameters, ITEM_MATERIALS_SORT_FIELDS, "");
+
+#[utoipa::path(
+    get, path = "/v1/item-materials", tag = "items", summary = "List item materials",
+    description = "Lists item materials with their display order and non-legacy item counts.",
+    params(ItemMaterialsParameters),
+    responses(
+        (status = 200, description = "The item materials page with item counts", body = super::response_schemas::ItemMaterialsPageResponse),
+        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
+)]
+async fn item_materials(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) -> Result<Json<Value>, ApiError> {
+    paged_table_json(
+        state,
+        query,
+        TableListSource {
+            select_sql: (ITEM_MATERIALS_VOCABULARY.select_sql)(),
+            rows_key: "item_materials",
+            name_column: "listed.name",
+            default_order: ITEM_MATERIALS_VOCABULARY.default_order,
+            sortable_fields: ITEM_MATERIALS_SORT_FIELDS,
+            flag_columns: &[],
+        },
+    )
+    .await
+}
+
 const DAMAGE_TYPES_SORT_FIELDS: &[(&str, &str)] =
     &[("name", "listed.name"), ("slug", "listed.name"), ("id", "listed.id"), ("category", "listed.category")];
 
@@ -497,6 +600,33 @@ async fn damage_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
     .await
 }
 
+pub(super) const AUGMENT_SLOT_TYPES_VOCABULARY: ValueVocabulary = ValueVocabulary {
+    parameter: "socket",
+    select_sql: || {
+        "SELECT t.id, t.slug, t.label, t.family, t.variant, t.qualifier, t.not_crafting_reason,
+        (SELECT COUNT(DISTINCT s.item_id) FROM item_augment_slots s JOIN items i ON i.id = s.item_id
+         WHERE s.slot_id = t.id AND NOT i.is_legacy) AS item_count
+        FROM augment_slot_types t"
+    },
+    value_column: "label",
+    default_order: "listed.family, listed.label",
+};
+
+declare_query_parameters! {
+    struct AugmentSlotTypeFilters {
+        #[serde(default, deserialize_with = "repeated_key_values")]
+        family: Vec<String>,
+    }
+    repeatable: ["family"]
+}
+
+const AUGMENT_SLOT_FAMILIES_VOCABULARY: ValueVocabulary = ValueVocabulary {
+    parameter: "family",
+    select_sql: || "SELECT DISTINCT family FROM augment_slot_types",
+    value_column: "family",
+    default_order: "listed.family",
+};
+
 const AUGMENT_SLOT_TYPES_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.label"),
     ("slug", "listed.label"),
@@ -506,6 +636,7 @@ const AUGMENT_SLOT_TYPES_SORT_FIELDS: &[(&str, &str)] = &[
     ("qualifier", "listed.qualifier"),
     ("label", "label"),
     ("not_crafting_reason", "not_crafting_reason"),
+    ("item_count", "listed.item_count"),
 ];
 
 declare_list_parameters!(
@@ -523,31 +654,37 @@ declare_list_parameters!(
     path = "/v1/augment-slot-types",
     tag = "items",
     summary = "List augment slot types",
-    description = "Lists socket labels and their family, variant and qualifier.",
+    description = "Lists socket labels, their family, variant and qualifier, and non-legacy item counts.",
     params(
         AugmentSlotTypesParameters,
+        AugmentSlotTypeFilters,
+        ("family" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat family names present in /v1/augment-slot-types to match any; omitted includes every family."),
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `augment_slot_types` page", body = crate::routes::v1::response_schemas::AugmentSlotTypesPageResponse),
-        (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
+        (status = 400, description = "Unknown family, invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn augment_slot_types(
     State(state): State<AppState>,
-    ApiQuery(query, _): ApiQuery,
+    ApiQuery(query, filters): ApiQuery<AugmentSlotTypeFilters>,
 ) -> Result<Json<Value>, ApiError> {
-    paged_table_json(
-        state,
-        query,
-        TableListSource {
-            select_sql: "SELECT id, label, family, variant, qualifier, not_crafting_reason FROM augment_slot_types",
-            rows_key: "augment_slot_types",
-            name_column: "listed.label",
-            default_order: "listed.family, label",
-            sortable_fields: AUGMENT_SLOT_TYPES_SORT_FIELDS,
-            flag_columns: &[],
-        },
-    )
-    .await
+    state
+        .read_db(move |db| {
+            AUGMENT_SLOT_FAMILIES_VOCABULARY.reject_unknown_values(db, &filters.family)?;
+            let mut where_clause = WhereClause::default();
+            where_clause.add_repeated_filter("listed.family IN (?)", "listed.family = ?", &filters.family, None);
+            let page = paged_rows_with_filter(
+                db,
+                (AUGMENT_SLOT_TYPES_VOCABULARY.select_sql)(),
+                &query,
+                "listed.label",
+                AUGMENT_SLOT_TYPES_VOCABULARY.default_order,
+                AUGMENT_SLOT_TYPES_SORT_FIELDS,
+                where_clause,
+            )?;
+            Ok(Json(page.into_json("augment_slot_types")))
+        })
+        .await
 }
 
 #[utoipa::path(get,path="/v1/augment-slot-types/{slug}",tag="items",summary="Get a socket's candidates",
