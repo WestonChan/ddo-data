@@ -1,10 +1,10 @@
 # V9 data files served changes
 
-## Redirects last one year (2026-11-14)
+## Redirects last one year (2026-11-15)
 
 This closes WestonChan/ddo-data#65. A redirect row answers for one year, where it answered for 30 days; `check-redirects`, `prune-redirects` and the OpenAPI description follow the one definition. `data/redirects.toml` holds redirects only. Retirement records are gone: a deleted entity's slug answers 404 with no row, and the deploy's slug check now fails only when an entity kept its name but is served under a new slug with no redirect.
 
-## Crafting systems, steps, shared ingredients and socket sets (2026-11-14)
+## Crafting systems, steps, shared ingredients and socket sets (2026-11-15)
 
 This closes WestonChan/ddo-data#66. The schema goes from 48 to 50. The API serves 53 crafting systems (43 before), 3,693 recipes (2,956), 434 ingredients (731), 242 steps, 97 stations, 89 unlocks, 521 socket option sets and 1,854 crafted-item sources (1,074).
 
