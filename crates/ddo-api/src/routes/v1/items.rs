@@ -39,11 +39,25 @@ declare_query_parameters! {
         pub slot: Vec<String>,
         #[serde(default, deserialize_with = "repeated_key_values")]
         pub category: Vec<String>,
+        #[serde(default, deserialize_with = "repeated_key_values")]
+        pub attack_ability: Vec<String>,
+        pub attack_ability_match: Option<String>,
+        #[serde(default, deserialize_with = "repeated_key_values")]
+        pub damage_ability: Vec<String>,
+        pub damage_ability_match: Option<String>,
+        #[serde(default, deserialize_with = "repeated_key_values")]
+        pub material: Vec<String>,
+        #[serde(default, deserialize_with = "repeated_key_values")]
+        pub socket: Vec<String>,
+        pub socket_match: Option<String>,
         pub min_level: Option<i64>,
         pub max_level: Option<i64>,
         #[serde(default, deserialize_with = "repeated_key_values")]
         pub pack: Vec<String>,
         pub pack_match: Option<String>,
+        #[serde(default, deserialize_with = "repeated_key_values")]
+        pub crafting_system: Vec<String>,
+        pub crafting_system_match: Option<String>,
         #[serde(default, deserialize_with = "repeated_key_values")]
         pub set: Vec<String>,
         pub set_match: Option<String>,
@@ -65,9 +79,9 @@ declare_query_parameters! {
         pub include_legacy: Option<bool>,
         pub view: Option<String>,
     }
-    repeatable: ["slot", "category", "pack", "set", "quest", "quest_chain", "saga", "bonus"]
-    matchable: ["pack", "set", "quest", "quest_chain", "saga", "bonus"]
-    single_value_match: ["slot", "category"]
+    repeatable: ["slot", "category", "attack_ability", "damage_ability", "material", "socket", "pack", "crafting_system", "set", "quest", "quest_chain", "saga", "bonus"]
+    matchable: ["attack_ability", "damage_ability", "socket", "pack", "crafting_system", "set", "quest", "quest_chain", "saga", "bonus"]
+    single_value_match: ["slot", "category", "material"]
 }
 
 fn entity_filter_ids(
@@ -108,7 +122,12 @@ const ITEMS_SORT_FIELDS: &[(&str, &str)] = &[
     ("minimum_level", "i.minimum_level"),
     ("slot", "es.name"),
     ("category", "i.item_category"),
+    ("attack_ability", "(SELECT w.attack_modifier FROM item_weapon_stats w WHERE w.item_id = i.id)"),
+    ("damage_ability", "(SELECT w.damage_modifier FROM item_weapon_stats w WHERE w.item_id = i.id)"),
+    ("material", "(SELECT m.name FROM item_materials m WHERE m.id = i.material_id)"),
+    ("socket", "(SELECT MIN(t.label) FROM item_augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.item_id = i.id)"),
     ("pack", "pack"),
+    ("crafting_system", "(SELECT MIN(crafting_system_id) FROM sources WHERE item_id = i.id AND kind = 'crafting_system')"),
     ("set", "\"set\""),
     ("enhancement_bonus", "i.enhancement_bonus"),
     ("icon", "icon"),
@@ -148,12 +167,15 @@ declare_list_parameters!(
         ItemsParameters,
         ItemFilters,
         ("slot" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat equipment slot names from /v1/equipment-slots to match any."),
-        ("slot_match" = Option<String>, Query, description = "Unsupported for a single-slot item; this parameter returns 400."),
         ("category" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat Armor, Shield, Weapon, Jewelry or Clothing to match any."),
-        ("category_match" = Option<String>, Query, description = "Unsupported for a single-category item; this parameter returns 400."),
+        ("attack_ability" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat exact names from /v1/weapon-abilities to match a weapon's attack abilities; omitted applies no filter."),
+        ("damage_ability" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat exact names from /v1/weapon-abilities to match a weapon's damage abilities; omitted applies no filter."),
+        ("material" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat names from /v1/item-materials to match any material; omitted applies no filter."),
+        ("socket" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat case-insensitive labels from /v1/augment-slot-types to match item sockets; omitted applies no filter."),
         ("min_level" = Option<i64>, Query, description = "Minimum item level to include."),
         ("max_level" = Option<i64>, Query, description = "Maximum item level to include."),
         ("pack" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat adventure pack names reached through item sources."),
+        ("crafting_system" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat current slugs from /v1/crafting-systems to match their item outputs; omitted applies no filter."),
         ("set" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat set names from /v1/sets to match member items."),
         ("raid" = Option<bool>, Query, description = "Use true to keep items from raid quests."),
         ("rare" = Option<bool>, Query, description = "Use true to keep rare loot from quests or packs."),
@@ -166,7 +188,7 @@ declare_list_parameters!(
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `items` page", body = crate::routes::v1::response_schemas::ItemsPageResponse),
-        (status = 400, description = "Unknown category or bonus, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
+        (status = 400, description = "Unknown filter value, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
 async fn items(
@@ -194,6 +216,16 @@ async fn items(
     }
     state
         .read_db(move |db| {
+            let sockets = filters.socket.iter().map(|value| value.to_lowercase()).collect::<Vec<_>>();
+            for (vocabulary, values) in [
+                (WEAPON_ABILITIES_VOCABULARY, filters.attack_ability.as_slice()),
+                (ValueVocabulary { parameter: "damage_ability", ..WEAPON_ABILITIES_VOCABULARY }, filters.damage_ability.as_slice()),
+                (ITEM_MATERIALS_VOCABULARY, filters.material.as_slice()),
+                (AUGMENT_SLOT_TYPES_VOCABULARY, sockets.as_slice()),
+                (super::crafting::CRAFTING_SYSTEMS_VOCABULARY, filters.crafting_system.as_slice()),
+            ] {
+                vocabulary.reject_unknown_values(db, values)?;
+            }
             let mut where_clause = WhereClause::default();
             if filters.include_legacy != Some(true) {
                 where_clause.add_condition("NOT i.is_legacy");
@@ -209,6 +241,26 @@ async fn items(
             }
             where_clause.add_repeated_filter("es.name IN (?)", "es.name = ?", &filters.slot, None);
             where_clause.add_repeated_filter("i.item_category IN (?)", "i.item_category = ?", &filters.category, None);
+            for (role, abilities, mode) in [
+                ("attack", &filters.attack_ability, filters.attack_ability_match.as_deref()),
+                ("damage", &filters.damage_ability, filters.damage_ability_match.as_deref()),
+            ] {
+                where_clause.add_repeated_filter(
+                    &format!("EXISTS (SELECT 1 FROM item_weapon_abilities wa WHERE wa.item_id = i.id AND wa.role = '{role}' AND wa.ability IN (?))"),
+                    &format!("EXISTS (SELECT 1 FROM item_weapon_abilities wa WHERE wa.item_id = i.id AND wa.role = '{role}' AND wa.ability = ?)"),
+                    abilities, mode,
+                );
+            }
+            where_clause.add_repeated_filter(
+                "i.material_id IN (SELECT id FROM item_materials WHERE name IN (?))",
+                "i.material_id IN (SELECT id FROM item_materials WHERE name = ?)",
+                &filters.material, None,
+            );
+            where_clause.add_repeated_filter(
+                "EXISTS (SELECT 1 FROM item_augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.item_id = i.id AND t.label IN (?))",
+                "EXISTS (SELECT 1 FROM item_augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.item_id = i.id AND t.label = ?)",
+                &sockets, filters.socket_match.as_deref(),
+            );
             if let Some(min_level) = filters.min_level {
                 where_clause.add_bound_condition("i.minimum_level >= ?", min_level);
             }
@@ -219,6 +271,11 @@ async fn items(
                 "EXISTS (SELECT 1 FROM loot_adventure_packs packs JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE packs.item_id = i.id AND ap.name IN (?))",
                 "EXISTS (SELECT 1 FROM loot_adventure_packs packs JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE packs.item_id = i.id AND ap.name = ?)",
                 &filters.pack, filters.pack_match.as_deref(),
+            );
+            where_clause.add_repeated_filter(
+                "i.id IN (SELECT d.item_id FROM sources d JOIN crafting_systems cs ON cs.id = d.crafting_system_id WHERE d.kind = 'crafting_system' AND cs.slug IN (?))",
+                "i.id IN (SELECT d.item_id FROM sources d JOIN crafting_systems cs ON cs.id = d.crafting_system_id WHERE d.kind = 'crafting_system' AND cs.slug = ?)",
+                &filters.crafting_system, filters.crafting_system_match.as_deref(),
             );
             for set_name in &filters.set {
                 let known_set: bool = db.query_row(

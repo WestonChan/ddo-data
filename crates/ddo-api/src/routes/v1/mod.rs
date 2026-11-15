@@ -45,10 +45,13 @@ use utoipa_axum::router::OpenApiRouter;
                        `{ total, limit, offset, <name>: [...] }`, and detail routes return an entity with its related collections. \
                        Booleans are JSON booleans, absent values are `null`, and unknown slugs or ids return 404.\n\n\
                        **Query parameters.** Different filters are AND-ed. On `/v1/items`, repeat `slot`, `category`, \
-                       `pack`, `set`, `quest`, `quest_chain`, `saga` or `bonus` for any matching value; comma-separated \
-                       lists are never used. `pack_match`, `set_match`, `quest_match`, `quest_chain_match`, `saga_match` and \
-                       `bonus_match` accept `any` (default) or `all`; `slot_match` and `category_match` return 400 \
-                       because an item has one slot and category. `q` matches a case-insensitive name substring unless \
+                       `pack`, `set`, `quest`, `quest_chain`, `saga`, `bonus`, `attack_ability`, `damage_ability`, \
+                       `material`, `socket` or `crafting_system` for any matching value; comma-separated lists are never used. \
+                       `pack_match`, `set_match`, `quest_match`, `quest_chain_match`, `saga_match`, `bonus_match`, \
+                       `attack_ability_match`, `damage_ability_match`, `socket_match` and `crafting_system_match` accept \
+                       `any` (default) or `all`; `slot_match`, `category_match` and `material_match` return 400 \
+                       because an item has one slot, category and material. Filter vocabulary counts exclude legacy items \
+                       and are independent of active item filters. `q` matches a case-insensitive name substring unless \
                        a route says otherwise. `limit` defaults to 100 and clamps to 1–10000, or 50 for the full item view; `offset` defaults to zero \
                        and clamps to nonnegative values; `total` counts before paging. Repeat `sort` keys in priority \
                        order and prefix `-` for descending; nulls sort last in either direction. Each route lists its \

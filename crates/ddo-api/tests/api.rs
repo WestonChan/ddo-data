@@ -51,6 +51,32 @@ fn fixture_state_with_data_edits(test_name: &str, edit: impl FnOnce(&Path)) -> A
     AppState::open(&fixture_db_path_with_data_edits(test_name, edit)).unwrap()
 }
 
+fn item_filter_fixture_path() -> &'static PathBuf {
+    static PATH: OnceLock<PathBuf> = OnceLock::new();
+    PATH.get_or_init(|| {
+        fixture_db_path_with_data_edits("item-filters", |root| {
+            let staff_path = root.join("packs/unsourced/gear/alarphons-staff.toml");
+            let staff = std::fs::read_to_string(&staff_path).unwrap();
+            assert!(staff.contains("attack_modifier = \"Strength\"\n"));
+            assert!(staff.contains("damage_modifier = \"Strength\"\n"));
+            let without_abilities =
+                staff.replace("attack_modifier = \"Strength\"\n", "").replace("damage_modifier = \"Strength\"\n", "");
+            std::fs::write(staff_path, without_abilities).unwrap();
+
+            let orb_path = root.join("packs/shared/crafting/thunder-forged/gear/thunder-forged-orb.toml");
+            let mut orb = std::fs::read_to_string(&orb_path).unwrap();
+            orb.push_str(
+                "\n[[socket]]\nslot = \"red\"\n\n[[socket]]\nslot = \"red\"\n\n[[socket]]\nslot = \"blue\"\n\n[[source]]\nkind = \"crafting_system\"\nname = \"Heroic Green Steel\"\n",
+            );
+            std::fs::write(orb_path, orb).unwrap();
+
+            let fish_path = root.join("packs/unsourced/gear/fried-sword-fish.toml");
+            let fish = std::fs::read_to_string(&fish_path).unwrap();
+            std::fs::write(fish_path, format!("is_legacy = true\n{fish}")).unwrap();
+        })
+    })
+}
+
 fn note_fixture_path() -> &'static PathBuf {
     static PATH: OnceLock<PathBuf> = OnceLock::new();
     PATH.get_or_init(|| {
@@ -1393,8 +1419,189 @@ fn item_ids_in_page(page: &Value) -> std::collections::BTreeSet<i64> {
     page["items"].as_array().unwrap().iter().map(|item| item["id"].as_i64().unwrap()).collect()
 }
 
+async fn item_ids_matching(state: &AppState, query: &str) -> std::collections::BTreeSet<i64> {
+    let (status, _, page) = get_from(state.clone(), &format!("/v1/items?{query}&limit=10000")).await;
+    assert_eq!(status, StatusCode::OK, "{query}: {page}");
+    let ids = item_ids_in_page(&page);
+    assert_eq!(page["total"], ids.len(), "{query}: expected the complete page");
+    ids
+}
+
+async fn assert_item_filter_vocabulary(
+    state: &AppState,
+    parameter: &str,
+    route: &str,
+    rows_key: &str,
+    value_key: &str,
+    count_key: &str,
+) {
+    let (status, _, vocabulary) = get_from(state.clone(), &format!("{route}?limit=10000")).await;
+    assert_eq!(status, StatusCode::OK, "{vocabulary}");
+    let rows = vocabulary[rows_key].as_array().unwrap();
+    assert!(!rows.is_empty(), "{route}");
+    assert_eq!(vocabulary["total"], rows.len());
+    let values = rows.iter().map(|row| row[value_key].as_str().unwrap()).collect::<Vec<_>>();
+    for row in rows {
+        let query = serde_urlencoded::to_string([(parameter, row[value_key].as_str().unwrap())]).unwrap();
+        let ids = item_ids_matching(state, &query).await;
+        assert_eq!(row[count_key], ids.len(), "{parameter}: {row}");
+    }
+    let (status, _, rejected) = get_from(state.clone(), &format!("/v1/items?{parameter}=not-a-value")).await;
+    assert_eq!(status, StatusCode::BAD_REQUEST);
+    assert_eq!(
+        rejected["error"],
+        format!("unknown {parameter} \"not-a-value\"; accepted values: {}", values.join(", "))
+    );
+}
+
 #[tokio::test]
-async fn every_repeated_source_filter_uses_union_or_intersection() {
+async fn items_filter_by_weapon_ability_on_whole_abilities() {
+    let state = AppState::open(item_filter_fixture_path()).unwrap();
+    let orb = item_ids_matching(&state, "q=Thunder-Forged%20Orb").await;
+    let staff = item_ids_matching(&state, "q=Alarphon").await;
+    let sireth = item_ids_matching(&state, "q=Sireth").await;
+    assert_eq!(orb.len(), 1);
+    assert_eq!(staff.len(), 1);
+    assert_eq!(sireth.len(), 1);
+    let (_, _, staff_detail) = get_from(state.clone(), "/v1/items/alarphons-staff").await;
+    assert_eq!(staff_detail["weapon"]["attack_abilities"], serde_json::json!([]));
+    assert_eq!(staff_detail["weapon"]["damage_abilities"], serde_json::json!([]));
+    for role in ["attack", "damage"] {
+        let parameter = format!("{role}_ability");
+        assert_item_filter_vocabulary(
+            &state,
+            &parameter,
+            "/v1/weapon-abilities",
+            "weapon_abilities",
+            "name",
+            &format!("{role}_item_count"),
+        )
+        .await;
+        let strength = item_ids_matching(&state, &format!("{parameter}=Strength")).await;
+        assert!(sireth.is_subset(&strength));
+        assert!(staff.is_disjoint(&strength));
+        for ability in ["Intelligence", "Charisma"] {
+            assert_eq!(item_ids_matching(&state, &format!("{parameter}={ability}")).await, orb);
+        }
+        for mode in ["any", "all"] {
+            assert_eq!(
+                item_ids_matching(
+                    &state,
+                    &format!("{parameter}=Intelligence&{parameter}=Charisma&{parameter}_match={mode}")
+                )
+                .await,
+                orb
+            );
+        }
+        for chosen in [vec!["Intelligence", "Charisma", "Wisdom"], vec!["Strength", "Dexterity"]] {
+            let chosen_query =
+                serde_urlencoded::to_string(chosen.iter().map(|ability| (&parameter, ability)).collect::<Vec<_>>())
+                    .unwrap();
+            let query = format!("{chosen_query}&{parameter}_match=all");
+            assert!(item_ids_matching(&state, &query).await.is_empty(), "{query}");
+        }
+        assert_eq!(
+            item_ids_matching(
+                &state,
+                &format!("{parameter}=Intelligence&{parameter}=Intelligence&{parameter}_match=all")
+            )
+            .await,
+            orb
+        );
+        for query in [format!("{parameter}="), format!("{parameter}=%20"), format!("{parameter}_match=all")] {
+            assert_eq!(item_ids_matching(&state, &query).await, item_ids_matching(&state, "").await);
+        }
+        for invalid in ["dexterity", "Dex", "Strength%2C%20Dexterity"] {
+            let (status, _, rejected) = get_from(state.clone(), &format!("/v1/items?{parameter}={invalid}")).await;
+            assert_eq!(status, StatusCode::BAD_REQUEST, "{rejected}");
+            assert!(rejected["error"]
+                .as_str()
+                .unwrap()
+                .ends_with("accepted values: Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma"));
+        }
+        let (status, _, rejected) = get_from(state.clone(), &format!("/v1/items?{parameter}_match=neither")).await;
+        assert_eq!(status, StatusCode::BAD_REQUEST, "{rejected}");
+    }
+    let dexterity = item_ids_matching(&state, "attack_ability=Dexterity").await;
+    assert_eq!(dexterity.len(), 5);
+    assert!(item_ids_matching(&state, "damage_ability=Dexterity").await.is_empty());
+    assert!(orb.is_disjoint(&dexterity));
+    assert!(staff.is_disjoint(&dexterity));
+    let strength = item_ids_matching(&state, "attack_ability=Strength").await;
+    assert_eq!(
+        item_ids_matching(&state, "attack_ability=Strength&attack_ability=Dexterity").await,
+        strength.union(&dexterity).copied().collect()
+    );
+    assert_eq!(item_ids_matching(&state, "attack_ability=Intelligence&damage_ability=Charisma").await, orb);
+    assert!(item_ids_matching(&state, "attack_ability=Strength&damage_ability=Charisma").await.is_empty());
+}
+
+#[tokio::test]
+async fn items_filter_by_material_socket_and_crafting_system() {
+    let state = AppState::open(item_filter_fixture_path()).unwrap();
+    for (parameter, route, rows_key, value_key) in [
+        ("material", "/v1/item-materials", "item_materials", "name"),
+        ("socket", "/v1/augment-slot-types", "augment_slot_types", "label"),
+        ("crafting_system", "/v1/crafting-systems", "crafting_systems", "slug"),
+    ] {
+        assert_item_filter_vocabulary(&state, parameter, route, rows_key, value_key, "item_count").await;
+    }
+    let orb = item_ids_matching(&state, "q=Thunder-Forged%20Orb").await;
+    let steel = item_ids_matching(&state, "material=Steel").await;
+    let leather = item_ids_matching(&state, "material=Leather").await;
+    assert!(!steel.is_empty());
+    assert!(!leather.is_empty());
+    assert_eq!(
+        item_ids_matching(&state, "material=Steel&material=Leather").await,
+        steel.union(&leather).copied().collect()
+    );
+    for mode in ["any", "all", "neither"] {
+        let (status, _, rejected) =
+            get_from(state.clone(), &format!("/v1/items?material=Steel&material_match={mode}")).await;
+        assert_eq!(status, StatusCode::BAD_REQUEST);
+        assert_eq!(rejected["error"], "material does not support a match mode");
+    }
+    let red = item_ids_matching(&state, "socket=red").await;
+    let blue = item_ids_matching(&state, "socket=blue").await;
+    assert_eq!(item_ids_matching(&state, "socket=Red").await, red);
+    assert_eq!(item_ids_matching(&state, "socket=%20Red%20").await, red);
+    assert_eq!(item_ids_matching(&state, "socket=red&socket=blue").await, red.union(&blue).copied().collect());
+    let both = item_ids_matching(&state, "socket=red&socket=blue&socket_match=all").await;
+    assert_eq!(both, red.intersection(&blue).copied().collect());
+    assert_eq!(both, orb);
+    assert_eq!(item_ids_matching(&state, "socket=red&socket=red&socket_match=all").await, red);
+    let (_, _, detail) = get_from(state.clone(), "/v1/items/thunder-forged-orb").await;
+    assert_eq!(detail["augment_slots"].as_array().unwrap().iter().filter(|slot| slot["label"] == "red").count(), 2);
+    assert_eq!(detail["crafting_systems"].as_array().unwrap().len(), 2);
+    assert_eq!(item_ids_matching(&state, "crafting_system=thunder-forged").await, orb);
+    assert_eq!(
+        item_ids_matching(
+            &state,
+            "crafting_system=thunder-forged&crafting_system=heroic-green-steel&crafting_system_match=all"
+        )
+        .await,
+        orb
+    );
+    let system_id = detail["crafting_systems"][0]["id"].as_i64().unwrap();
+    let (status, _, rejected) = get_from(state.clone(), &format!("/v1/items?crafting_system={system_id}")).await;
+    assert_eq!(status, StatusCode::BAD_REQUEST, "{rejected}");
+    let query = "attack_ability=Intelligence&damage_ability=Charisma&material=Adamantine&socket=red&crafting_system=thunder-forged";
+    assert_eq!(item_ids_matching(&state, query).await, orb);
+    assert!(item_ids_matching(&state, &format!("{query}&category=Armor")).await.is_empty());
+    for parameter in ["material", "socket", "crafting_system"] {
+        assert_eq!(item_ids_matching(&state, &format!("{parameter}=%20")).await, item_ids_matching(&state, "").await);
+    }
+    let (_, _, materials) = get_from(state.clone(), "/v1/item-materials?limit=10000").await;
+    let flesh = materials["item_materials"].as_array().unwrap().iter().find(|row| row["name"] == "Flesh").unwrap();
+    assert_eq!(flesh["item_count"], 0);
+    assert!(item_ids_matching(&state, "material=Flesh").await.is_empty());
+    let fish = item_ids_matching(&state, "material=Flesh&include_legacy=true").await;
+    assert_eq!(fish.len(), 1);
+    assert_eq!(fish, item_ids_matching(&state, "q=Fried%20Sword%20Fish&include_legacy=true").await);
+}
+
+#[tokio::test]
+async fn repeated_source_and_socket_filters_use_union_or_intersection() {
     let path = fixture_db_path_with_data_edits("source-intersection", |data_dir| {
         std::fs::write(
             data_dir.join("packs/free-to-play/chains/second-fixture-chain.toml"),
@@ -1413,6 +1620,8 @@ async fn every_repeated_source_filter_uses_union_or_intersection() {
         ("quest", "SELECT DISTINCT quest_id FROM sources WHERE kind = 'quest' AND quest_id IS NOT NULL ORDER BY quest_id LIMIT 2"),
         ("quest_chain", "SELECT DISTINCT chain_id FROM sources WHERE kind = 'quest_chain' AND chain_id IS NOT NULL ORDER BY chain_id LIMIT 2"),
         ("saga", "SELECT DISTINCT saga_id FROM sources WHERE kind = 'saga' AND saga_id IS NOT NULL ORDER BY saga_id LIMIT 2"),
+        ("socket", "SELECT DISTINCT t.label FROM item_augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id ORDER BY t.label LIMIT 2"),
+        ("crafting_system", "SELECT DISTINCT cs.slug FROM sources s JOIN crafting_systems cs ON cs.id = s.crafting_system_id WHERE s.kind = 'crafting_system' ORDER BY cs.slug LIMIT 2"),
     ] {
         let mut statement = db.prepare(sql).unwrap();
         let values: Vec<String> = statement.query_map([], |row| row.get::<_, rusqlite::types::Value>(0)).unwrap()
@@ -1424,8 +1633,10 @@ async fn every_repeated_source_filter_uses_union_or_intersection() {
         assert_eq!(values.len(), 2, "{filter} fixture needs two values");
         let single_paths: Vec<String> = values.iter().map(|value| format!("/v1/items?{}&limit=10000",
             serde_urlencoded::to_string([(filter, value)]).unwrap())).collect();
-        let (_, _, first) = get_from(state.clone(), &single_paths[0]).await;
-        let (_, _, second) = get_from(state.clone(), &single_paths[1]).await;
+        let (first_status, _, first) = get_from(state.clone(), &single_paths[0]).await;
+        let (second_status, _, second) = get_from(state.clone(), &single_paths[1]).await;
+        assert_eq!(first_status, StatusCode::OK, "{}: {first}", single_paths[0]);
+        assert_eq!(second_status, StatusCode::OK, "{}: {second}", single_paths[1]);
         assert_ne!(item_ids_in_page(&first), item_ids_in_page(&second), "{filter} needs distinct result sets");
         let base_query = serde_urlencoded::to_string([(filter, &values[0]), (filter, &values[1])]).unwrap();
         let (status, _, any) = get_from(state.clone(), &format!("/v1/items?{base_query}&limit=10000")).await;
@@ -1686,17 +1897,9 @@ async fn item_view_defaults_to_summary_and_caps_full_pages() {
 
 #[tokio::test]
 async fn item_detail_weapon_abilities_are_the_split_of_the_stored_modifier_text() {
-    let db_path = fixture_db_path_with_data_edits("weapon-abilities", |root| {
-        let path = root.join("packs/unsourced/gear/alarphons-staff.toml");
-        let item = std::fs::read_to_string(&path).unwrap();
-        assert!(item.contains("attack_modifier = \"Strength\"\n"));
-        assert!(item.contains("damage_modifier = \"Strength\"\n"));
-        let without_abilities =
-            item.replace("attack_modifier = \"Strength\"\n", "").replace("damage_modifier = \"Strength\"\n", "");
-        std::fs::write(path, without_abilities).unwrap();
-    });
-    let db = rusqlite::Connection::open(&db_path).unwrap();
-    let state = AppState::open(&db_path).unwrap();
+    let db_path = item_filter_fixture_path();
+    let db = rusqlite::Connection::open(db_path).unwrap();
+    let state = AppState::open(db_path).unwrap();
     let mut statement = db.prepare("SELECT i.slug, w.attack_modifier, w.damage_modifier FROM item_weapon_stats w JOIN items i ON i.id = w.item_id").unwrap();
     let weapons = statement
         .query_map([], |row| {
@@ -1793,6 +1996,20 @@ async fn items_list_leaves_out_legacy_items_unless_asked_to_include_them() {
     assert_eq!(detail["is_legacy"], true);
     let (_, _, current_detail) = get(&format!("/v1/items/{}", sireth_id().await)).await;
     assert_eq!(current_detail["is_legacy"], false);
+    let (status, _, current_steel) = get("/v1/items?material=Steel&limit=10000").await;
+    assert_eq!(status, StatusCode::OK, "{current_steel}");
+    assert_eq!(current_steel["total"], 21);
+    let (status, _, all_steel) = get("/v1/items?material=Steel&include_legacy=true&limit=10000").await;
+    assert_eq!(status, StatusCode::OK, "{all_steel}");
+    assert_eq!(all_steel["total"], 24);
+    assert!(item_ids_in_page(&current_steel).is_subset(&item_ids_in_page(&all_steel)));
+    assert_eq!(
+        item_ids_in_page(&all_steel)
+            .difference(&item_ids_in_page(&current_steel))
+            .copied()
+            .collect::<std::collections::BTreeSet<_>>(),
+        legacy_rows.iter().map(|row| row["id"].as_i64().unwrap()).collect()
+    );
 }
 
 async fn sireth_id() -> i64 {
@@ -3374,6 +3591,10 @@ fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
         ("sort", _) => "name",
         ("slot", _) => "Wrists",
         ("category", _) => "Armor",
+        ("attack_ability" | "damage_ability", _) => "Strength",
+        ("material", _) => "Steel",
+        ("socket", _) => "red",
+        ("crafting_system", _) => "thunder-forged",
         ("source", _) => "standard",
         ("family", _) => "standard",
         ("view", _) => "full",
@@ -3381,6 +3602,7 @@ fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
         ("set", _) => "Cooking%20By%20the%20Book",
         ("kind", _) => "stat",
         ("bonus_match" | "pack_match" | "quest_match" | "quest_chain_match" | "saga_match" | "set_match", _) => "any",
+        ("attack_ability_match" | "damage_ability_match" | "socket_match" | "crafting_system_match", _) => "any",
         ("quest", _) => "book-burning",
         ("quest_chain", _) => "the-lost-seekers",
         ("saga", _) => "masterminds-of-sharn",
@@ -3451,7 +3673,7 @@ async fn list_endpoints_accept_every_documented_query_parameter() {
         assert!(query_params.len() >= 4, "{path} documents only {} query parameters", query_params.len());
         for param in query_params {
             let name = param["name"].as_str().unwrap();
-            if matches!(name, "slot_match" | "category_match") {
+            if matches!(name, "slot_match" | "category_match" | "material_match") {
                 continue;
             }
             let sample_value = accepted_sample_value(name, param_schema_type(param));
@@ -3473,6 +3695,16 @@ async fn openapi_documents_item_filters_and_shared_query_conventions() {
         "slot_match",
         "category",
         "category_match",
+        "attack_ability",
+        "attack_ability_match",
+        "damage_ability",
+        "damage_ability_match",
+        "material",
+        "material_match",
+        "socket",
+        "socket_match",
+        "crafting_system",
+        "crafting_system_match",
         "pack",
         "pack_match",
         "quest",
@@ -3489,11 +3721,28 @@ async fn openapi_documents_item_filters_and_shared_query_conventions() {
     ] {
         assert!(names.contains(name), "missing {name}");
     }
-    for name in ["slot", "category", "pack", "quest", "quest_chain", "saga", "bonus"] {
+    for name in [
+        "slot",
+        "category",
+        "pack",
+        "set",
+        "quest",
+        "quest_chain",
+        "saga",
+        "bonus",
+        "attack_ability",
+        "damage_ability",
+        "material",
+        "socket",
+        "crafting_system",
+    ] {
         let parameter = parameters.iter().find(|parameter| parameter["name"] == name).unwrap();
         assert_eq!(parameter["schema"]["type"], "array", "{name}");
         assert_eq!(parameter["style"], "form", "{name}");
         assert_eq!(parameter["explode"], true, "{name}");
+        let control = parameters.iter().find(|parameter| parameter["name"] == format!("{name}_match")).unwrap();
+        assert_eq!(control["x-match-key"], name);
+        assert_eq!(control["x-single-value"] == true, ["slot", "category", "material"].contains(&name));
     }
     let view = parameters.iter().find(|parameter| parameter["name"] == "view").unwrap();
     assert_eq!(view["example"], "full");
@@ -3507,6 +3756,11 @@ async fn openapi_documents_item_filters_and_shared_query_conventions() {
         "bonus_match",
         "slot_match",
         "stat:bonus type",
+        "attack_ability",
+        "damage_ability",
+        "material_match",
+        "socket_match",
+        "crafting_system_match",
     ] {
         assert!(introduction.contains(phrase), "missing {phrase} in Introduction");
     }

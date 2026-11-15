@@ -124,6 +124,18 @@ pub(crate) fn declared_name_parameters<T: QueryParameters>() -> Vec<Parameter> {
         parameter.extensions = Some([("x-match-key", *key)].into_iter().collect());
         parameters.push(parameter);
     }
+    for key in T::SINGLE_VALUE_MATCH_KEYS {
+        let mut parameter = query_parameter::<String>(
+            &format!("{key}_match"),
+            &format!("Unsupported because an item has one {key}; this parameter returns 400."),
+        );
+        parameter.extensions = Some(
+            [("x-match-key", serde_json::json!(key)), ("x-single-value", serde_json::json!(true))]
+                .into_iter()
+                .collect(),
+        );
+        parameters.push(parameter);
+    }
     parameters
 }
 
