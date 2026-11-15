@@ -4,7 +4,7 @@ use crate::db::{
 };
 use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
-use crate::query::{declare_list_parameters, ApiQuery, ValueVocabulary};
+use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
 use axum::extract::State;
 use axum::Json;
@@ -24,21 +24,22 @@ static INGREDIENT_USES: std::sync::LazyLock<String> = std::sync::LazyLock::new(|
 
 const CRAFTING_SYSTEM_COLUMNS_AND_JOINS: &str = "s.id, s.slug, s.name, s.page, p.name AS pack,
         (SELECT station.name || COALESCE(', ' || station.place,'') FROM crafting_system_stations link JOIN crafting_stations station ON station.id=link.station_id WHERE link.system_id=s.id ORDER BY link.sort_order LIMIT 1) AS npc,
-        (SELECT COUNT(*) FROM ingredient_uses i WHERE i.system_id = s.id) AS ingredient_count,
-        (SELECT COUNT(*) FROM crafting_recipes r WHERE r.system_id = s.id) AS recipe_count,
-        (SELECT COUNT(DISTINCT output.owner_id) FROM crafting_outputs output JOIN items i ON i.id = output.owner_id
-         WHERE output.crafting_system_id = s.id AND output.owner_kind = 'item' AND NOT i.is_legacy) AS item_count
-   FROM crafting_systems s LEFT JOIN adventure_packs p ON p.id = s.pack_id";
+        COALESCE(ingredients.ingredient_count, 0) AS ingredient_count,
+        COALESCE(recipes.recipe_count, 0) AS recipe_count,
+        COALESCE(outputs.item_count, 0) AS item_count
+   FROM crafting_systems s LEFT JOIN adventure_packs p ON p.id = s.pack_id
+   LEFT JOIN (SELECT system_id, COUNT(*) AS ingredient_count FROM ingredient_uses GROUP BY system_id) ingredients
+        ON ingredients.system_id = s.id
+   LEFT JOIN (SELECT system_id, COUNT(*) AS recipe_count FROM crafting_recipes GROUP BY system_id) recipes
+        ON recipes.system_id = s.id
+   LEFT JOIN (
+       SELECT output.crafting_system_id, COUNT(DISTINCT output.owner_id) AS item_count
+       FROM crafting_outputs output JOIN items i ON i.id = output.owner_id
+       WHERE output.owner_kind = 'item' AND NOT i.is_legacy GROUP BY output.crafting_system_id
+   ) outputs ON outputs.crafting_system_id = s.id";
 
-static CRAFTING_SYSTEM_SELECT: std::sync::LazyLock<String> =
+pub(super) static CRAFTING_SYSTEM_SELECT: std::sync::LazyLock<String> =
     std::sync::LazyLock::new(|| format!("{} SELECT {CRAFTING_SYSTEM_COLUMNS_AND_JOINS}", INGREDIENT_USES.as_str()));
-
-pub(super) const CRAFTING_SYSTEMS_VOCABULARY: ValueVocabulary = ValueVocabulary {
-    parameter: "crafting_system",
-    select_sql: || CRAFTING_SYSTEM_SELECT.as_str(),
-    value_column: "slug",
-    default_order: "listed.name",
-};
 
 fn attach_augment_families(db: &Connection, crafting_system: &mut Value) -> Result<(), ApiError> {
     let system_id = crafting_system["id"].as_i64().unwrap_or(0);
@@ -200,10 +201,10 @@ async fn crafting_systems(
         .read_db(move |db| {
             let mut page = paged_rows(
                 db,
-                (CRAFTING_SYSTEMS_VOCABULARY.select_sql)(),
+                (super::CRAFTING_SYSTEMS_VOCABULARY.select_sql)(),
                 &query,
                 "listed.name",
-                CRAFTING_SYSTEMS_VOCABULARY.default_order,
+                super::CRAFTING_SYSTEMS_VOCABULARY.default_order,
                 CRAFTING_SYSTEMS_SORT_FIELDS,
             )?;
             for row in &mut page.rows {

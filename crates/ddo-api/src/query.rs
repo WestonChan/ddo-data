@@ -40,14 +40,32 @@ macro_rules! declare_query_parameters {
 pub(crate) use declare_query_parameters;
 
 pub(crate) struct ValueVocabulary {
-    pub(crate) parameter: &'static str,
     pub(crate) select_sql: fn() -> &'static str,
     pub(crate) value_column: &'static str,
     pub(crate) default_order: &'static str,
 }
 
+macro_rules! declare_value_vocabularies {
+    ($($name:ident { $($field:ident: $value:expr),* $(,)? }),* $(,)?) => {
+        $(const $name: crate::query::ValueVocabulary = crate::query::ValueVocabulary {
+            $($field: $value),*
+        };)*
+
+        #[cfg(test)]
+        const VALUE_VOCABULARIES: &[(&str, crate::query::ValueVocabulary)] = &[
+            $((stringify!($name), $name)),*
+        ];
+    };
+}
+pub(crate) use declare_value_vocabularies;
+
 impl ValueVocabulary {
-    pub(crate) fn reject_unknown_values(&self, db: &rusqlite::Connection, values: &[String]) -> Result<(), ApiError> {
+    pub(crate) fn reject_unknown_values(
+        &self,
+        db: &rusqlite::Connection,
+        parameter: &str,
+        values: &[String],
+    ) -> Result<(), ApiError> {
         if values.is_empty() {
             return Ok(());
         }
@@ -62,8 +80,7 @@ impl ValueVocabulary {
         for value in values {
             if !accepted.contains(value) {
                 return Err(ApiError::BadRequest(format!(
-                    "unknown {} {value:?}; accepted values: {}",
-                    self.parameter,
+                    "unknown {parameter} {value:?}; accepted values: {}",
                     accepted.join(", ")
                 )));
             }

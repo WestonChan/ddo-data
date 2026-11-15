@@ -377,6 +377,7 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         ("ddo-etl", &["--test", "data_rejections"][..], "stat_aliases_read_one_amount_without_a_canonical_template"),
         ("ddo-api", &["--test", "api"][..], "item_pack_query_count_does_not_grow_with_rows_or_sources"),
         ("ddo-api", &["--test", "api"][..], "item_full_page_query_count_does_not_grow_with_rows"),
+        ("ddo-api", &["--lib"][..], "every_value_vocabulary_avoids_correlated_table_scans"),
         ("ddo-api", &["--test", "api"][..], "crafting_detail_query_count_does_not_grow_with_recipes"),
         ("ddo-api", &["--test", "api"][..], "augment_slot_type_detail_query_count_does_not_grow_with_candidates"),
         ("ddo-api", &["--test", "api"][..], "note_queries_do_not_grow_from_one_to_fifty_owners"),

@@ -8,8 +8,7 @@ use crate::effect_names::{effect_name_search_sql, resolve_effect_name};
 use crate::entity_slugs::{resolve_entity_slug, EntityPath};
 use crate::error::ApiError;
 use crate::query::{
-    declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery, EffectName, ValueVocabulary,
-    EFFECT_NAME_SEARCH,
+    declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery, EffectName, EFFECT_NAME_SEARCH,
 };
 use crate::state::AppState;
 use axum::extract::State;
@@ -217,14 +216,14 @@ async fn items(
     state
         .read_db(move |db| {
             let sockets = filters.socket.iter().map(|value| value.to_lowercase()).collect::<Vec<_>>();
-            for (vocabulary, values) in [
-                (WEAPON_ABILITIES_VOCABULARY, filters.attack_ability.as_slice()),
-                (ValueVocabulary { parameter: "damage_ability", ..WEAPON_ABILITIES_VOCABULARY }, filters.damage_ability.as_slice()),
-                (ITEM_MATERIALS_VOCABULARY, filters.material.as_slice()),
-                (AUGMENT_SLOT_TYPES_VOCABULARY, sockets.as_slice()),
-                (super::crafting::CRAFTING_SYSTEMS_VOCABULARY, filters.crafting_system.as_slice()),
+            for (parameter, vocabulary, values) in [
+                ("attack_ability", super::WEAPON_ABILITIES_VOCABULARY, filters.attack_ability.as_slice()),
+                ("damage_ability", super::WEAPON_ABILITIES_VOCABULARY, filters.damage_ability.as_slice()),
+                ("material", super::ITEM_MATERIALS_VOCABULARY, filters.material.as_slice()),
+                ("socket", super::AUGMENT_SLOT_TYPES_VOCABULARY, sockets.as_slice()),
+                ("crafting_system", super::CRAFTING_SYSTEMS_VOCABULARY, filters.crafting_system.as_slice()),
             ] {
-                vocabulary.reject_unknown_values(db, values)?;
+                vocabulary.reject_unknown_values(db, parameter, values)?;
             }
             let mut where_clause = WhereClause::default();
             if filters.include_legacy != Some(true) {
@@ -527,24 +526,22 @@ async fn weapon_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
     .await
 }
 
-static WEAPON_ABILITIES_SELECT: std::sync::LazyLock<String> = std::sync::LazyLock::new(|| {
+pub(super) static WEAPON_ABILITIES_SELECT: std::sync::LazyLock<String> = std::sync::LazyLock::new(|| {
     format!(
         "SELECT e.id, e.slug, e.name, {} AS sort_order,
-        (SELECT COUNT(DISTINCT wa.item_id) FROM item_weapon_abilities wa JOIN items i ON i.id = wa.item_id
-         WHERE wa.role = 'attack' AND wa.ability = e.name AND NOT i.is_legacy) AS attack_item_count,
-        (SELECT COUNT(DISTINCT wa.item_id) FROM item_weapon_abilities wa JOIN items i ON i.id = wa.item_id
-         WHERE wa.role = 'damage' AND wa.ability = e.name AND NOT i.is_legacy) AS damage_item_count
-        FROM effects e WHERE e.is_stat = 1 AND e.category = 'ability'",
+        COALESCE(counted.attack_item_count, 0) AS attack_item_count,
+        COALESCE(counted.damage_item_count, 0) AS damage_item_count
+        FROM effects e LEFT JOIN (
+            SELECT wa.ability,
+                COUNT(DISTINCT wa.item_id) FILTER (WHERE wa.role = 'attack') AS attack_item_count,
+                COUNT(DISTINCT wa.item_id) FILTER (WHERE wa.role = 'damage') AS damage_item_count
+            FROM item_weapon_abilities wa JOIN items i ON i.id = wa.item_id
+            WHERE NOT i.is_legacy GROUP BY wa.ability
+        ) counted ON counted.ability = e.name
+        WHERE e.is_stat = 1 AND e.category = 'ability'",
         ddo_model::stats::ability_sort_order_sql()
     )
 });
-
-pub(super) const WEAPON_ABILITIES_VOCABULARY: ValueVocabulary = ValueVocabulary {
-    parameter: "attack_ability",
-    select_sql: || WEAPON_ABILITIES_SELECT.as_str(),
-    value_column: "name",
-    default_order: "listed.sort_order",
-};
 
 const WEAPON_ABILITIES_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
@@ -573,10 +570,10 @@ async fn weapon_abilities(
         state,
         query,
         TableListSource {
-            select_sql: (WEAPON_ABILITIES_VOCABULARY.select_sql)(),
+            select_sql: (super::WEAPON_ABILITIES_VOCABULARY.select_sql)(),
             rows_key: "weapon_abilities",
             name_column: "listed.name",
-            default_order: WEAPON_ABILITIES_VOCABULARY.default_order,
+            default_order: super::WEAPON_ABILITIES_VOCABULARY.default_order,
             sortable_fields: WEAPON_ABILITIES_SORT_FIELDS,
             flag_columns: &[],
         },
@@ -584,16 +581,11 @@ async fn weapon_abilities(
     .await
 }
 
-pub(super) const ITEM_MATERIALS_VOCABULARY: ValueVocabulary = ValueVocabulary {
-    parameter: "material",
-    select_sql: || {
-        "SELECT m.name, m.sort_order,
-        (SELECT COUNT(*) FROM items i WHERE i.material_id = m.id AND NOT i.is_legacy) AS item_count
-        FROM item_materials m"
-    },
-    value_column: "name",
-    default_order: "listed.sort_order, listed.name",
-};
+pub(super) const ITEM_MATERIALS_SELECT: &str =
+    "SELECT m.name, m.sort_order, COALESCE(counted.item_count, 0) AS item_count
+        FROM item_materials m LEFT JOIN (
+            SELECT material_id, COUNT(*) AS item_count FROM items WHERE NOT is_legacy GROUP BY material_id
+        ) counted ON counted.material_id = m.id";
 
 const ITEM_MATERIALS_SORT_FIELDS: &[(&str, &str)] =
     &[("name", "listed.name"), ("sort_order", "listed.sort_order"), ("item_count", "listed.item_count")];
@@ -613,10 +605,10 @@ async fn item_materials(State(state): State<AppState>, ApiQuery(query, _): ApiQu
         state,
         query,
         TableListSource {
-            select_sql: (ITEM_MATERIALS_VOCABULARY.select_sql)(),
+            select_sql: (super::ITEM_MATERIALS_VOCABULARY.select_sql)(),
             rows_key: "item_materials",
             name_column: "listed.name",
-            default_order: ITEM_MATERIALS_VOCABULARY.default_order,
+            default_order: super::ITEM_MATERIALS_VOCABULARY.default_order,
             sortable_fields: ITEM_MATERIALS_SORT_FIELDS,
             flag_columns: &[],
         },
@@ -657,17 +649,14 @@ async fn damage_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
     .await
 }
 
-pub(super) const AUGMENT_SLOT_TYPES_VOCABULARY: ValueVocabulary = ValueVocabulary {
-    parameter: "socket",
-    select_sql: || {
-        "SELECT t.id, t.slug, t.label, t.family, t.variant, t.qualifier, t.not_crafting_reason,
-        (SELECT COUNT(DISTINCT s.item_id) FROM item_augment_slots s JOIN items i ON i.id = s.item_id
-         WHERE s.slot_id = t.id AND NOT i.is_legacy) AS item_count
-        FROM augment_slot_types t"
-    },
-    value_column: "label",
-    default_order: "listed.family, listed.label",
-};
+pub(super) const AUGMENT_SLOT_TYPES_SELECT: &str =
+    "SELECT t.id, t.slug, t.label, t.family, t.variant, t.qualifier, t.not_crafting_reason,
+        COALESCE(counted.item_count, 0) AS item_count
+        FROM augment_slot_types t LEFT JOIN (
+            SELECT s.slot_id, COUNT(DISTINCT s.item_id) AS item_count
+            FROM item_augment_slots s JOIN items i ON i.id = s.item_id
+            WHERE NOT i.is_legacy GROUP BY s.slot_id
+        ) counted ON counted.slot_id = t.id";
 
 declare_query_parameters! {
     struct AugmentSlotTypeFilters {
@@ -677,12 +666,7 @@ declare_query_parameters! {
     repeatable: ["family"]
 }
 
-const AUGMENT_SLOT_FAMILIES_VOCABULARY: ValueVocabulary = ValueVocabulary {
-    parameter: "family",
-    select_sql: || "SELECT DISTINCT family FROM augment_slot_types",
-    value_column: "family",
-    default_order: "listed.family",
-};
+pub(super) const AUGMENT_SLOT_FAMILIES_SELECT: &str = "SELECT DISTINCT family FROM augment_slot_types";
 
 const AUGMENT_SLOT_TYPES_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.label"),
@@ -727,15 +711,15 @@ async fn augment_slot_types(
 ) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
-            AUGMENT_SLOT_FAMILIES_VOCABULARY.reject_unknown_values(db, &filters.family)?;
+            super::AUGMENT_SLOT_FAMILIES_VOCABULARY.reject_unknown_values(db, "family", &filters.family)?;
             let mut where_clause = WhereClause::default();
             where_clause.add_repeated_filter("listed.family IN (?)", "listed.family = ?", &filters.family, None);
             let page = paged_rows_with_filter(
                 db,
-                (AUGMENT_SLOT_TYPES_VOCABULARY.select_sql)(),
+                (super::AUGMENT_SLOT_TYPES_VOCABULARY.select_sql)(),
                 &query,
                 "listed.label",
-                AUGMENT_SLOT_TYPES_VOCABULARY.default_order,
+                super::AUGMENT_SLOT_TYPES_VOCABULARY.default_order,
                 AUGMENT_SLOT_TYPES_SORT_FIELDS,
                 where_clause,
             )?;
