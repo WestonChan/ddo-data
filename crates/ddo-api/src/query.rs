@@ -39,54 +39,102 @@ macro_rules! declare_query_parameters {
 }
 pub(crate) use declare_query_parameters;
 
-pub(crate) struct ValueVocabulary {
-    pub(crate) select_sql: fn() -> &'static str,
-    pub(crate) value_column: &'static str,
-    pub(crate) default_order: &'static str,
-}
-
 macro_rules! declare_value_vocabularies {
-    ($($name:ident { $($field:ident: $value:expr),* $(,)? }),* $(,)?) => {
-        $(const $name: crate::query::ValueVocabulary = crate::query::ValueVocabulary {
-            $($field: $value),*
-        };)*
+    ($($name:ident => $queries:path),* $(,)?) => {
+        #[derive(Clone, Copy, Debug)]
+        enum ValueVocabulary {
+            $($name),*
+        }
 
-        #[cfg(test)]
-        const VALUE_VOCABULARIES: &[(&str, crate::query::ValueVocabulary)] = &[
-            $((stringify!($name), $name)),*
-        ];
+        impl ValueVocabulary {
+            #[cfg(test)]
+            const ALL: &'static [Self] = &[$(Self::$name),*];
+
+            fn queries(&self) -> &'static crate::query::VocabularyQueries {
+                match self {
+                    $(Self::$name => &$queries),*
+                }
+            }
+
+            fn select_sql(&self) -> &'static str {
+                self.queries().select_sql()
+            }
+
+            fn validation_sql(&self) -> &'static str {
+                self.queries().validation_sql()
+            }
+
+            fn default_order(&self) -> &'static str {
+                self.queries().default_order()
+            }
+
+            fn reject_unknown_values(
+                &self,
+                db: &rusqlite::Connection,
+                parameter: &str,
+                values: &[String],
+            ) -> Result<(), crate::error::ApiError> {
+                crate::query::reject_unknown_vocabulary_values(db, parameter, values, self.validation_sql())
+            }
+        }
     };
 }
 pub(crate) use declare_value_vocabularies;
 
-impl ValueVocabulary {
-    pub(crate) fn reject_unknown_values(
-        &self,
-        db: &rusqlite::Connection,
-        parameter: &str,
-        values: &[String],
-    ) -> Result<(), ApiError> {
-        if values.is_empty() {
-            return Ok(());
+pub(crate) struct VocabularyQueries {
+    select_sql: String,
+    validation_sql: String,
+    default_order: &'static str,
+}
+
+impl VocabularyQueries {
+    pub(crate) fn new(
+        value_column: &str,
+        default_order: &'static str,
+        values_sql: &str,
+        list_columns: &str,
+        count_joins: &str,
+    ) -> Self {
+        Self {
+            select_sql: format!("SELECT {list_columns} FROM ({values_sql}) vocabulary {count_joins}"),
+            validation_sql: format!("SELECT listed.{value_column} FROM ({values_sql}) listed ORDER BY {default_order}"),
+            default_order,
         }
-        let sql = format!(
-            "SELECT listed.{} FROM ({}) listed ORDER BY {}",
-            self.value_column,
-            (self.select_sql)(),
-            self.default_order,
-        );
-        let mut statement = db.prepare_cached(&sql)?;
-        let accepted = statement.query_map([], |row| row.get::<_, String>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
-        for value in values {
-            if !accepted.contains(value) {
-                return Err(ApiError::BadRequest(format!(
-                    "unknown {parameter} {value:?}; accepted values: {}",
-                    accepted.join(", ")
-                )));
-            }
-        }
-        Ok(())
     }
+
+    pub(crate) fn select_sql(&self) -> &str {
+        &self.select_sql
+    }
+
+    pub(crate) fn validation_sql(&self) -> &str {
+        &self.validation_sql
+    }
+
+    pub(crate) fn default_order(&self) -> &'static str {
+        self.default_order
+    }
+}
+
+pub(crate) fn reject_unknown_vocabulary_values(
+    db: &rusqlite::Connection,
+    parameter: &str,
+    values: &[String],
+    validation_sql: &str,
+) -> Result<(), ApiError> {
+    if values.is_empty() {
+        return Ok(());
+    }
+    let mut statement = db.prepare_cached(validation_sql)?;
+    let accepted = statement.query_map([], |row| row.get::<_, String>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
+    for value in values {
+        if !accepted.contains(value) {
+            return Err(ApiError::BadRequest(format!(
+                "unknown {parameter} {value:?}; accepted values: {}",
+                accepted.join(", ")
+            )));
+        }
+    }
+    Ok(())
 }
 
 #[derive(Default, Deserialize)]

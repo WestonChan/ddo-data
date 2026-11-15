@@ -4,7 +4,7 @@ use anyhow::{bail, ensure, Context, Result};
 use clap::{Parser, Subcommand};
 use comments::{comments_in, without_comments};
 use std::path::{Path, PathBuf};
-use std::process::Command;
+use std::process::{Command, Output};
 use walkdir::WalkDir;
 use xtask::api_validation::validate_api;
 use xtask::golden_refresh::{golden_merge_changes, golden_sample, merge_golden, SampleRequest};
@@ -340,7 +340,9 @@ fn deny_clippy_warnings() -> Result<()> {
 }
 
 fn deny_contract_or_scale_regressions() -> Result<()> {
+    let mut failures = Vec::new();
     for (crate_name, test_target, test_name) in [
+        ("xtask", &["--bin", "xtask"][..], "contract_guard_tests::contract_guard_requires_a_passing_test"),
         (
             "xtask",
             &["--lib"][..],
@@ -352,7 +354,7 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             "digit_warnings_classify_unmodelled_numbers_without_duplicate_literal_findings",
         ),
         ("xtask", &["--test", "integrity"][..], "fixed_template_types_share_the_served_hidden_type_rule"),
-        ("xtask", &["--lib"][..], "weapon_ability_rejoin_orders_the_aggregate"),
+        ("xtask", &["--lib"][..], "integrity::weapon_ability_tests::weapon_ability_rejoin_orders_the_aggregate"),
         ("ddo-etl", &["--test", "build"][..], "held_member_lines_keep_their_targeted_family_names"),
         ("ddo-etl", &["--lib"][..], "groupings::tests::index_uses_two_queries_for_one_and_fifty_effects"),
         (
@@ -378,7 +380,12 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         ("ddo-etl", &["--test", "data_rejections"][..], "stat_aliases_read_one_amount_without_a_canonical_template"),
         ("ddo-api", &["--test", "api"][..], "item_pack_query_count_does_not_grow_with_rows_or_sources"),
         ("ddo-api", &["--test", "api"][..], "item_full_page_query_count_does_not_grow_with_rows"),
-        ("ddo-api", &["--lib"][..], "every_value_vocabulary_avoids_correlated_table_scans"),
+        (
+            "ddo-api",
+            &["--lib"][..],
+            "routes::v1::vocabulary_tests::every_value_vocabulary_avoids_correlated_table_scans",
+        ),
+        ("ddo-api", &["--lib"][..], "routes::v1::vocabulary_tests::every_value_vocabulary_validates_without_counting"),
         ("ddo-api", &["--test", "api"][..], "crafting_detail_query_count_does_not_grow_with_recipes"),
         ("ddo-api", &["--test", "api"][..], "augment_slot_type_detail_query_count_does_not_grow_with_candidates"),
         ("ddo-api", &["--test", "api"][..], "note_queries_do_not_grow_from_one_to_fifty_owners"),
@@ -533,16 +540,30 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
         ),
         ("ddo-etl", &["--test", "corrections"][..], "a_socket_label_merge_renames_every_listed_spelling_into_one_row"),
     ] {
-        let test_status = Command::new("cargo")
+        let output = Command::new("cargo")
             .args(["test", "-p", crate_name])
             .args(test_target)
             .args([test_name, "--", "--exact"])
-            .status()
+            .output()
             .with_context(|| format!("checking contract or scale guard: {test_name}"))?;
-        if !test_status.success() {
-            bail!("contract or scale guard failed: {test_name}");
+        print!("{}", String::from_utf8_lossy(&output.stdout));
+        eprint!("{}", String::from_utf8_lossy(&output.stderr));
+        if let Err(error) = contract_guard_result(test_name, &output) {
+            failures.push(error.to_string());
         }
     }
+    ensure!(failures.is_empty(), "{}", failures.join("\n"));
+    Ok(())
+}
+
+fn contract_guard_result(test_name: &str, output: &Output) -> Result<()> {
+    ensure!(output.status.success(), "contract or scale guard failed: {test_name}");
+    let passed_count = String::from_utf8_lossy(&output.stdout)
+        .lines()
+        .filter_map(|line| line.strip_prefix("test result: ok. "))
+        .filter_map(|summary| summary.split_whitespace().next()?.parse::<usize>().ok())
+        .sum::<usize>();
+    ensure!(passed_count > 0, "contract or scale guard ran no passing tests: {test_name}");
     Ok(())
 }
 
@@ -581,4 +602,24 @@ fn rust_source_paths(search_root: PathBuf) -> impl Iterator<Item = PathBuf> {
         .filter_map(|entry| entry.ok())
         .filter(|entry| entry.path().extension().is_some_and(|extension| extension == "rs"))
         .map(|entry| entry.into_path())
+}
+
+#[cfg(test)]
+mod contract_guard_tests {
+    use super::contract_guard_result;
+    use std::process::Command;
+
+    #[test]
+    fn contract_guard_requires_a_passing_test() {
+        let passing_test = "comments::tests::ignores_comment_syntax_inside_strings";
+        for (test_name, should_pass) in [(passing_test, true), ("missing_contract_guard", false)] {
+            let output = Command::new(std::env::current_exe().unwrap()).args([test_name, "--exact"]).output().unwrap();
+            assert_eq!(
+                contract_guard_result(test_name, &output).is_ok(),
+                should_pass,
+                "{test_name}: {}",
+                String::from_utf8_lossy(&output.stdout)
+            );
+        }
+    }
 }

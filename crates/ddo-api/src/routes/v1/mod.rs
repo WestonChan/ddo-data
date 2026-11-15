@@ -25,31 +25,11 @@ use utoipa::OpenApi;
 use utoipa_axum::router::OpenApiRouter;
 
 declare_value_vocabularies! {
-    WEAPON_ABILITIES_VOCABULARY {
-        select_sql: || items::WEAPON_ABILITIES_SELECT.as_str(),
-        value_column: "name",
-        default_order: "listed.sort_order",
-    },
-    ITEM_MATERIALS_VOCABULARY {
-        select_sql: || items::ITEM_MATERIALS_SELECT,
-        value_column: "name",
-        default_order: "listed.sort_order, listed.name",
-    },
-    AUGMENT_SLOT_TYPES_VOCABULARY {
-        select_sql: || items::AUGMENT_SLOT_TYPES_SELECT,
-        value_column: "label",
-        default_order: "listed.family, listed.label",
-    },
-    AUGMENT_SLOT_FAMILIES_VOCABULARY {
-        select_sql: || items::AUGMENT_SLOT_FAMILIES_SELECT,
-        value_column: "family",
-        default_order: "listed.family",
-    },
-    CRAFTING_SYSTEMS_VOCABULARY {
-        select_sql: || crafting::CRAFTING_SYSTEM_SELECT.as_str(),
-        value_column: "slug",
-        default_order: "listed.name",
-    },
+    WeaponAbilities => items::WEAPON_ABILITIES_VOCABULARY,
+    ItemMaterials => items::ITEM_MATERIALS_VOCABULARY,
+    AugmentSlotTypes => items::AUGMENT_SLOT_TYPES_VOCABULARY,
+    AugmentSlotFamilies => items::AUGMENT_SLOT_FAMILIES_VOCABULARY,
+    CraftingSystems => crafting::CRAFTING_SYSTEMS_VOCABULARY,
 }
 
 #[derive(OpenApi)]
@@ -387,7 +367,28 @@ pub(crate) fn router() -> OpenApiRouter<AppState> {
 
 #[cfg(test)]
 mod vocabulary_tests {
-    use super::VALUE_VOCABULARIES;
+    use super::ValueVocabulary;
+
+    #[test]
+    fn every_value_vocabulary_validates_without_counting() {
+        let mut db = rusqlite::Connection::open_in_memory().unwrap();
+        let fixtures = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures/data");
+        ddo_etl::tree::build_from_data(&fixtures, &mut db).unwrap();
+        let mut violations = Vec::new();
+        for vocabulary in ValueVocabulary::ALL {
+            let sql = vocabulary.validation_sql();
+            for (explain, column) in [("EXPLAIN QUERY PLAN", 3), ("EXPLAIN", 1)] {
+                let mut statement = db.prepare(&format!("{explain} {sql}")).unwrap();
+                for step in statement.query_map([], |row| row.get::<_, String>(column)).unwrap() {
+                    let step = step.unwrap();
+                    if step.contains("GROUP BY") || step.starts_with("Agg") || step == "Count" {
+                        violations.push(format!("{vocabulary:?}: {step}"));
+                    }
+                }
+            }
+        }
+        assert!(violations.is_empty(), "{}", violations.join("\n"));
+    }
 
     #[test]
     fn every_value_vocabulary_avoids_correlated_table_scans() {
@@ -395,8 +396,8 @@ mod vocabulary_tests {
         let fixtures = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures/data");
         ddo_etl::tree::build_from_data(&fixtures, &mut db).unwrap();
         let mut violations = Vec::new();
-        for (name, vocabulary) in VALUE_VOCABULARIES {
-            let mut statement = db.prepare(&format!("EXPLAIN QUERY PLAN {}", (vocabulary.select_sql)())).unwrap();
+        for vocabulary in ValueVocabulary::ALL {
+            let mut statement = db.prepare(&format!("EXPLAIN QUERY PLAN {}", vocabulary.select_sql())).unwrap();
             let plan = statement
                 .query_map([], |row| Ok((row.get::<_, i64>(0)?, (row.get::<_, i64>(1)?, row.get::<_, String>(3)?))))
                 .unwrap()
@@ -406,7 +407,7 @@ mod vocabulary_tests {
                 let mut ancestor = *parent;
                 while let Some((parent, ancestor_detail)) = plan.get(&ancestor) {
                     if ancestor_detail.starts_with("CORRELATED ") {
-                        violations.push(format!("{name}: {ancestor_detail} -> {detail}"));
+                        violations.push(format!("{vocabulary:?}: {ancestor_detail} -> {detail}"));
                     }
                     ancestor = *parent;
                 }

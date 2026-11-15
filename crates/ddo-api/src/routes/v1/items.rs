@@ -1,5 +1,7 @@
 mod records;
 
+use super::ValueVocabulary;
+
 use crate::db::{
     convert_to_booleans, like_escaped_text, paged_query, paged_rows_with_filter, paged_table_json, TableListSource,
     WhereClause,
@@ -8,7 +10,7 @@ use crate::effect_names::{effect_name_search_sql, resolve_effect_name};
 use crate::entity_slugs::{resolve_entity_slug, EntityPath};
 use crate::error::ApiError;
 use crate::query::{
-    declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery, EffectName, ValueVocabulary,
+    declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery, EffectName, VocabularyQueries,
     EFFECT_NAME_SEARCH,
 };
 use crate::state::AppState;
@@ -223,10 +225,10 @@ async fn items(
         .read_db(move |db| {
             let sockets = filters.socket.iter().map(|value| value.to_lowercase()).collect::<Vec<_>>();
             for (parameter, vocabulary, values) in [
-                ("attack_ability", super::WEAPON_ABILITIES_VOCABULARY, filters.attack_ability.as_slice()),
-                ("damage_ability", super::WEAPON_ABILITIES_VOCABULARY, filters.damage_ability.as_slice()),
-                ("material", super::ITEM_MATERIALS_VOCABULARY, filters.material.as_slice()),
-                ("socket", super::AUGMENT_SLOT_TYPES_VOCABULARY, sockets.as_slice()),
+                ("attack_ability", ValueVocabulary::WeaponAbilities, filters.attack_ability.as_slice()),
+                ("damage_ability", ValueVocabulary::WeaponAbilities, filters.damage_ability.as_slice()),
+                ("material", ValueVocabulary::ItemMaterials, filters.material.as_slice()),
+                ("socket", ValueVocabulary::AugmentSlotTypes, sockets.as_slice()),
             ] {
                 vocabulary.reject_unknown_values(db, parameter, values)?;
             }
@@ -279,7 +281,7 @@ async fn items(
             where_clause.add_repeated_filter(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'crafting_system' AND d.crafting_system_id IN (?))",
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'crafting_system' AND d.crafting_system_id = ?)",
-                &entity_filter_ids(db, EntityKind::CraftingSystem, "crafting_system", &filters.crafting_system, Some(&super::CRAFTING_SYSTEMS_VOCABULARY))?, filters.crafting_system_match.as_deref(),
+                &entity_filter_ids(db, EntityKind::CraftingSystem, "crafting_system", &filters.crafting_system, Some(&ValueVocabulary::CraftingSystems))?, filters.crafting_system_match.as_deref(),
             );
             for set_name in &filters.set {
                 let known_set: bool = db.query_row(
@@ -531,22 +533,27 @@ async fn weapon_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
     .await
 }
 
-pub(super) static WEAPON_ABILITIES_SELECT: std::sync::LazyLock<String> = std::sync::LazyLock::new(|| {
-    format!(
-        "SELECT e.id, e.slug, e.name, {} AS sort_order,
-        COALESCE(counted.attack_item_count, 0) AS attack_item_count,
-        COALESCE(counted.damage_item_count, 0) AS damage_item_count
-        FROM effects e LEFT JOIN (
-            SELECT wa.ability,
-                COUNT(DISTINCT wa.item_id) FILTER (WHERE wa.role = 'attack') AS attack_item_count,
-                COUNT(DISTINCT wa.item_id) FILTER (WHERE wa.role = 'damage') AS damage_item_count
-            FROM item_weapon_abilities wa JOIN items i ON i.id = wa.item_id
-            WHERE NOT i.is_legacy GROUP BY wa.ability
-        ) counted ON counted.ability = e.name
-        WHERE e.is_stat = 1 AND e.category = 'ability'",
-        ddo_model::stats::ability_sort_order_sql()
-    )
-});
+pub(super) static WEAPON_ABILITIES_VOCABULARY: std::sync::LazyLock<VocabularyQueries> =
+    std::sync::LazyLock::new(|| {
+        VocabularyQueries::new(
+            "name",
+            "listed.sort_order",
+            &format!(
+                "SELECT e.id, e.slug, e.name, {} AS sort_order FROM effects e
+                 WHERE e.is_stat = 1 AND e.category = 'ability'",
+                ddo_model::stats::ability_sort_order_sql()
+            ),
+            "vocabulary.*, COALESCE(counted.attack_item_count, 0) AS attack_item_count,
+             COALESCE(counted.damage_item_count, 0) AS damage_item_count",
+            "LEFT JOIN (
+                SELECT wa.ability,
+                    COUNT(DISTINCT wa.item_id) FILTER (WHERE wa.role = 'attack') AS attack_item_count,
+                    COUNT(DISTINCT wa.item_id) FILTER (WHERE wa.role = 'damage') AS damage_item_count
+                FROM item_weapon_abilities wa JOIN items i ON i.id = wa.item_id
+                WHERE NOT i.is_legacy GROUP BY wa.ability
+            ) counted ON counted.ability = vocabulary.name",
+        )
+    });
 
 const WEAPON_ABILITIES_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
@@ -575,10 +582,10 @@ async fn weapon_abilities(
         state,
         query,
         TableListSource {
-            select_sql: (super::WEAPON_ABILITIES_VOCABULARY.select_sql)(),
+            select_sql: ValueVocabulary::WeaponAbilities.select_sql(),
             rows_key: "weapon_abilities",
             name_column: "listed.name",
-            default_order: super::WEAPON_ABILITIES_VOCABULARY.default_order,
+            default_order: ValueVocabulary::WeaponAbilities.default_order(),
             sortable_fields: WEAPON_ABILITIES_SORT_FIELDS,
             flag_columns: &[],
         },
@@ -586,11 +593,17 @@ async fn weapon_abilities(
     .await
 }
 
-pub(super) const ITEM_MATERIALS_SELECT: &str =
-    "SELECT m.name, m.sort_order, COALESCE(counted.item_count, 0) AS item_count
-        FROM item_materials m LEFT JOIN (
-            SELECT material_id, COUNT(*) AS item_count FROM items WHERE NOT is_legacy GROUP BY material_id
-        ) counted ON counted.material_id = m.id";
+pub(super) static ITEM_MATERIALS_VOCABULARY: std::sync::LazyLock<VocabularyQueries> = std::sync::LazyLock::new(|| {
+    VocabularyQueries::new(
+        "name",
+        "listed.sort_order, listed.name",
+        "SELECT id, name, sort_order FROM item_materials",
+        "vocabulary.name, vocabulary.sort_order, COALESCE(counted.item_count, 0) AS item_count",
+        "LEFT JOIN (
+                SELECT material_id, COUNT(*) AS item_count FROM items WHERE NOT is_legacy GROUP BY material_id
+            ) counted ON counted.material_id = vocabulary.id",
+    )
+});
 
 const ITEM_MATERIALS_SORT_FIELDS: &[(&str, &str)] =
     &[("name", "listed.name"), ("sort_order", "listed.sort_order"), ("item_count", "listed.item_count")];
@@ -610,10 +623,10 @@ async fn item_materials(State(state): State<AppState>, ApiQuery(query, _): ApiQu
         state,
         query,
         TableListSource {
-            select_sql: (super::ITEM_MATERIALS_VOCABULARY.select_sql)(),
+            select_sql: ValueVocabulary::ItemMaterials.select_sql(),
             rows_key: "item_materials",
             name_column: "listed.name",
-            default_order: super::ITEM_MATERIALS_VOCABULARY.default_order,
+            default_order: ValueVocabulary::ItemMaterials.default_order(),
             sortable_fields: ITEM_MATERIALS_SORT_FIELDS,
             flag_columns: &[],
         },
@@ -654,14 +667,20 @@ async fn damage_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
     .await
 }
 
-pub(super) const AUGMENT_SLOT_TYPES_SELECT: &str =
-    "SELECT t.id, t.slug, t.label, t.family, t.variant, t.qualifier, t.not_crafting_reason,
-        COALESCE(counted.item_count, 0) AS item_count
-        FROM augment_slot_types t LEFT JOIN (
-            SELECT s.slot_id, COUNT(DISTINCT s.item_id) AS item_count
-            FROM item_augment_slots s JOIN items i ON i.id = s.item_id
-            WHERE NOT i.is_legacy GROUP BY s.slot_id
-        ) counted ON counted.slot_id = t.id";
+pub(super) static AUGMENT_SLOT_TYPES_VOCABULARY: std::sync::LazyLock<VocabularyQueries> =
+    std::sync::LazyLock::new(|| {
+        VocabularyQueries::new(
+            "label",
+            "listed.family, listed.label",
+            "SELECT id, slug, label, family, variant, qualifier, not_crafting_reason FROM augment_slot_types",
+            "vocabulary.*, COALESCE(counted.item_count, 0) AS item_count",
+            "LEFT JOIN (
+                SELECT s.slot_id, COUNT(DISTINCT s.item_id) AS item_count
+                FROM item_augment_slots s JOIN items i ON i.id = s.item_id
+                WHERE NOT i.is_legacy GROUP BY s.slot_id
+            ) counted ON counted.slot_id = vocabulary.id",
+        )
+    });
 
 declare_query_parameters! {
     struct AugmentSlotTypeFilters {
@@ -671,7 +690,16 @@ declare_query_parameters! {
     repeatable: ["family"]
 }
 
-pub(super) const AUGMENT_SLOT_FAMILIES_SELECT: &str = "SELECT DISTINCT family FROM augment_slot_types";
+pub(super) static AUGMENT_SLOT_FAMILIES_VOCABULARY: std::sync::LazyLock<VocabularyQueries> =
+    std::sync::LazyLock::new(|| {
+        VocabularyQueries::new(
+            "family",
+            "listed.family",
+            "SELECT DISTINCT family FROM augment_slot_types",
+            "vocabulary.*",
+            "",
+        )
+    });
 
 const AUGMENT_SLOT_TYPES_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.label"),
@@ -716,15 +744,15 @@ async fn augment_slot_types(
 ) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
-            super::AUGMENT_SLOT_FAMILIES_VOCABULARY.reject_unknown_values(db, "family", &filters.family)?;
+            ValueVocabulary::AugmentSlotFamilies.reject_unknown_values(db, "family", &filters.family)?;
             let mut where_clause = WhereClause::default();
             where_clause.add_repeated_filter("listed.family IN (?)", "listed.family = ?", &filters.family, None);
             let page = paged_rows_with_filter(
                 db,
-                (super::AUGMENT_SLOT_TYPES_VOCABULARY.select_sql)(),
+                ValueVocabulary::AugmentSlotTypes.select_sql(),
                 &query,
                 "listed.label",
-                super::AUGMENT_SLOT_TYPES_VOCABULARY.default_order,
+                ValueVocabulary::AugmentSlotTypes.default_order(),
                 AUGMENT_SLOT_TYPES_SORT_FIELDS,
                 where_clause,
             )?;
