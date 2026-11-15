@@ -1,3 +1,4 @@
+use super::vocabularies::{VocabularyOptions, VocabularySource};
 use super::ValueVocabulary;
 use crate::db::{
     convert_to_booleans, effects_via_with_link_order, grouped_rows, json_row, json_rows, modifiers_for_owners,
@@ -5,7 +6,7 @@ use crate::db::{
 };
 use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
-use crate::query::{declare_list_parameters, ApiQuery, VocabularySource};
+use crate::query::{declare_list_parameters, ApiQuery};
 use crate::state::AppState;
 use axum::extract::State;
 use axum::Json;
@@ -33,16 +34,17 @@ pub(super) static CRAFTING_SYSTEMS_VOCABULARY: std::sync::LazyLock<VocabularySou
                  WHERE link.system_id=s.id ORDER BY link.sort_order LIMIT 1) AS npc
              FROM crafting_systems s LEFT JOIN adventure_packs p ON p.id = s.pack_id"
             .into(),
-        list_columns: Some(|vocabulary| {
-            format!(
-                "{vocabulary}.*, COALESCE(ingredients.ingredient_count, 0) AS ingredient_count,
+        options: VocabularyOptions::default()
+            .with_list_columns(|vocabulary| {
+                format!(
+                    "{vocabulary}.*, COALESCE(ingredients.ingredient_count, 0) AS ingredient_count,
              COALESCE(recipes.recipe_count, 0) AS recipe_count,
              COALESCE(outputs.item_count, 0) AS item_count"
-            )
-        }),
-        count_joins: Some(|vocabulary| {
-            format!(
-                "LEFT JOIN (
+                )
+            })
+            .with_count_joins(|vocabulary| {
+                format!(
+                    "LEFT JOIN (
                     {} SELECT system_id, COUNT(*) AS ingredient_count FROM ingredient_uses GROUP BY system_id
                  ) ingredients ON ingredients.system_id = {vocabulary}.id
                  LEFT JOIN (SELECT system_id, COUNT(*) AS recipe_count FROM crafting_recipes GROUP BY system_id) recipes
@@ -52,10 +54,9 @@ pub(super) static CRAFTING_SYSTEMS_VOCABULARY: std::sync::LazyLock<VocabularySou
                     FROM crafting_outputs output JOIN items i ON i.id = output.owner_id
                     WHERE output.owner_kind = 'item' AND NOT i.is_legacy GROUP BY output.crafting_system_id
                  ) outputs ON outputs.crafting_system_id = {vocabulary}.id",
-                INGREDIENT_USES.as_str()
-            )
-        }),
-        ..Default::default()
+                    INGREDIENT_USES.as_str()
+                )
+            }),
     });
 
 fn attach_augment_families(db: &Connection, crafting_system: &mut Value) -> Result<(), ApiError> {

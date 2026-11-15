@@ -17,6 +17,7 @@ mod spells;
 mod stances;
 mod vendors_and_events;
 mod version;
+mod vocabularies;
 
 use crate::docs::declare_response_examples;
 use crate::state::AppState;
@@ -355,68 +356,4 @@ pub(crate) fn router() -> OpenApiRouter<AppState> {
         .merge(quest_series::router())
         .merge(vendors_and_events::router())
         .merge(dump::router())
-}
-
-mod vocabularies {
-    use crate::query::declare_value_vocabularies;
-
-    declare_value_vocabularies! {
-        WeaponAbilities => super::items::WEAPON_ABILITIES_VOCABULARY,
-        ItemMaterials => super::items::ITEM_MATERIALS_VOCABULARY,
-        AugmentSlotTypes => super::items::AUGMENT_SLOT_TYPES_VOCABULARY,
-        AugmentSlotFamilies => super::items::AUGMENT_SLOT_FAMILIES_VOCABULARY,
-        CraftingSystems => super::crafting::CRAFTING_SYSTEMS_VOCABULARY,
-    }
-
-    #[cfg(test)]
-    mod vocabulary_tests {
-        use super::ValueVocabulary;
-
-        #[test]
-        fn every_value_vocabulary_validates_without_counting() {
-            let mut db = rusqlite::Connection::open_in_memory().unwrap();
-            let fixtures = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures/data");
-            ddo_etl::tree::build_from_data(&fixtures, &mut db).unwrap();
-            let mut violations = Vec::new();
-            for vocabulary in ValueVocabulary::ALL {
-                let sql = &vocabulary.queries().validation_sql;
-                for (explain, column) in [("EXPLAIN QUERY PLAN", 3), ("EXPLAIN", 1)] {
-                    let mut statement = db.prepare(&format!("{explain} {sql}")).unwrap();
-                    for step in statement.query_map([], |row| row.get::<_, String>(column)).unwrap() {
-                        let step = step.unwrap();
-                        if step.contains("GROUP BY") || step.starts_with("Agg") || step == "Count" {
-                            violations.push(format!("{vocabulary:?}: {step}"));
-                        }
-                    }
-                }
-            }
-            assert!(violations.is_empty(), "{}", violations.join("\n"));
-        }
-
-        #[test]
-        fn every_value_vocabulary_avoids_correlated_table_scans() {
-            let mut db = rusqlite::Connection::open_in_memory().unwrap();
-            let fixtures = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures/data");
-            ddo_etl::tree::build_from_data(&fixtures, &mut db).unwrap();
-            let mut violations = Vec::new();
-            for vocabulary in ValueVocabulary::ALL {
-                let mut statement = db.prepare(&format!("EXPLAIN QUERY PLAN {}", vocabulary.select_sql())).unwrap();
-                let plan = statement
-                    .query_map([], |row| Ok((row.get::<_, i64>(0)?, (row.get::<_, i64>(1)?, row.get::<_, String>(3)?))))
-                    .unwrap()
-                    .collect::<rusqlite::Result<std::collections::BTreeMap<_, _>>>()
-                    .unwrap();
-                for (parent, detail) in plan.values().filter(|(_, detail)| detail.starts_with("SCAN ")) {
-                    let mut ancestor = *parent;
-                    while let Some((parent, ancestor_detail)) = plan.get(&ancestor) {
-                        if ancestor_detail.starts_with("CORRELATED ") {
-                            violations.push(format!("{vocabulary:?}: {ancestor_detail} -> {detail}"));
-                        }
-                        ancestor = *parent;
-                    }
-                }
-            }
-            assert!(violations.is_empty(), "{}", violations.join("\n"));
-        }
-    }
 }
