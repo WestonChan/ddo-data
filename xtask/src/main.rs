@@ -343,7 +343,7 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
     let mut failures = Vec::new();
     for (crate_name, test_target, test_name) in [
         ("xtask", &["--bin", "xtask"][..], "contract_guard_tests::contract_guard_requires_a_passing_test"),
-        ("xtask", &["--bin", "xtask"][..], "contract_guard_tests::contract_guard_rejects_a_failing_test"),
+        ("xtask", &["--bin", "xtask"][..], "contract_guard_tests::contract_guard_rejects_a_failed_process"),
         (
             "xtask",
             &["--lib"][..],
@@ -633,17 +633,13 @@ mod contract_guard_tests {
     fn passing_guard() {}
 
     #[test]
-    #[ignore = "Run only by the failing-exit-status guard test"]
-    fn failing_guard() {
-        panic!("injected contract guard failure");
-    }
-
-    #[test]
-    fn contract_guard_rejects_a_failing_test() {
-        let test_name = "contract_guard_tests::failing_guard";
-        let output =
-            Command::new(std::env::current_exe().unwrap()).args([test_name, "--exact", "--ignored"]).output().unwrap();
-        assert!(!output.status.success(), "the failure probe must fail through the real test harness");
+    fn contract_guard_rejects_a_failed_process() {
+        let test_name = "contract_guard_tests::passing_guard";
+        let output = Command::new(std::env::current_exe().unwrap())
+            .args([test_name, "--exact", "--invalid-contract-guard-option"])
+            .output()
+            .unwrap();
+        assert!(!output.status.success(), "an invalid harness argument must fail the child process");
         assert_eq!(
             contract_guard_result(test_name, &output).unwrap_err().to_string(),
             format!("contract or scale guard failed: {test_name}")
