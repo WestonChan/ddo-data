@@ -2,14 +2,15 @@
 
 ## Every list filter rejects an unknown value (2026-11-16)
 
-This closes WestonChan/ddo-data#92. No data file or schema changes, and no response for an accepted value changes.
+This closes WestonChan/ddo-data#92. No data file or schema changes, and no response for an accepted value changes unless the value is blank or padded.
 
 **What a consumer has to handle:**
 - **Nine filters answered 200 with an empty page for a value outside their vocabulary and now answer 400:** `/v1/items` `pack`; `/v1/augments` `crafting_system`, `slot` and `family`; `/v1/socket-option-sets` `slot`; `/v1/feats` `group` and `acquire`; `/v1/spells` `school` and `class`. A client that sent a stale or mistyped value and showed no results now receives an error.
 - **`pack` takes the exact name** `/v1/adventure-packs` serves, capitals included, as it matched before; a name in other capitals was an empty page and is now a 400.
+- **A blank value applies no filter, and surrounding whitespace is trimmed, on every vocabulary filter**, as the repeated `/v1/items` filters already did. `/v1/augments` `slot=` and `family=`, `/v1/socket-option-sets` `slot=`, `/v1/feats` `group=` and `acquire=`, and `/v1/spells` `school=` and `class=` answered an empty page and now answer the unfiltered one. `/v1/items` `view=`, `/v1/feats` `source=` and `/v1/effects` `kind=` answered 400 and now answer as if the parameter were absent. `/v1/augments?slot=%20red` answered an empty page and now answers what `slot=red` does.
 
 **What is added:**
-- **The 400 lists the accepted values** in one form on all 24 vocabulary filters: `unknown view "everything"; accepted values: full, summary`. Nine filters that already answered 400 gain the list: `/v1/items` `slot`, `category`, `set`, `quest`, `quest_chain`, `saga` and `view`; `/v1/feats` `source`; `/v1/effects` `kind`. Every message still begins `unknown {parameter} "{value}"`. `bonus` is unchanged: it resolves a name and answers `unknown bonus "{value}"` with no list.
+- **The 400 lists the accepted values** in one form on all 24 vocabulary filters: `unknown view "everything"; accepted values: full, summary`. Nine filters that already answered 400 gain the list: `/v1/items` `slot`, `category`, `set`, `quest`, `quest_chain`, `saga` and `view`; `/v1/feats` `source`; `/v1/effects` `kind`. Every message still begins `unknown {parameter} "{value}"`, and quotes the value as it was sent, trimmed: `/v1/items?socket=Made-Up` answered `unknown socket "made-up"` and now answers `unknown socket "Made-Up"`. `bonus` is unchanged: it resolves a name and answers `unknown bonus "{value}"` with no list.
 - **`/v1/augments?crafting_system=`** takes a numeric id or a redirected slug as well as the current slug, as `/v1/items` does.
 - **`x-vocabulary`** on each of those parameters in `/v1/openapi.json`: the vocabulary's `name`, and where a list route serves the values, its `route`, `rows_key` and `value_key`.
 
