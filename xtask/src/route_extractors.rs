@@ -10,6 +10,9 @@ const ROUTE_EXTRACTORS: &[(&str, &str)] = &[
     ("EntityPath", "crate::entity_slugs::EntityPath"),
 ];
 
+const ROUTER_ASSEMBLY_METHODS: &[&str] = &["merge", "nest", "nest_service"];
+const ROUTER_ASSEMBLY_RULE: &str = "router assembly must merge a sibling module's router() in mod.rs";
+
 pub fn deny_unchecked_route_extractors(root: &Path) -> anyhow::Result<()> {
     let mut findings = Vec::new();
     for entry in WalkDir::new(root) {
@@ -19,7 +22,9 @@ pub fn deny_unchecked_route_extractors(root: &Path) -> anyhow::Result<()> {
             continue;
         }
         let source = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
-        for (offset, message) in route_extractor_findings(&source) {
+        for (offset, message) in
+            route_extractor_findings(&source, path.file_name().is_some_and(|name| name == "mod.rs"))
+        {
             let line = source[..offset].matches('\n').count() + 1;
             findings.push(format!("{}:{line}: {message}", path.display()));
         }
@@ -133,6 +138,8 @@ struct HandlerArgument {
 
 #[derive(Default)]
 struct RouteSource {
+    sibling_modules: Vec<String>,
+    router_assemblies: Vec<(usize, String, String)>,
     module_scopes: Vec<Vec<usize>>,
     imports: Vec<ImportedName>,
     handlers: Vec<ScopedName>,
@@ -143,7 +150,7 @@ struct RouteSource {
     findings: Vec<(usize, String)>,
 }
 
-fn route_extractor_findings(source: &str) -> Vec<(usize, String)> {
+fn route_extractor_findings(source: &str, is_module_file: bool) -> Vec<(usize, String)> {
     let mut parsed = RouteSource::default();
     parsed.inspect(&source_tokens(source), &[], false);
     for import in &parsed.imports {
@@ -224,6 +231,14 @@ fn route_extractor_findings(source: &str) -> Vec<(usize, String)> {
                 .push((*offset, "request extractor implementation belongs outside route modules".to_string()));
         }
     }
+    for (offset, method, argument) in parsed.router_assemblies {
+        let is_sibling_merge = is_module_file
+            && method == "merge"
+            && parsed.sibling_modules.iter().any(|module| argument == format!("{module}::router()"));
+        if !is_sibling_merge {
+            parsed.findings.push((offset, ROUTER_ASSEMBLY_RULE.to_string()));
+        }
+    }
     parsed.findings
 }
 
@@ -259,6 +274,12 @@ impl RouteSource {
                     index = end;
                 }
                 "type" | "struct" | "enum" | "union" | "trait" | "mod" => {
+                    if token.text == "mod"
+                        && scope.is_empty()
+                        && tokens.get(index + 2).is_some_and(|part| part.text == ";")
+                    {
+                        self.sibling_modules.push(tokens[index + 1].text.to_string());
+                    }
                     if let Some(name) = tokens.get(index + 1).filter(|name| is_reserved_name(name.text)) {
                         self.findings.push((name.offset, format!("extractor declaration cannot shadow {}", name.text)));
                     }
@@ -294,6 +315,14 @@ impl RouteSource {
                         }
                     }
                 }
+                method
+                    if ROUTER_ASSEMBLY_METHODS.contains(&method)
+                        && index >= 2
+                        && tokens[index - 1].text == ":"
+                        && tokens[index - 2].text == ":" =>
+                {
+                    self.findings.push((token.offset, ROUTER_ASSEMBLY_RULE.to_string()));
+                }
                 "." => {
                     if let Some(method) = tokens.get(index + 1) {
                         if matches!(method.text, "route" | "route_service" | "fallback" | "fallback_service") {
@@ -301,6 +330,11 @@ impl RouteSource {
                                 method.offset,
                                 "route registration must use routes! with a local async handler".to_string(),
                             ));
+                        } else if ROUTER_ASSEMBLY_METHODS.contains(&method.text) {
+                            let opening = index + 2;
+                            let end = matching_delimiter(tokens, opening);
+                            let argument = token_text(&tokens[opening + 1..end]);
+                            self.router_assemblies.push((method.offset, method.text.to_string(), argument));
                         } else if method.text == "routes" {
                             let opening = index + 2;
                             let end = matching_delimiter(tokens, opening);
@@ -529,6 +563,9 @@ use crate::entity_slugs::EntityPath;";
             ("namespace alias", "use other as axum;", "import"),
             ("nested glob shadow", "mod nested { use other::*; async fn listing(state: State<AppState>) {} }", "argument"),
             ("direct route", "fn router() { OpenApiRouter::new().route(\"/probe\", get(|uri: Uri| async {})); }", "registration"),
+            ("associated merge", "fn router() { OpenApiRouter::merge(router, foreign::router()); }", "router assembly"),
+            ("associated nest service", "fn router() { OpenApiRouter::nest_service(router, \"/raw\", service); }", "router assembly"),
+            ("assembly function alias", "fn router() { let attach = OpenApiRouter::merge; attach(router, foreign::router()); }", "router assembly"),
             ("constructed routes", "fn router() { OpenApiRouter::new().routes(other::routes()); }", "registration"),
             ("renamed registration macro", "use utoipa_axum::routes as register; fn router() { register!(other); }", "registration"),
             ("shadowed handler", "async fn listing() {} fn router() { let listing = |uri: Uri| async {}; routes!(listing); }", "registration"),
@@ -551,6 +588,52 @@ use crate::entity_slugs::EntityPath;";
                     assert!(message.contains(expected), "{label}: {message}");
                     println!("{label}: {message}");
                 }
+            }
+        }
+        assert!(missed.is_empty(), "{}", missed.join("\n"));
+    }
+
+    #[test]
+    fn router_assembly_accepts_only_sibling_router_merges_in_module_files() {
+        let folder = tempfile::tempdir().unwrap();
+        let mut missed = Vec::new();
+        for (filename, assembly, accepted) in [
+            ("mod.rs", ".merge(child::router())", true),
+            ("mod.rs", ".merge(\n child :: router ( ) \n)", true),
+            ("mod.rs", ".merge(crate::db::raw_router())", false),
+            ("mod.rs", ".merge(foreign::router())", false),
+            ("mod.rs", ".merge(raw_router!())", false),
+            ("mod.rs", ".merge(raw_router())", false),
+            ("mod.rs", ".merge(router)", false),
+            ("mod.rs", ".nest(\"/raw\", child::router())", false),
+            (
+                "mod.rs",
+                ".nest_service(\"/raw\", axum::routing::get(|uri: axum::http::Uri| async move { uri.to_string() }))",
+                false,
+            ),
+            ("listing.rs", ".merge(child::router())", false),
+            ("listing.rs", ".merge(raw_router())", false),
+            ("listing.rs", ".nest(\"/raw\", child::router())", false),
+            (
+                "listing.rs",
+                ".nest_service(\"/raw\", axum::routing::get(|uri: axum::http::Uri| async move { uri.to_string() }))",
+                false,
+            ),
+        ] {
+            let file = folder.path().join(filename);
+            std::fs::write(&file, format!("mod child;\nfn router() {{\nOpenApiRouter::new(){assembly};\n}}")).unwrap();
+            let result = deny_unchecked_route_extractors(folder.path());
+            std::fs::remove_file(file).unwrap();
+            match (accepted, result) {
+                (true, Err(error)) => panic!("{filename} {assembly}: {error}"),
+                (false, Ok(())) => missed.push(format!("{filename} {assembly}: no finding reported")),
+                (false, Err(error)) => {
+                    let message = error.to_string();
+                    assert!(message.contains(&format!("{filename}:3:")), "{message}");
+                    assert!(message.contains("router assembly"), "{message}");
+                    println!("{message}");
+                }
+                (true, Ok(())) => {}
             }
         }
         assert!(missed.is_empty(), "{}", missed.join("\n"));

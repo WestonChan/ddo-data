@@ -20,6 +20,7 @@ toml = "1.1"
 walkdir = "2"
 
 [workspace.lints.rust]
+unsafe_code = "forbid"
 unreachable_pub = "warn"
 
 [workspace.lints.clippy]
