@@ -1,3 +1,4 @@
+use super::vocabularies::VocabularySource;
 use crate::db::{
     attack_for, bonuses_via, convert_to_booleans, dcs_for, json_row, json_rows, modifiers_for, notes_for_owners,
     paged_query, requirements_for, stances_for, WhereClause,
@@ -23,6 +24,23 @@ declare_query_parameters! {
         pub group: Option<String>,
         pub acquire: Option<String>,
     }
+    vocabularies: {
+        source => FeatSources, "Keep standard, class or race feats; omitted includes every source.",
+        group => FeatGroups, "Exact group name listed on feats; omitted includes every group.",
+        acquire => FeatAcquisitions, "How a feat is acquired, using values listed on feats such as Train or Automatic; omitted includes every rule.",
+    }
+}
+
+pub(super) fn feat_sources_vocabulary() -> VocabularySource {
+    VocabularySource::of_names(FeatSource::ALL.iter().map(|source| source.as_str()))
+}
+
+pub(super) fn feat_groups_vocabulary() -> VocabularySource {
+    VocabularySource::new("group_name", &["group_name"], "SELECT DISTINCT group_name FROM feat_groups")
+}
+
+pub(super) fn feat_acquisitions_vocabulary() -> VocabularySource {
+    VocabularySource::new("acquire", &["acquire"], "SELECT DISTINCT acquire FROM feats")
 }
 
 const FEAT_COLUMNS: &str = "f.id, f.name, f.source_kind, f.source_id,
@@ -59,9 +77,7 @@ declare_list_parameters!(FeatsParameters, FEATS_SORT_FIELDS, "");
     description = "Lists feats with sources, acquisition rules and groups.",
     params(
         FeatsParameters,
-        ("source" = Option<String>, Query, description = "`standard`, `class` or `race`; anything else is a 400"),
-        ("group" = Option<String>, Query, description = "Feat group name, e.g. `Metamagic`; keeps feats listed in that group"),
-        ("acquire" = Option<String>, Query, description = "How the feat is taken, e.g. `Train`, `Automatic`, `Special`"),
+        FeatFilters,
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `feats` page", body = crate::routes::v1::response_schemas::FeatsPageResponse),
@@ -75,12 +91,6 @@ async fn feats(
     state
         .read_db(move |db| {
             let filters = filters.validated(db)?;
-            if let Some(source) = &filters.source {
-                if !FeatSource::ALL.iter().any(|known| known.as_str() == source) {
-                    return Err(ApiError::BadRequest(format!("unknown source {source:?}")));
-                }
-            }
-
             let mut where_clause = WhereClause::default();
             where_clause.add_name_search(query.q.as_deref(), "f.name");
             if let Some(source) = &filters.source {

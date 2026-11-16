@@ -108,6 +108,12 @@ declare_value_vocabularies! {
         QuestChains => super::quest_series::quest_chains_vocabulary,
         Sagas => super::quest_series::sagas_vocabulary,
         ItemViews => super::items::item_views_vocabulary,
+        FeatSources => super::feats::feat_sources_vocabulary,
+        FeatGroups => super::feats::feat_groups_vocabulary,
+        FeatAcquisitions => super::feats::feat_acquisitions_vocabulary,
+        SpellSchools => super::spells::spell_schools_vocabulary,
+        Classes => super::classes::classes_vocabulary,
+        EffectKinds => super::bonuses::effect_kinds_vocabulary,
     }
 }
 

@@ -1,3 +1,4 @@
+use super::vocabularies::VocabularySource;
 use crate::db::{
     clamped_page, effects_via_with_link_order, json_row, json_rows, like_escaped_text, notes_for_owners, paged_query,
     paged_table_json, ListPage, TableListSource, WhereClause,
@@ -61,9 +62,16 @@ declare_query_parameters! {
     pub(super) struct EffectFilters {
         pub kind: Option<String>,
     }
+    vocabularies: {
+        kind => EffectKinds, "Keep effect, group or stat rows only; omitted includes every kind.",
+    }
 }
 
 const EFFECT_KINDS: [&str; 3] = ["stat", "effect", "group"];
+
+pub(super) fn effect_kinds_vocabulary() -> VocabularySource {
+    VocabularySource::of_names(EFFECT_KINDS)
+}
 
 const EFFECT_VOCABULARY_SQL: &str = "
     SELECT e.id, e.name, CASE WHEN e.is_stat = 1 THEN 'stat' WHEN e.is_group = 1 THEN 'group' ELSE 'effect' END AS kind,
@@ -102,8 +110,7 @@ declare_list_parameters!(
     tag = "bonuses",
     summary = "List effects, groups and stats",
     description = "Lists every effect, group and stat with carrier counts, types and a detail path.",
-    params(EffectsParameters,
-        ("kind" = Option<String>, Query, description = "Keep `effect`, `group` or `stat` rows only.")),
+    params(EffectsParameters, EffectFilters),
     responses((status = 200, description = "Paged effect vocabulary", body = crate::routes::v1::response_schemas::EffectsPageResponse),
         (status = 400, description = "Invalid kind or query", body = crate::error::ErrorBody))
 )]
@@ -114,12 +121,6 @@ async fn effects(
     state
         .read_db(move |db| {
             let filters = filters.validated(db)?;
-            if let Some(kind) = &filters.kind {
-                if !EFFECT_KINDS.contains(&kind.as_str()) {
-                    return Err(ApiError::BadRequest(format!("unknown kind {kind:?}")));
-                }
-            }
-
             let mut where_clause = WhereClause::default();
             if let Some(kind) = &filters.kind {
                 where_clause.add_bound_condition("kind = ?", kind.clone());

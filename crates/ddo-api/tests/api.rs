@@ -2828,6 +2828,60 @@ async fn item_quests_carry_free_to_play() {
 }
 
 #[tokio::test]
+async fn feat_and_spell_filters_reject_unknown_values() {
+    let mut pages = std::collections::BTreeMap::new();
+    for resource in ["feats", "spells", "classes"] {
+        let (status, _, page) = get(&format!("/v1/{resource}?limit=10000")).await;
+        assert_eq!(status, StatusCode::OK, "{page}");
+        assert_eq!(page[resource].as_array().unwrap().len() as u64, page["total"].as_u64().unwrap());
+        pages.insert(resource, page);
+    }
+    for (resource, parameter, source_resource, field) in [
+        ("feats", "group", "feats", "groups"),
+        ("feats", "acquire", "feats", "acquire"),
+        ("spells", "school", "spells", "schools"),
+        ("spells", "class", "classes", "name"),
+        ("feats", "source", "", ""),
+        ("effects", "kind", "", ""),
+    ] {
+        let accepted: std::collections::BTreeSet<String> = match parameter {
+            "source" => ddo_model::enums::FeatSource::ALL.iter().map(|source| source.as_str().to_string()).collect(),
+            "kind" => ["effect", "group", "stat"].into_iter().map(str::to_string).collect(),
+            _ => pages[source_resource][source_resource]
+                .as_array()
+                .unwrap()
+                .iter()
+                .flat_map(|row| match (parameter, &row[field]) {
+                    ("acquire" | "class", Value::String(value)) => vec![value.clone()],
+                    ("group", Value::Array(values)) => {
+                        values.iter().map(|value| value.as_str().unwrap().to_string()).collect()
+                    }
+                    ("school", schools) => {
+                        serde_json::from_value::<Option<Vec<String>>>(schools.clone()).unwrap().unwrap_or_default()
+                    }
+                    (_, other) => panic!("{resource}.{field} is not a string vocabulary: {other}"),
+                })
+                .collect(),
+        };
+        assert!(!accepted.is_empty(), "{resource}.{parameter}");
+        let (status, _, rejected) = get(&format!("/v1/{resource}?{parameter}=made-up")).await;
+        assert_eq!(status, StatusCode::BAD_REQUEST, "{parameter}: {rejected}");
+        assert_eq!(
+            rejected["error"],
+            format!(
+                "unknown {parameter} \"made-up\"; accepted values: {}",
+                accepted.iter().map(String::as_str).collect::<Vec<_>>().join(", ")
+            )
+        );
+        for value in accepted {
+            let query = serde_urlencoded::to_string([(parameter, value)]).unwrap();
+            let (status, _, page) = get(&format!("/v1/{resource}?{query}")).await;
+            assert_eq!(status, StatusCode::OK, "{query}: {page}");
+        }
+    }
+}
+
+#[tokio::test]
 async fn sets_feats_races_classes_trees_spells() {
     let (_, _, sets) = get_list_rows("/v1/sets").await;
     let winter = sets.as_array().unwrap().iter().find(|s| s["name"] == "Eminence of Winter").unwrap();
@@ -3705,6 +3759,9 @@ fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
         ("crafting_system", _) => "thunder-forged",
         ("source", _) => "standard",
         ("family", _) => "SunAndMoon",
+        ("group", _) => "Standard",
+        ("acquire", _) => "Train",
+        ("school", _) => "Evocation",
         ("view", _) => "full",
         ("bonus", _) => "Strength",
         ("set", _) => "Cooking%20By%20the%20Book",

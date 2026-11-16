@@ -1,3 +1,4 @@
+use super::vocabularies::VocabularySource;
 use crate::db::{
     convert_to_booleans, json_row, json_rows, modifiers_for, paged_query, paged_rows, stances_for, WhereClause,
 };
@@ -20,6 +21,18 @@ declare_query_parameters! {
         pub school: Option<String>,
         pub class: Option<String>,
     }
+    vocabularies: {
+        school => SpellSchools, "Exact school listed on spells, such as Evocation; omitted includes every school.",
+        class => Classes, "Class name from /v1/classes; keeps spells on that class's list; omitted includes every class.",
+    }
+}
+
+pub(super) fn spell_schools_vocabulary() -> VocabularySource {
+    VocabularySource::new(
+        "school",
+        &["school"],
+        "SELECT DISTINCT school.value AS school FROM spells CROSS JOIN json_each(spells.schools) school",
+    )
 }
 
 const SPELL_COLUMNS: &str = "s.id, s.name, s.description,
@@ -51,8 +64,7 @@ declare_list_parameters!(SpellsParameters, SPELLS_SORT_FIELDS, "`school` orders 
     description = "Lists spells with schools, spell-point cost and maximum caster level.",
     params(
         SpellsParameters,
-        ("school" = Option<String>, Query, description = "Spell school, e.g. `Evocation`; matches spells listing it among their schools"),
-        ("class" = Option<String>, Query, description = "Class name as /v1/classes lists it; keeps spells on that class's list"),
+        SpellFilters,
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `spells` page", body = crate::routes::v1::response_schemas::SpellsPageResponse),

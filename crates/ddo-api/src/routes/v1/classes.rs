@@ -1,3 +1,4 @@
+use super::vocabularies::VocabularySource;
 use crate::db::paged_rows;
 use crate::db::{convert_to_booleans, json_row, json_rows};
 use crate::entity_slugs::EntityPath;
@@ -19,6 +20,10 @@ const CLASS_COLUMNS: &str = "classes.id, classes.name, classes.base_class, class
                              classes.skill_points, classes.hit_points, classes.alignments, classes.fortitude, classes.reflex,
                              classes.will, classes.bab, classes.spell_points_per_level, classes.casting_stats, classes.class_specific_feat_types";
 const CLASS_TABLES: &str = "classes LEFT JOIN classes base ON base.id = classes.base_class_id";
+
+pub(super) fn classes_vocabulary() -> VocabularySource {
+    VocabularySource::new("name", &["name"], "SELECT name FROM classes").served_by("/v1/classes", "classes")
+}
 
 const CLASSES_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
