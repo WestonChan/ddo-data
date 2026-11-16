@@ -44,6 +44,30 @@ fn string_filter_repeatability(document: &Value, schema: &Value) -> Option<bool>
         .find_map(|key| schema[key].as_array()?.iter().find_map(|branch| string_filter_repeatability(document, branch)))
 }
 
+async fn served_request_path(router: &Router, documented_path: &str) -> String {
+    let mut request_path = String::new();
+    for segment in documented_path.split('/').filter(|segment| !segment.is_empty()) {
+        if let Some(key) = segment.strip_prefix('{').and_then(|name| name.strip_suffix('}')) {
+            let (status, page) = response(router, &request_path, &[("limit", "1")]).await;
+            assert_eq!(status, StatusCode::OK, "{documented_path}: {request_path}: {page}");
+            let value = page
+                .as_object()
+                .unwrap()
+                .values()
+                .filter_map(Value::as_array)
+                .flat_map(|rows| rows.iter())
+                .find_map(|row| row[key].as_str())
+                .unwrap_or_else(|| panic!("{documented_path}: {request_path} serves no fixture row with {key}"));
+            request_path.push('/');
+            request_path.push_str(value);
+        } else {
+            request_path.push('/');
+            request_path.push_str(segment);
+        }
+    }
+    request_path
+}
+
 async fn served_values(router: &Router, vocabulary: &Value) -> BTreeSet<String> {
     let path = vocabulary["route"].as_str().unwrap();
     let rows_key = vocabulary["rows_key"].as_str().unwrap();
@@ -113,7 +137,7 @@ async fn every_vocabulary_filter_rejects_an_unknown_value_naming_its_accepted_va
     assert_eq!(status, StatusCode::OK);
     let unknown = "Unknown-Vocabulary-Contract-Value";
     let mut findings = Vec::new();
-    let mut list_count = 0;
+    let mut operation_count = 0;
     let mut filter_count = 0;
     for (path, methods) in document["paths"].as_object().unwrap() {
         let Some(parameters) = methods["get"]["parameters"].as_array() else {
@@ -124,10 +148,12 @@ async fn every_vocabulary_filter_rejects_an_unknown_value_naming_its_accepted_va
             parameters.iter().filter(|parameter| parameter["in"] == "query").copied().collect::<Vec<_>>();
         let documented_names =
             query_parameters.iter().map(|parameter| parameter["name"].as_str().unwrap()).collect::<BTreeSet<_>>();
-        if !documented_names.contains("limit") || !documented_names.contains("offset") {
+        if query_parameters.is_empty() {
             continue;
         }
-        list_count += 1;
+        operation_count += 1;
+        let request_path = served_request_path(&router, path).await;
+        let path = request_path.as_str();
         let (status, rejected_key) = response(&router, path, &[(unknown, "1")]).await;
         let accepted_keys = rejected_key["error"]
             .as_str()
@@ -138,16 +164,22 @@ async fn every_vocabulary_filter_rejects_an_unknown_value_naming_its_accepted_va
         }
         for parameter in query_parameters {
             let name = parameter["name"].as_str().unwrap();
+            if matches!(name, "q" | "sort") {
+                continue;
+            }
+            if parameter["x-match-key"]
+                .as_str()
+                .is_some_and(|key| name == format!("{key}_match") && documented_names.contains(key))
+            {
+                let (status, _) = response(&router, path, &[(name, unknown)]).await;
+                if status != StatusCode::BAD_REQUEST {
+                    findings.push(format!("{path}?{name}: match control must reject values other than any or all with 400, received {status}"));
+                }
+                continue;
+            }
             let Some(is_repeatable) = string_filter_repeatability(&document, &parameter["schema"]) else {
                 continue;
             };
-            if matches!(name, "q" | "sort")
-                || parameter["x-match-key"]
-                    .as_str()
-                    .is_some_and(|key| name == format!("{key}_match") && documented_names.contains(key))
-            {
-                continue;
-            }
             filter_count += 1;
             let (status, rejected) = response(&router, path, &[(name, unknown)]).await;
             let message = rejected["error"].as_str().unwrap_or_default();
@@ -230,7 +262,7 @@ async fn every_vocabulary_filter_rejects_an_unknown_value_naming_its_accepted_va
             }
         }
     }
-    assert!(list_count > 0 && filter_count > 0, "no list filters discovered in OpenAPI");
+    assert!(operation_count > 0 && filter_count > 0, "no GET filters discovered in OpenAPI");
     drop(router);
     std::fs::remove_file(database_path).unwrap();
     assert!(findings.is_empty(), "{}", findings.join("\n"));
