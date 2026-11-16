@@ -70,6 +70,8 @@ CDNs can cache aggressively and revalidate with `If-None-Match`. Responses are g
 compressed, CORS allows any origin for `GET`, and requests are limited to a burst of 100 followed
 by five per second per IP. For bulk access
 download the whole database once from `/v1/dump.sqlite` rather than paging the list endpoints.
+On every list route, a filter value outside its vocabulary is a 400 that lists the accepted
+values, never an empty page.
 
 | Path | What |
 |---|---|

@@ -1,5 +1,18 @@
 # V9 data files served changes
 
+## Every list filter rejects an unknown value (2026-11-16)
+
+This closes WestonChan/ddo-data#92. No data file or schema changes, and no response for an accepted value changes.
+
+**What a consumer has to handle:**
+- **Nine filters answered 200 with an empty page for a value outside their vocabulary and now answer 400:** `/v1/items` `pack`; `/v1/augments` `crafting_system`, `slot` and `family`; `/v1/socket-option-sets` `slot`; `/v1/feats` `group` and `acquire`; `/v1/spells` `school` and `class`. A client that sent a stale or mistyped value and showed no results now receives an error.
+- **`pack` takes the exact name** `/v1/adventure-packs` serves, capitals included, as it matched before; a name in other capitals was an empty page and is now a 400.
+
+**What is added:**
+- **The 400 lists the accepted values** in one form on all 24 vocabulary filters: `unknown view "everything"; accepted values: full, summary`. Nine filters that already answered 400 gain the list: `/v1/items` `slot`, `category`, `set`, `quest`, `quest_chain`, `saga` and `view`; `/v1/feats` `source`; `/v1/effects` `kind`. Every message still begins `unknown {parameter} "{value}"`. `bonus` is unchanged: it resolves a name and answers `unknown bonus "{value}"` with no list.
+- **`/v1/augments?crafting_system=`** takes a numeric id or a redirected slug as well as the current slug, as `/v1/items` does.
+- **`x-vocabulary`** on each of those parameters in `/v1/openapi.json`: the vocabulary's `name`, and where a list route serves the values, its `route`, `rows_key` and `value_key`.
+
 ## Item list filters for abilities, material, sockets and crafting system (2026-11-15)
 
 This closes WestonChan/ddo-data#86 and WestonChan/ddo-data#25. No data file changes; the database gains the `item_weapon_abilities` view over the stored modifier text.
