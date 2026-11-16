@@ -399,6 +399,56 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             &["--lib"][..],
             "routes::v1::vocabularies::vocabulary_tests::every_value_vocabulary_validates_without_counting",
         ),
+        (
+            "ddo-api",
+            &["--lib"][..],
+            "routes::v1::vocabularies::vocabulary_tests::membership_validation_lists_on_failure_and_batches_repeated_values",
+        ),
+        (
+            "ddo-api",
+            &["--lib"][..],
+            "routes::v1::vocabularies::vocabulary_tests::nullable_vocabulary_columns_never_break_validation",
+        ),
+        (
+            "ddo-api",
+            &["--lib"][..],
+            "routes::v1::vocabularies::vocabulary_tests::unresolved_entity_vocabulary_values_are_bad_requests",
+        ),
+        (
+            "ddo-api",
+            &["--lib"][..],
+            "routes::v1::vocabularies::vocabulary_tests::static_vocabularies_preserve_quoted_names_and_allow_empty_lists",
+        ),
+        (
+            "ddo-api",
+            &["--lib"][..],
+            "routes::v1::vocabularies::vocabulary_tests::membership_preserves_exact_case_with_case_insensitive_columns",
+        ),
+        (
+            "ddo-api",
+            &["--lib"][..],
+            "query::vocabulary_filter_tests::declared_vocabulary_filters_validate_repeated_and_optional_values",
+        ),
+        (
+            "ddo-api",
+            &["--lib"][..],
+            "query::vocabulary_filter_tests::both_query_extractors_require_vocabulary_validation",
+        ),
+        (
+            "ddo-api",
+            &["--lib"][..],
+            "query::vocabulary_filter_tests::entity_filters_resolve_current_redirected_and_numeric_addresses",
+        ),
+        (
+            "ddo-api",
+            &["--lib"][..],
+            "query::vocabulary_filter_tests::vocabulary_declarations_reject_mismatched_entity_fields",
+        ),
+        (
+            "ddo-api",
+            &["--lib"][..],
+            "query::vocabulary_filter_tests::vocabulary_parameters_derive_repeatability_and_serving_routes",
+        ),
         ("ddo-api", &["--test", "api"][..], "crafting_detail_query_count_does_not_grow_with_recipes"),
         ("ddo-api", &["--test", "api"][..], "augment_slot_type_detail_query_count_does_not_grow_with_candidates"),
         ("ddo-api", &["--test", "api"][..], "note_queries_do_not_grow_from_one_to_fifty_owners"),
