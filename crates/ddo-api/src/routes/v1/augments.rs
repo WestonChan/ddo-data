@@ -1,12 +1,13 @@
 use super::crafting::crafting_recipes_yielding_many;
 use super::quests::{adventure_packs_dropping_via, quests_dropping_via, sources_via};
+use super::vocabularies::VocabularySource;
 use crate::db::{
     convert_to_booleans, effects_via, grouped_rows, json_row, json_rows, modifiers_for, notes_for_owners, paged_query,
     sockets_by_id, sql_integer_list, WhereClause,
 };
 use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
-use crate::query::{declare_list_parameters, declare_query_parameters, ApiQuery};
+use crate::query::{declare_list_parameters, declare_query_parameters, ApiQuery, EntityFilter};
 use crate::state::AppState;
 use axum::extract::State;
 use axum::Json;
@@ -21,11 +22,20 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
 declare_query_parameters! {
     pub(super) struct AugmentFilters {
         pub slot: Option<String>,
-        #[serde(default, deserialize_with = "crate::query::repeated_key_values")]
-        pub crafting_system: Vec<String>,
+        #[serde(default)]
+        pub crafting_system: EntityFilter,
         pub family: Option<String>,
         pub max_level: Option<i64>,
     }
+    vocabularies: {
+        crafting_system => CraftingSystems, "Repeat current or redirected slugs or numeric ids from /v1/crafting-systems to match augments yielded by any; omitted includes all.",
+        slot => AugmentSlotTypes, "Case-insensitive socket label from /v1/augment-slot-types; omitted includes augments fitting any socket.",
+        family => AugmentFamilies, "Exact family as served on augment rows; omitted includes every family.",
+    }
+}
+
+pub(super) fn augment_families_vocabulary() -> VocabularySource {
+    VocabularySource::new("family", &["family"], "SELECT DISTINCT family FROM augments")
 }
 
 const AUGMENT_FLAG_COLUMNS: &[&str] = &["choose_level", "dual_values", "enter_value", "suppress_set_bonus"];
@@ -99,9 +109,7 @@ declare_list_parameters!(AugmentsParameters, AUGMENTS_SORT_FIELDS, "");
     description = "Lists augments with sockets, rendered effects and crafting recipes.",
     params(
         AugmentsParameters,
-        ("crafting_system" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat crafting system slugs from /v1/crafting-systems to match augments yielded by any; omitted includes all."),
-        ("slot" = Option<String>, Query, description = "Socket label as /v1/augment-slot-types lists it, e.g. `red` or `lamordia: melancholic (accessory)`; case-insensitive"),
-        ("family" = Option<String>, Query, description = "Augment family, e.g. `standard`, `lamordia`, `dino`, `crafting`"),
+        AugmentFilters,
         ("max_level" = Option<i64>, Query, description = "Only augments usable at this character level or lower; augments with no minimum level always pass"),
     ),
     responses(
@@ -121,11 +129,11 @@ async fn augments(
             where_clause.add_name_search(query.q.as_deref(), "a.name");
             if let Some(slot_label) = &filters.slot {
                 where_clause.add_bound_condition("EXISTS (SELECT 1 FROM augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.augment_id = a.id AND t.label = ?)",
-                    slot_label.to_lowercase(),
+                    slot_label.clone(),
                 );
             }
-            if !filters.crafting_system.is_empty() {
-                where_clause.add_bound_list_condition("EXISTS (SELECT 1 FROM crafting_recipe_augments link JOIN crafting_recipes recipe ON recipe.id=link.recipe_id JOIN crafting_systems system ON system.id=recipe.system_id WHERE link.augment_id=a.id AND system.slug IN (?))",filters.crafting_system);
+            if !filters.crafting_system.ids().is_empty() {
+                where_clause.add_bound_list_condition("EXISTS (SELECT 1 FROM crafting_recipe_augments link JOIN crafting_recipes recipe ON recipe.id=link.recipe_id WHERE link.augment_id=a.id AND recipe.system_id IN (?))", filters.crafting_system.ids().iter().copied());
             }
             if let Some(family) = &filters.family {
                 where_clause.add_bound_condition("a.family = ?", family.clone());

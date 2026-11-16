@@ -3704,7 +3704,7 @@ fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
         ("socket", _) => "red",
         ("crafting_system", _) => "thunder-forged",
         ("source", _) => "standard",
-        ("family", _) => "standard",
+        ("family", _) => "SunAndMoon",
         ("view", _) => "full",
         ("bonus", _) => "Strength",
         ("set", _) => "Cooking%20By%20the%20Book",
@@ -4685,8 +4685,47 @@ async fn augments_filter_by_the_crafting_system_that_yields_them() {
         get("/v1/augments?crafting_system=thunder-forged&crafting_system=deck-of-many-curses&limit=10000").await;
     let (_, _, deck) = get("/v1/augments?crafting_system=deck-of-many-curses").await;
     assert_eq!(both["total"].as_i64().unwrap(), page["total"].as_i64().unwrap() + deck["total"].as_i64().unwrap());
-    let (_, _, empty) = get("/v1/augments?crafting_system=missing-system").await;
-    assert_eq!(empty["total"], 0);
+    for (parameter, route, rows_key, value_key) in [
+        ("crafting_system", "/v1/crafting-systems", "crafting_systems", "slug"),
+        ("slot", "/v1/augment-slot-types", "augment_slot_types", "label"),
+        ("family", "/v1/augments", "augments", "family"),
+    ] {
+        let (status, _, vocabulary) = get(&format!("{route}?limit=10000")).await;
+        assert_eq!(status, StatusCode::OK, "{vocabulary}");
+        let rows = vocabulary[rows_key].as_array().unwrap();
+        assert_eq!(rows.len() as u64, vocabulary["total"].as_u64().unwrap());
+        let mut accepted = rows.iter().map(|row| row[value_key].as_str().unwrap()).collect::<Vec<_>>();
+        if parameter == "family" {
+            accepted.sort_unstable();
+            accepted.dedup();
+        }
+        let expected = format!("unknown {parameter} \"made-up\"; accepted values: {}", accepted.join(", "));
+        let (status, _, rejected) = get(&format!("/v1/augments?{parameter}=made-up")).await;
+        assert_eq!(status, StatusCode::BAD_REQUEST, "{parameter}: {rejected}");
+        assert_eq!(rejected["error"], expected);
+        if parameter == "slot" {
+            let (status, _, rejected) = get("/v1/socket-option-sets?slot=made-up").await;
+            assert_eq!(status, StatusCode::BAD_REQUEST, "{rejected}");
+            assert_eq!(rejected["error"], expected);
+        }
+    }
+    for route in ["/v1/augments", "/v1/socket-option-sets"] {
+        let (status, _, lower) = get(&format!("{route}?slot=sun&limit=2")).await;
+        assert_eq!(status, StatusCode::OK, "{lower}");
+        let (status, _, upper) = get(&format!("{route}?slot=SUN&limit=2")).await;
+        assert_eq!(status, StatusCode::OK, "{upper}");
+        assert_eq!(upper, lower);
+    }
+    let id = id_in_list_named("/v1/crafting-systems", "Thunder-Forged").await;
+    let (status, _, numeric) = get(&format!("/v1/augments?crafting_system={id}")).await;
+    assert_eq!(status, StatusCode::OK, "{numeric}");
+    assert_eq!(numeric, page);
+    let state = fixture_state_with_data_edits("augment-filter-redirects", |root| {
+        std::fs::write(root.join("redirects.toml"), "[[redirect]]\nkind = \"crafting-systems\"\nfrom = \"former-system\"\nto = \"thunder-forged\"\nsince = \"2026-11-15\"\n").unwrap();
+    });
+    let (status, _, redirected) = get_from(state, "/v1/augments?crafting_system=former-system").await;
+    assert_eq!(status, StatusCode::OK, "{redirected}");
+    assert_eq!(redirected, page);
 }
 
 fn own_ingredient_cost_reference(ingredients: &[Value], name: &str, tier: &str, quantity: i64) -> Value {

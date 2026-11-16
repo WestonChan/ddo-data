@@ -98,6 +98,7 @@ declare_value_vocabularies! {
         ItemMaterials => super::items::item_materials_vocabulary,
         AugmentSlotTypes => super::items::augment_slot_types_vocabulary,
         AugmentSlotFamilies => super::items::augment_slot_families_vocabulary,
+        AugmentFamilies => super::augments::augment_families_vocabulary,
         CraftingSystems => super::crafting::crafting_systems_vocabulary,
         EquipmentSlots => super::items::equipment_slots_vocabulary,
         ItemCategories => super::items::item_categories_vocabulary,

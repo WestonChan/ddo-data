@@ -64,6 +64,9 @@ declare_query_parameters! {
     struct SocketOptionSetFilters {
         pub slot: Option<String>,
     }
+    vocabularies: {
+        slot => AugmentSlotTypes, "Case-insensitive socket label from /v1/augment-slot-types; omitted includes every label.",
+    }
 }
 
 const SET_COLUMNS: &str = "s.id,s.slug,s.name,s.variant,t.label AS label";
@@ -78,8 +81,7 @@ const SET_SORT_FIELDS: &[(&str, &str)] = &[
 declare_list_parameters!(SocketOptionSetsParameters, SET_SORT_FIELDS, "");
 
 #[utoipa::path(get,path="/v1/socket-option-sets",tag="crafting",summary="List socket option sets",
-    description="Lists fixed choice sets owned by socket labels.",params(SocketOptionSetsParameters,
-        ("slot" = Option<String>,Query,description="Socket label from /v1/augment-slot-types; omitted includes every label.")),
+    description="Lists fixed choice sets owned by socket labels.",params(SocketOptionSetsParameters, SocketOptionSetFilters),
     responses((status=200,description="The paged socket option sets",body=super::response_schemas::SocketOptionSetsResponse),
         (status=400,description="Unknown or malformed query parameter",body=crate::error::ErrorBody)))]
 async fn socket_option_sets(
@@ -93,7 +95,7 @@ async fn socket_option_sets(
             let mut conditions = WhereClause::default();
             conditions.add_name_search(query.q.as_deref(), "s.name");
             if let Some(label) = filters.slot {
-                conditions.add_bound_condition("t.label=?", label.to_lowercase());
+                conditions.add_bound_condition("t.label=?", label);
             }
             Ok(Json(
                 paged_query(
