@@ -68,7 +68,7 @@ declare_list_parameters!(SpellsParameters, SPELLS_SORT_FIELDS, "`school` orders 
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `spells` page", body = crate::routes::v1::response_schemas::SpellsPageResponse),
-        (status = 400, description = "Unknown or malformed query parameter", body = crate::error::ErrorBody)
+        (status = 400, description = "Unknown filter value with accepted values, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
 async fn spells(

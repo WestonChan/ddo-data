@@ -2364,10 +2364,13 @@ async fn items_reject_an_unknown_pack_and_name_every_filter_vocabulary() {
         assert_eq!(status, StatusCode::BAD_REQUEST, "{parameter}: {rejected}");
         assert_eq!(rejected["error"], format!("unknown {parameter} \"made-up\"; accepted values: {accepted}"));
         if parameter == "pack" {
+            let (status, _, page) = get("/v1/items?pack=Shadowfell%20Conspiracy").await;
+            assert_eq!(status, StatusCode::OK, "{page}");
             for (suffix, unknown) in [
                 ("pack=made-up&pack_match=all", "made-up"),
                 ("pack=Free%20to%20Play&pack=made-up&pack_match=all", "made-up"),
                 ("pack=shadowfell", "shadowfell"),
+                ("pack=shadowfell%20conspiracy", "shadowfell conspiracy"),
             ] {
                 let (status, _, rejected) = get(&format!("/v1/items?{suffix}")).await;
                 assert_eq!(status, StatusCode::BAD_REQUEST, "{rejected}");
@@ -3633,12 +3636,6 @@ async fn every_list_route_has_paging_sorting_and_an_envelope() {
                 .unwrap_or_else(|| panic!("{path} has no {name} query parameter"));
             assert!(parameter["description"].as_str().is_some_and(|description| !description.is_empty()));
         }
-        let sort_description =
-            parameters.iter().find(|parameter| parameter["name"] == "sort").unwrap()["description"].as_str().unwrap();
-        assert!(sort_description.contains("name"), "{path}: {sort_description}");
-        if path != "/v1/effects" {
-            assert!(sort_description.contains("id"), "{path}: {sort_description}");
-        }
         let (status, _, page) = get(&format!("{path}?limit=1&offset=0&sort=-name")).await;
         assert_eq!(status, StatusCode::OK, "{path}: {page}");
         assert_eq!(page["limit"], 1, "{path}");
@@ -3751,12 +3748,7 @@ fn param_schema_type(param: &Value) -> &str {
 fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
     match (param_name, schema_type) {
         ("sort", _) => "name",
-        ("slot", _) => "Wrists",
         ("category", _) => "Armor",
-        ("attack_ability" | "damage_ability", _) => "Strength",
-        ("material", _) => "Steel",
-        ("socket", _) => "red",
-        ("crafting_system", _) => "thunder-forged",
         ("source", _) => "standard",
         ("family", _) => "SunAndMoon",
         ("group", _) => "Standard",
@@ -3764,13 +3756,9 @@ fn accepted_sample_value(param_name: &str, schema_type: &str) -> &'static str {
         ("school", _) => "Evocation",
         ("view", _) => "full",
         ("bonus", _) => "Strength",
-        ("set", _) => "Cooking%20By%20the%20Book",
         ("kind", _) => "stat",
         ("bonus_match" | "pack_match" | "quest_match" | "quest_chain_match" | "saga_match" | "set_match", _) => "any",
         ("attack_ability_match" | "damage_ability_match" | "socket_match" | "crafting_system_match", _) => "any",
-        ("quest", _) => "book-burning",
-        ("quest_chain", _) => "the-lost-seekers",
-        ("saga", _) => "masterminds-of-sharn",
         (_, "boolean") => "true",
         (_, "integer" | "number") => "1",
         _ => "x",

@@ -81,7 +81,7 @@ declare_list_parameters!(FeatsParameters, FEATS_SORT_FIELDS, "");
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `feats` page", body = crate::routes::v1::response_schemas::FeatsPageResponse),
-        (status = 400, description = "Unknown source, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
+        (status = 400, description = "Unknown filter value with accepted values, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
 async fn feats(

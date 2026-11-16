@@ -11,6 +11,7 @@ pub(super) struct VocabularySource {
     served_by: Option<(&'static str, &'static str)>,
     entity_kind: Option<EntityKind>,
     is_case_insensitive: bool,
+    checks_membership_first: bool,
 }
 
 struct CountedListing {
@@ -32,6 +33,7 @@ impl VocabularySource {
             served_by: None,
             entity_kind: None,
             is_case_insensitive: false,
+            checks_membership_first: false,
         }
     }
 
@@ -60,6 +62,11 @@ impl VocabularySource {
 
     pub(super) fn case_insensitive(mut self) -> Self {
         self.is_case_insensitive = true;
+        self
+    }
+
+    pub(super) fn with_membership_check(mut self) -> Self {
+        self.checks_membership_first = true;
         self
     }
 }
@@ -157,6 +164,7 @@ impl ValueVocabulary {
 struct VocabularyQueries {
     select_sql: String,
     validation_sql: String,
+    membership_sql: Option<String>,
     default_order: String,
     served_by: Option<(&'static str, &'static str, &'static str)>,
     entity_kind: Option<EntityKind>,
@@ -180,6 +188,9 @@ impl VocabularyQueries {
             validation_sql: format!(
                 "SELECT {listed_alias}.{value_column} FROM ({values_sql}) {listed_alias} ORDER BY {default_order}"
             ),
+            membership_sql: source.checks_membership_first.then(|| {
+                format!("SELECT EXISTS (SELECT 1 FROM ({values_sql}) {listed_alias} WHERE {listed_alias}.{value_column} = ?1)")
+            }),
             default_order,
             served_by: source.served_by.map(|(route, rows_key)| (route, rows_key, source.value_column)),
             entity_kind: source.entity_kind,
@@ -190,6 +201,11 @@ impl VocabularyQueries {
     fn reject_unknown_values(&self, db: &Connection, parameter: &str, values: &[String]) -> Result<(), ApiError> {
         if values.is_empty() {
             return Ok(());
+        }
+        if let ([value], Some(sql)) = (values, &self.membership_sql) {
+            if db.prepare_cached(sql)?.query_row([value], |row| row.get::<_, bool>(0))? {
+                return Ok(());
+            }
         }
         let mut statement = db.prepare_cached(&self.validation_sql)?;
         let accepted = statement.query_map([], |row| row.get::<_, String>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
@@ -208,6 +224,52 @@ impl VocabularyQueries {
 #[cfg(test)]
 mod vocabulary_tests {
     use super::{ValueVocabulary, VocabularyQueries, VocabularySource};
+
+    #[test]
+    fn membership_validation_lists_on_failure_and_batches_repeated_values() {
+        use rusqlite::trace::{TraceEvent, TraceEventCodes};
+        use std::sync::atomic::{AtomicUsize, Ordering};
+
+        static QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
+        let mut db = rusqlite::Connection::open_in_memory().unwrap();
+        let fixtures = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures/data");
+        ddo_etl::tree::build_from_data(&fixtures, &mut db).unwrap();
+        let accepted = db
+            .prepare("SELECT DISTINCT family FROM augments ORDER BY family")
+            .unwrap()
+            .query_map([], |row| row.get::<_, String>(0))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert!(accepted.len() > 1);
+        db.trace_v2(
+            TraceEventCodes::SQLITE_TRACE_STMT,
+            Some(|event| {
+                if let TraceEvent::Stmt(_, _) = event {
+                    QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+                }
+            }),
+        );
+        for (values, unknown, expected_queries) in [
+            (vec![], None, 0),
+            (vec![accepted[0].clone()], None, 1),
+            (accepted.clone(), None, 1),
+            (vec!["made-up".into()], Some("made-up"), 2),
+            (vec![accepted[0].clone(), "made-up".into(), "another-unknown".into()], Some("made-up"), 1),
+        ] {
+            QUERY_COUNT.store(0, Ordering::SeqCst);
+            let result = ValueVocabulary::AugmentFamilies.reject_unknown_values(&db, "family", &values);
+            assert_eq!(QUERY_COUNT.load(Ordering::SeqCst), expected_queries, "{values:?}");
+            if let Some(unknown) = unknown {
+                let crate::error::ApiError::BadRequest(message) = result.unwrap_err() else {
+                    panic!("expected an unknown family")
+                };
+                assert_eq!(message, format!("unknown family {unknown:?}; accepted values: {}", accepted.join(", ")));
+            } else {
+                result.unwrap();
+            }
+        }
+    }
 
     #[test]
     fn static_vocabularies_preserve_quoted_names_and_allow_empty_lists() {
@@ -232,13 +294,17 @@ mod vocabulary_tests {
         ddo_etl::tree::build_from_data(&fixtures, &mut db).unwrap();
         let mut violations = Vec::new();
         for vocabulary in ValueVocabulary::ALL {
-            let sql = &vocabulary.queries().validation_sql;
-            for (explain, column) in [("EXPLAIN QUERY PLAN", 3), ("EXPLAIN", 1)] {
-                let mut statement = db.prepare(&format!("{explain} {sql}")).unwrap();
-                for step in statement.query_map([], |row| row.get::<_, String>(column)).unwrap() {
-                    let step = step.unwrap();
-                    if step.contains("GROUP BY") || step.starts_with("Agg") || step == "Count" {
-                        violations.push(format!("{vocabulary:?}: {step}"));
+            let queries = vocabulary.queries();
+            for sql in std::iter::once(queries.validation_sql.as_str()).chain(queries.membership_sql.as_deref()) {
+                for (explain, column) in [("EXPLAIN QUERY PLAN", 3), ("EXPLAIN", 1)] {
+                    let mut statement = db.prepare(&format!("{explain} {sql}")).unwrap();
+                    let parameters =
+                        rusqlite::params_from_iter(std::iter::repeat_n("probe", statement.parameter_count()));
+                    for step in statement.query_map(parameters, |row| row.get::<_, String>(column)).unwrap() {
+                        let step = step.unwrap();
+                        if step.contains("GROUP BY") || step.starts_with("Agg") || step == "Count" {
+                            violations.push(format!("{vocabulary:?}: {step}"));
+                        }
                     }
                 }
             }
@@ -253,19 +319,28 @@ mod vocabulary_tests {
         ddo_etl::tree::build_from_data(&fixtures, &mut db).unwrap();
         let mut violations = Vec::new();
         for vocabulary in ValueVocabulary::ALL {
-            let mut statement = db.prepare(&format!("EXPLAIN QUERY PLAN {}", vocabulary.select_sql())).unwrap();
-            let plan = statement
-                .query_map([], |row| Ok((row.get::<_, i64>(0)?, (row.get::<_, i64>(1)?, row.get::<_, String>(3)?))))
-                .unwrap()
-                .collect::<rusqlite::Result<std::collections::BTreeMap<_, _>>>()
-                .unwrap();
-            for (parent, detail) in plan.values().filter(|(_, detail)| detail.starts_with("SCAN ")) {
-                let mut ancestor = *parent;
-                while let Some((parent, ancestor_detail)) = plan.get(&ancestor) {
-                    if ancestor_detail.starts_with("CORRELATED ") {
-                        violations.push(format!("{vocabulary:?}: {ancestor_detail} -> {detail}"));
+            let queries = vocabulary.queries();
+            for sql in [queries.select_sql.as_str(), queries.validation_sql.as_str()]
+                .into_iter()
+                .chain(queries.membership_sql.as_deref())
+            {
+                let mut statement = db.prepare(&format!("EXPLAIN QUERY PLAN {sql}")).unwrap();
+                let parameters = rusqlite::params_from_iter(std::iter::repeat_n("probe", statement.parameter_count()));
+                let plan = statement
+                    .query_map(parameters, |row| {
+                        Ok((row.get::<_, i64>(0)?, (row.get::<_, i64>(1)?, row.get::<_, String>(3)?)))
+                    })
+                    .unwrap()
+                    .collect::<rusqlite::Result<std::collections::BTreeMap<_, _>>>()
+                    .unwrap();
+                for (parent, detail) in plan.values().filter(|(_, detail)| detail.starts_with("SCAN ")) {
+                    let mut ancestor = *parent;
+                    while let Some((parent, ancestor_detail)) = plan.get(&ancestor) {
+                        if ancestor_detail.starts_with("CORRELATED ") {
+                            violations.push(format!("{vocabulary:?}: {ancestor_detail} -> {detail}"));
+                        }
+                        ancestor = *parent;
                     }
-                    ancestor = *parent;
                 }
             }
         }

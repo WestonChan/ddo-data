@@ -83,7 +83,7 @@ declare_list_parameters!(SocketOptionSetsParameters, SET_SORT_FIELDS, "");
 #[utoipa::path(get,path="/v1/socket-option-sets",tag="crafting",summary="List socket option sets",
     description="Lists fixed choice sets owned by socket labels.",params(SocketOptionSetsParameters, SocketOptionSetFilters),
     responses((status=200,description="The paged socket option sets",body=super::response_schemas::SocketOptionSetsResponse),
-        (status=400,description="Unknown or malformed query parameter",body=crate::error::ErrorBody)))]
+        (status=400,description="Unknown filter value with accepted values, or an unknown or malformed query parameter",body=crate::error::ErrorBody)))]
 async fn socket_option_sets(
     State(state): State<AppState>,
     ApiQuery(query, filters): ApiQuery<SocketOptionSetFilters>,

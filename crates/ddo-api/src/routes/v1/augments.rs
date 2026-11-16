@@ -35,7 +35,7 @@ declare_query_parameters! {
 }
 
 pub(super) fn augment_families_vocabulary() -> VocabularySource {
-    VocabularySource::new("family", &["family"], "SELECT DISTINCT family FROM augments")
+    VocabularySource::new("family", &["family"], "SELECT DISTINCT family FROM augments").with_membership_check()
 }
 
 const AUGMENT_FLAG_COLUMNS: &[&str] = &["choose_level", "dual_values", "enter_value", "suppress_set_bonus"];
@@ -114,7 +114,7 @@ declare_list_parameters!(AugmentsParameters, AUGMENTS_SORT_FIELDS, "");
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `augments` page", body = crate::routes::v1::response_schemas::AugmentsPageResponse),
-        (status = 400, description = "Unknown or malformed query parameter", body = crate::error::ErrorBody)
+        (status = 400, description = "Unknown filter value with accepted values, or an unknown or malformed query parameter", body = crate::error::ErrorBody)
     )
 )]
 async fn augments(

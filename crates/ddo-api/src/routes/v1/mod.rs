@@ -57,7 +57,8 @@ pub(crate) use vocabularies::ValueVocabulary;
                        a route says otherwise. `limit` defaults to 100 and clamps to 1–10000, or 50 for the full item view; `offset` defaults to zero \
                        and clamps to nonnegative values; `total` counts before paging. Repeat `sort` keys in priority \
                        order and prefix `-` for descending; nulls sort last in either direction. Each route lists its \
-                       sort fields, and invalid or unknown query keys return 400 naming the bad key and accepted keys.\n\n\
+                       sort fields, and invalid or unknown query keys return 400 naming the bad key and accepted keys. \
+                       Unknown vocabulary filter values return 400 listing every accepted value; `bonus` resolves names instead.\n\n\
                        **Effects and bonuses.** An effect is one line of equipment text; its owner link carries values and \
                        sometimes a bonus type, while its bonus rows derive zero or more typed bonuses from those \
                        amounts. Stats are effects identified by `is_stat`; direct stat links carry a value and type. \
