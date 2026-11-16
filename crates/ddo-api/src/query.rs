@@ -88,6 +88,8 @@ impl<T: QueryParameterType> QueryParameterType for Vec<T> {
 }
 
 pub(crate) trait VocabularyFilter: QueryParameterType {
+    const IS_ENTITY_FILTER: bool = false;
+
     fn validate_values(
         &mut self,
         db: &Connection,
@@ -171,6 +173,8 @@ impl QueryParameterType for EntityFilter {
 }
 
 impl VocabularyFilter for EntityFilter {
+    const IS_ENTITY_FILTER: bool = true;
+
     fn validate_values(
         &mut self,
         db: &Connection,
@@ -201,6 +205,10 @@ pub(crate) fn vocabulary_parameter<T: VocabularyFilter>(
     _: &T,
     vocabulary: ValueVocabulary,
 ) -> Parameter {
+    assert!(
+        T::IS_ENTITY_FILTER == vocabulary.entity_kind().is_some(),
+        "{name}: field and {vocabulary:?} must agree about entity resolution"
+    );
     let parameter = if T::IS_REPEATABLE {
         ParameterBuilder::from(query_parameter::<Vec<String>>(name, description))
             .style(Some(ParameterStyle::Form))
@@ -648,6 +656,44 @@ mod vocabulary_filter_tests {
         let error = extracted_filters("crafting_system=made-up").await.validated(&db).err().unwrap();
         assert!(bad_request_message(error).starts_with("unknown crafting_system \"made-up\"; accepted values: "));
         std::fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn vocabulary_declarations_reject_mismatched_entity_fields() {
+        declare_query_parameters! {
+            struct TextWithEntityVocabulary {
+                #[serde(default, deserialize_with = "repeated_key_values")]
+                quest: Vec<String>,
+            }
+            vocabularies: {
+                quest => Quests, "Matches quest slugs or ids; omitted includes every quest.",
+            }
+        }
+        declare_query_parameters! {
+            struct EntityWithTextVocabulary {
+                #[serde(default)]
+                family: EntityFilter,
+            }
+            vocabularies: {
+                family => AugmentSlotFamilies, "Matches a socket family; omitted includes every family.",
+            }
+        }
+        let mut accepted = Vec::new();
+        for (name, result) in [
+            (
+                "text field with entity vocabulary",
+                std::panic::catch_unwind(|| TextWithEntityVocabulary::into_params(|| None)),
+            ),
+            (
+                "entity field with text vocabulary",
+                std::panic::catch_unwind(|| EntityWithTextVocabulary::into_params(|| None)),
+            ),
+        ] {
+            if result.is_ok() {
+                accepted.push(format!("{name}: mismatched declaration accepted"));
+            }
+        }
+        assert!(accepted.is_empty(), "{}", accepted.join("\n"));
     }
 
     #[test]
