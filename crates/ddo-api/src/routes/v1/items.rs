@@ -11,7 +11,8 @@ use crate::effect_names::{effect_name_search_sql, resolve_effect_name};
 use crate::entity_slugs::{resolve_entity_slug, EntityPath};
 use crate::error::ApiError;
 use crate::query::{
-    declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery, EffectName, EFFECT_NAME_SEARCH,
+    declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery, EffectName, EntityFilter,
+    EFFECT_NAME_SEARCH,
 };
 use crate::state::AppState;
 use axum::extract::State;
@@ -57,8 +58,8 @@ declare_query_parameters! {
         #[serde(default, deserialize_with = "repeated_key_values")]
         pub pack: Vec<String>,
         pub pack_match: Option<String>,
-        #[serde(default, deserialize_with = "repeated_key_values")]
-        pub crafting_system: Vec<String>,
+        #[serde(default)]
+        pub crafting_system: EntityFilter,
         pub crafting_system_match: Option<String>,
         #[serde(default, deserialize_with = "repeated_key_values")]
         pub set: Vec<String>,
@@ -81,7 +82,13 @@ declare_query_parameters! {
         pub include_legacy: Option<bool>,
         pub view: Option<String>,
     }
-    repeatable: ["slot", "category", "attack_ability", "damage_ability", "material", "socket", "pack", "crafting_system", "set", "quest", "quest_chain", "saga", "bonus"]
+    vocabularies: {
+        attack_ability => WeaponAbilities, "Repeat exact names from /v1/weapon-abilities to match a weapon's attack abilities; omitted applies no filter.",
+        damage_ability => WeaponAbilities, "Repeat exact names from /v1/weapon-abilities to match a weapon's damage abilities; omitted applies no filter.",
+        material => ItemMaterials, "Repeat names from /v1/item-materials to match any material; omitted applies no filter.",
+        socket => AugmentSlotTypes, "Repeat case-insensitive labels from /v1/augment-slot-types to match item sockets; omitted applies no filter.",
+        crafting_system => CraftingSystems, "Repeat current or redirected slugs or numeric ids from /v1/crafting-systems to match their item outputs; omitted applies no filter.",
+    }
     matchable: ["attack_ability", "damage_ability", "socket", "pack", "crafting_system", "set", "quest", "quest_chain", "saga", "bonus"]
     single_value_match: ["slot", "category", "material"]
 }
@@ -91,16 +98,12 @@ fn entity_filter_ids(
     kind: EntityKind,
     parameter: &str,
     values: &[String],
-    vocabulary: Option<&ValueVocabulary>,
 ) -> Result<Vec<i64>, ApiError> {
     values
         .iter()
         .map(|value| {
             if let Some(entity) = resolve_entity_slug(db, kind, value)? {
                 return Ok(entity.id);
-            }
-            if let Some(vocabulary) = vocabulary {
-                vocabulary.reject_unknown_values(db, parameter, std::slice::from_ref(value))?;
             }
             Err(ApiError::BadRequest(format!("unknown {parameter} {value:?}")))
         })
@@ -175,14 +178,9 @@ declare_list_parameters!(
         ItemFilters,
         ("slot" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat equipment slot names from /v1/equipment-slots to match any."),
         ("category" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat Armor, Shield, Weapon, Jewelry or Clothing to match any."),
-        ("attack_ability" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat exact names from /v1/weapon-abilities to match a weapon's attack abilities; omitted applies no filter."),
-        ("damage_ability" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat exact names from /v1/weapon-abilities to match a weapon's damage abilities; omitted applies no filter."),
-        ("material" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat names from /v1/item-materials to match any material; omitted applies no filter."),
-        ("socket" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat case-insensitive labels from /v1/augment-slot-types to match item sockets; omitted applies no filter."),
         ("min_level" = Option<i64>, Query, description = "Minimum item level to include."),
         ("max_level" = Option<i64>, Query, description = "Maximum item level to include."),
         ("pack" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat adventure pack names reached through item sources."),
-        ("crafting_system" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat current or redirected slugs or numeric ids from /v1/crafting-systems to match their item outputs; omitted applies no filter."),
         ("set" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat set names from /v1/sets to match member items."),
         ("raid" = Option<bool>, Query, description = "Use true to keep items from raid quests."),
         ("rare" = Option<bool>, Query, description = "Use true to keep rare loot from quests or packs."),
@@ -202,35 +200,27 @@ async fn items(
     State(state): State<AppState>,
     ApiQuery(query, filters): ApiQuery<ItemFilters>,
 ) -> Result<Json<Value>, ApiError> {
-    for slot in &filters.slot {
-        if !EquipmentSlot::ALL.iter().any(|known| known.name() == slot) {
-            return Err(ApiError::BadRequest(format!("unknown slot {slot:?}")));
-        }
-    }
-    for category in &filters.category {
-        if !ItemCategory::ALL.iter().any(|known| known.as_str() == category) {
-            return Err(ApiError::BadRequest(format!("unknown category {category:?}")));
-        }
-    }
-    let full_view = match filters.view.as_deref().unwrap_or("summary") {
-        "summary" => false,
-        "full" => true,
-        other => return Err(ApiError::BadRequest(format!("unknown view {other:?}"))),
-    };
-    let mut query = query;
-    if full_view {
-        query.limit = Some(query.limit.unwrap_or(50).min(50));
-    }
     state
         .read_db(move |db| {
-            let sockets = filters.socket.iter().map(|value| value.to_lowercase()).collect::<Vec<_>>();
-            for (parameter, vocabulary, values) in [
-                ("attack_ability", ValueVocabulary::WeaponAbilities, filters.attack_ability.as_slice()),
-                ("damage_ability", ValueVocabulary::WeaponAbilities, filters.damage_ability.as_slice()),
-                ("material", ValueVocabulary::ItemMaterials, filters.material.as_slice()),
-                ("socket", ValueVocabulary::AugmentSlotTypes, sockets.as_slice()),
-            ] {
-                vocabulary.reject_unknown_values(db, parameter, values)?;
+            let filters = filters.validated(db)?;
+            for slot in &filters.slot {
+                if !EquipmentSlot::ALL.iter().any(|known| known.name() == slot) {
+                    return Err(ApiError::BadRequest(format!("unknown slot {slot:?}")));
+                }
+            }
+            for category in &filters.category {
+                if !ItemCategory::ALL.iter().any(|known| known.as_str() == category) {
+                    return Err(ApiError::BadRequest(format!("unknown category {category:?}")));
+                }
+            }
+            let full_view = match filters.view.as_deref().unwrap_or("summary") {
+                "summary" => false,
+                "full" => true,
+                other => return Err(ApiError::BadRequest(format!("unknown view {other:?}"))),
+            };
+            let mut query = query;
+            if full_view {
+                query.limit = Some(query.limit.unwrap_or(50).min(50));
             }
             let mut where_clause = WhereClause::default();
             if filters.include_legacy != Some(true) {
@@ -265,7 +255,7 @@ async fn items(
             where_clause.add_repeated_filter(
                 "EXISTS (SELECT 1 FROM item_augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.item_id = i.id AND t.label IN (?))",
                 "EXISTS (SELECT 1 FROM item_augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.item_id = i.id AND t.label = ?)",
-                &sockets, filters.socket_match.as_deref(),
+                &filters.socket, filters.socket_match.as_deref(),
             );
             if let Some(min_level) = filters.min_level {
                 where_clause.add_bound_condition("i.minimum_level >= ?", min_level);
@@ -281,7 +271,7 @@ async fn items(
             where_clause.add_repeated_filter(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'crafting_system' AND d.crafting_system_id IN (?))",
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'crafting_system' AND d.crafting_system_id = ?)",
-                &entity_filter_ids(db, EntityKind::CraftingSystem, "crafting_system", &filters.crafting_system, Some(&ValueVocabulary::CraftingSystems))?, filters.crafting_system_match.as_deref(),
+                filters.crafting_system.ids(), filters.crafting_system_match.as_deref(),
             );
             for set_name in &filters.set {
                 let known_set: bool = db.query_row(
@@ -307,17 +297,17 @@ async fn items(
             where_clause.add_repeated_filter(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest' AND d.quest_id IN (?))",
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest' AND d.quest_id = ?)",
-                &entity_filter_ids(db, EntityKind::Quest, "quest", &filters.quest, None)?, filters.quest_match.as_deref(),
+                &entity_filter_ids(db, EntityKind::Quest, "quest", &filters.quest)?, filters.quest_match.as_deref(),
             );
             where_clause.add_repeated_filter(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest_chain' AND d.chain_id IN (?))",
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest_chain' AND d.chain_id = ?)",
-                &entity_filter_ids(db, EntityKind::QuestChain, "quest_chain", &filters.quest_chain, None)?, filters.quest_chain_match.as_deref(),
+                &entity_filter_ids(db, EntityKind::QuestChain, "quest_chain", &filters.quest_chain)?, filters.quest_chain_match.as_deref(),
             );
             where_clause.add_repeated_filter(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id IN (?))",
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id = ?)",
-                &entity_filter_ids(db, EntityKind::Saga, "saga", &filters.saga, None)?, filters.saga_match.as_deref(),
+                &entity_filter_ids(db, EntityKind::Saga, "saga", &filters.saga)?, filters.saga_match.as_deref(),
             );
             let bonus_conditions = filters.bonus.iter().map(|name| {
                 bonus_match_sql(db, &name.0, filters.include_set_bonuses == Some(true))
@@ -562,6 +552,7 @@ pub(super) fn weapon_abilities_vocabulary() -> VocabularySource {
             )
         },
     )
+    .served_by("/v1/weapon-abilities", "weapon_abilities")
 }
 
 const WEAPON_ABILITIES_SORT_FIELDS: &[(&str, &str)] = &[
@@ -616,6 +607,7 @@ pub(super) fn item_materials_vocabulary() -> VocabularySource {
                 )
             },
         )
+        .served_by("/v1/item-materials", "item_materials")
 }
 
 const ITEM_MATERIALS_SORT_FIELDS: &[(&str, &str)] =
@@ -698,6 +690,8 @@ pub(super) fn augment_slot_types_vocabulary() -> VocabularySource {
             )
         },
     )
+    .served_by("/v1/augment-slot-types", "augment_slot_types")
+    .case_insensitive()
 }
 
 declare_query_parameters! {
@@ -705,11 +699,14 @@ declare_query_parameters! {
         #[serde(default, deserialize_with = "repeated_key_values")]
         family: Vec<String>,
     }
-    repeatable: ["family"]
+    vocabularies: {
+        family => AugmentSlotFamilies, "Repeat family names present in /v1/augment-slot-types to match any; omitted includes every family.",
+    }
 }
 
 pub(super) fn augment_slot_families_vocabulary() -> VocabularySource {
     VocabularySource::new("family", &["family"], "SELECT DISTINCT family FROM augment_slot_types")
+        .served_by("/v1/augment-slot-types", "augment_slot_types")
 }
 
 const AUGMENT_SLOT_TYPES_SORT_FIELDS: &[(&str, &str)] = &[
@@ -743,7 +740,6 @@ declare_list_parameters!(
     params(
         AugmentSlotTypesParameters,
         AugmentSlotTypeFilters,
-        ("family" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat family names present in /v1/augment-slot-types to match any; omitted includes every family."),
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `augment_slot_types` page", body = crate::routes::v1::response_schemas::AugmentSlotTypesPageResponse),
@@ -755,7 +751,7 @@ async fn augment_slot_types(
 ) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
-            ValueVocabulary::AugmentSlotFamilies.reject_unknown_values(db, "family", &filters.family)?;
+            let filters = filters.validated(db)?;
             let mut where_clause = WhereClause::default();
             where_clause.add_repeated_filter("listed.family IN (?)", "listed.family = ?", &filters.family, None);
             let page = paged_rows_with_filter(

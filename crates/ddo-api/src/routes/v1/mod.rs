@@ -23,7 +23,7 @@ use crate::docs::declare_response_examples;
 use crate::state::AppState;
 use utoipa::OpenApi;
 use utoipa_axum::router::OpenApiRouter;
-use vocabularies::ValueVocabulary;
+pub(crate) use vocabularies::ValueVocabulary;
 
 #[derive(OpenApi)]
 #[openapi(

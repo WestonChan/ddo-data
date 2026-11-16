@@ -88,6 +88,8 @@ async fn socket_option_sets(
 ) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
+            let filters = filters.validated(db)?;
+
             let mut conditions = WhereClause::default();
             conditions.add_name_search(query.q.as_deref(), "s.name");
             if let Some(label) = filters.slot {

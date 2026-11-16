@@ -156,6 +156,9 @@ fn main() -> Result<()> {
                 &workspace_root().join("xtask/src"),
             ])?;
             xtask::data_file_lints::deny_unlisted_records(&workspace_root().join("crates/ddo-etl/src/tree"))?;
+            xtask::route_extractors::deny_unchecked_route_extractors(
+                &workspace_root().join("crates/ddo-api/src/routes"),
+            )?;
             deny_clippy_warnings()?;
             ddo_etl::tree::schemas::validate_source_fields(&workspace_root().join("data"))?;
             ddo_etl::tree::schemas::validate_column_coverage()?;

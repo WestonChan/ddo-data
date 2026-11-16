@@ -65,6 +65,8 @@ async fn spells(
 ) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
+            let filters = filters.validated(db)?;
+
             let mut where_clause = WhereClause::default();
             where_clause.add_name_search(query.q.as_deref(), "s.name");
             if let Some(school) = &filters.school {

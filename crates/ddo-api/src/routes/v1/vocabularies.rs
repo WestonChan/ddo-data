@@ -1,4 +1,5 @@
 use crate::error::ApiError;
+use ddo_model::enums::EntityKind;
 use rusqlite::Connection;
 use std::sync::LazyLock;
 
@@ -7,6 +8,9 @@ pub(super) struct VocabularySource {
     default_order: &'static [&'static str],
     values_sql: String,
     counted_listing: Option<CountedListing>,
+    served_by: Option<(&'static str, &'static str)>,
+    entity_kind: Option<EntityKind>,
+    is_case_insensitive: bool,
 }
 
 struct CountedListing {
@@ -20,11 +24,34 @@ impl VocabularySource {
         default_order: &'static [&'static str],
         values_sql: impl Into<String>,
     ) -> Self {
-        Self { value_column, default_order, values_sql: values_sql.into(), counted_listing: None }
+        Self {
+            value_column,
+            default_order,
+            values_sql: values_sql.into(),
+            counted_listing: None,
+            served_by: None,
+            entity_kind: None,
+            is_case_insensitive: false,
+        }
     }
 
     pub(super) fn with_counted_listing(mut self, columns: fn(&str) -> String, joins: fn(&str) -> String) -> Self {
         self.counted_listing = Some(CountedListing { columns, joins });
+        self
+    }
+
+    pub(super) fn served_by(mut self, route: &'static str, rows_key: &'static str) -> Self {
+        self.served_by = Some((route, rows_key));
+        self
+    }
+
+    pub(super) fn for_entities(mut self, kind: EntityKind) -> Self {
+        self.entity_kind = Some(kind);
+        self
+    }
+
+    pub(super) fn case_insensitive(mut self) -> Self {
+        self.is_case_insensitive = true;
         self
     }
 }
@@ -40,6 +67,10 @@ macro_rules! declare_value_vocabularies {
             #[cfg(test)]
             const ALL: &'static [Self] = &[$(Self::$variant),*];
 
+            fn name(&self) -> &'static str {
+                match self { $(Self::$variant => stringify!($variant)),* }
+            }
+
             fn queries(&self) -> &'static VocabularyQueries {
                 match self {
                     $(Self::$variant => {
@@ -54,7 +85,7 @@ macro_rules! declare_value_vocabularies {
 }
 
 declare_value_vocabularies! {
-    pub(super) enum ValueVocabulary {
+    pub(crate) enum ValueVocabulary {
         WeaponAbilities => super::items::weapon_abilities_vocabulary,
         ItemMaterials => super::items::item_materials_vocabulary,
         AugmentSlotTypes => super::items::augment_slot_types_vocabulary,
@@ -72,7 +103,7 @@ impl ValueVocabulary {
         &self.queries().default_order
     }
 
-    pub(super) fn reject_unknown_values(
+    pub(crate) fn reject_unknown_values(
         &self,
         db: &Connection,
         parameter: &str,
@@ -80,12 +111,33 @@ impl ValueVocabulary {
     ) -> Result<(), ApiError> {
         self.queries().reject_unknown_values(db, parameter, values)
     }
+
+    pub(crate) fn entity_kind(&self) -> Option<EntityKind> {
+        self.queries().entity_kind
+    }
+
+    pub(crate) fn is_case_insensitive(&self) -> bool {
+        self.queries().is_case_insensitive
+    }
+
+    pub(crate) fn extension(&self) -> serde_json::Value {
+        let mut extension = serde_json::json!({"name": self.name()});
+        if let Some((route, rows_key, value_key)) = self.queries().served_by {
+            extension["route"] = route.into();
+            extension["rows_key"] = rows_key.into();
+            extension["value_key"] = value_key.into();
+        }
+        extension
+    }
 }
 
 struct VocabularyQueries {
     select_sql: String,
     validation_sql: String,
     default_order: String,
+    served_by: Option<(&'static str, &'static str, &'static str)>,
+    entity_kind: Option<EntityKind>,
+    is_case_insensitive: bool,
 }
 
 impl VocabularyQueries {
@@ -106,6 +158,9 @@ impl VocabularyQueries {
                 "SELECT {listed_alias}.{value_column} FROM ({values_sql}) {listed_alias} ORDER BY {default_order}"
             ),
             default_order,
+            served_by: source.served_by.map(|(route, rows_key)| (route, rows_key, source.value_column)),
+            entity_kind: source.entity_kind,
+            is_case_insensitive: source.is_case_insensitive,
         }
     }
 

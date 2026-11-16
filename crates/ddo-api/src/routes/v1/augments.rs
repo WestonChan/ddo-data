@@ -26,7 +26,6 @@ declare_query_parameters! {
         pub family: Option<String>,
         pub max_level: Option<i64>,
     }
-    repeatable: ["crafting_system"]
 }
 
 const AUGMENT_FLAG_COLUMNS: &[&str] = &["choose_level", "dual_values", "enter_value", "suppress_set_bonus"];
@@ -116,6 +115,8 @@ async fn augments(
 ) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
+            let filters = filters.validated(db)?;
+
             let mut where_clause = WhereClause::default();
             where_clause.add_name_search(query.q.as_deref(), "a.name");
             if let Some(slot_label) = &filters.slot {

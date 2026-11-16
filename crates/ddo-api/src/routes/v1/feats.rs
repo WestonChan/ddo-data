@@ -72,13 +72,15 @@ async fn feats(
     State(state): State<AppState>,
     ApiQuery(query, filters): ApiQuery<FeatFilters>,
 ) -> Result<Json<Value>, ApiError> {
-    if let Some(source) = &filters.source {
-        if !FeatSource::ALL.iter().any(|known| known.as_str() == source) {
-            return Err(ApiError::BadRequest(format!("unknown source {source:?}")));
-        }
-    }
     state
         .read_db(move |db| {
+            let filters = filters.validated(db)?;
+            if let Some(source) = &filters.source {
+                if !FeatSource::ALL.iter().any(|known| known.as_str() == source) {
+                    return Err(ApiError::BadRequest(format!("unknown source {source:?}")));
+                }
+            }
+
             let mut where_clause = WhereClause::default();
             where_clause.add_name_search(query.q.as_deref(), "f.name");
             if let Some(source) = &filters.source {

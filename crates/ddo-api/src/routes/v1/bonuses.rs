@@ -111,13 +111,15 @@ async fn effects(
     State(state): State<AppState>,
     ApiQuery(query, filters): ApiQuery<EffectFilters>,
 ) -> Result<Json<Value>, ApiError> {
-    if let Some(kind) = &filters.kind {
-        if !EFFECT_KINDS.contains(&kind.as_str()) {
-            return Err(ApiError::BadRequest(format!("unknown kind {kind:?}")));
-        }
-    }
     state
         .read_db(move |db| {
+            let filters = filters.validated(db)?;
+            if let Some(kind) = &filters.kind {
+                if !EFFECT_KINDS.contains(&kind.as_str()) {
+                    return Err(ApiError::BadRequest(format!("unknown kind {kind:?}")));
+                }
+            }
+
             let mut where_clause = WhereClause::default();
             if let Some(kind) = &filters.kind {
                 where_clause.add_bound_condition("kind = ?", kind.clone());
@@ -429,6 +431,7 @@ async fn effect_detail(
 ) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
+            let pages = pages.validated(db)?;
             let mut family = json_row(
                 db,
                 "SELECT id, name, is_stat, is_group, category, verbose_name_template, description_template, wiki_url,

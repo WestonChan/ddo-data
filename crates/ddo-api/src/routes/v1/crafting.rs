@@ -58,6 +58,8 @@ pub(super) fn crafting_systems_vocabulary() -> VocabularySource {
             )
         },
     )
+    .served_by("/v1/crafting-systems", "crafting_systems")
+    .for_entities(ddo_model::enums::EntityKind::CraftingSystem)
 }
 
 fn attach_augment_families(db: &Connection, crafting_system: &mut Value) -> Result<(), ApiError> {
