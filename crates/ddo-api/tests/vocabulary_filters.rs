@@ -111,7 +111,7 @@ async fn every_vocabulary_filter_rejects_an_unknown_value_naming_its_accepted_va
     let router = app(AppState::open(&database_path).unwrap());
     let (status, document) = response(&router, "/v1/openapi.json", &[]).await;
     assert_eq!(status, StatusCode::OK);
-    let unknown = "unknown-vocabulary-contract-value";
+    let unknown = "Unknown-Vocabulary-Contract-Value";
     let mut findings = Vec::new();
     let mut list_count = 0;
     let mut filter_count = 0;
@@ -194,6 +194,29 @@ async fn every_vocabulary_filter_rejects_an_unknown_value_naming_its_accepted_va
                 }
                 known
             };
+            let unfiltered = response(&router, path, &[]).await;
+            for blank in ["", " \t "] {
+                let ignored = response(&router, path, &[(name, blank)]).await;
+                if ignored != unfiltered {
+                    findings.push(format!(
+                        "{path}?{name}={blank:?}: blank vocabulary value must apply no filter: {}",
+                        ignored.0
+                    ));
+                }
+            }
+            if let Some(known) = &known {
+                let canonical = response(&router, path, &[(name, known)]).await;
+                let padded = response(&router, path, &[(name, &format!(" \t{known} \t"))]).await;
+                if padded != canonical {
+                    findings.push(format!("{path}?{name}: padded vocabulary value must match {known:?}: {}", padded.0));
+                }
+            }
+            let (status, padded_unknown) = response(&router, path, &[(name, &format!(" {unknown} "))]).await;
+            if status != StatusCode::BAD_REQUEST || padded_unknown != rejected {
+                findings.push(format!(
+                    "{path}?{name}: unknown value must be quoted after trimming: {status}: {padded_unknown}"
+                ));
+            }
             if let Some(known) = known.filter(|_| is_repeatable) {
                 let (status, rejected) = response(
                     &router,

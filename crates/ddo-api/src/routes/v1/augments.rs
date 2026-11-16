@@ -35,7 +35,7 @@ declare_query_parameters! {
 }
 
 pub(super) fn augment_families_vocabulary() -> VocabularySource {
-    VocabularySource::new("family", &["family"], "SELECT DISTINCT family FROM augments").with_membership_check()
+    VocabularySource::new("family", &["family"], "SELECT DISTINCT family FROM augments")
 }
 
 const AUGMENT_FLAG_COLUMNS: &[&str] = &["choose_level", "dual_values", "enter_value", "suppress_set_bonus"];

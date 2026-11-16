@@ -102,12 +102,21 @@ fn validate_text_values(
     parameter: &str,
     vocabulary: ValueVocabulary,
 ) -> Result<(), ApiError> {
-    if vocabulary.is_case_insensitive() {
-        for value in values.iter_mut() {
-            *value = value.to_lowercase();
+    vocabulary.reject_unknown_values(db, parameter, values)?;
+    for value in values.iter_mut() {
+        if let std::borrow::Cow::Owned(normalized) = vocabulary.case_normalized_value(value) {
+            *value = normalized;
         }
     }
-    vocabulary.reject_unknown_values(db, parameter, values)
+    Ok(())
+}
+
+fn trim_filter_value(value: &mut String) -> bool {
+    let trimmed = value.trim();
+    if trimmed.len() != value.len() {
+        *value = trimmed.to_string();
+    }
+    !value.is_empty()
 }
 
 impl VocabularyFilter for Vec<String> {
@@ -117,6 +126,7 @@ impl VocabularyFilter for Vec<String> {
         parameter: &str,
         vocabulary: ValueVocabulary,
     ) -> Result<(), ApiError> {
+        self.retain_mut(trim_filter_value);
         validate_text_values(self, db, parameter, vocabulary)
     }
 }
@@ -128,6 +138,9 @@ impl VocabularyFilter for Option<String> {
         parameter: &str,
         vocabulary: ValueVocabulary,
     ) -> Result<(), ApiError> {
+        if self.as_mut().is_some_and(|value| !trim_filter_value(value)) {
+            *self = None;
+        }
         if let Some(value) = self {
             validate_text_values(std::slice::from_mut(value), db, parameter, vocabulary)?;
         }
@@ -167,6 +180,7 @@ impl VocabularyFilter for EntityFilter {
         let kind = vocabulary
             .entity_kind()
             .ok_or_else(|| ApiError::Internal(anyhow::anyhow!("{parameter} requires an entity vocabulary")))?;
+        self.texts.retain_mut(trim_filter_value);
         self.ids = self
             .texts
             .iter()
@@ -174,8 +188,7 @@ impl VocabularyFilter for EntityFilter {
                 if let Some(entity) = resolve_entity_slug(db, kind, text)? {
                     return Ok(entity.id);
                 }
-                vocabulary.reject_unknown_values(db, parameter, std::slice::from_ref(text))?;
-                Err(ApiError::Internal(anyhow::anyhow!("accepted {parameter} {text:?} has no entity identity")))
+                Err(vocabulary.unknown_value_error(db, parameter, text))
             })
             .collect::<Result<_, ApiError>>()?;
         Ok(())

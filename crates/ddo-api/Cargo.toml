@@ -29,7 +29,7 @@ utoipa-scalar = { version = "0.4", features = ["axum"] }
 [dev-dependencies]
 ddo-etl = { path = "../ddo-etl" }
 http-body-util = "0.1"
-rusqlite = { workspace = true, features = ["trace"] }
+rusqlite = { workspace = true, features = ["trace", "column_metadata", "hooks"] }
 
 [lints]
 workspace = true

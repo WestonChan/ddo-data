@@ -11,7 +11,6 @@ pub(super) struct VocabularySource {
     served_by: Option<(&'static str, &'static str)>,
     entity_kind: Option<EntityKind>,
     is_case_insensitive: bool,
-    checks_membership_first: bool,
 }
 
 struct CountedListing {
@@ -33,7 +32,6 @@ impl VocabularySource {
             served_by: None,
             entity_kind: None,
             is_case_insensitive: false,
-            checks_membership_first: false,
         }
     }
 
@@ -62,11 +60,6 @@ impl VocabularySource {
 
     pub(super) fn case_insensitive(mut self) -> Self {
         self.is_case_insensitive = true;
-        self
-    }
-
-    pub(super) fn with_membership_check(mut self) -> Self {
-        self.checks_membership_first = true;
         self
     }
 }
@@ -146,8 +139,12 @@ impl ValueVocabulary {
         self.queries().entity_kind
     }
 
-    pub(crate) fn is_case_insensitive(&self) -> bool {
-        self.queries().is_case_insensitive
+    pub(crate) fn unknown_value_error(&self, db: &Connection, parameter: &str, value: &str) -> ApiError {
+        self.queries().unknown_value_error(db, parameter, value)
+    }
+
+    pub(crate) fn case_normalized_value<'value>(&self, value: &'value str) -> std::borrow::Cow<'value, str> {
+        self.queries().case_normalized_value(value)
     }
 
     pub(crate) fn extension(&self) -> serde_json::Value {
@@ -164,7 +161,7 @@ impl ValueVocabulary {
 struct VocabularyQueries {
     select_sql: String,
     validation_sql: String,
-    membership_sql: Option<String>,
+    membership_sql: [String; 2],
     default_order: String,
     served_by: Option<(&'static str, &'static str, &'static str)>,
     entity_kind: Option<EntityKind>,
@@ -183,14 +180,17 @@ impl VocabularyQueries {
         );
         let default_order =
             source.default_order.iter().map(|column| format!("{listed_alias}.{column}")).collect::<Vec<_>>().join(", ");
+        let mut membership_sql = ["?1", "SELECT value FROM json_each(?1)"].map(|bound_values| format!(
+            "SELECT DISTINCT {listed_alias}.{value_column} COLLATE BINARY FROM ({values_sql}) {listed_alias}
+             WHERE {listed_alias}.{value_column} IS NOT NULL AND {listed_alias}.{value_column} COLLATE BINARY IN ({bound_values}) LIMIT ?2"
+        ));
+        membership_sql[0] = format!("SELECT EXISTS ({})", membership_sql[0]);
         Self {
             select_sql: format!("SELECT {list_columns} FROM ({values_sql}) {vocabulary_alias} {count_joins}"),
             validation_sql: format!(
-                "SELECT {listed_alias}.{value_column} FROM ({values_sql}) {listed_alias} ORDER BY {default_order}"
+                "SELECT {listed_alias}.{value_column} FROM ({values_sql}) {listed_alias} WHERE {listed_alias}.{value_column} IS NOT NULL ORDER BY {default_order}"
             ),
-            membership_sql: source.checks_membership_first.then(|| {
-                format!("SELECT EXISTS (SELECT 1 FROM ({values_sql}) {listed_alias} WHERE {listed_alias}.{value_column} = ?1)")
-            }),
+            membership_sql,
             default_order,
             served_by: source.served_by.map(|(route, rows_key)| (route, rows_key, source.value_column)),
             entity_kind: source.entity_kind,
@@ -202,22 +202,60 @@ impl VocabularyQueries {
         if values.is_empty() {
             return Ok(());
         }
-        if let ([value], Some(sql)) = (values, &self.membership_sql) {
-            if db.prepare_cached(sql)?.query_row([value], |row| row.get::<_, bool>(0))? {
-                return Ok(());
-            }
+        if let [value] = values {
+            return self.reject_unknown_value(db, parameter, value);
         }
-        let mut statement = db.prepare_cached(&self.validation_sql)?;
-        let accepted = statement.query_map([], |row| row.get::<_, String>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
-        for value in values {
-            if !accepted.contains(value) {
-                return Err(ApiError::BadRequest(format!(
-                    "unknown {parameter} {value:?}; accepted values: {}",
-                    accepted.join(", ")
-                )));
-            }
+        let normalized = values.iter().map(|value| self.case_normalized_value(value)).collect::<Vec<_>>();
+        let distinct = normalized.iter().collect::<std::collections::BTreeSet<_>>();
+        if distinct.len() == 1 {
+            return self.reject_unknown_value(db, parameter, &values[0]);
+        }
+        let mut statement = db.prepare_cached(&self.membership_sql[1])?;
+        let matched = statement
+            .query_map(
+                rusqlite::params![
+                    serde_json::to_string(&distinct).map_err(anyhow::Error::from)?,
+                    distinct.len() as i64
+                ],
+                |row| row.get::<_, String>(0),
+            )?
+            .collect::<rusqlite::Result<Vec<_>>>()?;
+        if let Some(index) = normalized.iter().position(|value| !matched.iter().any(|name| name == value.as_ref())) {
+            return Err(self.unknown_value_error(db, parameter, &values[index]));
         }
         Ok(())
+    }
+
+    fn case_normalized_value<'value>(&self, value: &'value str) -> std::borrow::Cow<'value, str> {
+        if !self.is_case_insensitive || (value.is_ascii() && !value.bytes().any(|byte| byte.is_ascii_uppercase())) {
+            std::borrow::Cow::Borrowed(value)
+        } else {
+            std::borrow::Cow::Owned(value.to_lowercase())
+        }
+    }
+
+    fn reject_unknown_value(&self, db: &Connection, parameter: &str, value: &str) -> Result<(), ApiError> {
+        let normalized = self.case_normalized_value(value);
+        let is_accepted = db
+            .prepare_cached(&self.membership_sql[0])?
+            .query_row(rusqlite::params![normalized.as_ref(), 1], |row| row.get::<_, bool>(0))?;
+        if is_accepted {
+            Ok(())
+        } else {
+            Err(self.unknown_value_error(db, parameter, value))
+        }
+    }
+
+    fn unknown_value_error(&self, db: &Connection, parameter: &str, value: &str) -> ApiError {
+        let accepted = db.prepare_cached(&self.validation_sql).and_then(|mut statement| {
+            statement.query_map([], |row| row.get::<_, String>(0))?.collect::<rusqlite::Result<Vec<_>>>()
+        });
+        match accepted {
+            Ok(accepted) => {
+                ApiError::BadRequest(format!("unknown {parameter} {value:?}; accepted values: {}", accepted.join(", ")))
+            }
+            Err(error) => error.into(),
+        }
     }
 }
 
@@ -234,39 +272,131 @@ mod vocabulary_tests {
         let mut db = rusqlite::Connection::open_in_memory().unwrap();
         let fixtures = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures/data");
         ddo_etl::tree::build_from_data(&fixtures, &mut db).unwrap();
-        let accepted = db
-            .prepare("SELECT DISTINCT family FROM augments ORDER BY family")
-            .unwrap()
-            .query_map([], |row| row.get::<_, String>(0))
-            .unwrap()
-            .collect::<rusqlite::Result<Vec<_>>>()
-            .unwrap();
-        assert!(accepted.len() > 1);
-        db.trace_v2(
-            TraceEventCodes::SQLITE_TRACE_STMT,
-            Some(|event| {
-                if let TraceEvent::Stmt(_, _) = event {
-                    QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+        for vocabulary in ValueVocabulary::ALL {
+            let accepted = db
+                .prepare(&vocabulary.queries().validation_sql)
+                .unwrap()
+                .query_map([], |row| row.get::<_, String>(0))
+                .unwrap()
+                .collect::<rusqlite::Result<Vec<_>>>()
+                .unwrap();
+            db.trace_v2(
+                TraceEventCodes::SQLITE_TRACE_STMT,
+                Some(|event| {
+                    if let TraceEvent::Stmt(_, _) = event {
+                        QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+                    }
+                }),
+            );
+            let mut cases = vec![
+                (vec![], None, 0),
+                (accepted.clone(), None, usize::from(!accepted.is_empty())),
+                (vec!["made-up".into()], Some("made-up"), 2),
+            ];
+            if let Some(first) = accepted.first() {
+                cases.extend([
+                    (vec![first.clone()], None, 1),
+                    (vec![first.clone(); 1000], None, 1),
+                    (vec![first.clone(), "made-up".into(), "another-unknown".into()], Some("made-up"), 2),
+                ]);
+            }
+            for (values, unknown, expected_queries) in cases {
+                QUERY_COUNT.store(0, Ordering::SeqCst);
+                let result = vocabulary.reject_unknown_values(&db, "probe", &values);
+                assert_eq!(QUERY_COUNT.load(Ordering::SeqCst), expected_queries, "{vocabulary:?}: {values:?}");
+                if let Some(unknown) = unknown {
+                    let crate::error::ApiError::BadRequest(message) = result.unwrap_err() else {
+                        panic!("expected an unknown vocabulary value")
+                    };
+                    assert_eq!(message, format!("unknown probe {unknown:?}; accepted values: {}", accepted.join(", ")));
+                } else {
+                    result.unwrap();
                 }
-            }),
-        );
-        for (values, unknown, expected_queries) in [
-            (vec![], None, 0),
-            (vec![accepted[0].clone()], None, 1),
-            (accepted.clone(), None, 1),
-            (vec!["made-up".into()], Some("made-up"), 2),
-            (vec![accepted[0].clone(), "made-up".into(), "another-unknown".into()], Some("made-up"), 1),
-        ] {
-            QUERY_COUNT.store(0, Ordering::SeqCst);
-            let result = ValueVocabulary::AugmentFamilies.reject_unknown_values(&db, "family", &values);
-            assert_eq!(QUERY_COUNT.load(Ordering::SeqCst), expected_queries, "{values:?}");
-            if let Some(unknown) = unknown {
-                let crate::error::ApiError::BadRequest(message) = result.unwrap_err() else {
-                    panic!("expected an unknown family")
+            }
+            db.trace_v2(TraceEventCodes::empty(), None);
+        }
+    }
+
+    #[test]
+    fn nullable_vocabulary_columns_never_break_validation() {
+        use rusqlite::hooks::{AuthAction, AuthContext, Authorization};
+        let mut db = rusqlite::Connection::open_in_memory().unwrap();
+        let fixtures = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures/data");
+        ddo_etl::tree::build_from_data(&fixtures, &mut db).unwrap();
+        let mut injected_columns = Vec::new();
+        for vocabulary in ValueVocabulary::ALL {
+            let sql = &vocabulary.queries().validation_sql;
+            let statement = db.prepare(sql).unwrap();
+            let columns = statement.columns_with_metadata();
+            let (Some(table), Some(column)) = (columns[0].table_name(), columns[0].origin_name()) else {
+                continue;
+            };
+            let is_not_null = db
+                .query_row("SELECT \"notnull\" FROM pragma_table_info(?1) WHERE name = ?2", [table, column], |row| {
+                    row.get::<_, bool>(0)
+                })
+                .unwrap();
+            if is_not_null {
+                continue;
+            }
+            let table = table.to_string();
+            let column = column.to_string();
+            drop(statement);
+            let before = db
+                .prepare(sql)
+                .unwrap()
+                .query_map([], |row| row.get::<_, String>(0))
+                .unwrap()
+                .collect::<rusqlite::Result<Vec<_>>>()
+                .unwrap();
+            injected_columns.push(format!("{table}.{column}"));
+            let null_table = table.clone();
+            let null_column = column.clone();
+            db.authorizer(Some(move |context: AuthContext<'_>| match context.action {
+                AuthAction::Read { table_name, column_name }
+                    if table_name == null_table && column_name == null_column =>
+                {
+                    Authorization::Ignore
+                }
+                _ => Authorization::Allow,
+            }))
+            .unwrap();
+            for value in before.iter().map(String::as_str).chain(["made-up"]) {
+                let error = vocabulary.reject_unknown_values(&db, "probe", &[value.to_string()]).unwrap_err();
+                let crate::error::ApiError::BadRequest(message) = error else {
+                    panic!("{vocabulary:?} with NULL in {table}.{column} returned {error:?}");
                 };
-                assert_eq!(message, format!("unknown family {unknown:?}; accepted values: {}", accepted.join(", ")));
-            } else {
-                result.unwrap();
+                assert_eq!(message, format!("unknown probe {value:?}; accepted values: "));
+            }
+            db.authorizer(None::<fn(AuthContext<'_>) -> Authorization>).unwrap();
+            vocabulary.reject_unknown_values(&db, "probe", &before).unwrap();
+        }
+        assert!(injected_columns.contains(&"feats.acquire".to_string()), "{injected_columns:?}");
+        assert!(injected_columns.contains(&"json_each.value".to_string()), "{injected_columns:?}");
+    }
+
+    #[test]
+    fn unresolved_entity_vocabulary_values_are_bad_requests() {
+        use crate::query::{EntityFilter, VocabularyFilter};
+        let mut db = rusqlite::Connection::open_in_memory().unwrap();
+        let fixtures = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures/data");
+        ddo_etl::tree::build_from_data(&fixtures, &mut db).unwrap();
+        db.execute_batch("DELETE FROM entity_identity").unwrap();
+        for vocabulary in ValueVocabulary::ALL.iter().filter(|vocabulary| vocabulary.entity_kind().is_some()) {
+            let accepted = db
+                .prepare(&vocabulary.queries().validation_sql)
+                .unwrap()
+                .query_map([], |row| row.get::<_, String>(0))
+                .unwrap()
+                .collect::<rusqlite::Result<Vec<_>>>()
+                .unwrap();
+            for value in accepted.iter().map(String::as_str).chain(["made-up"]) {
+                let mut filter: EntityFilter = serde_json::from_value(serde_json::json!(value)).unwrap();
+                let error = filter.validate_values(&db, "probe", *vocabulary).unwrap_err();
+                let crate::error::ApiError::BadRequest(message) = error else {
+                    panic!("{vocabulary:?} without an identity returned {error:?}");
+                };
+                assert_eq!(message, format!("unknown probe {value:?}; accepted values: {}", accepted.join(", ")));
             }
         }
     }
@@ -288,6 +418,24 @@ mod vocabulary_tests {
     }
 
     #[test]
+    fn membership_preserves_exact_case_with_case_insensitive_columns() {
+        let db = rusqlite::Connection::open_in_memory().unwrap();
+        db.execute_batch(
+            "CREATE TABLE names (name TEXT COLLATE NOCASE); INSERT INTO names VALUES ('Alpha'), ('alpha')",
+        )
+        .unwrap();
+        let vocabulary = VocabularyQueries::new(&VocabularySource::new("name", &["name"], "SELECT name FROM names"));
+        for values in [vec!["Alpha".into()], vec!["alpha".into()], vec!["Alpha".into(), "alpha".into()]] {
+            vocabulary.reject_unknown_values(&db, "probe", &values).unwrap();
+        }
+        for values in [vec!["ALPHA".into()], vec!["alpha".into(), "ALPHA".into(), "missing".into()]] {
+            let error = vocabulary.reject_unknown_values(&db, "probe", &values).unwrap_err();
+            let crate::error::ApiError::BadRequest(message) = error else { panic!("expected an unknown value") };
+            assert_eq!(message, "unknown probe \"ALPHA\"; accepted values: Alpha, alpha");
+        }
+    }
+
+    #[test]
     fn every_value_vocabulary_validates_without_counting() {
         let mut db = rusqlite::Connection::open_in_memory().unwrap();
         let fixtures = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../ddo-etl/tests/fixtures/data");
@@ -295,7 +443,7 @@ mod vocabulary_tests {
         let mut violations = Vec::new();
         for vocabulary in ValueVocabulary::ALL {
             let queries = vocabulary.queries();
-            for sql in std::iter::once(queries.validation_sql.as_str()).chain(queries.membership_sql.as_deref()) {
+            for sql in std::iter::once(&queries.validation_sql).chain(&queries.membership_sql) {
                 for (explain, column) in [("EXPLAIN QUERY PLAN", 3), ("EXPLAIN", 1)] {
                     let mut statement = db.prepare(&format!("{explain} {sql}")).unwrap();
                     let parameters =
@@ -320,10 +468,7 @@ mod vocabulary_tests {
         let mut violations = Vec::new();
         for vocabulary in ValueVocabulary::ALL {
             let queries = vocabulary.queries();
-            for sql in [queries.select_sql.as_str(), queries.validation_sql.as_str()]
-                .into_iter()
-                .chain(queries.membership_sql.as_deref())
-            {
+            for sql in [&queries.select_sql, &queries.validation_sql].into_iter().chain(&queries.membership_sql) {
                 let mut statement = db.prepare(&format!("EXPLAIN QUERY PLAN {sql}")).unwrap();
                 let parameters = rusqlite::params_from_iter(std::iter::repeat_n("probe", statement.parameter_count()));
                 let plan = statement

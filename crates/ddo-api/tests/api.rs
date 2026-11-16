@@ -1872,6 +1872,11 @@ async fn item_view_defaults_to_summary_and_caps_full_pages() {
     assert_eq!(summary, explicit_summary);
     assert!(summary["items"][0].get("effects").is_none());
     assert_ne!(summary_headers[header::ETAG], explicit_headers[header::ETAG]);
+    for blank in ["", "%20%09%20"] {
+        let (status, _, page) = get(&format!("/v1/items?limit=100&view={blank}")).await;
+        assert_eq!(status, StatusCode::OK);
+        assert_eq!(page, summary);
+    }
 
     let (status, full_headers, full) = get("/v1/items?limit=100&view=full").await;
     assert_eq!(status, StatusCode::OK);
@@ -1889,7 +1894,7 @@ async fn item_view_defaults_to_summary_and_caps_full_pages() {
     assert_eq!(empty["items"], serde_json::json!([]));
     assert_eq!(empty["limit"], 50);
 
-    for value in ["expanded", "FULL", ""] {
+    for value in ["expanded", "FULL"] {
         let (status, _, invalid) = get(&format!("/v1/items?view={value}")).await;
         assert_eq!(status, StatusCode::BAD_REQUEST);
         assert_eq!(invalid["error"], format!("unknown view {value:?}; accepted values: full, summary"));
