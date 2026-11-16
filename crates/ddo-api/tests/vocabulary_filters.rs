@@ -140,17 +140,29 @@ async fn every_vocabulary_filter_rejects_an_unknown_value_naming_its_accepted_va
     let mut operation_count = 0;
     let mut filter_count = 0;
     for (path, methods) in document["paths"].as_object().unwrap() {
-        let Some(parameters) = methods["get"]["parameters"].as_array() else {
-            continue;
-        };
-        let parameters = parameters.iter().map(|parameter| referenced(&document, parameter)).collect::<Vec<_>>();
-        let query_parameters =
-            parameters.iter().filter(|parameter| parameter["in"] == "query").copied().collect::<Vec<_>>();
-        let documented_names =
-            query_parameters.iter().map(|parameter| parameter["name"].as_str().unwrap()).collect::<BTreeSet<_>>();
-        if query_parameters.is_empty() {
+        let operation = &methods["get"];
+        let serves_json = operation["responses"].as_object().is_some_and(|responses| {
+            responses.iter().any(|(status, response)| {
+                status.starts_with('2')
+                    && referenced(&document, response)["content"].as_object().is_some_and(|content| {
+                        content
+                            .keys()
+                            .any(|media_type| media_type == "application/json" || media_type.ends_with("+json"))
+                    })
+            })
+        });
+        if !serves_json {
             continue;
         }
+        let query_parameters = operation["parameters"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .map(|parameter| referenced(&document, parameter))
+            .filter(|parameter| parameter["in"] == "query")
+            .collect::<Vec<_>>();
+        let documented_names =
+            query_parameters.iter().map(|parameter| parameter["name"].as_str().unwrap()).collect::<BTreeSet<_>>();
         operation_count += 1;
         let request_path = served_request_path(&router, path).await;
         let path = request_path.as_str();
@@ -158,8 +170,13 @@ async fn every_vocabulary_filter_rejects_an_unknown_value_naming_its_accepted_va
         let accepted_keys = rejected_key["error"]
             .as_str()
             .and_then(|message| message.split_once("; allowed parameters: "))
-            .map(|(_, keys)| keys.split(", ").collect::<BTreeSet<_>>());
-        if status != StatusCode::BAD_REQUEST || accepted_keys.as_ref() != Some(&documented_names) {
+            .map(|(_, keys)| keys.split(", ").filter(|key| !key.is_empty()).collect::<BTreeSet<_>>());
+        let keys_agree = if status == StatusCode::BAD_REQUEST {
+            accepted_keys.as_ref() == Some(&documented_names)
+        } else {
+            status.is_success() && documented_names.is_empty()
+        };
+        if !keys_agree {
             findings.push(format!("{path}: runtime query keys and OpenAPI parameters disagree: {rejected_key}"));
         }
         for parameter in query_parameters {
