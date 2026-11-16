@@ -11,6 +11,8 @@ const ROUTE_EXTRACTORS: &[(&str, &str)] = &[
 ];
 
 const ROUTER_ASSEMBLY_METHODS: &[&str] = &["merge", "nest", "nest_service"];
+const ROUTER_MIDDLEWARE_METHODS: &[&str] = &["layer", "route_layer"];
+const ROUTE_REGISTRATION_METHODS: &[&str] = &["route", "route_service", "fallback", "fallback_service"];
 const ROUTER_ASSEMBLY_RULE: &str = "router assembly must merge a sibling module's router() in mod.rs";
 
 pub fn deny_unchecked_route_extractors(root: &Path) -> anyhow::Result<()> {
@@ -22,9 +24,7 @@ pub fn deny_unchecked_route_extractors(root: &Path) -> anyhow::Result<()> {
             continue;
         }
         let source = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
-        for (offset, message) in
-            route_extractor_findings(&source, path.file_name().is_some_and(|name| name == "mod.rs"))
-        {
+        for (offset, message) in route_extractor_findings(&source, path) {
             let line = source[..offset].matches('\n').count() + 1;
             findings.push(format!("{}:{line}: {message}", path.display()));
         }
@@ -63,7 +63,10 @@ fn source_tokens(source: &str) -> Vec<SourceToken<'_>> {
 }
 
 fn matching_delimiter(tokens: &[SourceToken<'_>], start: usize) -> usize {
-    let closing = match tokens[start].text {
+    let Some(opening) = tokens.get(start) else {
+        return tokens.len();
+    };
+    let closing = match opening.text {
         "(" => ")",
         "[" => "]",
         "{" => "}",
@@ -72,7 +75,7 @@ fn matching_delimiter(tokens: &[SourceToken<'_>], start: usize) -> usize {
     };
     let mut depth = 1;
     for (index, token) in tokens.iter().enumerate().skip(start + 1) {
-        if token.text == tokens[start].text {
+        if token.text == opening.text {
             depth += 1;
         } else if token.text == closing {
             depth -= 1;
@@ -81,7 +84,14 @@ fn matching_delimiter(tokens: &[SourceToken<'_>], start: usize) -> usize {
             }
         }
     }
-    tokens.len().saturating_sub(1)
+    tokens.len()
+}
+
+fn method_arguments_start(tokens: &[SourceToken<'_>], mut index: usize) -> Option<usize> {
+    if tokens.get(index..index + 3).is_some_and(|parts| token_text(parts) == "::<") {
+        index = matching_delimiter(tokens, index + 2) + 1;
+    }
+    tokens.get(index).filter(|token| token.text == "(").map(|_| index)
 }
 
 fn split_tokens<'tokens, 'source>(
@@ -95,7 +105,9 @@ fn split_tokens<'tokens, 'source>(
         match tokens[index].text {
             "(" | "[" | "{" | "<" => index = matching_delimiter(tokens, index),
             text if text == separator => {
-                pieces.push(&tokens[start..index]);
+                if start < index {
+                    pieces.push(&tokens[start..index]);
+                }
                 start = index + 1;
             }
             _ => {}
@@ -138,6 +150,7 @@ struct HandlerArgument {
 
 #[derive(Default)]
 struct RouteSource {
+    has_literal_router: bool,
     sibling_modules: Vec<String>,
     router_assemblies: Vec<(usize, String, String)>,
     module_scopes: Vec<Vec<usize>>,
@@ -150,7 +163,7 @@ struct RouteSource {
     findings: Vec<(usize, String)>,
 }
 
-fn route_extractor_findings(source: &str, is_module_file: bool) -> Vec<(usize, String)> {
+fn route_extractor_findings(source: &str, path: &Path) -> Vec<(usize, String)> {
     let mut parsed = RouteSource::default();
     parsed.inspect(&source_tokens(source), &[], false);
     for import in &parsed.imports {
@@ -232,11 +245,23 @@ fn route_extractor_findings(source: &str, is_module_file: bool) -> Vec<(usize, S
         }
     }
     for (offset, method, argument) in parsed.router_assemblies {
-        let is_sibling_merge = is_module_file
-            && method == "merge"
-            && parsed.sibling_modules.iter().any(|module| argument == format!("{module}::router()"));
-        if !is_sibling_merge {
+        let sibling = parsed.sibling_modules.iter().find(|module| argument == format!("{module}::router()"));
+        if path.file_name().is_none_or(|name| name != "mod.rs") || method != "merge" || sibling.is_none() {
             parsed.findings.push((offset, ROUTER_ASSEMBLY_RULE.to_string()));
+        } else if let Some(sibling) = sibling {
+            let parent = path.parent().unwrap_or_else(|| Path::new(""));
+            let sibling_source = std::fs::read_to_string(parent.join(format!("{sibling}.rs")))
+                .or_else(|_| std::fs::read_to_string(parent.join(sibling).join("mod.rs")));
+            let mut sibling_route = RouteSource::default();
+            if let Ok(source) = sibling_source {
+                sibling_route.inspect(&source_tokens(&source), &[], false);
+            }
+            if !sibling_route.has_literal_router {
+                parsed.findings.push((
+                    offset,
+                    format!("router assembly requires a literal router function in sibling module {sibling}"),
+                ));
+            }
         }
     }
     parsed.findings
@@ -257,11 +282,34 @@ impl RouteSource {
             let token = tokens[index];
             match token.text {
                 "#" if tokens.get(index + 1).is_some_and(|next| next.text == "[") => {
-                    let end = matching_delimiter(tokens, index + 1);
-                    let is_test = token_text(&tokens[index + 2..end]) == "cfg(test)";
-                    index = end + 1;
+                    let mut path_overrides = Vec::new();
+                    let mut is_test = false;
+                    while tokens.get(index).is_some_and(|part| part.text == "#")
+                        && tokens.get(index + 1).is_some_and(|part| part.text == "[")
+                    {
+                        let end = matching_delimiter(tokens, index + 1);
+                        let attribute = &tokens[index + 2..end];
+                        is_test |= token_text(attribute) == "cfg(test)";
+                        let is_path_override = attribute.first().is_some_and(|part| part.text == "path")
+                            || (attribute.first().is_some_and(|part| part.text == "cfg_attr")
+                                && attribute.get(1).is_some_and(|part| part.text == "(")
+                                && split_tokens(&attribute[2..matching_delimiter(attribute, 1)], ",")
+                                    .iter()
+                                    .skip(1)
+                                    .any(|parts| parts.first().is_some_and(|part| part.text == "path")));
+                        if is_path_override {
+                            path_overrides.push(tokens[index].offset);
+                        }
+                        index = end + 1;
+                    }
                     if is_test {
                         index = after_item(tokens, index);
+                    } else {
+                        self.findings.extend(
+                            path_overrides
+                                .into_iter()
+                                .map(|offset| (offset, "route module path overrides are not allowed".to_string())),
+                        );
                     }
                     continue;
                 }
@@ -289,7 +337,7 @@ impl RouteSource {
                     if tokens.get(start).is_some_and(|part| part.text == "<") {
                         start = matching_delimiter(tokens, start) + 1;
                     }
-                    let (trait_path, _) = leading_path(&tokens[start..]);
+                    let (trait_path, _) = leading_path(tokens.get(start..).unwrap_or_default());
                     self.implementations.push((
                         token.offset,
                         scope.to_vec(),
@@ -305,6 +353,9 @@ impl RouteSource {
                 }
                 "fn" if index == 0 || !matches!(tokens[index - 1].text, "async" | "unsafe") => {
                     if let Some(name) = tokens.get(index + 1).filter(|name| name.is_identifier) {
+                        if name.text == "router" && scope.is_empty() && !is_macro {
+                            self.has_literal_router = true;
+                        }
                         self.shadows.push(ScopedName { name: name.text.to_string(), scope: scope.to_vec() });
                     }
                 }
@@ -316,27 +367,40 @@ impl RouteSource {
                     }
                 }
                 method
-                    if ROUTER_ASSEMBLY_METHODS.contains(&method)
+                    if (ROUTER_ASSEMBLY_METHODS.contains(&method) || ROUTER_MIDDLEWARE_METHODS.contains(&method))
                         && index >= 2
                         && tokens[index - 1].text == ":"
                         && tokens[index - 2].text == ":" =>
                 {
-                    self.findings.push((token.offset, ROUTER_ASSEMBLY_RULE.to_string()));
+                    self.findings.push((
+                        token.offset,
+                        if ROUTER_MIDDLEWARE_METHODS.contains(&method) {
+                            "route middleware belongs outside route modules"
+                        } else {
+                            ROUTER_ASSEMBLY_RULE
+                        }
+                        .to_string(),
+                    ));
                 }
                 "." => {
                     if let Some(method) = tokens.get(index + 1) {
-                        if matches!(method.text, "route" | "route_service" | "fallback" | "fallback_service") {
+                        let Some(opening) = method_arguments_start(tokens, index + 2) else {
+                            index += 1;
+                            continue;
+                        };
+                        if ROUTER_MIDDLEWARE_METHODS.contains(&method.text) {
+                            self.findings
+                                .push((method.offset, "route middleware belongs outside route modules".to_string()));
+                        } else if ROUTE_REGISTRATION_METHODS.contains(&method.text) {
                             self.findings.push((
                                 method.offset,
                                 "route registration must use routes! with a local async handler".to_string(),
                             ));
                         } else if ROUTER_ASSEMBLY_METHODS.contains(&method.text) {
-                            let opening = index + 2;
                             let end = matching_delimiter(tokens, opening);
                             let argument = token_text(&tokens[opening + 1..end]);
                             self.router_assemblies.push((method.offset, method.text.to_string(), argument));
                         } else if method.text == "routes" {
-                            let opening = index + 2;
                             let end = matching_delimiter(tokens, opening);
                             let argument = &tokens[opening + 1..end];
                             if argument.len() < 3 || argument[0].text != "routes" || argument[1].text != "!" {
@@ -348,7 +412,10 @@ impl RouteSource {
                         }
                     }
                 }
-                "routes" if tokens.get(index + 1).is_some_and(|next| next.text == "!") => {
+                "routes"
+                    if tokens.get(index + 1).is_some_and(|next| next.text == "!")
+                        && tokens.get(index + 2).is_some_and(|next| matches!(next.text, "(" | "{" | "[")) =>
+                {
                     let opening = index + 2;
                     let end = matching_delimiter(tokens, opening);
                     for argument in split_tokens(&tokens[opening + 1..end], ",") {
@@ -369,7 +436,10 @@ impl RouteSource {
                     }
                     index = end;
                 }
-                "macro_rules" if tokens.get(index + 1).is_some_and(|next| next.text == "!") => {
+                "macro_rules"
+                    if tokens.get(index + 1).is_some_and(|next| next.text == "!")
+                        && tokens.get(index + 3).is_some_and(|next| matches!(next.text, "(" | "{" | "[")) =>
+                {
                     let opening = index + 3;
                     let end = matching_delimiter(tokens, opening);
                     self.inspect(&tokens[opening + 1..end], scope, true);
@@ -594,8 +664,112 @@ use crate::entity_slugs::EntityPath;";
     }
 
     #[test]
+    fn route_method_fields_and_incomplete_tokens_never_panic() {
+        let mut failures = Vec::new();
+        for method in super::ROUTER_ASSEMBLY_METHODS
+            .iter()
+            .chain(super::ROUTER_MIDDLEWARE_METHODS)
+            .chain(super::ROUTE_REGISTRATION_METHODS)
+            .chain([&"routes"])
+        {
+            for suffix in ["", ";", ".", ")", ",", "::<"] {
+                let source = format!("settings.{method}{suffix}");
+                match std::panic::catch_unwind(|| {
+                    super::route_extractor_findings(&source, std::path::Path::new("listing.rs"))
+                }) {
+                    Ok(findings) if findings.is_empty() => {}
+                    Ok(findings) => failures.push(format!("{source}: unexpected findings {findings:?}")),
+                    Err(_) => failures.push(format!("{source}: panicked")),
+                }
+            }
+        }
+        for source in [
+            "#[cfg(test)] fn ignored() {}",
+            "use crate::{query::{ApiQuery,},};",
+            "impl<T> FromRequestParts<T> for Extractor {}",
+            "async fn handler<T>(State(state): State<T>,) {}",
+            "fn router() { router.routes(routes!(handler,)); }",
+            "macro_rules! handler { () => { async fn handler() {} } }",
+        ] {
+            for end in source.char_indices().map(|(index, _)| index).chain([source.len()]) {
+                let prefix = &source[..end];
+                if std::panic::catch_unwind(|| {
+                    super::route_extractor_findings(prefix, std::path::Path::new("listing.rs"))
+                })
+                .is_err()
+                {
+                    failures.push(format!("{prefix}: panicked"));
+                }
+            }
+        }
+        assert!(failures.is_empty(), "{}", failures.join("\n"));
+    }
+
+    #[test]
+    fn router_assembly_rejects_unread_modules_and_route_middleware() {
+        let folder = tempfile::tempdir().unwrap();
+        let module_file = folder.path().join("mod.rs");
+        let sibling_file = folder.path().join("raw.rs");
+        let mut missed = Vec::new();
+        for (label, declaration, sibling, assembly, expected) in [
+            (
+                "path override",
+                "#[path = \"../../raw_routes.rs\"] mod raw;",
+                "pub(super) fn router() {}",
+                ".merge(raw::router())",
+                "module path",
+            ),
+            ("macro router", "mod raw;", "crate::db::raw_route_module!();", ".merge(raw::router())", "literal router"),
+            (
+                "re-exported router",
+                "mod raw;",
+                "pub(super) use crate::raw::router;",
+                ".merge(raw::router())",
+                "literal router",
+            ),
+            (
+                "test-only router",
+                "mod raw;",
+                "#[cfg(test)] fn router() {} crate::db::raw_route_module!();",
+                ".merge(raw::router())",
+                "literal router",
+            ),
+            (
+                "nested router",
+                "mod raw;",
+                "mod nested { fn router() {} } pub(super) use crate::raw::router;",
+                ".merge(raw::router())",
+                "literal router",
+            ),
+            (
+                "router layer",
+                "mod raw;",
+                "fn router() {}",
+                ".layer(axum::middleware::from_fn(|request: axum::extract::Request, next| async {}))",
+                "route middleware",
+            ),
+            ("route layer", "mod raw;", "fn router() {}", ".route_layer(middleware)", "route middleware"),
+        ] {
+            std::fs::write(&module_file, format!("{declaration}\nfn router() {{ OpenApiRouter::new(){assembly}; }}"))
+                .unwrap();
+            std::fs::write(&sibling_file, sibling).unwrap();
+            match deny_unchecked_route_extractors(folder.path()) {
+                Ok(()) => missed.push(format!("{label}: no finding reported")),
+                Err(error) => {
+                    let message = error.to_string();
+                    assert!(message.contains("mod.rs:"), "{label}: {message}");
+                    assert!(message.contains(expected), "{label}: {message}");
+                    println!("{label}: {message}");
+                }
+            }
+        }
+        assert!(missed.is_empty(), "{}", missed.join("\n"));
+    }
+
+    #[test]
     fn router_assembly_accepts_only_sibling_router_merges_in_module_files() {
         let folder = tempfile::tempdir().unwrap();
+        std::fs::write(folder.path().join("child.rs"), "fn router() {}").unwrap();
         let mut missed = Vec::new();
         for (filename, assembly, accepted) in [
             ("mod.rs", ".merge(child::router())", true),
@@ -652,6 +826,8 @@ use crate::entity_slugs::EntityPath;";
             "mod nested { use axum::extract::State; async fn listing(State(state): State<AppState>) {} fn router() { routes!(listing); } }",
             "#[cfg(test)] mod tests { async fn listing(uri: Uri) {} type EntityPath = Uri; } async fn listing() {} fn router() { routes!(listing); }",
             "#[cfg(test)] #[tokio::test] async fn ignored(uri: Uri) {} async fn listing() {} fn router() { routes!(listing); }",
+            "#[path = \"test_routes.rs\"] #[cfg(test)] mod tests; async fn listing() {} fn router() { routes!(listing); }",
+            "#[cfg(test)] #[path = \"test_routes.rs\"] mod tests; async fn listing() {} fn router() { routes!(listing); }",
             "const TEXT: &str = r#\"async fn fake(uri: Uri) {} routes!(missing)\"#;",
             "macro_rules! records { ($name:ident) => { struct $name; } } records!(Row);",
         ] {
