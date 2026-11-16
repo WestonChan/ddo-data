@@ -1,4 +1,5 @@
 use super::quest_series::{quest_chains_including, sagas_including};
+use super::vocabularies::VocabularySource;
 use crate::db::paged_rows;
 use crate::db::{convert_to_booleans, grouped_rows, json_row, json_rows, paged_table_json, TableListSource};
 use crate::entity_slugs::EntityPath;
@@ -29,6 +30,11 @@ const QUEST_SELECT: &str =
 const QUEST_FLAG_COLUMNS: &[&str] = &["is_raid", "is_challenge", "is_free_to_play"];
 
 const ADVENTURE_PACKS_SELECT: &str = "SELECT id, name, is_free_to_play, [update], released FROM adventure_packs";
+
+pub(super) fn adventure_packs_vocabulary() -> VocabularySource {
+    VocabularySource::new("name", &["name"], "SELECT name FROM adventure_packs")
+        .served_by("/v1/adventure-packs", "adventure_packs")
+}
 
 const ADVENTURE_PACKS_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
@@ -139,6 +145,12 @@ async fn patrons(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) ->
         },
     )
     .await
+}
+
+pub(super) fn quests_vocabulary() -> VocabularySource {
+    VocabularySource::new("slug", &["name"], "SELECT name, slug FROM quests")
+        .served_by("/v1/quests", "quests")
+        .for_entities(ddo_model::enums::EntityKind::Quest)
 }
 
 const QUESTS_SORT_FIELDS: &[(&str, &str)] = &[

@@ -1892,7 +1892,7 @@ async fn item_view_defaults_to_summary_and_caps_full_pages() {
     for value in ["expanded", "FULL", ""] {
         let (status, _, invalid) = get(&format!("/v1/items?view={value}")).await;
         assert_eq!(status, StatusCode::BAD_REQUEST);
-        assert_eq!(invalid["error"], format!("unknown view {value:?}"));
+        assert_eq!(invalid["error"], format!("unknown view {value:?}; accepted values: full, summary"));
     }
     let (status, _, duplicate) = get("/v1/items?view=full&view=summary").await;
     assert_eq!(status, StatusCode::BAD_REQUEST, "{duplicate}");
@@ -1973,7 +1973,7 @@ async fn item_full_page_query_count_does_not_grow_with_rows() {
         assert_eq!(page["items"].as_array().unwrap().len(), limit);
         counts.push(QUERY_COUNT.load(Ordering::SeqCst));
     }
-    assert_eq!(counts[0], counts[1], "full records must use a fixed number of queries");
+    assert_eq!(counts, [45, 45], "44 listing and detail queries plus one view vocabulary check at each page size");
 }
 
 #[tokio::test]
@@ -2328,6 +2328,85 @@ async fn id_in_list_named(list_path: &str, name: &str) -> i64 {
     rows.iter().find(|row| row["name"] == name).unwrap_or_else(|| panic!("{list_path} has no {name}"))["id"]
         .as_i64()
         .unwrap()
+}
+
+#[tokio::test]
+async fn items_reject_an_unknown_pack_and_name_every_filter_vocabulary() {
+    for (parameter, route, rows_key, value_key) in [
+        ("pack", "/v1/adventure-packs", "adventure_packs", "name"),
+        ("set", "/v1/sets", "sets", "name"),
+        ("slot", "/v1/equipment-slots", "equipment_slots", "name"),
+        ("quest", "/v1/quests", "quests", "slug"),
+        ("quest_chain", "/v1/quest-chains", "quest_chains", "slug"),
+        ("saga", "/v1/sagas", "sagas", "slug"),
+        ("category", "", "", ""),
+        ("view", "", "", ""),
+    ] {
+        let accepted = if parameter == "category" {
+            let mut names: Vec<_> = ddo_model::enums::ItemCategory::ALL.iter().map(|kind| kind.as_str()).collect();
+            names.sort_unstable();
+            names.join(", ")
+        } else if parameter == "view" {
+            "full, summary".to_string()
+        } else {
+            let (status, _, page) = get(&format!("{route}?limit=10000&sort=name")).await;
+            assert_eq!(status, StatusCode::OK, "{page}");
+            assert_eq!(page[rows_key].as_array().unwrap().len() as u64, page["total"].as_u64().unwrap());
+            page[rows_key]
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|row| row[value_key].as_str().unwrap())
+                .collect::<Vec<_>>()
+                .join(", ")
+        };
+        let (status, _, rejected) = get(&format!("/v1/items?{parameter}=made-up")).await;
+        assert_eq!(status, StatusCode::BAD_REQUEST, "{parameter}: {rejected}");
+        assert_eq!(rejected["error"], format!("unknown {parameter} \"made-up\"; accepted values: {accepted}"));
+        if parameter == "pack" {
+            for (suffix, unknown) in [
+                ("pack=made-up&pack_match=all", "made-up"),
+                ("pack=Free%20to%20Play&pack=made-up&pack_match=all", "made-up"),
+                ("pack=shadowfell", "shadowfell"),
+            ] {
+                let (status, _, rejected) = get(&format!("/v1/items?{suffix}")).await;
+                assert_eq!(status, StatusCode::BAD_REQUEST, "{rejected}");
+                assert_eq!(rejected["error"], format!("unknown pack {unknown:?}; accepted values: {accepted}"));
+            }
+        }
+    }
+    let (_, _, unfiltered) = get("/v1/items").await;
+    let (status, _, blank) = get("/v1/items?pack=").await;
+    assert_eq!(status, StatusCode::OK);
+    assert_eq!(blank, unfiltered);
+
+    let mut addresses = Vec::new();
+    for (parameter, kind, name) in [
+        ("quest", "quests", "Ghosts of Perdition"),
+        ("quest_chain", "quest-chains", "The Lost Seekers"),
+        ("saga", "sagas", "Masterminds of Sharn"),
+        ("crafting_system", "crafting-systems", "Thunder-Forged"),
+    ] {
+        let (_, _, rows) = get_list_rows(&format!("/v1/{kind}")).await;
+        let entity = rows.as_array().unwrap().iter().find(|row| row["name"] == name).unwrap();
+        addresses.push((parameter, kind, entity["id"].as_i64().unwrap(), entity["slug"].as_str().unwrap().to_string()));
+    }
+    let state = fixture_state_with_data_edits("item-filter-redirects", |root| {
+        let redirects = addresses.iter().map(|(parameter, kind, _, slug)| {
+            format!("[[redirect]]\nkind = {kind:?}\nfrom = \"former-{parameter}\"\nto = {slug:?}\nsince = \"2026-11-15\"\n")
+        }).collect::<String>();
+        std::fs::write(root.join("redirects.toml"), redirects).unwrap();
+    });
+    for (parameter, _, id, slug) in addresses {
+        let (status, _, current) = get_from(state.clone(), &format!("/v1/items?{parameter}={slug}")).await;
+        assert_eq!(status, StatusCode::OK, "{current}");
+        assert!(current["total"].as_i64().unwrap() > 0, "{parameter}");
+        for address in [id.to_string(), format!("former-{parameter}")] {
+            let (status, _, resolved) = get_from(state.clone(), &format!("/v1/items?{parameter}={address}")).await;
+            assert_eq!(status, StatusCode::OK, "{resolved}");
+            assert_eq!(resolved, current, "{parameter}={address}");
+        }
+    }
 }
 
 #[tokio::test]
@@ -3705,7 +3784,19 @@ async fn list_endpoints_accept_every_documented_query_parameter() {
             if matches!(name, "slot_match" | "category_match" | "material_match") {
                 continue;
             }
-            let sample_value = accepted_sample_value(name, param_schema_type(param));
+            let vocabulary = &param["x-vocabulary"];
+            let sample_value = if let Some(route) = vocabulary["route"].as_str() {
+                let rows_key = vocabulary["rows_key"].as_str().unwrap();
+                let value_key = vocabulary["value_key"].as_str().unwrap();
+                let (status, _, page) = get(&format!("{route}?limit=1")).await;
+                assert_eq!(status, StatusCode::OK, "{route}: {page}");
+                let sample = page[rows_key][0][value_key]
+                    .as_str()
+                    .unwrap_or_else(|| panic!("{route} has no {value_key} sample"));
+                serde_urlencoded::to_string([(name, sample)]).unwrap().split_once('=').unwrap().1.to_string()
+            } else {
+                accepted_sample_value(name, param_schema_type(param)).to_string()
+            };
             let (status, _, json) = get(&format!("{path}?{name}={sample_value}")).await;
             assert_eq!(status, StatusCode::OK, "{path}?{name}={sample_value} is documented but rejected: {json}");
         }
@@ -5443,8 +5534,9 @@ async fn item_pack_surfaces_follow_every_source_kind() {
     let (_, _, unsourced_detail) = get_from(state.clone(), &format!("/v1/items/{}", unsourced_item["id"])).await;
     assert_eq!(unsourced_detail["sources"], serde_json::json!([]));
     assert_eq!(unsourced_detail["adventure_packs"], serde_json::json!([]));
-    let (_, _, unknown_pack) = get_from(state, "/v1/items?pack=Unknown%20Pack").await;
-    assert_eq!(unknown_pack["total"], 0);
+    let (status, _, unknown_pack) = get_from(state, "/v1/items?pack=Unknown%20Pack").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST);
+    assert!(unknown_pack["error"].as_str().unwrap().starts_with("unknown pack \"Unknown Pack\"; accepted values: "));
 }
 
 #[tokio::test]
@@ -5469,12 +5561,25 @@ async fn item_pack_query_count_does_not_grow_with_rows_or_sources() {
         })
         .await
         .unwrap();
-    for filter in ["", "&pack=Free%20to%20Play", "&q=free%20to%20play"] {
+    for (filter, validation_queries) in [
+        ("", 0),
+        ("&q=free%20to%20play", 0),
+        ("&pack=Free%20to%20Play", 1),
+        ("&pack=Free%20to%20Play&pack=Magic%20of%20Myth%20Drannor", 1),
+        ("&slot=Ring", 1),
+        ("&pack=Free%20to%20Play&category=Weapon", 2),
+        ("&quest=ghosts-of-perdition", 1),
+        ("&quest=ghosts-of-perdition&quest=book-burning", 2),
+    ] {
         for limit in [1, 10000] {
             QUERY_COUNT.store(0, Ordering::SeqCst);
             let (status, _, page) = get_from(state.clone(), &format!("/v1/items?limit={limit}{filter}")).await;
-            assert_eq!(status, StatusCode::OK);
-            assert_eq!(QUERY_COUNT.load(Ordering::SeqCst), 2, "one count and one page query: {filter}, limit {limit}");
+            assert_eq!(status, StatusCode::OK, "{filter}: {page}");
+            assert_eq!(
+                QUERY_COUNT.load(Ordering::SeqCst),
+                2 + validation_queries,
+                "two listing queries plus vocabulary checks or entity resolutions: {filter}, limit {limit}"
+            );
             assert!(page["total"].as_i64().unwrap() > 1);
             assert_eq!(
                 page["items"].as_array().unwrap().len(),

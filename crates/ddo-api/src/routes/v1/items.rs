@@ -8,7 +8,7 @@ use crate::db::{
     WhereClause,
 };
 use crate::effect_names::{effect_name_search_sql, resolve_effect_name};
-use crate::entity_slugs::{resolve_entity_slug, EntityPath};
+use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
 use crate::query::{
     declare_list_parameters, declare_query_parameters, repeated_key_values, ApiQuery, EffectName, EntityFilter,
@@ -17,7 +17,7 @@ use crate::query::{
 use crate::state::AppState;
 use axum::extract::State;
 use axum::Json;
-use ddo_model::enums::{EntityKind, EquipmentSlot, ItemCategory};
+use ddo_model::enums::ItemCategory;
 use rusqlite::Connection;
 use serde_json::Value;
 use utoipa_axum::router::OpenApiRouter;
@@ -66,14 +66,14 @@ declare_query_parameters! {
         pub set_match: Option<String>,
         pub raid: Option<bool>,
         pub rare: Option<bool>,
-        #[serde(default, deserialize_with = "repeated_key_values")]
-        pub quest: Vec<String>,
+        #[serde(default)]
+        pub quest: EntityFilter,
         pub quest_match: Option<String>,
-        #[serde(default, deserialize_with = "repeated_key_values")]
-        pub quest_chain: Vec<String>,
+        #[serde(default)]
+        pub quest_chain: EntityFilter,
         pub quest_chain_match: Option<String>,
-        #[serde(default, deserialize_with = "repeated_key_values")]
-        pub saga: Vec<String>,
+        #[serde(default)]
+        pub saga: EntityFilter,
         pub saga_match: Option<String>,
         #[serde(default, deserialize_with = "repeated_key_values")]
         pub bonus: Vec<EffectName>,
@@ -83,31 +83,30 @@ declare_query_parameters! {
         pub view: Option<String>,
     }
     vocabularies: {
+        slot => EquipmentSlots, "Repeat equipment slot names from /v1/equipment-slots to match any; omitted applies no filter.",
+        category => ItemCategories, "Repeat Armor, Shield, Weapon, Jewelry or Clothing to match any; omitted applies no filter.",
         attack_ability => WeaponAbilities, "Repeat exact names from /v1/weapon-abilities to match a weapon's attack abilities; omitted applies no filter.",
         damage_ability => WeaponAbilities, "Repeat exact names from /v1/weapon-abilities to match a weapon's damage abilities; omitted applies no filter.",
         material => ItemMaterials, "Repeat names from /v1/item-materials to match any material; omitted applies no filter.",
         socket => AugmentSlotTypes, "Repeat case-insensitive labels from /v1/augment-slot-types to match item sockets; omitted applies no filter.",
         crafting_system => CraftingSystems, "Repeat current or redirected slugs or numeric ids from /v1/crafting-systems to match their item outputs; omitted applies no filter.",
+        pack => AdventurePacks, "Repeat names from /v1/adventure-packs reached through item sources; omitted applies no filter.",
+        set => Sets, "Repeat set names from /v1/sets to match member items; omitted applies no filter.",
+        quest => Quests, "Repeat current or redirected slugs or numeric ids from /v1/quests to match their item drops; omitted applies no filter.",
+        quest_chain => QuestChains, "Repeat current or redirected slugs or numeric ids from /v1/quest-chains to match end rewards; omitted applies no filter.",
+        saga => Sagas, "Repeat current or redirected slugs or numeric ids from /v1/sagas to match end rewards; omitted applies no filter.",
+        view => ItemViews, "Use `summary` (default) for compact rows or `full` for detail records; full pages cap at 50 rows."; example = "full",
     }
     matchable: ["attack_ability", "damage_ability", "socket", "pack", "crafting_system", "set", "quest", "quest_chain", "saga", "bonus"]
     single_value_match: ["slot", "category", "material"]
 }
 
-fn entity_filter_ids(
-    db: &Connection,
-    kind: EntityKind,
-    parameter: &str,
-    values: &[String],
-) -> Result<Vec<i64>, ApiError> {
-    values
-        .iter()
-        .map(|value| {
-            if let Some(entity) = resolve_entity_slug(db, kind, value)? {
-                return Ok(entity.id);
-            }
-            Err(ApiError::BadRequest(format!("unknown {parameter} {value:?}")))
-        })
-        .collect()
+pub(super) fn item_categories_vocabulary() -> VocabularySource {
+    VocabularySource::of_names(ItemCategory::ALL.iter().map(|category| category.as_str()))
+}
+
+pub(super) fn item_views_vocabulary() -> VocabularySource {
+    VocabularySource::of_names(["summary", "full"])
 }
 
 const ITEM_LIST_COLUMNS: &str =
@@ -176,20 +175,12 @@ declare_list_parameters!(
     params(
         ItemsParameters,
         ItemFilters,
-        ("slot" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat equipment slot names from /v1/equipment-slots to match any."),
-        ("category" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat Armor, Shield, Weapon, Jewelry or Clothing to match any."),
         ("min_level" = Option<i64>, Query, description = "Minimum item level to include."),
         ("max_level" = Option<i64>, Query, description = "Maximum item level to include."),
-        ("pack" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat adventure pack names reached through item sources."),
-        ("set" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat set names from /v1/sets to match member items."),
         ("raid" = Option<bool>, Query, description = "Use true to keep items from raid quests."),
         ("rare" = Option<bool>, Query, description = "Use true to keep rare loot from quests or packs."),
-        ("quest" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat quest slugs or numeric ids from /v1/quests to match their item drops."),
-        ("quest_chain" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat quest chain slugs or numeric ids to match end rewards."),
-        ("saga" = Option<Vec<String>>, Query, style = Form, explode = true, description = "Repeat saga slugs or numeric ids to match end rewards."),
         ("include_set_bonuses" = Option<bool>, Query, description = "Use true to match effects through the item's set tiers too."),
         ("include_legacy" = Option<bool>, Query, description = "Use true to include legacy item versions in the list."),
-        ("view" = Option<String>, Query, description = "Use `summary` (default) for compact rows or `full` for detail records; full pages cap at 50 rows.", example = "full"),
     ),
     responses(
         (status = 200, description = "`total`, `limit`, `offset` and the `items` page", body = crate::routes::v1::response_schemas::ItemsPageResponse),
@@ -203,21 +194,7 @@ async fn items(
     state
         .read_db(move |db| {
             let filters = filters.validated(db)?;
-            for slot in &filters.slot {
-                if !EquipmentSlot::ALL.iter().any(|known| known.name() == slot) {
-                    return Err(ApiError::BadRequest(format!("unknown slot {slot:?}")));
-                }
-            }
-            for category in &filters.category {
-                if !ItemCategory::ALL.iter().any(|known| known.as_str() == category) {
-                    return Err(ApiError::BadRequest(format!("unknown category {category:?}")));
-                }
-            }
-            let full_view = match filters.view.as_deref().unwrap_or("summary") {
-                "summary" => false,
-                "full" => true,
-                other => return Err(ApiError::BadRequest(format!("unknown view {other:?}"))),
-            };
+            let full_view = filters.view.as_deref() == Some("full");
             let mut query = query;
             if full_view {
                 query.limit = Some(query.limit.unwrap_or(50).min(50));
@@ -273,16 +250,6 @@ async fn items(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'crafting_system' AND d.crafting_system_id = ?)",
                 filters.crafting_system.ids(), filters.crafting_system_match.as_deref(),
             );
-            for set_name in &filters.set {
-                let known_set: bool = db.query_row(
-                    "SELECT EXISTS(SELECT 1 FROM set_bonuses WHERE name = ?1)",
-                    [set_name],
-                    |row| row.get(0),
-                )?;
-                if !known_set {
-                    return Err(ApiError::BadRequest(format!("unknown set {set_name:?}")));
-                }
-            }
             where_clause.add_repeated_filter(
                 "EXISTS (SELECT 1 FROM set_bonus_items member JOIN set_bonuses s ON s.id = member.set_id WHERE member.item_id = i.id AND s.name IN (?))",
                 "EXISTS (SELECT 1 FROM set_bonus_items member JOIN set_bonuses s ON s.id = member.set_id WHERE member.item_id = i.id AND s.name = ?)",
@@ -297,17 +264,17 @@ async fn items(
             where_clause.add_repeated_filter(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest' AND d.quest_id IN (?))",
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest' AND d.quest_id = ?)",
-                &entity_filter_ids(db, EntityKind::Quest, "quest", &filters.quest)?, filters.quest_match.as_deref(),
+                filters.quest.ids(), filters.quest_match.as_deref(),
             );
             where_clause.add_repeated_filter(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest_chain' AND d.chain_id IN (?))",
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'quest_chain' AND d.chain_id = ?)",
-                &entity_filter_ids(db, EntityKind::QuestChain, "quest_chain", &filters.quest_chain)?, filters.quest_chain_match.as_deref(),
+                filters.quest_chain.ids(), filters.quest_chain_match.as_deref(),
             );
             where_clause.add_repeated_filter(
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id IN (?))",
                 "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'saga' AND d.saga_id = ?)",
-                &entity_filter_ids(db, EntityKind::Saga, "saga", &filters.saga)?, filters.saga_match.as_deref(),
+                filters.saga.ids(), filters.saga_match.as_deref(),
             );
             let bonus_conditions = filters.bonus.iter().map(|name| {
                 bonus_match_sql(db, &name.0, filters.include_set_bonuses == Some(true))
@@ -444,6 +411,11 @@ async fn item_detail(State(state): State<AppState>, EntityPath(id): EntityPath) 
             Ok(Json(records.remove(&id).ok_or(ApiError::NotFound)?))
         })
         .await
+}
+
+pub(super) fn equipment_slots_vocabulary() -> VocabularySource {
+    VocabularySource::new("name", &["name"], "SELECT name FROM equipment_slots")
+        .served_by("/v1/equipment-slots", "equipment_slots")
 }
 
 const EQUIPMENT_SLOTS_SORT_FIELDS: &[(&str, &str)] = &[

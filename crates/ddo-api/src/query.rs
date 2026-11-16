@@ -16,7 +16,7 @@ macro_rules! declare_query_parameters {
         $visibility:vis struct $name:ident {
             $($(#[$attribute:meta])* $field_visibility:vis $field:ident: $field_type:ty),* $(,)?
         }
-        $(vocabularies: { $($vocabulary_field:ident => $vocabulary:ident, $description:literal $(, example = $example:literal)?),* $(,)? })?
+        $(vocabularies: { $($vocabulary_field:ident => $vocabulary:ident, $description:literal $(; example = $example:literal)?),* $(,)? })?
         $(matchable: [$($matchable_key:literal),* $(,)?])?
         $(single_value_match: [$($single_value_match_key:literal),* $(,)?])?
     ) => {
@@ -541,7 +541,7 @@ mod vocabulary_filter_tests {
         }
         vocabularies: {
             family => AugmentSlotFamilies, "Repeat socket family names to match any family.",
-            socket => AugmentSlotTypes, "Choose a case-insensitive socket label.",
+            socket => AugmentSlotTypes, "Choose a case-insensitive socket label."; example = "sun",
             crafting_system => CraftingSystems, "Repeat crafting system slugs or numeric ids.",
         }
     }
@@ -651,6 +651,7 @@ mod vocabulary_filter_tests {
         assert_eq!(family["x-vocabulary"]["value_key"], "family");
         let socket = parameters.iter().find(|parameter| parameter["name"] == "socket").unwrap();
         assert_eq!(socket["schema"]["type"], "string");
+        assert_eq!(socket["example"], "sun");
         assert!(socket.get("explode").is_none());
     }
 }

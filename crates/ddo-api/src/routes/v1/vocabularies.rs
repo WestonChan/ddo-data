@@ -35,6 +35,14 @@ impl VocabularySource {
         }
     }
 
+    pub(super) fn of_names(names: impl IntoIterator<Item = &'static str>) -> Self {
+        let selects: Vec<_> =
+            names.into_iter().map(|name| format!("SELECT '{}' AS name", name.replace('\'', "''"))).collect();
+        let values_sql =
+            if selects.is_empty() { "SELECT NULL AS name WHERE 0".into() } else { selects.join(" UNION ALL ") };
+        Self::new("name", &["name"], values_sql)
+    }
+
     pub(super) fn with_counted_listing(mut self, columns: fn(&str) -> String, joins: fn(&str) -> String) -> Self {
         self.counted_listing = Some(CountedListing { columns, joins });
         self
@@ -91,6 +99,14 @@ declare_value_vocabularies! {
         AugmentSlotTypes => super::items::augment_slot_types_vocabulary,
         AugmentSlotFamilies => super::items::augment_slot_families_vocabulary,
         CraftingSystems => super::crafting::crafting_systems_vocabulary,
+        EquipmentSlots => super::items::equipment_slots_vocabulary,
+        ItemCategories => super::items::item_categories_vocabulary,
+        AdventurePacks => super::quests::adventure_packs_vocabulary,
+        Sets => super::sets::sets_vocabulary,
+        Quests => super::quests::quests_vocabulary,
+        QuestChains => super::quest_series::quest_chains_vocabulary,
+        Sagas => super::quest_series::sagas_vocabulary,
+        ItemViews => super::items::item_views_vocabulary,
     }
 }
 
@@ -184,7 +200,23 @@ impl VocabularyQueries {
 
 #[cfg(test)]
 mod vocabulary_tests {
-    use super::ValueVocabulary;
+    use super::{ValueVocabulary, VocabularyQueries, VocabularySource};
+
+    #[test]
+    fn static_vocabularies_preserve_quoted_names_and_allow_empty_lists() {
+        let db = rusqlite::Connection::open_in_memory().unwrap();
+        for names in [vec!["O'Brien", "Another"], vec![]] {
+            let vocabulary = VocabularyQueries::new(&VocabularySource::of_names(names.iter().copied()));
+            for name in &names {
+                vocabulary.reject_unknown_values(&db, "name", &[name.to_string()]).unwrap();
+            }
+            let mut accepted = names;
+            accepted.sort_unstable();
+            let error = vocabulary.reject_unknown_values(&db, "name", &["made-up".into()]).unwrap_err();
+            let crate::error::ApiError::BadRequest(message) = error else { panic!("expected an unknown value") };
+            assert_eq!(message, format!("unknown name \"made-up\"; accepted values: {}", accepted.join(", ")));
+        }
+    }
 
     #[test]
     fn every_value_vocabulary_validates_without_counting() {

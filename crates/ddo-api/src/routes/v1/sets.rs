@@ -1,3 +1,4 @@
+use super::vocabularies::VocabularySource;
 use crate::db::paged_rows;
 use crate::db::{
     convert_to_booleans, effects_via, json_row, json_rows, modifiers_for, notes_for_owners, paged_table_json,
@@ -26,6 +27,10 @@ const SET_LIST_SELECT: &str = "SELECT s.id, s.name, s.icon, s.is_filigree_set,
     (SELECT COUNT(*) FROM set_bonus_augments a WHERE a.set_id = s.id) AS augment_count,
     (SELECT COUNT(*) FROM set_bonus_tiers t WHERE t.set_id = s.id) AS tier_count
     FROM set_bonuses s";
+
+pub(super) fn sets_vocabulary() -> VocabularySource {
+    VocabularySource::new("name", &["name"], "SELECT name FROM set_bonuses").served_by("/v1/sets", "sets")
+}
 
 const FILIGREE_SELECT: &str =
     "SELECT f.id, f.name, f.description, f.icon, f.menu, f.set_id, s.slug AS set_slug, s.name AS set_name

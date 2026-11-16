@@ -1,3 +1,4 @@
+use super::vocabularies::VocabularySource;
 use crate::db::{convert_to_booleans, json_row, json_rows, paged_rows, ListPage};
 use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
@@ -16,6 +17,18 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
         .routes(routes!(quest_chain_detail))
         .routes(routes!(sagas))
         .routes(routes!(saga_detail))
+}
+
+pub(super) fn quest_chains_vocabulary() -> VocabularySource {
+    VocabularySource::new("slug", &["name"], "SELECT name, slug FROM quest_chains")
+        .served_by("/v1/quest-chains", "quest_chains")
+        .for_entities(ddo_model::enums::EntityKind::QuestChain)
+}
+
+pub(super) fn sagas_vocabulary() -> VocabularySource {
+    VocabularySource::new("slug", &["name"], "SELECT name, slug FROM sagas")
+        .served_by("/v1/sagas", "sagas")
+        .for_entities(ddo_model::enums::EntityKind::Saga)
 }
 
 #[derive(Clone, Copy)]
