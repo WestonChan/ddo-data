@@ -1,4 +1,4 @@
-use super::vocabularies::{VocabularyOptions, VocabularySource};
+use super::vocabularies::VocabularySource;
 use super::ValueVocabulary;
 use crate::db::{
     convert_to_booleans, effects_via_with_link_order, grouped_rows, json_row, json_rows, modifiers_for_owners,
@@ -24,27 +24,27 @@ static INGREDIENT_USES: std::sync::LazyLock<String> = std::sync::LazyLock::new(|
     format!("WITH ingredient_uses(ingredient_id,system_id) AS ({})", ddo_model::schema::CRAFTING_INGREDIENT_USES)
 });
 
-pub(super) static CRAFTING_SYSTEMS_VOCABULARY: std::sync::LazyLock<VocabularySource> =
-    std::sync::LazyLock::new(|| VocabularySource {
-        value_column: "slug",
-        default_order: &["name"],
-        values_sql: "SELECT s.id, s.slug, s.name, s.page, p.name AS pack,
+pub(super) fn crafting_systems_vocabulary() -> VocabularySource {
+    VocabularySource::new(
+        "slug",
+        &["name"],
+        "SELECT s.id, s.slug, s.name, s.page, p.name AS pack,
                 (SELECT station.name || COALESCE(', ' || station.place,'')
                  FROM crafting_system_stations link JOIN crafting_stations station ON station.id=link.station_id
                  WHERE link.system_id=s.id ORDER BY link.sort_order LIMIT 1) AS npc
-             FROM crafting_systems s LEFT JOIN adventure_packs p ON p.id = s.pack_id"
-            .into(),
-        options: VocabularyOptions::default()
-            .with_list_columns(|vocabulary| {
-                format!(
-                    "{vocabulary}.*, COALESCE(ingredients.ingredient_count, 0) AS ingredient_count,
+             FROM crafting_systems s LEFT JOIN adventure_packs p ON p.id = s.pack_id",
+    )
+    .with_counted_listing(
+        |vocabulary| {
+            format!(
+                "{vocabulary}.*, COALESCE(ingredients.ingredient_count, 0) AS ingredient_count,
              COALESCE(recipes.recipe_count, 0) AS recipe_count,
              COALESCE(outputs.item_count, 0) AS item_count"
-                )
-            })
-            .with_count_joins(|vocabulary| {
-                format!(
-                    "LEFT JOIN (
+            )
+        },
+        |vocabulary| {
+            format!(
+                "LEFT JOIN (
                     {} SELECT system_id, COUNT(*) AS ingredient_count FROM ingredient_uses GROUP BY system_id
                  ) ingredients ON ingredients.system_id = {vocabulary}.id
                  LEFT JOIN (SELECT system_id, COUNT(*) AS recipe_count FROM crafting_recipes GROUP BY system_id) recipes
@@ -54,10 +54,11 @@ pub(super) static CRAFTING_SYSTEMS_VOCABULARY: std::sync::LazyLock<VocabularySou
                     FROM crafting_outputs output JOIN items i ON i.id = output.owner_id
                     WHERE output.owner_kind = 'item' AND NOT i.is_legacy GROUP BY output.crafting_system_id
                  ) outputs ON outputs.crafting_system_id = {vocabulary}.id",
-                    INGREDIENT_USES.as_str()
-                )
-            }),
-    });
+                INGREDIENT_USES.as_str()
+            )
+        },
+    )
+}
 
 fn attach_augment_families(db: &Connection, crafting_system: &mut Value) -> Result<(), ApiError> {
     let system_id = crafting_system["id"].as_i64().unwrap_or(0);

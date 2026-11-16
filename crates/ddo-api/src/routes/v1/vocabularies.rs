@@ -3,26 +3,28 @@ use rusqlite::Connection;
 use std::sync::LazyLock;
 
 pub(super) struct VocabularySource {
-    pub(super) value_column: &'static str,
-    pub(super) default_order: &'static [&'static str],
-    pub(super) values_sql: String,
-    pub(super) options: VocabularyOptions,
+    value_column: &'static str,
+    default_order: &'static [&'static str],
+    values_sql: String,
+    counted_listing: Option<CountedListing>,
 }
 
-#[derive(Default)]
-pub(super) struct VocabularyOptions {
-    list_columns: Option<fn(&str) -> String>,
-    count_joins: Option<fn(&str) -> String>,
+struct CountedListing {
+    columns: fn(&str) -> String,
+    joins: fn(&str) -> String,
 }
 
-impl VocabularyOptions {
-    pub(super) fn with_list_columns(mut self, columns: fn(&str) -> String) -> Self {
-        self.list_columns = Some(columns);
-        self
+impl VocabularySource {
+    pub(super) fn new(
+        value_column: &'static str,
+        default_order: &'static [&'static str],
+        values_sql: impl Into<String>,
+    ) -> Self {
+        Self { value_column, default_order, values_sql: values_sql.into(), counted_listing: None }
     }
 
-    pub(super) fn with_count_joins(mut self, joins: fn(&str) -> String) -> Self {
-        self.count_joins = Some(joins);
+    pub(super) fn with_counted_listing(mut self, columns: fn(&str) -> String, joins: fn(&str) -> String) -> Self {
+        self.counted_listing = Some(CountedListing { columns, joins });
         self
     }
 }
@@ -42,7 +44,7 @@ macro_rules! declare_value_vocabularies {
                 match self {
                     $(Self::$variant => {
                         static QUERIES: LazyLock<VocabularyQueries> =
-                            LazyLock::new(|| VocabularyQueries::new(&$source));
+                            LazyLock::new(|| VocabularyQueries::new(&$source()));
                         &QUERIES
                     }),*
                 }
@@ -53,11 +55,11 @@ macro_rules! declare_value_vocabularies {
 
 declare_value_vocabularies! {
     pub(super) enum ValueVocabulary {
-        WeaponAbilities => super::items::WEAPON_ABILITIES_VOCABULARY,
-        ItemMaterials => super::items::ITEM_MATERIALS_VOCABULARY,
-        AugmentSlotTypes => super::items::AUGMENT_SLOT_TYPES_VOCABULARY,
-        AugmentSlotFamilies => super::items::AUGMENT_SLOT_FAMILIES_VOCABULARY,
-        CraftingSystems => super::crafting::CRAFTING_SYSTEMS_VOCABULARY,
+        WeaponAbilities => super::items::weapon_abilities_vocabulary,
+        ItemMaterials => super::items::item_materials_vocabulary,
+        AugmentSlotTypes => super::items::augment_slot_types_vocabulary,
+        AugmentSlotFamilies => super::items::augment_slot_families_vocabulary,
+        CraftingSystems => super::crafting::crafting_systems_vocabulary,
     }
 }
 
@@ -92,11 +94,10 @@ impl VocabularyQueries {
         let listed_alias = "listed";
         let values_sql = &source.values_sql;
         let value_column = source.value_column;
-        let list_columns = source
-            .options
-            .list_columns
-            .map_or_else(|| format!("{vocabulary_alias}.*"), |columns| columns(vocabulary_alias));
-        let count_joins = source.options.count_joins.map(|joins| joins(vocabulary_alias)).unwrap_or_default();
+        let (list_columns, count_joins) = source.counted_listing.as_ref().map_or_else(
+            || (format!("{vocabulary_alias}.*"), String::new()),
+            |listing| ((listing.columns)(vocabulary_alias), (listing.joins)(vocabulary_alias)),
+        );
         let default_order =
             source.default_order.iter().map(|column| format!("{listed_alias}.{column}")).collect::<Vec<_>>().join(", ");
         Self {
