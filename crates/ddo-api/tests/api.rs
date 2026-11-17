@@ -5632,7 +5632,19 @@ async fn item_pack_surfaces_follow_every_source_kind() {
 async fn item_pack_query_count_does_not_grow_with_rows_or_sources() {
     static QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
     static PACK_QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
-    let state = fixture_state();
+    let state = fixture_state_with_data_edits("entity-resolution-counts", |data_dir| {
+        std::fs::write(
+            data_dir.join("redirects.toml"),
+            "[[redirect]]\nkind = \"quests\"\nfrom = \"former-counted-quest\"\nto = \"ghosts-of-perdition\"\nsince = \"2026-11-15\"\n",
+        )
+        .unwrap();
+    });
+    let quest_id: i64 = state
+        .read_db(|db| {
+            Ok(db.query_row("SELECT id FROM quests WHERE slug = 'ghosts-of-perdition'", [], |row| row.get(0))?)
+        })
+        .await
+        .unwrap();
     state
         .read_db(|db| {
             db.trace_v2(
@@ -5650,7 +5662,7 @@ async fn item_pack_query_count_does_not_grow_with_rows_or_sources() {
         })
         .await
         .unwrap();
-    for (filter, validation_queries) in [
+    let mut cases = [
         ("", 0),
         ("&q=free%20to%20play", 0),
         ("&pack=Free%20to%20Play", 1),
@@ -5659,7 +5671,18 @@ async fn item_pack_query_count_does_not_grow_with_rows_or_sources() {
         ("&pack=Free%20to%20Play&category=Weapon", 2),
         ("&quest=ghosts-of-perdition", 1),
         ("&quest=ghosts-of-perdition&quest=book-burning", 2),
-    ] {
+    ]
+    .into_iter()
+    .map(|(filter, validation_queries)| (filter.to_string(), validation_queries))
+    .collect::<Vec<_>>();
+    for (address, resolution_queries) in
+        [("ghosts-of-perdition", 1), ("former-counted-quest", 2), (&quest_id.to_string(), 3)]
+    {
+        for repetitions in [1, 3] {
+            cases.push((format!("&quest={address}").repeat(repetitions), resolution_queries));
+        }
+    }
+    for (filter, validation_queries) in cases {
         for limit in [1, 10000] {
             QUERY_COUNT.store(0, Ordering::SeqCst);
             let (status, _, page) = get_from(state.clone(), &format!("/v1/items?limit={limit}{filter}")).await;

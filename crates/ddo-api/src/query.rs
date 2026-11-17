@@ -113,12 +113,9 @@ fn validate_text_values(
     Ok(())
 }
 
-fn trim_filter_value(value: &mut String) -> bool {
+fn trimmed_filter_value(value: &str) -> Option<&str> {
     let trimmed = value.trim();
-    if trimmed.len() != value.len() {
-        *value = trimmed.to_string();
-    }
-    !value.is_empty()
+    (!trimmed.is_empty()).then_some(trimmed)
 }
 
 impl VocabularyFilter for Vec<String> {
@@ -128,7 +125,6 @@ impl VocabularyFilter for Vec<String> {
         parameter: &str,
         vocabulary: ValueVocabulary,
     ) -> Result<(), ApiError> {
-        self.retain_mut(trim_filter_value);
         validate_text_values(self, db, parameter, vocabulary)
     }
 }
@@ -140,8 +136,12 @@ impl VocabularyFilter for Option<String> {
         parameter: &str,
         vocabulary: ValueVocabulary,
     ) -> Result<(), ApiError> {
-        if self.as_mut().is_some_and(|value| !trim_filter_value(value)) {
-            *self = None;
+        if let Some(value) = self {
+            match trimmed_filter_value(value) {
+                Some(trimmed) if trimmed.len() != value.len() => *value = trimmed.to_string(),
+                Some(_) => {}
+                None => *self = None,
+            }
         }
         if let Some(value) = self {
             validate_text_values(std::slice::from_mut(value), db, parameter, vocabulary)?;
@@ -184,12 +184,16 @@ impl VocabularyFilter for EntityFilter {
         let kind = vocabulary
             .entity_kind()
             .ok_or_else(|| ApiError::Internal(anyhow::anyhow!("{parameter} requires an entity vocabulary")))?;
-        self.texts.retain_mut(trim_filter_value);
+        let mut ids_by_text = std::collections::HashMap::new();
         self.ids = self
             .texts
             .iter()
             .map(|text| {
+                if let Some(&id) = ids_by_text.get(text.as_str()) {
+                    return Ok(id);
+                }
                 if let Some(entity) = resolve_entity_slug(db, kind, text)? {
+                    ids_by_text.insert(text.as_str(), entity.id);
                     return Ok(entity.id);
                 }
                 Err(vocabulary.unknown_value_error(db, parameter, text))
@@ -504,8 +508,7 @@ pub(crate) fn repeated_key_values<'de, D: Deserializer<'de>, T: From<String>>(
     let joined_values = String::deserialize(deserializer)?;
     Ok(joined_values
         .split(REPEATED_VALUE_SEPARATOR)
-        .map(str::trim)
-        .filter(|value| !value.is_empty())
+        .filter_map(trimmed_filter_value)
         .map(|text| T::from(text.to_string()))
         .collect())
 }
@@ -633,6 +636,10 @@ mod vocabulary_filter_tests {
 
     #[tokio::test]
     async fn entity_filters_resolve_current_redirected_and_numeric_addresses() {
+        use rusqlite::trace::{TraceEvent, TraceEventCodes};
+        use std::sync::atomic::{AtomicUsize, Ordering};
+
+        static RESOLUTION_COUNT: AtomicUsize = AtomicUsize::new(0);
         let original = fixture_database();
         let (id, slug): (i64, String) = original
             .query_row("SELECT id, slug FROM crafting_systems ORDER BY slug LIMIT 1", [], |row| {
@@ -646,7 +653,7 @@ mod vocabulary_filter_tests {
         let mut db = Connection::open_in_memory().unwrap();
         ddo_etl::tree::build_from_data(&root, &mut db).unwrap();
         let query = serde_urlencoded::to_string([
-            ("crafting_system", slug),
+            ("crafting_system", slug.clone()),
             ("crafting_system", id.to_string()),
             ("crafting_system", "former-system".to_string()),
         ])
@@ -655,6 +662,40 @@ mod vocabulary_filter_tests {
         assert_eq!(filters.crafting_system.ids(), [id, id, id]);
         let error = extracted_filters("crafting_system=made-up").await.validated(&db).err().unwrap();
         assert!(bad_request_message(error).starts_with("unknown crafting_system \"made-up\"; accepted values: "));
+        db.trace_v2(
+            TraceEventCodes::SQLITE_TRACE_STMT,
+            Some(|event| {
+                if let TraceEvent::Stmt(_, _) = event {
+                    RESOLUTION_COUNT.fetch_add(1, Ordering::SeqCst);
+                }
+            }),
+        );
+        for (address, resolution_queries) in [(slug.as_str(), 1), ("former-system", 2), (&id.to_string(), 3)] {
+            for repetitions in [1, 1000] {
+                let query = serde_urlencoded::to_string(vec![("crafting_system", address); repetitions]).unwrap();
+                RESOLUTION_COUNT.store(0, Ordering::SeqCst);
+                let filters = extracted_filters(&query).await.validated(&db).unwrap();
+                assert_eq!(
+                    RESOLUTION_COUNT.load(Ordering::SeqCst),
+                    resolution_queries,
+                    "{repetitions} copies of {address} resolve once"
+                );
+                assert_eq!(filters.crafting_system.ids(), vec![id; repetitions]);
+            }
+        }
+        for repetitions in [1, 3] {
+            let query = serde_urlencoded::to_string(
+                (0..repetitions)
+                    .flat_map(|_| [slug.clone(), "former-system".to_string(), id.to_string()])
+                    .map(|address| ("crafting_system", address))
+                    .collect::<Vec<_>>(),
+            )
+            .unwrap();
+            RESOLUTION_COUNT.store(0, Ordering::SeqCst);
+            let filters = extracted_filters(&query).await.validated(&db).unwrap();
+            assert_eq!(RESOLUTION_COUNT.load(Ordering::SeqCst), 6, "one resolution for each distinct address");
+            assert_eq!(filters.crafting_system.ids(), vec![id; 3 * repetitions]);
+        }
         std::fs::remove_dir_all(root).unwrap();
     }
 
