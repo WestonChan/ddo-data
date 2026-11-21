@@ -249,6 +249,7 @@ pub(crate) fn build_with_wiki_references(
     options: WikiBuildOptions<'_>,
 ) -> Result<BuildReport> {
     let is_previous = options.is_previous;
+    let existing_socket_option_sets = &wiki_overrides.socket_option_sets;
     let mut previous_wiki = wiki_overrides.clone();
     db.execute_batch(ddo_model::ddl()).context("applying DDL")?;
     seeds::insert_all(db).context("inserting seed tables")?;
@@ -362,6 +363,12 @@ pub(crate) fn build_with_wiki_references(
             })
             .collect(),
         socket_option_targets: None,
+        existing_socket_option_sets,
+        socket_option_name_corrections: corrections
+            .entries
+            .iter()
+            .filter(|correction| correction.kind == CorrectionKind::SocketOption && correction.field == "name")
+            .collect(),
         held_back_effects: Vec::new(),
         matched_set_tier_prose: BTreeSet::new(),
         written: WrittenRows::default(),
@@ -377,7 +384,19 @@ pub(crate) fn build_with_wiki_references(
             .iter()
             .filter(|correction| correction.kind == CorrectionKind::ItemSocket && correction.field == "label")
             .collect(),
-        applied_socket_relabels: Vec::new(),
+        retired_socket_removals: corrections
+            .entries
+            .iter()
+            .filter(|correction| {
+                correction.kind == CorrectionKind::ItemSocket
+                    && correction.field == "remove"
+                    && correction
+                        .socket
+                        .as_ref()
+                        .is_some_and(|label| wiki_overrides.retired_socket_labels.contains(label))
+            })
+            .collect(),
+        applied_item_socket_corrections: Vec::new(),
         bonus_removal_corrections: corrections
             .entries
             .iter()
@@ -398,6 +417,7 @@ pub(crate) fn build_with_wiki_references(
         pending_derived_effects: Vec::new(),
         pending_effect_links: Vec::new(),
     };
+    writer.insert_per_item_slot_types(&wiki_overrides.per_item_slot_types)?;
 
     writer.write_standard_feats(&data_files_dir.join("Feats.xml"), &mut report)?;
     for path in files_with_extension(&data_files_dir.join("Races"), "xml")? {
@@ -426,8 +446,18 @@ pub(crate) fn build_with_wiki_references(
         .map(|correction| (correction.name.as_str(), correction))
         .collect();
     let mut applied_drop_location_corrections = Vec::new();
-    for path in files_with_extension(&data_files_dir.join("Items"), "item")? {
-        let item_file = parse_item_file(&path)?;
+    let parsed_items = files_with_extension(&data_files_dir.join("Items"), "item")?
+        .into_iter()
+        .map(|path| parse_item_file(&path).map(|file| (path, file)))
+        .collect::<Result<Vec<_>>>()?;
+    for (path, item_file) in &parsed_items {
+        for item in &item_file.items {
+            writer.prepare_item_socket_types(item).with_context(|| format!("{}", path.display()))?;
+        }
+    }
+    overlay_references.capture_renames(&transaction, corrections)?;
+    writer.apply_socket_label_corrections()?;
+    for (path, item_file) in &parsed_items {
         for item in &item_file.items {
             let mut drop_location = item.drop_location.as_deref();
             if let Some(correction) = drop_location_corrections.get(item.name.trim()) {
@@ -474,7 +504,7 @@ pub(crate) fn build_with_wiki_references(
     let mut corrections_applied_while_writing = writer.untyped_bonus_corrections.applied_corrections();
     corrections_applied_while_writing.extend(applied_drop_location_corrections);
     corrections_applied_while_writing.extend(&writer.applied_socket_label_corrections);
-    corrections_applied_while_writing.extend(&writer.applied_socket_relabels);
+    corrections_applied_while_writing.extend(&writer.applied_item_socket_corrections);
     corrections_applied_while_writing.extend(&writer.applied_link_corrections);
     corrections::record_observed_corrections(
         &transaction,
@@ -872,13 +902,16 @@ pub(crate) struct TableWriter<'a> {
     bonus_additions: Vec<&'a Correction>,
     bonus_link_corrections: Vec<&'a Correction>,
     socket_option_targets: Option<SocketOptionTargets>,
+    existing_socket_option_sets: &'a ExistingSocketOptionSets,
+    socket_option_name_corrections: Vec<&'a Correction>,
     held_back_effects: Vec<DerivedEffectSplit>,
     matched_set_tier_prose: BTreeSet<SetTierProseMatch>,
     written: WrittenRows,
     socket_label_corrections: HashMap<&'a str, &'a Correction>,
     applied_socket_label_corrections: Vec<&'a Correction>,
     socket_relabels: Vec<&'a Correction>,
-    applied_socket_relabels: Vec<&'a Correction>,
+    retired_socket_removals: Vec<&'a Correction>,
+    applied_item_socket_corrections: Vec<&'a Correction>,
     bonus_removal_corrections: Vec<&'a Correction>,
     augment_description_corrections: HashMap<&'a str, Vec<&'a Correction>>,
     pending_set_item_links: Vec<(i64, String)>,
@@ -890,6 +923,20 @@ pub(crate) struct TableWriter<'a> {
 }
 
 impl TableWriter<'_> {
+    fn insert_per_item_slot_types(&mut self, slot_types: &[crate::wiki::PerItemSlotType]) -> Result<()> {
+        for declared in slot_types {
+            let slot_type = &declared.slot_type;
+            self.transaction.execute(
+                "INSERT INTO augment_slot_types(label,family,variant,qualifier,slug) VALUES (?1,?2,?3,?4,?5)",
+                params![slot_type.label, slot_type.family, slot_type.variant, slot_type.qualifier, declared.slug],
+            )?;
+            let id = self.transaction.last_insert_rowid();
+            self.written.augment_slot_type_ids_by_label.insert(slot_type.label.clone(), id);
+            self.written.augment_slot_labels_by_slug.insert(declared.slug.clone(), slot_type.label.clone());
+        }
+        Ok(())
+    }
+
     fn bonus_type_of(&mut self, bonus_origin: &BonusOrigin, bonus_type: Option<BonusType>) -> Result<BonusType> {
         match bonus_type {
             Some(bonus_type) => Ok(bonus_type),

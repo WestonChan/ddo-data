@@ -79,6 +79,13 @@ impl ExistingSocketOptionSets {
         }
         Ok(existing)
     }
+
+    pub(super) fn item_has_set(&self, item_slug: &str, set_slug: &str) -> bool {
+        self.sockets
+            .range((item_slug.to_owned(), i64::MIN, String::new())..)
+            .take_while(|((slug, _, _), _)| slug == item_slug)
+            .any(|(_, slug)| slug == set_slug)
+    }
 }
 
 #[derive(Clone)]

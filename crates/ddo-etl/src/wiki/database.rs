@@ -23,8 +23,11 @@ fn groups<T>(
 impl WikiOverrides {
     pub fn from_database(db: &Connection) -> Result<Self> {
         let paths = DataFilePaths::from_database(db)?;
+        let (per_item_slot_types, retired_socket_labels) = socket_label_assignments(db)?;
         Ok(Self {
             socket_option_sets: crate::build::ExistingSocketOptionSets::from_database(db)?,
+            per_item_slot_types,
+            retired_socket_labels,
             quests: quests(db, &paths)?,
             quest_loot: quest_loot(db, &paths)?,
             crafting_systems: crafting_systems(db, &paths)?,
@@ -50,6 +53,60 @@ impl WikiOverrides {
             augments: augments(db, &paths)?,
         })
     }
+}
+
+fn socket_label_assignments(db: &Connection) -> Result<(Vec<PerItemSlotType>, std::collections::BTreeSet<String>)> {
+    let corrections = crate::corrections::Corrections::from_database(db)?;
+    let relabels = corrections
+        .entries
+        .iter()
+        .filter(|correction| {
+            correction.kind == ddo_model::enums::CorrectionKind::ItemSocket && correction.field == "label"
+        })
+        .collect::<Vec<_>>();
+    let declared_types =
+        rows(db, "SELECT slug,label,family,variant,qualifier FROM augment_slot_types ORDER BY label", |row| {
+            Ok(PerItemSlotType {
+                slug: row.get(0)?,
+                slot_type: crate::map::augment_slot::AugmentSlotType {
+                    label: row.get(1)?,
+                    family: row.get(2)?,
+                    variant: row.get(3)?,
+                    qualifier: row.get(4)?,
+                },
+            })
+        })?;
+    let retired = corrections
+        .entries
+        .iter()
+        .filter(|correction| correction.kind == ddo_model::enums::CorrectionKind::ItemSocket)
+        .filter_map(|correction| match correction.field.as_str() {
+            "label" if correction.from.has_matching_target() => correction.from.as_text(),
+            "remove" => correction.socket.as_deref(),
+            _ => None,
+        })
+        .filter(|label| !declared_types.iter().any(|declared| declared.slot_type.label == *label))
+        .map(str::to_owned)
+        .collect();
+    let carriers = rows(db,
+        "SELECT DISTINCT t.label,i.name FROM item_augment_slots s JOIN augment_slot_types t ON t.id=s.slot_id JOIN items i ON i.id=s.item_id WHERE i.provenance<>'wiki'",
+        |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?)),
+    )?;
+    let per_item_types = declared_types
+        .into_iter()
+        .filter(|declared| {
+            let targets = relabels
+                .iter()
+                .filter(|correction| correction.to.as_text() == Some(declared.slot_type.label.as_str()))
+                .collect::<Vec<_>>();
+            !targets.is_empty()
+                && carriers
+                    .iter()
+                    .filter(|(label, _)| *label == declared.slot_type.label)
+                    .all(|(_, name)| targets.iter().any(|correction| correction.name == *name))
+        })
+        .collect();
+    Ok((per_item_types, retired))
 }
 
 fn quests(db: &Connection, paths: &DataFilePaths) -> Result<Vec<WikiQuest>> {

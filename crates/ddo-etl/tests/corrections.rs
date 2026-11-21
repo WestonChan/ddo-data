@@ -4680,6 +4680,45 @@ fn leathers_socket_relabel(option: &str) -> CorrectionSet {
 }
 
 #[test]
+fn item_socket_relabels_prevent_spelling_slug_collisions() {
+    for reversed in [false, true] {
+        let directory = data_files_with_untyped(&format!("per-item-socket-slug-{reversed}"), &[]);
+        let original = std::fs::read_to_string(fixtures_dir().join("effect-groups/EpicDuelistsLeathers.item")).unwrap();
+        let mut corrections = Vec::new();
+        for (index, spelling) in ["Upgradeable - Tier 2", "Upgradeable Tier 2"].iter().enumerate() {
+            let name = format!("Split Carrier {index}");
+            let file_index = if reversed { 1 - index } else { index };
+            std::fs::write(
+                directory.join(format!("Items/Split{file_index}.item")),
+                original
+                    .replace("Epic Duelist's Leathers (level 20)", &name)
+                    .replace("<Type>Tier 2</Type>", &format!("<Type>{spelling}</Type>")),
+            )
+            .unwrap();
+            corrections.push(new_qualified_correction(
+                "item_socket",
+                &name,
+                "option='Epic Nimbleness'",
+                "label",
+                &format!("{:?}", format!("crafting: {}", spelling.to_lowercase())),
+                "\"upgrade: tier 3\"",
+            ));
+        }
+        let (db, report) =
+            built_db_from(&directory, &[("first.toml", &corrections[0]), ("second.toml", &corrections[1])]).unwrap();
+        assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
+        for index in 0..2 {
+            assert_eq!(item_socket_labels(&db, &format!("Split Carrier {index}")), ["upgrade: tier 3"; 2]);
+        }
+        assert_eq!(
+            row_count(&db, "SELECT COUNT(*) FROM augment_slot_types WHERE slug='crafting-upgradeable-tier-2'"),
+            0
+        );
+        std::fs::remove_dir_all(directory.parent().unwrap()).unwrap();
+    }
+}
+
+#[test]
 fn item_socket_label_moves_only_the_socket_holding_the_named_option() {
     let source = socket_relabel_source("socket-relabel", None);
     let correction = leathers_socket_relabel("Epic Nimbleness");
@@ -4711,6 +4750,102 @@ fn item_socket_label_matches_the_normalized_option_name() {
     assert_eq!(item_socket_labels(&db, "Epic Duelist's Leathers (level 20)"), ["upgrade: tier 3"; 2]);
     assert_eq!(row_count(&db, "SELECT COUNT(*) FROM socket_options WHERE name='Epic Nimbleness'"), 1);
     assert_eq!(row_count(&db, "SELECT COUNT(*) FROM socket_options WHERE name!=trim(name)"), 0);
+}
+
+#[test]
+fn item_socket_label_matches_the_option_name_corrected_on_its_own_set() {
+    let source = fixtures_dir().join("DataFiles");
+    let written = fixture::renamed_socket_option_database(&source, &fixture_dataset_version());
+    let mut corrections = Corrections::from_database(&written).unwrap();
+    corrections.entries.retain(|correction| {
+        matches!(
+            correction.kind,
+            ddo_model::enums::CorrectionKind::ItemSocket | ddo_model::enums::CorrectionKind::SocketOption
+        )
+    });
+    let (db, report) = built_db_with_wiki(&WikiOverrides::from_database(&written).unwrap(), &corrections).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0), "{report:?}");
+    let socket: (String, String) = db.query_row(
+        "SELECT t.label,o.name FROM item_augment_slots a JOIN items i ON i.id=a.item_id JOIN augment_slot_types t ON t.id=a.slot_id JOIN socket_options o ON o.set_id=a.option_set_id WHERE i.name='Sireth, Spear of the Sky' AND a.sort_order=0",
+        [], |row| Ok((row.get(0)?,row.get(1)?)),
+    ).unwrap();
+    assert_eq!(socket, ("crafting: attuned to heroism 2".into(), "Reviewed Conflux".into()));
+}
+
+#[test]
+fn item_socket_label_ignores_an_option_rename_on_another_items_set() {
+    let source = fixture::xml_source();
+    let path = source.path().join("Items/Sireth, Spear of the Sky.item");
+    let original = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        source.path().join("Items/OtherCarrier.item"),
+        original.replace("Sireth, Spear of the Sky", "Other Carrier").replace("Planar Conflux:", "Other Conflux:"),
+    )
+    .unwrap();
+    std::fs::write(&path, original.replace("<Name>Planar Conflux</Name>", "<Name>Reviewed Conflux</Name>")).unwrap();
+    let relabel = new_qualified_correction(
+        "item_socket",
+        "Sireth, Spear of the Sky",
+        "option='Reviewed Conflux'",
+        "label",
+        "'crafting: attuned to heroism 1'",
+        "'crafting: attuned to heroism 2'",
+    );
+    let rename = new_qualified_correction(
+        "socket_option",
+        "crafting-attuned-to-heroism-1-other-carrier",
+        "option='Reviewed Conflux'",
+        "name",
+        "'Planar Conflux'",
+        "'Reviewed Conflux'",
+    );
+    let corrections = validated_corrections(&[("label.toml", &relabel), ("name.toml", &rename)]).unwrap();
+    let mut written = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::default(),
+        &corrections,
+        &mut written,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0), "{report:?}");
+    std::fs::write(&path, original).unwrap();
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::from_database(&written).unwrap(),
+        &corrections,
+        &mut rebuilt,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (1, 1), "{report:?}");
+    assert_eq!(item_socket_labels(&rebuilt, "Sireth, Spear of the Sky")[0], "crafting: attuned to heroism 1");
+    assert_eq!(report.stale_corrections[0].file_name, "label.toml");
+}
+
+#[test]
+fn item_socket_label_rejects_a_corrected_option_on_two_sockets() {
+    let source = fixture::xml_source();
+    let written = fixture::renamed_socket_option_database(source.path(), &fixture_dataset_version());
+    let path = source.path().join("Items/Sireth, Spear of the Sky.item");
+    let original = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(&path, original.replace("<Name>+8 Enhancement Bonus</Name>", "<Name>Reviewed Conflux</Name>"))
+        .unwrap();
+    let error = build_database(
+        fixture::groupings(),
+        source.path(),
+        &WikiOverrides::from_database(&written).unwrap(),
+        &Corrections::from_database(&written).unwrap(),
+        &mut Connection::open_in_memory().unwrap(),
+        &fixture_dataset_version(),
+    )
+    .unwrap_err();
+    let message = format!("{error:#}");
+    assert!(message.contains("Sireth, Spear of the Sky") && message.contains("2 sockets"), "{message}");
 }
 
 #[test]
@@ -4758,6 +4893,191 @@ fn item_socket_label_compares_the_label_after_a_socket_label_merge() {
     let (db, report) = built_db_from(&source, &[("merge.toml", &merge), ("label.toml", &relabel)]).unwrap();
     assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
     assert_eq!(item_socket_labels(&db, "Epic Duelist's Leathers (level 20)"), ["upgrade: tier 3"; 2]);
+}
+
+#[test]
+fn retired_socket_removals_prevent_spelling_slug_collisions() {
+    let source = data_files_with_untyped("retired-socket-removal", &[]);
+    let original = std::fs::read_to_string(fixtures_dir().join("effect-groups/EpicDuelistsLeathers.item")).unwrap();
+    std::fs::write(
+        source.join("Items/Removed.item"),
+        original
+            .replace("<Type>Tier 2</Type>", "<Type>Upgradeable Tier 2</Type>")
+            .replace("<Type>Tier 3</Type>", "<Type>Upgradeable Tier 3</Type>"),
+    )
+    .unwrap();
+    let mut relabelled = original
+        .replace("Epic Duelist's Leathers (level 20)", "Relabelled Carrier")
+        .replace("<Type>Tier 2</Type>", "<Type>Upgradeable - Tier 2</Type>");
+    let start = relabelled.rfind("<ItemAugment>").unwrap();
+    let end = start + relabelled[start..].find("</ItemAugment>").unwrap() + "</ItemAugment>".len();
+    relabelled.replace_range(start..end, "");
+    std::fs::write(source.join("Items/Relabelled.item"), relabelled).unwrap();
+    let mut corrections = fixture::fixture_icon_corrections();
+    for tier in [2, 3] {
+        let label = format!("upgrade: tier {tier}");
+        let upstream = if tier == 2 {
+            r#"["crafting: upgradeable tier 2","crafting: upgradeable - tier 2"]"#.to_string()
+        } else {
+            r#""crafting: upgradeable tier 3""#.to_string()
+        };
+        corrections.entries.extend(
+            new_correction(
+                "socket_label",
+                &format!("crafting: upgradeable tier {tier}"),
+                "name",
+                &upstream,
+                &format!("{label:?}"),
+            )
+            .0,
+        );
+        corrections.entries.extend(
+            new_qualified_correction(
+                "item_socket",
+                "Epic Duelist's Leathers (level 20)",
+                &format!("socket={label:?}"),
+                "remove",
+                "0",
+                "1",
+            )
+            .0,
+        );
+    }
+    corrections.entries.extend(
+        new_qualified_correction(
+            "item_socket",
+            "Relabelled Carrier",
+            "option='Epic Nimbleness'",
+            "label",
+            "\"upgrade: tier 2\"",
+            "\"upgrade: tier 3\"",
+        )
+        .0,
+    );
+    let mut written = Connection::open_in_memory().unwrap();
+    build_database(
+        fixture::groupings(),
+        &source,
+        &WikiOverrides::default(),
+        &corrections,
+        &mut written,
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    written.execute("DELETE FROM corrections WHERE kind='socket_label'", []).unwrap();
+    for tier in [2, 3] {
+        written
+            .execute(
+                "UPDATE corrections SET qualifier=?1 WHERE kind='item_socket' AND field='remove' AND qualifier=?2",
+                rusqlite::params![
+                    format!("socket \"crafting: upgradeable tier {tier}\""),
+                    format!("socket \"upgrade: tier {tier}\"")
+                ],
+            )
+            .unwrap();
+    }
+    written.execute("UPDATE corrections SET from_value='\"crafting: upgradeable - tier 2\"' WHERE kind='item_socket' AND field='label'", []).unwrap();
+    let authored = tempfile::tempdir().unwrap();
+    ddo_etl::tree::export_database(&written, authored.path()).unwrap();
+    copy_fixture_icons(authored.path());
+    std::fs::copy(
+        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data/icons/items/LightArmor_1b.png"),
+        authored.path().join("icons/items/LightArmor_1b.png"),
+    )
+    .unwrap();
+    let mut ours = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(authored.path(), &mut ours).unwrap();
+    let wiki = WikiOverrides::from_database(&ours).unwrap();
+    let corrections = Corrections::from_database(&ours).unwrap();
+    let mut rebuilt = Connection::open_in_memory().unwrap();
+    let report =
+        build_database(fixture::groupings(), &source, &wiki, &corrections, &mut rebuilt, &fixture_dataset_version())
+            .unwrap();
+    assert_eq!(
+        wiki.retired_socket_labels.iter().map(String::as_str).collect::<Vec<_>>(),
+        ["crafting: upgradeable - tier 2", "crafting: upgradeable tier 2", "crafting: upgradeable tier 3"]
+    );
+    assert_eq!(report.correction_stale_count, 0, "{:?}", report.stale_corrections);
+    assert_eq!(report.correction_applied_count, corrections.entries.len());
+    assert!(item_socket_labels(&rebuilt, "Epic Duelist's Leathers (level 20)").is_empty());
+    assert_eq!(item_socket_labels(&rebuilt, "Relabelled Carrier"), ["upgrade: tier 3"]);
+    assert_eq!(
+        row_count(&rebuilt, "SELECT COUNT(*) FROM augment_slot_types WHERE label LIKE 'crafting: upgradeable%tier%'"),
+        0
+    );
+    assert_eq!(
+        row_count(&rebuilt, "SELECT COUNT(*) FROM socket_option_sets WHERE name='Epic Duelist''s Leathers (level 20)'"),
+        0
+    );
+    assert_eq!(
+        row_count(
+            &rebuilt,
+            "SELECT COUNT(*) FROM socket_options WHERE set_id NOT IN (SELECT id FROM socket_option_sets)"
+        ),
+        0
+    );
+    let item_path = source.join("Items/Removed.item");
+    let item_xml = std::fs::read_to_string(&item_path).unwrap();
+    std::fs::write(&item_path, item_xml.replace("Upgradeable Tier 3", "Upgradeable Tier 2")).unwrap();
+    let error = build_database(
+        fixture::groupings(),
+        &source,
+        &wiki,
+        &corrections,
+        &mut Connection::open_in_memory().unwrap(),
+        &fixture_dataset_version(),
+    )
+    .unwrap_err();
+    for expected in ["crafting: upgradeable tier 2", "2 sockets", "Epic Duelist's Leathers (level 20)"] {
+        assert!(format!("{error:#}").contains(expected), "{error:#}");
+    }
+    let start = item_xml.find("<ItemAugment>").unwrap();
+    let end = start + item_xml[start..].find("</ItemAugment>").unwrap() + "</ItemAugment>".len();
+    let mut missing_socket = item_xml;
+    missing_socket.replace_range(start..end, "");
+    std::fs::write(item_path, missing_socket).unwrap();
+    let report = build_database(
+        fixture::groupings(),
+        &source,
+        &wiki,
+        &corrections,
+        &mut Connection::open_in_memory().unwrap(),
+        &fixture_dataset_version(),
+    )
+    .unwrap();
+    assert_eq!(report.stale_corrections.len(), 1, "{:?}", report.stale_corrections);
+    assert_eq!(report.stale_corrections[0].qualifier, "socket \"crafting: upgradeable tier 2\"");
+    assert!(
+        matches!(&report.stale_corrections[0].cause, StaleCorrectionCause::ValueChanged {maetrim_value,..} if maetrim_value == "\"no such bonus\"")
+    );
+    std::fs::remove_dir_all(source.parent().unwrap()).unwrap();
+}
+
+#[test]
+fn item_socket_removal_compares_the_label_after_a_socket_label_merge() {
+    let source = socket_relabel_source(
+        "socket-removal-merged-label",
+        Some(("<Type>Tier 2</Type>", "<Type>Upgradeable Tier 2</Type>")),
+    );
+    let spelling = new_correction(
+        "socket_label",
+        "crafting: upgradeable tier 2",
+        "name",
+        "\"crafting: upgradeable tier 2\"",
+        "\"upgrade: tier 2\"",
+    );
+    let removal = new_qualified_correction(
+        "item_socket",
+        "Epic Duelist's Leathers (level 20)",
+        "socket='upgrade: tier 2'",
+        "remove",
+        "0",
+        "1",
+    );
+    let (db, report) = built_db_from(&source, &[("spelling.toml", &spelling), ("remove.toml", &removal)]).unwrap();
+    assert_eq!((report.correction_applied_count, report.correction_stale_count), (2, 0));
+    assert_eq!(item_socket_labels(&db, "Epic Duelist's Leathers (level 20)"), ["upgrade: tier 3"]);
+    std::fs::remove_dir_all(source.parent().unwrap()).unwrap();
 }
 
 #[test]

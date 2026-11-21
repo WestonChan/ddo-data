@@ -75,7 +75,7 @@ impl ArmorStatsRow {
     }
 }
 
-impl TableWriter<'_> {
+impl<'a> TableWriter<'a> {
     pub(super) fn write_item(
         &mut self,
         item: &Item,
@@ -375,7 +375,20 @@ impl TableWriter<'_> {
         self.queue_effect_links(&item_owner, item_id, links);
 
         for (slot_order, augment_slot) in item.augment_slots.iter().enumerate() {
-            let slot_type_id = self.ensure_augment_slot_type(&augment_slot.kind)?;
+            let (label, spelling_correction) = self.effective_socket_label(&augment_slot.kind)?;
+            if let Some(removal) = self.retired_socket_removal(item, &label) {
+                self.record_item_socket_correction(removal, spelling_correction);
+                continue;
+            }
+            let relabel = self.socket_relabel(item, augment_slot, &label);
+            let slot_type_id = if let Some(correction) = relabel {
+                let target = correction.to.as_text().context("a socket relabel has a target label")?;
+                let id = super::corrections::required_socket_label_id(self.transaction, target)?;
+                self.record_item_socket_correction(correction, spelling_correction);
+                id
+            } else {
+                self.ensure_augment_slot_type(&augment_slot.kind)?
+            };
             self.insert_item_augment_slot(item_id, slot_order, slot_type_id)?;
             if !augment_slot.options.is_empty() {
                 let label = self.transaction.query_row(
@@ -416,50 +429,114 @@ impl TableWriter<'_> {
         Ok(())
     }
 
-    fn relabel_item_sockets(&mut self) -> Result<()> {
-        for correction in &self.socket_relabels {
-            let option_name = correction.option.as_deref().context("a socket relabel names an option")?;
-            let sockets = self
-                .pending_socket_options
-                .iter()
-                .filter(|socket| {
-                    socket.item_name == correction.name
-                        && socket.options.iter().any(|option| option.name == option_name)
-                })
-                .collect::<Vec<_>>();
+    pub(super) fn prepare_item_socket_types(&mut self, item: &Item) -> Result<()> {
+        if placement_of(&item.equipment_slots, item.weapon.as_deref(), item.armor.as_deref())?.is_err() {
+            return Ok(());
+        }
+        let sockets = item
+            .augment_slots
+            .iter()
+            .map(|socket| Ok((socket, self.effective_socket_label(&socket.kind)?.0)))
+            .collect::<Result<Vec<_>>>()?;
+        for correction in self.retired_socket_removals.iter().filter(|correction| correction.name == item.name.trim()) {
+            let label = correction.socket.as_deref().context("a socket removal names a label")?;
+            let socket_count = sockets.iter().filter(|(_, effective)| effective == label).count();
             ensure!(
-                sockets.len() <= 1,
-                "{}: option {option_name:?} matches {} sockets on {:?}",
+                socket_count <= 1,
+                "{}: socket {label:?} matches {socket_count} sockets on {:?}",
                 correction.file_name,
-                sockets.len(),
                 correction.name
             );
-            let Some(socket) = sockets.first() else { continue };
-            let current: String = self.transaction.query_row(
-                "SELECT t.label FROM item_augment_slots a JOIN augment_slot_types t ON t.id=a.slot_id WHERE a.item_id=?1 AND a.sort_order=?2",
-                params![socket.socket.0, socket.socket.1], |row| row.get(0),
-            )?;
-            if Some(current.as_str()) != correction.from.as_text() {
-                continue;
-            }
-            let target = correction.to.as_text().context("a socket relabel has a target label")?;
-            let target_id = super::corrections::required_socket_label_id(self.transaction, target)?;
-            let changed = self.transaction.execute(
-                "UPDATE item_augment_slots SET slot_id=?1 WHERE item_id=?2 AND sort_order=?3",
-                params![target_id, socket.socket.0, socket.socket.1],
-            )?;
-            if changed != 0 {
-                self.applied_socket_relabels.push(correction);
+        }
+        for correction in self.socket_relabels.iter().filter(|correction| correction.name == item.name.trim()) {
+            let option_name = correction.option.as_deref().context("a socket relabel names an option")?;
+            let socket_count = sockets
+                .iter()
+                .filter(|(socket, label)| {
+                    self.retired_socket_removal(item, label).is_none()
+                        && self.socket_has_authored_option(item, socket, option_name)
+                })
+                .count();
+            ensure!(
+                socket_count <= 1,
+                "{}: option {option_name:?} matches {} sockets on {:?}",
+                correction.file_name,
+                socket_count,
+                correction.name
+            );
+        }
+        for (socket, label) in sockets {
+            if self.retired_socket_removal(item, &label).is_none()
+                && self.socket_relabel(item, socket, &label).is_none()
+            {
+                self.ensure_augment_slot_type(&socket.kind)?;
             }
         }
         Ok(())
     }
 
-    pub(super) fn write_socket_option_sets(
+    fn record_item_socket_correction(
         &mut self,
-        existing: &super::ExistingSocketOptionSets,
-        references: &super::wiki::OverlayReferences,
-    ) -> Result<()> {
+        correction: &'a crate::corrections::Correction,
+        spelling: Option<&'a crate::corrections::Correction>,
+    ) {
+        self.applied_item_socket_corrections.push(correction);
+        if let Some(spelling) = spelling {
+            if !self.applied_socket_label_corrections.iter().any(|applied| std::ptr::eq(*applied, spelling)) {
+                self.applied_socket_label_corrections.push(spelling);
+            }
+        }
+    }
+
+    fn retired_socket_removal(&self, item: &Item, label: &str) -> Option<&'a crate::corrections::Correction> {
+        self.retired_socket_removals.iter().copied().find(|correction| {
+            correction.name == item.name.trim()
+                && correction.socket.as_deref() == Some(label)
+                && matches!(correction.from, crate::corrections::CorrectionValue::Integer(0))
+        })
+    }
+
+    fn effective_socket_label(&self, upstream: &str) -> Result<(String, Option<&'a crate::corrections::Correction>)> {
+        let label = crate::map::augment_slot::AugmentSlotType::parse(upstream).label;
+        let spelling = self.socket_label_corrections.get(label.as_str()).copied();
+        let effective = match spelling {
+            Some(correction) => correction.to.as_text().context("a socket label rename has a target")?.to_owned(),
+            None => label,
+        };
+        Ok((effective, spelling))
+    }
+
+    fn socket_relabel(
+        &self,
+        item: &Item,
+        socket: &crate::xml::items::ItemAugmentSlot,
+        label: &str,
+    ) -> Option<&'a crate::corrections::Correction> {
+        self.socket_relabels.iter().copied().find(|correction| {
+            correction.name == item.name.trim()
+                && correction.from.as_text() == Some(label)
+                && correction.option.as_deref().is_some_and(|name| self.socket_has_authored_option(item, socket, name))
+        })
+    }
+
+    fn socket_has_authored_option(
+        &self,
+        item: &Item,
+        socket: &crate::xml::items::ItemAugmentSlot,
+        option_name: &str,
+    ) -> bool {
+        let item_slug = crate::tree::xml_entity_slug("items", None, item.name.trim(), None);
+        socket.options.iter().any(|option| {
+            option.name.trim() == option_name
+                || self.socket_option_name_corrections.iter().any(|correction| {
+                    correction.from.as_text() == Some(option.name.trim())
+                        && correction.to.as_text() == Some(option_name)
+                        && self.existing_socket_option_sets.item_has_set(&item_slug, &correction.name)
+                })
+        })
+    }
+
+    pub(super) fn apply_socket_label_corrections(&mut self) -> Result<()> {
         let mut label_corrections = self.socket_label_corrections.values().copied().collect::<Vec<_>>();
         label_corrections.sort_by(|left, right| left.name.cmp(&right.name));
         for correction in label_corrections {
@@ -489,7 +566,15 @@ impl TableWriter<'_> {
                 self.applied_socket_label_corrections.push(correction);
             }
         }
-        self.relabel_item_sockets()?;
+        Ok(())
+    }
+
+    pub(super) fn write_socket_option_sets(
+        &mut self,
+        existing: &super::ExistingSocketOptionSets,
+        references: &super::wiki::OverlayReferences,
+    ) -> Result<()> {
+        self.apply_socket_label_corrections()?;
         let socket_labels = self.transaction.prepare("SELECT s.item_id,s.sort_order,t.label FROM item_augment_slots s JOIN augment_slot_types t ON t.id=s.slot_id")?
             .query_map([], |row| Ok(((row.get::<_, i64>(0)?,row.get::<_, i64>(1)?),row.get::<_, String>(2)?)))?
             .collect::<rusqlite::Result<std::collections::BTreeMap<_,_>>>()?;

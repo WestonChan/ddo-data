@@ -2436,7 +2436,7 @@ fn matching_effect_id(effects: &EffectCache<'_>, effect_name: &str) -> Option<i6
 
 pub(super) fn required_socket_label_id(transaction: &Transaction, socket_label: &str) -> Result<i64> {
     socket_label_id(transaction, socket_label)?.with_context(|| {
-        format!("to {socket_label:?} is not a socket label in Maetrim's files; use one /v1/augment-slot-types lists")
+        format!("to {socket_label:?} is neither a socket label in Maetrim's files nor a slot type our data assigns per item")
     })
 }
 

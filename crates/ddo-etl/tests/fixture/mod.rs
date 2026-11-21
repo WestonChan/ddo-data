@@ -709,6 +709,67 @@ pub(crate) fn fixture_icon_corrections() -> Corrections {
     corrections
 }
 
+pub(crate) fn renamed_socket_option_database(
+    source: &std::path::Path,
+    version: &ddo_model::DatasetVersion,
+) -> rusqlite::Connection {
+    let mut corrections = fixture_icon_corrections();
+    corrections.entries.extend(
+        new_qualified_correction(
+            "item_socket",
+            "Sireth, Spear of the Sky",
+            "option='Planar Conflux'",
+            "label",
+            "'crafting: attuned to heroism 1'",
+            "'crafting: attuned to heroism 2'",
+        )
+        .0,
+    );
+    let mut initial = rusqlite::Connection::open_in_memory().unwrap();
+    ddo_etl::build::build_database(
+        groupings(),
+        source,
+        &ddo_etl::wiki::WikiOverrides::default(),
+        &corrections,
+        &mut initial,
+        version,
+    )
+    .unwrap();
+    let slug: String = initial.query_row(
+        "SELECT s.slug FROM socket_option_sets s JOIN item_augment_slots a ON a.option_set_id=s.id JOIN items i ON i.id=a.item_id WHERE i.name='Sireth, Spear of the Sky' AND a.sort_order=0",
+        [], |row| row.get(0),
+    ).unwrap();
+    corrections.entries.extend(
+        new_qualified_correction(
+            "socket_option",
+            &slug,
+            "option='Reviewed Conflux'",
+            "name",
+            "'Planar Conflux'",
+            "'Reviewed Conflux'",
+        )
+        .0,
+    );
+    let mut written = rusqlite::Connection::open_in_memory().unwrap();
+    let report = ddo_etl::build::build_database(
+        groupings(),
+        source,
+        &ddo_etl::wiki::WikiOverrides::from_database(&initial).unwrap(),
+        &corrections,
+        &mut written,
+        version,
+    )
+    .unwrap();
+    assert_eq!(report.correction_stale_count, 0, "{report:?}");
+    written
+        .execute(
+            "UPDATE corrections SET qualifier='option \"Reviewed Conflux\"' WHERE kind='item_socket' AND field='label'",
+            [],
+        )
+        .unwrap();
+    written
+}
+
 #[derive(Clone, Debug, Default)]
 pub(crate) struct CorrectionSet(pub(crate) Vec<Correction>);
 

@@ -29,6 +29,8 @@ pub use vendors::{PricedVendorItem, VendorItem, WikiVendor};
 #[derive(Debug, Default, Clone, PartialEq)]
 pub struct WikiOverrides {
     pub socket_option_sets: crate::build::ExistingSocketOptionSets,
+    pub per_item_slot_types: Vec<PerItemSlotType>,
+    pub retired_socket_labels: std::collections::BTreeSet<String>,
     pub quest_loot: Vec<QuestLoot>,
     pub quests: Vec<WikiQuest>,
     pub crafting_systems: Vec<CraftingSystem>,
@@ -40,4 +42,10 @@ pub struct WikiOverrides {
     pub sagas: Vec<WikiSaga>,
     pub vendors: Vec<WikiVendor>,
     pub events: Vec<WikiEvent>,
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct PerItemSlotType {
+    pub slug: String,
+    pub slot_type: crate::map::augment_slot::AugmentSlotType,
 }

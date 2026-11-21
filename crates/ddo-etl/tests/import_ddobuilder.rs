@@ -380,7 +380,7 @@ fn restoring_a_target_whose_correction_lost_its_value_stops_without_writing() {
             "alias" => alias_import_world(),
             "bonus_type" => charisma_bonus_type_import_world(false),
             _ => {
-                let (scratch, mut options, _) = relabelled_socket_import();
+                let (scratch, mut options, _) = relabelled_socket_import(true);
                 let source = scratch.path().join("changed");
                 copy_tree(&options.source_dir, &source);
                 options.source_dir = source;
@@ -3380,11 +3380,19 @@ fn import_refuses_a_previous_that_is_not_the_recorded_commit() {
     assert_eq!(before, world.bytes());
 }
 
-fn relabelled_socket_import() -> (tempfile::TempDir, DdobuilderImportOptions, Connection) {
+fn relabelled_socket_import(keeps_upstream_label: bool) -> (tempfile::TempDir, DdobuilderImportOptions, Connection) {
     let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
     let scratch = tempfile::tempdir().unwrap();
     let source = scratch.path().join("DataFiles");
     copy_tree(&fixtures.join("DataFiles"), &source);
+    if keeps_upstream_label {
+        let xml = std::fs::read_to_string(source.join("Items/Sireth, Spear of the Sky.item")).unwrap();
+        std::fs::write(
+            source.join("Items/UncorrectedCarrier.item"),
+            xml.replace("Sireth, Spear of the Sky", "Uncorrected Carrier"),
+        )
+        .unwrap();
+    }
     let mut corrections = fixture::fixture_icon_corrections();
     corrections.entries.extend(
         fixture::new_qualified_correction(
@@ -3421,8 +3429,74 @@ fn relabelled_socket_import() -> (tempfile::TempDir, DdobuilderImportOptions, Co
 }
 
 #[test]
+fn per_item_slot_types_exclude_uncorrected_upstream_carriers_but_allow_wiki_carriers() {
+    let world = per_item_socket_import();
+    let db = world.database();
+    let assignments = WikiOverrides::from_database(&db).unwrap();
+    assert_eq!(assignments.per_item_slot_types.len(), 1);
+    assert_eq!(assignments.retired_socket_labels.into_iter().collect::<Vec<_>>(), ["crafting: attuned to heroism 1"]);
+    let carrier: i64 = db
+        .query_row(
+            "SELECT id FROM items WHERE name<>'Sireth, Spear of the Sky' AND provenance<>'wiki' AND drop_location IS NOT NULL ORDER BY slug LIMIT 1",
+            [],
+            |row| row.get(0),
+        )
+        .unwrap();
+    db.execute(
+        "INSERT INTO item_augment_slots(item_id,sort_order,slot_id) SELECT ?1,COALESCE((SELECT MAX(sort_order)+1 FROM item_augment_slots WHERE item_id=?1),0),id FROM augment_slot_types WHERE label='crafting: attuned by heroism: tier 1 (mikrom sum)'",
+        [carrier],
+    ).unwrap();
+    tree::export_database(&db, &world.options.data_dir).unwrap();
+    assert!(WikiOverrides::from_database(&world.database()).unwrap().per_item_slot_types.is_empty());
+    world.edit(&format!("UPDATE items SET provenance='wiki' WHERE id={carrier}"));
+    assert_eq!(WikiOverrides::from_database(&world.database()).unwrap().per_item_slot_types.len(), 1);
+}
+
+#[test]
+fn a_per_item_slot_type_has_no_import_delta() {
+    let world = per_item_socket_import();
+    let before = world.bytes();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert_eq!((report.files.written, report.files.removed), (0, 0), "{report}");
+    assert_eq!(world.bytes(), before);
+    let label: String = world.database().query_row(
+        "SELECT t.label FROM item_augment_slots s JOIN augment_slot_types t ON t.id=s.slot_id JOIN items i ON i.id=s.item_id WHERE i.name='Sireth, Spear of the Sky' AND s.sort_order=0",
+        [], |row| row.get(0),
+    ).unwrap();
+    assert_eq!(label, "crafting: attuned by heroism: tier 1 (mikrom sum)");
+}
+
+fn per_item_socket_import() -> ImportWorld {
+    let (scratch, mut options, written) = relabelled_socket_import(false);
+    written.execute_batch(
+        "BEGIN;
+         PRAGMA defer_foreign_keys=ON;
+         INSERT INTO augment_slot_types(label,family,variant,slug)
+         VALUES ('crafting: attuned by heroism: tier 1 (mikrom sum)','crafting','attuned by heroism: tier 1 (mikrom sum)','crafting-attuned-by-heroism-tier-1-mikrom-sum');
+         UPDATE socket_option_sets SET slot_id=(SELECT id FROM augment_slot_types WHERE slug='crafting-attuned-by-heroism-tier-1-mikrom-sum')
+         WHERE id=(SELECT s.option_set_id FROM item_augment_slots s JOIN items i ON i.id=s.item_id WHERE i.name='Sireth, Spear of the Sky' AND s.sort_order=0);
+         UPDATE item_augment_slots SET slot_id=(SELECT id FROM augment_slot_types WHERE slug='crafting-attuned-by-heroism-tier-1-mikrom-sum')
+         WHERE item_id=(SELECT id FROM items WHERE name='Sireth, Spear of the Sky') AND sort_order=0;
+         DELETE FROM augment_slot_types WHERE label='crafting: attuned to heroism 1' AND NOT EXISTS (SELECT 1 FROM item_augment_slots WHERE slot_id=augment_slot_types.id);
+         COMMIT;",
+    ).unwrap();
+    written
+        .execute(
+            "UPDATE corrections SET to_value=?1 WHERE kind='item_socket' AND field='label'",
+            [serde_json::to_string("crafting: attuned by heroism: tier 1 (mikrom sum)").unwrap()],
+        )
+        .unwrap();
+    tree::export_database(&written, &options.data_dir).unwrap();
+    let new_source = scratch.path().join("new");
+    copy_tree(&options.source_dir, &new_source);
+    options.source_dir = new_source;
+    ImportWorld { scratch, options }
+}
+
+#[test]
 fn a_relabelled_socket_has_no_import_delta() {
-    let (_scratch, options, written) = relabelled_socket_import();
+    let (_scratch, options, written) = relabelled_socket_import(false);
     let sockets = |db: &Connection| {
         db.prepare(
         "SELECT a.sort_order,t.label,s.slug FROM item_augment_slots a JOIN items i ON i.id=a.item_id JOIN augment_slot_types t ON t.id=a.slot_id LEFT JOIN socket_option_sets s ON s.id=a.option_set_id WHERE i.name='Sireth, Spear of the Sky' ORDER BY a.sort_order"
@@ -3441,8 +3515,38 @@ fn a_relabelled_socket_has_no_import_delta() {
 }
 
 #[test]
+fn a_relabelled_socket_with_a_renamed_option_has_no_import_delta() {
+    let scratch = tempfile::tempdir().unwrap();
+    let source = scratch.path().join("DataFiles");
+    copy_tree(&Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/DataFiles"), &source);
+    let written = fixture::renamed_socket_option_database(
+        &source,
+        &DatasetVersion { upstream_sha: PREVIOUS_SHA.into(), built_at: "2026-11-11T00:00:00Z".into() },
+    );
+    let root = scratch.path().join("data");
+    export_fixture_with_icons(&written, &source, &root);
+    copy_data_icons_into_source(&root, &source, scratch.path());
+    let world = ImportWorld {
+        scratch,
+        options: DdobuilderImportOptions {
+            previous_dir: source.clone(),
+            source_dir: source,
+            data_dir: root,
+            previous_sha: Some(PREVIOUS_SHA.into()),
+            sha: Some(PREVIOUS_SHA.into()),
+        },
+    };
+    let before = world.bytes();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert!(!report.has_conflicts(), "{report}");
+    assert_eq!((report.files.written, report.files.removed), (0, 0), "{report}");
+    assert!(!report.to_string().contains("STALE"), "{report}");
+    assert_eq!(world.bytes(), before);
+}
+
+#[test]
 fn a_socket_relabel_import_keeps_the_missing_target_correction_and_his_replacement() {
-    let (scratch, mut options, _) = relabelled_socket_import();
+    let (scratch, mut options, _) = relabelled_socket_import(true);
     let changed = scratch.path().join("changed");
     copy_tree(&options.source_dir, &changed);
     let item = changed.join("Items/Sireth, Spear of the Sky.item");
