@@ -14,6 +14,39 @@ fn assert_foreign_keys(db: &Connection) {
     assert!(!db.prepare("PRAGMA foreign_key_check").unwrap().exists([]).unwrap());
 }
 
+#[test]
+fn an_incoming_retired_socket_type_keeps_the_authored_socket_array() {
+    let previous = ordinary_fixture_database("");
+    let mut ours = ordinary_fixture_database("");
+    let (item_name, original_label): (String, String) = previous.query_row(
+        "SELECT i.name,t.label FROM item_augment_slots s JOIN items i ON i.id=s.item_id JOIN augment_slot_types t ON t.id=s.slot_id ORDER BY i.slug,s.sort_order LIMIT 1",
+        [], |row| Ok((row.get(0)?, row.get(1)?)),
+    ).unwrap();
+    let incoming = ordinary_fixture_database("");
+    incoming.execute("INSERT INTO augment_slot_types(label,slug,family,variant) VALUES ('crafting: retired shared','crafting-retired-shared','crafting','retired shared')", []).unwrap();
+    incoming.execute(
+        "UPDATE item_augment_slots SET option_set_id=NULL,slot_id=(SELECT id FROM augment_slot_types WHERE label='crafting: retired shared') WHERE item_id=(SELECT id FROM items WHERE name=?1)",
+        [&item_name],
+    ).unwrap();
+    let new = rebuilt_ordinary_database(&incoming);
+    let outcome = super::merge_delta_keeping_item_sockets(
+        &mut ours,
+        &previous,
+        &new,
+        &BTreeSet::new(),
+        &BTreeSet::from([item_name.clone()]),
+    )
+    .unwrap();
+    assert_eq!(outcome.conflicts.len(), 1);
+    assert_eq!(outcome.conflicts[0].subject, ConflictSubject::Array("socket"));
+    let label: String = ours.query_row(
+        "SELECT t.label FROM item_augment_slots s JOIN items i ON i.id=s.item_id JOIN augment_slot_types t ON t.id=s.slot_id WHERE i.name=?1 ORDER BY s.sort_order LIMIT 1",
+        [&item_name], |row| row.get(0),
+    ).unwrap();
+    assert_eq!(label, original_label);
+    assert_foreign_keys(&ours);
+}
+
 pub(super) fn crafting_reference_database() -> Connection {
     let db = fixture_database();
     db.execute_batch("INSERT INTO crafting_systems (id,slug,name,page) VALUES (-1,'test-system','Test system','Test'),(-2,'other-system','Other system','Other');

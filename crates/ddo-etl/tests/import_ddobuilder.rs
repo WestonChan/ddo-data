@@ -3494,6 +3494,155 @@ fn per_item_socket_import() -> ImportWorld {
     ImportWorld { scratch, options }
 }
 
+fn add_uncorrected_socket_carrier(world: &ImportWorld, name: &str) {
+    let source = world.options.source_dir.join("Items/Sireth, Spear of the Sky.item");
+    let xml = std::fs::read_to_string(source).unwrap();
+    std::fs::write(
+        world.options.source_dir.join(format!("Items/{name}.item")),
+        xml.replace("Sireth, Spear of the Sky", name),
+    )
+    .unwrap();
+}
+
+#[test]
+fn retired_socket_labels_report_every_new_carrier_after_writing() {
+    let mut world = per_item_socket_import();
+    world.options.sha = Some(NEW_SHA.into());
+    let before = world.bytes();
+    let names = ["First Uncorrected Carrier", "Second Uncorrected Carrier"];
+    for name in names {
+        add_uncorrected_socket_carrier(&world, name);
+    }
+    let output = cli(&world).output().unwrap();
+    let stdout = String::from_utf8(output.stdout).unwrap();
+    let stderr = String::from_utf8(output.stderr).unwrap();
+    assert_eq!(output.status.code(), Some(2), "{stdout}\n{stderr}");
+    assert!(!stdout.contains(": CONFLICT "), "{stdout}");
+    let db = world.database();
+    let paths = tree::DataFilePaths::from_database(&db).unwrap();
+    let mut expected_files = std::collections::BTreeSet::from([
+        std::path::PathBuf::from("upstream/commit.toml"),
+        std::path::PathBuf::from("effects/augment-slot-types.toml"),
+    ]);
+    for name in names {
+        let line = stdout
+            .lines()
+            .find(|line| line.contains("NEEDS SLOT TYPE") && line.contains(name))
+            .unwrap_or_else(|| panic!("{stdout}"));
+        for expected in ["crafting: attuned to heroism 1", "item_socket", "recipe", "source"] {
+            assert!(line.contains(expected), "{line}");
+        }
+        let label: String = db.query_row("SELECT t.label FROM item_augment_slots s JOIN items i ON i.id=s.item_id JOIN augment_slot_types t ON t.id=s.slot_id WHERE i.name=?1 AND s.sort_order=0", [name], |row| row.get(0)).unwrap();
+        assert_eq!(label, "crafting: attuned to heroism 1");
+        let (item, options): (i64, i64) = db.query_row(
+            "SELECT i.id,s.option_set_id FROM items i JOIN item_augment_slots s ON s.item_id=i.id WHERE i.name=?1 AND s.sort_order=0",
+            [name], |row| Ok((row.get(0)?,row.get(1)?)),
+        ).unwrap();
+        expected_files.insert(paths.path("items", item).unwrap());
+        expected_files.insert(paths.path("socket_option_sets", options).unwrap());
+    }
+    let after = world.bytes();
+    let written_files = after
+        .iter()
+        .filter(|(path, contents)| before.get(*path) != Some(*contents))
+        .map(|(path, _)| path.clone())
+        .collect::<std::collections::BTreeSet<_>>();
+    assert_eq!(written_files, expected_files);
+    let written = written_files.len();
+    let removed = before.keys().filter(|path| !after.contains_key(*path)).count();
+    assert!(stdout.contains(&format!("files: {written} written, {removed} removed")), "{stdout}");
+    assert_eq!(removed, 0);
+}
+
+#[test]
+fn a_renamed_option_keeps_the_split_socket_and_reports_each_conflict() {
+    let mut world = per_item_socket_import();
+    world.options.sha = Some(NEW_SHA.into());
+    let original_db = world.database();
+    let item_id: i64 = original_db
+        .query_row("SELECT id FROM items WHERE name='Sireth, Spear of the Sky'", [], |row| row.get(0))
+        .unwrap();
+    let item_path = tree::DataFilePaths::from_database(&original_db).unwrap().path("items", item_id).unwrap();
+    let original = std::fs::read(world.options.data_dir.join(&item_path)).unwrap();
+    let source = world.options.source_dir.join("Items/Sireth, Spear of the Sky.item");
+    let xml = std::fs::read_to_string(&source).unwrap();
+    std::fs::write(source, xml.replace("<Name>Planar Conflux</Name>", "<Name>Replacement option</Name>")).unwrap();
+    for pass in 0..2 {
+        let before = world.bytes();
+        let output = cli(&world).output().unwrap();
+        let stdout = String::from_utf8(output.stdout).unwrap();
+        let stderr = String::from_utf8(output.stderr).unwrap();
+        assert_eq!(output.status.code(), Some(2), "{stdout}\n{stderr}");
+        let conflicts = stdout.lines().filter(|line| line.contains(": CONFLICT ")).collect::<Vec<_>>();
+        assert_eq!(conflicts.len(), 2, "{stdout}");
+        assert!(conflicts.iter().any(|line| line.contains("item_socket \"Sireth, Spear of the Sky\"")), "{stdout}");
+        assert!(conflicts.iter().any(|line| line.contains("items/sireth-spear-of-the-sky socket")), "{stdout}");
+        for conflict in conflicts {
+            for label in ["previous=", "new=", "ours="] {
+                assert!(conflict.contains(label), "{conflict}");
+            }
+        }
+        assert_eq!(stdout.contains("DECLINED REMOVAL"), pass == 0, "{stdout}");
+        assert_eq!(std::fs::read(world.options.data_dir.join(&item_path)).unwrap(), original, "{stdout}");
+        let db = world.database();
+        let socket: (String, String) = db.query_row(
+            "SELECT t.label,o.name FROM item_augment_slots s JOIN items i ON i.id=s.item_id JOIN augment_slot_types t ON t.id=s.slot_id JOIN socket_options o ON o.set_id=s.option_set_id WHERE i.name='Sireth, Spear of the Sky' AND s.sort_order=0",
+            [], |row| Ok((row.get(0)?, row.get(1)?)),
+        ).unwrap();
+        assert_eq!(socket, ("crafting: attuned by heroism: tier 1 (mikrom sum)".into(), "Planar Conflux".into()));
+        assert_eq!(
+            db.query_row(
+                "SELECT COUNT(*) FROM augment_slot_types WHERE label='crafting: attuned to heroism 1'",
+                [],
+                |row| row.get::<_, i64>(0)
+            )
+            .unwrap(),
+            0
+        );
+        assert_eq!(
+            db.query_row("SELECT COUNT(*) FROM socket_options WHERE name='Replacement option'", [], |row| row
+                .get::<_, i64>(0))
+                .unwrap(),
+            0
+        );
+        if pass == 1 {
+            assert_eq!(world.bytes(), before);
+            assert!(stdout.contains("files: 0 written, 0 removed"), "{stdout}");
+        }
+        world.options.previous_dir = world.options.source_dir.clone();
+        world.options.previous_sha = world.options.sha.clone();
+    }
+}
+
+#[test]
+fn retired_socket_conflicts_report_new_carriers_and_keep_their_sockets() {
+    let mut world = per_item_socket_import();
+    world.options.sha = Some(NEW_SHA.into());
+    for name in ["First Uncorrected Carrier", "Second Uncorrected Carrier"] {
+        add_uncorrected_socket_carrier(&world, name);
+    }
+    let source = world.options.source_dir.join("Items/Sireth, Spear of the Sky.item");
+    let xml = std::fs::read_to_string(&source).unwrap();
+    std::fs::write(source, xml.replace("<Name>Planar Conflux</Name>", "<Name>Replacement option</Name>")).unwrap();
+    let output = cli(&world).output().unwrap();
+    let stdout = String::from_utf8(output.stdout).unwrap();
+    let stderr = String::from_utf8(output.stderr).unwrap();
+    assert_eq!(output.status.code(), Some(2), "{stdout}\n{stderr}");
+    assert_eq!(stdout.lines().filter(|line| line.contains(": CONFLICT ")).count(), 2, "{stdout}");
+    assert_eq!(stdout.lines().filter(|line| line.contains(": NEEDS SLOT TYPE ")).count(), 2, "{stdout}");
+    let db = world.database();
+    let carriers = db.prepare("SELECT i.name FROM item_augment_slots s JOIN items i ON i.id=s.item_id JOIN augment_slot_types t ON t.id=s.slot_id WHERE t.label='crafting: attuned to heroism 1' ORDER BY i.name").unwrap()
+        .query_map([], |row| row.get::<_,String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(carriers, ["First Uncorrected Carrier", "Second Uncorrected Carrier"]);
+    assert_eq!(
+        db.query_row("SELECT COUNT(*) FROM socket_options WHERE name='Replacement option'", [], |row| row
+            .get::<_, i64>(0))
+            .unwrap(),
+        0
+    );
+    assert_eq!(db.query_row("SELECT COUNT(*) FROM socket_options o JOIN item_augment_slots s ON s.option_set_id=o.set_id JOIN items i ON i.id=s.item_id WHERE i.name='Sireth, Spear of the Sky' AND o.name='Planar Conflux'", [], |row| row.get::<_,i64>(0)).unwrap(), 1);
+}
+
 #[test]
 fn a_relabelled_socket_has_no_import_delta() {
     let (_scratch, options, written) = relabelled_socket_import(false);

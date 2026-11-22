@@ -44,10 +44,9 @@ impl DdobuilderImportReport {
     }
     pub fn needs_settlement(&self) -> bool {
         self.has_conflicts()
-            || self
-                .entries
-                .iter()
-                .any(|entry| matches!(entry.category, "DECLINED REMOVAL" | "ICON DECLINED" | "NEEDS RESEARCH"))
+            || self.entries.iter().any(|entry| {
+                matches!(entry.category, "DECLINED REMOVAL" | "ICON DECLINED" | "NEEDS RESEARCH" | "NEEDS SLOT TYPE")
+            })
     }
 }
 
@@ -361,6 +360,7 @@ mod tests {
             ("DECLINED REMOVAL", true),
             ("ICON DECLINED", true),
             ("NEEDS RESEARCH", true),
+            ("NEEDS SLOT TYPE", true),
             ("RESOLVED CORRECTION", false),
             ("REMOVED", false),
             ("CHANGED UPSTREAM, ABSENT IN OURS", false),

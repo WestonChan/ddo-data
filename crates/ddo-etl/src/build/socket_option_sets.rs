@@ -37,16 +37,20 @@ pub(super) fn remove_unreferenced_carrierless_sets(
         .filter_map(|(id, referenced)| (!referenced).then_some(id))
         .collect::<Vec<_>>();
     for set_id in unused_sets {
-        let linked_effects = transaction.prepare("SELECT DISTINCT e.effect_id FROM socket_option_effects e JOIN socket_options o ON o.id=e.option_id WHERE o.set_id=?1")?
-            .query_map([set_id], |row| row.get::<_, i64>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
-        transaction.execute("DELETE FROM requirements WHERE owner_kind='modifier' AND owner_id IN (SELECT m.id FROM modifiers m JOIN socket_options o ON m.source_kind='socket_option' AND m.source_id=o.id WHERE o.set_id=?1)", [set_id])?;
-        transaction.execute("DELETE FROM modifiers WHERE source_kind='socket_option' AND source_id IN (SELECT id FROM socket_options WHERE set_id=?1)", [set_id])?;
-        transaction.execute("DELETE FROM socket_option_sets WHERE id=?1", [set_id])?;
-        for effect_id in linked_effects {
+        for effect_id in delete_socket_option_set(transaction, set_id)? {
             effects.delete_unowned(effect_id)?;
         }
     }
     Ok(())
+}
+
+pub(crate) fn delete_socket_option_set(db: &rusqlite::Connection, set_id: i64) -> Result<Vec<i64>> {
+    let linked_effects = db.prepare("SELECT DISTINCT e.effect_id FROM socket_option_effects e JOIN socket_options o ON o.id=e.option_id WHERE o.set_id=?1")?
+        .query_map([set_id], |row| row.get(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
+    db.execute("DELETE FROM requirements WHERE owner_kind='modifier' AND owner_id IN (SELECT m.id FROM modifiers m JOIN socket_options o ON m.source_kind='socket_option' AND m.source_id=o.id WHERE o.set_id=?1)", [set_id])?;
+    db.execute("DELETE FROM modifiers WHERE source_kind='socket_option' AND source_id IN (SELECT id FROM socket_options WHERE set_id=?1)", [set_id])?;
+    db.execute("DELETE FROM socket_option_sets WHERE id=?1", [set_id])?;
+    Ok(linked_effects)
 }
 
 #[derive(Debug, Default, Clone, PartialEq)]

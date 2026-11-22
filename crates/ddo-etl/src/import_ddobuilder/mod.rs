@@ -3,13 +3,16 @@ mod blanks;
 mod corrections;
 mod icons;
 mod report;
+mod sockets;
 
 pub use blanks::{fill_cells_from_ours, FilledCell};
 pub use report::{DdobuilderImportReport, ImportReportEntry, ImportTableCounts};
 
 use crate::build::WikiBuildOptions;
 use crate::corrections::Corrections;
-use crate::delta::{database_delta, merge_delta_into};
+#[cfg(test)]
+use crate::delta::merge_delta_into;
+use crate::delta::{database_delta, merge_delta_keeping_item_sockets};
 use crate::tree::{self, DataFilePaths};
 use crate::wiki::WikiOverrides;
 use anyhow::{ensure, Context, Result};
@@ -237,8 +240,22 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
     mapping_audits.extend(audit::effect_homes(&ours, &new.db)?);
     mapping_audits
         .extend(audit::unmatched_set_tier_prose(&previous.matched_set_tier_prose, &new.matched_set_tier_prose));
-    let events = corrections::correction_events(&previous.first_stale, &new.first_stale, &corrections, &ours)?;
-    let outcome = merge_delta_into(&mut ours, &previous.db, &new.db, &annotated)?;
+    let retired_sockets = sockets::RetiredItemSockets::from_databases(&ours, &new.db)?;
+    let events = corrections::correction_events(
+        &previous.first_stale,
+        &new.first_stale,
+        &corrections,
+        &ours,
+        &retired_sockets.retained_items,
+    )?;
+    let mut outcome = merge_delta_keeping_item_sockets(
+        &mut ours,
+        &previous.db,
+        &new.db,
+        &annotated,
+        &retired_sockets.retained_items,
+    )?;
+    retired_sockets.discard_unreferenced_additions(&mut ours, &mut outcome)?;
     ours.execute("UPDATE dataset_version SET upstream_sha = ?1", [&new_version.upstream_sha])?;
     tree::rederive_data_build_tables(&ours)?;
     let staging = scratch.path().join("staging");
@@ -265,6 +282,7 @@ pub fn import_ddobuilder(options: &DdobuilderImportOptions) -> Result<Ddobuilder
         &old_paths,
     )?;
     report.entries.extend(mapping_audits);
+    report.entries.extend(retired_sockets.report_entries(&rebuilt)?);
     for cell in blanked_upstream {
         report.entries.push(ImportReportEntry {
             path: old_paths.path(&cell.table, cell.ours_id)?,

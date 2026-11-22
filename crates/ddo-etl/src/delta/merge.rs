@@ -100,6 +100,16 @@ pub fn merge_delta_into(
     new: &Connection,
     annotated: &BTreeSet<(String, i64)>,
 ) -> Result<MergeOutcome> {
+    merge_delta_keeping_item_sockets(ours, previous, new, annotated, &BTreeSet::new())
+}
+
+pub(crate) fn merge_delta_keeping_item_sockets(
+    ours: &mut Connection,
+    previous: &Connection,
+    new: &Connection,
+    annotated: &BTreeSet<(String, i64)>,
+    retained_item_sockets: &BTreeSet<String>,
+) -> Result<MergeOutcome> {
     ensure!(ours.is_autocommit(), "merge requires a connection outside a transaction");
     let mut previous = DatabaseSnapshot::from_database(previous)?;
     let mut new = DatabaseSnapshot::from_database(new)?;
@@ -159,6 +169,15 @@ pub fn merge_delta_into(
                 });
                 continue;
             };
+            if table == crate::tree::AppliedCorrection::TABLE {
+                let fields = current.fields(&address);
+                if fields.get("kind") == Some(&SqlValue::Text("item_socket".into()))
+                    && fields.get("field") == Some(&SqlValue::Text("label".into()))
+                    && matches!(fields.get("name"), Some(SqlValue::Text(name)) if retained_item_sockets.contains(name))
+                {
+                    continue;
+                }
+            }
             let local_value = current.normalized_fields(&address)?[&change.column].clone();
             if local_value == change.new {
                 continue;
@@ -191,16 +210,21 @@ pub fn merge_delta_into(
         let incoming = new.normalized_array(&key)?;
         let local = current.normalized_array(&key)?;
         let table = array_table(&key).to_string();
+        let local_owner = entity_row(&current, &table, &key.owner).cloned();
+        let retained_socket_array = table == "items"
+            && key.array == "socket"
+            && local_owner.as_ref().is_some_and(|address| {
+                matches!(current.fields(address).get("name"), Some(SqlValue::Text(name)) if retained_item_sockets.contains(name))
+            });
         if key.owner != "dataset" && entity_row(&new, &table, &key.owner).is_none() {
             continue;
         }
         let added_owner = key.owner != "dataset"
             && entity_row(&previous, &table, &key.owner).is_none()
             && entity_row(&new, &table, &key.owner).is_some();
-        if edits.removals.contains_key(&key.owner) || (before == incoming && !added_owner) {
+        if edits.removals.contains_key(&key.owner) || (before == incoming && !added_owner && !retained_socket_array) {
             continue;
         }
-        let local_owner = entity_row(&current, &table, &key.owner).cloned();
         let inserted_owner =
             entity_row(&new, &table, &key.owner).is_some_and(|address| edits.inserted.contains(address));
         if key.owner != "dataset" && local_owner.is_none() && !inserted_owner {
@@ -213,7 +237,9 @@ pub fn merge_delta_into(
             });
         } else if local == incoming {
             continue;
-        } else if inserted_owner || (!added_owner && local == before) || key.owner == "dataset" && local == before {
+        } else if !retained_socket_array
+            && (inserted_owner || (!added_owner && local == before) || key.owner == "dataset" && local == before)
+        {
             edits.deleted.extend(current.array_rows.get(&key).into_iter().flatten().cloned());
             edits.inserted.extend(new.array_rows.get(&key).into_iter().flatten().cloned());
             if !inserted_owner {

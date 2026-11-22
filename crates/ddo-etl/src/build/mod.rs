@@ -8,7 +8,7 @@ pub(crate) use corrections::{data_correction_value, line_bonuses_by_owner, Socke
 mod drop_text;
 pub(crate) mod effect_vocabulary;
 mod effects;
-pub(crate) use effects::{amount_count, validate_templates};
+pub(crate) use effects::{amount_count, delete_unowned_effect, validate_templates};
 mod items;
 pub(crate) use items::weapon_damage_text;
 mod modifiers;
@@ -16,6 +16,7 @@ pub use modifiers::{stat_links_at_routed_types, StatLinkRoute};
 mod quest_series;
 mod sets;
 mod socket_option_sets;
+pub(crate) use socket_option_sets::delete_socket_option_set;
 pub(crate) use socket_option_sets::SocketOptionList;
 pub use socket_option_sets::{ExistingSocketOptionSets, CARRIERLESS_SOCKET_OPTION_SETS};
 mod trees_spells;

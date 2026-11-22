@@ -5,7 +5,7 @@ mod table_merges;
 
 pub use compute::{database_delta, ArrayChange, ArrayKey, ColumnChange, DatabaseDelta, EntityTableDelta};
 pub use identity::{polymorphic_table, scalar_text, sql_text, IdentityIndex, RowFields};
-pub(crate) use merge::clear_rederived_tables;
+pub(crate) use merge::{clear_rederived_tables, merge_delta_keeping_item_sockets};
 pub use merge::{
     merge_delta_into, AbsentChange, AppliedCounts, Conflict, ConflictSubject, DeclinedRemoval, DeletedEntity,
     MergeOutcome, RemovalDeclineReason,

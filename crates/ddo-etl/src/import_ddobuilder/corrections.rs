@@ -195,6 +195,7 @@ pub(super) fn correction_events(
     new_stale: &[StaleCorrection],
     corrections: &Corrections,
     ours: &Connection,
+    retained_item_sockets: &std::collections::BTreeSet<String>,
 ) -> Result<Vec<CorrectionEvent>> {
     let mut statement = ours.prepare("SELECT kind, name, qualifier, field, to_value FROM corrections")?;
     let values = statement
@@ -212,7 +213,11 @@ pub(super) fn correction_events(
         let new = upstream_value(correction, new_stale);
         let unresolved_targets =
             new_stale.iter().any(|stale| key.matches(stale) && has_unresolved_targets(correction, stale));
-        if previous == new && !unresolved_targets {
+        let retained_socket = correction.kind == ddo_model::enums::CorrectionKind::ItemSocket
+            && correction.field == "label"
+            && retained_item_sockets.contains(&correction.name)
+            && new_stale.iter().any(|stale| key.matches(stale));
+        if previous == new && !unresolved_targets && !retained_socket {
             continue;
         }
         if new == correction.to.to_json() || new == "renamed upstream" {

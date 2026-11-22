@@ -708,20 +708,7 @@ impl<'a> EffectCache<'a> {
     }
 
     pub(super) fn delete_unowned(&mut self, family_id: i64) -> Result<()> {
-        if self.family(family_id).is_some_and(|family| family.is_stat) {
-            return Ok(());
-        }
-        let unowned = EffectOwner::ALL
-            .iter()
-            .map(|owner| {
-                let (table, _) = owner.table();
-                format!("NOT EXISTS (SELECT 1 FROM {table} WHERE effect_id = ?1)")
-            })
-            .collect::<Vec<_>>()
-            .join(" AND ");
-        let deleted =
-            self.transaction.execute(&format!("DELETE FROM effects WHERE id = ?1 AND {unowned}"), [family_id])?;
-        if deleted > 0 {
+        if delete_unowned_effect(self.transaction, family_id)? {
             if let Some(family) = self.families_by_id.remove(&family_id) {
                 self.families_by_name.remove(&family.name);
             }
@@ -833,6 +820,18 @@ impl<'a> EffectCache<'a> {
         }
         Ok(())
     }
+}
+
+pub(crate) fn delete_unowned_effect(db: &rusqlite::Connection, effect_id: i64) -> Result<bool> {
+    let unowned = EffectOwner::ALL
+        .iter()
+        .map(|owner| {
+            let (table, _) = owner.table();
+            format!("NOT EXISTS (SELECT 1 FROM {table} WHERE effect_id = ?1)")
+        })
+        .collect::<Vec<_>>()
+        .join(" AND ");
+    Ok(db.execute(&format!("DELETE FROM effects WHERE id=?1 AND NOT is_stat AND {unowned}"), [effect_id])? > 0)
 }
 
 pub(crate) fn amount_count(verbose_name_template: &str, description_template: Option<&str>) -> i64 {
