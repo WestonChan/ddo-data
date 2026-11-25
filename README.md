@@ -77,7 +77,7 @@ values, never an empty page.
 |---|---|
 | `/v1/version` | Dataset and schema versions, table counts |
 | `/v1/effects`, `/v1/effects/{id}` | The bonus vocabulary: stats and named effects in one list with `kind`; an effect's bonuses, tier group, damage and carriers (one row per owner, with every line it carries), or a stat's carriers |
-| `/v1/items`, `/v1/items/{id}` | Equipment, filterable by name, slot, category, level, attack and damage ability, material, socket, pack, crafting system, raid, bonus (a stat, a stat with a bonus type, or a named effect), set, repeated keys with `_match`; legacy items (old versions such as "(legacy)" and "(historic)" names, and items that no longer drop) are flagged `is_legacy` and listed only with `include_legacy=true` |
+| `/v1/items`, `/v1/items/{id}` | Equipment, filterable by name, slot, category, level, attack and damage ability, material, socket, pack, crafting system (one that makes the item or upgrades it in place), raid, bonus (a stat, a stat with a bonus type, or a named effect), set, repeated keys with `_match`; legacy items (old versions such as "(legacy)" and "(historic)" names, and items that no longer drop) are flagged `is_legacy` and listed only with `include_legacy=true` |
 | `/v1/augments`, `/v1/augments/{id}` | Augments with the sockets they fit |
 | `/v1/sets`, `/v1/sets/{id}`, `/v1/filigrees`, `/v1/sentient-gems` | Gear sets, filigree sets, filigrees, the sentient gems they slot into |
 | `/v1/feats`, `/v1/feats/{id}` | Feats from the standard list, classes and races |
