@@ -39,7 +39,7 @@ pub(super) fn crafting_systems_vocabulary() -> VocabularySource {
             format!(
                 "{vocabulary}.*, COALESCE(ingredients.ingredient_count, 0) AS ingredient_count,
              COALESCE(recipes.recipe_count, 0) AS recipe_count,
-             COALESCE(outputs.item_count, 0) AS item_count"
+             COALESCE(reached_items.item_count, 0) AS item_count"
             )
         },
         |vocabulary| {
@@ -50,10 +50,10 @@ pub(super) fn crafting_systems_vocabulary() -> VocabularySource {
                  LEFT JOIN (SELECT system_id, COUNT(*) AS recipe_count FROM crafting_recipes GROUP BY system_id) recipes
                     ON recipes.system_id = {vocabulary}.id
                  LEFT JOIN (
-                    SELECT output.crafting_system_id, COUNT(DISTINCT output.owner_id) AS item_count
-                    FROM crafting_outputs output JOIN items i ON i.id = output.owner_id
-                    WHERE output.owner_kind = 'item' AND NOT i.is_legacy GROUP BY output.crafting_system_id
-                 ) outputs ON outputs.crafting_system_id = {vocabulary}.id",
+                    SELECT reach.crafting_system_id, COUNT(*) AS item_count
+                    FROM crafting_system_items reach JOIN items i ON i.id = reach.item_id
+                    WHERE NOT i.is_legacy GROUP BY reach.crafting_system_id
+                 ) reached_items ON reached_items.crafting_system_id = {vocabulary}.id",
                 INGREDIENT_USES.as_str()
             )
         },
@@ -62,11 +62,19 @@ pub(super) fn crafting_systems_vocabulary() -> VocabularySource {
     .for_entities(ddo_model::enums::EntityKind::CraftingSystem)
 }
 
-fn attach_augment_families(db: &Connection, crafting_system: &mut Value) -> Result<(), ApiError> {
-    let system_id = crafting_system["id"].as_i64().unwrap_or(0);
-    let families =
-        json_rows(db, "SELECT family FROM crafting_system_families WHERE system_id = ?1 ORDER BY family", [system_id])?;
-    crafting_system["families"] = Value::Array(families.into_iter().map(|row| row["family"].clone()).collect());
+fn attach_augment_families(db: &Connection, systems: &mut [Value]) -> Result<(), ApiError> {
+    let ids = systems.iter().filter_map(|system| system["id"].as_i64()).collect::<Vec<_>>();
+    let mut families = grouped_rows(db, &ids, "SELECT system_id AS owner_id,family FROM crafting_system_families WHERE system_id IN ({ids}) ORDER BY system_id,family")?;
+    for system in systems {
+        system["families"] = Value::Array(
+            families
+                .remove(&system["id"].as_i64().unwrap())
+                .unwrap_or_default()
+                .into_iter()
+                .map(|row| row["family"].clone())
+                .collect(),
+        );
+    }
     Ok(())
 }
 
@@ -228,9 +236,7 @@ async fn crafting_systems(
                 ValueVocabulary::CraftingSystems.default_order(),
                 CRAFTING_SYSTEMS_SORT_FIELDS,
             )?;
-            for row in &mut page.rows {
-                attach_augment_families(db, row)?;
-            }
+            attach_augment_families(db, &mut page.rows)?;
             Ok(Json(page.into_json("crafting_systems")))
         })
         .await
@@ -257,7 +263,7 @@ async fn crafting_system_detail(
             let ingredient_uses = INGREDIENT_USES.as_str();
             let mut crafting_system =
                 json_row(db, &format!("SELECT * FROM ({}) listed WHERE listed.id = ?1", ValueVocabulary::CraftingSystems.select_sql()), [id])?;
-            attach_augment_families(db, &mut crafting_system)?;
+            attach_augment_families(db, std::slice::from_mut(&mut crafting_system))?;
             crafting_system["ingredients"] = Value::Array(json_rows(
                 db,
                 &format!("{ingredient_uses} SELECT id, name, tier, bind, source FROM crafting_ingredients WHERE id IN (SELECT ingredient_id FROM ingredient_uses WHERE system_id = ?1) ORDER BY name"),

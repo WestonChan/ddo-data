@@ -592,6 +592,7 @@ CREATE TABLE IF NOT EXISTS item_augment_slots (
     PRIMARY KEY (item_id, sort_order),
     FOREIGN KEY (slot_id, option_set_id) REFERENCES socket_option_sets(slot_id, id)
 );
+CREATE INDEX IF NOT EXISTS idx_item_augment_slots_slot ON item_augment_slots(slot_id);
 
 CREATE TABLE IF NOT EXISTS socket_option_sets (
     id INTEGER PRIMARY KEY,
@@ -1530,6 +1531,12 @@ CREATE TABLE IF NOT EXISTS crafting_steps (
     UNIQUE (system_id, name),
     UNIQUE (slot_id)
 );
+
+CREATE VIEW IF NOT EXISTS crafting_system_items (crafting_system_id, item_id) AS
+SELECT crafting_system_id, owner_id FROM crafting_outputs WHERE owner_kind = 'item'
+UNION
+SELECT step.system_id, socket.item_id
+FROM crafting_steps step JOIN item_augment_slots socket ON socket.slot_id = step.slot_id;
 
 CREATE TABLE IF NOT EXISTS crafting_step_effects (
     step_id INTEGER NOT NULL REFERENCES crafting_steps(id) ON DELETE CASCADE,

@@ -35,6 +35,18 @@ fn fixture_state() -> AppState {
     AppState::open(fixture_db_path()).expect("state opens")
 }
 
+fn authored_db_path() -> &'static PathBuf {
+    static PATH: OnceLock<PathBuf> = OnceLock::new();
+    PATH.get_or_init(|| {
+        let path = std::env::temp_dir().join(format!("ddo-api-authored-{}.db", std::process::id()));
+        let _ = std::fs::remove_file(&path);
+        let mut db = rusqlite::Connection::open(&path).unwrap();
+        let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");
+        ddo_etl::tree::build_from_data(&root, &mut db).unwrap();
+        path
+    })
+}
+
 fn fixture_db_path_with_data_edits(test_name: &str, edit: impl FnOnce(&Path)) -> PathBuf {
     let root = std::env::temp_dir().join(format!("ddo-api-{test_name}-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&root);
@@ -4152,6 +4164,157 @@ async fn feat_attacks_carry_cooldown_and_their_bonuses() {
 }
 
 #[tokio::test]
+async fn crafting_system_filter_finds_made_and_upgraded_items() {
+    let (_, _, original_orb) = get("/v1/items/thunder-forged-orb").await;
+    let (_, _, original_docent) = get("/v1/items/docent-of-defiance").await;
+    assert_eq!(original_docent["crafting_systems"], serde_json::json!([]));
+    assert_eq!(original_orb["crafting_systems"][0]["slug"], "thunder-forged");
+    let pack_query =
+        serde_urlencoded::to_string([("pack", "The Necropolis, Part 3"), ("q", "Docent of Defiance")]).unwrap();
+    let unchanged_queries = [
+        (format!("/v1/items?{pack_query}"), 1),
+        ("/v1/items?quest=the-cursed-crypt&q=Docent+of+Defiance".to_string(), 1),
+        ("/v1/items?pack=Magic+of+Myth+Drannor&q=Docent+of+Defiance".to_string(), 0),
+    ];
+    let mut original_pages = Vec::new();
+    for (query, expected_total) in &unchanged_queries {
+        let (status, _, page) = get(query).await;
+        assert_eq!(status, StatusCode::OK, "{page}");
+        assert_eq!(page["total"], *expected_total);
+        if *expected_total > 0 {
+            assert!(!page["items"][0]["pack"].as_str().unwrap().is_empty());
+        }
+        original_pages.push(page);
+    }
+    let state = fixture_state_with_data_edits("crafting-reach", |root| {
+        let original = root.join("packs/shared/crafting/nearly-finished/crafting.toml");
+        let contents = std::fs::read_to_string(&original).unwrap();
+        let moved = root.join("packs/magic-of-myth-drannor/crafting/nearly-finished/crafting.toml");
+        std::fs::create_dir_all(moved.parent().unwrap()).unwrap();
+        std::fs::write(moved, format!("pack = \"Magic of Myth Drannor\"\n{contents}")).unwrap();
+        std::fs::remove_file(original).unwrap();
+        for relative in [
+            "packs/shared/crafting/thunder-forged/gear/thunder-forged-orb.toml",
+            "packs/the-necropolis-part-3/quests/the-cursed-crypt/gear/docent-of-defiance.toml",
+            "packs/unsourced/gear/fried-sword-fish.toml",
+        ] {
+            let path = root.join(relative);
+            let mut contents = std::fs::read_to_string(&path).unwrap();
+            contents.push_str("\n[[socket]]\nslot = \"crafting: nearly finished\"\n");
+            if relative.ends_with("thunder-forged-orb.toml") {
+                contents.push_str("\n[[socket]]\nslot = \"crafting: nearly finished\"\n\n[[socket]]\nslot = \"crafting: finishing touch\"\n");
+            }
+            if relative.ends_with("fried-sword-fish.toml") {
+                contents = format!("is_legacy = true\n{contents}");
+            }
+            std::fs::write(path, contents).unwrap();
+        }
+        let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let contents = std::fs::read_to_string(&path).unwrap();
+        let recipe_step = "step = \"Catalyst upgrade\"\n";
+        assert_eq!(contents.matches(recipe_step).count(), 1);
+        std::fs::write(
+            path,
+            contents.replace(recipe_step, &format!("{recipe_step}grants_slot = \"crafting: nearly finished\"\n")),
+        )
+        .unwrap();
+    });
+    for (slug, original) in [("thunder-forged-orb", original_orb), ("docent-of-defiance", original_docent)] {
+        let (status, _, detail) = get_from(state.clone(), &format!("/v1/items/{slug}")).await;
+        assert_eq!(status, StatusCode::OK, "{detail}");
+        for field in ["crafting_systems", "sources", "adventure_packs"] {
+            assert_eq!(detail[field], original[field], "{slug}: {field}");
+        }
+    }
+    for ((query, _), original) in unchanged_queries.iter().zip(original_pages) {
+        let (status, _, page) = get_from(state.clone(), query).await;
+        assert_eq!(status, StatusCode::OK, "{page}");
+        assert_eq!(page, original, "{query}");
+    }
+    let (status, _, upgraded) = get_from(state.clone(), "/v1/items?crafting_system=nearly-finished&limit=10000").await;
+    assert_eq!(status, StatusCode::OK, "{upgraded}");
+    let upgraded_slugs =
+        upgraded["items"].as_array().unwrap().iter().map(|item| item["slug"].as_str().unwrap()).collect::<Vec<_>>();
+    for slug in ["thunder-forged-orb", "docent-of-defiance"] {
+        assert_eq!(upgraded_slugs.iter().filter(|found| **found == slug).count(), 1, "{slug}: {upgraded}");
+    }
+    assert!(!upgraded_slugs.contains(&"fried-sword-fish"));
+    let (status, _, with_legacy) =
+        get_from(state.clone(), "/v1/items?crafting_system=nearly-finished&include_legacy=true&limit=10000").await;
+    assert_eq!(status, StatusCode::OK, "{with_legacy}");
+    assert!(with_legacy["items"].as_array().unwrap().iter().any(|item| item["slug"] == "fried-sword-fish"));
+    let (status, _, both) = get_from(
+        state.clone(),
+        "/v1/items?crafting_system=thunder-forged&crafting_system=nearly-finished&crafting_system_match=all",
+    )
+    .await;
+    assert_eq!(status, StatusCode::OK, "{both}");
+    assert_eq!(both["total"], 1);
+    assert_eq!(both["items"][0]["slug"], "thunder-forged-orb");
+    let (status, _, sorted) = get_from(state.clone(), "/v1/items?sort=crafting_system&sort=name&limit=10000").await;
+    assert_eq!(status, StatusCode::OK, "{sorted}");
+    let sorted_items = sorted["items"].as_array().unwrap();
+    let upgraded_position = sorted_items.iter().position(|item| item["slug"] == "docent-of-defiance").unwrap();
+    let uncrafted_position = sorted_items.iter().position(|item| item["slug"] == "alarphons-staff").unwrap();
+    assert!(upgraded_position < uncrafted_position, "upgraded items must precede items with no crafting system");
+    for (system, only_item) in [("thunder-forged", "thunder-forged-orb"), ("catalyst-crafting", "visor-of-fraz-urbluu")]
+    {
+        let (status, _, made) = get_from(state.clone(), &format!("/v1/items?crafting_system={system}")).await;
+        assert_eq!(status, StatusCode::OK, "{made}");
+        assert_eq!(made["total"], 1, "{system}: {made}");
+        assert_eq!(made["items"][0]["slug"], only_item);
+    }
+    let (status, _, system) = get_from(state, "/v1/crafting-systems/nearly-finished").await;
+    assert_eq!(status, StatusCode::OK, "{system}");
+    assert_eq!(system["item_count"], upgraded["total"]);
+}
+
+#[tokio::test]
+async fn every_crafting_system_count_equals_its_filter_total() {
+    let state = AppState::open(authored_db_path()).unwrap();
+    let (status, _, page) = get_from(state.clone(), "/v1/crafting-systems?limit=10000").await;
+    assert_eq!(status, StatusCode::OK, "{page}");
+    let systems = page["crafting_systems"].as_array().unwrap();
+    assert!(!systems.is_empty());
+    assert_eq!(page["total"], systems.len());
+    for system in systems {
+        let query = serde_urlencoded::to_string([("crafting_system", system["slug"].as_str().unwrap())]).unwrap();
+        let (status, _, items) = get_from(state.clone(), &format!("/v1/items?{query}&limit=1")).await;
+        assert_eq!(status, StatusCode::OK, "{system}: {items}");
+        assert_eq!(system["item_count"], items["total"], "{system}");
+    }
+}
+
+#[tokio::test]
+async fn crafting_system_list_query_count_does_not_grow_with_rows() {
+    static QUERY_COUNT: AtomicUsize = AtomicUsize::new(0);
+    let state = fixture_state();
+    state
+        .read_db(|db| {
+            db.trace_v2(
+                TraceEventCodes::SQLITE_TRACE_STMT,
+                Some(|event| {
+                    if let TraceEvent::Stmt(_, _) = event {
+                        QUERY_COUNT.fetch_add(1, Ordering::SeqCst);
+                    }
+                }),
+            );
+            Ok(())
+        })
+        .await
+        .unwrap();
+    let mut counts = Vec::new();
+    for limit in [1, 12] {
+        QUERY_COUNT.store(0, Ordering::SeqCst);
+        let (status, _, page) = get_from(state.clone(), &format!("/v1/crafting-systems?limit={limit}")).await;
+        assert_eq!(status, StatusCode::OK, "{page}");
+        assert_eq!(page["crafting_systems"].as_array().unwrap().len(), limit);
+        counts.push(QUERY_COUNT.load(Ordering::SeqCst));
+    }
+    assert_eq!(counts, [3, 3]);
+}
+
+#[tokio::test]
 async fn item_filter_vocabularies_serve_each_value_with_its_non_legacy_item_count() {
     let (status, _, abilities_page) = get("/v1/weapon-abilities").await;
     assert_eq!(status, StatusCode::OK, "{abilities_page}");
@@ -4241,15 +4404,26 @@ async fn item_filter_vocabularies_serve_each_value_with_its_non_legacy_item_coun
 
     let (_, _, systems_page) = get("/v1/crafting-systems?limit=10000").await;
     for system in systems_page["crafting_systems"].as_array().unwrap() {
+        let (status, _, detail) = get(&format!("/v1/crafting-systems/{}", system["slug"].as_str().unwrap())).await;
+        assert_eq!(status, StatusCode::OK, "{detail}");
+        let filled_slots = detail["steps"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .filter_map(|step| step["socket"]["label"].as_str())
+            .collect::<Vec<_>>();
         let count = details
             .iter()
             .filter(|item| {
                 item["crafting_systems"].as_array().unwrap().iter().any(|source| source["slug"] == system["slug"])
+                    || item["augment_slots"]
+                        .as_array()
+                        .unwrap()
+                        .iter()
+                        .any(|socket| filled_slots.contains(&socket["label"].as_str().unwrap()))
             })
             .count();
         assert_eq!(system["item_count"], count, "{system}");
-        let (status, _, detail) = get(&format!("/v1/crafting-systems/{}", system["slug"].as_str().unwrap())).await;
-        assert_eq!(status, StatusCode::OK, "{detail}");
         assert_eq!(detail["item_count"], count, "{system}");
         if system["slug"] == "thunder-forged" {
             assert_eq!(count, 1);

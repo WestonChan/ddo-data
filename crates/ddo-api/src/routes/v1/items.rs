@@ -89,7 +89,7 @@ declare_query_parameters! {
         damage_ability => WeaponAbilities, "Repeat exact names from /v1/weapon-abilities to match a weapon's damage abilities; omitted applies no filter.",
         material => ItemMaterials, "Repeat names from /v1/item-materials to match any material; omitted applies no filter.",
         socket => AugmentSlotTypes, "Repeat case-insensitive labels from /v1/augment-slot-types to match item sockets; omitted applies no filter.",
-        crafting_system => CraftingSystems, "Repeat current or redirected slugs or numeric ids from /v1/crafting-systems to match their item outputs; omitted applies no filter.",
+        crafting_system => CraftingSystems, "Repeat current or redirected slugs or numeric ids from /v1/crafting-systems to match items made or upgraded; omitted applies no filter.",
         pack => AdventurePacks, "Repeat names from /v1/adventure-packs reached through item sources; omitted applies no filter.",
         set => Sets, "Repeat set names from /v1/sets to match member items; omitted applies no filter.",
         quest => Quests, "Repeat current or redirected slugs or numeric ids from /v1/quests to match their item drops; omitted applies no filter.",
@@ -136,7 +136,7 @@ const ITEMS_SORT_FIELDS: &[(&str, &str)] = &[
     ("material", "(SELECT m.name FROM item_materials m WHERE m.id = i.material_id)"),
     ("socket", "(SELECT MIN(t.label) FROM item_augment_slots s JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.item_id = i.id)"),
     ("pack", "pack"),
-    ("crafting_system", "(SELECT MIN(crafting_system_id) FROM sources WHERE item_id = i.id AND kind = 'crafting_system')"),
+    ("crafting_system", "(SELECT MIN(crafting_system_id) FROM crafting_system_items WHERE item_id = i.id)"),
     ("set", "\"set\""),
     ("enhancement_bonus", "i.enhancement_bonus"),
     ("icon", "icon"),
@@ -246,8 +246,8 @@ async fn items(
                 &filters.pack, filters.pack_match.as_deref(),
             );
             where_clause.add_repeated_filter(
-                "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'crafting_system' AND d.crafting_system_id IN (?))",
-                "i.id IN (SELECT d.item_id FROM sources d WHERE d.kind = 'crafting_system' AND d.crafting_system_id = ?)",
+                "i.id IN (SELECT reach.item_id FROM crafting_system_items reach WHERE reach.crafting_system_id IN (?))",
+                "i.id IN (SELECT reach.item_id FROM crafting_system_items reach WHERE reach.crafting_system_id = ?)",
                 filters.crafting_system.ids(), filters.crafting_system_match.as_deref(),
             );
             where_clause.add_repeated_filter(
