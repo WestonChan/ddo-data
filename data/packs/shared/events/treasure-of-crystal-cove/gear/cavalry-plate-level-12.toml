@@ -41,7 +41,7 @@ upstream = 0
 reason = "The item page has an empty Upgradeable? row and a typed Enchantments list of +4 Enhancement Bonus, Life Shield, False Life +24, DR 10/Chaotic, Resistance +5, Blue Augment Slot; the in-game screenshot (420px-Cavalry_Plate_(level_12).png) shows the same lines (plus the Augments: line with the empty slot) and no Upgradeable - Tier line. The data file carries crafting: upgradeable tier 2 and tier 3 sockets."
 url = "https://ddowiki.com/page/Item:Cavalry_Plate_(level_12)"
 read = "2026-11-04"
-qualifier = 'socket "upgrade: tier 2"'
+qualifier = 'socket "crafting: upgradeable - tier 2"'
 
 [[ddobuilder_correction]]
 kind = "item_socket"
@@ -50,7 +50,7 @@ upstream = 0
 reason = "The item page has an empty Upgradeable? row and a typed Enchantments list of +4 Enhancement Bonus, Life Shield, False Life +24, DR 10/Chaotic, Resistance +5, Blue Augment Slot; the in-game screenshot (420px-Cavalry_Plate_(level_12).png) shows the same lines (plus the Augments: line with the empty slot) and no Upgradeable - Tier line. The data file carries crafting: upgradeable tier 2 and tier 3 sockets."
 url = "https://ddowiki.com/page/Item:Cavalry_Plate_(level_12)"
 read = "2026-11-04"
-qualifier = 'socket "upgrade: tier 3"'
+qualifier = 'socket "crafting: upgradeable - tier 3"'
 
 [[source]]
 kind = "event"

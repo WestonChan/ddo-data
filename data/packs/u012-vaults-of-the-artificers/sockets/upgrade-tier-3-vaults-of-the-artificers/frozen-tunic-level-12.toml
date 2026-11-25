@@ -1,0 +1,40 @@
+label = "upgrade: tier 3 (vaults of the artificers)"
+name = "Frozen Tunic (Level 12)"
+
+[[option]]
+name = "Adds Glaciation 94, Ice Lore 14% and a Green augment slot"
+description = """
+Glaciation +94: Passive: +94 Equipment bonus to Cold Spell Power.
+Ice Lore +14: Passive: Your Cold spells gain a 14% Equipment bonus to their chance to critical hit.
+Adds a Green augment slot to this item"""
+icon = "Upgrade"
+min_level = 12
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+value = 94
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+value = 14
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [94]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+effect_type = "SpellLore"
+targets = ["Cold"]

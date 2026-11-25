@@ -652,7 +652,7 @@ fn missing_aliases_name_the_file_for_every_link_owner() {
         ("packs/shared/crafting/dinosaur-bone-crafting/augments/silverscale.toml", "effect"),
         ("characters/feats/other.toml", "row.effect"),
         ("packs/shared/sets/perfect-silence.toml", "tier.effect"),
-        ("packs/shared/sockets/upgrade-tier-2/epic-ring-of-master-artifice.toml", "option.effect"),
+        ("packs/shared/sockets/upgrade-tier-2-test-upgrade-altar/epic-ring-of-master-artifice.toml", "option.effect"),
     ] {
         let error = fixture::data_build_error(|root| {
             let path = root.join(file);

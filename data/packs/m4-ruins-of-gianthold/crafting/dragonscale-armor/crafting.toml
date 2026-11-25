@@ -38,11 +38,11 @@ quantity = 3
 
 [[step]]
 name = "Attuned by Heroism: Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
+slot = "crafting: attuned by heroism: tier 1 (dragonscale)"
 
 [[step]]
 name = "Attuned by Heroism: Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
+slot = "crafting: attuned by heroism: tier 2 (dragonscale)"
 
 [[citation]]
 url = "https://ddowiki.com/page/Dragonscale_Armor"

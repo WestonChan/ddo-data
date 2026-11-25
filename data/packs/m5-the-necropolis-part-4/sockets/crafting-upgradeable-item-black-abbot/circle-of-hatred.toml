@@ -1,0 +1,21 @@
+label = "crafting: upgradeable item (black abbot)"
+name = "Circle of Hatred"
+
+[[option]]
+name = "Harm - 5 Charges per day, Incite 30%"
+description = """
+Harm upgrades to 5 charges per day.
+Incite +30: +30% Enhancement bonus to increased threat generation from melee damage"""
+min_level = 13
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Melee Threat Generation"
+value = 30
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"

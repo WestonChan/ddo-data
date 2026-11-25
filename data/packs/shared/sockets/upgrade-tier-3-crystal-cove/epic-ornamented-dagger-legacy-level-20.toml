@@ -1,0 +1,25 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Epic Ornamented Dagger (legacy) (level 20)"
+
+[[option]]
+name = "Adds Potency +52 and a Yellow augment slot"
+description = """
+Potency +52: Passive: +52 Equipment bonus to each Spell Power.
+Adds a Yellow augment slot to this item"""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Potency"
+value = 52
+
+[[option.grant]]
+slot = "yellow"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [52]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "UniversalSpellPower"

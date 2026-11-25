@@ -67,7 +67,7 @@ fn a_kept_set_file_without_its_socket_fails_the_carrier_check() {
         .unwrap()
         .retain(|socket| socket["slot"].as_str() != Some("crafting: nearly finished"));
     std::fs::write(path, toml::to_string(&ring).unwrap()).unwrap();
-    let system_path = tree.join("packs/shared/crafting/test-upgrade-altar/crafting.toml");
+    let system_path = tree.join("packs/shared/crafting/nearly-finished/crafting.toml");
     let mut system: toml::Value = toml::from_str(&std::fs::read_to_string(&system_path).unwrap()).unwrap();
     system["recipe"].as_array_mut().unwrap().retain(|recipe| {
         recipe.get("set_option").is_none_or(|options| !options.to_string().contains("Celestial Emerald Ring"))
@@ -76,7 +76,11 @@ fn a_kept_set_file_without_its_socket_fails_the_carrier_check() {
     let mut db = Connection::open_in_memory().unwrap();
     ddo_etl::tree::build_from_data(&tree, &mut db).unwrap();
     let set: i64 = db
-        .query_row("SELECT id FROM socket_option_sets WHERE name='Celestial Emerald Ring'", [], |row| row.get(0))
+        .query_row(
+            "SELECT id FROM socket_option_sets WHERE slug='crafting-nearly-finished-celestial-emerald-ring'",
+            [],
+            |row| row.get(0),
+        )
         .unwrap();
     let report = integrity_report(&db, &fixture_options()).unwrap();
     let outcome = report.outcome("socket_option_sets_have_a_carrier").unwrap();

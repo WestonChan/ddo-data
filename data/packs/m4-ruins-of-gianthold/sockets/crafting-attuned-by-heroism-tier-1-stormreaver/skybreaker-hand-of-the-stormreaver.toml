@@ -1,0 +1,22 @@
+label = "crafting: attuned by heroism: tier 1 (stormreaver)"
+name = "Skybreaker, Hand of the Stormreaver"
+
+[[option]]
+name = "+8 Enhancement Bonus and The Reaver's Quest"
+description = """
++8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls.
+The Reaver's Quest: The Stormreaver slipped from The Celestial One's care, and
+set out across Xen'drik for the components to craft a new sword. Purest Mithral
+was gathered from the Bluespine Peaks, and diamonds from the Burning Mountain,
+ground to dust under his heel. He forged his blade in the heart of Mount Reysalon's
+volcano, and quenched it in the fury of a hurricane that was battering itself
+against Shargon's Teeth.
+(This enchantment has no effect.)"""
+icon = "Heroism"
+min_level = 25
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"

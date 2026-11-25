@@ -48,12 +48,30 @@ bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Reconstruct"]
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 2"
+reason = "This socket belongs to Vaults of the Artificers; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
+read = "2026-11-04"
+qualifier = 'option "Wizardry 173, Reconstruction 102, Repair Lore 15"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 3"
+reason = "This socket belongs to Vaults of the Artificers; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
+read = "2026-11-04"
+qualifier = 'option "Wizardry 187, Reconstruction 108, Repair Lore 16 and a Green Augment Slot"'
+
 [[socket]]
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (vaults of the artificers)"
 set = "Ring of Master Artifice (Level 15)"
 
 [[socket]]
-slot = "upgrade: tier 3"
+slot = "upgrade: tier 3 (vaults of the artificers)"
 set = "Ring of Master Artifice (Level 15)"
 
 [[source]]

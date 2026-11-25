@@ -1,0 +1,17 @@
+label = "crafting: attuned by heroism: tier 2 (stormreaver)"
+name = "Braisingstar"
+
+[[option]]
+name = "Conflagrating"
+description = "Conflagrating: This weapon is sheathed in furious flame. A conflagrating weapon deals an extra 3 to 18 points of fire damage on a successful hit."
+icon = "Heroism"
+min_level = 23
+
+[[option.modifier]]
+bonus = "Not Set"
+dice_damage = "Fire"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]

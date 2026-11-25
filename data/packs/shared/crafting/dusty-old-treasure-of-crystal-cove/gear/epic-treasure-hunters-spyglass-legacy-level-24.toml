@@ -40,12 +40,30 @@ name = "Intelligence"
 bonus_type = "Insight"
 value = 2
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 2"
+reason = "This socket belongs to Dusty Old Treasure of Crystal Cove; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+qualifier = 'option "Open Lock +15"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 3"
+reason = "This socket belongs to Dusty Old Treasure of Crystal Cove; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+qualifier = 'option "Insightful Intelligence +3, open Lock +20, Enhanced UMD +4 and a Green Augment Slot"'
+
 [[socket]]
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (crystal cove)"
 set = "Epic Treasure Hunter's Spyglass (legacy) (level 24)"
 
 [[socket]]
-slot = "upgrade: tier 3"
+slot = "upgrade: tier 3 (crystal cove)"
 set = "Epic Treasure Hunter's Spyglass (legacy) (level 24)"
 
 [[source]]

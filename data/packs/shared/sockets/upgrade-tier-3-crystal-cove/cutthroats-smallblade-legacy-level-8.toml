@@ -1,0 +1,19 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Cutthroat's Smallblade (legacy) (level 8)"
+
+[[option]]
+name = "Adds Slicing"
+description = """
+Slicing: This weapon is incredibly sharp and will do an additional 1 to 4 damage to
+targets that are vulnerable to bleeding."""
+icon = "Upgrade"
+min_level = 8
+
+[[option.modifier]]
+bonus_type = "Enhancement"
+dice_damage = "Bleeding"
+dice_number = [1]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]

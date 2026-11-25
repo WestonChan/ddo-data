@@ -1,0 +1,20 @@
+label = "upgrade: tier 2 (crystal cove)"
+name = "Duelist's Leathers (legacy) (level 4)"
+
+[[option]]
+name = "+2 Enhancement Bonus"
+description = "+2 Enhancement Bonus: +2 Enhancement bonus to Armor Class."
+icon = "Upgrade"
+min_level = 4
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+value = 2
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+effect_type = "ACBonus"

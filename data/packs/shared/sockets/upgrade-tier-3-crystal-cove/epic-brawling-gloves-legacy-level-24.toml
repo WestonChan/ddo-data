@@ -1,0 +1,31 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Epic Brawling Gloves (legacy) (level 24)"
+
+[[option]]
+name = "Adds a Yellow augment slot"
+description = """
+Sneak Attack Bonus +5: Provides a +5 to attack bonus and a +8 to damage for any
+attack that would qualify as a Sneak Attack, even if the wielder is not a Rogue.
+Adds a Yellow augment slot to this item"""
+icon = "Upgrade"
+min_level = 24
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+value = 5
+
+[[option.grant]]
+slot = "yellow"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[option.modifier]]
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDamage"

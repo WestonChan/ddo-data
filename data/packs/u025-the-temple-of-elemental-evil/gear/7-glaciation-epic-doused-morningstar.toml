@@ -26,12 +26,21 @@ name = "Glaciation"
 bonus_type = "Enhancement"
 value = 156
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 2"
+reason = "This socket belongs to Temple of Elemental Evil crafting; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/ToEE_Crafting"
+read = "2026-11-04"
+qualifier = 'option "Adds Ice Lore XIII and a Purple Augment slot and set bonus."'
+
 [[socket]]
 slot = "upgrade: tier 1"
 set = "+7 Combustion Epic Scorched Bastard Sword"
 
 [[socket]]
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (toee)"
 set = "+7 Glaciation Epic Doused Bastard Sword"
 
 [[weapon]]

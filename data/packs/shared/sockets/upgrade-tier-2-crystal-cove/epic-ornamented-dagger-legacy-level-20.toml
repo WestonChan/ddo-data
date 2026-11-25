@@ -1,0 +1,21 @@
+label = "upgrade: tier 2 (crystal cove)"
+name = "Epic Ornamented Dagger (legacy) (level 20)"
+
+[[option]]
+name = "Adds Spell Lore III"
+description = "Spell Lore III: Passive: All of your spells gain a 3% Equipment bonus to their chance to critical hit."
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Universal Spell Lore"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Equipment"
+effect = "Universal Spell Lore"
+effect_type = "SpellLore"
+targets = ["All"]

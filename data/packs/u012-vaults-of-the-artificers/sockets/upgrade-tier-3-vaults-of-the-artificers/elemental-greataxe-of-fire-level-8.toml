@@ -1,0 +1,25 @@
+label = "upgrade: tier 3 (vaults of the artificers)"
+name = "Elemental Greataxe of Fire (level 8)"
+
+[[option]]
+name = "Adds a Purple augment slot and Cold Resistance 22"
+description = """
+Adds a Purple augment slot to this item
+Cold Resistance +22: Passive: +22 Enhancement bonus to your Cold Resistance."""
+min_level = 8
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+value = 22
+
+[[option.grant]]
+slot = "purple"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [22]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+effect_type = "EnergyResistance"
+targets = ["Cold"]

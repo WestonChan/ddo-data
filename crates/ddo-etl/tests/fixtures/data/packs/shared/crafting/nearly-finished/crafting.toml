@@ -28,3 +28,12 @@ step = "Nearly Finished"
 [[recipe.set_option]]
 set = "Fabricator's Gauntlets"
 name = "Fabricator's Ingenuity"
+
+[[recipe]]
+option = "Choose Constitution"
+tier = "legendary"
+step = "Nearly Finished"
+
+[[recipe.set_option]]
+set = "Celestial Emerald Ring"
+name = "+8 Constitution"

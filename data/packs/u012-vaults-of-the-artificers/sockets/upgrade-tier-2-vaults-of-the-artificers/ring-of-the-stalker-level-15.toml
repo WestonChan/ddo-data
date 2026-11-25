@@ -1,0 +1,7 @@
+label = "upgrade: tier 2 (vaults of the artificers)"
+name = "Ring of the Stalker (Level 15)"
+
+[[option]]
+name = "No change to item"
+description = "this item does not change on this upgrade."
+min_level = 15

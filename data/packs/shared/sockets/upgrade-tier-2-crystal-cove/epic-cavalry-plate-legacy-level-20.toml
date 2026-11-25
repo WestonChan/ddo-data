@@ -1,0 +1,20 @@
+label = "upgrade: tier 2 (crystal cove)"
+name = "Epic Cavalry Plate (legacy) (level 20)"
+
+[[option]]
+name = "Superior False Life"
+description = "Superior False Life: This item grants the wearer +40 maximum health."
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "False Life"
+value = 40
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "False Life"
+effect_type = "FalseLife"

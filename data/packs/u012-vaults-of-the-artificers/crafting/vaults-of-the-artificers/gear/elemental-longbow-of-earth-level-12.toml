@@ -34,12 +34,30 @@ name = "Acid Resistance"
 bonus_type = "Enhancement"
 value = 24
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 2"
+reason = "This socket belongs to Vaults of the Artificers; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
+read = "2026-11-04"
+qualifier = 'option "+4 Enhancement Bonus and Acid Resistance 24"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 3"
+reason = "This socket belongs to Vaults of the Artificers; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
+read = "2026-11-04"
+qualifier = 'option "Adds a Purple augment slot and Acid Resistance 29"'
+
 [[socket]]
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (vaults of the artificers)"
 set = "Elemental Longbow of Earth (level 12)"
 
 [[socket]]
-slot = "upgrade: tier 3"
+slot = "upgrade: tier 3 (vaults of the artificers)"
 set = "Elemental Longbow of Earth (level 12)"
 
 [[source]]

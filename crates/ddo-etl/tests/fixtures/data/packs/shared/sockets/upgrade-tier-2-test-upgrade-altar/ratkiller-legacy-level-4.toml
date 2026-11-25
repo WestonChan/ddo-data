@@ -1,0 +1,14 @@
+label = "upgrade: tier 2 (test upgrade altar)"
+name = "Ratkiller (legacy) (level 4)"
+
+[[option]]
+name = "+2 Enhancement Bonus"
+description = "+2 Enhancement Bonus: +2 Enhancement bonus to attack and damage rolls."
+icon = "Upgrade"
+min_level = 4
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"

@@ -1,0 +1,27 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Epic Ring of the Buccaneer (legacy) (level 20)"
+
+[[option]]
+name = "Good Luck +2 and a Adds a Green augment slot"
+description = """
+Good Luck +2: This item gives a +2 Luck bonus to all saves and skill checks.
+Adds a Green augment slot to this item"""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Luck"
+effect = "Saving Throws"
+value = 2
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Luck"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+extra_types = ["SkillBonus"]
+targets = ["All"]

@@ -1,0 +1,23 @@
+label = "upgrade: tier 2 (toee)"
+name = "+3 Glaciation Doused Bastard Sword"
+
+[[option]]
+name = "Adds Ice Lore III and a Purple Augment slot."
+description = "Ice Lore III: Passive: Your Cold spells gain a 13% Equipment bonus to their chance to critical hit."
+min_level = 7
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+value = 13
+
+[[option.grant]]
+slot = "purple"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+effect_type = "SpellLore"
+targets = ["Cold"]

@@ -23,12 +23,30 @@ value = 7
 [[effect]]
 name = "Thunderstruck"
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "crafting: attuned to heroism 1"
+reason = "This socket belongs to Stormreaver Monument; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-11-04"
+qualifier = 'option "Adds a Yellow Augment Slot"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "crafting: attuned to heroism 2"
+reason = "This socket belongs to Stormreaver Monument; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-11-04"
+qualifier = 'option "Adds Electric Resistance +50"'
+
 [[socket]]
-slot = "crafting: attuned by heroism: tier 1"
+slot = "crafting: attuned by heroism: tier 1 (stormreaver)"
 set = "Pendant of the Stormreaver"
 
 [[socket]]
-slot = "crafting: attuned by heroism: tier 2"
+slot = "crafting: attuned by heroism: tier 2 (stormreaver)"
 set = "Pendant of the Stormreaver"
 
 [[source]]

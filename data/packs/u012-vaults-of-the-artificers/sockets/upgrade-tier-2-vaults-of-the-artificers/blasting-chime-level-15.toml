@@ -1,0 +1,35 @@
+label = "upgrade: tier 2 (vaults of the artificers)"
+name = "Blasting Chime (Level 15)"
+
+[[option]]
+name = "Resonance +102, Sonic Lore +15% and Anthem"
+description = """
+Resonance +102: Passive: +102 Equipment bonus to Sonic Spell Power.
+Sonic Lore +15: Passive: Your Sonic spells gain a 15% Equipment bonus to their chance to critical hit."""
+min_level = 15
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+value = 102
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Sonic Spell Lore"
+value = 15
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [102]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Sonic Spell Lore"
+effect_type = "SpellLore"
+targets = ["Sonic"]

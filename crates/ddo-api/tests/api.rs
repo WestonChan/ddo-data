@@ -4018,11 +4018,11 @@ async fn aliased_titles_agree_across_every_effect_owner() {
             for (directory, content) in [
                 (
                     "gear",
-                    format!("name = {name:?}\nslot = 'Ring'\nminimum_level = 8\nitem_category = 'Jewelry'\n[[effect]]\nname = 'Improved Deception'\n{link}\n[[socket]]\nslot = 'upgrade: tier 2'\nset = {name:?}\n"),
+                    format!("name = {name:?}\nslot = 'Ring'\nminimum_level = 8\nitem_category = 'Jewelry'\n[[effect]]\nname = 'Improved Deception'\n{link}\n[[socket]]\nslot = 'upgrade: tier 2 (test upgrade altar)'\nset = {name:?}\n"),
                 ),
                 (
-                    "sockets/upgrade-tier-2",
-                    format!("name = {name:?}\nlabel = 'upgrade: tier 2'\n[[option]]\nname = {alias:?}\n[[option.effect]]\neffect = 'Improved Deception'\n{link}"),
+                    "sockets/upgrade-tier-2-test-upgrade-altar",
+                    format!("name = {name:?}\nlabel = 'upgrade: tier 2 (test upgrade altar)'\n[[option]]\nname = {alias:?}\n[[option.effect]]\neffect = 'Improved Deception'\n{link}"),
                 ),
                 (
                     "augments",
@@ -4302,11 +4302,10 @@ async fn crafting_systems_list_their_families_and_counts() {
 async fn item_socket_options_read_through_sets_and_carry_the_recipes_that_price_them() {
     let (_, _, original) = get("/v1/items/celestial-emerald-ring").await;
     let state = fixture_state_with_data_edits("uniform-option-pricing", |root| {
-        let path = root.join("packs/shared/crafting/test-upgrade-altar/crafting.toml");
+        let path = root.join("packs/shared/crafting/nearly-finished/crafting.toml");
         let mut contents = std::fs::read_to_string(&path).unwrap();
-        contents.push_str(
-            "\n[[recipe]]\noption = \"Uniform choice\"\ntier = \"legendary\"\nstep = \"Nearly Finished (test)\"\n",
-        );
+        contents
+            .push_str("\n[[recipe]]\noption = \"Uniform choice\"\ntier = \"legendary\"\nstep = \"Nearly Finished\"\n");
         std::fs::write(path, contents).unwrap();
     });
     let (status, _, item) = get_from(state, "/v1/items/celestial-emerald-ring").await;
@@ -4339,7 +4338,7 @@ async fn item_socket_options_read_through_sets_and_carry_the_recipes_that_price_
 async fn exchange_steps_serve_consumed_outputs_on_the_step_and_its_recipes() {
     let state = fixture_state_with_data_edits("consumed-outputs", |root| {
         for (system, step_name, quantity) in
-            [("test-upgrade-altar", "Nearly Finished (test)", 3_i64), ("thunder-forged", "Tier 1", 4_i64)]
+            [("nearly-finished", "Nearly Finished", 3_i64), ("thunder-forged", "Tier 1", 4_i64)]
         {
             let path = root.join(format!("packs/shared/crafting/{system}/crafting.toml"));
             let contents = std::fs::read_to_string(&path).unwrap();
@@ -4452,6 +4451,40 @@ async fn recipes_without_a_cost_for_their_grade_serve_an_empty_cost() {
             assert!(recipe["step"].is_null());
             assert!(recipe["slot"].is_null());
         }
+    }
+}
+
+#[tokio::test]
+async fn retired_shared_socket_types_are_not_served_or_accepted() {
+    let state = fixture_state();
+    let (_, _, vocabulary) = get_from(state.clone(), "/v1/augment-slot-types?limit=10000").await;
+    let accepted = vocabulary["augment_slot_types"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|row| row["label"].as_str().unwrap())
+        .collect::<Vec<_>>();
+    for (label, slug) in [
+        ("crafting: attuned by heroism: tier 1", "crafting-attuned-by-heroism-tier-1"),
+        ("crafting: attuned by heroism: tier 2", "crafting-attuned-by-heroism-tier-2"),
+        ("crafting: upgradeable item", "crafting-upgradeable-item"),
+        ("upgrade: tier 2", "upgrade-tier-2"),
+        ("upgrade: tier 3", "upgrade-tier-3"),
+    ] {
+        assert!(!accepted.contains(&label), "retired label {label}");
+        let (status, _, _) = get_from(state.clone(), &format!("/v1/augment-slot-types/{slug}")).await;
+        assert_eq!(status, StatusCode::NOT_FOUND, "{slug}");
+        let (status, _, response) =
+            get_from(state.clone(), &format!("/v1/items?socket={}", label.replace(' ', "%20"))).await;
+        assert_eq!(status, StatusCode::BAD_REQUEST, "{label}");
+        assert_eq!(response["error"], format!("unknown socket {label:?}; accepted values: {}", accepted.join(", ")));
+    }
+    for label in ["upgrade: tier 2 (test upgrade altar)", "upgrade: tier 3 (test upgrade altar)"] {
+        assert!(accepted.contains(&label), "split label {label}");
+        let (status, _, response) =
+            get_from(state.clone(), &format!("/v1/items?socket={}", label.replace(' ', "%20"))).await;
+        assert_eq!(status, StatusCode::OK, "{response}");
+        assert!(response["total"].as_u64().unwrap() > 0);
     }
 }
 
@@ -4710,7 +4743,7 @@ async fn augment_slot_type_detail_answers_candidates_from_one_slug() {
         assert_eq!(socket["slot_type_slug"], slug);
     }
     let (_, _, socket) = get("/v1/augment-slot-types/crafting-nearly-finished").await;
-    assert_eq!(socket["crafting_steps"].as_array().unwrap().len(), 2);
+    assert_eq!(socket["crafting_steps"].as_array().unwrap().len(), 1);
     assert!(socket["option_sets"].as_array().unwrap().len() >= 2);
     let (_, _, sets) = get("/v1/socket-option-sets?slot=crafting%3A%20nearly%20finished").await;
     for set in sets["socket_option_sets"].as_array().expect("sets") {
@@ -4838,7 +4871,7 @@ async fn crafting_system_detail_carries_ingredients_and_recipes_with_augments_an
     assert_eq!(
         granted_slots,
         [
-            &serde_json::json!("upgrade: tier 2"),
+            &serde_json::json!("upgrade: tier 2 (test upgrade altar)"),
             &serde_json::json!("colorless"),
             &serde_json::json!("colorless"),
             &serde_json::json!("colorless")

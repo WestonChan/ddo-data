@@ -1,0 +1,40 @@
+label = "upgrade: tier 2 (vaults of the artificers)"
+name = "Epic Blasting Chime"
+
+[[option]]
+name = "Upgrades Sonic Lore to 17% and Resonance to 116 and a Colorless augment slot"
+description = """
+Sonic Lore +17: Passive: Your Sonic spells gain a 17% Equipment bonus to their
+chance to critical hit.
+Resonance +116: Passive: +116 Equipment bonus to Sonic Spell Power."""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Sonic Spell Lore"
+value = 17
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+value = 116
+
+[[option.grant]]
+slot = "colorless"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Equipment"
+effect = "Sonic Spell Lore"
+effect_type = "SpellLore"
+targets = ["Sonic"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [116]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+effect_type = "SpellPower"
+targets = ["Sonic"]

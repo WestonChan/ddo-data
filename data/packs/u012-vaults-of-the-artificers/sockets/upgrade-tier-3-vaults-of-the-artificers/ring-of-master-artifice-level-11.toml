@@ -1,0 +1,59 @@
+label = "upgrade: tier 3 (vaults of the artificers)"
+name = "Ring of Master Artifice (Level 11)"
+
+[[option]]
+name = "Wizardry 154, Reconstruction 94, Repair Lore 14 and a Green Augment Slot"
+description = """
+Wizardry +154: +154 Enhancement bonus to spell points.
+Reconstruction +94: Passive: +94 Equipment bonus to Repair and Rust Spell Power.
+Repair Lore +14: Passive: Your Repair and Rust spells gain a 14% Equipment bonus
+to their chance to critical hit.
+Adds a Green Augment Slot"""
+min_level = 11
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+value = 154
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Repair Spell Power"
+value = 94
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Repair Spell Lore"
+value = 14
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [154]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [94]
+bonus_type = "Equipment"
+effect = "Repair Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus_type = "Equipment"
+effect = "Repair Spell Lore"
+effect_type = "SpellLore"
+targets = [
+    "Repair",
+    "Rust",
+]

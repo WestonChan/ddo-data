@@ -49,12 +49,30 @@ alias = "Attack Bonus"
 bonus_type = "Competence"
 value = 1
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 2"
+reason = "This socket belongs to Dusty Old Treasure of Crystal Cove; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+qualifier = 'option "+4 Enhancement Bonus"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 3"
+reason = "This socket belongs to Dusty Old Treasure of Crystal Cove; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+qualifier = 'option "Balance +13"'
+
 [[socket]]
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (crystal cove)"
 set = "Duelist's Leathers (legacy) (level 12)"
 
 [[socket]]
-slot = "upgrade: tier 3"
+slot = "upgrade: tier 3 (crystal cove)"
 set = "Duelist's Leathers (legacy) (level 12)"
 
 [[source]]

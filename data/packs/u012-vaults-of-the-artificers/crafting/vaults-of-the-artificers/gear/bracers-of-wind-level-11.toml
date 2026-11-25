@@ -35,12 +35,30 @@ name = "Dodge"
 bonus_type = "Enhancement"
 value = 6
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 2"
+reason = "This socket belongs to Vaults of the Artificers; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
+read = "2026-11-04"
+qualifier = 'option "Magnetism +88, Lightning Lore +13% and Dodge 7%"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 3"
+reason = "This socket belongs to Vaults of the Artificers; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
+read = "2026-11-04"
+qualifier = 'option "Magnetism +94, Lightning Lore +14%, Dodge 8% and a Green augment slot"'
+
 [[socket]]
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (vaults of the artificers)"
 set = "Bracers of Wind (level 11)"
 
 [[socket]]
-slot = "upgrade: tier 3"
+slot = "upgrade: tier 3 (vaults of the artificers)"
 set = "Bracers of Wind (level 11)"
 
 [[source]]

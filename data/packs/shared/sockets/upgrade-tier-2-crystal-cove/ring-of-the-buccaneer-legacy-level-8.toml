@@ -1,0 +1,19 @@
+label = "upgrade: tier 2 (crystal cove)"
+name = "Ring of the Buccaneer (legacy) (level 8)"
+
+[[option]]
+name = "Adds Protection +2"
+description = "Protection +2: Passive: +2 Deflection bonus to Armor Class."
+min_level = 8
+
+[[option.effect]]
+bonus_type = "Deflection"
+effect = "Protection"
+value = 2
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"

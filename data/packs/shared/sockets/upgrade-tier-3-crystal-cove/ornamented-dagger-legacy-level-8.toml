@@ -1,0 +1,21 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Ornamented Dagger (legacy) (level 8)"
+
+[[option]]
+name = "Potency +36"
+description = "Potency +36: Passive: +36 Equipment bonus to each Spell Power."
+icon = "Upgrade"
+min_level = 8
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Potency"
+value = 36
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [36]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "SpellPower"
+targets = ["All"]

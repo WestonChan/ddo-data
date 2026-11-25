@@ -32,12 +32,30 @@ name = "Undead Bane 4"
 [[effect]]
 name = "Brilliance"
 
-[[socket]]
-slot = "upgrade: tier 2"
-set = "Cutthroat's Smallblade (legacy) (level 16)"
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 2"
+reason = "This socket belongs to Vaults of the Artificers; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
+read = "2026-11-04"
+qualifier = 'option "+5 Enhancement Bonus"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 3"
+reason = "This socket belongs to Vaults of the Artificers; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
+read = "2026-11-04"
+qualifier = 'option "Adds a Purple augment slot"'
 
 [[socket]]
-slot = "upgrade: tier 3"
+slot = "upgrade: tier 2 (vaults of the artificers)"
+set = "Mournlode Greataxe (level 16)"
+
+[[socket]]
+slot = "upgrade: tier 3 (vaults of the artificers)"
 set = "Mournlode Greataxe (level 16)"
 
 [[source]]

@@ -1,0 +1,56 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Epic Treasure Hunter's Spyglass (legacy) (level 24)"
+
+[[option]]
+name = "Insightful Intelligence +3, open Lock +20, Enhanced UMD +4 and a Green Augment Slot"
+description = """
+Insightful Intelligence +3: This item focuses the power of the wearer's mind,
+granting a +3 insight bonus to Intelligence.
+Open Lock +20: Passive: +20 Competence bonus to the Open Lock skill.
+Enhanced Use Magic Device +4: Passive: +4 Enhancement bonus to the Use Magic Device skill.
+Adds a Green augment slot to this item"""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 3
+
+[[option.effect]]
+bonus_type = "Competence"
+effect = "Open Lock"
+value = 20
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Use Magic Device"
+value = 3
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Open Lock"
+effect_type = "SkillBonus"
+targets = ["Open Lock"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Use Magic Device"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]

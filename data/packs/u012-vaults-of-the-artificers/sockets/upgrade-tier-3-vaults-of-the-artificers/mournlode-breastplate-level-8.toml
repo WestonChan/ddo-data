@@ -1,0 +1,39 @@
+label = "upgrade: tier 3 (vaults of the artificers)"
+name = "Mournlode Breastplate (level 8)"
+
+[[option]]
+name = "Protection +5, Resistance +5 and a Green Augment Slot"
+description = """
+Protection +5: Passive: +5 Deflection bonus to Armor Class.
+Resistance +5: Passive: +5 Resistance bonus to Fortitude, Reflex, and Will Saving Throws.
+Adds a Green augment slot to this item"""
+icon = "Upgrade"
+min_level = 8
+
+[[option.effect]]
+bonus_type = "Deflection"
+effect = "Protection"
+value = 5
+
+[[option.effect]]
+bonus_type = "Resistance"
+effect = "Resistance"
+value = 5
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]

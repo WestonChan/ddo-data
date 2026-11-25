@@ -1,0 +1,10 @@
+label = "upgrade: tier 3 (vaults of the artificers)"
+name = "Calomel Banded Light Repeater (level 8)"
+
+[[option]]
+name = "Adds a Purple augment slot"
+description = "Adds a Purple augment slot to this item"
+min_level = 8
+
+[[option.grant]]
+slot = "purple"

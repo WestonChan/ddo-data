@@ -243,13 +243,13 @@ not_crafting_reason = "ToEE upgrades: out of the game per the maintainer (2026-1
 
 [[row]]
 family = "upgrade"
-label = "upgrade: tier 2"
-variant = "tier 2"
+label = "upgrade: tier 2 (test upgrade altar)"
+variant = "tier 2 (test upgrade altar)"
 
 [[row]]
 family = "upgrade"
-label = "upgrade: tier 3"
-variant = "tier 3"
+label = "upgrade: tier 3 (test upgrade altar)"
+variant = "tier 3 (test upgrade altar)"
 
 [[row]]
 family = "standard"

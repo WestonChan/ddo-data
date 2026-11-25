@@ -1,0 +1,26 @@
+label = "upgrade: tier 2 (vaults of the artificers)"
+name = "Epic Mournlode Breastplate"
+
+[[option]]
+name = "+6 Enhancement Bonus, Undead Guard 5, Colorless Augment slot"
+description = """
++6 Enhancement Bonus: +6 enhancement bonus to Armor Class.
+Undead Guard +5: Chance to deal 5d8 Good damage to undead when hit.
+Colorless Augment slot"""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+value = 6
+
+[[option.grant]]
+slot = "colorless"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+effect_type = "ACBonus"

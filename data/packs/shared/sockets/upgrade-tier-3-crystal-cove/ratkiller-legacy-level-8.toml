@@ -1,0 +1,21 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Ratkiller (legacy) (level 8)"
+
+[[option]]
+name = "Stunning +6"
+description = "Stunning +6: +6 Enhancement bonus to the DC of character's Stunning Blow and Stunning Fist attempts."
+icon = "Upgrade"
+min_level = 8
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Stun DC"
+value = 6
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Stun DC"
+effect_type = "TacticalDC"
+targets = ["Stun"]

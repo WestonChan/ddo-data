@@ -30,12 +30,30 @@ name = "Heightened Awareness"
 bonus_type = "Insight"
 value = 1
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 2"
+reason = "This socket belongs to Vaults of the Artificers; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
+read = "2026-11-04"
+qualifier = 'option "Combustion +74, Fire Lore +11%"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 3"
+reason = "This socket belongs to Vaults of the Artificers; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
+read = "2026-11-04"
+qualifier = 'option "Combustion +79, Fire Lore +12% and a Green Augment Slot"'
+
 [[socket]]
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (vaults of the artificers)"
 set = "Cloak of Flames (level 7)"
 
 [[socket]]
-slot = "upgrade: tier 3"
+slot = "upgrade: tier 3 (vaults of the artificers)"
 set = "Cloak of Flames (level 7)"
 
 [[source]]

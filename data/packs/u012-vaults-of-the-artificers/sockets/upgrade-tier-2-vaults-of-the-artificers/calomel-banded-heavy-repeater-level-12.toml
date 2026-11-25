@@ -1,0 +1,13 @@
+label = "upgrade: tier 2 (vaults of the artificers)"
+name = "Calomel Banded Heavy Repeater (level 12)"
+
+[[option]]
+name = "+4 Enhancement Bonus"
+description = "+4 Enhancement Bonus: +4 enhancement bonus to attack and damage rolls."
+min_level = 12
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"

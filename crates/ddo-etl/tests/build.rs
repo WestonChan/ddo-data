@@ -70,6 +70,57 @@ fn crafting_fixtures_cover_owned_pools_random_steps_and_pure_first_tiers() {
 }
 
 #[test]
+fn shared_crafting_slot_types_are_retired_and_their_carriers_are_relabelled() {
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db).unwrap();
+    for label in [
+        "crafting: attuned by heroism: tier 1",
+        "crafting: attuned by heroism: tier 2",
+        "upgrade: tier 2",
+        "upgrade: tier 3",
+        "crafting: upgradeable item",
+    ] {
+        let remaining: i64 =
+            db.query_row("SELECT COUNT(*) FROM augment_slot_types WHERE label=?1", [label], |row| row.get(0)).unwrap();
+        assert_eq!(remaining, 0, "retired shared type {label}");
+    }
+    let carriers = db.prepare("SELECT i.name,t.label,o.name,i.provenance='wiki' FROM item_augment_slots a JOIN items i ON i.id=a.item_id JOIN augment_slot_types t ON t.id=a.slot_id LEFT JOIN socket_options o ON o.set_id=a.option_set_id")
+        .unwrap().query_map([], |row| Ok((row.get::<_,String>(0)?,row.get::<_,String>(1)?,row.get::<_,Option<String>>(2)?,row.get::<_,bool>(3)?)))
+        .unwrap().collect::<rusqlite::Result<std::collections::BTreeSet<_>>>().unwrap();
+    let corrections = Corrections::from_database(&db).unwrap();
+    let mut corrected_carriers = std::collections::BTreeSet::new();
+    for relabel in corrections.entries.iter().filter(|correction| {
+        correction.kind == ddo_model::enums::CorrectionKind::ItemSocket && correction.field == "label"
+    }) {
+        let label = relabel.to.as_text().unwrap();
+        assert!(
+            carriers
+                .iter()
+                .any(|(name, slot, option, _)| name == &relabel.name && slot == label && option == &relabel.option),
+            "{}: {label}",
+            relabel.name
+        );
+        corrected_carriers.insert((relabel.name.clone(), label.to_owned()));
+    }
+    let mut expected =
+        corrected_carriers.iter().map(|(_, label)| label.clone()).collect::<std::collections::BTreeSet<_>>();
+    for (name, label, _, is_wiki_only) in &carriers {
+        if !is_wiki_only && !corrected_carriers.contains(&(name.clone(), label.clone())) {
+            expected.remove(label);
+        }
+    }
+    let authored = WikiOverrides::from_database(&db)
+        .unwrap()
+        .per_item_slot_types
+        .into_iter()
+        .map(|declared| declared.slot_type.label)
+        .collect::<std::collections::BTreeSet<_>>();
+    assert_eq!(authored, expected);
+    let shared: i64 = db.query_row("SELECT COUNT(*) FROM (SELECT slot_id FROM crafting_steps WHERE slot_id IS NOT NULL GROUP BY slot_id HAVING COUNT(DISTINCT system_id)>1)", [], |row| row.get(0)).unwrap();
+    assert_eq!(shared, 0);
+}
+
+#[test]
 fn socket_option_sets_follow_their_free_to_play_carriers_patron() {
     let db = fixture::database(|root| {
         let path = root.join("packs/unsourced/gear/celestial-emerald-ring.toml");
@@ -173,7 +224,7 @@ fn unqualified_and_explicit_crafting_references_keep_their_variants() {
         let ingredients = root.join("packs/shared/crafting/ingredients");
         std::fs::create_dir_all(&ingredients).unwrap();
         let mut stations = String::new();
-        let mut recipes = String::from("[[step]]\nname='Choose'\nslot='crafting: nearly finished'\n");
+        let mut recipes = String::new();
         for variant in [None, Some("2")] {
             let suffix = variant.map(|value| format!("-{value}")).unwrap_or_default();
             let field = variant.map(|value| format!("variant='{value}'\n")).unwrap_or_default();
@@ -188,10 +239,10 @@ fn unqualified_and_explicit_crafting_references_keep_their_variants() {
             )
             .unwrap();
             stations.push_str(&format!("[[row]]\nname='Test Forge'\n{field}kind='interface'\ncitation=[]\n"));
-            recipes.push_str(&format!("[[station]]\nname='Test Forge'\n{field}[[recipe]]\noption='Choice{suffix}'\nstep='Choose'\ntier='any'\n[[recipe.ingredient]]\ningredient='Test Key'\n{field}quantity=1\n[[recipe.set_option]]\nset='Test Choices'\nname='Choice'\n{}", field.replace("variant=", "set_variant=")));
+            recipes.push_str(&format!("[[station]]\nname='Test Forge'\n{field}[[recipe]]\noption='Choice{suffix}'\nstep='Nearly Finished'\ntier='any'\n[[recipe.ingredient]]\ningredient='Test Key'\n{field}quantity=1\n[[recipe.set_option]]\nset='Test Choices'\nname='Choice'\n{}", field.replace("variant=", "set_variant=")));
         }
         fixture::append_to_file(root.join("packs/shared/crafting/stations.toml"), stations);
-        let system = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+        let system = root.join("packs/shared/crafting/nearly-finished/crafting.toml");
         let record: toml::Value = toml::from_str(&std::fs::read_to_string(&system).unwrap()).unwrap();
         std::fs::write(system, format!("{}\n{recipes}", toml::to_string(&record).unwrap())).unwrap();
         let item = root.join("packs/unsourced/gear/celestial-emerald-ring.toml");
@@ -2384,6 +2435,7 @@ fn numeric_riposte_keeps_full_owner_and_default_amounts() {
     assert_eq!(verdict, "distinct");
     let index = ddo_etl::groupings::Groupings::from_database(&canonical).unwrap();
     let corrections = Corrections::from_database(&canonical).unwrap();
+    let wiki = WikiOverrides::from_database(&canonical).unwrap();
     for (amount, expected, amount_source) in
         [(Some(3), 3, "owner"), (Some(1), 1, "owner"), (None, 2, "default"), (Some(0), 0, "owner")]
     {
@@ -2394,15 +2446,7 @@ fn numeric_riposte_keeps_full_owner_and_default_amounts() {
         assert_eq!(original.matches("<Value1>3</Value1>").count(), 1);
         std::fs::write(item, original.replace("<Value1>3</Value1>", &replacement)).unwrap();
         let mut upstream = Connection::open_in_memory().unwrap();
-        build_database(
-            &index,
-            source.path(),
-            &WikiOverrides::default(),
-            &corrections,
-            &mut upstream,
-            &fixture_dataset_version(),
-        )
-        .unwrap();
+        build_database(&index, source.path(), &wiki, &corrections, &mut upstream, &fixture_dataset_version()).unwrap();
         let expected_bonuses = if expected == 0 {
             Vec::new()
         } else {

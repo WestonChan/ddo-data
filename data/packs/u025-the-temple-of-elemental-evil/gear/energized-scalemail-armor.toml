@@ -16,6 +16,15 @@ armor_bonus = 11
 armor_type = "Medium"
 max_dex_bonus = 5
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "crafting: upgradeable item"
+reason = "This socket belongs to Temple of Elemental Evil crafting; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/ToEE_Crafting"
+read = "2026-11-04"
+qualifier = 'option "Adds Dusk, Fortification +75% and a Green augment slot."'
+
 [[socket]]
-slot = "crafting: upgradeable item"
+slot = "crafting: upgradeable item (toee)"
 set = "Energized Leather Armor"

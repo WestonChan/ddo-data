@@ -88,35 +88,33 @@ variant = "almost there"
 
 [[row]]
 family = "crafting"
-label = "crafting: attuned by heroism: tier 1"
-variant = "attuned by heroism: tier 1"
-
-[[row.ddobuilder_correction]]
-kind = "socket_label"
-field = "name"
-upstream = [
-    "crafting: attuned to heroism 1",
-    "crafting: attuned to heroism tier 1",
-]
-reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 1, the label his Stormreaver items use."
-url = "https://ddowiki.com/page/Stormreaver_Monument"
-read = "2026-09-30"
+label = "crafting: attuned by heroism: tier 1 (dragonscale)"
+variant = "attuned by heroism: tier 1 (dragonscale)"
 
 [[row]]
 family = "crafting"
-label = "crafting: attuned by heroism: tier 2"
-variant = "attuned by heroism: tier 2"
+label = "crafting: attuned by heroism: tier 1 (mikrom sum)"
+variant = "attuned by heroism: tier 1 (mikrom sum)"
 
-[[row.ddobuilder_correction]]
-kind = "socket_label"
-field = "name"
-upstream = [
-    "crafting: attuned to heroism 2",
-    "crafting: attuned to heroism tier 2",
-]
-reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 2, the label his Stormreaver items use."
-url = "https://ddowiki.com/page/Stormreaver_Monument"
-read = "2026-09-30"
+[[row]]
+family = "crafting"
+label = "crafting: attuned by heroism: tier 1 (stormreaver)"
+variant = "attuned by heroism: tier 1 (stormreaver)"
+
+[[row]]
+family = "crafting"
+label = "crafting: attuned by heroism: tier 2 (dragonscale)"
+variant = "attuned by heroism: tier 2 (dragonscale)"
+
+[[row]]
+family = "crafting"
+label = "crafting: attuned by heroism: tier 2 (mikrom sum)"
+variant = "attuned by heroism: tier 2 (mikrom sum)"
+
+[[row]]
+family = "crafting"
+label = "crafting: attuned by heroism: tier 2 (stormreaver)"
+variant = "attuned by heroism: tier 2 (stormreaver)"
 
 [[row]]
 family = "crafting"
@@ -1224,19 +1222,6 @@ read = "2026-11-13"
 
 [[row]]
 family = "crafting"
-label = "crafting: upgradeable item"
-variant = "upgradeable item"
-
-[[row.ddobuilder_correction]]
-kind = "socket_label"
-field = "name"
-upstream = "crafting: upgradable item"
-reason = "Upgradable is a misspelling of the wiki's Upgradeable Item, the label his other items use."
-url = "https://ddowiki.com/page/Stormreaver_Monument"
-read = "2026-09-30"
-
-[[row]]
-family = "crafting"
 label = "crafting: upgradeable item (black abbot)"
 variant = "upgradeable item (black abbot)"
 
@@ -1535,35 +1520,34 @@ note = "ToEE crafting was largely discontinued in Update 56; base items and ingr
 
 [[row]]
 family = "upgrade"
-label = "upgrade: tier 2"
-variant = "tier 2"
-
-[[row.ddobuilder_correction]]
-kind = "socket_label"
-field = "name"
-upstream = [
-    "crafting: upgradeable - tier 2",
-    "crafting: upgradeable tier 2",
-]
-reason = "One upgrade tier Maetrim's files spell three ways; the examine window names it Upgradeable - Tier 2 and other Cove and Vaults items use Tier 2."
-url = "https://ddowiki.com/page/Item:Ring_of_the_Stalker"
-read = "2026-11-10"
+label = "upgrade: tier 2 (crystal cove)"
+variant = "tier 2 (crystal cove)"
 
 [[row]]
 family = "upgrade"
-label = "upgrade: tier 3"
-variant = "tier 3"
+label = "upgrade: tier 2 (toee)"
+variant = "tier 2 (toee)"
+not_crafting_reason = "ToEE crafting was largely discontinued in Update 56; base items and ingredients no longer drop."
 
-[[row.ddobuilder_correction]]
-kind = "socket_label"
-field = "name"
-upstream = [
-    "crafting: upgradeable - tier 3",
-    "crafting: upgradeable tier 3",
-]
-reason = "One upgrade tier Maetrim's files spell three ways; the examine window names it Upgradeable - Tier 3 and other Cove and Vaults items use Tier 3."
-url = "https://ddowiki.com/page/Item:Ring_of_the_Stalker"
-read = "2026-11-10"
+[[row.citation]]
+url = "https://ddowiki.com/page/ToEE_Crafting"
+read = "2026-11-04"
+note = "ToEE crafting was largely discontinued in Update 56; base items and ingredients no longer drop."
+
+[[row]]
+family = "upgrade"
+label = "upgrade: tier 2 (vaults of the artificers)"
+variant = "tier 2 (vaults of the artificers)"
+
+[[row]]
+family = "upgrade"
+label = "upgrade: tier 3 (crystal cove)"
+variant = "tier 3 (crystal cove)"
+
+[[row]]
+family = "upgrade"
+label = "upgrade: tier 3 (vaults of the artificers)"
+variant = "tier 3 (vaults of the artificers)"
 
 [[row]]
 family = "standard"

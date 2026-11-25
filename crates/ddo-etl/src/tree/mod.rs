@@ -321,6 +321,17 @@ mod tests {
             super::kinds::EnhancementTreeFile::all_from_rows(&db, &annotations, &notes, &mut modifiers).unwrap();
         let systems = super::kinds::CraftingSystemFile::all_from_rows(&db, &annotations, &mut modifiers).unwrap();
         let mut identities = super::ids::StableIds::default();
+        let mut copied_slot_types = super::kinds::AugmentSlotTypesFile::from_rows(&db, &annotations).unwrap();
+        copied_slot_types.row.retain(|slot| {
+            systems.values().flat_map(|system| &system.step).any(|step| step.slot.as_ref() == Some(&slot.label))
+        });
+        for slot in &mut copied_slot_types.row {
+            slot.label.push_str(" (copy)");
+            slot.variant.push_str(" (copy)");
+        }
+        copied_slot_types
+            .write_augment_slot_types(&db, Path::new("effects/augment-slot-types.toml"), &mut identities)
+            .unwrap();
         for row in &mut clickies.row {
             row.name.push_str(" Copy");
         }
@@ -347,6 +358,11 @@ mod tests {
             system.name.push_str(" Copy");
             system.family.clear();
             system.recipe.clear();
+            for step in &mut system.step {
+                if let Some(slot) = &mut step.slot {
+                    slot.push_str(" (copy)");
+                }
+            }
             system.write_crafting_system(&db, Path::new("crafting.toml"), &mut identities).unwrap();
             added_annotations
                 .add_data_file(

@@ -1,0 +1,22 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Treasure Hunter's Spyglass (legacy) (level 12)"
+
+[[option]]
+name = "Add Intelligence +5"
+description = """
+Intelligence +5: This item focuses the power of the wearer's mind, granting a
++5 Enhancement bonus to Intelligence."""
+min_level = 12
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 5
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]

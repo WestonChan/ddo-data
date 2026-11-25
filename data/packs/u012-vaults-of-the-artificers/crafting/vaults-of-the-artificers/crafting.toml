@@ -16,11 +16,11 @@ name = "Tier 1"
 
 [[step]]
 name = "Tier 2"
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (vaults of the artificers)"
 
 [[step]]
 name = "Tier 3"
-slot = "upgrade: tier 3"
+slot = "upgrade: tier 3 (vaults of the artificers)"
 
 [[citation]]
 url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
@@ -5118,7 +5118,7 @@ tier = "heroic"
 step = "Tier 2"
 
 [[recipe.set_option]]
-set = "Cutthroat's Smallblade (legacy) (level 12)"
+set = "Mournlode Greataxe (level 12)"
 name = "+4 Enhancement Bonus"
 
 [[recipe.ingredient]]
@@ -5180,7 +5180,7 @@ tier = "heroic"
 step = "Tier 2"
 
 [[recipe.set_option]]
-set = "Cutthroat's Smallblade (legacy) (level 16)"
+set = "Mournlode Greataxe (level 16)"
 name = "+5 Enhancement Bonus"
 
 [[recipe.ingredient]]
@@ -6216,7 +6216,7 @@ tier = "heroic"
 step = "Tier 2"
 
 [[recipe.set_option]]
-set = "Cutthroat's Smallblade (legacy) (level 12)"
+set = "Mournlode Greataxe (level 12)"
 name = "+4 Enhancement Bonus"
 
 [[recipe.ingredient]]
@@ -6260,7 +6260,7 @@ tier = "heroic"
 step = "Tier 2"
 
 [[recipe.set_option]]
-set = "Cutthroat's Smallblade (legacy) (level 16)"
+set = "Mournlode Greataxe (level 16)"
 name = "+5 Enhancement Bonus"
 
 [[recipe.ingredient]]
@@ -6396,7 +6396,7 @@ tier = "heroic"
 step = "Tier 2"
 
 [[recipe.set_option]]
-set = "Cutthroat's Smallblade (legacy) (level 12)"
+set = "Mournlode Greataxe (level 12)"
 name = "+4 Enhancement Bonus"
 
 [[recipe.ingredient]]
@@ -6440,7 +6440,7 @@ tier = "heroic"
 step = "Tier 2"
 
 [[recipe.set_option]]
-set = "Cutthroat's Smallblade (legacy) (level 16)"
+set = "Mournlode Greataxe (level 16)"
 name = "+5 Enhancement Bonus"
 
 [[recipe.ingredient]]
@@ -6576,7 +6576,7 @@ tier = "heroic"
 step = "Tier 2"
 
 [[recipe.set_option]]
-set = "Cutthroat's Smallblade (legacy) (level 12)"
+set = "Mournlode Greataxe (level 12)"
 name = "+4 Enhancement Bonus"
 
 [[recipe.ingredient]]
@@ -6620,7 +6620,7 @@ tier = "heroic"
 step = "Tier 2"
 
 [[recipe.set_option]]
-set = "Cutthroat's Smallblade (legacy) (level 16)"
+set = "Mournlode Greataxe (level 16)"
 name = "+5 Enhancement Bonus"
 
 [[recipe.ingredient]]
@@ -6756,7 +6756,7 @@ tier = "heroic"
 step = "Tier 2"
 
 [[recipe.set_option]]
-set = "Cutthroat's Smallblade (legacy) (level 12)"
+set = "Mournlode Greataxe (level 12)"
 name = "+4 Enhancement Bonus"
 
 [[recipe.ingredient]]
@@ -6800,7 +6800,7 @@ tier = "heroic"
 step = "Tier 2"
 
 [[recipe.set_option]]
-set = "Cutthroat's Smallblade (legacy) (level 16)"
+set = "Mournlode Greataxe (level 16)"
 name = "+5 Enhancement Bonus"
 
 [[recipe.ingredient]]
@@ -6936,7 +6936,7 @@ tier = "heroic"
 step = "Tier 2"
 
 [[recipe.set_option]]
-set = "Cutthroat's Smallblade (legacy) (level 12)"
+set = "Mournlode Greataxe (level 12)"
 name = "+4 Enhancement Bonus"
 
 [[recipe.ingredient]]
@@ -6980,7 +6980,7 @@ tier = "heroic"
 step = "Tier 2"
 
 [[recipe.set_option]]
-set = "Cutthroat's Smallblade (legacy) (level 16)"
+set = "Mournlode Greataxe (level 16)"
 name = "+5 Enhancement Bonus"
 
 [[recipe.ingredient]]

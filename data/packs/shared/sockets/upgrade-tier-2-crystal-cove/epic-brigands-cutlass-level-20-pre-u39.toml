@@ -1,0 +1,28 @@
+label = "upgrade: tier 2 (crystal cove)"
+name = "Epic Brigand's Cutlass (level 20)(pre-U39)"
+
+[[option]]
+name = "+6 Enhancement Bonus and Incite 30"
+description = """
++6 Enhancement Bonus: +6 enhancement bonus to attack and damage rolls.
+Incite +30: +30% Enhancement bonus to increased threat generation from melee damage"""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Melee Threat Generation"
+value = 20
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"

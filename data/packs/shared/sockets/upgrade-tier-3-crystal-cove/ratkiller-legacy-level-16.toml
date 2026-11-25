@@ -1,0 +1,11 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Ratkiller (legacy) (level 16)"
+
+[[option]]
+name = "Adds Earthgrab"
+description = """
+Earthgrab: This weapon stores the implacable strength of the earth deep within.
+When this weapon is used, this power occasionally comes to the surface, calling
+on the earth to erupt from the ground and hold an enemy in place."""
+icon = "Upgrade"
+min_level = 16

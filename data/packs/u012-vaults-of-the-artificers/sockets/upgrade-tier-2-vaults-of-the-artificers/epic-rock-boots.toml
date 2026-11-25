@@ -1,0 +1,41 @@
+label = "upgrade: tier 2 (vaults of the artificers)"
+name = "Epic Rock Boots"
+
+[[option]]
+name = "Corrosion 116, Acid Lore 17% and a Colorless augment slot"
+description = """
+Corrosion +116: Passive: +116 Equipment bonus to Acid Spell Power.
+Acid Lore +17: Passive: Your Acid spells gain a 17% Equipment bonus to their chance
+to critical hit.
+Adds a Colorless augment slot."""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+value = 116
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+value = 17
+
+[[option.grant]]
+slot = "colorless"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [116]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+effect_type = "SpellLore"
+targets = ["Acid"]

@@ -1,0 +1,28 @@
+label = "upgrade: tier 2 (vaults of the artificers)"
+name = "Elemental Khopesh of Water (level 16)"
+
+[[option]]
+name = "+5 Enhancement Bonus and Fire Resistance 32"
+description = """
++5 Enhancement Bonus: +5 Enhancement bonus to attack and damage rolls.
+Fire Resistance +32: Passive: +32 Enhancement bonus to your Fire Resistance."""
+min_level = 16
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+value = 32
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [32]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+effect_type = "EnergyResistance"
+targets = ["Fire"]

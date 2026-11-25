@@ -1,0 +1,29 @@
+label = "upgrade: tier 2 (crystal cove)"
+name = "Epic Cutthroat's Smallblade (legacy) (level 24)"
+
+[[option]]
+name = "+7 Enhancement Bonus and Doublestrike 7%"
+description = """
++7 Enhancement Bonus: +7 Enhancement bonus to attack and damage rolls.
+Doublestrike 7%: Passive: 7% Enhancement bonus to Doublestrike. (Doublestrike is
+a chance to score an additional hit with a melee attack.)"""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+value = 7
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+effect_type = "Doublestrike"

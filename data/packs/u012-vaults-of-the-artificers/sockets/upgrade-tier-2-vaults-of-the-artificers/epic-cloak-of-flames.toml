@@ -1,0 +1,55 @@
+label = "upgrade: tier 2 (vaults of the artificers)"
+name = "Epic Cloak of Flames"
+
+[[option]]
+name = "Combustion 116, Fire Lore 17%, Fire Absorption 28% and a Colorless augment slot"
+description = """
+Combustion +116: Passive: +116 Equipment bonus to Fire Spell Power.
+Fire Lore +17: Passive: Your Fire spells gain a 17% Equipment bonus to their
+chance to critical hit.
+Fire Absorption +28%: Passive: 28% Enhancement Bonus to Fire Absorption.
+Colorless augment slot"""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 116
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+value = 17
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Absorption"
+value = 28
+
+[[option.grant]]
+slot = "colorless"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [116]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [28]
+bonus_type = "Equipment"
+effect = "Fire Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]

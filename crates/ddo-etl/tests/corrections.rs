@@ -1739,7 +1739,7 @@ fn item_file_option_corrections_belong_on_the_set_file() {
 fn same_named_sets_on_two_labels_keep_their_corrections_apart() {
     let db = fixture::database(|root| {
         for (label, label_slug, amount, upstream) in [
-            ("upgrade: tier 2", "upgrade-tier-2", 8, 6),
+            ("upgrade: tier 2 (test upgrade altar)", "upgrade-tier-2-test-upgrade-altar", 8, 6),
             ("crafting: nearly finished", "crafting-nearly-finished", 9, 7),
         ] {
             let folder = root.join("packs/shared/sockets").join(label_slug);
@@ -1772,7 +1772,7 @@ read = "2026-11-08"
             .unwrap();
         }
     });
-    for (label, amount, upstream) in [("upgrade-tier-2", 8, 6), ("crafting-nearly-finished", 9, 7)] {
+    for (label, amount, upstream) in [("upgrade-tier-2-test-upgrade-altar", 8, 6), ("crafting-nearly-finished", 9, 7)] {
         let slug = format!("{label}-blue-augment-slot-yellow-augment-slot");
         let actual: (i64,String) = db.query_row("SELECT e.value,c.from_value FROM socket_option_sets s JOIN socket_options o ON o.set_id=s.id JOIN socket_option_effects e ON e.option_id=o.id JOIN corrections c ON c.name=s.slug AND c.kind='socket_option_bonus' WHERE s.slug=?1",[slug],|row| Ok((row.get(0)?,row.get(1)?))).unwrap();
         assert_eq!(actual, (amount, upstream.to_string()));

@@ -1,0 +1,11 @@
+label = "crafting: attuned by heroism: tier 2 (stormreaver)"
+name = "Madstone Aegis"
+
+[[option]]
+name = "Blue Augment Slot"
+description = "Adds a Blue augment slot to this weapon."
+icon = "Heroism"
+min_level = 24
+
+[[option.grant]]
+slot = "blue"

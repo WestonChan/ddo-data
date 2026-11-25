@@ -25,12 +25,30 @@ name = "Fortification"
 bonus_type = "Enhancement"
 value = 100
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "crafting: attuned by heroism: tier 1"
+reason = "This socket belongs to Stormreaver Monument; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-11-04"
+qualifier = 'option "Yellow Augment Slot"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "crafting: attuned by heroism: tier 2"
+reason = "This socket belongs to Stormreaver Monument; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-11-04"
+qualifier = 'option "Good Luck +3"'
+
 [[socket]]
-slot = "crafting: attuned by heroism: tier 1"
+slot = "crafting: attuned by heroism: tier 1 (stormreaver)"
 set = "Idol of Fortune"
 
 [[socket]]
-slot = "crafting: attuned by heroism: tier 2"
+slot = "crafting: attuned by heroism: tier 2 (stormreaver)"
 set = "Idol of Fortune"
 
 [[source]]

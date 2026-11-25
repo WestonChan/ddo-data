@@ -1,0 +1,22 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Ring of the Buccaneer (legacy) (level 4)"
+
+[[option]]
+name = "Becomes Dexterity +3"
+description = """
+Dexterity +3: This item makes the wearer more nimble and dexterous, granting a +3
+Enhancement bonus to Dexterity."""
+min_level = 4
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]

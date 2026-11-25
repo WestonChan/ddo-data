@@ -1,0 +1,39 @@
+label = "upgrade: tier 3 (vaults of the artificers)"
+name = "Bracers of Wind (level 7)"
+
+[[option]]
+name = "Magnetism +79 and Lightning Lore +12% and a Green Augment Slot"
+description = """
+Magnetism +79: Passive: +79 Equipment bonus to Electricity Spell Power.
+Lightning Lore +12: Passive: Your Electricity spells gain a 12% Equipment bonus to their chance to critical hit.
+Adds a Green augment slot"""
+min_level = 7
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 79
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+value = 12
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [79]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+effect_type = "SpellLore"
+targets = ["Electric"]

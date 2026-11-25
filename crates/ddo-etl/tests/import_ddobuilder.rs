@@ -1060,10 +1060,16 @@ fn a_two_slot_merge_import_updates_only_the_changed_slot() {
 #[test]
 fn socket_option_bonus_types_import_from_the_authored_carrier_notes() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");
-    let mut corrections = Corrections::from_data(&root).unwrap();
+    let mut authored = Connection::open_in_memory().unwrap();
+    tree::build_from_data(&root, &mut authored).unwrap();
+    let mut corrections = Corrections::from_database(&authored).unwrap();
     corrections.entries.retain(|note| note.name.contains("bracers-of-wind") || note.name == "Epic Bracers of Wind");
-    assert_eq!(corrections.entries.len(), 2);
-    let mut world = ImportWorld::with_sources(fixture::groupings(), corrections, WikiOverrides::default(), |source| {
+    assert_eq!(corrections.entries.len(), 4);
+    let wiki = WikiOverrides {
+        per_item_slot_types: WikiOverrides::from_database(&authored).unwrap().per_item_slot_types,
+        ..WikiOverrides::default()
+    };
+    let mut world = ImportWorld::with_sources(fixture::groupings(), corrections, wiki, |source| {
         std::fs::create_dir_all(source.join("Items")).unwrap();
         std::fs::write(
             source.join("Items/Epic Bracers of Wind.item"),
@@ -1094,7 +1100,7 @@ fn socket_option_bonus_types_import_from_the_authored_carrier_notes() {
     let db = world.database();
     let paths = tree::DataFilePaths::from_database(&db).unwrap();
     for (tier, amount) in [(2, 17), (3, 18)] {
-        let (id, kind): (i64, String) = db.query_row("SELECT s.id,b.name FROM socket_option_sets s JOIN socket_options o ON o.set_id=s.id JOIN socket_option_effects e ON e.option_id=o.id JOIN effects stat ON stat.id=e.effect_id JOIN bonus_types b ON b.id=e.bonus_type_id WHERE s.slug=?1 AND stat.name='Electric Spell Lore' AND e.value=?2", rusqlite::params![format!("upgrade-tier-{tier}-epic-bracers-of-wind"),amount], |row| Ok((row.get(0)?,row.get(1)?))).unwrap();
+        let (id, kind): (i64, String) = db.query_row("SELECT s.id,b.name FROM socket_option_sets s JOIN socket_options o ON o.set_id=s.id JOIN socket_option_effects e ON e.option_id=o.id JOIN effects stat ON stat.id=e.effect_id JOIN bonus_types b ON b.id=e.bonus_type_id WHERE s.slug=?1 AND stat.name='Electric Spell Lore' AND e.value=?2", rusqlite::params![format!("upgrade-tier-{tier}-vaults-of-the-artificers-epic-bracers-of-wind"),amount], |row| Ok((row.get(0)?,row.get(1)?))).unwrap();
         assert_eq!(kind, "Equipment");
         let file = std::fs::read_to_string(world.options.data_dir.join(paths.path("socket_option_sets", id).unwrap()))
             .unwrap();
@@ -2381,7 +2387,7 @@ fn overlay_catalog_identity_survives_insertion_order() {
     let mut fixture = Connection::open_in_memory().unwrap();
     tree::build_from_data(&fixtures.join("data"), &mut fixture).unwrap();
     let mut wiki = WikiOverrides::from_database(&fixture).unwrap();
-    let mut system = wiki.crafting_systems[0].clone();
+    let mut system = wiki.crafting_systems.iter().find(|system| system.name == "Catalyst Crafting").unwrap().clone();
     system.name = "Ritual Table".into();
     system.families.clear();
     system.recipes.clear();

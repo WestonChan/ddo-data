@@ -40,10 +40,28 @@ bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Reconstruct"]
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 2"
+reason = "The fixture's upgrade slots belong to Test Upgrade Altar."
+url = "https://ddowiki.com/page/Test_Upgrade_Altar"
+read = "2026-09-29"
+qualifier = 'option "Wizardry 206, Reconstruction 116, Repair Lore 17% and a Colorless augment slot"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 3"
+reason = "The fixture's upgrade slots belong to Test Upgrade Altar."
+url = "https://ddowiki.com/page/Test_Upgrade_Altar"
+read = "2026-09-29"
+qualifier = 'option "Wizardry 220, Reconstruction 122, Repair Lore 18%, Repair Systems and a Green augment slot"'
+
 [[socket]]
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (test upgrade altar)"
 set = "Epic Ring of Master Artifice"
 
 [[socket]]
-slot = "upgrade: tier 3"
+slot = "upgrade: tier 3 (test upgrade altar)"
 set = "Epic Ring of Master Artifice"

@@ -1,0 +1,11 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Duelist's Leathers (legacy) (level 8)"
+
+[[option]]
+name = "Superior Nimbleness"
+description = """
+Superior Nimbleness: This suit of armor looks much less restrictive than others of
+its type. A suit of armor that has this property has a maximum Dexterity bonus
+4 higher than normal, and its armor check penalty is reduced by 4."""
+icon = "Upgrade"
+min_level = 8

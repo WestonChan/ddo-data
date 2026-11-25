@@ -1,0 +1,55 @@
+label = "upgrade: tier 3 (test upgrade altar)"
+name = "Epic Ring of Master Artifice"
+
+[[option]]
+name = "Wizardry 220, Reconstruction 122, Repair Lore 18%, Repair Systems and a Green augment slot"
+description = """
+Wizardry +220: +220 Enhancement bonus to spell points.
+Reconstruction +122: Passive: +122 Equipment bonus to Repair and Rust Spell Power.
+Repair Lore +18: Passive: Your Repair and Rust spells gain a 18% Equipment bonus
+to their chance to critical hit.
+Repair Systems: This item gradually repairs constructs and living constructs.
+Adds a Green augment slot."""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Spell Points"
+value = 220
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Repair Spell Power"
+value = 122
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Repair Spell Lore"
+value = 18
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [220]
+bonus_type = "Equipment"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [122]
+bonus_type = "Equipment"
+effect = "Repair Spell Power"
+effect_type = "SpellPower"
+targets = ["Repair"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [18]
+bonus_type = "Equipment"
+effect = "Repair Spell Lore"
+effect_type = "SpellLore"
+targets = ["Repair"]

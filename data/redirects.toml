@@ -11,18 +11,6 @@ to = "crafting-upgradeable-secondary-augment"
 since = "2026-11-15"
 
 [[redirect]]
-kind = "augment-slot-types"
-from = "crafting-upgradeable-tier-2"
-to = "upgrade-tier-2"
-since = "2026-11-15"
-
-[[redirect]]
-kind = "augment-slot-types"
-from = "crafting-upgradeable-tier-3"
-to = "upgrade-tier-3"
-since = "2026-11-15"
-
-[[redirect]]
 kind = "crafting-ingredients"
 from = "alchemical-crafting-cannith-power-cell-heroic"
 to = "cannith-power-cell"
@@ -3003,3 +2991,1845 @@ kind = "effects"
 from = "you-have-intercession-ward-and-are-immune-to-being-quelled"
 to = "intercession-ward"
 since = "2026-10-26"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-1-agony-the-knife-in-the-dark"
+to = "crafting-attuned-by-heroism-tier-1-mikrom-sum-agony-the-knife-in-the-dark"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-1-braisingstar"
+to = "crafting-attuned-by-heroism-tier-1-stormreaver-braisingstar"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-1-dreampiercer"
+to = "crafting-attuned-by-heroism-tier-1-stormreaver-dreampiercer"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-1-gauntlets-of-immortality"
+to = "crafting-attuned-by-heroism-tier-1-stormreaver-gauntlets-of-immortality"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-1-halcyon-boots"
+to = "crafting-attuned-by-heroism-tier-1-stormreaver-halcyon-boots"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-1-idol-of-fortune"
+to = "crafting-attuned-by-heroism-tier-1-stormreaver-idol-of-fortune"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-1-madstone-aegis"
+to = "crafting-attuned-by-heroism-tier-1-stormreaver-madstone-aegis"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-1-pendant-of-the-stormreaver"
+to = "crafting-attuned-by-heroism-tier-1-stormreaver-pendant-of-the-stormreaver"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-1-ring-of-deceit"
+to = "crafting-attuned-by-heroism-tier-1-stormreaver-ring-of-deceit"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-1-skybreaker-hand-of-the-stormreaver"
+to = "crafting-attuned-by-heroism-tier-1-stormreaver-skybreaker-hand-of-the-stormreaver"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-1-ventilated-armbands"
+to = "crafting-attuned-by-heroism-tier-1-stormreaver-ventilated-armbands"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-agony-the-knife-in-the-dark"
+to = "crafting-attuned-by-heroism-tier-2-mikrom-sum-agony-the-knife-in-the-dark"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-braisingstar"
+to = "crafting-attuned-by-heroism-tier-2-stormreaver-braisingstar"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-dreampiercer"
+to = "crafting-attuned-by-heroism-tier-2-stormreaver-dreampiercer"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-flawless-black-dragonhide-armor"
+to = "crafting-attuned-by-heroism-tier-2-dragonscale-flawless-black-dragonhide-armor"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-flawless-blue-dragonhide-armor"
+to = "crafting-attuned-by-heroism-tier-2-dragonscale-flawless-blue-dragonhide-armor"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-flawless-white-dragonhide-armor"
+to = "crafting-attuned-by-heroism-tier-2-dragonscale-flawless-white-dragonhide-armor"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-gauntlets-of-immortality"
+to = "crafting-attuned-by-heroism-tier-2-stormreaver-gauntlets-of-immortality"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-halcyon-boots"
+to = "crafting-attuned-by-heroism-tier-2-stormreaver-halcyon-boots"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-idol-of-fortune"
+to = "crafting-attuned-by-heroism-tier-2-stormreaver-idol-of-fortune"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-madstone-aegis"
+to = "crafting-attuned-by-heroism-tier-2-stormreaver-madstone-aegis"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-pendant-of-the-stormreaver"
+to = "crafting-attuned-by-heroism-tier-2-stormreaver-pendant-of-the-stormreaver"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-rebellion"
+to = "crafting-attuned-by-heroism-tier-2-stormreaver-rebellion"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-ring-of-deceit"
+to = "crafting-attuned-by-heroism-tier-2-stormreaver-ring-of-deceit"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-skybreaker-hand-of-the-stormreaver"
+to = "crafting-attuned-by-heroism-tier-2-stormreaver-skybreaker-hand-of-the-stormreaver"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-stormreavers-tablecloth"
+to = "crafting-attuned-by-heroism-tier-2-stormreaver-stormreavers-tablecloth"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-attuned-by-heroism-tier-2-ventilated-armbands"
+to = "crafting-attuned-by-heroism-tier-2-stormreaver-ventilated-armbands"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-upgradeable-item-amulet-of-the-stormreaver"
+to = "crafting-upgradeable-item-stormreaver-amulet-of-the-stormreaver"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-upgradeable-item-breeze"
+to = "crafting-upgradeable-item-black-abbot-breeze"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-upgradeable-item-circle-of-hatred"
+to = "crafting-upgradeable-item-black-abbot-circle-of-hatred"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-upgradeable-item-cloudburst"
+to = "crafting-upgradeable-item-stormreaver-cloudburst"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-upgradeable-item-enduring-conviction"
+to = "crafting-upgradeable-item-black-abbot-enduring-conviction"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-upgradeable-item-energized-leather-armor"
+to = "crafting-upgradeable-item-toee-energized-leather-armor"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "crafting-upgradeable-item-wretched-twilight"
+to = "crafting-upgradeable-item-black-abbot-wretched-twilight"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-3-combustion-scorched-bastard-sword"
+to = "upgrade-tier-2-toee-3-combustion-scorched-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-3-corrosion-caustic-bastard-sword"
+to = "upgrade-tier-2-toee-3-corrosion-caustic-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-3-energized-bastard-sword"
+to = "upgrade-tier-2-toee-3-energized-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-3-energized-longsword"
+to = "upgrade-tier-2-toee-3-energized-longsword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-3-etched-bastard-sword"
+to = "upgrade-tier-2-toee-3-etched-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-3-etched-longsword"
+to = "upgrade-tier-2-toee-3-etched-longsword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-3-glaciation-doused-bastard-sword"
+to = "upgrade-tier-2-toee-3-glaciation-doused-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-3-magnetism-electrified-bastard-sword"
+to = "upgrade-tier-2-toee-3-magnetism-electrified-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-3-quenched-bastard-sword"
+to = "upgrade-tier-2-toee-3-quenched-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-3-quenched-battle-axe"
+to = "upgrade-tier-2-toee-3-quenched-battle-axe"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-3-smoldering-bastard-sword"
+to = "upgrade-tier-2-toee-3-smoldering-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-3-smoldering-morningstar"
+to = "upgrade-tier-2-toee-3-smoldering-morningstar"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-7-combustion-epic-scorched-bastard-sword"
+to = "upgrade-tier-2-toee-7-combustion-epic-scorched-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-7-corrosion-epic-caustic-bastard-sword"
+to = "upgrade-tier-2-toee-7-corrosion-epic-caustic-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-7-epic-energized-bastard-sword"
+to = "upgrade-tier-2-toee-7-epic-energized-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-7-epic-energized-sickle"
+to = "upgrade-tier-2-toee-7-epic-energized-sickle"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-7-epic-etched-bastard-sword"
+to = "upgrade-tier-2-toee-7-epic-etched-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-7-epic-etched-sceptre"
+to = "upgrade-tier-2-toee-7-epic-etched-sceptre"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-7-epic-quenched-bastard-sword"
+to = "upgrade-tier-2-toee-7-epic-quenched-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-7-epic-quenched-sickle"
+to = "upgrade-tier-2-toee-7-epic-quenched-sickle"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-7-epic-smoldering-bastard-sword"
+to = "upgrade-tier-2-toee-7-epic-smoldering-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-7-epic-smoldering-sickle"
+to = "upgrade-tier-2-toee-7-epic-smoldering-sickle"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-7-glaciation-epic-doused-bastard-sword"
+to = "upgrade-tier-2-toee-7-glaciation-epic-doused-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-7-magnetism-epic-electrified-bastard-sword"
+to = "upgrade-tier-2-toee-7-magnetism-epic-electrified-bastard-sword"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-blasting-chime-level-11"
+to = "upgrade-tier-2-vaults-of-the-artificers-blasting-chime-level-11"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-blasting-chime-level-15"
+to = "upgrade-tier-2-vaults-of-the-artificers-blasting-chime-level-15"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-blasting-chime-level-7"
+to = "upgrade-tier-2-vaults-of-the-artificers-blasting-chime-level-7"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-bracers-of-wind-level-11"
+to = "upgrade-tier-2-vaults-of-the-artificers-bracers-of-wind-level-11"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-bracers-of-wind-level-15"
+to = "upgrade-tier-2-vaults-of-the-artificers-bracers-of-wind-level-15"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-bracers-of-wind-level-7"
+to = "upgrade-tier-2-vaults-of-the-artificers-bracers-of-wind-level-7"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-brawling-gloves-legacy-level-12"
+to = "upgrade-tier-2-crystal-cove-brawling-gloves-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-brawling-gloves-legacy-level-16"
+to = "upgrade-tier-2-crystal-cove-brawling-gloves-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-brawling-gloves-legacy-level-4"
+to = "upgrade-tier-2-crystal-cove-brawling-gloves-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-brawling-gloves-legacy-level-8"
+to = "upgrade-tier-2-crystal-cove-brawling-gloves-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-brigands-cutlass-legacy-level-12"
+to = "upgrade-tier-2-crystal-cove-brigands-cutlass-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-brigands-cutlass-legacy-level-16"
+to = "upgrade-tier-2-crystal-cove-brigands-cutlass-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-brigands-cutlass-legacy-level-4"
+to = "upgrade-tier-2-crystal-cove-brigands-cutlass-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-brigands-cutlass-legacy-level-8"
+to = "upgrade-tier-2-crystal-cove-brigands-cutlass-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-brigands-cutlass-level-12-pre-u39"
+to = "upgrade-tier-2-crystal-cove-brigands-cutlass-level-12-pre-u39"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-brigands-cutlass-level-16-pre-u39"
+to = "upgrade-tier-2-crystal-cove-brigands-cutlass-level-16-pre-u39"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-brigands-cutlass-level-4-pre-u39"
+to = "upgrade-tier-2-crystal-cove-brigands-cutlass-level-4-pre-u39"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-brigands-cutlass-level-8-pre-u39"
+to = "upgrade-tier-2-crystal-cove-brigands-cutlass-level-8-pre-u39"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-calomel-banded-heavy-repeater-level-12"
+to = "upgrade-tier-2-vaults-of-the-artificers-calomel-banded-heavy-repeater-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-calomel-banded-heavy-repeater-level-16"
+to = "upgrade-tier-2-vaults-of-the-artificers-calomel-banded-heavy-repeater-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-calomel-banded-light-repeater-level-8"
+to = "upgrade-tier-2-vaults-of-the-artificers-calomel-banded-light-repeater-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-caustic-club"
+to = "upgrade-tier-2-toee-caustic-club"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-cavalry-plate-legacy-level-12"
+to = "upgrade-tier-2-crystal-cove-cavalry-plate-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-cavalry-plate-legacy-level-16"
+to = "upgrade-tier-2-crystal-cove-cavalry-plate-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-cavalry-plate-legacy-level-4"
+to = "upgrade-tier-2-crystal-cove-cavalry-plate-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-cavalry-plate-legacy-level-8"
+to = "upgrade-tier-2-crystal-cove-cavalry-plate-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-cloak-of-flames-level-11"
+to = "upgrade-tier-2-vaults-of-the-artificers-cloak-of-flames-level-11"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-cloak-of-flames-level-15"
+to = "upgrade-tier-2-vaults-of-the-artificers-cloak-of-flames-level-15"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-cloak-of-flames-level-7"
+to = "upgrade-tier-2-vaults-of-the-artificers-cloak-of-flames-level-7"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-cutthroats-smallblade-legacy-level-12"
+to = "upgrade-tier-2-crystal-cove-cutthroats-smallblade-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-cutthroats-smallblade-legacy-level-16"
+to = "upgrade-tier-2-crystal-cove-cutthroats-smallblade-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-cutthroats-smallblade-legacy-level-4"
+to = "upgrade-tier-2-crystal-cove-cutthroats-smallblade-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-cutthroats-smallblade-legacy-level-8"
+to = "upgrade-tier-2-crystal-cove-cutthroats-smallblade-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-duelists-leathers-legacy-level-12"
+to = "upgrade-tier-2-crystal-cove-duelists-leathers-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-duelists-leathers-legacy-level-16"
+to = "upgrade-tier-2-crystal-cove-duelists-leathers-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-duelists-leathers-legacy-level-4"
+to = "upgrade-tier-2-crystal-cove-duelists-leathers-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-duelists-leathers-legacy-level-8"
+to = "upgrade-tier-2-crystal-cove-duelists-leathers-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-elemental-greataxe-of-fire-level-12"
+to = "upgrade-tier-2-vaults-of-the-artificers-elemental-greataxe-of-fire-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-elemental-greataxe-of-fire-level-16"
+to = "upgrade-tier-2-vaults-of-the-artificers-elemental-greataxe-of-fire-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-elemental-greataxe-of-fire-level-8"
+to = "upgrade-tier-2-vaults-of-the-artificers-elemental-greataxe-of-fire-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-elemental-khopesh-of-water-level-12"
+to = "upgrade-tier-2-vaults-of-the-artificers-elemental-khopesh-of-water-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-elemental-khopesh-of-water-level-16"
+to = "upgrade-tier-2-vaults-of-the-artificers-elemental-khopesh-of-water-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-elemental-khopesh-of-water-level-8"
+to = "upgrade-tier-2-vaults-of-the-artificers-elemental-khopesh-of-water-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-elemental-longbow-of-earth-level-12"
+to = "upgrade-tier-2-vaults-of-the-artificers-elemental-longbow-of-earth-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-elemental-longbow-of-earth-level-16"
+to = "upgrade-tier-2-vaults-of-the-artificers-elemental-longbow-of-earth-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-elemental-longbow-of-earth-level-8"
+to = "upgrade-tier-2-vaults-of-the-artificers-elemental-longbow-of-earth-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-elemental-rapier-of-air-level-12"
+to = "upgrade-tier-2-vaults-of-the-artificers-elemental-rapier-of-air-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-elemental-rapier-of-air-level-16"
+to = "upgrade-tier-2-vaults-of-the-artificers-elemental-rapier-of-air-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-elemental-rapier-of-air-level-8"
+to = "upgrade-tier-2-vaults-of-the-artificers-elemental-rapier-of-air-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-energized-club"
+to = "upgrade-tier-2-toee-energized-club"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-blasting-chime"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-blasting-chime"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-bracers-of-wind"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-bracers-of-wind"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-brawling-gloves-legacy-level-20"
+to = "upgrade-tier-2-crystal-cove-epic-brawling-gloves-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-brawling-gloves-legacy-level-24"
+to = "upgrade-tier-2-crystal-cove-epic-brawling-gloves-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-brawling-gloves-level-20"
+to = "upgrade-tier-2-crystal-cove-epic-brawling-gloves-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-brawling-gloves-level-24"
+to = "upgrade-tier-2-crystal-cove-epic-brawling-gloves-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-brigands-cutlass-legacy-level-20"
+to = "upgrade-tier-2-crystal-cove-epic-brigands-cutlass-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-brigands-cutlass-legacy-level-24"
+to = "upgrade-tier-2-crystal-cove-epic-brigands-cutlass-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-brigands-cutlass-level-20-pre-u39"
+to = "upgrade-tier-2-crystal-cove-epic-brigands-cutlass-level-20-pre-u39"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-brigands-cutlass-level-24-pre-u39"
+to = "upgrade-tier-2-crystal-cove-epic-brigands-cutlass-level-24-pre-u39"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-calomel-banded-heavy-repeater"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-calomel-banded-heavy-repeater"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-caustic-club"
+to = "upgrade-tier-2-toee-epic-caustic-club"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-cavalry-plate-legacy-level-20"
+to = "upgrade-tier-2-crystal-cove-epic-cavalry-plate-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-cavalry-plate-legacy-level-24"
+to = "upgrade-tier-2-crystal-cove-epic-cavalry-plate-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-cloak-of-flames"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-cloak-of-flames"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-cutthroats-smallblade-legacy-level-20"
+to = "upgrade-tier-2-crystal-cove-epic-cutthroats-smallblade-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-cutthroats-smallblade-legacy-level-24"
+to = "upgrade-tier-2-crystal-cove-epic-cutthroats-smallblade-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-cutthroats-smallblade-level-24"
+to = "upgrade-tier-2-crystal-cove-epic-cutthroats-smallblade-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-doused-club"
+to = "upgrade-tier-2-toee-epic-doused-club"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-duelists-leathers-legacy-level-20"
+to = "upgrade-tier-2-crystal-cove-epic-duelists-leathers-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-duelists-leathers-legacy-level-24"
+to = "upgrade-tier-2-crystal-cove-epic-duelists-leathers-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-duelists-leathers-level-24"
+to = "upgrade-tier-2-crystal-cove-epic-duelists-leathers-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-electrified-club"
+to = "upgrade-tier-2-toee-epic-electrified-club"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-elemental-greataxe-of-fire"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-elemental-greataxe-of-fire"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-elemental-khopesh-of-water"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-elemental-khopesh-of-water"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-elemental-longbow-of-earth"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-elemental-longbow-of-earth"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-elemental-rapier-of-air"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-elemental-rapier-of-air"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-frozen-tunic"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-frozen-tunic"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-mournlode-breastplate"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-mournlode-breastplate"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-mournlode-greataxe"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-mournlode-greataxe"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-ornamented-dagger-legacy-level-20"
+to = "upgrade-tier-2-crystal-cove-epic-ornamented-dagger-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-ornamented-dagger-legacy-level-24"
+to = "upgrade-tier-2-crystal-cove-epic-ornamented-dagger-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-ratkiller-legacy-level-20"
+to = "upgrade-tier-2-crystal-cove-epic-ratkiller-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-ratkiller-legacy-level-24"
+to = "upgrade-tier-2-crystal-cove-epic-ratkiller-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-ring-of-master-artifice"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-ring-of-master-artifice"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-ring-of-the-buccaneer-legacy-level-20"
+to = "upgrade-tier-2-crystal-cove-epic-ring-of-the-buccaneer-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-ring-of-the-buccaneer-legacy-level-24"
+to = "upgrade-tier-2-crystal-cove-epic-ring-of-the-buccaneer-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-ring-of-the-stalker"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-ring-of-the-stalker"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-rock-boots"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-rock-boots"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-smoldering-light-crossbow"
+to = "upgrade-tier-2-toee-epic-smoldering-light-crossbow"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-spare-hand"
+to = "upgrade-tier-2-vaults-of-the-artificers-epic-spare-hand"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-treasure-hunters-spyglass-legacy-level-20"
+to = "upgrade-tier-2-crystal-cove-epic-treasure-hunters-spyglass-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-epic-treasure-hunters-spyglass-legacy-level-24"
+to = "upgrade-tier-2-crystal-cove-epic-treasure-hunters-spyglass-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-frozen-tunic-level-12"
+to = "upgrade-tier-2-vaults-of-the-artificers-frozen-tunic-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-frozen-tunic-level-16"
+to = "upgrade-tier-2-vaults-of-the-artificers-frozen-tunic-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-frozen-tunic-level-8"
+to = "upgrade-tier-2-vaults-of-the-artificers-frozen-tunic-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-mournlode-breastplate-level-12"
+to = "upgrade-tier-2-vaults-of-the-artificers-mournlode-breastplate-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-mournlode-breastplate-level-16"
+to = "upgrade-tier-2-vaults-of-the-artificers-mournlode-breastplate-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-mournlode-breastplate-level-8"
+to = "upgrade-tier-2-vaults-of-the-artificers-mournlode-breastplate-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-mournlode-greataxe-level-8"
+to = "upgrade-tier-2-vaults-of-the-artificers-mournlode-greataxe-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-ornamented-dagger-legacy-level-12"
+to = "upgrade-tier-2-crystal-cove-ornamented-dagger-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-ornamented-dagger-legacy-level-16"
+to = "upgrade-tier-2-crystal-cove-ornamented-dagger-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-ornamented-dagger-legacy-level-4"
+to = "upgrade-tier-2-crystal-cove-ornamented-dagger-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-ornamented-dagger-legacy-level-8"
+to = "upgrade-tier-2-crystal-cove-ornamented-dagger-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-ring-of-master-artifice-level-11"
+to = "upgrade-tier-2-vaults-of-the-artificers-ring-of-master-artifice-level-11"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-ring-of-master-artifice-level-15"
+to = "upgrade-tier-2-vaults-of-the-artificers-ring-of-master-artifice-level-15"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-ring-of-master-artifice-level-7"
+to = "upgrade-tier-2-vaults-of-the-artificers-ring-of-master-artifice-level-7"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-ring-of-the-buccaneer-legacy-level-12"
+to = "upgrade-tier-2-crystal-cove-ring-of-the-buccaneer-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-ring-of-the-buccaneer-legacy-level-16"
+to = "upgrade-tier-2-crystal-cove-ring-of-the-buccaneer-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-ring-of-the-buccaneer-legacy-level-4"
+to = "upgrade-tier-2-crystal-cove-ring-of-the-buccaneer-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-ring-of-the-buccaneer-legacy-level-8"
+to = "upgrade-tier-2-crystal-cove-ring-of-the-buccaneer-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-ring-of-the-stalker-level-11"
+to = "upgrade-tier-2-vaults-of-the-artificers-ring-of-the-stalker-level-11"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-ring-of-the-stalker-level-15"
+to = "upgrade-tier-2-vaults-of-the-artificers-ring-of-the-stalker-level-15"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-ring-of-the-stalker-level-7"
+to = "upgrade-tier-2-vaults-of-the-artificers-ring-of-the-stalker-level-7"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-rock-boots-level-11"
+to = "upgrade-tier-2-vaults-of-the-artificers-rock-boots-level-11"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-rock-boots-level-15"
+to = "upgrade-tier-2-vaults-of-the-artificers-rock-boots-level-15"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-rock-boots-level-7"
+to = "upgrade-tier-2-vaults-of-the-artificers-rock-boots-level-7"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-smoldering-club"
+to = "upgrade-tier-2-toee-smoldering-club"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-spare-hand-level-11"
+to = "upgrade-tier-2-vaults-of-the-artificers-spare-hand-level-11"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-spare-hand-level-15"
+to = "upgrade-tier-2-vaults-of-the-artificers-spare-hand-level-15"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-spare-hand-level-7"
+to = "upgrade-tier-2-vaults-of-the-artificers-spare-hand-level-7"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-treasure-hunters-spyglass-legacy-level-12"
+to = "upgrade-tier-2-crystal-cove-treasure-hunters-spyglass-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-treasure-hunters-spyglass-legacy-level-16"
+to = "upgrade-tier-2-crystal-cove-treasure-hunters-spyglass-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-treasure-hunters-spyglass-legacy-level-4"
+to = "upgrade-tier-2-crystal-cove-treasure-hunters-spyglass-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-2-treasure-hunters-spyglass-legacy-level-8"
+to = "upgrade-tier-2-crystal-cove-treasure-hunters-spyglass-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-blasting-chime-level-11"
+to = "upgrade-tier-3-vaults-of-the-artificers-blasting-chime-level-11"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-blasting-chime-level-15"
+to = "upgrade-tier-3-vaults-of-the-artificers-blasting-chime-level-15"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-blasting-chime-level-7"
+to = "upgrade-tier-3-vaults-of-the-artificers-blasting-chime-level-7"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-bracers-of-wind-level-11"
+to = "upgrade-tier-3-vaults-of-the-artificers-bracers-of-wind-level-11"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-bracers-of-wind-level-15"
+to = "upgrade-tier-3-vaults-of-the-artificers-bracers-of-wind-level-15"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-bracers-of-wind-level-7"
+to = "upgrade-tier-3-vaults-of-the-artificers-bracers-of-wind-level-7"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-brawling-gloves-legacy-level-12"
+to = "upgrade-tier-3-crystal-cove-brawling-gloves-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-brawling-gloves-legacy-level-16"
+to = "upgrade-tier-3-crystal-cove-brawling-gloves-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-brawling-gloves-legacy-level-4"
+to = "upgrade-tier-3-crystal-cove-brawling-gloves-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-brawling-gloves-legacy-level-8"
+to = "upgrade-tier-3-crystal-cove-brawling-gloves-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-brigands-cutlass-legacy-level-12"
+to = "upgrade-tier-3-crystal-cove-brigands-cutlass-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-brigands-cutlass-legacy-level-16"
+to = "upgrade-tier-3-crystal-cove-brigands-cutlass-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-brigands-cutlass-legacy-level-4"
+to = "upgrade-tier-3-crystal-cove-brigands-cutlass-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-brigands-cutlass-legacy-level-8"
+to = "upgrade-tier-3-crystal-cove-brigands-cutlass-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-brigands-cutlass-level-12-pre-u39"
+to = "upgrade-tier-3-crystal-cove-brigands-cutlass-level-12-pre-u39"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-brigands-cutlass-level-16-pre-u39"
+to = "upgrade-tier-3-crystal-cove-brigands-cutlass-level-16-pre-u39"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-brigands-cutlass-level-4-pre-u39"
+to = "upgrade-tier-3-crystal-cove-brigands-cutlass-level-4-pre-u39"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-brigands-cutlass-level-8-pre-u39"
+to = "upgrade-tier-3-crystal-cove-brigands-cutlass-level-8-pre-u39"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-calomel-banded-heavy-repeater-level-12"
+to = "upgrade-tier-3-vaults-of-the-artificers-calomel-banded-heavy-repeater-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-calomel-banded-heavy-repeater-level-16"
+to = "upgrade-tier-3-vaults-of-the-artificers-calomel-banded-heavy-repeater-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-calomel-banded-light-repeater-level-8"
+to = "upgrade-tier-3-vaults-of-the-artificers-calomel-banded-light-repeater-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-cavalry-plate-legacy-level-12"
+to = "upgrade-tier-3-crystal-cove-cavalry-plate-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-cavalry-plate-legacy-level-16"
+to = "upgrade-tier-3-crystal-cove-cavalry-plate-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-cavalry-plate-legacy-level-4"
+to = "upgrade-tier-3-crystal-cove-cavalry-plate-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-cavalry-plate-legacy-level-8"
+to = "upgrade-tier-3-crystal-cove-cavalry-plate-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-cloak-of-flames-level-11"
+to = "upgrade-tier-3-vaults-of-the-artificers-cloak-of-flames-level-11"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-cloak-of-flames-level-15"
+to = "upgrade-tier-3-vaults-of-the-artificers-cloak-of-flames-level-15"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-cloak-of-flames-level-7"
+to = "upgrade-tier-3-vaults-of-the-artificers-cloak-of-flames-level-7"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-cutthroats-smallblade-legacy-level-12"
+to = "upgrade-tier-3-crystal-cove-cutthroats-smallblade-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-cutthroats-smallblade-legacy-level-16"
+to = "upgrade-tier-3-crystal-cove-cutthroats-smallblade-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-cutthroats-smallblade-legacy-level-4"
+to = "upgrade-tier-3-crystal-cove-cutthroats-smallblade-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-cutthroats-smallblade-legacy-level-8"
+to = "upgrade-tier-3-crystal-cove-cutthroats-smallblade-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-duelists-leathers-legacy-level-12"
+to = "upgrade-tier-3-crystal-cove-duelists-leathers-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-duelists-leathers-legacy-level-16"
+to = "upgrade-tier-3-crystal-cove-duelists-leathers-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-duelists-leathers-legacy-level-4"
+to = "upgrade-tier-3-crystal-cove-duelists-leathers-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-duelists-leathers-legacy-level-8"
+to = "upgrade-tier-3-crystal-cove-duelists-leathers-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-elemental-greataxe-of-fire-level-12"
+to = "upgrade-tier-3-vaults-of-the-artificers-elemental-greataxe-of-fire-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-elemental-greataxe-of-fire-level-16"
+to = "upgrade-tier-3-vaults-of-the-artificers-elemental-greataxe-of-fire-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-elemental-greataxe-of-fire-level-8"
+to = "upgrade-tier-3-vaults-of-the-artificers-elemental-greataxe-of-fire-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-elemental-khopesh-of-water-level-12"
+to = "upgrade-tier-3-vaults-of-the-artificers-elemental-khopesh-of-water-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-elemental-khopesh-of-water-level-16"
+to = "upgrade-tier-3-vaults-of-the-artificers-elemental-khopesh-of-water-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-elemental-khopesh-of-water-level-8"
+to = "upgrade-tier-3-vaults-of-the-artificers-elemental-khopesh-of-water-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-elemental-longbow-of-earth-level-12"
+to = "upgrade-tier-3-vaults-of-the-artificers-elemental-longbow-of-earth-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-elemental-longbow-of-earth-level-16"
+to = "upgrade-tier-3-vaults-of-the-artificers-elemental-longbow-of-earth-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-elemental-longbow-of-earth-level-8"
+to = "upgrade-tier-3-vaults-of-the-artificers-elemental-longbow-of-earth-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-elemental-rapier-of-air-level-12"
+to = "upgrade-tier-3-vaults-of-the-artificers-elemental-rapier-of-air-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-elemental-rapier-of-air-level-16"
+to = "upgrade-tier-3-vaults-of-the-artificers-elemental-rapier-of-air-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-elemental-rapier-of-air-level-8"
+to = "upgrade-tier-3-vaults-of-the-artificers-elemental-rapier-of-air-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-blasting-chime"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-blasting-chime"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-bracers-of-wind"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-bracers-of-wind"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-brawling-gloves-legacy-level-20"
+to = "upgrade-tier-3-crystal-cove-epic-brawling-gloves-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-brawling-gloves-legacy-level-24"
+to = "upgrade-tier-3-crystal-cove-epic-brawling-gloves-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-brawling-gloves-level-24"
+to = "upgrade-tier-3-crystal-cove-epic-brawling-gloves-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-brigands-cutlass-legacy-level-20"
+to = "upgrade-tier-3-crystal-cove-epic-brigands-cutlass-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-brigands-cutlass-legacy-level-24"
+to = "upgrade-tier-3-crystal-cove-epic-brigands-cutlass-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-brigands-cutlass-level-20-pre-u39"
+to = "upgrade-tier-3-crystal-cove-epic-brigands-cutlass-level-20-pre-u39"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-brigands-cutlass-level-24-pre-u39"
+to = "upgrade-tier-3-crystal-cove-epic-brigands-cutlass-level-24-pre-u39"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-calomel-banded-heavy-repeater"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-calomel-banded-heavy-repeater"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-cavalry-plate-legacy-level-20"
+to = "upgrade-tier-3-crystal-cove-epic-cavalry-plate-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-cavalry-plate-legacy-level-24"
+to = "upgrade-tier-3-crystal-cove-epic-cavalry-plate-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-cloak-of-flames"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-cloak-of-flames"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-cutthroats-smallblade-legacy-level-20"
+to = "upgrade-tier-3-crystal-cove-epic-cutthroats-smallblade-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-cutthroats-smallblade-level-24"
+to = "upgrade-tier-3-crystal-cove-epic-cutthroats-smallblade-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-duelists-leathers-legacy-level-20"
+to = "upgrade-tier-3-crystal-cove-epic-duelists-leathers-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-duelists-leathers-legacy-level-24"
+to = "upgrade-tier-3-crystal-cove-epic-duelists-leathers-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-duelists-leathers-level-24"
+to = "upgrade-tier-3-crystal-cove-epic-duelists-leathers-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-elemental-greataxe-of-fire"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-elemental-greataxe-of-fire"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-elemental-khopesh-of-water"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-elemental-khopesh-of-water"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-elemental-longbow-of-earth"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-elemental-longbow-of-earth"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-elemental-rapier-of-air"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-elemental-rapier-of-air"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-frozen-tunic"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-frozen-tunic"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-mournlode-breastplate"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-mournlode-breastplate"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-mournlode-greataxe"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-mournlode-greataxe"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-ornamented-dagger-legacy-level-20"
+to = "upgrade-tier-3-crystal-cove-epic-ornamented-dagger-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-ornamented-dagger-legacy-level-24"
+to = "upgrade-tier-3-crystal-cove-epic-ornamented-dagger-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-ornamented-dagger-level-20"
+to = "upgrade-tier-3-crystal-cove-epic-ornamented-dagger-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-ornamented-dagger-level-24"
+to = "upgrade-tier-3-crystal-cove-epic-ornamented-dagger-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-ratkiller-legacy-level-20"
+to = "upgrade-tier-3-crystal-cove-epic-ratkiller-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-ratkiller-legacy-level-24"
+to = "upgrade-tier-3-crystal-cove-epic-ratkiller-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-ring-of-master-artifice"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-ring-of-master-artifice"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-ring-of-the-buccaneer-legacy-level-20"
+to = "upgrade-tier-3-crystal-cove-epic-ring-of-the-buccaneer-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-ring-of-the-buccaneer-legacy-level-24"
+to = "upgrade-tier-3-crystal-cove-epic-ring-of-the-buccaneer-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-ring-of-the-stalker"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-ring-of-the-stalker"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-rock-boots"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-rock-boots"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-spare-hand"
+to = "upgrade-tier-3-vaults-of-the-artificers-epic-spare-hand"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-treasure-hunters-spyglass-legacy-level-20"
+to = "upgrade-tier-3-crystal-cove-epic-treasure-hunters-spyglass-legacy-level-20"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-epic-treasure-hunters-spyglass-legacy-level-24"
+to = "upgrade-tier-3-crystal-cove-epic-treasure-hunters-spyglass-legacy-level-24"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-frozen-tunic-level-12"
+to = "upgrade-tier-3-vaults-of-the-artificers-frozen-tunic-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-frozen-tunic-level-16"
+to = "upgrade-tier-3-vaults-of-the-artificers-frozen-tunic-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-frozen-tunic-level-8"
+to = "upgrade-tier-3-vaults-of-the-artificers-frozen-tunic-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-mournlode-breastplate-level-12"
+to = "upgrade-tier-3-vaults-of-the-artificers-mournlode-breastplate-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-mournlode-breastplate-level-16"
+to = "upgrade-tier-3-vaults-of-the-artificers-mournlode-breastplate-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-mournlode-breastplate-level-8"
+to = "upgrade-tier-3-vaults-of-the-artificers-mournlode-breastplate-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-mournlode-greataxe-level-12"
+to = "upgrade-tier-3-vaults-of-the-artificers-mournlode-greataxe-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-mournlode-greataxe-level-16"
+to = "upgrade-tier-3-vaults-of-the-artificers-mournlode-greataxe-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-mournlode-greataxe-level-8"
+to = "upgrade-tier-3-vaults-of-the-artificers-mournlode-greataxe-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ornamented-dagger-legacy-level-12"
+to = "upgrade-tier-3-crystal-cove-ornamented-dagger-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ornamented-dagger-legacy-level-16"
+to = "upgrade-tier-3-crystal-cove-ornamented-dagger-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ornamented-dagger-legacy-level-4"
+to = "upgrade-tier-3-crystal-cove-ornamented-dagger-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ornamented-dagger-legacy-level-8"
+to = "upgrade-tier-3-crystal-cove-ornamented-dagger-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ratkiller-legacy-level-12"
+to = "upgrade-tier-3-crystal-cove-ratkiller-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ratkiller-legacy-level-16"
+to = "upgrade-tier-3-crystal-cove-ratkiller-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ratkiller-legacy-level-4"
+to = "upgrade-tier-3-crystal-cove-ratkiller-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ratkiller-legacy-level-8"
+to = "upgrade-tier-3-crystal-cove-ratkiller-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ring-of-master-artifice-level-11"
+to = "upgrade-tier-3-vaults-of-the-artificers-ring-of-master-artifice-level-11"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ring-of-master-artifice-level-15"
+to = "upgrade-tier-3-vaults-of-the-artificers-ring-of-master-artifice-level-15"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ring-of-master-artifice-level-7"
+to = "upgrade-tier-3-vaults-of-the-artificers-ring-of-master-artifice-level-7"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ring-of-the-buccaneer-legacy-level-12"
+to = "upgrade-tier-3-crystal-cove-ring-of-the-buccaneer-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ring-of-the-buccaneer-legacy-level-16"
+to = "upgrade-tier-3-crystal-cove-ring-of-the-buccaneer-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ring-of-the-buccaneer-legacy-level-4"
+to = "upgrade-tier-3-crystal-cove-ring-of-the-buccaneer-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ring-of-the-buccaneer-legacy-level-8"
+to = "upgrade-tier-3-crystal-cove-ring-of-the-buccaneer-legacy-level-8"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ring-of-the-stalker-level-11"
+to = "upgrade-tier-3-vaults-of-the-artificers-ring-of-the-stalker-level-11"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ring-of-the-stalker-level-15"
+to = "upgrade-tier-3-vaults-of-the-artificers-ring-of-the-stalker-level-15"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-ring-of-the-stalker-level-7"
+to = "upgrade-tier-3-vaults-of-the-artificers-ring-of-the-stalker-level-7"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-rock-boots-level-11"
+to = "upgrade-tier-3-vaults-of-the-artificers-rock-boots-level-11"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-rock-boots-level-15"
+to = "upgrade-tier-3-vaults-of-the-artificers-rock-boots-level-15"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-rock-boots-level-7"
+to = "upgrade-tier-3-vaults-of-the-artificers-rock-boots-level-7"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-spare-hand-level-11"
+to = "upgrade-tier-3-vaults-of-the-artificers-spare-hand-level-11"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-spare-hand-level-15"
+to = "upgrade-tier-3-vaults-of-the-artificers-spare-hand-level-15"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-spare-hand-level-7"
+to = "upgrade-tier-3-vaults-of-the-artificers-spare-hand-level-7"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-treasure-hunters-spyglass-legacy-level-12"
+to = "upgrade-tier-3-crystal-cove-treasure-hunters-spyglass-legacy-level-12"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-treasure-hunters-spyglass-legacy-level-16"
+to = "upgrade-tier-3-crystal-cove-treasure-hunters-spyglass-legacy-level-16"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-treasure-hunters-spyglass-legacy-level-4"
+to = "upgrade-tier-3-crystal-cove-treasure-hunters-spyglass-legacy-level-4"
+since = "2026-11-24"
+
+[[redirect]]
+kind = "socket-option-sets"
+from = "upgrade-tier-3-treasure-hunters-spyglass-legacy-level-8"
+to = "upgrade-tier-3-crystal-cove-treasure-hunters-spyglass-legacy-level-8"
+since = "2026-11-24"

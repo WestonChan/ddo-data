@@ -1,0 +1,49 @@
+label = "upgrade: tier 2 (vaults of the artificers)"
+name = "Bracers of Wind (level 11)"
+
+[[option]]
+name = "Magnetism +88, Lightning Lore +13% and Dodge 7%"
+description = """
+Magnetism +88: Passive: +88 Equipment bonus to Electricity Spell Power.
+Lightning Lore +13: Passive: Your Electricity spells gain a 13% Equipment bonus to their chance to critical hit.
+Dodge +7%: +7% Enhancement bonus to Dodge."""
+min_level = 11
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 88
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+value = 13
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Dodge"
+value = 7
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [88]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+targets = ["Electric"]

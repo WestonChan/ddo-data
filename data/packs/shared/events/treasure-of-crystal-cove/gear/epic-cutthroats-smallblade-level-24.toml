@@ -40,6 +40,24 @@ name = "Move Silently"
 bonus_type = "Competence"
 value = 17
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 2"
+reason = "This socket belongs to Dusty Old Treasure of Crystal Cove; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+qualifier = 'option "+7 Enhancement Bonus, Doublestrike 7%"'
+
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 3"
+reason = "This socket belongs to Dusty Old Treasure of Crystal Cove; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Dusty_Old_Treasure_of_Crystal_Cove"
+read = "2026-11-04"
+qualifier = 'option "Adds Corrosive Salt and a Red augment slot"'
+
 [[verification_request]]
 question = "Which enchantments, values and augment slots belong to the current level 24 version? This record still contains legacy-version data and needs a whole-item rewrite."
 assumed = "The file holds the legacy version's data."
@@ -56,11 +74,11 @@ url = "https://images.ddowiki.com/Epic_Cutthroat%27s_Smallblade_%28level_24%29.p
 read = "2026-10-23"
 
 [[socket]]
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (crystal cove)"
 set = "Epic Cutthroat's Smallblade (level 24)"
 
 [[socket]]
-slot = "upgrade: tier 3"
+slot = "upgrade: tier 3 (crystal cove)"
 set = "Epic Cutthroat's Smallblade (level 24)"
 
 [[source]]

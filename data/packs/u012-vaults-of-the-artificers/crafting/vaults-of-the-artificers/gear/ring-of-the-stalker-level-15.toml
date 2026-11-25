@@ -35,18 +35,27 @@ name = "Ethereal"
 [[ddobuilder_correction]]
 kind = "item_socket"
 field = "label"
-upstream = "upgrade: tier 2"
+upstream = "crafting: upgradeable - tier 2"
 reason = "Maetrim labels both sockets tier 2. Screenshots: Tier 2 shows the same lines as Tier 1; 'Upgradeable - Tier 3' shows Seeker +9 and the Green Augment Slot."
 url = "https://ddowiki.com/page/Item:Ring_of_the_Stalker"
 read = "2026-11-10"
 qualifier = 'option "Seeker +9 and a Green Augment Slot"'
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "crafting: upgradeable - tier 2"
+reason = "This socket belongs to Vaults of the Artificers; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers_loot"
+read = "2026-11-04"
+qualifier = 'option "No change to item"'
+
 [[socket]]
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (vaults of the artificers)"
 set = "Ring of the Stalker (Level 15)"
 
 [[socket]]
-slot = "upgrade: tier 3"
+slot = "upgrade: tier 3 (vaults of the artificers)"
 set = "Ring of the Stalker (Level 15)"
 
 [[source]]

@@ -39,8 +39,17 @@ bonus_type = "Equipment"
 effect_type = "ItemClickie"
 targets = ["Harm"]
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "crafting: upgradeable item"
+reason = "This socket belongs to Fountain of Necrotic Might; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/Fountain_of_Necrotic_Might"
+read = "2026-11-04"
+qualifier = 'option "Harm - 5 Charges per day, Incite 30%"'
+
 [[socket]]
-slot = "crafting: upgradeable item"
+slot = "crafting: upgradeable item (black abbot)"
 set = "Circle of Hatred"
 
 [[source]]

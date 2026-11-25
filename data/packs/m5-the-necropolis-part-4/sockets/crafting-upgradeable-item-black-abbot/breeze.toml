@@ -1,0 +1,13 @@
+label = "crafting: upgradeable item (black abbot)"
+name = "Breeze"
+
+[[option]]
+name = "Adds Greater Sirocco and Greater Telekinetic"
+description = """
+Greater Sirocco: A critical hit with this weapon causes a whirlwind of desert sand
+to swirl about the target, temporarily blinding it. A successful Reflex save
+(DC 35) prevents the effect.
+Greater Telekinetic: Targets that suffer a critical hit from a Telekinetic weapon
+must make a DC 28 Strength or Dexterity check or be knocked down. The target will
+then be forced to make DC 16 Balance checks to recover from this effect."""
+min_level = 14

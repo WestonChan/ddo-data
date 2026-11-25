@@ -1,0 +1,18 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Epic Cavalry Plate (legacy) (level 20)"
+
+[[option]]
+name = "Adds DR 5/Chaotic and a Blue augment slot"
+description = "Adds a Blue augment slot to this item"
+icon = "Upgrade"
+min_level = 20
+
+[[option.grant]]
+slot = "blue"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "DR"
+targets = ["Chaotic"]

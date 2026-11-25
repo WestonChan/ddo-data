@@ -1,0 +1,28 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Epic Brigand's Cutlass (legacy) (level 20)"
+
+[[option]]
+name = "Adds Absolute Chaos and a Red augment slot"
+description = """
+Absolute Chaos: This weapon is infused with the ultimate power of Chaos. It does
+an additional 2 to 12 damage to non-chaotic targets and can only be wielded by
+Chaotic-aligned characters.
+Adds a Red augment slot to this item"""
+icon = "Upgrade"
+min_level = 20
+
+[[option.grant]]
+slot = "red"
+
+[[option.modifier]]
+bonus = "Not Set"
+dice_damage = "Unknown"
+dice_number = [2]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[option.modifier.requirement]]
+items = ["Non-Chaotic"]
+req_type = "EnemyType"

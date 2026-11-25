@@ -10,15 +10,6 @@ Upgrades The Reaver's Fate named loot (heroic), The Fall of Truth named loot (ep
 Makes Seal of the Stormreaver."""
 
 [[step]]
-name = "Upgradeable Item"
-slot = "crafting: upgradeable item"
-
-[[step.cost]]
-tier = "heroic"
-ingredient = "Seal of the Stormreaver"
-quantity = 1
-
-[[step]]
 name = "Upgradeable Item (Stormreaver)"
 slot = "crafting: upgradeable item (stormreaver)"
 
@@ -29,7 +20,7 @@ quantity = 1
 
 [[step]]
 name = "Attuned by Heroism: Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
+slot = "crafting: attuned by heroism: tier 1 (stormreaver)"
 
 [[step.cost]]
 tier = "epic"
@@ -53,7 +44,7 @@ quantity = 6
 
 [[step]]
 name = "Attuned by Heroism: Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
+slot = "crafting: attuned by heroism: tier 2 (stormreaver)"
 
 [[step.cost]]
 tier = "epic"
@@ -163,7 +154,7 @@ quantity = 5
 note = "Upgrades Amulet of the Stormreaver (Necklace; Protection +4, Electric Resistance +30, Chain Lightning (3 Charges)) in place: loses Protection +4, Electric Resistance +30, gains Protection +5, Electric Resistance +40. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Amulet of the Stormreaver upgrade"
 tier = "heroic"
-step = "Upgradeable Item"
+step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
 item = "Amulet of the Stormreaver"
@@ -173,7 +164,7 @@ quantity = 1
 note = "Upgrades Cloudburst (Greatsword; Shocking Burst, Cloudburst) in place: gains Lightning Strike. Upgrading does not remove a Deck of Many Curses curse. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Cloudburst upgrade"
 tier = "heroic"
-step = "Upgradeable Item"
+step = "Upgradeable Item (Stormreaver)"
 
 [[recipe.ingredient]]
 item = "Cloudburst"

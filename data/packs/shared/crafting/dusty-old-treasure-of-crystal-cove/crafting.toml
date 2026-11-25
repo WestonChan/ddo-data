@@ -9,11 +9,11 @@ name = "Tier 1"
 
 [[step]]
 name = "Tier 2"
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (crystal cove)"
 
 [[step]]
 name = "Tier 3"
-slot = "upgrade: tier 3"
+slot = "upgrade: tier 3 (crystal cove)"
 
 [[step]]
 name = "Level upgrade"

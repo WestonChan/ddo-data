@@ -1,0 +1,55 @@
+label = "upgrade: tier 2 (vaults of the artificers)"
+name = "Epic Frozen Tunic"
+
+[[option]]
+name = "+8 Armor Bonus, Glaciation 116, Ice Lore 17% and Colorless Augment slot"
+description = """
+Armor Bonus +8: This item surrounds the wearer with an invisible but tangible
+field of force, granting +8 armor bonus to AC, just as though he were wearing armor.
+Glaciation +116: Passive: +116 Equipment bonus to Cold Spell Power.
+Ice Lore +17: Passive: Your Cold spells gain a 17% Equipment bonus to their chance
+to critical hit.
+Adds a Colorless Augment slot"""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+value = 8
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+value = 116
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+value = 17
+
+[[option.grant]]
+slot = "colorless"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [116]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+effect_type = "SpellLore"
+targets = ["Cold"]

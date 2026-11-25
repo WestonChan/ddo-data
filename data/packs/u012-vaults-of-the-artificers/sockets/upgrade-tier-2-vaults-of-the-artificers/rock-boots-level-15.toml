@@ -1,0 +1,37 @@
+label = "upgrade: tier 2 (vaults of the artificers)"
+name = "Rock Boots (Level 15)"
+
+[[option]]
+name = "Corrosion +102 and Acid Lore +15%"
+description = """
+Corrosion +102: Passive: +102 Equipment bonus to Acid Spell Power.
+Acid Lore +15: Passive: Your Acid spells gain a 15% Equipment bonus to their chance
+to critical hit."""
+icon = "Upgrade"
+min_level = 15
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+value = 102
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+value = 15
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [102]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+effect_type = "SpellLore"
+targets = ["Acid"]

@@ -14,7 +14,7 @@ text = "Upgrading and purchasing the named items requires 'Oversword' status (37
 
 [[step]]
 name = "Attuned by Heroism: Tier 1"
-slot = "crafting: attuned by heroism: tier 1"
+slot = "crafting: attuned by heroism: tier 1 (mikrom sum)"
 
 [[step.cost]]
 tier = "epic"
@@ -23,7 +23,7 @@ quantity = 3
 
 [[step]]
 name = "Attuned by Heroism: Tier 2"
-slot = "crafting: attuned by heroism: tier 2"
+slot = "crafting: attuned by heroism: tier 2 (mikrom sum)"
 
 [[step.cost]]
 tier = "epic"

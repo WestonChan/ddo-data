@@ -352,9 +352,9 @@ fn crafting_steps_consumed_outputs_is_a_positive_count() {
 }
 
 #[test]
-fn crafting_steps_bridge_one_socket_per_system_and_grant_scoped_lines() {
+fn crafting_steps_use_distinct_slots_and_grant_scoped_lines() {
     let db = crafting_schema_db();
-    db.execute_batch("INSERT INTO crafting_steps (system_id, name, sort_order, slot_id) VALUES (2, 'Tier 1', 0, 1);
+    db.execute_batch("INSERT INTO crafting_steps (system_id, name, sort_order, slot_id) VALUES (2, 'Tier 2', 0, 2);
         INSERT INTO crafting_steps (system_id, name, sort_order) VALUES (1, 'Blank', 1), (1, 'Finish', 2);
         INSERT INTO crafting_step_effects (step_id, effect_id, value, sort_order, equipment_slot_id) VALUES (1, 1, 10, 0, 1);
         INSERT INTO crafting_step_effects (step_id, effect_id, sort_order) VALUES (1, 1, 1);").unwrap();
@@ -370,6 +370,18 @@ fn crafting_steps_bridge_one_socket_per_system_and_grant_scoped_lines() {
         .is_err());
     db.execute("DELETE FROM crafting_systems WHERE id = 1", []).unwrap();
     assert_eq!(db.query_row("SELECT count(*) FROM crafting_step_effects", [], |r| r.get::<_, i64>(0)).unwrap(), 0);
+}
+
+#[test]
+fn a_slot_type_is_filled_by_one_systems_step() {
+    let db = crafting_schema_db();
+    let duplicate =
+        db.execute("INSERT INTO crafting_steps (system_id,name,sort_order,slot_id) VALUES (2,'Shared slot',0,1)", []);
+    assert!(duplicate.is_err(), "a second system filled the same slot type");
+    assert!(duplicate.unwrap_err().to_string().contains("UNIQUE"));
+    db.execute("INSERT INTO crafting_steps (system_id,name,sort_order,slot_id) VALUES (2,'Own slot',0,2)", []).unwrap();
+    db.execute("INSERT INTO crafting_steps (system_id,name,sort_order) VALUES (1,'Unslotted',1),(2,'Unslotted',1)", [])
+        .unwrap();
 }
 
 #[test]

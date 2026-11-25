@@ -7,15 +7,6 @@ name = "Fountain of Necrotic Might"
 note = "Two devices in Upper Necropolis; the list interface previews the upgrades"
 
 [[step]]
-name = "Upgradeable Item"
-slot = "crafting: upgradeable item"
-
-[[step.cost]]
-tier = "heroic"
-ingredient = "Seal of the Black Abbot"
-quantity = 1
-
-[[step]]
 name = "Upgradeable Item (Black Abbot)"
 slot = "crafting: upgradeable item (black abbot)"
 
@@ -98,7 +89,7 @@ quantity = 5
 note = "Upgrades Breeze (Quarterstaff; 1d10 damage, 19-20/x2 crit, Screaming, Roaring, Telekinetic, Slicing Winds, Dexterity bonus used for to hit and damage) in place: loses Telekinetic, gains Greater Telekinetic, Greater Sirocco. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Breeze upgrade"
 tier = "heroic"
-step = "Upgradeable Item"
+step = "Upgradeable Item (Black Abbot)"
 
 [[recipe.ingredient]]
 item = "Breeze"
@@ -108,7 +99,7 @@ quantity = 1
 note = "Upgrades Circle of Hatred (Ring; Harm (3 Charges), Intimidate +15, Resistance +5, Incite +20) in place: loses Harm (3 Charges, 3/day), Incite +20, gains Harm (5 Charges, 5/day), Incite +30. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family. The page reports a bug: the altar claims more extra charges than the item gains (the shortfall equals the base amount)."
 option = "Circle of Hatred upgrade"
 tier = "heroic"
-step = "Upgradeable Item"
+step = "Upgradeable Item (Black Abbot)"
 
 [[recipe.ingredient]]
 item = "Circle of Hatred"
@@ -128,7 +119,7 @@ quantity = 1
 note = "Upgrades Enduring Conviction (Longsword; Absolute Law, Greater Good, Evil Outsider Bane, requires Good alignment or UMD 30 (no need to be Lawful)) in place: loses Evil Outsider Bane, gains Greater Evil Outsider Bane. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Enduring Conviction upgrade"
 tier = "heroic"
-step = "Upgradeable Item"
+step = "Upgradeable Item (Black Abbot)"
 
 [[recipe.ingredient]]
 item = "Enduring Conviction"
@@ -218,7 +209,7 @@ quantity = 1
 note = "Upgrades Wretched Twilight (Cloak; Ghostly, Nullification +72, Stealth Strike, Sneak Attack Bonus +4) in place: loses Sneak Attack Bonus +4, gains Sneak Attack Bonus +5, Void Lore V. Introduced in Update 12. Maetrim holds the upgraded effects as an item-specific option on this socket, not in an augment family."
 option = "Wretched Twilight upgrade"
 tier = "heroic"
-step = "Upgradeable Item"
+step = "Upgradeable Item (Black Abbot)"
 
 [[recipe.ingredient]]
 item = "Wretched Twilight"

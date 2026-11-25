@@ -1,0 +1,23 @@
+label = "upgrade: tier 2 (toee)"
+name = "+3 Corrosion Caustic Bastard Sword"
+
+[[option]]
+name = "Adds Acid Lore III and a Purple Augment slot."
+description = "Acid Lore III: Passive: Your Acid spells gain a 13% Equipment bonus to their chance to critical hit."
+min_level = 7
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+value = 13
+
+[[option.grant]]
+slot = "purple"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+effect_type = "SpellLore"
+targets = ["Acid"]

@@ -1,0 +1,19 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Cutthroat's Smallblade (legacy) (level 4)"
+
+[[option]]
+name = "Adds Bleed"
+description = """
+Bleed: This weapon is cruelly sharp and will do an additional 1 to 8 damage to
+targets that are vulnerable to bleeding."""
+icon = "Upgrade"
+min_level = 4
+
+[[option.modifier]]
+bonus = "Not Set"
+dice_damage = "Bleeding"
+dice_number = [1]
+dice_sides = [8]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]

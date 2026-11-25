@@ -1,0 +1,22 @@
+label = "crafting: attuned by heroism: tier 2 (stormreaver)"
+name = "Rebellion"
+
+[[option]]
+name = "Armor-Piercing - 20%"
+description = """
+Armor-Piercing - 20%: Passive: +20% Enhancement bonus to Fortification Bypass.
+(Fortification Bypass makes your attacks ignore a percentage of enemy Fortification.)"""
+icon = "Heroism"
+min_level = 25
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+value = 20
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"

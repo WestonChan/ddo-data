@@ -1,0 +1,11 @@
+label = "upgrade: tier 3 (crystal cove)"
+name = "Epic Brawling Gloves (legacy) (level 20)"
+
+[[option]]
+name = "Adds a Yellow augment slot"
+description = "Adds a Yellow augment slot to this item"
+icon = "Upgrade"
+min_level = 20
+
+[[option.grant]]
+slot = "yellow"

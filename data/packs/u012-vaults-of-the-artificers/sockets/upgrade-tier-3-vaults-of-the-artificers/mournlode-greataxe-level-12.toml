@@ -1,0 +1,14 @@
+label = "upgrade: tier 3 (vaults of the artificers)"
+name = "Mournlode Greataxe (level 12)"
+
+[[option]]
+name = "Undead bane 4 and Adds a Purple augment slot"
+description = """
+Undead Bane 4: Those that have died must return, and this weapon is attuned
+specifically to lay them to rest. This weapon deals an additional 4d10 bane damage vs. Undead.
+Adds a Purple augment slot to this item"""
+icon = "Upgrade"
+min_level = 12
+
+[[option.grant]]
+slot = "purple"

@@ -15,15 +15,11 @@ name = "Tier 1"
 
 [[step]]
 name = "Tier 2"
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (test upgrade altar)"
 
 [[step]]
 name = "Tier 3"
-slot = "upgrade: tier 3"
-
-[[step]]
-name = "Nearly Finished (test)"
-slot = "crafting: nearly finished"
+slot = "upgrade: tier 3 (test upgrade altar)"
 
 [[step]]
 name = "Add augment 1"
@@ -42,7 +38,7 @@ url = "https://ddowiki.com/page/Test_Upgrade_Altar"
 read = "2026-09-29"
 
 [[recipe]]
-grants_slot = "upgrade: tier 2"
+grants_slot = "upgrade: tier 2 (test upgrade altar)"
 option = "Test tier 2 upgrade"
 tier = "heroic"
 
@@ -81,15 +77,6 @@ step = "Item exchange"
 [[recipe.ingredient]]
 ingredient = "Test Upgrade Token"
 quantity = 1
-
-[[recipe]]
-option = "Choose Constitution"
-tier = "legendary"
-step = "Nearly Finished (test)"
-
-[[recipe.set_option]]
-set = "Celestial Emerald Ring"
-name = "+8 Constitution"
 
 [[recipe]]
 yields_ingredient = "Top of the Test Emblem"

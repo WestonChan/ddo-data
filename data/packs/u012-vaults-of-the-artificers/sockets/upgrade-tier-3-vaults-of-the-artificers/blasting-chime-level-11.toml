@@ -1,0 +1,40 @@
+label = "upgrade: tier 3 (vaults of the artificers)"
+name = "Blasting Chime (Level 11)"
+
+[[option]]
+name = "Resonance +94, Sonic Lore +14%, Sonic Guard +4, Anthem and a Green augment slot"
+description = """
+Resonance +79: Passive: +79 Equipment bonus to Sonic Spell Power.
+Sonic Lore +14: Passive: Your Sonic spells gain a 14% Equipment bonus to their chance to critical hit.
+Sonic Guard +4: Chance to deal 4d8 Sonic damage when hit.
+Adds a Green augment slot."""
+min_level = 7
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+value = 94
+
+[[option.effect]]
+bonus_type = "Equipment"
+effect = "Sonic Spell Lore"
+value = 14
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [94]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus_type = "Equipment"
+effect = "Sonic Spell Lore"
+effect_type = "SpellLore"
+targets = ["Sonic"]

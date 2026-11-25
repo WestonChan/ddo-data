@@ -26,12 +26,21 @@ name = "Combustion"
 bonus_type = "Enhancement"
 value = 54
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 2"
+reason = "The fixture's upgrade slots belong to Test Upgrade Altar."
+url = "https://ddowiki.com/page/Test_Upgrade_Altar"
+read = "2026-09-29"
+qualifier = 'option "Adds Fire Lore III and a Purple Augment slot."'
+
 [[socket]]
 slot = "upgrade: tier 1"
 set = "+3 Combustion Scorched Battle Axe"
 
 [[socket]]
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (test upgrade altar)"
 set = "+3 Combustion Scorched Battle Axe"
 
 [[weapon]]

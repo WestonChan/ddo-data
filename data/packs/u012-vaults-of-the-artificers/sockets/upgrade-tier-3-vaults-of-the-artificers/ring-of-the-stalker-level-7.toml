@@ -1,0 +1,17 @@
+label = "upgrade: tier 3 (vaults of the artificers)"
+name = "Ring of the Stalker (Level 7)"
+
+[[option]]
+name = "Seeker +6 and a Green Augment Slot"
+description = "Seeker +6: Provides a +6 Enhancement bonus to confirm critical hits, and a +6 Enhancement bonus to critical hit damage (before multipliers are applied)."
+min_level = 7
+
+[[option.grant]]
+slot = "green"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]

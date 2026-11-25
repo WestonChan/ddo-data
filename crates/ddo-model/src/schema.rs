@@ -4,7 +4,7 @@ use crate::enums::{
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 50;
+pub const SCHEMA_VERSION: i64 = 51;
 
 pub const CRAFTING_INGREDIENT_USES: &str = "SELECT cost.ingredient_id,recipe.system_id FROM crafting_recipe_ingredients cost JOIN crafting_recipes recipe ON recipe.id=cost.recipe_id WHERE cost.ingredient_id IS NOT NULL
             UNION SELECT cost.ingredient_id,step.system_id FROM crafting_step_costs cost JOIN crafting_steps step ON step.id=cost.step_id WHERE cost.ingredient_id IS NOT NULL
@@ -1528,7 +1528,7 @@ CREATE TABLE IF NOT EXISTS crafting_steps (
     consumed_outputs INTEGER CHECK (consumed_outputs IS NULL OR consumed_outputs > 0),
     is_random INTEGER NOT NULL DEFAULT 0 CHECK (is_random IN (0, 1)),
     UNIQUE (system_id, name),
-    UNIQUE (system_id, slot_id)
+    UNIQUE (slot_id)
 );
 
 CREATE TABLE IF NOT EXISTS crafting_step_effects (

@@ -19,12 +19,21 @@ bypass = "Magic"
 [[effect]]
 name = "Electric Vulnerability"
 
+[[ddobuilder_correction]]
+kind = "item_socket"
+field = "label"
+upstream = "upgrade: tier 2"
+reason = "This socket belongs to Temple of Elemental Evil crafting; the shared upstream label does not identify its system."
+url = "https://ddowiki.com/page/ToEE_Crafting"
+read = "2026-11-04"
+qualifier = 'option "Adds Shocking Blast and a Purple augment slot"'
+
 [[socket]]
 slot = "upgrade: tier 1"
 set = "Energized Club"
 
 [[socket]]
-slot = "upgrade: tier 2"
+slot = "upgrade: tier 2 (toee)"
 set = "Energized Club"
 
 [[weapon]]

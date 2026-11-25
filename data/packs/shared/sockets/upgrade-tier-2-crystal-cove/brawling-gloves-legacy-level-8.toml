@@ -1,0 +1,34 @@
+label = "upgrade: tier 2 (crystal cove)"
+name = "Brawling Gloves (legacy) (level 8)"
+
+[[option]]
+name = "Sneak Attack Bonus +2"
+description = """
+Sneak Attack Bonus +2: Provides a +2 to attack bonus and a +3 to damage for any
+attack that would qualify as a Sneak Attack, even if the wielder is not a Rogue."""
+icon = "Upgrade"
+min_level = 8
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+value = 2
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+value = 3
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"

@@ -46,7 +46,7 @@ upstream = 0
 reason = "The item page has an empty Upgradeable? row and a typed Enchantments list of +5 Enhancement Bonus, Bleeding 4, Doublestrike 9%, Hide +16, Move Silently +16, Red Augment Slot; the in-game screenshot (420px-Cutthroat's_Smallblade_(level_16).png) shows the same lines (Enhancement Bonus, Bleeding, Doublestrike, Hide, Move Silently, the empty Red Augment slot) and no Upgradeable - Tier line. The data file carries crafting: upgradeable tier 2 and tier 3 sockets."
 url = "https://ddowiki.com/page/Item:Cutthroat's_Smallblade_(level_16)"
 read = "2026-11-04"
-qualifier = 'socket "upgrade: tier 2"'
+qualifier = 'socket "crafting: upgradeable tier 2"'
 
 [[ddobuilder_correction]]
 kind = "item_socket"
@@ -55,7 +55,7 @@ upstream = 0
 reason = "The item page has an empty Upgradeable? row and a typed Enchantments list of +5 Enhancement Bonus, Bleeding 4, Doublestrike 9%, Hide +16, Move Silently +16, Red Augment Slot; the in-game screenshot (420px-Cutthroat's_Smallblade_(level_16).png) shows the same lines (Enhancement Bonus, Bleeding, Doublestrike, Hide, Move Silently, the empty Red Augment slot) and no Upgradeable - Tier line. The data file carries crafting: upgradeable tier 2 and tier 3 sockets."
 url = "https://ddowiki.com/page/Item:Cutthroat's_Smallblade_(level_16)"
 read = "2026-11-04"
-qualifier = 'socket "upgrade: tier 3"'
+qualifier = 'socket "crafting: upgradeable tier 3"'
 
 [[verification_request]]
 question = "Which enchantments, values and augment slots belong to the current level 16 version? This record still contains legacy-version data and needs a whole-item rewrite."

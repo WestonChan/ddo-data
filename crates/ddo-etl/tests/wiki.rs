@@ -573,7 +573,7 @@ fn reader_emits_crafting_systems_with_their_ingredients_and_recipes() {
     let upgrade_system = wiki.crafting_systems.iter().find(|system| system.name == "Test Upgrade Altar").unwrap();
     assert_eq!(upgrade_system.name, "Test Upgrade Altar");
     assert!(upgrade_system.families.is_empty());
-    assert_eq!(upgrade_system.recipes[0].grants_slot.as_deref(), Some("upgrade: tier 2"));
+    assert_eq!(upgrade_system.recipes[0].grants_slot.as_deref(), Some("upgrade: tier 2 (test upgrade altar)"));
 }
 
 #[test]
@@ -744,10 +744,10 @@ fn merges_a_family_less_system_whose_recipes_grant_sockets() {
               WHERE s.name = 'Test Upgrade Altar' ORDER BY r.sort_order"
         ),
         [
-            "Test tier 2 upgrade|upgrade: tier 2||0",
+            "Test tier 2 upgrade|upgrade: tier 2 (test upgrade altar)||0",
             "Test Colorless Augment Slot|colorless|Test note: adds a socket, never an augment.|1",
-            "Add Colorless augment 1|colorless||7",
-            "Add Colorless augment 2|colorless||8"
+            "Add Colorless augment 1|colorless||6",
+            "Add Colorless augment 2|colorless||7"
         ]
     );
     assert_eq!(
@@ -770,8 +770,11 @@ fn merges_a_family_less_system_whose_recipes_grant_sockets() {
 
 #[test]
 fn crafting_never_adds_innate_item_bonuses_or_augments() {
-    let (without, _) = built_db_with(&WikiOverrides::default());
-    let (with, _) = built_db_with(&WikiOverrides::from_database(&fixture::database(|_| {})).unwrap());
+    let wiki = fixture_wiki();
+    let without_crafting =
+        WikiOverrides { per_item_slot_types: wiki.per_item_slot_types.clone(), ..WikiOverrides::default() };
+    let (without, _) = built_db_with(&without_crafting);
+    let (with, _) = built_db_with(&wiki);
     for table in [
         "augments WHERE provenance = 'maetrim'",
         "item_effects JOIN items ON items.id = item_effects.item_id WHERE items.provenance = 'maetrim'",

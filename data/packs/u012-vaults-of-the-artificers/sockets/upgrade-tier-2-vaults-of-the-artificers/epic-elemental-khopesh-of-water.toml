@@ -1,0 +1,33 @@
+label = "upgrade: tier 2 (vaults of the artificers)"
+name = "Epic Elemental Khopesh of Water"
+
+[[option]]
+name = "+6 Enhancement Bonus, Fire Resistance 38 and a Colorless augment slot"
+description = """
++6 Enhancement Bonus: +6 enhancement bonus to attack and damage rolls.
+Fire Resistance +38: Passive: +38 Enhancement bonus to your Fire Resistance.
+Adds a Colorless augment slot"""
+icon = "Upgrade"
+min_level = 20
+
+[[option.effect]]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+value = 38
+
+[[option.grant]]
+slot = "colorless"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[option.modifier]]
+amount_type = "Simple"
+amounts = [38]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+effect_type = "EnergyResistance"
+targets = ["Fire"]

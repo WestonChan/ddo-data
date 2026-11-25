@@ -1,0 +1,21 @@
+label = "crafting: attuned by heroism: tier 2 (stormreaver)"
+name = "Dreampiercer"
+
+[[option]]
+name = "Supreme Good"
+description = "Phlebotomizing: This weapon is wickedly sharp and will do an additional 3 to 24 damage to targets that are vulnerable to bleeding."
+icon = "Heroism"
+min_level = 25
+
+[[option.modifier]]
+bonus_type = "Stacking"
+dice_damage = "Good"
+dice_number = [3]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[option.modifier.requirement]]
+items = ["Non-Good"]
+req_type = "EnemyType"

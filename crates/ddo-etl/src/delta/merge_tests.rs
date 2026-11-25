@@ -19,7 +19,7 @@ fn an_incoming_retired_socket_type_keeps_the_authored_socket_array() {
     let previous = ordinary_fixture_database("");
     let mut ours = ordinary_fixture_database("");
     let (item_name, original_label): (String, String) = previous.query_row(
-        "SELECT i.name,t.label FROM item_augment_slots s JOIN items i ON i.id=s.item_id JOIN augment_slot_types t ON t.id=s.slot_id ORDER BY i.slug,s.sort_order LIMIT 1",
+        "SELECT i.name,t.label FROM item_augment_slots s JOIN items i ON i.id=s.item_id JOIN augment_slot_types t ON t.id=s.slot_id WHERE i.slug='ethereal-great-crossbow' AND s.sort_order=0",
         [], |row| Ok((row.get(0)?, row.get(1)?)),
     ).unwrap();
     let incoming = ordinary_fixture_database("");
