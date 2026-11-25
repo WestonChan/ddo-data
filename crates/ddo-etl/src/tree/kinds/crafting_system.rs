@@ -284,6 +284,12 @@ database_record! {
             #[serde(default, skip_serializing_if = "Option::is_none")]
             pack: Option<String> => pack_id [optional_reference "adventure_packs"],
             page: String => page,
+            #[serde(default, skip_serializing_if = "Option::is_none")]
+            has_item_input: Option<bool> => has_item_input,
+            #[serde(default, skip_serializing_if = "Option::is_none")]
+            has_item_output: Option<bool> => has_item_output,
+            #[serde(default, skip_serializing_if = "Option::is_none")]
+            can_apply_to_any_item: Option<bool> => can_apply_to_any_item,
         }
         attached {
             #[serde(default, skip_serializing_if = "Vec::is_empty")]

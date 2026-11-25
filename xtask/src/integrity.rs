@@ -314,6 +314,22 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         OffenderQuery::Sql("SELECT t.label,t.id,CASE WHEN t.not_crafting_reason IS NULL THEN 'no step or reason' ELSE 'both step and reason' END FROM augment_slot_types t WHERE t.family<>'standard' AND (t.not_crafting_reason IS NOT NULL)=EXISTS (SELECT 1 FROM crafting_steps s WHERE s.slot_id=t.id) ORDER BY t.label"),
     ).showing_every_offender(),
     IntegrityCheck::hard(
+        "crafting_systems_derive_or_state_item_facts",
+        "systems with named items derive their item facts; other systems state every fact consistently with modeled evidence",
+        OffenderQuery::Sql("SELECT system.name,system.id,
+            CASE WHEN facts.has_items THEN 'items and a stated item fact'
+                 WHEN system.has_item_input IS NULL OR system.has_item_output IS NULL OR system.can_apply_to_any_item IS NULL
+                    THEN 'no item and incomplete item facts'
+                 WHEN system.has_item_input=0 AND facts.modeled_has_item_input THEN 'stated no item input contradicts modeled item input'
+                 ELSE 'stated no item output contradicts modeled item output' END
+            FROM crafting_systems system JOIN crafting_system_item_facts facts ON facts.crafting_system_id=system.id
+            WHERE (facts.has_items AND (system.has_item_input IS NOT NULL OR system.has_item_output IS NOT NULL OR system.can_apply_to_any_item IS NOT NULL))
+               OR (NOT facts.has_items AND (system.has_item_input IS NULL OR system.has_item_output IS NULL OR system.can_apply_to_any_item IS NULL))
+               OR (system.has_item_input=0 AND facts.modeled_has_item_input)
+               OR (system.has_item_output=0 AND facts.modeled_has_item_output)
+            ORDER BY system.name"),
+    ).showing_every_offender(),
+    IntegrityCheck::hard(
         "socket_labels_fill_one_way",
         "a non-colour label is filled by augments or fixed option sets, never both",
         OffenderQuery::Sql("SELECT t.label,t.id,'both augments and fixed options' FROM augment_slot_types t WHERE t.family<>'standard' AND EXISTS (SELECT 1 FROM augment_slots a WHERE a.slot_id=t.id) AND EXISTS (SELECT 1 FROM socket_option_sets s WHERE s.slot_id=t.id) ORDER BY t.label"),

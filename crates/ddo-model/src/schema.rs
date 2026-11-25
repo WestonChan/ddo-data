@@ -33,6 +33,7 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
     let crafting_unlock_kind = sql_in_clause(crate::enums::CraftingUnlockKind::ALL.iter().map(|kind| kind.as_str()));
     let station_kind = sql_in_clause(crate::enums::StationKind::ALL.iter().map(|kind| kind.as_str()));
     let crafting_tier = sql_in_clause(CraftingTier::ALL.iter().map(|t| t.as_str()));
+    let upgraded_items = "SELECT step.system_id, socket.item_id FROM crafting_steps step JOIN item_augment_slots socket ON socket.slot_id = step.slot_id";
     let correction_kind = sql_in_clause(CorrectionKind::ALL.iter().map(|k| k.as_str()));
     let saga_tier = sql_in_clause(SagaTier::ALL.iter().map(|t| t.as_str()));
     let quest_series_columns = format!(
@@ -1488,7 +1489,10 @@ CREATE TABLE IF NOT EXISTS crafting_systems (
     slug TEXT NOT NULL UNIQUE,
     variant TEXT,
     name    TEXT    NOT NULL UNIQUE,
-    page    TEXT    NOT NULL,                          -- the ddowiki page read
+    page    TEXT    NOT NULL,
+    has_item_input INTEGER CHECK (has_item_input IN (0, 1)),
+    has_item_output INTEGER CHECK (has_item_output IN (0, 1)),
+    can_apply_to_any_item INTEGER CHECK (can_apply_to_any_item IN (0, 1)),
     pack_id INTEGER REFERENCES adventure_packs(id)
 );
 
@@ -1535,14 +1539,28 @@ CREATE TABLE IF NOT EXISTS crafting_steps (
 CREATE VIEW IF NOT EXISTS crafting_system_items (crafting_system_id, item_id) AS
 SELECT crafting_system_id, owner_id FROM crafting_outputs WHERE owner_kind = 'item'
 UNION
-SELECT step.system_id, socket.item_id
-FROM crafting_steps step JOIN item_augment_slots socket ON socket.slot_id = step.slot_id;
+{upgraded_items};
 
 CREATE VIEW IF NOT EXISTS crafting_system_item_facts AS
-SELECT id AS crafting_system_id,
-    id IN (SELECT reach.crafting_system_id FROM crafting_system_items reach
-           JOIN items item ON item.id = reach.item_id WHERE NOT item.is_legacy) AS has_items
-FROM crafting_systems;
+WITH evidence AS (
+    SELECT id AS crafting_system_id,
+        id IN (SELECT reach.crafting_system_id FROM crafting_system_items reach
+               JOIN items item ON item.id = reach.item_id WHERE NOT item.is_legacy) AS has_items,
+        id IN (SELECT crafting_system_id FROM crafting_system_items) AS modeled_has_item_output,
+        id IN (SELECT system_id FROM ({upgraded_items})
+               UNION SELECT recipe.system_id FROM crafting_recipe_effective_costs cost
+               JOIN crafting_recipes recipe ON recipe.id = cost.recipe_id
+               WHERE cost.item_id IS NOT NULL) AS modeled_has_item_input
+    FROM crafting_systems
+)
+SELECT evidence.*,
+    CASE WHEN evidence.has_items THEN evidence.modeled_has_item_input
+         ELSE COALESCE(system.has_item_input, evidence.modeled_has_item_input) END AS has_item_input,
+    CASE WHEN evidence.has_items THEN 1
+         ELSE COALESCE(system.has_item_output, evidence.modeled_has_item_output) END AS has_item_output,
+    CASE WHEN evidence.has_items THEN 0
+         ELSE COALESCE(system.can_apply_to_any_item, 0) END AS can_apply_to_any_item
+FROM evidence JOIN crafting_systems system ON system.id = evidence.crafting_system_id;
 
 CREATE TABLE IF NOT EXISTS crafting_step_effects (
     step_id INTEGER NOT NULL REFERENCES crafting_steps(id) ON DELETE CASCADE,

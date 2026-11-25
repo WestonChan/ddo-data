@@ -28,7 +28,7 @@ pub(super) fn crafting_systems_vocabulary() -> VocabularySource {
     VocabularySource::new(
         "slug",
         &["name"],
-        "SELECT s.id, s.slug, s.name, s.page, p.name AS pack, facts.has_items,
+        "SELECT s.id, s.slug, s.name, s.page, p.name AS pack, facts.has_items, facts.has_item_input, facts.has_item_output, facts.can_apply_to_any_item,
                 (SELECT station.name || COALESCE(', ' || station.place,'')
                  FROM crafting_system_stations link JOIN crafting_stations station ON station.id=link.station_id
                  WHERE link.system_id=s.id ORDER BY link.sort_order LIMIT 1) AS npc
@@ -206,6 +206,9 @@ const CRAFTING_SYSTEMS_SORT_FIELDS: &[(&str, &str)] = &[
     ("recipe_count", "listed.recipe_count"),
     ("item_count", "listed.item_count"),
     ("has_items", "listed.has_items"),
+    ("has_item_input", "listed.has_item_input"),
+    ("has_item_output", "listed.has_item_output"),
+    ("can_apply_to_any_item", "listed.can_apply_to_any_item"),
     ("npc", "npc"),
     ("page", "page"),
 ];
@@ -254,7 +257,7 @@ async fn crafting_systems(
             )?;
             attach_augment_families(db, &mut page.rows)?;
             for row in &mut page.rows {
-                convert_to_booleans(row, &["has_items"]);
+                convert_to_booleans(row, &["has_items", "has_item_input", "has_item_output", "can_apply_to_any_item"]);
             }
             Ok(Json(page.into_json("crafting_systems")))
         })
@@ -283,7 +286,7 @@ async fn crafting_system_detail(
             let mut crafting_system =
                 json_row(db, &format!("SELECT * FROM ({}) listed WHERE listed.id = ?1", ValueVocabulary::CraftingSystems.select_sql()), [id])?;
             attach_augment_families(db, std::slice::from_mut(&mut crafting_system))?;
-            convert_to_booleans(&mut crafting_system, &["has_items"]);
+            convert_to_booleans(&mut crafting_system, &["has_items", "has_item_input", "has_item_output", "can_apply_to_any_item"]);
             crafting_system["ingredients"] = Value::Array(json_rows(
                 db,
                 &format!("{ingredient_uses} SELECT id, name, tier, bind, source FROM crafting_ingredients WHERE id IN (SELECT ingredient_id FROM ingredient_uses WHERE system_id = ?1) ORDER BY name"),

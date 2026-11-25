@@ -1,5 +1,8 @@
 name = "Handwraps to Collar Conversion"
 page = "https://ddowiki.com/page/Collar"
+has_item_input = true
+has_item_output = true
+can_apply_to_any_item = true
 
 [[station]]
 name = "Device Workstation"

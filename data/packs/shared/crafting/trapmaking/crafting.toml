@@ -1,5 +1,8 @@
 name = "Trapmaking"
 page = "https://ddowiki.com/page/Trapmaking"
+has_item_input = false
+has_item_output = false
+can_apply_to_any_item = false
 
 [[station]]
 name = "Device Workstation"

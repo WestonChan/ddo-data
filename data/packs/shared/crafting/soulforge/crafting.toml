@@ -1,5 +1,8 @@
 name = "Soulforge"
 page = "https://ddowiki.com/page/Soulforge"
+has_item_input = true
+has_item_output = false
+can_apply_to_any_item = false
 
 [[station]]
 name = "Soulforge"

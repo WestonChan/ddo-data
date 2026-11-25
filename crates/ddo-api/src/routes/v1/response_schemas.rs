@@ -740,6 +740,18 @@ fn schema_crafting_npc() -> RefOr<Schema> {
         .into()
 }
 
+fn schema_has_item_input() -> RefOr<Schema> {
+    described_schema::<bool>("Whether an item goes into this system, including an item upgraded in place.")
+}
+
+fn schema_has_item_output() -> RefOr<Schema> {
+    described_schema::<bool>("Whether this system makes or returns equipment, including a changed input item.")
+}
+
+fn schema_can_apply_to_any_item() -> RefOr<Schema> {
+    described_schema::<bool>("Whether this system acts on any item of a kind rather than named items.")
+}
+
 #[derive(utoipa::ToSchema)]
 pub(crate) struct CraftingSystemsPageResponseCraftingSystemsEntry {
     pub(crate) id: i64,
@@ -748,6 +760,12 @@ pub(crate) struct CraftingSystemsPageResponseCraftingSystemsEntry {
     pub(crate) ingredient_count: i64,
     pub(crate) item_count: i64,
     pub(crate) has_items: bool,
+    #[schema(schema_with = schema_has_item_input)]
+    pub(crate) has_item_input: bool,
+    #[schema(schema_with = schema_has_item_output)]
+    pub(crate) has_item_output: bool,
+    #[schema(schema_with = schema_can_apply_to_any_item)]
+    pub(crate) can_apply_to_any_item: bool,
     pub(crate) name: String,
     #[schema(schema_with = schema_crafting_npc)]
     pub(crate) npc: Option<String>,
@@ -812,6 +830,12 @@ pub(crate) struct CraftingSystemsDetailResponse {
     pub(crate) ingredients: Vec<CraftingSystemsDetailResponseIngredientsEntry>,
     pub(crate) item_count: i64,
     pub(crate) has_items: bool,
+    #[schema(schema_with = schema_has_item_input)]
+    pub(crate) has_item_input: bool,
+    #[schema(schema_with = schema_has_item_output)]
+    pub(crate) has_item_output: bool,
+    #[schema(schema_with = schema_can_apply_to_any_item)]
+    pub(crate) can_apply_to_any_item: bool,
     pub(crate) name: String,
     #[schema(schema_with = schema_crafting_npc)]
     pub(crate) npc: Option<String>,

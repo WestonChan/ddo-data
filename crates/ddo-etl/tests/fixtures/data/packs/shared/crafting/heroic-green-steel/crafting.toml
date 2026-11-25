@@ -1,5 +1,8 @@
 name = "Heroic Green Steel"
 page = "https://ddowiki.com/page/Green_Steel_items"
+has_item_input = true
+has_item_output = true
+can_apply_to_any_item = false
 
 [[station]]
 name = "Altar of Invasion"

@@ -1,5 +1,8 @@
 name = "Deck of Many Curses"
 page = "https://ddowiki.com/page/Deck_of_Many_Curses"
+has_item_input = true
+has_item_output = true
+can_apply_to_any_item = true
 
 [[station]]
 name = "Deck of Many Curses"

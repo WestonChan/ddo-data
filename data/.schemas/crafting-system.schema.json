@@ -865,6 +865,12 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
+    "can_apply_to_any_item": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
     "citation": {
       "items": {
         "$ref": "#/$defs/Citation"
@@ -876,6 +882,18 @@
         "$ref": "#/$defs/CraftingSystemFamily"
       },
       "type": "array"
+    },
+    "has_item_input": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "has_item_output": {
+      "type": [
+        "boolean",
+        "null"
+      ]
     },
     "name": {
       "type": "string"
@@ -933,7 +951,10 @@
     "slug",
     "name",
     "pack_id",
-    "page"
+    "page",
+    "has_item_input",
+    "has_item_output",
+    "can_apply_to_any_item"
   ],
   "x-table": "crafting_systems"
 }

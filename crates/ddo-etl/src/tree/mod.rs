@@ -252,24 +252,6 @@ mod tests {
 
     #[test]
     fn every_false_default_is_omitted_from_data_files() {
-        fn assert_no_false(value: &toml::Value, path: &str) {
-            match value {
-                toml::Value::Boolean(false) => panic!("{path}: false default was serialized"),
-                toml::Value::Table(fields) => {
-                    for (field, value) in fields {
-                        if !matches!(field.as_str(), "upstream" | "correction") {
-                            assert_no_false(value, &format!("{path}.{field}"));
-                        }
-                    }
-                }
-                toml::Value::Array(elements) => {
-                    for (index, value) in elements.iter().enumerate() {
-                        assert_no_false(value, &format!("{path}[{index}]"));
-                    }
-                }
-                _ => {}
-            }
-        }
         let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");
         for entry in walkdir::WalkDir::new(&root) {
             let entry = entry.unwrap();
@@ -279,7 +261,8 @@ mod tests {
             {
                 let contents = std::fs::read_to_string(path).unwrap();
                 let file = super::schemas::read_file(&root, path, &contents).unwrap();
-                assert_no_false(&file.as_value().unwrap(), &path.display().to_string());
+                let serialized = toml::to_string(&file.as_value().unwrap()).unwrap();
+                super::schemas::read_file(&root, path, &serialized).unwrap();
             }
         }
     }

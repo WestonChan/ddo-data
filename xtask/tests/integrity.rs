@@ -361,6 +361,26 @@ fn fixture_db_built_once() -> &'static Path {
     db_path
 }
 
+fn authored_db_built_once() -> &'static Path {
+    static AUTHORED_DB: OnceLock<(tempfile::TempDir, PathBuf)> = OnceLock::new();
+    let (_, path) = AUTHORED_DB.get_or_init(|| {
+        let directory = tempfile::tempdir().unwrap();
+        let path = directory.path().join("authored.db");
+        let mut db = Connection::open(&path).unwrap();
+        ddo_etl::tree::build_from_data(&Path::new(env!("CARGO_MANIFEST_DIR")).join("../data"), &mut db).unwrap();
+        (directory, path)
+    });
+    path
+}
+
+#[test]
+fn authored_crafting_systems_derive_or_state_complete_item_facts() {
+    let db = Connection::open(authored_db_built_once()).unwrap();
+    let report = integrity_report(&db, &IntegrityOptions { allowed_empty_tables: Vec::new() }).unwrap();
+    let outcome = report.outcome("crafting_systems_derive_or_state_item_facts").expect("item fact check is registered");
+    assert_eq!(outcome.status, CheckStatus::Passed, "{outcome}");
+}
+
 fn copy_fixture_tree(destination: &Path) {
     let source = fixtures_dir().join("data");
     for entry in walkdir::WalkDir::new(&source) {
@@ -1729,13 +1749,14 @@ fn a_link_whose_bonuses_another_link_already_grants_is_warned_but_a_partial_over
 }
 
 struct InjectedViolation {
+    uses_authored_data: bool,
     check_name: &'static str,
     injected_sql: String,
     offender_name: &'static str,
 }
 
 fn violation(check_name: &'static str, injected_sql: &str, offender_name: &'static str) -> InjectedViolation {
-    InjectedViolation { check_name, injected_sql: injected_sql.to_string(), offender_name }
+    InjectedViolation { check_name, injected_sql: injected_sql.to_string(), offender_name, uses_authored_data: false }
 }
 
 #[test]
@@ -2522,6 +2543,31 @@ fn injected_violations() -> Vec<InjectedViolation> {
         "UPDATE effects SET verbose_name_template = '%b1 Echo echo +{1}' WHERE name = 'Command'",
         "Command",
     ));
+    for (injected_sql, offender_name) in [
+        ("UPDATE crafting_systems SET has_item_input=NULL,has_item_output=NULL,can_apply_to_any_item=NULL WHERE slug='trapmaking'", "Trapmaking"),
+        ("UPDATE crafting_systems SET has_item_input=0 WHERE slug='soulforge'", "Soulforge"),
+    ] {
+        let mut injected = violation("crafting_systems_derive_or_state_item_facts", injected_sql, offender_name);
+        injected.uses_authored_data = true;
+        violations.push(injected);
+    }
+    for field in ["has_item_input", "has_item_output", "can_apply_to_any_item"] {
+        let mut incomplete = violation(
+            "crafting_systems_derive_or_state_item_facts",
+            &format!("UPDATE crafting_systems SET {field}=NULL WHERE slug='trapmaking'"),
+            "Trapmaking",
+        );
+        incomplete.uses_authored_data = true;
+        violations.push(incomplete);
+        for value in [0, 1] {
+            violations.push(violation(
+                "crafting_systems_derive_or_state_item_facts",
+                &format!("UPDATE crafting_systems SET {field}={value} WHERE slug='catalyst-crafting'"),
+                "Catalyst Crafting",
+            ));
+        }
+    }
+    violations.push(violation("crafting_systems_derive_or_state_item_facts", "UPDATE items SET is_legacy=1 WHERE id IN (SELECT owner_id FROM crafting_outputs WHERE owner_kind='item' AND crafting_system_id=(SELECT id FROM crafting_systems WHERE slug='catalyst-crafting')); UPDATE crafting_systems SET has_item_input=1,has_item_output=0,can_apply_to_any_item=0 WHERE slug='catalyst-crafting'", "Catalyst Crafting"));
     violations
 }
 
@@ -2529,9 +2575,22 @@ fn injected_violations() -> Vec<InjectedViolation> {
 fn each_injected_violation_fails_or_warns_its_own_check() {
     for violation in injected_violations() {
         let work_dir = tempfile::tempdir().unwrap();
-        let db_path = fixture_db_copy_with(work_dir.path(), &violation.injected_sql);
+        let (db_path, options) = if violation.uses_authored_data {
+            let path = work_dir.path().join("authored-copy.db");
+            std::fs::copy(authored_db_built_once(), &path).unwrap();
+            let db = Connection::open(&path).unwrap();
+            db.execute_batch(&violation.injected_sql).unwrap();
+            (
+                path,
+                IntegrityOptions {
+                    allowed_empty_tables: ["vendors", "events", "crafting_step_effects"].map(str::to_string).into(),
+                },
+            )
+        } else {
+            (fixture_db_copy_with(work_dir.path(), &violation.injected_sql), fixture_options())
+        };
         let db = Connection::open(&db_path).unwrap();
-        let report = integrity_report(&db, &fixture_options()).unwrap();
+        let report = integrity_report(&db, &options).unwrap();
         let check = INTEGRITY_CHECKS.iter().find(|check| check.name == violation.check_name).unwrap();
         let outcome = report.outcome(violation.check_name).unwrap();
 

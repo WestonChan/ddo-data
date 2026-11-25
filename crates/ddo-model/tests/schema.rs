@@ -285,6 +285,24 @@ fn ingredient_names_and_variants_are_unique_without_an_owner() {
 }
 
 #[test]
+fn crafting_item_statements_are_nullable_booleans() {
+    let db = fresh_db();
+    db.execute("INSERT INTO crafting_systems (id,slug,name,page) VALUES (1,'test','Test','https://example.com')", [])
+        .unwrap();
+    for field in ["has_item_input", "has_item_output", "can_apply_to_any_item"] {
+        for value in ["NULL", "0", "1"] {
+            db.execute(&format!("UPDATE crafting_systems SET {field}={value}"), []).unwrap();
+        }
+        for value in ["-1", "2", "'true'"] {
+            assert!(
+                db.execute(&format!("UPDATE crafting_systems SET {field}={value}"), []).is_err(),
+                "{field} accepted {value}"
+            );
+        }
+    }
+}
+
+#[test]
 fn crafting_tables_accept_only_the_four_crafting_tiers() {
     let db = fresh_db();
     db.execute("INSERT INTO crafting_systems (id, name, page, slug) VALUES (1, 'Green Steel', 'p', 'green-steel')", [])

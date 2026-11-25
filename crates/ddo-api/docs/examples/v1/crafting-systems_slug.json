@@ -1,8 +1,11 @@
 {
+  "can_apply_to_any_item": false,
   "families": [
     "Slavelords_Heroic",
     "Slavelords_Legendary"
   ],
+  "has_item_input": true,
+  "has_item_output": true,
   "has_items": true,
   "id": 2218020696701597,
   "ingredient_count": 16,

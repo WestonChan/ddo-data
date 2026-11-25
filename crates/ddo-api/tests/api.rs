@@ -4338,6 +4338,55 @@ async fn crafting_system_has_items_matches_counts_on_lists_and_details() {
 }
 
 #[tokio::test]
+async fn crafting_item_facts_state_generic_systems_and_derive_named_systems() {
+    let state = AppState::open(authored_db_path()).unwrap();
+    let (_, _, listing) = get_from(state.clone(), "/v1/crafting-systems?limit=10000").await;
+    for (slug, expected) in [
+        ("deck-of-many-curses", [false, true, true, true]),
+        ("reaper-forge", [false, true, true, true]),
+        ("rune-arm-reset", [false, true, true, true]),
+        ("handwraps-to-collar-conversion", [false, true, true, true]),
+        ("trapmaking", [false, false, false, false]),
+        ("thieves-tools-construction", [false, true, false, true]),
+        ("soulforge", [false, true, false, false]),
+        ("nearly-finished", [true, true, true, false]),
+        ("epic-crafting", [true, false, true, false]),
+        ("catalyst-crafting", [true, true, true, false]),
+    ] {
+        let row = listing["crafting_systems"].as_array().unwrap().iter().find(|row| row["slug"] == slug).unwrap();
+        let (status, _, detail) = get_from(state.clone(), &format!("/v1/crafting-systems/{slug}")).await;
+        assert_eq!(status, StatusCode::OK, "{detail}");
+        for (field, expected) in
+            ["has_items", "has_item_input", "has_item_output", "can_apply_to_any_item"].into_iter().zip(expected)
+        {
+            assert_eq!(row[field], expected, "{slug}.{field}: {row}");
+            assert_eq!(detail[field], expected, "{slug}.{field}: {detail}");
+        }
+    }
+}
+
+#[tokio::test]
+async fn crafting_item_input_uses_the_recipes_effective_step_costs() {
+    for (tier, expected) in [(None, false), (Some("any"), true), (Some("heroic"), true), (Some("epic"), false)] {
+        let state = fixture_state_with_data_edits(&format!("item-input-{tier:?}"), |root| {
+            let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+            let contents = std::fs::read_to_string(&path)
+                .unwrap()
+                .replace("[[recipe.ingredient]]\nitem = \"Acrobat's Ring\"\nquantity = 1\n", "");
+            let costs = tier.map_or(String::new(), |tier| {
+                format!("[[step.cost]]\ntier='{tier}'\nitem=\"Acrobat's Ring\"\nquantity=1\n")
+            });
+            std::fs::write(path, contents.replace("[[citation]]", &format!("{costs}\n[[citation]]"))).unwrap();
+        });
+        let (status, _, system) = get_from(state, "/v1/crafting-systems/catalyst-crafting").await;
+        assert_eq!(status, StatusCode::OK, "{system}");
+        assert_eq!(system["has_item_input"], expected, "{tier:?}: {system}");
+        assert_eq!(system["has_item_output"], true);
+        assert_eq!(system["can_apply_to_any_item"], false);
+    }
+}
+
+#[tokio::test]
 async fn item_crafting_filter_lists_only_systems_reaching_non_legacy_items() {
     let state = AppState::open(authored_db_path()).unwrap();
     let (status, _, all) = get_from(state.clone(), "/v1/crafting-systems?limit=10000").await;

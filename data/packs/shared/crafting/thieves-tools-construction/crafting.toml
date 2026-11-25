@@ -1,5 +1,8 @@
 name = "Thieves' Tools Construction"
 page = "https://ddowiki.com/page/Thieves%27_Tools"
+has_item_input = true
+has_item_output = false
+can_apply_to_any_item = true
 
 [[station]]
 name = "Device Workstation"

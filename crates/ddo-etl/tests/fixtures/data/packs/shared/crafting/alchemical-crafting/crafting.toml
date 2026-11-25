@@ -1,5 +1,8 @@
 name = "Alchemical Crafting"
 page = "https://ddowiki.com/page/Alchemical_Crafting"
+has_item_input = true
+has_item_output = true
+can_apply_to_any_item = false
 
 [[station]]
 name = "Cannith Melting Station"

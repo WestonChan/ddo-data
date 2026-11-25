@@ -1,5 +1,8 @@
 name = "Rune Arm Reset"
 page = "https://ddowiki.com/page/Device_Workstation"
+has_item_input = true
+has_item_output = true
+can_apply_to_any_item = true
 
 [[station]]
 name = "Device Workstation"

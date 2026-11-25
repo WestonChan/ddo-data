@@ -1,9 +1,12 @@
 {
   "crafting_systems": [
     {
+      "can_apply_to_any_item": false,
       "families": [
         "Alchemical"
       ],
+      "has_item_input": true,
+      "has_item_output": true,
       "has_items": true,
       "id": 5484217083334237,
       "ingredient_count": 27,
@@ -16,10 +19,13 @@
       "slug": "alchemical-crafting"
     },
     {
+      "can_apply_to_any_item": false,
       "families": [
         "SealedInFire",
         "SealedInUndeath"
       ],
+      "has_item_input": true,
+      "has_item_output": true,
       "has_items": true,
       "id": 4706586130038373,
       "ingredient_count": 3,
@@ -32,7 +38,10 @@
       "slug": "augmentation-altar"
     },
     {
+      "can_apply_to_any_item": false,
       "families": [],
+      "has_item_input": true,
+      "has_item_output": true,
       "has_items": true,
       "id": 6638433828303093,
       "ingredient_count": 8,

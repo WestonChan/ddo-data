@@ -18,6 +18,43 @@ fn fixture_dataset_version() -> DatasetVersion {
 }
 
 #[test]
+fn crafting_item_statements_preserve_false_true_and_absence_through_export() {
+    for statement in [Some(false), Some(true), None] {
+        let db = fixture::database(|root| {
+            let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+            if let Some(value) = statement {
+                let contents = std::fs::read_to_string(&path).unwrap();
+                std::fs::write(path, format!("has_item_input = {value}\nhas_item_output = {value}\ncan_apply_to_any_item = {value}\n{contents}")).unwrap();
+            }
+        });
+        let exported = tempfile::tempdir().unwrap();
+        let fixture_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/data");
+        for entry in walkdir::WalkDir::new(&fixture_root).into_iter().map(Result::unwrap).filter(|entry| {
+            entry.file_type().is_file() && entry.path().extension().is_some_and(|extension| extension == "png")
+        }) {
+            let destination = exported.path().join(entry.path().strip_prefix(&fixture_root).unwrap());
+            std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+            std::fs::copy(entry.path(), destination).unwrap();
+        }
+        ddo_etl::tree::export_database(&db, exported.path()).unwrap();
+        let mut rebuilt = Connection::open_in_memory().unwrap();
+        ddo_etl::tree::build_from_data(exported.path(), &mut rebuilt).unwrap();
+        for database in [&db, &rebuilt] {
+            for field in ["has_item_input", "has_item_output", "can_apply_to_any_item"] {
+                let stored: Option<bool> = database
+                    .query_row(
+                        &format!("SELECT {field} FROM crafting_systems WHERE slug='catalyst-crafting'"),
+                        [],
+                        |row| row.get(0),
+                    )
+                    .unwrap();
+                assert_eq!(stored, statement, "{field}");
+            }
+        }
+    }
+}
+
+#[test]
 fn crafting_step_stat_groups_keep_their_authored_description_in_the_xml_build() {
     let (db, _) = built_fixture_db();
     let description: Option<String> =
