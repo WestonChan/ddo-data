@@ -1447,7 +1447,8 @@ async fn assert_item_filter_vocabulary(
     value_key: &str,
     count_key: &str,
 ) {
-    let (status, _, vocabulary) = get_from(state.clone(), &format!("{route}?limit=10000")).await;
+    let separator = if route.contains('?') { '&' } else { '?' };
+    let (status, _, vocabulary) = get_from(state.clone(), &format!("{route}{separator}limit=10000")).await;
     assert_eq!(status, StatusCode::OK, "{vocabulary}");
     let rows = vocabulary[rows_key].as_array().unwrap();
     assert!(!rows.is_empty(), "{route}");
@@ -1554,7 +1555,7 @@ async fn items_filter_by_material_socket_and_crafting_system() {
     for (parameter, route, rows_key, value_key) in [
         ("material", "/v1/item-materials", "item_materials", "name"),
         ("socket", "/v1/augment-slot-types", "augment_slot_types", "label"),
-        ("crafting_system", "/v1/crafting-systems", "crafting_systems", "slug"),
+        ("crafting_system", "/v1/crafting-systems?has_items=true", "crafting_systems", "slug"),
     ] {
         assert_item_filter_vocabulary(&state, parameter, route, rows_key, value_key, "item_count").await;
     }
@@ -3850,7 +3851,12 @@ async fn list_endpoints_accept_every_documented_query_parameter() {
             let sample_value = if let Some(route) = vocabulary["route"].as_str() {
                 let rows_key = vocabulary["rows_key"].as_str().unwrap();
                 let value_key = vocabulary["value_key"].as_str().unwrap();
-                let (status, _, page) = get(&format!("{route}?limit=1")).await;
+                let mut parameters = vec![("limit", "1")];
+                if let Some(fixed) = vocabulary["parameters"].as_object() {
+                    parameters.extend(fixed.iter().map(|(key, value)| (key.as_str(), value.as_str().unwrap())));
+                }
+                let query = serde_urlencoded::to_string(parameters).unwrap();
+                let (status, _, page) = get(&format!("{route}?{query}")).await;
                 assert_eq!(status, StatusCode::OK, "{route}: {page}");
                 let sample = page[rows_key][0][value_key]
                     .as_str()
@@ -4280,8 +4286,118 @@ async fn every_crafting_system_count_equals_its_filter_total() {
     for system in systems {
         let query = serde_urlencoded::to_string([("crafting_system", system["slug"].as_str().unwrap())]).unwrap();
         let (status, _, items) = get_from(state.clone(), &format!("/v1/items?{query}&limit=1")).await;
-        assert_eq!(status, StatusCode::OK, "{system}: {items}");
-        assert_eq!(system["item_count"], items["total"], "{system}");
+        if system["item_count"] == 0 {
+            assert_eq!(status, StatusCode::BAD_REQUEST, "{system}: {items}");
+        } else {
+            assert_eq!(status, StatusCode::OK, "{system}: {items}");
+            assert_eq!(system["item_count"], items["total"], "{system}");
+        }
+    }
+}
+
+#[tokio::test]
+async fn crafting_system_has_items_matches_counts_on_lists_and_details() {
+    let state = AppState::open(authored_db_path()).unwrap();
+    let (status, _, all) = get_from(state.clone(), "/v1/crafting-systems?limit=10000").await;
+    assert_eq!(status, StatusCode::OK, "{all}");
+    let systems = all["crafting_systems"].as_array().unwrap();
+    assert_eq!(all["total"], systems.len());
+    for system in systems {
+        let expected = system["item_count"].as_i64().unwrap() > 0;
+        assert_eq!(system["has_items"], expected, "{system}");
+        let (status, _, detail) =
+            get_from(state.clone(), &format!("/v1/crafting-systems/{}", system["slug"].as_str().unwrap())).await;
+        assert_eq!(status, StatusCode::OK, "{detail}");
+        assert_eq!(detail["has_items"], expected, "{detail}");
+    }
+    for has_items in [false, true] {
+        let expected = systems.iter().filter(|system| system["has_items"] == has_items).cloned().collect::<Vec<_>>();
+        assert!(!expected.is_empty());
+        let (status, _, filtered) =
+            get_from(state.clone(), &format!("/v1/crafting-systems?has_items={has_items}&limit=10000")).await;
+        assert_eq!(status, StatusCode::OK, "{filtered}");
+        assert_eq!(filtered["total"], expected.len());
+        assert_eq!(filtered["crafting_systems"], serde_json::json!(expected));
+        let (status, _, page) =
+            get_from(state.clone(), &format!("/v1/crafting-systems?has_items={has_items}&limit=1&offset=1")).await;
+        assert_eq!(status, StatusCode::OK, "{page}");
+        assert_eq!(page["total"], expected.len());
+        assert_eq!(page["crafting_systems"], serde_json::json!([expected[1]]));
+    }
+    for descending in [false, true] {
+        let sort = if descending { "-has_items" } else { "has_items" };
+        let (status, _, sorted) =
+            get_from(state.clone(), &format!("/v1/crafting-systems?sort={sort}&sort=name&limit=10000")).await;
+        assert_eq!(status, StatusCode::OK, "{sorted}");
+        let mut expected = systems.clone();
+        expected.sort_by_key(|system| system["has_items"].as_bool().unwrap() != descending);
+        assert_eq!(sorted["crafting_systems"], serde_json::json!(expected));
+    }
+    let (status, _, malformed) = get_from(state, "/v1/crafting-systems?has_items=maybe").await;
+    assert_eq!(status, StatusCode::BAD_REQUEST, "{malformed}");
+}
+
+#[tokio::test]
+async fn item_crafting_filter_lists_only_systems_reaching_non_legacy_items() {
+    let state = AppState::open(authored_db_path()).unwrap();
+    let (status, _, all) = get_from(state.clone(), "/v1/crafting-systems?limit=10000").await;
+    assert_eq!(status, StatusCode::OK, "{all}");
+    let accepted = all["crafting_systems"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .filter(|system| system["item_count"].as_i64().unwrap() > 0)
+        .map(|system| system["slug"].as_str().unwrap())
+        .collect::<Vec<_>>()
+        .join(", ");
+    for slug in [
+        "trapmaking",
+        "thieves-tools-construction",
+        "deck-of-many-curses",
+        "reaper-forge",
+        "soulforge",
+        "handwraps-to-collar-conversion",
+        "rune-arm-reset",
+    ] {
+        let (status, _, rejected) = get_from(state.clone(), &format!("/v1/items?crafting_system={slug}")).await;
+        assert_eq!(status, StatusCode::BAD_REQUEST, "{slug}: {rejected}");
+        assert_eq!(rejected["error"], format!("unknown crafting_system {slug:?}; accepted values: {accepted}"));
+        let (status, _, augments) = get_from(state.clone(), &format!("/v1/augments?crafting_system={slug}")).await;
+        assert_eq!(status, StatusCode::OK, "{slug}: {augments}");
+    }
+}
+
+#[tokio::test]
+async fn item_crafting_filter_requires_non_legacy_items_for_every_address() {
+    let state = fixture_state_with_data_edits("legacy-only-crafting-system", |root| {
+        let path = root.join("packs/unsourced/gear/fried-sword-fish.toml");
+        let contents = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, format!("is_legacy = true\n{contents}\n[[source]]\nkind = \"crafting_system\"\nname = \"Deck of Many Curses\"\n")).unwrap();
+        std::fs::write(root.join("redirects.toml"), "[[redirect]]\nkind = \"crafting-systems\"\nfrom = \"former-deck\"\nto = \"deck-of-many-curses\"\nsince = \"2026-11-15\"\n").unwrap();
+    });
+    let (status, _, deck) = get_from(state.clone(), "/v1/crafting-systems/deck-of-many-curses").await;
+    assert_eq!(status, StatusCode::OK, "{deck}");
+    assert_eq!(deck["item_count"], 0);
+    let addresses = ["deck-of-many-curses".to_string(), "former-deck".to_string(), deck["id"].to_string()];
+    for address in addresses {
+        for prefix in ["", "crafting_system=thunder-forged&"] {
+            for tail in
+                ["", "&include_legacy=true", "&crafting_system=missing-system", "&crafting_system=thunder-forged"]
+            {
+                let (status, _, rejected) =
+                    get_from(state.clone(), &format!("/v1/items?{prefix}crafting_system={address}{tail}")).await;
+                assert_eq!(status, StatusCode::BAD_REQUEST, "{prefix}{address}{tail}: {rejected}");
+                assert!(
+                    rejected["error"]
+                        .as_str()
+                        .unwrap()
+                        .starts_with(&format!("unknown crafting_system {address:?}; accepted values: ")),
+                    "{rejected}"
+                );
+            }
+        }
+        let (status, _, accepted) = get_from(state.clone(), &format!("/v1/augments?crafting_system={address}")).await;
+        assert_eq!(status, StatusCode::OK, "{accepted}");
     }
 }
 
@@ -5876,8 +5992,8 @@ async fn item_pack_query_count_does_not_grow_with_rows_or_sources() {
         ("&pack=Free%20to%20Play&pack=Magic%20of%20Myth%20Drannor", 1),
         ("&slot=Ring", 1),
         ("&pack=Free%20to%20Play&category=Weapon", 2),
-        ("&quest=ghosts-of-perdition", 1),
-        ("&quest=ghosts-of-perdition&quest=book-burning", 2),
+        ("&quest=ghosts-of-perdition", 2),
+        ("&quest=ghosts-of-perdition&quest=book-burning", 3),
     ]
     .into_iter()
     .map(|(filter, validation_queries)| (filter.to_string(), validation_queries))
@@ -5886,7 +6002,7 @@ async fn item_pack_query_count_does_not_grow_with_rows_or_sources() {
         [("ghosts-of-perdition", 1), ("former-counted-quest", 2), (&quest_id.to_string(), 3)]
     {
         for repetitions in [1, 3] {
-            cases.push((format!("&quest={address}").repeat(repetitions), resolution_queries));
+            cases.push((format!("&quest={address}").repeat(repetitions), resolution_queries + 1));
         }
     }
     for (filter, validation_queries) in cases {
@@ -5897,7 +6013,7 @@ async fn item_pack_query_count_does_not_grow_with_rows_or_sources() {
             assert_eq!(
                 QUERY_COUNT.load(Ordering::SeqCst),
                 2 + validation_queries,
-                "two listing queries plus vocabulary checks or entity resolutions: {filter}, limit {limit}"
+                "two listing queries plus vocabulary membership and entity resolution: {filter}, limit {limit}"
             );
             assert!(page["total"].as_i64().unwrap() > 1);
             assert_eq!(

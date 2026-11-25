@@ -75,7 +75,12 @@ async fn served_values(router: &Router, vocabulary: &Value) -> BTreeSet<String> 
     let mut accepted = BTreeSet::new();
     let mut offset = 0;
     loop {
-        let (status, page) = response(router, path, &[("limit", "10000"), ("offset", &offset.to_string())]).await;
+        let offset_text = offset.to_string();
+        let mut parameters = vec![("limit", "10000"), ("offset", offset_text.as_str())];
+        if let Some(fixed) = vocabulary["parameters"].as_object() {
+            parameters.extend(fixed.iter().map(|(key, value)| (key.as_str(), value.as_str().unwrap())));
+        }
+        let (status, page) = response(router, path, &parameters).await;
         assert_eq!(status, StatusCode::OK, "{path}: {page}");
         let rows = page[rows_key].as_array().unwrap();
         let total = page["total"].as_u64().unwrap() as usize;
@@ -233,6 +238,22 @@ async fn every_vocabulary_filter_rejects_an_unknown_value_naming_its_accepted_va
                         findings.push(format!(
                             "{path}?{name}={accepted_value:?}: served value rejected with {status}: {page}"
                         ));
+                    }
+                }
+                if vocabulary.get("parameters").is_some() {
+                    let mut unfiltered = vocabulary.clone();
+                    unfiltered.as_object_mut().unwrap().remove("parameters");
+                    let unfiltered_values = served_values(&router, &unfiltered).await;
+                    for excluded in unfiltered_values.difference(&accepted) {
+                        let (status, rejected) = response(&router, path, &[(name, excluded)]).await;
+                        let expected = format!("unknown {name} {excluded:?}; accepted values: ");
+                        let reported_values =
+                            rejected["error"].as_str().and_then(|error| error.strip_prefix(&expected));
+                        if status != StatusCode::BAD_REQUEST
+                            || !reported_values.is_some_and(|listed| lists_every_value(listed, &accepted))
+                        {
+                            findings.push(format!("{path}?{name}={excluded:?}: excluded vocabulary value must return 400 with its accepted values, received {status}: {rejected}"));
+                        }
                     }
                 }
                 accepted.first().cloned()

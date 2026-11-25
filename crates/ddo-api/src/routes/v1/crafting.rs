@@ -2,11 +2,11 @@ use super::vocabularies::VocabularySource;
 use super::ValueVocabulary;
 use crate::db::{
     convert_to_booleans, effects_via_with_link_order, grouped_rows, json_row, json_rows, modifiers_for_owners,
-    paged_rows, sockets_by_id, sql_integer_list,
+    paged_rows_with_filter, sockets_by_id, sql_integer_list, WhereClause,
 };
 use crate::entity_slugs::EntityPath;
 use crate::error::ApiError;
-use crate::query::{declare_list_parameters, ApiQuery};
+use crate::query::{declare_list_parameters, declare_query_parameters, ApiQuery};
 use crate::state::AppState;
 use axum::extract::State;
 use axum::Json;
@@ -28,11 +28,12 @@ pub(super) fn crafting_systems_vocabulary() -> VocabularySource {
     VocabularySource::new(
         "slug",
         &["name"],
-        "SELECT s.id, s.slug, s.name, s.page, p.name AS pack,
+        "SELECT s.id, s.slug, s.name, s.page, p.name AS pack, facts.has_items,
                 (SELECT station.name || COALESCE(', ' || station.place,'')
                  FROM crafting_system_stations link JOIN crafting_stations station ON station.id=link.station_id
                  WHERE link.system_id=s.id ORDER BY link.sort_order LIMIT 1) AS npc
-             FROM crafting_systems s LEFT JOIN adventure_packs p ON p.id = s.pack_id",
+             FROM crafting_systems s JOIN crafting_system_item_facts facts ON facts.crafting_system_id = s.id
+             LEFT JOIN adventure_packs p ON p.id = s.pack_id",
     )
     .with_counted_listing(
         |vocabulary| {
@@ -204,11 +205,18 @@ const CRAFTING_SYSTEMS_SORT_FIELDS: &[(&str, &str)] = &[
     ("ingredient_count", "listed.ingredient_count"),
     ("recipe_count", "listed.recipe_count"),
     ("item_count", "listed.item_count"),
+    ("has_items", "listed.has_items"),
     ("npc", "npc"),
     ("page", "page"),
 ];
 
 declare_list_parameters!(CraftingSystemsParameters, CRAFTING_SYSTEMS_SORT_FIELDS, "");
+
+declare_query_parameters! {
+    struct CraftingSystemFilters {
+        has_items: Option<bool>,
+    }
+}
 
 #[utoipa::path(
     get,
@@ -218,25 +226,36 @@ declare_list_parameters!(CraftingSystemsParameters, CRAFTING_SYSTEMS_SORT_FIELDS
     description = "Lists crafting systems with their ingredient, recipe and non-legacy item counts.",
     params(
         CraftingSystemsParameters,
+        CraftingSystemFilters,
+        ("has_items" = Option<bool>, Query, description = "Whether the system makes or upgrades at least one non-legacy named item; omitted includes every system."),
     ),
     responses((status = 200, description = "`total`, `limit`, `offset` and the `crafting_systems` page", body = crate::routes::v1::response_schemas::CraftingSystemsPageResponse),
         (status = 400, description = "Invalid sort field or malformed query parameter", body = crate::error::ErrorBody))
 )]
 async fn crafting_systems(
     State(state): State<AppState>,
-    ApiQuery(query, _): ApiQuery,
+    ApiQuery(query, filters): ApiQuery<CraftingSystemFilters>,
 ) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
-            let mut page = paged_rows(
+            let filters = filters.validated(db)?;
+            let mut where_clause = WhereClause::default();
+            if let Some(has_items) = filters.has_items {
+                where_clause.add_bound_condition("listed.has_items = ?", has_items);
+            }
+            let mut page = paged_rows_with_filter(
                 db,
                 ValueVocabulary::CraftingSystems.select_sql(),
                 &query,
                 "listed.name",
                 ValueVocabulary::CraftingSystems.default_order(),
                 CRAFTING_SYSTEMS_SORT_FIELDS,
+                where_clause,
             )?;
             attach_augment_families(db, &mut page.rows)?;
+            for row in &mut page.rows {
+                convert_to_booleans(row, &["has_items"]);
+            }
             Ok(Json(page.into_json("crafting_systems")))
         })
         .await
@@ -264,6 +283,7 @@ async fn crafting_system_detail(
             let mut crafting_system =
                 json_row(db, &format!("SELECT * FROM ({}) listed WHERE listed.id = ?1", ValueVocabulary::CraftingSystems.select_sql()), [id])?;
             attach_augment_families(db, std::slice::from_mut(&mut crafting_system))?;
+            convert_to_booleans(&mut crafting_system, &["has_items"]);
             crafting_system["ingredients"] = Value::Array(json_rows(
                 db,
                 &format!("{ingredient_uses} SELECT id, name, tier, bind, source FROM crafting_ingredients WHERE id IN (SELECT ingredient_id FROM ingredient_uses WHERE system_id = ?1) ORDER BY name"),

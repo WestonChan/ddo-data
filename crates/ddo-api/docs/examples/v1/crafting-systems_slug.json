@@ -3,6 +3,7 @@
     "Slavelords_Heroic",
     "Slavelords_Legendary"
   ],
+  "has_items": true,
   "id": 2218020696701597,
   "ingredient_count": 16,
   "ingredients": [
@@ -31,7 +32,7 @@
       "tier": "heroic"
     }
   ],
-  "item_count": 0,
+  "item_count": 27,
   "name": "Slave Lords Crafting",
   "npc": "Garvon, Forsaken Temple, just inside the entrance of the quest Slave Pits of the Undercity (Part 1), safely before any challenging encounter",
   "pack": "Against the Slave Lords",

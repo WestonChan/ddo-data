@@ -1538,6 +1538,12 @@ UNION
 SELECT step.system_id, socket.item_id
 FROM crafting_steps step JOIN item_augment_slots socket ON socket.slot_id = step.slot_id;
 
+CREATE VIEW IF NOT EXISTS crafting_system_item_facts AS
+SELECT id AS crafting_system_id,
+    id IN (SELECT reach.crafting_system_id FROM crafting_system_items reach
+           JOIN items item ON item.id = reach.item_id WHERE NOT item.is_legacy) AS has_items
+FROM crafting_systems;
+
 CREATE TABLE IF NOT EXISTS crafting_step_effects (
     step_id INTEGER NOT NULL REFERENCES crafting_steps(id) ON DELETE CASCADE,
     alias TEXT,

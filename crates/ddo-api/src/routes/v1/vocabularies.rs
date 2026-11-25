@@ -65,7 +65,7 @@ impl VocabularySource {
 }
 
 macro_rules! declare_value_vocabularies {
-    ($visibility:vis enum $name:ident { $($variant:ident => $source:path),* $(,)? }) => {
+    ($visibility:vis enum $name:ident { $($variant:ident => $source:path $(; $filter:ident = $value:literal)?),* $(,)? }) => {
         #[derive(Clone, Copy, Debug)]
         $visibility enum $name {
             $($variant),*
@@ -83,7 +83,7 @@ macro_rules! declare_value_vocabularies {
                 match self {
                     $(Self::$variant => {
                         static QUERIES: LazyLock<VocabularyQueries> =
-                            LazyLock::new(|| VocabularyQueries::new(&$source()));
+                            LazyLock::new(|| VocabularyQueries::new(&$source(), &[$((stringify!($filter), $value))?]));
                         &QUERIES
                     }),*
                 }
@@ -100,6 +100,7 @@ declare_value_vocabularies! {
         AugmentSlotFamilies => super::items::augment_slot_families_vocabulary,
         AugmentFamilies => super::augments::augment_families_vocabulary,
         CraftingSystems => super::crafting::crafting_systems_vocabulary,
+        ItemCraftingSystems => super::crafting::crafting_systems_vocabulary; has_items = true,
         EquipmentSlots => super::items::equipment_slots_vocabulary,
         ItemCategories => super::items::item_categories_vocabulary,
         AdventurePacks => super::quests::adventure_packs_vocabulary,
@@ -139,6 +140,14 @@ impl ValueVocabulary {
         self.queries().entity_kind
     }
 
+    pub(crate) fn first_unknown_value_index(
+        &self,
+        db: &Connection,
+        values: &[String],
+    ) -> Result<Option<usize>, ApiError> {
+        self.queries().first_unknown_value_index(db, values)
+    }
+
     pub(crate) fn unknown_value_error(&self, db: &Connection, parameter: &str, value: &str) -> ApiError {
         self.queries().unknown_value_error(db, parameter, value)
     }
@@ -153,6 +162,15 @@ impl ValueVocabulary {
             extension["route"] = route.into();
             extension["rows_key"] = rows_key.into();
             extension["value_key"] = value_key.into();
+            if !self.queries().fixed_boolean_filters.is_empty() {
+                extension["parameters"] = self
+                    .queries()
+                    .fixed_boolean_filters
+                    .iter()
+                    .map(|(column, value)| ((*column).to_string(), serde_json::Value::String(value.to_string())))
+                    .collect::<serde_json::Map<_, _>>()
+                    .into();
+            }
         }
         extension
     }
@@ -164,15 +182,20 @@ struct VocabularyQueries {
     membership_sql: [String; 2],
     default_order: String,
     served_by: Option<(&'static str, &'static str, &'static str)>,
+    fixed_boolean_filters: &'static [(&'static str, bool)],
     entity_kind: Option<EntityKind>,
     is_case_insensitive: bool,
 }
 
 impl VocabularyQueries {
-    fn new(source: &VocabularySource) -> Self {
+    fn new(source: &VocabularySource, fixed_boolean_filters: &'static [(&'static str, bool)]) -> Self {
         let vocabulary_alias = "vocabulary";
         let listed_alias = "listed";
-        let values_sql = &source.values_sql;
+        let mut values_sql = source.values_sql.clone();
+        for (column, value) in fixed_boolean_filters {
+            values_sql =
+                format!("SELECT * FROM ({values_sql}) filtered WHERE filtered.{column} = {}", i32::from(*value));
+        }
         let value_column = source.value_column;
         let (list_columns, count_joins) = source.counted_listing.as_ref().map_or_else(
             || (format!("{vocabulary_alias}.*"), String::new()),
@@ -193,22 +216,30 @@ impl VocabularyQueries {
             membership_sql,
             default_order,
             served_by: source.served_by.map(|(route, rows_key)| (route, rows_key, source.value_column)),
+            fixed_boolean_filters,
             entity_kind: source.entity_kind,
             is_case_insensitive: source.is_case_insensitive,
         }
     }
 
     fn reject_unknown_values(&self, db: &Connection, parameter: &str, values: &[String]) -> Result<(), ApiError> {
-        if values.is_empty() {
-            return Ok(());
+        if let Some(index) = self.first_unknown_value_index(db, values)? {
+            return Err(self.unknown_value_error(db, parameter, &values[index]));
         }
-        if let [value] = values {
-            return self.reject_unknown_value(db, parameter, value);
+        Ok(())
+    }
+
+    fn first_unknown_value_index(&self, db: &Connection, values: &[String]) -> Result<Option<usize>, ApiError> {
+        if values.is_empty() {
+            return Ok(None);
         }
         let normalized = values.iter().map(|value| self.case_normalized_value(value)).collect::<Vec<_>>();
         let distinct = normalized.iter().collect::<std::collections::BTreeSet<_>>();
         if distinct.len() == 1 {
-            return self.reject_unknown_value(db, parameter, &values[0]);
+            let is_accepted = db
+                .prepare_cached(&self.membership_sql[0])?
+                .query_row(rusqlite::params![normalized[0].as_ref(), 1], |row| row.get::<_, bool>(0))?;
+            return Ok((!is_accepted).then_some(0));
         }
         let mut statement = db.prepare_cached(&self.membership_sql[1])?;
         let matched = statement
@@ -220,10 +251,7 @@ impl VocabularyQueries {
                 |row| row.get::<_, String>(0),
             )?
             .collect::<rusqlite::Result<Vec<_>>>()?;
-        if let Some(index) = normalized.iter().position(|value| !matched.iter().any(|name| name == value.as_ref())) {
-            return Err(self.unknown_value_error(db, parameter, &values[index]));
-        }
-        Ok(())
+        Ok(normalized.iter().position(|value| !matched.iter().any(|name| name == value.as_ref())))
     }
 
     fn case_normalized_value<'value>(&self, value: &'value str) -> std::borrow::Cow<'value, str> {
@@ -231,18 +259,6 @@ impl VocabularyQueries {
             std::borrow::Cow::Borrowed(value)
         } else {
             std::borrow::Cow::Owned(value.to_lowercase())
-        }
-    }
-
-    fn reject_unknown_value(&self, db: &Connection, parameter: &str, value: &str) -> Result<(), ApiError> {
-        let normalized = self.case_normalized_value(value);
-        let is_accepted = db
-            .prepare_cached(&self.membership_sql[0])?
-            .query_row(rusqlite::params![normalized.as_ref(), 1], |row| row.get::<_, bool>(0))?;
-        if is_accepted {
-            Ok(())
-        } else {
-            Err(self.unknown_value_error(db, parameter, value))
         }
     }
 
@@ -405,7 +421,7 @@ mod vocabulary_tests {
     fn static_vocabularies_preserve_quoted_names_and_allow_empty_lists() {
         let db = rusqlite::Connection::open_in_memory().unwrap();
         for names in [vec!["O'Brien", "Another"], vec![]] {
-            let vocabulary = VocabularyQueries::new(&VocabularySource::of_names(names.iter().copied()));
+            let vocabulary = VocabularyQueries::new(&VocabularySource::of_names(names.iter().copied()), &[]);
             for name in &names {
                 vocabulary.reject_unknown_values(&db, "name", &[name.to_string()]).unwrap();
             }
@@ -424,7 +440,8 @@ mod vocabulary_tests {
             "CREATE TABLE names (name TEXT COLLATE NOCASE); INSERT INTO names VALUES ('Alpha'), ('alpha')",
         )
         .unwrap();
-        let vocabulary = VocabularyQueries::new(&VocabularySource::new("name", &["name"], "SELECT name FROM names"));
+        let vocabulary =
+            VocabularyQueries::new(&VocabularySource::new("name", &["name"], "SELECT name FROM names"), &[]);
         for values in [vec!["Alpha".into()], vec!["alpha".into()], vec!["Alpha".into(), "alpha".into()]] {
             vocabulary.reject_unknown_values(&db, "probe", &values).unwrap();
         }

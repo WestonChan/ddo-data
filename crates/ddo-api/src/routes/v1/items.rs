@@ -89,7 +89,7 @@ declare_query_parameters! {
         damage_ability => WeaponAbilities, "Repeat exact names from /v1/weapon-abilities to match a weapon's damage abilities; omitted applies no filter.",
         material => ItemMaterials, "Repeat names from /v1/item-materials to match any material; omitted applies no filter.",
         socket => AugmentSlotTypes, "Repeat case-insensitive labels from /v1/augment-slot-types to match item sockets; omitted applies no filter.",
-        crafting_system => CraftingSystems, "Repeat current or redirected slugs or numeric ids from /v1/crafting-systems to match items made or upgraded; omitted applies no filter.",
+        crafting_system => ItemCraftingSystems, "Repeat current or redirected slugs or numeric ids from /v1/crafting-systems?has_items=true to match items made or upgraded; omitted applies no filter.",
         pack => AdventurePacks, "Repeat names from /v1/adventure-packs reached through item sources; omitted applies no filter.",
         set => Sets, "Repeat set names from /v1/sets to match member items; omitted applies no filter.",
         quest => Quests, "Repeat current or redirected slugs or numeric ids from /v1/quests to match their item drops; omitted applies no filter.",

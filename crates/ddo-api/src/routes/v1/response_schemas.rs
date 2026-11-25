@@ -747,6 +747,7 @@ pub(crate) struct CraftingSystemsPageResponseCraftingSystemsEntry {
     pub(crate) families: Vec<String>,
     pub(crate) ingredient_count: i64,
     pub(crate) item_count: i64,
+    pub(crate) has_items: bool,
     pub(crate) name: String,
     #[schema(schema_with = schema_crafting_npc)]
     pub(crate) npc: Option<String>,
@@ -810,6 +811,7 @@ pub(crate) struct CraftingSystemsDetailResponse {
     pub(crate) ingredient_count: i64,
     pub(crate) ingredients: Vec<CraftingSystemsDetailResponseIngredientsEntry>,
     pub(crate) item_count: i64,
+    pub(crate) has_items: bool,
     pub(crate) name: String,
     #[schema(schema_with = schema_crafting_npc)]
     pub(crate) npc: Option<String>,

@@ -9,7 +9,7 @@
     "crafting_ingredients": 434,
     "crafting_recipes": 3693,
     "crafting_stations": 97,
-    "crafting_steps": 242,
+    "crafting_steps": 240,
     "crafting_system_sources": 1854,
     "crafting_systems": 53,
     "effect_bonuses": 711,
@@ -25,7 +25,7 @@
     "item_effects": 28576,
     "items": 8729,
     "legacy_items": 686,
-    "modifiers": 15033,
+    "modifiers": 15036,
     "optional_buffs": 138,
     "pack_augment_loot": 0,
     "pack_loot": 478,
@@ -42,7 +42,7 @@
     "set_bonus_tier_effects": 990,
     "set_bonuses": 328,
     "socket_option_effects": 891,
-    "socket_option_sets": 521,
+    "socket_option_sets": 524,
     "sources": 9495,
     "spells": 706,
     "starter_items": 174,
@@ -53,8 +53,8 @@
     "wiki_quests": 4
   },
   "dataset": {
-    "built_at": "2026-11-15T13:37:33Z",
+    "built_at": "2026-11-25T20:37:13Z",
     "upstream_sha": "d1350a0c6ec396a65dc02680fa9801a14a79ebf3"
   },
-  "schema_version": 50
+  "schema_version": 51
 }

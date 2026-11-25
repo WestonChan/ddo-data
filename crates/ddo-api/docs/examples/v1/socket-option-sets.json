@@ -10,10 +10,10 @@
       "variant": null
     },
     {
-      "id": 6696183991990116,
-      "label": "upgrade: tier 2",
+      "id": 272145648544535,
+      "label": "upgrade: tier 2 (toee)",
       "name": "+3 Combustion Scorched Bastard Sword",
-      "slug": "upgrade-tier-2-3-combustion-scorched-bastard-sword",
+      "slug": "upgrade-tier-2-toee-3-combustion-scorched-bastard-sword",
       "variant": null
     },
     {
@@ -24,5 +24,5 @@
       "variant": null
     }
   ],
-  "total": 521
+  "total": 524
 }
