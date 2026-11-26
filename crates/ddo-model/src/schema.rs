@@ -1548,9 +1548,14 @@ WITH evidence AS (
                JOIN items item ON item.id = reach.item_id WHERE NOT item.is_legacy) AS has_items,
         id IN (SELECT crafting_system_id FROM crafting_system_items) AS modeled_has_item_output,
         id IN (SELECT system_id FROM ({upgraded_items})
-               UNION SELECT recipe.system_id FROM crafting_recipe_effective_costs cost
+               UNION SELECT recipe.system_id FROM crafting_recipe_ingredients cost
                JOIN crafting_recipes recipe ON recipe.id = cost.recipe_id
-               WHERE cost.item_id IS NOT NULL) AS modeled_has_item_input
+               LEFT JOIN crafting_ingredients ingredient ON ingredient.id = cost.ingredient_id
+               WHERE cost.item_id IS NOT NULL OR ingredient.is_item_placeholder
+               UNION SELECT step.system_id FROM crafting_step_costs cost
+               JOIN crafting_steps step ON step.id = cost.step_id
+               LEFT JOIN crafting_ingredients ingredient ON ingredient.id = cost.ingredient_id
+               WHERE cost.item_id IS NOT NULL OR ingredient.is_item_placeholder) AS modeled_has_item_input
     FROM crafting_systems
 )
 SELECT evidence.*,

@@ -4366,8 +4366,8 @@ async fn crafting_item_facts_state_generic_systems_and_derive_named_systems() {
 }
 
 #[tokio::test]
-async fn crafting_item_input_uses_the_recipes_effective_step_costs() {
-    for (tier, expected) in [(None, false), (Some("any"), true), (Some("heroic"), true), (Some("epic"), false)] {
+async fn crafting_item_input_reads_every_step_cost() {
+    for (tier, expected) in [(None, false), (Some("any"), true), (Some("heroic"), true), (Some("epic"), true)] {
         let state = fixture_state_with_data_edits(&format!("item-input-{tier:?}"), |root| {
             let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
             let contents = std::fs::read_to_string(&path)
@@ -4383,6 +4383,74 @@ async fn crafting_item_input_uses_the_recipes_effective_step_costs() {
         assert_eq!(system["has_item_input"], expected, "{tier:?}: {system}");
         assert_eq!(system["has_item_output"], true);
         assert_eq!(system["can_apply_to_any_item"], false);
+    }
+}
+
+#[tokio::test]
+async fn crafting_item_input_counts_marked_recipe_and_step_ingredients() {
+    for cost_owner in ["recipe", "step", "step without recipes"] {
+        for is_item_placeholder in [true, false] {
+            let state =
+                fixture_state_with_data_edits(&format!("placeholder-{cost_owner}-{is_item_placeholder}"), |root| {
+                    let path = root.join("packs/shared/crafting/catalyst-crafting/crafting.toml");
+                    let mut contents = std::fs::read_to_string(&path)
+                        .unwrap()
+                        .replace("[[recipe.ingredient]]\nitem = \"Acrobat's Ring\"\nquantity = 1\n", "");
+                    if cost_owner != "recipe" {
+                        contents =
+                            contents.replace("[[recipe.ingredient]]\ningredient = \"Abyssal Gem\"\nquantity = 1\n", "");
+                        let step = if cost_owner == "step without recipes" {
+                            "[[step]]\nname='Unused base input'\n"
+                        } else {
+                            ""
+                        };
+                        contents = contents.replace(
+                            "[[citation]]",
+                            &format!(
+                                "{step}[[step.cost]]\ntier='any'\ningredient='Abyssal Gem'\nquantity=1\n\n[[citation]]"
+                            ),
+                        );
+                    }
+                    std::fs::write(path, contents).unwrap();
+                    if is_item_placeholder {
+                        let path = root.join("packs/shared/crafting/catalyst-crafting/ingredients/abyssal-gem.toml");
+                        let contents = std::fs::read_to_string(&path).unwrap();
+                        std::fs::write(path, format!("is_item_placeholder = true\n{contents}")).unwrap();
+                    }
+                });
+            let db = rusqlite::Connection::open(state.db_path()).unwrap();
+            let mut consumers = db.prepare("SELECT system.slug FROM crafting_systems system WHERE system.id IN (
+                SELECT recipe.system_id FROM crafting_recipe_ingredients cost
+                JOIN crafting_recipes recipe ON recipe.id=cost.recipe_id
+                JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id WHERE ingredient.is_item_placeholder
+                UNION SELECT step.system_id FROM crafting_step_costs cost
+                JOIN crafting_steps step ON step.id=cost.step_id
+                JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id WHERE ingredient.is_item_placeholder
+            ) ORDER BY system.slug").unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<Result<Vec<_>, _>>().unwrap();
+            if is_item_placeholder {
+                assert!(consumers.iter().any(|slug| slug == "catalyst-crafting"), "{cost_owner}");
+            } else {
+                assert!(consumers.is_empty(), "{cost_owner}: {consumers:?}");
+                consumers.push("catalyst-crafting".into());
+            }
+            let (status, _, listing) = get_from(state.clone(), "/v1/crafting-systems?limit=10000").await;
+            assert_eq!(status, StatusCode::OK, "{listing}");
+            for slug in consumers {
+                let row =
+                    listing["crafting_systems"].as_array().unwrap().iter().find(|row| row["slug"] == slug).unwrap();
+                let (status, _, detail) = get_from(state.clone(), &format!("/v1/crafting-systems/{slug}")).await;
+                assert_eq!(status, StatusCode::OK, "{detail}");
+                for system in [row, &detail] {
+                    assert_eq!(
+                        system["has_item_input"], is_item_placeholder,
+                        "{cost_owner}, is_item_placeholder={is_item_placeholder}: {system}"
+                    );
+                    assert_eq!(system["has_items"], true);
+                    assert_eq!(system["has_item_output"], true);
+                    assert_eq!(system["can_apply_to_any_item"], false);
+                }
+            }
+        }
     }
 }
 

@@ -2543,9 +2543,49 @@ fn injected_violations() -> Vec<InjectedViolation> {
         "UPDATE effects SET verbose_name_template = '%b1 Echo echo +{1}' WHERE name = 'Command'",
         "Command",
     ));
+    let item_facts_without_placeholders = r#"
+        DROP VIEW crafting_system_item_facts;
+        CREATE VIEW crafting_system_item_facts AS
+        WITH evidence AS (
+            SELECT id AS crafting_system_id,
+                id IN (SELECT reach.crafting_system_id FROM crafting_system_items reach
+                       JOIN items item ON item.id = reach.item_id WHERE NOT item.is_legacy) AS has_items,
+                id IN (SELECT crafting_system_id FROM crafting_system_items) AS modeled_has_item_output,
+                id IN (SELECT system_id FROM (SELECT step.system_id, socket.item_id FROM crafting_steps step JOIN item_augment_slots socket ON socket.slot_id = step.slot_id)
+                       UNION SELECT recipe.system_id FROM crafting_recipe_effective_costs cost
+                       JOIN crafting_recipes recipe ON recipe.id = cost.recipe_id
+                       WHERE cost.item_id IS NOT NULL) AS modeled_has_item_input
+            FROM crafting_systems
+        )
+        SELECT evidence.*,
+            CASE WHEN evidence.has_items THEN evidence.modeled_has_item_input
+                 ELSE COALESCE(system.has_item_input, evidence.modeled_has_item_input) END AS has_item_input,
+            CASE WHEN evidence.has_items THEN 1
+                 ELSE COALESCE(system.has_item_output, evidence.modeled_has_item_output) END AS has_item_output,
+            CASE WHEN evidence.has_items THEN 0
+                 ELSE COALESCE(system.can_apply_to_any_item, 0) END AS can_apply_to_any_item
+        FROM evidence JOIN crafting_systems system ON system.id = evidence.crafting_system_id;
+    "#;
+    for (uses_authored_data, injected_sql, offender_name) in [
+        (true, "UPDATE crafting_ingredients SET is_item_placeholder=1 WHERE slug='heroic-base-item';", "Epic Crafting"),
+        (false, "DELETE FROM crafting_recipe_ingredients WHERE recipe_id IN (SELECT recipe.id FROM crafting_recipes recipe JOIN crafting_systems system ON system.id=recipe.system_id WHERE system.slug='catalyst-crafting');
+            INSERT INTO crafting_step_costs (step_id,tier,sort_order,ingredient_id,quantity)
+            SELECT step.id,'any',0,ingredient.id,1 FROM crafting_steps step JOIN crafting_systems system ON system.id=step.system_id CROSS JOIN crafting_ingredients ingredient
+            WHERE system.slug='catalyst-crafting' AND ingredient.slug='abyssal-gem';
+            UPDATE crafting_ingredients SET is_item_placeholder=1 WHERE slug='abyssal-gem';", "Catalyst Crafting"),
+    ] {
+        let mut injected = violation(
+            "crafting_systems_consuming_item_placeholders_have_item_input",
+            &format!("{item_facts_without_placeholders}\n{injected_sql}"),
+            offender_name,
+        );
+        injected.uses_authored_data = uses_authored_data;
+        violations.push(injected);
+    }
     for (injected_sql, offender_name) in [
         ("UPDATE crafting_systems SET has_item_input=NULL,has_item_output=NULL,can_apply_to_any_item=NULL WHERE slug='trapmaking'", "Trapmaking"),
         ("UPDATE crafting_systems SET has_item_input=0 WHERE slug='soulforge'", "Soulforge"),
+        ("UPDATE crafting_ingredients SET is_item_placeholder=1 WHERE slug='crude-vial'", "Trapmaking"),
     ] {
         let mut injected = violation("crafting_systems_derive_or_state_item_facts", injected_sql, offender_name);
         injected.uses_authored_data = true;

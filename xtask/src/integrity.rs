@@ -330,6 +330,22 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
             ORDER BY system.name"),
     ).showing_every_offender(),
     IntegrityCheck::hard(
+        "crafting_systems_consuming_item_placeholders_have_item_input",
+        "a system consuming an equipment placeholder reports item input",
+        OffenderQuery::Sql("SELECT system.name,system.id,'consumes an item placeholder but reports no item input'
+            FROM crafting_systems system JOIN crafting_system_item_facts facts ON facts.crafting_system_id=system.id
+            WHERE NOT facts.has_item_input AND system.id IN (
+                SELECT recipe.system_id FROM crafting_recipe_ingredients cost
+                JOIN crafting_recipes recipe ON recipe.id=cost.recipe_id
+                JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id
+                WHERE ingredient.is_item_placeholder
+                UNION SELECT step.system_id FROM crafting_step_costs cost
+                JOIN crafting_steps step ON step.id=cost.step_id
+                JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id
+                WHERE ingredient.is_item_placeholder
+            ) ORDER BY system.name"),
+    ).showing_every_offender(),
+    IntegrityCheck::hard(
         "socket_labels_fill_one_way",
         "a non-colour label is filled by augments or fixed option sets, never both",
         OffenderQuery::Sql("SELECT t.label,t.id,'both augments and fixed options' FROM augment_slot_types t WHERE t.family<>'standard' AND EXISTS (SELECT 1 FROM augment_slots a WHERE a.slot_id=t.id) AND EXISTS (SELECT 1 FROM socket_option_sets s WHERE s.slot_id=t.id) ORDER BY t.label"),
