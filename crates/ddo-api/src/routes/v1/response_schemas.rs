@@ -740,6 +740,16 @@ fn schema_crafting_npc() -> RefOr<Schema> {
         .into()
 }
 
+fn schema_crafting_item_count() -> RefOr<Schema> {
+    described_schema::<i64>("Non-legacy items this system makes or upgrades in place.")
+}
+
+fn schema_has_items() -> RefOr<Schema> {
+    described_schema::<bool>(
+        "Whether this system makes or upgrades at least one non-legacy item; only these systems are accepted by /v1/items?crafting_system=.",
+    )
+}
+
 fn schema_has_item_input() -> RefOr<Schema> {
     described_schema::<bool>("Whether an item goes into this system, including an item upgraded in place.")
 }
@@ -758,7 +768,9 @@ pub(crate) struct CraftingSystemsPageResponseCraftingSystemsEntry {
     pub(crate) slug: String,
     pub(crate) families: Vec<String>,
     pub(crate) ingredient_count: i64,
+    #[schema(schema_with = schema_crafting_item_count)]
     pub(crate) item_count: i64,
+    #[schema(schema_with = schema_has_items)]
     pub(crate) has_items: bool,
     #[schema(schema_with = schema_has_item_input)]
     pub(crate) has_item_input: bool,
@@ -828,7 +840,9 @@ pub(crate) struct CraftingSystemsDetailResponse {
     pub(crate) families: Vec<String>,
     pub(crate) ingredient_count: i64,
     pub(crate) ingredients: Vec<CraftingSystemsDetailResponseIngredientsEntry>,
+    #[schema(schema_with = schema_crafting_item_count)]
     pub(crate) item_count: i64,
+    #[schema(schema_with = schema_has_items)]
     pub(crate) has_items: bool,
     #[schema(schema_with = schema_has_item_input)]
     pub(crate) has_item_input: bool,

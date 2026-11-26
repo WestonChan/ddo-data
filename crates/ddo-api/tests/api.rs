@@ -4893,6 +4893,26 @@ async fn socket_option_augment_and_recipe_grants_serve_every_socket_through_one_
 }
 
 #[tokio::test]
+async fn crafting_item_reach_descriptions_agree_on_rows_and_details() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    for (field, description) in [
+        ("item_count", "Non-legacy items this system makes or upgrades in place."),
+        (
+            "has_items",
+            "Whether this system makes or upgrades at least one non-legacy item; only these systems are accepted by /v1/items?crafting_system=.",
+        ),
+    ] {
+        for name in ["CraftingSystemsPageResponseCraftingSystemsEntry", "CraftingSystemsDetailResponse"] {
+            assert_eq!(
+                spec["components"]["schemas"][name]["properties"][field]["description"],
+                description,
+                "{name}.{field}"
+            );
+        }
+    }
+}
+
+#[tokio::test]
 async fn crafting_npc_is_derived_and_deprecated_in_both_schemas() {
     let (_, _, spec) = get("/v1/openapi.json").await;
     for name in ["CraftingSystemsPageResponseCraftingSystemsEntry", "CraftingSystemsDetailResponse"] {
