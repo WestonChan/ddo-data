@@ -1,4 +1,5 @@
 name = "Any Attuned Jewelry"
 tier = "any"
+is_item_placeholder = true
 drop_location = "Goggles, necklace, ring, bracers or trinket"
 citation = []

@@ -1,4 +1,5 @@
 name = "Epic item"
 tier = "legendary"
+is_item_placeholder = true
 drop_location = "The ML 20 Epic version from Epic Crafting"
 citation = []

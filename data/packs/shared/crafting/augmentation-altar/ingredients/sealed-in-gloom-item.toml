@@ -1,4 +1,5 @@
 name = "Sealed in Gloom item"
 tier = "legendary"
+is_item_placeholder = true
 drop_location = "Den of Vipers raid equipment"
 citation = []

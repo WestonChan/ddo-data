@@ -1,4 +1,5 @@
 name = "Epic Torc of Prince Raiyum-de II / Legendary Torc of Prince Raiyum-de II"
 tier = "legendary"
+is_item_placeholder = true
 drop_location = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
 citation = []

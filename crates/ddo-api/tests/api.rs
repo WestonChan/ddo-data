@@ -4350,7 +4350,11 @@ async fn crafting_item_facts_state_generic_systems_and_derive_named_systems() {
         ("thieves-tools-construction", [false, true, false, true]),
         ("soulforge", [false, true, false, false]),
         ("nearly-finished", [true, true, true, false]),
-        ("epic-crafting", [true, false, true, false]),
+        ("dampened", [true, true, true, false]),
+        ("epic-crafting", [true, true, true, false]),
+        ("legendary-crafting", [true, true, true, false]),
+        ("nebula-fragment-crafting", [true, true, true, false]),
+        ("stone-of-change", [true, true, true, false]),
         ("catalyst-crafting", [true, true, true, false]),
     ] {
         let row = listing["crafting_systems"].as_array().unwrap().iter().find(|row| row["slug"] == slug).unwrap();

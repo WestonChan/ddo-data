@@ -1,4 +1,5 @@
 name = "Sealed in Fire weapon"
 tier = "legendary"
+is_item_placeholder = true
 drop_location = "Weaponry of the Undying Age or Threats Old and New raid weapons"
 citation = []

@@ -1,4 +1,5 @@
 name = "Legendary base item"
 tier = "legendary"
+is_item_placeholder = true
 drop_location = "The Legendary Crafting version of the item"
 citation = []

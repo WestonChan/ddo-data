@@ -1,4 +1,5 @@
 name = "Epic Demon Scale Armor / Legendary Demon Scale Armor"
 tier = "legendary"
+is_item_placeholder = true
 drop_location = "The named base item; a heroic version for the heroic recipe, an Epic or Legendary version for the legendary one"
 citation = []

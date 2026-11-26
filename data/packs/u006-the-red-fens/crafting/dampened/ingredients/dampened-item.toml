@@ -1,4 +1,5 @@
 name = "Dampened Item"
 tier = "heroic"
+is_item_placeholder = true
 drop_location = "End chests of The Red Fens quests, more often on higher difficulties; The Last Stand drops none. ML 5 to 7, binding varies"
 citation = []

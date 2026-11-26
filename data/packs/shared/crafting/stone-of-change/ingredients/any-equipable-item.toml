@@ -1,3 +1,4 @@
 name = "Any Equipable Item"
 tier = "any"
+is_item_placeholder = true
 citation = []

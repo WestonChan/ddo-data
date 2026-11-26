@@ -1,3 +1,4 @@
 name = "Any Attuned Armor"
 tier = "any"
+is_item_placeholder = true
 citation = []

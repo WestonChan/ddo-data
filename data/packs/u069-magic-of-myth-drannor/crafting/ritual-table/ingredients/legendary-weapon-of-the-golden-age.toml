@@ -1,4 +1,5 @@
 name = "Legendary Weapon of the Golden Age"
 tier = "legendary"
+is_item_placeholder = true
 drop_location = "The Legendary Golden Age weapon matching the Undying Age weapon"
 citation = []

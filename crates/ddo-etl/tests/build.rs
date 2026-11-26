@@ -55,6 +55,53 @@ fn crafting_item_statements_preserve_false_true_and_absence_through_export() {
 }
 
 #[test]
+fn authored_item_placeholders_account_for_equipment_inputs() {
+    let mut db = Connection::open_in_memory().unwrap();
+    ddo_etl::tree::build_from_data(&PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../data"), &mut db).unwrap();
+    for slug in ["dampened", "epic-crafting", "legendary-crafting", "nebula-fragment-crafting", "stone-of-change"] {
+        let has_item_input: bool = db.query_row(
+            "SELECT facts.has_item_input FROM crafting_system_item_facts facts JOIN crafting_systems system ON system.id=facts.crafting_system_id WHERE system.slug=?1",
+            [slug], |row| row.get(0),
+        ).unwrap();
+        assert!(has_item_input, "{slug} consumes equipment through a placeholder ingredient");
+    }
+    assert!(!db.query_row(
+        "SELECT facts.can_apply_to_any_item FROM crafting_system_item_facts facts JOIN crafting_systems system ON system.id=facts.crafting_system_id WHERE system.slug='stone-of-change'",
+        [], |row| row.get::<_, bool>(0),
+    ).unwrap());
+    let placeholder_count: i64 = db
+        .query_row("SELECT COUNT(*) FROM crafting_ingredients WHERE is_item_placeholder", [], |row| row.get(0))
+        .unwrap();
+    assert!(placeholder_count > 0);
+    let unconsumed_placeholders = db
+        .prepare(
+            "SELECT ingredient.slug FROM crafting_ingredients ingredient
+        WHERE ingredient.is_item_placeholder
+          AND NOT EXISTS (SELECT 1 FROM crafting_recipe_ingredients cost WHERE cost.ingredient_id=ingredient.id)
+          AND NOT EXISTS (SELECT 1 FROM crafting_step_costs cost WHERE cost.ingredient_id=ingredient.id)
+        ORDER BY ingredient.slug",
+        )
+        .unwrap()
+        .query_map([], |row| row.get::<_, String>(0))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert!(unconsumed_placeholders.is_empty(), "marked ingredients without costs: {unconsumed_placeholders:?}");
+    let consumers_without_item_input = db.prepare("SELECT system.slug FROM crafting_systems system
+        JOIN crafting_system_item_facts facts ON facts.crafting_system_id=system.id
+        WHERE NOT facts.has_item_input AND system.id IN (
+            SELECT recipe.system_id FROM crafting_recipe_ingredients cost JOIN crafting_recipes recipe ON recipe.id=cost.recipe_id
+            JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id WHERE ingredient.is_item_placeholder
+            UNION SELECT step.system_id FROM crafting_step_costs cost JOIN crafting_steps step ON step.id=cost.step_id
+            JOIN crafting_ingredients ingredient ON ingredient.id=cost.ingredient_id WHERE ingredient.is_item_placeholder
+        ) ORDER BY system.slug").unwrap().query_map([], |row| row.get::<_, String>(0)).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert!(
+        consumers_without_item_input.is_empty(),
+        "placeholder consumers without item input: {consumers_without_item_input:?}"
+    );
+}
+
+#[test]
 fn crafting_step_stat_groups_keep_their_authored_description_in_the_xml_build() {
     let (db, _) = built_fixture_db();
     let description: Option<String> =
