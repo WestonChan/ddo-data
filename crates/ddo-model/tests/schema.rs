@@ -285,6 +285,29 @@ fn ingredient_names_and_variants_are_unique_without_an_owner() {
 }
 
 #[test]
+fn crafting_ingredient_item_placeholders_are_false_by_default_and_require_a_boolean() {
+    let db = fresh_db();
+    db.execute(
+        "INSERT INTO crafting_ingredients (name,tier,slug) VALUES ('Base equipment','any','base-equipment')",
+        [],
+    )
+    .unwrap();
+    assert_eq!(
+        db.query_row("SELECT is_item_placeholder FROM crafting_ingredients", [], |row| row.get::<_, i64>(0)).unwrap(),
+        0
+    );
+    for value in ["0", "1"] {
+        db.execute(&format!("UPDATE crafting_ingredients SET is_item_placeholder={value}"), []).unwrap();
+    }
+    for value in ["NULL", "-1", "2", "'true'"] {
+        assert!(
+            db.execute(&format!("UPDATE crafting_ingredients SET is_item_placeholder={value}"), []).is_err(),
+            "accepted {value}"
+        );
+    }
+}
+
+#[test]
 fn crafting_item_statements_are_nullable_booleans() {
     let db = fresh_db();
     db.execute("INSERT INTO crafting_systems (id,slug,name,page) VALUES (1,'test','Test','https://example.com')", [])

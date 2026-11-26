@@ -169,7 +169,7 @@ pub(super) fn write_wiki_crafting_systems(transaction: &Transaction, wiki_overri
     for ingredient in &wiki_overrides.crafting_ingredients {
         let slug = crate::tree::qualified_slug(&ingredient.name, ingredient.variant.as_deref());
         transaction.execute(
-            "INSERT INTO crafting_ingredients (id,slug,name,variant,tier,bind,source) VALUES (?1,?2,?3,?4,?5,?6,?7)",
+            "INSERT INTO crafting_ingredients (id,slug,name,variant,tier,bind,source,is_item_placeholder) VALUES (?1,?2,?3,?4,?5,?6,?7,?8)",
             params![
                 crate::tree::xml_overlay_id("crafting_ingredients", &slug)?,
                 slug,
@@ -177,7 +177,8 @@ pub(super) fn write_wiki_crafting_systems(transaction: &Transaction, wiki_overri
                 ingredient.variant,
                 ingredient.tier,
                 ingredient.bind,
-                ingredient.source
+                ingredient.source,
+                ingredient.is_item_placeholder
             ],
         )?;
     }

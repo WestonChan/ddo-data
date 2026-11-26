@@ -1593,6 +1593,7 @@ CREATE TABLE IF NOT EXISTS crafting_ingredients (
     variant TEXT,
     name      TEXT    NOT NULL,
     tier      TEXT    NOT NULL CHECK (tier {crafting_tier}),
+    is_item_placeholder INTEGER NOT NULL DEFAULT 0 CHECK (is_item_placeholder IN (0, 1)),
     bind      TEXT,                                    -- as the wiki writes it
     source    TEXT                                     -- where it drops, free text
 );

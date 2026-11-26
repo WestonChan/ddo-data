@@ -84,6 +84,9 @@
         "null"
       ]
     },
+    "is_item_placeholder": {
+      "type": "boolean"
+    },
     "name": {
       "type": "string"
     },
@@ -110,6 +113,7 @@
     "name",
     "variant",
     "tier",
+    "is_item_placeholder",
     "bind",
     "source"
   ],

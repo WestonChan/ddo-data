@@ -34,7 +34,7 @@ impl WikiOverrides {
             crafting_stations: crafting_stations(db)?,
             crafting_ingredients: rows(
                 db,
-                "SELECT name,variant,tier,bind,source FROM crafting_ingredients ORDER BY slug",
+                "SELECT name,variant,tier,bind,source,is_item_placeholder FROM crafting_ingredients ORDER BY slug",
                 |row| {
                     Ok(CraftingIngredient {
                         name: row.get(0)?,
@@ -42,6 +42,7 @@ impl WikiOverrides {
                         tier: row.get(2)?,
                         bind: row.get(3)?,
                         source: row.get(4)?,
+                        is_item_placeholder: row.get(5)?,
                     })
                 },
             )?,

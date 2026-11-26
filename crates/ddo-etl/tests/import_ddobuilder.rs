@@ -2242,6 +2242,73 @@ fn assert_overlay_tables_match(normalized: &Connection, ours: &Connection) {
 }
 
 #[test]
+fn item_placeholder_marks_survive_both_xml_builds_and_a_no_op_import() {
+    for marked in [true, false] {
+        let ours = fixture::database(|root| {
+            let path = root.join("packs/shared/crafting/catalyst-crafting/ingredients/abyssal-gem.toml");
+            let contents = std::fs::read_to_string(&path).unwrap();
+            if marked {
+                std::fs::write(path, format!("is_item_placeholder = true\n{contents}")).unwrap();
+            }
+        });
+        let scratch = tempfile::tempdir().unwrap();
+        let fixtures = Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures");
+        let source = scratch.path().join("source");
+        copy_tree(&fixtures.join("DataFiles"), &source);
+        copy_data_icons_into_source(&fixtures.join("data"), &source, scratch.path());
+        let version = ours
+            .query_row("SELECT upstream_sha,built_at FROM dataset_version", [], |row| {
+                Ok(DatasetVersion { upstream_sha: row.get(0)?, built_at: row.get(1)? })
+            })
+            .unwrap();
+        let marks = |db: &Connection| {
+            db.prepare("SELECT slug FROM crafting_ingredients WHERE is_item_placeholder ORDER BY slug")
+                .unwrap()
+                .query_map([], |row| row.get::<_, String>(0))
+                .unwrap()
+                .collect::<Result<Vec<_>, _>>()
+                .unwrap()
+        };
+        let expected = if marked { vec!["abyssal-gem".to_string()] } else { Vec::new() };
+        assert_eq!(marks(&ours), expected);
+        for previous in [true, false] {
+            let normalized = ddo_etl::import_ddobuilder::normalized_upstream_database(
+                &source,
+                &ours,
+                &version,
+                previous,
+                &scratch.path().join(if previous { "previous" } else { "new" }),
+            )
+            .unwrap();
+            assert_eq!(marks(&normalized.db), expected, "previous={previous}, marked={marked}");
+        }
+        let root = scratch.path().join("data");
+        export_fixture_with_icons(&ours, &source, &root);
+        let ingredient =
+            std::fs::read_to_string(root.join("packs/shared/crafting/catalyst-crafting/ingredients/abyssal-gem.toml"))
+                .unwrap();
+        assert_eq!(ingredient.contains("is_item_placeholder = true"), marked);
+        assert!(!ingredient.contains("is_item_placeholder = false"));
+        let world = ImportWorld {
+            scratch,
+            options: DdobuilderImportOptions {
+                previous_dir: source.clone(),
+                source_dir: source,
+                data_dir: root,
+                previous_sha: Some(version.upstream_sha.clone()),
+                sha: Some(version.upstream_sha),
+            },
+        };
+        let before = world.bytes();
+        let report = import_ddobuilder(&world.options).unwrap();
+        assert!(!report.has_conflicts(), "{report}");
+        assert_eq!((report.files.written, report.files.removed), (0, 0), "{report}");
+        assert_eq!(world.bytes(), before);
+        assert_eq!(marks(&world.database()), expected);
+    }
+}
+
+#[test]
 fn crafting_file_and_xml_builds_preserve_the_same_authored_rows() {
     let ours = fixture::database(|root| {
         let directory = root.join("packs/shared/crafting/ingredients");

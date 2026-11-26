@@ -15,6 +15,8 @@ database_record! {
             #[serde(default, skip_serializing_if = "Option::is_none")]
             variant: Option<String> => variant,
             tier: String => tier,
+            #[serde(default, skip_serializing_if = "crate::tree::file_types::is_false")]
+            is_item_placeholder: bool => is_item_placeholder,
             #[serde(default, skip_serializing_if = "Option::is_none")]
             bind: Option<String> => bind,
             #[serde(default, skip_serializing_if = "Option::is_none")]

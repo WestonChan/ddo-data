@@ -74,6 +74,7 @@ pub struct CraftingIngredient {
     pub name: String,
     pub variant: Option<String>,
     pub tier: String,
+    pub is_item_placeholder: bool,
     pub bind: Option<String>,
     pub source: Option<String>,
 }
